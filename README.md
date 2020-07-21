@@ -5,6 +5,15 @@
 Open Substation Communication Designer is a bottom-up system configuration tool
 for projects described using `IEC 61850-6` Edition 2 or greater.
 
+## Installation
+
+```
+git clone git@grumpy.omicron.at:main/open-scd.git
+cd open-scd
+npm i
+npm start
+```
+
 ## Scripts
 
 - `start` runs `OpenSCD` for development, reloading on file changes
