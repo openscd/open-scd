@@ -10,7 +10,7 @@ for projects described using `IEC 61850-6` Edition 2 or greater.
 ```
 git clone git@grumpy.omicron.at:main/open-scd.git
 cd open-scd
-npm i
+npm install
 npm start
 ```
 
