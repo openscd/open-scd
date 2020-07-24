@@ -1,9 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { OpenScd } from '../src/OpenScd.js';
-import '../src/open-scd.js';
+import { OpenScd } from '../src/open-scd.js';
 
-describe('OpenScd', () => {
+describe('open-scd', () => {
   let element: OpenScd;
   beforeEach(async () => {
     element = await fixture(html` <open-scd></open-scd> `);
