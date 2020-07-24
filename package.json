@@ -47,6 +47,7 @@
     "es-dev-server": "^1.56.1",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-tsdoc": "^0.2.6",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
@@ -70,13 +71,17 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run doc"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.ts": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "npm run doc"
+    ],
+    "*.md": [
+      "npm run doc"
     ]
   }
 }

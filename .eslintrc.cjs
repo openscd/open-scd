@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'import', 'html'],
+  plugins: ['@typescript-eslint', 'eslint-plugin-tsdoc', 'import', 'html'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -16,5 +16,6 @@ module.exports = {
     'import/named': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': ['error', 'always', { ignorePackages: true }],
+    'tsdoc/syntax': 'warn'
   },
 };
