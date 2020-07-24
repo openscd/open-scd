@@ -16,7 +16,7 @@
   "module": "open-scd.js",
   "type": "module",
   "dependencies": {
-    "@material/top-app-bar": "^7.0.0",
+    "@material/mwc-top-app-bar-fixed": "^0.17.2",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1"
   },
