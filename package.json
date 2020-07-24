@@ -71,17 +71,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run doc && git add doc"
     }
   },
   "lint-staged": {
     "*.ts": [
       "eslint --fix",
-      "prettier --write",
-      "npm run doc"
-    ],
-    "README.md": [
-      "npm run doc"
+      "prettier --write"
     ]
   }
 }
