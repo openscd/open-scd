@@ -17,6 +17,7 @@
   "type": "module",
   "dependencies": {
     "@material/mwc-icon-button": "^0.17.2",
+    "@material/mwc-linear-progress": "^0.17.2",
     "@material/mwc-top-app-bar-fixed": "^0.17.2",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1"
