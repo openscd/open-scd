@@ -16,6 +16,6 @@
 
 ## Events
 
-| Event           | Type                                      |
-|-----------------|-------------------------------------------|
-| `pending-state` | `CustomEvent<{ promise: Promise<any>; }>` |
+| Event           | Type                         |
+|-----------------|------------------------------|
+| `pending-state` | `CustomEvent<Promise<void>>` |
