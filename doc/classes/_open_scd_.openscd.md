@@ -54,6 +54,7 @@
 * [dataset](_open_scd_.openscd.md#readonly-dataset)
 * [dir](_open_scd_.openscd.md#dir)
 * [doc](_open_scd_.openscd.md#doc)
+* [docName](_open_scd_.openscd.md#docname)
 * [draggable](_open_scd_.openscd.md#draggable)
 * [firstChild](_open_scd_.openscd.md#readonly-firstchild)
 * [firstElementChild](_open_scd_.openscd.md#readonly-firstelementchild)
@@ -172,7 +173,6 @@
 * [onwheel](_open_scd_.openscd.md#onwheel)
 * [outerHTML](_open_scd_.openscd.md#outerhtml)
 * [ownerDocument](_open_scd_.openscd.md#readonly-ownerdocument)
-* [page](_open_scd_.openscd.md#page)
 * [parentElement](_open_scd_.openscd.md#readonly-parentelement)
 * [parentNode](_open_scd_.openscd.md#readonly-parentnode)
 * [prefix](_open_scd_.openscd.md#readonly-prefix)
@@ -241,6 +241,7 @@
 * [getElementsByTagName](_open_scd_.openscd.md#getelementsbytagname)
 * [getElementsByTagNameNS](_open_scd_.openscd.md#getelementsbytagnamens)
 * [getRootNode](_open_scd_.openscd.md#getrootnode)
+* [handleClick](_open_scd_.openscd.md#handleclick)
 * [hasAttribute](_open_scd_.openscd.md#hasattribute)
 * [hasAttributeNS](_open_scd_.openscd.md#hasattributens)
 * [hasAttributes](_open_scd_.openscd.md#hasattributes)
@@ -259,6 +260,7 @@
 * [matches](_open_scd_.openscd.md#matches)
 * [msGetRegionContent](_open_scd_.openscd.md#msgetregioncontent)
 * [normalize](_open_scd_.openscd.md#normalize)
+* [openFile](_open_scd_.openscd.md#openfile)
 * [performUpdate](_open_scd_.openscd.md#protected-performupdate)
 * [prepend](_open_scd_.openscd.md#prepend)
 * [querySelector](_open_scd_.openscd.md#queryselector)
@@ -720,13 +722,21 @@ ___
 
 ###  doc
 
-• **doc**: *Document* = document.implementation.createDocument(
+• **doc**: *XMLDocument* = document.implementation.createDocument(
     'http://www.iec.ch/61850/2003/SCL',
     'SCL',
     null
   )
 
-Defined in src/open-scd.ts:9
+Defined in src/open-scd.ts:8
+
+___
+
+###  docName
+
+• **docName**: *string* = ""
+
+Defined in src/open-scd.ts:14
 
 ___
 
@@ -2118,14 +2128,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5118
 
 ___
 
-###  page
-
-• **page**: *string* = "main"
-
-Defined in src/open-scd.ts:5
-
-___
-
 ### `Readonly` parentElement
 
 • **parentElement**: *HTMLElement | null*
@@ -2317,11 +2319,11 @@ ___
 
 ###  title
 
-• **title**: *string* = ""
+• **title**: *string*
 
-*Overrides void*
+*Inherited from [OpenScd](_open_scd_.openscd.md).[title](_open_scd_.openscd.md#title)*
 
-Defined in src/open-scd.ts:7
+Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
 ___
 
@@ -2412,49 +2414,19 @@ ___
 
 ▪ **styles**: *CSSResult‹›* = css`
     :host {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: calc(10px + 2vmin);
-      color: #1a2b42;
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: center;
+      height: 100vh;
+      width: 100%;
+      margin: 0;
     }
 
-    main {
-      flex-grow: 1;
-    }
-
-    .logo > svg {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
-    }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .app-footer {
-      font-size: calc(12px + 0.5vmin);
-      align-items: center;
-    }
-
-    .app-footer a {
-      margin-left: 5px;
+    #file-input {
+      display: none;
     }
   `
 
 *Overrides void*
 
-Defined in src/open-scd.ts:15
+Defined in src/open-scd.ts:16
 
 ## Accessors
 
@@ -3299,6 +3271,16 @@ Name | Type |
 
 ___
 
+###  handleClick
+
+▸ **handleClick**(): *void*
+
+Defined in src/open-scd.ts:72
+
+**Returns:** *void*
+
+___
+
 ###  hasAttribute
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
@@ -3617,6 +3599,22 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
 Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
+
+**Returns:** *void*
+
+___
+
+###  openFile
+
+▸ **openFile**(`changeEvent`: Event): *void*
+
+Defined in src/open-scd.ts:43
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`changeEvent` | Event |
 
 **Returns:** *void*
 
@@ -3963,7 +3961,7 @@ ___
 
 *Overrides [OpenScd](_open_scd_.openscd.md).[render](_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:57
+Defined in src/open-scd.ts:28
 
 **Returns:** *TemplateResult‹›*
 
