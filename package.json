@@ -80,7 +80,7 @@
       "prettier --write",
       "npm run doc"
     ],
-    "*.md": [
+    "README.md": [
       "npm run doc"
     ]
   }
