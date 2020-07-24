@@ -1,6 +1,13 @@
 import { LitElement, customElement, html, css, property } from 'lit-element';
 import '@material/mwc-top-app-bar-fixed';
 import '@material/mwc-icon-button';
+import '@material/mwc-linear-progress';
+
+declare global {
+  interface ElementEventMap {
+    ['pending-state']: CustomEvent<Promise<void>>;
+  }
+}
 
 @customElement('open-scd')
 export class OpenScd extends LitElement {
@@ -12,6 +19,21 @@ export class OpenScd extends LitElement {
   );
 
   @property({ type: String }) docName = '';
+  @property() __hasPendingChildren = false;
+  @property() __pendingCount = 0;
+
+  firstUpdated(changedProperties: any) {
+    this.addEventListener(
+      'pending-state',
+      async (e: CustomEvent<Promise<void>>) => {
+        this.__hasPendingChildren = true;
+        this.__pendingCount++;
+        await e.detail;
+        this.__pendingCount--;
+        this.__hasPendingChildren = this.__pendingCount > 0;
+      }
+    );
+  }
 
   static styles = css`
     :host {
@@ -27,9 +49,13 @@ export class OpenScd extends LitElement {
 
   render() {
     return html`
+      <mwc-linear-progress indeterminate .closed=${!this.__hasPendingChildren}>
+      </mwc-linear-progress>
       <mwc-top-app-bar-fixed>
         <mwc-icon-button icon="menu" slot="navigationIcon"></mwc-icon-button>
-        <div slot="title" id="title">${this.docName}</div>
+        <div slot="title" id="title">
+          ${this.docName} - ${this.__pendingCount}
+        </div>
         <mwc-icon-button
           icon="folder_open"
           slot="actionItems"
@@ -49,7 +75,7 @@ export class OpenScd extends LitElement {
           'application/xml'
         );
         console.log(this.doc);
-        resolve(true);
+        resolve(undefined);
       });
       reader.readAsText(
         (<HTMLInputElement | null>changeEvent.target)?.files?.item(0) ??
@@ -61,10 +87,10 @@ export class OpenScd extends LitElement {
     };
 
     this.dispatchEvent(
-      new CustomEvent('pending-state', {
+      new CustomEvent<Promise<void>>('pending-state', {
         composed: true,
         bubbles: true,
-        detail: { promise: new Promise(executor) },
+        detail: new Promise(executor),
       })
     );
   }

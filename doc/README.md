@@ -1,28 +1,46 @@
-[open-scd](README.md) › [Globals](globals.md)
+[@material/progress-indicator](README.md) › [Globals](globals.md)
 
-# open-scd
+# @material/progress-indicator
 
-## `OpenSCD`
+<!--docs:
+title: "Progress Indicator"
+layout: detail
+section: components
+excerpt: "Material Design-styled progress indicators."
+iconId: progress_linear
+path: /catalog/progress-indicator/
+-->
 
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
-
-Open Substation Communication Designer is a bottom-up system configuration tool
-for projects described using `IEC 61850-6` Edition 2 or greater.
+# Progress Indicators
+The MDC Progress Indicator component exposes common foundation and component interfaces for a progress indicator. Components that implement these interfaces include [linear progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-linear-progress) and [circular progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-circular-progress).
+[Material Design progress & activity requirements](https://material.io/go/design-progress-indicators).
 
 ## Installation
 
 ```
-git clone git@grumpy.omicron.at:main/open-scd.git
-cd open-scd
-npm install
-npm start
+npm install @material/progress-indicator
 ```
 
-## Scripts
+## Basic Usage
 
-- `start` runs `OpenSCD` for development, reloading on file changes
-- `start:build` runs `OpenSCD` after it has been built using the build command
-- `build` builds `OpenSCD` and outputs it in the `dist` directory
-- `test` runs the test suite with Karma
-- `lint` runs the linter
-- `doc` builds markdown documentation in the `doc` directory
+### MDCProgressIndicatorFoundation API
+
+MDC Progress Indicator Foundation exposes the following methods:
+
+| Method Signature | Description |
+| --- | --- |
+| `setDeterminate(value: boolean) => void` | Toggles the component between the determinate and indeterminate state. |
+| `setProgress(value: number) => void` | Sets the progress to this value. Value should be between [0, 1]. |
+| `open() => void` | Puts the component in the open state. |
+| `close() => void` | Puts the component in the closed state. |
+
+### MDCProgressIndicator Component API
+
+MDC Progress Indicator exposes the following API:
+
+| Method Signature | Description |
+| --- | --- |
+| `determinate: boolean` | Whether the indicator is in the determinate or indeterminate state. |
+| `progress: number` | The current progress. Value should be between [0, 1]. |
+| `open() => void` | Puts the component in the open state. |
+| `close() => void` | Puts the component in the closed state. |
