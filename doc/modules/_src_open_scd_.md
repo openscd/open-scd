@@ -11,3 +11,15 @@
 ### Classes
 
 * [OpenScd](../classes/_src_open_scd_.openscd.md)
+
+### Type aliases
+
+* [PendingStateEvent](_src_open_scd_.md#pendingstateevent)
+
+## Type aliases
+
+###  PendingStateEvent
+
+Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹void››*
+
+Defined in src/open-scd.ts:8

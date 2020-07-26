@@ -34,8 +34,7 @@
 * [NOTATION_NODE](_src_open_scd_.openscd.md#readonly-notation_node)
 * [PROCESSING_INSTRUCTION_NODE](_src_open_scd_.openscd.md#readonly-processing_instruction_node)
 * [TEXT_NODE](_src_open_scd_.openscd.md#readonly-text_node)
-* [__hasPendingChildren](_src_open_scd_.openscd.md#__haspendingchildren)
-* [__pendingCount](_src_open_scd_.openscd.md#__pendingcount)
+* [_pendingCount](_src_open_scd_.openscd.md#_pendingcount)
 * [accessKey](_src_open_scd_.openscd.md#accesskey)
 * [accessKeyLabel](_src_open_scd_.openscd.md#readonly-accesskeylabel)
 * [assignedSlot](_src_open_scd_.openscd.md#readonly-assignedslot)
@@ -58,8 +57,10 @@
 * [doc](_src_open_scd_.openscd.md#doc)
 * [docName](_src_open_scd_.openscd.md#docname)
 * [draggable](_src_open_scd_.openscd.md#draggable)
+* [drawerOpen](_src_open_scd_.openscd.md#draweropen)
 * [firstChild](_src_open_scd_.openscd.md#readonly-firstchild)
 * [firstElementChild](_src_open_scd_.openscd.md#readonly-firstelementchild)
+* [hasPendingChildren](_src_open_scd_.openscd.md#haspendingchildren)
 * [hidden](_src_open_scd_.openscd.md#hidden)
 * [id](_src_open_scd_.openscd.md#id)
 * [innerHTML](_src_open_scd_.openscd.md#innerhtml)
@@ -243,7 +244,6 @@
 * [getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)
 * [getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)
 * [getRootNode](_src_open_scd_.openscd.md#getrootnode)
-* [handleClick](_src_open_scd_.openscd.md#handleclick)
 * [hasAttribute](_src_open_scd_.openscd.md#hasattribute)
 * [hasAttributeNS](_src_open_scd_.openscd.md#hasattributens)
 * [hasAttributes](_src_open_scd_.openscd.md#hasattributes)
@@ -284,6 +284,7 @@
 * [scrollBy](_src_open_scd_.openscd.md#scrollby)
 * [scrollIntoView](_src_open_scd_.openscd.md#scrollintoview)
 * [scrollTo](_src_open_scd_.openscd.md#scrollto)
+* [selectFile](_src_open_scd_.openscd.md#selectfile)
 * [setAttribute](_src_open_scd_.openscd.md#setattribute)
 * [setAttributeNS](_src_open_scd_.openscd.md#setattributens)
 * [setAttributeNode](_src_open_scd_.openscd.md#setattributenode)
@@ -520,19 +521,11 @@ node is a Text node.
 
 ___
 
-###  __hasPendingChildren
+###  _pendingCount
 
-• **__hasPendingChildren**: *boolean* = false
+• **_pendingCount**: *number* = 0
 
-Defined in src/open-scd.ts:22
-
-___
-
-###  __pendingCount
-
-• **__pendingCount**: *number* = 0
-
-Defined in src/open-scd.ts:23
+Defined in src/open-scd.ts:29
 
 ___
 
@@ -746,7 +739,7 @@ ___
     null
   )
 
-Defined in src/open-scd.ts:15
+Defined in src/open-scd.ts:19
 
 ___
 
@@ -754,7 +747,7 @@ ___
 
 • **docName**: *string* = ""
 
-Defined in src/open-scd.ts:21
+Defined in src/open-scd.ts:24
 
 ___
 
@@ -765,6 +758,14 @@ ___
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[draggable](_src_open_scd_.openscd.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
+
+___
+
+###  drawerOpen
+
+• **drawerOpen**: *boolean* = false
+
+Defined in src/open-scd.ts:26
 
 ___
 
@@ -789,6 +790,14 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
 Returns the first child that is an element, and null otherwise.
+
+___
+
+###  hasPendingChildren
+
+• **hasPendingChildren**: *boolean* = false
+
+Defined in src/open-scd.ts:28
 
 ___
 
@@ -2433,18 +2442,27 @@ ___
 ▪ **styles**: *CSSResult‹›* = css`
     :host {
       height: 100vh;
-      width: 100%;
+      width: 100vw;
       margin: 0;
     }
 
     #file-input {
       display: none;
     }
+
+    mwc-linear-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      margin: auto;
+      z-index: 100;
+    }
   `
 
 *Overrides void*
 
-Defined in src/open-scd.ts:38
+Defined in src/open-scd.ts:79
 
 ## Accessors
 
@@ -2978,17 +2996,11 @@ ___
 
 ###  firstUpdated
 
-▸ **firstUpdated**(`changedProperties`: any): *void*
+▸ **firstUpdated**(): *void*
 
 *Overrides void*
 
-Defined in src/open-scd.ts:25
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`changedProperties` | any |
+Defined in src/open-scd.ts:31
 
 **Returns:** *void*
 
@@ -3280,16 +3292,6 @@ Name | Type |
 `options?` | GetRootNodeOptions |
 
 **Returns:** *Node*
-
-___
-
-###  handleClick
-
-▸ **handleClick**(): *void*
-
-Defined in src/open-scd.ts:98
-
-**Returns:** *void*
 
 ___
 
@@ -3620,7 +3622,7 @@ ___
 
 ▸ **openFile**(`changeEvent`: Event): *void*
 
-Defined in src/open-scd.ts:69
+Defined in src/open-scd.ts:41
 
 **Parameters:**
 
@@ -3969,13 +3971,13 @@ ___
 
 ###  render
 
-▸ **render**(): *TemplateResult‹›*
+▸ **render**(): *TemplateResult*
 
 *Overrides [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:50
+Defined in src/open-scd.ts:100
 
-**Returns:** *TemplateResult‹›*
+**Returns:** *TemplateResult*
 
 ___
 
@@ -4199,6 +4201,16 @@ Name | Type |
 ------ | ------ |
 `x` | number |
 `y` | number |
+
+**Returns:** *void*
+
+___
+
+###  selectFile
+
+▸ **selectFile**(): *void*
+
+Defined in src/open-scd.ts:74
 
 **Returns:** *void*
 
