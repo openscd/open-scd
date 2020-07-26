@@ -16,6 +16,7 @@
   "module": "open-scd.js",
   "type": "module",
   "dependencies": {
+    "@material/mwc-drawer": "^0.17.2",
     "@material/mwc-icon-button": "^0.17.2",
     "@material/mwc-linear-progress": "^0.17.2",
     "@material/mwc-top-app-bar-fixed": "^0.17.2",

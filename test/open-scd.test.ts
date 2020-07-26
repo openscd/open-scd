@@ -8,10 +8,12 @@ describe('open-scd', () => {
     element = await fixture(html` <open-scd></open-scd> `);
   });
 
-  it('renders a h1', () => {
-    const h1 = element.shadowRoot!.querySelector('h1')!;
-    expect(h1).to.exist;
-    expect(h1.textContent).to.equal('My app');
+  it('renders a progress bar', () => {
+    const linearProgress = element.shadowRoot!.querySelector(
+      'mwc-linear-progress'
+    )!;
+    expect(linearProgress).to.exist;
+    expect(linearProgress.closed).to.exist;
   });
 
   it('passes the a11y audit', async () => {

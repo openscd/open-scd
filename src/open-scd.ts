@@ -1,11 +1,15 @@
 import { LitElement, customElement, html, css, property } from 'lit-element';
+import { TemplateResult } from 'lit-html';
 import '@material/mwc-top-app-bar-fixed';
 import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';
+import '@material/mwc-drawer';
+
+export type PendingStateEvent = CustomEvent<Promise<void>>;
 
 declare global {
   interface ElementEventMap {
-    ['pending-state']: CustomEvent<Promise<void>>;
+    ['pending-state']: PendingStateEvent;
   }
 }
 
@@ -17,73 +21,45 @@ export class OpenScd extends LitElement {
     'SCL',
     null
   );
-
   @property({ type: String }) docName = '';
-  @property() __hasPendingChildren = false;
-  @property() __pendingCount = 0;
 
-  firstUpdated(changedProperties: any) {
-    this.addEventListener(
-      'pending-state',
-      async (e: CustomEvent<Promise<void>>) => {
-        this.__hasPendingChildren = true;
-        this.__pendingCount++;
-        await e.detail;
-        this.__pendingCount--;
-        this.__hasPendingChildren = this.__pendingCount > 0;
-      }
-    );
+  @property({ type: String }) drawerOpen = false;
+
+  @property({ type: Boolean }) hasPendingChildren = false;
+  @property({ type: Number }) _pendingCount = 0;
+
+  firstUpdated(): void {
+    this.addEventListener('pending-state', async (e: PendingStateEvent) => {
+      this.hasPendingChildren = true;
+      this._pendingCount++;
+      await e.detail;
+      this._pendingCount--;
+      this.hasPendingChildren = this._pendingCount > 0;
+    });
   }
 
-  static styles = css`
-    :host {
-      height: 100vh;
-      width: 100%;
-      margin: 0;
-    }
-
-    #file-input {
-      display: none;
-    }
-  `;
-
-  render() {
-    return html`
-      <mwc-linear-progress indeterminate .closed=${!this.__hasPendingChildren}>
-      </mwc-linear-progress>
-      <mwc-top-app-bar-fixed>
-        <mwc-icon-button icon="menu" slot="navigationIcon"></mwc-icon-button>
-        <div slot="title" id="title">
-          ${this.docName} - ${this.__pendingCount}
-        </div>
-        <mwc-icon-button
-          icon="folder_open"
-          slot="actionItems"
-          @click="${this.handleClick}"
-        ></mwc-icon-button>
-      </mwc-top-app-bar-fixed>
-      <input id="file-input" type="file" @change="${this.openFile}" />
-    `;
-  }
-
-  openFile(changeEvent: Event) {
-    const executor = (resolve: (v: any) => void, reject: (v: any) => void) => {
+  openFile(changeEvent: Event): void {
+    const executor = (resolve: () => void, reject: () => void) => {
       const reader: FileReader = new FileReader();
-      reader.addEventListener('load', (e: Event) => {
+      reader.addEventListener('load', () => {
+        // FIXME: blocking the main thread makes progress bar not move
+        //        but DOMParser is not available in WebWorkers
         this.doc = new DOMParser().parseFromString(
           <string>reader.result,
           'application/xml'
         );
         console.log(this.doc);
-        resolve(undefined);
+        resolve();
       });
+      reader.addEventListener('error', reject);
+      reader.addEventListener('abort', reject);
       reader.readAsText(
         (<HTMLInputElement | null>changeEvent.target)?.files?.item(0) ??
           new Blob([])
       );
       this.docName =
         (<HTMLInputElement | null>changeEvent.target)?.files?.item(0)?.name ??
-        'Ups!';
+        'Oops...';
     };
 
     this.dispatchEvent(
@@ -95,9 +71,57 @@ export class OpenScd extends LitElement {
     );
   }
 
-  handleClick() {
+  selectFile = (): void =>
     (<HTMLElement | null>(
-      this.shadowRoot?.querySelector('#file-input')
+      this.shadowRoot!.querySelector('#file-input')
     ))?.click();
+
+  static styles = css`
+    :host {
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+    }
+
+    #file-input {
+      display: none;
+    }
+
+    mwc-linear-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      margin: auto;
+      z-index: 100;
+    }
+  `;
+
+  render(): TemplateResult {
+    return html`
+      <mwc-linear-progress .closed=${!this.hasPendingChildren} indeterminate>
+      </mwc-linear-progress>
+      <mwc-drawer hasheader type="modal" .open=${this.drawerOpen}>
+        <span slot="title">Menu</span>
+        <span slot="subtitle">${this.docName}</span>
+        <mwc-top-app-bar-fixed slot="appContent">
+          <mwc-icon-button
+            icon="menu"
+            slot="navigationIcon"
+            @click=${() =>
+              (this.shadowRoot!.querySelector('mwc-drawer')!.open = true)}
+          ></mwc-icon-button>
+          <div slot="title" id="title">
+            ${this.docName}
+          </div>
+          <mwc-icon-button
+            icon="folder_open"
+            slot="actionItems"
+            @click="${this.selectFile}"
+          ></mwc-icon-button>
+        </mwc-top-app-bar-fixed>
+      </mwc-drawer>
+      <input id="file-input" type="file" @change="${this.openFile}" />
+    `;
   }
 }
