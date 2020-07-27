@@ -4,6 +4,7 @@ import '@material/mwc-top-app-bar-fixed';
 import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';
 import '@material/mwc-drawer';
+import { Console } from 'console';
 
 export type PendingStateEvent = CustomEvent<Promise<void>>;
 
@@ -15,16 +16,54 @@ declare global {
 
 @customElement('open-scd')
 export class OpenScd extends LitElement {
-  @property({ type: XMLDocument })
+  @property({
+    attribute: 'blob',
+    type: XMLDocument,
+    converter: (value): XMLDocument => {
+      let newDoc: XMLDocument = document.implementation.createDocument(
+        'http://www.iec.ch/61850/2003/SCL',
+        'SCL',
+        null
+      );
+
+      const executor = (resolve: () => void, reject: () => void) => {
+        const reader: FileReader = new FileReader();
+        reader.addEventListener('load', () => {
+          // FIXME: blocking the main thread makes progress bar not move
+          //        but DOMParser is not available in WebWorkers
+          newDoc = new DOMParser().parseFromString(
+            <string>reader.result,
+            'application/xml'
+          );
+          resolve();
+        });
+        reader.addEventListener('error', reject);
+        reader.addEventListener('abort', reject);
+        fetch(value ?? '').then(res => {
+          res.blob().then(b => reader.readAsText(b));
+        });
+      };
+
+      document.querySelector('open-scd')?.dispatchEvent(
+        new CustomEvent<Promise<void>>('pending-state', {
+          composed: true,
+          bubbles: true,
+          detail: new Promise(executor),
+        })
+      );
+
+      return newDoc;
+    },
+  })
   doc: XMLDocument = document.implementation.createDocument(
     'http://www.iec.ch/61850/2003/SCL',
     'SCL',
     null
   );
+
+  myDoc: string = URL.createObjectURL(new Blob());
   @property({ type: String }) docName = '';
-
   @property({ type: String }) drawerOpen = false;
-
   @property({ type: Boolean }) hasPendingChildren = false;
   @property({ type: Number }) _pendingCount = 0;
 
@@ -39,36 +78,16 @@ export class OpenScd extends LitElement {
   }
 
   openFile(changeEvent: Event): void {
-    const executor = (resolve: () => void, reject: () => void) => {
-      const reader: FileReader = new FileReader();
-      reader.addEventListener('load', () => {
-        // FIXME: blocking the main thread makes progress bar not move
-        //        but DOMParser is not available in WebWorkers
-        this.doc = new DOMParser().parseFromString(
-          <string>reader.result,
-          'application/xml'
-        );
-        console.log(this.doc);
-        resolve();
-      });
-      reader.addEventListener('error', reject);
-      reader.addEventListener('abort', reject);
-      reader.readAsText(
+    this.setAttribute(
+      'blob',
+      URL.createObjectURL(
         (<HTMLInputElement | null>changeEvent.target)?.files?.item(0) ??
           new Blob([])
-      );
-      this.docName =
-        (<HTMLInputElement | null>changeEvent.target)?.files?.item(0)?.name ??
-        'Oops...';
-    };
-
-    this.dispatchEvent(
-      new CustomEvent<Promise<void>>('pending-state', {
-        composed: true,
-        bubbles: true,
-        detail: new Promise(executor),
-      })
+      )
     );
+    this.docName =
+      (<HTMLInputElement | null>changeEvent.target)?.files?.item(0)?.name ??
+      'Oops...';
   }
 
   selectFile = (): void =>
