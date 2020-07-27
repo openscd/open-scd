@@ -101,15 +101,14 @@ export class OpenScd extends LitElement {
     return html`
       <mwc-linear-progress .closed=${!this.hasPendingChildren} indeterminate>
       </mwc-linear-progress>
-      <mwc-drawer hasheader type="modal" .open=${this.drawerOpen}>
+      <mwc-drawer hasheader type="dismissable" .open=${this.drawerOpen}>
         <span slot="title">Menu</span>
         <span slot="subtitle">${this.docName}</span>
         <mwc-top-app-bar-fixed slot="appContent">
           <mwc-icon-button
             icon="menu"
             slot="navigationIcon"
-            @click=${() =>
-              (this.shadowRoot!.querySelector('mwc-drawer')!.open = true)}
+            @click=${() => (this.drawerOpen = !this.drawerOpen)}
           ></mwc-icon-button>
           <div slot="title" id="title">
             ${this.docName}
