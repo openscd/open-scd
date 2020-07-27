@@ -9,11 +9,10 @@ describe('open-scd', () => {
   });
 
   it('renders a progress bar', () => {
-    const linearProgress = element.shadowRoot!.querySelector(
-      'mwc-linear-progress'
-    )!;
+    const linearProgress: HTMLElement = <HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-linear-progress')!
+    );
     expect(linearProgress).to.exist;
-    expect(linearProgress.closed).to.exist;
   });
 
   it('passes the a11y audit', async () => {
