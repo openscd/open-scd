@@ -9,32 +9,32 @@ describe('open-scd', () => {
     element = await fixture(html` <open-scd></open-scd> `);
   });
 
-  it('renders a progress bar on `hasPendingChildren`', async () => {
+  it('renders a progress bar on `waiting`', async () => {
     const progressBar = element.shadowRoot!.querySelector(
       'mwc-linear-progress[indeterminate]'
     );
     expect(progressBar).property('closed').to.be.true;
-    element.hasPendingChildren = true;
+    element.waiting = true;
     await element.updateComplete;
     expect(progressBar).property('closed').to.be.false;
-    element.hasPendingChildren = false;
+    element.waiting = false;
     await element.updateComplete;
     expect(progressBar).property('closed').to.be.true;
   });
 
-  it('toggles a drawer on navigation icon click', async () => {
+  it('toggles the menu on navigation icon click', async () => {
     console.log('expecting something about', element.shadowRoot);
-    const drawer = element.shadowRoot!.querySelector('mwc-drawer')!;
-    expect(drawer).property('open').to.be.false;
+    const menu = element.shadowRoot!.querySelector('mwc-drawer')!;
+    expect(menu).property('open').to.be.false;
     const menuButton = <HTMLElement>(
       element.shadowRoot!.querySelector(
         'mwc-icon-button[slot="navigationIcon"]'
       )
     );
     await menuButton.click();
-    expect(drawer).property('open').to.be.true;
+    expect(menu).property('open').to.be.true;
     await menuButton.click();
-    expect(drawer).property('open').to.be.false;
+    expect(menu).property('open').to.be.false;
   });
 
   /*
