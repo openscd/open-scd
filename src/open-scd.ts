@@ -26,7 +26,7 @@ export class OpenScd extends LitElement {
   @property({ type: Boolean }) menuOpen = false;
 
   /** The `XMLDocument` representation of the current file. */
-  @internalProperty()
+  @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = document.implementation.createDocument(
     'http://www.iec.ch/61850/2003/SCL',
     'SCL',
@@ -107,7 +107,6 @@ export class OpenScd extends LitElement {
       top: 0;
       left: 0;
       width: 100vw;
-      margin: auto;
       z-index: 100;
     }
   `;
@@ -141,14 +140,20 @@ export class OpenScd extends LitElement {
 
   /** Indicates whether the editor is currently waiting for some async work. */
   @property({ type: Boolean }) waiting = false;
-  @internalProperty() private pendingCount = 0;
+  private work: Set<Promise<void>> = new Set();
+  /** A promise which resolves once all currently pending work is done. */
+  workDone = Promise.allSettled(this.work);
+  private pendingCount = 0;
   firstUpdated(): void {
     this.addEventListener('pending-state', async (e: PendingStateEvent) => {
       this.waiting = true;
       this.pendingCount++;
+      this.work.add(e.detail);
+      this.workDone = Promise.allSettled(this.work);
       await e.detail;
       this.pendingCount--;
       this.waiting = this.pendingCount > 0;
+      this.work.delete(e.detail);
     });
   }
 }

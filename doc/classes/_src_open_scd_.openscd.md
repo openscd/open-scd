@@ -196,6 +196,8 @@
 * [title](_src_open_scd_.openscd.md#title)
 * [translate](_src_open_scd_.openscd.md#translate)
 * [waiting](_src_open_scd_.openscd.md#waiting)
+* [work](_src_open_scd_.openscd.md#private-work)
+* [workDone](_src_open_scd_.openscd.md#workdone)
 * [[finalized]](_src_open_scd_.openscd.md#static-protected-[finalized])
 * [finalized](_src_open_scd_.openscd.md#static-protected-finalized)
 * [properties](_src_open_scd_.openscd.md#static-properties)
@@ -2173,7 +2175,7 @@ ___
 
 • **pendingCount**: *number* = 0
 
-Defined in src/open-scd.ts:144
+Defined in src/open-scd.ts:146
 
 ___
 
@@ -2376,9 +2378,27 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:143
+Defined in src/open-scd.ts:142
 
 Indicates whether the editor is currently waiting for some async work.
+
+___
+
+### `Private` work
+
+• **work**: *Set‹Promise‹void››* = new Set()
+
+Defined in src/open-scd.ts:143
+
+___
+
+###  workDone
+
+• **workDone**: *Promise‹PromiseRejectedResult | PromiseFulfilledResult‹void›[]›* = Promise.allSettled(this.work)
+
+Defined in src/open-scd.ts:145
+
+A promise which resolves once all currently pending work is done.
 
 ___
 
@@ -2473,7 +2493,6 @@ ___
       top: 0;
       left: 0;
       width: 100vw;
-      margin: auto;
       z-index: 100;
     }
   `
@@ -3044,7 +3063,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:145
+Defined in src/open-scd.ts:147
 
 **Returns:** *void*
 
@@ -4021,7 +4040,7 @@ ___
 
 *Overrides [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:115
+Defined in src/open-scd.ts:114
 
 **Returns:** *TemplateResult*
 
