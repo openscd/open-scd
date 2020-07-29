@@ -34,7 +34,6 @@
 * [NOTATION_NODE](_src_open_scd_.openscd.md#readonly-notation_node)
 * [PROCESSING_INSTRUCTION_NODE](_src_open_scd_.openscd.md#readonly-processing_instruction_node)
 * [TEXT_NODE](_src_open_scd_.openscd.md#readonly-text_node)
-* [_pendingCount](_src_open_scd_.openscd.md#_pendingcount)
 * [accessKey](_src_open_scd_.openscd.md#accesskey)
 * [accessKeyLabel](_src_open_scd_.openscd.md#readonly-accesskeylabel)
 * [assignedSlot](_src_open_scd_.openscd.md#readonly-assignedslot)
@@ -52,15 +51,13 @@
 * [clientTop](_src_open_scd_.openscd.md#readonly-clienttop)
 * [clientWidth](_src_open_scd_.openscd.md#readonly-clientwidth)
 * [contentEditable](_src_open_scd_.openscd.md#contenteditable)
+* [currentSrc](_src_open_scd_.openscd.md#private-currentsrc)
 * [dataset](_src_open_scd_.openscd.md#readonly-dataset)
 * [dir](_src_open_scd_.openscd.md#dir)
 * [doc](_src_open_scd_.openscd.md#doc)
-* [docName](_src_open_scd_.openscd.md#docname)
 * [draggable](_src_open_scd_.openscd.md#draggable)
-* [drawerOpen](_src_open_scd_.openscd.md#draweropen)
 * [firstChild](_src_open_scd_.openscd.md#readonly-firstchild)
 * [firstElementChild](_src_open_scd_.openscd.md#readonly-firstelementchild)
-* [hasPendingChildren](_src_open_scd_.openscd.md#haspendingchildren)
 * [hidden](_src_open_scd_.openscd.md#hidden)
 * [id](_src_open_scd_.openscd.md#id)
 * [innerHTML](_src_open_scd_.openscd.md#innerhtml)
@@ -72,6 +69,7 @@
 * [lastChild](_src_open_scd_.openscd.md#readonly-lastchild)
 * [lastElementChild](_src_open_scd_.openscd.md#readonly-lastelementchild)
 * [localName](_src_open_scd_.openscd.md#readonly-localname)
+* [menuOpen](_src_open_scd_.openscd.md#menuopen)
 * [namespaceURI](_src_open_scd_.openscd.md#readonly-namespaceuri)
 * [nextElementSibling](_src_open_scd_.openscd.md#readonly-nextelementsibling)
 * [nextSibling](_src_open_scd_.openscd.md#readonly-nextsibling)
@@ -178,6 +176,7 @@
 * [ownerDocument](_src_open_scd_.openscd.md#readonly-ownerdocument)
 * [parentElement](_src_open_scd_.openscd.md#readonly-parentelement)
 * [parentNode](_src_open_scd_.openscd.md#readonly-parentnode)
+* [pendingCount](_src_open_scd_.openscd.md#private-pendingcount)
 * [prefix](_src_open_scd_.openscd.md#readonly-prefix)
 * [previousElementSibling](_src_open_scd_.openscd.md#readonly-previouselementsibling)
 * [previousSibling](_src_open_scd_.openscd.md#readonly-previoussibling)
@@ -189,12 +188,16 @@
 * [shadowRoot](_src_open_scd_.openscd.md#readonly-shadowroot)
 * [slot](_src_open_scd_.openscd.md#slot)
 * [spellcheck](_src_open_scd_.openscd.md#spellcheck)
+* [srcName](_src_open_scd_.openscd.md#srcname)
 * [style](_src_open_scd_.openscd.md#readonly-style)
 * [tabIndex](_src_open_scd_.openscd.md#tabindex)
 * [tagName](_src_open_scd_.openscd.md#readonly-tagname)
 * [textContent](_src_open_scd_.openscd.md#textcontent)
 * [title](_src_open_scd_.openscd.md#title)
 * [translate](_src_open_scd_.openscd.md#translate)
+* [waiting](_src_open_scd_.openscd.md#waiting)
+* [work](_src_open_scd_.openscd.md#private-work)
+* [workDone](_src_open_scd_.openscd.md#workdone)
 * [[finalized]](_src_open_scd_.openscd.md#static-protected-[finalized])
 * [finalized](_src_open_scd_.openscd.md#static-protected-finalized)
 * [properties](_src_open_scd_.openscd.md#static-properties)
@@ -204,6 +207,7 @@
 ### Accessors
 
 * [hasUpdated](_src_open_scd_.openscd.md#protected-hasupdated)
+* [src](_src_open_scd_.openscd.md#src)
 * [updateComplete](_src_open_scd_.openscd.md#updatecomplete)
 * [observedAttributes](_src_open_scd_.openscd.md#static-observedattributes)
 
@@ -257,12 +261,12 @@
 * [isDefaultNamespace](_src_open_scd_.openscd.md#isdefaultnamespace)
 * [isEqualNode](_src_open_scd_.openscd.md#isequalnode)
 * [isSameNode](_src_open_scd_.openscd.md#issamenode)
+* [loadFile](_src_open_scd_.openscd.md#private-loadfile)
 * [lookupNamespaceURI](_src_open_scd_.openscd.md#lookupnamespaceuri)
 * [lookupPrefix](_src_open_scd_.openscd.md#lookupprefix)
 * [matches](_src_open_scd_.openscd.md#matches)
 * [msGetRegionContent](_src_open_scd_.openscd.md#msgetregioncontent)
 * [normalize](_src_open_scd_.openscd.md#normalize)
-* [openFile](_src_open_scd_.openscd.md#openfile)
 * [performUpdate](_src_open_scd_.openscd.md#protected-performupdate)
 * [prepend](_src_open_scd_.openscd.md#prepend)
 * [querySelector](_src_open_scd_.openscd.md#queryselector)
@@ -521,14 +525,6 @@ node is a Text node.
 
 ___
 
-###  _pendingCount
-
-• **_pendingCount**: *number* = 0
-
-Defined in src/open-scd.ts:29
-
-___
-
 ###  accessKey
 
 • **accessKey**: *string*
@@ -711,6 +707,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
 ___
 
+### `Private` currentSrc
+
+• **currentSrc**: *string* = ""
+
+Defined in src/open-scd.ts:35
+
+___
+
 ### `Readonly` dataset
 
 • **dataset**: *DOMStringMap*
@@ -739,15 +743,9 @@ ___
     null
   )
 
-Defined in src/open-scd.ts:19
+Defined in src/open-scd.ts:30
 
-___
-
-###  docName
-
-• **docName**: *string* = ""
-
-Defined in src/open-scd.ts:24
+The `XMLDocument` representation of the current file.
 
 ___
 
@@ -758,14 +756,6 @@ ___
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[draggable](_src_open_scd_.openscd.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
-
-___
-
-###  drawerOpen
-
-• **drawerOpen**: *boolean* = false
-
-Defined in src/open-scd.ts:26
 
 ___
 
@@ -790,14 +780,6 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
 Returns the first child that is an element, and null otherwise.
-
-___
-
-###  hasPendingChildren
-
-• **hasPendingChildren**: *boolean* = false
-
-Defined in src/open-scd.ts:28
 
 ___
 
@@ -918,6 +900,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
 Returns the local name.
+
+___
+
+###  menuOpen
+
+• **menuOpen**: *boolean* = false
+
+Defined in src/open-scd.ts:26
+
+Represents whether the menu drawer is currently open.
 
 ___
 
@@ -2179,6 +2171,14 @@ Returns the parent.
 
 ___
 
+### `Private` pendingCount
+
+• **pendingCount**: *number* = 0
+
+Defined in src/open-scd.ts:146
+
+___
+
 ### `Readonly` prefix
 
 • **prefix**: *string | null*
@@ -2302,6 +2302,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
 ___
 
+###  srcName
+
+• **srcName**: *string* = ""
+
+Defined in src/open-scd.ts:37
+
+The name of the current file.
+
+___
+
 ### `Readonly` style
 
 • **style**: *CSSStyleDeclaration*
@@ -2361,6 +2371,34 @@ ___
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[translate](_src_open_scd_.openscd.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
+
+___
+
+###  waiting
+
+• **waiting**: *boolean* = false
+
+Defined in src/open-scd.ts:142
+
+Indicates whether the editor is currently waiting for some async work.
+
+___
+
+### `Private` work
+
+• **work**: *Set‹Promise‹void››* = new Set()
+
+Defined in src/open-scd.ts:143
+
+___
+
+###  workDone
+
+• **workDone**: *Promise‹PromiseRejectedResult | PromiseFulfilledResult‹void›[]›* = Promise.allSettled(this.work)
+
+Defined in src/open-scd.ts:145
+
+A promise which resolves once all currently pending work is done.
 
 ___
 
@@ -2455,14 +2493,13 @@ ___
       top: 0;
       left: 0;
       width: 100vw;
-      margin: auto;
       z-index: 100;
     }
   `
 
 *Overrides void*
 
-Defined in src/open-scd.ts:79
+Defined in src/open-scd.ts:94
 
 ## Accessors
 
@@ -2475,6 +2512,32 @@ Defined in src/open-scd.ts:79
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
+
+___
+
+###  src
+
+• **get src**(): *string*
+
+Defined in src/open-scd.ts:40
+
+The current file's URL. `blob:` URLs are *revoked after parsing*!
+
+**Returns:** *string*
+
+• **set src**(`value`: string): *void*
+
+Defined in src/open-scd.ts:43
+
+The current file's URL. `blob:` URLs are *revoked after parsing*!
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | string |
+
+**Returns:** *void*
 
 ___
 
@@ -3000,7 +3063,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:31
+Defined in src/open-scd.ts:147
 
 **Returns:** *void*
 
@@ -3536,6 +3599,24 @@ Name | Type |
 
 ___
 
+### `Private` loadFile
+
+▸ **loadFile**(`event`: Event): *void*
+
+Defined in src/open-scd.ts:76
+
+Loads the file selected by input `event.target.files[0]`.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | Event |
+
+**Returns:** *void*
+
+___
+
 ###  lookupNamespaceURI
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
@@ -3613,22 +3694,6 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
 Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
-
-**Returns:** *void*
-
-___
-
-###  openFile
-
-▸ **openFile**(`changeEvent`: Event): *void*
-
-Defined in src/open-scd.ts:41
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`changeEvent` | Event |
 
 **Returns:** *void*
 
@@ -3975,7 +4040,7 @@ ___
 
 *Overrides [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:100
+Defined in src/open-scd.ts:114
 
 **Returns:** *TemplateResult*
 
@@ -4210,7 +4275,9 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:74
+Defined in src/open-scd.ts:89
+
+Opens the browser's "open file" dialog for selecting a file to edit.
 
 **Returns:** *void*
 

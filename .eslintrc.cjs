@@ -16,6 +16,8 @@ module.exports = {
     'import/named': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': ['error', 'always', { ignorePackages: true }],
+    'import/no-duplicates': 'off',
+    'no-duplicate-imports': 'off',
     'tsdoc/syntax': 'warn'
   },
 };
