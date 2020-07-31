@@ -12,6 +12,8 @@ import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';
 import '@material/mwc-drawer';
 
+import { validate } from './validate.js';
+
 export type PendingStateEvent = CustomEvent<Promise<void>>;
 
 declare global {
@@ -53,6 +55,7 @@ export class OpenScd extends LitElement {
           );
           // free blob memory after parsing
           if (value.startsWith('blob:')) URL.revokeObjectURL(value);
+          validate(this.doc).then(r => console.log('Validated XML', r));
           resolve();
         });
         reader.addEventListener('error', reject);

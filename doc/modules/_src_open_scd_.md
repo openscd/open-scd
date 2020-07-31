@@ -22,4 +22,4 @@
 
 Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹void››*
 
-Defined in src/open-scd.ts:15
+Defined in src/open-scd.ts:17
