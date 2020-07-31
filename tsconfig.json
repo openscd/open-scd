@@ -10,10 +10,11 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "allowJs": true,
     "outDir": "out-tsc",
     "sourceMap": true,
     "inlineSources": true,
     "rootDir": "./"
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "src/**/*"]
 }
