@@ -1,14 +1,16 @@
-import { validateXML } from './xmllint.js';
+declare const validateXML: any;
 
 export async function validate(doc: XMLDocument): Promise<boolean> {
-  return (
-    validateXML(new XMLSerializer().serializeToString(doc), schemas).errors ===
-    null
-  );
+  const result = validateXML({
+    xml: new XMLSerializer().serializeToString(doc),
+    schema: schemas,
+    arguments: ['--noout', '--schema', 'SCL.xsd', 'filename.scd'],
+  });
+  console.log(result);
+  return result.errors === null;
 }
 
-const schemas: Array<string> = [
-  `<?xml version="1.0" encoding="UTF-8"?>
+const schemas = `<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:scl="http://www.iec.ch/61850/2003/SCL" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.iec.ch/61850/2003/SCL" elementFormDefault="qualified" attributeFormDefault="unqualified" finalDefault="extension" version="2007B1">
 	<xs:annotation>
 		<xs:documentation xml:lang="en">
@@ -91,5 +93,4 @@ const schemas: Array<string> = [
 		</xs:key>
 	</xs:element>
 </xs:schema>
-`,
-];
+`;
