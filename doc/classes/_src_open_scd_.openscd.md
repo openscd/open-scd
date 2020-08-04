@@ -2394,7 +2394,7 @@ ___
 
 ###  workDone
 
-• **workDone**: *Promise‹PromiseRejectedResult | PromiseFulfilledResult‹void›[]›* = Promise.allSettled(this.work)
+• **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹void›)[]›* = Promise.allSettled(this.work)
 
 Defined in src/open-scd.ts:148
 
@@ -2685,7 +2685,7 @@ ___
 
 ###  after
 
-▸ **after**(...`nodes`: string | Node[]): *void*
+▸ **after**(...`nodes`: (string | Node)[]): *void*
 
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[after](_src_open_scd_.openscd.md#after)*
 
@@ -2699,7 +2699,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -2726,7 +2726,7 @@ ___
 
 ###  append
 
-▸ **append**(...`nodes`: string | Node[]): *void*
+▸ **append**(...`nodes`: (string | Node)[]): *void*
 
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[append](_src_open_scd_.openscd.md#append)*
 
@@ -2740,7 +2740,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -2812,7 +2812,7 @@ ___
 
 ###  before
 
-▸ **before**(...`nodes`: string | Node[]): *void*
+▸ **before**(...`nodes`: (string | Node)[]): *void*
 
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[before](_src_open_scd_.openscd.md#before)*
 
@@ -2826,7 +2826,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -3728,7 +3728,7 @@ ___
 
 ###  prepend
 
-▸ **prepend**(...`nodes`: string | Node[]): *void*
+▸ **prepend**(...`nodes`: (string | Node)[]): *void*
 
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[prepend](_src_open_scd_.openscd.md#prepend)*
 
@@ -3742,7 +3742,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -4071,7 +4071,7 @@ ___
 
 ###  replaceWith
 
-▸ **replaceWith**(...`nodes`: string | Node[]): *void*
+▸ **replaceWith**(...`nodes`: (string | Node)[]): *void*
 
 *Inherited from [OpenScd](_src_open_scd_.openscd.md).[replaceWith](_src_open_scd_.openscd.md#replacewith)*
 
@@ -4085,7 +4085,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
