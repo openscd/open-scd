@@ -11,11 +11,11 @@
 ### Variables
 
 * [SCL2007B1_2014_07_18](_src_validate_.md#const-scl2007b1_2014_07_18)
-* [validateXML](_src_validate_.md#const-validatexml)
 
 ### Functions
 
 * [validate](_src_validate_.md#validate)
+* [validateXML](_src_validate_.md#validatexml)
 
 ## Variables
 
@@ -6585,24 +6585,6 @@
 
 Defined in src/validate.ts:22
 
-___
-
-### `Const` validateXML
-
-• **validateXML**: *function*
-
-Defined in src/validate.ts:8
-
-#### Type declaration:
-
-▸ (`parameters`: [XMLParams](../interfaces/_src_validate_.xmlparams.md)): *null | string*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`parameters` | [XMLParams](../interfaces/_src_validate_.xmlparams.md) |
-
 ## Functions
 
 ###  validate
@@ -6619,3 +6601,19 @@ Name | Type | Default |
 `fileName` | string | "untitled.scd" |
 
 **Returns:** *Promise‹null | Array‹string››*
+
+___
+
+###  validateXML
+
+▸ **validateXML**(`parameters`: [XMLParams](../interfaces/_src_validate_.xmlparams.md)): *null | string*
+
+Defined in src/validate.ts:8
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`parameters` | [XMLParams](../interfaces/_src_validate_.xmlparams.md) |
+
+**Returns:** *null | string*
