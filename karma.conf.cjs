@@ -6,6 +6,7 @@ module.exports = config => {
   config.set(
     merge(createDefaultConfig(config), {
       files: [
+        'xmllint.js',
         // runs all files ending with .test in the test folder,
         // can be overwritten by passing a --grep flag. examples:
         //

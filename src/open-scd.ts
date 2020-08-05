@@ -165,7 +165,7 @@ export class OpenScd extends LitElement {
       this.waiting = true;
       this.work.add(e.detail);
       this.workDone = Promise.allSettled(this.work);
-      await e.detail.catch(alert);
+      await e.detail.then(console.error, console.info);
       this.work.delete(e.detail);
       this.waiting = this.work.size > 0;
     });

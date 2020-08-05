@@ -5,7 +5,7 @@ interface XMLParams {
   schema: string;
   arguments: Array<string>;
 }
-declare const validateXML: (parameters: XMLParams) => null | string;
+declare function validateXML(parameters: XMLParams): null | string;
 
 export async function validate(
   doc: XMLDocument,
@@ -16,7 +16,7 @@ export async function validate(
     schema: SCL2007B1_2014_07_18,
     arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
   });
-  return result?.split('\n').filter(s => s) ?? null;
+  return result?.split('\n').filter((s: string) => s) ?? null;
 }
 
 const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>

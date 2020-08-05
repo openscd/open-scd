@@ -8,7 +8,10 @@ import { training } from './data.js';
 describe('open-scd', () => {
   let element: OpenScd;
   beforeEach(async () => {
-    element = await fixture(html` <open-scd></open-scd> `);
+    element = await fixture(html`
+      <open-scd></open-scd>
+      <script src="./xmllint.js"></script>
+    `);
   });
 
   it('toggles the menu on navigation icon click', async () => {
@@ -39,23 +42,16 @@ describe('open-scd', () => {
   });
 
   it('loads XML data from a `src` URL', async () => {
+    element.setAttribute('srcName', 'training.scd');
     expect(element).property('waiting').to.be.false;
     element.setAttribute('src', training);
-    await element.updateComplete;
     expect(element).property('waiting').to.be.true;
     await element.workDone;
-    expect(element).property('waiting').to.be.false;
     expect(element.doc.querySelector('DataTypeTemplates > DOType')).to.have.id(
       'ABBIED600_Rev1_ENC_Mod_OnTestBlock'
     ); // FIXME: testing random DOType's `id` for lack of XML snapshot support
     expect(element.doc.lastElementChild)
       .property('childElementCount')
       .to.equal(21); // FIXME: counting `SCL` children instead of XML snapshot
-  });
-
-  /*
-  it('passes the a11y audit', async () => {
-    await expect(element).shadowDom.to.be.accessible();
-  });
-   */
+  }).timeout(10000);
 });
