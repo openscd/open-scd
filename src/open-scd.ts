@@ -55,8 +55,10 @@ export class OpenScd extends LitElement {
           );
           // free blob memory after parsing
           if (value.startsWith('blob:')) URL.revokeObjectURL(value);
-          validate(this.doc).then(r => console.log('Validated XML', r));
-          resolve();
+          validate(this.doc, this.srcName).then(valid => {
+            if (valid) resolve();
+            else reject();
+          });
         });
         reader.addEventListener('error', reject);
         reader.addEventListener('abort', reject);
@@ -79,7 +81,7 @@ export class OpenScd extends LitElement {
   private loadFile(event: Event): void {
     this.srcName =
       (<HTMLInputElement | null>event.target)?.files?.item(0)?.name ??
-      'untitled';
+      'untitled.scd';
     this.setAttribute(
       'src',
       URL.createObjectURL(

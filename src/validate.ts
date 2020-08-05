@@ -1,16 +1,26 @@
-declare const validateXML: any;
+import { encodeNonASCII } from './xml-entities.js';
 
-export async function validate(doc: XMLDocument): Promise<boolean> {
+interface XMLParams {
+  xml: string;
+  schema: string;
+  arguments: Array<string>;
+}
+declare const validateXML: (parameters: XMLParams) => null | string;
+
+export async function validate(
+  doc: XMLDocument,
+  fileName = 'untitled.scd'
+): Promise<boolean> {
   const result = validateXML({
-    xml: new XMLSerializer().serializeToString(doc),
-    schema: schemas,
-    arguments: ['--noout', '--schema', 'SCL.xsd', 'filename.scd'],
+    xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
+    schema: SCL2007B1_2014_07_18,
+    arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
   });
-  console.log(result);
-  return result.errors === null;
+  console.log(result?.split('\n'));
+  return result === null;
 }
 
-const schemas = `<?xml version="1.0" encoding="utf-8" ?>
+const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:scl="http://www.iec.ch/61850/2003/SCL" xmlns="http://www.iec.ch/61850/2003/SCL" elementFormDefault="qualified" targetNamespace="http://www.iec.ch/61850/2003/SCL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation xml:lang="en">
