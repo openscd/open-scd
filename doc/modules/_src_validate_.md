@@ -6583,7 +6583,7 @@
   </xs:element>
 </xs:schema>`
 
-Defined in src/validate.ts:23
+Defined in src/validate.ts:22
 
 ___
 
@@ -6607,7 +6607,7 @@ Name | Type |
 
 ###  validate
 
-▸ **validate**(`doc`: XMLDocument, `fileName`: string): *Promise‹boolean›*
+▸ **validate**(`doc`: XMLDocument, `fileName`: string): *Promise‹null | Array‹string››*
 
 Defined in src/validate.ts:10
 
@@ -6618,4 +6618,4 @@ Name | Type | Default |
 `doc` | XMLDocument | - |
 `fileName` | string | "untitled.scd" |
 
-**Returns:** *Promise‹boolean›*
+**Returns:** *Promise‹null | Array‹string››*

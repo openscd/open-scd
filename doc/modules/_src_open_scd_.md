@@ -16,10 +16,26 @@
 
 * [PendingStateEvent](_src_open_scd_.md#pendingstateevent)
 
+### Variables
+
+* [emptySCD](_src_open_scd_.md#const-emptyscd)
+
 ## Type aliases
 
 ###  PendingStateEvent
 
-Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹void››*
+Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹string››*
 
 Defined in src/open-scd.ts:17
+
+## Variables
+
+### `Const` emptySCD
+
+• **emptySCD**: *Document* = document.implementation.createDocument(
+  'http://www.iec.ch/61850/2003/SCL',
+  'SCL',
+  null
+)
+
+Defined in src/open-scd.ts:25
