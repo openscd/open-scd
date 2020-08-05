@@ -4,9 +4,13 @@
 
 ## Index
 
+### Interfaces
+
+* [XMLParams](../interfaces/_src_validate_.xmlparams.md)
+
 ### Variables
 
-* [schemas](_src_validate_.md#const-schemas)
+* [SCL2007B1_2014_07_18](_src_validate_.md#const-scl2007b1_2014_07_18)
 * [validateXML](_src_validate_.md#const-validatexml)
 
 ### Functions
@@ -15,9 +19,9 @@
 
 ## Variables
 
-### `Const` schemas
+### `Const` SCL2007B1_2014_07_18
 
-• **schemas**: *"<?xml version="1.0" encoding="utf-8" ?>
+• **SCL2007B1_2014_07_18**: *"<?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:scl="http://www.iec.ch/61850/2003/SCL" xmlns="http://www.iec.ch/61850/2003/SCL" elementFormDefault="qualified" targetNamespace="http://www.iec.ch/61850/2003/SCL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation xml:lang="en">
@@ -6579,28 +6583,39 @@
   </xs:element>
 </xs:schema>`
 
-Defined in src/validate.ts:13
+Defined in src/validate.ts:23
 
 ___
 
 ### `Const` validateXML
 
-• **validateXML**: *any*
+• **validateXML**: *function*
 
-Defined in src/validate.ts:1
+Defined in src/validate.ts:8
 
-## Functions
+#### Type declaration:
 
-###  validate
-
-▸ **validate**(`doc`: XMLDocument): *Promise‹boolean›*
-
-Defined in src/validate.ts:3
+▸ (`parameters`: [XMLParams](../interfaces/_src_validate_.xmlparams.md)): *null | string*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`doc` | XMLDocument |
+`parameters` | [XMLParams](../interfaces/_src_validate_.xmlparams.md) |
+
+## Functions
+
+###  validate
+
+▸ **validate**(`doc`: XMLDocument, `fileName`: string): *Promise‹boolean›*
+
+Defined in src/validate.ts:10
+
+**Parameters:**
+
+Name | Type | Default |
+------ | ------ | ------ |
+`doc` | XMLDocument | - |
+`fileName` | string | "untitled.scd" |
 
 **Returns:** *Promise‹boolean›*

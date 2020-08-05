@@ -2175,7 +2175,7 @@ ___
 
 • **pendingCount**: *number* = 0
 
-Defined in src/open-scd.ts:149
+Defined in src/open-scd.ts:151
 
 ___
 
@@ -2378,7 +2378,7 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:145
+Defined in src/open-scd.ts:147
 
 Indicates whether the editor is currently waiting for some async work.
 
@@ -2388,7 +2388,7 @@ ___
 
 • **work**: *Set‹Promise‹void››* = new Set()
 
-Defined in src/open-scd.ts:146
+Defined in src/open-scd.ts:148
 
 ___
 
@@ -2396,7 +2396,7 @@ ___
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹void›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:148
+Defined in src/open-scd.ts:150
 
 A promise which resolves once all currently pending work is done.
 
@@ -2499,7 +2499,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:97
+Defined in src/open-scd.ts:99
 
 ## Accessors
 
@@ -3063,7 +3063,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:150
+Defined in src/open-scd.ts:152
 
 **Returns:** *void*
 
@@ -3603,7 +3603,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd.ts:79
+Defined in src/open-scd.ts:81
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4040,7 +4040,7 @@ ___
 
 *Overrides [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:117
+Defined in src/open-scd.ts:119
 
 **Returns:** *TemplateResult*
 
@@ -4275,7 +4275,7 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:92
+Defined in src/open-scd.ts:94
 
 Opens the browser's "open file" dialog for selecting a file to edit.
 
