@@ -10,14 +10,13 @@ declare const validateXML: (parameters: XMLParams) => null | string;
 export async function validate(
   doc: XMLDocument,
   fileName = 'untitled.scd'
-): Promise<boolean> {
+): Promise<null | Array<string>> {
   const result = validateXML({
     xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
     schema: SCL2007B1_2014_07_18,
     arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
   });
-  console.log(result?.split('\n'));
-  return result === null;
+  return result?.split('\n').filter(s => s) ?? null;
 }
 
 const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
