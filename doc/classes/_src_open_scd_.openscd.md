@@ -69,6 +69,7 @@
 * [lastChild](_src_open_scd_.openscd.md#readonly-lastchild)
 * [lastElementChild](_src_open_scd_.openscd.md#readonly-lastelementchild)
 * [localName](_src_open_scd_.openscd.md#readonly-localname)
+* [log](_src_open_scd_.openscd.md#log)
 * [menuOpen](_src_open_scd_.openscd.md#menuopen)
 * [namespaceURI](_src_open_scd_.openscd.md#readonly-namespaceuri)
 * [nextElementSibling](_src_open_scd_.openscd.md#readonly-nextelementsibling)
@@ -896,6 +897,14 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
 Returns the local name.
+
+___
+
+###  log
+
+• **log**: *Array‹string›* = []
+
+Defined in src/open-scd.ts:58
 
 ___
 
@@ -2366,7 +2375,7 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:159
+Defined in src/open-scd.ts:168
 
 Indicates whether the editor is currently waiting for some async work.
 
@@ -2376,7 +2385,7 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/open-scd.ts:160
+Defined in src/open-scd.ts:169
 
 ___
 
@@ -2384,7 +2393,7 @@ ___
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:162
+Defined in src/open-scd.ts:171
 
 A promise which resolves once all currently pending work is done.
 
@@ -2487,7 +2496,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:111
+Defined in src/open-scd.ts:115
 
 ## Accessors
 
@@ -3051,7 +3060,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:163
+Defined in src/open-scd.ts:172
 
 **Returns:** *void*
 
@@ -3591,7 +3600,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd.ts:58
+Defined in src/open-scd.ts:60
 
 **Parameters:**
 
@@ -3607,7 +3616,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd.ts:93
+Defined in src/open-scd.ts:97
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4044,7 +4053,7 @@ ___
 
 *Overrides [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:131
+Defined in src/open-scd.ts:135
 
 **Returns:** *TemplateResult*
 
@@ -4279,7 +4288,7 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:106
+Defined in src/open-scd.ts:110
 
 Opens the browser's "open file" dialog for selecting a file to edit.
 

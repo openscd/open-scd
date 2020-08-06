@@ -5,6 +5,7 @@
 | Property     | Attribute  | Type                                      | Default                                          | Description                                      |
 |--------------|------------|-------------------------------------------|--------------------------------------------------|--------------------------------------------------|
 | `doc`        |            | `XMLDocument`                             | "emptySCD"                                       | The `XMLDocument` representation of the current file. |
+| `log`        | `log`      | `string[]`                                | []                                               |                                                  |
 | `menuOpen`   | `menuOpen` | `boolean`                                 | false                                            | Whether the menu drawer is currently open.       |
 | `selectFile` |            | `() => void`                              | "(): void =>\n    (<HTMLElement \| null>(\n      this.shadowRoot!.querySelector('#file-input')\n    ))?.click()" | Opens the browser's "open file" dialog for selecting a file to edit. |
 | `src`        | `src`      | `string`                                  |                                                  | The current file's URL. `blob:` URLs are *revoked after parsing*! |
