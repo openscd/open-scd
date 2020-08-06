@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { createDefaultConfig } = require('@open-wc/testing-karma');
 const merge = require('deepmerge');
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = config => {
   config.set(
@@ -18,6 +19,14 @@ module.exports = config => {
           type: 'module',
         },
       ],
+
+      browsers: ['ChromeHeadlessNoSandbox'],
+      customLaunchers: {
+        ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags: ['--no-sandbox'],
+        },
+      },
 
       esm: {
         nodeResolve: true,
