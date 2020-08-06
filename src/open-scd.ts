@@ -30,32 +30,52 @@ const emptySCD = document.implementation.createDocument(
 
 @customElement('open-scd')
 export class OpenScd extends LitElement {
+  render(): TemplateResult {
+    return html`
+      <mwc-linear-progress .closed=${!this.waiting} indeterminate>
+      </mwc-linear-progress>
+      <mwc-drawer hasheader type="dismissible" .open=${this.menuOpen}>
+        <span slot="title">Menu</span>
+        <span slot="subtitle">${this.srcName}</span>
+        <mwc-top-app-bar-fixed slot="appContent">
+          <mwc-icon-button
+            icon="menu"
+            slot="navigationIcon"
+            @click=${() => (this.menuOpen = !this.menuOpen)}
+          ></mwc-icon-button>
+          <div slot="title" id="title">
+            ${this.srcName}
+          </div>
+          <mwc-icon-button
+            icon="folder_open"
+            slot="actionItems"
+            @click="${this.selectFile}"
+          ></mwc-icon-button>
+          <div id="content">
+            <ul>
+              ${this.log.map(item => html`<li>${item}</li>`)}
+            </ul>
+          </div>
+        </mwc-top-app-bar-fixed>
+      </mwc-drawer>
+      <input id="file-input" type="file" @change="${this.loadFile}" />
+    `;
+  }
+
   /** Whether the menu drawer is currently open. */
   @property({ type: Boolean }) menuOpen = false;
-
+  /** Error and warning log */
+  @property({ type: Array }) log: Array<string> = [];
   /** The `XMLDocument` representation of the current file. */
   @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = emptySCD;
-  private currentSrc = '';
   /** The name of the current file. */
   @property({ type: String }) srcName = '';
-  /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
-  @property({ type: String })
-  get src(): string {
-    return this.currentSrc;
-  }
-  set src(value: string) {
-    this.currentSrc = value;
-    document.querySelector('open-scd')?.dispatchEvent(
-      new CustomEvent<Promise<string>>('pending-state', {
-        composed: true,
-        bubbles: true,
-        detail: this.loadDoc(value),
-      })
-    );
-  }
-
-  @property({ type: Array }) log: Array<string> = [];
+  /** Whether the editor is currently waiting for some async work. */
+  @property({ type: Boolean }) waiting = false;
+  private work: Set<Promise<string>> = new Set();
+  /** A promise which resolves once all currently pending work is done. */
+  workDone = Promise.allSettled(this.work);
 
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
@@ -93,6 +113,23 @@ export class OpenScd extends LitElement {
     );
   }
 
+  private currentSrc = '';
+  /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
+  @property({ type: String })
+  get src(): string {
+    return this.currentSrc;
+  }
+  set src(value: string) {
+    this.currentSrc = value;
+    document.querySelector('open-scd')?.dispatchEvent(
+      new CustomEvent<Promise<string>>('pending-state', {
+        composed: true,
+        bubbles: true,
+        detail: this.loadDoc(value),
+      })
+    );
+  }
+
   /** Loads the file selected by input `event.target.files[0]`. */
   private loadFile(event: Event): void {
     this.srcName =
@@ -111,6 +148,17 @@ export class OpenScd extends LitElement {
     (<HTMLElement | null>(
       this.shadowRoot!.querySelector('#file-input')
     ))?.click();
+
+  firstUpdated(): void {
+    this.addEventListener('pending-state', async (e: PendingStateEvent) => {
+      this.waiting = true;
+      this.work.add(e.detail);
+      this.workDone = Promise.allSettled(this.work);
+      await e.detail.then(console.error, console.info);
+      this.work.delete(e.detail);
+      this.waiting = this.work.size > 0;
+    });
+  }
 
   static styles = css`
     :host {
@@ -131,52 +179,4 @@ export class OpenScd extends LitElement {
       z-index: 100;
     }
   `;
-
-  render(): TemplateResult {
-    return html`
-      <mwc-linear-progress .closed=${!this.waiting} indeterminate>
-      </mwc-linear-progress>
-      <mwc-drawer hasheader type="dismissible" .open=${this.menuOpen}>
-        <span slot="title">Menu</span>
-        <span slot="subtitle">${this.srcName}</span>
-        <mwc-top-app-bar-fixed slot="appContent">
-          <mwc-icon-button
-            icon="menu"
-            slot="navigationIcon"
-            @click=${() => (this.menuOpen = !this.menuOpen)}
-          ></mwc-icon-button>
-          <div slot="title" id="title">
-            ${this.srcName}
-          </div>
-          <mwc-icon-button
-            icon="folder_open"
-            slot="actionItems"
-            @click="${this.selectFile}"
-          ></mwc-icon-button>
-          <div id="content">
-            <ul>
-              ${this.log.map(item => html`<li>${item}</li>`)}
-            </ul>
-          </div>
-        </mwc-top-app-bar-fixed>
-      </mwc-drawer>
-      <input id="file-input" type="file" @change="${this.loadFile}" />
-    `;
-  }
-
-  /** Indicates whether the editor is currently waiting for some async work. */
-  @property({ type: Boolean }) waiting = false;
-  private work: Set<Promise<string>> = new Set();
-  /** A promise which resolves once all currently pending work is done. */
-  workDone = Promise.allSettled(this.work);
-  firstUpdated(): void {
-    this.addEventListener('pending-state', async (e: PendingStateEvent) => {
-      this.waiting = true;
-      this.work.add(e.detail);
-      this.workDone = Promise.allSettled(this.work);
-      await e.detail.then(console.error, console.info);
-      this.work.delete(e.detail);
-      this.waiting = this.work.size > 0;
-    });
-  }
 }

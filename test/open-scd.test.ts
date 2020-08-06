@@ -8,10 +8,7 @@ import { training } from './data.js';
 describe('open-scd', () => {
   let element: OpenScd;
   beforeEach(async () => {
-    element = await fixture(html`
-      <open-scd></open-scd>
-      <script src="./xmllint.js"></script>
-    `);
+    element = await fixture(html` <open-scd></open-scd> `);
   });
 
   it('toggles the menu on navigation icon click', async () => {
@@ -41,7 +38,7 @@ describe('open-scd', () => {
     expect(progressBar).property('closed').to.be.true;
   });
 
-  it('loads XML data from a `src` URL', async () => {
+  it('loads and validates XML data from a `src` URL', async () => {
     element.setAttribute('srcName', 'training.scd');
     expect(element).property('waiting').to.be.false;
     expect(element).property('log').to.have.length(0);
