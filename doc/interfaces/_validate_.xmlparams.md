@@ -1,4 +1,4 @@
-[@material/progress-indicator](../README.md) › [Globals](../globals.md) › ["src/validate"](../modules/_src_validate_.md) › [XMLParams](_src_validate_.xmlparams.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["validate"](../modules/_validate_.md) › [XMLParams](_validate_.xmlparams.md)
 
 # Interface: XMLParams
 
@@ -10,9 +10,9 @@
 
 ### Properties
 
-* [arguments](_src_validate_.xmlparams.md#arguments)
-* [schema](_src_validate_.xmlparams.md#schema)
-* [xml](_src_validate_.xmlparams.md#xml)
+* [arguments](_validate_.xmlparams.md#arguments)
+* [schema](_validate_.xmlparams.md#schema)
+* [xml](_validate_.xmlparams.md#xml)
 
 ## Properties
 

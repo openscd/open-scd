@@ -1,12 +1,11 @@
-[@material/progress-indicator](README.md) › [Globals](globals.md)
+[open-scd](README.md) › [Globals](globals.md)
 
-# @material/progress-indicator
+# open-scd
 
 ## Index
 
 ### Modules
 
-* ["node_modules/@material/progress-indicator/foundation"](modules/_node_modules__material_progress_indicator_foundation_.md)
-* ["src/open-scd"](modules/_src_open_scd_.md)
-* ["src/validate"](modules/_src_validate_.md)
-* ["src/xml-entities"](modules/_src_xml_entities_.md)
+* ["open-scd"](modules/_open_scd_.md)
+* ["validate"](modules/_validate_.md)
+* ["xml-entities"](modules/_xml_entities_.md)

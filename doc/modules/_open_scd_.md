@@ -1,24 +1,24 @@
-[@material/progress-indicator](../README.md) › [Globals](../globals.md) › ["src/open-scd"](_src_open_scd_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd"](_open_scd_.md)
 
-# Module: "src/open-scd"
+# Module: "open-scd"
 
 ## Index
 
 ### Namespaces
 
-* [__global](_src_open_scd_.__global.md)
+* [__global](_open_scd_.__global.md)
 
 ### Classes
 
-* [OpenSCD](../classes/_src_open_scd_.openscd.md)
+* [OpenSCD](../classes/_open_scd_.openscd.md)
 
 ### Type aliases
 
-* [PendingStateEvent](_src_open_scd_.md#pendingstateevent)
+* [PendingStateEvent](_open_scd_.md#pendingstateevent)
 
 ### Variables
 
-* [emptySCD](_src_open_scd_.md#const-emptyscd)
+* [emptySCD](_open_scd_.md#const-emptyscd)
 
 ## Type aliases
 
