@@ -712,7 +712,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd.ts:39
+Defined in src/open-scd.ts:116
 
 ___
 
@@ -740,7 +740,7 @@ ___
 
 • **doc**: *XMLDocument* = emptySCD
 
-Defined in src/open-scd.ts:38
+Defined in src/open-scd.ts:71
 
 The `XMLDocument` representation of the current file.
 
@@ -904,7 +904,9 @@ ___
 
 • **log**: *Array‹string›* = []
 
-Defined in src/open-scd.ts:58
+Defined in src/open-scd.ts:68
+
+Error and warning log
 
 ___
 
@@ -912,7 +914,7 @@ ___
 
 • **menuOpen**: *boolean* = false
 
-Defined in src/open-scd.ts:34
+Defined in src/open-scd.ts:66
 
 Whether the menu drawer is currently open.
 
@@ -2303,7 +2305,7 @@ ___
 
 • **srcName**: *string* = ""
 
-Defined in src/open-scd.ts:41
+Defined in src/open-scd.ts:73
 
 The name of the current file.
 
@@ -2375,9 +2377,9 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:168
+Defined in src/open-scd.ts:75
 
-Indicates whether the editor is currently waiting for some async work.
+Whether the editor is currently waiting for some async work.
 
 ___
 
@@ -2385,7 +2387,7 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/open-scd.ts:169
+Defined in src/open-scd.ts:76
 
 ___
 
@@ -2393,7 +2395,7 @@ ___
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:171
+Defined in src/open-scd.ts:78
 
 A promise which resolves once all currently pending work is done.
 
@@ -2496,7 +2498,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:115
+Defined in src/open-scd.ts:163
 
 ## Accessors
 
@@ -2516,7 +2518,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd.ts:44
+Defined in src/open-scd.ts:119
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2524,7 +2526,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd.ts:47
+Defined in src/open-scd.ts:122
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3060,7 +3062,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:172
+Defined in src/open-scd.ts:152
 
 **Returns:** *void*
 
@@ -3600,7 +3602,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd.ts:60
+Defined in src/open-scd.ts:80
 
 **Parameters:**
 
@@ -3616,7 +3618,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd.ts:97
+Defined in src/open-scd.ts:134
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4053,7 +4055,7 @@ ___
 
 *Overrides [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:135
+Defined in src/open-scd.ts:33
 
 **Returns:** *TemplateResult*
 
@@ -4288,7 +4290,7 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:110
+Defined in src/open-scd.ts:147
 
 Opens the browser's "open file" dialog for selecting a file to edit.
 
