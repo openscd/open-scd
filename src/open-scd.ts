@@ -8,6 +8,8 @@ import {
 } from 'lit-element';
 import { TemplateResult } from 'lit-html';
 import '@material/mwc-top-app-bar-fixed';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon-button';
 import '@material/mwc-circular-progress-four-color';
 import '@material/mwc-drawer';
@@ -51,11 +53,11 @@ export class OpenSCD extends LitElement {
             slot="actionItems"
             @click="${this.selectFile}"
           ></mwc-icon-button>
-          <div id="content">
-            <ul>
-              ${this.log.map(item => html`<li>${item}</li>`)}
-            </ul>
-          </div>
+          <mwc-list id="content">
+            ${this.log.map(
+              item => html`<mwc-list-item>${item}</mwc-list-item>`
+            )}
+          </mwc-list>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <input id="file-input" type="file" @change="${this.loadFile}" />

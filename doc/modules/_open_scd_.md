@@ -26,7 +26,7 @@
 
 Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹string››*
 
-Defined in src/open-scd.ts:17
+Defined in src/open-scd.ts:19
 
 ## Variables
 
@@ -38,4 +38,4 @@ Defined in src/open-scd.ts:17
   null
 )
 
-Defined in src/open-scd.ts:25
+Defined in src/open-scd.ts:27
