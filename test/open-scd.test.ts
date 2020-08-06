@@ -52,6 +52,7 @@ describe('open-scd', () => {
     expect(await fetch(emptyBlobURL)).to.be.ok;
     element.setAttribute('src', emptyBlobURL);
     await element.workDone;
+    expect(element.src).to.be.a('string').and.equal(emptyBlobURL);
     expect(async () => await fetch(emptyBlobURL)).to.throw;
   });
 
