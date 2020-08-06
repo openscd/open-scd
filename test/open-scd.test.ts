@@ -44,6 +44,7 @@ describe('open-scd', () => {
   it('loads XML data from a `src` URL', async () => {
     element.setAttribute('srcName', 'training.scd');
     expect(element).property('waiting').to.be.false;
+    expect(element).property('log').to.have.length(0);
     element.setAttribute('src', training);
     expect(element).property('waiting').to.be.true;
     await element.workDone;
@@ -53,5 +54,6 @@ describe('open-scd', () => {
     expect(element.doc.lastElementChild)
       .property('childElementCount')
       .to.equal(21); // FIXME: counting `SCL` children instead of XML snapshot
-  }).timeout(10000);
+    expect(element).property('log').to.have.length(25);
+  }).timeout(60000);
 });

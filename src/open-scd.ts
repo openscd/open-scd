@@ -55,6 +55,8 @@ export class OpenScd extends LitElement {
     );
   }
 
+  @property({ type: Array }) log: Array<string> = [];
+
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
@@ -70,7 +72,9 @@ export class OpenScd extends LitElement {
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
           validate(this.doc, this.srcName).then(errors => {
-            console.log(errors);
+            this.log.push(
+              ...(errors ?? [`${this.srcName} validated successfully.`])
+            );
             if (errors === null)
               resolve(`${this.srcName} validation succesful.`);
             else reject(`${this.srcName} validation failed.`);
@@ -149,6 +153,11 @@ export class OpenScd extends LitElement {
             slot="actionItems"
             @click="${this.selectFile}"
           ></mwc-icon-button>
+          <div id="content">
+            <ul>
+              ${this.log.map(item => html`<li>${item}</li>`)}
+            </ul>
+          </div>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <input id="file-input" type="file" @change="${this.loadFile}" />
