@@ -18,4 +18,4 @@
 
 • **pending-state**: *[PendingStateEvent](../modules/_src_open_scd_.md#pendingstateevent)*
 
-Defined in src/open-scd.ts:19
+Defined in src/open-scd.ts:21
