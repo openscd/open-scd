@@ -9,7 +9,7 @@ import {
 import { TemplateResult } from 'lit-html';
 import '@material/mwc-top-app-bar-fixed';
 import '@material/mwc-icon-button';
-import '@material/mwc-linear-progress';
+import '@material/mwc-circular-progress-four-color';
 import '@material/mwc-drawer';
 
 import { validate } from './validate.js';
@@ -32,8 +32,8 @@ export const emptySCD = document.implementation.createDocument(
 export class OpenSCD extends LitElement {
   render(): TemplateResult {
     return html`
-      <mwc-linear-progress .closed=${!this.waiting} indeterminate>
-      </mwc-linear-progress>
+      <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
+      </mwc-circular-progress-four-color>
       <mwc-drawer hasheader type="dismissible" .open=${this.menuOpen}>
         <span slot="title">Menu</span>
         <span slot="subtitle">${this.srcName}</span>
@@ -82,7 +82,6 @@ export class OpenSCD extends LitElement {
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
         const reader: FileReader = new FileReader();
         reader.addEventListener('load', () => {
-          // FIXME: blocking the main thread makes MWC progress bar not move
           this.doc = reader.result
             ? new DOMParser().parseFromString(
                 <string>reader.result,
@@ -171,12 +170,16 @@ export class OpenSCD extends LitElement {
       display: none;
     }
 
-    mwc-linear-progress {
+    mwc-circular-progress-four-color {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 100;
+      --mdc-circular-progress-bar-color-1: #005496;
+      --mdc-circular-progress-bar-color-2: #ffdd00;
+      --mdc-circular-progress-bar-color-3: #d20a11;
+      --mdc-circular-progress-bar-color-4: #ffdd00;
     }
   `;
 }
