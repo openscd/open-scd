@@ -22,14 +22,14 @@ declare global {
   }
 }
 
-const emptySCD = document.implementation.createDocument(
+export const emptySCD = document.implementation.createDocument(
   'http://www.iec.ch/61850/2003/SCL',
   'SCL',
   null
 );
 
 @customElement('open-scd')
-export class OpenScd extends LitElement {
+export class OpenSCD extends LitElement {
   render(): TemplateResult {
     return html`
       <mwc-linear-progress .closed=${!this.waiting} indeterminate>
@@ -70,7 +70,7 @@ export class OpenScd extends LitElement {
   @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = emptySCD;
   /** The name of the current file. */
-  @property({ type: String }) srcName = '';
+  @property({ type: String }) srcName = 'untitled.scd';
   /** Whether the editor is currently waiting for some async work. */
   @property({ type: Boolean }) waiting = false;
   private work: Set<Promise<string>> = new Set();

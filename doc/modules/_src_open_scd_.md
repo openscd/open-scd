@@ -10,7 +10,7 @@
 
 ### Classes
 
-* [OpenScd](../classes/_src_open_scd_.openscd.md)
+* [OpenSCD](../classes/_src_open_scd_.openscd.md)
 
 ### Type aliases
 
