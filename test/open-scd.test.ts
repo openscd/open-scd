@@ -62,7 +62,6 @@ describe('open-scd', () => {
     element.setAttribute('src', training);
     expect(element).property('waiting').to.be.true;
     await element.workDone;
-    console.log(element.log);
     expect(element.doc.querySelector('DataTypeTemplates > DOType')).to.have.id(
       'ABBIED600_Rev1_ENC_Mod_OnTestBlock'
     ); // FIXME: testing random DOType's `id` for lack of XML snapshot support
