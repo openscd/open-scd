@@ -59,6 +59,7 @@
 * [firstChild](_open_scd_.openscd.md#readonly-firstchild)
 * [firstElementChild](_open_scd_.openscd.md#readonly-firstelementchild)
 * [hidden](_open_scd_.openscd.md#hidden)
+* [history](_open_scd_.openscd.md#history)
 * [id](_open_scd_.openscd.md#id)
 * [innerHTML](_open_scd_.openscd.md#innerhtml)
 * [innerText](_open_scd_.openscd.md#innertext)
@@ -69,7 +70,6 @@
 * [lastChild](_open_scd_.openscd.md#readonly-lastchild)
 * [lastElementChild](_open_scd_.openscd.md#readonly-lastelementchild)
 * [localName](_open_scd_.openscd.md#readonly-localname)
-* [log](_open_scd_.openscd.md#log)
 * [menuOpen](_open_scd_.openscd.md#menuopen)
 * [namespaceURI](_open_scd_.openscd.md#readonly-namespaceuri)
 * [nextElementSibling](_open_scd_.openscd.md#readonly-nextelementsibling)
@@ -234,6 +234,7 @@
 * [disconnectedCallback](_open_scd_.openscd.md#disconnectedcallback)
 * [dispatchEvent](_open_scd_.openscd.md#dispatchevent)
 * [enableUpdating](_open_scd_.openscd.md#protected-enableupdating)
+* [error](_open_scd_.openscd.md#error)
 * [firstUpdated](_open_scd_.openscd.md#firstupdated)
 * [focus](_open_scd_.openscd.md#focus)
 * [getAnimations](_open_scd_.openscd.md#getanimations)
@@ -253,6 +254,7 @@
 * [hasAttributes](_open_scd_.openscd.md#hasattributes)
 * [hasChildNodes](_open_scd_.openscd.md#haschildnodes)
 * [hasPointerCapture](_open_scd_.openscd.md#haspointercapture)
+* [info](_open_scd_.openscd.md#info)
 * [initialize](_open_scd_.openscd.md#protected-initialize)
 * [insertAdjacentElement](_open_scd_.openscd.md#insertadjacentelement)
 * [insertAdjacentHTML](_open_scd_.openscd.md#insertadjacenthtml)
@@ -263,6 +265,7 @@
 * [isSameNode](_open_scd_.openscd.md#issamenode)
 * [loadDoc](_open_scd_.openscd.md#private-loaddoc)
 * [loadFile](_open_scd_.openscd.md#private-loadfile)
+* [log](_open_scd_.openscd.md#log)
 * [lookupNamespaceURI](_open_scd_.openscd.md#lookupnamespaceuri)
 * [lookupPrefix](_open_scd_.openscd.md#lookupprefix)
 * [matches](_open_scd_.openscd.md#matches)
@@ -299,6 +302,7 @@
 * [toggleAttribute](_open_scd_.openscd.md#toggleattribute)
 * [update](_open_scd_.openscd.md#protected-update)
 * [updated](_open_scd_.openscd.md#protected-updated)
+* [warn](_open_scd_.openscd.md#warn)
 * [webkitMatchesSelector](_open_scd_.openscd.md#webkitmatchesselector)
 * [createProperty](_open_scd_.openscd.md#static-createproperty)
 * [finalize](_open_scd_.openscd.md#static-protected-finalize)
@@ -712,7 +716,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd.ts:152
+Defined in src/open-scd.ts:166
 
 ___
 
@@ -740,7 +744,7 @@ ___
 
 • **doc**: *XMLDocument* = emptySCD
 
-Defined in src/open-scd.ts:99
+Defined in src/open-scd.ts:103
 
 The `XMLDocument` representation of the current file.
 
@@ -787,6 +791,16 @@ ___
 *Inherited from [OpenSCD](_open_scd_.openscd.md).[hidden](_open_scd_.openscd.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
+
+___
+
+###  history
+
+• **history**: *Array‹[LogEntry](../interfaces/_open_scd_.logentry.md)›* = []
+
+Defined in src/open-scd.ts:100
+
+Error and warning log, and edit history
 
 ___
 
@@ -900,21 +914,11 @@ Returns the local name.
 
 ___
 
-###  log
-
-• **log**: *Array‹[LogEntry](../interfaces/_open_scd_.logentry.md)›* = []
-
-Defined in src/open-scd.ts:96
-
-Error and warning log
-
-___
-
 ###  menuOpen
 
 • **menuOpen**: *boolean* = false
 
-Defined in src/open-scd.ts:94
+Defined in src/open-scd.ts:98
 
 Whether the menu drawer is currently open.
 
@@ -2305,7 +2309,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd.ts:101
+Defined in src/open-scd.ts:105
 
 The name of the current file.
 
@@ -2377,7 +2381,7 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:103
+Defined in src/open-scd.ts:107
 
 Whether the editor is currently waiting for some async work.
 
@@ -2387,7 +2391,7 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/open-scd.ts:104
+Defined in src/open-scd.ts:108
 
 ___
 
@@ -2395,7 +2399,7 @@ ___
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:106
+Defined in src/open-scd.ts:110
 
 A promise which resolves once all currently pending work is done.
 
@@ -2481,10 +2485,17 @@ ___
       height: 100vh;
       width: 100vw;
       margin: 0;
+      --mdc-theme-secondary: #d20a11;
+      --mdc-theme-primary: #005496;
+      --mdc-theme-background: #ffdd00;
     }
 
     #file-input {
       display: none;
+    }
+
+    #log {
+      --mdc-dialog-max-width: 92vw;
     }
 
     mwc-circular-progress-four-color {
@@ -2498,11 +2509,16 @@ ___
       --mdc-circular-progress-bar-color-3: #005496;
       --mdc-circular-progress-bar-color-4: #ffdd00;
     }
+
+    tt {
+      font-family: 'Roboto Mono';
+      font-weight: 300;
+    }
   `
 
 *Overrides void*
 
-Defined in src/open-scd.ts:199
+Defined in src/open-scd.ts:217
 
 ## Accessors
 
@@ -2522,7 +2538,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd.ts:155
+Defined in src/open-scd.ts:169
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2530,7 +2546,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd.ts:158
+Defined in src/open-scd.ts:172
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3060,13 +3076,30 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:298
 
 ___
 
+###  error
+
+▸ **error**(`title`: string, ...`detail`: string[]): *void*
+
+Defined in src/open-scd.ts:122
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`title` | string |
+`...detail` | string[] |
+
+**Returns:** *void*
+
+___
+
 ###  firstUpdated
 
 ▸ **firstUpdated**(): *void*
 
 *Overrides void*
 
-Defined in src/open-scd.ts:188
+Defined in src/open-scd.ts:202
 
 **Returns:** *void*
 
@@ -3448,6 +3481,23 @@ Name | Type |
 
 ___
 
+###  info
+
+▸ **info**(`title`: string, ...`detail`: string[]): *void*
+
+Defined in src/open-scd.ts:116
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`title` | string |
+`...detail` | string[] |
+
+**Returns:** *void*
+
+___
+
 ### `Protected` initialize
 
 ▸ **initialize**(): *void*
@@ -3606,7 +3656,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd.ts:108
+Defined in src/open-scd.ts:126
 
 **Parameters:**
 
@@ -3622,7 +3672,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd.ts:170
+Defined in src/open-scd.ts:184
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -3631,6 +3681,24 @@ Loads the file selected by input `event.target.files[0]`.
 Name | Type |
 ------ | ------ |
 `event` | Event |
+
+**Returns:** *void*
+
+___
+
+###  log
+
+▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
+
+Defined in src/open-scd.ts:112
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`title` | string |
+`message?` | undefined &#124; string |
+`icon?` | undefined &#124; string |
 
 **Returns:** *void*
 
@@ -4059,7 +4127,7 @@ ___
 
 *Overrides [OpenSCD](_open_scd_.openscd.md).[render](_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:44
+Defined in src/open-scd.ts:45
 
 **Returns:** *TemplateResult*
 
@@ -4294,7 +4362,7 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:183
+Defined in src/open-scd.ts:197
 
 Opens the browser's "open file" dialog for selecting a file to edit.
 
@@ -4487,6 +4555,23 @@ again after this update cycle completes.
 Name | Type | Description |
 ------ | ------ | ------ |
 `_changedProperties` | PropertyValues | Map of changed properties with old values  |
+
+**Returns:** *void*
+
+___
+
+###  warn
+
+▸ **warn**(`title`: string, ...`detail`: string[]): *void*
+
+Defined in src/open-scd.ts:119
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`title` | string |
+`...detail` | string[] |
 
 **Returns:** *void*
 

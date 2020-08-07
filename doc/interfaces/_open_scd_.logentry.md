@@ -12,6 +12,7 @@
 
 * [icon](_open_scd_.logentry.md#optional-icon)
 * [message](_open_scd_.logentry.md#optional-message)
+* [time](_open_scd_.logentry.md#time)
 * [title](_open_scd_.logentry.md#title)
 
 ## Properties
@@ -20,7 +21,7 @@
 
 • **icon**? : *undefined | string*
 
-Defined in src/open-scd.ts:27
+Defined in src/open-scd.ts:28
 
 ___
 
@@ -28,7 +29,15 @@ ___
 
 • **message**? : *undefined | string*
 
-Defined in src/open-scd.ts:26
+Defined in src/open-scd.ts:27
+
+___
+
+###  time
+
+• **time**: *Date*
+
+Defined in src/open-scd.ts:25
 
 ___
 
@@ -36,4 +45,4 @@ ___
 
 • **title**: *string*
 
-Defined in src/open-scd.ts:25
+Defined in src/open-scd.ts:26

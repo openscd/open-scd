@@ -42,4 +42,4 @@ Defined in src/open-scd.ts:22
   null
 )
 
-Defined in src/open-scd.ts:36
+Defined in src/open-scd.ts:37
