@@ -22,6 +22,7 @@ import { validate } from './validate.js';
 export type PendingStateEvent = CustomEvent<Promise<string>>;
 
 interface LogEntry {
+  time: Date;
   title: string;
   message?: string;
   icon?: string;
@@ -72,18 +73,21 @@ export class OpenSCD extends LitElement {
       </mwc-drawer>
       <mwc-dialog id="log" heading="Log">
         <mwc-list id="content" activatable>
-          ${this.log.map(
+          ${this.history.map(
             item => html`<mwc-list-item
               ?twoline=${item.message}
               ?hasmeta=${item.icon}
             >
-              <span>${item.title}</span>
+              <span>
+                <!-- FIXME: replace tt by mwc-chip asap -->
+                <tt>${item.time.toLocaleTimeString()}</tt>
+                ${item.title}</span
+              >
               <span slot="secondary">${item.message}</span>
               <mwc-icon slot="meta">${item.icon}</mwc-icon>
             </mwc-list-item>`
           )}
         </mwc-list>
-        <mwc-button slot="secondaryAction">Test</mwc-button>
         <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
       </mwc-dialog>
       <input id="file-input" type="file" @change="${this.loadFile}" />
@@ -92,8 +96,8 @@ export class OpenSCD extends LitElement {
 
   /** Whether the menu drawer is currently open. */
   @property({ type: Boolean }) menuOpen = false;
-  /** Error and warning log */
-  @property({ type: Array }) log: Array<LogEntry> = [];
+  /** Error and warning log, and edit history */
+  @property({ type: Array }) history: Array<LogEntry> = [];
   /** The `XMLDocument` representation of the current file. */
   @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = emptySCD;
@@ -105,9 +109,24 @@ export class OpenSCD extends LitElement {
   /** A promise which resolves once all currently pending work is done. */
   workDone = Promise.allSettled(this.work);
 
+  log(title: string, message?: string, icon?: string): void {
+    this.history.push({ time: new Date(), title, message, icon });
+  }
+
+  info(title: string, ...detail: string[]): void {
+    this.log(title, detail.join(' | '), 'info');
+  }
+  warn(title: string, ...detail: string[]): void {
+    this.log(title, detail.join(' | '), 'warning');
+  }
+  error(title: string, ...detail: string[]): void {
+    this.log(title, detail.join(' | '), 'error');
+  }
+
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
+        this.info(`Loading project ${this.srcName}.`);
         const reader: FileReader = new FileReader();
         reader.addEventListener('load', () => {
           this.doc = reader.result
@@ -118,19 +137,14 @@ export class OpenSCD extends LitElement {
             : emptySCD;
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
+          this.info(`${this.srcName} loaded.`);
           validate(this.doc, this.srcName).then(errors => {
-            this.log.push(
-              ...(errors
-                ?.map(s => s.split(': '))
-                .map(a => {
-                  return { title: a[0], message: a[1] ?? null, icon: 'error' };
-                }) ?? [
-                {
-                  title: `${this.srcName} validated successfully.`,
-                  icon: 'info',
-                },
-              ])
-            );
+            errors
+              ?.map(e => e.split(': ').map(s => s.trim()))
+              .map(a => {
+                if (a[4]) [a[0], a[4]] = [a[4], a[0]];
+                this.error(a[0], ...a.slice(1).reverse());
+              }) ?? this.info(`${this.srcName} validated successfully.`);
             if (errors === null)
               resolve(`${this.srcName} validation succesful.`);
             else reject(`${this.srcName} validation failed.`);
@@ -186,11 +200,15 @@ export class OpenSCD extends LitElement {
     ))?.click();
 
   firstUpdated(): void {
+    this.log = this.log.bind(this);
+    this.info = this.info.bind(this);
+    this.warn = this.warn.bind(this);
+    this.error = this.error.bind(this);
     this.addEventListener('pending-state', async (e: PendingStateEvent) => {
       this.waiting = true;
       this.work.add(e.detail);
       this.workDone = Promise.allSettled(this.work);
-      await e.detail.then(console.error, console.info);
+      await e.detail.then(this.info, this.error);
       this.work.delete(e.detail);
       this.waiting = this.work.size > 0;
     });
@@ -201,10 +219,17 @@ export class OpenSCD extends LitElement {
       height: 100vh;
       width: 100vw;
       margin: 0;
+      --mdc-theme-secondary: #d20a11;
+      --mdc-theme-primary: #005496;
+      --mdc-theme-background: #ffdd00;
     }
 
     #file-input {
       display: none;
+    }
+
+    #log {
+      --mdc-dialog-max-width: 92vw;
     }
 
     mwc-circular-progress-four-color {
@@ -217,6 +242,11 @@ export class OpenSCD extends LitElement {
       --mdc-circular-progress-bar-color-2: #d20a11;
       --mdc-circular-progress-bar-color-3: #005496;
       --mdc-circular-progress-bar-color-4: #ffdd00;
+    }
+
+    tt {
+      font-family: 'Roboto Mono';
+      font-weight: 300;
     }
   `;
 }
