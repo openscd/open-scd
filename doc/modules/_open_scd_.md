@@ -12,6 +12,10 @@
 
 * [OpenSCD](../classes/_open_scd_.openscd.md)
 
+### Interfaces
+
+* [LogEntry](../interfaces/_open_scd_.logentry.md)
+
 ### Type aliases
 
 * [PendingStateEvent](_open_scd_.md#pendingstateevent)
@@ -26,7 +30,7 @@
 
 Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹string››*
 
-Defined in src/open-scd.ts:19
+Defined in src/open-scd.ts:22
 
 ## Variables
 
@@ -38,4 +42,4 @@ Defined in src/open-scd.ts:19
   null
 )
 
-Defined in src/open-scd.ts:27
+Defined in src/open-scd.ts:36

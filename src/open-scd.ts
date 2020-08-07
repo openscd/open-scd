@@ -13,10 +13,19 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-icon-button';
 import '@material/mwc-circular-progress-four-color';
 import '@material/mwc-drawer';
+import '@material/mwc-dialog';
+import '@material/mwc-button';
+import '@material/mwc-icon';
 
 import { validate } from './validate.js';
 
 export type PendingStateEvent = CustomEvent<Promise<string>>;
+
+interface LogEntry {
+  title: string;
+  message?: string;
+  icon?: string;
+}
 
 declare global {
   interface ElementEventMap {
@@ -53,13 +62,30 @@ export class OpenSCD extends LitElement {
             slot="actionItems"
             @click="${this.selectFile}"
           ></mwc-icon-button>
-          <mwc-list id="content">
-            ${this.log.map(
-              item => html`<mwc-list-item>${item}</mwc-list-item>`
-            )}
-          </mwc-list>
+          <mwc-icon-button
+            icon="toc"
+            slot="actionItems"
+            @click="${() =>
+              this.shadowRoot!.getElementById('log')!.setAttribute('open', '')}"
+          ></mwc-icon-button>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
+      <mwc-dialog id="log" heading="Log">
+        <mwc-list id="content" activatable>
+          ${this.log.map(
+            item => html`<mwc-list-item
+              ?twoline=${item.message}
+              ?hasmeta=${item.icon}
+            >
+              <span>${item.title}</span>
+              <span slot="secondary">${item.message}</span>
+              <mwc-icon slot="meta">${item.icon}</mwc-icon>
+            </mwc-list-item>`
+          )}
+        </mwc-list>
+        <mwc-button slot="secondaryAction">Test</mwc-button>
+        <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
+      </mwc-dialog>
       <input id="file-input" type="file" @change="${this.loadFile}" />
     `;
   }
@@ -67,7 +93,7 @@ export class OpenSCD extends LitElement {
   /** Whether the menu drawer is currently open. */
   @property({ type: Boolean }) menuOpen = false;
   /** Error and warning log */
-  @property({ type: Array }) log: Array<string> = [];
+  @property({ type: Array }) log: Array<LogEntry> = [];
   /** The `XMLDocument` representation of the current file. */
   @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = emptySCD;
@@ -94,7 +120,16 @@ export class OpenSCD extends LitElement {
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
           validate(this.doc, this.srcName).then(errors => {
             this.log.push(
-              ...(errors ?? [`${this.srcName} validated successfully.`])
+              ...(errors
+                ?.map(s => s.split(': '))
+                .map(a => {
+                  return { title: a[0], message: a[1] ?? null, icon: 'error' };
+                }) ?? [
+                {
+                  title: `${this.srcName} validated successfully.`,
+                  icon: 'info',
+                },
+              ])
             );
             if (errors === null)
               resolve(`${this.srcName} validation succesful.`);
@@ -179,8 +214,8 @@ export class OpenSCD extends LitElement {
       transform: translate(-50%, -50%);
       z-index: 100;
       --mdc-circular-progress-bar-color-1: #005496;
-      --mdc-circular-progress-bar-color-2: #ffdd00;
-      --mdc-circular-progress-bar-color-3: #d20a11;
+      --mdc-circular-progress-bar-color-2: #d20a11;
+      --mdc-circular-progress-bar-color-3: #005496;
       --mdc-circular-progress-bar-color-4: #ffdd00;
     }
   `;
