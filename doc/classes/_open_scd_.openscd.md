@@ -70,7 +70,6 @@
 * [lastChild](_open_scd_.openscd.md#readonly-lastchild)
 * [lastElementChild](_open_scd_.openscd.md#readonly-lastelementchild)
 * [localName](_open_scd_.openscd.md#readonly-localname)
-* [menuOpen](_open_scd_.openscd.md#menuopen)
 * [namespaceURI](_open_scd_.openscd.md#readonly-namespaceuri)
 * [nextElementSibling](_open_scd_.openscd.md#readonly-nextelementsibling)
 * [nextSibling](_open_scd_.openscd.md#readonly-nextsibling)
@@ -716,7 +715,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd.ts:166
+Defined in src/open-scd.ts:173
 
 ___
 
@@ -744,7 +743,7 @@ ___
 
 • **doc**: *XMLDocument* = emptySCD
 
-Defined in src/open-scd.ts:103
+Defined in src/open-scd.ts:110
 
 The `XMLDocument` representation of the current file.
 
@@ -798,7 +797,7 @@ ___
 
 • **history**: *Array‹[LogEntry](../interfaces/_open_scd_.logentry.md)›* = []
 
-Defined in src/open-scd.ts:100
+Defined in src/open-scd.ts:107
 
 Error and warning log, and edit history
 
@@ -911,16 +910,6 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
 Returns the local name.
-
-___
-
-###  menuOpen
-
-• **menuOpen**: *boolean* = false
-
-Defined in src/open-scd.ts:98
-
-Whether the menu drawer is currently open.
 
 ___
 
@@ -2309,7 +2298,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd.ts:105
+Defined in src/open-scd.ts:112
 
 The name of the current file.
 
@@ -2381,7 +2370,7 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:107
+Defined in src/open-scd.ts:114
 
 Whether the editor is currently waiting for some async work.
 
@@ -2391,7 +2380,7 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/open-scd.ts:108
+Defined in src/open-scd.ts:115
 
 ___
 
@@ -2399,7 +2388,7 @@ ___
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:110
+Defined in src/open-scd.ts:117
 
 A promise which resolves once all currently pending work is done.
 
@@ -2483,11 +2472,12 @@ ___
 ▪ **styles**: *CSSResult‹›* = css`
     :host {
       height: 100vh;
-      width: 100vw;
       margin: 0;
-      --mdc-theme-secondary: #d20a11;
       --mdc-theme-primary: #005496;
+      --mdc-theme-secondary: #d20a11;
       --mdc-theme-background: #ffdd00;
+      --mdc-theme-on-secondary: #ffdd00;
+      --mdc-theme-on-background: #005496;
     }
 
     #file-input {
@@ -2518,7 +2508,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:217
+Defined in src/open-scd.ts:224
 
 ## Accessors
 
@@ -2538,7 +2528,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd.ts:169
+Defined in src/open-scd.ts:176
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2546,7 +2536,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd.ts:172
+Defined in src/open-scd.ts:179
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3080,7 +3070,7 @@ ___
 
 ▸ **error**(`title`: string, ...`detail`: string[]): *void*
 
-Defined in src/open-scd.ts:122
+Defined in src/open-scd.ts:129
 
 **Parameters:**
 
@@ -3099,7 +3089,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:202
+Defined in src/open-scd.ts:209
 
 **Returns:** *void*
 
@@ -3485,7 +3475,7 @@ ___
 
 ▸ **info**(`title`: string, ...`detail`: string[]): *void*
 
-Defined in src/open-scd.ts:116
+Defined in src/open-scd.ts:123
 
 **Parameters:**
 
@@ -3656,7 +3646,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd.ts:126
+Defined in src/open-scd.ts:133
 
 **Parameters:**
 
@@ -3672,7 +3662,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd.ts:184
+Defined in src/open-scd.ts:191
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -3690,7 +3680,7 @@ ___
 
 ▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
 
-Defined in src/open-scd.ts:112
+Defined in src/open-scd.ts:119
 
 **Parameters:**
 
@@ -4362,7 +4352,7 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:197
+Defined in src/open-scd.ts:204
 
 Opens the browser's "open file" dialog for selecting a file to edit.
 
@@ -4564,7 +4554,7 @@ ___
 
 ▸ **warn**(`title`: string, ...`detail`: string[]): *void*
 
-Defined in src/open-scd.ts:119
+Defined in src/open-scd.ts:126
 
 **Parameters:**
 
