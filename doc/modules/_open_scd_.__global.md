@@ -6,4 +6,4 @@
 
 ### Interfaces
 
-* [ElementEventMap](../interfaces/_open_scd_.__global.elementeventmap.md)
+* [HTMLElementTagNameMap](../interfaces/_open_scd_.__global.htmlelementtagnamemap.md)
