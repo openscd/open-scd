@@ -8,7 +8,17 @@ import { training } from './data.js';
 describe('open-scd', () => {
   let element: OpenSCD;
   beforeEach(async () => {
-    element = await fixture(html` <open-scd></open-scd> `);
+    element = await fixture(html`
+      <open-scd></open-scd>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+        rel="stylesheet"
+      />
+    `);
   });
 
   it('toggles the menu on navigation icon click', async () => {
@@ -21,8 +31,6 @@ describe('open-scd', () => {
     );
     await menuButton.click();
     expect(menu).property('open').to.be.true;
-    await menuButton.click();
-    expect(menu).property('open').to.be.false;
   });
 
   it('renders a progress indicator on `waiting`', async () => {
@@ -59,16 +67,16 @@ describe('open-scd', () => {
   it('loads and validates XML data from a `src` URL', async () => {
     element.setAttribute('srcName', 'training.scd');
     expect(element).property('waiting').to.be.false;
-    expect(element).property('log').to.have.length(0);
+    expect(element).property('history').to.have.length(0);
     element.setAttribute('src', training);
     expect(element).property('waiting').to.be.true;
     await element.workDone;
     expect(element.doc.querySelector('DataTypeTemplates > DOType')).to.have.id(
       'ABBIED600_Rev1_ENC_Mod_OnTestBlock'
-    ); // FIXME: testing random DOType's `id` for lack of XML snapshot support
+    );
     expect(element.doc.lastElementChild)
       .property('childElementCount')
-      .to.equal(21); // FIXME: counting `SCL` children instead of XML snapshot
-    expect(element).property('log').to.have.length(25);
+      .to.equal(21);
+    expect(element).property('history').to.have.length(28);
   }).timeout(60000);
 });

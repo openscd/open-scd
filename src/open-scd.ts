@@ -46,14 +46,15 @@ export class OpenSCD extends LitElement {
     return html`
       <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
       </mwc-circular-progress-four-color>
-      <mwc-drawer hasheader type="dismissible" .open=${this.menuOpen}>
+      <mwc-drawer hasheader type="modal">
         <span slot="title">Menu</span>
         <span slot="subtitle">${this.srcName}</span>
         <mwc-top-app-bar-fixed slot="appContent">
           <mwc-icon-button
             icon="menu"
             slot="navigationIcon"
-            @click=${() => (this.menuOpen = !this.menuOpen)}
+            @click=${() =>
+              (this.shadowRoot!.querySelector('mwc-drawer')!.open = true)}
           ></mwc-icon-button>
           <div slot="title" id="title">
             ${this.srcName}
@@ -69,24 +70,32 @@ export class OpenSCD extends LitElement {
             @click="${() =>
               this.shadowRoot!.getElementById('log')!.setAttribute('open', '')}"
           ></mwc-icon-button>
+          <p>Editor goes here...</p>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <mwc-dialog id="log" heading="Log">
         <mwc-list id="content" activatable>
-          ${this.history.map(
-            item => html`<mwc-list-item
-              ?twoline=${item.message}
-              ?hasmeta=${item.icon}
-            >
-              <span>
-                <!-- FIXME: replace tt by mwc-chip asap -->
-                <tt>${item.time.toLocaleTimeString()}</tt>
-                ${item.title}</span
-              >
-              <span slot="secondary">${item.message}</span>
-              <mwc-icon slot="meta">${item.icon}</mwc-icon>
-            </mwc-list-item>`
-          )}
+          ${this.history.length < 1
+            ? html`<mwc-list-item disabled hasmeta>
+                <span
+                  >Errors, warnings, and notifications will show up here.</span
+                >
+                <mwc-icon slot="meta">info</mwc-icon>
+              </mwc-list-item>`
+            : this.history.map(
+                item => html`<mwc-list-item
+                  ?twoline=${item.message}
+                  ?hasmeta=${item.icon}
+                >
+                  <span>
+                    <!-- FIXME: replace tt by mwc-chip asap -->
+                    <tt>${item.time.toLocaleTimeString()}</tt>
+                    ${item.title}</span
+                  >
+                  <span slot="secondary">${item.message}</span>
+                  <mwc-icon slot="meta">${item.icon}</mwc-icon>
+                </mwc-list-item>`
+              )}
         </mwc-list>
         <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
       </mwc-dialog>
@@ -94,8 +103,6 @@ export class OpenSCD extends LitElement {
     `;
   }
 
-  /** Whether the menu drawer is currently open. */
-  @property({ type: Boolean }) menuOpen = false;
   /** Error and warning log, and edit history */
   @property({ type: Array }) history: Array<LogEntry> = [];
   /** The `XMLDocument` representation of the current file. */
@@ -110,7 +117,7 @@ export class OpenSCD extends LitElement {
   workDone = Promise.allSettled(this.work);
 
   log(title: string, message?: string, icon?: string): void {
-    this.history.push({ time: new Date(), title, message, icon });
+    this.history.unshift({ time: new Date(), title, message, icon });
   }
 
   info(title: string, ...detail: string[]): void {
@@ -120,7 +127,7 @@ export class OpenSCD extends LitElement {
     this.log(title, detail.join(' | '), 'warning');
   }
   error(title: string, ...detail: string[]): void {
-    this.log(title, detail.join(' | '), 'error');
+    this.log(title, detail.join(' | '), 'error_outline');
   }
 
   private loadDoc(src: string): Promise<string> {
@@ -208,7 +215,7 @@ export class OpenSCD extends LitElement {
       this.waiting = true;
       this.work.add(e.detail);
       this.workDone = Promise.allSettled(this.work);
-      await e.detail.then(this.info, this.error);
+      await e.detail.then(this.info, this.warn);
       this.work.delete(e.detail);
       this.waiting = this.work.size > 0;
     });
@@ -217,11 +224,12 @@ export class OpenSCD extends LitElement {
   static styles = css`
     :host {
       height: 100vh;
-      width: 100vw;
       margin: 0;
-      --mdc-theme-secondary: #d20a11;
       --mdc-theme-primary: #005496;
+      --mdc-theme-secondary: #d20a11;
       --mdc-theme-background: #ffdd00;
+      --mdc-theme-on-secondary: #ffdd00;
+      --mdc-theme-on-background: #005496;
     }
 
     #file-input {
