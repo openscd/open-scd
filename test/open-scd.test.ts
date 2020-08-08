@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { OpenSCD, emptySCD } from '../src/open-scd.js';
+import { OpenSCD } from '../src/open-scd.js';
 import '../src/open-scd.js';
 
 import { training } from './data.js';
@@ -47,13 +47,13 @@ describe('open-scd', () => {
   });
 
   it('initially edits an empty SCD document', () => {
-    expect(element).property('doc').to.equal(emptySCD);
+    expect(element).property('doc').to.equal(OpenSCD.emptySCD);
     expect(element).property('srcName').to.equal('untitled.scd');
   });
 
   it('revokes `src="blob:..."` URLs after parsing', async () => {
     const emptyBlobURL = URL.createObjectURL(
-      new Blob([new XMLSerializer().serializeToString(emptySCD)], {
+      new Blob([new XMLSerializer().serializeToString(OpenSCD.emptySCD)], {
         type: 'application/xml',
       })
     );
