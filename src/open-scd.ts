@@ -70,7 +70,6 @@ export class OpenSCD extends LitElement {
             @click="${() =>
               this.shadowRoot!.getElementById('log')!.setAttribute('open', '')}"
           ></mwc-icon-button>
-          <p>Editor goes here...</p>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <mwc-dialog id="log" heading="Log">
@@ -253,7 +252,7 @@ export class OpenSCD extends LitElement {
     }
 
     tt {
-      font-family: 'Roboto Mono';
+      font-family: 'Roboto Mono', monospace;
       font-weight: 300;
     }
   `;
