@@ -10,28 +10,28 @@ import { TemplateResult } from 'lit-html';
 import '@material/mwc-top-app-bar-fixed';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-circular-progress-four-color';
 import '@material/mwc-drawer';
 import '@material/mwc-dialog';
 import '@material/mwc-button';
-import '@material/mwc-icon';
+import '@material/mwc-snackbar';
 
 import { validate } from './validate.js';
 
 export type PendingStateEvent = CustomEvent<Promise<string>>;
+declare global {
+  interface ElementEventMap {
+    ['pending-state']: PendingStateEvent;
+  }
+}
 
 interface LogEntry {
   time: Date;
   title: string;
   message?: string;
   icon?: string;
-}
-
-declare global {
-  interface ElementEventMap {
-    ['pending-state']: PendingStateEvent;
-  }
 }
 
 export const emptySCD = document.implementation.createDocument(
@@ -67,11 +67,21 @@ export class OpenSCD extends LitElement {
           <mwc-icon-button
             icon="toc"
             slot="actionItems"
-            @click="${() =>
-              this.shadowRoot!.getElementById('log')!.setAttribute('open', '')}"
+            @click="${this.showLog}"
           ></mwc-icon-button>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
+      <mwc-snackbar
+        id="errorSnackbar"
+        timeoutMs="-1"
+        labelText="${this.history.find(le => le.icon == 'error_outline')
+          ?.title ?? 'No errors'}"
+      >
+        <mwc-button slot="action" icon="toc" @click=${this.showLog}
+          >Show</mwc-button
+        >
+        <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+      </mwc-snackbar>
       <mwc-dialog id="log" heading="Log">
         <mwc-list id="content" activatable>
           ${this.history.length < 1
@@ -118,7 +128,6 @@ export class OpenSCD extends LitElement {
   log(title: string, message?: string, icon?: string): void {
     this.history.unshift({ time: new Date(), title, message, icon });
   }
-
   info(title: string, ...detail: string[]): void {
     this.log(title, detail.join(' | '), 'info');
   }
@@ -127,6 +136,11 @@ export class OpenSCD extends LitElement {
   }
   error(title: string, ...detail: string[]): void {
     this.log(title, detail.join(' | '), 'error_outline');
+    this.shadowRoot?.querySelector('mwc-snackbar')?.show();
+  }
+
+  showLog(): void {
+    this.shadowRoot?.querySelector('mwc-dialog')?.show();
   }
 
   private loadDoc(src: string): Promise<string> {
@@ -224,6 +238,9 @@ export class OpenSCD extends LitElement {
     :host {
       height: 100vh;
       margin: 0;
+    }
+
+    * {
       --mdc-theme-primary: #005496;
       --mdc-theme-secondary: #d20a11;
       --mdc-theme-background: #ffdd00;

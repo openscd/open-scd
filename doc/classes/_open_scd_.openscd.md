@@ -298,6 +298,7 @@
 * [setAttributeNodeNS](_open_scd_.openscd.md#setattributenodens)
 * [setPointerCapture](_open_scd_.openscd.md#setpointercapture)
 * [shouldUpdate](_open_scd_.openscd.md#protected-shouldupdate)
+* [showLog](_open_scd_.openscd.md#showlog)
 * [toggleAttribute](_open_scd_.openscd.md#toggleattribute)
 * [update](_open_scd_.openscd.md#protected-update)
 * [updated](_open_scd_.openscd.md#protected-updated)
@@ -715,7 +716,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd.ts:172
+Defined in src/open-scd.ts:186
 
 ___
 
@@ -743,7 +744,7 @@ ___
 
 • **doc**: *XMLDocument* = emptySCD
 
-Defined in src/open-scd.ts:109
+Defined in src/open-scd.ts:119
 
 The `XMLDocument` representation of the current file.
 
@@ -797,7 +798,7 @@ ___
 
 • **history**: *Array‹[LogEntry](../interfaces/_open_scd_.logentry.md)›* = []
 
-Defined in src/open-scd.ts:106
+Defined in src/open-scd.ts:116
 
 Error and warning log, and edit history
 
@@ -2298,7 +2299,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd.ts:111
+Defined in src/open-scd.ts:121
 
 The name of the current file.
 
@@ -2370,7 +2371,7 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:113
+Defined in src/open-scd.ts:123
 
 Whether the editor is currently waiting for some async work.
 
@@ -2380,7 +2381,7 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/open-scd.ts:114
+Defined in src/open-scd.ts:124
 
 ___
 
@@ -2388,7 +2389,7 @@ ___
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:116
+Defined in src/open-scd.ts:126
 
 A promise which resolves once all currently pending work is done.
 
@@ -2473,6 +2474,9 @@ ___
     :host {
       height: 100vh;
       margin: 0;
+    }
+
+    * {
       --mdc-theme-primary: #005496;
       --mdc-theme-secondary: #d20a11;
       --mdc-theme-background: #ffdd00;
@@ -2508,7 +2512,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:223
+Defined in src/open-scd.ts:237
 
 ## Accessors
 
@@ -2528,7 +2532,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd.ts:175
+Defined in src/open-scd.ts:189
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2536,7 +2540,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd.ts:178
+Defined in src/open-scd.ts:192
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3070,7 +3074,7 @@ ___
 
 ▸ **error**(`title`: string, ...`detail`: string[]): *void*
 
-Defined in src/open-scd.ts:128
+Defined in src/open-scd.ts:137
 
 **Parameters:**
 
@@ -3089,7 +3093,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:208
+Defined in src/open-scd.ts:222
 
 **Returns:** *void*
 
@@ -3475,7 +3479,7 @@ ___
 
 ▸ **info**(`title`: string, ...`detail`: string[]): *void*
 
-Defined in src/open-scd.ts:122
+Defined in src/open-scd.ts:131
 
 **Parameters:**
 
@@ -3646,7 +3650,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd.ts:132
+Defined in src/open-scd.ts:146
 
 **Parameters:**
 
@@ -3662,7 +3666,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd.ts:190
+Defined in src/open-scd.ts:204
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -3680,7 +3684,7 @@ ___
 
 ▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
 
-Defined in src/open-scd.ts:118
+Defined in src/open-scd.ts:128
 
 **Parameters:**
 
@@ -4352,7 +4356,7 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:203
+Defined in src/open-scd.ts:217
 
 Opens the browser's "open file" dialog for selecting a file to edit.
 
@@ -4479,6 +4483,16 @@ Name | Type | Description |
 
 ___
 
+###  showLog
+
+▸ **showLog**(): *void*
+
+Defined in src/open-scd.ts:142
+
+**Returns:** *void*
+
+___
+
 ###  toggleAttribute
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
@@ -4554,7 +4568,7 @@ ___
 
 ▸ **warn**(`title`: string, ...`detail`: string[]): *void*
 
-Defined in src/open-scd.ts:125
+Defined in src/open-scd.ts:134
 
 **Parameters:**
 

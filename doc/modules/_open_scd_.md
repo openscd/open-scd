@@ -30,7 +30,7 @@
 
 Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹string››*
 
-Defined in src/open-scd.ts:22
+Defined in src/open-scd.ts:23
 
 ## Variables
 

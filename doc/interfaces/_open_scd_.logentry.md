@@ -21,7 +21,7 @@
 
 • **icon**? : *undefined | string*
 
-Defined in src/open-scd.ts:28
+Defined in src/open-scd.ts:34
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **message**? : *undefined | string*
 
-Defined in src/open-scd.ts:27
+Defined in src/open-scd.ts:33
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **time**: *Date*
 
-Defined in src/open-scd.ts:25
+Defined in src/open-scd.ts:31
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **title**: *string*
 
-Defined in src/open-scd.ts:26
+Defined in src/open-scd.ts:32

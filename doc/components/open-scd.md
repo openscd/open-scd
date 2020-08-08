@@ -14,12 +14,13 @@
 
 ## Methods
 
-| Method  | Type                                             |
-|---------|--------------------------------------------------|
-| `error` | `(title: string, ...detail: string[]): void`     |
-| `info`  | `(title: string, ...detail: string[]): void`     |
-| `log`   | `(title: string, message?: string \| undefined, icon?: string \| undefined): void` |
-| `warn`  | `(title: string, ...detail: string[]): void`     |
+| Method    | Type                                             |
+|-----------|--------------------------------------------------|
+| `error`   | `(title: string, ...detail: string[]): void`     |
+| `info`    | `(title: string, ...detail: string[]): void`     |
+| `log`     | `(title: string, message?: string \| undefined, icon?: string \| undefined): void` |
+| `showLog` | `(): void`                                       |
+| `warn`    | `(title: string, ...detail: string[]): void`     |
 
 ## Events
 
