@@ -22,6 +22,7 @@
     "@material/mwc-icon": "^0.18.0",
     "@material/mwc-icon-button": "^0.18.0",
     "@material/mwc-list": "^0.18.0",
+    "@material/mwc-snackbar": "^0.18.0",
     "@material/mwc-tab": "^0.18.0",
     "@material/mwc-tab-bar": "^0.18.0",
     "@material/mwc-top-app-bar-fixed": "^0.18.0",
