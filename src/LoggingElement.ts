@@ -22,4 +22,11 @@ export class LoggingElement extends LitElement {
   error(title: string, ...detail: string[]): void {
     this.log(title, detail.join(' | '), 'error_outline');
   }
+
+  firstUpdated(): void {
+    this.log = this.log.bind(this); // allow log to reference history
+    this.info = this.info.bind(this); // and others to reference log...
+    this.warn = this.warn.bind(this);
+    this.error = this.error.bind(this);
+  }
 }

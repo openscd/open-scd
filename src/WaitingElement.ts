@@ -15,6 +15,7 @@ export class WaitingElement extends LoggingElement {
   /** A promise which resolves once all currently pending work is done. */
   workDone = Promise.allSettled(this.work);
   firstUpdated(): void {
+    super.firstUpdated();
     this.addEventListener('pending-state', async (e: PendingStateEvent) => {
       this.waiting = true;
       this.work.add(e.detail);

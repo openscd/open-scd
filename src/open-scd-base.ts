@@ -15,7 +15,7 @@ import { validate } from './validate.js';
 import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
-import { WaitingElement, PendingStateEvent } from './WaitingElement.js';
+import { WaitingElement } from './WaitingElement.js';
 
 export class OpenSCDBase extends WaitingElement {
   static emptySCD = document.implementation.createDocument(
@@ -184,20 +184,5 @@ export class OpenSCDBase extends WaitingElement {
         (<HTMLInputElement | null>event.target)?.files?.item(0) ?? new Blob([])
       )
     );
-  }
-
-  firstUpdated(): void {
-    this.log = this.log.bind(this);
-    this.info = this.info.bind(this);
-    this.warn = this.warn.bind(this);
-    this.error = this.error.bind(this);
-    this.addEventListener('pending-state', async (e: PendingStateEvent) => {
-      this.waiting = true;
-      this.work.add(e.detail);
-      this.workDone = Promise.allSettled(this.work);
-      await e.detail.then(this.info, this.warn);
-      this.work.delete(e.detail);
-      this.waiting = this.work.size > 0;
-    });
   }
 }
