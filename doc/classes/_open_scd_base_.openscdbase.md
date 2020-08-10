@@ -3121,9 +3121,11 @@ ___
 
 ▸ **firstUpdated**(): *void*
 
-*Overrides [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
+*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
 
-Defined in src/open-scd-base.ts:189
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#firstupdated)*
+
+Defined in src/WaitingElement.ts:17
 
 **Returns:** *void*
 

@@ -3125,11 +3125,11 @@ ___
 
 ▸ **firstUpdated**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[firstUpdated](_open_scd_base_.openscdbase.md#firstupdated)*
+*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
 
-*Overrides [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#firstupdated)*
 
-Defined in src/open-scd-base.ts:189
+Defined in src/WaitingElement.ts:17
 
 **Returns:** *void*
 

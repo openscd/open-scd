@@ -2998,7 +2998,7 @@ ___
 
 ▸ **firstUpdated**(): *void*
 
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#protected-firstupdated)*
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#firstupdated)*
 
 Defined in src/WaitingElement.ts:17
 

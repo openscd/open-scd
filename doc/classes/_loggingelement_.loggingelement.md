@@ -229,7 +229,7 @@
 * [dispatchEvent](_loggingelement_.loggingelement.md#dispatchevent)
 * [enableUpdating](_loggingelement_.loggingelement.md#protected-enableupdating)
 * [error](_loggingelement_.loggingelement.md#error)
-* [firstUpdated](_loggingelement_.loggingelement.md#protected-firstupdated)
+* [firstUpdated](_loggingelement_.loggingelement.md#firstupdated)
 * [focus](_loggingelement_.loggingelement.md#focus)
 * [getAnimations](_loggingelement_.loggingelement.md#getanimations)
 * [getAttribute](_loggingelement_.loggingelement.md#getattribute)
@@ -2959,25 +2959,13 @@ Name | Type |
 
 ___
 
-### `Protected` firstUpdated
+###  firstUpdated
 
-▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
+▸ **firstUpdated**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#protected-firstupdated)*
+*Overrides void*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:424
-
-Invoked when the element is first updated. Implement to perform one time
-work on the element after update.
-
-Setting properties inside this method will trigger the element to update
-again after this update cycle completes.
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`_changedProperties` | PropertyValues | Map of changed properties with old values  |
+Defined in src/LoggingElement.ts:26
 
 **Returns:** *void*
 
