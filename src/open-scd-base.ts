@@ -1,4 +1,4 @@
-import { LitElement, html, property, internalProperty } from 'lit-element';
+import { html, property, internalProperty } from 'lit-element';
 import { TemplateResult } from 'lit-html';
 import '@material/mwc-top-app-bar-fixed';
 import '@material/mwc-list';
@@ -12,22 +12,18 @@ import '@material/mwc-button';
 import '@material/mwc-snackbar';
 
 import { validate } from './validate.js';
+import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
+import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
+import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
+import { WaitingElement, PendingStateEvent } from './WaitingElement.js';
 
-export type PendingStateEvent = CustomEvent<Promise<string>>;
-declare global {
-  interface ElementEventMap {
-    ['pending-state']: PendingStateEvent;
-  }
-}
+export class OpenSCDBase extends WaitingElement {
+  static emptySCD = document.implementation.createDocument(
+    'http://www.iec.ch/61850/2003/SCL',
+    'SCL',
+    null
+  );
 
-interface LogEntry {
-  time: Date;
-  title: string;
-  message?: string;
-  icon?: string;
-}
-
-export class OpenSCDBase extends LitElement {
   render(): TemplateResult {
     return html`
       <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
@@ -39,8 +35,7 @@ export class OpenSCDBase extends LitElement {
           <mwc-icon-button
             icon="menu"
             slot="navigationIcon"
-            @click=${() =>
-              (this.shadowRoot!.querySelector('mwc-drawer')!.open = true)}
+            @click=${() => (this.menuUI.open = true)}
           ></mwc-icon-button>
           <div slot="title" id="title">
             ${this.srcName}
@@ -48,12 +43,12 @@ export class OpenSCDBase extends LitElement {
           <mwc-icon-button
             icon="folder_open"
             slot="actionItems"
-            @click="${this.selectFile}"
+            @click="${() => this.fileUI.click()}"
           ></mwc-icon-button>
           <mwc-icon-button
             icon="toc"
             slot="actionItems"
-            @click="${this.showLog}"
+            @click="${() => this.logUI.show()}"
           ></mwc-icon-button>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
@@ -63,7 +58,7 @@ export class OpenSCDBase extends LitElement {
         labelText="${this.history.find(le => le.icon == 'error_outline')
           ?.title ?? 'No errors'}"
       >
-        <mwc-button slot="action" icon="toc" @click=${this.showLog}
+        <mwc-button slot="action" icon="toc" @click=${() => this.logUI.show()}
           >Show</mwc-button
         >
         <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
@@ -98,40 +93,44 @@ export class OpenSCDBase extends LitElement {
     `;
   }
 
-  static emptySCD = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  );
-  /** Error and warning log, and edit history */
-  @property({ type: Array }) history: Array<LogEntry> = [];
+  error(title: string, ...detail: string[]): void {
+    super.error(title, ...detail);
+    this.messageUI.show();
+  }
+
   /** The `XMLDocument` representation of the current file. */
   @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = OpenSCDBase.emptySCD;
   /** The name of the current file. */
   @property({ type: String }) srcName = 'untitled.scd';
-  /** Whether the editor is currently waiting for some async work. */
-  @property({ type: Boolean }) waiting = false;
-  private work: Set<Promise<string>> = new Set();
-  /** A promise which resolves once all currently pending work is done. */
-  workDone = Promise.allSettled(this.work);
-
-  log(title: string, message?: string, icon?: string): void {
-    this.history.unshift({ time: new Date(), title, message, icon });
+  private currentSrc = '';
+  /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
+  @property({ type: String })
+  get src(): string {
+    return this.currentSrc;
   }
-  info(title: string, ...detail: string[]): void {
-    this.log(title, detail.join(' | '), 'info');
-  }
-  warn(title: string, ...detail: string[]): void {
-    this.log(title, detail.join(' | '), 'warning');
-  }
-  error(title: string, ...detail: string[]): void {
-    this.log(title, detail.join(' | '), 'error_outline');
-    this.shadowRoot?.querySelector('mwc-snackbar')?.show();
+  set src(value: string) {
+    this.currentSrc = value;
+    this.dispatchEvent(
+      new CustomEvent<Promise<string>>('pending-state', {
+        composed: true,
+        bubbles: true,
+        detail: this.loadDoc(value),
+      })
+    );
   }
 
-  showLog(): void {
-    this.shadowRoot?.querySelector('mwc-dialog')?.show();
+  get menuUI(): DrawerBase {
+    return this.shadowRoot!.querySelector('mwc-drawer')!;
+  }
+  get logUI(): DialogBase {
+    return this.shadowRoot!.querySelector('mwc-dialog')!;
+  }
+  get messageUI(): SnackbarBase {
+    return this.shadowRoot!.querySelector('mwc-snackbar')!;
+  }
+  get fileUI(): HTMLInputElement {
+    return <HTMLInputElement>this.shadowRoot!.querySelector('#file-input')!;
   }
 
   private loadDoc(src: string): Promise<string> {
@@ -174,23 +173,6 @@ export class OpenSCDBase extends LitElement {
     );
   }
 
-  private currentSrc = '';
-  /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
-  @property({ type: String })
-  get src(): string {
-    return this.currentSrc;
-  }
-  set src(value: string) {
-    this.currentSrc = value;
-    document.querySelector('open-scd')?.dispatchEvent(
-      new CustomEvent<Promise<string>>('pending-state', {
-        composed: true,
-        bubbles: true,
-        detail: this.loadDoc(value),
-      })
-    );
-  }
-
   /** Loads the file selected by input `event.target.files[0]`. */
   private loadFile(event: Event): void {
     this.srcName =
@@ -203,12 +185,6 @@ export class OpenSCDBase extends LitElement {
       )
     );
   }
-
-  /** Opens the browser's "open file" dialog for selecting a file to edit. */
-  selectFile = (): void =>
-    (<HTMLElement | null>(
-      this.shadowRoot!.querySelector('#file-input')
-    ))?.click();
 
   firstUpdated(): void {
     this.log = this.log.bind(this);

@@ -1,331 +1,320 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd-base"](../modules/_open_scd_base_.md) › [OpenSCDBase](_open_scd_base_.openscdbase.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["WaitingElement"](../modules/_waitingelement_.md) › [WaitingElement](_waitingelement_.waitingelement.md)
 
-# Class: OpenSCDBase
+# Class: WaitingElement
 
 ## Hierarchy
 
-  ↳ [WaitingElement](_waitingelement_.waitingelement.md)
+  ↳ [LoggingElement](_loggingelement_.loggingelement.md)
 
-  ↳ **OpenSCDBase**
+  ↳ **WaitingElement**
 
-  ↳ [OpenSCD](_open_scd_.openscd.md)
+  ↳ [OpenSCDBase](_open_scd_base_.openscdbase.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](_open_scd_base_.openscdbase.md#constructor)
+* [constructor](_waitingelement_.waitingelement.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_open_scd_base_.openscdbase.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_open_scd_base_.openscdbase.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_open_scd_base_.openscdbase.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_base_.openscdbase.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_open_scd_base_.openscdbase.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_base_.openscdbase.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_open_scd_base_.openscdbase.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_base_.openscdbase.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_open_scd_base_.openscdbase.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_open_scd_base_.openscdbase.md#readonly-document_type_node)
-* [ELEMENT_NODE](_open_scd_base_.openscdbase.md#readonly-element_node)
-* [ENTITY_NODE](_open_scd_base_.openscdbase.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_open_scd_base_.openscdbase.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_open_scd_base_.openscdbase.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_open_scd_base_.openscdbase.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_open_scd_base_.openscdbase.md#readonly-text_node)
-* [accessKey](_open_scd_base_.openscdbase.md#accesskey)
-* [accessKeyLabel](_open_scd_base_.openscdbase.md#readonly-accesskeylabel)
-* [assignedSlot](_open_scd_base_.openscdbase.md#readonly-assignedslot)
-* [attributes](_open_scd_base_.openscdbase.md#readonly-attributes)
-* [autocapitalize](_open_scd_base_.openscdbase.md#autocapitalize)
-* [autofocus](_open_scd_base_.openscdbase.md#autofocus)
-* [baseURI](_open_scd_base_.openscdbase.md#readonly-baseuri)
-* [childElementCount](_open_scd_base_.openscdbase.md#readonly-childelementcount)
-* [childNodes](_open_scd_base_.openscdbase.md#readonly-childnodes)
-* [children](_open_scd_base_.openscdbase.md#readonly-children)
-* [classList](_open_scd_base_.openscdbase.md#readonly-classlist)
-* [className](_open_scd_base_.openscdbase.md#classname)
-* [clientHeight](_open_scd_base_.openscdbase.md#readonly-clientheight)
-* [clientLeft](_open_scd_base_.openscdbase.md#readonly-clientleft)
-* [clientTop](_open_scd_base_.openscdbase.md#readonly-clienttop)
-* [clientWidth](_open_scd_base_.openscdbase.md#readonly-clientwidth)
-* [contentEditable](_open_scd_base_.openscdbase.md#contenteditable)
-* [currentSrc](_open_scd_base_.openscdbase.md#private-currentsrc)
-* [dataset](_open_scd_base_.openscdbase.md#readonly-dataset)
-* [dir](_open_scd_base_.openscdbase.md#dir)
-* [doc](_open_scd_base_.openscdbase.md#doc)
-* [draggable](_open_scd_base_.openscdbase.md#draggable)
-* [firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)
-* [firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)
-* [hidden](_open_scd_base_.openscdbase.md#hidden)
-* [history](_open_scd_base_.openscdbase.md#history)
-* [id](_open_scd_base_.openscdbase.md#id)
-* [innerHTML](_open_scd_base_.openscdbase.md#innerhtml)
-* [innerText](_open_scd_base_.openscdbase.md#innertext)
-* [inputMode](_open_scd_base_.openscdbase.md#inputmode)
-* [isConnected](_open_scd_base_.openscdbase.md#readonly-isconnected)
-* [isContentEditable](_open_scd_base_.openscdbase.md#readonly-iscontenteditable)
-* [lang](_open_scd_base_.openscdbase.md#lang)
-* [lastChild](_open_scd_base_.openscdbase.md#readonly-lastchild)
-* [lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)
-* [localName](_open_scd_base_.openscdbase.md#readonly-localname)
-* [namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)
-* [nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)
-* [nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)
-* [nodeName](_open_scd_base_.openscdbase.md#readonly-nodename)
-* [nodeType](_open_scd_base_.openscdbase.md#readonly-nodetype)
-* [nodeValue](_open_scd_base_.openscdbase.md#nodevalue)
-* [nonce](_open_scd_base_.openscdbase.md#optional-nonce)
-* [offsetHeight](_open_scd_base_.openscdbase.md#readonly-offsetheight)
-* [offsetLeft](_open_scd_base_.openscdbase.md#readonly-offsetleft)
-* [offsetParent](_open_scd_base_.openscdbase.md#readonly-offsetparent)
-* [offsetTop](_open_scd_base_.openscdbase.md#readonly-offsettop)
-* [offsetWidth](_open_scd_base_.openscdbase.md#readonly-offsetwidth)
-* [onabort](_open_scd_base_.openscdbase.md#onabort)
-* [onanimationcancel](_open_scd_base_.openscdbase.md#onanimationcancel)
-* [onanimationend](_open_scd_base_.openscdbase.md#onanimationend)
-* [onanimationiteration](_open_scd_base_.openscdbase.md#onanimationiteration)
-* [onanimationstart](_open_scd_base_.openscdbase.md#onanimationstart)
-* [onauxclick](_open_scd_base_.openscdbase.md#onauxclick)
-* [onblur](_open_scd_base_.openscdbase.md#onblur)
-* [oncancel](_open_scd_base_.openscdbase.md#oncancel)
-* [oncanplay](_open_scd_base_.openscdbase.md#oncanplay)
-* [oncanplaythrough](_open_scd_base_.openscdbase.md#oncanplaythrough)
-* [onchange](_open_scd_base_.openscdbase.md#onchange)
-* [onclick](_open_scd_base_.openscdbase.md#onclick)
-* [onclose](_open_scd_base_.openscdbase.md#onclose)
-* [oncontextmenu](_open_scd_base_.openscdbase.md#oncontextmenu)
-* [oncopy](_open_scd_base_.openscdbase.md#oncopy)
-* [oncuechange](_open_scd_base_.openscdbase.md#oncuechange)
-* [oncut](_open_scd_base_.openscdbase.md#oncut)
-* [ondblclick](_open_scd_base_.openscdbase.md#ondblclick)
-* [ondrag](_open_scd_base_.openscdbase.md#ondrag)
-* [ondragend](_open_scd_base_.openscdbase.md#ondragend)
-* [ondragenter](_open_scd_base_.openscdbase.md#ondragenter)
-* [ondragexit](_open_scd_base_.openscdbase.md#ondragexit)
-* [ondragleave](_open_scd_base_.openscdbase.md#ondragleave)
-* [ondragover](_open_scd_base_.openscdbase.md#ondragover)
-* [ondragstart](_open_scd_base_.openscdbase.md#ondragstart)
-* [ondrop](_open_scd_base_.openscdbase.md#ondrop)
-* [ondurationchange](_open_scd_base_.openscdbase.md#ondurationchange)
-* [onemptied](_open_scd_base_.openscdbase.md#onemptied)
-* [onended](_open_scd_base_.openscdbase.md#onended)
-* [onerror](_open_scd_base_.openscdbase.md#onerror)
-* [onfocus](_open_scd_base_.openscdbase.md#onfocus)
-* [onfullscreenchange](_open_scd_base_.openscdbase.md#onfullscreenchange)
-* [onfullscreenerror](_open_scd_base_.openscdbase.md#onfullscreenerror)
-* [ongotpointercapture](_open_scd_base_.openscdbase.md#ongotpointercapture)
-* [oninput](_open_scd_base_.openscdbase.md#oninput)
-* [oninvalid](_open_scd_base_.openscdbase.md#oninvalid)
-* [onkeydown](_open_scd_base_.openscdbase.md#onkeydown)
-* [onkeypress](_open_scd_base_.openscdbase.md#onkeypress)
-* [onkeyup](_open_scd_base_.openscdbase.md#onkeyup)
-* [onload](_open_scd_base_.openscdbase.md#onload)
-* [onloadeddata](_open_scd_base_.openscdbase.md#onloadeddata)
-* [onloadedmetadata](_open_scd_base_.openscdbase.md#onloadedmetadata)
-* [onloadstart](_open_scd_base_.openscdbase.md#onloadstart)
-* [onlostpointercapture](_open_scd_base_.openscdbase.md#onlostpointercapture)
-* [onmousedown](_open_scd_base_.openscdbase.md#onmousedown)
-* [onmouseenter](_open_scd_base_.openscdbase.md#onmouseenter)
-* [onmouseleave](_open_scd_base_.openscdbase.md#onmouseleave)
-* [onmousemove](_open_scd_base_.openscdbase.md#onmousemove)
-* [onmouseout](_open_scd_base_.openscdbase.md#onmouseout)
-* [onmouseover](_open_scd_base_.openscdbase.md#onmouseover)
-* [onmouseup](_open_scd_base_.openscdbase.md#onmouseup)
-* [onpaste](_open_scd_base_.openscdbase.md#onpaste)
-* [onpause](_open_scd_base_.openscdbase.md#onpause)
-* [onplay](_open_scd_base_.openscdbase.md#onplay)
-* [onplaying](_open_scd_base_.openscdbase.md#onplaying)
-* [onpointercancel](_open_scd_base_.openscdbase.md#onpointercancel)
-* [onpointerdown](_open_scd_base_.openscdbase.md#onpointerdown)
-* [onpointerenter](_open_scd_base_.openscdbase.md#onpointerenter)
-* [onpointerleave](_open_scd_base_.openscdbase.md#onpointerleave)
-* [onpointermove](_open_scd_base_.openscdbase.md#onpointermove)
-* [onpointerout](_open_scd_base_.openscdbase.md#onpointerout)
-* [onpointerover](_open_scd_base_.openscdbase.md#onpointerover)
-* [onpointerup](_open_scd_base_.openscdbase.md#onpointerup)
-* [onprogress](_open_scd_base_.openscdbase.md#onprogress)
-* [onratechange](_open_scd_base_.openscdbase.md#onratechange)
-* [onreset](_open_scd_base_.openscdbase.md#onreset)
-* [onresize](_open_scd_base_.openscdbase.md#onresize)
-* [onscroll](_open_scd_base_.openscdbase.md#onscroll)
-* [onsecuritypolicyviolation](_open_scd_base_.openscdbase.md#onsecuritypolicyviolation)
-* [onseeked](_open_scd_base_.openscdbase.md#onseeked)
-* [onseeking](_open_scd_base_.openscdbase.md#onseeking)
-* [onselect](_open_scd_base_.openscdbase.md#onselect)
-* [onselectionchange](_open_scd_base_.openscdbase.md#onselectionchange)
-* [onselectstart](_open_scd_base_.openscdbase.md#onselectstart)
-* [onstalled](_open_scd_base_.openscdbase.md#onstalled)
-* [onsubmit](_open_scd_base_.openscdbase.md#onsubmit)
-* [onsuspend](_open_scd_base_.openscdbase.md#onsuspend)
-* [ontimeupdate](_open_scd_base_.openscdbase.md#ontimeupdate)
-* [ontoggle](_open_scd_base_.openscdbase.md#ontoggle)
-* [ontouchcancel](_open_scd_base_.openscdbase.md#optional-ontouchcancel)
-* [ontouchend](_open_scd_base_.openscdbase.md#optional-ontouchend)
-* [ontouchmove](_open_scd_base_.openscdbase.md#optional-ontouchmove)
-* [ontouchstart](_open_scd_base_.openscdbase.md#optional-ontouchstart)
-* [ontransitioncancel](_open_scd_base_.openscdbase.md#ontransitioncancel)
-* [ontransitionend](_open_scd_base_.openscdbase.md#ontransitionend)
-* [ontransitionrun](_open_scd_base_.openscdbase.md#ontransitionrun)
-* [ontransitionstart](_open_scd_base_.openscdbase.md#ontransitionstart)
-* [onvolumechange](_open_scd_base_.openscdbase.md#onvolumechange)
-* [onwaiting](_open_scd_base_.openscdbase.md#onwaiting)
-* [onwheel](_open_scd_base_.openscdbase.md#onwheel)
-* [outerHTML](_open_scd_base_.openscdbase.md#outerhtml)
-* [ownerDocument](_open_scd_base_.openscdbase.md#readonly-ownerdocument)
-* [parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)
-* [parentNode](_open_scd_base_.openscdbase.md#readonly-parentnode)
-* [prefix](_open_scd_base_.openscdbase.md#readonly-prefix)
-* [previousElementSibling](_open_scd_base_.openscdbase.md#readonly-previouselementsibling)
-* [previousSibling](_open_scd_base_.openscdbase.md#readonly-previoussibling)
-* [renderRoot](_open_scd_base_.openscdbase.md#readonly-renderroot)
-* [scrollHeight](_open_scd_base_.openscdbase.md#readonly-scrollheight)
-* [scrollLeft](_open_scd_base_.openscdbase.md#scrollleft)
-* [scrollTop](_open_scd_base_.openscdbase.md#scrolltop)
-* [scrollWidth](_open_scd_base_.openscdbase.md#readonly-scrollwidth)
-* [shadowRoot](_open_scd_base_.openscdbase.md#readonly-shadowroot)
-* [slot](_open_scd_base_.openscdbase.md#slot)
-* [spellcheck](_open_scd_base_.openscdbase.md#spellcheck)
-* [srcName](_open_scd_base_.openscdbase.md#srcname)
-* [style](_open_scd_base_.openscdbase.md#readonly-style)
-* [tabIndex](_open_scd_base_.openscdbase.md#tabindex)
-* [tagName](_open_scd_base_.openscdbase.md#readonly-tagname)
-* [textContent](_open_scd_base_.openscdbase.md#textcontent)
-* [title](_open_scd_base_.openscdbase.md#title)
-* [translate](_open_scd_base_.openscdbase.md#translate)
-* [waiting](_open_scd_base_.openscdbase.md#waiting)
-* [work](_open_scd_base_.openscdbase.md#protected-work)
-* [workDone](_open_scd_base_.openscdbase.md#workdone)
-* [[finalized]](_open_scd_base_.openscdbase.md#static-protected-[finalized])
-* [emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)
-* [finalized](_open_scd_base_.openscdbase.md#static-protected-finalized)
-* [properties](_open_scd_base_.openscdbase.md#static-properties)
-* [render](_open_scd_base_.openscdbase.md#static-render)
-* [styles](_open_scd_base_.openscdbase.md#static-optional-styles)
+* [ATTRIBUTE_NODE](_waitingelement_.waitingelement.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_waitingelement_.waitingelement.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_waitingelement_.waitingelement.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_waitingelement_.waitingelement.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_waitingelement_.waitingelement.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_waitingelement_.waitingelement.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_waitingelement_.waitingelement.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_waitingelement_.waitingelement.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_waitingelement_.waitingelement.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_waitingelement_.waitingelement.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_waitingelement_.waitingelement.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_waitingelement_.waitingelement.md#readonly-document_type_node)
+* [ELEMENT_NODE](_waitingelement_.waitingelement.md#readonly-element_node)
+* [ENTITY_NODE](_waitingelement_.waitingelement.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_waitingelement_.waitingelement.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_waitingelement_.waitingelement.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_waitingelement_.waitingelement.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_waitingelement_.waitingelement.md#readonly-text_node)
+* [accessKey](_waitingelement_.waitingelement.md#accesskey)
+* [accessKeyLabel](_waitingelement_.waitingelement.md#readonly-accesskeylabel)
+* [assignedSlot](_waitingelement_.waitingelement.md#readonly-assignedslot)
+* [attributes](_waitingelement_.waitingelement.md#readonly-attributes)
+* [autocapitalize](_waitingelement_.waitingelement.md#autocapitalize)
+* [autofocus](_waitingelement_.waitingelement.md#autofocus)
+* [baseURI](_waitingelement_.waitingelement.md#readonly-baseuri)
+* [childElementCount](_waitingelement_.waitingelement.md#readonly-childelementcount)
+* [childNodes](_waitingelement_.waitingelement.md#readonly-childnodes)
+* [children](_waitingelement_.waitingelement.md#readonly-children)
+* [classList](_waitingelement_.waitingelement.md#readonly-classlist)
+* [className](_waitingelement_.waitingelement.md#classname)
+* [clientHeight](_waitingelement_.waitingelement.md#readonly-clientheight)
+* [clientLeft](_waitingelement_.waitingelement.md#readonly-clientleft)
+* [clientTop](_waitingelement_.waitingelement.md#readonly-clienttop)
+* [clientWidth](_waitingelement_.waitingelement.md#readonly-clientwidth)
+* [contentEditable](_waitingelement_.waitingelement.md#contenteditable)
+* [dataset](_waitingelement_.waitingelement.md#readonly-dataset)
+* [dir](_waitingelement_.waitingelement.md#dir)
+* [draggable](_waitingelement_.waitingelement.md#draggable)
+* [firstChild](_waitingelement_.waitingelement.md#readonly-firstchild)
+* [firstElementChild](_waitingelement_.waitingelement.md#readonly-firstelementchild)
+* [hidden](_waitingelement_.waitingelement.md#hidden)
+* [history](_waitingelement_.waitingelement.md#history)
+* [id](_waitingelement_.waitingelement.md#id)
+* [innerHTML](_waitingelement_.waitingelement.md#innerhtml)
+* [innerText](_waitingelement_.waitingelement.md#innertext)
+* [inputMode](_waitingelement_.waitingelement.md#inputmode)
+* [isConnected](_waitingelement_.waitingelement.md#readonly-isconnected)
+* [isContentEditable](_waitingelement_.waitingelement.md#readonly-iscontenteditable)
+* [lang](_waitingelement_.waitingelement.md#lang)
+* [lastChild](_waitingelement_.waitingelement.md#readonly-lastchild)
+* [lastElementChild](_waitingelement_.waitingelement.md#readonly-lastelementchild)
+* [localName](_waitingelement_.waitingelement.md#readonly-localname)
+* [namespaceURI](_waitingelement_.waitingelement.md#readonly-namespaceuri)
+* [nextElementSibling](_waitingelement_.waitingelement.md#readonly-nextelementsibling)
+* [nextSibling](_waitingelement_.waitingelement.md#readonly-nextsibling)
+* [nodeName](_waitingelement_.waitingelement.md#readonly-nodename)
+* [nodeType](_waitingelement_.waitingelement.md#readonly-nodetype)
+* [nodeValue](_waitingelement_.waitingelement.md#nodevalue)
+* [nonce](_waitingelement_.waitingelement.md#optional-nonce)
+* [offsetHeight](_waitingelement_.waitingelement.md#readonly-offsetheight)
+* [offsetLeft](_waitingelement_.waitingelement.md#readonly-offsetleft)
+* [offsetParent](_waitingelement_.waitingelement.md#readonly-offsetparent)
+* [offsetTop](_waitingelement_.waitingelement.md#readonly-offsettop)
+* [offsetWidth](_waitingelement_.waitingelement.md#readonly-offsetwidth)
+* [onabort](_waitingelement_.waitingelement.md#onabort)
+* [onanimationcancel](_waitingelement_.waitingelement.md#onanimationcancel)
+* [onanimationend](_waitingelement_.waitingelement.md#onanimationend)
+* [onanimationiteration](_waitingelement_.waitingelement.md#onanimationiteration)
+* [onanimationstart](_waitingelement_.waitingelement.md#onanimationstart)
+* [onauxclick](_waitingelement_.waitingelement.md#onauxclick)
+* [onblur](_waitingelement_.waitingelement.md#onblur)
+* [oncancel](_waitingelement_.waitingelement.md#oncancel)
+* [oncanplay](_waitingelement_.waitingelement.md#oncanplay)
+* [oncanplaythrough](_waitingelement_.waitingelement.md#oncanplaythrough)
+* [onchange](_waitingelement_.waitingelement.md#onchange)
+* [onclick](_waitingelement_.waitingelement.md#onclick)
+* [onclose](_waitingelement_.waitingelement.md#onclose)
+* [oncontextmenu](_waitingelement_.waitingelement.md#oncontextmenu)
+* [oncopy](_waitingelement_.waitingelement.md#oncopy)
+* [oncuechange](_waitingelement_.waitingelement.md#oncuechange)
+* [oncut](_waitingelement_.waitingelement.md#oncut)
+* [ondblclick](_waitingelement_.waitingelement.md#ondblclick)
+* [ondrag](_waitingelement_.waitingelement.md#ondrag)
+* [ondragend](_waitingelement_.waitingelement.md#ondragend)
+* [ondragenter](_waitingelement_.waitingelement.md#ondragenter)
+* [ondragexit](_waitingelement_.waitingelement.md#ondragexit)
+* [ondragleave](_waitingelement_.waitingelement.md#ondragleave)
+* [ondragover](_waitingelement_.waitingelement.md#ondragover)
+* [ondragstart](_waitingelement_.waitingelement.md#ondragstart)
+* [ondrop](_waitingelement_.waitingelement.md#ondrop)
+* [ondurationchange](_waitingelement_.waitingelement.md#ondurationchange)
+* [onemptied](_waitingelement_.waitingelement.md#onemptied)
+* [onended](_waitingelement_.waitingelement.md#onended)
+* [onerror](_waitingelement_.waitingelement.md#onerror)
+* [onfocus](_waitingelement_.waitingelement.md#onfocus)
+* [onfullscreenchange](_waitingelement_.waitingelement.md#onfullscreenchange)
+* [onfullscreenerror](_waitingelement_.waitingelement.md#onfullscreenerror)
+* [ongotpointercapture](_waitingelement_.waitingelement.md#ongotpointercapture)
+* [oninput](_waitingelement_.waitingelement.md#oninput)
+* [oninvalid](_waitingelement_.waitingelement.md#oninvalid)
+* [onkeydown](_waitingelement_.waitingelement.md#onkeydown)
+* [onkeypress](_waitingelement_.waitingelement.md#onkeypress)
+* [onkeyup](_waitingelement_.waitingelement.md#onkeyup)
+* [onload](_waitingelement_.waitingelement.md#onload)
+* [onloadeddata](_waitingelement_.waitingelement.md#onloadeddata)
+* [onloadedmetadata](_waitingelement_.waitingelement.md#onloadedmetadata)
+* [onloadstart](_waitingelement_.waitingelement.md#onloadstart)
+* [onlostpointercapture](_waitingelement_.waitingelement.md#onlostpointercapture)
+* [onmousedown](_waitingelement_.waitingelement.md#onmousedown)
+* [onmouseenter](_waitingelement_.waitingelement.md#onmouseenter)
+* [onmouseleave](_waitingelement_.waitingelement.md#onmouseleave)
+* [onmousemove](_waitingelement_.waitingelement.md#onmousemove)
+* [onmouseout](_waitingelement_.waitingelement.md#onmouseout)
+* [onmouseover](_waitingelement_.waitingelement.md#onmouseover)
+* [onmouseup](_waitingelement_.waitingelement.md#onmouseup)
+* [onpaste](_waitingelement_.waitingelement.md#onpaste)
+* [onpause](_waitingelement_.waitingelement.md#onpause)
+* [onplay](_waitingelement_.waitingelement.md#onplay)
+* [onplaying](_waitingelement_.waitingelement.md#onplaying)
+* [onpointercancel](_waitingelement_.waitingelement.md#onpointercancel)
+* [onpointerdown](_waitingelement_.waitingelement.md#onpointerdown)
+* [onpointerenter](_waitingelement_.waitingelement.md#onpointerenter)
+* [onpointerleave](_waitingelement_.waitingelement.md#onpointerleave)
+* [onpointermove](_waitingelement_.waitingelement.md#onpointermove)
+* [onpointerout](_waitingelement_.waitingelement.md#onpointerout)
+* [onpointerover](_waitingelement_.waitingelement.md#onpointerover)
+* [onpointerup](_waitingelement_.waitingelement.md#onpointerup)
+* [onprogress](_waitingelement_.waitingelement.md#onprogress)
+* [onratechange](_waitingelement_.waitingelement.md#onratechange)
+* [onreset](_waitingelement_.waitingelement.md#onreset)
+* [onresize](_waitingelement_.waitingelement.md#onresize)
+* [onscroll](_waitingelement_.waitingelement.md#onscroll)
+* [onsecuritypolicyviolation](_waitingelement_.waitingelement.md#onsecuritypolicyviolation)
+* [onseeked](_waitingelement_.waitingelement.md#onseeked)
+* [onseeking](_waitingelement_.waitingelement.md#onseeking)
+* [onselect](_waitingelement_.waitingelement.md#onselect)
+* [onselectionchange](_waitingelement_.waitingelement.md#onselectionchange)
+* [onselectstart](_waitingelement_.waitingelement.md#onselectstart)
+* [onstalled](_waitingelement_.waitingelement.md#onstalled)
+* [onsubmit](_waitingelement_.waitingelement.md#onsubmit)
+* [onsuspend](_waitingelement_.waitingelement.md#onsuspend)
+* [ontimeupdate](_waitingelement_.waitingelement.md#ontimeupdate)
+* [ontoggle](_waitingelement_.waitingelement.md#ontoggle)
+* [ontouchcancel](_waitingelement_.waitingelement.md#optional-ontouchcancel)
+* [ontouchend](_waitingelement_.waitingelement.md#optional-ontouchend)
+* [ontouchmove](_waitingelement_.waitingelement.md#optional-ontouchmove)
+* [ontouchstart](_waitingelement_.waitingelement.md#optional-ontouchstart)
+* [ontransitioncancel](_waitingelement_.waitingelement.md#ontransitioncancel)
+* [ontransitionend](_waitingelement_.waitingelement.md#ontransitionend)
+* [ontransitionrun](_waitingelement_.waitingelement.md#ontransitionrun)
+* [ontransitionstart](_waitingelement_.waitingelement.md#ontransitionstart)
+* [onvolumechange](_waitingelement_.waitingelement.md#onvolumechange)
+* [onwaiting](_waitingelement_.waitingelement.md#onwaiting)
+* [onwheel](_waitingelement_.waitingelement.md#onwheel)
+* [outerHTML](_waitingelement_.waitingelement.md#outerhtml)
+* [ownerDocument](_waitingelement_.waitingelement.md#readonly-ownerdocument)
+* [parentElement](_waitingelement_.waitingelement.md#readonly-parentelement)
+* [parentNode](_waitingelement_.waitingelement.md#readonly-parentnode)
+* [prefix](_waitingelement_.waitingelement.md#readonly-prefix)
+* [previousElementSibling](_waitingelement_.waitingelement.md#readonly-previouselementsibling)
+* [previousSibling](_waitingelement_.waitingelement.md#readonly-previoussibling)
+* [renderRoot](_waitingelement_.waitingelement.md#readonly-renderroot)
+* [scrollHeight](_waitingelement_.waitingelement.md#readonly-scrollheight)
+* [scrollLeft](_waitingelement_.waitingelement.md#scrollleft)
+* [scrollTop](_waitingelement_.waitingelement.md#scrolltop)
+* [scrollWidth](_waitingelement_.waitingelement.md#readonly-scrollwidth)
+* [shadowRoot](_waitingelement_.waitingelement.md#readonly-shadowroot)
+* [slot](_waitingelement_.waitingelement.md#slot)
+* [spellcheck](_waitingelement_.waitingelement.md#spellcheck)
+* [style](_waitingelement_.waitingelement.md#readonly-style)
+* [tabIndex](_waitingelement_.waitingelement.md#tabindex)
+* [tagName](_waitingelement_.waitingelement.md#readonly-tagname)
+* [textContent](_waitingelement_.waitingelement.md#textcontent)
+* [title](_waitingelement_.waitingelement.md#title)
+* [translate](_waitingelement_.waitingelement.md#translate)
+* [waiting](_waitingelement_.waitingelement.md#waiting)
+* [work](_waitingelement_.waitingelement.md#protected-work)
+* [workDone](_waitingelement_.waitingelement.md#workdone)
+* [[finalized]](_waitingelement_.waitingelement.md#static-protected-[finalized])
+* [finalized](_waitingelement_.waitingelement.md#static-protected-finalized)
+* [properties](_waitingelement_.waitingelement.md#static-properties)
+* [render](_waitingelement_.waitingelement.md#static-render)
+* [styles](_waitingelement_.waitingelement.md#static-optional-styles)
 
 ### Accessors
 
-* [fileUI](_open_scd_base_.openscdbase.md#fileui)
-* [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
-* [logUI](_open_scd_base_.openscdbase.md#logui)
-* [menuUI](_open_scd_base_.openscdbase.md#menuui)
-* [messageUI](_open_scd_base_.openscdbase.md#messageui)
-* [src](_open_scd_base_.openscdbase.md#src)
-* [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
-* [observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)
+* [hasUpdated](_waitingelement_.waitingelement.md#protected-hasupdated)
+* [updateComplete](_waitingelement_.waitingelement.md#updatecomplete)
+* [observedAttributes](_waitingelement_.waitingelement.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_open_scd_base_.openscdbase.md#protected-_getupdatecomplete)
-* [addEventListener](_open_scd_base_.openscdbase.md#addeventlistener)
-* [adoptStyles](_open_scd_base_.openscdbase.md#protected-adoptstyles)
-* [after](_open_scd_base_.openscdbase.md#after)
-* [animate](_open_scd_base_.openscdbase.md#animate)
-* [append](_open_scd_base_.openscdbase.md#append)
-* [appendChild](_open_scd_base_.openscdbase.md#appendchild)
-* [attachShadow](_open_scd_base_.openscdbase.md#attachshadow)
-* [attributeChangedCallback](_open_scd_base_.openscdbase.md#attributechangedcallback)
-* [before](_open_scd_base_.openscdbase.md#before)
-* [blur](_open_scd_base_.openscdbase.md#blur)
-* [click](_open_scd_base_.openscdbase.md#click)
-* [cloneNode](_open_scd_base_.openscdbase.md#clonenode)
-* [closest](_open_scd_base_.openscdbase.md#closest)
-* [compareDocumentPosition](_open_scd_base_.openscdbase.md#comparedocumentposition)
-* [connectedCallback](_open_scd_base_.openscdbase.md#connectedcallback)
-* [contains](_open_scd_base_.openscdbase.md#contains)
-* [createRenderRoot](_open_scd_base_.openscdbase.md#protected-createrenderroot)
-* [disconnectedCallback](_open_scd_base_.openscdbase.md#disconnectedcallback)
-* [dispatchEvent](_open_scd_base_.openscdbase.md#dispatchevent)
-* [enableUpdating](_open_scd_base_.openscdbase.md#protected-enableupdating)
-* [error](_open_scd_base_.openscdbase.md#error)
-* [firstUpdated](_open_scd_base_.openscdbase.md#firstupdated)
-* [focus](_open_scd_base_.openscdbase.md#focus)
-* [getAnimations](_open_scd_base_.openscdbase.md#getanimations)
-* [getAttribute](_open_scd_base_.openscdbase.md#getattribute)
-* [getAttributeNS](_open_scd_base_.openscdbase.md#getattributens)
-* [getAttributeNames](_open_scd_base_.openscdbase.md#getattributenames)
-* [getAttributeNode](_open_scd_base_.openscdbase.md#getattributenode)
-* [getAttributeNodeNS](_open_scd_base_.openscdbase.md#getattributenodens)
-* [getBoundingClientRect](_open_scd_base_.openscdbase.md#getboundingclientrect)
-* [getClientRects](_open_scd_base_.openscdbase.md#getclientrects)
-* [getElementsByClassName](_open_scd_base_.openscdbase.md#getelementsbyclassname)
-* [getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)
-* [getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)
-* [getRootNode](_open_scd_base_.openscdbase.md#getrootnode)
-* [hasAttribute](_open_scd_base_.openscdbase.md#hasattribute)
-* [hasAttributeNS](_open_scd_base_.openscdbase.md#hasattributens)
-* [hasAttributes](_open_scd_base_.openscdbase.md#hasattributes)
-* [hasChildNodes](_open_scd_base_.openscdbase.md#haschildnodes)
-* [hasPointerCapture](_open_scd_base_.openscdbase.md#haspointercapture)
-* [info](_open_scd_base_.openscdbase.md#info)
-* [initialize](_open_scd_base_.openscdbase.md#protected-initialize)
-* [insertAdjacentElement](_open_scd_base_.openscdbase.md#insertadjacentelement)
-* [insertAdjacentHTML](_open_scd_base_.openscdbase.md#insertadjacenthtml)
-* [insertAdjacentText](_open_scd_base_.openscdbase.md#insertadjacenttext)
-* [insertBefore](_open_scd_base_.openscdbase.md#insertbefore)
-* [isDefaultNamespace](_open_scd_base_.openscdbase.md#isdefaultnamespace)
-* [isEqualNode](_open_scd_base_.openscdbase.md#isequalnode)
-* [isSameNode](_open_scd_base_.openscdbase.md#issamenode)
-* [loadDoc](_open_scd_base_.openscdbase.md#private-loaddoc)
-* [loadFile](_open_scd_base_.openscdbase.md#private-loadfile)
-* [log](_open_scd_base_.openscdbase.md#log)
-* [lookupNamespaceURI](_open_scd_base_.openscdbase.md#lookupnamespaceuri)
-* [lookupPrefix](_open_scd_base_.openscdbase.md#lookupprefix)
-* [matches](_open_scd_base_.openscdbase.md#matches)
-* [msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)
-* [normalize](_open_scd_base_.openscdbase.md#normalize)
-* [performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)
-* [prepend](_open_scd_base_.openscdbase.md#prepend)
-* [querySelector](_open_scd_base_.openscdbase.md#queryselector)
-* [querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)
-* [releasePointerCapture](_open_scd_base_.openscdbase.md#releasepointercapture)
-* [remove](_open_scd_base_.openscdbase.md#remove)
-* [removeAttribute](_open_scd_base_.openscdbase.md#removeattribute)
-* [removeAttributeNS](_open_scd_base_.openscdbase.md#removeattributens)
-* [removeAttributeNode](_open_scd_base_.openscdbase.md#removeattributenode)
-* [removeChild](_open_scd_base_.openscdbase.md#removechild)
-* [removeEventListener](_open_scd_base_.openscdbase.md#removeeventlistener)
-* [render](_open_scd_base_.openscdbase.md#render)
-* [replaceChild](_open_scd_base_.openscdbase.md#replacechild)
-* [replaceWith](_open_scd_base_.openscdbase.md#replacewith)
-* [requestFullscreen](_open_scd_base_.openscdbase.md#requestfullscreen)
-* [requestPointerLock](_open_scd_base_.openscdbase.md#requestpointerlock)
-* [requestUpdate](_open_scd_base_.openscdbase.md#requestupdate)
-* [scroll](_open_scd_base_.openscdbase.md#scroll)
-* [scrollBy](_open_scd_base_.openscdbase.md#scrollby)
-* [scrollIntoView](_open_scd_base_.openscdbase.md#scrollintoview)
-* [scrollTo](_open_scd_base_.openscdbase.md#scrollto)
-* [setAttribute](_open_scd_base_.openscdbase.md#setattribute)
-* [setAttributeNS](_open_scd_base_.openscdbase.md#setattributens)
-* [setAttributeNode](_open_scd_base_.openscdbase.md#setattributenode)
-* [setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)
-* [setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)
-* [shouldUpdate](_open_scd_base_.openscdbase.md#protected-shouldupdate)
-* [toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)
-* [update](_open_scd_base_.openscdbase.md#protected-update)
-* [updated](_open_scd_base_.openscdbase.md#protected-updated)
-* [warn](_open_scd_base_.openscdbase.md#warn)
-* [webkitMatchesSelector](_open_scd_base_.openscdbase.md#webkitmatchesselector)
-* [createProperty](_open_scd_base_.openscdbase.md#static-createproperty)
-* [finalize](_open_scd_base_.openscdbase.md#static-protected-finalize)
-* [getPropertyDescriptor](_open_scd_base_.openscdbase.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_open_scd_base_.openscdbase.md#static-protected-getpropertyoptions)
-* [getStyles](_open_scd_base_.openscdbase.md#static-getstyles)
+* [_getUpdateComplete](_waitingelement_.waitingelement.md#protected-_getupdatecomplete)
+* [addEventListener](_waitingelement_.waitingelement.md#addeventlistener)
+* [adoptStyles](_waitingelement_.waitingelement.md#protected-adoptstyles)
+* [after](_waitingelement_.waitingelement.md#after)
+* [animate](_waitingelement_.waitingelement.md#animate)
+* [append](_waitingelement_.waitingelement.md#append)
+* [appendChild](_waitingelement_.waitingelement.md#appendchild)
+* [attachShadow](_waitingelement_.waitingelement.md#attachshadow)
+* [attributeChangedCallback](_waitingelement_.waitingelement.md#attributechangedcallback)
+* [before](_waitingelement_.waitingelement.md#before)
+* [blur](_waitingelement_.waitingelement.md#blur)
+* [click](_waitingelement_.waitingelement.md#click)
+* [cloneNode](_waitingelement_.waitingelement.md#clonenode)
+* [closest](_waitingelement_.waitingelement.md#closest)
+* [compareDocumentPosition](_waitingelement_.waitingelement.md#comparedocumentposition)
+* [connectedCallback](_waitingelement_.waitingelement.md#connectedcallback)
+* [contains](_waitingelement_.waitingelement.md#contains)
+* [createRenderRoot](_waitingelement_.waitingelement.md#protected-createrenderroot)
+* [disconnectedCallback](_waitingelement_.waitingelement.md#disconnectedcallback)
+* [dispatchEvent](_waitingelement_.waitingelement.md#dispatchevent)
+* [enableUpdating](_waitingelement_.waitingelement.md#protected-enableupdating)
+* [error](_waitingelement_.waitingelement.md#error)
+* [firstUpdated](_waitingelement_.waitingelement.md#firstupdated)
+* [focus](_waitingelement_.waitingelement.md#focus)
+* [getAnimations](_waitingelement_.waitingelement.md#getanimations)
+* [getAttribute](_waitingelement_.waitingelement.md#getattribute)
+* [getAttributeNS](_waitingelement_.waitingelement.md#getattributens)
+* [getAttributeNames](_waitingelement_.waitingelement.md#getattributenames)
+* [getAttributeNode](_waitingelement_.waitingelement.md#getattributenode)
+* [getAttributeNodeNS](_waitingelement_.waitingelement.md#getattributenodens)
+* [getBoundingClientRect](_waitingelement_.waitingelement.md#getboundingclientrect)
+* [getClientRects](_waitingelement_.waitingelement.md#getclientrects)
+* [getElementsByClassName](_waitingelement_.waitingelement.md#getelementsbyclassname)
+* [getElementsByTagName](_waitingelement_.waitingelement.md#getelementsbytagname)
+* [getElementsByTagNameNS](_waitingelement_.waitingelement.md#getelementsbytagnamens)
+* [getRootNode](_waitingelement_.waitingelement.md#getrootnode)
+* [hasAttribute](_waitingelement_.waitingelement.md#hasattribute)
+* [hasAttributeNS](_waitingelement_.waitingelement.md#hasattributens)
+* [hasAttributes](_waitingelement_.waitingelement.md#hasattributes)
+* [hasChildNodes](_waitingelement_.waitingelement.md#haschildnodes)
+* [hasPointerCapture](_waitingelement_.waitingelement.md#haspointercapture)
+* [info](_waitingelement_.waitingelement.md#info)
+* [initialize](_waitingelement_.waitingelement.md#protected-initialize)
+* [insertAdjacentElement](_waitingelement_.waitingelement.md#insertadjacentelement)
+* [insertAdjacentHTML](_waitingelement_.waitingelement.md#insertadjacenthtml)
+* [insertAdjacentText](_waitingelement_.waitingelement.md#insertadjacenttext)
+* [insertBefore](_waitingelement_.waitingelement.md#insertbefore)
+* [isDefaultNamespace](_waitingelement_.waitingelement.md#isdefaultnamespace)
+* [isEqualNode](_waitingelement_.waitingelement.md#isequalnode)
+* [isSameNode](_waitingelement_.waitingelement.md#issamenode)
+* [log](_waitingelement_.waitingelement.md#log)
+* [lookupNamespaceURI](_waitingelement_.waitingelement.md#lookupnamespaceuri)
+* [lookupPrefix](_waitingelement_.waitingelement.md#lookupprefix)
+* [matches](_waitingelement_.waitingelement.md#matches)
+* [msGetRegionContent](_waitingelement_.waitingelement.md#msgetregioncontent)
+* [normalize](_waitingelement_.waitingelement.md#normalize)
+* [performUpdate](_waitingelement_.waitingelement.md#protected-performupdate)
+* [prepend](_waitingelement_.waitingelement.md#prepend)
+* [querySelector](_waitingelement_.waitingelement.md#queryselector)
+* [querySelectorAll](_waitingelement_.waitingelement.md#queryselectorall)
+* [releasePointerCapture](_waitingelement_.waitingelement.md#releasepointercapture)
+* [remove](_waitingelement_.waitingelement.md#remove)
+* [removeAttribute](_waitingelement_.waitingelement.md#removeattribute)
+* [removeAttributeNS](_waitingelement_.waitingelement.md#removeattributens)
+* [removeAttributeNode](_waitingelement_.waitingelement.md#removeattributenode)
+* [removeChild](_waitingelement_.waitingelement.md#removechild)
+* [removeEventListener](_waitingelement_.waitingelement.md#removeeventlistener)
+* [render](_waitingelement_.waitingelement.md#protected-render)
+* [replaceChild](_waitingelement_.waitingelement.md#replacechild)
+* [replaceWith](_waitingelement_.waitingelement.md#replacewith)
+* [requestFullscreen](_waitingelement_.waitingelement.md#requestfullscreen)
+* [requestPointerLock](_waitingelement_.waitingelement.md#requestpointerlock)
+* [requestUpdate](_waitingelement_.waitingelement.md#requestupdate)
+* [scroll](_waitingelement_.waitingelement.md#scroll)
+* [scrollBy](_waitingelement_.waitingelement.md#scrollby)
+* [scrollIntoView](_waitingelement_.waitingelement.md#scrollintoview)
+* [scrollTo](_waitingelement_.waitingelement.md#scrollto)
+* [setAttribute](_waitingelement_.waitingelement.md#setattribute)
+* [setAttributeNS](_waitingelement_.waitingelement.md#setattributens)
+* [setAttributeNode](_waitingelement_.waitingelement.md#setattributenode)
+* [setAttributeNodeNS](_waitingelement_.waitingelement.md#setattributenodens)
+* [setPointerCapture](_waitingelement_.waitingelement.md#setpointercapture)
+* [shouldUpdate](_waitingelement_.waitingelement.md#protected-shouldupdate)
+* [toggleAttribute](_waitingelement_.waitingelement.md#toggleattribute)
+* [update](_waitingelement_.waitingelement.md#protected-update)
+* [updated](_waitingelement_.waitingelement.md#protected-updated)
+* [warn](_waitingelement_.waitingelement.md#warn)
+* [webkitMatchesSelector](_waitingelement_.waitingelement.md#webkitmatchesselector)
+* [createProperty](_waitingelement_.waitingelement.md#static-createproperty)
+* [finalize](_waitingelement_.waitingelement.md#static-protected-finalize)
+* [getPropertyDescriptor](_waitingelement_.waitingelement.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_waitingelement_.waitingelement.md#static-protected-getpropertyoptions)
+* [getStyles](_waitingelement_.waitingelement.md#static-getstyles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new OpenSCDBase**(): *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+\+ **new WaitingElement**(): *[WaitingElement](_waitingelement_.waitingelement.md)*
 
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
-**Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+**Returns:** *[WaitingElement](_waitingelement_.waitingelement.md)*
 
 ## Properties
 
@@ -717,14 +706,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
 ___
 
-### `Private` currentSrc
-
-• **currentSrc**: *string* = ""
-
-Defined in src/open-scd-base.ts:106
-
-___
-
 ### `Readonly` dataset
 
 • **dataset**: *DOMStringMap*
@@ -742,16 +723,6 @@ ___
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dir](_loggingelement_.loggingelement.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
-
-___
-
-###  doc
-
-• **doc**: *XMLDocument* = OpenSCDBase.emptySCD
-
-Defined in src/open-scd-base.ts:103
-
-The `XMLDocument` representation of the current file.
 
 ___
 
@@ -2300,16 +2271,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
 ___
 
-###  srcName
-
-• **srcName**: *string* = "untitled.scd"
-
-Defined in src/open-scd-base.ts:105
-
-The name of the current file.
-
-___
-
 ### `Readonly` style
 
 • **style**: *CSSStyleDeclaration*
@@ -2376,8 +2337,6 @@ ___
 
 • **waiting**: *boolean* = false
 
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[waiting](_waitingelement_.waitingelement.md#waiting)*
-
 Defined in src/WaitingElement.ts:13
 
 Whether the element is currently waiting for some async work.
@@ -2388,8 +2347,6 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[work](_waitingelement_.waitingelement.md#protected-work)*
-
 Defined in src/WaitingElement.ts:14
 
 ___
@@ -2397,8 +2354,6 @@ ___
 ###  workDone
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[workDone](_waitingelement_.waitingelement.md#workdone)*
 
 Defined in src/WaitingElement.ts:16
 
@@ -2415,18 +2370,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
 Marks class as having finished creating properties.
-
-___
-
-### `Static` emptySCD
-
-▪ **emptySCD**: *Document* = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  )
-
-Defined in src/open-scd-base.ts:21
 
 ___
 
@@ -2504,16 +2447,6 @@ using the `css` tag function.
 
 ## Accessors
 
-###  fileUI
-
-• **get fileUI**(): *HTMLInputElement*
-
-Defined in src/open-scd-base.ts:132
-
-**Returns:** *HTMLInputElement*
-
-___
-
 ### `Protected` hasUpdated
 
 • **get hasUpdated**(): *number*
@@ -2523,62 +2456,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
-
-___
-
-###  logUI
-
-• **get logUI**(): *DialogBase*
-
-Defined in src/open-scd-base.ts:126
-
-**Returns:** *DialogBase*
-
-___
-
-###  menuUI
-
-• **get menuUI**(): *DrawerBase*
-
-Defined in src/open-scd-base.ts:123
-
-**Returns:** *DrawerBase*
-
-___
-
-###  messageUI
-
-• **get messageUI**(): *SnackbarBase*
-
-Defined in src/open-scd-base.ts:129
-
-**Returns:** *SnackbarBase*
-
-___
-
-###  src
-
-• **get src**(): *string*
-
-Defined in src/open-scd-base.ts:109
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Returns:** *string*
-
-• **set src**(`value`: string): *void*
-
-Defined in src/open-scd-base.ts:112
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | string |
-
-**Returns:** *void*
 
 ___
 
@@ -3102,9 +2979,9 @@ ___
 
 ▸ **error**(`title`: string, ...`detail`: string[]): *void*
 
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:96
+Defined in src/LoggingElement.ts:22
 
 **Parameters:**
 
@@ -3121,9 +2998,9 @@ ___
 
 ▸ **firstUpdated**(): *void*
 
-*Overrides [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#protected-firstupdated)*
 
-Defined in src/open-scd-base.ts:189
+Defined in src/WaitingElement.ts:17
 
 **Returns:** *void*
 
@@ -3678,40 +3555,6 @@ Name | Type |
 
 ___
 
-### `Private` loadDoc
-
-▸ **loadDoc**(`src`: string): *Promise‹string›*
-
-Defined in src/open-scd-base.ts:136
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`src` | string |
-
-**Returns:** *Promise‹string›*
-
-___
-
-### `Private` loadFile
-
-▸ **loadFile**(`event`: Event): *void*
-
-Defined in src/open-scd-base.ts:177
-
-Loads the file selected by input `event.target.files[0]`.
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`event` | Event |
-
-**Returns:** *void*
-
-___
-
 ###  log
 
 ▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
@@ -4149,15 +3992,20 @@ Name | Type |
 
 ___
 
-###  render
+### `Protected` render
 
-▸ **render**(): *TemplateResult*
+▸ **render**(): *unknown*
 
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:27
+Defined in node_modules/lit-element/lit-element.d.ts:104
 
-**Returns:** *TemplateResult*
+Invoked on each update to perform rendering tasks. This method may return
+any value renderable by lit-html's NodePart - typically a TemplateResult.
+Setting properties inside this method will *not* trigger the element to
+update.
+
+**Returns:** *unknown*
 
 ___
 

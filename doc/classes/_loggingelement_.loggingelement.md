@@ -1,331 +1,317 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd-base"](../modules/_open_scd_base_.md) › [OpenSCDBase](_open_scd_base_.openscdbase.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["LoggingElement"](../modules/_loggingelement_.md) › [LoggingElement](_loggingelement_.loggingelement.md)
 
-# Class: OpenSCDBase
+# Class: LoggingElement
 
 ## Hierarchy
 
+* LitElement
+
+  ↳ **LoggingElement**
+
   ↳ [WaitingElement](_waitingelement_.waitingelement.md)
-
-  ↳ **OpenSCDBase**
-
-  ↳ [OpenSCD](_open_scd_.openscd.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](_open_scd_base_.openscdbase.md#constructor)
+* [constructor](_loggingelement_.loggingelement.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_open_scd_base_.openscdbase.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_open_scd_base_.openscdbase.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_open_scd_base_.openscdbase.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_base_.openscdbase.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_open_scd_base_.openscdbase.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_base_.openscdbase.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_open_scd_base_.openscdbase.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_base_.openscdbase.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_open_scd_base_.openscdbase.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_open_scd_base_.openscdbase.md#readonly-document_type_node)
-* [ELEMENT_NODE](_open_scd_base_.openscdbase.md#readonly-element_node)
-* [ENTITY_NODE](_open_scd_base_.openscdbase.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_open_scd_base_.openscdbase.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_open_scd_base_.openscdbase.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_open_scd_base_.openscdbase.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_open_scd_base_.openscdbase.md#readonly-text_node)
-* [accessKey](_open_scd_base_.openscdbase.md#accesskey)
-* [accessKeyLabel](_open_scd_base_.openscdbase.md#readonly-accesskeylabel)
-* [assignedSlot](_open_scd_base_.openscdbase.md#readonly-assignedslot)
-* [attributes](_open_scd_base_.openscdbase.md#readonly-attributes)
-* [autocapitalize](_open_scd_base_.openscdbase.md#autocapitalize)
-* [autofocus](_open_scd_base_.openscdbase.md#autofocus)
-* [baseURI](_open_scd_base_.openscdbase.md#readonly-baseuri)
-* [childElementCount](_open_scd_base_.openscdbase.md#readonly-childelementcount)
-* [childNodes](_open_scd_base_.openscdbase.md#readonly-childnodes)
-* [children](_open_scd_base_.openscdbase.md#readonly-children)
-* [classList](_open_scd_base_.openscdbase.md#readonly-classlist)
-* [className](_open_scd_base_.openscdbase.md#classname)
-* [clientHeight](_open_scd_base_.openscdbase.md#readonly-clientheight)
-* [clientLeft](_open_scd_base_.openscdbase.md#readonly-clientleft)
-* [clientTop](_open_scd_base_.openscdbase.md#readonly-clienttop)
-* [clientWidth](_open_scd_base_.openscdbase.md#readonly-clientwidth)
-* [contentEditable](_open_scd_base_.openscdbase.md#contenteditable)
-* [currentSrc](_open_scd_base_.openscdbase.md#private-currentsrc)
-* [dataset](_open_scd_base_.openscdbase.md#readonly-dataset)
-* [dir](_open_scd_base_.openscdbase.md#dir)
-* [doc](_open_scd_base_.openscdbase.md#doc)
-* [draggable](_open_scd_base_.openscdbase.md#draggable)
-* [firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)
-* [firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)
-* [hidden](_open_scd_base_.openscdbase.md#hidden)
-* [history](_open_scd_base_.openscdbase.md#history)
-* [id](_open_scd_base_.openscdbase.md#id)
-* [innerHTML](_open_scd_base_.openscdbase.md#innerhtml)
-* [innerText](_open_scd_base_.openscdbase.md#innertext)
-* [inputMode](_open_scd_base_.openscdbase.md#inputmode)
-* [isConnected](_open_scd_base_.openscdbase.md#readonly-isconnected)
-* [isContentEditable](_open_scd_base_.openscdbase.md#readonly-iscontenteditable)
-* [lang](_open_scd_base_.openscdbase.md#lang)
-* [lastChild](_open_scd_base_.openscdbase.md#readonly-lastchild)
-* [lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)
-* [localName](_open_scd_base_.openscdbase.md#readonly-localname)
-* [namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)
-* [nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)
-* [nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)
-* [nodeName](_open_scd_base_.openscdbase.md#readonly-nodename)
-* [nodeType](_open_scd_base_.openscdbase.md#readonly-nodetype)
-* [nodeValue](_open_scd_base_.openscdbase.md#nodevalue)
-* [nonce](_open_scd_base_.openscdbase.md#optional-nonce)
-* [offsetHeight](_open_scd_base_.openscdbase.md#readonly-offsetheight)
-* [offsetLeft](_open_scd_base_.openscdbase.md#readonly-offsetleft)
-* [offsetParent](_open_scd_base_.openscdbase.md#readonly-offsetparent)
-* [offsetTop](_open_scd_base_.openscdbase.md#readonly-offsettop)
-* [offsetWidth](_open_scd_base_.openscdbase.md#readonly-offsetwidth)
-* [onabort](_open_scd_base_.openscdbase.md#onabort)
-* [onanimationcancel](_open_scd_base_.openscdbase.md#onanimationcancel)
-* [onanimationend](_open_scd_base_.openscdbase.md#onanimationend)
-* [onanimationiteration](_open_scd_base_.openscdbase.md#onanimationiteration)
-* [onanimationstart](_open_scd_base_.openscdbase.md#onanimationstart)
-* [onauxclick](_open_scd_base_.openscdbase.md#onauxclick)
-* [onblur](_open_scd_base_.openscdbase.md#onblur)
-* [oncancel](_open_scd_base_.openscdbase.md#oncancel)
-* [oncanplay](_open_scd_base_.openscdbase.md#oncanplay)
-* [oncanplaythrough](_open_scd_base_.openscdbase.md#oncanplaythrough)
-* [onchange](_open_scd_base_.openscdbase.md#onchange)
-* [onclick](_open_scd_base_.openscdbase.md#onclick)
-* [onclose](_open_scd_base_.openscdbase.md#onclose)
-* [oncontextmenu](_open_scd_base_.openscdbase.md#oncontextmenu)
-* [oncopy](_open_scd_base_.openscdbase.md#oncopy)
-* [oncuechange](_open_scd_base_.openscdbase.md#oncuechange)
-* [oncut](_open_scd_base_.openscdbase.md#oncut)
-* [ondblclick](_open_scd_base_.openscdbase.md#ondblclick)
-* [ondrag](_open_scd_base_.openscdbase.md#ondrag)
-* [ondragend](_open_scd_base_.openscdbase.md#ondragend)
-* [ondragenter](_open_scd_base_.openscdbase.md#ondragenter)
-* [ondragexit](_open_scd_base_.openscdbase.md#ondragexit)
-* [ondragleave](_open_scd_base_.openscdbase.md#ondragleave)
-* [ondragover](_open_scd_base_.openscdbase.md#ondragover)
-* [ondragstart](_open_scd_base_.openscdbase.md#ondragstart)
-* [ondrop](_open_scd_base_.openscdbase.md#ondrop)
-* [ondurationchange](_open_scd_base_.openscdbase.md#ondurationchange)
-* [onemptied](_open_scd_base_.openscdbase.md#onemptied)
-* [onended](_open_scd_base_.openscdbase.md#onended)
-* [onerror](_open_scd_base_.openscdbase.md#onerror)
-* [onfocus](_open_scd_base_.openscdbase.md#onfocus)
-* [onfullscreenchange](_open_scd_base_.openscdbase.md#onfullscreenchange)
-* [onfullscreenerror](_open_scd_base_.openscdbase.md#onfullscreenerror)
-* [ongotpointercapture](_open_scd_base_.openscdbase.md#ongotpointercapture)
-* [oninput](_open_scd_base_.openscdbase.md#oninput)
-* [oninvalid](_open_scd_base_.openscdbase.md#oninvalid)
-* [onkeydown](_open_scd_base_.openscdbase.md#onkeydown)
-* [onkeypress](_open_scd_base_.openscdbase.md#onkeypress)
-* [onkeyup](_open_scd_base_.openscdbase.md#onkeyup)
-* [onload](_open_scd_base_.openscdbase.md#onload)
-* [onloadeddata](_open_scd_base_.openscdbase.md#onloadeddata)
-* [onloadedmetadata](_open_scd_base_.openscdbase.md#onloadedmetadata)
-* [onloadstart](_open_scd_base_.openscdbase.md#onloadstart)
-* [onlostpointercapture](_open_scd_base_.openscdbase.md#onlostpointercapture)
-* [onmousedown](_open_scd_base_.openscdbase.md#onmousedown)
-* [onmouseenter](_open_scd_base_.openscdbase.md#onmouseenter)
-* [onmouseleave](_open_scd_base_.openscdbase.md#onmouseleave)
-* [onmousemove](_open_scd_base_.openscdbase.md#onmousemove)
-* [onmouseout](_open_scd_base_.openscdbase.md#onmouseout)
-* [onmouseover](_open_scd_base_.openscdbase.md#onmouseover)
-* [onmouseup](_open_scd_base_.openscdbase.md#onmouseup)
-* [onpaste](_open_scd_base_.openscdbase.md#onpaste)
-* [onpause](_open_scd_base_.openscdbase.md#onpause)
-* [onplay](_open_scd_base_.openscdbase.md#onplay)
-* [onplaying](_open_scd_base_.openscdbase.md#onplaying)
-* [onpointercancel](_open_scd_base_.openscdbase.md#onpointercancel)
-* [onpointerdown](_open_scd_base_.openscdbase.md#onpointerdown)
-* [onpointerenter](_open_scd_base_.openscdbase.md#onpointerenter)
-* [onpointerleave](_open_scd_base_.openscdbase.md#onpointerleave)
-* [onpointermove](_open_scd_base_.openscdbase.md#onpointermove)
-* [onpointerout](_open_scd_base_.openscdbase.md#onpointerout)
-* [onpointerover](_open_scd_base_.openscdbase.md#onpointerover)
-* [onpointerup](_open_scd_base_.openscdbase.md#onpointerup)
-* [onprogress](_open_scd_base_.openscdbase.md#onprogress)
-* [onratechange](_open_scd_base_.openscdbase.md#onratechange)
-* [onreset](_open_scd_base_.openscdbase.md#onreset)
-* [onresize](_open_scd_base_.openscdbase.md#onresize)
-* [onscroll](_open_scd_base_.openscdbase.md#onscroll)
-* [onsecuritypolicyviolation](_open_scd_base_.openscdbase.md#onsecuritypolicyviolation)
-* [onseeked](_open_scd_base_.openscdbase.md#onseeked)
-* [onseeking](_open_scd_base_.openscdbase.md#onseeking)
-* [onselect](_open_scd_base_.openscdbase.md#onselect)
-* [onselectionchange](_open_scd_base_.openscdbase.md#onselectionchange)
-* [onselectstart](_open_scd_base_.openscdbase.md#onselectstart)
-* [onstalled](_open_scd_base_.openscdbase.md#onstalled)
-* [onsubmit](_open_scd_base_.openscdbase.md#onsubmit)
-* [onsuspend](_open_scd_base_.openscdbase.md#onsuspend)
-* [ontimeupdate](_open_scd_base_.openscdbase.md#ontimeupdate)
-* [ontoggle](_open_scd_base_.openscdbase.md#ontoggle)
-* [ontouchcancel](_open_scd_base_.openscdbase.md#optional-ontouchcancel)
-* [ontouchend](_open_scd_base_.openscdbase.md#optional-ontouchend)
-* [ontouchmove](_open_scd_base_.openscdbase.md#optional-ontouchmove)
-* [ontouchstart](_open_scd_base_.openscdbase.md#optional-ontouchstart)
-* [ontransitioncancel](_open_scd_base_.openscdbase.md#ontransitioncancel)
-* [ontransitionend](_open_scd_base_.openscdbase.md#ontransitionend)
-* [ontransitionrun](_open_scd_base_.openscdbase.md#ontransitionrun)
-* [ontransitionstart](_open_scd_base_.openscdbase.md#ontransitionstart)
-* [onvolumechange](_open_scd_base_.openscdbase.md#onvolumechange)
-* [onwaiting](_open_scd_base_.openscdbase.md#onwaiting)
-* [onwheel](_open_scd_base_.openscdbase.md#onwheel)
-* [outerHTML](_open_scd_base_.openscdbase.md#outerhtml)
-* [ownerDocument](_open_scd_base_.openscdbase.md#readonly-ownerdocument)
-* [parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)
-* [parentNode](_open_scd_base_.openscdbase.md#readonly-parentnode)
-* [prefix](_open_scd_base_.openscdbase.md#readonly-prefix)
-* [previousElementSibling](_open_scd_base_.openscdbase.md#readonly-previouselementsibling)
-* [previousSibling](_open_scd_base_.openscdbase.md#readonly-previoussibling)
-* [renderRoot](_open_scd_base_.openscdbase.md#readonly-renderroot)
-* [scrollHeight](_open_scd_base_.openscdbase.md#readonly-scrollheight)
-* [scrollLeft](_open_scd_base_.openscdbase.md#scrollleft)
-* [scrollTop](_open_scd_base_.openscdbase.md#scrolltop)
-* [scrollWidth](_open_scd_base_.openscdbase.md#readonly-scrollwidth)
-* [shadowRoot](_open_scd_base_.openscdbase.md#readonly-shadowroot)
-* [slot](_open_scd_base_.openscdbase.md#slot)
-* [spellcheck](_open_scd_base_.openscdbase.md#spellcheck)
-* [srcName](_open_scd_base_.openscdbase.md#srcname)
-* [style](_open_scd_base_.openscdbase.md#readonly-style)
-* [tabIndex](_open_scd_base_.openscdbase.md#tabindex)
-* [tagName](_open_scd_base_.openscdbase.md#readonly-tagname)
-* [textContent](_open_scd_base_.openscdbase.md#textcontent)
-* [title](_open_scd_base_.openscdbase.md#title)
-* [translate](_open_scd_base_.openscdbase.md#translate)
-* [waiting](_open_scd_base_.openscdbase.md#waiting)
-* [work](_open_scd_base_.openscdbase.md#protected-work)
-* [workDone](_open_scd_base_.openscdbase.md#workdone)
-* [[finalized]](_open_scd_base_.openscdbase.md#static-protected-[finalized])
-* [emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)
-* [finalized](_open_scd_base_.openscdbase.md#static-protected-finalized)
-* [properties](_open_scd_base_.openscdbase.md#static-properties)
-* [render](_open_scd_base_.openscdbase.md#static-render)
-* [styles](_open_scd_base_.openscdbase.md#static-optional-styles)
+* [ATTRIBUTE_NODE](_loggingelement_.loggingelement.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_loggingelement_.loggingelement.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_loggingelement_.loggingelement.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_loggingelement_.loggingelement.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_loggingelement_.loggingelement.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_loggingelement_.loggingelement.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_loggingelement_.loggingelement.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_loggingelement_.loggingelement.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_loggingelement_.loggingelement.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_loggingelement_.loggingelement.md#readonly-document_type_node)
+* [ELEMENT_NODE](_loggingelement_.loggingelement.md#readonly-element_node)
+* [ENTITY_NODE](_loggingelement_.loggingelement.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_loggingelement_.loggingelement.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_loggingelement_.loggingelement.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_loggingelement_.loggingelement.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_loggingelement_.loggingelement.md#readonly-text_node)
+* [accessKey](_loggingelement_.loggingelement.md#accesskey)
+* [accessKeyLabel](_loggingelement_.loggingelement.md#readonly-accesskeylabel)
+* [assignedSlot](_loggingelement_.loggingelement.md#readonly-assignedslot)
+* [attributes](_loggingelement_.loggingelement.md#readonly-attributes)
+* [autocapitalize](_loggingelement_.loggingelement.md#autocapitalize)
+* [autofocus](_loggingelement_.loggingelement.md#autofocus)
+* [baseURI](_loggingelement_.loggingelement.md#readonly-baseuri)
+* [childElementCount](_loggingelement_.loggingelement.md#readonly-childelementcount)
+* [childNodes](_loggingelement_.loggingelement.md#readonly-childnodes)
+* [children](_loggingelement_.loggingelement.md#readonly-children)
+* [classList](_loggingelement_.loggingelement.md#readonly-classlist)
+* [className](_loggingelement_.loggingelement.md#classname)
+* [clientHeight](_loggingelement_.loggingelement.md#readonly-clientheight)
+* [clientLeft](_loggingelement_.loggingelement.md#readonly-clientleft)
+* [clientTop](_loggingelement_.loggingelement.md#readonly-clienttop)
+* [clientWidth](_loggingelement_.loggingelement.md#readonly-clientwidth)
+* [contentEditable](_loggingelement_.loggingelement.md#contenteditable)
+* [dataset](_loggingelement_.loggingelement.md#readonly-dataset)
+* [dir](_loggingelement_.loggingelement.md#dir)
+* [draggable](_loggingelement_.loggingelement.md#draggable)
+* [firstChild](_loggingelement_.loggingelement.md#readonly-firstchild)
+* [firstElementChild](_loggingelement_.loggingelement.md#readonly-firstelementchild)
+* [hidden](_loggingelement_.loggingelement.md#hidden)
+* [history](_loggingelement_.loggingelement.md#history)
+* [id](_loggingelement_.loggingelement.md#id)
+* [innerHTML](_loggingelement_.loggingelement.md#innerhtml)
+* [innerText](_loggingelement_.loggingelement.md#innertext)
+* [inputMode](_loggingelement_.loggingelement.md#inputmode)
+* [isConnected](_loggingelement_.loggingelement.md#readonly-isconnected)
+* [isContentEditable](_loggingelement_.loggingelement.md#readonly-iscontenteditable)
+* [lang](_loggingelement_.loggingelement.md#lang)
+* [lastChild](_loggingelement_.loggingelement.md#readonly-lastchild)
+* [lastElementChild](_loggingelement_.loggingelement.md#readonly-lastelementchild)
+* [localName](_loggingelement_.loggingelement.md#readonly-localname)
+* [namespaceURI](_loggingelement_.loggingelement.md#readonly-namespaceuri)
+* [nextElementSibling](_loggingelement_.loggingelement.md#readonly-nextelementsibling)
+* [nextSibling](_loggingelement_.loggingelement.md#readonly-nextsibling)
+* [nodeName](_loggingelement_.loggingelement.md#readonly-nodename)
+* [nodeType](_loggingelement_.loggingelement.md#readonly-nodetype)
+* [nodeValue](_loggingelement_.loggingelement.md#nodevalue)
+* [nonce](_loggingelement_.loggingelement.md#optional-nonce)
+* [offsetHeight](_loggingelement_.loggingelement.md#readonly-offsetheight)
+* [offsetLeft](_loggingelement_.loggingelement.md#readonly-offsetleft)
+* [offsetParent](_loggingelement_.loggingelement.md#readonly-offsetparent)
+* [offsetTop](_loggingelement_.loggingelement.md#readonly-offsettop)
+* [offsetWidth](_loggingelement_.loggingelement.md#readonly-offsetwidth)
+* [onabort](_loggingelement_.loggingelement.md#onabort)
+* [onanimationcancel](_loggingelement_.loggingelement.md#onanimationcancel)
+* [onanimationend](_loggingelement_.loggingelement.md#onanimationend)
+* [onanimationiteration](_loggingelement_.loggingelement.md#onanimationiteration)
+* [onanimationstart](_loggingelement_.loggingelement.md#onanimationstart)
+* [onauxclick](_loggingelement_.loggingelement.md#onauxclick)
+* [onblur](_loggingelement_.loggingelement.md#onblur)
+* [oncancel](_loggingelement_.loggingelement.md#oncancel)
+* [oncanplay](_loggingelement_.loggingelement.md#oncanplay)
+* [oncanplaythrough](_loggingelement_.loggingelement.md#oncanplaythrough)
+* [onchange](_loggingelement_.loggingelement.md#onchange)
+* [onclick](_loggingelement_.loggingelement.md#onclick)
+* [onclose](_loggingelement_.loggingelement.md#onclose)
+* [oncontextmenu](_loggingelement_.loggingelement.md#oncontextmenu)
+* [oncopy](_loggingelement_.loggingelement.md#oncopy)
+* [oncuechange](_loggingelement_.loggingelement.md#oncuechange)
+* [oncut](_loggingelement_.loggingelement.md#oncut)
+* [ondblclick](_loggingelement_.loggingelement.md#ondblclick)
+* [ondrag](_loggingelement_.loggingelement.md#ondrag)
+* [ondragend](_loggingelement_.loggingelement.md#ondragend)
+* [ondragenter](_loggingelement_.loggingelement.md#ondragenter)
+* [ondragexit](_loggingelement_.loggingelement.md#ondragexit)
+* [ondragleave](_loggingelement_.loggingelement.md#ondragleave)
+* [ondragover](_loggingelement_.loggingelement.md#ondragover)
+* [ondragstart](_loggingelement_.loggingelement.md#ondragstart)
+* [ondrop](_loggingelement_.loggingelement.md#ondrop)
+* [ondurationchange](_loggingelement_.loggingelement.md#ondurationchange)
+* [onemptied](_loggingelement_.loggingelement.md#onemptied)
+* [onended](_loggingelement_.loggingelement.md#onended)
+* [onerror](_loggingelement_.loggingelement.md#onerror)
+* [onfocus](_loggingelement_.loggingelement.md#onfocus)
+* [onfullscreenchange](_loggingelement_.loggingelement.md#onfullscreenchange)
+* [onfullscreenerror](_loggingelement_.loggingelement.md#onfullscreenerror)
+* [ongotpointercapture](_loggingelement_.loggingelement.md#ongotpointercapture)
+* [oninput](_loggingelement_.loggingelement.md#oninput)
+* [oninvalid](_loggingelement_.loggingelement.md#oninvalid)
+* [onkeydown](_loggingelement_.loggingelement.md#onkeydown)
+* [onkeypress](_loggingelement_.loggingelement.md#onkeypress)
+* [onkeyup](_loggingelement_.loggingelement.md#onkeyup)
+* [onload](_loggingelement_.loggingelement.md#onload)
+* [onloadeddata](_loggingelement_.loggingelement.md#onloadeddata)
+* [onloadedmetadata](_loggingelement_.loggingelement.md#onloadedmetadata)
+* [onloadstart](_loggingelement_.loggingelement.md#onloadstart)
+* [onlostpointercapture](_loggingelement_.loggingelement.md#onlostpointercapture)
+* [onmousedown](_loggingelement_.loggingelement.md#onmousedown)
+* [onmouseenter](_loggingelement_.loggingelement.md#onmouseenter)
+* [onmouseleave](_loggingelement_.loggingelement.md#onmouseleave)
+* [onmousemove](_loggingelement_.loggingelement.md#onmousemove)
+* [onmouseout](_loggingelement_.loggingelement.md#onmouseout)
+* [onmouseover](_loggingelement_.loggingelement.md#onmouseover)
+* [onmouseup](_loggingelement_.loggingelement.md#onmouseup)
+* [onpaste](_loggingelement_.loggingelement.md#onpaste)
+* [onpause](_loggingelement_.loggingelement.md#onpause)
+* [onplay](_loggingelement_.loggingelement.md#onplay)
+* [onplaying](_loggingelement_.loggingelement.md#onplaying)
+* [onpointercancel](_loggingelement_.loggingelement.md#onpointercancel)
+* [onpointerdown](_loggingelement_.loggingelement.md#onpointerdown)
+* [onpointerenter](_loggingelement_.loggingelement.md#onpointerenter)
+* [onpointerleave](_loggingelement_.loggingelement.md#onpointerleave)
+* [onpointermove](_loggingelement_.loggingelement.md#onpointermove)
+* [onpointerout](_loggingelement_.loggingelement.md#onpointerout)
+* [onpointerover](_loggingelement_.loggingelement.md#onpointerover)
+* [onpointerup](_loggingelement_.loggingelement.md#onpointerup)
+* [onprogress](_loggingelement_.loggingelement.md#onprogress)
+* [onratechange](_loggingelement_.loggingelement.md#onratechange)
+* [onreset](_loggingelement_.loggingelement.md#onreset)
+* [onresize](_loggingelement_.loggingelement.md#onresize)
+* [onscroll](_loggingelement_.loggingelement.md#onscroll)
+* [onsecuritypolicyviolation](_loggingelement_.loggingelement.md#onsecuritypolicyviolation)
+* [onseeked](_loggingelement_.loggingelement.md#onseeked)
+* [onseeking](_loggingelement_.loggingelement.md#onseeking)
+* [onselect](_loggingelement_.loggingelement.md#onselect)
+* [onselectionchange](_loggingelement_.loggingelement.md#onselectionchange)
+* [onselectstart](_loggingelement_.loggingelement.md#onselectstart)
+* [onstalled](_loggingelement_.loggingelement.md#onstalled)
+* [onsubmit](_loggingelement_.loggingelement.md#onsubmit)
+* [onsuspend](_loggingelement_.loggingelement.md#onsuspend)
+* [ontimeupdate](_loggingelement_.loggingelement.md#ontimeupdate)
+* [ontoggle](_loggingelement_.loggingelement.md#ontoggle)
+* [ontouchcancel](_loggingelement_.loggingelement.md#optional-ontouchcancel)
+* [ontouchend](_loggingelement_.loggingelement.md#optional-ontouchend)
+* [ontouchmove](_loggingelement_.loggingelement.md#optional-ontouchmove)
+* [ontouchstart](_loggingelement_.loggingelement.md#optional-ontouchstart)
+* [ontransitioncancel](_loggingelement_.loggingelement.md#ontransitioncancel)
+* [ontransitionend](_loggingelement_.loggingelement.md#ontransitionend)
+* [ontransitionrun](_loggingelement_.loggingelement.md#ontransitionrun)
+* [ontransitionstart](_loggingelement_.loggingelement.md#ontransitionstart)
+* [onvolumechange](_loggingelement_.loggingelement.md#onvolumechange)
+* [onwaiting](_loggingelement_.loggingelement.md#onwaiting)
+* [onwheel](_loggingelement_.loggingelement.md#onwheel)
+* [outerHTML](_loggingelement_.loggingelement.md#outerhtml)
+* [ownerDocument](_loggingelement_.loggingelement.md#readonly-ownerdocument)
+* [parentElement](_loggingelement_.loggingelement.md#readonly-parentelement)
+* [parentNode](_loggingelement_.loggingelement.md#readonly-parentnode)
+* [prefix](_loggingelement_.loggingelement.md#readonly-prefix)
+* [previousElementSibling](_loggingelement_.loggingelement.md#readonly-previouselementsibling)
+* [previousSibling](_loggingelement_.loggingelement.md#readonly-previoussibling)
+* [renderRoot](_loggingelement_.loggingelement.md#readonly-renderroot)
+* [scrollHeight](_loggingelement_.loggingelement.md#readonly-scrollheight)
+* [scrollLeft](_loggingelement_.loggingelement.md#scrollleft)
+* [scrollTop](_loggingelement_.loggingelement.md#scrolltop)
+* [scrollWidth](_loggingelement_.loggingelement.md#readonly-scrollwidth)
+* [shadowRoot](_loggingelement_.loggingelement.md#readonly-shadowroot)
+* [slot](_loggingelement_.loggingelement.md#slot)
+* [spellcheck](_loggingelement_.loggingelement.md#spellcheck)
+* [style](_loggingelement_.loggingelement.md#readonly-style)
+* [tabIndex](_loggingelement_.loggingelement.md#tabindex)
+* [tagName](_loggingelement_.loggingelement.md#readonly-tagname)
+* [textContent](_loggingelement_.loggingelement.md#textcontent)
+* [title](_loggingelement_.loggingelement.md#title)
+* [translate](_loggingelement_.loggingelement.md#translate)
+* [[finalized]](_loggingelement_.loggingelement.md#static-protected-[finalized])
+* [finalized](_loggingelement_.loggingelement.md#static-protected-finalized)
+* [properties](_loggingelement_.loggingelement.md#static-properties)
+* [render](_loggingelement_.loggingelement.md#static-render)
+* [styles](_loggingelement_.loggingelement.md#static-optional-styles)
 
 ### Accessors
 
-* [fileUI](_open_scd_base_.openscdbase.md#fileui)
-* [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
-* [logUI](_open_scd_base_.openscdbase.md#logui)
-* [menuUI](_open_scd_base_.openscdbase.md#menuui)
-* [messageUI](_open_scd_base_.openscdbase.md#messageui)
-* [src](_open_scd_base_.openscdbase.md#src)
-* [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
-* [observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)
+* [hasUpdated](_loggingelement_.loggingelement.md#protected-hasupdated)
+* [updateComplete](_loggingelement_.loggingelement.md#updatecomplete)
+* [observedAttributes](_loggingelement_.loggingelement.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_open_scd_base_.openscdbase.md#protected-_getupdatecomplete)
-* [addEventListener](_open_scd_base_.openscdbase.md#addeventlistener)
-* [adoptStyles](_open_scd_base_.openscdbase.md#protected-adoptstyles)
-* [after](_open_scd_base_.openscdbase.md#after)
-* [animate](_open_scd_base_.openscdbase.md#animate)
-* [append](_open_scd_base_.openscdbase.md#append)
-* [appendChild](_open_scd_base_.openscdbase.md#appendchild)
-* [attachShadow](_open_scd_base_.openscdbase.md#attachshadow)
-* [attributeChangedCallback](_open_scd_base_.openscdbase.md#attributechangedcallback)
-* [before](_open_scd_base_.openscdbase.md#before)
-* [blur](_open_scd_base_.openscdbase.md#blur)
-* [click](_open_scd_base_.openscdbase.md#click)
-* [cloneNode](_open_scd_base_.openscdbase.md#clonenode)
-* [closest](_open_scd_base_.openscdbase.md#closest)
-* [compareDocumentPosition](_open_scd_base_.openscdbase.md#comparedocumentposition)
-* [connectedCallback](_open_scd_base_.openscdbase.md#connectedcallback)
-* [contains](_open_scd_base_.openscdbase.md#contains)
-* [createRenderRoot](_open_scd_base_.openscdbase.md#protected-createrenderroot)
-* [disconnectedCallback](_open_scd_base_.openscdbase.md#disconnectedcallback)
-* [dispatchEvent](_open_scd_base_.openscdbase.md#dispatchevent)
-* [enableUpdating](_open_scd_base_.openscdbase.md#protected-enableupdating)
-* [error](_open_scd_base_.openscdbase.md#error)
-* [firstUpdated](_open_scd_base_.openscdbase.md#firstupdated)
-* [focus](_open_scd_base_.openscdbase.md#focus)
-* [getAnimations](_open_scd_base_.openscdbase.md#getanimations)
-* [getAttribute](_open_scd_base_.openscdbase.md#getattribute)
-* [getAttributeNS](_open_scd_base_.openscdbase.md#getattributens)
-* [getAttributeNames](_open_scd_base_.openscdbase.md#getattributenames)
-* [getAttributeNode](_open_scd_base_.openscdbase.md#getattributenode)
-* [getAttributeNodeNS](_open_scd_base_.openscdbase.md#getattributenodens)
-* [getBoundingClientRect](_open_scd_base_.openscdbase.md#getboundingclientrect)
-* [getClientRects](_open_scd_base_.openscdbase.md#getclientrects)
-* [getElementsByClassName](_open_scd_base_.openscdbase.md#getelementsbyclassname)
-* [getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)
-* [getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)
-* [getRootNode](_open_scd_base_.openscdbase.md#getrootnode)
-* [hasAttribute](_open_scd_base_.openscdbase.md#hasattribute)
-* [hasAttributeNS](_open_scd_base_.openscdbase.md#hasattributens)
-* [hasAttributes](_open_scd_base_.openscdbase.md#hasattributes)
-* [hasChildNodes](_open_scd_base_.openscdbase.md#haschildnodes)
-* [hasPointerCapture](_open_scd_base_.openscdbase.md#haspointercapture)
-* [info](_open_scd_base_.openscdbase.md#info)
-* [initialize](_open_scd_base_.openscdbase.md#protected-initialize)
-* [insertAdjacentElement](_open_scd_base_.openscdbase.md#insertadjacentelement)
-* [insertAdjacentHTML](_open_scd_base_.openscdbase.md#insertadjacenthtml)
-* [insertAdjacentText](_open_scd_base_.openscdbase.md#insertadjacenttext)
-* [insertBefore](_open_scd_base_.openscdbase.md#insertbefore)
-* [isDefaultNamespace](_open_scd_base_.openscdbase.md#isdefaultnamespace)
-* [isEqualNode](_open_scd_base_.openscdbase.md#isequalnode)
-* [isSameNode](_open_scd_base_.openscdbase.md#issamenode)
-* [loadDoc](_open_scd_base_.openscdbase.md#private-loaddoc)
-* [loadFile](_open_scd_base_.openscdbase.md#private-loadfile)
-* [log](_open_scd_base_.openscdbase.md#log)
-* [lookupNamespaceURI](_open_scd_base_.openscdbase.md#lookupnamespaceuri)
-* [lookupPrefix](_open_scd_base_.openscdbase.md#lookupprefix)
-* [matches](_open_scd_base_.openscdbase.md#matches)
-* [msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)
-* [normalize](_open_scd_base_.openscdbase.md#normalize)
-* [performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)
-* [prepend](_open_scd_base_.openscdbase.md#prepend)
-* [querySelector](_open_scd_base_.openscdbase.md#queryselector)
-* [querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)
-* [releasePointerCapture](_open_scd_base_.openscdbase.md#releasepointercapture)
-* [remove](_open_scd_base_.openscdbase.md#remove)
-* [removeAttribute](_open_scd_base_.openscdbase.md#removeattribute)
-* [removeAttributeNS](_open_scd_base_.openscdbase.md#removeattributens)
-* [removeAttributeNode](_open_scd_base_.openscdbase.md#removeattributenode)
-* [removeChild](_open_scd_base_.openscdbase.md#removechild)
-* [removeEventListener](_open_scd_base_.openscdbase.md#removeeventlistener)
-* [render](_open_scd_base_.openscdbase.md#render)
-* [replaceChild](_open_scd_base_.openscdbase.md#replacechild)
-* [replaceWith](_open_scd_base_.openscdbase.md#replacewith)
-* [requestFullscreen](_open_scd_base_.openscdbase.md#requestfullscreen)
-* [requestPointerLock](_open_scd_base_.openscdbase.md#requestpointerlock)
-* [requestUpdate](_open_scd_base_.openscdbase.md#requestupdate)
-* [scroll](_open_scd_base_.openscdbase.md#scroll)
-* [scrollBy](_open_scd_base_.openscdbase.md#scrollby)
-* [scrollIntoView](_open_scd_base_.openscdbase.md#scrollintoview)
-* [scrollTo](_open_scd_base_.openscdbase.md#scrollto)
-* [setAttribute](_open_scd_base_.openscdbase.md#setattribute)
-* [setAttributeNS](_open_scd_base_.openscdbase.md#setattributens)
-* [setAttributeNode](_open_scd_base_.openscdbase.md#setattributenode)
-* [setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)
-* [setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)
-* [shouldUpdate](_open_scd_base_.openscdbase.md#protected-shouldupdate)
-* [toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)
-* [update](_open_scd_base_.openscdbase.md#protected-update)
-* [updated](_open_scd_base_.openscdbase.md#protected-updated)
-* [warn](_open_scd_base_.openscdbase.md#warn)
-* [webkitMatchesSelector](_open_scd_base_.openscdbase.md#webkitmatchesselector)
-* [createProperty](_open_scd_base_.openscdbase.md#static-createproperty)
-* [finalize](_open_scd_base_.openscdbase.md#static-protected-finalize)
-* [getPropertyDescriptor](_open_scd_base_.openscdbase.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_open_scd_base_.openscdbase.md#static-protected-getpropertyoptions)
-* [getStyles](_open_scd_base_.openscdbase.md#static-getstyles)
+* [_getUpdateComplete](_loggingelement_.loggingelement.md#protected-_getupdatecomplete)
+* [addEventListener](_loggingelement_.loggingelement.md#addeventlistener)
+* [adoptStyles](_loggingelement_.loggingelement.md#protected-adoptstyles)
+* [after](_loggingelement_.loggingelement.md#after)
+* [animate](_loggingelement_.loggingelement.md#animate)
+* [append](_loggingelement_.loggingelement.md#append)
+* [appendChild](_loggingelement_.loggingelement.md#appendchild)
+* [attachShadow](_loggingelement_.loggingelement.md#attachshadow)
+* [attributeChangedCallback](_loggingelement_.loggingelement.md#attributechangedcallback)
+* [before](_loggingelement_.loggingelement.md#before)
+* [blur](_loggingelement_.loggingelement.md#blur)
+* [click](_loggingelement_.loggingelement.md#click)
+* [cloneNode](_loggingelement_.loggingelement.md#clonenode)
+* [closest](_loggingelement_.loggingelement.md#closest)
+* [compareDocumentPosition](_loggingelement_.loggingelement.md#comparedocumentposition)
+* [connectedCallback](_loggingelement_.loggingelement.md#connectedcallback)
+* [contains](_loggingelement_.loggingelement.md#contains)
+* [createRenderRoot](_loggingelement_.loggingelement.md#protected-createrenderroot)
+* [disconnectedCallback](_loggingelement_.loggingelement.md#disconnectedcallback)
+* [dispatchEvent](_loggingelement_.loggingelement.md#dispatchevent)
+* [enableUpdating](_loggingelement_.loggingelement.md#protected-enableupdating)
+* [error](_loggingelement_.loggingelement.md#error)
+* [firstUpdated](_loggingelement_.loggingelement.md#protected-firstupdated)
+* [focus](_loggingelement_.loggingelement.md#focus)
+* [getAnimations](_loggingelement_.loggingelement.md#getanimations)
+* [getAttribute](_loggingelement_.loggingelement.md#getattribute)
+* [getAttributeNS](_loggingelement_.loggingelement.md#getattributens)
+* [getAttributeNames](_loggingelement_.loggingelement.md#getattributenames)
+* [getAttributeNode](_loggingelement_.loggingelement.md#getattributenode)
+* [getAttributeNodeNS](_loggingelement_.loggingelement.md#getattributenodens)
+* [getBoundingClientRect](_loggingelement_.loggingelement.md#getboundingclientrect)
+* [getClientRects](_loggingelement_.loggingelement.md#getclientrects)
+* [getElementsByClassName](_loggingelement_.loggingelement.md#getelementsbyclassname)
+* [getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)
+* [getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)
+* [getRootNode](_loggingelement_.loggingelement.md#getrootnode)
+* [hasAttribute](_loggingelement_.loggingelement.md#hasattribute)
+* [hasAttributeNS](_loggingelement_.loggingelement.md#hasattributens)
+* [hasAttributes](_loggingelement_.loggingelement.md#hasattributes)
+* [hasChildNodes](_loggingelement_.loggingelement.md#haschildnodes)
+* [hasPointerCapture](_loggingelement_.loggingelement.md#haspointercapture)
+* [info](_loggingelement_.loggingelement.md#info)
+* [initialize](_loggingelement_.loggingelement.md#protected-initialize)
+* [insertAdjacentElement](_loggingelement_.loggingelement.md#insertadjacentelement)
+* [insertAdjacentHTML](_loggingelement_.loggingelement.md#insertadjacenthtml)
+* [insertAdjacentText](_loggingelement_.loggingelement.md#insertadjacenttext)
+* [insertBefore](_loggingelement_.loggingelement.md#insertbefore)
+* [isDefaultNamespace](_loggingelement_.loggingelement.md#isdefaultnamespace)
+* [isEqualNode](_loggingelement_.loggingelement.md#isequalnode)
+* [isSameNode](_loggingelement_.loggingelement.md#issamenode)
+* [log](_loggingelement_.loggingelement.md#log)
+* [lookupNamespaceURI](_loggingelement_.loggingelement.md#lookupnamespaceuri)
+* [lookupPrefix](_loggingelement_.loggingelement.md#lookupprefix)
+* [matches](_loggingelement_.loggingelement.md#matches)
+* [msGetRegionContent](_loggingelement_.loggingelement.md#msgetregioncontent)
+* [normalize](_loggingelement_.loggingelement.md#normalize)
+* [performUpdate](_loggingelement_.loggingelement.md#protected-performupdate)
+* [prepend](_loggingelement_.loggingelement.md#prepend)
+* [querySelector](_loggingelement_.loggingelement.md#queryselector)
+* [querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)
+* [releasePointerCapture](_loggingelement_.loggingelement.md#releasepointercapture)
+* [remove](_loggingelement_.loggingelement.md#remove)
+* [removeAttribute](_loggingelement_.loggingelement.md#removeattribute)
+* [removeAttributeNS](_loggingelement_.loggingelement.md#removeattributens)
+* [removeAttributeNode](_loggingelement_.loggingelement.md#removeattributenode)
+* [removeChild](_loggingelement_.loggingelement.md#removechild)
+* [removeEventListener](_loggingelement_.loggingelement.md#removeeventlistener)
+* [render](_loggingelement_.loggingelement.md#protected-render)
+* [replaceChild](_loggingelement_.loggingelement.md#replacechild)
+* [replaceWith](_loggingelement_.loggingelement.md#replacewith)
+* [requestFullscreen](_loggingelement_.loggingelement.md#requestfullscreen)
+* [requestPointerLock](_loggingelement_.loggingelement.md#requestpointerlock)
+* [requestUpdate](_loggingelement_.loggingelement.md#requestupdate)
+* [scroll](_loggingelement_.loggingelement.md#scroll)
+* [scrollBy](_loggingelement_.loggingelement.md#scrollby)
+* [scrollIntoView](_loggingelement_.loggingelement.md#scrollintoview)
+* [scrollTo](_loggingelement_.loggingelement.md#scrollto)
+* [setAttribute](_loggingelement_.loggingelement.md#setattribute)
+* [setAttributeNS](_loggingelement_.loggingelement.md#setattributens)
+* [setAttributeNode](_loggingelement_.loggingelement.md#setattributenode)
+* [setAttributeNodeNS](_loggingelement_.loggingelement.md#setattributenodens)
+* [setPointerCapture](_loggingelement_.loggingelement.md#setpointercapture)
+* [shouldUpdate](_loggingelement_.loggingelement.md#protected-shouldupdate)
+* [toggleAttribute](_loggingelement_.loggingelement.md#toggleattribute)
+* [update](_loggingelement_.loggingelement.md#protected-update)
+* [updated](_loggingelement_.loggingelement.md#protected-updated)
+* [warn](_loggingelement_.loggingelement.md#warn)
+* [webkitMatchesSelector](_loggingelement_.loggingelement.md#webkitmatchesselector)
+* [createProperty](_loggingelement_.loggingelement.md#static-createproperty)
+* [finalize](_loggingelement_.loggingelement.md#static-protected-finalize)
+* [getPropertyDescriptor](_loggingelement_.loggingelement.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_loggingelement_.loggingelement.md#static-protected-getpropertyoptions)
+* [getStyles](_loggingelement_.loggingelement.md#static-getstyles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new OpenSCDBase**(): *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+\+ **new LoggingElement**(): *[LoggingElement](_loggingelement_.loggingelement.md)*
 
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
-**Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+**Returns:** *[LoggingElement](_loggingelement_.loggingelement.md)*
 
 ## Properties
 
@@ -717,14 +703,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
 ___
 
-### `Private` currentSrc
-
-• **currentSrc**: *string* = ""
-
-Defined in src/open-scd-base.ts:106
-
-___
-
 ### `Readonly` dataset
 
 • **dataset**: *DOMStringMap*
@@ -742,16 +720,6 @@ ___
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dir](_loggingelement_.loggingelement.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
-
-___
-
-###  doc
-
-• **doc**: *XMLDocument* = OpenSCDBase.emptySCD
-
-Defined in src/open-scd-base.ts:103
-
-The `XMLDocument` representation of the current file.
 
 ___
 
@@ -802,8 +770,6 @@ ___
 ###  history
 
 • **history**: *Array‹[LogEntry](../interfaces/_loggingelement_.logentry.md)›* = []
-
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[history](_loggingelement_.loggingelement.md#history)*
 
 Defined in src/LoggingElement.ts:11
 
@@ -2300,16 +2266,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
 ___
 
-###  srcName
-
-• **srcName**: *string* = "untitled.scd"
-
-Defined in src/open-scd-base.ts:105
-
-The name of the current file.
-
-___
-
 ### `Readonly` style
 
 • **style**: *CSSStyleDeclaration*
@@ -2372,40 +2328,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
 ___
 
-###  waiting
-
-• **waiting**: *boolean* = false
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[waiting](_waitingelement_.waitingelement.md#waiting)*
-
-Defined in src/WaitingElement.ts:13
-
-Whether the element is currently waiting for some async work.
-
-___
-
-### `Protected` work
-
-• **work**: *Set‹Promise‹string››* = new Set()
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[work](_waitingelement_.waitingelement.md#protected-work)*
-
-Defined in src/WaitingElement.ts:14
-
-___
-
-###  workDone
-
-• **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[workDone](_waitingelement_.waitingelement.md#workdone)*
-
-Defined in src/WaitingElement.ts:16
-
-A promise which resolves once all currently pending work is done.
-
-___
-
 ### `Static` `Protected` [finalized]
 
 ▪ **[finalized]**: *boolean*
@@ -2415,18 +2337,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
 Marks class as having finished creating properties.
-
-___
-
-### `Static` emptySCD
-
-▪ **emptySCD**: *Document* = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  )
-
-Defined in src/open-scd-base.ts:21
 
 ___
 
@@ -2504,16 +2414,6 @@ using the `css` tag function.
 
 ## Accessors
 
-###  fileUI
-
-• **get fileUI**(): *HTMLInputElement*
-
-Defined in src/open-scd-base.ts:132
-
-**Returns:** *HTMLInputElement*
-
-___
-
 ### `Protected` hasUpdated
 
 • **get hasUpdated**(): *number*
@@ -2523,62 +2423,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
-
-___
-
-###  logUI
-
-• **get logUI**(): *DialogBase*
-
-Defined in src/open-scd-base.ts:126
-
-**Returns:** *DialogBase*
-
-___
-
-###  menuUI
-
-• **get menuUI**(): *DrawerBase*
-
-Defined in src/open-scd-base.ts:123
-
-**Returns:** *DrawerBase*
-
-___
-
-###  messageUI
-
-• **get messageUI**(): *SnackbarBase*
-
-Defined in src/open-scd-base.ts:129
-
-**Returns:** *SnackbarBase*
-
-___
-
-###  src
-
-• **get src**(): *string*
-
-Defined in src/open-scd-base.ts:109
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Returns:** *string*
-
-• **set src**(`value`: string): *void*
-
-Defined in src/open-scd-base.ts:112
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | string |
-
-**Returns:** *void*
 
 ___
 
@@ -3102,9 +2946,7 @@ ___
 
 ▸ **error**(`title`: string, ...`detail`: string[]): *void*
 
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
-
-Defined in src/open-scd-base.ts:96
+Defined in src/LoggingElement.ts:22
 
 **Parameters:**
 
@@ -3117,13 +2959,25 @@ Name | Type |
 
 ___
 
-###  firstUpdated
+### `Protected` firstUpdated
 
-▸ **firstUpdated**(): *void*
+▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
 
-*Overrides [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#protected-firstupdated)*
 
-Defined in src/open-scd-base.ts:189
+Defined in node_modules/lit-element/lib/updating-element.d.ts:424
+
+Invoked when the element is first updated. Implement to perform one time
+work on the element after update.
+
+Setting properties inside this method will trigger the element to update
+again after this update cycle completes.
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
 **Returns:** *void*
 
@@ -3509,8 +3363,6 @@ ___
 
 ▸ **info**(`title`: string, ...`detail`: string[]): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[info](_loggingelement_.loggingelement.md#info)*
-
 Defined in src/LoggingElement.ts:16
 
 **Parameters:**
@@ -3678,45 +3530,9 @@ Name | Type |
 
 ___
 
-### `Private` loadDoc
-
-▸ **loadDoc**(`src`: string): *Promise‹string›*
-
-Defined in src/open-scd-base.ts:136
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`src` | string |
-
-**Returns:** *Promise‹string›*
-
-___
-
-### `Private` loadFile
-
-▸ **loadFile**(`event`: Event): *void*
-
-Defined in src/open-scd-base.ts:177
-
-Loads the file selected by input `event.target.files[0]`.
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`event` | Event |
-
-**Returns:** *void*
-
-___
-
 ###  log
 
 ▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
-
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[log](_loggingelement_.loggingelement.md#log)*
 
 Defined in src/LoggingElement.ts:13
 
@@ -4149,15 +3965,20 @@ Name | Type |
 
 ___
 
-###  render
+### `Protected` render
 
-▸ **render**(): *TemplateResult*
+▸ **render**(): *unknown*
 
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:27
+Defined in node_modules/lit-element/lit-element.d.ts:104
 
-**Returns:** *TemplateResult*
+Invoked on each update to perform rendering tasks. This method may return
+any value renderable by lit-html's NodePart - typically a TemplateResult.
+Setting properties inside this method will *not* trigger the element to
+update.
+
+**Returns:** *unknown*
 
 ___
 
@@ -4579,8 +4400,6 @@ ___
 ###  warn
 
 ▸ **warn**(`title`: string, ...`detail`: string[]): *void*
-
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[warn](_loggingelement_.loggingelement.md#warn)*
 
 Defined in src/LoggingElement.ts:19
 
