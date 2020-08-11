@@ -21,7 +21,7 @@ describe('open-scd', () => {
     `);
   });
 
-  it('toggles the menu on navigation icon click', async () => {
+  it('opens the menu on navigation icon click', async () => {
     const menu = element.shadowRoot!.querySelector('mwc-drawer')!;
     expect(menu).property('open').to.be.false;
     const menuButton = <HTMLElement>(
@@ -31,6 +31,33 @@ describe('open-scd', () => {
     );
     await menuButton.click();
     expect(menu).property('open').to.be.true;
+  });
+
+  it('opens the file selection dialog on open button click', done => {
+    element.fileUI.onclick = () => done();
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[icon="folder_open"]')!
+    )).click();
+  });
+
+  it('opens the log on log icon click', async () => {
+    expect(element.logUI).to.have.property('open', false);
+    await (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[icon="toc"]')!
+    )).click();
+    expect(element.logUI).to.have.property('open', true);
+  });
+
+  it('shows a snackbar on logging an error', () => {
+    expect(element.messageUI).to.have.property('open', false);
+    element.error('test error');
+    expect(element.messageUI).to.have.property('open', true);
+  });
+
+  it('opens the log on snackbar button click', async () => {
+    expect(element.logUI).to.have.property('open', false);
+    await element.messageUI.querySelector('mwc-button')!.click();
+    expect(element.logUI).to.have.property('open', true);
   });
 
   it('renders a progress indicator on `waiting`', async () => {

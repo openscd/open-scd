@@ -1,29 +1,24 @@
 import { html, property, internalProperty } from 'lit-element';
 import { TemplateResult } from 'lit-html';
-import '@material/mwc-top-app-bar-fixed';
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-list-item';
+
+import '@material/mwc-button';
+import '@material/mwc-circular-progress-four-color';
+import '@material/mwc-dialog';
+import '@material/mwc-drawer';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
-import '@material/mwc-circular-progress-four-color';
-import '@material/mwc-drawer';
-import '@material/mwc-dialog';
-import '@material/mwc-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-snackbar';
-
-import { validate } from './validate.js';
-import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
+import '@material/mwc-top-app-bar-fixed';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
+import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
+
 import { WaitingElement } from './WaitingElement.js';
+import { validateSCL } from './validate.js';
 
 export class OpenSCDBase extends WaitingElement {
-  static emptySCD = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  );
-
   render(): TemplateResult {
     return html`
       <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
@@ -93,10 +88,11 @@ export class OpenSCDBase extends WaitingElement {
     `;
   }
 
-  error(title: string, ...detail: string[]): void {
-    super.error(title, ...detail);
-    this.messageUI.show();
-  }
+  static emptySCD = document.implementation.createDocument(
+    'http://www.iec.ch/61850/2003/SCL',
+    'SCL',
+    null
+  );
 
   /** The `XMLDocument` representation of the current file. */
   @internalProperty() // does not generate an attribute binding
@@ -133,6 +129,11 @@ export class OpenSCDBase extends WaitingElement {
     return <HTMLInputElement>this.shadowRoot!.querySelector('#file-input')!;
   }
 
+  error(title: string, ...detail: string[]): void {
+    super.error(title, ...detail);
+    this.messageUI.show();
+  }
+
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
@@ -148,7 +149,7 @@ export class OpenSCDBase extends WaitingElement {
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
           this.info(`${this.srcName} loaded.`);
-          validate(this.doc, this.srcName).then(errors => {
+          validateSCL(this.doc, this.srcName).then(errors => {
             errors
               ?.map(e => e.split(': ').map(s => s.trim()))
               .map(a => {
@@ -175,14 +176,11 @@ export class OpenSCDBase extends WaitingElement {
 
   /** Loads the file selected by input `event.target.files[0]`. */
   private loadFile(event: Event): void {
-    this.srcName =
-      (<HTMLInputElement | null>event.target)?.files?.item(0)?.name ??
-      'untitled.scd';
-    this.setAttribute(
-      'src',
-      URL.createObjectURL(
-        (<HTMLInputElement | null>event.target)?.files?.item(0) ?? new Blob([])
-      )
-    );
+    const file =
+      (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
+    if (file) {
+      this.srcName = file.name;
+      this.setAttribute('src', URL.createObjectURL(file));
+    }
   }
 }

@@ -14,7 +14,9 @@
 
 ▸ **encodeNonASCII**(`str`: string): *string*
 
-Defined in src/xml-entities.ts:1
+Defined in src/xml-entities.ts:2
+
+Encodes all non ASCII symbols in `str` as XML entities.
 
 **Parameters:**
 

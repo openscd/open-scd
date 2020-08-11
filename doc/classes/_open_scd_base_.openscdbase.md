@@ -721,7 +721,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:106
+Defined in src/open-scd-base.ts:102
 
 ___
 
@@ -749,7 +749,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:103
+Defined in src/open-scd-base.ts:99
 
 The `XMLDocument` representation of the current file.
 
@@ -2304,7 +2304,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:105
+Defined in src/open-scd-base.ts:101
 
 The name of the current file.
 
@@ -2426,7 +2426,7 @@ ___
     null
   )
 
-Defined in src/open-scd-base.ts:21
+Defined in src/open-scd-base.ts:91
 
 ___
 
@@ -2508,7 +2508,7 @@ using the `css` tag function.
 
 • **get fileUI**(): *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:132
+Defined in src/open-scd-base.ts:128
 
 **Returns:** *HTMLInputElement*
 
@@ -2530,7 +2530,7 @@ ___
 
 • **get logUI**(): *DialogBase*
 
-Defined in src/open-scd-base.ts:126
+Defined in src/open-scd-base.ts:122
 
 **Returns:** *DialogBase*
 
@@ -2540,7 +2540,7 @@ ___
 
 • **get menuUI**(): *DrawerBase*
 
-Defined in src/open-scd-base.ts:123
+Defined in src/open-scd-base.ts:119
 
 **Returns:** *DrawerBase*
 
@@ -2550,7 +2550,7 @@ ___
 
 • **get messageUI**(): *SnackbarBase*
 
-Defined in src/open-scd-base.ts:129
+Defined in src/open-scd-base.ts:125
 
 **Returns:** *SnackbarBase*
 
@@ -2560,7 +2560,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:109
+Defined in src/open-scd-base.ts:105
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2568,7 +2568,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:112
+Defined in src/open-scd-base.ts:108
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3104,7 +3104,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:96
+Defined in src/open-scd-base.ts:132
 
 **Parameters:**
 
@@ -3684,7 +3684,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:136
+Defined in src/open-scd-base.ts:137
 
 **Parameters:**
 
@@ -3700,7 +3700,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:177
+Defined in src/open-scd-base.ts:178
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4157,7 +4157,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:27
+Defined in src/open-scd-base.ts:22
 
 **Returns:** *TemplateResult*
 
