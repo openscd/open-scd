@@ -2963,7 +2963,7 @@ ___
 
 ▸ **firstUpdated**(): *void*
 
-*Overrides void*
+*Overrides [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[firstUpdated](_substation_editor_base_.substationeditorbase.md#protected-firstupdated)*
 
 Defined in src/LoggingElement.ts:26
 

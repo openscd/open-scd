@@ -10,6 +10,8 @@ import '@material/mwc-icon-button';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-snackbar';
+import '@material/mwc-tab';
+import '@material/mwc-tab-bar';
 import '@material/mwc-top-app-bar-fixed';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
@@ -17,6 +19,30 @@ import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 
 import { WaitingElement } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
+import './substation-editor.js';
+
+const plugins = {
+  editors: [
+    {
+      label: 'Substation',
+      id: 'substation',
+      icon: 'border_outer',
+      content: html`<substation-editor></substation-editor>`,
+    },
+    {
+      label: 'Test',
+      id: 'test',
+      icon: 'self_improvement',
+      content: html`<p>Testing...</p>`,
+    },
+    {
+      label: 'Visual Filler',
+      id: 'filler',
+      icon: 'science',
+      content: html`<p>Filling space...</p>`,
+    },
+  ],
+};
 
 export class OpenSCDBase extends WaitingElement {
   render(): TemplateResult {
@@ -45,6 +71,20 @@ export class OpenSCDBase extends WaitingElement {
             slot="actionItems"
             @click="${() => this.logUI.show()}"
           ></mwc-icon-button>
+          <mwc-tab-bar
+            @activated=${(e: CustomEvent) =>
+              (this.activeEditor = e.detail.index)}
+          >
+            ${plugins.editors.map(
+              editor =>
+                html`<mwc-tab
+                  label=${editor.label}
+                  icon=${editor.icon}
+                  id=${editor.id}
+                ></mwc-tab>`
+            )}
+          </mwc-tab-bar>
+          ${plugins.editors[this.activeEditor].content}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
       <mwc-snackbar
@@ -94,6 +134,8 @@ export class OpenSCDBase extends WaitingElement {
     null
   );
 
+  @property({ type: Number })
+  activeEditor = 0;
   /** The `XMLDocument` representation of the current file. */
   @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = OpenSCDBase.emptySCD;

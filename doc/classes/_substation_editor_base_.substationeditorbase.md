@@ -1,327 +1,312 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd"](../modules/_open_scd_.md) › [OpenSCD](_open_scd_.openscd.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["substation-editor-base"](../modules/_substation_editor_base_.md) › [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md)
 
-# Class: OpenSCD
+# Class: SubstationEditorBase
 
 ## Hierarchy
 
-  ↳ [OpenSCDBase](_open_scd_base_.openscdbase.md)
+* LitElement
 
-  ↳ **OpenSCD**
+  ↳ **SubstationEditorBase**
+
+  ↳ [SubstationEditor](_substation_editor_.substationeditor.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](_open_scd_.openscd.md#constructor)
+* [constructor](_substation_editor_base_.substationeditorbase.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_open_scd_.openscd.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_open_scd_.openscd.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_open_scd_.openscd.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_open_scd_.openscd.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_open_scd_.openscd.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_.openscd.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_open_scd_.openscd.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_.openscd.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_open_scd_.openscd.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_.openscd.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_open_scd_.openscd.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_open_scd_.openscd.md#readonly-document_type_node)
-* [ELEMENT_NODE](_open_scd_.openscd.md#readonly-element_node)
-* [ENTITY_NODE](_open_scd_.openscd.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_open_scd_.openscd.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_open_scd_.openscd.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_open_scd_.openscd.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_open_scd_.openscd.md#readonly-text_node)
-* [accessKey](_open_scd_.openscd.md#accesskey)
-* [accessKeyLabel](_open_scd_.openscd.md#readonly-accesskeylabel)
-* [activeEditor](_open_scd_.openscd.md#activeeditor)
-* [assignedSlot](_open_scd_.openscd.md#readonly-assignedslot)
-* [attributes](_open_scd_.openscd.md#readonly-attributes)
-* [autocapitalize](_open_scd_.openscd.md#autocapitalize)
-* [autofocus](_open_scd_.openscd.md#autofocus)
-* [baseURI](_open_scd_.openscd.md#readonly-baseuri)
-* [childElementCount](_open_scd_.openscd.md#readonly-childelementcount)
-* [childNodes](_open_scd_.openscd.md#readonly-childnodes)
-* [children](_open_scd_.openscd.md#readonly-children)
-* [classList](_open_scd_.openscd.md#readonly-classlist)
-* [className](_open_scd_.openscd.md#classname)
-* [clientHeight](_open_scd_.openscd.md#readonly-clientheight)
-* [clientLeft](_open_scd_.openscd.md#readonly-clientleft)
-* [clientTop](_open_scd_.openscd.md#readonly-clienttop)
-* [clientWidth](_open_scd_.openscd.md#readonly-clientwidth)
-* [contentEditable](_open_scd_.openscd.md#contenteditable)
-* [dataset](_open_scd_.openscd.md#readonly-dataset)
-* [dir](_open_scd_.openscd.md#dir)
-* [doc](_open_scd_.openscd.md#doc)
-* [draggable](_open_scd_.openscd.md#draggable)
-* [firstChild](_open_scd_.openscd.md#readonly-firstchild)
-* [firstElementChild](_open_scd_.openscd.md#readonly-firstelementchild)
-* [hidden](_open_scd_.openscd.md#hidden)
-* [history](_open_scd_.openscd.md#history)
-* [id](_open_scd_.openscd.md#id)
-* [innerHTML](_open_scd_.openscd.md#innerhtml)
-* [innerText](_open_scd_.openscd.md#innertext)
-* [inputMode](_open_scd_.openscd.md#inputmode)
-* [isConnected](_open_scd_.openscd.md#readonly-isconnected)
-* [isContentEditable](_open_scd_.openscd.md#readonly-iscontenteditable)
-* [lang](_open_scd_.openscd.md#lang)
-* [lastChild](_open_scd_.openscd.md#readonly-lastchild)
-* [lastElementChild](_open_scd_.openscd.md#readonly-lastelementchild)
-* [localName](_open_scd_.openscd.md#readonly-localname)
-* [namespaceURI](_open_scd_.openscd.md#readonly-namespaceuri)
-* [nextElementSibling](_open_scd_.openscd.md#readonly-nextelementsibling)
-* [nextSibling](_open_scd_.openscd.md#readonly-nextsibling)
-* [nodeName](_open_scd_.openscd.md#readonly-nodename)
-* [nodeType](_open_scd_.openscd.md#readonly-nodetype)
-* [nodeValue](_open_scd_.openscd.md#nodevalue)
-* [nonce](_open_scd_.openscd.md#optional-nonce)
-* [offsetHeight](_open_scd_.openscd.md#readonly-offsetheight)
-* [offsetLeft](_open_scd_.openscd.md#readonly-offsetleft)
-* [offsetParent](_open_scd_.openscd.md#readonly-offsetparent)
-* [offsetTop](_open_scd_.openscd.md#readonly-offsettop)
-* [offsetWidth](_open_scd_.openscd.md#readonly-offsetwidth)
-* [onabort](_open_scd_.openscd.md#onabort)
-* [onanimationcancel](_open_scd_.openscd.md#onanimationcancel)
-* [onanimationend](_open_scd_.openscd.md#onanimationend)
-* [onanimationiteration](_open_scd_.openscd.md#onanimationiteration)
-* [onanimationstart](_open_scd_.openscd.md#onanimationstart)
-* [onauxclick](_open_scd_.openscd.md#onauxclick)
-* [onblur](_open_scd_.openscd.md#onblur)
-* [oncancel](_open_scd_.openscd.md#oncancel)
-* [oncanplay](_open_scd_.openscd.md#oncanplay)
-* [oncanplaythrough](_open_scd_.openscd.md#oncanplaythrough)
-* [onchange](_open_scd_.openscd.md#onchange)
-* [onclick](_open_scd_.openscd.md#onclick)
-* [onclose](_open_scd_.openscd.md#onclose)
-* [oncontextmenu](_open_scd_.openscd.md#oncontextmenu)
-* [oncopy](_open_scd_.openscd.md#oncopy)
-* [oncuechange](_open_scd_.openscd.md#oncuechange)
-* [oncut](_open_scd_.openscd.md#oncut)
-* [ondblclick](_open_scd_.openscd.md#ondblclick)
-* [ondrag](_open_scd_.openscd.md#ondrag)
-* [ondragend](_open_scd_.openscd.md#ondragend)
-* [ondragenter](_open_scd_.openscd.md#ondragenter)
-* [ondragexit](_open_scd_.openscd.md#ondragexit)
-* [ondragleave](_open_scd_.openscd.md#ondragleave)
-* [ondragover](_open_scd_.openscd.md#ondragover)
-* [ondragstart](_open_scd_.openscd.md#ondragstart)
-* [ondrop](_open_scd_.openscd.md#ondrop)
-* [ondurationchange](_open_scd_.openscd.md#ondurationchange)
-* [onemptied](_open_scd_.openscd.md#onemptied)
-* [onended](_open_scd_.openscd.md#onended)
-* [onerror](_open_scd_.openscd.md#onerror)
-* [onfocus](_open_scd_.openscd.md#onfocus)
-* [onfullscreenchange](_open_scd_.openscd.md#onfullscreenchange)
-* [onfullscreenerror](_open_scd_.openscd.md#onfullscreenerror)
-* [ongotpointercapture](_open_scd_.openscd.md#ongotpointercapture)
-* [oninput](_open_scd_.openscd.md#oninput)
-* [oninvalid](_open_scd_.openscd.md#oninvalid)
-* [onkeydown](_open_scd_.openscd.md#onkeydown)
-* [onkeypress](_open_scd_.openscd.md#onkeypress)
-* [onkeyup](_open_scd_.openscd.md#onkeyup)
-* [onload](_open_scd_.openscd.md#onload)
-* [onloadeddata](_open_scd_.openscd.md#onloadeddata)
-* [onloadedmetadata](_open_scd_.openscd.md#onloadedmetadata)
-* [onloadstart](_open_scd_.openscd.md#onloadstart)
-* [onlostpointercapture](_open_scd_.openscd.md#onlostpointercapture)
-* [onmousedown](_open_scd_.openscd.md#onmousedown)
-* [onmouseenter](_open_scd_.openscd.md#onmouseenter)
-* [onmouseleave](_open_scd_.openscd.md#onmouseleave)
-* [onmousemove](_open_scd_.openscd.md#onmousemove)
-* [onmouseout](_open_scd_.openscd.md#onmouseout)
-* [onmouseover](_open_scd_.openscd.md#onmouseover)
-* [onmouseup](_open_scd_.openscd.md#onmouseup)
-* [onpaste](_open_scd_.openscd.md#onpaste)
-* [onpause](_open_scd_.openscd.md#onpause)
-* [onplay](_open_scd_.openscd.md#onplay)
-* [onplaying](_open_scd_.openscd.md#onplaying)
-* [onpointercancel](_open_scd_.openscd.md#onpointercancel)
-* [onpointerdown](_open_scd_.openscd.md#onpointerdown)
-* [onpointerenter](_open_scd_.openscd.md#onpointerenter)
-* [onpointerleave](_open_scd_.openscd.md#onpointerleave)
-* [onpointermove](_open_scd_.openscd.md#onpointermove)
-* [onpointerout](_open_scd_.openscd.md#onpointerout)
-* [onpointerover](_open_scd_.openscd.md#onpointerover)
-* [onpointerup](_open_scd_.openscd.md#onpointerup)
-* [onprogress](_open_scd_.openscd.md#onprogress)
-* [onratechange](_open_scd_.openscd.md#onratechange)
-* [onreset](_open_scd_.openscd.md#onreset)
-* [onresize](_open_scd_.openscd.md#onresize)
-* [onscroll](_open_scd_.openscd.md#onscroll)
-* [onsecuritypolicyviolation](_open_scd_.openscd.md#onsecuritypolicyviolation)
-* [onseeked](_open_scd_.openscd.md#onseeked)
-* [onseeking](_open_scd_.openscd.md#onseeking)
-* [onselect](_open_scd_.openscd.md#onselect)
-* [onselectionchange](_open_scd_.openscd.md#onselectionchange)
-* [onselectstart](_open_scd_.openscd.md#onselectstart)
-* [onstalled](_open_scd_.openscd.md#onstalled)
-* [onsubmit](_open_scd_.openscd.md#onsubmit)
-* [onsuspend](_open_scd_.openscd.md#onsuspend)
-* [ontimeupdate](_open_scd_.openscd.md#ontimeupdate)
-* [ontoggle](_open_scd_.openscd.md#ontoggle)
-* [ontouchcancel](_open_scd_.openscd.md#optional-ontouchcancel)
-* [ontouchend](_open_scd_.openscd.md#optional-ontouchend)
-* [ontouchmove](_open_scd_.openscd.md#optional-ontouchmove)
-* [ontouchstart](_open_scd_.openscd.md#optional-ontouchstart)
-* [ontransitioncancel](_open_scd_.openscd.md#ontransitioncancel)
-* [ontransitionend](_open_scd_.openscd.md#ontransitionend)
-* [ontransitionrun](_open_scd_.openscd.md#ontransitionrun)
-* [ontransitionstart](_open_scd_.openscd.md#ontransitionstart)
-* [onvolumechange](_open_scd_.openscd.md#onvolumechange)
-* [onwaiting](_open_scd_.openscd.md#onwaiting)
-* [onwheel](_open_scd_.openscd.md#onwheel)
-* [outerHTML](_open_scd_.openscd.md#outerhtml)
-* [ownerDocument](_open_scd_.openscd.md#readonly-ownerdocument)
-* [parentElement](_open_scd_.openscd.md#readonly-parentelement)
-* [parentNode](_open_scd_.openscd.md#readonly-parentnode)
-* [prefix](_open_scd_.openscd.md#readonly-prefix)
-* [previousElementSibling](_open_scd_.openscd.md#readonly-previouselementsibling)
-* [previousSibling](_open_scd_.openscd.md#readonly-previoussibling)
-* [renderRoot](_open_scd_.openscd.md#readonly-renderroot)
-* [scrollHeight](_open_scd_.openscd.md#readonly-scrollheight)
-* [scrollLeft](_open_scd_.openscd.md#scrollleft)
-* [scrollTop](_open_scd_.openscd.md#scrolltop)
-* [scrollWidth](_open_scd_.openscd.md#readonly-scrollwidth)
-* [shadowRoot](_open_scd_.openscd.md#readonly-shadowroot)
-* [slot](_open_scd_.openscd.md#slot)
-* [spellcheck](_open_scd_.openscd.md#spellcheck)
-* [srcName](_open_scd_.openscd.md#srcname)
-* [style](_open_scd_.openscd.md#readonly-style)
-* [tabIndex](_open_scd_.openscd.md#tabindex)
-* [tagName](_open_scd_.openscd.md#readonly-tagname)
-* [textContent](_open_scd_.openscd.md#textcontent)
-* [title](_open_scd_.openscd.md#title)
-* [translate](_open_scd_.openscd.md#translate)
-* [waiting](_open_scd_.openscd.md#waiting)
-* [work](_open_scd_.openscd.md#protected-work)
-* [workDone](_open_scd_.openscd.md#workdone)
-* [[finalized]](_open_scd_.openscd.md#static-protected-[finalized])
-* [emptySCD](_open_scd_.openscd.md#static-emptyscd)
-* [finalized](_open_scd_.openscd.md#static-protected-finalized)
-* [properties](_open_scd_.openscd.md#static-properties)
-* [render](_open_scd_.openscd.md#static-render)
-* [styles](_open_scd_.openscd.md#static-styles)
+* [ATTRIBUTE_NODE](_substation_editor_base_.substationeditorbase.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_substation_editor_base_.substationeditorbase.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_substation_editor_base_.substationeditorbase.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_substation_editor_base_.substationeditorbase.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_substation_editor_base_.substationeditorbase.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_substation_editor_base_.substationeditorbase.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_substation_editor_base_.substationeditorbase.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_substation_editor_base_.substationeditorbase.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_substation_editor_base_.substationeditorbase.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_substation_editor_base_.substationeditorbase.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_substation_editor_base_.substationeditorbase.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_substation_editor_base_.substationeditorbase.md#readonly-document_type_node)
+* [ELEMENT_NODE](_substation_editor_base_.substationeditorbase.md#readonly-element_node)
+* [ENTITY_NODE](_substation_editor_base_.substationeditorbase.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_substation_editor_base_.substationeditorbase.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_substation_editor_base_.substationeditorbase.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_substation_editor_base_.substationeditorbase.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_substation_editor_base_.substationeditorbase.md#readonly-text_node)
+* [accessKey](_substation_editor_base_.substationeditorbase.md#accesskey)
+* [accessKeyLabel](_substation_editor_base_.substationeditorbase.md#readonly-accesskeylabel)
+* [assignedSlot](_substation_editor_base_.substationeditorbase.md#readonly-assignedslot)
+* [attributes](_substation_editor_base_.substationeditorbase.md#readonly-attributes)
+* [autocapitalize](_substation_editor_base_.substationeditorbase.md#autocapitalize)
+* [autofocus](_substation_editor_base_.substationeditorbase.md#autofocus)
+* [baseURI](_substation_editor_base_.substationeditorbase.md#readonly-baseuri)
+* [childElementCount](_substation_editor_base_.substationeditorbase.md#readonly-childelementcount)
+* [childNodes](_substation_editor_base_.substationeditorbase.md#readonly-childnodes)
+* [children](_substation_editor_base_.substationeditorbase.md#readonly-children)
+* [classList](_substation_editor_base_.substationeditorbase.md#readonly-classlist)
+* [className](_substation_editor_base_.substationeditorbase.md#classname)
+* [clientHeight](_substation_editor_base_.substationeditorbase.md#readonly-clientheight)
+* [clientLeft](_substation_editor_base_.substationeditorbase.md#readonly-clientleft)
+* [clientTop](_substation_editor_base_.substationeditorbase.md#readonly-clienttop)
+* [clientWidth](_substation_editor_base_.substationeditorbase.md#readonly-clientwidth)
+* [contentEditable](_substation_editor_base_.substationeditorbase.md#contenteditable)
+* [dataset](_substation_editor_base_.substationeditorbase.md#readonly-dataset)
+* [dir](_substation_editor_base_.substationeditorbase.md#dir)
+* [draggable](_substation_editor_base_.substationeditorbase.md#draggable)
+* [firstChild](_substation_editor_base_.substationeditorbase.md#readonly-firstchild)
+* [firstElementChild](_substation_editor_base_.substationeditorbase.md#readonly-firstelementchild)
+* [hidden](_substation_editor_base_.substationeditorbase.md#hidden)
+* [id](_substation_editor_base_.substationeditorbase.md#id)
+* [innerHTML](_substation_editor_base_.substationeditorbase.md#innerhtml)
+* [innerText](_substation_editor_base_.substationeditorbase.md#innertext)
+* [inputMode](_substation_editor_base_.substationeditorbase.md#inputmode)
+* [isConnected](_substation_editor_base_.substationeditorbase.md#readonly-isconnected)
+* [isContentEditable](_substation_editor_base_.substationeditorbase.md#readonly-iscontenteditable)
+* [lang](_substation_editor_base_.substationeditorbase.md#lang)
+* [lastChild](_substation_editor_base_.substationeditorbase.md#readonly-lastchild)
+* [lastElementChild](_substation_editor_base_.substationeditorbase.md#readonly-lastelementchild)
+* [localName](_substation_editor_base_.substationeditorbase.md#readonly-localname)
+* [namespaceURI](_substation_editor_base_.substationeditorbase.md#readonly-namespaceuri)
+* [nextElementSibling](_substation_editor_base_.substationeditorbase.md#readonly-nextelementsibling)
+* [nextSibling](_substation_editor_base_.substationeditorbase.md#readonly-nextsibling)
+* [nodeName](_substation_editor_base_.substationeditorbase.md#readonly-nodename)
+* [nodeType](_substation_editor_base_.substationeditorbase.md#readonly-nodetype)
+* [nodeValue](_substation_editor_base_.substationeditorbase.md#nodevalue)
+* [nonce](_substation_editor_base_.substationeditorbase.md#optional-nonce)
+* [offsetHeight](_substation_editor_base_.substationeditorbase.md#readonly-offsetheight)
+* [offsetLeft](_substation_editor_base_.substationeditorbase.md#readonly-offsetleft)
+* [offsetParent](_substation_editor_base_.substationeditorbase.md#readonly-offsetparent)
+* [offsetTop](_substation_editor_base_.substationeditorbase.md#readonly-offsettop)
+* [offsetWidth](_substation_editor_base_.substationeditorbase.md#readonly-offsetwidth)
+* [onabort](_substation_editor_base_.substationeditorbase.md#onabort)
+* [onanimationcancel](_substation_editor_base_.substationeditorbase.md#onanimationcancel)
+* [onanimationend](_substation_editor_base_.substationeditorbase.md#onanimationend)
+* [onanimationiteration](_substation_editor_base_.substationeditorbase.md#onanimationiteration)
+* [onanimationstart](_substation_editor_base_.substationeditorbase.md#onanimationstart)
+* [onauxclick](_substation_editor_base_.substationeditorbase.md#onauxclick)
+* [onblur](_substation_editor_base_.substationeditorbase.md#onblur)
+* [oncancel](_substation_editor_base_.substationeditorbase.md#oncancel)
+* [oncanplay](_substation_editor_base_.substationeditorbase.md#oncanplay)
+* [oncanplaythrough](_substation_editor_base_.substationeditorbase.md#oncanplaythrough)
+* [onchange](_substation_editor_base_.substationeditorbase.md#onchange)
+* [onclick](_substation_editor_base_.substationeditorbase.md#onclick)
+* [onclose](_substation_editor_base_.substationeditorbase.md#onclose)
+* [oncontextmenu](_substation_editor_base_.substationeditorbase.md#oncontextmenu)
+* [oncopy](_substation_editor_base_.substationeditorbase.md#oncopy)
+* [oncuechange](_substation_editor_base_.substationeditorbase.md#oncuechange)
+* [oncut](_substation_editor_base_.substationeditorbase.md#oncut)
+* [ondblclick](_substation_editor_base_.substationeditorbase.md#ondblclick)
+* [ondrag](_substation_editor_base_.substationeditorbase.md#ondrag)
+* [ondragend](_substation_editor_base_.substationeditorbase.md#ondragend)
+* [ondragenter](_substation_editor_base_.substationeditorbase.md#ondragenter)
+* [ondragexit](_substation_editor_base_.substationeditorbase.md#ondragexit)
+* [ondragleave](_substation_editor_base_.substationeditorbase.md#ondragleave)
+* [ondragover](_substation_editor_base_.substationeditorbase.md#ondragover)
+* [ondragstart](_substation_editor_base_.substationeditorbase.md#ondragstart)
+* [ondrop](_substation_editor_base_.substationeditorbase.md#ondrop)
+* [ondurationchange](_substation_editor_base_.substationeditorbase.md#ondurationchange)
+* [onemptied](_substation_editor_base_.substationeditorbase.md#onemptied)
+* [onended](_substation_editor_base_.substationeditorbase.md#onended)
+* [onerror](_substation_editor_base_.substationeditorbase.md#onerror)
+* [onfocus](_substation_editor_base_.substationeditorbase.md#onfocus)
+* [onfullscreenchange](_substation_editor_base_.substationeditorbase.md#onfullscreenchange)
+* [onfullscreenerror](_substation_editor_base_.substationeditorbase.md#onfullscreenerror)
+* [ongotpointercapture](_substation_editor_base_.substationeditorbase.md#ongotpointercapture)
+* [oninput](_substation_editor_base_.substationeditorbase.md#oninput)
+* [oninvalid](_substation_editor_base_.substationeditorbase.md#oninvalid)
+* [onkeydown](_substation_editor_base_.substationeditorbase.md#onkeydown)
+* [onkeypress](_substation_editor_base_.substationeditorbase.md#onkeypress)
+* [onkeyup](_substation_editor_base_.substationeditorbase.md#onkeyup)
+* [onload](_substation_editor_base_.substationeditorbase.md#onload)
+* [onloadeddata](_substation_editor_base_.substationeditorbase.md#onloadeddata)
+* [onloadedmetadata](_substation_editor_base_.substationeditorbase.md#onloadedmetadata)
+* [onloadstart](_substation_editor_base_.substationeditorbase.md#onloadstart)
+* [onlostpointercapture](_substation_editor_base_.substationeditorbase.md#onlostpointercapture)
+* [onmousedown](_substation_editor_base_.substationeditorbase.md#onmousedown)
+* [onmouseenter](_substation_editor_base_.substationeditorbase.md#onmouseenter)
+* [onmouseleave](_substation_editor_base_.substationeditorbase.md#onmouseleave)
+* [onmousemove](_substation_editor_base_.substationeditorbase.md#onmousemove)
+* [onmouseout](_substation_editor_base_.substationeditorbase.md#onmouseout)
+* [onmouseover](_substation_editor_base_.substationeditorbase.md#onmouseover)
+* [onmouseup](_substation_editor_base_.substationeditorbase.md#onmouseup)
+* [onpaste](_substation_editor_base_.substationeditorbase.md#onpaste)
+* [onpause](_substation_editor_base_.substationeditorbase.md#onpause)
+* [onplay](_substation_editor_base_.substationeditorbase.md#onplay)
+* [onplaying](_substation_editor_base_.substationeditorbase.md#onplaying)
+* [onpointercancel](_substation_editor_base_.substationeditorbase.md#onpointercancel)
+* [onpointerdown](_substation_editor_base_.substationeditorbase.md#onpointerdown)
+* [onpointerenter](_substation_editor_base_.substationeditorbase.md#onpointerenter)
+* [onpointerleave](_substation_editor_base_.substationeditorbase.md#onpointerleave)
+* [onpointermove](_substation_editor_base_.substationeditorbase.md#onpointermove)
+* [onpointerout](_substation_editor_base_.substationeditorbase.md#onpointerout)
+* [onpointerover](_substation_editor_base_.substationeditorbase.md#onpointerover)
+* [onpointerup](_substation_editor_base_.substationeditorbase.md#onpointerup)
+* [onprogress](_substation_editor_base_.substationeditorbase.md#onprogress)
+* [onratechange](_substation_editor_base_.substationeditorbase.md#onratechange)
+* [onreset](_substation_editor_base_.substationeditorbase.md#onreset)
+* [onresize](_substation_editor_base_.substationeditorbase.md#onresize)
+* [onscroll](_substation_editor_base_.substationeditorbase.md#onscroll)
+* [onsecuritypolicyviolation](_substation_editor_base_.substationeditorbase.md#onsecuritypolicyviolation)
+* [onseeked](_substation_editor_base_.substationeditorbase.md#onseeked)
+* [onseeking](_substation_editor_base_.substationeditorbase.md#onseeking)
+* [onselect](_substation_editor_base_.substationeditorbase.md#onselect)
+* [onselectionchange](_substation_editor_base_.substationeditorbase.md#onselectionchange)
+* [onselectstart](_substation_editor_base_.substationeditorbase.md#onselectstart)
+* [onstalled](_substation_editor_base_.substationeditorbase.md#onstalled)
+* [onsubmit](_substation_editor_base_.substationeditorbase.md#onsubmit)
+* [onsuspend](_substation_editor_base_.substationeditorbase.md#onsuspend)
+* [ontimeupdate](_substation_editor_base_.substationeditorbase.md#ontimeupdate)
+* [ontoggle](_substation_editor_base_.substationeditorbase.md#ontoggle)
+* [ontouchcancel](_substation_editor_base_.substationeditorbase.md#optional-ontouchcancel)
+* [ontouchend](_substation_editor_base_.substationeditorbase.md#optional-ontouchend)
+* [ontouchmove](_substation_editor_base_.substationeditorbase.md#optional-ontouchmove)
+* [ontouchstart](_substation_editor_base_.substationeditorbase.md#optional-ontouchstart)
+* [ontransitioncancel](_substation_editor_base_.substationeditorbase.md#ontransitioncancel)
+* [ontransitionend](_substation_editor_base_.substationeditorbase.md#ontransitionend)
+* [ontransitionrun](_substation_editor_base_.substationeditorbase.md#ontransitionrun)
+* [ontransitionstart](_substation_editor_base_.substationeditorbase.md#ontransitionstart)
+* [onvolumechange](_substation_editor_base_.substationeditorbase.md#onvolumechange)
+* [onwaiting](_substation_editor_base_.substationeditorbase.md#onwaiting)
+* [onwheel](_substation_editor_base_.substationeditorbase.md#onwheel)
+* [outerHTML](_substation_editor_base_.substationeditorbase.md#outerhtml)
+* [ownerDocument](_substation_editor_base_.substationeditorbase.md#readonly-ownerdocument)
+* [parentElement](_substation_editor_base_.substationeditorbase.md#readonly-parentelement)
+* [parentNode](_substation_editor_base_.substationeditorbase.md#readonly-parentnode)
+* [prefix](_substation_editor_base_.substationeditorbase.md#readonly-prefix)
+* [previousElementSibling](_substation_editor_base_.substationeditorbase.md#readonly-previouselementsibling)
+* [previousSibling](_substation_editor_base_.substationeditorbase.md#readonly-previoussibling)
+* [renderRoot](_substation_editor_base_.substationeditorbase.md#readonly-renderroot)
+* [scrollHeight](_substation_editor_base_.substationeditorbase.md#readonly-scrollheight)
+* [scrollLeft](_substation_editor_base_.substationeditorbase.md#scrollleft)
+* [scrollTop](_substation_editor_base_.substationeditorbase.md#scrolltop)
+* [scrollWidth](_substation_editor_base_.substationeditorbase.md#readonly-scrollwidth)
+* [shadowRoot](_substation_editor_base_.substationeditorbase.md#readonly-shadowroot)
+* [slot](_substation_editor_base_.substationeditorbase.md#slot)
+* [spellcheck](_substation_editor_base_.substationeditorbase.md#spellcheck)
+* [style](_substation_editor_base_.substationeditorbase.md#readonly-style)
+* [tabIndex](_substation_editor_base_.substationeditorbase.md#tabindex)
+* [tagName](_substation_editor_base_.substationeditorbase.md#readonly-tagname)
+* [textContent](_substation_editor_base_.substationeditorbase.md#textcontent)
+* [title](_substation_editor_base_.substationeditorbase.md#title)
+* [translate](_substation_editor_base_.substationeditorbase.md#translate)
+* [[finalized]](_substation_editor_base_.substationeditorbase.md#static-protected-[finalized])
+* [finalized](_substation_editor_base_.substationeditorbase.md#static-protected-finalized)
+* [properties](_substation_editor_base_.substationeditorbase.md#static-properties)
+* [render](_substation_editor_base_.substationeditorbase.md#static-render)
+* [styles](_substation_editor_base_.substationeditorbase.md#static-optional-styles)
 
 ### Accessors
 
-* [fileUI](_open_scd_.openscd.md#fileui)
-* [hasUpdated](_open_scd_.openscd.md#protected-hasupdated)
-* [logUI](_open_scd_.openscd.md#logui)
-* [menuUI](_open_scd_.openscd.md#menuui)
-* [messageUI](_open_scd_.openscd.md#messageui)
-* [src](_open_scd_.openscd.md#src)
-* [updateComplete](_open_scd_.openscd.md#updatecomplete)
-* [observedAttributes](_open_scd_.openscd.md#static-observedattributes)
+* [hasUpdated](_substation_editor_base_.substationeditorbase.md#protected-hasupdated)
+* [updateComplete](_substation_editor_base_.substationeditorbase.md#updatecomplete)
+* [observedAttributes](_substation_editor_base_.substationeditorbase.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_open_scd_.openscd.md#protected-_getupdatecomplete)
-* [addEventListener](_open_scd_.openscd.md#addeventlistener)
-* [adoptStyles](_open_scd_.openscd.md#protected-adoptstyles)
-* [after](_open_scd_.openscd.md#after)
-* [animate](_open_scd_.openscd.md#animate)
-* [append](_open_scd_.openscd.md#append)
-* [appendChild](_open_scd_.openscd.md#appendchild)
-* [attachShadow](_open_scd_.openscd.md#attachshadow)
-* [attributeChangedCallback](_open_scd_.openscd.md#attributechangedcallback)
-* [before](_open_scd_.openscd.md#before)
-* [blur](_open_scd_.openscd.md#blur)
-* [click](_open_scd_.openscd.md#click)
-* [cloneNode](_open_scd_.openscd.md#clonenode)
-* [closest](_open_scd_.openscd.md#closest)
-* [compareDocumentPosition](_open_scd_.openscd.md#comparedocumentposition)
-* [connectedCallback](_open_scd_.openscd.md#connectedcallback)
-* [contains](_open_scd_.openscd.md#contains)
-* [createRenderRoot](_open_scd_.openscd.md#protected-createrenderroot)
-* [disconnectedCallback](_open_scd_.openscd.md#disconnectedcallback)
-* [dispatchEvent](_open_scd_.openscd.md#dispatchevent)
-* [enableUpdating](_open_scd_.openscd.md#protected-enableupdating)
-* [error](_open_scd_.openscd.md#error)
-* [firstUpdated](_open_scd_.openscd.md#firstupdated)
-* [focus](_open_scd_.openscd.md#focus)
-* [getAnimations](_open_scd_.openscd.md#getanimations)
-* [getAttribute](_open_scd_.openscd.md#getattribute)
-* [getAttributeNS](_open_scd_.openscd.md#getattributens)
-* [getAttributeNames](_open_scd_.openscd.md#getattributenames)
-* [getAttributeNode](_open_scd_.openscd.md#getattributenode)
-* [getAttributeNodeNS](_open_scd_.openscd.md#getattributenodens)
-* [getBoundingClientRect](_open_scd_.openscd.md#getboundingclientrect)
-* [getClientRects](_open_scd_.openscd.md#getclientrects)
-* [getElementsByClassName](_open_scd_.openscd.md#getelementsbyclassname)
-* [getElementsByTagName](_open_scd_.openscd.md#getelementsbytagname)
-* [getElementsByTagNameNS](_open_scd_.openscd.md#getelementsbytagnamens)
-* [getRootNode](_open_scd_.openscd.md#getrootnode)
-* [hasAttribute](_open_scd_.openscd.md#hasattribute)
-* [hasAttributeNS](_open_scd_.openscd.md#hasattributens)
-* [hasAttributes](_open_scd_.openscd.md#hasattributes)
-* [hasChildNodes](_open_scd_.openscd.md#haschildnodes)
-* [hasPointerCapture](_open_scd_.openscd.md#haspointercapture)
-* [info](_open_scd_.openscd.md#info)
-* [initialize](_open_scd_.openscd.md#protected-initialize)
-* [insertAdjacentElement](_open_scd_.openscd.md#insertadjacentelement)
-* [insertAdjacentHTML](_open_scd_.openscd.md#insertadjacenthtml)
-* [insertAdjacentText](_open_scd_.openscd.md#insertadjacenttext)
-* [insertBefore](_open_scd_.openscd.md#insertbefore)
-* [isDefaultNamespace](_open_scd_.openscd.md#isdefaultnamespace)
-* [isEqualNode](_open_scd_.openscd.md#isequalnode)
-* [isSameNode](_open_scd_.openscd.md#issamenode)
-* [log](_open_scd_.openscd.md#log)
-* [lookupNamespaceURI](_open_scd_.openscd.md#lookupnamespaceuri)
-* [lookupPrefix](_open_scd_.openscd.md#lookupprefix)
-* [matches](_open_scd_.openscd.md#matches)
-* [msGetRegionContent](_open_scd_.openscd.md#msgetregioncontent)
-* [normalize](_open_scd_.openscd.md#normalize)
-* [performUpdate](_open_scd_.openscd.md#protected-performupdate)
-* [prepend](_open_scd_.openscd.md#prepend)
-* [querySelector](_open_scd_.openscd.md#queryselector)
-* [querySelectorAll](_open_scd_.openscd.md#queryselectorall)
-* [releasePointerCapture](_open_scd_.openscd.md#releasepointercapture)
-* [remove](_open_scd_.openscd.md#remove)
-* [removeAttribute](_open_scd_.openscd.md#removeattribute)
-* [removeAttributeNS](_open_scd_.openscd.md#removeattributens)
-* [removeAttributeNode](_open_scd_.openscd.md#removeattributenode)
-* [removeChild](_open_scd_.openscd.md#removechild)
-* [removeEventListener](_open_scd_.openscd.md#removeeventlistener)
-* [render](_open_scd_.openscd.md#render)
-* [replaceChild](_open_scd_.openscd.md#replacechild)
-* [replaceWith](_open_scd_.openscd.md#replacewith)
-* [requestFullscreen](_open_scd_.openscd.md#requestfullscreen)
-* [requestPointerLock](_open_scd_.openscd.md#requestpointerlock)
-* [requestUpdate](_open_scd_.openscd.md#requestupdate)
-* [scroll](_open_scd_.openscd.md#scroll)
-* [scrollBy](_open_scd_.openscd.md#scrollby)
-* [scrollIntoView](_open_scd_.openscd.md#scrollintoview)
-* [scrollTo](_open_scd_.openscd.md#scrollto)
-* [setAttribute](_open_scd_.openscd.md#setattribute)
-* [setAttributeNS](_open_scd_.openscd.md#setattributens)
-* [setAttributeNode](_open_scd_.openscd.md#setattributenode)
-* [setAttributeNodeNS](_open_scd_.openscd.md#setattributenodens)
-* [setPointerCapture](_open_scd_.openscd.md#setpointercapture)
-* [shouldUpdate](_open_scd_.openscd.md#protected-shouldupdate)
-* [toggleAttribute](_open_scd_.openscd.md#toggleattribute)
-* [update](_open_scd_.openscd.md#protected-update)
-* [updated](_open_scd_.openscd.md#protected-updated)
-* [warn](_open_scd_.openscd.md#warn)
-* [webkitMatchesSelector](_open_scd_.openscd.md#webkitmatchesselector)
-* [createProperty](_open_scd_.openscd.md#static-createproperty)
-* [finalize](_open_scd_.openscd.md#static-protected-finalize)
-* [getPropertyDescriptor](_open_scd_.openscd.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_open_scd_.openscd.md#static-protected-getpropertyoptions)
-* [getStyles](_open_scd_.openscd.md#static-getstyles)
+* [_getUpdateComplete](_substation_editor_base_.substationeditorbase.md#protected-_getupdatecomplete)
+* [addEventListener](_substation_editor_base_.substationeditorbase.md#addeventlistener)
+* [adoptStyles](_substation_editor_base_.substationeditorbase.md#protected-adoptstyles)
+* [after](_substation_editor_base_.substationeditorbase.md#after)
+* [animate](_substation_editor_base_.substationeditorbase.md#animate)
+* [append](_substation_editor_base_.substationeditorbase.md#append)
+* [appendChild](_substation_editor_base_.substationeditorbase.md#appendchild)
+* [attachShadow](_substation_editor_base_.substationeditorbase.md#attachshadow)
+* [attributeChangedCallback](_substation_editor_base_.substationeditorbase.md#attributechangedcallback)
+* [before](_substation_editor_base_.substationeditorbase.md#before)
+* [blur](_substation_editor_base_.substationeditorbase.md#blur)
+* [click](_substation_editor_base_.substationeditorbase.md#click)
+* [cloneNode](_substation_editor_base_.substationeditorbase.md#clonenode)
+* [closest](_substation_editor_base_.substationeditorbase.md#closest)
+* [compareDocumentPosition](_substation_editor_base_.substationeditorbase.md#comparedocumentposition)
+* [connectedCallback](_substation_editor_base_.substationeditorbase.md#connectedcallback)
+* [contains](_substation_editor_base_.substationeditorbase.md#contains)
+* [createRenderRoot](_substation_editor_base_.substationeditorbase.md#protected-createrenderroot)
+* [disconnectedCallback](_substation_editor_base_.substationeditorbase.md#disconnectedcallback)
+* [dispatchEvent](_substation_editor_base_.substationeditorbase.md#dispatchevent)
+* [enableUpdating](_substation_editor_base_.substationeditorbase.md#protected-enableupdating)
+* [firstUpdated](_substation_editor_base_.substationeditorbase.md#protected-firstupdated)
+* [focus](_substation_editor_base_.substationeditorbase.md#focus)
+* [getAnimations](_substation_editor_base_.substationeditorbase.md#getanimations)
+* [getAttribute](_substation_editor_base_.substationeditorbase.md#getattribute)
+* [getAttributeNS](_substation_editor_base_.substationeditorbase.md#getattributens)
+* [getAttributeNames](_substation_editor_base_.substationeditorbase.md#getattributenames)
+* [getAttributeNode](_substation_editor_base_.substationeditorbase.md#getattributenode)
+* [getAttributeNodeNS](_substation_editor_base_.substationeditorbase.md#getattributenodens)
+* [getBoundingClientRect](_substation_editor_base_.substationeditorbase.md#getboundingclientrect)
+* [getClientRects](_substation_editor_base_.substationeditorbase.md#getclientrects)
+* [getElementsByClassName](_substation_editor_base_.substationeditorbase.md#getelementsbyclassname)
+* [getElementsByTagName](_substation_editor_base_.substationeditorbase.md#getelementsbytagname)
+* [getElementsByTagNameNS](_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)
+* [getRootNode](_substation_editor_base_.substationeditorbase.md#getrootnode)
+* [hasAttribute](_substation_editor_base_.substationeditorbase.md#hasattribute)
+* [hasAttributeNS](_substation_editor_base_.substationeditorbase.md#hasattributens)
+* [hasAttributes](_substation_editor_base_.substationeditorbase.md#hasattributes)
+* [hasChildNodes](_substation_editor_base_.substationeditorbase.md#haschildnodes)
+* [hasPointerCapture](_substation_editor_base_.substationeditorbase.md#haspointercapture)
+* [initialize](_substation_editor_base_.substationeditorbase.md#protected-initialize)
+* [insertAdjacentElement](_substation_editor_base_.substationeditorbase.md#insertadjacentelement)
+* [insertAdjacentHTML](_substation_editor_base_.substationeditorbase.md#insertadjacenthtml)
+* [insertAdjacentText](_substation_editor_base_.substationeditorbase.md#insertadjacenttext)
+* [insertBefore](_substation_editor_base_.substationeditorbase.md#insertbefore)
+* [isDefaultNamespace](_substation_editor_base_.substationeditorbase.md#isdefaultnamespace)
+* [isEqualNode](_substation_editor_base_.substationeditorbase.md#isequalnode)
+* [isSameNode](_substation_editor_base_.substationeditorbase.md#issamenode)
+* [lookupNamespaceURI](_substation_editor_base_.substationeditorbase.md#lookupnamespaceuri)
+* [lookupPrefix](_substation_editor_base_.substationeditorbase.md#lookupprefix)
+* [matches](_substation_editor_base_.substationeditorbase.md#matches)
+* [msGetRegionContent](_substation_editor_base_.substationeditorbase.md#msgetregioncontent)
+* [normalize](_substation_editor_base_.substationeditorbase.md#normalize)
+* [performUpdate](_substation_editor_base_.substationeditorbase.md#protected-performupdate)
+* [prepend](_substation_editor_base_.substationeditorbase.md#prepend)
+* [querySelector](_substation_editor_base_.substationeditorbase.md#queryselector)
+* [querySelectorAll](_substation_editor_base_.substationeditorbase.md#queryselectorall)
+* [releasePointerCapture](_substation_editor_base_.substationeditorbase.md#releasepointercapture)
+* [remove](_substation_editor_base_.substationeditorbase.md#remove)
+* [removeAttribute](_substation_editor_base_.substationeditorbase.md#removeattribute)
+* [removeAttributeNS](_substation_editor_base_.substationeditorbase.md#removeattributens)
+* [removeAttributeNode](_substation_editor_base_.substationeditorbase.md#removeattributenode)
+* [removeChild](_substation_editor_base_.substationeditorbase.md#removechild)
+* [removeEventListener](_substation_editor_base_.substationeditorbase.md#removeeventlistener)
+* [render](_substation_editor_base_.substationeditorbase.md#render)
+* [replaceChild](_substation_editor_base_.substationeditorbase.md#replacechild)
+* [replaceWith](_substation_editor_base_.substationeditorbase.md#replacewith)
+* [requestFullscreen](_substation_editor_base_.substationeditorbase.md#requestfullscreen)
+* [requestPointerLock](_substation_editor_base_.substationeditorbase.md#requestpointerlock)
+* [requestUpdate](_substation_editor_base_.substationeditorbase.md#requestupdate)
+* [scroll](_substation_editor_base_.substationeditorbase.md#scroll)
+* [scrollBy](_substation_editor_base_.substationeditorbase.md#scrollby)
+* [scrollIntoView](_substation_editor_base_.substationeditorbase.md#scrollintoview)
+* [scrollTo](_substation_editor_base_.substationeditorbase.md#scrollto)
+* [setAttribute](_substation_editor_base_.substationeditorbase.md#setattribute)
+* [setAttributeNS](_substation_editor_base_.substationeditorbase.md#setattributens)
+* [setAttributeNode](_substation_editor_base_.substationeditorbase.md#setattributenode)
+* [setAttributeNodeNS](_substation_editor_base_.substationeditorbase.md#setattributenodens)
+* [setPointerCapture](_substation_editor_base_.substationeditorbase.md#setpointercapture)
+* [shouldUpdate](_substation_editor_base_.substationeditorbase.md#protected-shouldupdate)
+* [toggleAttribute](_substation_editor_base_.substationeditorbase.md#toggleattribute)
+* [update](_substation_editor_base_.substationeditorbase.md#protected-update)
+* [updated](_substation_editor_base_.substationeditorbase.md#protected-updated)
+* [webkitMatchesSelector](_substation_editor_base_.substationeditorbase.md#webkitmatchesselector)
+* [createProperty](_substation_editor_base_.substationeditorbase.md#static-createproperty)
+* [finalize](_substation_editor_base_.substationeditorbase.md#static-protected-finalize)
+* [getPropertyDescriptor](_substation_editor_base_.substationeditorbase.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_substation_editor_base_.substationeditorbase.md#static-protected-getpropertyoptions)
+* [getStyles](_substation_editor_base_.substationeditorbase.md#static-getstyles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new OpenSCD**(): *[OpenSCD](_open_scd_.openscd.md)*
+\+ **new SubstationEditorBase**(): *[SubstationEditorBase](_substation_editor_base_.substationeditorbase.md)*
 
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
-**Returns:** *[OpenSCD](_open_scd_.openscd.md)*
+**Returns:** *[SubstationEditorBase](_substation_editor_base_.substationeditorbase.md)*
 
 ## Properties
 
@@ -551,16 +536,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
 
 ___
 
-###  activeEditor
-
-• **activeEditor**: *number* = 0
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeEditor](_open_scd_base_.openscdbase.md#activeeditor)*
-
-Defined in src/open-scd-base.ts:138
-
-___
-
 ### `Readonly` assignedSlot
 
 • **assignedSlot**: *HTMLSlotElement | null*
@@ -743,18 +718,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
 ___
 
-###  doc
-
-• **doc**: *XMLDocument* = OpenSCDBase.emptySCD
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
-
-Defined in src/open-scd-base.ts:141
-
-The `XMLDocument` representation of the current file.
-
-___
-
 ###  draggable
 
 • **draggable**: *boolean*
@@ -796,16 +759,6 @@ ___
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hidden](_loggingelement_.loggingelement.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
-
-___
-
-###  history
-
-• **history**: *Array‹[LogEntry](../interfaces/_loggingelement_.logentry.md)›* = []
-
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[history](_loggingelement_.loggingelement.md#history)*
-
-Defined in src/LoggingElement.ts:11
 
 ___
 
@@ -2300,18 +2253,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
 ___
 
-###  srcName
-
-• **srcName**: *string* = "untitled.scd"
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
-
-Defined in src/open-scd-base.ts:143
-
-The name of the current file.
-
-___
-
 ### `Readonly` style
 
 • **style**: *CSSStyleDeclaration*
@@ -2374,40 +2315,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
 ___
 
-###  waiting
-
-• **waiting**: *boolean* = false
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[waiting](_waitingelement_.waitingelement.md#waiting)*
-
-Defined in src/WaitingElement.ts:13
-
-Whether the element is currently waiting for some async work.
-
-___
-
-### `Protected` work
-
-• **work**: *Set‹Promise‹string››* = new Set()
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[work](_waitingelement_.waitingelement.md#protected-work)*
-
-Defined in src/WaitingElement.ts:14
-
-___
-
-###  workDone
-
-• **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[workDone](_waitingelement_.waitingelement.md#workdone)*
-
-Defined in src/WaitingElement.ts:16
-
-A promise which resolves once all currently pending work is done.
-
-___
-
 ### `Static` `Protected` [finalized]
 
 ▪ **[finalized]**: *boolean*
@@ -2417,20 +2324,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
 Marks class as having finished creating properties.
-
-___
-
-### `Static` emptySCD
-
-▪ **emptySCD**: *Document* = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  )
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)*
-
-Defined in src/open-scd-base.ts:131
 
 ___
 
@@ -2495,27 +2388,18 @@ Name | Type |
 
 ___
 
-### `Static` styles
+### `Static` `Optional` styles
 
-▪ **styles**: *CSSResult‹›* = styles
+▪ **styles**? : *CSSResult | CSSResultArray*
 
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[styles](_loggingelement_.loggingelement.md#static-optional-styles)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[styles](_loggingelement_.loggingelement.md#static-optional-styles)*
 
-Defined in src/open-scd.ts:13
+Defined in node_modules/lit-element/lit-element.d.ts:49
+
+Array of styles to apply to the element. The styles should be defined
+using the `css` tag function.
 
 ## Accessors
-
-###  fileUI
-
-• **get fileUI**(): *HTMLInputElement*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
-
-Defined in src/open-scd-base.ts:170
-
-**Returns:** *HTMLInputElement*
-
-___
 
 ### `Protected` hasUpdated
 
@@ -2526,72 +2410,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
-
-___
-
-###  logUI
-
-• **get logUI**(): *DialogBase*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
-
-Defined in src/open-scd-base.ts:164
-
-**Returns:** *DialogBase*
-
-___
-
-###  menuUI
-
-• **get menuUI**(): *DrawerBase*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
-
-Defined in src/open-scd-base.ts:161
-
-**Returns:** *DrawerBase*
-
-___
-
-###  messageUI
-
-• **get messageUI**(): *SnackbarBase*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
-
-Defined in src/open-scd-base.ts:167
-
-**Returns:** *SnackbarBase*
-
-___
-
-###  src
-
-• **get src**(): *string*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
-
-Defined in src/open-scd-base.ts:147
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Returns:** *string*
-
-• **set src**(`value`: string): *void*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
-
-Defined in src/open-scd-base.ts:150
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | string |
-
-**Returns:** *void*
 
 ___
 
@@ -3111,36 +2929,25 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:298
 
 ___
 
-###  error
+### `Protected` firstUpdated
 
-▸ **error**(`title`: string, ...`detail`: string[]): *void*
+▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[error](_open_scd_base_.openscdbase.md#error)*
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[firstUpdated](_substation_editor_base_.substationeditorbase.md#protected-firstupdated)*
 
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
+Defined in node_modules/lit-element/lib/updating-element.d.ts:424
 
-Defined in src/open-scd-base.ts:174
+Invoked when the element is first updated. Implement to perform one time
+work on the element after update.
+
+Setting properties inside this method will trigger the element to update
+again after this update cycle completes.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`title` | string |
-`...detail` | string[] |
-
-**Returns:** *void*
-
-___
-
-###  firstUpdated
-
-▸ **firstUpdated**(): *void*
-
-*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
-
-*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#firstupdated)*
-
-Defined in src/WaitingElement.ts:17
+Name | Type | Description |
+------ | ------ | ------ |
+`_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
 **Returns:** *void*
 
@@ -3522,25 +3329,6 @@ Name | Type |
 
 ___
 
-###  info
-
-▸ **info**(`title`: string, ...`detail`: string[]): *void*
-
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[info](_loggingelement_.loggingelement.md#info)*
-
-Defined in src/LoggingElement.ts:16
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`...detail` | string[] |
-
-**Returns:** *void*
-
-___
-
 ### `Protected` initialize
 
 ▸ **initialize**(): *void*
@@ -3692,26 +3480,6 @@ Name | Type |
 `otherNode` | Node &#124; null |
 
 **Returns:** *boolean*
-
-___
-
-###  log
-
-▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
-
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[log](_loggingelement_.loggingelement.md#log)*
-
-Defined in src/LoggingElement.ts:13
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`message?` | undefined &#124; string |
-`icon?` | undefined &#124; string |
-
-**Returns:** *void*
 
 ___
 
@@ -4136,11 +3904,9 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#render)*
-
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:48
+Defined in src/substation-editor-base.ts:4
 
 **Returns:** *TemplateResult*
 
@@ -4556,25 +4322,6 @@ again after this update cycle completes.
 Name | Type | Description |
 ------ | ------ | ------ |
 `_changedProperties` | PropertyValues | Map of changed properties with old values  |
-
-**Returns:** *void*
-
-___
-
-###  warn
-
-▸ **warn**(`title`: string, ...`detail`: string[]): *void*
-
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[warn](_loggingelement_.loggingelement.md#warn)*
-
-Defined in src/LoggingElement.ts:19
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`...detail` | string[] |
 
 **Returns:** *void*
 

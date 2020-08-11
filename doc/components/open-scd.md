@@ -2,18 +2,19 @@
 
 ## Properties
 
-| Property    | Attribute | Modifiers | Type                                      | Default                         | Description                                      |
-|-------------|-----------|-----------|-------------------------------------------|---------------------------------|--------------------------------------------------|
-| `doc`       |           |           | `XMLDocument`                             | "emptySCD"                      | The `XMLDocument` representation of the current file. |
-| `fileUI`    |           | readonly  | `HTMLInputElement`                        |                                 |                                                  |
-| `history`   | `history` |           | `LogEntry[]`                              | []                              |                                                  |
-| `logUI`     |           | readonly  | `DialogBase`                              |                                 |                                                  |
-| `menuUI`    |           | readonly  | `DrawerBase`                              |                                 |                                                  |
-| `messageUI` |           | readonly  | `SnackbarBase`                            |                                 |                                                  |
-| `src`       | `src`     |           | `string`                                  |                                 | The current file's URL. `blob:` URLs are *revoked after parsing*! |
-| `srcName`   | `srcName` |           | `string`                                  | "untitled.scd"                  | The name of the current file.                    |
-| `waiting`   | `waiting` |           | `boolean`                                 | false                           | Whether the element is currently waiting for some async work. |
-| `workDone`  |           |           | `Promise<PromiseSettledResult<string>[]>` | "Promise.allSettled(this.work)" | A promise which resolves once all currently pending work is done. |
+| Property       | Attribute      | Modifiers | Type                                      | Default                         | Description                                      |
+|----------------|----------------|-----------|-------------------------------------------|---------------------------------|--------------------------------------------------|
+| `activeEditor` | `activeEditor` |           | `number`                                  | 0                               |                                                  |
+| `doc`          |                |           | `XMLDocument`                             | "emptySCD"                      | The `XMLDocument` representation of the current file. |
+| `fileUI`       |                | readonly  | `HTMLInputElement`                        |                                 |                                                  |
+| `history`      | `history`      |           | `LogEntry[]`                              | []                              |                                                  |
+| `logUI`        |                | readonly  | `DialogBase`                              |                                 |                                                  |
+| `menuUI`       |                | readonly  | `DrawerBase`                              |                                 |                                                  |
+| `messageUI`    |                | readonly  | `SnackbarBase`                            |                                 |                                                  |
+| `src`          | `src`          |           | `string`                                  |                                 | The current file's URL. `blob:` URLs are *revoked after parsing*! |
+| `srcName`      | `srcName`      |           | `string`                                  | "untitled.scd"                  | The name of the current file.                    |
+| `waiting`      | `waiting`      |           | `boolean`                                 | false                           | Whether the element is currently waiting for some async work. |
+| `workDone`     |                |           | `Promise<PromiseSettledResult<string>[]>` | "Promise.allSettled(this.work)" | A promise which resolves once all currently pending work is done. |
 
 ## Methods
 
