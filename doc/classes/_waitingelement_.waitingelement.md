@@ -2353,7 +2353,7 @@ ___
 
 ###  workDone
 
-• **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
+• **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
 
 Defined in src/WaitingElement.ts:16
 

@@ -2396,7 +2396,7 @@ ___
 
 ###  workDone
 
-• **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
+• **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
 
 *Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[workDone](_waitingelement_.waitingelement.md#workdone)*
 
