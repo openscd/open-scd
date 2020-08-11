@@ -19,36 +19,37 @@ import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 
 import { WaitingElement } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
-import './substation-editor.js';
-
-const plugins = {
-  editors: [
-    {
-      label: 'Substation',
-      id: 'substation',
-      icon: 'border_outer',
-      content: html`<substation-editor></substation-editor>`,
-    },
-    {
-      label: 'Test',
-      id: 'test',
-      icon: 'self_improvement',
-      content: html`<p>Testing...</p>`,
-    },
-    {
-      label: 'Visual Filler',
-      id: 'filler',
-      icon: 'science',
-      content: html`<p>Filling space...</p>`,
-    },
-  ],
-};
+import { plugin } from './plugin.js';
 
 export class OpenSCDBase extends WaitingElement {
+  plugins = {
+    editors: [
+      {
+        label: 'Substation',
+        id: 'substation',
+        icon: 'border_outer',
+        content: plugin(
+          './substation-editor.js',
+          html`<substation-editor></substation-editor>`
+        ),
+      },
+      {
+        label: 'Test',
+        id: 'test',
+        icon: 'self_improvement',
+        content: html`<p>Testing...</p>`,
+      },
+      {
+        label: 'Visual Filler',
+        id: 'filler',
+        icon: 'science',
+        content: html`<p>Filling space...</p>`,
+      },
+    ],
+  };
+
   render(): TemplateResult {
     return html`
-      <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
-      </mwc-circular-progress-four-color>
       <mwc-drawer hasheader type="modal">
         <span slot="title">Menu</span>
         <span slot="subtitle">${this.srcName}</span>
@@ -75,7 +76,7 @@ export class OpenSCDBase extends WaitingElement {
             @MDCTabBar:activated=${(e: CustomEvent) =>
               (this.activeEditor = e.detail.index)}
           >
-            ${plugins.editors.map(
+            ${this.plugins.editors.map(
               editor =>
                 html`<mwc-tab
                   label=${editor.label}
@@ -84,9 +85,11 @@ export class OpenSCDBase extends WaitingElement {
                 ></mwc-tab>`
             )}
           </mwc-tab-bar>
-          ${plugins.editors[this.activeEditor].content}
+          ${this.plugins.editors[this.activeEditor].content}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
+      <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
+      </mwc-circular-progress-four-color>
       <mwc-snackbar
         id="errorSnackbar"
         timeoutMs="-1"

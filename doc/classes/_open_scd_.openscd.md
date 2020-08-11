@@ -311,6 +311,10 @@
 * [getPropertyOptions](_open_scd_.openscd.md#static-protected-getpropertyoptions)
 * [getStyles](_open_scd_.openscd.md#static-getstyles)
 
+### Object literals
+
+* [plugins](_open_scd_.openscd.md#plugins)
+
 ## Constructors
 
 ###  constructor
@@ -557,7 +561,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeEditor](_open_scd_base_.openscdbase.md#activeeditor)*
 
-Defined in src/open-scd-base.ts:138
+Defined in src/open-scd-base.ts:141
 
 ___
 
@@ -749,7 +753,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
 
-Defined in src/open-scd-base.ts:141
+Defined in src/open-scd-base.ts:144
 
 The `XMLDocument` representation of the current file.
 
@@ -2306,7 +2310,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-Defined in src/open-scd-base.ts:143
+Defined in src/open-scd-base.ts:146
 
 The name of the current file.
 
@@ -2430,7 +2434,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)*
 
-Defined in src/open-scd-base.ts:131
+Defined in src/open-scd-base.ts:134
 
 ___
 
@@ -2511,7 +2515,7 @@ Defined in src/open-scd.ts:13
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-Defined in src/open-scd-base.ts:170
+Defined in src/open-scd-base.ts:173
 
 **Returns:** *HTMLInputElement*
 
@@ -2535,7 +2539,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-Defined in src/open-scd-base.ts:164
+Defined in src/open-scd-base.ts:167
 
 **Returns:** *DialogBase*
 
@@ -2547,7 +2551,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-Defined in src/open-scd-base.ts:161
+Defined in src/open-scd-base.ts:164
 
 **Returns:** *DrawerBase*
 
@@ -2559,7 +2563,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-Defined in src/open-scd-base.ts:167
+Defined in src/open-scd-base.ts:170
 
 **Returns:** *SnackbarBase*
 
@@ -2571,7 +2575,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:147
+Defined in src/open-scd-base.ts:150
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2581,7 +2585,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:150
+Defined in src/open-scd-base.ts:153
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3119,7 +3123,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:174
+Defined in src/open-scd-base.ts:177
 
 **Parameters:**
 
@@ -4140,7 +4144,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:48
+Defined in src/open-scd-base.ts:51
 
 **Returns:** *TemplateResult*
 
@@ -4750,3 +4754,41 @@ Override this method to integrate into a style management system.
 **`nocollapse`** 
 
 **Returns:** *CSSResult | CSSResultArray | undefined*
+
+## Object literals
+
+###  plugins
+
+### ▪ **plugins**: *object*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
+
+Defined in src/open-scd-base.ts:25
+
+###  editors
+
+• **editors**: *(object | object)[]* = [
+      {
+        label: 'Substation',
+        id: 'substation',
+        icon: 'border_outer',
+        content: plugin(
+          './substation-editor.js',
+          html`<substation-editor></substation-editor>`
+        ),
+      },
+      {
+        label: 'Test',
+        id: 'test',
+        icon: 'self_improvement',
+        content: html`<p>Testing...</p>`,
+      },
+      {
+        label: 'Visual Filler',
+        id: 'filler',
+        icon: 'science',
+        content: html`<p>Filling space...</p>`,
+      },
+    ]
+
+Defined in src/open-scd-base.ts:26
