@@ -72,7 +72,7 @@ export class OpenSCDBase extends WaitingElement {
             @click="${() => this.logUI.show()}"
           ></mwc-icon-button>
           <mwc-tab-bar
-            @activated=${(e: CustomEvent) =>
+            @MDCTabBar:activated=${(e: CustomEvent) =>
               (this.activeEditor = e.detail.index)}
           >
             ${plugins.editors.map(
