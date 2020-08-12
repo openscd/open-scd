@@ -57,6 +57,7 @@
 * [draggable](_substation_editor_.substationeditor.md#draggable)
 * [firstChild](_substation_editor_.substationeditor.md#readonly-firstchild)
 * [firstElementChild](_substation_editor_.substationeditor.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_substation_editor_.substationeditor.md#optional-floatinglabelfoundation)
 * [hidden](_substation_editor_.substationeditor.md#hidden)
 * [id](_substation_editor_.substationeditor.md#id)
 * [innerHTML](_substation_editor_.substationeditor.md#innerhtml)
@@ -67,6 +68,7 @@
 * [lang](_substation_editor_.substationeditor.md#lang)
 * [lastChild](_substation_editor_.substationeditor.md#readonly-lastchild)
 * [lastElementChild](_substation_editor_.substationeditor.md#readonly-lastelementchild)
+* [lineRippleFoundation](_substation_editor_.substationeditor.md#optional-lineripplefoundation)
 * [localName](_substation_editor_.substationeditor.md#readonly-localname)
 * [namespaceURI](_substation_editor_.substationeditor.md#readonly-namespaceuri)
 * [nextElementSibling](_substation_editor_.substationeditor.md#readonly-nextelementsibling)
@@ -199,7 +201,10 @@
 
 ### Accessors
 
+* [desc](_substation_editor_.substationeditor.md#desc)
+* [editUI](_substation_editor_.substationeditor.md#editui)
 * [hasUpdated](_substation_editor_.substationeditor.md#protected-hasupdated)
+* [name](_substation_editor_.substationeditor.md#name)
 * [updateComplete](_substation_editor_.substationeditor.md#updatecomplete)
 * [observedAttributes](_substation_editor_.substationeditor.md#static-observedattributes)
 
@@ -207,6 +212,7 @@
 
 * [_getUpdateComplete](_substation_editor_.substationeditor.md#protected-_getupdatecomplete)
 * [addEventListener](_substation_editor_.substationeditor.md#addeventlistener)
+* [addSubstation](_substation_editor_.substationeditor.md#addsubstation)
 * [adoptStyles](_substation_editor_.substationeditor.md#protected-adoptstyles)
 * [after](_substation_editor_.substationeditor.md#after)
 * [animate](_substation_editor_.substationeditor.md#animate)
@@ -275,6 +281,7 @@
 * [requestFullscreen](_substation_editor_.substationeditor.md#requestfullscreen)
 * [requestPointerLock](_substation_editor_.substationeditor.md#requestpointerlock)
 * [requestUpdate](_substation_editor_.substationeditor.md#requestupdate)
+* [saveSubstation](_substation_editor_.substationeditor.md#savesubstation)
 * [scroll](_substation_editor_.substationeditor.md#scroll)
 * [scrollBy](_substation_editor_.substationeditor.md#scrollby)
 * [scrollIntoView](_substation_editor_.substationeditor.md#scrollintoview)
@@ -723,7 +730,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[doc](_substation_editor_base_.substationeditorbase.md#doc)*
 
-Defined in src/substation-editor-base.ts:10
+Defined in src/substation-editor-base.ts:17
 
 ___
 
@@ -758,6 +765,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
 Returns the first child that is an element, and null otherwise.
+
+___
+
+### `Optional` floatingLabelFoundation
+
+• **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[floatingLabelFoundation](_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
 
 ___
 
@@ -866,6 +883,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
 Returns the last child that is an element, and null otherwise.
+
+___
+
+### `Optional` lineRippleFoundation
+
+• **lineRippleFoundation**? : *MDCLineRippleFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lineRippleFoundation](_loggingelement_.loggingelement.md#optional-lineripplefoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
 ___
 
@@ -2407,6 +2434,30 @@ Defined in src/substation-editor.ts:13
 
 ## Accessors
 
+###  desc
+
+• **get desc**(): *string | null*
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[desc](_substation_editor_base_.substationeditorbase.md#desc)*
+
+Defined in src/substation-editor-base.ts:25
+
+**Returns:** *string | null*
+
+___
+
+###  editUI
+
+• **get editUI**(): *DialogBase*
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[editUI](_substation_editor_base_.substationeditorbase.md#editui)*
+
+Defined in src/substation-editor-base.ts:29
+
+**Returns:** *DialogBase*
+
+___
+
 ### `Protected` hasUpdated
 
 • **get hasUpdated**(): *number*
@@ -2416,6 +2467,18 @@ Defined in src/substation-editor.ts:13
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
+
+___
+
+###  name
+
+• **get name**(): *string | null*
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[name](_substation_editor_base_.substationeditorbase.md#name)*
+
+Defined in src/substation-editor-base.ts:20
+
+**Returns:** *string | null*
 
 ___
 
@@ -2536,6 +2599,18 @@ Name | Type |
 `type` | string |
 `listener` | EventListenerOrEventListenerObject |
 `options?` | boolean &#124; AddEventListenerOptions |
+
+**Returns:** *void*
+
+___
+
+###  addSubstation
+
+▸ **addSubstation**(): *void*
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[addSubstation](_substation_editor_base_.substationeditorbase.md#addsubstation)*
+
+Defined in src/substation-editor-base.ts:43
 
 **Returns:** *void*
 
@@ -3914,7 +3989,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:12
+Defined in src/substation-editor-base.ts:53
 
 **Returns:** *TemplateResult*
 
@@ -4025,6 +4100,18 @@ Name | Type | Description |
 **Returns:** *Promise‹unknown›*
 
 A Promise that is resolved when the update completes.
+
+___
+
+###  saveSubstation
+
+▸ **saveSubstation**(): *void*
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[saveSubstation](_substation_editor_base_.substationeditorbase.md#savesubstation)*
+
+Defined in src/substation-editor-base.ts:33
+
+**Returns:** *void*
 
 ___
 

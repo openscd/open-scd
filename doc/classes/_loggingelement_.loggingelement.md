@@ -58,6 +58,7 @@
 * [draggable](_loggingelement_.loggingelement.md#draggable)
 * [firstChild](_loggingelement_.loggingelement.md#readonly-firstchild)
 * [firstElementChild](_loggingelement_.loggingelement.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)
 * [hidden](_loggingelement_.loggingelement.md#hidden)
 * [history](_loggingelement_.loggingelement.md#history)
 * [id](_loggingelement_.loggingelement.md#id)
@@ -69,6 +70,7 @@
 * [lang](_loggingelement_.loggingelement.md#lang)
 * [lastChild](_loggingelement_.loggingelement.md#readonly-lastchild)
 * [lastElementChild](_loggingelement_.loggingelement.md#readonly-lastelementchild)
+* [lineRippleFoundation](_loggingelement_.loggingelement.md#optional-lineripplefoundation)
 * [localName](_loggingelement_.loggingelement.md#readonly-localname)
 * [namespaceURI](_loggingelement_.loggingelement.md#readonly-namespaceuri)
 * [nextElementSibling](_loggingelement_.loggingelement.md#readonly-nextelementsibling)
@@ -757,6 +759,16 @@ Returns the first child that is an element, and null otherwise.
 
 ___
 
+### `Optional` floatingLabelFoundation
+
+• **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[floatingLabelFoundation](_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
+
+___
+
 ###  hidden
 
 • **hidden**: *boolean*
@@ -870,6 +882,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
 Returns the last child that is an element, and null otherwise.
+
+___
+
+### `Optional` lineRippleFoundation
+
+• **lineRippleFoundation**? : *MDCLineRippleFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lineRippleFoundation](_loggingelement_.loggingelement.md#optional-lineripplefoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
 ___
 

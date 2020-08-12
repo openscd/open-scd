@@ -59,6 +59,7 @@
 * [draggable](_substation_editor_base_.substationeditorbase.md#draggable)
 * [firstChild](_substation_editor_base_.substationeditorbase.md#readonly-firstchild)
 * [firstElementChild](_substation_editor_base_.substationeditorbase.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_substation_editor_base_.substationeditorbase.md#optional-floatinglabelfoundation)
 * [hidden](_substation_editor_base_.substationeditorbase.md#hidden)
 * [id](_substation_editor_base_.substationeditorbase.md#id)
 * [innerHTML](_substation_editor_base_.substationeditorbase.md#innerhtml)
@@ -69,6 +70,7 @@
 * [lang](_substation_editor_base_.substationeditorbase.md#lang)
 * [lastChild](_substation_editor_base_.substationeditorbase.md#readonly-lastchild)
 * [lastElementChild](_substation_editor_base_.substationeditorbase.md#readonly-lastelementchild)
+* [lineRippleFoundation](_substation_editor_base_.substationeditorbase.md#optional-lineripplefoundation)
 * [localName](_substation_editor_base_.substationeditorbase.md#readonly-localname)
 * [namespaceURI](_substation_editor_base_.substationeditorbase.md#readonly-namespaceuri)
 * [nextElementSibling](_substation_editor_base_.substationeditorbase.md#readonly-nextelementsibling)
@@ -201,7 +203,10 @@
 
 ### Accessors
 
+* [desc](_substation_editor_base_.substationeditorbase.md#desc)
+* [editUI](_substation_editor_base_.substationeditorbase.md#editui)
 * [hasUpdated](_substation_editor_base_.substationeditorbase.md#protected-hasupdated)
+* [name](_substation_editor_base_.substationeditorbase.md#name)
 * [updateComplete](_substation_editor_base_.substationeditorbase.md#updatecomplete)
 * [observedAttributes](_substation_editor_base_.substationeditorbase.md#static-observedattributes)
 
@@ -209,6 +214,7 @@
 
 * [_getUpdateComplete](_substation_editor_base_.substationeditorbase.md#protected-_getupdatecomplete)
 * [addEventListener](_substation_editor_base_.substationeditorbase.md#addeventlistener)
+* [addSubstation](_substation_editor_base_.substationeditorbase.md#addsubstation)
 * [adoptStyles](_substation_editor_base_.substationeditorbase.md#protected-adoptstyles)
 * [after](_substation_editor_base_.substationeditorbase.md#after)
 * [animate](_substation_editor_base_.substationeditorbase.md#animate)
@@ -277,6 +283,7 @@
 * [requestFullscreen](_substation_editor_base_.substationeditorbase.md#requestfullscreen)
 * [requestPointerLock](_substation_editor_base_.substationeditorbase.md#requestpointerlock)
 * [requestUpdate](_substation_editor_base_.substationeditorbase.md#requestupdate)
+* [saveSubstation](_substation_editor_base_.substationeditorbase.md#savesubstation)
 * [scroll](_substation_editor_base_.substationeditorbase.md#scroll)
 * [scrollBy](_substation_editor_base_.substationeditorbase.md#scrollby)
 * [scrollIntoView](_substation_editor_base_.substationeditorbase.md#scrollintoview)
@@ -723,7 +730,7 @@ ___
 
 • **doc**: *Element | null* = null
 
-Defined in src/substation-editor-base.ts:10
+Defined in src/substation-editor-base.ts:17
 
 ___
 
@@ -758,6 +765,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
 Returns the first child that is an element, and null otherwise.
+
+___
+
+### `Optional` floatingLabelFoundation
+
+• **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[floatingLabelFoundation](_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
 
 ___
 
@@ -866,6 +883,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
 Returns the last child that is an element, and null otherwise.
+
+___
+
+### `Optional` lineRippleFoundation
+
+• **lineRippleFoundation**? : *MDCLineRippleFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lineRippleFoundation](_loggingelement_.loggingelement.md#optional-lineripplefoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
 ___
 
@@ -2410,6 +2437,26 @@ using the `css` tag function.
 
 ## Accessors
 
+###  desc
+
+• **get desc**(): *string | null*
+
+Defined in src/substation-editor-base.ts:25
+
+**Returns:** *string | null*
+
+___
+
+###  editUI
+
+• **get editUI**(): *DialogBase*
+
+Defined in src/substation-editor-base.ts:29
+
+**Returns:** *DialogBase*
+
+___
+
 ### `Protected` hasUpdated
 
 • **get hasUpdated**(): *number*
@@ -2419,6 +2466,16 @@ using the `css` tag function.
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
+
+___
+
+###  name
+
+• **get name**(): *string | null*
+
+Defined in src/substation-editor-base.ts:20
+
+**Returns:** *string | null*
 
 ___
 
@@ -2539,6 +2596,16 @@ Name | Type |
 `type` | string |
 `listener` | EventListenerOrEventListenerObject |
 `options?` | boolean &#124; AddEventListenerOptions |
+
+**Returns:** *void*
+
+___
+
+###  addSubstation
+
+▸ **addSubstation**(): *void*
+
+Defined in src/substation-editor-base.ts:43
 
 **Returns:** *void*
 
@@ -3915,7 +3982,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:12
+Defined in src/substation-editor-base.ts:53
 
 **Returns:** *TemplateResult*
 
@@ -4026,6 +4093,16 @@ Name | Type | Description |
 **Returns:** *Promise‹unknown›*
 
 A Promise that is resolved when the update completes.
+
+___
+
+###  saveSubstation
+
+▸ **saveSubstation**(): *void*
+
+Defined in src/substation-editor-base.ts:33
+
+**Returns:** *void*
 
 ___
 

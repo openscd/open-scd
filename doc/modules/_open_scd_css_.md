@@ -25,7 +25,7 @@
     display: none;
   }
 
-  #log {
+  mwc-dialog {
     --mdc-dialog-max-width: 92vw;
   }
 

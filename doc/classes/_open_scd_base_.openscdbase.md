@@ -61,6 +61,7 @@
 * [draggable](_open_scd_base_.openscdbase.md#draggable)
 * [firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)
 * [firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_open_scd_base_.openscdbase.md#optional-floatinglabelfoundation)
 * [hidden](_open_scd_base_.openscdbase.md#hidden)
 * [history](_open_scd_base_.openscdbase.md#history)
 * [id](_open_scd_base_.openscdbase.md#id)
@@ -72,6 +73,7 @@
 * [lang](_open_scd_base_.openscdbase.md#lang)
 * [lastChild](_open_scd_base_.openscdbase.md#readonly-lastchild)
 * [lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)
+* [lineRippleFoundation](_open_scd_base_.openscdbase.md#optional-lineripplefoundation)
 * [localName](_open_scd_base_.openscdbase.md#readonly-localname)
 * [namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)
 * [nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)
@@ -804,6 +806,16 @@ Returns the first child that is an element, and null otherwise.
 
 ___
 
+### `Optional` floatingLabelFoundation
+
+• **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[floatingLabelFoundation](_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
+
+___
+
 ###  hidden
 
 • **hidden**: *boolean*
@@ -919,6 +931,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
 Returns the last child that is an element, and null otherwise.
+
+___
+
+### `Optional` lineRippleFoundation
+
+• **lineRippleFoundation**? : *MDCLineRippleFoundation*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lineRippleFoundation](_loggingelement_.loggingelement.md#optional-lineripplefoundation)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
 ___
 

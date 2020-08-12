@@ -1,8 +1,8 @@
 import { css } from 'lit-element';
 
 export const styles = css`
-  :host {
-    display: flex;
+  main {
+    padding: 16px;
   }
 
   * {
@@ -13,8 +13,30 @@ export const styles = css`
     --mdc-theme-on-background: #005496;
   }
 
-  tt {
+  h1,
+  h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+  }
+
+  mwc-dialog {
+    display: flex;
+    flex-direction: column;
+  }
+
+  mwc-dialog > * {
+    display: block;
+    margin-top: 24px;
+  }
+
+  pre {
     font-family: 'Roboto Mono', monospace;
     font-weight: 300;
+  }
+
+  mwc-fab {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
   }
 `;
