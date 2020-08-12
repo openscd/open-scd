@@ -1,10 +1,10 @@
 import { property } from 'lit-element';
 import { LoggingElement } from './LoggingElement.js';
 
-export interface PendingStateDetail {
+export interface PendingState {
   promise: Promise<string>;
 }
-export type PendingStateEvent = CustomEvent<PendingStateDetail>;
+export type PendingStateEvent = CustomEvent<PendingState>;
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;

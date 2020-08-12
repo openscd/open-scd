@@ -14,7 +14,7 @@
 
 ### Interfaces
 
-* [PendingStateDetail](../interfaces/_waitingelement_.pendingstatedetail.md)
+* [PendingState](../interfaces/_waitingelement_.pendingstate.md)
 
 ### Type aliases
 
@@ -24,6 +24,6 @@
 
 ###  PendingStateEvent
 
-Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_waitingelement_.pendingstatedetail.md)›*
+Ƭ **PendingStateEvent**: *CustomEvent‹[PendingState](../interfaces/_waitingelement_.pendingstate.md)›*
 
 Defined in src/WaitingElement.ts:7

@@ -17,7 +17,7 @@ import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
 import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 
-import { WaitingElement, PendingStateDetail } from './WaitingElement.js';
+import { WaitingElement, PendingState } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 
@@ -134,7 +134,7 @@ export class OpenSCDBase extends WaitingElement {
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(
-      new CustomEvent<PendingStateDetail>('pending-state', {
+      new CustomEvent<PendingState>('pending-state', {
         composed: true,
         bubbles: true,
         detail: { promise: this.loadDoc(value) },

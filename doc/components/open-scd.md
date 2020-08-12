@@ -28,6 +28,6 @@
 
 ## Events
 
-| Event           | Type                              |
-|-----------------|-----------------------------------|
-| `pending-state` | `CustomEvent<PendingStateDetail>` |
+| Event           | Type                        |
+|-----------------|-----------------------------|
+| `pending-state` | `CustomEvent<PendingState>` |
