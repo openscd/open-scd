@@ -11,7 +11,7 @@ describe('open-scd', () => {
     element = await fixture(html`
       <open-scd></open-scd>
       <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&family=Roboto:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap"
         rel="stylesheet"
       />
       <link
