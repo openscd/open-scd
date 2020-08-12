@@ -53,6 +53,7 @@
 * [contentEditable](_substation_editor_.substationeditor.md#contenteditable)
 * [dataset](_substation_editor_.substationeditor.md#readonly-dataset)
 * [dir](_substation_editor_.substationeditor.md#dir)
+* [docs](_substation_editor_.substationeditor.md#docs)
 * [draggable](_substation_editor_.substationeditor.md#draggable)
 * [firstChild](_substation_editor_.substationeditor.md#readonly-firstchild)
 * [firstElementChild](_substation_editor_.substationeditor.md#readonly-firstelementchild)
@@ -713,6 +714,16 @@ ___
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dir](_loggingelement_.loggingelement.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
+
+___
+
+###  docs
+
+• **docs**: *NodeList* = document.createDocumentFragment().childNodes
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[docs](_substation_editor_base_.substationeditorbase.md#docs)*
+
+Defined in src/substation-editor-base.ts:10
 
 ___
 
@@ -3903,7 +3914,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:4
+Defined in src/substation-editor-base.ts:12
 
 **Returns:** *TemplateResult*
 

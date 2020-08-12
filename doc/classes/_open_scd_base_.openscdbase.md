@@ -38,7 +38,7 @@
 * [TEXT_NODE](_open_scd_base_.openscdbase.md#readonly-text_node)
 * [accessKey](_open_scd_base_.openscdbase.md#accesskey)
 * [accessKeyLabel](_open_scd_base_.openscdbase.md#readonly-accesskeylabel)
-* [activeEditor](_open_scd_base_.openscdbase.md#activeeditor)
+* [activeTab](_open_scd_base_.openscdbase.md#activetab)
 * [assignedSlot](_open_scd_base_.openscdbase.md#readonly-assignedslot)
 * [attributes](_open_scd_base_.openscdbase.md#readonly-attributes)
 * [autocapitalize](_open_scd_base_.openscdbase.md#autocapitalize)
@@ -560,11 +560,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
 
 ___
 
-###  activeEditor
+###  activeTab
 
-• **activeEditor**: *number* = 0
+• **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:141
+Defined in src/open-scd-base.ts:122
+
+The currently active editor tab.
 
 ___
 
@@ -734,7 +736,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:147
+Defined in src/open-scd-base.ts:128
 
 ___
 
@@ -762,7 +764,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:144
+Defined in src/open-scd-base.ts:125
 
 The `XMLDocument` representation of the current file.
 
@@ -2317,7 +2319,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:146
+Defined in src/open-scd-base.ts:127
 
 The name of the current file.
 
@@ -2439,7 +2441,7 @@ ___
     null
   )
 
-Defined in src/open-scd-base.ts:134
+Defined in src/open-scd-base.ts:114
 
 ___
 
@@ -2521,7 +2523,7 @@ using the `css` tag function.
 
 • **get fileUI**(): *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:173
+Defined in src/open-scd-base.ts:183
 
 **Returns:** *HTMLInputElement*
 
@@ -2543,7 +2545,7 @@ ___
 
 • **get logUI**(): *DialogBase*
 
-Defined in src/open-scd-base.ts:167
+Defined in src/open-scd-base.ts:177
 
 **Returns:** *DialogBase*
 
@@ -2553,7 +2555,7 @@ ___
 
 • **get menuUI**(): *DrawerBase*
 
-Defined in src/open-scd-base.ts:164
+Defined in src/open-scd-base.ts:174
 
 **Returns:** *DrawerBase*
 
@@ -2563,7 +2565,7 @@ ___
 
 • **get messageUI**(): *SnackbarBase*
 
-Defined in src/open-scd-base.ts:170
+Defined in src/open-scd-base.ts:180
 
 **Returns:** *SnackbarBase*
 
@@ -2573,7 +2575,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:150
+Defined in src/open-scd-base.ts:131
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2581,7 +2583,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:153
+Defined in src/open-scd-base.ts:134
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3117,7 +3119,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:177
+Defined in src/open-scd-base.ts:187
 
 **Parameters:**
 
@@ -3697,7 +3699,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:182
+Defined in src/open-scd-base.ts:192
 
 **Parameters:**
 
@@ -3713,7 +3715,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:223
+Defined in src/open-scd-base.ts:233
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4170,7 +4172,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:51
+Defined in src/open-scd-base.ts:25
 
 **Returns:** *TemplateResult*
 
@@ -4787,7 +4789,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:25
+Defined in src/open-scd-base.ts:145
 
 ###  editors
 
@@ -4796,23 +4798,26 @@ Defined in src/open-scd-base.ts:25
         label: 'Substation',
         id: 'substation',
         icon: 'border_outer',
-        content: plugin(
-          './substation-editor.js',
-          html`<substation-editor></substation-editor>`
-        ),
+        getContent: (): ((part: NodePart) => void) =>
+          plugin(
+            './substation-editor.js',
+            html`<substation-editor
+              .docs=${this.doc.querySelectorAll('Substation')}
+            ></substation-editor>`
+          ),
       },
       {
         label: 'Test',
         id: 'test',
         icon: 'self_improvement',
-        content: html`<p>Testing...</p>`,
+        getContent: (): TemplateResult => html`<p>Testing...</p>`,
       },
       {
         label: 'Visual Filler',
         id: 'filler',
         icon: 'science',
-        content: html`<p>Filling space...</p>`,
+        getContent: (): TemplateResult => html`<p>Filling space...</p>`,
       },
     ]
 
-Defined in src/open-scd-base.ts:26
+Defined in src/open-scd-base.ts:146
