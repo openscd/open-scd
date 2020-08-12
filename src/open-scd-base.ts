@@ -152,7 +152,7 @@ export class OpenSCDBase extends WaitingElement {
           plugin(
             './substation-editor.js',
             html`<substation-editor
-              .docs=${this.doc.querySelectorAll('Substation')}
+              .doc=${this.doc.querySelector('Substation')}
             ></substation-editor>`
           ),
       },

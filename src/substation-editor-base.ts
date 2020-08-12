@@ -7,14 +7,14 @@ import {
 
 export class SubstationEditorBase extends LitElement {
   @internalProperty()
-  docs: NodeList = document.createDocumentFragment().childNodes;
+  doc: Element | null = null;
 
   render(): TemplateResult {
     return html`<div>
-      <tt @click=${() => console.log(this.docs)}
-        >${Array.from(this.docs).map(d =>
-          new XMLSerializer().serializeToString(d)
-        )}</tt
+      <tt @click=${() => console.log(this.doc)}
+        >${this.doc
+          ? new XMLSerializer().serializeToString(this.doc)
+          : null}</tt
       >
     </div>`;
   }

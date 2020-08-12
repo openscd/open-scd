@@ -2,6 +2,6 @@
 
 ## Properties
 
-| Property | Type       | Default      |
-|----------|------------|--------------|
-| `docs`   | `NodeList` | "childNodes" |
+| Property | Type              | Default |
+|----------|-------------------|---------|
+| `doc`    | `Element \| null` | null    |

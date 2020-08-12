@@ -53,7 +53,7 @@
 * [contentEditable](_substation_editor_.substationeditor.md#contenteditable)
 * [dataset](_substation_editor_.substationeditor.md#readonly-dataset)
 * [dir](_substation_editor_.substationeditor.md#dir)
-* [docs](_substation_editor_.substationeditor.md#docs)
+* [doc](_substation_editor_.substationeditor.md#doc)
 * [draggable](_substation_editor_.substationeditor.md#draggable)
 * [firstChild](_substation_editor_.substationeditor.md#readonly-firstchild)
 * [firstElementChild](_substation_editor_.substationeditor.md#readonly-firstelementchild)
@@ -717,11 +717,11 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
 ___
 
-###  docs
+###  doc
 
-• **docs**: *NodeList* = document.createDocumentFragment().childNodes
+• **doc**: *Element | null* = null
 
-*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[docs](_substation_editor_base_.substationeditorbase.md#docs)*
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[doc](_substation_editor_base_.substationeditorbase.md#doc)*
 
 Defined in src/substation-editor-base.ts:10
 

@@ -4778,7 +4778,7 @@ Defined in src/open-scd-base.ts:145
           plugin(
             './substation-editor.js',
             html`<substation-editor
-              .docs=${this.doc.querySelectorAll('Substation')}
+              .doc=${this.doc.querySelector('Substation')}
             ></substation-editor>`
           ),
       },
