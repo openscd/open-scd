@@ -25,7 +25,7 @@ export interface AddDetail {
 
 export class SubstationEditorBase extends LitElement {
   @internalProperty()
-  doc: Element | null = null;
+  doc: Readonly<Element> | null = null;
 
   @property({ type: String })
   get name(): string | null {
