@@ -728,7 +728,7 @@ ___
 
 ###  doc
 
-• **doc**: *Element | null* = null
+• **doc**: *Readonly‹Element› | null* = null
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[doc](_substation_editor_base_.substationeditorbase.md#doc)*
 

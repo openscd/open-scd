@@ -730,7 +730,7 @@ ___
 
 ###  doc
 
-• **doc**: *Element | null* = null
+• **doc**: *Readonly‹Element› | null* = null
 
 Defined in src/substation-editor-base.ts:28
 
