@@ -28,6 +28,6 @@
 
 ## Events
 
-| Event           | Type                           |
-|-----------------|--------------------------------|
-| `pending-state` | `CustomEvent<Promise<string>>` |
+| Event           | Type                              |
+|-----------------|-----------------------------------|
+| `pending-state` | `CustomEvent<PendingStateDetail>` |

@@ -2359,7 +2359,7 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/WaitingElement.ts:13
+Defined in src/WaitingElement.ts:16
 
 Whether the element is currently waiting for some async work.
 
@@ -2369,7 +2369,7 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/WaitingElement.ts:14
+Defined in src/WaitingElement.ts:17
 
 ___
 
@@ -2377,7 +2377,7 @@ ___
 
 • **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
 
-Defined in src/WaitingElement.ts:16
+Defined in src/WaitingElement.ts:19
 
 A promise which resolves once all currently pending work is done.
 
@@ -3022,7 +3022,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#firstupdated)*
 
-Defined in src/WaitingElement.ts:17
+Defined in src/WaitingElement.ts:20
 
 **Returns:** *void*
 

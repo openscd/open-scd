@@ -204,9 +204,11 @@
 ### Accessors
 
 * [desc](_substation_editor_base_.substationeditorbase.md#desc)
+* [descUI](_substation_editor_base_.substationeditorbase.md#descui)
 * [editUI](_substation_editor_base_.substationeditorbase.md#editui)
 * [hasUpdated](_substation_editor_base_.substationeditorbase.md#protected-hasupdated)
 * [name](_substation_editor_base_.substationeditorbase.md#name)
+* [nameUI](_substation_editor_base_.substationeditorbase.md#nameui)
 * [updateComplete](_substation_editor_base_.substationeditorbase.md#updatecomplete)
 * [observedAttributes](_substation_editor_base_.substationeditorbase.md#static-observedattributes)
 
@@ -730,7 +732,7 @@ ___
 
 • **doc**: *Element | null* = null
 
-Defined in src/substation-editor-base.ts:17
+Defined in src/substation-editor-base.ts:28
 
 ___
 
@@ -2441,9 +2443,19 @@ using the `css` tag function.
 
 • **get desc**(): *string | null*
 
-Defined in src/substation-editor-base.ts:25
+Defined in src/substation-editor-base.ts:36
 
 **Returns:** *string | null*
+
+___
+
+###  descUI
+
+• **get descUI**(): *TextField*
+
+Defined in src/substation-editor-base.ts:46
+
+**Returns:** *TextField*
 
 ___
 
@@ -2451,7 +2463,7 @@ ___
 
 • **get editUI**(): *DialogBase*
 
-Defined in src/substation-editor-base.ts:29
+Defined in src/substation-editor-base.ts:40
 
 **Returns:** *DialogBase*
 
@@ -2473,9 +2485,19 @@ ___
 
 • **get name**(): *string | null*
 
-Defined in src/substation-editor-base.ts:20
+Defined in src/substation-editor-base.ts:31
 
 **Returns:** *string | null*
+
+___
+
+###  nameUI
+
+• **get nameUI**(): *TextField*
+
+Defined in src/substation-editor-base.ts:43
+
+**Returns:** *TextField*
 
 ___
 
@@ -2605,7 +2627,7 @@ ___
 
 ▸ **addSubstation**(): *void*
 
-Defined in src/substation-editor-base.ts:43
+Defined in src/substation-editor-base.ts:59
 
 **Returns:** *void*
 
@@ -3982,7 +4004,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:53
+Defined in src/substation-editor-base.ts:68
 
 **Returns:** *TemplateResult*
 
@@ -4100,7 +4122,7 @@ ___
 
 ▸ **saveSubstation**(): *void*
 
-Defined in src/substation-editor-base.ts:33
+Defined in src/substation-editor-base.ts:50
 
 **Returns:** *void*
 

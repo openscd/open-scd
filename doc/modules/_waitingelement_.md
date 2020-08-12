@@ -12,6 +12,10 @@
 
 * [WaitingElement](../classes/_waitingelement_.waitingelement.md)
 
+### Interfaces
+
+* [PendingStateDetail](../interfaces/_waitingelement_.pendingstatedetail.md)
+
 ### Type aliases
 
 * [PendingStateEvent](_waitingelement_.md#pendingstateevent)
@@ -20,6 +24,6 @@
 
 ###  PendingStateEvent
 
-Ƭ **PendingStateEvent**: *CustomEvent‹Promise‹string››*
+Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_waitingelement_.pendingstatedetail.md)›*
 
-Defined in src/WaitingElement.ts:4
+Defined in src/WaitingElement.ts:7

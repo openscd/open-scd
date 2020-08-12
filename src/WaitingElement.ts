@@ -1,7 +1,10 @@
 import { property } from 'lit-element';
 import { LoggingElement } from './LoggingElement.js';
 
-export type PendingStateEvent = CustomEvent<Promise<string>>;
+export interface PendingStateDetail {
+  promise: Promise<string>;
+}
+export type PendingStateEvent = CustomEvent<PendingStateDetail>;
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;
@@ -18,10 +21,10 @@ export class WaitingElement extends LoggingElement {
     super.firstUpdated();
     this.addEventListener('pending-state', async (e: PendingStateEvent) => {
       this.waiting = true;
-      this.work.add(e.detail);
+      this.work.add(e.detail.promise);
       this.workDone = Promise.allSettled(this.work);
-      await e.detail.then(this.info, this.warn);
-      this.work.delete(e.detail);
+      await e.detail.promise.then(this.info, this.warn);
+      this.work.delete(e.detail.promise);
       this.waiting = this.work.size > 0;
     });
   }

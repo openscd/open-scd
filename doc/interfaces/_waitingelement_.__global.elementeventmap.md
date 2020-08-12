@@ -18,4 +18,4 @@
 
 • **pending-state**: *[PendingStateEvent](../modules/_waitingelement_.md#pendingstateevent)*
 
-Defined in src/WaitingElement.ts:7
+Defined in src/WaitingElement.ts:10

@@ -12,6 +12,17 @@ import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { TextField } from '@material/mwc-textfield';
+
+export interface EditDetail {
+  name?: string;
+  desc?: string;
+}
+
+export interface AddDetail {
+  name: string;
+  desc?: string;
+}
+
 export class SubstationEditorBase extends LitElement {
   @internalProperty()
   doc: Element | null = null;
@@ -29,25 +40,29 @@ export class SubstationEditorBase extends LitElement {
   get editUI(): DialogBase {
     return this.shadowRoot!.querySelector('mwc-dialog')!;
   }
+  get nameUI(): TextField {
+    return <TextField>this.editUI.querySelector('mwc-textfield[label="name"]')!;
+  }
+  get descUI(): TextField {
+    return <TextField>this.editUI.querySelector('mwc-textfield[label="desc"]')!;
+  }
 
   saveSubstation(): void {
-    console.log(
-      'save',
-      (<TextField>this.editUI.querySelector('mwc-textfield[label="name"]'))
-        .value,
-      (<TextField>this.editUI.querySelector('mwc-textfield[label="desc"]'))
-        .value
-    );
+    const event = new CustomEvent<EditDetail>('edit', {
+      detail: {},
+    });
+    if (this.nameUI.value != this.name) event.detail.name = this.nameUI.value;
+    if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
+    this.dispatchEvent(event);
   }
 
   addSubstation(): void {
-    console.log(
-      'add',
-      (<TextField>this.editUI.querySelector('mwc-textfield[label="name"]'))
-        .value,
-      (<TextField>this.editUI.querySelector('mwc-textfield[label="desc"]'))
-        .value
-    );
+    if (this.nameUI.value == '') return;
+    const event = new CustomEvent<AddDetail>('add', {
+      detail: { name: this.nameUI.value },
+    });
+    if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
+    this.dispatchEvent(event);
   }
 
   render(): TemplateResult {
@@ -81,7 +96,11 @@ ${this.doc ? new XMLSerializer().serializeToString(this.doc) : null}</pre
           @click=${() => (this.editUI.open = true)}
         ></mwc-fab>
         <mwc-dialog heading="Add Substation">
-          <mwc-textfield label="name" dialogInitialFocus></mwc-textfield>
+          <mwc-textfield
+            label="name"
+            required
+            dialogInitialFocus
+          ></mwc-textfield>
           <mwc-textfield label="desc"></mwc-textfield>
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
