@@ -1,11 +1,6 @@
 import { css } from 'lit-element';
 
 export const styles = css`
-  :host {
-    height: 100vh;
-    margin: 0;
-  }
-
   * {
     --mdc-theme-primary: #005496;
     --mdc-theme-secondary: #d20a11;

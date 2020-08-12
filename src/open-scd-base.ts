@@ -1,5 +1,5 @@
 import { html, property, internalProperty } from 'lit-element';
-import { TemplateResult } from 'lit-html';
+import { TemplateResult, NodePart } from 'lit-html';
 
 import '@material/mwc-button';
 import '@material/mwc-circular-progress-four-color';
@@ -22,37 +22,12 @@ import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 
 export class OpenSCDBase extends WaitingElement {
-  plugins = {
-    editors: [
-      {
-        label: 'Substation',
-        id: 'substation',
-        icon: 'border_outer',
-        content: plugin(
-          './substation-editor.js',
-          html`<substation-editor></substation-editor>`
-        ),
-      },
-      {
-        label: 'Test',
-        id: 'test',
-        icon: 'self_improvement',
-        content: html`<p>Testing...</p>`,
-      },
-      {
-        label: 'Visual Filler',
-        id: 'filler',
-        icon: 'science',
-        content: html`<p>Filling space...</p>`,
-      },
-    ],
-  };
-
   render(): TemplateResult {
     return html`
       <mwc-drawer hasheader type="modal">
         <span slot="title">Menu</span>
         <span slot="subtitle">${this.srcName}</span>
+
         <mwc-top-app-bar-fixed slot="appContent">
           <mwc-icon-button
             icon="menu"
@@ -74,7 +49,7 @@ export class OpenSCDBase extends WaitingElement {
           ></mwc-icon-button>
           <mwc-tab-bar
             @MDCTabBar:activated=${(e: CustomEvent) =>
-              (this.activeEditor = e.detail.index)}
+              (this.activeTab = e.detail.index)}
           >
             ${this.plugins.editors.map(
               editor =>
@@ -85,11 +60,14 @@ export class OpenSCDBase extends WaitingElement {
                 ></mwc-tab>`
             )}
           </mwc-tab-bar>
-          ${this.plugins.editors[this.activeEditor].content}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
+
+      ${this.plugins.editors[this.activeTab].getContent()}
+
       <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
       </mwc-circular-progress-four-color>
+
       <mwc-snackbar
         id="errorSnackbar"
         timeoutMs="-1"
@@ -101,6 +79,7 @@ export class OpenSCDBase extends WaitingElement {
         >
         <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
       </mwc-snackbar>
+
       <mwc-dialog id="log" heading="Log">
         <mwc-list id="content" activatable>
           ${this.history.length < 1
@@ -127,6 +106,7 @@ export class OpenSCDBase extends WaitingElement {
         </mwc-list>
         <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
       </mwc-dialog>
+
       <input id="file-input" type="file" @change="${this.loadFile}" />
     `;
   }
@@ -137,8 +117,9 @@ export class OpenSCDBase extends WaitingElement {
     null
   );
 
+  /** The currently active editor tab. */
   @property({ type: Number })
-  activeEditor = 0;
+  activeTab = 0;
   /** The `XMLDocument` representation of the current file. */
   @internalProperty() // does not generate an attribute binding
   doc: XMLDocument = OpenSCDBase.emptySCD;
@@ -160,6 +141,35 @@ export class OpenSCDBase extends WaitingElement {
       })
     );
   }
+
+  plugins = {
+    editors: [
+      {
+        label: 'Substation',
+        id: 'substation',
+        icon: 'border_outer',
+        getContent: (): ((part: NodePart) => void) =>
+          plugin(
+            './substation-editor.js',
+            html`<substation-editor
+              .docs=${this.doc.querySelectorAll('Substation')}
+            ></substation-editor>`
+          ),
+      },
+      {
+        label: 'Test',
+        id: 'test',
+        icon: 'self_improvement',
+        getContent: (): TemplateResult => html`<p>Testing...</p>`,
+      },
+      {
+        label: 'Visual Filler',
+        id: 'filler',
+        icon: 'science',
+        getContent: (): TemplateResult => html`<p>Filling space...</p>`,
+      },
+    ],
+  };
 
   get menuUI(): DrawerBase {
     return this.shadowRoot!.querySelector('mwc-drawer')!;
