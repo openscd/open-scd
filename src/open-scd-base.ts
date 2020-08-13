@@ -1,5 +1,5 @@
 import { html, property, internalProperty } from 'lit-element';
-import { TemplateResult, NodePart } from 'lit-html';
+import { TemplateResult, NodePart, nothing } from 'lit-html';
 
 import '@material/mwc-button';
 import '@material/mwc-circular-progress-four-color';
@@ -20,14 +20,45 @@ import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 import { WaitingElement, PendingState } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
+import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+
+interface MenuEntry {
+  icon: string;
+  name: string;
+  startsGroup?: boolean;
+  actionItem?: boolean;
+  action?: () => void;
+}
 
 export class OpenSCDBase extends WaitingElement {
   render(): TemplateResult {
     return html`
       <mwc-drawer hasheader type="modal">
-        <span slot="title">Menu</span>
+        <span slot="title"
+          >${this.doc.querySelector('Substation')?.getAttribute('name') ??
+          'Menu'}</span
+        >
         <span slot="subtitle">${this.srcName}</span>
-
+        <mwc-list
+          @action=${(ae: CustomEvent<ActionDetail>) =>
+            this.menu[ae.detail.index]?.action!()}
+        >
+          ${this.menu.map(
+            me => html`
+              ${me.startsGroup
+                ? html`<li divider padded role="separator"></li>`
+                : nothing}
+              <mwc-list-item
+                graphic="control"
+                .disabled=${me.action ? false : true}
+                ><mwc-icon slot="graphic">
+                  ${me.icon}
+                </mwc-icon>
+                ${me.name}
+              </mwc-list-item>
+            `
+          )}
+        </mwc-list>
         <mwc-top-app-bar-fixed slot="appContent">
           <mwc-icon-button
             icon="menu"
@@ -37,16 +68,15 @@ export class OpenSCDBase extends WaitingElement {
           <div slot="title" id="title">
             ${this.srcName}
           </div>
-          <mwc-icon-button
-            icon="folder_open"
-            slot="actionItems"
-            @click="${() => this.fileUI.click()}"
-          ></mwc-icon-button>
-          <mwc-icon-button
-            icon="toc"
-            slot="actionItems"
-            @click="${() => this.logUI.show()}"
-          ></mwc-icon-button>
+          ${this.menu.map(me =>
+            me.actionItem
+              ? html`<mwc-icon-button
+                  slot="actionItems"
+                  icon="${me.icon}"
+                  @click=${me.action}
+                ></mwc-icon-button>`
+              : nothing
+          )}
           <mwc-tab-bar
             @MDCTabBar:activated=${(e: CustomEvent) =>
               (this.activeTab = e.detail.index)}
@@ -142,12 +172,32 @@ export class OpenSCDBase extends WaitingElement {
     );
   }
 
+  menu: MenuEntry[] = [
+    {
+      icon: 'folder_open',
+      name: 'Open project',
+      startsGroup: true,
+      actionItem: true,
+      action: (): void => this.fileUI.click(),
+    },
+    { icon: 'create_new_folder', name: 'New project' },
+    { icon: 'snippet_folder', name: 'Import IED' },
+    { icon: 'save', name: 'Save project' },
+    { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
+    {
+      icon: 'rule',
+      name: 'View log',
+      actionItem: true,
+      action: (): void => this.logUI.show(),
+    },
+  ];
+
   plugins = {
     editors: [
       {
         label: 'Substation',
         id: 'substation',
-        icon: 'border_outer',
+        icon: 'design_services', //alt: 'developer_board', //alt: 'engineering',
         getContent: (): ((part: NodePart) => void) =>
           plugin(
             './substation-editor.js',
@@ -157,16 +207,22 @@ export class OpenSCDBase extends WaitingElement {
           ),
       },
       {
-        label: 'Test',
-        id: 'test',
-        icon: 'self_improvement',
-        getContent: (): TemplateResult => html`<p>Testing...</p>`,
+        label: 'Communication',
+        id: 'communication',
+        icon: 'quickreply', //alt: 'sync_alt', //alt: 'message',
+        getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
       },
       {
-        label: 'Visual Filler',
-        id: 'filler',
-        icon: 'science',
-        getContent: (): TemplateResult => html`<p>Filling space...</p>`,
+        label: 'Network',
+        id: 'network',
+        icon: 'settings_ethernet', //alt: 'settings_input_composite', //alt: 'device_hub',
+        getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
+      },
+      {
+        label: 'IED',
+        id: 'ied',
+        icon: 'router', //alt: 'dynamic_form', //alt: 'online_prediction',
+        getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
       },
     ],
   };
