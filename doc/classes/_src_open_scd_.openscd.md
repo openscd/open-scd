@@ -1,12 +1,12 @@
-[@material/progress-indicator](../README.md) › [Globals](../globals.md) › ["src/open-scd"](../modules/_src_open_scd_.md) › [OpenScd](_src_open_scd_.openscd.md)
+[@material/progress-indicator](../README.md) › [Globals](../globals.md) › ["src/open-scd"](../modules/_src_open_scd_.md) › [OpenSCD](_src_open_scd_.openscd.md)
 
-# Class: OpenScd
+# Class: OpenSCD
 
 ## Hierarchy
 
 * LitElement
 
-  ↳ **OpenScd**
+  ↳ **OpenSCD**
 
 ## Index
 
@@ -69,6 +69,7 @@
 * [lastChild](_src_open_scd_.openscd.md#readonly-lastchild)
 * [lastElementChild](_src_open_scd_.openscd.md#readonly-lastelementchild)
 * [localName](_src_open_scd_.openscd.md#readonly-localname)
+* [log](_src_open_scd_.openscd.md#log)
 * [menuOpen](_src_open_scd_.openscd.md#menuopen)
 * [namespaceURI](_src_open_scd_.openscd.md#readonly-namespaceuri)
 * [nextElementSibling](_src_open_scd_.openscd.md#readonly-nextelementsibling)
@@ -176,7 +177,6 @@
 * [ownerDocument](_src_open_scd_.openscd.md#readonly-ownerdocument)
 * [parentElement](_src_open_scd_.openscd.md#readonly-parentelement)
 * [parentNode](_src_open_scd_.openscd.md#readonly-parentnode)
-* [pendingCount](_src_open_scd_.openscd.md#private-pendingcount)
 * [prefix](_src_open_scd_.openscd.md#readonly-prefix)
 * [previousElementSibling](_src_open_scd_.openscd.md#readonly-previouselementsibling)
 * [previousSibling](_src_open_scd_.openscd.md#readonly-previoussibling)
@@ -261,6 +261,7 @@
 * [isDefaultNamespace](_src_open_scd_.openscd.md#isdefaultnamespace)
 * [isEqualNode](_src_open_scd_.openscd.md#isequalnode)
 * [isSameNode](_src_open_scd_.openscd.md#issamenode)
+* [loadDoc](_src_open_scd_.openscd.md#private-loaddoc)
 * [loadFile](_src_open_scd_.openscd.md#private-loadfile)
 * [lookupNamespaceURI](_src_open_scd_.openscd.md#lookupnamespaceuri)
 * [lookupPrefix](_src_open_scd_.openscd.md#lookupprefix)
@@ -309,13 +310,13 @@
 
 ###  constructor
 
-\+ **new OpenScd**(): *[OpenScd](_src_open_scd_.openscd.md)*
+\+ **new OpenSCD**(): *[OpenSCD](_src_open_scd_.openscd.md)*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[constructor](_src_open_scd_.openscd.md#constructor)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[constructor](_src_open_scd_.openscd.md#constructor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
-**Returns:** *[OpenScd](_src_open_scd_.openscd.md)*
+**Returns:** *[OpenSCD](_src_open_scd_.openscd.md)*
 
 ## Properties
 
@@ -323,7 +324,7 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
 • **ATTRIBUTE_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ATTRIBUTE_NODE](_src_open_scd_.openscd.md#readonly-attribute_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ATTRIBUTE_NODE](_src_open_scd_.openscd.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10829
 
@@ -333,7 +334,7 @@ ___
 
 • **CDATA_SECTION_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[CDATA_SECTION_NODE](_src_open_scd_.openscd.md#readonly-cdata_section_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[CDATA_SECTION_NODE](_src_open_scd_.openscd.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -345,7 +346,7 @@ ___
 
 • **COMMENT_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[COMMENT_NODE](_src_open_scd_.openscd.md#readonly-comment_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[COMMENT_NODE](_src_open_scd_.openscd.md#readonly-comment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10837
 
@@ -357,7 +358,7 @@ ___
 
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_FRAGMENT_NODE](_src_open_scd_.openscd.md#readonly-document_fragment_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_FRAGMENT_NODE](_src_open_scd_.openscd.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -369,7 +370,7 @@ ___
 
 • **DOCUMENT_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_NODE](_src_open_scd_.openscd.md#readonly-document_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_NODE](_src_open_scd_.openscd.md#readonly-document_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -381,7 +382,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_CONTAINED_BY](_src_open_scd_.openscd.md#readonly-document_position_contained_by)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_CONTAINED_BY](_src_open_scd_.openscd.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
@@ -393,7 +394,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINS**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_CONTAINS](_src_open_scd_.openscd.md#readonly-document_position_contains)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_CONTAINS](_src_open_scd_.openscd.md#readonly-document_position_contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -405,7 +406,7 @@ ___
 
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_DISCONNECTED](_src_open_scd_.openscd.md#readonly-document_position_disconnected)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_DISCONNECTED](_src_open_scd_.openscd.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
@@ -417,7 +418,7 @@ ___
 
 • **DOCUMENT_POSITION_FOLLOWING**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_FOLLOWING](_src_open_scd_.openscd.md#readonly-document_position_following)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_FOLLOWING](_src_open_scd_.openscd.md#readonly-document_position_following)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -429,7 +430,7 @@ ___
 
 • **DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_src_open_scd_.openscd.md#readonly-document_position_implementation_specific)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_src_open_scd_.openscd.md#readonly-document_position_implementation_specific)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10862
 
@@ -439,7 +440,7 @@ ___
 
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_PRECEDING](_src_open_scd_.openscd.md#readonly-document_position_preceding)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_PRECEDING](_src_open_scd_.openscd.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10866
 
@@ -451,7 +452,7 @@ ___
 
 • **DOCUMENT_TYPE_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[DOCUMENT_TYPE_NODE](_src_open_scd_.openscd.md#readonly-document_type_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_TYPE_NODE](_src_open_scd_.openscd.md#readonly-document_type_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10870
 
@@ -463,7 +464,7 @@ ___
 
 • **ELEMENT_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ELEMENT_NODE](_src_open_scd_.openscd.md#readonly-element_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ELEMENT_NODE](_src_open_scd_.openscd.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
@@ -475,7 +476,7 @@ ___
 
 • **ENTITY_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ENTITY_NODE](_src_open_scd_.openscd.md#readonly-entity_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ENTITY_NODE](_src_open_scd_.openscd.md#readonly-entity_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10875
 
@@ -485,7 +486,7 @@ ___
 
 • **ENTITY_REFERENCE_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ENTITY_REFERENCE_NODE](_src_open_scd_.openscd.md#readonly-entity_reference_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ENTITY_REFERENCE_NODE](_src_open_scd_.openscd.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10876
 
@@ -495,7 +496,7 @@ ___
 
 • **NOTATION_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[NOTATION_NODE](_src_open_scd_.openscd.md#readonly-notation_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[NOTATION_NODE](_src_open_scd_.openscd.md#readonly-notation_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10877
 
@@ -505,7 +506,7 @@ ___
 
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[PROCESSING_INSTRUCTION_NODE](_src_open_scd_.openscd.md#readonly-processing_instruction_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[PROCESSING_INSTRUCTION_NODE](_src_open_scd_.openscd.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10881
 
@@ -517,7 +518,7 @@ ___
 
 • **TEXT_NODE**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[TEXT_NODE](_src_open_scd_.openscd.md#readonly-text_node)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[TEXT_NODE](_src_open_scd_.openscd.md#readonly-text_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10885
 
@@ -529,7 +530,7 @@ ___
 
 • **accessKey**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[accessKey](_src_open_scd_.openscd.md#accesskey)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[accessKey](_src_open_scd_.openscd.md#accesskey)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6576
 
@@ -539,7 +540,7 @@ ___
 
 • **accessKeyLabel**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[accessKeyLabel](_src_open_scd_.openscd.md#readonly-accesskeylabel)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[accessKeyLabel](_src_open_scd_.openscd.md#readonly-accesskeylabel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
 
@@ -549,7 +550,7 @@ ___
 
 • **assignedSlot**: *HTMLSlotElement | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[assignedSlot](_src_open_scd_.openscd.md#readonly-assignedslot)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[assignedSlot](_src_open_scd_.openscd.md#readonly-assignedslot)*
 
 *Overrides void*
 
@@ -561,7 +562,7 @@ ___
 
 • **attributes**: *NamedNodeMap*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[attributes](_src_open_scd_.openscd.md#readonly-attributes)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[attributes](_src_open_scd_.openscd.md#readonly-attributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5090
 
@@ -571,7 +572,7 @@ ___
 
 • **autocapitalize**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[autocapitalize](_src_open_scd_.openscd.md#autocapitalize)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[autocapitalize](_src_open_scd_.openscd.md#autocapitalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6578
 
@@ -581,7 +582,7 @@ ___
 
 • **autofocus**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[autofocus](_src_open_scd_.openscd.md#autofocus)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[autofocus](_src_open_scd_.openscd.md#autofocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7989
 
@@ -591,7 +592,7 @@ ___
 
 • **baseURI**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[baseURI](_src_open_scd_.openscd.md#readonly-baseuri)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[baseURI](_src_open_scd_.openscd.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10744
 
@@ -603,7 +604,7 @@ ___
 
 • **childElementCount**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[childElementCount](_src_open_scd_.openscd.md#readonly-childelementcount)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[childElementCount](_src_open_scd_.openscd.md#readonly-childelementcount)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11301
 
@@ -613,7 +614,7 @@ ___
 
 • **childNodes**: *NodeListOf‹ChildNode›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[childNodes](_src_open_scd_.openscd.md#readonly-childnodes)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[childNodes](_src_open_scd_.openscd.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10748
 
@@ -625,7 +626,7 @@ ___
 
 • **children**: *HTMLCollection*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[children](_src_open_scd_.openscd.md#readonly-children)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[children](_src_open_scd_.openscd.md#readonly-children)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11305
 
@@ -637,7 +638,7 @@ ___
 
 • **classList**: *DOMTokenList*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[classList](_src_open_scd_.openscd.md#readonly-classlist)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[classList](_src_open_scd_.openscd.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5094
 
@@ -649,7 +650,7 @@ ___
 
 • **className**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[className](_src_open_scd_.openscd.md#classname)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[className](_src_open_scd_.openscd.md#classname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5098
 
@@ -661,7 +662,7 @@ ___
 
 • **clientHeight**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[clientHeight](_src_open_scd_.openscd.md#readonly-clientheight)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientHeight](_src_open_scd_.openscd.md#readonly-clientheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5099
 
@@ -671,7 +672,7 @@ ___
 
 • **clientLeft**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[clientLeft](_src_open_scd_.openscd.md#readonly-clientleft)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientLeft](_src_open_scd_.openscd.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
@@ -681,7 +682,7 @@ ___
 
 • **clientTop**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[clientTop](_src_open_scd_.openscd.md#readonly-clienttop)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientTop](_src_open_scd_.openscd.md#readonly-clienttop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5101
 
@@ -691,7 +692,7 @@ ___
 
 • **clientWidth**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[clientWidth](_src_open_scd_.openscd.md#readonly-clientwidth)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientWidth](_src_open_scd_.openscd.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5102
 
@@ -701,7 +702,7 @@ ___
 
 • **contentEditable**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[contentEditable](_src_open_scd_.openscd.md#contenteditable)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[contentEditable](_src_open_scd_.openscd.md#contenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
@@ -711,7 +712,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd.ts:35
+Defined in src/open-scd.ts:116
 
 ___
 
@@ -719,7 +720,7 @@ ___
 
 • **dataset**: *DOMStringMap*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[dataset](_src_open_scd_.openscd.md#readonly-dataset)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[dataset](_src_open_scd_.openscd.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
 
@@ -729,7 +730,7 @@ ___
 
 • **dir**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[dir](_src_open_scd_.openscd.md#dir)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[dir](_src_open_scd_.openscd.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
@@ -737,13 +738,9 @@ ___
 
 ###  doc
 
-• **doc**: *XMLDocument* = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  )
+• **doc**: *XMLDocument* = emptySCD
 
-Defined in src/open-scd.ts:30
+Defined in src/open-scd.ts:71
 
 The `XMLDocument` representation of the current file.
 
@@ -753,7 +750,7 @@ ___
 
 • **draggable**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[draggable](_src_open_scd_.openscd.md#draggable)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[draggable](_src_open_scd_.openscd.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
@@ -763,7 +760,7 @@ ___
 
 • **firstChild**: *ChildNode | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[firstChild](_src_open_scd_.openscd.md#readonly-firstchild)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[firstChild](_src_open_scd_.openscd.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10752
 
@@ -775,7 +772,7 @@ ___
 
 • **firstElementChild**: *Element | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[firstElementChild](_src_open_scd_.openscd.md#readonly-firstelementchild)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[firstElementChild](_src_open_scd_.openscd.md#readonly-firstelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
@@ -787,7 +784,7 @@ ___
 
 • **hidden**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[hidden](_src_open_scd_.openscd.md#hidden)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hidden](_src_open_scd_.openscd.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
 
@@ -797,7 +794,7 @@ ___
 
 • **id**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[id](_src_open_scd_.openscd.md#id)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[id](_src_open_scd_.openscd.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5106
 
@@ -809,7 +806,7 @@ ___
 
 • **innerHTML**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[innerHTML](_src_open_scd_.openscd.md#innerhtml)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[innerHTML](_src_open_scd_.openscd.md#innerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9574
 
@@ -819,7 +816,7 @@ ___
 
 • **innerText**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[innerText](_src_open_scd_.openscd.md#innertext)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[innerText](_src_open_scd_.openscd.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6582
 
@@ -829,7 +826,7 @@ ___
 
 • **inputMode**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[inputMode](_src_open_scd_.openscd.md#inputmode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[inputMode](_src_open_scd_.openscd.md#inputmode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5255
 
@@ -839,7 +836,7 @@ ___
 
 • **isConnected**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[isConnected](_src_open_scd_.openscd.md#readonly-isconnected)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isConnected](_src_open_scd_.openscd.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -851,7 +848,7 @@ ___
 
 • **isContentEditable**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[isContentEditable](_src_open_scd_.openscd.md#readonly-iscontenteditable)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isContentEditable](_src_open_scd_.openscd.md#readonly-iscontenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5256
 
@@ -861,7 +858,7 @@ ___
 
 • **lang**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[lang](_src_open_scd_.openscd.md#lang)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lang](_src_open_scd_.openscd.md#lang)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6583
 
@@ -871,7 +868,7 @@ ___
 
 • **lastChild**: *ChildNode | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[lastChild](_src_open_scd_.openscd.md#readonly-lastchild)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lastChild](_src_open_scd_.openscd.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -883,7 +880,7 @@ ___
 
 • **lastElementChild**: *Element | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[lastElementChild](_src_open_scd_.openscd.md#readonly-lastelementchild)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lastElementChild](_src_open_scd_.openscd.md#readonly-lastelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
@@ -895,7 +892,7 @@ ___
 
 • **localName**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[localName](_src_open_scd_.openscd.md#readonly-localname)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[localName](_src_open_scd_.openscd.md#readonly-localname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -903,13 +900,23 @@ Returns the local name.
 
 ___
 
+###  log
+
+• **log**: *Array‹string›* = []
+
+Defined in src/open-scd.ts:68
+
+Error and warning log
+
+___
+
 ###  menuOpen
 
 • **menuOpen**: *boolean* = false
 
-Defined in src/open-scd.ts:26
+Defined in src/open-scd.ts:66
 
-Represents whether the menu drawer is currently open.
+Whether the menu drawer is currently open.
 
 ___
 
@@ -917,7 +924,7 @@ ___
 
 • **namespaceURI**: *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[namespaceURI](_src_open_scd_.openscd.md#readonly-namespaceuri)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[namespaceURI](_src_open_scd_.openscd.md#readonly-namespaceuri)*
 
 *Overrides void*
 
@@ -931,7 +938,7 @@ ___
 
 • **nextElementSibling**: *Element | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[nextElementSibling](_src_open_scd_.openscd.md#readonly-nextelementsibling)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nextElementSibling](_src_open_scd_.openscd.md#readonly-nextelementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11031
 
@@ -943,7 +950,7 @@ ___
 
 • **nextSibling**: *ChildNode | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[nextSibling](_src_open_scd_.openscd.md#readonly-nextsibling)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nextSibling](_src_open_scd_.openscd.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10766
 
@@ -955,7 +962,7 @@ ___
 
 • **nodeName**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[nodeName](_src_open_scd_.openscd.md#readonly-nodename)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nodeName](_src_open_scd_.openscd.md#readonly-nodename)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10770
 
@@ -967,7 +974,7 @@ ___
 
 • **nodeType**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[nodeType](_src_open_scd_.openscd.md#readonly-nodetype)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nodeType](_src_open_scd_.openscd.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10774
 
@@ -979,7 +986,7 @@ ___
 
 • **nodeValue**: *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[nodeValue](_src_open_scd_.openscd.md#nodevalue)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nodeValue](_src_open_scd_.openscd.md#nodevalue)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10775
 
@@ -989,7 +996,7 @@ ___
 
 • **nonce**? : *undefined | string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[nonce](_src_open_scd_.openscd.md#optional-nonce)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nonce](_src_open_scd_.openscd.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7991
 
@@ -999,7 +1006,7 @@ ___
 
 • **offsetHeight**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[offsetHeight](_src_open_scd_.openscd.md#readonly-offsetheight)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetHeight](_src_open_scd_.openscd.md#readonly-offsetheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6584
 
@@ -1009,7 +1016,7 @@ ___
 
 • **offsetLeft**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[offsetLeft](_src_open_scd_.openscd.md#readonly-offsetleft)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetLeft](_src_open_scd_.openscd.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6585
 
@@ -1019,7 +1026,7 @@ ___
 
 • **offsetParent**: *Element | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[offsetParent](_src_open_scd_.openscd.md#readonly-offsetparent)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetParent](_src_open_scd_.openscd.md#readonly-offsetparent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6586
 
@@ -1029,7 +1036,7 @@ ___
 
 • **offsetTop**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[offsetTop](_src_open_scd_.openscd.md#readonly-offsettop)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetTop](_src_open_scd_.openscd.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
@@ -1039,7 +1046,7 @@ ___
 
 • **offsetWidth**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[offsetWidth](_src_open_scd_.openscd.md#readonly-offsetwidth)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetWidth](_src_open_scd_.openscd.md#readonly-offsetwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
@@ -1049,7 +1056,7 @@ ___
 
 • **onabort**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onabort](_src_open_scd_.openscd.md#onabort)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onabort](_src_open_scd_.openscd.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5766
 
@@ -1063,7 +1070,7 @@ ___
 
 • **onanimationcancel**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onanimationcancel](_src_open_scd_.openscd.md#onanimationcancel)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationcancel](_src_open_scd_.openscd.md#onanimationcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5767
 
@@ -1073,7 +1080,7 @@ ___
 
 • **onanimationend**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onanimationend](_src_open_scd_.openscd.md#onanimationend)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationend](_src_open_scd_.openscd.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5768
 
@@ -1083,7 +1090,7 @@ ___
 
 • **onanimationiteration**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onanimationiteration](_src_open_scd_.openscd.md#onanimationiteration)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationiteration](_src_open_scd_.openscd.md#onanimationiteration)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5769
 
@@ -1093,7 +1100,7 @@ ___
 
 • **onanimationstart**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onanimationstart](_src_open_scd_.openscd.md#onanimationstart)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationstart](_src_open_scd_.openscd.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5770
 
@@ -1103,7 +1110,7 @@ ___
 
 • **onauxclick**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onauxclick](_src_open_scd_.openscd.md#onauxclick)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onauxclick](_src_open_scd_.openscd.md#onauxclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5771
 
@@ -1113,7 +1120,7 @@ ___
 
 • **onblur**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onblur](_src_open_scd_.openscd.md#onblur)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onblur](_src_open_scd_.openscd.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5776
 
@@ -1127,7 +1134,7 @@ ___
 
 • **oncancel**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oncancel](_src_open_scd_.openscd.md#oncancel)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncancel](_src_open_scd_.openscd.md#oncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1137,7 +1144,7 @@ ___
 
 • **oncanplay**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oncanplay](_src_open_scd_.openscd.md#oncanplay)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncanplay](_src_open_scd_.openscd.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
@@ -1151,7 +1158,7 @@ ___
 
 • **oncanplaythrough**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oncanplaythrough](_src_open_scd_.openscd.md#oncanplaythrough)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncanplaythrough](_src_open_scd_.openscd.md#oncanplaythrough)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5783
 
@@ -1161,7 +1168,7 @@ ___
 
 • **onchange**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onchange](_src_open_scd_.openscd.md#onchange)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onchange](_src_open_scd_.openscd.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
@@ -1175,7 +1182,7 @@ ___
 
 • **onclick**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onclick](_src_open_scd_.openscd.md#onclick)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onclick](_src_open_scd_.openscd.md#onclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1189,7 +1196,7 @@ ___
 
 • **onclose**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onclose](_src_open_scd_.openscd.md#onclose)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onclose](_src_open_scd_.openscd.md#onclose)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
@@ -1199,7 +1206,7 @@ ___
 
 • **oncontextmenu**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oncontextmenu](_src_open_scd_.openscd.md#oncontextmenu)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncontextmenu](_src_open_scd_.openscd.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1213,7 +1220,7 @@ ___
 
 • **oncopy**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oncopy](_src_open_scd_.openscd.md#oncopy)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncopy](_src_open_scd_.openscd.md#oncopy)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4888
 
@@ -1223,7 +1230,7 @@ ___
 
 • **oncuechange**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oncuechange](_src_open_scd_.openscd.md#oncuechange)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncuechange](_src_open_scd_.openscd.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5800
 
@@ -1233,7 +1240,7 @@ ___
 
 • **oncut**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oncut](_src_open_scd_.openscd.md#oncut)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncut](_src_open_scd_.openscd.md#oncut)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4889
 
@@ -1243,7 +1250,7 @@ ___
 
 • **ondblclick**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondblclick](_src_open_scd_.openscd.md#ondblclick)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondblclick](_src_open_scd_.openscd.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
@@ -1257,7 +1264,7 @@ ___
 
 • **ondrag**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondrag](_src_open_scd_.openscd.md#ondrag)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondrag](_src_open_scd_.openscd.md#ondrag)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1271,7 +1278,7 @@ ___
 
 • **ondragend**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondragend](_src_open_scd_.openscd.md#ondragend)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragend](_src_open_scd_.openscd.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5815
 
@@ -1285,7 +1292,7 @@ ___
 
 • **ondragenter**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondragenter](_src_open_scd_.openscd.md#ondragenter)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragenter](_src_open_scd_.openscd.md#ondragenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5820
 
@@ -1299,7 +1306,7 @@ ___
 
 • **ondragexit**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondragexit](_src_open_scd_.openscd.md#ondragexit)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragexit](_src_open_scd_.openscd.md#ondragexit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
@@ -1309,7 +1316,7 @@ ___
 
 • **ondragleave**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondragleave](_src_open_scd_.openscd.md#ondragleave)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragleave](_src_open_scd_.openscd.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1323,7 +1330,7 @@ ___
 
 • **ondragover**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondragover](_src_open_scd_.openscd.md#ondragover)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragover](_src_open_scd_.openscd.md#ondragover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
@@ -1337,7 +1344,7 @@ ___
 
 • **ondragstart**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondragstart](_src_open_scd_.openscd.md#ondragstart)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragstart](_src_open_scd_.openscd.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5836
 
@@ -1351,7 +1358,7 @@ ___
 
 • **ondrop**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondrop](_src_open_scd_.openscd.md#ondrop)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondrop](_src_open_scd_.openscd.md#ondrop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1361,7 +1368,7 @@ ___
 
 • **ondurationchange**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ondurationchange](_src_open_scd_.openscd.md#ondurationchange)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondurationchange](_src_open_scd_.openscd.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
@@ -1375,7 +1382,7 @@ ___
 
 • **onemptied**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onemptied](_src_open_scd_.openscd.md#onemptied)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onemptied](_src_open_scd_.openscd.md#onemptied)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1389,7 +1396,7 @@ ___
 
 • **onended**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onended](_src_open_scd_.openscd.md#onended)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onended](_src_open_scd_.openscd.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5852
 
@@ -1403,7 +1410,7 @@ ___
 
 • **onerror**: *OnErrorEventHandler*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onerror](_src_open_scd_.openscd.md#onerror)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onerror](_src_open_scd_.openscd.md#onerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5857
 
@@ -1417,7 +1424,7 @@ ___
 
 • **onfocus**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onfocus](_src_open_scd_.openscd.md#onfocus)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onfocus](_src_open_scd_.openscd.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5862
 
@@ -1431,7 +1438,7 @@ ___
 
 • **onfullscreenchange**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onfullscreenchange](_src_open_scd_.openscd.md#onfullscreenchange)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onfullscreenchange](_src_open_scd_.openscd.md#onfullscreenchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5115
 
@@ -1441,7 +1448,7 @@ ___
 
 • **onfullscreenerror**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onfullscreenerror](_src_open_scd_.openscd.md#onfullscreenerror)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onfullscreenerror](_src_open_scd_.openscd.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -1451,7 +1458,7 @@ ___
 
 • **ongotpointercapture**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ongotpointercapture](_src_open_scd_.openscd.md#ongotpointercapture)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ongotpointercapture](_src_open_scd_.openscd.md#ongotpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1461,7 +1468,7 @@ ___
 
 • **oninput**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oninput](_src_open_scd_.openscd.md#oninput)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oninput](_src_open_scd_.openscd.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5864
 
@@ -1471,7 +1478,7 @@ ___
 
 • **oninvalid**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[oninvalid](_src_open_scd_.openscd.md#oninvalid)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oninvalid](_src_open_scd_.openscd.md#oninvalid)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5865
 
@@ -1481,7 +1488,7 @@ ___
 
 • **onkeydown**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onkeydown](_src_open_scd_.openscd.md#onkeydown)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onkeydown](_src_open_scd_.openscd.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5870
 
@@ -1495,7 +1502,7 @@ ___
 
 • **onkeypress**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onkeypress](_src_open_scd_.openscd.md#onkeypress)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onkeypress](_src_open_scd_.openscd.md#onkeypress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1509,7 +1516,7 @@ ___
 
 • **onkeyup**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onkeyup](_src_open_scd_.openscd.md#onkeyup)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onkeyup](_src_open_scd_.openscd.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5880
 
@@ -1523,7 +1530,7 @@ ___
 
 • **onload**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onload](_src_open_scd_.openscd.md#onload)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onload](_src_open_scd_.openscd.md#onload)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5885
 
@@ -1537,7 +1544,7 @@ ___
 
 • **onloadeddata**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onloadeddata](_src_open_scd_.openscd.md#onloadeddata)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onloadeddata](_src_open_scd_.openscd.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5890
 
@@ -1551,7 +1558,7 @@ ___
 
 • **onloadedmetadata**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onloadedmetadata](_src_open_scd_.openscd.md#onloadedmetadata)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onloadedmetadata](_src_open_scd_.openscd.md#onloadedmetadata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5895
 
@@ -1565,7 +1572,7 @@ ___
 
 • **onloadstart**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onloadstart](_src_open_scd_.openscd.md#onloadstart)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onloadstart](_src_open_scd_.openscd.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5900
 
@@ -1579,7 +1586,7 @@ ___
 
 • **onlostpointercapture**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onlostpointercapture](_src_open_scd_.openscd.md#onlostpointercapture)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onlostpointercapture](_src_open_scd_.openscd.md#onlostpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1589,7 +1596,7 @@ ___
 
 • **onmousedown**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onmousedown](_src_open_scd_.openscd.md#onmousedown)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmousedown](_src_open_scd_.openscd.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
@@ -1603,7 +1610,7 @@ ___
 
 • **onmouseenter**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onmouseenter](_src_open_scd_.openscd.md#onmouseenter)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseenter](_src_open_scd_.openscd.md#onmouseenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5907
 
@@ -1613,7 +1620,7 @@ ___
 
 • **onmouseleave**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onmouseleave](_src_open_scd_.openscd.md#onmouseleave)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseleave](_src_open_scd_.openscd.md#onmouseleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5908
 
@@ -1623,7 +1630,7 @@ ___
 
 • **onmousemove**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onmousemove](_src_open_scd_.openscd.md#onmousemove)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmousemove](_src_open_scd_.openscd.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5913
 
@@ -1637,7 +1644,7 @@ ___
 
 • **onmouseout**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onmouseout](_src_open_scd_.openscd.md#onmouseout)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseout](_src_open_scd_.openscd.md#onmouseout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
@@ -1651,7 +1658,7 @@ ___
 
 • **onmouseover**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onmouseover](_src_open_scd_.openscd.md#onmouseover)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseover](_src_open_scd_.openscd.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5923
 
@@ -1665,7 +1672,7 @@ ___
 
 • **onmouseup**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onmouseup](_src_open_scd_.openscd.md#onmouseup)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseup](_src_open_scd_.openscd.md#onmouseup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5928
 
@@ -1679,7 +1686,7 @@ ___
 
 • **onpaste**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpaste](_src_open_scd_.openscd.md#onpaste)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpaste](_src_open_scd_.openscd.md#onpaste)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4890
 
@@ -1689,7 +1696,7 @@ ___
 
 • **onpause**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpause](_src_open_scd_.openscd.md#onpause)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpause](_src_open_scd_.openscd.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5933
 
@@ -1703,7 +1710,7 @@ ___
 
 • **onplay**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onplay](_src_open_scd_.openscd.md#onplay)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onplay](_src_open_scd_.openscd.md#onplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5938
 
@@ -1717,7 +1724,7 @@ ___
 
 • **onplaying**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onplaying](_src_open_scd_.openscd.md#onplaying)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onplaying](_src_open_scd_.openscd.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5943
 
@@ -1731,7 +1738,7 @@ ___
 
 • **onpointercancel**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointercancel](_src_open_scd_.openscd.md#onpointercancel)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointercancel](_src_open_scd_.openscd.md#onpointercancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -1741,7 +1748,7 @@ ___
 
 • **onpointerdown**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointerdown](_src_open_scd_.openscd.md#onpointerdown)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerdown](_src_open_scd_.openscd.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5945
 
@@ -1751,7 +1758,7 @@ ___
 
 • **onpointerenter**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointerenter](_src_open_scd_.openscd.md#onpointerenter)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerenter](_src_open_scd_.openscd.md#onpointerenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5946
 
@@ -1761,7 +1768,7 @@ ___
 
 • **onpointerleave**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointerleave](_src_open_scd_.openscd.md#onpointerleave)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerleave](_src_open_scd_.openscd.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5947
 
@@ -1771,7 +1778,7 @@ ___
 
 • **onpointermove**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointermove](_src_open_scd_.openscd.md#onpointermove)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointermove](_src_open_scd_.openscd.md#onpointermove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5948
 
@@ -1781,7 +1788,7 @@ ___
 
 • **onpointerout**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointerout](_src_open_scd_.openscd.md#onpointerout)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerout](_src_open_scd_.openscd.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
@@ -1791,7 +1798,7 @@ ___
 
 • **onpointerover**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointerover](_src_open_scd_.openscd.md#onpointerover)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerover](_src_open_scd_.openscd.md#onpointerover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5950
 
@@ -1801,7 +1808,7 @@ ___
 
 • **onpointerup**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onpointerup](_src_open_scd_.openscd.md#onpointerup)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerup](_src_open_scd_.openscd.md#onpointerup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5951
 
@@ -1811,7 +1818,7 @@ ___
 
 • **onprogress**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onprogress](_src_open_scd_.openscd.md#onprogress)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onprogress](_src_open_scd_.openscd.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -1825,7 +1832,7 @@ ___
 
 • **onratechange**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onratechange](_src_open_scd_.openscd.md#onratechange)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onratechange](_src_open_scd_.openscd.md#onratechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
@@ -1839,7 +1846,7 @@ ___
 
 • **onreset**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onreset](_src_open_scd_.openscd.md#onreset)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onreset](_src_open_scd_.openscd.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5966
 
@@ -1853,7 +1860,7 @@ ___
 
 • **onresize**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onresize](_src_open_scd_.openscd.md#onresize)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onresize](_src_open_scd_.openscd.md#onresize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -1863,7 +1870,7 @@ ___
 
 • **onscroll**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onscroll](_src_open_scd_.openscd.md#onscroll)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onscroll](_src_open_scd_.openscd.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
@@ -1877,7 +1884,7 @@ ___
 
 • **onsecuritypolicyviolation**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onsecuritypolicyviolation](_src_open_scd_.openscd.md#onsecuritypolicyviolation)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onsecuritypolicyviolation](_src_open_scd_.openscd.md#onsecuritypolicyviolation)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5973
 
@@ -1887,7 +1894,7 @@ ___
 
 • **onseeked**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onseeked](_src_open_scd_.openscd.md#onseeked)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onseeked](_src_open_scd_.openscd.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
@@ -1901,7 +1908,7 @@ ___
 
 • **onseeking**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onseeking](_src_open_scd_.openscd.md#onseeking)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onseeking](_src_open_scd_.openscd.md#onseeking)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -1915,7 +1922,7 @@ ___
 
 • **onselect**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onselect](_src_open_scd_.openscd.md#onselect)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onselect](_src_open_scd_.openscd.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5988
 
@@ -1929,7 +1936,7 @@ ___
 
 • **onselectionchange**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onselectionchange](_src_open_scd_.openscd.md#onselectionchange)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onselectionchange](_src_open_scd_.openscd.md#onselectionchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -1939,7 +1946,7 @@ ___
 
 • **onselectstart**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onselectstart](_src_open_scd_.openscd.md#onselectstart)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onselectstart](_src_open_scd_.openscd.md#onselectstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5990
 
@@ -1949,7 +1956,7 @@ ___
 
 • **onstalled**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onstalled](_src_open_scd_.openscd.md#onstalled)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onstalled](_src_open_scd_.openscd.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5995
 
@@ -1963,7 +1970,7 @@ ___
 
 • **onsubmit**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onsubmit](_src_open_scd_.openscd.md#onsubmit)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onsubmit](_src_open_scd_.openscd.md#onsubmit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5996
 
@@ -1973,7 +1980,7 @@ ___
 
 • **onsuspend**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onsuspend](_src_open_scd_.openscd.md#onsuspend)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onsuspend](_src_open_scd_.openscd.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
@@ -1987,7 +1994,7 @@ ___
 
 • **ontimeupdate**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontimeupdate](_src_open_scd_.openscd.md#ontimeupdate)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontimeupdate](_src_open_scd_.openscd.md#ontimeupdate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -2001,7 +2008,7 @@ ___
 
 • **ontoggle**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontoggle](_src_open_scd_.openscd.md#ontoggle)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontoggle](_src_open_scd_.openscd.md#ontoggle)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
@@ -2011,7 +2018,7 @@ ___
 
 • **ontouchcancel**? : *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontouchcancel](_src_open_scd_.openscd.md#optional-ontouchcancel)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchcancel](_src_open_scd_.openscd.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6008
 
@@ -2021,7 +2028,7 @@ ___
 
 • **ontouchend**? : *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontouchend](_src_open_scd_.openscd.md#optional-ontouchend)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchend](_src_open_scd_.openscd.md#optional-ontouchend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6009
 
@@ -2031,7 +2038,7 @@ ___
 
 • **ontouchmove**? : *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontouchmove](_src_open_scd_.openscd.md#optional-ontouchmove)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchmove](_src_open_scd_.openscd.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6010
 
@@ -2041,7 +2048,7 @@ ___
 
 • **ontouchstart**? : *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontouchstart](_src_open_scd_.openscd.md#optional-ontouchstart)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchstart](_src_open_scd_.openscd.md#optional-ontouchstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6011
 
@@ -2051,7 +2058,7 @@ ___
 
 • **ontransitioncancel**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontransitioncancel](_src_open_scd_.openscd.md#ontransitioncancel)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitioncancel](_src_open_scd_.openscd.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2061,7 +2068,7 @@ ___
 
 • **ontransitionend**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontransitionend](_src_open_scd_.openscd.md#ontransitionend)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitionend](_src_open_scd_.openscd.md#ontransitionend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6013
 
@@ -2071,7 +2078,7 @@ ___
 
 • **ontransitionrun**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontransitionrun](_src_open_scd_.openscd.md#ontransitionrun)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitionrun](_src_open_scd_.openscd.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6014
 
@@ -2081,7 +2088,7 @@ ___
 
 • **ontransitionstart**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ontransitionstart](_src_open_scd_.openscd.md#ontransitionstart)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitionstart](_src_open_scd_.openscd.md#ontransitionstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6015
 
@@ -2091,7 +2098,7 @@ ___
 
 • **onvolumechange**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onvolumechange](_src_open_scd_.openscd.md#onvolumechange)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onvolumechange](_src_open_scd_.openscd.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
@@ -2105,7 +2112,7 @@ ___
 
 • **onwaiting**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onwaiting](_src_open_scd_.openscd.md#onwaiting)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onwaiting](_src_open_scd_.openscd.md#onwaiting)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2119,7 +2126,7 @@ ___
 
 • **onwheel**: *function | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[onwheel](_src_open_scd_.openscd.md#onwheel)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onwheel](_src_open_scd_.openscd.md#onwheel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
@@ -2129,7 +2136,7 @@ ___
 
 • **outerHTML**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[outerHTML](_src_open_scd_.openscd.md#outerhtml)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[outerHTML](_src_open_scd_.openscd.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5117
 
@@ -2139,7 +2146,7 @@ ___
 
 • **ownerDocument**: *Document*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[ownerDocument](_src_open_scd_.openscd.md#readonly-ownerdocument)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ownerDocument](_src_open_scd_.openscd.md#readonly-ownerdocument)*
 
 *Overrides void*
 
@@ -2151,7 +2158,7 @@ ___
 
 • **parentElement**: *HTMLElement | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[parentElement](_src_open_scd_.openscd.md#readonly-parentelement)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[parentElement](_src_open_scd_.openscd.md#readonly-parentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10783
 
@@ -2163,7 +2170,7 @@ ___
 
 • **parentNode**: *Node & ParentNode | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[parentNode](_src_open_scd_.openscd.md#readonly-parentnode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[parentNode](_src_open_scd_.openscd.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
@@ -2171,19 +2178,11 @@ Returns the parent.
 
 ___
 
-### `Private` pendingCount
-
-• **pendingCount**: *number* = 0
-
-Defined in src/open-scd.ts:146
-
-___
-
 ### `Readonly` prefix
 
 • **prefix**: *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[prefix](_src_open_scd_.openscd.md#readonly-prefix)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[prefix](_src_open_scd_.openscd.md#readonly-prefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5122
 
@@ -2195,7 +2194,7 @@ ___
 
 • **previousElementSibling**: *Element | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[previousElementSibling](_src_open_scd_.openscd.md#readonly-previouselementsibling)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[previousElementSibling](_src_open_scd_.openscd.md#readonly-previouselementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11035
 
@@ -2207,7 +2206,7 @@ ___
 
 • **previousSibling**: *ChildNode | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[previousSibling](_src_open_scd_.openscd.md#readonly-previoussibling)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[previousSibling](_src_open_scd_.openscd.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10791
 
@@ -2219,7 +2218,7 @@ ___
 
 • **renderRoot**: *Element | DocumentFragment*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[renderRoot](_src_open_scd_.openscd.md#readonly-renderroot)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[renderRoot](_src_open_scd_.openscd.md#readonly-renderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:65
 
@@ -2232,7 +2231,7 @@ ___
 
 • **scrollHeight**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollHeight](_src_open_scd_.openscd.md#readonly-scrollheight)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollHeight](_src_open_scd_.openscd.md#readonly-scrollheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5123
 
@@ -2242,7 +2241,7 @@ ___
 
 • **scrollLeft**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollLeft](_src_open_scd_.openscd.md#scrollleft)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollLeft](_src_open_scd_.openscd.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5124
 
@@ -2252,7 +2251,7 @@ ___
 
 • **scrollTop**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollTop](_src_open_scd_.openscd.md#scrolltop)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollTop](_src_open_scd_.openscd.md#scrolltop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
@@ -2262,7 +2261,7 @@ ___
 
 • **scrollWidth**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollWidth](_src_open_scd_.openscd.md#readonly-scrollwidth)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollWidth](_src_open_scd_.openscd.md#readonly-scrollwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -2272,7 +2271,7 @@ ___
 
 • **shadowRoot**: *ShadowRoot | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[shadowRoot](_src_open_scd_.openscd.md#readonly-shadowroot)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[shadowRoot](_src_open_scd_.openscd.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5130
 
@@ -2284,7 +2283,7 @@ ___
 
 • **slot**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[slot](_src_open_scd_.openscd.md#slot)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[slot](_src_open_scd_.openscd.md#slot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2296,7 +2295,7 @@ ___
 
 • **spellcheck**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[spellcheck](_src_open_scd_.openscd.md#spellcheck)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[spellcheck](_src_open_scd_.openscd.md#spellcheck)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
@@ -2304,9 +2303,9 @@ ___
 
 ###  srcName
 
-• **srcName**: *string* = ""
+• **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd.ts:37
+Defined in src/open-scd.ts:73
 
 The name of the current file.
 
@@ -2316,7 +2315,7 @@ ___
 
 • **style**: *CSSStyleDeclaration*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[style](_src_open_scd_.openscd.md#readonly-style)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[style](_src_open_scd_.openscd.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5250
 
@@ -2326,7 +2325,7 @@ ___
 
 • **tabIndex**: *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[tabIndex](_src_open_scd_.openscd.md#tabindex)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[tabIndex](_src_open_scd_.openscd.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
 
@@ -2336,7 +2335,7 @@ ___
 
 • **tagName**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[tagName](_src_open_scd_.openscd.md#readonly-tagname)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[tagName](_src_open_scd_.openscd.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5138
 
@@ -2348,7 +2347,7 @@ ___
 
 • **textContent**: *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[textContent](_src_open_scd_.openscd.md#textcontent)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[textContent](_src_open_scd_.openscd.md#textcontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10792
 
@@ -2358,7 +2357,7 @@ ___
 
 • **title**: *string*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[title](_src_open_scd_.openscd.md#title)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[title](_src_open_scd_.openscd.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
@@ -2368,7 +2367,7 @@ ___
 
 • **translate**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[translate](_src_open_scd_.openscd.md#translate)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[translate](_src_open_scd_.openscd.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
@@ -2378,25 +2377,25 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:142
+Defined in src/open-scd.ts:75
 
-Indicates whether the editor is currently waiting for some async work.
+Whether the editor is currently waiting for some async work.
 
 ___
 
 ### `Private` work
 
-• **work**: *Set‹Promise‹void››* = new Set()
+• **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/open-scd.ts:143
+Defined in src/open-scd.ts:76
 
 ___
 
 ###  workDone
 
-• **workDone**: *Promise‹PromiseRejectedResult | PromiseFulfilledResult‹void›[]›* = Promise.allSettled(this.work)
+• **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:145
+Defined in src/open-scd.ts:78
 
 A promise which resolves once all currently pending work is done.
 
@@ -2406,7 +2405,7 @@ ___
 
 ▪ **[finalized]**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[[finalized]](_src_open_scd_.openscd.md#static-protected-[finalized])*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[[finalized]](_src_open_scd_.openscd.md#static-protected-[finalized])*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
@@ -2418,7 +2417,7 @@ ___
 
 ▪ **finalized**: *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[finalized](_src_open_scd_.openscd.md#static-protected-finalized)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[finalized](_src_open_scd_.openscd.md#static-protected-finalized)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:36
 
@@ -2434,7 +2433,7 @@ ___
 
 ▪ **properties**: *PropertyDeclarations*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[properties](_src_open_scd_.openscd.md#static-properties)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[properties](_src_open_scd_.openscd.md#static-properties)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:148
 
@@ -2447,7 +2446,7 @@ ___
 
 ▪ **render**: *function*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:44
 
@@ -2499,7 +2498,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:94
+Defined in src/open-scd.ts:163
 
 ## Accessors
 
@@ -2507,7 +2506,7 @@ Defined in src/open-scd.ts:94
 
 • **get hasUpdated**(): *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[hasUpdated](_src_open_scd_.openscd.md#protected-hasupdated)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasUpdated](_src_open_scd_.openscd.md#protected-hasupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
@@ -2519,7 +2518,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd.ts:40
+Defined in src/open-scd.ts:119
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2527,7 +2526,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd.ts:43
+Defined in src/open-scd.ts:122
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2545,7 +2544,7 @@ ___
 
 • **get updateComplete**(): *Promise‹unknown›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[updateComplete](_src_open_scd_.openscd.md#updatecomplete)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[updateComplete](_src_open_scd_.openscd.md#updatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:370
 
@@ -2571,7 +2570,7 @@ ___
 
 • **get observedAttributes**(): *string[]*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[observedAttributes](_src_open_scd_.openscd.md#static-observedattributes)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[observedAttributes](_src_open_scd_.openscd.md#static-observedattributes)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:153
 
@@ -2587,7 +2586,7 @@ Returns a list of attributes corresponding to the registered properties.
 
 ▸ **_getUpdateComplete**(): *Promise‹unknown›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[_getUpdateComplete](_src_open_scd_.openscd.md#protected-_getupdatecomplete)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[_getUpdateComplete](_src_open_scd_.openscd.md#protected-_getupdatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:387
 
@@ -2614,7 +2613,7 @@ ___
 
 ▸ **addEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[addEventListener](_src_open_scd_.openscd.md#addeventlistener)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[addEventListener](_src_open_scd_.openscd.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2645,7 +2644,7 @@ Name | Type |
 
 ▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[addEventListener](_src_open_scd_.openscd.md#addeventlistener)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[addEventListener](_src_open_scd_.openscd.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2667,7 +2666,7 @@ ___
 
 ▸ **adoptStyles**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[adoptStyles](_src_open_scd_.openscd.md#protected-adoptstyles)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[adoptStyles](_src_open_scd_.openscd.md#protected-adoptstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:89
 
@@ -2685,9 +2684,9 @@ ___
 
 ###  after
 
-▸ **after**(...`nodes`: string | Node[]): *void*
+▸ **after**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[after](_src_open_scd_.openscd.md#after)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[after](_src_open_scd_.openscd.md#after)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3501
 
@@ -2699,7 +2698,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -2709,7 +2708,7 @@ ___
 
 ▸ **animate**(`keyframes`: Keyframe[] | PropertyIndexedKeyframes | null, `options?`: number | KeyframeAnimationOptions): *Animation*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[animate](_src_open_scd_.openscd.md#animate)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[animate](_src_open_scd_.openscd.md#animate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
@@ -2726,9 +2725,9 @@ ___
 
 ###  append
 
-▸ **append**(...`nodes`: string | Node[]): *void*
+▸ **append**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[append](_src_open_scd_.openscd.md#append)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[append](_src_open_scd_.openscd.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11319
 
@@ -2740,7 +2739,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -2750,7 +2749,7 @@ ___
 
 ▸ **appendChild**‹**T**›(`newChild`: T): *T*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[appendChild](_src_open_scd_.openscd.md#appendchild)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[appendChild](_src_open_scd_.openscd.md#appendchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10793
 
@@ -2772,7 +2771,7 @@ ___
 
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[attachShadow](_src_open_scd_.openscd.md#attachshadow)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[attachShadow](_src_open_scd_.openscd.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5142
 
@@ -2792,7 +2791,7 @@ ___
 
 ▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[attributeChangedCallback](_src_open_scd_.openscd.md#attributechangedcallback)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[attributeChangedCallback](_src_open_scd_.openscd.md#attributechangedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:308
 
@@ -2812,9 +2811,9 @@ ___
 
 ###  before
 
-▸ **before**(...`nodes`: string | Node[]): *void*
+▸ **before**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[before](_src_open_scd_.openscd.md#before)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[before](_src_open_scd_.openscd.md#before)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3507
 
@@ -2826,7 +2825,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -2836,7 +2835,7 @@ ___
 
 ▸ **blur**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[blur](_src_open_scd_.openscd.md#blur)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[blur](_src_open_scd_.openscd.md#blur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7993
 
@@ -2848,7 +2847,7 @@ ___
 
 ▸ **click**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[click](_src_open_scd_.openscd.md#click)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[click](_src_open_scd_.openscd.md#click)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
@@ -2860,7 +2859,7 @@ ___
 
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[cloneNode](_src_open_scd_.openscd.md#clonenode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[cloneNode](_src_open_scd_.openscd.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10797
 
@@ -2880,7 +2879,7 @@ ___
 
 ▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5146
 
@@ -2900,7 +2899,7 @@ Name | Type |
 
 ▸ **closest**‹**K**›(`selector`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5147
 
@@ -2918,7 +2917,7 @@ Name | Type |
 
 ▸ **closest**‹**E**›(`selector`: string): *E | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -2940,7 +2939,7 @@ ___
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[compareDocumentPosition](_src_open_scd_.openscd.md#comparedocumentposition)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[compareDocumentPosition](_src_open_scd_.openscd.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10801
 
@@ -2960,7 +2959,7 @@ ___
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[connectedCallback](_src_open_scd_.openscd.md#connectedcallback)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[connectedCallback](_src_open_scd_.openscd.md#connectedcallback)*
 
 *Overrides void*
 
@@ -2974,7 +2973,7 @@ ___
 
 ▸ **contains**(`other`: Node | null): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[contains](_src_open_scd_.openscd.md#contains)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[contains](_src_open_scd_.openscd.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
@@ -2994,7 +2993,7 @@ ___
 
 ▸ **createRenderRoot**(): *Element | ShadowRoot*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[createRenderRoot](_src_open_scd_.openscd.md#protected-createrenderroot)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[createRenderRoot](_src_open_scd_.openscd.md#protected-createrenderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:79
 
@@ -3013,7 +3012,7 @@ ___
 
 ▸ **disconnectedCallback**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[disconnectedCallback](_src_open_scd_.openscd.md#disconnectedcallback)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[disconnectedCallback](_src_open_scd_.openscd.md#disconnectedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:304
 
@@ -3029,7 +3028,7 @@ ___
 
 ▸ **dispatchEvent**(`event`: Event): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[dispatchEvent](_src_open_scd_.openscd.md#dispatchevent)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[dispatchEvent](_src_open_scd_.openscd.md#dispatchevent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5417
 
@@ -3049,7 +3048,7 @@ ___
 
 ▸ **enableUpdating**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[enableUpdating](_src_open_scd_.openscd.md#protected-enableupdating)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[enableUpdating](_src_open_scd_.openscd.md#protected-enableupdating)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:298
 
@@ -3063,7 +3062,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd.ts:147
+Defined in src/open-scd.ts:152
 
 **Returns:** *void*
 
@@ -3073,7 +3072,7 @@ ___
 
 ▸ **focus**(`options?`: FocusOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[focus](_src_open_scd_.openscd.md#focus)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[focus](_src_open_scd_.openscd.md#focus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7994
 
@@ -3091,7 +3090,7 @@ ___
 
 ▸ **getAnimations**(): *Animation[]*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getAnimations](_src_open_scd_.openscd.md#getanimations)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAnimations](_src_open_scd_.openscd.md#getanimations)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
@@ -3103,7 +3102,7 @@ ___
 
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getAttribute](_src_open_scd_.openscd.md#getattribute)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttribute](_src_open_scd_.openscd.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3123,7 +3122,7 @@ ___
 
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getAttributeNS](_src_open_scd_.openscd.md#getattributens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNS](_src_open_scd_.openscd.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3144,7 +3143,7 @@ ___
 
 ▸ **getAttributeNames**(): *string[]*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getAttributeNames](_src_open_scd_.openscd.md#getattributenames)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNames](_src_open_scd_.openscd.md#getattributenames)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5160
 
@@ -3158,7 +3157,7 @@ ___
 
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getAttributeNode](_src_open_scd_.openscd.md#getattributenode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNode](_src_open_scd_.openscd.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5161
 
@@ -3176,7 +3175,7 @@ ___
 
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getAttributeNodeNS](_src_open_scd_.openscd.md#getattributenodens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNodeNS](_src_open_scd_.openscd.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3195,7 +3194,7 @@ ___
 
 ▸ **getBoundingClientRect**(): *DOMRect*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getBoundingClientRect](_src_open_scd_.openscd.md#getboundingclientrect)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getBoundingClientRect](_src_open_scd_.openscd.md#getboundingclientrect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5163
 
@@ -3207,7 +3206,7 @@ ___
 
 ▸ **getClientRects**(): *DOMRectList*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getClientRects](_src_open_scd_.openscd.md#getclientrects)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getClientRects](_src_open_scd_.openscd.md#getclientrects)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5164
 
@@ -3219,7 +3218,7 @@ ___
 
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getElementsByClassName](_src_open_scd_.openscd.md#getelementsbyclassname)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByClassName](_src_open_scd_.openscd.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5168
 
@@ -3239,7 +3238,7 @@ ___
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5169
 
@@ -3257,7 +3256,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
@@ -3275,7 +3274,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**(`qualifiedName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3293,7 +3292,7 @@ ___
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹HTMLElement›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3308,7 +3307,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
@@ -3323,7 +3322,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
@@ -3342,7 +3341,7 @@ ___
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getRootNode](_src_open_scd_.openscd.md#getrootnode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getRootNode](_src_open_scd_.openscd.md#getrootnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3362,7 +3361,7 @@ ___
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[hasAttribute](_src_open_scd_.openscd.md#hasattribute)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasAttribute](_src_open_scd_.openscd.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3382,7 +3381,7 @@ ___
 
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[hasAttributeNS](_src_open_scd_.openscd.md#hasattributens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasAttributeNS](_src_open_scd_.openscd.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
@@ -3403,7 +3402,7 @@ ___
 
 ▸ **hasAttributes**(): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[hasAttributes](_src_open_scd_.openscd.md#hasattributes)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasAttributes](_src_open_scd_.openscd.md#hasattributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5186
 
@@ -3417,7 +3416,7 @@ ___
 
 ▸ **hasChildNodes**(): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[hasChildNodes](_src_open_scd_.openscd.md#haschildnodes)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasChildNodes](_src_open_scd_.openscd.md#haschildnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -3431,7 +3430,7 @@ ___
 
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[hasPointerCapture](_src_open_scd_.openscd.md#haspointercapture)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasPointerCapture](_src_open_scd_.openscd.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5187
 
@@ -3449,7 +3448,7 @@ ___
 
 ▸ **initialize**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[initialize](_src_open_scd_.openscd.md#protected-initialize)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[initialize](_src_open_scd_.openscd.md#protected-initialize)*
 
 *Overrides void*
 
@@ -3467,7 +3466,7 @@ ___
 
 ▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): *Element | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[insertAdjacentElement](_src_open_scd_.openscd.md#insertadjacentelement)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertAdjacentElement](_src_open_scd_.openscd.md#insertadjacentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -3486,7 +3485,7 @@ ___
 
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[insertAdjacentHTML](_src_open_scd_.openscd.md#insertadjacenthtml)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertAdjacentHTML](_src_open_scd_.openscd.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5189
 
@@ -3505,7 +3504,7 @@ ___
 
 ▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[insertAdjacentText](_src_open_scd_.openscd.md#insertadjacenttext)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertAdjacentText](_src_open_scd_.openscd.md#insertadjacenttext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5190
 
@@ -3524,7 +3523,7 @@ ___
 
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[insertBefore](_src_open_scd_.openscd.md#insertbefore)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertBefore](_src_open_scd_.openscd.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10814
 
@@ -3547,7 +3546,7 @@ ___
 
 ▸ **isDefaultNamespace**(`namespace`: string | null): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[isDefaultNamespace](_src_open_scd_.openscd.md#isdefaultnamespace)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isDefaultNamespace](_src_open_scd_.openscd.md#isdefaultnamespace)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10815
 
@@ -3565,7 +3564,7 @@ ___
 
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[isEqualNode](_src_open_scd_.openscd.md#isequalnode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isEqualNode](_src_open_scd_.openscd.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10819
 
@@ -3585,7 +3584,7 @@ ___
 
 ▸ **isSameNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[isSameNode](_src_open_scd_.openscd.md#issamenode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isSameNode](_src_open_scd_.openscd.md#issamenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10820
 
@@ -3599,11 +3598,27 @@ Name | Type |
 
 ___
 
+### `Private` loadDoc
+
+▸ **loadDoc**(`src`: string): *Promise‹string›*
+
+Defined in src/open-scd.ts:80
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`src` | string |
+
+**Returns:** *Promise‹string›*
+
+___
+
 ### `Private` loadFile
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd.ts:76
+Defined in src/open-scd.ts:134
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -3621,7 +3636,7 @@ ___
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[lookupNamespaceURI](_src_open_scd_.openscd.md#lookupnamespaceuri)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lookupNamespaceURI](_src_open_scd_.openscd.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
@@ -3639,7 +3654,7 @@ ___
 
 ▸ **lookupPrefix**(`namespace`: string | null): *string | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[lookupPrefix](_src_open_scd_.openscd.md#lookupprefix)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lookupPrefix](_src_open_scd_.openscd.md#lookupprefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10822
 
@@ -3657,7 +3672,7 @@ ___
 
 ▸ **matches**(`selectors`: string): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[matches](_src_open_scd_.openscd.md#matches)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[matches](_src_open_scd_.openscd.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5194
 
@@ -3677,7 +3692,7 @@ ___
 
 ▸ **msGetRegionContent**(): *any*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[msGetRegionContent](_src_open_scd_.openscd.md#msgetregioncontent)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[msGetRegionContent](_src_open_scd_.openscd.md#msgetregioncontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5195
 
@@ -3689,7 +3704,7 @@ ___
 
 ▸ **normalize**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[normalize](_src_open_scd_.openscd.md#normalize)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[normalize](_src_open_scd_.openscd.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -3703,7 +3718,7 @@ ___
 
 ▸ **performUpdate**(): *void | Promise‹unknown›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[performUpdate](_src_open_scd_.openscd.md#protected-performupdate)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[performUpdate](_src_open_scd_.openscd.md#protected-performupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:353
 
@@ -3728,9 +3743,9 @@ ___
 
 ###  prepend
 
-▸ **prepend**(...`nodes`: string | Node[]): *void*
+▸ **prepend**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[prepend](_src_open_scd_.openscd.md#prepend)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[prepend](_src_open_scd_.openscd.md#prepend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
@@ -3742,7 +3757,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -3752,7 +3767,7 @@ ___
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11329
 
@@ -3772,7 +3787,7 @@ Name | Type |
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11330
 
@@ -3790,7 +3805,7 @@ Name | Type |
 
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -3812,7 +3827,7 @@ ___
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11335
 
@@ -3832,7 +3847,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11336
 
@@ -3850,7 +3865,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
@@ -3872,7 +3887,7 @@ ___
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[releasePointerCapture](_src_open_scd_.openscd.md#releasepointercapture)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[releasePointerCapture](_src_open_scd_.openscd.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
@@ -3890,7 +3905,7 @@ ___
 
 ▸ **remove**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[remove](_src_open_scd_.openscd.md#remove)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[remove](_src_open_scd_.openscd.md#remove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3511
 
@@ -3904,7 +3919,7 @@ ___
 
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[removeAttribute](_src_open_scd_.openscd.md#removeattribute)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeAttribute](_src_open_scd_.openscd.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
@@ -3924,7 +3939,7 @@ ___
 
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[removeAttributeNS](_src_open_scd_.openscd.md#removeattributens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeAttributeNS](_src_open_scd_.openscd.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -3945,7 +3960,7 @@ ___
 
 ▸ **removeAttributeNode**(`attr`: Attr): *Attr*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[removeAttributeNode](_src_open_scd_.openscd.md#removeattributenode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeAttributeNode](_src_open_scd_.openscd.md#removeattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
@@ -3963,7 +3978,7 @@ ___
 
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[removeChild](_src_open_scd_.openscd.md#removechild)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeChild](_src_open_scd_.openscd.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
@@ -3985,7 +4000,7 @@ ___
 
 ▸ **removeEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[removeEventListener](_src_open_scd_.openscd.md#removeeventlistener)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeEventListener](_src_open_scd_.openscd.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4016,7 +4031,7 @@ Name | Type |
 
 ▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[removeEventListener](_src_open_scd_.openscd.md#removeeventlistener)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeEventListener](_src_open_scd_.openscd.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4038,9 +4053,9 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Overrides [OpenScd](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
+*Overrides [OpenSCD](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
 
-Defined in src/open-scd.ts:114
+Defined in src/open-scd.ts:33
 
 **Returns:** *TemplateResult*
 
@@ -4050,7 +4065,7 @@ ___
 
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[replaceChild](_src_open_scd_.openscd.md#replacechild)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[replaceChild](_src_open_scd_.openscd.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10828
 
@@ -4071,9 +4086,9 @@ ___
 
 ###  replaceWith
 
-▸ **replaceWith**(...`nodes`: string | Node[]): *void*
+▸ **replaceWith**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[replaceWith](_src_open_scd_.openscd.md#replacewith)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[replaceWith](_src_open_scd_.openscd.md#replacewith)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3517
 
@@ -4085,7 +4100,7 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 
 Name | Type |
 ------ | ------ |
-`...nodes` | string &#124; Node[] |
+`...nodes` | (string &#124; Node)[] |
 
 **Returns:** *void*
 
@@ -4095,7 +4110,7 @@ ___
 
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[requestFullscreen](_src_open_scd_.openscd.md#requestfullscreen)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[requestFullscreen](_src_open_scd_.openscd.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5211
 
@@ -4117,7 +4132,7 @@ ___
 
 ▸ **requestPointerLock**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[requestPointerLock](_src_open_scd_.openscd.md#requestpointerlock)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[requestPointerLock](_src_open_scd_.openscd.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5212
 
@@ -4129,7 +4144,7 @@ ___
 
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[requestUpdate](_src_open_scd_.openscd.md#requestupdate)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[requestUpdate](_src_open_scd_.openscd.md#requestupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:330
 
@@ -4158,7 +4173,7 @@ ___
 
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scroll](_src_open_scd_.openscd.md#scroll)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scroll](_src_open_scd_.openscd.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5213
 
@@ -4172,7 +4187,7 @@ Name | Type |
 
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scroll](_src_open_scd_.openscd.md#scroll)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scroll](_src_open_scd_.openscd.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4191,7 +4206,7 @@ ___
 
 ▸ **scrollBy**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollBy](_src_open_scd_.openscd.md#scrollby)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollBy](_src_open_scd_.openscd.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
@@ -4205,7 +4220,7 @@ Name | Type |
 
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollBy](_src_open_scd_.openscd.md#scrollby)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollBy](_src_open_scd_.openscd.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5216
 
@@ -4224,7 +4239,7 @@ ___
 
 ▸ **scrollIntoView**(`arg?`: boolean | ScrollIntoViewOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollIntoView](_src_open_scd_.openscd.md#scrollintoview)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollIntoView](_src_open_scd_.openscd.md#scrollintoview)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5217
 
@@ -4242,7 +4257,7 @@ ___
 
 ▸ **scrollTo**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollTo](_src_open_scd_.openscd.md#scrollto)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollTo](_src_open_scd_.openscd.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5218
 
@@ -4256,7 +4271,7 @@ Name | Type |
 
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[scrollTo](_src_open_scd_.openscd.md#scrollto)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollTo](_src_open_scd_.openscd.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5219
 
@@ -4275,7 +4290,7 @@ ___
 
 ▸ **selectFile**(): *void*
 
-Defined in src/open-scd.ts:89
+Defined in src/open-scd.ts:147
 
 Opens the browser's "open file" dialog for selecting a file to edit.
 
@@ -4287,7 +4302,7 @@ ___
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[setAttribute](_src_open_scd_.openscd.md#setattribute)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttribute](_src_open_scd_.openscd.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -4308,7 +4323,7 @@ ___
 
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[setAttributeNS](_src_open_scd_.openscd.md#setattributens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttributeNS](_src_open_scd_.openscd.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
@@ -4330,7 +4345,7 @@ ___
 
 ▸ **setAttributeNode**(`attr`: Attr): *Attr | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[setAttributeNode](_src_open_scd_.openscd.md#setattributenode)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttributeNode](_src_open_scd_.openscd.md#setattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
@@ -4348,7 +4363,7 @@ ___
 
 ▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[setAttributeNodeNS](_src_open_scd_.openscd.md#setattributenodens)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttributeNodeNS](_src_open_scd_.openscd.md#setattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -4366,7 +4381,7 @@ ___
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[setPointerCapture](_src_open_scd_.openscd.md#setpointercapture)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setPointerCapture](_src_open_scd_.openscd.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5230
 
@@ -4384,7 +4399,7 @@ ___
 
 ▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[shouldUpdate](_src_open_scd_.openscd.md#protected-shouldupdate)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[shouldUpdate](_src_open_scd_.openscd.md#protected-shouldupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:395
 
@@ -4406,7 +4421,7 @@ ___
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[toggleAttribute](_src_open_scd_.openscd.md#toggleattribute)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[toggleAttribute](_src_open_scd_.openscd.md#toggleattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5236
 
@@ -4429,7 +4444,7 @@ ___
 
 ▸ **update**(`changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[update](_src_open_scd_.openscd.md#protected-update)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[update](_src_open_scd_.openscd.md#protected-update)*
 
 *Overrides void*
 
@@ -4453,7 +4468,7 @@ ___
 
 ▸ **updated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[updated](_src_open_scd_.openscd.md#protected-updated)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[updated](_src_open_scd_.openscd.md#protected-updated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:414
 
@@ -4477,7 +4492,7 @@ ___
 
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[webkitMatchesSelector](_src_open_scd_.openscd.md#webkitmatchesselector)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[webkitMatchesSelector](_src_open_scd_.openscd.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -4495,7 +4510,7 @@ ___
 
 ▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[createProperty](_src_open_scd_.openscd.md#static-createproperty)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[createProperty](_src_open_scd_.openscd.md#static-createproperty)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:183
 
@@ -4535,7 +4550,7 @@ ___
 
 ▸ **finalize**(): *void*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[finalize](_src_open_scd_.openscd.md#static-protected-finalize)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[finalize](_src_open_scd_.openscd.md#static-protected-finalize)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:232
 
@@ -4552,7 +4567,7 @@ ___
 
 ▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `_options`: PropertyDeclaration): *object*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getPropertyDescriptor](_src_open_scd_.openscd.md#static-protected-getpropertydescriptor)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getPropertyDescriptor](_src_open_scd_.openscd.md#static-protected-getpropertydescriptor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:208
 
@@ -4603,7 +4618,7 @@ ___
 
 ▸ **getPropertyOptions**(`name`: PropertyKey): *PropertyDeclaration‹unknown, unknown›*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getPropertyOptions](_src_open_scd_.openscd.md#static-protected-getpropertyoptions)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getPropertyOptions](_src_open_scd_.openscd.md#static-protected-getpropertyoptions)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:226
 
@@ -4633,7 +4648,7 @@ ___
 
 ▸ **getStyles**(): *CSSResult | CSSResultArray | undefined*
 
-*Inherited from [OpenScd](_src_open_scd_.openscd.md).[getStyles](_src_open_scd_.openscd.md#static-getstyles)*
+*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getStyles](_src_open_scd_.openscd.md#static-getstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:57
 
