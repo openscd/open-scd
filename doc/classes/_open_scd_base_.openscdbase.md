@@ -75,6 +75,7 @@
 * [lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)
 * [lineRippleFoundation](_open_scd_base_.openscdbase.md#optional-lineripplefoundation)
 * [localName](_open_scd_base_.openscdbase.md#readonly-localname)
+* [menu](_open_scd_base_.openscdbase.md#menu)
 * [namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)
 * [nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)
 * [nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)
@@ -566,7 +567,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:122
+Defined in src/open-scd-base.ts:152
 
 The currently active editor tab.
 
@@ -738,7 +739,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:128
+Defined in src/open-scd-base.ts:158
 
 ___
 
@@ -766,7 +767,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:125
+Defined in src/open-scd-base.ts:155
 
 The `XMLDocument` representation of the current file.
 
@@ -953,6 +954,32 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
 Returns the local name.
+
+___
+
+###  menu
+
+• **menu**: *[MenuEntry](../interfaces/_open_scd_base_.menuentry.md)[]* = [
+    {
+      icon: 'folder_open',
+      name: 'Open project',
+      startsGroup: true,
+      actionItem: true,
+      action: (): void => this.fileUI.click(),
+    },
+    { icon: 'create_new_folder', name: 'New project' },
+    { icon: 'snippet_folder', name: 'Import IED' },
+    { icon: 'save', name: 'Save project' },
+    { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
+    {
+      icon: 'rule',
+      name: 'View log',
+      actionItem: true,
+      action: (): void => this.logUI.show(),
+    },
+  ]
+
+Defined in src/open-scd-base.ts:175
 
 ___
 
@@ -2341,7 +2368,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:127
+Defined in src/open-scd-base.ts:157
 
 The name of the current file.
 
@@ -2463,7 +2490,7 @@ ___
     null
   )
 
-Defined in src/open-scd-base.ts:114
+Defined in src/open-scd-base.ts:144
 
 ___
 
@@ -2545,7 +2572,7 @@ using the `css` tag function.
 
 • **get fileUI**(): *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:183
+Defined in src/open-scd-base.ts:239
 
 **Returns:** *HTMLInputElement*
 
@@ -2567,7 +2594,7 @@ ___
 
 • **get logUI**(): *DialogBase*
 
-Defined in src/open-scd-base.ts:177
+Defined in src/open-scd-base.ts:233
 
 **Returns:** *DialogBase*
 
@@ -2577,7 +2604,7 @@ ___
 
 • **get menuUI**(): *DrawerBase*
 
-Defined in src/open-scd-base.ts:174
+Defined in src/open-scd-base.ts:230
 
 **Returns:** *DrawerBase*
 
@@ -2587,7 +2614,7 @@ ___
 
 • **get messageUI**(): *SnackbarBase*
 
-Defined in src/open-scd-base.ts:180
+Defined in src/open-scd-base.ts:236
 
 **Returns:** *SnackbarBase*
 
@@ -2597,7 +2624,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:131
+Defined in src/open-scd-base.ts:161
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2605,7 +2632,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:134
+Defined in src/open-scd-base.ts:164
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3141,7 +3168,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:187
+Defined in src/open-scd-base.ts:243
 
 **Parameters:**
 
@@ -3721,7 +3748,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:192
+Defined in src/open-scd-base.ts:248
 
 **Parameters:**
 
@@ -3737,7 +3764,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:233
+Defined in src/open-scd-base.ts:289
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4194,7 +4221,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:25
+Defined in src/open-scd-base.ts:34
 
 **Returns:** *TemplateResult*
 
@@ -4811,7 +4838,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:145
+Defined in src/open-scd-base.ts:195
 
 ###  editors
 
@@ -4819,7 +4846,7 @@ Defined in src/open-scd-base.ts:145
       {
         label: 'Substation',
         id: 'substation',
-        icon: 'border_outer',
+        icon: 'design_services', //alt: 'developer_board', //alt: 'engineering',
         getContent: (): ((part: NodePart) => void) =>
           plugin(
             './substation-editor.js',
@@ -4829,17 +4856,23 @@ Defined in src/open-scd-base.ts:145
           ),
       },
       {
-        label: 'Test',
-        id: 'test',
-        icon: 'self_improvement',
-        getContent: (): TemplateResult => html`<p>Testing...</p>`,
+        label: 'Communication',
+        id: 'communication',
+        icon: 'quickreply', //alt: 'sync_alt', //alt: 'message',
+        getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
       },
       {
-        label: 'Visual Filler',
-        id: 'filler',
-        icon: 'science',
-        getContent: (): TemplateResult => html`<p>Filling space...</p>`,
+        label: 'Network',
+        id: 'network',
+        icon: 'settings_ethernet', //alt: 'settings_input_composite', //alt: 'device_hub',
+        getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
+      },
+      {
+        label: 'IED',
+        id: 'ied',
+        icon: 'router', //alt: 'dynamic_form', //alt: 'online_prediction',
+        getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
       },
     ]
 
-Defined in src/open-scd-base.ts:146
+Defined in src/open-scd-base.ts:196

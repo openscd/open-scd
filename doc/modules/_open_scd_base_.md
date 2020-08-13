@@ -7,3 +7,7 @@
 ### Classes
 
 * [OpenSCDBase](../classes/_open_scd_base_.openscdbase.md)
+
+### Interfaces
+
+* [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)
