@@ -1,3 +1,4 @@
+/** Encodes all non ASCII symbols in `str` as XML entities. */
 export function encodeNonASCII(str: string): string {
   if (!str || !str.length) {
     return '';

@@ -1,10 +1,10 @@
-[@material/progress-indicator](../README.md) › [Globals](../globals.md) › ["src/open-scd"](../modules/_src_open_scd_.md) › [OpenSCD](_src_open_scd_.openscd.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd"](../modules/_open_scd_.md) › [OpenSCD](_open_scd_.openscd.md)
 
 # Class: OpenSCD
 
 ## Hierarchy
 
-* LitElement
+  ↳ [OpenSCDBase](_open_scd_base_.openscdbase.md)
 
   ↳ **OpenSCD**
 
@@ -12,311 +12,315 @@
 
 ### Constructors
 
-* [constructor](_src_open_scd_.openscd.md#constructor)
+* [constructor](_open_scd_.openscd.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_src_open_scd_.openscd.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_src_open_scd_.openscd.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_src_open_scd_.openscd.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_src_open_scd_.openscd.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_src_open_scd_.openscd.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_src_open_scd_.openscd.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_src_open_scd_.openscd.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_src_open_scd_.openscd.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_src_open_scd_.openscd.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_src_open_scd_.openscd.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_src_open_scd_.openscd.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_src_open_scd_.openscd.md#readonly-document_type_node)
-* [ELEMENT_NODE](_src_open_scd_.openscd.md#readonly-element_node)
-* [ENTITY_NODE](_src_open_scd_.openscd.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_src_open_scd_.openscd.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_src_open_scd_.openscd.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_src_open_scd_.openscd.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_src_open_scd_.openscd.md#readonly-text_node)
-* [accessKey](_src_open_scd_.openscd.md#accesskey)
-* [accessKeyLabel](_src_open_scd_.openscd.md#readonly-accesskeylabel)
-* [assignedSlot](_src_open_scd_.openscd.md#readonly-assignedslot)
-* [attributes](_src_open_scd_.openscd.md#readonly-attributes)
-* [autocapitalize](_src_open_scd_.openscd.md#autocapitalize)
-* [autofocus](_src_open_scd_.openscd.md#autofocus)
-* [baseURI](_src_open_scd_.openscd.md#readonly-baseuri)
-* [childElementCount](_src_open_scd_.openscd.md#readonly-childelementcount)
-* [childNodes](_src_open_scd_.openscd.md#readonly-childnodes)
-* [children](_src_open_scd_.openscd.md#readonly-children)
-* [classList](_src_open_scd_.openscd.md#readonly-classlist)
-* [className](_src_open_scd_.openscd.md#classname)
-* [clientHeight](_src_open_scd_.openscd.md#readonly-clientheight)
-* [clientLeft](_src_open_scd_.openscd.md#readonly-clientleft)
-* [clientTop](_src_open_scd_.openscd.md#readonly-clienttop)
-* [clientWidth](_src_open_scd_.openscd.md#readonly-clientwidth)
-* [contentEditable](_src_open_scd_.openscd.md#contenteditable)
-* [currentSrc](_src_open_scd_.openscd.md#private-currentsrc)
-* [dataset](_src_open_scd_.openscd.md#readonly-dataset)
-* [dir](_src_open_scd_.openscd.md#dir)
-* [doc](_src_open_scd_.openscd.md#doc)
-* [draggable](_src_open_scd_.openscd.md#draggable)
-* [firstChild](_src_open_scd_.openscd.md#readonly-firstchild)
-* [firstElementChild](_src_open_scd_.openscd.md#readonly-firstelementchild)
-* [hidden](_src_open_scd_.openscd.md#hidden)
-* [id](_src_open_scd_.openscd.md#id)
-* [innerHTML](_src_open_scd_.openscd.md#innerhtml)
-* [innerText](_src_open_scd_.openscd.md#innertext)
-* [inputMode](_src_open_scd_.openscd.md#inputmode)
-* [isConnected](_src_open_scd_.openscd.md#readonly-isconnected)
-* [isContentEditable](_src_open_scd_.openscd.md#readonly-iscontenteditable)
-* [lang](_src_open_scd_.openscd.md#lang)
-* [lastChild](_src_open_scd_.openscd.md#readonly-lastchild)
-* [lastElementChild](_src_open_scd_.openscd.md#readonly-lastelementchild)
-* [localName](_src_open_scd_.openscd.md#readonly-localname)
-* [log](_src_open_scd_.openscd.md#log)
-* [menuOpen](_src_open_scd_.openscd.md#menuopen)
-* [namespaceURI](_src_open_scd_.openscd.md#readonly-namespaceuri)
-* [nextElementSibling](_src_open_scd_.openscd.md#readonly-nextelementsibling)
-* [nextSibling](_src_open_scd_.openscd.md#readonly-nextsibling)
-* [nodeName](_src_open_scd_.openscd.md#readonly-nodename)
-* [nodeType](_src_open_scd_.openscd.md#readonly-nodetype)
-* [nodeValue](_src_open_scd_.openscd.md#nodevalue)
-* [nonce](_src_open_scd_.openscd.md#optional-nonce)
-* [offsetHeight](_src_open_scd_.openscd.md#readonly-offsetheight)
-* [offsetLeft](_src_open_scd_.openscd.md#readonly-offsetleft)
-* [offsetParent](_src_open_scd_.openscd.md#readonly-offsetparent)
-* [offsetTop](_src_open_scd_.openscd.md#readonly-offsettop)
-* [offsetWidth](_src_open_scd_.openscd.md#readonly-offsetwidth)
-* [onabort](_src_open_scd_.openscd.md#onabort)
-* [onanimationcancel](_src_open_scd_.openscd.md#onanimationcancel)
-* [onanimationend](_src_open_scd_.openscd.md#onanimationend)
-* [onanimationiteration](_src_open_scd_.openscd.md#onanimationiteration)
-* [onanimationstart](_src_open_scd_.openscd.md#onanimationstart)
-* [onauxclick](_src_open_scd_.openscd.md#onauxclick)
-* [onblur](_src_open_scd_.openscd.md#onblur)
-* [oncancel](_src_open_scd_.openscd.md#oncancel)
-* [oncanplay](_src_open_scd_.openscd.md#oncanplay)
-* [oncanplaythrough](_src_open_scd_.openscd.md#oncanplaythrough)
-* [onchange](_src_open_scd_.openscd.md#onchange)
-* [onclick](_src_open_scd_.openscd.md#onclick)
-* [onclose](_src_open_scd_.openscd.md#onclose)
-* [oncontextmenu](_src_open_scd_.openscd.md#oncontextmenu)
-* [oncopy](_src_open_scd_.openscd.md#oncopy)
-* [oncuechange](_src_open_scd_.openscd.md#oncuechange)
-* [oncut](_src_open_scd_.openscd.md#oncut)
-* [ondblclick](_src_open_scd_.openscd.md#ondblclick)
-* [ondrag](_src_open_scd_.openscd.md#ondrag)
-* [ondragend](_src_open_scd_.openscd.md#ondragend)
-* [ondragenter](_src_open_scd_.openscd.md#ondragenter)
-* [ondragexit](_src_open_scd_.openscd.md#ondragexit)
-* [ondragleave](_src_open_scd_.openscd.md#ondragleave)
-* [ondragover](_src_open_scd_.openscd.md#ondragover)
-* [ondragstart](_src_open_scd_.openscd.md#ondragstart)
-* [ondrop](_src_open_scd_.openscd.md#ondrop)
-* [ondurationchange](_src_open_scd_.openscd.md#ondurationchange)
-* [onemptied](_src_open_scd_.openscd.md#onemptied)
-* [onended](_src_open_scd_.openscd.md#onended)
-* [onerror](_src_open_scd_.openscd.md#onerror)
-* [onfocus](_src_open_scd_.openscd.md#onfocus)
-* [onfullscreenchange](_src_open_scd_.openscd.md#onfullscreenchange)
-* [onfullscreenerror](_src_open_scd_.openscd.md#onfullscreenerror)
-* [ongotpointercapture](_src_open_scd_.openscd.md#ongotpointercapture)
-* [oninput](_src_open_scd_.openscd.md#oninput)
-* [oninvalid](_src_open_scd_.openscd.md#oninvalid)
-* [onkeydown](_src_open_scd_.openscd.md#onkeydown)
-* [onkeypress](_src_open_scd_.openscd.md#onkeypress)
-* [onkeyup](_src_open_scd_.openscd.md#onkeyup)
-* [onload](_src_open_scd_.openscd.md#onload)
-* [onloadeddata](_src_open_scd_.openscd.md#onloadeddata)
-* [onloadedmetadata](_src_open_scd_.openscd.md#onloadedmetadata)
-* [onloadstart](_src_open_scd_.openscd.md#onloadstart)
-* [onlostpointercapture](_src_open_scd_.openscd.md#onlostpointercapture)
-* [onmousedown](_src_open_scd_.openscd.md#onmousedown)
-* [onmouseenter](_src_open_scd_.openscd.md#onmouseenter)
-* [onmouseleave](_src_open_scd_.openscd.md#onmouseleave)
-* [onmousemove](_src_open_scd_.openscd.md#onmousemove)
-* [onmouseout](_src_open_scd_.openscd.md#onmouseout)
-* [onmouseover](_src_open_scd_.openscd.md#onmouseover)
-* [onmouseup](_src_open_scd_.openscd.md#onmouseup)
-* [onpaste](_src_open_scd_.openscd.md#onpaste)
-* [onpause](_src_open_scd_.openscd.md#onpause)
-* [onplay](_src_open_scd_.openscd.md#onplay)
-* [onplaying](_src_open_scd_.openscd.md#onplaying)
-* [onpointercancel](_src_open_scd_.openscd.md#onpointercancel)
-* [onpointerdown](_src_open_scd_.openscd.md#onpointerdown)
-* [onpointerenter](_src_open_scd_.openscd.md#onpointerenter)
-* [onpointerleave](_src_open_scd_.openscd.md#onpointerleave)
-* [onpointermove](_src_open_scd_.openscd.md#onpointermove)
-* [onpointerout](_src_open_scd_.openscd.md#onpointerout)
-* [onpointerover](_src_open_scd_.openscd.md#onpointerover)
-* [onpointerup](_src_open_scd_.openscd.md#onpointerup)
-* [onprogress](_src_open_scd_.openscd.md#onprogress)
-* [onratechange](_src_open_scd_.openscd.md#onratechange)
-* [onreset](_src_open_scd_.openscd.md#onreset)
-* [onresize](_src_open_scd_.openscd.md#onresize)
-* [onscroll](_src_open_scd_.openscd.md#onscroll)
-* [onsecuritypolicyviolation](_src_open_scd_.openscd.md#onsecuritypolicyviolation)
-* [onseeked](_src_open_scd_.openscd.md#onseeked)
-* [onseeking](_src_open_scd_.openscd.md#onseeking)
-* [onselect](_src_open_scd_.openscd.md#onselect)
-* [onselectionchange](_src_open_scd_.openscd.md#onselectionchange)
-* [onselectstart](_src_open_scd_.openscd.md#onselectstart)
-* [onstalled](_src_open_scd_.openscd.md#onstalled)
-* [onsubmit](_src_open_scd_.openscd.md#onsubmit)
-* [onsuspend](_src_open_scd_.openscd.md#onsuspend)
-* [ontimeupdate](_src_open_scd_.openscd.md#ontimeupdate)
-* [ontoggle](_src_open_scd_.openscd.md#ontoggle)
-* [ontouchcancel](_src_open_scd_.openscd.md#optional-ontouchcancel)
-* [ontouchend](_src_open_scd_.openscd.md#optional-ontouchend)
-* [ontouchmove](_src_open_scd_.openscd.md#optional-ontouchmove)
-* [ontouchstart](_src_open_scd_.openscd.md#optional-ontouchstart)
-* [ontransitioncancel](_src_open_scd_.openscd.md#ontransitioncancel)
-* [ontransitionend](_src_open_scd_.openscd.md#ontransitionend)
-* [ontransitionrun](_src_open_scd_.openscd.md#ontransitionrun)
-* [ontransitionstart](_src_open_scd_.openscd.md#ontransitionstart)
-* [onvolumechange](_src_open_scd_.openscd.md#onvolumechange)
-* [onwaiting](_src_open_scd_.openscd.md#onwaiting)
-* [onwheel](_src_open_scd_.openscd.md#onwheel)
-* [outerHTML](_src_open_scd_.openscd.md#outerhtml)
-* [ownerDocument](_src_open_scd_.openscd.md#readonly-ownerdocument)
-* [parentElement](_src_open_scd_.openscd.md#readonly-parentelement)
-* [parentNode](_src_open_scd_.openscd.md#readonly-parentnode)
-* [prefix](_src_open_scd_.openscd.md#readonly-prefix)
-* [previousElementSibling](_src_open_scd_.openscd.md#readonly-previouselementsibling)
-* [previousSibling](_src_open_scd_.openscd.md#readonly-previoussibling)
-* [renderRoot](_src_open_scd_.openscd.md#readonly-renderroot)
-* [scrollHeight](_src_open_scd_.openscd.md#readonly-scrollheight)
-* [scrollLeft](_src_open_scd_.openscd.md#scrollleft)
-* [scrollTop](_src_open_scd_.openscd.md#scrolltop)
-* [scrollWidth](_src_open_scd_.openscd.md#readonly-scrollwidth)
-* [shadowRoot](_src_open_scd_.openscd.md#readonly-shadowroot)
-* [slot](_src_open_scd_.openscd.md#slot)
-* [spellcheck](_src_open_scd_.openscd.md#spellcheck)
-* [srcName](_src_open_scd_.openscd.md#srcname)
-* [style](_src_open_scd_.openscd.md#readonly-style)
-* [tabIndex](_src_open_scd_.openscd.md#tabindex)
-* [tagName](_src_open_scd_.openscd.md#readonly-tagname)
-* [textContent](_src_open_scd_.openscd.md#textcontent)
-* [title](_src_open_scd_.openscd.md#title)
-* [translate](_src_open_scd_.openscd.md#translate)
-* [waiting](_src_open_scd_.openscd.md#waiting)
-* [work](_src_open_scd_.openscd.md#private-work)
-* [workDone](_src_open_scd_.openscd.md#workdone)
-* [[finalized]](_src_open_scd_.openscd.md#static-protected-[finalized])
-* [finalized](_src_open_scd_.openscd.md#static-protected-finalized)
-* [properties](_src_open_scd_.openscd.md#static-properties)
-* [render](_src_open_scd_.openscd.md#static-render)
-* [styles](_src_open_scd_.openscd.md#static-styles)
+* [ATTRIBUTE_NODE](_open_scd_.openscd.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_open_scd_.openscd.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_open_scd_.openscd.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_open_scd_.openscd.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_open_scd_.openscd.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_.openscd.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_open_scd_.openscd.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_.openscd.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_open_scd_.openscd.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_.openscd.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_open_scd_.openscd.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_open_scd_.openscd.md#readonly-document_type_node)
+* [ELEMENT_NODE](_open_scd_.openscd.md#readonly-element_node)
+* [ENTITY_NODE](_open_scd_.openscd.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_open_scd_.openscd.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_open_scd_.openscd.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_open_scd_.openscd.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_open_scd_.openscd.md#readonly-text_node)
+* [accessKey](_open_scd_.openscd.md#accesskey)
+* [accessKeyLabel](_open_scd_.openscd.md#readonly-accesskeylabel)
+* [assignedSlot](_open_scd_.openscd.md#readonly-assignedslot)
+* [attributes](_open_scd_.openscd.md#readonly-attributes)
+* [autocapitalize](_open_scd_.openscd.md#autocapitalize)
+* [autofocus](_open_scd_.openscd.md#autofocus)
+* [baseURI](_open_scd_.openscd.md#readonly-baseuri)
+* [childElementCount](_open_scd_.openscd.md#readonly-childelementcount)
+* [childNodes](_open_scd_.openscd.md#readonly-childnodes)
+* [children](_open_scd_.openscd.md#readonly-children)
+* [classList](_open_scd_.openscd.md#readonly-classlist)
+* [className](_open_scd_.openscd.md#classname)
+* [clientHeight](_open_scd_.openscd.md#readonly-clientheight)
+* [clientLeft](_open_scd_.openscd.md#readonly-clientleft)
+* [clientTop](_open_scd_.openscd.md#readonly-clienttop)
+* [clientWidth](_open_scd_.openscd.md#readonly-clientwidth)
+* [contentEditable](_open_scd_.openscd.md#contenteditable)
+* [dataset](_open_scd_.openscd.md#readonly-dataset)
+* [dir](_open_scd_.openscd.md#dir)
+* [doc](_open_scd_.openscd.md#doc)
+* [draggable](_open_scd_.openscd.md#draggable)
+* [firstChild](_open_scd_.openscd.md#readonly-firstchild)
+* [firstElementChild](_open_scd_.openscd.md#readonly-firstelementchild)
+* [hidden](_open_scd_.openscd.md#hidden)
+* [history](_open_scd_.openscd.md#history)
+* [id](_open_scd_.openscd.md#id)
+* [innerHTML](_open_scd_.openscd.md#innerhtml)
+* [innerText](_open_scd_.openscd.md#innertext)
+* [inputMode](_open_scd_.openscd.md#inputmode)
+* [isConnected](_open_scd_.openscd.md#readonly-isconnected)
+* [isContentEditable](_open_scd_.openscd.md#readonly-iscontenteditable)
+* [lang](_open_scd_.openscd.md#lang)
+* [lastChild](_open_scd_.openscd.md#readonly-lastchild)
+* [lastElementChild](_open_scd_.openscd.md#readonly-lastelementchild)
+* [localName](_open_scd_.openscd.md#readonly-localname)
+* [namespaceURI](_open_scd_.openscd.md#readonly-namespaceuri)
+* [nextElementSibling](_open_scd_.openscd.md#readonly-nextelementsibling)
+* [nextSibling](_open_scd_.openscd.md#readonly-nextsibling)
+* [nodeName](_open_scd_.openscd.md#readonly-nodename)
+* [nodeType](_open_scd_.openscd.md#readonly-nodetype)
+* [nodeValue](_open_scd_.openscd.md#nodevalue)
+* [nonce](_open_scd_.openscd.md#optional-nonce)
+* [offsetHeight](_open_scd_.openscd.md#readonly-offsetheight)
+* [offsetLeft](_open_scd_.openscd.md#readonly-offsetleft)
+* [offsetParent](_open_scd_.openscd.md#readonly-offsetparent)
+* [offsetTop](_open_scd_.openscd.md#readonly-offsettop)
+* [offsetWidth](_open_scd_.openscd.md#readonly-offsetwidth)
+* [onabort](_open_scd_.openscd.md#onabort)
+* [onanimationcancel](_open_scd_.openscd.md#onanimationcancel)
+* [onanimationend](_open_scd_.openscd.md#onanimationend)
+* [onanimationiteration](_open_scd_.openscd.md#onanimationiteration)
+* [onanimationstart](_open_scd_.openscd.md#onanimationstart)
+* [onauxclick](_open_scd_.openscd.md#onauxclick)
+* [onblur](_open_scd_.openscd.md#onblur)
+* [oncancel](_open_scd_.openscd.md#oncancel)
+* [oncanplay](_open_scd_.openscd.md#oncanplay)
+* [oncanplaythrough](_open_scd_.openscd.md#oncanplaythrough)
+* [onchange](_open_scd_.openscd.md#onchange)
+* [onclick](_open_scd_.openscd.md#onclick)
+* [onclose](_open_scd_.openscd.md#onclose)
+* [oncontextmenu](_open_scd_.openscd.md#oncontextmenu)
+* [oncopy](_open_scd_.openscd.md#oncopy)
+* [oncuechange](_open_scd_.openscd.md#oncuechange)
+* [oncut](_open_scd_.openscd.md#oncut)
+* [ondblclick](_open_scd_.openscd.md#ondblclick)
+* [ondrag](_open_scd_.openscd.md#ondrag)
+* [ondragend](_open_scd_.openscd.md#ondragend)
+* [ondragenter](_open_scd_.openscd.md#ondragenter)
+* [ondragexit](_open_scd_.openscd.md#ondragexit)
+* [ondragleave](_open_scd_.openscd.md#ondragleave)
+* [ondragover](_open_scd_.openscd.md#ondragover)
+* [ondragstart](_open_scd_.openscd.md#ondragstart)
+* [ondrop](_open_scd_.openscd.md#ondrop)
+* [ondurationchange](_open_scd_.openscd.md#ondurationchange)
+* [onemptied](_open_scd_.openscd.md#onemptied)
+* [onended](_open_scd_.openscd.md#onended)
+* [onerror](_open_scd_.openscd.md#onerror)
+* [onfocus](_open_scd_.openscd.md#onfocus)
+* [onfullscreenchange](_open_scd_.openscd.md#onfullscreenchange)
+* [onfullscreenerror](_open_scd_.openscd.md#onfullscreenerror)
+* [ongotpointercapture](_open_scd_.openscd.md#ongotpointercapture)
+* [oninput](_open_scd_.openscd.md#oninput)
+* [oninvalid](_open_scd_.openscd.md#oninvalid)
+* [onkeydown](_open_scd_.openscd.md#onkeydown)
+* [onkeypress](_open_scd_.openscd.md#onkeypress)
+* [onkeyup](_open_scd_.openscd.md#onkeyup)
+* [onload](_open_scd_.openscd.md#onload)
+* [onloadeddata](_open_scd_.openscd.md#onloadeddata)
+* [onloadedmetadata](_open_scd_.openscd.md#onloadedmetadata)
+* [onloadstart](_open_scd_.openscd.md#onloadstart)
+* [onlostpointercapture](_open_scd_.openscd.md#onlostpointercapture)
+* [onmousedown](_open_scd_.openscd.md#onmousedown)
+* [onmouseenter](_open_scd_.openscd.md#onmouseenter)
+* [onmouseleave](_open_scd_.openscd.md#onmouseleave)
+* [onmousemove](_open_scd_.openscd.md#onmousemove)
+* [onmouseout](_open_scd_.openscd.md#onmouseout)
+* [onmouseover](_open_scd_.openscd.md#onmouseover)
+* [onmouseup](_open_scd_.openscd.md#onmouseup)
+* [onpaste](_open_scd_.openscd.md#onpaste)
+* [onpause](_open_scd_.openscd.md#onpause)
+* [onplay](_open_scd_.openscd.md#onplay)
+* [onplaying](_open_scd_.openscd.md#onplaying)
+* [onpointercancel](_open_scd_.openscd.md#onpointercancel)
+* [onpointerdown](_open_scd_.openscd.md#onpointerdown)
+* [onpointerenter](_open_scd_.openscd.md#onpointerenter)
+* [onpointerleave](_open_scd_.openscd.md#onpointerleave)
+* [onpointermove](_open_scd_.openscd.md#onpointermove)
+* [onpointerout](_open_scd_.openscd.md#onpointerout)
+* [onpointerover](_open_scd_.openscd.md#onpointerover)
+* [onpointerup](_open_scd_.openscd.md#onpointerup)
+* [onprogress](_open_scd_.openscd.md#onprogress)
+* [onratechange](_open_scd_.openscd.md#onratechange)
+* [onreset](_open_scd_.openscd.md#onreset)
+* [onresize](_open_scd_.openscd.md#onresize)
+* [onscroll](_open_scd_.openscd.md#onscroll)
+* [onsecuritypolicyviolation](_open_scd_.openscd.md#onsecuritypolicyviolation)
+* [onseeked](_open_scd_.openscd.md#onseeked)
+* [onseeking](_open_scd_.openscd.md#onseeking)
+* [onselect](_open_scd_.openscd.md#onselect)
+* [onselectionchange](_open_scd_.openscd.md#onselectionchange)
+* [onselectstart](_open_scd_.openscd.md#onselectstart)
+* [onstalled](_open_scd_.openscd.md#onstalled)
+* [onsubmit](_open_scd_.openscd.md#onsubmit)
+* [onsuspend](_open_scd_.openscd.md#onsuspend)
+* [ontimeupdate](_open_scd_.openscd.md#ontimeupdate)
+* [ontoggle](_open_scd_.openscd.md#ontoggle)
+* [ontouchcancel](_open_scd_.openscd.md#optional-ontouchcancel)
+* [ontouchend](_open_scd_.openscd.md#optional-ontouchend)
+* [ontouchmove](_open_scd_.openscd.md#optional-ontouchmove)
+* [ontouchstart](_open_scd_.openscd.md#optional-ontouchstart)
+* [ontransitioncancel](_open_scd_.openscd.md#ontransitioncancel)
+* [ontransitionend](_open_scd_.openscd.md#ontransitionend)
+* [ontransitionrun](_open_scd_.openscd.md#ontransitionrun)
+* [ontransitionstart](_open_scd_.openscd.md#ontransitionstart)
+* [onvolumechange](_open_scd_.openscd.md#onvolumechange)
+* [onwaiting](_open_scd_.openscd.md#onwaiting)
+* [onwheel](_open_scd_.openscd.md#onwheel)
+* [outerHTML](_open_scd_.openscd.md#outerhtml)
+* [ownerDocument](_open_scd_.openscd.md#readonly-ownerdocument)
+* [parentElement](_open_scd_.openscd.md#readonly-parentelement)
+* [parentNode](_open_scd_.openscd.md#readonly-parentnode)
+* [prefix](_open_scd_.openscd.md#readonly-prefix)
+* [previousElementSibling](_open_scd_.openscd.md#readonly-previouselementsibling)
+* [previousSibling](_open_scd_.openscd.md#readonly-previoussibling)
+* [renderRoot](_open_scd_.openscd.md#readonly-renderroot)
+* [scrollHeight](_open_scd_.openscd.md#readonly-scrollheight)
+* [scrollLeft](_open_scd_.openscd.md#scrollleft)
+* [scrollTop](_open_scd_.openscd.md#scrolltop)
+* [scrollWidth](_open_scd_.openscd.md#readonly-scrollwidth)
+* [shadowRoot](_open_scd_.openscd.md#readonly-shadowroot)
+* [slot](_open_scd_.openscd.md#slot)
+* [spellcheck](_open_scd_.openscd.md#spellcheck)
+* [srcName](_open_scd_.openscd.md#srcname)
+* [style](_open_scd_.openscd.md#readonly-style)
+* [tabIndex](_open_scd_.openscd.md#tabindex)
+* [tagName](_open_scd_.openscd.md#readonly-tagname)
+* [textContent](_open_scd_.openscd.md#textcontent)
+* [title](_open_scd_.openscd.md#title)
+* [translate](_open_scd_.openscd.md#translate)
+* [waiting](_open_scd_.openscd.md#waiting)
+* [work](_open_scd_.openscd.md#protected-work)
+* [workDone](_open_scd_.openscd.md#workdone)
+* [[finalized]](_open_scd_.openscd.md#static-protected-[finalized])
+* [emptySCD](_open_scd_.openscd.md#static-emptyscd)
+* [finalized](_open_scd_.openscd.md#static-protected-finalized)
+* [properties](_open_scd_.openscd.md#static-properties)
+* [render](_open_scd_.openscd.md#static-render)
+* [styles](_open_scd_.openscd.md#static-styles)
 
 ### Accessors
 
-* [hasUpdated](_src_open_scd_.openscd.md#protected-hasupdated)
-* [src](_src_open_scd_.openscd.md#src)
-* [updateComplete](_src_open_scd_.openscd.md#updatecomplete)
-* [observedAttributes](_src_open_scd_.openscd.md#static-observedattributes)
+* [fileUI](_open_scd_.openscd.md#fileui)
+* [hasUpdated](_open_scd_.openscd.md#protected-hasupdated)
+* [logUI](_open_scd_.openscd.md#logui)
+* [menuUI](_open_scd_.openscd.md#menuui)
+* [messageUI](_open_scd_.openscd.md#messageui)
+* [src](_open_scd_.openscd.md#src)
+* [updateComplete](_open_scd_.openscd.md#updatecomplete)
+* [observedAttributes](_open_scd_.openscd.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_src_open_scd_.openscd.md#protected-_getupdatecomplete)
-* [addEventListener](_src_open_scd_.openscd.md#addeventlistener)
-* [adoptStyles](_src_open_scd_.openscd.md#protected-adoptstyles)
-* [after](_src_open_scd_.openscd.md#after)
-* [animate](_src_open_scd_.openscd.md#animate)
-* [append](_src_open_scd_.openscd.md#append)
-* [appendChild](_src_open_scd_.openscd.md#appendchild)
-* [attachShadow](_src_open_scd_.openscd.md#attachshadow)
-* [attributeChangedCallback](_src_open_scd_.openscd.md#attributechangedcallback)
-* [before](_src_open_scd_.openscd.md#before)
-* [blur](_src_open_scd_.openscd.md#blur)
-* [click](_src_open_scd_.openscd.md#click)
-* [cloneNode](_src_open_scd_.openscd.md#clonenode)
-* [closest](_src_open_scd_.openscd.md#closest)
-* [compareDocumentPosition](_src_open_scd_.openscd.md#comparedocumentposition)
-* [connectedCallback](_src_open_scd_.openscd.md#connectedcallback)
-* [contains](_src_open_scd_.openscd.md#contains)
-* [createRenderRoot](_src_open_scd_.openscd.md#protected-createrenderroot)
-* [disconnectedCallback](_src_open_scd_.openscd.md#disconnectedcallback)
-* [dispatchEvent](_src_open_scd_.openscd.md#dispatchevent)
-* [enableUpdating](_src_open_scd_.openscd.md#protected-enableupdating)
-* [firstUpdated](_src_open_scd_.openscd.md#firstupdated)
-* [focus](_src_open_scd_.openscd.md#focus)
-* [getAnimations](_src_open_scd_.openscd.md#getanimations)
-* [getAttribute](_src_open_scd_.openscd.md#getattribute)
-* [getAttributeNS](_src_open_scd_.openscd.md#getattributens)
-* [getAttributeNames](_src_open_scd_.openscd.md#getattributenames)
-* [getAttributeNode](_src_open_scd_.openscd.md#getattributenode)
-* [getAttributeNodeNS](_src_open_scd_.openscd.md#getattributenodens)
-* [getBoundingClientRect](_src_open_scd_.openscd.md#getboundingclientrect)
-* [getClientRects](_src_open_scd_.openscd.md#getclientrects)
-* [getElementsByClassName](_src_open_scd_.openscd.md#getelementsbyclassname)
-* [getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)
-* [getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)
-* [getRootNode](_src_open_scd_.openscd.md#getrootnode)
-* [hasAttribute](_src_open_scd_.openscd.md#hasattribute)
-* [hasAttributeNS](_src_open_scd_.openscd.md#hasattributens)
-* [hasAttributes](_src_open_scd_.openscd.md#hasattributes)
-* [hasChildNodes](_src_open_scd_.openscd.md#haschildnodes)
-* [hasPointerCapture](_src_open_scd_.openscd.md#haspointercapture)
-* [initialize](_src_open_scd_.openscd.md#protected-initialize)
-* [insertAdjacentElement](_src_open_scd_.openscd.md#insertadjacentelement)
-* [insertAdjacentHTML](_src_open_scd_.openscd.md#insertadjacenthtml)
-* [insertAdjacentText](_src_open_scd_.openscd.md#insertadjacenttext)
-* [insertBefore](_src_open_scd_.openscd.md#insertbefore)
-* [isDefaultNamespace](_src_open_scd_.openscd.md#isdefaultnamespace)
-* [isEqualNode](_src_open_scd_.openscd.md#isequalnode)
-* [isSameNode](_src_open_scd_.openscd.md#issamenode)
-* [loadDoc](_src_open_scd_.openscd.md#private-loaddoc)
-* [loadFile](_src_open_scd_.openscd.md#private-loadfile)
-* [lookupNamespaceURI](_src_open_scd_.openscd.md#lookupnamespaceuri)
-* [lookupPrefix](_src_open_scd_.openscd.md#lookupprefix)
-* [matches](_src_open_scd_.openscd.md#matches)
-* [msGetRegionContent](_src_open_scd_.openscd.md#msgetregioncontent)
-* [normalize](_src_open_scd_.openscd.md#normalize)
-* [performUpdate](_src_open_scd_.openscd.md#protected-performupdate)
-* [prepend](_src_open_scd_.openscd.md#prepend)
-* [querySelector](_src_open_scd_.openscd.md#queryselector)
-* [querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)
-* [releasePointerCapture](_src_open_scd_.openscd.md#releasepointercapture)
-* [remove](_src_open_scd_.openscd.md#remove)
-* [removeAttribute](_src_open_scd_.openscd.md#removeattribute)
-* [removeAttributeNS](_src_open_scd_.openscd.md#removeattributens)
-* [removeAttributeNode](_src_open_scd_.openscd.md#removeattributenode)
-* [removeChild](_src_open_scd_.openscd.md#removechild)
-* [removeEventListener](_src_open_scd_.openscd.md#removeeventlistener)
-* [render](_src_open_scd_.openscd.md#render)
-* [replaceChild](_src_open_scd_.openscd.md#replacechild)
-* [replaceWith](_src_open_scd_.openscd.md#replacewith)
-* [requestFullscreen](_src_open_scd_.openscd.md#requestfullscreen)
-* [requestPointerLock](_src_open_scd_.openscd.md#requestpointerlock)
-* [requestUpdate](_src_open_scd_.openscd.md#requestupdate)
-* [scroll](_src_open_scd_.openscd.md#scroll)
-* [scrollBy](_src_open_scd_.openscd.md#scrollby)
-* [scrollIntoView](_src_open_scd_.openscd.md#scrollintoview)
-* [scrollTo](_src_open_scd_.openscd.md#scrollto)
-* [selectFile](_src_open_scd_.openscd.md#selectfile)
-* [setAttribute](_src_open_scd_.openscd.md#setattribute)
-* [setAttributeNS](_src_open_scd_.openscd.md#setattributens)
-* [setAttributeNode](_src_open_scd_.openscd.md#setattributenode)
-* [setAttributeNodeNS](_src_open_scd_.openscd.md#setattributenodens)
-* [setPointerCapture](_src_open_scd_.openscd.md#setpointercapture)
-* [shouldUpdate](_src_open_scd_.openscd.md#protected-shouldupdate)
-* [toggleAttribute](_src_open_scd_.openscd.md#toggleattribute)
-* [update](_src_open_scd_.openscd.md#protected-update)
-* [updated](_src_open_scd_.openscd.md#protected-updated)
-* [webkitMatchesSelector](_src_open_scd_.openscd.md#webkitmatchesselector)
-* [createProperty](_src_open_scd_.openscd.md#static-createproperty)
-* [finalize](_src_open_scd_.openscd.md#static-protected-finalize)
-* [getPropertyDescriptor](_src_open_scd_.openscd.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_src_open_scd_.openscd.md#static-protected-getpropertyoptions)
-* [getStyles](_src_open_scd_.openscd.md#static-getstyles)
+* [_getUpdateComplete](_open_scd_.openscd.md#protected-_getupdatecomplete)
+* [addEventListener](_open_scd_.openscd.md#addeventlistener)
+* [adoptStyles](_open_scd_.openscd.md#protected-adoptstyles)
+* [after](_open_scd_.openscd.md#after)
+* [animate](_open_scd_.openscd.md#animate)
+* [append](_open_scd_.openscd.md#append)
+* [appendChild](_open_scd_.openscd.md#appendchild)
+* [attachShadow](_open_scd_.openscd.md#attachshadow)
+* [attributeChangedCallback](_open_scd_.openscd.md#attributechangedcallback)
+* [before](_open_scd_.openscd.md#before)
+* [blur](_open_scd_.openscd.md#blur)
+* [click](_open_scd_.openscd.md#click)
+* [cloneNode](_open_scd_.openscd.md#clonenode)
+* [closest](_open_scd_.openscd.md#closest)
+* [compareDocumentPosition](_open_scd_.openscd.md#comparedocumentposition)
+* [connectedCallback](_open_scd_.openscd.md#connectedcallback)
+* [contains](_open_scd_.openscd.md#contains)
+* [createRenderRoot](_open_scd_.openscd.md#protected-createrenderroot)
+* [disconnectedCallback](_open_scd_.openscd.md#disconnectedcallback)
+* [dispatchEvent](_open_scd_.openscd.md#dispatchevent)
+* [enableUpdating](_open_scd_.openscd.md#protected-enableupdating)
+* [error](_open_scd_.openscd.md#error)
+* [firstUpdated](_open_scd_.openscd.md#firstupdated)
+* [focus](_open_scd_.openscd.md#focus)
+* [getAnimations](_open_scd_.openscd.md#getanimations)
+* [getAttribute](_open_scd_.openscd.md#getattribute)
+* [getAttributeNS](_open_scd_.openscd.md#getattributens)
+* [getAttributeNames](_open_scd_.openscd.md#getattributenames)
+* [getAttributeNode](_open_scd_.openscd.md#getattributenode)
+* [getAttributeNodeNS](_open_scd_.openscd.md#getattributenodens)
+* [getBoundingClientRect](_open_scd_.openscd.md#getboundingclientrect)
+* [getClientRects](_open_scd_.openscd.md#getclientrects)
+* [getElementsByClassName](_open_scd_.openscd.md#getelementsbyclassname)
+* [getElementsByTagName](_open_scd_.openscd.md#getelementsbytagname)
+* [getElementsByTagNameNS](_open_scd_.openscd.md#getelementsbytagnamens)
+* [getRootNode](_open_scd_.openscd.md#getrootnode)
+* [hasAttribute](_open_scd_.openscd.md#hasattribute)
+* [hasAttributeNS](_open_scd_.openscd.md#hasattributens)
+* [hasAttributes](_open_scd_.openscd.md#hasattributes)
+* [hasChildNodes](_open_scd_.openscd.md#haschildnodes)
+* [hasPointerCapture](_open_scd_.openscd.md#haspointercapture)
+* [info](_open_scd_.openscd.md#info)
+* [initialize](_open_scd_.openscd.md#protected-initialize)
+* [insertAdjacentElement](_open_scd_.openscd.md#insertadjacentelement)
+* [insertAdjacentHTML](_open_scd_.openscd.md#insertadjacenthtml)
+* [insertAdjacentText](_open_scd_.openscd.md#insertadjacenttext)
+* [insertBefore](_open_scd_.openscd.md#insertbefore)
+* [isDefaultNamespace](_open_scd_.openscd.md#isdefaultnamespace)
+* [isEqualNode](_open_scd_.openscd.md#isequalnode)
+* [isSameNode](_open_scd_.openscd.md#issamenode)
+* [log](_open_scd_.openscd.md#log)
+* [lookupNamespaceURI](_open_scd_.openscd.md#lookupnamespaceuri)
+* [lookupPrefix](_open_scd_.openscd.md#lookupprefix)
+* [matches](_open_scd_.openscd.md#matches)
+* [msGetRegionContent](_open_scd_.openscd.md#msgetregioncontent)
+* [normalize](_open_scd_.openscd.md#normalize)
+* [performUpdate](_open_scd_.openscd.md#protected-performupdate)
+* [prepend](_open_scd_.openscd.md#prepend)
+* [querySelector](_open_scd_.openscd.md#queryselector)
+* [querySelectorAll](_open_scd_.openscd.md#queryselectorall)
+* [releasePointerCapture](_open_scd_.openscd.md#releasepointercapture)
+* [remove](_open_scd_.openscd.md#remove)
+* [removeAttribute](_open_scd_.openscd.md#removeattribute)
+* [removeAttributeNS](_open_scd_.openscd.md#removeattributens)
+* [removeAttributeNode](_open_scd_.openscd.md#removeattributenode)
+* [removeChild](_open_scd_.openscd.md#removechild)
+* [removeEventListener](_open_scd_.openscd.md#removeeventlistener)
+* [render](_open_scd_.openscd.md#render)
+* [replaceChild](_open_scd_.openscd.md#replacechild)
+* [replaceWith](_open_scd_.openscd.md#replacewith)
+* [requestFullscreen](_open_scd_.openscd.md#requestfullscreen)
+* [requestPointerLock](_open_scd_.openscd.md#requestpointerlock)
+* [requestUpdate](_open_scd_.openscd.md#requestupdate)
+* [scroll](_open_scd_.openscd.md#scroll)
+* [scrollBy](_open_scd_.openscd.md#scrollby)
+* [scrollIntoView](_open_scd_.openscd.md#scrollintoview)
+* [scrollTo](_open_scd_.openscd.md#scrollto)
+* [setAttribute](_open_scd_.openscd.md#setattribute)
+* [setAttributeNS](_open_scd_.openscd.md#setattributens)
+* [setAttributeNode](_open_scd_.openscd.md#setattributenode)
+* [setAttributeNodeNS](_open_scd_.openscd.md#setattributenodens)
+* [setPointerCapture](_open_scd_.openscd.md#setpointercapture)
+* [shouldUpdate](_open_scd_.openscd.md#protected-shouldupdate)
+* [toggleAttribute](_open_scd_.openscd.md#toggleattribute)
+* [update](_open_scd_.openscd.md#protected-update)
+* [updated](_open_scd_.openscd.md#protected-updated)
+* [warn](_open_scd_.openscd.md#warn)
+* [webkitMatchesSelector](_open_scd_.openscd.md#webkitmatchesselector)
+* [createProperty](_open_scd_.openscd.md#static-createproperty)
+* [finalize](_open_scd_.openscd.md#static-protected-finalize)
+* [getPropertyDescriptor](_open_scd_.openscd.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_open_scd_.openscd.md#static-protected-getpropertyoptions)
+* [getStyles](_open_scd_.openscd.md#static-getstyles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new OpenSCD**(): *[OpenSCD](_src_open_scd_.openscd.md)*
+\+ **new OpenSCD**(): *[OpenSCD](_open_scd_.openscd.md)*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[constructor](_src_open_scd_.openscd.md#constructor)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
-**Returns:** *[OpenSCD](_src_open_scd_.openscd.md)*
+**Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
 ## Properties
 
@@ -324,7 +328,7 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
 • **ATTRIBUTE_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ATTRIBUTE_NODE](_src_open_scd_.openscd.md#readonly-attribute_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ATTRIBUTE_NODE](_loggingelement_.loggingelement.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10829
 
@@ -334,7 +338,7 @@ ___
 
 • **CDATA_SECTION_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[CDATA_SECTION_NODE](_src_open_scd_.openscd.md#readonly-cdata_section_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[CDATA_SECTION_NODE](_loggingelement_.loggingelement.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -346,7 +350,7 @@ ___
 
 • **COMMENT_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[COMMENT_NODE](_src_open_scd_.openscd.md#readonly-comment_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[COMMENT_NODE](_loggingelement_.loggingelement.md#readonly-comment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10837
 
@@ -358,7 +362,7 @@ ___
 
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_FRAGMENT_NODE](_src_open_scd_.openscd.md#readonly-document_fragment_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_FRAGMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -370,7 +374,7 @@ ___
 
 • **DOCUMENT_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_NODE](_src_open_scd_.openscd.md#readonly-document_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -382,7 +386,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_CONTAINED_BY](_src_open_scd_.openscd.md#readonly-document_position_contained_by)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_CONTAINED_BY](_loggingelement_.loggingelement.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
@@ -394,7 +398,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINS**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_CONTAINS](_src_open_scd_.openscd.md#readonly-document_position_contains)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_CONTAINS](_loggingelement_.loggingelement.md#readonly-document_position_contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -406,7 +410,7 @@ ___
 
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_DISCONNECTED](_src_open_scd_.openscd.md#readonly-document_position_disconnected)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_DISCONNECTED](_loggingelement_.loggingelement.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
@@ -418,7 +422,7 @@ ___
 
 • **DOCUMENT_POSITION_FOLLOWING**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_FOLLOWING](_src_open_scd_.openscd.md#readonly-document_position_following)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_FOLLOWING](_loggingelement_.loggingelement.md#readonly-document_position_following)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -430,7 +434,7 @@ ___
 
 • **DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_src_open_scd_.openscd.md#readonly-document_position_implementation_specific)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_loggingelement_.loggingelement.md#readonly-document_position_implementation_specific)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10862
 
@@ -440,7 +444,7 @@ ___
 
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_POSITION_PRECEDING](_src_open_scd_.openscd.md#readonly-document_position_preceding)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_PRECEDING](_loggingelement_.loggingelement.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10866
 
@@ -452,7 +456,7 @@ ___
 
 • **DOCUMENT_TYPE_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[DOCUMENT_TYPE_NODE](_src_open_scd_.openscd.md#readonly-document_type_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_TYPE_NODE](_loggingelement_.loggingelement.md#readonly-document_type_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10870
 
@@ -464,7 +468,7 @@ ___
 
 • **ELEMENT_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ELEMENT_NODE](_src_open_scd_.openscd.md#readonly-element_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ELEMENT_NODE](_loggingelement_.loggingelement.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
@@ -476,7 +480,7 @@ ___
 
 • **ENTITY_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ENTITY_NODE](_src_open_scd_.openscd.md#readonly-entity_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ENTITY_NODE](_loggingelement_.loggingelement.md#readonly-entity_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10875
 
@@ -486,7 +490,7 @@ ___
 
 • **ENTITY_REFERENCE_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ENTITY_REFERENCE_NODE](_src_open_scd_.openscd.md#readonly-entity_reference_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ENTITY_REFERENCE_NODE](_loggingelement_.loggingelement.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10876
 
@@ -496,7 +500,7 @@ ___
 
 • **NOTATION_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[NOTATION_NODE](_src_open_scd_.openscd.md#readonly-notation_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[NOTATION_NODE](_loggingelement_.loggingelement.md#readonly-notation_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10877
 
@@ -506,7 +510,7 @@ ___
 
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[PROCESSING_INSTRUCTION_NODE](_src_open_scd_.openscd.md#readonly-processing_instruction_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[PROCESSING_INSTRUCTION_NODE](_loggingelement_.loggingelement.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10881
 
@@ -518,7 +522,7 @@ ___
 
 • **TEXT_NODE**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[TEXT_NODE](_src_open_scd_.openscd.md#readonly-text_node)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[TEXT_NODE](_loggingelement_.loggingelement.md#readonly-text_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10885
 
@@ -530,7 +534,7 @@ ___
 
 • **accessKey**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[accessKey](_src_open_scd_.openscd.md#accesskey)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[accessKey](_loggingelement_.loggingelement.md#accesskey)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6576
 
@@ -540,7 +544,7 @@ ___
 
 • **accessKeyLabel**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[accessKeyLabel](_src_open_scd_.openscd.md#readonly-accesskeylabel)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[accessKeyLabel](_loggingelement_.loggingelement.md#readonly-accesskeylabel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
 
@@ -550,7 +554,7 @@ ___
 
 • **assignedSlot**: *HTMLSlotElement | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[assignedSlot](_src_open_scd_.openscd.md#readonly-assignedslot)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[assignedSlot](_loggingelement_.loggingelement.md#readonly-assignedslot)*
 
 *Overrides void*
 
@@ -562,7 +566,7 @@ ___
 
 • **attributes**: *NamedNodeMap*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[attributes](_src_open_scd_.openscd.md#readonly-attributes)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[attributes](_loggingelement_.loggingelement.md#readonly-attributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5090
 
@@ -572,7 +576,7 @@ ___
 
 • **autocapitalize**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[autocapitalize](_src_open_scd_.openscd.md#autocapitalize)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[autocapitalize](_loggingelement_.loggingelement.md#autocapitalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6578
 
@@ -582,7 +586,7 @@ ___
 
 • **autofocus**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[autofocus](_src_open_scd_.openscd.md#autofocus)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[autofocus](_loggingelement_.loggingelement.md#autofocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7989
 
@@ -592,7 +596,7 @@ ___
 
 • **baseURI**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[baseURI](_src_open_scd_.openscd.md#readonly-baseuri)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[baseURI](_loggingelement_.loggingelement.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10744
 
@@ -604,7 +608,7 @@ ___
 
 • **childElementCount**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[childElementCount](_src_open_scd_.openscd.md#readonly-childelementcount)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[childElementCount](_loggingelement_.loggingelement.md#readonly-childelementcount)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11301
 
@@ -614,7 +618,7 @@ ___
 
 • **childNodes**: *NodeListOf‹ChildNode›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[childNodes](_src_open_scd_.openscd.md#readonly-childnodes)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[childNodes](_loggingelement_.loggingelement.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10748
 
@@ -626,7 +630,7 @@ ___
 
 • **children**: *HTMLCollection*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[children](_src_open_scd_.openscd.md#readonly-children)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[children](_loggingelement_.loggingelement.md#readonly-children)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11305
 
@@ -638,7 +642,7 @@ ___
 
 • **classList**: *DOMTokenList*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[classList](_src_open_scd_.openscd.md#readonly-classlist)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[classList](_loggingelement_.loggingelement.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5094
 
@@ -650,7 +654,7 @@ ___
 
 • **className**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[className](_src_open_scd_.openscd.md#classname)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[className](_loggingelement_.loggingelement.md#classname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5098
 
@@ -662,7 +666,7 @@ ___
 
 • **clientHeight**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientHeight](_src_open_scd_.openscd.md#readonly-clientheight)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientHeight](_loggingelement_.loggingelement.md#readonly-clientheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5099
 
@@ -672,7 +676,7 @@ ___
 
 • **clientLeft**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientLeft](_src_open_scd_.openscd.md#readonly-clientleft)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientLeft](_loggingelement_.loggingelement.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
@@ -682,7 +686,7 @@ ___
 
 • **clientTop**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientTop](_src_open_scd_.openscd.md#readonly-clienttop)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientTop](_loggingelement_.loggingelement.md#readonly-clienttop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5101
 
@@ -692,7 +696,7 @@ ___
 
 • **clientWidth**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[clientWidth](_src_open_scd_.openscd.md#readonly-clientwidth)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientWidth](_loggingelement_.loggingelement.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5102
 
@@ -702,17 +706,9 @@ ___
 
 • **contentEditable**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[contentEditable](_src_open_scd_.openscd.md#contenteditable)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[contentEditable](_loggingelement_.loggingelement.md#contenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
-
-___
-
-### `Private` currentSrc
-
-• **currentSrc**: *string* = ""
-
-Defined in src/open-scd.ts:116
 
 ___
 
@@ -720,7 +716,7 @@ ___
 
 • **dataset**: *DOMStringMap*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[dataset](_src_open_scd_.openscd.md#readonly-dataset)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dataset](_loggingelement_.loggingelement.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
 
@@ -730,7 +726,7 @@ ___
 
 • **dir**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[dir](_src_open_scd_.openscd.md#dir)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dir](_loggingelement_.loggingelement.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
@@ -738,9 +734,11 @@ ___
 
 ###  doc
 
-• **doc**: *XMLDocument* = emptySCD
+• **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd.ts:71
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
+
+Defined in src/open-scd-base.ts:99
 
 The `XMLDocument` representation of the current file.
 
@@ -750,7 +748,7 @@ ___
 
 • **draggable**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[draggable](_src_open_scd_.openscd.md#draggable)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[draggable](_loggingelement_.loggingelement.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
@@ -760,7 +758,7 @@ ___
 
 • **firstChild**: *ChildNode | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[firstChild](_src_open_scd_.openscd.md#readonly-firstchild)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[firstChild](_loggingelement_.loggingelement.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10752
 
@@ -772,7 +770,7 @@ ___
 
 • **firstElementChild**: *Element | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[firstElementChild](_src_open_scd_.openscd.md#readonly-firstelementchild)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[firstElementChild](_loggingelement_.loggingelement.md#readonly-firstelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
@@ -784,9 +782,19 @@ ___
 
 • **hidden**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hidden](_src_open_scd_.openscd.md#hidden)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hidden](_loggingelement_.loggingelement.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
+
+___
+
+###  history
+
+• **history**: *Array‹[LogEntry](../interfaces/_loggingelement_.logentry.md)›* = []
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[history](_loggingelement_.loggingelement.md#history)*
+
+Defined in src/LoggingElement.ts:11
 
 ___
 
@@ -794,7 +802,7 @@ ___
 
 • **id**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[id](_src_open_scd_.openscd.md#id)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[id](_loggingelement_.loggingelement.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5106
 
@@ -806,7 +814,7 @@ ___
 
 • **innerHTML**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[innerHTML](_src_open_scd_.openscd.md#innerhtml)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[innerHTML](_loggingelement_.loggingelement.md#innerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9574
 
@@ -816,7 +824,7 @@ ___
 
 • **innerText**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[innerText](_src_open_scd_.openscd.md#innertext)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[innerText](_loggingelement_.loggingelement.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6582
 
@@ -826,7 +834,7 @@ ___
 
 • **inputMode**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[inputMode](_src_open_scd_.openscd.md#inputmode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[inputMode](_loggingelement_.loggingelement.md#inputmode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5255
 
@@ -836,7 +844,7 @@ ___
 
 • **isConnected**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isConnected](_src_open_scd_.openscd.md#readonly-isconnected)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isConnected](_loggingelement_.loggingelement.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -848,7 +856,7 @@ ___
 
 • **isContentEditable**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isContentEditable](_src_open_scd_.openscd.md#readonly-iscontenteditable)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isContentEditable](_loggingelement_.loggingelement.md#readonly-iscontenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5256
 
@@ -858,7 +866,7 @@ ___
 
 • **lang**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lang](_src_open_scd_.openscd.md#lang)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lang](_loggingelement_.loggingelement.md#lang)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6583
 
@@ -868,7 +876,7 @@ ___
 
 • **lastChild**: *ChildNode | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lastChild](_src_open_scd_.openscd.md#readonly-lastchild)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lastChild](_loggingelement_.loggingelement.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -880,7 +888,7 @@ ___
 
 • **lastElementChild**: *Element | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lastElementChild](_src_open_scd_.openscd.md#readonly-lastelementchild)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lastElementChild](_loggingelement_.loggingelement.md#readonly-lastelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
@@ -892,7 +900,7 @@ ___
 
 • **localName**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[localName](_src_open_scd_.openscd.md#readonly-localname)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[localName](_loggingelement_.loggingelement.md#readonly-localname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -900,31 +908,11 @@ Returns the local name.
 
 ___
 
-###  log
-
-• **log**: *Array‹string›* = []
-
-Defined in src/open-scd.ts:68
-
-Error and warning log
-
-___
-
-###  menuOpen
-
-• **menuOpen**: *boolean* = false
-
-Defined in src/open-scd.ts:66
-
-Whether the menu drawer is currently open.
-
-___
-
 ### `Readonly` namespaceURI
 
 • **namespaceURI**: *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[namespaceURI](_src_open_scd_.openscd.md#readonly-namespaceuri)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[namespaceURI](_loggingelement_.loggingelement.md#readonly-namespaceuri)*
 
 *Overrides void*
 
@@ -938,7 +926,7 @@ ___
 
 • **nextElementSibling**: *Element | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nextElementSibling](_src_open_scd_.openscd.md#readonly-nextelementsibling)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nextElementSibling](_loggingelement_.loggingelement.md#readonly-nextelementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11031
 
@@ -950,7 +938,7 @@ ___
 
 • **nextSibling**: *ChildNode | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nextSibling](_src_open_scd_.openscd.md#readonly-nextsibling)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nextSibling](_loggingelement_.loggingelement.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10766
 
@@ -962,7 +950,7 @@ ___
 
 • **nodeName**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nodeName](_src_open_scd_.openscd.md#readonly-nodename)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nodeName](_loggingelement_.loggingelement.md#readonly-nodename)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10770
 
@@ -974,7 +962,7 @@ ___
 
 • **nodeType**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nodeType](_src_open_scd_.openscd.md#readonly-nodetype)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nodeType](_loggingelement_.loggingelement.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10774
 
@@ -986,7 +974,7 @@ ___
 
 • **nodeValue**: *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nodeValue](_src_open_scd_.openscd.md#nodevalue)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nodeValue](_loggingelement_.loggingelement.md#nodevalue)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10775
 
@@ -996,7 +984,7 @@ ___
 
 • **nonce**? : *undefined | string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[nonce](_src_open_scd_.openscd.md#optional-nonce)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nonce](_loggingelement_.loggingelement.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7991
 
@@ -1006,7 +994,7 @@ ___
 
 • **offsetHeight**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetHeight](_src_open_scd_.openscd.md#readonly-offsetheight)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetHeight](_loggingelement_.loggingelement.md#readonly-offsetheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6584
 
@@ -1016,7 +1004,7 @@ ___
 
 • **offsetLeft**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetLeft](_src_open_scd_.openscd.md#readonly-offsetleft)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetLeft](_loggingelement_.loggingelement.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6585
 
@@ -1026,7 +1014,7 @@ ___
 
 • **offsetParent**: *Element | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetParent](_src_open_scd_.openscd.md#readonly-offsetparent)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetParent](_loggingelement_.loggingelement.md#readonly-offsetparent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6586
 
@@ -1036,7 +1024,7 @@ ___
 
 • **offsetTop**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetTop](_src_open_scd_.openscd.md#readonly-offsettop)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetTop](_loggingelement_.loggingelement.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
@@ -1046,7 +1034,7 @@ ___
 
 • **offsetWidth**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[offsetWidth](_src_open_scd_.openscd.md#readonly-offsetwidth)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetWidth](_loggingelement_.loggingelement.md#readonly-offsetwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
@@ -1056,7 +1044,7 @@ ___
 
 • **onabort**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onabort](_src_open_scd_.openscd.md#onabort)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onabort](_loggingelement_.loggingelement.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5766
 
@@ -1070,7 +1058,7 @@ ___
 
 • **onanimationcancel**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationcancel](_src_open_scd_.openscd.md#onanimationcancel)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationcancel](_loggingelement_.loggingelement.md#onanimationcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5767
 
@@ -1080,7 +1068,7 @@ ___
 
 • **onanimationend**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationend](_src_open_scd_.openscd.md#onanimationend)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationend](_loggingelement_.loggingelement.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5768
 
@@ -1090,7 +1078,7 @@ ___
 
 • **onanimationiteration**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationiteration](_src_open_scd_.openscd.md#onanimationiteration)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationiteration](_loggingelement_.loggingelement.md#onanimationiteration)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5769
 
@@ -1100,7 +1088,7 @@ ___
 
 • **onanimationstart**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onanimationstart](_src_open_scd_.openscd.md#onanimationstart)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationstart](_loggingelement_.loggingelement.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5770
 
@@ -1110,7 +1098,7 @@ ___
 
 • **onauxclick**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onauxclick](_src_open_scd_.openscd.md#onauxclick)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onauxclick](_loggingelement_.loggingelement.md#onauxclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5771
 
@@ -1120,7 +1108,7 @@ ___
 
 • **onblur**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onblur](_src_open_scd_.openscd.md#onblur)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onblur](_loggingelement_.loggingelement.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5776
 
@@ -1134,7 +1122,7 @@ ___
 
 • **oncancel**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncancel](_src_open_scd_.openscd.md#oncancel)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncancel](_loggingelement_.loggingelement.md#oncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1144,7 +1132,7 @@ ___
 
 • **oncanplay**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncanplay](_src_open_scd_.openscd.md#oncanplay)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncanplay](_loggingelement_.loggingelement.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
@@ -1158,7 +1146,7 @@ ___
 
 • **oncanplaythrough**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncanplaythrough](_src_open_scd_.openscd.md#oncanplaythrough)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncanplaythrough](_loggingelement_.loggingelement.md#oncanplaythrough)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5783
 
@@ -1168,7 +1156,7 @@ ___
 
 • **onchange**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onchange](_src_open_scd_.openscd.md#onchange)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onchange](_loggingelement_.loggingelement.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
@@ -1182,7 +1170,7 @@ ___
 
 • **onclick**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onclick](_src_open_scd_.openscd.md#onclick)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onclick](_loggingelement_.loggingelement.md#onclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1196,7 +1184,7 @@ ___
 
 • **onclose**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onclose](_src_open_scd_.openscd.md#onclose)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onclose](_loggingelement_.loggingelement.md#onclose)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
@@ -1206,7 +1194,7 @@ ___
 
 • **oncontextmenu**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncontextmenu](_src_open_scd_.openscd.md#oncontextmenu)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncontextmenu](_loggingelement_.loggingelement.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1220,7 +1208,7 @@ ___
 
 • **oncopy**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncopy](_src_open_scd_.openscd.md#oncopy)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncopy](_loggingelement_.loggingelement.md#oncopy)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4888
 
@@ -1230,7 +1218,7 @@ ___
 
 • **oncuechange**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncuechange](_src_open_scd_.openscd.md#oncuechange)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncuechange](_loggingelement_.loggingelement.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5800
 
@@ -1240,7 +1228,7 @@ ___
 
 • **oncut**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oncut](_src_open_scd_.openscd.md#oncut)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncut](_loggingelement_.loggingelement.md#oncut)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4889
 
@@ -1250,7 +1238,7 @@ ___
 
 • **ondblclick**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondblclick](_src_open_scd_.openscd.md#ondblclick)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondblclick](_loggingelement_.loggingelement.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
@@ -1264,7 +1252,7 @@ ___
 
 • **ondrag**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondrag](_src_open_scd_.openscd.md#ondrag)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondrag](_loggingelement_.loggingelement.md#ondrag)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1278,7 +1266,7 @@ ___
 
 • **ondragend**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragend](_src_open_scd_.openscd.md#ondragend)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragend](_loggingelement_.loggingelement.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5815
 
@@ -1292,7 +1280,7 @@ ___
 
 • **ondragenter**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragenter](_src_open_scd_.openscd.md#ondragenter)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragenter](_loggingelement_.loggingelement.md#ondragenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5820
 
@@ -1306,7 +1294,7 @@ ___
 
 • **ondragexit**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragexit](_src_open_scd_.openscd.md#ondragexit)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragexit](_loggingelement_.loggingelement.md#ondragexit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
@@ -1316,7 +1304,7 @@ ___
 
 • **ondragleave**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragleave](_src_open_scd_.openscd.md#ondragleave)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragleave](_loggingelement_.loggingelement.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1330,7 +1318,7 @@ ___
 
 • **ondragover**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragover](_src_open_scd_.openscd.md#ondragover)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragover](_loggingelement_.loggingelement.md#ondragover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
@@ -1344,7 +1332,7 @@ ___
 
 • **ondragstart**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondragstart](_src_open_scd_.openscd.md#ondragstart)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragstart](_loggingelement_.loggingelement.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5836
 
@@ -1358,7 +1346,7 @@ ___
 
 • **ondrop**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondrop](_src_open_scd_.openscd.md#ondrop)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondrop](_loggingelement_.loggingelement.md#ondrop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1368,7 +1356,7 @@ ___
 
 • **ondurationchange**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ondurationchange](_src_open_scd_.openscd.md#ondurationchange)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondurationchange](_loggingelement_.loggingelement.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
@@ -1382,7 +1370,7 @@ ___
 
 • **onemptied**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onemptied](_src_open_scd_.openscd.md#onemptied)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onemptied](_loggingelement_.loggingelement.md#onemptied)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1396,7 +1384,7 @@ ___
 
 • **onended**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onended](_src_open_scd_.openscd.md#onended)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onended](_loggingelement_.loggingelement.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5852
 
@@ -1410,7 +1398,7 @@ ___
 
 • **onerror**: *OnErrorEventHandler*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onerror](_src_open_scd_.openscd.md#onerror)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onerror](_loggingelement_.loggingelement.md#onerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5857
 
@@ -1424,7 +1412,7 @@ ___
 
 • **onfocus**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onfocus](_src_open_scd_.openscd.md#onfocus)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onfocus](_loggingelement_.loggingelement.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5862
 
@@ -1438,7 +1426,7 @@ ___
 
 • **onfullscreenchange**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onfullscreenchange](_src_open_scd_.openscd.md#onfullscreenchange)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onfullscreenchange](_loggingelement_.loggingelement.md#onfullscreenchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5115
 
@@ -1448,7 +1436,7 @@ ___
 
 • **onfullscreenerror**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onfullscreenerror](_src_open_scd_.openscd.md#onfullscreenerror)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onfullscreenerror](_loggingelement_.loggingelement.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -1458,7 +1446,7 @@ ___
 
 • **ongotpointercapture**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ongotpointercapture](_src_open_scd_.openscd.md#ongotpointercapture)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ongotpointercapture](_loggingelement_.loggingelement.md#ongotpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1468,7 +1456,7 @@ ___
 
 • **oninput**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oninput](_src_open_scd_.openscd.md#oninput)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oninput](_loggingelement_.loggingelement.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5864
 
@@ -1478,7 +1466,7 @@ ___
 
 • **oninvalid**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[oninvalid](_src_open_scd_.openscd.md#oninvalid)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oninvalid](_loggingelement_.loggingelement.md#oninvalid)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5865
 
@@ -1488,7 +1476,7 @@ ___
 
 • **onkeydown**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onkeydown](_src_open_scd_.openscd.md#onkeydown)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onkeydown](_loggingelement_.loggingelement.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5870
 
@@ -1502,7 +1490,7 @@ ___
 
 • **onkeypress**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onkeypress](_src_open_scd_.openscd.md#onkeypress)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onkeypress](_loggingelement_.loggingelement.md#onkeypress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1516,7 +1504,7 @@ ___
 
 • **onkeyup**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onkeyup](_src_open_scd_.openscd.md#onkeyup)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onkeyup](_loggingelement_.loggingelement.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5880
 
@@ -1530,7 +1518,7 @@ ___
 
 • **onload**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onload](_src_open_scd_.openscd.md#onload)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onload](_loggingelement_.loggingelement.md#onload)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5885
 
@@ -1544,7 +1532,7 @@ ___
 
 • **onloadeddata**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onloadeddata](_src_open_scd_.openscd.md#onloadeddata)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onloadeddata](_loggingelement_.loggingelement.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5890
 
@@ -1558,7 +1546,7 @@ ___
 
 • **onloadedmetadata**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onloadedmetadata](_src_open_scd_.openscd.md#onloadedmetadata)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onloadedmetadata](_loggingelement_.loggingelement.md#onloadedmetadata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5895
 
@@ -1572,7 +1560,7 @@ ___
 
 • **onloadstart**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onloadstart](_src_open_scd_.openscd.md#onloadstart)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onloadstart](_loggingelement_.loggingelement.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5900
 
@@ -1586,7 +1574,7 @@ ___
 
 • **onlostpointercapture**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onlostpointercapture](_src_open_scd_.openscd.md#onlostpointercapture)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onlostpointercapture](_loggingelement_.loggingelement.md#onlostpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1596,7 +1584,7 @@ ___
 
 • **onmousedown**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmousedown](_src_open_scd_.openscd.md#onmousedown)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmousedown](_loggingelement_.loggingelement.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
@@ -1610,7 +1598,7 @@ ___
 
 • **onmouseenter**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseenter](_src_open_scd_.openscd.md#onmouseenter)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseenter](_loggingelement_.loggingelement.md#onmouseenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5907
 
@@ -1620,7 +1608,7 @@ ___
 
 • **onmouseleave**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseleave](_src_open_scd_.openscd.md#onmouseleave)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseleave](_loggingelement_.loggingelement.md#onmouseleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5908
 
@@ -1630,7 +1618,7 @@ ___
 
 • **onmousemove**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmousemove](_src_open_scd_.openscd.md#onmousemove)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmousemove](_loggingelement_.loggingelement.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5913
 
@@ -1644,7 +1632,7 @@ ___
 
 • **onmouseout**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseout](_src_open_scd_.openscd.md#onmouseout)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseout](_loggingelement_.loggingelement.md#onmouseout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
@@ -1658,7 +1646,7 @@ ___
 
 • **onmouseover**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseover](_src_open_scd_.openscd.md#onmouseover)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseover](_loggingelement_.loggingelement.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5923
 
@@ -1672,7 +1660,7 @@ ___
 
 • **onmouseup**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onmouseup](_src_open_scd_.openscd.md#onmouseup)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseup](_loggingelement_.loggingelement.md#onmouseup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5928
 
@@ -1686,7 +1674,7 @@ ___
 
 • **onpaste**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpaste](_src_open_scd_.openscd.md#onpaste)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpaste](_loggingelement_.loggingelement.md#onpaste)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4890
 
@@ -1696,7 +1684,7 @@ ___
 
 • **onpause**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpause](_src_open_scd_.openscd.md#onpause)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpause](_loggingelement_.loggingelement.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5933
 
@@ -1710,7 +1698,7 @@ ___
 
 • **onplay**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onplay](_src_open_scd_.openscd.md#onplay)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onplay](_loggingelement_.loggingelement.md#onplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5938
 
@@ -1724,7 +1712,7 @@ ___
 
 • **onplaying**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onplaying](_src_open_scd_.openscd.md#onplaying)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onplaying](_loggingelement_.loggingelement.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5943
 
@@ -1738,7 +1726,7 @@ ___
 
 • **onpointercancel**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointercancel](_src_open_scd_.openscd.md#onpointercancel)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointercancel](_loggingelement_.loggingelement.md#onpointercancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -1748,7 +1736,7 @@ ___
 
 • **onpointerdown**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerdown](_src_open_scd_.openscd.md#onpointerdown)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerdown](_loggingelement_.loggingelement.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5945
 
@@ -1758,7 +1746,7 @@ ___
 
 • **onpointerenter**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerenter](_src_open_scd_.openscd.md#onpointerenter)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerenter](_loggingelement_.loggingelement.md#onpointerenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5946
 
@@ -1768,7 +1756,7 @@ ___
 
 • **onpointerleave**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerleave](_src_open_scd_.openscd.md#onpointerleave)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerleave](_loggingelement_.loggingelement.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5947
 
@@ -1778,7 +1766,7 @@ ___
 
 • **onpointermove**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointermove](_src_open_scd_.openscd.md#onpointermove)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointermove](_loggingelement_.loggingelement.md#onpointermove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5948
 
@@ -1788,7 +1776,7 @@ ___
 
 • **onpointerout**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerout](_src_open_scd_.openscd.md#onpointerout)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerout](_loggingelement_.loggingelement.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
@@ -1798,7 +1786,7 @@ ___
 
 • **onpointerover**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerover](_src_open_scd_.openscd.md#onpointerover)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerover](_loggingelement_.loggingelement.md#onpointerover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5950
 
@@ -1808,7 +1796,7 @@ ___
 
 • **onpointerup**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onpointerup](_src_open_scd_.openscd.md#onpointerup)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerup](_loggingelement_.loggingelement.md#onpointerup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5951
 
@@ -1818,7 +1806,7 @@ ___
 
 • **onprogress**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onprogress](_src_open_scd_.openscd.md#onprogress)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onprogress](_loggingelement_.loggingelement.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -1832,7 +1820,7 @@ ___
 
 • **onratechange**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onratechange](_src_open_scd_.openscd.md#onratechange)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onratechange](_loggingelement_.loggingelement.md#onratechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
@@ -1846,7 +1834,7 @@ ___
 
 • **onreset**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onreset](_src_open_scd_.openscd.md#onreset)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onreset](_loggingelement_.loggingelement.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5966
 
@@ -1860,7 +1848,7 @@ ___
 
 • **onresize**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onresize](_src_open_scd_.openscd.md#onresize)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onresize](_loggingelement_.loggingelement.md#onresize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -1870,7 +1858,7 @@ ___
 
 • **onscroll**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onscroll](_src_open_scd_.openscd.md#onscroll)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onscroll](_loggingelement_.loggingelement.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
@@ -1884,7 +1872,7 @@ ___
 
 • **onsecuritypolicyviolation**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onsecuritypolicyviolation](_src_open_scd_.openscd.md#onsecuritypolicyviolation)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onsecuritypolicyviolation](_loggingelement_.loggingelement.md#onsecuritypolicyviolation)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5973
 
@@ -1894,7 +1882,7 @@ ___
 
 • **onseeked**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onseeked](_src_open_scd_.openscd.md#onseeked)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onseeked](_loggingelement_.loggingelement.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
@@ -1908,7 +1896,7 @@ ___
 
 • **onseeking**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onseeking](_src_open_scd_.openscd.md#onseeking)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onseeking](_loggingelement_.loggingelement.md#onseeking)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -1922,7 +1910,7 @@ ___
 
 • **onselect**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onselect](_src_open_scd_.openscd.md#onselect)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onselect](_loggingelement_.loggingelement.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5988
 
@@ -1936,7 +1924,7 @@ ___
 
 • **onselectionchange**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onselectionchange](_src_open_scd_.openscd.md#onselectionchange)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onselectionchange](_loggingelement_.loggingelement.md#onselectionchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -1946,7 +1934,7 @@ ___
 
 • **onselectstart**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onselectstart](_src_open_scd_.openscd.md#onselectstart)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onselectstart](_loggingelement_.loggingelement.md#onselectstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5990
 
@@ -1956,7 +1944,7 @@ ___
 
 • **onstalled**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onstalled](_src_open_scd_.openscd.md#onstalled)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onstalled](_loggingelement_.loggingelement.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5995
 
@@ -1970,7 +1958,7 @@ ___
 
 • **onsubmit**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onsubmit](_src_open_scd_.openscd.md#onsubmit)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onsubmit](_loggingelement_.loggingelement.md#onsubmit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5996
 
@@ -1980,7 +1968,7 @@ ___
 
 • **onsuspend**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onsuspend](_src_open_scd_.openscd.md#onsuspend)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onsuspend](_loggingelement_.loggingelement.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
@@ -1994,7 +1982,7 @@ ___
 
 • **ontimeupdate**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontimeupdate](_src_open_scd_.openscd.md#ontimeupdate)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontimeupdate](_loggingelement_.loggingelement.md#ontimeupdate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -2008,7 +1996,7 @@ ___
 
 • **ontoggle**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontoggle](_src_open_scd_.openscd.md#ontoggle)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontoggle](_loggingelement_.loggingelement.md#ontoggle)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
@@ -2018,7 +2006,7 @@ ___
 
 • **ontouchcancel**? : *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchcancel](_src_open_scd_.openscd.md#optional-ontouchcancel)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchcancel](_loggingelement_.loggingelement.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6008
 
@@ -2028,7 +2016,7 @@ ___
 
 • **ontouchend**? : *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchend](_src_open_scd_.openscd.md#optional-ontouchend)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchend](_loggingelement_.loggingelement.md#optional-ontouchend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6009
 
@@ -2038,7 +2026,7 @@ ___
 
 • **ontouchmove**? : *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchmove](_src_open_scd_.openscd.md#optional-ontouchmove)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchmove](_loggingelement_.loggingelement.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6010
 
@@ -2048,7 +2036,7 @@ ___
 
 • **ontouchstart**? : *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontouchstart](_src_open_scd_.openscd.md#optional-ontouchstart)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchstart](_loggingelement_.loggingelement.md#optional-ontouchstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6011
 
@@ -2058,7 +2046,7 @@ ___
 
 • **ontransitioncancel**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitioncancel](_src_open_scd_.openscd.md#ontransitioncancel)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitioncancel](_loggingelement_.loggingelement.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2068,7 +2056,7 @@ ___
 
 • **ontransitionend**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitionend](_src_open_scd_.openscd.md#ontransitionend)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitionend](_loggingelement_.loggingelement.md#ontransitionend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6013
 
@@ -2078,7 +2066,7 @@ ___
 
 • **ontransitionrun**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitionrun](_src_open_scd_.openscd.md#ontransitionrun)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitionrun](_loggingelement_.loggingelement.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6014
 
@@ -2088,7 +2076,7 @@ ___
 
 • **ontransitionstart**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ontransitionstart](_src_open_scd_.openscd.md#ontransitionstart)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitionstart](_loggingelement_.loggingelement.md#ontransitionstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6015
 
@@ -2098,7 +2086,7 @@ ___
 
 • **onvolumechange**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onvolumechange](_src_open_scd_.openscd.md#onvolumechange)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onvolumechange](_loggingelement_.loggingelement.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
@@ -2112,7 +2100,7 @@ ___
 
 • **onwaiting**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onwaiting](_src_open_scd_.openscd.md#onwaiting)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onwaiting](_loggingelement_.loggingelement.md#onwaiting)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2126,7 +2114,7 @@ ___
 
 • **onwheel**: *function | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[onwheel](_src_open_scd_.openscd.md#onwheel)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onwheel](_loggingelement_.loggingelement.md#onwheel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
@@ -2136,7 +2124,7 @@ ___
 
 • **outerHTML**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[outerHTML](_src_open_scd_.openscd.md#outerhtml)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[outerHTML](_loggingelement_.loggingelement.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5117
 
@@ -2146,7 +2134,7 @@ ___
 
 • **ownerDocument**: *Document*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[ownerDocument](_src_open_scd_.openscd.md#readonly-ownerdocument)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ownerDocument](_loggingelement_.loggingelement.md#readonly-ownerdocument)*
 
 *Overrides void*
 
@@ -2158,7 +2146,7 @@ ___
 
 • **parentElement**: *HTMLElement | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[parentElement](_src_open_scd_.openscd.md#readonly-parentelement)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[parentElement](_loggingelement_.loggingelement.md#readonly-parentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10783
 
@@ -2170,7 +2158,7 @@ ___
 
 • **parentNode**: *Node & ParentNode | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[parentNode](_src_open_scd_.openscd.md#readonly-parentnode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[parentNode](_loggingelement_.loggingelement.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
@@ -2182,7 +2170,7 @@ ___
 
 • **prefix**: *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[prefix](_src_open_scd_.openscd.md#readonly-prefix)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[prefix](_loggingelement_.loggingelement.md#readonly-prefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5122
 
@@ -2194,7 +2182,7 @@ ___
 
 • **previousElementSibling**: *Element | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[previousElementSibling](_src_open_scd_.openscd.md#readonly-previouselementsibling)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[previousElementSibling](_loggingelement_.loggingelement.md#readonly-previouselementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11035
 
@@ -2206,7 +2194,7 @@ ___
 
 • **previousSibling**: *ChildNode | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[previousSibling](_src_open_scd_.openscd.md#readonly-previoussibling)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[previousSibling](_loggingelement_.loggingelement.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10791
 
@@ -2218,7 +2206,7 @@ ___
 
 • **renderRoot**: *Element | DocumentFragment*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[renderRoot](_src_open_scd_.openscd.md#readonly-renderroot)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[renderRoot](_loggingelement_.loggingelement.md#readonly-renderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:65
 
@@ -2231,7 +2219,7 @@ ___
 
 • **scrollHeight**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollHeight](_src_open_scd_.openscd.md#readonly-scrollheight)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollHeight](_loggingelement_.loggingelement.md#readonly-scrollheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5123
 
@@ -2241,7 +2229,7 @@ ___
 
 • **scrollLeft**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollLeft](_src_open_scd_.openscd.md#scrollleft)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollLeft](_loggingelement_.loggingelement.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5124
 
@@ -2251,7 +2239,7 @@ ___
 
 • **scrollTop**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollTop](_src_open_scd_.openscd.md#scrolltop)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollTop](_loggingelement_.loggingelement.md#scrolltop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
@@ -2261,7 +2249,7 @@ ___
 
 • **scrollWidth**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollWidth](_src_open_scd_.openscd.md#readonly-scrollwidth)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollWidth](_loggingelement_.loggingelement.md#readonly-scrollwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -2271,7 +2259,7 @@ ___
 
 • **shadowRoot**: *ShadowRoot | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[shadowRoot](_src_open_scd_.openscd.md#readonly-shadowroot)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[shadowRoot](_loggingelement_.loggingelement.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5130
 
@@ -2283,7 +2271,7 @@ ___
 
 • **slot**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[slot](_src_open_scd_.openscd.md#slot)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[slot](_loggingelement_.loggingelement.md#slot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2295,7 +2283,7 @@ ___
 
 • **spellcheck**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[spellcheck](_src_open_scd_.openscd.md#spellcheck)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[spellcheck](_loggingelement_.loggingelement.md#spellcheck)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
@@ -2305,7 +2293,9 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd.ts:73
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
+
+Defined in src/open-scd-base.ts:101
 
 The name of the current file.
 
@@ -2315,7 +2305,7 @@ ___
 
 • **style**: *CSSStyleDeclaration*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[style](_src_open_scd_.openscd.md#readonly-style)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[style](_loggingelement_.loggingelement.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5250
 
@@ -2325,7 +2315,7 @@ ___
 
 • **tabIndex**: *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[tabIndex](_src_open_scd_.openscd.md#tabindex)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[tabIndex](_loggingelement_.loggingelement.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
 
@@ -2335,7 +2325,7 @@ ___
 
 • **tagName**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[tagName](_src_open_scd_.openscd.md#readonly-tagname)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[tagName](_loggingelement_.loggingelement.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5138
 
@@ -2347,7 +2337,7 @@ ___
 
 • **textContent**: *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[textContent](_src_open_scd_.openscd.md#textcontent)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[textContent](_loggingelement_.loggingelement.md#textcontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10792
 
@@ -2357,7 +2347,7 @@ ___
 
 • **title**: *string*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[title](_src_open_scd_.openscd.md#title)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[title](_loggingelement_.loggingelement.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
@@ -2367,7 +2357,7 @@ ___
 
 • **translate**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[translate](_src_open_scd_.openscd.md#translate)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[translate](_loggingelement_.loggingelement.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
@@ -2377,17 +2367,21 @@ ___
 
 • **waiting**: *boolean* = false
 
-Defined in src/open-scd.ts:75
+*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[waiting](_waitingelement_.waitingelement.md#waiting)*
 
-Whether the editor is currently waiting for some async work.
+Defined in src/WaitingElement.ts:13
+
+Whether the element is currently waiting for some async work.
 
 ___
 
-### `Private` work
+### `Protected` work
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-Defined in src/open-scd.ts:76
+*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[work](_waitingelement_.waitingelement.md#protected-work)*
+
+Defined in src/WaitingElement.ts:14
 
 ___
 
@@ -2395,7 +2389,9 @@ ___
 
 • **workDone**: *Promise‹(PromiseRejectedResult | PromiseFulfilledResult‹string›)[]›* = Promise.allSettled(this.work)
 
-Defined in src/open-scd.ts:78
+*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[workDone](_waitingelement_.waitingelement.md#workdone)*
+
+Defined in src/WaitingElement.ts:16
 
 A promise which resolves once all currently pending work is done.
 
@@ -2405,7 +2401,7 @@ ___
 
 ▪ **[finalized]**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[[finalized]](_src_open_scd_.openscd.md#static-protected-[finalized])*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[[finalized]](_loggingelement_.loggingelement.md#static-protected-[finalized])*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
@@ -2413,11 +2409,25 @@ Marks class as having finished creating properties.
 
 ___
 
+### `Static` emptySCD
+
+▪ **emptySCD**: *Document* = document.implementation.createDocument(
+    'http://www.iec.ch/61850/2003/SCL',
+    'SCL',
+    null
+  )
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)*
+
+Defined in src/open-scd-base.ts:91
+
+___
+
 ### `Static` `Protected` finalized
 
 ▪ **finalized**: *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[finalized](_src_open_scd_.openscd.md#static-protected-finalized)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[finalized](_loggingelement_.loggingelement.md#static-protected-finalized)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:36
 
@@ -2433,7 +2443,7 @@ ___
 
 ▪ **properties**: *PropertyDeclarations*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[properties](_src_open_scd_.openscd.md#static-properties)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[properties](_loggingelement_.loggingelement.md#static-properties)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:148
 
@@ -2446,7 +2456,7 @@ ___
 
 ▪ **render**: *function*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:44
 
@@ -2476,37 +2486,31 @@ ___
 
 ### `Static` styles
 
-▪ **styles**: *CSSResult‹›* = css`
-    :host {
-      height: 100vh;
-      width: 100vw;
-      margin: 0;
-    }
+▪ **styles**: *CSSResult‹›* = styles
 
-    #file-input {
-      display: none;
-    }
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[styles](_loggingelement_.loggingelement.md#static-optional-styles)*
 
-    mwc-linear-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      z-index: 100;
-    }
-  `
-
-*Overrides void*
-
-Defined in src/open-scd.ts:163
+Defined in src/open-scd.ts:13
 
 ## Accessors
+
+###  fileUI
+
+• **get fileUI**(): *HTMLInputElement*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
+
+Defined in src/open-scd-base.ts:128
+
+**Returns:** *HTMLInputElement*
+
+___
 
 ### `Protected` hasUpdated
 
 • **get hasUpdated**(): *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasUpdated](_src_open_scd_.openscd.md#protected-hasupdated)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasUpdated](_loggingelement_.loggingelement.md#protected-hasupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
@@ -2514,11 +2518,49 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 ___
 
+###  logUI
+
+• **get logUI**(): *DialogBase*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
+
+Defined in src/open-scd-base.ts:122
+
+**Returns:** *DialogBase*
+
+___
+
+###  menuUI
+
+• **get menuUI**(): *DrawerBase*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
+
+Defined in src/open-scd-base.ts:119
+
+**Returns:** *DrawerBase*
+
+___
+
+###  messageUI
+
+• **get messageUI**(): *SnackbarBase*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
+
+Defined in src/open-scd-base.ts:125
+
+**Returns:** *SnackbarBase*
+
+___
+
 ###  src
 
 • **get src**(): *string*
 
-Defined in src/open-scd.ts:119
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
+
+Defined in src/open-scd-base.ts:105
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2526,7 +2568,9 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd.ts:122
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
+
+Defined in src/open-scd-base.ts:108
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2544,7 +2588,7 @@ ___
 
 • **get updateComplete**(): *Promise‹unknown›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[updateComplete](_src_open_scd_.openscd.md#updatecomplete)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[updateComplete](_loggingelement_.loggingelement.md#updatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:370
 
@@ -2570,7 +2614,7 @@ ___
 
 • **get observedAttributes**(): *string[]*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[observedAttributes](_src_open_scd_.openscd.md#static-observedattributes)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[observedAttributes](_loggingelement_.loggingelement.md#static-observedattributes)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:153
 
@@ -2586,7 +2630,7 @@ Returns a list of attributes corresponding to the registered properties.
 
 ▸ **_getUpdateComplete**(): *Promise‹unknown›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[_getUpdateComplete](_src_open_scd_.openscd.md#protected-_getupdatecomplete)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[_getUpdateComplete](_loggingelement_.loggingelement.md#protected-_getupdatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:387
 
@@ -2613,7 +2657,7 @@ ___
 
 ▸ **addEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[addEventListener](_src_open_scd_.openscd.md#addeventlistener)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[addEventListener](_loggingelement_.loggingelement.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2644,7 +2688,7 @@ Name | Type |
 
 ▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[addEventListener](_src_open_scd_.openscd.md#addeventlistener)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[addEventListener](_loggingelement_.loggingelement.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2666,7 +2710,7 @@ ___
 
 ▸ **adoptStyles**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[adoptStyles](_src_open_scd_.openscd.md#protected-adoptstyles)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[adoptStyles](_loggingelement_.loggingelement.md#protected-adoptstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:89
 
@@ -2686,7 +2730,7 @@ ___
 
 ▸ **after**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[after](_src_open_scd_.openscd.md#after)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[after](_loggingelement_.loggingelement.md#after)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3501
 
@@ -2708,7 +2752,7 @@ ___
 
 ▸ **animate**(`keyframes`: Keyframe[] | PropertyIndexedKeyframes | null, `options?`: number | KeyframeAnimationOptions): *Animation*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[animate](_src_open_scd_.openscd.md#animate)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[animate](_loggingelement_.loggingelement.md#animate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
@@ -2727,7 +2771,7 @@ ___
 
 ▸ **append**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[append](_src_open_scd_.openscd.md#append)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[append](_loggingelement_.loggingelement.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11319
 
@@ -2749,7 +2793,7 @@ ___
 
 ▸ **appendChild**‹**T**›(`newChild`: T): *T*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[appendChild](_src_open_scd_.openscd.md#appendchild)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[appendChild](_loggingelement_.loggingelement.md#appendchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10793
 
@@ -2771,7 +2815,7 @@ ___
 
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[attachShadow](_src_open_scd_.openscd.md#attachshadow)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[attachShadow](_loggingelement_.loggingelement.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5142
 
@@ -2791,7 +2835,7 @@ ___
 
 ▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[attributeChangedCallback](_src_open_scd_.openscd.md#attributechangedcallback)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[attributeChangedCallback](_loggingelement_.loggingelement.md#attributechangedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:308
 
@@ -2813,7 +2857,7 @@ ___
 
 ▸ **before**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[before](_src_open_scd_.openscd.md#before)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[before](_loggingelement_.loggingelement.md#before)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3507
 
@@ -2835,7 +2879,7 @@ ___
 
 ▸ **blur**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[blur](_src_open_scd_.openscd.md#blur)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[blur](_loggingelement_.loggingelement.md#blur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7993
 
@@ -2847,7 +2891,7 @@ ___
 
 ▸ **click**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[click](_src_open_scd_.openscd.md#click)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[click](_loggingelement_.loggingelement.md#click)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
@@ -2859,7 +2903,7 @@ ___
 
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[cloneNode](_src_open_scd_.openscd.md#clonenode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[cloneNode](_loggingelement_.loggingelement.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10797
 
@@ -2879,7 +2923,7 @@ ___
 
 ▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[closest](_loggingelement_.loggingelement.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5146
 
@@ -2899,7 +2943,7 @@ Name | Type |
 
 ▸ **closest**‹**K**›(`selector`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[closest](_loggingelement_.loggingelement.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5147
 
@@ -2917,7 +2961,7 @@ Name | Type |
 
 ▸ **closest**‹**E**›(`selector`: string): *E | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[closest](_src_open_scd_.openscd.md#closest)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[closest](_loggingelement_.loggingelement.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -2939,7 +2983,7 @@ ___
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[compareDocumentPosition](_src_open_scd_.openscd.md#comparedocumentposition)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[compareDocumentPosition](_loggingelement_.loggingelement.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10801
 
@@ -2959,7 +3003,7 @@ ___
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[connectedCallback](_src_open_scd_.openscd.md#connectedcallback)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[connectedCallback](_loggingelement_.loggingelement.md#connectedcallback)*
 
 *Overrides void*
 
@@ -2973,7 +3017,7 @@ ___
 
 ▸ **contains**(`other`: Node | null): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[contains](_src_open_scd_.openscd.md#contains)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[contains](_loggingelement_.loggingelement.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
@@ -2993,7 +3037,7 @@ ___
 
 ▸ **createRenderRoot**(): *Element | ShadowRoot*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[createRenderRoot](_src_open_scd_.openscd.md#protected-createrenderroot)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[createRenderRoot](_loggingelement_.loggingelement.md#protected-createrenderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:79
 
@@ -3012,7 +3056,7 @@ ___
 
 ▸ **disconnectedCallback**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[disconnectedCallback](_src_open_scd_.openscd.md#disconnectedcallback)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[disconnectedCallback](_loggingelement_.loggingelement.md#disconnectedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:304
 
@@ -3028,7 +3072,7 @@ ___
 
 ▸ **dispatchEvent**(`event`: Event): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[dispatchEvent](_src_open_scd_.openscd.md#dispatchevent)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dispatchEvent](_loggingelement_.loggingelement.md#dispatchevent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5417
 
@@ -3048,9 +3092,30 @@ ___
 
 ▸ **enableUpdating**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[enableUpdating](_src_open_scd_.openscd.md#protected-enableupdating)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[enableUpdating](_loggingelement_.loggingelement.md#protected-enableupdating)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:298
+
+**Returns:** *void*
+
+___
+
+###  error
+
+▸ **error**(`title`: string, ...`detail`: string[]): *void*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[error](_open_scd_base_.openscdbase.md#error)*
+
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
+
+Defined in src/open-scd-base.ts:132
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`title` | string |
+`...detail` | string[] |
 
 **Returns:** *void*
 
@@ -3060,9 +3125,11 @@ ___
 
 ▸ **firstUpdated**(): *void*
 
-*Overrides void*
+*Inherited from [WaitingElement](_waitingelement_.waitingelement.md).[firstUpdated](_waitingelement_.waitingelement.md#firstupdated)*
 
-Defined in src/open-scd.ts:152
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[firstUpdated](_loggingelement_.loggingelement.md#firstupdated)*
+
+Defined in src/WaitingElement.ts:17
 
 **Returns:** *void*
 
@@ -3072,7 +3139,7 @@ ___
 
 ▸ **focus**(`options?`: FocusOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[focus](_src_open_scd_.openscd.md#focus)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[focus](_loggingelement_.loggingelement.md#focus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7994
 
@@ -3090,7 +3157,7 @@ ___
 
 ▸ **getAnimations**(): *Animation[]*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAnimations](_src_open_scd_.openscd.md#getanimations)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAnimations](_loggingelement_.loggingelement.md#getanimations)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
@@ -3102,7 +3169,7 @@ ___
 
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttribute](_src_open_scd_.openscd.md#getattribute)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttribute](_loggingelement_.loggingelement.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3122,7 +3189,7 @@ ___
 
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNS](_src_open_scd_.openscd.md#getattributens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNS](_loggingelement_.loggingelement.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3143,7 +3210,7 @@ ___
 
 ▸ **getAttributeNames**(): *string[]*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNames](_src_open_scd_.openscd.md#getattributenames)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNames](_loggingelement_.loggingelement.md#getattributenames)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5160
 
@@ -3157,7 +3224,7 @@ ___
 
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNode](_src_open_scd_.openscd.md#getattributenode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNode](_loggingelement_.loggingelement.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5161
 
@@ -3175,7 +3242,7 @@ ___
 
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getAttributeNodeNS](_src_open_scd_.openscd.md#getattributenodens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNodeNS](_loggingelement_.loggingelement.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3194,7 +3261,7 @@ ___
 
 ▸ **getBoundingClientRect**(): *DOMRect*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getBoundingClientRect](_src_open_scd_.openscd.md#getboundingclientrect)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getBoundingClientRect](_loggingelement_.loggingelement.md#getboundingclientrect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5163
 
@@ -3206,7 +3273,7 @@ ___
 
 ▸ **getClientRects**(): *DOMRectList*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getClientRects](_src_open_scd_.openscd.md#getclientrects)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getClientRects](_loggingelement_.loggingelement.md#getclientrects)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5164
 
@@ -3218,7 +3285,7 @@ ___
 
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByClassName](_src_open_scd_.openscd.md#getelementsbyclassname)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByClassName](_loggingelement_.loggingelement.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5168
 
@@ -3238,7 +3305,7 @@ ___
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5169
 
@@ -3256,7 +3323,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
@@ -3274,7 +3341,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**(`qualifiedName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagName](_src_open_scd_.openscd.md#getelementsbytagname)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3292,7 +3359,7 @@ ___
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹HTMLElement›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3307,7 +3374,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
@@ -3322,7 +3389,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getElementsByTagNameNS](_src_open_scd_.openscd.md#getelementsbytagnamens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
@@ -3341,7 +3408,7 @@ ___
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getRootNode](_src_open_scd_.openscd.md#getrootnode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getRootNode](_loggingelement_.loggingelement.md#getrootnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3361,7 +3428,7 @@ ___
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasAttribute](_src_open_scd_.openscd.md#hasattribute)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasAttribute](_loggingelement_.loggingelement.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3381,7 +3448,7 @@ ___
 
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasAttributeNS](_src_open_scd_.openscd.md#hasattributens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasAttributeNS](_loggingelement_.loggingelement.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
@@ -3402,7 +3469,7 @@ ___
 
 ▸ **hasAttributes**(): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasAttributes](_src_open_scd_.openscd.md#hasattributes)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasAttributes](_loggingelement_.loggingelement.md#hasattributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5186
 
@@ -3416,7 +3483,7 @@ ___
 
 ▸ **hasChildNodes**(): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasChildNodes](_src_open_scd_.openscd.md#haschildnodes)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasChildNodes](_loggingelement_.loggingelement.md#haschildnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -3430,7 +3497,7 @@ ___
 
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[hasPointerCapture](_src_open_scd_.openscd.md#haspointercapture)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasPointerCapture](_loggingelement_.loggingelement.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5187
 
@@ -3444,11 +3511,30 @@ Name | Type |
 
 ___
 
+###  info
+
+▸ **info**(`title`: string, ...`detail`: string[]): *void*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[info](_loggingelement_.loggingelement.md#info)*
+
+Defined in src/LoggingElement.ts:16
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`title` | string |
+`...detail` | string[] |
+
+**Returns:** *void*
+
+___
+
 ### `Protected` initialize
 
 ▸ **initialize**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[initialize](_src_open_scd_.openscd.md#protected-initialize)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[initialize](_loggingelement_.loggingelement.md#protected-initialize)*
 
 *Overrides void*
 
@@ -3466,7 +3552,7 @@ ___
 
 ▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): *Element | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertAdjacentElement](_src_open_scd_.openscd.md#insertadjacentelement)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertAdjacentElement](_loggingelement_.loggingelement.md#insertadjacentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -3485,7 +3571,7 @@ ___
 
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertAdjacentHTML](_src_open_scd_.openscd.md#insertadjacenthtml)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertAdjacentHTML](_loggingelement_.loggingelement.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5189
 
@@ -3504,7 +3590,7 @@ ___
 
 ▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertAdjacentText](_src_open_scd_.openscd.md#insertadjacenttext)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertAdjacentText](_loggingelement_.loggingelement.md#insertadjacenttext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5190
 
@@ -3523,7 +3609,7 @@ ___
 
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[insertBefore](_src_open_scd_.openscd.md#insertbefore)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertBefore](_loggingelement_.loggingelement.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10814
 
@@ -3546,7 +3632,7 @@ ___
 
 ▸ **isDefaultNamespace**(`namespace`: string | null): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isDefaultNamespace](_src_open_scd_.openscd.md#isdefaultnamespace)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isDefaultNamespace](_loggingelement_.loggingelement.md#isdefaultnamespace)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10815
 
@@ -3564,7 +3650,7 @@ ___
 
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isEqualNode](_src_open_scd_.openscd.md#isequalnode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isEqualNode](_loggingelement_.loggingelement.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10819
 
@@ -3584,7 +3670,7 @@ ___
 
 ▸ **isSameNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[isSameNode](_src_open_scd_.openscd.md#issamenode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isSameNode](_loggingelement_.loggingelement.md#issamenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10820
 
@@ -3598,35 +3684,21 @@ Name | Type |
 
 ___
 
-### `Private` loadDoc
+###  log
 
-▸ **loadDoc**(`src`: string): *Promise‹string›*
+▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
 
-Defined in src/open-scd.ts:80
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[log](_loggingelement_.loggingelement.md#log)*
 
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`src` | string |
-
-**Returns:** *Promise‹string›*
-
-___
-
-### `Private` loadFile
-
-▸ **loadFile**(`event`: Event): *void*
-
-Defined in src/open-scd.ts:134
-
-Loads the file selected by input `event.target.files[0]`.
+Defined in src/LoggingElement.ts:13
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`event` | Event |
+`title` | string |
+`message?` | undefined &#124; string |
+`icon?` | undefined &#124; string |
 
 **Returns:** *void*
 
@@ -3636,7 +3708,7 @@ ___
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lookupNamespaceURI](_src_open_scd_.openscd.md#lookupnamespaceuri)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lookupNamespaceURI](_loggingelement_.loggingelement.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
@@ -3654,7 +3726,7 @@ ___
 
 ▸ **lookupPrefix**(`namespace`: string | null): *string | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[lookupPrefix](_src_open_scd_.openscd.md#lookupprefix)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lookupPrefix](_loggingelement_.loggingelement.md#lookupprefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10822
 
@@ -3672,7 +3744,7 @@ ___
 
 ▸ **matches**(`selectors`: string): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[matches](_src_open_scd_.openscd.md#matches)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[matches](_loggingelement_.loggingelement.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5194
 
@@ -3692,7 +3764,7 @@ ___
 
 ▸ **msGetRegionContent**(): *any*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[msGetRegionContent](_src_open_scd_.openscd.md#msgetregioncontent)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[msGetRegionContent](_loggingelement_.loggingelement.md#msgetregioncontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5195
 
@@ -3704,7 +3776,7 @@ ___
 
 ▸ **normalize**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[normalize](_src_open_scd_.openscd.md#normalize)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[normalize](_loggingelement_.loggingelement.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -3718,7 +3790,7 @@ ___
 
 ▸ **performUpdate**(): *void | Promise‹unknown›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[performUpdate](_src_open_scd_.openscd.md#protected-performupdate)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[performUpdate](_loggingelement_.loggingelement.md#protected-performupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:353
 
@@ -3745,7 +3817,7 @@ ___
 
 ▸ **prepend**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[prepend](_src_open_scd_.openscd.md#prepend)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[prepend](_loggingelement_.loggingelement.md#prepend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
@@ -3767,7 +3839,7 @@ ___
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelector](_loggingelement_.loggingelement.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11329
 
@@ -3787,7 +3859,7 @@ Name | Type |
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelector](_loggingelement_.loggingelement.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11330
 
@@ -3805,7 +3877,7 @@ Name | Type |
 
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelector](_src_open_scd_.openscd.md#queryselector)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelector](_loggingelement_.loggingelement.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -3827,7 +3899,7 @@ ___
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11335
 
@@ -3847,7 +3919,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11336
 
@@ -3865,7 +3937,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[querySelectorAll](_src_open_scd_.openscd.md#queryselectorall)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
@@ -3887,7 +3959,7 @@ ___
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[releasePointerCapture](_src_open_scd_.openscd.md#releasepointercapture)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[releasePointerCapture](_loggingelement_.loggingelement.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
@@ -3905,7 +3977,7 @@ ___
 
 ▸ **remove**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[remove](_src_open_scd_.openscd.md#remove)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[remove](_loggingelement_.loggingelement.md#remove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3511
 
@@ -3919,7 +3991,7 @@ ___
 
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeAttribute](_src_open_scd_.openscd.md#removeattribute)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeAttribute](_loggingelement_.loggingelement.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
@@ -3939,7 +4011,7 @@ ___
 
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeAttributeNS](_src_open_scd_.openscd.md#removeattributens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeAttributeNS](_loggingelement_.loggingelement.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -3960,7 +4032,7 @@ ___
 
 ▸ **removeAttributeNode**(`attr`: Attr): *Attr*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeAttributeNode](_src_open_scd_.openscd.md#removeattributenode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeAttributeNode](_loggingelement_.loggingelement.md#removeattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
@@ -3978,7 +4050,7 @@ ___
 
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeChild](_src_open_scd_.openscd.md#removechild)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeChild](_loggingelement_.loggingelement.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
@@ -4000,7 +4072,7 @@ ___
 
 ▸ **removeEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeEventListener](_src_open_scd_.openscd.md#removeeventlistener)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeEventListener](_loggingelement_.loggingelement.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4031,7 +4103,7 @@ Name | Type |
 
 ▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[removeEventListener](_src_open_scd_.openscd.md#removeeventlistener)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeEventListener](_loggingelement_.loggingelement.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4053,9 +4125,11 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Overrides [OpenSCD](_src_open_scd_.openscd.md).[render](_src_open_scd_.openscd.md#static-render)*
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#render)*
 
-Defined in src/open-scd.ts:33
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
+
+Defined in src/open-scd-base.ts:22
 
 **Returns:** *TemplateResult*
 
@@ -4065,7 +4139,7 @@ ___
 
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[replaceChild](_src_open_scd_.openscd.md#replacechild)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[replaceChild](_loggingelement_.loggingelement.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10828
 
@@ -4088,7 +4162,7 @@ ___
 
 ▸ **replaceWith**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[replaceWith](_src_open_scd_.openscd.md#replacewith)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[replaceWith](_loggingelement_.loggingelement.md#replacewith)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3517
 
@@ -4110,7 +4184,7 @@ ___
 
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[requestFullscreen](_src_open_scd_.openscd.md#requestfullscreen)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[requestFullscreen](_loggingelement_.loggingelement.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5211
 
@@ -4132,7 +4206,7 @@ ___
 
 ▸ **requestPointerLock**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[requestPointerLock](_src_open_scd_.openscd.md#requestpointerlock)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[requestPointerLock](_loggingelement_.loggingelement.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5212
 
@@ -4144,7 +4218,7 @@ ___
 
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[requestUpdate](_src_open_scd_.openscd.md#requestupdate)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[requestUpdate](_loggingelement_.loggingelement.md#requestupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:330
 
@@ -4173,7 +4247,7 @@ ___
 
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scroll](_src_open_scd_.openscd.md#scroll)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scroll](_loggingelement_.loggingelement.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5213
 
@@ -4187,7 +4261,7 @@ Name | Type |
 
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scroll](_src_open_scd_.openscd.md#scroll)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scroll](_loggingelement_.loggingelement.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4206,7 +4280,7 @@ ___
 
 ▸ **scrollBy**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollBy](_src_open_scd_.openscd.md#scrollby)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollBy](_loggingelement_.loggingelement.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
@@ -4220,7 +4294,7 @@ Name | Type |
 
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollBy](_src_open_scd_.openscd.md#scrollby)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollBy](_loggingelement_.loggingelement.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5216
 
@@ -4239,7 +4313,7 @@ ___
 
 ▸ **scrollIntoView**(`arg?`: boolean | ScrollIntoViewOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollIntoView](_src_open_scd_.openscd.md#scrollintoview)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollIntoView](_loggingelement_.loggingelement.md#scrollintoview)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5217
 
@@ -4257,7 +4331,7 @@ ___
 
 ▸ **scrollTo**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollTo](_src_open_scd_.openscd.md#scrollto)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollTo](_loggingelement_.loggingelement.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5218
 
@@ -4271,7 +4345,7 @@ Name | Type |
 
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[scrollTo](_src_open_scd_.openscd.md#scrollto)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollTo](_loggingelement_.loggingelement.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5219
 
@@ -4286,23 +4360,11 @@ Name | Type |
 
 ___
 
-###  selectFile
-
-▸ **selectFile**(): *void*
-
-Defined in src/open-scd.ts:147
-
-Opens the browser's "open file" dialog for selecting a file to edit.
-
-**Returns:** *void*
-
-___
-
 ###  setAttribute
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttribute](_src_open_scd_.openscd.md#setattribute)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttribute](_loggingelement_.loggingelement.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -4323,7 +4385,7 @@ ___
 
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttributeNS](_src_open_scd_.openscd.md#setattributens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttributeNS](_loggingelement_.loggingelement.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
@@ -4345,7 +4407,7 @@ ___
 
 ▸ **setAttributeNode**(`attr`: Attr): *Attr | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttributeNode](_src_open_scd_.openscd.md#setattributenode)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttributeNode](_loggingelement_.loggingelement.md#setattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
@@ -4363,7 +4425,7 @@ ___
 
 ▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setAttributeNodeNS](_src_open_scd_.openscd.md#setattributenodens)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttributeNodeNS](_loggingelement_.loggingelement.md#setattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -4381,7 +4443,7 @@ ___
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[setPointerCapture](_src_open_scd_.openscd.md#setpointercapture)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setPointerCapture](_loggingelement_.loggingelement.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5230
 
@@ -4399,7 +4461,7 @@ ___
 
 ▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[shouldUpdate](_src_open_scd_.openscd.md#protected-shouldupdate)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[shouldUpdate](_loggingelement_.loggingelement.md#protected-shouldupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:395
 
@@ -4421,7 +4483,7 @@ ___
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[toggleAttribute](_src_open_scd_.openscd.md#toggleattribute)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[toggleAttribute](_loggingelement_.loggingelement.md#toggleattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5236
 
@@ -4444,7 +4506,7 @@ ___
 
 ▸ **update**(`changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[update](_src_open_scd_.openscd.md#protected-update)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[update](_loggingelement_.loggingelement.md#protected-update)*
 
 *Overrides void*
 
@@ -4468,7 +4530,7 @@ ___
 
 ▸ **updated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[updated](_src_open_scd_.openscd.md#protected-updated)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[updated](_loggingelement_.loggingelement.md#protected-updated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:414
 
@@ -4488,11 +4550,30 @@ Name | Type | Description |
 
 ___
 
+###  warn
+
+▸ **warn**(`title`: string, ...`detail`: string[]): *void*
+
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[warn](_loggingelement_.loggingelement.md#warn)*
+
+Defined in src/LoggingElement.ts:19
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`title` | string |
+`...detail` | string[] |
+
+**Returns:** *void*
+
+___
+
 ###  webkitMatchesSelector
 
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[webkitMatchesSelector](_src_open_scd_.openscd.md#webkitmatchesselector)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[webkitMatchesSelector](_loggingelement_.loggingelement.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -4510,7 +4591,7 @@ ___
 
 ▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[createProperty](_src_open_scd_.openscd.md#static-createproperty)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[createProperty](_loggingelement_.loggingelement.md#static-createproperty)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:183
 
@@ -4550,7 +4631,7 @@ ___
 
 ▸ **finalize**(): *void*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[finalize](_src_open_scd_.openscd.md#static-protected-finalize)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[finalize](_loggingelement_.loggingelement.md#static-protected-finalize)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:232
 
@@ -4567,7 +4648,7 @@ ___
 
 ▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `_options`: PropertyDeclaration): *object*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getPropertyDescriptor](_src_open_scd_.openscd.md#static-protected-getpropertydescriptor)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getPropertyDescriptor](_loggingelement_.loggingelement.md#static-protected-getpropertydescriptor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:208
 
@@ -4618,7 +4699,7 @@ ___
 
 ▸ **getPropertyOptions**(`name`: PropertyKey): *PropertyDeclaration‹unknown, unknown›*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getPropertyOptions](_src_open_scd_.openscd.md#static-protected-getpropertyoptions)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getPropertyOptions](_loggingelement_.loggingelement.md#static-protected-getpropertyoptions)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:226
 
@@ -4648,7 +4729,7 @@ ___
 
 ▸ **getStyles**(): *CSSResult | CSSResultArray | undefined*
 
-*Inherited from [OpenSCD](_src_open_scd_.openscd.md).[getStyles](_src_open_scd_.openscd.md#static-getstyles)*
+*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getStyles](_loggingelement_.loggingelement.md#static-getstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:57
 

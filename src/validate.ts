@@ -5,18 +5,20 @@ interface XMLParams {
   schema: string;
   arguments: Array<string>;
 }
+// FIXME: Replace `xml.js` with imported `WASM` module
 declare function validateXML(parameters: XMLParams): null | string;
 
-export async function validate(
+/** Validates `doc` against the `SCL 2007 B1` schema. */
+export async function validateSCL(
   doc: XMLDocument,
   fileName = 'untitled.scd'
-): Promise<null | Array<string>> {
+): Promise<Array<string>> {
   const result = validateXML({
     xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
     schema: SCL2007B1_2014_07_18,
     arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
   });
-  return result?.split('\n').filter((s: string) => s) ?? null;
+  return result?.split('\n').filter((s: string) => s) ?? [];
 }
 
 const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>

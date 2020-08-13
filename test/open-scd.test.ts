@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { OpenSCD, emptySCD } from '../src/open-scd.js';
+import { OpenSCD } from '../src/open-scd.js';
 import '../src/open-scd.js';
 
 import { training } from './data.js';
@@ -8,10 +8,20 @@ import { training } from './data.js';
 describe('open-scd', () => {
   let element: OpenSCD;
   beforeEach(async () => {
-    element = await fixture(html` <open-scd></open-scd> `);
+    element = await fixture(html`
+      <open-scd></open-scd>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+        rel="stylesheet"
+      />
+    `);
   });
 
-  it('toggles the menu on navigation icon click', async () => {
+  it('opens the menu on navigation icon click', async () => {
     const menu = element.shadowRoot!.querySelector('mwc-drawer')!;
     expect(menu).property('open').to.be.false;
     const menuButton = <HTMLElement>(
@@ -21,13 +31,38 @@ describe('open-scd', () => {
     );
     await menuButton.click();
     expect(menu).property('open').to.be.true;
-    await menuButton.click();
-    expect(menu).property('open').to.be.false;
   });
 
-  it('renders a progress bar on `waiting`', async () => {
+  it('opens the file selection dialog on open button click', done => {
+    element.fileUI.onclick = () => done();
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[icon="folder_open"]')!
+    )).click();
+  });
+
+  it('opens the log on log icon click', async () => {
+    expect(element.logUI).to.have.property('open', false);
+    await (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[icon="toc"]')!
+    )).click();
+    expect(element.logUI).to.have.property('open', true);
+  });
+
+  it('shows a snackbar on logging an error', () => {
+    expect(element.messageUI).to.have.property('open', false);
+    element.error('test error');
+    expect(element.messageUI).to.have.property('open', true);
+  });
+
+  it('opens the log on snackbar button click', async () => {
+    expect(element.logUI).to.have.property('open', false);
+    await element.messageUI.querySelector('mwc-button')!.click();
+    expect(element.logUI).to.have.property('open', true);
+  });
+
+  it('renders a progress indicator on `waiting`', async () => {
     const progressBar = element.shadowRoot!.querySelector(
-      'mwc-linear-progress[indeterminate]'
+      'mwc-circular-progress-four-color[indeterminate]'
     );
     expect(progressBar).property('closed').to.be.true;
     element.waiting = true;
@@ -39,13 +74,13 @@ describe('open-scd', () => {
   });
 
   it('initially edits an empty SCD document', () => {
-    expect(element).property('doc').to.equal(emptySCD);
+    expect(element).property('doc').to.equal(OpenSCD.emptySCD);
     expect(element).property('srcName').to.equal('untitled.scd');
   });
 
   it('revokes `src="blob:..."` URLs after parsing', async () => {
     const emptyBlobURL = URL.createObjectURL(
-      new Blob([new XMLSerializer().serializeToString(emptySCD)], {
+      new Blob([new XMLSerializer().serializeToString(OpenSCD.emptySCD)], {
         type: 'application/xml',
       })
     );
@@ -59,16 +94,16 @@ describe('open-scd', () => {
   it('loads and validates XML data from a `src` URL', async () => {
     element.setAttribute('srcName', 'training.scd');
     expect(element).property('waiting').to.be.false;
-    expect(element).property('log').to.have.length(0);
+    expect(element).property('history').to.have.length(0);
     element.setAttribute('src', training);
     expect(element).property('waiting').to.be.true;
     await element.workDone;
     expect(element.doc.querySelector('DataTypeTemplates > DOType')).to.have.id(
       'ABBIED600_Rev1_ENC_Mod_OnTestBlock'
-    ); // FIXME: testing random DOType's `id` for lack of XML snapshot support
+    );
     expect(element.doc.lastElementChild)
       .property('childElementCount')
-      .to.equal(21); // FIXME: counting `SCL` children instead of XML snapshot
-    expect(element).property('log').to.have.length(25);
+      .to.equal(21);
+    expect(element).property('history').to.have.length(28);
   }).timeout(60000);
 });
