@@ -4021,7 +4021,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:76
+Defined in src/substation-editor-base.ts:84
 
 **Returns:** *TemplateResult*
 
