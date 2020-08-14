@@ -200,6 +200,7 @@
 * [srcName](_open_scd_base_.openscdbase.md#srcname)
 * [style](_open_scd_base_.openscdbase.md#readonly-style)
 * [tabIndex](_open_scd_base_.openscdbase.md#tabindex)
+* [tag](_open_scd_base_.openscdbase.md#tag)
 * [tagName](_open_scd_base_.openscdbase.md#readonly-tagname)
 * [textContent](_open_scd_base_.openscdbase.md#textcontent)
 * [title](_open_scd_base_.openscdbase.md#title)
@@ -217,6 +218,7 @@
 ### Accessors
 
 * [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
+* [node](_open_scd_base_.openscdbase.md#node)
 * [src](_open_scd_base_.openscdbase.md#src)
 * [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
 * [observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)
@@ -281,6 +283,8 @@
 * [matches](_open_scd_base_.openscdbase.md#matches)
 * [msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)
 * [normalize](_open_scd_base_.openscdbase.md#normalize)
+* [onAdd](_open_scd_base_.openscdbase.md#private-onadd)
+* [onEdit](_open_scd_base_.openscdbase.md#private-onedit)
 * [performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)
 * [prepend](_open_scd_base_.openscdbase.md#prepend)
 * [querySelector](_open_scd_base_.openscdbase.md#queryselector)
@@ -329,9 +333,9 @@
 
 \+ **new OpenSCDBase**(): *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
+*Overrides [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:273
+Defined in src/open-scd-base.ts:342
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -567,7 +571,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:155
+Defined in src/open-scd-base.ts:170
 
 The currently active editor tab.
 
@@ -739,7 +743,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:161
+Defined in src/open-scd-base.ts:183
 
 ___
 
@@ -767,7 +771,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:158
+Defined in src/open-scd-base.ts:173
 
 The `XMLDocument` representation of the current file.
 
@@ -787,7 +791,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:181
+Defined in src/open-scd-base.ts:203
 
 ___
 
@@ -969,7 +973,7 @@ ___
 
 • **logUI**: *DialogBase*
 
-Defined in src/open-scd-base.ts:179
+Defined in src/open-scd-base.ts:201
 
 ___
 
@@ -995,7 +999,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:183
+Defined in src/open-scd-base.ts:205
 
 ___
 
@@ -1003,7 +1007,7 @@ ___
 
 • **menuUI**: *DrawerBase*
 
-Defined in src/open-scd-base.ts:178
+Defined in src/open-scd-base.ts:200
 
 ___
 
@@ -1011,7 +1015,7 @@ ___
 
 • **messageUI**: *SnackbarBase*
 
-Defined in src/open-scd-base.ts:180
+Defined in src/open-scd-base.ts:202
 
 ___
 
@@ -2400,7 +2404,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:160
+Defined in src/open-scd-base.ts:182
 
 The name of the current file.
 
@@ -2423,6 +2427,16 @@ ___
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[tabIndex](_loggingelement_.loggingelement.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
+
+___
+
+###  tag
+
+• **tag**: *string* = "SCL"
+
+Defined in src/open-scd-base.ts:180
+
+The tag name this editor is responsible for editing
 
 ___
 
@@ -2516,13 +2530,9 @@ ___
 
 ### `Static` emptySCD
 
-▪ **emptySCD**: *Document* = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  )
+▪ **emptySCD**: *Document* = document.implementation.createDocument(scl, 'SCL', null)
 
-Defined in src/open-scd-base.ts:147
+Defined in src/open-scd-base.ts:166
 
 ___
 
@@ -2612,11 +2622,23 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 ___
 
+###  node
+
+• **get node**(): *Element*
+
+Defined in src/open-scd-base.ts:176
+
+The `Node` this editor is responsible for editing
+
+**Returns:** *Element*
+
+___
+
 ###  src
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:164
+Defined in src/open-scd-base.ts:186
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2624,7 +2646,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:167
+Defined in src/open-scd-base.ts:189
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3160,7 +3182,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:238
+Defined in src/open-scd-base.ts:260
 
 **Parameters:**
 
@@ -3740,7 +3762,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:243
+Defined in src/open-scd-base.ts:265
 
 **Parameters:**
 
@@ -3756,7 +3778,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:284
+Defined in src/open-scd-base.ts:306
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -3867,6 +3889,38 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
 Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
+
+**Returns:** *void*
+
+___
+
+### `Private` onAdd
+
+▸ **onAdd**(`event`: CustomEvent‹[AddDetail](../interfaces/_open_scd_base_.adddetail.md)›): *void*
+
+Defined in src/open-scd-base.ts:324
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | CustomEvent‹[AddDetail](../interfaces/_open_scd_base_.adddetail.md)› |
+
+**Returns:** *void*
+
+___
+
+### `Private` onEdit
+
+▸ **onEdit**(`event`: CustomEvent‹[EditDetail](../interfaces/_open_scd_base_.editdetail.md)›): *void*
+
+Defined in src/open-scd-base.ts:315
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | CustomEvent‹[EditDetail](../interfaces/_open_scd_base_.editdetail.md)› |
 
 **Returns:** *void*
 
@@ -4213,7 +4267,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:34
+Defined in src/open-scd-base.ts:53
 
 **Returns:** *TemplateResult*
 
@@ -4830,7 +4884,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:203
+Defined in src/open-scd-base.ts:225
 
 ###  editors
 
@@ -4867,4 +4921,4 @@ Defined in src/open-scd-base.ts:203
       },
     ]
 
-Defined in src/open-scd-base.ts:204
+Defined in src/open-scd-base.ts:226

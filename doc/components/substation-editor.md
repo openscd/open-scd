@@ -2,15 +2,16 @@
 
 ## Properties
 
-| Property       | Attribute | Modifiers | Type                        | Default |
-|----------------|-----------|-----------|-----------------------------|---------|
-| `desc`         | `desc`    | readonly  | `string \| null`            |         |
-| `descUI`       |           |           | `TextField`                 |         |
-| `doc`          |           |           | `Readonly<Element> \| null` | null    |
-| `editUI`       |           |           | `DialogBase`                |         |
-| `editorPaneUI` |           |           | `HTMLElement`               |         |
-| `name`         | `name`    | readonly  | `string \| null`            |         |
-| `nameUI`       |           |           | `TextField`                 |         |
+| Property       | Attribute | Type              | Default      |
+|----------------|-----------|-------------------|--------------|
+| `desc`         | `desc`    | `string \| null`  |              |
+| `descUI`       |           | `TextField`       |              |
+| `editUI`       |           | `DialogBase`      |              |
+| `editorPaneUI` |           | `HTMLElement`     |              |
+| `name`         | `name`    | `string \| null`  |              |
+| `nameUI`       |           | `TextField`       |              |
+| `node`         | `node`    | `Element \| null` | null         |
+| `tag`          |           | `string`          | "Substation" |
 
 ## Methods
 

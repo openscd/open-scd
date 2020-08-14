@@ -7,8 +7,3 @@
 ### Classes
 
 * [SubstationEditorBase](../classes/_substation_editor_base_.substationeditorbase.md)
-
-### Interfaces
-
-* [AddDetail](../interfaces/_substation_editor_base_.adddetail.md)
-* [EditDetail](../interfaces/_substation_editor_base_.editdetail.md)
