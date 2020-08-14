@@ -16,15 +16,23 @@ export const iedIcon = html`<svg
     ry="2"
     fill="transparent"
     stroke="currentColor"
+    stroke-width="1.5"
   />
   <rect width="8" height="10" x="12" y="4" />
 
   <circle cx="4" cy="6" r="0.5" />
-  <line x1="6" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1" />
+  <line x1="6" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.5" />
   <circle cx="4" cy="8" r="0.5" />
-  <line x1="6" y1="8" x2="10" y2="8" stroke="currentColor" stroke-width="1" />
+  <line x1="6" y1="8" x2="10" y2="8" stroke="currentColor" stroke-width="1.5" />
   <circle cx="4" cy="10" r="0.5" />
-  <line x1="6" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="1" />
+  <line
+    x1="6"
+    y1="10"
+    x2="10"
+    y2="10"
+    stroke="currentColor"
+    stroke-width="1.5"
+  />
 
   <rect x="4" y="13.5" width="2" height="2" />
   <rect x="4" y="16" width="2" height="2" />
@@ -53,6 +61,7 @@ export const networkConfigIcon = html`<svg
     ry="1"
     fill="transparent"
     stroke="currentColor"
+    stroke-width="1.5"
   />
   <rect
     width="8"
@@ -63,6 +72,7 @@ export const networkConfigIcon = html`<svg
     ry="1"
     fill="transparent"
     stroke="currentColor"
+    stroke-width="1.5"
   />
   <rect
     width="8"
@@ -73,6 +83,7 @@ export const networkConfigIcon = html`<svg
     ry="1"
     fill="transparent"
     stroke="currentColor"
+    stroke-width="1.5"
   />
 
   <line
@@ -82,10 +93,32 @@ export const networkConfigIcon = html`<svg
     y2="12.5"
     stroke="currentColor"
     stroke-linecap="round"
+    stroke-width="1.5"
   />
-  <line x1="12.5" y1="10" x2="12.5" y2="12.5" stroke="currentColor" />
-  <line x1="6.5" y1="12.5" x2="6.5" y2="15" stroke="currentColor" />
-  <line x1="19" y1="12.5" x2="19" y2="15" stroke="currentColor" />
+  <line
+    x1="12.5"
+    y1="10"
+    x2="12.5"
+    y2="12.5"
+    stroke="currentColor"
+    stroke-width="1.5"
+  />
+  <line
+    x1="6.5"
+    y1="12.5"
+    x2="6.5"
+    y2="15"
+    stroke="currentColor"
+    stroke-width="1.5"
+  />
+  <line
+    x1="19"
+    y1="12.5"
+    x2="19"
+    y2="15"
+    stroke="currentColor"
+    stroke-width="1.5"
+  />
 </svg>`;
 
 export const zeroLineIcon = html`<svg
