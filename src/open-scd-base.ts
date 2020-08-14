@@ -243,7 +243,7 @@ export class OpenSCDBase extends WaitingElement {
       {
         label: 'Communication',
         id: 'communication',
-        icon: 'quickreply', //alt: 'sync_alt', //alt: 'message',
+        icon: 'mediation', //alt: 'sync_alt', //alt: 'message',
         getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
       },
       {
