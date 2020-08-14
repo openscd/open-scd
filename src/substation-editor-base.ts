@@ -1,11 +1,4 @@
-import {
-  LitElement,
-  html,
-  TemplateResult,
-  internalProperty,
-  property,
-  query,
-} from 'lit-element';
+import { LitElement, html, TemplateResult, property, query } from 'lit-element';
 
 import '@material/mwc-dialog';
 import '@material/mwc-fab';
@@ -13,29 +6,29 @@ import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { TextField } from '@material/mwc-textfield';
-
-export interface EditDetail {
-  name?: string;
-  desc?: string;
-}
-
-export interface AddDetail {
-  name: string;
-  desc?: string;
-}
+import { AddDetail, EditDetail } from './open-scd-base.js';
 
 export class SubstationEditorBase extends LitElement {
-  @internalProperty()
-  doc: Readonly<Element> | null = null;
+  @property()
+  node: Element | null = null;
+  tag = 'Substation';
 
   @property({ type: String })
   get name(): string | null {
-    return this.doc?.getAttribute('name') ?? null;
+    return this.node?.getAttribute('name') ?? null;
+  }
+  set name(value: string | null) {
+    if (value) this.node?.setAttribute('name', value);
+    this.requestUpdate('node');
   }
 
   @property({ type: String })
   get desc(): string | null {
-    return this.doc?.getAttribute('desc') ?? null;
+    return this.node?.getAttribute('desc') ?? null;
+  }
+  set desc(value: string | null) {
+    this.node?.setAttribute('desc', value ?? '');
+    this.requestUpdate('node');
   }
 
   @query('mwc-dialog') editUI!: DialogBase;
@@ -82,22 +75,25 @@ export class SubstationEditorBase extends LitElement {
   }
 
   render(): TemplateResult {
-    if (this.doc)
+    if (this.node)
       return html`
         <div id="editor">
           <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>
           <h2>${this.desc}<mwc-icon-button icon="edit"></mwc-icon-button></h2>
           <pre>
-${this.doc ? new XMLSerializer().serializeToString(this.doc) : null}</pre
+${this.node ? new XMLSerializer().serializeToString(this.node) : null}</pre
           >
         </div>
         <mwc-dialog heading="Edit Substation">
           <mwc-textfield
-            value="${this.name}"
+            value="${this.name ?? ''}"
             label="name"
             required
           ></mwc-textfield>
-          <mwc-textfield value="${this.desc}" label="desc"></mwc-textfield>
+          <mwc-textfield
+            value="${this.desc ?? ''}"
+            label="desc"
+          ></mwc-textfield>
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>

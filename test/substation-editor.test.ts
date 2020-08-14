@@ -29,7 +29,7 @@ describe('substation-editor', () => {
   });
 
   it('renders an "edit substation" button if a substation is loaded', async () => {
-    element.doc = substationSection;
+    element.node = substationSection;
     await element.updateComplete;
     expect(element).to.have.property('name', 'AA1');
     expect(element).to.have.property('desc', 'Substation');

@@ -22,6 +22,23 @@ import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
+export interface EditDetail {
+  name?: string;
+  desc?: string;
+}
+
+export interface AddDetail {
+  name: string;
+  desc?: string;
+}
+
+declare global {
+  interface ElementEventMap {
+    ['add']: CustomEvent<AddDetail>;
+    ['edit']: CustomEvent<EditDetail>;
+  }
+}
+
 interface MenuEntry {
   icon: string;
   name: string;
@@ -29,6 +46,8 @@ interface MenuEntry {
   actionItem?: boolean;
   action?: () => void;
 }
+
+export const scl = 'http://www.iec.ch/61850/2003/SCL';
 
 export class OpenSCDBase extends WaitingElement {
   render(): TemplateResult {
@@ -144,18 +163,21 @@ export class OpenSCDBase extends WaitingElement {
     `;
   }
 
-  static emptySCD = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  );
+  static emptySCD = document.implementation.createDocument(scl, 'SCL', null);
 
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
   /** The `XMLDocument` representation of the current file. */
-  @internalProperty() // does not generate an attribute binding
+  @property()
   doc: XMLDocument = OpenSCDBase.emptySCD;
+  /** The `Node` this editor is responsible for editing */
+  @property()
+  get node(): Element {
+    return this.doc.documentElement;
+  }
+  /** The tag name this editor is responsible for editing */
+  tag = 'SCL';
   /** The name of the current file. */
   @property({ type: String }) srcName = 'untitled.scd';
   private currentSrc = '';
@@ -288,5 +310,40 @@ export class OpenSCDBase extends WaitingElement {
       this.srcName = file.name;
       this.setAttribute('src', URL.createObjectURL(file));
     }
+  }
+
+  private onEdit(event: CustomEvent<EditDetail>) {
+    const source = <any>event.composedPath()[0];
+
+    if (event.detail.name) source.node?.setAttribute('name', event.detail.name);
+    if (event.detail.desc) source.node?.setAttribute('desc', event.detail.desc);
+
+    source.requestUpdate('node');
+    this.requestUpdate('doc');
+  }
+  private onAdd(event: CustomEvent<AddDetail>) {
+    if (!event.detail.name) return;
+    const source = <any>event.composedPath()[0];
+    const sourceParent = <any>event
+      .composedPath()
+      .slice(1)
+      .find((t: any) => t.node);
+
+    const newElem = this.doc.createElement(source.tag);
+    sourceParent.node.appendChild(newElem);
+    source.node = newElem; // FIXME: dirty hack
+
+    newElem.setAttribute('name', event.detail.name);
+    if (event.detail.desc) newElem.setAttribute('desc', event.detail.desc);
+
+    sourceParent.requestUpdate('node');
+    source.requestUpdate('node');
+    this.requestUpdate('doc');
+  }
+
+  constructor() {
+    super();
+    this.addEventListener('edit', this.onEdit);
+    this.addEventListener('add', this.onAdd);
   }
 }
