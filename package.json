@@ -29,7 +29,8 @@
     "@material/mwc-textfield": "^0.18.0",
     "@material/mwc-top-app-bar-fixed": "^0.18.0",
     "lit-element": "^2.3.1",
-    "lit-html": "^1.2.1"
+    "lit-html": "^1.2.1",
+    "panzoom": "^9.2.5"
   },
   "scripts": {
     "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
