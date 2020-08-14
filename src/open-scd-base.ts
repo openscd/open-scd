@@ -1,4 +1,4 @@
-import { html, property, internalProperty } from 'lit-element';
+import { html, property, internalProperty, query } from 'lit-element';
 import { TemplateResult, NodePart, nothing } from 'lit-html';
 
 import '@material/mwc-button';
@@ -17,7 +17,7 @@ import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
 import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 
-import { WaitingElement, PendingState } from './WaitingElement.js';
+import { WaitingElement, PendingStateDetail } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
@@ -164,13 +164,18 @@ export class OpenSCDBase extends WaitingElement {
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(
-      new CustomEvent<PendingState>('pending-state', {
+      new CustomEvent<PendingStateDetail>('pending-state', {
         composed: true,
         bubbles: true,
         detail: { promise: this.loadDoc(value) },
       })
     );
   }
+
+  @query('mwc-drawer') menuUI!: DrawerBase;
+  @query('mwc-dialog') logUI!: DialogBase;
+  @query('mwc-snackbar') messageUI!: SnackbarBase;
+  @query('#file-input') fileUI!: HTMLInputElement;
 
   menu: MenuEntry[] = [
     {
@@ -226,19 +231,6 @@ export class OpenSCDBase extends WaitingElement {
       },
     ],
   };
-
-  get menuUI(): DrawerBase {
-    return this.shadowRoot!.querySelector('mwc-drawer')!;
-  }
-  get logUI(): DialogBase {
-    return this.shadowRoot!.querySelector('mwc-dialog')!;
-  }
-  get messageUI(): SnackbarBase {
-    return this.shadowRoot!.querySelector('mwc-snackbar')!;
-  }
-  get fileUI(): HTMLInputElement {
-    return <HTMLInputElement>this.shadowRoot!.querySelector('#file-input')!;
-  }
 
   error(title: string, ...detail: string[]): void {
     super.error(title, ...detail);
