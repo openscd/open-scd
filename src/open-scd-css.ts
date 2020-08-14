@@ -1,12 +1,6 @@
 import { css } from 'lit-element';
 
 export const styles = css`
-  main {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
-
   * {
     --mdc-theme-primary: #005496;
     --mdc-theme-secondary: #d20a11;
