@@ -564,7 +564,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
 
-Defined in src/open-scd-base.ts:163
+Defined in src/open-scd-base.ts:152
 
 The currently active editor tab.
 
@@ -758,7 +758,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
 
-Defined in src/open-scd-base.ts:166
+Defined in src/open-scd-base.ts:155
 
 The `XMLDocument` representation of the current file.
 
@@ -972,7 +972,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
 
-Defined in src/open-scd-base.ts:186
+Defined in src/open-scd-base.ts:175
 
 ___
 
@@ -2363,7 +2363,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-Defined in src/open-scd-base.ts:168
+Defined in src/open-scd-base.ts:157
 
 The name of the current file.
 
@@ -2487,7 +2487,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)*
 
-Defined in src/open-scd-base.ts:155
+Defined in src/open-scd-base.ts:144
 
 ___
 
@@ -2568,7 +2568,7 @@ Defined in src/open-scd.ts:13
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-Defined in src/open-scd-base.ts:250
+Defined in src/open-scd-base.ts:239
 
 **Returns:** *HTMLInputElement*
 
@@ -2592,7 +2592,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-Defined in src/open-scd-base.ts:244
+Defined in src/open-scd-base.ts:233
 
 **Returns:** *DialogBase*
 
@@ -2604,7 +2604,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-Defined in src/open-scd-base.ts:241
+Defined in src/open-scd-base.ts:230
 
 **Returns:** *DrawerBase*
 
@@ -2616,7 +2616,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-Defined in src/open-scd-base.ts:247
+Defined in src/open-scd-base.ts:236
 
 **Returns:** *SnackbarBase*
 
@@ -2628,7 +2628,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:172
+Defined in src/open-scd-base.ts:161
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2638,7 +2638,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:175
+Defined in src/open-scd-base.ts:164
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3176,7 +3176,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:254
+Defined in src/open-scd-base.ts:243
 
 **Parameters:**
 
@@ -4816,7 +4816,7 @@ Override this method to integrate into a style management system.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
 
-Defined in src/open-scd-base.ts:206
+Defined in src/open-scd-base.ts:195
 
 ###  editors
 
@@ -4853,4 +4853,4 @@ Defined in src/open-scd-base.ts:206
       },
     ]
 
-Defined in src/open-scd-base.ts:207
+Defined in src/open-scd-base.ts:196
