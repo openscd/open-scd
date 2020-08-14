@@ -59,6 +59,7 @@
 * [doc](_substation_editor_base_.substationeditorbase.md#doc)
 * [draggable](_substation_editor_base_.substationeditorbase.md#draggable)
 * [editUI](_substation_editor_base_.substationeditorbase.md#editui)
+* [editorPaneUI](_substation_editor_base_.substationeditorbase.md#editorpaneui)
 * [firstChild](_substation_editor_base_.substationeditorbase.md#readonly-firstchild)
 * [firstElementChild](_substation_editor_base_.substationeditorbase.md#readonly-firstelementchild)
 * [floatingLabelFoundation](_substation_editor_base_.substationeditorbase.md#optional-floatinglabelfoundation)
@@ -759,6 +760,14 @@ ___
 • **editUI**: *DialogBase*
 
 Defined in src/substation-editor-base.ts:41
+
+___
+
+###  editorPaneUI
+
+• **editorPaneUI**: *HTMLElement*
+
+Defined in src/substation-editor-base.ts:44
 
 ___
 
@@ -2621,7 +2630,7 @@ ___
 
 ▸ **addSubstation**(`e`: Event): *void*
 
-Defined in src/substation-editor-base.ts:64
+Defined in src/substation-editor-base.ts:65
 
 **Parameters:**
 
@@ -4004,7 +4013,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:83
+Defined in src/substation-editor-base.ts:84
 
 **Returns:** *TemplateResult*
 
@@ -4122,7 +4131,7 @@ ___
 
 ▸ **saveSubstation**(`e`: Event): *void*
 
-Defined in src/substation-editor-base.ts:45
+Defined in src/substation-editor-base.ts:46
 
 **Parameters:**
 

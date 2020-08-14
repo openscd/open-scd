@@ -16,7 +16,7 @@
   #editor {
     height: calc(100vh - 112px);
     width: 100vw;
-    overflow: hidden;
+    overflow: scroll;
     position: absolute;
     bottom: 0px;
     left: 0px;

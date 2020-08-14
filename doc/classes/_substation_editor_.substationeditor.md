@@ -57,6 +57,7 @@
 * [doc](_substation_editor_.substationeditor.md#doc)
 * [draggable](_substation_editor_.substationeditor.md#draggable)
 * [editUI](_substation_editor_.substationeditor.md#editui)
+* [editorPaneUI](_substation_editor_.substationeditor.md#editorpaneui)
 * [firstChild](_substation_editor_.substationeditor.md#readonly-firstchild)
 * [firstElementChild](_substation_editor_.substationeditor.md#readonly-firstelementchild)
 * [floatingLabelFoundation](_substation_editor_.substationeditor.md#optional-floatinglabelfoundation)
@@ -763,6 +764,16 @@ ___
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[editUI](_substation_editor_base_.substationeditorbase.md#editui)*
 
 Defined in src/substation-editor-base.ts:41
+
+___
+
+###  editorPaneUI
+
+• **editorPaneUI**: *HTMLElement*
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[editorPaneUI](_substation_editor_base_.substationeditorbase.md#editorpaneui)*
+
+Defined in src/substation-editor-base.ts:44
 
 ___
 
@@ -2630,7 +2641,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[addSubstation](_substation_editor_base_.substationeditorbase.md#addsubstation)*
 
-Defined in src/substation-editor-base.ts:64
+Defined in src/substation-editor-base.ts:65
 
 **Parameters:**
 
@@ -4015,7 +4026,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:83
+Defined in src/substation-editor-base.ts:84
 
 **Returns:** *TemplateResult*
 
@@ -4135,7 +4146,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[saveSubstation](_substation_editor_base_.substationeditorbase.md#savesubstation)*
 
-Defined in src/substation-editor-base.ts:45
+Defined in src/substation-editor-base.ts:46
 
 **Parameters:**
 

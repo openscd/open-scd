@@ -2,14 +2,15 @@
 
 ## Properties
 
-| Property | Attribute | Modifiers | Type                        | Default |
-|----------|-----------|-----------|-----------------------------|---------|
-| `desc`   | `desc`    | readonly  | `string \| null`            |         |
-| `descUI` |           |           | `TextField`                 |         |
-| `doc`    |           |           | `Readonly<Element> \| null` | null    |
-| `editUI` |           |           | `DialogBase`                |         |
-| `name`   | `name`    | readonly  | `string \| null`            |         |
-| `nameUI` |           |           | `TextField`                 |         |
+| Property       | Attribute | Modifiers | Type                        | Default |
+|----------------|-----------|-----------|-----------------------------|---------|
+| `desc`         | `desc`    | readonly  | `string \| null`            |         |
+| `descUI`       |           |           | `TextField`                 |         |
+| `doc`          |           |           | `Readonly<Element> \| null` | null    |
+| `editUI`       |           |           | `DialogBase`                |         |
+| `editorPaneUI` |           |           | `HTMLElement`               |         |
+| `name`         | `name`    | readonly  | `string \| null`            |         |
+| `nameUI`       |           |           | `TextField`                 |         |
 
 ## Methods
 

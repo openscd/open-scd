@@ -41,6 +41,7 @@ export class SubstationEditorBase extends LitElement {
   @query('mwc-dialog') editUI!: DialogBase;
   @query('mwc-textfield[label="name"]') nameUI!: TextField;
   @query('mwc-textfield[label="desc"]') descUI!: TextField;
+  @query('div#editor') editorPaneUI!: HTMLElement;
 
   saveSubstation(e: Event): void {
     const dialog = <DialogBase>(<HTMLElement>e.target).parentElement!;
@@ -82,12 +83,14 @@ export class SubstationEditorBase extends LitElement {
 
   render(): TemplateResult {
     if (this.doc)
-      return html` <div id="editor">
-        <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>
-        <h2>${this.desc}<mwc-icon-button icon="edit"></mwc-icon-button></h2>
-        <pre>
+      return html`
+        <div id="editor">
+          <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>
+          <h2>${this.desc}<mwc-icon-button icon="edit"></mwc-icon-button></h2>
+          <pre>
 ${this.doc ? new XMLSerializer().serializeToString(this.doc) : null}</pre
-        >
+          >
+        </div>
         <mwc-dialog heading="Edit Substation">
           <mwc-textfield
             value="${this.name}"
@@ -104,12 +107,10 @@ ${this.doc ? new XMLSerializer().serializeToString(this.doc) : null}</pre
         </mwc-dialog>
         <mwc-fab @click=${() => (this.editUI.open = true)} icon="edit">
         </mwc-fab>
-      </div>`;
+      `;
     else
-      return html`<mwc-fab
-          icon="add"
-          @click=${() => (this.editUI.open = true)}
-        ></mwc-fab>
+      return html`<div id="editor"></div>
+        <mwc-fab icon="add" @click=${() => (this.editUI.open = true)}></mwc-fab>
         <mwc-dialog heading="Add Substation">
           <mwc-textfield
             label="name"
