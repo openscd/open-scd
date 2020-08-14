@@ -62,17 +62,20 @@ export class OpenSCDBase extends WaitingElement {
         <mwc-top-app-bar-fixed slot="appContent">
           <mwc-icon-button
             icon="menu"
+            label="Menu"
             slot="navigationIcon"
             @click=${() => (this.menuUI.open = true)}
           ></mwc-icon-button>
           <div slot="title" id="title">
-            ${this.srcName}
+            ${this.doc.querySelector('Substation')?.getAttribute('name') ??
+            this.srcName}
           </div>
           ${this.menu.map(me =>
             me.actionItem
               ? html`<mwc-icon-button
                   slot="actionItems"
                   icon="${me.icon}"
+                  label="${me.name}"
                   @click=${me.action}
                 ></mwc-icon-button>`
               : nothing
