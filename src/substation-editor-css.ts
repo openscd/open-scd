@@ -16,6 +16,14 @@ export const styles = css`
     --mdc-theme-background: #ffdd00;
     --mdc-theme-on-secondary: #ffdd00;
     --mdc-theme-on-background: #005496;
+    --dark-4: #3b434f;
+    --dark-3: #4f5a69;
+    --dark-2: #637183;
+    --dark-1: #7b889b;
+    --light-1: #95a0af;
+    --light-2: #afb7c3;
+    --light-3: #cacfd7;
+    --light-4: #e4e7eb;
   }
 
   h1,
