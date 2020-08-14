@@ -56,6 +56,7 @@
 * [dir](_open_scd_.openscd.md#dir)
 * [doc](_open_scd_.openscd.md#doc)
 * [draggable](_open_scd_.openscd.md#draggable)
+* [fileUI](_open_scd_.openscd.md#fileui)
 * [firstChild](_open_scd_.openscd.md#readonly-firstchild)
 * [firstElementChild](_open_scd_.openscd.md#readonly-firstelementchild)
 * [floatingLabelFoundation](_open_scd_.openscd.md#optional-floatinglabelfoundation)
@@ -72,7 +73,10 @@
 * [lastElementChild](_open_scd_.openscd.md#readonly-lastelementchild)
 * [lineRippleFoundation](_open_scd_.openscd.md#optional-lineripplefoundation)
 * [localName](_open_scd_.openscd.md#readonly-localname)
+* [logUI](_open_scd_.openscd.md#logui)
 * [menu](_open_scd_.openscd.md#menu)
+* [menuUI](_open_scd_.openscd.md#menuui)
+* [messageUI](_open_scd_.openscd.md#messageui)
 * [namespaceURI](_open_scd_.openscd.md#readonly-namespaceuri)
 * [nextElementSibling](_open_scd_.openscd.md#readonly-nextelementsibling)
 * [nextSibling](_open_scd_.openscd.md#readonly-nextsibling)
@@ -209,11 +213,7 @@
 
 ### Accessors
 
-* [fileUI](_open_scd_.openscd.md#fileui)
 * [hasUpdated](_open_scd_.openscd.md#protected-hasupdated)
-* [logUI](_open_scd_.openscd.md#logui)
-* [menuUI](_open_scd_.openscd.md#menuui)
-* [messageUI](_open_scd_.openscd.md#messageui)
 * [src](_open_scd_.openscd.md#src)
 * [updateComplete](_open_scd_.openscd.md#updatecomplete)
 * [observedAttributes](_open_scd_.openscd.md#static-observedattributes)
@@ -774,6 +774,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
 ___
 
+###  fileUI
+
+• **fileUI**: *HTMLInputElement*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
+
+Defined in src/open-scd-base.ts:178
+
+___
+
 ### `Readonly` firstChild
 
 • **firstChild**: *ChildNode | null*
@@ -948,6 +958,16 @@ Returns the local name.
 
 ___
 
+###  logUI
+
+• **logUI**: *DialogBase*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
+
+Defined in src/open-scd-base.ts:176
+
+___
+
 ###  menu
 
 • **menu**: *[MenuEntry](../interfaces/_open_scd_base_.menuentry.md)[]* = [
@@ -972,7 +992,27 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
 
+Defined in src/open-scd-base.ts:180
+
+___
+
+###  menuUI
+
+• **menuUI**: *DrawerBase*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
+
 Defined in src/open-scd-base.ts:175
+
+___
+
+###  messageUI
+
+• **messageUI**: *SnackbarBase*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
+
+Defined in src/open-scd-base.ts:177
 
 ___
 
@@ -2562,18 +2602,6 @@ Defined in src/open-scd.ts:13
 
 ## Accessors
 
-###  fileUI
-
-• **get fileUI**(): *HTMLInputElement*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
-
-Defined in src/open-scd-base.ts:239
-
-**Returns:** *HTMLInputElement*
-
-___
-
 ### `Protected` hasUpdated
 
 • **get hasUpdated**(): *number*
@@ -2583,42 +2611,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
-
-___
-
-###  logUI
-
-• **get logUI**(): *DialogBase*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
-
-Defined in src/open-scd-base.ts:233
-
-**Returns:** *DialogBase*
-
-___
-
-###  menuUI
-
-• **get menuUI**(): *DrawerBase*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
-
-Defined in src/open-scd-base.ts:230
-
-**Returns:** *DrawerBase*
-
-___
-
-###  messageUI
-
-• **get messageUI**(): *SnackbarBase*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
-
-Defined in src/open-scd-base.ts:236
-
-**Returns:** *SnackbarBase*
 
 ___
 
@@ -3176,7 +3168,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:243
+Defined in src/open-scd-base.ts:235
 
 **Parameters:**
 
@@ -4816,7 +4808,7 @@ Override this method to integrate into a style management system.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
 
-Defined in src/open-scd-base.ts:195
+Defined in src/open-scd-base.ts:200
 
 ###  editors
 
@@ -4853,4 +4845,4 @@ Defined in src/open-scd-base.ts:195
       },
     ]
 
-Defined in src/open-scd-base.ts:196
+Defined in src/open-scd-base.ts:201

@@ -59,6 +59,7 @@
 * [dir](_open_scd_base_.openscdbase.md#dir)
 * [doc](_open_scd_base_.openscdbase.md#doc)
 * [draggable](_open_scd_base_.openscdbase.md#draggable)
+* [fileUI](_open_scd_base_.openscdbase.md#fileui)
 * [firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)
 * [firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)
 * [floatingLabelFoundation](_open_scd_base_.openscdbase.md#optional-floatinglabelfoundation)
@@ -75,7 +76,10 @@
 * [lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)
 * [lineRippleFoundation](_open_scd_base_.openscdbase.md#optional-lineripplefoundation)
 * [localName](_open_scd_base_.openscdbase.md#readonly-localname)
+* [logUI](_open_scd_base_.openscdbase.md#logui)
 * [menu](_open_scd_base_.openscdbase.md#menu)
+* [menuUI](_open_scd_base_.openscdbase.md#menuui)
+* [messageUI](_open_scd_base_.openscdbase.md#messageui)
 * [namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)
 * [nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)
 * [nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)
@@ -212,11 +216,7 @@
 
 ### Accessors
 
-* [fileUI](_open_scd_base_.openscdbase.md#fileui)
 * [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
-* [logUI](_open_scd_base_.openscdbase.md#logui)
-* [menuUI](_open_scd_base_.openscdbase.md#menuui)
-* [messageUI](_open_scd_base_.openscdbase.md#messageui)
 * [src](_open_scd_base_.openscdbase.md#src)
 * [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
 * [observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)
@@ -783,6 +783,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
 ___
 
+###  fileUI
+
+• **fileUI**: *HTMLInputElement*
+
+Defined in src/open-scd-base.ts:178
+
+___
+
 ### `Readonly` firstChild
 
 • **firstChild**: *ChildNode | null*
@@ -957,6 +965,14 @@ Returns the local name.
 
 ___
 
+###  logUI
+
+• **logUI**: *DialogBase*
+
+Defined in src/open-scd-base.ts:176
+
+___
+
 ###  menu
 
 • **menu**: *[MenuEntry](../interfaces/_open_scd_base_.menuentry.md)[]* = [
@@ -979,7 +995,23 @@ ___
     },
   ]
 
+Defined in src/open-scd-base.ts:180
+
+___
+
+###  menuUI
+
+• **menuUI**: *DrawerBase*
+
 Defined in src/open-scd-base.ts:175
+
+___
+
+###  messageUI
+
+• **messageUI**: *SnackbarBase*
+
+Defined in src/open-scd-base.ts:177
 
 ___
 
@@ -2568,16 +2600,6 @@ using the `css` tag function.
 
 ## Accessors
 
-###  fileUI
-
-• **get fileUI**(): *HTMLInputElement*
-
-Defined in src/open-scd-base.ts:239
-
-**Returns:** *HTMLInputElement*
-
-___
-
 ### `Protected` hasUpdated
 
 • **get hasUpdated**(): *number*
@@ -2587,36 +2609,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
 **Returns:** *number*
-
-___
-
-###  logUI
-
-• **get logUI**(): *DialogBase*
-
-Defined in src/open-scd-base.ts:233
-
-**Returns:** *DialogBase*
-
-___
-
-###  menuUI
-
-• **get menuUI**(): *DrawerBase*
-
-Defined in src/open-scd-base.ts:230
-
-**Returns:** *DrawerBase*
-
-___
-
-###  messageUI
-
-• **get messageUI**(): *SnackbarBase*
-
-Defined in src/open-scd-base.ts:236
-
-**Returns:** *SnackbarBase*
 
 ___
 
@@ -3168,7 +3160,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:243
+Defined in src/open-scd-base.ts:235
 
 **Parameters:**
 
@@ -3748,7 +3740,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:248
+Defined in src/open-scd-base.ts:240
 
 **Parameters:**
 
@@ -3764,7 +3756,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:289
+Defined in src/open-scd-base.ts:281
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4838,7 +4830,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:195
+Defined in src/open-scd-base.ts:200
 
 ###  editors
 
@@ -4875,4 +4867,4 @@ Defined in src/open-scd-base.ts:195
       },
     ]
 
-Defined in src/open-scd-base.ts:196
+Defined in src/open-scd-base.ts:201

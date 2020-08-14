@@ -19,7 +19,7 @@
 
 • **desc**? : *undefined | string*
 
-Defined in src/substation-editor-base.ts:23
+Defined in src/substation-editor-base.ts:24
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **name**: *string*
 
-Defined in src/substation-editor-base.ts:22
+Defined in src/substation-editor-base.ts:23

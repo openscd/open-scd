@@ -54,9 +54,11 @@
 * [clientWidth](_substation_editor_base_.substationeditorbase.md#readonly-clientwidth)
 * [contentEditable](_substation_editor_base_.substationeditorbase.md#contenteditable)
 * [dataset](_substation_editor_base_.substationeditorbase.md#readonly-dataset)
+* [descUI](_substation_editor_base_.substationeditorbase.md#descui)
 * [dir](_substation_editor_base_.substationeditorbase.md#dir)
 * [doc](_substation_editor_base_.substationeditorbase.md#doc)
 * [draggable](_substation_editor_base_.substationeditorbase.md#draggable)
+* [editUI](_substation_editor_base_.substationeditorbase.md#editui)
 * [firstChild](_substation_editor_base_.substationeditorbase.md#readonly-firstchild)
 * [firstElementChild](_substation_editor_base_.substationeditorbase.md#readonly-firstelementchild)
 * [floatingLabelFoundation](_substation_editor_base_.substationeditorbase.md#optional-floatinglabelfoundation)
@@ -72,6 +74,7 @@
 * [lastElementChild](_substation_editor_base_.substationeditorbase.md#readonly-lastelementchild)
 * [lineRippleFoundation](_substation_editor_base_.substationeditorbase.md#optional-lineripplefoundation)
 * [localName](_substation_editor_base_.substationeditorbase.md#readonly-localname)
+* [nameUI](_substation_editor_base_.substationeditorbase.md#nameui)
 * [namespaceURI](_substation_editor_base_.substationeditorbase.md#readonly-namespaceuri)
 * [nextElementSibling](_substation_editor_base_.substationeditorbase.md#readonly-nextelementsibling)
 * [nextSibling](_substation_editor_base_.substationeditorbase.md#readonly-nextsibling)
@@ -204,11 +207,8 @@
 ### Accessors
 
 * [desc](_substation_editor_base_.substationeditorbase.md#desc)
-* [descUI](_substation_editor_base_.substationeditorbase.md#descui)
-* [editUI](_substation_editor_base_.substationeditorbase.md#editui)
 * [hasUpdated](_substation_editor_base_.substationeditorbase.md#protected-hasupdated)
 * [name](_substation_editor_base_.substationeditorbase.md#name)
-* [nameUI](_substation_editor_base_.substationeditorbase.md#nameui)
 * [updateComplete](_substation_editor_base_.substationeditorbase.md#updatecomplete)
 * [observedAttributes](_substation_editor_base_.substationeditorbase.md#static-observedattributes)
 
@@ -718,6 +718,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
 
 ___
 
+###  descUI
+
+• **descUI**: *TextField*
+
+Defined in src/substation-editor-base.ts:43
+
+___
+
 ###  dir
 
 • **dir**: *string*
@@ -732,7 +740,7 @@ ___
 
 • **doc**: *Readonly‹Element› | null* = null
 
-Defined in src/substation-editor-base.ts:28
+Defined in src/substation-editor-base.ts:29
 
 ___
 
@@ -743,6 +751,14 @@ ___
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[draggable](_loggingelement_.loggingelement.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
+
+___
+
+###  editUI
+
+• **editUI**: *DialogBase*
+
+Defined in src/substation-editor-base.ts:41
 
 ___
 
@@ -907,6 +923,14 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
 Returns the local name.
+
+___
+
+###  nameUI
+
+• **nameUI**: *TextField*
+
+Defined in src/substation-editor-base.ts:42
 
 ___
 
@@ -2443,29 +2467,9 @@ using the `css` tag function.
 
 • **get desc**(): *string | null*
 
-Defined in src/substation-editor-base.ts:36
+Defined in src/substation-editor-base.ts:37
 
 **Returns:** *string | null*
-
-___
-
-###  descUI
-
-• **get descUI**(): *TextField*
-
-Defined in src/substation-editor-base.ts:46
-
-**Returns:** *TextField*
-
-___
-
-###  editUI
-
-• **get editUI**(): *DialogBase*
-
-Defined in src/substation-editor-base.ts:40
-
-**Returns:** *DialogBase*
 
 ___
 
@@ -2485,19 +2489,9 @@ ___
 
 • **get name**(): *string | null*
 
-Defined in src/substation-editor-base.ts:31
+Defined in src/substation-editor-base.ts:32
 
 **Returns:** *string | null*
-
-___
-
-###  nameUI
-
-• **get nameUI**(): *TextField*
-
-Defined in src/substation-editor-base.ts:43
-
-**Returns:** *TextField*
 
 ___
 
@@ -2627,7 +2621,7 @@ ___
 
 ▸ **addSubstation**(`e`: Event): *void*
 
-Defined in src/substation-editor-base.ts:67
+Defined in src/substation-editor-base.ts:64
 
 **Parameters:**
 
@@ -4010,7 +4004,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:84
+Defined in src/substation-editor-base.ts:83
 
 **Returns:** *TemplateResult*
 
@@ -4128,7 +4122,7 @@ ___
 
 ▸ **saveSubstation**(`e`: Event): *void*
 
-Defined in src/substation-editor-base.ts:50
+Defined in src/substation-editor-base.ts:45
 
 **Parameters:**
 

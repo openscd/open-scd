@@ -16,6 +16,6 @@
 
 ###  pending-state
 
-• **pending-state**: *[PendingStateEvent](../modules/_waitingelement_.md#pendingstateevent)*
+• **pending-state**: *CustomEvent‹[PendingStateDetail](_waitingelement_.pendingstatedetail.md)›*
 
 Defined in src/WaitingElement.ts:10

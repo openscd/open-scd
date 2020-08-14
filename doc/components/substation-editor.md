@@ -5,11 +5,11 @@
 | Property | Attribute | Modifiers | Type                        | Default |
 |----------|-----------|-----------|-----------------------------|---------|
 | `desc`   | `desc`    | readonly  | `string \| null`            |         |
-| `descUI` |           | readonly  | `TextField`                 |         |
+| `descUI` |           |           | `TextField`                 |         |
 | `doc`    |           |           | `Readonly<Element> \| null` | null    |
-| `editUI` |           | readonly  | `DialogBase`                |         |
+| `editUI` |           |           | `DialogBase`                |         |
 | `name`   | `name`    | readonly  | `string \| null`            |         |
-| `nameUI` |           | readonly  | `TextField`                 |         |
+| `nameUI` |           |           | `TextField`                 |         |
 
 ## Methods
 
