@@ -4,6 +4,7 @@ import {
   TemplateResult,
   internalProperty,
   property,
+  query,
 } from 'lit-element';
 
 import '@material/mwc-dialog';
@@ -37,15 +38,9 @@ export class SubstationEditorBase extends LitElement {
     return this.doc?.getAttribute('desc') ?? null;
   }
 
-  get editUI(): DialogBase {
-    return this.shadowRoot!.querySelector('mwc-dialog')!;
-  }
-  get nameUI(): TextField {
-    return <TextField>this.editUI.querySelector('mwc-textfield[label="name"]')!;
-  }
-  get descUI(): TextField {
-    return <TextField>this.editUI.querySelector('mwc-textfield[label="desc"]')!;
-  }
+  @query('mwc-dialog') editUI!: DialogBase;
+  @query('mwc-textfield[label="name"]') nameUI!: TextField;
+  @query('mwc-textfield[label="desc"]') descUI!: TextField;
 
   saveSubstation(e: Event): void {
     const dialog = <DialogBase>(<HTMLElement>e.target).parentElement!;
@@ -55,6 +50,8 @@ export class SubstationEditorBase extends LitElement {
         .reduce((acc, v) => acc && v)
     ) {
       const event = new CustomEvent<EditDetail>('edit', {
+        composed: true,
+        bubbles: true,
         detail: {},
       });
       if (this.nameUI.value != this.name) event.detail.name = this.nameUI.value;
@@ -73,6 +70,8 @@ export class SubstationEditorBase extends LitElement {
     ) {
       if (this.nameUI.value == '') return;
       const event = new CustomEvent<AddDetail>('add', {
+        composed: true,
+        bubbles: true,
         detail: { name: this.nameUI.value },
       });
       if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;

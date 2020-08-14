@@ -10,6 +10,12 @@ export const styles = css`
     left: 0px;
   }
 
+  @media screen and (max-width: 600px) {
+    #editor {
+      height: calc(100vh - 104px);
+    }
+  }
+
   * {
     --mdc-theme-primary: #005496;
     --mdc-theme-secondary: #d20a11;
