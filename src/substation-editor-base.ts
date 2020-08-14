@@ -47,16 +47,24 @@ export class SubstationEditorBase extends LitElement {
     return <TextField>this.editUI.querySelector('mwc-textfield[label="desc"]')!;
   }
 
-  saveSubstation(): void {
-    const event = new CustomEvent<EditDetail>('edit', {
-      detail: {},
-    });
-    if (this.nameUI.value != this.name) event.detail.name = this.nameUI.value;
-    if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
-    this.dispatchEvent(event);
+  saveSubstation(e: Event): void {
+    const dialog = <DialogBase>(<HTMLElement>e.target).parentElement!;
+    if (
+      Array.from(dialog.querySelectorAll('mwc-textfield'))
+        .map(tf => tf.checkValidity())
+        .reduce((acc, v) => acc && v)
+    ) {
+      const event = new CustomEvent<EditDetail>('edit', {
+        detail: {},
+      });
+      if (this.nameUI.value != this.name) event.detail.name = this.nameUI.value;
+      if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
+      this.dispatchEvent(event);
+      dialog.close();
+    }
   }
 
-  addSubstation(): void {
+  addSubstation(e: Event): void {
     if (this.nameUI.value == '') return;
     const event = new CustomEvent<AddDetail>('add', {
       detail: { name: this.nameUI.value },
@@ -67,29 +75,29 @@ export class SubstationEditorBase extends LitElement {
 
   render(): TemplateResult {
     if (this.doc)
-      return html` <main>
+      return html` <div id="editor">
         <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>
         <h2>${this.desc}<mwc-icon-button icon="edit"></mwc-icon-button></h2>
         <pre>
 ${this.doc ? new XMLSerializer().serializeToString(this.doc) : null}</pre
         >
         <mwc-dialog heading="Edit Substation">
-          <mwc-textfield value="${this.name}" label="name"></mwc-textfield>
+          <mwc-textfield
+            value="${this.name}"
+            label="name"
+            required
+          ></mwc-textfield>
           <mwc-textfield value="${this.desc}" label="desc"></mwc-textfield>
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>
-          <mwc-button
-            @click=${this.saveSubstation}
-            slot="primaryAction"
-            dialogAction="save"
-          >
+          <mwc-button @click=${this.saveSubstation} slot="primaryAction">
             Save
           </mwc-button>
         </mwc-dialog>
         <mwc-fab @click=${() => (this.editUI.open = true)} icon="edit">
         </mwc-fab>
-      </main>`;
+      </div>`;
     else
       return html`<mwc-fab
           icon="add"
@@ -105,11 +113,7 @@ ${this.doc ? new XMLSerializer().serializeToString(this.doc) : null}</pre
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>
-          <mwc-button
-            @click=${this.addSubstation}
-            slot="primaryAction"
-            dialogAction="add"
-          >
+          <mwc-button @click=${this.addSubstation} slot="primaryAction">
             Add
           </mwc-button>
         </mwc-dialog>`;

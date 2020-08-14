@@ -33,111 +33,122 @@ interface MenuEntry {
 export class OpenSCDBase extends WaitingElement {
   render(): TemplateResult {
     return html`
-      <mwc-drawer hasheader type="modal">
-        <span slot="title"
-          >${this.doc.querySelector('Substation')?.getAttribute('name') ??
-          'Menu'}</span
-        >
-        <span slot="subtitle">${this.srcName}</span>
-        <mwc-list
-          @action=${(ae: CustomEvent<ActionDetail>) =>
-            this.menu[ae.detail.index]?.action!()}
-        >
-          ${this.menu.map(
-            me => html`
-              ${me.startsGroup
-                ? html`<li divider padded role="separator"></li>`
-                : nothing}
-              <mwc-list-item
-                graphic="control"
-                .disabled=${me.action ? false : true}
-                ><mwc-icon slot="graphic">
-                  ${me.icon}
-                </mwc-icon>
-                ${me.name}
-              </mwc-list-item>
-            `
-          )}
-        </mwc-list>
-        <mwc-top-app-bar-fixed slot="appContent">
-          <mwc-icon-button
-            icon="menu"
-            slot="navigationIcon"
-            @click=${() => (this.menuUI.open = true)}
-          ></mwc-icon-button>
-          <div slot="title" id="title">
-            ${this.srcName}
-          </div>
-          ${this.menu.map(me =>
-            me.actionItem
-              ? html`<mwc-icon-button
-                  slot="actionItems"
-                  icon="${me.icon}"
-                  @click=${me.action}
-                ></mwc-icon-button>`
-              : nothing
-          )}
-          <mwc-tab-bar
-            @MDCTabBar:activated=${(e: CustomEvent) =>
-              (this.activeTab = e.detail.index)}
+      <main>
+        <mwc-drawer hasheader type="modal">
+          <span slot="title"
+            >${this.doc.querySelector('Substation')?.getAttribute('name') ??
+            'Menu'}</span
           >
-            ${this.plugins.editors.map(
-              editor =>
-                html`<mwc-tab
-                  label=${editor.label}
-                  icon=${editor.icon}
-                  id=${editor.id}
-                ></mwc-tab>`
+          <span slot="subtitle">${this.srcName}</span>
+          <mwc-list
+            @action=${(ae: CustomEvent<ActionDetail>) =>
+              this.menu[ae.detail.index]?.action!()}
+          >
+            ${this.menu.map(
+              me => html`
+                ${me.startsGroup
+                  ? html`<li divider padded role="separator"></li>`
+                  : nothing}
+                <mwc-list-item
+                  graphic="icon"
+                  .disabled=${me.action ? false : true}
+                  ><mwc-icon slot="graphic">
+                    ${me.icon}
+                  </mwc-icon>
+                  ${me.name}
+                </mwc-list-item>
+              `
             )}
-          </mwc-tab-bar>
-        </mwc-top-app-bar-fixed>
-      </mwc-drawer>
-
-      ${this.plugins.editors[this.activeTab].getContent()}
-
-      <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
-      </mwc-circular-progress-four-color>
-
-      <mwc-snackbar
-        id="errorSnackbar"
-        timeoutMs="-1"
-        labelText="${this.history.find(le => le.icon == 'error_outline')
-          ?.title ?? 'No errors'}"
-      >
-        <mwc-button slot="action" icon="toc" @click=${() => this.logUI.show()}
-          >Show</mwc-button
-        >
-        <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
-      </mwc-snackbar>
-
-      <mwc-dialog id="log" heading="Log">
-        <mwc-list id="content" activatable>
-          ${this.history.length < 1
-            ? html`<mwc-list-item disabled hasmeta>
-                <span
-                  >Errors, warnings, and notifications will show up here.</span
-                >
-                <mwc-icon slot="meta">info</mwc-icon>
-              </mwc-list-item>`
-            : this.history.map(
-                item => html`<mwc-list-item
-                  ?twoline=${item.message}
-                  ?hasmeta=${item.icon}
-                >
-                  <span>
-                    <!-- FIXME: replace tt by mwc-chip asap -->
-                    <tt>${item.time.toLocaleTimeString()}</tt>
-                    ${item.title}</span
-                  >
-                  <span slot="secondary">${item.message}</span>
-                  <mwc-icon slot="meta">${item.icon}</mwc-icon>
-                </mwc-list-item>`
+          </mwc-list>
+          <mwc-top-app-bar-fixed slot="appContent">
+            <mwc-icon-button
+              icon="menu"
+              slot="navigationIcon"
+              @click=${() => (this.menuUI.open = true)}
+            ></mwc-icon-button>
+            <div slot="title" id="title">
+              ${this.srcName}
+            </div>
+            ${this.menu.map(me =>
+              me.actionItem
+                ? html`<mwc-icon-button
+                    slot="actionItems"
+                    icon="${me.icon}"
+                    @click=${me.action}
+                  ></mwc-icon-button>`
+                : nothing
+            )}
+            <mwc-tab-bar
+              @MDCTabBar:activated=${(e: CustomEvent) =>
+                (this.activeTab = e.detail.index)}
+            >
+              ${this.plugins.editors.map(
+                editor =>
+                  html`<mwc-tab
+                    label=${editor.label}
+                    icon=${editor.icon}
+                    id=${editor.id}
+                  ></mwc-tab>`
               )}
-        </mwc-list>
-        <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
-      </mwc-dialog>
+            </mwc-tab-bar>
+          </mwc-top-app-bar-fixed>
+        </mwc-drawer>
 
-      <input id="file-input" type="file" @change="${this.loadFile}" />
+        ${this.plugins.editors[this.activeTab].getContent()}
+
+        <mwc-circular-progress-four-color
+          .closed=${!this.waiting}
+          indeterminate
+        >
+        </mwc-circular-progress-four-color>
+
+        <mwc-snackbar
+          id="errorSnackbar"
+          timeoutMs="-1"
+          labelText="${this.history.find(le => le.icon == 'error_outline')
+            ?.title ?? 'No errors'}"
+        >
+          <mwc-button
+            slot="action"
+            icon="rule"
+            @click=${() => this.logUI.show()}
+            >Show</mwc-button
+          >
+          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+        </mwc-snackbar>
+
+        <mwc-dialog id="log" heading="Log">
+          <mwc-list id="content" activatable>
+            ${this.history.length < 1
+              ? html`<mwc-list-item disabled hasmeta>
+                  <span
+                    >Errors, warnings, and notifications will show up
+                    here.</span
+                  >
+                  <mwc-icon slot="meta">info</mwc-icon>
+                </mwc-list-item>`
+              : this.history.map(
+                  item => html`<mwc-list-item
+                    ?twoline=${item.message}
+                    ?hasmeta=${item.icon}
+                  >
+                    <span>
+                      <!-- FIXME: replace tt by mwc-chip asap -->
+                      <tt>${item.time.toLocaleTimeString()}</tt>
+                      ${item.title}</span
+                    >
+                    <span slot="secondary">${item.message}</span>
+                    <mwc-icon slot="meta">${item.icon}</mwc-icon>
+                  </mwc-list-item>`
+                )}
+          </mwc-list>
+          <mwc-button slot="primaryAction" dialogaction="close"
+            >Close</mwc-button
+          >
+        </mwc-dialog>
+
+        <input id="file-input" type="file" @change="${this.loadFile}" />
+      </main>
     `;
   }
 

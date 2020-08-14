@@ -1,8 +1,13 @@
 import { css } from 'lit-element';
 
 export const styles = css`
-  main {
-    padding: 16px;
+  #editor {
+    height: calc(100vh - 112px);
+    width: 100vw;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
   }
 
   * {
