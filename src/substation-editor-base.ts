@@ -65,12 +65,20 @@ export class SubstationEditorBase extends LitElement {
   }
 
   addSubstation(e: Event): void {
-    if (this.nameUI.value == '') return;
-    const event = new CustomEvent<AddDetail>('add', {
-      detail: { name: this.nameUI.value },
-    });
-    if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
-    this.dispatchEvent(event);
+    const dialog = <DialogBase>(<HTMLElement>e.target).parentElement!;
+    if (
+      Array.from(dialog.querySelectorAll('mwc-textfield'))
+        .map(tf => tf.checkValidity())
+        .reduce((acc, v) => acc && v)
+    ) {
+      if (this.nameUI.value == '') return;
+      const event = new CustomEvent<AddDetail>('add', {
+        detail: { name: this.nameUI.value },
+      });
+      if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
+      this.dispatchEvent(event);
+      dialog.close();
+    }
   }
 
   render(): TemplateResult {
