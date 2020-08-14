@@ -567,7 +567,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:152
+Defined in src/open-scd-base.ts:163
 
 The currently active editor tab.
 
@@ -739,7 +739,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:158
+Defined in src/open-scd-base.ts:169
 
 ___
 
@@ -767,7 +767,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:155
+Defined in src/open-scd-base.ts:166
 
 The `XMLDocument` representation of the current file.
 
@@ -979,7 +979,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:175
+Defined in src/open-scd-base.ts:186
 
 ___
 
@@ -2368,7 +2368,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:157
+Defined in src/open-scd-base.ts:168
 
 The name of the current file.
 
@@ -2490,7 +2490,7 @@ ___
     null
   )
 
-Defined in src/open-scd-base.ts:144
+Defined in src/open-scd-base.ts:155
 
 ___
 
@@ -2572,7 +2572,7 @@ using the `css` tag function.
 
 • **get fileUI**(): *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:239
+Defined in src/open-scd-base.ts:250
 
 **Returns:** *HTMLInputElement*
 
@@ -2594,7 +2594,7 @@ ___
 
 • **get logUI**(): *DialogBase*
 
-Defined in src/open-scd-base.ts:233
+Defined in src/open-scd-base.ts:244
 
 **Returns:** *DialogBase*
 
@@ -2604,7 +2604,7 @@ ___
 
 • **get menuUI**(): *DrawerBase*
 
-Defined in src/open-scd-base.ts:230
+Defined in src/open-scd-base.ts:241
 
 **Returns:** *DrawerBase*
 
@@ -2614,7 +2614,7 @@ ___
 
 • **get messageUI**(): *SnackbarBase*
 
-Defined in src/open-scd-base.ts:236
+Defined in src/open-scd-base.ts:247
 
 **Returns:** *SnackbarBase*
 
@@ -2624,7 +2624,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:161
+Defined in src/open-scd-base.ts:172
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2632,7 +2632,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:164
+Defined in src/open-scd-base.ts:175
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3168,7 +3168,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:243
+Defined in src/open-scd-base.ts:254
 
 **Parameters:**
 
@@ -3748,7 +3748,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:248
+Defined in src/open-scd-base.ts:259
 
 **Parameters:**
 
@@ -3764,7 +3764,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:289
+Defined in src/open-scd-base.ts:300
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4838,7 +4838,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:195
+Defined in src/open-scd-base.ts:206
 
 ###  editors
 
@@ -4875,4 +4875,4 @@ Defined in src/open-scd-base.ts:195
       },
     ]
 
-Defined in src/open-scd-base.ts:196
+Defined in src/open-scd-base.ts:207

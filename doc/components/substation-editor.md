@@ -13,10 +13,10 @@
 
 ## Methods
 
-| Method           | Type       |
-|------------------|------------|
-| `addSubstation`  | `(): void` |
-| `saveSubstation` | `(): void` |
+| Method           | Type               |
+|------------------|--------------------|
+| `addSubstation`  | `(e: Event): void` |
+| `saveSubstation` | `(e: Event): void` |
 
 ## Events
 

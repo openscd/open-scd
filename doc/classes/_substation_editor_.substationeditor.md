@@ -2632,11 +2632,17 @@ ___
 
 ###  addSubstation
 
-▸ **addSubstation**(): *void*
+▸ **addSubstation**(`e`: Event): *void*
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[addSubstation](_substation_editor_base_.substationeditorbase.md#addsubstation)*
 
-Defined in src/substation-editor-base.ts:59
+Defined in src/substation-editor-base.ts:67
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`e` | Event |
 
 **Returns:** *void*
 
@@ -4015,7 +4021,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:68
+Defined in src/substation-editor-base.ts:76
 
 **Returns:** *TemplateResult*
 
@@ -4131,11 +4137,17 @@ ___
 
 ###  saveSubstation
 
-▸ **saveSubstation**(): *void*
+▸ **saveSubstation**(`e`: Event): *void*
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[saveSubstation](_substation_editor_base_.substationeditorbase.md#savesubstation)*
 
 Defined in src/substation-editor-base.ts:50
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`e` | Event |
 
 **Returns:** *void*
 
