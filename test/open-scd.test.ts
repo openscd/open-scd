@@ -43,7 +43,7 @@ describe('open-scd', () => {
   it('opens the log on log icon click', async () => {
     expect(element.logUI).to.have.property('open', false);
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-icon-button[icon="toc"]')!
+      element.shadowRoot!.querySelector('mwc-icon-button[icon="rule"]')!
     )).click();
     expect(element.logUI).to.have.property('open', true);
   });
