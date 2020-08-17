@@ -21,6 +21,7 @@ import { WaitingElement, PendingStateDetail } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { iedIcon, networkConfigIcon, zeroLineIcon } from '../img/icons.js';
 
 export interface EditDetail {
   name?: string;
@@ -109,7 +110,10 @@ export class OpenSCDBase extends WaitingElement {
                   label=${editor.label}
                   icon=${editor.icon}
                   id=${editor.id}
-                ></mwc-tab>`
+                  hasImageIcon
+                >
+                  ${editor.icon}
+                </mwc-tab>`
             )}
           </mwc-tab-bar>
         </mwc-top-app-bar-fixed>
@@ -227,7 +231,7 @@ export class OpenSCDBase extends WaitingElement {
       {
         label: 'Substation',
         id: 'substation',
-        icon: 'design_services', //alt: 'developer_board', //alt: 'engineering',
+        icon: zeroLineIcon,
         getContent: (): ((part: NodePart) => void) =>
           plugin(
             './substation-editor.js',
@@ -239,19 +243,19 @@ export class OpenSCDBase extends WaitingElement {
       {
         label: 'Communication',
         id: 'communication',
-        icon: 'quickreply', //alt: 'sync_alt', //alt: 'message',
+        icon: 'mediation',
         getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
       },
       {
         label: 'Network',
         id: 'network',
-        icon: 'settings_ethernet', //alt: 'settings_input_composite', //alt: 'device_hub',
+        icon: networkConfigIcon,
         getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
       },
       {
         label: 'IED',
         id: 'ied',
-        icon: 'router', //alt: 'dynamic_form', //alt: 'online_prediction',
+        icon: iedIcon,
         getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
       },
     ],
