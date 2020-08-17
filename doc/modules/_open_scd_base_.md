@@ -14,13 +14,27 @@
 
 ### Interfaces
 
-* [AddDetail](../interfaces/_open_scd_base_.adddetail.md)
-* [EditDetail](../interfaces/_open_scd_base_.editdetail.md)
+* [Create](../interfaces/_open_scd_base_.create.md)
+* [Delete](../interfaces/_open_scd_base_.delete.md)
 * [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)
+* [Move](../interfaces/_open_scd_base_.move.md)
+* [Update](../interfaces/_open_scd_base_.update.md)
+
+### Type aliases
+
+* [Change](_open_scd_base_.md#change)
 
 ### Variables
 
 * [scl](_open_scd_base_.md#const-scl)
+
+## Type aliases
+
+###  Change
+
+Ƭ **Change**: *[Create](../interfaces/_open_scd_base_.create.md) | [Update](../interfaces/_open_scd_base_.update.md) | [Delete](../interfaces/_open_scd_base_.delete.md) | [Move](../interfaces/_open_scd_base_.move.md)*
+
+Defined in src/open-scd-base.ts:26
 
 ## Variables
 
@@ -28,4 +42,4 @@
 
 • **scl**: *"http://www.iec.ch/61850/2003/SCL"* = "http://www.iec.ch/61850/2003/SCL"
 
-Defined in src/open-scd-base.ts:51
+Defined in src/open-scd-base.ts:57

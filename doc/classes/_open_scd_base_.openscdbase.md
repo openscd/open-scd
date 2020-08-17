@@ -59,6 +59,7 @@
 * [dir](_open_scd_base_.openscdbase.md#dir)
 * [doc](_open_scd_base_.openscdbase.md#doc)
 * [draggable](_open_scd_base_.openscdbase.md#draggable)
+* [editHistory](_open_scd_base_.openscdbase.md#edithistory)
 * [fileUI](_open_scd_base_.openscdbase.md#fileui)
 * [firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)
 * [firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)
@@ -335,7 +336,7 @@
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
 
-Defined in src/open-scd-base.ts:348
+Defined in src/open-scd-base.ts:360
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -571,7 +572,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:174
+Defined in src/open-scd-base.ts:187
 
 The currently active editor tab.
 
@@ -743,7 +744,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:187
+Defined in src/open-scd-base.ts:200
 
 ___
 
@@ -771,7 +772,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:177
+Defined in src/open-scd-base.ts:190
 
 The `XMLDocument` representation of the current file.
 
@@ -787,11 +788,19 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
 ___
 
+###  editHistory
+
+• **editHistory**: *[Change](../modules/_open_scd_base_.md#change)[]* = []
+
+Defined in src/open-scd-base.ts:183
+
+___
+
 ###  fileUI
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:207
+Defined in src/open-scd-base.ts:220
 
 ___
 
@@ -973,7 +982,7 @@ ___
 
 • **logUI**: *DialogBase*
 
-Defined in src/open-scd-base.ts:205
+Defined in src/open-scd-base.ts:218
 
 ___
 
@@ -999,7 +1008,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:209
+Defined in src/open-scd-base.ts:222
 
 ___
 
@@ -1007,7 +1016,7 @@ ___
 
 • **menuUI**: *DrawerBase*
 
-Defined in src/open-scd-base.ts:204
+Defined in src/open-scd-base.ts:217
 
 ___
 
@@ -1015,7 +1024,7 @@ ___
 
 • **messageUI**: *SnackbarBase*
 
-Defined in src/open-scd-base.ts:206
+Defined in src/open-scd-base.ts:219
 
 ___
 
@@ -2404,7 +2413,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:186
+Defined in src/open-scd-base.ts:199
 
 The name of the current file.
 
@@ -2434,7 +2443,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-Defined in src/open-scd-base.ts:184
+Defined in src/open-scd-base.ts:197
 
 The tag name this editor is responsible for editing
 
@@ -2532,7 +2541,7 @@ ___
 
 ▪ **emptySCD**: *Document* = document.implementation.createDocument(scl, 'SCL', null)
 
-Defined in src/open-scd-base.ts:170
+Defined in src/open-scd-base.ts:180
 
 ___
 
@@ -2626,7 +2635,7 @@ ___
 
 • **get node**(): *Element*
 
-Defined in src/open-scd-base.ts:180
+Defined in src/open-scd-base.ts:193
 
 The `Node` this editor is responsible for editing
 
@@ -2638,7 +2647,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:190
+Defined in src/open-scd-base.ts:203
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2646,7 +2655,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:193
+Defined in src/open-scd-base.ts:206
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3182,7 +3191,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:264
+Defined in src/open-scd-base.ts:278
 
 **Parameters:**
 
@@ -3762,7 +3771,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:269
+Defined in src/open-scd-base.ts:283
 
 **Parameters:**
 
@@ -3778,7 +3787,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:310
+Defined in src/open-scd-base.ts:324
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -3896,15 +3905,15 @@ ___
 
 ### `Private` onAdd
 
-▸ **onAdd**(`event`: CustomEvent‹[AddDetail](../interfaces/_open_scd_base_.adddetail.md)›): *void*
+▸ **onAdd**(`event`: CustomEvent‹[Create](../interfaces/_open_scd_base_.create.md)›): *void*
 
-Defined in src/open-scd-base.ts:328
+Defined in src/open-scd-base.ts:346
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`event` | CustomEvent‹[AddDetail](../interfaces/_open_scd_base_.adddetail.md)› |
+`event` | CustomEvent‹[Create](../interfaces/_open_scd_base_.create.md)› |
 
 **Returns:** *void*
 
@@ -3912,15 +3921,15 @@ ___
 
 ### `Private` onEdit
 
-▸ **onEdit**(`event`: CustomEvent‹[EditDetail](../interfaces/_open_scd_base_.editdetail.md)›): *void*
+▸ **onEdit**(`event`: CustomEvent‹[Update](../interfaces/_open_scd_base_.update.md)›): *void*
 
-Defined in src/open-scd-base.ts:319
+Defined in src/open-scd-base.ts:333
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`event` | CustomEvent‹[EditDetail](../interfaces/_open_scd_base_.editdetail.md)› |
+`event` | CustomEvent‹[Update](../interfaces/_open_scd_base_.update.md)› |
 
 **Returns:** *void*
 
@@ -4267,7 +4276,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:54
+Defined in src/open-scd-base.ts:60
 
 **Returns:** *TemplateResult*
 
@@ -4884,7 +4893,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:229
+Defined in src/open-scd-base.ts:242
 
 ###  editors
 
@@ -4898,6 +4907,7 @@ Defined in src/open-scd-base.ts:229
             './substation-editor.js',
             html`<substation-editor
               .node=${this.doc.querySelector('Substation')}
+              .doc=${this.doc}
             ></substation-editor>`
           ),
       },
@@ -4921,4 +4931,4 @@ Defined in src/open-scd-base.ts:229
       },
     ]
 
-Defined in src/open-scd-base.ts:230
+Defined in src/open-scd-base.ts:243

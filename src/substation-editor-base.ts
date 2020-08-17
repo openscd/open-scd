@@ -7,13 +7,14 @@ import '@material/mwc-textfield';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { TextField } from '@material/mwc-textfield';
 
-import { AddDetail, EditDetail } from './open-scd-base.js';
+import { Create, Update } from './open-scd-base.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
-  node: Element | null = null;
+  node!: Element;
   tag = 'Substation';
-
+  @property()
+  doc!: XMLDocument;
   @property({ type: String })
   get name(): string | null {
     return this.node?.getAttribute('name') ?? null;
@@ -36,13 +37,18 @@ export class SubstationEditorBase extends LitElement {
         .map(tf => tf.checkValidity())
         .reduce((acc, v) => acc && v)
     ) {
-      const event = new CustomEvent<EditDetail>('edit', {
+      const event = new CustomEvent<Update>('edit', {
         composed: true,
         bubbles: true,
-        detail: {},
+        detail: {
+          old: { element: this.node },
+          new: { element: <Element>this.node.cloneNode(false) },
+        },
       });
-      if (this.nameUI.value != this.name) event.detail.name = this.nameUI.value;
-      if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
+      if (this.nameUI.value != this.name)
+        event.detail.new.element.setAttribute('name', this.nameUI.value);
+      if (this.descUI.value != this.desc)
+        event.detail.new.element.setAttribute('desc', this.descUI.value);
       this.dispatchEvent(event);
       dialog.close();
     }
@@ -55,13 +61,20 @@ export class SubstationEditorBase extends LitElement {
         .map(tf => tf.checkValidity())
         .reduce((acc, v) => acc && v)
     ) {
-      // if (this.nameUI.value == '') return;
-      const event = new CustomEvent<AddDetail>('add', {
+      if (this.nameUI.value == '') return;
+      const event = new CustomEvent<Create>('add', {
         composed: true,
         bubbles: true,
-        detail: { name: this.nameUI.value },
+        detail: {
+          new: {
+            parent: this.doc.documentElement,
+            element: `<Substation
+        name="${this.nameUI.value}"
+        desc="${this.descUI.value}"
+        ></Substation>`,
+          },
+        },
       });
-      if (this.descUI.value != this.desc) event.detail.desc = this.descUI.value;
       this.dispatchEvent(event);
       dialog.close();
     }

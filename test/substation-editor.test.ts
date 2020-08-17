@@ -6,7 +6,7 @@ import '../src/substation-editor.js';
 import { trainingDocument } from './data.js';
 
 describe('substation-editor', () => {
-  const substationSection = trainingDocument.querySelector('Substation');
+  const substationSection = trainingDocument.querySelector('Substation')!;
   let element: SubstationEditor;
   beforeEach(async () => {
     element = await fixture(html`<substation-editor></substation-editor>

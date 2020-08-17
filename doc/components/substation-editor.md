@@ -2,16 +2,17 @@
 
 ## Properties
 
-| Property       | Attribute | Modifiers | Type              | Default      |
-|----------------|-----------|-----------|-------------------|--------------|
-| `desc`         | `desc`    | readonly  | `string \| null`  |              |
-| `descUI`       |           |           | `TextField`       |              |
-| `editUI`       |           |           | `DialogBase`      |              |
-| `editorPaneUI` |           |           | `HTMLElement`     |              |
-| `name`         | `name`    | readonly  | `string \| null`  |              |
-| `nameUI`       |           |           | `TextField`       |              |
-| `node`         | `node`    |           | `Element \| null` | null         |
-| `tag`          |           |           | `string`          | "Substation" |
+| Property       | Attribute | Modifiers | Type             | Default      |
+|----------------|-----------|-----------|------------------|--------------|
+| `desc`         | `desc`    | readonly  | `string \| null` |              |
+| `descUI`       |           |           | `TextField`      |              |
+| `doc`          | `doc`     |           | `XMLDocument`    |              |
+| `editUI`       |           |           | `DialogBase`     |              |
+| `editorPaneUI` |           |           | `HTMLElement`    |              |
+| `name`         | `name`    | readonly  | `string \| null` |              |
+| `nameUI`       |           |           | `TextField`      |              |
+| `node`         | `node`    |           | `Element`        |              |
+| `tag`          |           |           | `string`         | "Substation" |
 
 ## Methods
 
@@ -22,7 +23,7 @@
 
 ## Events
 
-| Event  | Type                      |
-|--------|---------------------------|
-| `add`  | `CustomEvent<AddDetail>`  |
-| `edit` | `CustomEvent<EditDetail>` |
+| Event  | Type                  |
+|--------|-----------------------|
+| `add`  | `CustomEvent<Create>` |
+| `edit` | `CustomEvent<Update>` |

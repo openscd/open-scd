@@ -56,6 +56,7 @@
 * [dir](_open_scd_.openscd.md#dir)
 * [doc](_open_scd_.openscd.md#doc)
 * [draggable](_open_scd_.openscd.md#draggable)
+* [editHistory](_open_scd_.openscd.md#edithistory)
 * [fileUI](_open_scd_.openscd.md#fileui)
 * [firstChild](_open_scd_.openscd.md#readonly-firstchild)
 * [firstElementChild](_open_scd_.openscd.md#readonly-firstelementchild)
@@ -330,7 +331,7 @@
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
 
-Defined in src/open-scd-base.ts:348
+Defined in src/open-scd-base.ts:360
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -568,7 +569,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
 
-Defined in src/open-scd-base.ts:174
+Defined in src/open-scd-base.ts:187
 
 The currently active editor tab.
 
@@ -762,7 +763,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
 
-Defined in src/open-scd-base.ts:177
+Defined in src/open-scd-base.ts:190
 
 The `XMLDocument` representation of the current file.
 
@@ -778,13 +779,23 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
 ___
 
+###  editHistory
+
+• **editHistory**: *[Change](../modules/_open_scd_base_.md#change)[]* = []
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[editHistory](_open_scd_base_.openscdbase.md#edithistory)*
+
+Defined in src/open-scd-base.ts:183
+
+___
+
 ###  fileUI
 
 • **fileUI**: *HTMLInputElement*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-Defined in src/open-scd-base.ts:207
+Defined in src/open-scd-base.ts:220
 
 ___
 
@@ -968,7 +979,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-Defined in src/open-scd-base.ts:205
+Defined in src/open-scd-base.ts:218
 
 ___
 
@@ -996,7 +1007,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
 
-Defined in src/open-scd-base.ts:209
+Defined in src/open-scd-base.ts:222
 
 ___
 
@@ -1006,7 +1017,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-Defined in src/open-scd-base.ts:204
+Defined in src/open-scd-base.ts:217
 
 ___
 
@@ -1016,7 +1027,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-Defined in src/open-scd-base.ts:206
+Defined in src/open-scd-base.ts:219
 
 ___
 
@@ -2407,7 +2418,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-Defined in src/open-scd-base.ts:186
+Defined in src/open-scd-base.ts:199
 
 The name of the current file.
 
@@ -2439,7 +2450,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tag](_open_scd_base_.openscdbase.md#tag)*
 
-Defined in src/open-scd-base.ts:184
+Defined in src/open-scd-base.ts:197
 
 The tag name this editor is responsible for editing
 
@@ -2539,7 +2550,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)*
 
-Defined in src/open-scd-base.ts:170
+Defined in src/open-scd-base.ts:180
 
 ___
 
@@ -2632,7 +2643,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[node](_open_scd_base_.openscdbase.md#node)*
 
-Defined in src/open-scd-base.ts:180
+Defined in src/open-scd-base.ts:193
 
 The `Node` this editor is responsible for editing
 
@@ -2646,7 +2657,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:190
+Defined in src/open-scd-base.ts:203
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2656,7 +2667,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:193
+Defined in src/open-scd-base.ts:206
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3194,7 +3205,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[error](_loggingelement_.loggingelement.md#error)*
 
-Defined in src/open-scd-base.ts:264
+Defined in src/open-scd-base.ts:278
 
 **Parameters:**
 
@@ -4215,7 +4226,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/open-scd-base.ts:54
+Defined in src/open-scd-base.ts:60
 
 **Returns:** *TemplateResult*
 
@@ -4834,7 +4845,7 @@ Override this method to integrate into a style management system.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
 
-Defined in src/open-scd-base.ts:229
+Defined in src/open-scd-base.ts:242
 
 ###  editors
 
@@ -4848,6 +4859,7 @@ Defined in src/open-scd-base.ts:229
             './substation-editor.js',
             html`<substation-editor
               .node=${this.doc.querySelector('Substation')}
+              .doc=${this.doc}
             ></substation-editor>`
           ),
       },
@@ -4871,4 +4883,4 @@ Defined in src/open-scd-base.ts:229
       },
     ]
 
-Defined in src/open-scd-base.ts:230
+Defined in src/open-scd-base.ts:243

@@ -1,4 +1,4 @@
-import { html, property, internalProperty, query } from 'lit-element';
+import { html, property, query, LitElement } from 'lit-element';
 import { TemplateResult, NodePart, nothing } from 'lit-html';
 
 import '@material/mwc-button';
@@ -23,20 +23,26 @@ import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 
-export interface EditDetail {
-  name?: string;
-  desc?: string;
+export type Change = Create | Update | Delete | Move;
+export interface Move {
+  old: { parent: Element };
+  new: { parent: Element };
 }
-
-export interface AddDetail {
-  name: string;
-  desc?: string;
+export interface Create {
+  new: { parent: Element; element: Element | string };
+}
+export interface Delete {
+  old: { parent: Element; element: Element };
+}
+export interface Update {
+  old: { element: Element };
+  new: { element: Element };
 }
 
 declare global {
   interface ElementEventMap {
-    ['add']: CustomEvent<AddDetail>;
-    ['edit']: CustomEvent<EditDetail>;
+    ['add']: CustomEvent<Create>;
+    ['edit']: CustomEvent<Update>;
   }
 }
 
@@ -108,11 +114,15 @@ export class OpenSCDBase extends WaitingElement {
               editor =>
                 html`<mwc-tab
                   label=${editor.label}
-                  icon=${editor.icon}
+                  icon=${editor.icon instanceof TemplateResult
+                    ? ''
+                    : editor.icon}
                   id=${editor.id}
-                  hasImageIcon
+                  hasimageicon
                 >
-                  ${editor.icon}
+                  ${editor.icon instanceof TemplateResult
+                    ? editor.icon
+                    : nothing}
                 </mwc-tab>`
             )}
           </mwc-tab-bar>
@@ -168,6 +178,9 @@ export class OpenSCDBase extends WaitingElement {
   }
 
   static emptySCD = document.implementation.createDocument(scl, 'SCL', null);
+
+  @property() // FIXME: integrate into this.history
+  editHistory: Change[] = [];
 
   /** The currently active editor tab. */
   @property({ type: Number })
@@ -237,6 +250,7 @@ export class OpenSCDBase extends WaitingElement {
             './substation-editor.js',
             html`<substation-editor
               .node=${this.doc.querySelector('Substation')}
+              .doc=${this.doc}
             ></substation-editor>`
           ),
       },
@@ -316,33 +330,31 @@ export class OpenSCDBase extends WaitingElement {
     }
   }
 
-  private onEdit(event: CustomEvent<EditDetail>) {
-    const source = <any>event.composedPath()[0];
+  private onEdit(event: CustomEvent<Update>) {
+    const source = <LitElement>event.composedPath()[0];
 
-    if (event.detail.name) source.node?.setAttribute('name', event.detail.name);
-    if (event.detail.desc) source.node?.setAttribute('desc', event.detail.desc);
+    event.detail.new.element.append(
+      ...Array.from(event.detail.old.element.childNodes)
+    );
+    event.detail.old.element.replaceWith(event.detail.new.element);
+    this.editHistory.push(event.detail);
 
     source.requestUpdate('node');
     this.requestUpdate('doc');
   }
-  private onAdd(event: CustomEvent<AddDetail>) {
-    const source = <any>event.composedPath()[0];
 
-    if (!event.detail.name)
-      return this.error('Name missing', `${source.tag} must have a name.`);
+  private onAdd(event: CustomEvent<Create>) {
+    const source = <LitElement>event.composedPath()[0];
 
-    const sourceParent = <any>event
-      .composedPath()
-      .slice(1)
-      .find((t: any) => t.node);
+    if (!(event.detail.new.element instanceof Element))
+      event.detail.new.element = new DOMParser().parseFromString(
+        event.detail.new.element,
+        'application/xml'
+      ).documentElement;
 
-    const newElem = this.doc.createElement(source.tag);
-    sourceParent.node.appendChild(newElem);
+    event.detail.new.parent.prepend(event.detail.new.element);
+    this.editHistory.push(event.detail);
 
-    newElem.setAttribute('name', event.detail.name);
-    if (event.detail.desc) newElem.setAttribute('desc', event.detail.desc);
-
-    sourceParent.requestUpdate('node');
     source.requestUpdate('node');
     this.requestUpdate('doc');
   }

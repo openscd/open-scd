@@ -54,6 +54,7 @@
 * [dataset](_substation_editor_.substationeditor.md#readonly-dataset)
 * [descUI](_substation_editor_.substationeditor.md#descui)
 * [dir](_substation_editor_.substationeditor.md#dir)
+* [doc](_substation_editor_.substationeditor.md#doc)
 * [draggable](_substation_editor_.substationeditor.md#draggable)
 * [editUI](_substation_editor_.substationeditor.md#editui)
 * [editorPaneUI](_substation_editor_.substationeditor.md#editorpaneui)
@@ -724,7 +725,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[descUI](_substation_editor_base_.substationeditorbase.md#descui)*
 
-Defined in src/substation-editor-base.ts:29
+Defined in src/substation-editor-base.ts:30
 
 ___
 
@@ -735,6 +736,16 @@ ___
 *Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dir](_loggingelement_.loggingelement.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
+
+___
+
+###  doc
+
+• **doc**: *XMLDocument*
+
+*Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[doc](_substation_editor_base_.substationeditorbase.md#doc)*
+
+Defined in src/substation-editor-base.ts:17
 
 ___
 
@@ -754,7 +765,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[editUI](_substation_editor_base_.substationeditorbase.md#editui)*
 
-Defined in src/substation-editor-base.ts:27
+Defined in src/substation-editor-base.ts:28
 
 ___
 
@@ -764,7 +775,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[editorPaneUI](_substation_editor_base_.substationeditorbase.md#editorpaneui)*
 
-Defined in src/substation-editor-base.ts:30
+Defined in src/substation-editor-base.ts:31
 
 ___
 
@@ -938,7 +949,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[nameUI](_substation_editor_base_.substationeditorbase.md#nameui)*
 
-Defined in src/substation-editor-base.ts:28
+Defined in src/substation-editor-base.ts:29
 
 ___
 
@@ -982,7 +993,7 @@ ___
 
 ###  node
 
-• **node**: *Element | null* = null
+• **node**: *Element*
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[node](_substation_editor_base_.substationeditorbase.md#node)*
 
@@ -2494,7 +2505,7 @@ Defined in src/substation-editor.ts:13
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[desc](_substation_editor_base_.substationeditorbase.md#desc)*
 
-Defined in src/substation-editor-base.ts:23
+Defined in src/substation-editor-base.ts:24
 
 **Returns:** *string | null*
 
@@ -2518,7 +2529,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[name](_substation_editor_base_.substationeditorbase.md#name)*
 
-Defined in src/substation-editor-base.ts:18
+Defined in src/substation-editor-base.ts:19
 
 **Returns:** *string | null*
 
@@ -2652,7 +2663,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[addSubstation](_substation_editor_base_.substationeditorbase.md#addsubstation)*
 
-Defined in src/substation-editor-base.ts:51
+Defined in src/substation-editor-base.ts:57
 
 **Parameters:**
 
@@ -4037,7 +4048,7 @@ ___
 
 *Overrides [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
 
-Defined in src/substation-editor-base.ts:70
+Defined in src/substation-editor-base.ts:83
 
 **Returns:** *TemplateResult*
 
@@ -4157,7 +4168,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[saveSubstation](_substation_editor_base_.substationeditorbase.md#savesubstation)*
 
-Defined in src/substation-editor-base.ts:32
+Defined in src/substation-editor-base.ts:33
 
 **Parameters:**
 

@@ -17,14 +17,14 @@
 
 ###  add
 
-• **add**: *CustomEvent‹[AddDetail](_open_scd_base_.adddetail.md)›*
+• **add**: *CustomEvent‹[Create](_open_scd_base_.create.md)›*
 
-Defined in src/open-scd-base.ts:38
+Defined in src/open-scd-base.ts:44
 
 ___
 
 ###  edit
 
-• **edit**: *CustomEvent‹[EditDetail](_open_scd_base_.editdetail.md)›*
+• **edit**: *CustomEvent‹[Update](_open_scd_base_.update.md)›*
 
-Defined in src/open-scd-base.ts:39
+Defined in src/open-scd-base.ts:45
