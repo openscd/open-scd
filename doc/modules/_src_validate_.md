@@ -1,21 +1,21 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["validate"](_validate_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["src/validate"](_src_validate_.md)
 
-# Module: "validate"
+# Module: "src/validate"
 
 ## Index
 
 ### Interfaces
 
-* [XMLParams](../interfaces/_validate_.xmlparams.md)
+* [XMLParams](../interfaces/_src_validate_.xmlparams.md)
 
 ### Variables
 
-* [SCL2007B1_2014_07_18](_validate_.md#const-scl2007b1_2014_07_18)
+* [SCL2007B1_2014_07_18](_src_validate_.md#const-scl2007b1_2014_07_18)
 
 ### Functions
 
-* [validateSCL](_validate_.md#validatescl)
-* [validateXML](_validate_.md#validatexml)
+* [validateSCL](_src_validate_.md#validatescl)
+* [validateXML](_src_validate_.md#validatexml)
 
 ## Variables
 
@@ -6608,7 +6608,7 @@ ___
 
 ###  validateXML
 
-▸ **validateXML**(`parameters`: [XMLParams](../interfaces/_validate_.xmlparams.md)): *null | string*
+▸ **validateXML**(`parameters`: [XMLParams](../interfaces/_src_validate_.xmlparams.md)): *null | string*
 
 Defined in src/validate.ts:9
 
@@ -6616,6 +6616,6 @@ Defined in src/validate.ts:9
 
 Name | Type |
 ------ | ------ |
-`parameters` | [XMLParams](../interfaces/_validate_.xmlparams.md) |
+`parameters` | [XMLParams](../interfaces/_src_validate_.xmlparams.md) |
 
 **Returns:** *null | string*

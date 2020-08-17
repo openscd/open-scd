@@ -1,12 +1,12 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd-css"](_open_scd_css_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["src/open-scd-css"](_src_open_scd_css_.md)
 
-# Module: "open-scd-css"
+# Module: "src/open-scd-css"
 
 ## Index
 
 ### Variables
 
-* [styles](_open_scd_css_.md#const-styles)
+* [styles](_src_open_scd_css_.md#const-styles)
 
 ## Variables
 

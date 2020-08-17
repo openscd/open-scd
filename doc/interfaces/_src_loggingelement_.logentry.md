@@ -1,4 +1,4 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["LoggingElement"](../modules/_loggingelement_.md) › [LogEntry](_loggingelement_.logentry.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["src/LoggingElement"](../modules/_src_loggingelement_.md) › [LogEntry](_src_loggingelement_.logentry.md)
 
 # Interface: LogEntry
 
@@ -10,10 +10,10 @@
 
 ### Properties
 
-* [icon](_loggingelement_.logentry.md#optional-icon)
-* [message](_loggingelement_.logentry.md#optional-message)
-* [time](_loggingelement_.logentry.md#time)
-* [title](_loggingelement_.logentry.md#title)
+* [icon](_src_loggingelement_.logentry.md#optional-icon)
+* [message](_src_loggingelement_.logentry.md#optional-message)
+* [time](_src_loggingelement_.logentry.md#time)
+* [title](_src_loggingelement_.logentry.md#title)
 
 ## Properties
 

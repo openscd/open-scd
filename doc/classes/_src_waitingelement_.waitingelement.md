@@ -1,319 +1,322 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["LoggingElement"](../modules/_loggingelement_.md) › [LoggingElement](_loggingelement_.loggingelement.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["src/WaitingElement"](../modules/_src_waitingelement_.md) › [WaitingElement](_src_waitingelement_.waitingelement.md)
 
-# Class: LoggingElement
+# Class: WaitingElement
 
 ## Hierarchy
 
-* LitElement
+  ↳ [LoggingElement](_src_loggingelement_.loggingelement.md)
 
-  ↳ **LoggingElement**
+  ↳ **WaitingElement**
 
-  ↳ [WaitingElement](_waitingelement_.waitingelement.md)
+  ↳ [OpenSCDBase](_src_open_scd_base_.openscdbase.md)
 
 ## Index
 
 ### Constructors
 
-* [constructor](_loggingelement_.loggingelement.md#constructor)
+* [constructor](_src_waitingelement_.waitingelement.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_loggingelement_.loggingelement.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_loggingelement_.loggingelement.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_loggingelement_.loggingelement.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_loggingelement_.loggingelement.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_loggingelement_.loggingelement.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_loggingelement_.loggingelement.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_loggingelement_.loggingelement.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_loggingelement_.loggingelement.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_loggingelement_.loggingelement.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_loggingelement_.loggingelement.md#readonly-document_type_node)
-* [ELEMENT_NODE](_loggingelement_.loggingelement.md#readonly-element_node)
-* [ENTITY_NODE](_loggingelement_.loggingelement.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_loggingelement_.loggingelement.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_loggingelement_.loggingelement.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_loggingelement_.loggingelement.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_loggingelement_.loggingelement.md#readonly-text_node)
-* [accessKey](_loggingelement_.loggingelement.md#accesskey)
-* [accessKeyLabel](_loggingelement_.loggingelement.md#readonly-accesskeylabel)
-* [assignedSlot](_loggingelement_.loggingelement.md#readonly-assignedslot)
-* [attributes](_loggingelement_.loggingelement.md#readonly-attributes)
-* [autocapitalize](_loggingelement_.loggingelement.md#autocapitalize)
-* [autofocus](_loggingelement_.loggingelement.md#autofocus)
-* [baseURI](_loggingelement_.loggingelement.md#readonly-baseuri)
-* [childElementCount](_loggingelement_.loggingelement.md#readonly-childelementcount)
-* [childNodes](_loggingelement_.loggingelement.md#readonly-childnodes)
-* [children](_loggingelement_.loggingelement.md#readonly-children)
-* [classList](_loggingelement_.loggingelement.md#readonly-classlist)
-* [className](_loggingelement_.loggingelement.md#classname)
-* [clientHeight](_loggingelement_.loggingelement.md#readonly-clientheight)
-* [clientLeft](_loggingelement_.loggingelement.md#readonly-clientleft)
-* [clientTop](_loggingelement_.loggingelement.md#readonly-clienttop)
-* [clientWidth](_loggingelement_.loggingelement.md#readonly-clientwidth)
-* [contentEditable](_loggingelement_.loggingelement.md#contenteditable)
-* [dataset](_loggingelement_.loggingelement.md#readonly-dataset)
-* [dir](_loggingelement_.loggingelement.md#dir)
-* [draggable](_loggingelement_.loggingelement.md#draggable)
-* [firstChild](_loggingelement_.loggingelement.md#readonly-firstchild)
-* [firstElementChild](_loggingelement_.loggingelement.md#readonly-firstelementchild)
-* [floatingLabelFoundation](_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)
-* [hidden](_loggingelement_.loggingelement.md#hidden)
-* [history](_loggingelement_.loggingelement.md#history)
-* [id](_loggingelement_.loggingelement.md#id)
-* [innerHTML](_loggingelement_.loggingelement.md#innerhtml)
-* [innerText](_loggingelement_.loggingelement.md#innertext)
-* [inputMode](_loggingelement_.loggingelement.md#inputmode)
-* [isConnected](_loggingelement_.loggingelement.md#readonly-isconnected)
-* [isContentEditable](_loggingelement_.loggingelement.md#readonly-iscontenteditable)
-* [lang](_loggingelement_.loggingelement.md#lang)
-* [lastChild](_loggingelement_.loggingelement.md#readonly-lastchild)
-* [lastElementChild](_loggingelement_.loggingelement.md#readonly-lastelementchild)
-* [lineRippleFoundation](_loggingelement_.loggingelement.md#optional-lineripplefoundation)
-* [localName](_loggingelement_.loggingelement.md#readonly-localname)
-* [namespaceURI](_loggingelement_.loggingelement.md#readonly-namespaceuri)
-* [nextElementSibling](_loggingelement_.loggingelement.md#readonly-nextelementsibling)
-* [nextSibling](_loggingelement_.loggingelement.md#readonly-nextsibling)
-* [nodeName](_loggingelement_.loggingelement.md#readonly-nodename)
-* [nodeType](_loggingelement_.loggingelement.md#readonly-nodetype)
-* [nodeValue](_loggingelement_.loggingelement.md#nodevalue)
-* [nonce](_loggingelement_.loggingelement.md#optional-nonce)
-* [offsetHeight](_loggingelement_.loggingelement.md#readonly-offsetheight)
-* [offsetLeft](_loggingelement_.loggingelement.md#readonly-offsetleft)
-* [offsetParent](_loggingelement_.loggingelement.md#readonly-offsetparent)
-* [offsetTop](_loggingelement_.loggingelement.md#readonly-offsettop)
-* [offsetWidth](_loggingelement_.loggingelement.md#readonly-offsetwidth)
-* [onabort](_loggingelement_.loggingelement.md#onabort)
-* [onanimationcancel](_loggingelement_.loggingelement.md#onanimationcancel)
-* [onanimationend](_loggingelement_.loggingelement.md#onanimationend)
-* [onanimationiteration](_loggingelement_.loggingelement.md#onanimationiteration)
-* [onanimationstart](_loggingelement_.loggingelement.md#onanimationstart)
-* [onauxclick](_loggingelement_.loggingelement.md#onauxclick)
-* [onblur](_loggingelement_.loggingelement.md#onblur)
-* [oncancel](_loggingelement_.loggingelement.md#oncancel)
-* [oncanplay](_loggingelement_.loggingelement.md#oncanplay)
-* [oncanplaythrough](_loggingelement_.loggingelement.md#oncanplaythrough)
-* [onchange](_loggingelement_.loggingelement.md#onchange)
-* [onclick](_loggingelement_.loggingelement.md#onclick)
-* [onclose](_loggingelement_.loggingelement.md#onclose)
-* [oncontextmenu](_loggingelement_.loggingelement.md#oncontextmenu)
-* [oncopy](_loggingelement_.loggingelement.md#oncopy)
-* [oncuechange](_loggingelement_.loggingelement.md#oncuechange)
-* [oncut](_loggingelement_.loggingelement.md#oncut)
-* [ondblclick](_loggingelement_.loggingelement.md#ondblclick)
-* [ondrag](_loggingelement_.loggingelement.md#ondrag)
-* [ondragend](_loggingelement_.loggingelement.md#ondragend)
-* [ondragenter](_loggingelement_.loggingelement.md#ondragenter)
-* [ondragexit](_loggingelement_.loggingelement.md#ondragexit)
-* [ondragleave](_loggingelement_.loggingelement.md#ondragleave)
-* [ondragover](_loggingelement_.loggingelement.md#ondragover)
-* [ondragstart](_loggingelement_.loggingelement.md#ondragstart)
-* [ondrop](_loggingelement_.loggingelement.md#ondrop)
-* [ondurationchange](_loggingelement_.loggingelement.md#ondurationchange)
-* [onemptied](_loggingelement_.loggingelement.md#onemptied)
-* [onended](_loggingelement_.loggingelement.md#onended)
-* [onerror](_loggingelement_.loggingelement.md#onerror)
-* [onfocus](_loggingelement_.loggingelement.md#onfocus)
-* [onfullscreenchange](_loggingelement_.loggingelement.md#onfullscreenchange)
-* [onfullscreenerror](_loggingelement_.loggingelement.md#onfullscreenerror)
-* [ongotpointercapture](_loggingelement_.loggingelement.md#ongotpointercapture)
-* [oninput](_loggingelement_.loggingelement.md#oninput)
-* [oninvalid](_loggingelement_.loggingelement.md#oninvalid)
-* [onkeydown](_loggingelement_.loggingelement.md#onkeydown)
-* [onkeypress](_loggingelement_.loggingelement.md#onkeypress)
-* [onkeyup](_loggingelement_.loggingelement.md#onkeyup)
-* [onload](_loggingelement_.loggingelement.md#onload)
-* [onloadeddata](_loggingelement_.loggingelement.md#onloadeddata)
-* [onloadedmetadata](_loggingelement_.loggingelement.md#onloadedmetadata)
-* [onloadstart](_loggingelement_.loggingelement.md#onloadstart)
-* [onlostpointercapture](_loggingelement_.loggingelement.md#onlostpointercapture)
-* [onmousedown](_loggingelement_.loggingelement.md#onmousedown)
-* [onmouseenter](_loggingelement_.loggingelement.md#onmouseenter)
-* [onmouseleave](_loggingelement_.loggingelement.md#onmouseleave)
-* [onmousemove](_loggingelement_.loggingelement.md#onmousemove)
-* [onmouseout](_loggingelement_.loggingelement.md#onmouseout)
-* [onmouseover](_loggingelement_.loggingelement.md#onmouseover)
-* [onmouseup](_loggingelement_.loggingelement.md#onmouseup)
-* [onpaste](_loggingelement_.loggingelement.md#onpaste)
-* [onpause](_loggingelement_.loggingelement.md#onpause)
-* [onplay](_loggingelement_.loggingelement.md#onplay)
-* [onplaying](_loggingelement_.loggingelement.md#onplaying)
-* [onpointercancel](_loggingelement_.loggingelement.md#onpointercancel)
-* [onpointerdown](_loggingelement_.loggingelement.md#onpointerdown)
-* [onpointerenter](_loggingelement_.loggingelement.md#onpointerenter)
-* [onpointerleave](_loggingelement_.loggingelement.md#onpointerleave)
-* [onpointermove](_loggingelement_.loggingelement.md#onpointermove)
-* [onpointerout](_loggingelement_.loggingelement.md#onpointerout)
-* [onpointerover](_loggingelement_.loggingelement.md#onpointerover)
-* [onpointerup](_loggingelement_.loggingelement.md#onpointerup)
-* [onprogress](_loggingelement_.loggingelement.md#onprogress)
-* [onratechange](_loggingelement_.loggingelement.md#onratechange)
-* [onreset](_loggingelement_.loggingelement.md#onreset)
-* [onresize](_loggingelement_.loggingelement.md#onresize)
-* [onscroll](_loggingelement_.loggingelement.md#onscroll)
-* [onsecuritypolicyviolation](_loggingelement_.loggingelement.md#onsecuritypolicyviolation)
-* [onseeked](_loggingelement_.loggingelement.md#onseeked)
-* [onseeking](_loggingelement_.loggingelement.md#onseeking)
-* [onselect](_loggingelement_.loggingelement.md#onselect)
-* [onselectionchange](_loggingelement_.loggingelement.md#onselectionchange)
-* [onselectstart](_loggingelement_.loggingelement.md#onselectstart)
-* [onstalled](_loggingelement_.loggingelement.md#onstalled)
-* [onsubmit](_loggingelement_.loggingelement.md#onsubmit)
-* [onsuspend](_loggingelement_.loggingelement.md#onsuspend)
-* [ontimeupdate](_loggingelement_.loggingelement.md#ontimeupdate)
-* [ontoggle](_loggingelement_.loggingelement.md#ontoggle)
-* [ontouchcancel](_loggingelement_.loggingelement.md#optional-ontouchcancel)
-* [ontouchend](_loggingelement_.loggingelement.md#optional-ontouchend)
-* [ontouchmove](_loggingelement_.loggingelement.md#optional-ontouchmove)
-* [ontouchstart](_loggingelement_.loggingelement.md#optional-ontouchstart)
-* [ontransitioncancel](_loggingelement_.loggingelement.md#ontransitioncancel)
-* [ontransitionend](_loggingelement_.loggingelement.md#ontransitionend)
-* [ontransitionrun](_loggingelement_.loggingelement.md#ontransitionrun)
-* [ontransitionstart](_loggingelement_.loggingelement.md#ontransitionstart)
-* [onvolumechange](_loggingelement_.loggingelement.md#onvolumechange)
-* [onwaiting](_loggingelement_.loggingelement.md#onwaiting)
-* [onwheel](_loggingelement_.loggingelement.md#onwheel)
-* [outerHTML](_loggingelement_.loggingelement.md#outerhtml)
-* [ownerDocument](_loggingelement_.loggingelement.md#readonly-ownerdocument)
-* [parentElement](_loggingelement_.loggingelement.md#readonly-parentelement)
-* [parentNode](_loggingelement_.loggingelement.md#readonly-parentnode)
-* [prefix](_loggingelement_.loggingelement.md#readonly-prefix)
-* [previousElementSibling](_loggingelement_.loggingelement.md#readonly-previouselementsibling)
-* [previousSibling](_loggingelement_.loggingelement.md#readonly-previoussibling)
-* [renderRoot](_loggingelement_.loggingelement.md#readonly-renderroot)
-* [scrollHeight](_loggingelement_.loggingelement.md#readonly-scrollheight)
-* [scrollLeft](_loggingelement_.loggingelement.md#scrollleft)
-* [scrollTop](_loggingelement_.loggingelement.md#scrolltop)
-* [scrollWidth](_loggingelement_.loggingelement.md#readonly-scrollwidth)
-* [shadowRoot](_loggingelement_.loggingelement.md#readonly-shadowroot)
-* [slot](_loggingelement_.loggingelement.md#slot)
-* [spellcheck](_loggingelement_.loggingelement.md#spellcheck)
-* [style](_loggingelement_.loggingelement.md#readonly-style)
-* [tabIndex](_loggingelement_.loggingelement.md#tabindex)
-* [tagName](_loggingelement_.loggingelement.md#readonly-tagname)
-* [textContent](_loggingelement_.loggingelement.md#textcontent)
-* [title](_loggingelement_.loggingelement.md#title)
-* [translate](_loggingelement_.loggingelement.md#translate)
-* [[finalized]](_loggingelement_.loggingelement.md#static-protected-[finalized])
-* [finalized](_loggingelement_.loggingelement.md#static-protected-finalized)
-* [properties](_loggingelement_.loggingelement.md#static-properties)
-* [render](_loggingelement_.loggingelement.md#static-render)
-* [styles](_loggingelement_.loggingelement.md#static-optional-styles)
+* [ATTRIBUTE_NODE](_src_waitingelement_.waitingelement.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_src_waitingelement_.waitingelement.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_src_waitingelement_.waitingelement.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_src_waitingelement_.waitingelement.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_src_waitingelement_.waitingelement.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_src_waitingelement_.waitingelement.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_src_waitingelement_.waitingelement.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_src_waitingelement_.waitingelement.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_src_waitingelement_.waitingelement.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_src_waitingelement_.waitingelement.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_src_waitingelement_.waitingelement.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_src_waitingelement_.waitingelement.md#readonly-document_type_node)
+* [ELEMENT_NODE](_src_waitingelement_.waitingelement.md#readonly-element_node)
+* [ENTITY_NODE](_src_waitingelement_.waitingelement.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_src_waitingelement_.waitingelement.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_src_waitingelement_.waitingelement.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_src_waitingelement_.waitingelement.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_src_waitingelement_.waitingelement.md#readonly-text_node)
+* [accessKey](_src_waitingelement_.waitingelement.md#accesskey)
+* [accessKeyLabel](_src_waitingelement_.waitingelement.md#readonly-accesskeylabel)
+* [assignedSlot](_src_waitingelement_.waitingelement.md#readonly-assignedslot)
+* [attributes](_src_waitingelement_.waitingelement.md#readonly-attributes)
+* [autocapitalize](_src_waitingelement_.waitingelement.md#autocapitalize)
+* [autofocus](_src_waitingelement_.waitingelement.md#autofocus)
+* [baseURI](_src_waitingelement_.waitingelement.md#readonly-baseuri)
+* [childElementCount](_src_waitingelement_.waitingelement.md#readonly-childelementcount)
+* [childNodes](_src_waitingelement_.waitingelement.md#readonly-childnodes)
+* [children](_src_waitingelement_.waitingelement.md#readonly-children)
+* [classList](_src_waitingelement_.waitingelement.md#readonly-classlist)
+* [className](_src_waitingelement_.waitingelement.md#classname)
+* [clientHeight](_src_waitingelement_.waitingelement.md#readonly-clientheight)
+* [clientLeft](_src_waitingelement_.waitingelement.md#readonly-clientleft)
+* [clientTop](_src_waitingelement_.waitingelement.md#readonly-clienttop)
+* [clientWidth](_src_waitingelement_.waitingelement.md#readonly-clientwidth)
+* [contentEditable](_src_waitingelement_.waitingelement.md#contenteditable)
+* [dataset](_src_waitingelement_.waitingelement.md#readonly-dataset)
+* [dir](_src_waitingelement_.waitingelement.md#dir)
+* [draggable](_src_waitingelement_.waitingelement.md#draggable)
+* [firstChild](_src_waitingelement_.waitingelement.md#readonly-firstchild)
+* [firstElementChild](_src_waitingelement_.waitingelement.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_src_waitingelement_.waitingelement.md#optional-floatinglabelfoundation)
+* [hidden](_src_waitingelement_.waitingelement.md#hidden)
+* [history](_src_waitingelement_.waitingelement.md#history)
+* [id](_src_waitingelement_.waitingelement.md#id)
+* [innerHTML](_src_waitingelement_.waitingelement.md#innerhtml)
+* [innerText](_src_waitingelement_.waitingelement.md#innertext)
+* [inputMode](_src_waitingelement_.waitingelement.md#inputmode)
+* [isConnected](_src_waitingelement_.waitingelement.md#readonly-isconnected)
+* [isContentEditable](_src_waitingelement_.waitingelement.md#readonly-iscontenteditable)
+* [lang](_src_waitingelement_.waitingelement.md#lang)
+* [lastChild](_src_waitingelement_.waitingelement.md#readonly-lastchild)
+* [lastElementChild](_src_waitingelement_.waitingelement.md#readonly-lastelementchild)
+* [lineRippleFoundation](_src_waitingelement_.waitingelement.md#optional-lineripplefoundation)
+* [localName](_src_waitingelement_.waitingelement.md#readonly-localname)
+* [namespaceURI](_src_waitingelement_.waitingelement.md#readonly-namespaceuri)
+* [nextElementSibling](_src_waitingelement_.waitingelement.md#readonly-nextelementsibling)
+* [nextSibling](_src_waitingelement_.waitingelement.md#readonly-nextsibling)
+* [nodeName](_src_waitingelement_.waitingelement.md#readonly-nodename)
+* [nodeType](_src_waitingelement_.waitingelement.md#readonly-nodetype)
+* [nodeValue](_src_waitingelement_.waitingelement.md#nodevalue)
+* [nonce](_src_waitingelement_.waitingelement.md#optional-nonce)
+* [offsetHeight](_src_waitingelement_.waitingelement.md#readonly-offsetheight)
+* [offsetLeft](_src_waitingelement_.waitingelement.md#readonly-offsetleft)
+* [offsetParent](_src_waitingelement_.waitingelement.md#readonly-offsetparent)
+* [offsetTop](_src_waitingelement_.waitingelement.md#readonly-offsettop)
+* [offsetWidth](_src_waitingelement_.waitingelement.md#readonly-offsetwidth)
+* [onabort](_src_waitingelement_.waitingelement.md#onabort)
+* [onanimationcancel](_src_waitingelement_.waitingelement.md#onanimationcancel)
+* [onanimationend](_src_waitingelement_.waitingelement.md#onanimationend)
+* [onanimationiteration](_src_waitingelement_.waitingelement.md#onanimationiteration)
+* [onanimationstart](_src_waitingelement_.waitingelement.md#onanimationstart)
+* [onauxclick](_src_waitingelement_.waitingelement.md#onauxclick)
+* [onblur](_src_waitingelement_.waitingelement.md#onblur)
+* [oncancel](_src_waitingelement_.waitingelement.md#oncancel)
+* [oncanplay](_src_waitingelement_.waitingelement.md#oncanplay)
+* [oncanplaythrough](_src_waitingelement_.waitingelement.md#oncanplaythrough)
+* [onchange](_src_waitingelement_.waitingelement.md#onchange)
+* [onclick](_src_waitingelement_.waitingelement.md#onclick)
+* [onclose](_src_waitingelement_.waitingelement.md#onclose)
+* [oncontextmenu](_src_waitingelement_.waitingelement.md#oncontextmenu)
+* [oncopy](_src_waitingelement_.waitingelement.md#oncopy)
+* [oncuechange](_src_waitingelement_.waitingelement.md#oncuechange)
+* [oncut](_src_waitingelement_.waitingelement.md#oncut)
+* [ondblclick](_src_waitingelement_.waitingelement.md#ondblclick)
+* [ondrag](_src_waitingelement_.waitingelement.md#ondrag)
+* [ondragend](_src_waitingelement_.waitingelement.md#ondragend)
+* [ondragenter](_src_waitingelement_.waitingelement.md#ondragenter)
+* [ondragexit](_src_waitingelement_.waitingelement.md#ondragexit)
+* [ondragleave](_src_waitingelement_.waitingelement.md#ondragleave)
+* [ondragover](_src_waitingelement_.waitingelement.md#ondragover)
+* [ondragstart](_src_waitingelement_.waitingelement.md#ondragstart)
+* [ondrop](_src_waitingelement_.waitingelement.md#ondrop)
+* [ondurationchange](_src_waitingelement_.waitingelement.md#ondurationchange)
+* [onemptied](_src_waitingelement_.waitingelement.md#onemptied)
+* [onended](_src_waitingelement_.waitingelement.md#onended)
+* [onerror](_src_waitingelement_.waitingelement.md#onerror)
+* [onfocus](_src_waitingelement_.waitingelement.md#onfocus)
+* [onfullscreenchange](_src_waitingelement_.waitingelement.md#onfullscreenchange)
+* [onfullscreenerror](_src_waitingelement_.waitingelement.md#onfullscreenerror)
+* [ongotpointercapture](_src_waitingelement_.waitingelement.md#ongotpointercapture)
+* [oninput](_src_waitingelement_.waitingelement.md#oninput)
+* [oninvalid](_src_waitingelement_.waitingelement.md#oninvalid)
+* [onkeydown](_src_waitingelement_.waitingelement.md#onkeydown)
+* [onkeypress](_src_waitingelement_.waitingelement.md#onkeypress)
+* [onkeyup](_src_waitingelement_.waitingelement.md#onkeyup)
+* [onload](_src_waitingelement_.waitingelement.md#onload)
+* [onloadeddata](_src_waitingelement_.waitingelement.md#onloadeddata)
+* [onloadedmetadata](_src_waitingelement_.waitingelement.md#onloadedmetadata)
+* [onloadstart](_src_waitingelement_.waitingelement.md#onloadstart)
+* [onlostpointercapture](_src_waitingelement_.waitingelement.md#onlostpointercapture)
+* [onmousedown](_src_waitingelement_.waitingelement.md#onmousedown)
+* [onmouseenter](_src_waitingelement_.waitingelement.md#onmouseenter)
+* [onmouseleave](_src_waitingelement_.waitingelement.md#onmouseleave)
+* [onmousemove](_src_waitingelement_.waitingelement.md#onmousemove)
+* [onmouseout](_src_waitingelement_.waitingelement.md#onmouseout)
+* [onmouseover](_src_waitingelement_.waitingelement.md#onmouseover)
+* [onmouseup](_src_waitingelement_.waitingelement.md#onmouseup)
+* [onpaste](_src_waitingelement_.waitingelement.md#onpaste)
+* [onpause](_src_waitingelement_.waitingelement.md#onpause)
+* [onplay](_src_waitingelement_.waitingelement.md#onplay)
+* [onplaying](_src_waitingelement_.waitingelement.md#onplaying)
+* [onpointercancel](_src_waitingelement_.waitingelement.md#onpointercancel)
+* [onpointerdown](_src_waitingelement_.waitingelement.md#onpointerdown)
+* [onpointerenter](_src_waitingelement_.waitingelement.md#onpointerenter)
+* [onpointerleave](_src_waitingelement_.waitingelement.md#onpointerleave)
+* [onpointermove](_src_waitingelement_.waitingelement.md#onpointermove)
+* [onpointerout](_src_waitingelement_.waitingelement.md#onpointerout)
+* [onpointerover](_src_waitingelement_.waitingelement.md#onpointerover)
+* [onpointerup](_src_waitingelement_.waitingelement.md#onpointerup)
+* [onprogress](_src_waitingelement_.waitingelement.md#onprogress)
+* [onratechange](_src_waitingelement_.waitingelement.md#onratechange)
+* [onreset](_src_waitingelement_.waitingelement.md#onreset)
+* [onresize](_src_waitingelement_.waitingelement.md#onresize)
+* [onscroll](_src_waitingelement_.waitingelement.md#onscroll)
+* [onsecuritypolicyviolation](_src_waitingelement_.waitingelement.md#onsecuritypolicyviolation)
+* [onseeked](_src_waitingelement_.waitingelement.md#onseeked)
+* [onseeking](_src_waitingelement_.waitingelement.md#onseeking)
+* [onselect](_src_waitingelement_.waitingelement.md#onselect)
+* [onselectionchange](_src_waitingelement_.waitingelement.md#onselectionchange)
+* [onselectstart](_src_waitingelement_.waitingelement.md#onselectstart)
+* [onstalled](_src_waitingelement_.waitingelement.md#onstalled)
+* [onsubmit](_src_waitingelement_.waitingelement.md#onsubmit)
+* [onsuspend](_src_waitingelement_.waitingelement.md#onsuspend)
+* [ontimeupdate](_src_waitingelement_.waitingelement.md#ontimeupdate)
+* [ontoggle](_src_waitingelement_.waitingelement.md#ontoggle)
+* [ontouchcancel](_src_waitingelement_.waitingelement.md#optional-ontouchcancel)
+* [ontouchend](_src_waitingelement_.waitingelement.md#optional-ontouchend)
+* [ontouchmove](_src_waitingelement_.waitingelement.md#optional-ontouchmove)
+* [ontouchstart](_src_waitingelement_.waitingelement.md#optional-ontouchstart)
+* [ontransitioncancel](_src_waitingelement_.waitingelement.md#ontransitioncancel)
+* [ontransitionend](_src_waitingelement_.waitingelement.md#ontransitionend)
+* [ontransitionrun](_src_waitingelement_.waitingelement.md#ontransitionrun)
+* [ontransitionstart](_src_waitingelement_.waitingelement.md#ontransitionstart)
+* [onvolumechange](_src_waitingelement_.waitingelement.md#onvolumechange)
+* [onwaiting](_src_waitingelement_.waitingelement.md#onwaiting)
+* [onwheel](_src_waitingelement_.waitingelement.md#onwheel)
+* [outerHTML](_src_waitingelement_.waitingelement.md#outerhtml)
+* [ownerDocument](_src_waitingelement_.waitingelement.md#readonly-ownerdocument)
+* [parentElement](_src_waitingelement_.waitingelement.md#readonly-parentelement)
+* [parentNode](_src_waitingelement_.waitingelement.md#readonly-parentnode)
+* [prefix](_src_waitingelement_.waitingelement.md#readonly-prefix)
+* [previousElementSibling](_src_waitingelement_.waitingelement.md#readonly-previouselementsibling)
+* [previousSibling](_src_waitingelement_.waitingelement.md#readonly-previoussibling)
+* [renderRoot](_src_waitingelement_.waitingelement.md#readonly-renderroot)
+* [scrollHeight](_src_waitingelement_.waitingelement.md#readonly-scrollheight)
+* [scrollLeft](_src_waitingelement_.waitingelement.md#scrollleft)
+* [scrollTop](_src_waitingelement_.waitingelement.md#scrolltop)
+* [scrollWidth](_src_waitingelement_.waitingelement.md#readonly-scrollwidth)
+* [shadowRoot](_src_waitingelement_.waitingelement.md#readonly-shadowroot)
+* [slot](_src_waitingelement_.waitingelement.md#slot)
+* [spellcheck](_src_waitingelement_.waitingelement.md#spellcheck)
+* [style](_src_waitingelement_.waitingelement.md#readonly-style)
+* [tabIndex](_src_waitingelement_.waitingelement.md#tabindex)
+* [tagName](_src_waitingelement_.waitingelement.md#readonly-tagname)
+* [textContent](_src_waitingelement_.waitingelement.md#textcontent)
+* [title](_src_waitingelement_.waitingelement.md#title)
+* [translate](_src_waitingelement_.waitingelement.md#translate)
+* [waiting](_src_waitingelement_.waitingelement.md#waiting)
+* [work](_src_waitingelement_.waitingelement.md#protected-work)
+* [workDone](_src_waitingelement_.waitingelement.md#workdone)
+* [[finalized]](_src_waitingelement_.waitingelement.md#static-protected-[finalized])
+* [finalized](_src_waitingelement_.waitingelement.md#static-protected-finalized)
+* [properties](_src_waitingelement_.waitingelement.md#static-properties)
+* [render](_src_waitingelement_.waitingelement.md#static-render)
+* [styles](_src_waitingelement_.waitingelement.md#static-optional-styles)
 
 ### Accessors
 
-* [hasUpdated](_loggingelement_.loggingelement.md#protected-hasupdated)
-* [updateComplete](_loggingelement_.loggingelement.md#updatecomplete)
-* [observedAttributes](_loggingelement_.loggingelement.md#static-observedattributes)
+* [hasUpdated](_src_waitingelement_.waitingelement.md#protected-hasupdated)
+* [updateComplete](_src_waitingelement_.waitingelement.md#updatecomplete)
+* [observedAttributes](_src_waitingelement_.waitingelement.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_loggingelement_.loggingelement.md#protected-_getupdatecomplete)
-* [addEventListener](_loggingelement_.loggingelement.md#addeventlistener)
-* [adoptStyles](_loggingelement_.loggingelement.md#protected-adoptstyles)
-* [after](_loggingelement_.loggingelement.md#after)
-* [animate](_loggingelement_.loggingelement.md#animate)
-* [append](_loggingelement_.loggingelement.md#append)
-* [appendChild](_loggingelement_.loggingelement.md#appendchild)
-* [attachShadow](_loggingelement_.loggingelement.md#attachshadow)
-* [attributeChangedCallback](_loggingelement_.loggingelement.md#attributechangedcallback)
-* [before](_loggingelement_.loggingelement.md#before)
-* [blur](_loggingelement_.loggingelement.md#blur)
-* [click](_loggingelement_.loggingelement.md#click)
-* [cloneNode](_loggingelement_.loggingelement.md#clonenode)
-* [closest](_loggingelement_.loggingelement.md#closest)
-* [compareDocumentPosition](_loggingelement_.loggingelement.md#comparedocumentposition)
-* [connectedCallback](_loggingelement_.loggingelement.md#connectedcallback)
-* [contains](_loggingelement_.loggingelement.md#contains)
-* [createRenderRoot](_loggingelement_.loggingelement.md#protected-createrenderroot)
-* [disconnectedCallback](_loggingelement_.loggingelement.md#disconnectedcallback)
-* [dispatchEvent](_loggingelement_.loggingelement.md#dispatchevent)
-* [enableUpdating](_loggingelement_.loggingelement.md#protected-enableupdating)
-* [error](_loggingelement_.loggingelement.md#error)
-* [firstUpdated](_loggingelement_.loggingelement.md#firstupdated)
-* [focus](_loggingelement_.loggingelement.md#focus)
-* [getAnimations](_loggingelement_.loggingelement.md#getanimations)
-* [getAttribute](_loggingelement_.loggingelement.md#getattribute)
-* [getAttributeNS](_loggingelement_.loggingelement.md#getattributens)
-* [getAttributeNames](_loggingelement_.loggingelement.md#getattributenames)
-* [getAttributeNode](_loggingelement_.loggingelement.md#getattributenode)
-* [getAttributeNodeNS](_loggingelement_.loggingelement.md#getattributenodens)
-* [getBoundingClientRect](_loggingelement_.loggingelement.md#getboundingclientrect)
-* [getClientRects](_loggingelement_.loggingelement.md#getclientrects)
-* [getElementsByClassName](_loggingelement_.loggingelement.md#getelementsbyclassname)
-* [getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)
-* [getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)
-* [getRootNode](_loggingelement_.loggingelement.md#getrootnode)
-* [hasAttribute](_loggingelement_.loggingelement.md#hasattribute)
-* [hasAttributeNS](_loggingelement_.loggingelement.md#hasattributens)
-* [hasAttributes](_loggingelement_.loggingelement.md#hasattributes)
-* [hasChildNodes](_loggingelement_.loggingelement.md#haschildnodes)
-* [hasPointerCapture](_loggingelement_.loggingelement.md#haspointercapture)
-* [info](_loggingelement_.loggingelement.md#info)
-* [initialize](_loggingelement_.loggingelement.md#protected-initialize)
-* [insertAdjacentElement](_loggingelement_.loggingelement.md#insertadjacentelement)
-* [insertAdjacentHTML](_loggingelement_.loggingelement.md#insertadjacenthtml)
-* [insertAdjacentText](_loggingelement_.loggingelement.md#insertadjacenttext)
-* [insertBefore](_loggingelement_.loggingelement.md#insertbefore)
-* [isDefaultNamespace](_loggingelement_.loggingelement.md#isdefaultnamespace)
-* [isEqualNode](_loggingelement_.loggingelement.md#isequalnode)
-* [isSameNode](_loggingelement_.loggingelement.md#issamenode)
-* [log](_loggingelement_.loggingelement.md#log)
-* [lookupNamespaceURI](_loggingelement_.loggingelement.md#lookupnamespaceuri)
-* [lookupPrefix](_loggingelement_.loggingelement.md#lookupprefix)
-* [matches](_loggingelement_.loggingelement.md#matches)
-* [msGetRegionContent](_loggingelement_.loggingelement.md#msgetregioncontent)
-* [normalize](_loggingelement_.loggingelement.md#normalize)
-* [performUpdate](_loggingelement_.loggingelement.md#protected-performupdate)
-* [prepend](_loggingelement_.loggingelement.md#prepend)
-* [querySelector](_loggingelement_.loggingelement.md#queryselector)
-* [querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)
-* [releasePointerCapture](_loggingelement_.loggingelement.md#releasepointercapture)
-* [remove](_loggingelement_.loggingelement.md#remove)
-* [removeAttribute](_loggingelement_.loggingelement.md#removeattribute)
-* [removeAttributeNS](_loggingelement_.loggingelement.md#removeattributens)
-* [removeAttributeNode](_loggingelement_.loggingelement.md#removeattributenode)
-* [removeChild](_loggingelement_.loggingelement.md#removechild)
-* [removeEventListener](_loggingelement_.loggingelement.md#removeeventlistener)
-* [render](_loggingelement_.loggingelement.md#protected-render)
-* [replaceChild](_loggingelement_.loggingelement.md#replacechild)
-* [replaceWith](_loggingelement_.loggingelement.md#replacewith)
-* [requestFullscreen](_loggingelement_.loggingelement.md#requestfullscreen)
-* [requestPointerLock](_loggingelement_.loggingelement.md#requestpointerlock)
-* [requestUpdate](_loggingelement_.loggingelement.md#requestupdate)
-* [scroll](_loggingelement_.loggingelement.md#scroll)
-* [scrollBy](_loggingelement_.loggingelement.md#scrollby)
-* [scrollIntoView](_loggingelement_.loggingelement.md#scrollintoview)
-* [scrollTo](_loggingelement_.loggingelement.md#scrollto)
-* [setAttribute](_loggingelement_.loggingelement.md#setattribute)
-* [setAttributeNS](_loggingelement_.loggingelement.md#setattributens)
-* [setAttributeNode](_loggingelement_.loggingelement.md#setattributenode)
-* [setAttributeNodeNS](_loggingelement_.loggingelement.md#setattributenodens)
-* [setPointerCapture](_loggingelement_.loggingelement.md#setpointercapture)
-* [shouldUpdate](_loggingelement_.loggingelement.md#protected-shouldupdate)
-* [toggleAttribute](_loggingelement_.loggingelement.md#toggleattribute)
-* [update](_loggingelement_.loggingelement.md#protected-update)
-* [updated](_loggingelement_.loggingelement.md#protected-updated)
-* [warn](_loggingelement_.loggingelement.md#warn)
-* [webkitMatchesSelector](_loggingelement_.loggingelement.md#webkitmatchesselector)
-* [createProperty](_loggingelement_.loggingelement.md#static-createproperty)
-* [finalize](_loggingelement_.loggingelement.md#static-protected-finalize)
-* [getPropertyDescriptor](_loggingelement_.loggingelement.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_loggingelement_.loggingelement.md#static-protected-getpropertyoptions)
-* [getStyles](_loggingelement_.loggingelement.md#static-getstyles)
+* [_getUpdateComplete](_src_waitingelement_.waitingelement.md#protected-_getupdatecomplete)
+* [addEventListener](_src_waitingelement_.waitingelement.md#addeventlistener)
+* [adoptStyles](_src_waitingelement_.waitingelement.md#protected-adoptstyles)
+* [after](_src_waitingelement_.waitingelement.md#after)
+* [animate](_src_waitingelement_.waitingelement.md#animate)
+* [append](_src_waitingelement_.waitingelement.md#append)
+* [appendChild](_src_waitingelement_.waitingelement.md#appendchild)
+* [attachShadow](_src_waitingelement_.waitingelement.md#attachshadow)
+* [attributeChangedCallback](_src_waitingelement_.waitingelement.md#attributechangedcallback)
+* [before](_src_waitingelement_.waitingelement.md#before)
+* [blur](_src_waitingelement_.waitingelement.md#blur)
+* [click](_src_waitingelement_.waitingelement.md#click)
+* [cloneNode](_src_waitingelement_.waitingelement.md#clonenode)
+* [closest](_src_waitingelement_.waitingelement.md#closest)
+* [compareDocumentPosition](_src_waitingelement_.waitingelement.md#comparedocumentposition)
+* [connectedCallback](_src_waitingelement_.waitingelement.md#connectedcallback)
+* [contains](_src_waitingelement_.waitingelement.md#contains)
+* [createRenderRoot](_src_waitingelement_.waitingelement.md#protected-createrenderroot)
+* [disconnectedCallback](_src_waitingelement_.waitingelement.md#disconnectedcallback)
+* [dispatchEvent](_src_waitingelement_.waitingelement.md#dispatchevent)
+* [enableUpdating](_src_waitingelement_.waitingelement.md#protected-enableupdating)
+* [error](_src_waitingelement_.waitingelement.md#error)
+* [firstUpdated](_src_waitingelement_.waitingelement.md#firstupdated)
+* [focus](_src_waitingelement_.waitingelement.md#focus)
+* [getAnimations](_src_waitingelement_.waitingelement.md#getanimations)
+* [getAttribute](_src_waitingelement_.waitingelement.md#getattribute)
+* [getAttributeNS](_src_waitingelement_.waitingelement.md#getattributens)
+* [getAttributeNames](_src_waitingelement_.waitingelement.md#getattributenames)
+* [getAttributeNode](_src_waitingelement_.waitingelement.md#getattributenode)
+* [getAttributeNodeNS](_src_waitingelement_.waitingelement.md#getattributenodens)
+* [getBoundingClientRect](_src_waitingelement_.waitingelement.md#getboundingclientrect)
+* [getClientRects](_src_waitingelement_.waitingelement.md#getclientrects)
+* [getElementsByClassName](_src_waitingelement_.waitingelement.md#getelementsbyclassname)
+* [getElementsByTagName](_src_waitingelement_.waitingelement.md#getelementsbytagname)
+* [getElementsByTagNameNS](_src_waitingelement_.waitingelement.md#getelementsbytagnamens)
+* [getRootNode](_src_waitingelement_.waitingelement.md#getrootnode)
+* [hasAttribute](_src_waitingelement_.waitingelement.md#hasattribute)
+* [hasAttributeNS](_src_waitingelement_.waitingelement.md#hasattributens)
+* [hasAttributes](_src_waitingelement_.waitingelement.md#hasattributes)
+* [hasChildNodes](_src_waitingelement_.waitingelement.md#haschildnodes)
+* [hasPointerCapture](_src_waitingelement_.waitingelement.md#haspointercapture)
+* [info](_src_waitingelement_.waitingelement.md#info)
+* [initialize](_src_waitingelement_.waitingelement.md#protected-initialize)
+* [insertAdjacentElement](_src_waitingelement_.waitingelement.md#insertadjacentelement)
+* [insertAdjacentHTML](_src_waitingelement_.waitingelement.md#insertadjacenthtml)
+* [insertAdjacentText](_src_waitingelement_.waitingelement.md#insertadjacenttext)
+* [insertBefore](_src_waitingelement_.waitingelement.md#insertbefore)
+* [isDefaultNamespace](_src_waitingelement_.waitingelement.md#isdefaultnamespace)
+* [isEqualNode](_src_waitingelement_.waitingelement.md#isequalnode)
+* [isSameNode](_src_waitingelement_.waitingelement.md#issamenode)
+* [log](_src_waitingelement_.waitingelement.md#log)
+* [lookupNamespaceURI](_src_waitingelement_.waitingelement.md#lookupnamespaceuri)
+* [lookupPrefix](_src_waitingelement_.waitingelement.md#lookupprefix)
+* [matches](_src_waitingelement_.waitingelement.md#matches)
+* [msGetRegionContent](_src_waitingelement_.waitingelement.md#msgetregioncontent)
+* [normalize](_src_waitingelement_.waitingelement.md#normalize)
+* [performUpdate](_src_waitingelement_.waitingelement.md#protected-performupdate)
+* [prepend](_src_waitingelement_.waitingelement.md#prepend)
+* [querySelector](_src_waitingelement_.waitingelement.md#queryselector)
+* [querySelectorAll](_src_waitingelement_.waitingelement.md#queryselectorall)
+* [releasePointerCapture](_src_waitingelement_.waitingelement.md#releasepointercapture)
+* [remove](_src_waitingelement_.waitingelement.md#remove)
+* [removeAttribute](_src_waitingelement_.waitingelement.md#removeattribute)
+* [removeAttributeNS](_src_waitingelement_.waitingelement.md#removeattributens)
+* [removeAttributeNode](_src_waitingelement_.waitingelement.md#removeattributenode)
+* [removeChild](_src_waitingelement_.waitingelement.md#removechild)
+* [removeEventListener](_src_waitingelement_.waitingelement.md#removeeventlistener)
+* [render](_src_waitingelement_.waitingelement.md#protected-render)
+* [replaceChild](_src_waitingelement_.waitingelement.md#replacechild)
+* [replaceWith](_src_waitingelement_.waitingelement.md#replacewith)
+* [requestFullscreen](_src_waitingelement_.waitingelement.md#requestfullscreen)
+* [requestPointerLock](_src_waitingelement_.waitingelement.md#requestpointerlock)
+* [requestUpdate](_src_waitingelement_.waitingelement.md#requestupdate)
+* [scroll](_src_waitingelement_.waitingelement.md#scroll)
+* [scrollBy](_src_waitingelement_.waitingelement.md#scrollby)
+* [scrollIntoView](_src_waitingelement_.waitingelement.md#scrollintoview)
+* [scrollTo](_src_waitingelement_.waitingelement.md#scrollto)
+* [setAttribute](_src_waitingelement_.waitingelement.md#setattribute)
+* [setAttributeNS](_src_waitingelement_.waitingelement.md#setattributens)
+* [setAttributeNode](_src_waitingelement_.waitingelement.md#setattributenode)
+* [setAttributeNodeNS](_src_waitingelement_.waitingelement.md#setattributenodens)
+* [setPointerCapture](_src_waitingelement_.waitingelement.md#setpointercapture)
+* [shouldUpdate](_src_waitingelement_.waitingelement.md#protected-shouldupdate)
+* [toggleAttribute](_src_waitingelement_.waitingelement.md#toggleattribute)
+* [update](_src_waitingelement_.waitingelement.md#protected-update)
+* [updated](_src_waitingelement_.waitingelement.md#protected-updated)
+* [warn](_src_waitingelement_.waitingelement.md#warn)
+* [webkitMatchesSelector](_src_waitingelement_.waitingelement.md#webkitmatchesselector)
+* [createProperty](_src_waitingelement_.waitingelement.md#static-createproperty)
+* [finalize](_src_waitingelement_.waitingelement.md#static-protected-finalize)
+* [getPropertyDescriptor](_src_waitingelement_.waitingelement.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_src_waitingelement_.waitingelement.md#static-protected-getpropertyoptions)
+* [getStyles](_src_waitingelement_.waitingelement.md#static-getstyles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new LoggingElement**(): *[LoggingElement](_loggingelement_.loggingelement.md)*
+\+ **new WaitingElement**(): *[WaitingElement](_src_waitingelement_.waitingelement.md)*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[constructor](_loggingelement_.loggingelement.md#constructor)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[constructor](_src_loggingelement_.loggingelement.md#constructor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
-**Returns:** *[LoggingElement](_loggingelement_.loggingelement.md)*
+**Returns:** *[WaitingElement](_src_waitingelement_.waitingelement.md)*
 
 ## Properties
 
@@ -321,7 +324,7 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
 • **ATTRIBUTE_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ATTRIBUTE_NODE](_loggingelement_.loggingelement.md#readonly-attribute_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ATTRIBUTE_NODE](_src_loggingelement_.loggingelement.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10829
 
@@ -331,7 +334,7 @@ ___
 
 • **CDATA_SECTION_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[CDATA_SECTION_NODE](_loggingelement_.loggingelement.md#readonly-cdata_section_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[CDATA_SECTION_NODE](_src_loggingelement_.loggingelement.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -343,7 +346,7 @@ ___
 
 • **COMMENT_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[COMMENT_NODE](_loggingelement_.loggingelement.md#readonly-comment_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[COMMENT_NODE](_src_loggingelement_.loggingelement.md#readonly-comment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10837
 
@@ -355,7 +358,7 @@ ___
 
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_FRAGMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_fragment_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_FRAGMENT_NODE](_src_loggingelement_.loggingelement.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -367,7 +370,7 @@ ___
 
 • **DOCUMENT_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_NODE](_loggingelement_.loggingelement.md#readonly-document_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_NODE](_src_loggingelement_.loggingelement.md#readonly-document_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -379,7 +382,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_CONTAINED_BY](_loggingelement_.loggingelement.md#readonly-document_position_contained_by)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_CONTAINED_BY](_src_loggingelement_.loggingelement.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
@@ -391,7 +394,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINS**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_CONTAINS](_loggingelement_.loggingelement.md#readonly-document_position_contains)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_CONTAINS](_src_loggingelement_.loggingelement.md#readonly-document_position_contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -403,7 +406,7 @@ ___
 
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_DISCONNECTED](_loggingelement_.loggingelement.md#readonly-document_position_disconnected)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_DISCONNECTED](_src_loggingelement_.loggingelement.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
@@ -415,7 +418,7 @@ ___
 
 • **DOCUMENT_POSITION_FOLLOWING**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_FOLLOWING](_loggingelement_.loggingelement.md#readonly-document_position_following)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_FOLLOWING](_src_loggingelement_.loggingelement.md#readonly-document_position_following)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -427,7 +430,7 @@ ___
 
 • **DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_loggingelement_.loggingelement.md#readonly-document_position_implementation_specific)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_src_loggingelement_.loggingelement.md#readonly-document_position_implementation_specific)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10862
 
@@ -437,7 +440,7 @@ ___
 
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_PRECEDING](_loggingelement_.loggingelement.md#readonly-document_position_preceding)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_POSITION_PRECEDING](_src_loggingelement_.loggingelement.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10866
 
@@ -449,7 +452,7 @@ ___
 
 • **DOCUMENT_TYPE_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[DOCUMENT_TYPE_NODE](_loggingelement_.loggingelement.md#readonly-document_type_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[DOCUMENT_TYPE_NODE](_src_loggingelement_.loggingelement.md#readonly-document_type_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10870
 
@@ -461,7 +464,7 @@ ___
 
 • **ELEMENT_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ELEMENT_NODE](_loggingelement_.loggingelement.md#readonly-element_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ELEMENT_NODE](_src_loggingelement_.loggingelement.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
@@ -473,7 +476,7 @@ ___
 
 • **ENTITY_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ENTITY_NODE](_loggingelement_.loggingelement.md#readonly-entity_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ENTITY_NODE](_src_loggingelement_.loggingelement.md#readonly-entity_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10875
 
@@ -483,7 +486,7 @@ ___
 
 • **ENTITY_REFERENCE_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ENTITY_REFERENCE_NODE](_loggingelement_.loggingelement.md#readonly-entity_reference_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ENTITY_REFERENCE_NODE](_src_loggingelement_.loggingelement.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10876
 
@@ -493,7 +496,7 @@ ___
 
 • **NOTATION_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[NOTATION_NODE](_loggingelement_.loggingelement.md#readonly-notation_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[NOTATION_NODE](_src_loggingelement_.loggingelement.md#readonly-notation_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10877
 
@@ -503,7 +506,7 @@ ___
 
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[PROCESSING_INSTRUCTION_NODE](_loggingelement_.loggingelement.md#readonly-processing_instruction_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[PROCESSING_INSTRUCTION_NODE](_src_loggingelement_.loggingelement.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10881
 
@@ -515,7 +518,7 @@ ___
 
 • **TEXT_NODE**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[TEXT_NODE](_loggingelement_.loggingelement.md#readonly-text_node)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[TEXT_NODE](_src_loggingelement_.loggingelement.md#readonly-text_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10885
 
@@ -527,7 +530,7 @@ ___
 
 • **accessKey**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[accessKey](_loggingelement_.loggingelement.md#accesskey)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[accessKey](_src_loggingelement_.loggingelement.md#accesskey)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6576
 
@@ -537,7 +540,7 @@ ___
 
 • **accessKeyLabel**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[accessKeyLabel](_loggingelement_.loggingelement.md#readonly-accesskeylabel)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[accessKeyLabel](_src_loggingelement_.loggingelement.md#readonly-accesskeylabel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
 
@@ -547,7 +550,7 @@ ___
 
 • **assignedSlot**: *HTMLSlotElement | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[assignedSlot](_loggingelement_.loggingelement.md#readonly-assignedslot)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[assignedSlot](_src_loggingelement_.loggingelement.md#readonly-assignedslot)*
 
 *Overrides void*
 
@@ -559,7 +562,7 @@ ___
 
 • **attributes**: *NamedNodeMap*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[attributes](_loggingelement_.loggingelement.md#readonly-attributes)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[attributes](_src_loggingelement_.loggingelement.md#readonly-attributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5090
 
@@ -569,7 +572,7 @@ ___
 
 • **autocapitalize**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[autocapitalize](_loggingelement_.loggingelement.md#autocapitalize)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[autocapitalize](_src_loggingelement_.loggingelement.md#autocapitalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6578
 
@@ -579,7 +582,7 @@ ___
 
 • **autofocus**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[autofocus](_loggingelement_.loggingelement.md#autofocus)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[autofocus](_src_loggingelement_.loggingelement.md#autofocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7989
 
@@ -589,7 +592,7 @@ ___
 
 • **baseURI**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[baseURI](_loggingelement_.loggingelement.md#readonly-baseuri)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[baseURI](_src_loggingelement_.loggingelement.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10744
 
@@ -601,7 +604,7 @@ ___
 
 • **childElementCount**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[childElementCount](_loggingelement_.loggingelement.md#readonly-childelementcount)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[childElementCount](_src_loggingelement_.loggingelement.md#readonly-childelementcount)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11301
 
@@ -611,7 +614,7 @@ ___
 
 • **childNodes**: *NodeListOf‹ChildNode›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[childNodes](_loggingelement_.loggingelement.md#readonly-childnodes)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[childNodes](_src_loggingelement_.loggingelement.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10748
 
@@ -623,7 +626,7 @@ ___
 
 • **children**: *HTMLCollection*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[children](_loggingelement_.loggingelement.md#readonly-children)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[children](_src_loggingelement_.loggingelement.md#readonly-children)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11305
 
@@ -635,7 +638,7 @@ ___
 
 • **classList**: *DOMTokenList*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[classList](_loggingelement_.loggingelement.md#readonly-classlist)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[classList](_src_loggingelement_.loggingelement.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5094
 
@@ -647,7 +650,7 @@ ___
 
 • **className**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[className](_loggingelement_.loggingelement.md#classname)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[className](_src_loggingelement_.loggingelement.md#classname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5098
 
@@ -659,7 +662,7 @@ ___
 
 • **clientHeight**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientHeight](_loggingelement_.loggingelement.md#readonly-clientheight)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[clientHeight](_src_loggingelement_.loggingelement.md#readonly-clientheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5099
 
@@ -669,7 +672,7 @@ ___
 
 • **clientLeft**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientLeft](_loggingelement_.loggingelement.md#readonly-clientleft)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[clientLeft](_src_loggingelement_.loggingelement.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
@@ -679,7 +682,7 @@ ___
 
 • **clientTop**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientTop](_loggingelement_.loggingelement.md#readonly-clienttop)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[clientTop](_src_loggingelement_.loggingelement.md#readonly-clienttop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5101
 
@@ -689,7 +692,7 @@ ___
 
 • **clientWidth**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[clientWidth](_loggingelement_.loggingelement.md#readonly-clientwidth)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[clientWidth](_src_loggingelement_.loggingelement.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5102
 
@@ -699,7 +702,7 @@ ___
 
 • **contentEditable**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[contentEditable](_loggingelement_.loggingelement.md#contenteditable)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[contentEditable](_src_loggingelement_.loggingelement.md#contenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
@@ -709,7 +712,7 @@ ___
 
 • **dataset**: *DOMStringMap*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dataset](_loggingelement_.loggingelement.md#readonly-dataset)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[dataset](_src_loggingelement_.loggingelement.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
 
@@ -719,7 +722,7 @@ ___
 
 • **dir**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dir](_loggingelement_.loggingelement.md#dir)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[dir](_src_loggingelement_.loggingelement.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
@@ -729,7 +732,7 @@ ___
 
 • **draggable**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[draggable](_loggingelement_.loggingelement.md#draggable)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[draggable](_src_loggingelement_.loggingelement.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
@@ -739,7 +742,7 @@ ___
 
 • **firstChild**: *ChildNode | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[firstChild](_loggingelement_.loggingelement.md#readonly-firstchild)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[firstChild](_src_loggingelement_.loggingelement.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10752
 
@@ -751,7 +754,7 @@ ___
 
 • **firstElementChild**: *Element | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[firstElementChild](_loggingelement_.loggingelement.md#readonly-firstelementchild)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[firstElementChild](_src_loggingelement_.loggingelement.md#readonly-firstelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
@@ -763,7 +766,7 @@ ___
 
 • **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[floatingLabelFoundation](_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[floatingLabelFoundation](_src_loggingelement_.loggingelement.md#optional-floatinglabelfoundation)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
 
@@ -773,7 +776,7 @@ ___
 
 • **hidden**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hidden](_loggingelement_.loggingelement.md#hidden)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[hidden](_src_loggingelement_.loggingelement.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
 
@@ -781,7 +784,9 @@ ___
 
 ###  history
 
-• **history**: *Array‹[LogEntry](../interfaces/_loggingelement_.logentry.md)›* = []
+• **history**: *Array‹[LogEntry](../interfaces/_src_loggingelement_.logentry.md)›* = []
+
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[history](_src_loggingelement_.loggingelement.md#history)*
 
 Defined in src/LoggingElement.ts:11
 
@@ -791,7 +796,7 @@ ___
 
 • **id**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[id](_loggingelement_.loggingelement.md#id)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[id](_src_loggingelement_.loggingelement.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5106
 
@@ -803,7 +808,7 @@ ___
 
 • **innerHTML**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[innerHTML](_loggingelement_.loggingelement.md#innerhtml)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[innerHTML](_src_loggingelement_.loggingelement.md#innerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9574
 
@@ -813,7 +818,7 @@ ___
 
 • **innerText**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[innerText](_loggingelement_.loggingelement.md#innertext)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[innerText](_src_loggingelement_.loggingelement.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6582
 
@@ -823,7 +828,7 @@ ___
 
 • **inputMode**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[inputMode](_loggingelement_.loggingelement.md#inputmode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[inputMode](_src_loggingelement_.loggingelement.md#inputmode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5255
 
@@ -833,7 +838,7 @@ ___
 
 • **isConnected**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isConnected](_loggingelement_.loggingelement.md#readonly-isconnected)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[isConnected](_src_loggingelement_.loggingelement.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -845,7 +850,7 @@ ___
 
 • **isContentEditable**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isContentEditable](_loggingelement_.loggingelement.md#readonly-iscontenteditable)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[isContentEditable](_src_loggingelement_.loggingelement.md#readonly-iscontenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5256
 
@@ -855,7 +860,7 @@ ___
 
 • **lang**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lang](_loggingelement_.loggingelement.md#lang)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[lang](_src_loggingelement_.loggingelement.md#lang)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6583
 
@@ -865,7 +870,7 @@ ___
 
 • **lastChild**: *ChildNode | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lastChild](_loggingelement_.loggingelement.md#readonly-lastchild)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[lastChild](_src_loggingelement_.loggingelement.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -877,7 +882,7 @@ ___
 
 • **lastElementChild**: *Element | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lastElementChild](_loggingelement_.loggingelement.md#readonly-lastelementchild)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[lastElementChild](_src_loggingelement_.loggingelement.md#readonly-lastelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
@@ -889,7 +894,7 @@ ___
 
 • **lineRippleFoundation**? : *MDCLineRippleFoundation*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lineRippleFoundation](_loggingelement_.loggingelement.md#optional-lineripplefoundation)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[lineRippleFoundation](_src_loggingelement_.loggingelement.md#optional-lineripplefoundation)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
@@ -899,7 +904,7 @@ ___
 
 • **localName**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[localName](_loggingelement_.loggingelement.md#readonly-localname)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[localName](_src_loggingelement_.loggingelement.md#readonly-localname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -911,7 +916,7 @@ ___
 
 • **namespaceURI**: *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[namespaceURI](_loggingelement_.loggingelement.md#readonly-namespaceuri)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[namespaceURI](_src_loggingelement_.loggingelement.md#readonly-namespaceuri)*
 
 *Overrides void*
 
@@ -925,7 +930,7 @@ ___
 
 • **nextElementSibling**: *Element | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nextElementSibling](_loggingelement_.loggingelement.md#readonly-nextelementsibling)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[nextElementSibling](_src_loggingelement_.loggingelement.md#readonly-nextelementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11031
 
@@ -937,7 +942,7 @@ ___
 
 • **nextSibling**: *ChildNode | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nextSibling](_loggingelement_.loggingelement.md#readonly-nextsibling)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[nextSibling](_src_loggingelement_.loggingelement.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10766
 
@@ -949,7 +954,7 @@ ___
 
 • **nodeName**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nodeName](_loggingelement_.loggingelement.md#readonly-nodename)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[nodeName](_src_loggingelement_.loggingelement.md#readonly-nodename)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10770
 
@@ -961,7 +966,7 @@ ___
 
 • **nodeType**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nodeType](_loggingelement_.loggingelement.md#readonly-nodetype)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[nodeType](_src_loggingelement_.loggingelement.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10774
 
@@ -973,7 +978,7 @@ ___
 
 • **nodeValue**: *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nodeValue](_loggingelement_.loggingelement.md#nodevalue)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[nodeValue](_src_loggingelement_.loggingelement.md#nodevalue)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10775
 
@@ -983,7 +988,7 @@ ___
 
 • **nonce**? : *undefined | string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[nonce](_loggingelement_.loggingelement.md#optional-nonce)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[nonce](_src_loggingelement_.loggingelement.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7991
 
@@ -993,7 +998,7 @@ ___
 
 • **offsetHeight**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetHeight](_loggingelement_.loggingelement.md#readonly-offsetheight)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[offsetHeight](_src_loggingelement_.loggingelement.md#readonly-offsetheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6584
 
@@ -1003,7 +1008,7 @@ ___
 
 • **offsetLeft**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetLeft](_loggingelement_.loggingelement.md#readonly-offsetleft)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[offsetLeft](_src_loggingelement_.loggingelement.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6585
 
@@ -1013,7 +1018,7 @@ ___
 
 • **offsetParent**: *Element | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetParent](_loggingelement_.loggingelement.md#readonly-offsetparent)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[offsetParent](_src_loggingelement_.loggingelement.md#readonly-offsetparent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6586
 
@@ -1023,7 +1028,7 @@ ___
 
 • **offsetTop**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetTop](_loggingelement_.loggingelement.md#readonly-offsettop)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[offsetTop](_src_loggingelement_.loggingelement.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
@@ -1033,7 +1038,7 @@ ___
 
 • **offsetWidth**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[offsetWidth](_loggingelement_.loggingelement.md#readonly-offsetwidth)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[offsetWidth](_src_loggingelement_.loggingelement.md#readonly-offsetwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
@@ -1043,7 +1048,7 @@ ___
 
 • **onabort**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onabort](_loggingelement_.loggingelement.md#onabort)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onabort](_src_loggingelement_.loggingelement.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5766
 
@@ -1057,7 +1062,7 @@ ___
 
 • **onanimationcancel**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationcancel](_loggingelement_.loggingelement.md#onanimationcancel)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onanimationcancel](_src_loggingelement_.loggingelement.md#onanimationcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5767
 
@@ -1067,7 +1072,7 @@ ___
 
 • **onanimationend**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationend](_loggingelement_.loggingelement.md#onanimationend)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onanimationend](_src_loggingelement_.loggingelement.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5768
 
@@ -1077,7 +1082,7 @@ ___
 
 • **onanimationiteration**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationiteration](_loggingelement_.loggingelement.md#onanimationiteration)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onanimationiteration](_src_loggingelement_.loggingelement.md#onanimationiteration)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5769
 
@@ -1087,7 +1092,7 @@ ___
 
 • **onanimationstart**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onanimationstart](_loggingelement_.loggingelement.md#onanimationstart)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onanimationstart](_src_loggingelement_.loggingelement.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5770
 
@@ -1097,7 +1102,7 @@ ___
 
 • **onauxclick**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onauxclick](_loggingelement_.loggingelement.md#onauxclick)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onauxclick](_src_loggingelement_.loggingelement.md#onauxclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5771
 
@@ -1107,7 +1112,7 @@ ___
 
 • **onblur**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onblur](_loggingelement_.loggingelement.md#onblur)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onblur](_src_loggingelement_.loggingelement.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5776
 
@@ -1121,7 +1126,7 @@ ___
 
 • **oncancel**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncancel](_loggingelement_.loggingelement.md#oncancel)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oncancel](_src_loggingelement_.loggingelement.md#oncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1131,7 +1136,7 @@ ___
 
 • **oncanplay**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncanplay](_loggingelement_.loggingelement.md#oncanplay)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oncanplay](_src_loggingelement_.loggingelement.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
@@ -1145,7 +1150,7 @@ ___
 
 • **oncanplaythrough**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncanplaythrough](_loggingelement_.loggingelement.md#oncanplaythrough)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oncanplaythrough](_src_loggingelement_.loggingelement.md#oncanplaythrough)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5783
 
@@ -1155,7 +1160,7 @@ ___
 
 • **onchange**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onchange](_loggingelement_.loggingelement.md#onchange)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onchange](_src_loggingelement_.loggingelement.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
@@ -1169,7 +1174,7 @@ ___
 
 • **onclick**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onclick](_loggingelement_.loggingelement.md#onclick)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onclick](_src_loggingelement_.loggingelement.md#onclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1183,7 +1188,7 @@ ___
 
 • **onclose**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onclose](_loggingelement_.loggingelement.md#onclose)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onclose](_src_loggingelement_.loggingelement.md#onclose)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
@@ -1193,7 +1198,7 @@ ___
 
 • **oncontextmenu**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncontextmenu](_loggingelement_.loggingelement.md#oncontextmenu)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oncontextmenu](_src_loggingelement_.loggingelement.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1207,7 +1212,7 @@ ___
 
 • **oncopy**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncopy](_loggingelement_.loggingelement.md#oncopy)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oncopy](_src_loggingelement_.loggingelement.md#oncopy)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4888
 
@@ -1217,7 +1222,7 @@ ___
 
 • **oncuechange**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncuechange](_loggingelement_.loggingelement.md#oncuechange)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oncuechange](_src_loggingelement_.loggingelement.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5800
 
@@ -1227,7 +1232,7 @@ ___
 
 • **oncut**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oncut](_loggingelement_.loggingelement.md#oncut)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oncut](_src_loggingelement_.loggingelement.md#oncut)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4889
 
@@ -1237,7 +1242,7 @@ ___
 
 • **ondblclick**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondblclick](_loggingelement_.loggingelement.md#ondblclick)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondblclick](_src_loggingelement_.loggingelement.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
@@ -1251,7 +1256,7 @@ ___
 
 • **ondrag**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondrag](_loggingelement_.loggingelement.md#ondrag)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondrag](_src_loggingelement_.loggingelement.md#ondrag)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1265,7 +1270,7 @@ ___
 
 • **ondragend**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragend](_loggingelement_.loggingelement.md#ondragend)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondragend](_src_loggingelement_.loggingelement.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5815
 
@@ -1279,7 +1284,7 @@ ___
 
 • **ondragenter**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragenter](_loggingelement_.loggingelement.md#ondragenter)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondragenter](_src_loggingelement_.loggingelement.md#ondragenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5820
 
@@ -1293,7 +1298,7 @@ ___
 
 • **ondragexit**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragexit](_loggingelement_.loggingelement.md#ondragexit)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondragexit](_src_loggingelement_.loggingelement.md#ondragexit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
@@ -1303,7 +1308,7 @@ ___
 
 • **ondragleave**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragleave](_loggingelement_.loggingelement.md#ondragleave)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondragleave](_src_loggingelement_.loggingelement.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1317,7 +1322,7 @@ ___
 
 • **ondragover**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragover](_loggingelement_.loggingelement.md#ondragover)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondragover](_src_loggingelement_.loggingelement.md#ondragover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
@@ -1331,7 +1336,7 @@ ___
 
 • **ondragstart**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondragstart](_loggingelement_.loggingelement.md#ondragstart)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondragstart](_src_loggingelement_.loggingelement.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5836
 
@@ -1345,7 +1350,7 @@ ___
 
 • **ondrop**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondrop](_loggingelement_.loggingelement.md#ondrop)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondrop](_src_loggingelement_.loggingelement.md#ondrop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1355,7 +1360,7 @@ ___
 
 • **ondurationchange**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ondurationchange](_loggingelement_.loggingelement.md#ondurationchange)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ondurationchange](_src_loggingelement_.loggingelement.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
@@ -1369,7 +1374,7 @@ ___
 
 • **onemptied**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onemptied](_loggingelement_.loggingelement.md#onemptied)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onemptied](_src_loggingelement_.loggingelement.md#onemptied)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1383,7 +1388,7 @@ ___
 
 • **onended**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onended](_loggingelement_.loggingelement.md#onended)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onended](_src_loggingelement_.loggingelement.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5852
 
@@ -1397,7 +1402,7 @@ ___
 
 • **onerror**: *OnErrorEventHandler*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onerror](_loggingelement_.loggingelement.md#onerror)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onerror](_src_loggingelement_.loggingelement.md#onerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5857
 
@@ -1411,7 +1416,7 @@ ___
 
 • **onfocus**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onfocus](_loggingelement_.loggingelement.md#onfocus)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onfocus](_src_loggingelement_.loggingelement.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5862
 
@@ -1425,7 +1430,7 @@ ___
 
 • **onfullscreenchange**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onfullscreenchange](_loggingelement_.loggingelement.md#onfullscreenchange)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onfullscreenchange](_src_loggingelement_.loggingelement.md#onfullscreenchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5115
 
@@ -1435,7 +1440,7 @@ ___
 
 • **onfullscreenerror**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onfullscreenerror](_loggingelement_.loggingelement.md#onfullscreenerror)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onfullscreenerror](_src_loggingelement_.loggingelement.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -1445,7 +1450,7 @@ ___
 
 • **ongotpointercapture**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ongotpointercapture](_loggingelement_.loggingelement.md#ongotpointercapture)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ongotpointercapture](_src_loggingelement_.loggingelement.md#ongotpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1455,7 +1460,7 @@ ___
 
 • **oninput**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oninput](_loggingelement_.loggingelement.md#oninput)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oninput](_src_loggingelement_.loggingelement.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5864
 
@@ -1465,7 +1470,7 @@ ___
 
 • **oninvalid**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[oninvalid](_loggingelement_.loggingelement.md#oninvalid)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[oninvalid](_src_loggingelement_.loggingelement.md#oninvalid)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5865
 
@@ -1475,7 +1480,7 @@ ___
 
 • **onkeydown**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onkeydown](_loggingelement_.loggingelement.md#onkeydown)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onkeydown](_src_loggingelement_.loggingelement.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5870
 
@@ -1489,7 +1494,7 @@ ___
 
 • **onkeypress**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onkeypress](_loggingelement_.loggingelement.md#onkeypress)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onkeypress](_src_loggingelement_.loggingelement.md#onkeypress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1503,7 +1508,7 @@ ___
 
 • **onkeyup**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onkeyup](_loggingelement_.loggingelement.md#onkeyup)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onkeyup](_src_loggingelement_.loggingelement.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5880
 
@@ -1517,7 +1522,7 @@ ___
 
 • **onload**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onload](_loggingelement_.loggingelement.md#onload)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onload](_src_loggingelement_.loggingelement.md#onload)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5885
 
@@ -1531,7 +1536,7 @@ ___
 
 • **onloadeddata**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onloadeddata](_loggingelement_.loggingelement.md#onloadeddata)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onloadeddata](_src_loggingelement_.loggingelement.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5890
 
@@ -1545,7 +1550,7 @@ ___
 
 • **onloadedmetadata**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onloadedmetadata](_loggingelement_.loggingelement.md#onloadedmetadata)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onloadedmetadata](_src_loggingelement_.loggingelement.md#onloadedmetadata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5895
 
@@ -1559,7 +1564,7 @@ ___
 
 • **onloadstart**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onloadstart](_loggingelement_.loggingelement.md#onloadstart)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onloadstart](_src_loggingelement_.loggingelement.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5900
 
@@ -1573,7 +1578,7 @@ ___
 
 • **onlostpointercapture**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onlostpointercapture](_loggingelement_.loggingelement.md#onlostpointercapture)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onlostpointercapture](_src_loggingelement_.loggingelement.md#onlostpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1583,7 +1588,7 @@ ___
 
 • **onmousedown**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmousedown](_loggingelement_.loggingelement.md#onmousedown)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onmousedown](_src_loggingelement_.loggingelement.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
@@ -1597,7 +1602,7 @@ ___
 
 • **onmouseenter**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseenter](_loggingelement_.loggingelement.md#onmouseenter)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onmouseenter](_src_loggingelement_.loggingelement.md#onmouseenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5907
 
@@ -1607,7 +1612,7 @@ ___
 
 • **onmouseleave**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseleave](_loggingelement_.loggingelement.md#onmouseleave)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onmouseleave](_src_loggingelement_.loggingelement.md#onmouseleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5908
 
@@ -1617,7 +1622,7 @@ ___
 
 • **onmousemove**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmousemove](_loggingelement_.loggingelement.md#onmousemove)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onmousemove](_src_loggingelement_.loggingelement.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5913
 
@@ -1631,7 +1636,7 @@ ___
 
 • **onmouseout**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseout](_loggingelement_.loggingelement.md#onmouseout)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onmouseout](_src_loggingelement_.loggingelement.md#onmouseout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
@@ -1645,7 +1650,7 @@ ___
 
 • **onmouseover**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseover](_loggingelement_.loggingelement.md#onmouseover)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onmouseover](_src_loggingelement_.loggingelement.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5923
 
@@ -1659,7 +1664,7 @@ ___
 
 • **onmouseup**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onmouseup](_loggingelement_.loggingelement.md#onmouseup)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onmouseup](_src_loggingelement_.loggingelement.md#onmouseup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5928
 
@@ -1673,7 +1678,7 @@ ___
 
 • **onpaste**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpaste](_loggingelement_.loggingelement.md#onpaste)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpaste](_src_loggingelement_.loggingelement.md#onpaste)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4890
 
@@ -1683,7 +1688,7 @@ ___
 
 • **onpause**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpause](_loggingelement_.loggingelement.md#onpause)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpause](_src_loggingelement_.loggingelement.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5933
 
@@ -1697,7 +1702,7 @@ ___
 
 • **onplay**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onplay](_loggingelement_.loggingelement.md#onplay)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onplay](_src_loggingelement_.loggingelement.md#onplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5938
 
@@ -1711,7 +1716,7 @@ ___
 
 • **onplaying**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onplaying](_loggingelement_.loggingelement.md#onplaying)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onplaying](_src_loggingelement_.loggingelement.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5943
 
@@ -1725,7 +1730,7 @@ ___
 
 • **onpointercancel**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointercancel](_loggingelement_.loggingelement.md#onpointercancel)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointercancel](_src_loggingelement_.loggingelement.md#onpointercancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -1735,7 +1740,7 @@ ___
 
 • **onpointerdown**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerdown](_loggingelement_.loggingelement.md#onpointerdown)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointerdown](_src_loggingelement_.loggingelement.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5945
 
@@ -1745,7 +1750,7 @@ ___
 
 • **onpointerenter**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerenter](_loggingelement_.loggingelement.md#onpointerenter)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointerenter](_src_loggingelement_.loggingelement.md#onpointerenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5946
 
@@ -1755,7 +1760,7 @@ ___
 
 • **onpointerleave**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerleave](_loggingelement_.loggingelement.md#onpointerleave)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointerleave](_src_loggingelement_.loggingelement.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5947
 
@@ -1765,7 +1770,7 @@ ___
 
 • **onpointermove**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointermove](_loggingelement_.loggingelement.md#onpointermove)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointermove](_src_loggingelement_.loggingelement.md#onpointermove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5948
 
@@ -1775,7 +1780,7 @@ ___
 
 • **onpointerout**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerout](_loggingelement_.loggingelement.md#onpointerout)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointerout](_src_loggingelement_.loggingelement.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
@@ -1785,7 +1790,7 @@ ___
 
 • **onpointerover**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerover](_loggingelement_.loggingelement.md#onpointerover)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointerover](_src_loggingelement_.loggingelement.md#onpointerover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5950
 
@@ -1795,7 +1800,7 @@ ___
 
 • **onpointerup**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onpointerup](_loggingelement_.loggingelement.md#onpointerup)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onpointerup](_src_loggingelement_.loggingelement.md#onpointerup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5951
 
@@ -1805,7 +1810,7 @@ ___
 
 • **onprogress**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onprogress](_loggingelement_.loggingelement.md#onprogress)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onprogress](_src_loggingelement_.loggingelement.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -1819,7 +1824,7 @@ ___
 
 • **onratechange**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onratechange](_loggingelement_.loggingelement.md#onratechange)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onratechange](_src_loggingelement_.loggingelement.md#onratechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
@@ -1833,7 +1838,7 @@ ___
 
 • **onreset**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onreset](_loggingelement_.loggingelement.md#onreset)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onreset](_src_loggingelement_.loggingelement.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5966
 
@@ -1847,7 +1852,7 @@ ___
 
 • **onresize**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onresize](_loggingelement_.loggingelement.md#onresize)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onresize](_src_loggingelement_.loggingelement.md#onresize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -1857,7 +1862,7 @@ ___
 
 • **onscroll**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onscroll](_loggingelement_.loggingelement.md#onscroll)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onscroll](_src_loggingelement_.loggingelement.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
@@ -1871,7 +1876,7 @@ ___
 
 • **onsecuritypolicyviolation**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onsecuritypolicyviolation](_loggingelement_.loggingelement.md#onsecuritypolicyviolation)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onsecuritypolicyviolation](_src_loggingelement_.loggingelement.md#onsecuritypolicyviolation)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5973
 
@@ -1881,7 +1886,7 @@ ___
 
 • **onseeked**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onseeked](_loggingelement_.loggingelement.md#onseeked)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onseeked](_src_loggingelement_.loggingelement.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
@@ -1895,7 +1900,7 @@ ___
 
 • **onseeking**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onseeking](_loggingelement_.loggingelement.md#onseeking)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onseeking](_src_loggingelement_.loggingelement.md#onseeking)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -1909,7 +1914,7 @@ ___
 
 • **onselect**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onselect](_loggingelement_.loggingelement.md#onselect)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onselect](_src_loggingelement_.loggingelement.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5988
 
@@ -1923,7 +1928,7 @@ ___
 
 • **onselectionchange**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onselectionchange](_loggingelement_.loggingelement.md#onselectionchange)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onselectionchange](_src_loggingelement_.loggingelement.md#onselectionchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -1933,7 +1938,7 @@ ___
 
 • **onselectstart**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onselectstart](_loggingelement_.loggingelement.md#onselectstart)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onselectstart](_src_loggingelement_.loggingelement.md#onselectstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5990
 
@@ -1943,7 +1948,7 @@ ___
 
 • **onstalled**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onstalled](_loggingelement_.loggingelement.md#onstalled)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onstalled](_src_loggingelement_.loggingelement.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5995
 
@@ -1957,7 +1962,7 @@ ___
 
 • **onsubmit**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onsubmit](_loggingelement_.loggingelement.md#onsubmit)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onsubmit](_src_loggingelement_.loggingelement.md#onsubmit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5996
 
@@ -1967,7 +1972,7 @@ ___
 
 • **onsuspend**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onsuspend](_loggingelement_.loggingelement.md#onsuspend)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onsuspend](_src_loggingelement_.loggingelement.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
@@ -1981,7 +1986,7 @@ ___
 
 • **ontimeupdate**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontimeupdate](_loggingelement_.loggingelement.md#ontimeupdate)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontimeupdate](_src_loggingelement_.loggingelement.md#ontimeupdate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -1995,7 +2000,7 @@ ___
 
 • **ontoggle**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontoggle](_loggingelement_.loggingelement.md#ontoggle)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontoggle](_src_loggingelement_.loggingelement.md#ontoggle)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
@@ -2005,7 +2010,7 @@ ___
 
 • **ontouchcancel**? : *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchcancel](_loggingelement_.loggingelement.md#optional-ontouchcancel)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontouchcancel](_src_loggingelement_.loggingelement.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6008
 
@@ -2015,7 +2020,7 @@ ___
 
 • **ontouchend**? : *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchend](_loggingelement_.loggingelement.md#optional-ontouchend)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontouchend](_src_loggingelement_.loggingelement.md#optional-ontouchend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6009
 
@@ -2025,7 +2030,7 @@ ___
 
 • **ontouchmove**? : *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchmove](_loggingelement_.loggingelement.md#optional-ontouchmove)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontouchmove](_src_loggingelement_.loggingelement.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6010
 
@@ -2035,7 +2040,7 @@ ___
 
 • **ontouchstart**? : *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontouchstart](_loggingelement_.loggingelement.md#optional-ontouchstart)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontouchstart](_src_loggingelement_.loggingelement.md#optional-ontouchstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6011
 
@@ -2045,7 +2050,7 @@ ___
 
 • **ontransitioncancel**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitioncancel](_loggingelement_.loggingelement.md#ontransitioncancel)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontransitioncancel](_src_loggingelement_.loggingelement.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2055,7 +2060,7 @@ ___
 
 • **ontransitionend**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitionend](_loggingelement_.loggingelement.md#ontransitionend)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontransitionend](_src_loggingelement_.loggingelement.md#ontransitionend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6013
 
@@ -2065,7 +2070,7 @@ ___
 
 • **ontransitionrun**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitionrun](_loggingelement_.loggingelement.md#ontransitionrun)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontransitionrun](_src_loggingelement_.loggingelement.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6014
 
@@ -2075,7 +2080,7 @@ ___
 
 • **ontransitionstart**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ontransitionstart](_loggingelement_.loggingelement.md#ontransitionstart)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ontransitionstart](_src_loggingelement_.loggingelement.md#ontransitionstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6015
 
@@ -2085,7 +2090,7 @@ ___
 
 • **onvolumechange**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onvolumechange](_loggingelement_.loggingelement.md#onvolumechange)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onvolumechange](_src_loggingelement_.loggingelement.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
@@ -2099,7 +2104,7 @@ ___
 
 • **onwaiting**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onwaiting](_loggingelement_.loggingelement.md#onwaiting)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onwaiting](_src_loggingelement_.loggingelement.md#onwaiting)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2113,7 +2118,7 @@ ___
 
 • **onwheel**: *function | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[onwheel](_loggingelement_.loggingelement.md#onwheel)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[onwheel](_src_loggingelement_.loggingelement.md#onwheel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
@@ -2123,7 +2128,7 @@ ___
 
 • **outerHTML**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[outerHTML](_loggingelement_.loggingelement.md#outerhtml)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[outerHTML](_src_loggingelement_.loggingelement.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5117
 
@@ -2133,7 +2138,7 @@ ___
 
 • **ownerDocument**: *Document*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[ownerDocument](_loggingelement_.loggingelement.md#readonly-ownerdocument)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[ownerDocument](_src_loggingelement_.loggingelement.md#readonly-ownerdocument)*
 
 *Overrides void*
 
@@ -2145,7 +2150,7 @@ ___
 
 • **parentElement**: *HTMLElement | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[parentElement](_loggingelement_.loggingelement.md#readonly-parentelement)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[parentElement](_src_loggingelement_.loggingelement.md#readonly-parentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10783
 
@@ -2157,7 +2162,7 @@ ___
 
 • **parentNode**: *Node & ParentNode | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[parentNode](_loggingelement_.loggingelement.md#readonly-parentnode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[parentNode](_src_loggingelement_.loggingelement.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
@@ -2169,7 +2174,7 @@ ___
 
 • **prefix**: *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[prefix](_loggingelement_.loggingelement.md#readonly-prefix)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[prefix](_src_loggingelement_.loggingelement.md#readonly-prefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5122
 
@@ -2181,7 +2186,7 @@ ___
 
 • **previousElementSibling**: *Element | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[previousElementSibling](_loggingelement_.loggingelement.md#readonly-previouselementsibling)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[previousElementSibling](_src_loggingelement_.loggingelement.md#readonly-previouselementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11035
 
@@ -2193,7 +2198,7 @@ ___
 
 • **previousSibling**: *ChildNode | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[previousSibling](_loggingelement_.loggingelement.md#readonly-previoussibling)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[previousSibling](_src_loggingelement_.loggingelement.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10791
 
@@ -2205,7 +2210,7 @@ ___
 
 • **renderRoot**: *Element | DocumentFragment*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[renderRoot](_loggingelement_.loggingelement.md#readonly-renderroot)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[renderRoot](_src_loggingelement_.loggingelement.md#readonly-renderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:65
 
@@ -2218,7 +2223,7 @@ ___
 
 • **scrollHeight**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollHeight](_loggingelement_.loggingelement.md#readonly-scrollheight)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollHeight](_src_loggingelement_.loggingelement.md#readonly-scrollheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5123
 
@@ -2228,7 +2233,7 @@ ___
 
 • **scrollLeft**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollLeft](_loggingelement_.loggingelement.md#scrollleft)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollLeft](_src_loggingelement_.loggingelement.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5124
 
@@ -2238,7 +2243,7 @@ ___
 
 • **scrollTop**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollTop](_loggingelement_.loggingelement.md#scrolltop)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollTop](_src_loggingelement_.loggingelement.md#scrolltop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
@@ -2248,7 +2253,7 @@ ___
 
 • **scrollWidth**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollWidth](_loggingelement_.loggingelement.md#readonly-scrollwidth)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollWidth](_src_loggingelement_.loggingelement.md#readonly-scrollwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -2258,7 +2263,7 @@ ___
 
 • **shadowRoot**: *ShadowRoot | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[shadowRoot](_loggingelement_.loggingelement.md#readonly-shadowroot)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[shadowRoot](_src_loggingelement_.loggingelement.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5130
 
@@ -2270,7 +2275,7 @@ ___
 
 • **slot**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[slot](_loggingelement_.loggingelement.md#slot)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[slot](_src_loggingelement_.loggingelement.md#slot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2282,7 +2287,7 @@ ___
 
 • **spellcheck**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[spellcheck](_loggingelement_.loggingelement.md#spellcheck)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[spellcheck](_src_loggingelement_.loggingelement.md#spellcheck)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
@@ -2292,7 +2297,7 @@ ___
 
 • **style**: *CSSStyleDeclaration*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[style](_loggingelement_.loggingelement.md#readonly-style)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[style](_src_loggingelement_.loggingelement.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5250
 
@@ -2302,7 +2307,7 @@ ___
 
 • **tabIndex**: *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[tabIndex](_loggingelement_.loggingelement.md#tabindex)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[tabIndex](_src_loggingelement_.loggingelement.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
 
@@ -2312,7 +2317,7 @@ ___
 
 • **tagName**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[tagName](_loggingelement_.loggingelement.md#readonly-tagname)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[tagName](_src_loggingelement_.loggingelement.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5138
 
@@ -2324,7 +2329,7 @@ ___
 
 • **textContent**: *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[textContent](_loggingelement_.loggingelement.md#textcontent)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[textContent](_src_loggingelement_.loggingelement.md#textcontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10792
 
@@ -2334,7 +2339,7 @@ ___
 
 • **title**: *string*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[title](_loggingelement_.loggingelement.md#title)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[title](_src_loggingelement_.loggingelement.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
@@ -2344,9 +2349,37 @@ ___
 
 • **translate**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[translate](_loggingelement_.loggingelement.md#translate)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[translate](_src_loggingelement_.loggingelement.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
+
+___
+
+###  waiting
+
+• **waiting**: *boolean* = false
+
+Defined in src/WaitingElement.ts:16
+
+Whether the element is currently waiting for some async work.
+
+___
+
+### `Protected` work
+
+• **work**: *Set‹Promise‹string››* = new Set()
+
+Defined in src/WaitingElement.ts:17
+
+___
+
+###  workDone
+
+• **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
+
+Defined in src/WaitingElement.ts:19
+
+A promise which resolves once all currently pending work is done.
 
 ___
 
@@ -2354,7 +2387,7 @@ ___
 
 ▪ **[finalized]**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[[finalized]](_loggingelement_.loggingelement.md#static-protected-[finalized])*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[[finalized]](_src_loggingelement_.loggingelement.md#static-protected-[finalized])*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
@@ -2366,7 +2399,7 @@ ___
 
 ▪ **finalized**: *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[finalized](_loggingelement_.loggingelement.md#static-protected-finalized)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[finalized](_src_loggingelement_.loggingelement.md#static-protected-finalized)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:36
 
@@ -2382,7 +2415,7 @@ ___
 
 ▪ **properties**: *PropertyDeclarations*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[properties](_loggingelement_.loggingelement.md#static-properties)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[properties](_src_loggingelement_.loggingelement.md#static-properties)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:148
 
@@ -2395,7 +2428,7 @@ ___
 
 ▪ **render**: *function*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[render](_src_loggingelement_.loggingelement.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:44
 
@@ -2427,7 +2460,7 @@ ___
 
 ▪ **styles**? : *CSSResult | CSSResultArray*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[styles](_loggingelement_.loggingelement.md#static-optional-styles)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[styles](_src_loggingelement_.loggingelement.md#static-optional-styles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:49
 
@@ -2440,7 +2473,7 @@ using the `css` tag function.
 
 • **get hasUpdated**(): *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasUpdated](_loggingelement_.loggingelement.md#protected-hasupdated)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[hasUpdated](_src_loggingelement_.loggingelement.md#protected-hasupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
@@ -2452,7 +2485,7 @@ ___
 
 • **get updateComplete**(): *Promise‹unknown›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[updateComplete](_loggingelement_.loggingelement.md#updatecomplete)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[updateComplete](_src_loggingelement_.loggingelement.md#updatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:370
 
@@ -2478,7 +2511,7 @@ ___
 
 • **get observedAttributes**(): *string[]*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[observedAttributes](_loggingelement_.loggingelement.md#static-observedattributes)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[observedAttributes](_src_loggingelement_.loggingelement.md#static-observedattributes)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:153
 
@@ -2494,7 +2527,7 @@ Returns a list of attributes corresponding to the registered properties.
 
 ▸ **_getUpdateComplete**(): *Promise‹unknown›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[_getUpdateComplete](_loggingelement_.loggingelement.md#protected-_getupdatecomplete)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[_getUpdateComplete](_src_loggingelement_.loggingelement.md#protected-_getupdatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:387
 
@@ -2521,7 +2554,7 @@ ___
 
 ▸ **addEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[addEventListener](_loggingelement_.loggingelement.md#addeventlistener)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[addEventListener](_src_loggingelement_.loggingelement.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2552,7 +2585,7 @@ Name | Type |
 
 ▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[addEventListener](_loggingelement_.loggingelement.md#addeventlistener)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[addEventListener](_src_loggingelement_.loggingelement.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2574,7 +2607,7 @@ ___
 
 ▸ **adoptStyles**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[adoptStyles](_loggingelement_.loggingelement.md#protected-adoptstyles)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[adoptStyles](_src_loggingelement_.loggingelement.md#protected-adoptstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:89
 
@@ -2594,7 +2627,7 @@ ___
 
 ▸ **after**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[after](_loggingelement_.loggingelement.md#after)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[after](_src_loggingelement_.loggingelement.md#after)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3501
 
@@ -2616,7 +2649,7 @@ ___
 
 ▸ **animate**(`keyframes`: Keyframe[] | PropertyIndexedKeyframes | null, `options?`: number | KeyframeAnimationOptions): *Animation*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[animate](_loggingelement_.loggingelement.md#animate)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[animate](_src_loggingelement_.loggingelement.md#animate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
@@ -2635,7 +2668,7 @@ ___
 
 ▸ **append**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[append](_loggingelement_.loggingelement.md#append)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[append](_src_loggingelement_.loggingelement.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11319
 
@@ -2657,7 +2690,7 @@ ___
 
 ▸ **appendChild**‹**T**›(`newChild`: T): *T*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[appendChild](_loggingelement_.loggingelement.md#appendchild)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[appendChild](_src_loggingelement_.loggingelement.md#appendchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10793
 
@@ -2679,7 +2712,7 @@ ___
 
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[attachShadow](_loggingelement_.loggingelement.md#attachshadow)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[attachShadow](_src_loggingelement_.loggingelement.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5142
 
@@ -2699,7 +2732,7 @@ ___
 
 ▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[attributeChangedCallback](_loggingelement_.loggingelement.md#attributechangedcallback)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[attributeChangedCallback](_src_loggingelement_.loggingelement.md#attributechangedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:308
 
@@ -2721,7 +2754,7 @@ ___
 
 ▸ **before**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[before](_loggingelement_.loggingelement.md#before)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[before](_src_loggingelement_.loggingelement.md#before)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3507
 
@@ -2743,7 +2776,7 @@ ___
 
 ▸ **blur**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[blur](_loggingelement_.loggingelement.md#blur)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[blur](_src_loggingelement_.loggingelement.md#blur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7993
 
@@ -2755,7 +2788,7 @@ ___
 
 ▸ **click**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[click](_loggingelement_.loggingelement.md#click)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[click](_src_loggingelement_.loggingelement.md#click)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
@@ -2767,7 +2800,7 @@ ___
 
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[cloneNode](_loggingelement_.loggingelement.md#clonenode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[cloneNode](_src_loggingelement_.loggingelement.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10797
 
@@ -2787,7 +2820,7 @@ ___
 
 ▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[closest](_loggingelement_.loggingelement.md#closest)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[closest](_src_loggingelement_.loggingelement.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5146
 
@@ -2807,7 +2840,7 @@ Name | Type |
 
 ▸ **closest**‹**K**›(`selector`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[closest](_loggingelement_.loggingelement.md#closest)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[closest](_src_loggingelement_.loggingelement.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5147
 
@@ -2825,7 +2858,7 @@ Name | Type |
 
 ▸ **closest**‹**E**›(`selector`: string): *E | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[closest](_loggingelement_.loggingelement.md#closest)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[closest](_src_loggingelement_.loggingelement.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -2847,7 +2880,7 @@ ___
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[compareDocumentPosition](_loggingelement_.loggingelement.md#comparedocumentposition)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[compareDocumentPosition](_src_loggingelement_.loggingelement.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10801
 
@@ -2867,7 +2900,7 @@ ___
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[connectedCallback](_loggingelement_.loggingelement.md#connectedcallback)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[connectedCallback](_src_loggingelement_.loggingelement.md#connectedcallback)*
 
 *Overrides void*
 
@@ -2881,7 +2914,7 @@ ___
 
 ▸ **contains**(`other`: Node | null): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[contains](_loggingelement_.loggingelement.md#contains)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[contains](_src_loggingelement_.loggingelement.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
@@ -2901,7 +2934,7 @@ ___
 
 ▸ **createRenderRoot**(): *Element | ShadowRoot*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[createRenderRoot](_loggingelement_.loggingelement.md#protected-createrenderroot)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[createRenderRoot](_src_loggingelement_.loggingelement.md#protected-createrenderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:79
 
@@ -2920,7 +2953,7 @@ ___
 
 ▸ **disconnectedCallback**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[disconnectedCallback](_loggingelement_.loggingelement.md#disconnectedcallback)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[disconnectedCallback](_src_loggingelement_.loggingelement.md#disconnectedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:304
 
@@ -2936,7 +2969,7 @@ ___
 
 ▸ **dispatchEvent**(`event`: Event): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[dispatchEvent](_loggingelement_.loggingelement.md#dispatchevent)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[dispatchEvent](_src_loggingelement_.loggingelement.md#dispatchevent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5417
 
@@ -2956,7 +2989,7 @@ ___
 
 ▸ **enableUpdating**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[enableUpdating](_loggingelement_.loggingelement.md#protected-enableupdating)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[enableUpdating](_src_loggingelement_.loggingelement.md#protected-enableupdating)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:298
 
@@ -2967,6 +3000,8 @@ ___
 ###  error
 
 ▸ **error**(`title`: string, ...`detail`: string[]): *void*
+
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[error](_src_loggingelement_.loggingelement.md#error)*
 
 Defined in src/LoggingElement.ts:22
 
@@ -2985,9 +3020,9 @@ ___
 
 ▸ **firstUpdated**(): *void*
 
-*Overrides [SubstationEditorBase](_substation_editor_base_.substationeditorbase.md).[firstUpdated](_substation_editor_base_.substationeditorbase.md#protected-firstupdated)*
+*Overrides [LoggingElement](_src_loggingelement_.loggingelement.md).[firstUpdated](_src_loggingelement_.loggingelement.md#firstupdated)*
 
-Defined in src/LoggingElement.ts:26
+Defined in src/WaitingElement.ts:20
 
 **Returns:** *void*
 
@@ -2997,7 +3032,7 @@ ___
 
 ▸ **focus**(`options?`: FocusOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[focus](_loggingelement_.loggingelement.md#focus)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[focus](_src_loggingelement_.loggingelement.md#focus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7994
 
@@ -3015,7 +3050,7 @@ ___
 
 ▸ **getAnimations**(): *Animation[]*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAnimations](_loggingelement_.loggingelement.md#getanimations)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getAnimations](_src_loggingelement_.loggingelement.md#getanimations)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
@@ -3027,7 +3062,7 @@ ___
 
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttribute](_loggingelement_.loggingelement.md#getattribute)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getAttribute](_src_loggingelement_.loggingelement.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3047,7 +3082,7 @@ ___
 
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNS](_loggingelement_.loggingelement.md#getattributens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getAttributeNS](_src_loggingelement_.loggingelement.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3068,7 +3103,7 @@ ___
 
 ▸ **getAttributeNames**(): *string[]*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNames](_loggingelement_.loggingelement.md#getattributenames)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getAttributeNames](_src_loggingelement_.loggingelement.md#getattributenames)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5160
 
@@ -3082,7 +3117,7 @@ ___
 
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNode](_loggingelement_.loggingelement.md#getattributenode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getAttributeNode](_src_loggingelement_.loggingelement.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5161
 
@@ -3100,7 +3135,7 @@ ___
 
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getAttributeNodeNS](_loggingelement_.loggingelement.md#getattributenodens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getAttributeNodeNS](_src_loggingelement_.loggingelement.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3119,7 +3154,7 @@ ___
 
 ▸ **getBoundingClientRect**(): *DOMRect*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getBoundingClientRect](_loggingelement_.loggingelement.md#getboundingclientrect)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getBoundingClientRect](_src_loggingelement_.loggingelement.md#getboundingclientrect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5163
 
@@ -3131,7 +3166,7 @@ ___
 
 ▸ **getClientRects**(): *DOMRectList*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getClientRects](_loggingelement_.loggingelement.md#getclientrects)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getClientRects](_src_loggingelement_.loggingelement.md#getclientrects)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5164
 
@@ -3143,7 +3178,7 @@ ___
 
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByClassName](_loggingelement_.loggingelement.md#getelementsbyclassname)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getElementsByClassName](_src_loggingelement_.loggingelement.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5168
 
@@ -3163,7 +3198,7 @@ ___
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getElementsByTagName](_src_loggingelement_.loggingelement.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5169
 
@@ -3181,7 +3216,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getElementsByTagName](_src_loggingelement_.loggingelement.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
@@ -3199,7 +3234,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**(`qualifiedName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagName](_loggingelement_.loggingelement.md#getelementsbytagname)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getElementsByTagName](_src_loggingelement_.loggingelement.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3217,7 +3252,7 @@ ___
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹HTMLElement›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_src_loggingelement_.loggingelement.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3232,7 +3267,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_src_loggingelement_.loggingelement.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
@@ -3247,7 +3282,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_loggingelement_.loggingelement.md#getelementsbytagnamens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getElementsByTagNameNS](_src_loggingelement_.loggingelement.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
@@ -3266,7 +3301,7 @@ ___
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getRootNode](_loggingelement_.loggingelement.md#getrootnode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getRootNode](_src_loggingelement_.loggingelement.md#getrootnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3286,7 +3321,7 @@ ___
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasAttribute](_loggingelement_.loggingelement.md#hasattribute)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[hasAttribute](_src_loggingelement_.loggingelement.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3306,7 +3341,7 @@ ___
 
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasAttributeNS](_loggingelement_.loggingelement.md#hasattributens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[hasAttributeNS](_src_loggingelement_.loggingelement.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
@@ -3327,7 +3362,7 @@ ___
 
 ▸ **hasAttributes**(): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasAttributes](_loggingelement_.loggingelement.md#hasattributes)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[hasAttributes](_src_loggingelement_.loggingelement.md#hasattributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5186
 
@@ -3341,7 +3376,7 @@ ___
 
 ▸ **hasChildNodes**(): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasChildNodes](_loggingelement_.loggingelement.md#haschildnodes)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[hasChildNodes](_src_loggingelement_.loggingelement.md#haschildnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -3355,7 +3390,7 @@ ___
 
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[hasPointerCapture](_loggingelement_.loggingelement.md#haspointercapture)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[hasPointerCapture](_src_loggingelement_.loggingelement.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5187
 
@@ -3372,6 +3407,8 @@ ___
 ###  info
 
 ▸ **info**(`title`: string, ...`detail`: string[]): *void*
+
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[info](_src_loggingelement_.loggingelement.md#info)*
 
 Defined in src/LoggingElement.ts:16
 
@@ -3390,7 +3427,7 @@ ___
 
 ▸ **initialize**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[initialize](_loggingelement_.loggingelement.md#protected-initialize)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[initialize](_src_loggingelement_.loggingelement.md#protected-initialize)*
 
 *Overrides void*
 
@@ -3408,7 +3445,7 @@ ___
 
 ▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): *Element | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertAdjacentElement](_loggingelement_.loggingelement.md#insertadjacentelement)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[insertAdjacentElement](_src_loggingelement_.loggingelement.md#insertadjacentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -3427,7 +3464,7 @@ ___
 
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertAdjacentHTML](_loggingelement_.loggingelement.md#insertadjacenthtml)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[insertAdjacentHTML](_src_loggingelement_.loggingelement.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5189
 
@@ -3446,7 +3483,7 @@ ___
 
 ▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertAdjacentText](_loggingelement_.loggingelement.md#insertadjacenttext)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[insertAdjacentText](_src_loggingelement_.loggingelement.md#insertadjacenttext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5190
 
@@ -3465,7 +3502,7 @@ ___
 
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[insertBefore](_loggingelement_.loggingelement.md#insertbefore)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[insertBefore](_src_loggingelement_.loggingelement.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10814
 
@@ -3488,7 +3525,7 @@ ___
 
 ▸ **isDefaultNamespace**(`namespace`: string | null): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isDefaultNamespace](_loggingelement_.loggingelement.md#isdefaultnamespace)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[isDefaultNamespace](_src_loggingelement_.loggingelement.md#isdefaultnamespace)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10815
 
@@ -3506,7 +3543,7 @@ ___
 
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isEqualNode](_loggingelement_.loggingelement.md#isequalnode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[isEqualNode](_src_loggingelement_.loggingelement.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10819
 
@@ -3526,7 +3563,7 @@ ___
 
 ▸ **isSameNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[isSameNode](_loggingelement_.loggingelement.md#issamenode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[isSameNode](_src_loggingelement_.loggingelement.md#issamenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10820
 
@@ -3543,6 +3580,8 @@ ___
 ###  log
 
 ▸ **log**(`title`: string, `message?`: undefined | string, `icon?`: undefined | string): *void*
+
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[log](_src_loggingelement_.loggingelement.md#log)*
 
 Defined in src/LoggingElement.ts:13
 
@@ -3562,7 +3601,7 @@ ___
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lookupNamespaceURI](_loggingelement_.loggingelement.md#lookupnamespaceuri)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[lookupNamespaceURI](_src_loggingelement_.loggingelement.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
@@ -3580,7 +3619,7 @@ ___
 
 ▸ **lookupPrefix**(`namespace`: string | null): *string | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[lookupPrefix](_loggingelement_.loggingelement.md#lookupprefix)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[lookupPrefix](_src_loggingelement_.loggingelement.md#lookupprefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10822
 
@@ -3598,7 +3637,7 @@ ___
 
 ▸ **matches**(`selectors`: string): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[matches](_loggingelement_.loggingelement.md#matches)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[matches](_src_loggingelement_.loggingelement.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5194
 
@@ -3618,7 +3657,7 @@ ___
 
 ▸ **msGetRegionContent**(): *any*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[msGetRegionContent](_loggingelement_.loggingelement.md#msgetregioncontent)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[msGetRegionContent](_src_loggingelement_.loggingelement.md#msgetregioncontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5195
 
@@ -3630,7 +3669,7 @@ ___
 
 ▸ **normalize**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[normalize](_loggingelement_.loggingelement.md#normalize)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[normalize](_src_loggingelement_.loggingelement.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -3644,7 +3683,7 @@ ___
 
 ▸ **performUpdate**(): *void | Promise‹unknown›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[performUpdate](_loggingelement_.loggingelement.md#protected-performupdate)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[performUpdate](_src_loggingelement_.loggingelement.md#protected-performupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:353
 
@@ -3671,7 +3710,7 @@ ___
 
 ▸ **prepend**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[prepend](_loggingelement_.loggingelement.md#prepend)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[prepend](_src_loggingelement_.loggingelement.md#prepend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
@@ -3693,7 +3732,7 @@ ___
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelector](_loggingelement_.loggingelement.md#queryselector)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[querySelector](_src_loggingelement_.loggingelement.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11329
 
@@ -3713,7 +3752,7 @@ Name | Type |
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelector](_loggingelement_.loggingelement.md#queryselector)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[querySelector](_src_loggingelement_.loggingelement.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11330
 
@@ -3731,7 +3770,7 @@ Name | Type |
 
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelector](_loggingelement_.loggingelement.md#queryselector)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[querySelector](_src_loggingelement_.loggingelement.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -3753,7 +3792,7 @@ ___
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[querySelectorAll](_src_loggingelement_.loggingelement.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11335
 
@@ -3773,7 +3812,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[querySelectorAll](_src_loggingelement_.loggingelement.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11336
 
@@ -3791,7 +3830,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[querySelectorAll](_loggingelement_.loggingelement.md#queryselectorall)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[querySelectorAll](_src_loggingelement_.loggingelement.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
@@ -3813,7 +3852,7 @@ ___
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[releasePointerCapture](_loggingelement_.loggingelement.md#releasepointercapture)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[releasePointerCapture](_src_loggingelement_.loggingelement.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
@@ -3831,7 +3870,7 @@ ___
 
 ▸ **remove**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[remove](_loggingelement_.loggingelement.md#remove)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[remove](_src_loggingelement_.loggingelement.md#remove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3511
 
@@ -3845,7 +3884,7 @@ ___
 
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeAttribute](_loggingelement_.loggingelement.md#removeattribute)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[removeAttribute](_src_loggingelement_.loggingelement.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
@@ -3865,7 +3904,7 @@ ___
 
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeAttributeNS](_loggingelement_.loggingelement.md#removeattributens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[removeAttributeNS](_src_loggingelement_.loggingelement.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -3886,7 +3925,7 @@ ___
 
 ▸ **removeAttributeNode**(`attr`: Attr): *Attr*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeAttributeNode](_loggingelement_.loggingelement.md#removeattributenode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[removeAttributeNode](_src_loggingelement_.loggingelement.md#removeattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
@@ -3904,7 +3943,7 @@ ___
 
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeChild](_loggingelement_.loggingelement.md#removechild)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[removeChild](_src_loggingelement_.loggingelement.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
@@ -3926,7 +3965,7 @@ ___
 
 ▸ **removeEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeEventListener](_loggingelement_.loggingelement.md#removeeventlistener)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[removeEventListener](_src_loggingelement_.loggingelement.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -3957,7 +3996,7 @@ Name | Type |
 
 ▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[removeEventListener](_loggingelement_.loggingelement.md#removeeventlistener)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[removeEventListener](_src_loggingelement_.loggingelement.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -3979,7 +4018,7 @@ ___
 
 ▸ **render**(): *unknown*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[render](_loggingelement_.loggingelement.md#static-render)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[render](_src_loggingelement_.loggingelement.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:104
 
@@ -3996,7 +4035,7 @@ ___
 
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[replaceChild](_loggingelement_.loggingelement.md#replacechild)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[replaceChild](_src_loggingelement_.loggingelement.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10828
 
@@ -4019,7 +4058,7 @@ ___
 
 ▸ **replaceWith**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[replaceWith](_loggingelement_.loggingelement.md#replacewith)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[replaceWith](_src_loggingelement_.loggingelement.md#replacewith)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3517
 
@@ -4041,7 +4080,7 @@ ___
 
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[requestFullscreen](_loggingelement_.loggingelement.md#requestfullscreen)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[requestFullscreen](_src_loggingelement_.loggingelement.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5211
 
@@ -4063,7 +4102,7 @@ ___
 
 ▸ **requestPointerLock**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[requestPointerLock](_loggingelement_.loggingelement.md#requestpointerlock)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[requestPointerLock](_src_loggingelement_.loggingelement.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5212
 
@@ -4075,7 +4114,7 @@ ___
 
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[requestUpdate](_loggingelement_.loggingelement.md#requestupdate)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[requestUpdate](_src_loggingelement_.loggingelement.md#requestupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:330
 
@@ -4104,7 +4143,7 @@ ___
 
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scroll](_loggingelement_.loggingelement.md#scroll)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scroll](_src_loggingelement_.loggingelement.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5213
 
@@ -4118,7 +4157,7 @@ Name | Type |
 
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scroll](_loggingelement_.loggingelement.md#scroll)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scroll](_src_loggingelement_.loggingelement.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4137,7 +4176,7 @@ ___
 
 ▸ **scrollBy**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollBy](_loggingelement_.loggingelement.md#scrollby)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollBy](_src_loggingelement_.loggingelement.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
@@ -4151,7 +4190,7 @@ Name | Type |
 
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollBy](_loggingelement_.loggingelement.md#scrollby)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollBy](_src_loggingelement_.loggingelement.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5216
 
@@ -4170,7 +4209,7 @@ ___
 
 ▸ **scrollIntoView**(`arg?`: boolean | ScrollIntoViewOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollIntoView](_loggingelement_.loggingelement.md#scrollintoview)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollIntoView](_src_loggingelement_.loggingelement.md#scrollintoview)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5217
 
@@ -4188,7 +4227,7 @@ ___
 
 ▸ **scrollTo**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollTo](_loggingelement_.loggingelement.md#scrollto)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollTo](_src_loggingelement_.loggingelement.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5218
 
@@ -4202,7 +4241,7 @@ Name | Type |
 
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[scrollTo](_loggingelement_.loggingelement.md#scrollto)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[scrollTo](_src_loggingelement_.loggingelement.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5219
 
@@ -4221,7 +4260,7 @@ ___
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttribute](_loggingelement_.loggingelement.md#setattribute)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[setAttribute](_src_loggingelement_.loggingelement.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -4242,7 +4281,7 @@ ___
 
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttributeNS](_loggingelement_.loggingelement.md#setattributens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[setAttributeNS](_src_loggingelement_.loggingelement.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
@@ -4264,7 +4303,7 @@ ___
 
 ▸ **setAttributeNode**(`attr`: Attr): *Attr | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttributeNode](_loggingelement_.loggingelement.md#setattributenode)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[setAttributeNode](_src_loggingelement_.loggingelement.md#setattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
@@ -4282,7 +4321,7 @@ ___
 
 ▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setAttributeNodeNS](_loggingelement_.loggingelement.md#setattributenodens)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[setAttributeNodeNS](_src_loggingelement_.loggingelement.md#setattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -4300,7 +4339,7 @@ ___
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[setPointerCapture](_loggingelement_.loggingelement.md#setpointercapture)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[setPointerCapture](_src_loggingelement_.loggingelement.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5230
 
@@ -4318,7 +4357,7 @@ ___
 
 ▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[shouldUpdate](_loggingelement_.loggingelement.md#protected-shouldupdate)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[shouldUpdate](_src_loggingelement_.loggingelement.md#protected-shouldupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:395
 
@@ -4340,7 +4379,7 @@ ___
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[toggleAttribute](_loggingelement_.loggingelement.md#toggleattribute)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[toggleAttribute](_src_loggingelement_.loggingelement.md#toggleattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5236
 
@@ -4363,7 +4402,7 @@ ___
 
 ▸ **update**(`changedProperties`: PropertyValues): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[update](_loggingelement_.loggingelement.md#protected-update)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[update](_src_loggingelement_.loggingelement.md#protected-update)*
 
 *Overrides void*
 
@@ -4387,7 +4426,7 @@ ___
 
 ▸ **updated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[updated](_loggingelement_.loggingelement.md#protected-updated)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[updated](_src_loggingelement_.loggingelement.md#protected-updated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:414
 
@@ -4411,6 +4450,8 @@ ___
 
 ▸ **warn**(`title`: string, ...`detail`: string[]): *void*
 
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[warn](_src_loggingelement_.loggingelement.md#warn)*
+
 Defined in src/LoggingElement.ts:19
 
 **Parameters:**
@@ -4428,7 +4469,7 @@ ___
 
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[webkitMatchesSelector](_loggingelement_.loggingelement.md#webkitmatchesselector)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[webkitMatchesSelector](_src_loggingelement_.loggingelement.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -4446,7 +4487,7 @@ ___
 
 ▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[createProperty](_loggingelement_.loggingelement.md#static-createproperty)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[createProperty](_src_loggingelement_.loggingelement.md#static-createproperty)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:183
 
@@ -4486,7 +4527,7 @@ ___
 
 ▸ **finalize**(): *void*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[finalize](_loggingelement_.loggingelement.md#static-protected-finalize)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[finalize](_src_loggingelement_.loggingelement.md#static-protected-finalize)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:232
 
@@ -4503,7 +4544,7 @@ ___
 
 ▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `_options`: PropertyDeclaration): *object*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getPropertyDescriptor](_loggingelement_.loggingelement.md#static-protected-getpropertydescriptor)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getPropertyDescriptor](_src_loggingelement_.loggingelement.md#static-protected-getpropertydescriptor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:208
 
@@ -4554,7 +4595,7 @@ ___
 
 ▸ **getPropertyOptions**(`name`: PropertyKey): *PropertyDeclaration‹unknown, unknown›*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getPropertyOptions](_loggingelement_.loggingelement.md#static-protected-getpropertyoptions)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getPropertyOptions](_src_loggingelement_.loggingelement.md#static-protected-getpropertyoptions)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:226
 
@@ -4584,7 +4625,7 @@ ___
 
 ▸ **getStyles**(): *CSSResult | CSSResultArray | undefined*
 
-*Inherited from [LoggingElement](_loggingelement_.loggingelement.md).[getStyles](_loggingelement_.loggingelement.md#static-getstyles)*
+*Inherited from [LoggingElement](_src_loggingelement_.loggingelement.md).[getStyles](_src_loggingelement_.loggingelement.md#static-getstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:57
 

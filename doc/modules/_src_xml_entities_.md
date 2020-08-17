@@ -1,12 +1,12 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["xml-entities"](_xml_entities_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["src/xml-entities"](_src_xml_entities_.md)
 
-# Module: "xml-entities"
+# Module: "src/xml-entities"
 
 ## Index
 
 ### Functions
 
-* [encodeNonASCII](_xml_entities_.md#encodenonascii)
+* [encodeNonASCII](_src_xml_entities_.md#encodenonascii)
 
 ## Functions
 

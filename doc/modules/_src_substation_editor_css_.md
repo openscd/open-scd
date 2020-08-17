@@ -1,12 +1,12 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["substation-editor-css"](_substation_editor_css_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["src/substation-editor-css"](_src_substation_editor_css_.md)
 
-# Module: "substation-editor-css"
+# Module: "src/substation-editor-css"
 
 ## Index
 
 ### Variables
 
-* [styles](_substation_editor_css_.md#const-styles)
+* [styles](_src_substation_editor_css_.md#const-styles)
 
 ## Variables
 

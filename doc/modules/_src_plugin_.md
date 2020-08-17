@@ -1,13 +1,13 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["plugin"](_plugin_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["src/plugin"](_src_plugin_.md)
 
-# Module: "plugin"
+# Module: "src/plugin"
 
 ## Index
 
 ### Variables
 
-* [plugin](_plugin_.md#const-plugin)
-* [resolved](_plugin_.md#const-resolved)
+* [plugin](_src_plugin_.md#const-plugin)
+* [resolved](_src_plugin_.md#const-resolved)
 
 ## Variables
 
