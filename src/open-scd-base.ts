@@ -231,7 +231,7 @@ export class OpenSCDBase extends WaitingElement {
       {
         label: 'Substation',
         id: 'substation',
-        icon: zeroLineIcon, //alt: 'developer_board', //alt: 'engineering',
+        icon: zeroLineIcon,
         getContent: (): ((part: NodePart) => void) =>
           plugin(
             './substation-editor.js',
@@ -243,19 +243,19 @@ export class OpenSCDBase extends WaitingElement {
       {
         label: 'Communication',
         id: 'communication',
-        icon: 'mediation', //alt: 'sync_alt', //alt: 'message',
+        icon: 'mediation',
         getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
       },
       {
         label: 'Network',
         id: 'network',
-        icon: networkConfigIcon, //alt: 'device_hub', //alt: 'settings_ethernet',
+        icon: networkConfigIcon,
         getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
       },
       {
         label: 'IED',
         id: 'ied',
-        icon: iedIcon, //alt: 'dynamic_form', //alt: 'online_prediction',
+        icon: iedIcon,
         getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
       },
     ],
