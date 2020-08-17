@@ -6,6 +6,7 @@ import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { TextField } from '@material/mwc-textfield';
+
 import { AddDetail, EditDetail } from './open-scd-base.js';
 
 export class SubstationEditorBase extends LitElement {
@@ -17,18 +18,10 @@ export class SubstationEditorBase extends LitElement {
   get name(): string | null {
     return this.node?.getAttribute('name') ?? null;
   }
-  set name(value: string | null) {
-    if (value) this.node?.setAttribute('name', value);
-    this.requestUpdate('node');
-  }
 
   @property({ type: String })
   get desc(): string | null {
     return this.node?.getAttribute('desc') ?? null;
-  }
-  set desc(value: string | null) {
-    this.node?.setAttribute('desc', value ?? '');
-    this.requestUpdate('node');
   }
 
   @query('mwc-dialog') editUI!: DialogBase;
@@ -62,7 +55,7 @@ export class SubstationEditorBase extends LitElement {
         .map(tf => tf.checkValidity())
         .reduce((acc, v) => acc && v)
     ) {
-      if (this.nameUI.value == '') return;
+      // if (this.nameUI.value == '') return;
       const event = new CustomEvent<AddDetail>('add', {
         composed: true,
         bubbles: true,

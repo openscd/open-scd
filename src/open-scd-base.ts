@@ -21,7 +21,7 @@ import { WaitingElement, PendingStateDetail } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
-import { iedIcon, networkConfigIcon, zeroLineIcon } from '../img/icons.js';
+import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 
 export interface EditDetail {
   name?: string;
@@ -236,7 +236,7 @@ export class OpenSCDBase extends WaitingElement {
           plugin(
             './substation-editor.js',
             html`<substation-editor
-              .doc=${this.doc.querySelector('Substation')}
+              .node=${this.doc.querySelector('Substation')}
             ></substation-editor>`
           ),
       },
@@ -326,8 +326,11 @@ export class OpenSCDBase extends WaitingElement {
     this.requestUpdate('doc');
   }
   private onAdd(event: CustomEvent<AddDetail>) {
-    if (!event.detail.name) return;
     const source = <any>event.composedPath()[0];
+
+    if (!event.detail.name)
+      return this.error('Name missing', `${source.tag} must have a name.`);
+
     const sourceParent = <any>event
       .composedPath()
       .slice(1)
@@ -335,7 +338,6 @@ export class OpenSCDBase extends WaitingElement {
 
     const newElem = this.doc.createElement(source.tag);
     sourceParent.node.appendChild(newElem);
-    source.node = newElem; // FIXME: dirty hack
 
     newElem.setAttribute('name', event.detail.name);
     if (event.detail.desc) newElem.setAttribute('desc', event.detail.desc);
