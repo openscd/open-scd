@@ -7,7 +7,7 @@ import '@material/mwc-textfield';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { TextField } from '@material/mwc-textfield';
 
-import { Create, Update } from './open-scd-base.js';
+import { Create, Update } from './LoggingElement.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
@@ -16,13 +16,13 @@ export class SubstationEditorBase extends LitElement {
   @property()
   doc!: XMLDocument;
   @property({ type: String })
-  get name(): string | null {
-    return this.node?.getAttribute('name') ?? null;
+  get name(): string {
+    return this.node!.getAttribute('name')!;
   }
 
   @property({ type: String })
-  get desc(): string | null {
-    return this.node?.getAttribute('desc') ?? null;
+  get desc(): string {
+    return this.node!.getAttribute('desc') ?? '';
   }
 
   @query('mwc-dialog') editUI!: DialogBase;
@@ -37,7 +37,7 @@ export class SubstationEditorBase extends LitElement {
         .map(tf => tf.checkValidity())
         .reduce((acc, v) => acc && v)
     ) {
-      const event = new CustomEvent<Update>('edit', {
+      const event = new CustomEvent<Update>('update', {
         composed: true,
         bubbles: true,
         detail: {
@@ -62,16 +62,19 @@ export class SubstationEditorBase extends LitElement {
         .reduce((acc, v) => acc && v)
     ) {
       if (this.nameUI.value == '') return;
-      const event = new CustomEvent<Create>('add', {
+      const event = new CustomEvent<Create>('create', {
         composed: true,
         bubbles: true,
         detail: {
           new: {
             parent: this.doc.documentElement,
-            element: `<Substation
+            element: new DOMParser().parseFromString(
+              `<Substation
         name="${this.nameUI.value}"
         desc="${this.descUI.value}"
         ></Substation>`,
+              'application/xml'
+            ).documentElement,
           },
         },
       });

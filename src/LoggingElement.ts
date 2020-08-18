@@ -1,32 +1,70 @@
-import { LitElement, property } from 'lit-element';
+type ElementConstructor = new (...args: any[]) => HTMLElement;
+
+declare global {
+  interface ElementEventMap {
+    ['create']: CustomEvent<Create>;
+    ['update']: CustomEvent<Update>;
+  }
+}
+
+/** Represents an intended change to an `Element`. */
+export type Change = Create | Update | Delete | Move;
+export interface Move {
+  old: { parent: Element; element: Element };
+  new: { parent: Element };
+}
+export interface Create {
+  new: { parent: Element; element: Element };
+}
+export interface Delete {
+  old: { parent: Element; element: Element };
+}
+export interface Update {
+  old: { element: Element };
+  new: { element: Element };
+}
 
 export interface LogEntry {
   time: Date;
   title: string;
   message?: string;
   icon?: string;
+  change?: Change;
+  cause?: LogEntry;
 }
 
-export class LoggingElement extends LitElement {
-  @property({ type: Array }) history: Array<LogEntry> = [];
+export type LogOptions = Pick<LogEntry, 'cause' | 'icon' | 'message'>;
 
-  log(title: string, message?: string, icon?: string): void {
-    this.history.unshift({ time: new Date(), title, message, icon });
-  }
-  info(title: string, ...detail: string[]): void {
-    this.log(title, detail.join(' | '), 'info');
-  }
-  warn(title: string, ...detail: string[]): void {
-    this.log(title, detail.join(' | '), 'warning');
-  }
-  error(title: string, ...detail: string[]): void {
-    this.log(title, detail.join(' | '), 'error_outline');
-  }
+export function Logging<TBase extends ElementConstructor>(Base: TBase) {
+  return class LoggingElement extends Base {
+    history: LogEntry[] = [];
 
-  firstUpdated(): void {
-    this.log = this.log.bind(this); // allow log to reference history
-    this.info = this.info.bind(this); // and others to reference log...
-    this.warn = this.warn.bind(this);
-    this.error = this.error.bind(this);
-  }
+    log(title: string, entry?: Partial<LogEntry>): void {
+      this.history.unshift({
+        time: new Date(),
+        title,
+        ...entry,
+      });
+    }
+    info(title: string, options?: LogOptions): void {
+      this.log(title, { icon: 'info', ...options });
+    }
+    warn(title: string, options?: LogOptions): void {
+      this.log(title, { icon: 'warning', ...options });
+    }
+    error(title: string, options?: LogOptions): void {
+      this.log(title, { icon: 'error_outline', ...options });
+    }
+    commit(title: string, change: Change, options?: LogOptions): void {
+      this.log(title, { change, icon: 'history', ...options });
+    }
+
+    constructor(...args: any[]) {
+      super(...args);
+      this.log = this.log.bind(this); // allow log to reference history
+      this.info = this.info.bind(this); // and others to reference log...
+      this.warn = this.warn.bind(this);
+      this.error = this.error.bind(this);
+    }
+  };
 }

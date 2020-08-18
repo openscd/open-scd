@@ -17,34 +17,18 @@ import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
 import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 
-import { WaitingElement, PendingStateDetail } from './WaitingElement.js';
+import { Waiting, PendingState } from './WaitingElement.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
-
-export type Change = Create | Update | Delete | Move;
-export interface Move {
-  old: { parent: Element };
-  new: { parent: Element };
-}
-export interface Create {
-  new: { parent: Element; element: Element | string };
-}
-export interface Delete {
-  old: { parent: Element; element: Element };
-}
-export interface Update {
-  old: { element: Element };
-  new: { element: Element };
-}
-
-declare global {
-  interface ElementEventMap {
-    ['add']: CustomEvent<Create>;
-    ['edit']: CustomEvent<Update>;
-  }
-}
+import {
+  Logging,
+  LogOptions,
+  LogEntry,
+  Create,
+  Update,
+} from './LoggingElement.js';
 
 interface MenuEntry {
   icon: string;
@@ -56,7 +40,7 @@ interface MenuEntry {
 
 export const scl = 'http://www.iec.ch/61850/2003/SCL';
 
-export class OpenSCDBase extends WaitingElement {
+export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   render(): TemplateResult {
     return html`
       <mwc-drawer hasheader type="modal">
@@ -179,9 +163,12 @@ export class OpenSCDBase extends WaitingElement {
 
   static emptySCD = document.implementation.createDocument(scl, 'SCL', null);
 
-  @property() // FIXME: integrate into this.history
-  editHistory: Change[] = [];
+  @property()
+  history: LogEntry[] = [];
 
+  /** Whewaiting editor is currently waiting for some async work. */
+  @property({ type: Boolean })
+  waiting = false;
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
@@ -206,7 +193,7 @@ export class OpenSCDBase extends WaitingElement {
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(
-      new CustomEvent<PendingStateDetail>('pending-state', {
+      new CustomEvent<PendingState>('pending-state', {
         composed: true,
         bubbles: true,
         detail: { promise: this.loadDoc(value) },
@@ -275,8 +262,8 @@ export class OpenSCDBase extends WaitingElement {
     ],
   };
 
-  error(title: string, ...detail: string[]): void {
-    super.error(title, ...detail);
+  error(title: string, options?: LogOptions): void {
+    super.error(title, options);
     this.messageUI.show();
   }
 
@@ -300,7 +287,7 @@ export class OpenSCDBase extends WaitingElement {
               ?.map(e => e.split(': ').map(s => s.trim()))
               .map(a => {
                 if (a[4]) [a[0], a[4]] = [a[4], a[0]];
-                this.error(a[0], ...a.slice(1).reverse());
+                this.error(a[0], { message: a.slice(1).reverse().join(' | ') });
               }) ?? this.info(`${this.srcName} validated successfully.`);
             if (errors === null)
               resolve(`${this.srcName} validation succesful.`);
@@ -337,7 +324,7 @@ export class OpenSCDBase extends WaitingElement {
       ...Array.from(event.detail.old.element.childNodes)
     );
     event.detail.old.element.replaceWith(event.detail.new.element);
-    this.editHistory.push(event.detail);
+    this.commit(`Edit ${event.detail.new.element.tagName}`, event.detail);
 
     source.requestUpdate('node');
     this.requestUpdate('doc');
@@ -346,14 +333,8 @@ export class OpenSCDBase extends WaitingElement {
   private onAdd(event: CustomEvent<Create>) {
     const source = <LitElement>event.composedPath()[0];
 
-    if (!(event.detail.new.element instanceof Element))
-      event.detail.new.element = new DOMParser().parseFromString(
-        event.detail.new.element,
-        'application/xml'
-      ).documentElement;
-
     event.detail.new.parent.prepend(event.detail.new.element);
-    this.editHistory.push(event.detail);
+    this.commit(`Add ${event.detail.new.element.tagName}`, event.detail);
 
     source.requestUpdate('node');
     this.requestUpdate('doc');
@@ -361,7 +342,7 @@ export class OpenSCDBase extends WaitingElement {
 
   constructor() {
     super();
-    this.addEventListener('edit', this.onEdit);
-    this.addEventListener('add', this.onAdd);
+    this.addEventListener('update', this.onEdit);
+    this.addEventListener('create', this.onAdd);
   }
 }
