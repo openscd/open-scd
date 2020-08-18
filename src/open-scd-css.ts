@@ -9,6 +9,10 @@ export const styles = css`
     --mdc-theme-on-background: #005496;
   }
 
+  mwc-snackbar * {
+    --mdc-theme-primary: #ffdd00;
+  }
+
   #file-input {
     display: none;
   }

@@ -25,6 +25,12 @@ import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 
+interface Tab {
+  label: string;
+  id: string;
+  icon: string | TemplateResult;
+}
+
 interface MenuEntry {
   icon: string;
   name: string;
@@ -36,32 +42,16 @@ interface MenuEntry {
 export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   render(): TemplateResult {
     return html`
-      <mwc-drawer hasheader type="modal">
-        <span slot="title"
-          >${this.doc.querySelector('Substation')?.getAttribute('name') ??
-          'Menu'}</span
-        >
+      <mwc-drawer hasheader type="modal" id="menu">
+        <span slot="title">${this.name ?? 'Menu'}</span>
         <span slot="subtitle">${this.srcName}</span>
         <mwc-list
           @action=${(ae: CustomEvent<ActionDetail>) =>
             this.menu[ae.detail.index]?.action!()}
         >
-          ${this.menu.map(
-            me => html`
-              ${me.startsGroup
-                ? html`<li divider padded role="separator"></li>`
-                : nothing}
-              <mwc-list-item
-                graphic="icon"
-                .disabled=${me.action ? false : true}
-                ><mwc-icon slot="graphic">
-                  ${me.icon}
-                </mwc-icon>
-                ${me.name}
-              </mwc-list-item>
-            `
-          )}
+          ${this.menu.map(this.renderMenuEntry)}
         </mwc-list>
+
         <mwc-top-app-bar-fixed slot="appContent">
           <mwc-icon-button
             icon="menu"
@@ -70,49 +60,29 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
             @click=${() => (this.menuUI.open = true)}
           ></mwc-icon-button>
           <div slot="title" id="title">
-            ${this.doc.querySelector('Substation')?.getAttribute('name') ??
-            this.srcName}
+            ${this.name ?? this.srcName}
           </div>
-          ${this.menu.map(me =>
-            me.actionItem
-              ? html`<mwc-icon-button
-                  slot="actionItems"
-                  icon="${me.icon}"
-                  label="${me.name}"
-                  @click=${me.action}
-                ></mwc-icon-button>`
-              : nothing
-          )}
+          ${this.menu.map(this.renderActionItem)}
           <mwc-tab-bar
             @MDCTabBar:activated=${(e: CustomEvent) =>
               (this.activeTab = e.detail.index)}
           >
-            ${this.plugins.editors.map(
-              editor =>
-                html`<mwc-tab
-                  label=${editor.label}
-                  icon=${editor.icon instanceof TemplateResult
-                    ? ''
-                    : editor.icon}
-                  id=${editor.id}
-                  hasimageicon
-                >
-                  ${editor.icon instanceof TemplateResult
-                    ? editor.icon
-                    : nothing}
-                </mwc-tab>`
-            )}
+            ${this.plugins.editors.map(this.renderEditorTab)}
           </mwc-tab-bar>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
       ${this.plugins.editors[this.activeTab].getContent()}
 
-      <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
-      </mwc-circular-progress-four-color>
+      <mwc-dialog id="log" heading="Log">
+        <mwc-list id="content" activatable>
+          ${this.renderHistory(this.history)}
+        </mwc-list>
+        <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
+      </mwc-dialog>
 
       <mwc-snackbar
-        id="errorSnackbar"
+        id="message"
         timeoutMs="-1"
         labelText="${this.history.find(le => le.icon == 'error_outline')
           ?.title ?? 'No errors'}"
@@ -123,35 +93,73 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
       </mwc-snackbar>
 
-      <mwc-dialog id="log" heading="Log">
-        <mwc-list id="content" activatable>
-          ${this.history.length < 1
-            ? html`<mwc-list-item disabled hasmeta>
-                <span
-                  >Errors, warnings, and notifications will show up here.</span
-                >
-                <mwc-icon slot="meta">info</mwc-icon>
-              </mwc-list-item>`
-            : this.history.map(
-                item => html`<mwc-list-item
-                  ?twoline=${item.message}
-                  ?hasmeta=${item.icon}
-                >
-                  <span>
-                    <!-- FIXME: replace tt by mwc-chip asap -->
-                    <tt>${item.time.toLocaleTimeString()}</tt>
-                    ${item.title}</span
-                  >
-                  <span slot="secondary">${item.message}</span>
-                  <mwc-icon slot="meta">${item.icon}</mwc-icon>
-                </mwc-list-item>`
-              )}
-        </mwc-list>
-        <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
-      </mwc-dialog>
+      <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
+      </mwc-circular-progress-four-color>
 
       <input id="file-input" type="file" @change="${this.loadFile}" />
     `;
+  }
+
+  renderMenuEntry(me: MenuEntry): TemplateResult {
+    return html`
+      ${me.startsGroup
+        ? html`<li divider padded role="separator"></li>`
+        : nothing}
+      <mwc-list-item graphic="icon" .disabled=${me.action ? false : true}
+        ><mwc-icon slot="graphic">
+          ${me.icon}
+        </mwc-icon>
+        ${me.name}
+      </mwc-list-item>
+    `;
+  }
+
+  renderActionItem(me: MenuEntry): TemplateResult {
+    if (me.actionItem)
+      return html`<mwc-icon-button
+        slot="actionItems"
+        icon="${me.icon}"
+        label="${me.name}"
+        .disabled=${me.action ? false : true}
+        @click=${me.action}
+      ></mwc-icon-button>`;
+    else return html``;
+  }
+
+  renderEditorTab(editor: Tab): TemplateResult {
+    return html`<mwc-tab
+      label=${editor.label}
+      icon=${editor.icon instanceof TemplateResult ? '' : editor.icon}
+      id=${editor.id}
+      hasimageicon
+    >
+      ${editor.icon instanceof TemplateResult ? editor.icon : nothing}
+    </mwc-tab>`;
+  }
+
+  renderHistory(history: LogEntry[]): TemplateResult[] {
+    if (history.length > 0)
+      return history.map(
+        item => html`<mwc-list-item
+          ?twoline=${item.message}
+          ?hasmeta=${item.icon}
+        >
+          <span>
+            <!-- FIXME: replace tt by mwc-chip asap -->
+            <tt>${item.time.toLocaleTimeString()}</tt>
+            ${item.title}</span
+          >
+          <span slot="secondary">${item.message}</span>
+          <mwc-icon slot="meta">${item.icon}</mwc-icon>
+        </mwc-list-item>`
+      );
+    else
+      return [
+        html`<mwc-list-item disabled hasmeta>
+          <span>Edits, errors, and other notifications will show up here.</span>
+          <mwc-icon slot="meta">info</mwc-icon>
+        </mwc-list-item>`,
+      ];
   }
 
   static emptySCD = document.implementation.createDocument(
@@ -159,49 +167,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     'SCL',
     null
   );
-
-  @property()
-  history: LogEntry[] = [];
-
-  /** Whewaiting editor is currently waiting for some async work. */
-  @property({ type: Boolean })
-  waiting = false;
-  /** The currently active editor tab. */
-  @property({ type: Number })
-  activeTab = 0;
-  /** The `XMLDocument` representation of the current file. */
-  @property()
-  doc: XMLDocument = OpenSCDBase.emptySCD;
-  /** The `Node` this editor is responsible for editing */
-  @property()
-  get node(): Element {
-    return this.doc.documentElement;
-  }
-  /** The tag name this editor is responsible for editing */
-  tag = 'SCL';
-  /** The name of the current file. */
-  @property({ type: String }) srcName = 'untitled.scd';
-  private currentSrc = '';
-  /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
-  @property({ type: String })
-  get src(): string {
-    return this.currentSrc;
-  }
-  set src(value: string) {
-    this.currentSrc = value;
-    this.dispatchEvent(
-      new CustomEvent<PendingState>('pending-state', {
-        composed: true,
-        bubbles: true,
-        detail: { promise: this.loadDoc(value) },
-      })
-    );
-  }
-
-  @query('mwc-drawer') menuUI!: Drawer;
-  @query('mwc-dialog') logUI!: Dialog;
-  @query('mwc-snackbar') messageUI!: Snackbar;
-  @query('#file-input') fileUI!: HTMLInputElement;
 
   menu: MenuEntry[] = [
     {
@@ -259,6 +224,52 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     ],
   };
 
+  @property()
+  history: LogEntry[] = [];
+  /** Whether the editor is currently waiting for some async work. */
+  @property({ type: Boolean })
+  waiting = false;
+  /** The currently active editor tab. */
+  @property({ type: Number })
+  activeTab = 0;
+  /** The `XMLDocument` representation of the current file. */
+  @property()
+  doc: XMLDocument = OpenSCDBase.emptySCD;
+  /** The `Node` this editor is responsible for editing */
+  @property()
+  get node(): Element {
+    return this.doc.documentElement;
+  }
+  @property()
+  get name(): string | null {
+    return this.doc.querySelector('Substation')?.getAttribute('name') ?? null;
+  }
+  /** The tag name this editor is responsible for editing */
+  tag = 'SCL';
+  /** The name of the current file. */
+  @property({ type: String }) srcName = 'untitled.scd';
+  private currentSrc = '';
+  /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
+  @property({ type: String })
+  get src(): string {
+    return this.currentSrc;
+  }
+  set src(value: string) {
+    this.currentSrc = value;
+    this.dispatchEvent(
+      new CustomEvent<PendingState>('pending-state', {
+        composed: true,
+        bubbles: true,
+        detail: { promise: this.loadDoc(value) },
+      })
+    );
+  }
+
+  @query('#menu') menuUI!: Drawer;
+  @query('#log') logUI!: Dialog;
+  @query('#message') messageUI!: Snackbar;
+  @query('#file-input') fileUI!: HTMLInputElement;
+
   error(title: string, options?: LogOptions): LogEntry {
     this.messageUI.show();
     return super.error(title, options);
@@ -280,7 +291,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
           this.info(`${this.srcName} loaded.`);
           validateSCL(this.doc, this.srcName).then(errors => {
-            console.log(errors);
             errors.map(le => {
               this.error(le.title, le);
             }) ?? this.info(`${this.srcName} validated successfully.`);

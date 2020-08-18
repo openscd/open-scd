@@ -1,4 +1,4 @@
-import { Change, ElementConstructor } from './foundation.js';
+import { Change, ElementConstructor, invert } from './foundation.js';
 
 export interface LogEntry {
   time: Date;
@@ -15,15 +15,54 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
   return class LoggingElement extends Base {
     history: LogEntry[] = [];
 
+    currentChange = -1;
+    get hasChanges(): boolean {
+      return this.currentChange >= 0;
+    }
+    get previousChangeIndex(): number {
+      if (!this.hasChanges) return -1;
+      return this.history
+        .slice(0, this.currentChange)
+        .map(entry => (entry.change ? true : false))
+        .lastIndexOf(true);
+    }
+    get nextChangeIndex(): number {
+      return this.history
+        .slice(this.currentChange + 1)
+        .findIndex(entry => entry.change);
+    }
+
+    undo(): boolean {
+      if (this.previousChangeIndex < 0) return false;
+      console.log(this.history[this.currentChange].change);
+      console.log(invert(this.history[this.currentChange].change!));
+      // FIXME: dispatch instead of logging!
+      this.currentChange = this.previousChangeIndex;
+      return true;
+    }
+
     log(title: string, detail?: Partial<LogEntry>): LogEntry {
-      const entry = {
+      const entry: LogEntry = {
         time: new Date(),
         title,
         ...detail,
       };
-      this.history.unshift(entry);
+      if (entry.change) {
+        if (this.hasChanges) this.history.splice(this.currentChange + 1);
+        this.currentChange = this.history.length;
+        console.log(
+          'current ',
+          this.currentChange,
+          ' next ',
+          this.nextChangeIndex,
+          ' prev ',
+          this.previousChangeIndex
+        );
+      }
+      this.history.push(entry);
       return entry;
     }
+
     info(title: string, options?: LogOptions): LogEntry {
       return this.log(title, { icon: 'info', ...options });
     }
