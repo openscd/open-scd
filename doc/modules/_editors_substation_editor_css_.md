@@ -1,12 +1,12 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["substation-editor-css"](_substation_editor_css_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["editors/substation-editor-css"](_editors_substation_editor_css_.md)
 
-# Module: "substation-editor-css"
+# Module: "editors/substation-editor-css"
 
 ## Index
 
 ### Variables
 
-* [styles](_substation_editor_css_.md#const-styles)
+* [styles](_editors_substation_editor_css_.md#const-styles)
 
 ## Variables
 
@@ -72,4 +72,4 @@
   }
 `
 
-Defined in src/substation-editor-css.ts:3
+Defined in src/editors/substation-editor-css.ts:3

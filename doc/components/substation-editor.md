@@ -2,17 +2,17 @@
 
 ## Properties
 
-| Property       | Attribute | Modifiers | Type          | Default      |
-|----------------|-----------|-----------|---------------|--------------|
-| `desc`         | `desc`    | readonly  | `string`      |              |
-| `descUI`       |           |           | `TextField`   |              |
-| `doc`          | `doc`     |           | `XMLDocument` |              |
-| `editUI`       |           |           | `DialogBase`  |              |
-| `editorPaneUI` |           |           | `HTMLElement` |              |
-| `name`         | `name`    | readonly  | `string`      |              |
-| `nameUI`       |           |           | `TextField`   |              |
-| `node`         | `node`    |           | `Element`     |              |
-| `tag`          |           |           | `string`      | "Substation" |
+| Property       | Attribute | Modifiers | Type                   | Default      |
+|----------------|-----------|-----------|------------------------|--------------|
+| `desc`         | `desc`    | readonly  | `string`               |              |
+| `descUI`       |           |           | `TextField`            |              |
+| `doc`          | `doc`     |           | `XMLDocument`          |              |
+| `editUI`       |           |           | `DialogBase`           |              |
+| `editorPaneUI` |           |           | `HTMLElement`          |              |
+| `name`         | `name`    | readonly  | `string`               |              |
+| `nameUI`       |           |           | `TextField`            |              |
+| `node`         | `node`    |           | `Element \| undefined` |              |
+| `tag`          |           |           | `string`               | "Substation" |
 
 ## Methods
 

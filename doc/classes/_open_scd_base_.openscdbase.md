@@ -346,9 +346,9 @@ Defined in src/open-scd-base.ts:333
 
 • **ATTRIBUTE_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ATTRIBUTE_NODE](_open_scd_base_.openscdbase.md#readonly-attribute_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ATTRIBUTE_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-attribute_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ATTRIBUTE_NODE](_open_scd_base_.openscdbase.md#readonly-attribute_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ATTRIBUTE_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10829
 
@@ -358,9 +358,9 @@ ___
 
 • **CDATA_SECTION_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[CDATA_SECTION_NODE](_open_scd_base_.openscdbase.md#readonly-cdata_section_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[CDATA_SECTION_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-cdata_section_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[CDATA_SECTION_NODE](_open_scd_base_.openscdbase.md#readonly-cdata_section_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[CDATA_SECTION_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -372,9 +372,9 @@ ___
 
 • **COMMENT_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[COMMENT_NODE](_open_scd_base_.openscdbase.md#readonly-comment_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[COMMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-comment_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[COMMENT_NODE](_open_scd_base_.openscdbase.md#readonly-comment_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[COMMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-comment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10837
 
@@ -386,9 +386,9 @@ ___
 
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_FRAGMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_fragment_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_FRAGMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_fragment_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_FRAGMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_fragment_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_FRAGMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -400,9 +400,9 @@ ___
 
 • **DOCUMENT_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -414,9 +414,9 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_CONTAINED_BY](_open_scd_base_.openscdbase.md#readonly-document_position_contained_by)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_CONTAINED_BY](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_contained_by)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_CONTAINED_BY](_open_scd_base_.openscdbase.md#readonly-document_position_contained_by)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_CONTAINED_BY](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
@@ -428,9 +428,9 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINS**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_CONTAINS](_open_scd_base_.openscdbase.md#readonly-document_position_contains)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_CONTAINS](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_contains)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_CONTAINS](_open_scd_base_.openscdbase.md#readonly-document_position_contains)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_CONTAINS](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -442,9 +442,9 @@ ___
 
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_DISCONNECTED](_open_scd_base_.openscdbase.md#readonly-document_position_disconnected)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_DISCONNECTED](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_disconnected)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_DISCONNECTED](_open_scd_base_.openscdbase.md#readonly-document_position_disconnected)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_DISCONNECTED](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
@@ -456,9 +456,9 @@ ___
 
 • **DOCUMENT_POSITION_FOLLOWING**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_FOLLOWING](_open_scd_base_.openscdbase.md#readonly-document_position_following)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_FOLLOWING](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_following)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_FOLLOWING](_open_scd_base_.openscdbase.md#readonly-document_position_following)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_FOLLOWING](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_following)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -470,9 +470,9 @@ ___
 
 • **DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_base_.openscdbase.md#readonly-document_position_implementation_specific)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_implementation_specific)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_base_.openscdbase.md#readonly-document_position_implementation_specific)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_implementation_specific)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10862
 
@@ -482,9 +482,9 @@ ___
 
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_PRECEDING](_open_scd_base_.openscdbase.md#readonly-document_position_preceding)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_PRECEDING](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_preceding)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_POSITION_PRECEDING](_open_scd_base_.openscdbase.md#readonly-document_position_preceding)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_POSITION_PRECEDING](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10866
 
@@ -496,9 +496,9 @@ ___
 
 • **DOCUMENT_TYPE_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_TYPE_NODE](_open_scd_base_.openscdbase.md#readonly-document_type_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_TYPE_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_type_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[DOCUMENT_TYPE_NODE](_open_scd_base_.openscdbase.md#readonly-document_type_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[DOCUMENT_TYPE_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-document_type_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10870
 
@@ -510,9 +510,9 @@ ___
 
 • **ELEMENT_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ELEMENT_NODE](_open_scd_base_.openscdbase.md#readonly-element_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ELEMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-element_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ELEMENT_NODE](_open_scd_base_.openscdbase.md#readonly-element_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ELEMENT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
@@ -524,9 +524,9 @@ ___
 
 • **ENTITY_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ENTITY_NODE](_open_scd_base_.openscdbase.md#readonly-entity_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ENTITY_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-entity_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ENTITY_NODE](_open_scd_base_.openscdbase.md#readonly-entity_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ENTITY_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-entity_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10875
 
@@ -536,9 +536,9 @@ ___
 
 • **ENTITY_REFERENCE_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ENTITY_REFERENCE_NODE](_open_scd_base_.openscdbase.md#readonly-entity_reference_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ENTITY_REFERENCE_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-entity_reference_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ENTITY_REFERENCE_NODE](_open_scd_base_.openscdbase.md#readonly-entity_reference_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ENTITY_REFERENCE_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10876
 
@@ -548,9 +548,9 @@ ___
 
 • **NOTATION_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[NOTATION_NODE](_open_scd_base_.openscdbase.md#readonly-notation_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[NOTATION_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-notation_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[NOTATION_NODE](_open_scd_base_.openscdbase.md#readonly-notation_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[NOTATION_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-notation_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10877
 
@@ -560,9 +560,9 @@ ___
 
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[PROCESSING_INSTRUCTION_NODE](_open_scd_base_.openscdbase.md#readonly-processing_instruction_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[PROCESSING_INSTRUCTION_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-processing_instruction_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[PROCESSING_INSTRUCTION_NODE](_open_scd_base_.openscdbase.md#readonly-processing_instruction_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[PROCESSING_INSTRUCTION_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10881
 
@@ -574,9 +574,9 @@ ___
 
 • **TEXT_NODE**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[TEXT_NODE](_open_scd_base_.openscdbase.md#readonly-text_node)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[TEXT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-text_node)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[TEXT_NODE](_open_scd_base_.openscdbase.md#readonly-text_node)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[TEXT_NODE](_editors_substation_editor_base_.substationeditorbase.md#readonly-text_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10885
 
@@ -588,9 +588,9 @@ ___
 
 • **accessKey**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[accessKey](_open_scd_base_.openscdbase.md#accesskey)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[accessKey](_editors_substation_editor_base_.substationeditorbase.md#accesskey)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[accessKey](_open_scd_base_.openscdbase.md#accesskey)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[accessKey](_editors_substation_editor_base_.substationeditorbase.md#accesskey)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6576
 
@@ -600,9 +600,9 @@ ___
 
 • **accessKeyLabel**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[accessKeyLabel](_open_scd_base_.openscdbase.md#readonly-accesskeylabel)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[accessKeyLabel](_editors_substation_editor_base_.substationeditorbase.md#readonly-accesskeylabel)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[accessKeyLabel](_open_scd_base_.openscdbase.md#readonly-accesskeylabel)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[accessKeyLabel](_editors_substation_editor_base_.substationeditorbase.md#readonly-accesskeylabel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
 
@@ -622,7 +622,7 @@ ___
 
 • **assignedSlot**: *HTMLSlotElement | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[assignedSlot](_open_scd_base_.openscdbase.md#readonly-assignedslot)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[assignedSlot](_editors_substation_editor_base_.substationeditorbase.md#readonly-assignedslot)*
 
 *Overrides void*
 
@@ -634,9 +634,9 @@ ___
 
 • **attributes**: *NamedNodeMap*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[attributes](_open_scd_base_.openscdbase.md#readonly-attributes)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[attributes](_editors_substation_editor_base_.substationeditorbase.md#readonly-attributes)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[attributes](_open_scd_base_.openscdbase.md#readonly-attributes)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[attributes](_editors_substation_editor_base_.substationeditorbase.md#readonly-attributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5090
 
@@ -646,9 +646,9 @@ ___
 
 • **autocapitalize**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[autocapitalize](_open_scd_base_.openscdbase.md#autocapitalize)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[autocapitalize](_editors_substation_editor_base_.substationeditorbase.md#autocapitalize)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[autocapitalize](_open_scd_base_.openscdbase.md#autocapitalize)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[autocapitalize](_editors_substation_editor_base_.substationeditorbase.md#autocapitalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6578
 
@@ -658,9 +658,9 @@ ___
 
 • **autofocus**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[autofocus](_open_scd_base_.openscdbase.md#autofocus)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[autofocus](_editors_substation_editor_base_.substationeditorbase.md#autofocus)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[autofocus](_open_scd_base_.openscdbase.md#autofocus)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[autofocus](_editors_substation_editor_base_.substationeditorbase.md#autofocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7989
 
@@ -670,9 +670,9 @@ ___
 
 • **baseURI**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[baseURI](_open_scd_base_.openscdbase.md#readonly-baseuri)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[baseURI](_editors_substation_editor_base_.substationeditorbase.md#readonly-baseuri)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[baseURI](_open_scd_base_.openscdbase.md#readonly-baseuri)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[baseURI](_editors_substation_editor_base_.substationeditorbase.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10744
 
@@ -684,9 +684,9 @@ ___
 
 • **childElementCount**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[childElementCount](_open_scd_base_.openscdbase.md#readonly-childelementcount)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[childElementCount](_editors_substation_editor_base_.substationeditorbase.md#readonly-childelementcount)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[childElementCount](_open_scd_base_.openscdbase.md#readonly-childelementcount)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[childElementCount](_editors_substation_editor_base_.substationeditorbase.md#readonly-childelementcount)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11301
 
@@ -696,9 +696,9 @@ ___
 
 • **childNodes**: *NodeListOf‹ChildNode›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[childNodes](_open_scd_base_.openscdbase.md#readonly-childnodes)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[childNodes](_editors_substation_editor_base_.substationeditorbase.md#readonly-childnodes)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[childNodes](_open_scd_base_.openscdbase.md#readonly-childnodes)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[childNodes](_editors_substation_editor_base_.substationeditorbase.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10748
 
@@ -710,9 +710,9 @@ ___
 
 • **children**: *HTMLCollection*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[children](_open_scd_base_.openscdbase.md#readonly-children)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[children](_editors_substation_editor_base_.substationeditorbase.md#readonly-children)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[children](_open_scd_base_.openscdbase.md#readonly-children)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[children](_editors_substation_editor_base_.substationeditorbase.md#readonly-children)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11305
 
@@ -724,9 +724,9 @@ ___
 
 • **classList**: *DOMTokenList*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[classList](_open_scd_base_.openscdbase.md#readonly-classlist)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[classList](_editors_substation_editor_base_.substationeditorbase.md#readonly-classlist)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[classList](_open_scd_base_.openscdbase.md#readonly-classlist)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[classList](_editors_substation_editor_base_.substationeditorbase.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5094
 
@@ -738,9 +738,9 @@ ___
 
 • **className**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[className](_open_scd_base_.openscdbase.md#classname)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[className](_editors_substation_editor_base_.substationeditorbase.md#classname)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[className](_open_scd_base_.openscdbase.md#classname)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[className](_editors_substation_editor_base_.substationeditorbase.md#classname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5098
 
@@ -752,9 +752,9 @@ ___
 
 • **clientHeight**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientHeight](_open_scd_base_.openscdbase.md#readonly-clientheight)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientHeight](_editors_substation_editor_base_.substationeditorbase.md#readonly-clientheight)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientHeight](_open_scd_base_.openscdbase.md#readonly-clientheight)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientHeight](_editors_substation_editor_base_.substationeditorbase.md#readonly-clientheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5099
 
@@ -764,9 +764,9 @@ ___
 
 • **clientLeft**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientLeft](_open_scd_base_.openscdbase.md#readonly-clientleft)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientLeft](_editors_substation_editor_base_.substationeditorbase.md#readonly-clientleft)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientLeft](_open_scd_base_.openscdbase.md#readonly-clientleft)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientLeft](_editors_substation_editor_base_.substationeditorbase.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
@@ -776,9 +776,9 @@ ___
 
 • **clientTop**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientTop](_open_scd_base_.openscdbase.md#readonly-clienttop)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientTop](_editors_substation_editor_base_.substationeditorbase.md#readonly-clienttop)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientTop](_open_scd_base_.openscdbase.md#readonly-clienttop)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientTop](_editors_substation_editor_base_.substationeditorbase.md#readonly-clienttop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5101
 
@@ -788,9 +788,9 @@ ___
 
 • **clientWidth**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientWidth](_open_scd_base_.openscdbase.md#readonly-clientwidth)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientWidth](_editors_substation_editor_base_.substationeditorbase.md#readonly-clientwidth)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[clientWidth](_open_scd_base_.openscdbase.md#readonly-clientwidth)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[clientWidth](_editors_substation_editor_base_.substationeditorbase.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5102
 
@@ -800,9 +800,9 @@ ___
 
 • **contentEditable**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[contentEditable](_open_scd_base_.openscdbase.md#contenteditable)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[contentEditable](_editors_substation_editor_base_.substationeditorbase.md#contenteditable)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[contentEditable](_open_scd_base_.openscdbase.md#contenteditable)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[contentEditable](_editors_substation_editor_base_.substationeditorbase.md#contenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
@@ -820,9 +820,9 @@ ___
 
 • **dataset**: *DOMStringMap*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[dataset](_open_scd_base_.openscdbase.md#readonly-dataset)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[dataset](_editors_substation_editor_base_.substationeditorbase.md#readonly-dataset)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[dataset](_open_scd_base_.openscdbase.md#readonly-dataset)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[dataset](_editors_substation_editor_base_.substationeditorbase.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
 
@@ -832,9 +832,9 @@ ___
 
 • **dir**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[dir](_open_scd_base_.openscdbase.md#dir)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[dir](_editors_substation_editor_base_.substationeditorbase.md#dir)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[dir](_open_scd_base_.openscdbase.md#dir)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[dir](_editors_substation_editor_base_.substationeditorbase.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
@@ -854,9 +854,9 @@ ___
 
 • **draggable**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[draggable](_open_scd_base_.openscdbase.md#draggable)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[draggable](_editors_substation_editor_base_.substationeditorbase.md#draggable)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[draggable](_open_scd_base_.openscdbase.md#draggable)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[draggable](_editors_substation_editor_base_.substationeditorbase.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
@@ -874,9 +874,9 @@ ___
 
 • **firstChild**: *ChildNode | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[firstChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-firstchild)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[firstChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10752
 
@@ -888,9 +888,9 @@ ___
 
 • **firstElementChild**: *Element | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[firstElementChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-firstelementchild)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[firstElementChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-firstelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
@@ -902,9 +902,9 @@ ___
 
 • **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[floatingLabelFoundation](_open_scd_base_.openscdbase.md#optional-floatinglabelfoundation)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[floatingLabelFoundation](_editors_substation_editor_base_.substationeditorbase.md#optional-floatinglabelfoundation)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[floatingLabelFoundation](_open_scd_base_.openscdbase.md#optional-floatinglabelfoundation)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[floatingLabelFoundation](_editors_substation_editor_base_.substationeditorbase.md#optional-floatinglabelfoundation)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
 
@@ -914,9 +914,9 @@ ___
 
 • **hidden**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hidden](_open_scd_base_.openscdbase.md#hidden)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hidden](_editors_substation_editor_base_.substationeditorbase.md#hidden)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[hidden](_open_scd_base_.openscdbase.md#hidden)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hidden](_editors_substation_editor_base_.substationeditorbase.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
 
@@ -936,9 +936,9 @@ ___
 
 • **id**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[id](_open_scd_base_.openscdbase.md#id)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[id](_editors_substation_editor_base_.substationeditorbase.md#id)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[id](_open_scd_base_.openscdbase.md#id)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[id](_editors_substation_editor_base_.substationeditorbase.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5106
 
@@ -950,9 +950,9 @@ ___
 
 • **innerHTML**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[innerHTML](_open_scd_base_.openscdbase.md#innerhtml)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[innerHTML](_editors_substation_editor_base_.substationeditorbase.md#innerhtml)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[innerHTML](_open_scd_base_.openscdbase.md#innerhtml)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[innerHTML](_editors_substation_editor_base_.substationeditorbase.md#innerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9574
 
@@ -962,9 +962,9 @@ ___
 
 • **innerText**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[innerText](_open_scd_base_.openscdbase.md#innertext)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[innerText](_editors_substation_editor_base_.substationeditorbase.md#innertext)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[innerText](_open_scd_base_.openscdbase.md#innertext)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[innerText](_editors_substation_editor_base_.substationeditorbase.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6582
 
@@ -974,9 +974,9 @@ ___
 
 • **inputMode**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[inputMode](_open_scd_base_.openscdbase.md#inputmode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[inputMode](_editors_substation_editor_base_.substationeditorbase.md#inputmode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[inputMode](_open_scd_base_.openscdbase.md#inputmode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[inputMode](_editors_substation_editor_base_.substationeditorbase.md#inputmode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5255
 
@@ -986,9 +986,9 @@ ___
 
 • **isConnected**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[isConnected](_open_scd_base_.openscdbase.md#readonly-isconnected)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isConnected](_editors_substation_editor_base_.substationeditorbase.md#readonly-isconnected)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[isConnected](_open_scd_base_.openscdbase.md#readonly-isconnected)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isConnected](_editors_substation_editor_base_.substationeditorbase.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -1000,9 +1000,9 @@ ___
 
 • **isContentEditable**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[isContentEditable](_open_scd_base_.openscdbase.md#readonly-iscontenteditable)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isContentEditable](_editors_substation_editor_base_.substationeditorbase.md#readonly-iscontenteditable)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[isContentEditable](_open_scd_base_.openscdbase.md#readonly-iscontenteditable)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isContentEditable](_editors_substation_editor_base_.substationeditorbase.md#readonly-iscontenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5256
 
@@ -1012,9 +1012,9 @@ ___
 
 • **lang**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lang](_open_scd_base_.openscdbase.md#lang)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lang](_editors_substation_editor_base_.substationeditorbase.md#lang)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[lang](_open_scd_base_.openscdbase.md#lang)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lang](_editors_substation_editor_base_.substationeditorbase.md#lang)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6583
 
@@ -1024,9 +1024,9 @@ ___
 
 • **lastChild**: *ChildNode | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastChild](_open_scd_base_.openscdbase.md#readonly-lastchild)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lastChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-lastchild)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastChild](_open_scd_base_.openscdbase.md#readonly-lastchild)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lastChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -1038,9 +1038,9 @@ ___
 
 • **lastElementChild**: *Element | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lastElementChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-lastelementchild)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lastElementChild](_editors_substation_editor_base_.substationeditorbase.md#readonly-lastelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
@@ -1052,9 +1052,9 @@ ___
 
 • **lineRippleFoundation**? : *MDCLineRippleFoundation*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lineRippleFoundation](_open_scd_base_.openscdbase.md#optional-lineripplefoundation)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lineRippleFoundation](_editors_substation_editor_base_.substationeditorbase.md#optional-lineripplefoundation)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[lineRippleFoundation](_open_scd_base_.openscdbase.md#optional-lineripplefoundation)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lineRippleFoundation](_editors_substation_editor_base_.substationeditorbase.md#optional-lineripplefoundation)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
@@ -1064,9 +1064,9 @@ ___
 
 • **localName**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[localName](_open_scd_base_.openscdbase.md#readonly-localname)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[localName](_editors_substation_editor_base_.substationeditorbase.md#readonly-localname)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[localName](_open_scd_base_.openscdbase.md#readonly-localname)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[localName](_editors_substation_editor_base_.substationeditorbase.md#readonly-localname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -1128,7 +1128,7 @@ ___
 
 • **namespaceURI**: *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[namespaceURI](_editors_substation_editor_base_.substationeditorbase.md#readonly-namespaceuri)*
 
 *Overrides void*
 
@@ -1142,9 +1142,9 @@ ___
 
 • **nextElementSibling**: *Element | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nextElementSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-nextelementsibling)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nextElementSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-nextelementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11031
 
@@ -1156,9 +1156,9 @@ ___
 
 • **nextSibling**: *ChildNode | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nextSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-nextsibling)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nextSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10766
 
@@ -1170,9 +1170,9 @@ ___
 
 • **nodeName**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nodeName](_open_scd_base_.openscdbase.md#readonly-nodename)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nodeName](_editors_substation_editor_base_.substationeditorbase.md#readonly-nodename)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[nodeName](_open_scd_base_.openscdbase.md#readonly-nodename)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nodeName](_editors_substation_editor_base_.substationeditorbase.md#readonly-nodename)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10770
 
@@ -1184,9 +1184,9 @@ ___
 
 • **nodeType**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nodeType](_open_scd_base_.openscdbase.md#readonly-nodetype)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nodeType](_editors_substation_editor_base_.substationeditorbase.md#readonly-nodetype)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[nodeType](_open_scd_base_.openscdbase.md#readonly-nodetype)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nodeType](_editors_substation_editor_base_.substationeditorbase.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10774
 
@@ -1198,9 +1198,9 @@ ___
 
 • **nodeValue**: *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nodeValue](_open_scd_base_.openscdbase.md#nodevalue)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nodeValue](_editors_substation_editor_base_.substationeditorbase.md#nodevalue)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[nodeValue](_open_scd_base_.openscdbase.md#nodevalue)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nodeValue](_editors_substation_editor_base_.substationeditorbase.md#nodevalue)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10775
 
@@ -1210,9 +1210,9 @@ ___
 
 • **nonce**? : *undefined | string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nonce](_open_scd_base_.openscdbase.md#optional-nonce)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nonce](_editors_substation_editor_base_.substationeditorbase.md#optional-nonce)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[nonce](_open_scd_base_.openscdbase.md#optional-nonce)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nonce](_editors_substation_editor_base_.substationeditorbase.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7991
 
@@ -1222,9 +1222,9 @@ ___
 
 • **offsetHeight**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetHeight](_open_scd_base_.openscdbase.md#readonly-offsetheight)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetHeight](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetheight)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetHeight](_open_scd_base_.openscdbase.md#readonly-offsetheight)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetHeight](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6584
 
@@ -1234,9 +1234,9 @@ ___
 
 • **offsetLeft**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetLeft](_open_scd_base_.openscdbase.md#readonly-offsetleft)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetLeft](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetleft)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetLeft](_open_scd_base_.openscdbase.md#readonly-offsetleft)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetLeft](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6585
 
@@ -1246,9 +1246,9 @@ ___
 
 • **offsetParent**: *Element | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetParent](_open_scd_base_.openscdbase.md#readonly-offsetparent)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetParent](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetparent)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetParent](_open_scd_base_.openscdbase.md#readonly-offsetparent)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetParent](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetparent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6586
 
@@ -1258,9 +1258,9 @@ ___
 
 • **offsetTop**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetTop](_open_scd_base_.openscdbase.md#readonly-offsettop)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetTop](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsettop)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetTop](_open_scd_base_.openscdbase.md#readonly-offsettop)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetTop](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
@@ -1270,9 +1270,9 @@ ___
 
 • **offsetWidth**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetWidth](_open_scd_base_.openscdbase.md#readonly-offsetwidth)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetWidth](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetwidth)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[offsetWidth](_open_scd_base_.openscdbase.md#readonly-offsetwidth)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[offsetWidth](_editors_substation_editor_base_.substationeditorbase.md#readonly-offsetwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
@@ -1282,9 +1282,9 @@ ___
 
 • **onabort**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onabort](_open_scd_base_.openscdbase.md#onabort)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onabort](_editors_substation_editor_base_.substationeditorbase.md#onabort)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onabort](_open_scd_base_.openscdbase.md#onabort)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onabort](_editors_substation_editor_base_.substationeditorbase.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5766
 
@@ -1298,9 +1298,9 @@ ___
 
 • **onanimationcancel**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationcancel](_open_scd_base_.openscdbase.md#onanimationcancel)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationcancel](_editors_substation_editor_base_.substationeditorbase.md#onanimationcancel)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationcancel](_open_scd_base_.openscdbase.md#onanimationcancel)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationcancel](_editors_substation_editor_base_.substationeditorbase.md#onanimationcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5767
 
@@ -1310,9 +1310,9 @@ ___
 
 • **onanimationend**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationend](_open_scd_base_.openscdbase.md#onanimationend)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationend](_editors_substation_editor_base_.substationeditorbase.md#onanimationend)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationend](_open_scd_base_.openscdbase.md#onanimationend)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationend](_editors_substation_editor_base_.substationeditorbase.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5768
 
@@ -1322,9 +1322,9 @@ ___
 
 • **onanimationiteration**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationiteration](_open_scd_base_.openscdbase.md#onanimationiteration)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationiteration](_editors_substation_editor_base_.substationeditorbase.md#onanimationiteration)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationiteration](_open_scd_base_.openscdbase.md#onanimationiteration)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationiteration](_editors_substation_editor_base_.substationeditorbase.md#onanimationiteration)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5769
 
@@ -1334,9 +1334,9 @@ ___
 
 • **onanimationstart**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationstart](_open_scd_base_.openscdbase.md#onanimationstart)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationstart](_editors_substation_editor_base_.substationeditorbase.md#onanimationstart)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onanimationstart](_open_scd_base_.openscdbase.md#onanimationstart)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onanimationstart](_editors_substation_editor_base_.substationeditorbase.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5770
 
@@ -1346,9 +1346,9 @@ ___
 
 • **onauxclick**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onauxclick](_open_scd_base_.openscdbase.md#onauxclick)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onauxclick](_editors_substation_editor_base_.substationeditorbase.md#onauxclick)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onauxclick](_open_scd_base_.openscdbase.md#onauxclick)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onauxclick](_editors_substation_editor_base_.substationeditorbase.md#onauxclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5771
 
@@ -1358,9 +1358,9 @@ ___
 
 • **onblur**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onblur](_open_scd_base_.openscdbase.md#onblur)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onblur](_editors_substation_editor_base_.substationeditorbase.md#onblur)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onblur](_open_scd_base_.openscdbase.md#onblur)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onblur](_editors_substation_editor_base_.substationeditorbase.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5776
 
@@ -1374,9 +1374,9 @@ ___
 
 • **oncancel**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncancel](_open_scd_base_.openscdbase.md#oncancel)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncancel](_editors_substation_editor_base_.substationeditorbase.md#oncancel)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncancel](_open_scd_base_.openscdbase.md#oncancel)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncancel](_editors_substation_editor_base_.substationeditorbase.md#oncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1386,9 +1386,9 @@ ___
 
 • **oncanplay**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncanplay](_open_scd_base_.openscdbase.md#oncanplay)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncanplay](_editors_substation_editor_base_.substationeditorbase.md#oncanplay)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncanplay](_open_scd_base_.openscdbase.md#oncanplay)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncanplay](_editors_substation_editor_base_.substationeditorbase.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
@@ -1402,9 +1402,9 @@ ___
 
 • **oncanplaythrough**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncanplaythrough](_open_scd_base_.openscdbase.md#oncanplaythrough)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncanplaythrough](_editors_substation_editor_base_.substationeditorbase.md#oncanplaythrough)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncanplaythrough](_open_scd_base_.openscdbase.md#oncanplaythrough)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncanplaythrough](_editors_substation_editor_base_.substationeditorbase.md#oncanplaythrough)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5783
 
@@ -1414,9 +1414,9 @@ ___
 
 • **onchange**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onchange](_open_scd_base_.openscdbase.md#onchange)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onchange](_editors_substation_editor_base_.substationeditorbase.md#onchange)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onchange](_open_scd_base_.openscdbase.md#onchange)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onchange](_editors_substation_editor_base_.substationeditorbase.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
@@ -1430,9 +1430,9 @@ ___
 
 • **onclick**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onclick](_open_scd_base_.openscdbase.md#onclick)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onclick](_editors_substation_editor_base_.substationeditorbase.md#onclick)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onclick](_open_scd_base_.openscdbase.md#onclick)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onclick](_editors_substation_editor_base_.substationeditorbase.md#onclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1446,9 +1446,9 @@ ___
 
 • **onclose**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onclose](_open_scd_base_.openscdbase.md#onclose)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onclose](_editors_substation_editor_base_.substationeditorbase.md#onclose)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onclose](_open_scd_base_.openscdbase.md#onclose)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onclose](_editors_substation_editor_base_.substationeditorbase.md#onclose)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
@@ -1458,9 +1458,9 @@ ___
 
 • **oncontextmenu**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncontextmenu](_open_scd_base_.openscdbase.md#oncontextmenu)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncontextmenu](_editors_substation_editor_base_.substationeditorbase.md#oncontextmenu)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncontextmenu](_open_scd_base_.openscdbase.md#oncontextmenu)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncontextmenu](_editors_substation_editor_base_.substationeditorbase.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1474,9 +1474,9 @@ ___
 
 • **oncopy**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncopy](_open_scd_base_.openscdbase.md#oncopy)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncopy](_editors_substation_editor_base_.substationeditorbase.md#oncopy)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncopy](_open_scd_base_.openscdbase.md#oncopy)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncopy](_editors_substation_editor_base_.substationeditorbase.md#oncopy)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4888
 
@@ -1486,9 +1486,9 @@ ___
 
 • **oncuechange**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncuechange](_open_scd_base_.openscdbase.md#oncuechange)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncuechange](_editors_substation_editor_base_.substationeditorbase.md#oncuechange)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncuechange](_open_scd_base_.openscdbase.md#oncuechange)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncuechange](_editors_substation_editor_base_.substationeditorbase.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5800
 
@@ -1498,9 +1498,9 @@ ___
 
 • **oncut**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncut](_open_scd_base_.openscdbase.md#oncut)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncut](_editors_substation_editor_base_.substationeditorbase.md#oncut)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oncut](_open_scd_base_.openscdbase.md#oncut)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oncut](_editors_substation_editor_base_.substationeditorbase.md#oncut)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4889
 
@@ -1510,9 +1510,9 @@ ___
 
 • **ondblclick**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondblclick](_open_scd_base_.openscdbase.md#ondblclick)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondblclick](_editors_substation_editor_base_.substationeditorbase.md#ondblclick)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondblclick](_open_scd_base_.openscdbase.md#ondblclick)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondblclick](_editors_substation_editor_base_.substationeditorbase.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
@@ -1526,9 +1526,9 @@ ___
 
 • **ondrag**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondrag](_open_scd_base_.openscdbase.md#ondrag)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondrag](_editors_substation_editor_base_.substationeditorbase.md#ondrag)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondrag](_open_scd_base_.openscdbase.md#ondrag)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondrag](_editors_substation_editor_base_.substationeditorbase.md#ondrag)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1542,9 +1542,9 @@ ___
 
 • **ondragend**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragend](_open_scd_base_.openscdbase.md#ondragend)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragend](_editors_substation_editor_base_.substationeditorbase.md#ondragend)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragend](_open_scd_base_.openscdbase.md#ondragend)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragend](_editors_substation_editor_base_.substationeditorbase.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5815
 
@@ -1558,9 +1558,9 @@ ___
 
 • **ondragenter**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragenter](_open_scd_base_.openscdbase.md#ondragenter)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragenter](_editors_substation_editor_base_.substationeditorbase.md#ondragenter)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragenter](_open_scd_base_.openscdbase.md#ondragenter)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragenter](_editors_substation_editor_base_.substationeditorbase.md#ondragenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5820
 
@@ -1574,9 +1574,9 @@ ___
 
 • **ondragexit**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragexit](_open_scd_base_.openscdbase.md#ondragexit)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragexit](_editors_substation_editor_base_.substationeditorbase.md#ondragexit)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragexit](_open_scd_base_.openscdbase.md#ondragexit)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragexit](_editors_substation_editor_base_.substationeditorbase.md#ondragexit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
@@ -1586,9 +1586,9 @@ ___
 
 • **ondragleave**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragleave](_open_scd_base_.openscdbase.md#ondragleave)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragleave](_editors_substation_editor_base_.substationeditorbase.md#ondragleave)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragleave](_open_scd_base_.openscdbase.md#ondragleave)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragleave](_editors_substation_editor_base_.substationeditorbase.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1602,9 +1602,9 @@ ___
 
 • **ondragover**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragover](_open_scd_base_.openscdbase.md#ondragover)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragover](_editors_substation_editor_base_.substationeditorbase.md#ondragover)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragover](_open_scd_base_.openscdbase.md#ondragover)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragover](_editors_substation_editor_base_.substationeditorbase.md#ondragover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
@@ -1618,9 +1618,9 @@ ___
 
 • **ondragstart**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragstart](_open_scd_base_.openscdbase.md#ondragstart)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragstart](_editors_substation_editor_base_.substationeditorbase.md#ondragstart)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondragstart](_open_scd_base_.openscdbase.md#ondragstart)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondragstart](_editors_substation_editor_base_.substationeditorbase.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5836
 
@@ -1634,9 +1634,9 @@ ___
 
 • **ondrop**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondrop](_open_scd_base_.openscdbase.md#ondrop)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondrop](_editors_substation_editor_base_.substationeditorbase.md#ondrop)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondrop](_open_scd_base_.openscdbase.md#ondrop)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondrop](_editors_substation_editor_base_.substationeditorbase.md#ondrop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1646,9 +1646,9 @@ ___
 
 • **ondurationchange**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondurationchange](_open_scd_base_.openscdbase.md#ondurationchange)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondurationchange](_editors_substation_editor_base_.substationeditorbase.md#ondurationchange)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ondurationchange](_open_scd_base_.openscdbase.md#ondurationchange)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ondurationchange](_editors_substation_editor_base_.substationeditorbase.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
@@ -1662,9 +1662,9 @@ ___
 
 • **onemptied**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onemptied](_open_scd_base_.openscdbase.md#onemptied)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onemptied](_editors_substation_editor_base_.substationeditorbase.md#onemptied)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onemptied](_open_scd_base_.openscdbase.md#onemptied)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onemptied](_editors_substation_editor_base_.substationeditorbase.md#onemptied)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1678,9 +1678,9 @@ ___
 
 • **onended**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onended](_open_scd_base_.openscdbase.md#onended)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onended](_editors_substation_editor_base_.substationeditorbase.md#onended)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onended](_open_scd_base_.openscdbase.md#onended)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onended](_editors_substation_editor_base_.substationeditorbase.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5852
 
@@ -1694,9 +1694,9 @@ ___
 
 • **onerror**: *OnErrorEventHandler*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onerror](_open_scd_base_.openscdbase.md#onerror)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onerror](_editors_substation_editor_base_.substationeditorbase.md#onerror)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onerror](_open_scd_base_.openscdbase.md#onerror)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onerror](_editors_substation_editor_base_.substationeditorbase.md#onerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5857
 
@@ -1710,9 +1710,9 @@ ___
 
 • **onfocus**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onfocus](_open_scd_base_.openscdbase.md#onfocus)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onfocus](_editors_substation_editor_base_.substationeditorbase.md#onfocus)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onfocus](_open_scd_base_.openscdbase.md#onfocus)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onfocus](_editors_substation_editor_base_.substationeditorbase.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5862
 
@@ -1726,9 +1726,9 @@ ___
 
 • **onfullscreenchange**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onfullscreenchange](_open_scd_base_.openscdbase.md#onfullscreenchange)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onfullscreenchange](_editors_substation_editor_base_.substationeditorbase.md#onfullscreenchange)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onfullscreenchange](_open_scd_base_.openscdbase.md#onfullscreenchange)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onfullscreenchange](_editors_substation_editor_base_.substationeditorbase.md#onfullscreenchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5115
 
@@ -1738,9 +1738,9 @@ ___
 
 • **onfullscreenerror**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onfullscreenerror](_open_scd_base_.openscdbase.md#onfullscreenerror)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onfullscreenerror](_editors_substation_editor_base_.substationeditorbase.md#onfullscreenerror)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onfullscreenerror](_open_scd_base_.openscdbase.md#onfullscreenerror)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onfullscreenerror](_editors_substation_editor_base_.substationeditorbase.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -1750,9 +1750,9 @@ ___
 
 • **ongotpointercapture**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ongotpointercapture](_open_scd_base_.openscdbase.md#ongotpointercapture)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ongotpointercapture](_editors_substation_editor_base_.substationeditorbase.md#ongotpointercapture)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ongotpointercapture](_open_scd_base_.openscdbase.md#ongotpointercapture)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ongotpointercapture](_editors_substation_editor_base_.substationeditorbase.md#ongotpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1762,9 +1762,9 @@ ___
 
 • **oninput**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oninput](_open_scd_base_.openscdbase.md#oninput)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oninput](_editors_substation_editor_base_.substationeditorbase.md#oninput)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oninput](_open_scd_base_.openscdbase.md#oninput)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oninput](_editors_substation_editor_base_.substationeditorbase.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5864
 
@@ -1774,9 +1774,9 @@ ___
 
 • **oninvalid**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[oninvalid](_open_scd_base_.openscdbase.md#oninvalid)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oninvalid](_editors_substation_editor_base_.substationeditorbase.md#oninvalid)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[oninvalid](_open_scd_base_.openscdbase.md#oninvalid)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[oninvalid](_editors_substation_editor_base_.substationeditorbase.md#oninvalid)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5865
 
@@ -1786,9 +1786,9 @@ ___
 
 • **onkeydown**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onkeydown](_open_scd_base_.openscdbase.md#onkeydown)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onkeydown](_editors_substation_editor_base_.substationeditorbase.md#onkeydown)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onkeydown](_open_scd_base_.openscdbase.md#onkeydown)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onkeydown](_editors_substation_editor_base_.substationeditorbase.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5870
 
@@ -1802,9 +1802,9 @@ ___
 
 • **onkeypress**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onkeypress](_open_scd_base_.openscdbase.md#onkeypress)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onkeypress](_editors_substation_editor_base_.substationeditorbase.md#onkeypress)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onkeypress](_open_scd_base_.openscdbase.md#onkeypress)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onkeypress](_editors_substation_editor_base_.substationeditorbase.md#onkeypress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1818,9 +1818,9 @@ ___
 
 • **onkeyup**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onkeyup](_open_scd_base_.openscdbase.md#onkeyup)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onkeyup](_editors_substation_editor_base_.substationeditorbase.md#onkeyup)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onkeyup](_open_scd_base_.openscdbase.md#onkeyup)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onkeyup](_editors_substation_editor_base_.substationeditorbase.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5880
 
@@ -1834,9 +1834,9 @@ ___
 
 • **onload**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onload](_open_scd_base_.openscdbase.md#onload)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onload](_editors_substation_editor_base_.substationeditorbase.md#onload)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onload](_open_scd_base_.openscdbase.md#onload)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onload](_editors_substation_editor_base_.substationeditorbase.md#onload)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5885
 
@@ -1850,9 +1850,9 @@ ___
 
 • **onloadeddata**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onloadeddata](_open_scd_base_.openscdbase.md#onloadeddata)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onloadeddata](_editors_substation_editor_base_.substationeditorbase.md#onloadeddata)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onloadeddata](_open_scd_base_.openscdbase.md#onloadeddata)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onloadeddata](_editors_substation_editor_base_.substationeditorbase.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5890
 
@@ -1866,9 +1866,9 @@ ___
 
 • **onloadedmetadata**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onloadedmetadata](_open_scd_base_.openscdbase.md#onloadedmetadata)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onloadedmetadata](_editors_substation_editor_base_.substationeditorbase.md#onloadedmetadata)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onloadedmetadata](_open_scd_base_.openscdbase.md#onloadedmetadata)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onloadedmetadata](_editors_substation_editor_base_.substationeditorbase.md#onloadedmetadata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5895
 
@@ -1882,9 +1882,9 @@ ___
 
 • **onloadstart**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onloadstart](_open_scd_base_.openscdbase.md#onloadstart)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onloadstart](_editors_substation_editor_base_.substationeditorbase.md#onloadstart)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onloadstart](_open_scd_base_.openscdbase.md#onloadstart)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onloadstart](_editors_substation_editor_base_.substationeditorbase.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5900
 
@@ -1898,9 +1898,9 @@ ___
 
 • **onlostpointercapture**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onlostpointercapture](_open_scd_base_.openscdbase.md#onlostpointercapture)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onlostpointercapture](_editors_substation_editor_base_.substationeditorbase.md#onlostpointercapture)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onlostpointercapture](_open_scd_base_.openscdbase.md#onlostpointercapture)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onlostpointercapture](_editors_substation_editor_base_.substationeditorbase.md#onlostpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1910,9 +1910,9 @@ ___
 
 • **onmousedown**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmousedown](_open_scd_base_.openscdbase.md#onmousedown)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmousedown](_editors_substation_editor_base_.substationeditorbase.md#onmousedown)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmousedown](_open_scd_base_.openscdbase.md#onmousedown)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmousedown](_editors_substation_editor_base_.substationeditorbase.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
@@ -1926,9 +1926,9 @@ ___
 
 • **onmouseenter**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseenter](_open_scd_base_.openscdbase.md#onmouseenter)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseenter](_editors_substation_editor_base_.substationeditorbase.md#onmouseenter)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseenter](_open_scd_base_.openscdbase.md#onmouseenter)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseenter](_editors_substation_editor_base_.substationeditorbase.md#onmouseenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5907
 
@@ -1938,9 +1938,9 @@ ___
 
 • **onmouseleave**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseleave](_open_scd_base_.openscdbase.md#onmouseleave)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseleave](_editors_substation_editor_base_.substationeditorbase.md#onmouseleave)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseleave](_open_scd_base_.openscdbase.md#onmouseleave)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseleave](_editors_substation_editor_base_.substationeditorbase.md#onmouseleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5908
 
@@ -1950,9 +1950,9 @@ ___
 
 • **onmousemove**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmousemove](_open_scd_base_.openscdbase.md#onmousemove)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmousemove](_editors_substation_editor_base_.substationeditorbase.md#onmousemove)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmousemove](_open_scd_base_.openscdbase.md#onmousemove)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmousemove](_editors_substation_editor_base_.substationeditorbase.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5913
 
@@ -1966,9 +1966,9 @@ ___
 
 • **onmouseout**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseout](_open_scd_base_.openscdbase.md#onmouseout)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseout](_editors_substation_editor_base_.substationeditorbase.md#onmouseout)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseout](_open_scd_base_.openscdbase.md#onmouseout)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseout](_editors_substation_editor_base_.substationeditorbase.md#onmouseout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
@@ -1982,9 +1982,9 @@ ___
 
 • **onmouseover**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseover](_open_scd_base_.openscdbase.md#onmouseover)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseover](_editors_substation_editor_base_.substationeditorbase.md#onmouseover)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseover](_open_scd_base_.openscdbase.md#onmouseover)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseover](_editors_substation_editor_base_.substationeditorbase.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5923
 
@@ -1998,9 +1998,9 @@ ___
 
 • **onmouseup**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseup](_open_scd_base_.openscdbase.md#onmouseup)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseup](_editors_substation_editor_base_.substationeditorbase.md#onmouseup)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onmouseup](_open_scd_base_.openscdbase.md#onmouseup)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onmouseup](_editors_substation_editor_base_.substationeditorbase.md#onmouseup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5928
 
@@ -2014,9 +2014,9 @@ ___
 
 • **onpaste**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpaste](_open_scd_base_.openscdbase.md#onpaste)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpaste](_editors_substation_editor_base_.substationeditorbase.md#onpaste)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpaste](_open_scd_base_.openscdbase.md#onpaste)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpaste](_editors_substation_editor_base_.substationeditorbase.md#onpaste)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4890
 
@@ -2026,9 +2026,9 @@ ___
 
 • **onpause**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpause](_open_scd_base_.openscdbase.md#onpause)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpause](_editors_substation_editor_base_.substationeditorbase.md#onpause)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpause](_open_scd_base_.openscdbase.md#onpause)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpause](_editors_substation_editor_base_.substationeditorbase.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5933
 
@@ -2042,9 +2042,9 @@ ___
 
 • **onplay**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onplay](_open_scd_base_.openscdbase.md#onplay)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onplay](_editors_substation_editor_base_.substationeditorbase.md#onplay)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onplay](_open_scd_base_.openscdbase.md#onplay)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onplay](_editors_substation_editor_base_.substationeditorbase.md#onplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5938
 
@@ -2058,9 +2058,9 @@ ___
 
 • **onplaying**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onplaying](_open_scd_base_.openscdbase.md#onplaying)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onplaying](_editors_substation_editor_base_.substationeditorbase.md#onplaying)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onplaying](_open_scd_base_.openscdbase.md#onplaying)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onplaying](_editors_substation_editor_base_.substationeditorbase.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5943
 
@@ -2074,9 +2074,9 @@ ___
 
 • **onpointercancel**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointercancel](_open_scd_base_.openscdbase.md#onpointercancel)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointercancel](_editors_substation_editor_base_.substationeditorbase.md#onpointercancel)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointercancel](_open_scd_base_.openscdbase.md#onpointercancel)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointercancel](_editors_substation_editor_base_.substationeditorbase.md#onpointercancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -2086,9 +2086,9 @@ ___
 
 • **onpointerdown**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerdown](_open_scd_base_.openscdbase.md#onpointerdown)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerdown](_editors_substation_editor_base_.substationeditorbase.md#onpointerdown)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerdown](_open_scd_base_.openscdbase.md#onpointerdown)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerdown](_editors_substation_editor_base_.substationeditorbase.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5945
 
@@ -2098,9 +2098,9 @@ ___
 
 • **onpointerenter**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerenter](_open_scd_base_.openscdbase.md#onpointerenter)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerenter](_editors_substation_editor_base_.substationeditorbase.md#onpointerenter)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerenter](_open_scd_base_.openscdbase.md#onpointerenter)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerenter](_editors_substation_editor_base_.substationeditorbase.md#onpointerenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5946
 
@@ -2110,9 +2110,9 @@ ___
 
 • **onpointerleave**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerleave](_open_scd_base_.openscdbase.md#onpointerleave)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerleave](_editors_substation_editor_base_.substationeditorbase.md#onpointerleave)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerleave](_open_scd_base_.openscdbase.md#onpointerleave)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerleave](_editors_substation_editor_base_.substationeditorbase.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5947
 
@@ -2122,9 +2122,9 @@ ___
 
 • **onpointermove**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointermove](_open_scd_base_.openscdbase.md#onpointermove)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointermove](_editors_substation_editor_base_.substationeditorbase.md#onpointermove)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointermove](_open_scd_base_.openscdbase.md#onpointermove)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointermove](_editors_substation_editor_base_.substationeditorbase.md#onpointermove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5948
 
@@ -2134,9 +2134,9 @@ ___
 
 • **onpointerout**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerout](_open_scd_base_.openscdbase.md#onpointerout)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerout](_editors_substation_editor_base_.substationeditorbase.md#onpointerout)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerout](_open_scd_base_.openscdbase.md#onpointerout)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerout](_editors_substation_editor_base_.substationeditorbase.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
@@ -2146,9 +2146,9 @@ ___
 
 • **onpointerover**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerover](_open_scd_base_.openscdbase.md#onpointerover)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerover](_editors_substation_editor_base_.substationeditorbase.md#onpointerover)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerover](_open_scd_base_.openscdbase.md#onpointerover)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerover](_editors_substation_editor_base_.substationeditorbase.md#onpointerover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5950
 
@@ -2158,9 +2158,9 @@ ___
 
 • **onpointerup**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerup](_open_scd_base_.openscdbase.md#onpointerup)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerup](_editors_substation_editor_base_.substationeditorbase.md#onpointerup)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onpointerup](_open_scd_base_.openscdbase.md#onpointerup)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onpointerup](_editors_substation_editor_base_.substationeditorbase.md#onpointerup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5951
 
@@ -2170,9 +2170,9 @@ ___
 
 • **onprogress**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onprogress](_open_scd_base_.openscdbase.md#onprogress)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onprogress](_editors_substation_editor_base_.substationeditorbase.md#onprogress)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onprogress](_open_scd_base_.openscdbase.md#onprogress)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onprogress](_editors_substation_editor_base_.substationeditorbase.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -2186,9 +2186,9 @@ ___
 
 • **onratechange**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onratechange](_open_scd_base_.openscdbase.md#onratechange)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onratechange](_editors_substation_editor_base_.substationeditorbase.md#onratechange)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onratechange](_open_scd_base_.openscdbase.md#onratechange)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onratechange](_editors_substation_editor_base_.substationeditorbase.md#onratechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
@@ -2202,9 +2202,9 @@ ___
 
 • **onreset**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onreset](_open_scd_base_.openscdbase.md#onreset)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onreset](_editors_substation_editor_base_.substationeditorbase.md#onreset)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onreset](_open_scd_base_.openscdbase.md#onreset)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onreset](_editors_substation_editor_base_.substationeditorbase.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5966
 
@@ -2218,9 +2218,9 @@ ___
 
 • **onresize**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onresize](_open_scd_base_.openscdbase.md#onresize)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onresize](_editors_substation_editor_base_.substationeditorbase.md#onresize)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onresize](_open_scd_base_.openscdbase.md#onresize)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onresize](_editors_substation_editor_base_.substationeditorbase.md#onresize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -2230,9 +2230,9 @@ ___
 
 • **onscroll**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onscroll](_open_scd_base_.openscdbase.md#onscroll)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onscroll](_editors_substation_editor_base_.substationeditorbase.md#onscroll)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onscroll](_open_scd_base_.openscdbase.md#onscroll)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onscroll](_editors_substation_editor_base_.substationeditorbase.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
@@ -2246,9 +2246,9 @@ ___
 
 • **onsecuritypolicyviolation**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onsecuritypolicyviolation](_open_scd_base_.openscdbase.md#onsecuritypolicyviolation)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onsecuritypolicyviolation](_editors_substation_editor_base_.substationeditorbase.md#onsecuritypolicyviolation)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onsecuritypolicyviolation](_open_scd_base_.openscdbase.md#onsecuritypolicyviolation)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onsecuritypolicyviolation](_editors_substation_editor_base_.substationeditorbase.md#onsecuritypolicyviolation)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5973
 
@@ -2258,9 +2258,9 @@ ___
 
 • **onseeked**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onseeked](_open_scd_base_.openscdbase.md#onseeked)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onseeked](_editors_substation_editor_base_.substationeditorbase.md#onseeked)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onseeked](_open_scd_base_.openscdbase.md#onseeked)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onseeked](_editors_substation_editor_base_.substationeditorbase.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
@@ -2274,9 +2274,9 @@ ___
 
 • **onseeking**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onseeking](_open_scd_base_.openscdbase.md#onseeking)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onseeking](_editors_substation_editor_base_.substationeditorbase.md#onseeking)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onseeking](_open_scd_base_.openscdbase.md#onseeking)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onseeking](_editors_substation_editor_base_.substationeditorbase.md#onseeking)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -2290,9 +2290,9 @@ ___
 
 • **onselect**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onselect](_open_scd_base_.openscdbase.md#onselect)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onselect](_editors_substation_editor_base_.substationeditorbase.md#onselect)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onselect](_open_scd_base_.openscdbase.md#onselect)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onselect](_editors_substation_editor_base_.substationeditorbase.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5988
 
@@ -2306,9 +2306,9 @@ ___
 
 • **onselectionchange**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onselectionchange](_open_scd_base_.openscdbase.md#onselectionchange)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onselectionchange](_editors_substation_editor_base_.substationeditorbase.md#onselectionchange)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onselectionchange](_open_scd_base_.openscdbase.md#onselectionchange)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onselectionchange](_editors_substation_editor_base_.substationeditorbase.md#onselectionchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -2318,9 +2318,9 @@ ___
 
 • **onselectstart**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onselectstart](_open_scd_base_.openscdbase.md#onselectstart)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onselectstart](_editors_substation_editor_base_.substationeditorbase.md#onselectstart)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onselectstart](_open_scd_base_.openscdbase.md#onselectstart)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onselectstart](_editors_substation_editor_base_.substationeditorbase.md#onselectstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5990
 
@@ -2330,9 +2330,9 @@ ___
 
 • **onstalled**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onstalled](_open_scd_base_.openscdbase.md#onstalled)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onstalled](_editors_substation_editor_base_.substationeditorbase.md#onstalled)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onstalled](_open_scd_base_.openscdbase.md#onstalled)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onstalled](_editors_substation_editor_base_.substationeditorbase.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5995
 
@@ -2346,9 +2346,9 @@ ___
 
 • **onsubmit**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onsubmit](_open_scd_base_.openscdbase.md#onsubmit)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onsubmit](_editors_substation_editor_base_.substationeditorbase.md#onsubmit)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onsubmit](_open_scd_base_.openscdbase.md#onsubmit)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onsubmit](_editors_substation_editor_base_.substationeditorbase.md#onsubmit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5996
 
@@ -2358,9 +2358,9 @@ ___
 
 • **onsuspend**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onsuspend](_open_scd_base_.openscdbase.md#onsuspend)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onsuspend](_editors_substation_editor_base_.substationeditorbase.md#onsuspend)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onsuspend](_open_scd_base_.openscdbase.md#onsuspend)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onsuspend](_editors_substation_editor_base_.substationeditorbase.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
@@ -2374,9 +2374,9 @@ ___
 
 • **ontimeupdate**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontimeupdate](_open_scd_base_.openscdbase.md#ontimeupdate)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontimeupdate](_editors_substation_editor_base_.substationeditorbase.md#ontimeupdate)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontimeupdate](_open_scd_base_.openscdbase.md#ontimeupdate)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontimeupdate](_editors_substation_editor_base_.substationeditorbase.md#ontimeupdate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -2390,9 +2390,9 @@ ___
 
 • **ontoggle**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontoggle](_open_scd_base_.openscdbase.md#ontoggle)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontoggle](_editors_substation_editor_base_.substationeditorbase.md#ontoggle)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontoggle](_open_scd_base_.openscdbase.md#ontoggle)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontoggle](_editors_substation_editor_base_.substationeditorbase.md#ontoggle)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
@@ -2402,9 +2402,9 @@ ___
 
 • **ontouchcancel**? : *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchcancel](_open_scd_base_.openscdbase.md#optional-ontouchcancel)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchcancel](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchcancel)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchcancel](_open_scd_base_.openscdbase.md#optional-ontouchcancel)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchcancel](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6008
 
@@ -2414,9 +2414,9 @@ ___
 
 • **ontouchend**? : *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchend](_open_scd_base_.openscdbase.md#optional-ontouchend)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchend](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchend)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchend](_open_scd_base_.openscdbase.md#optional-ontouchend)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchend](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6009
 
@@ -2426,9 +2426,9 @@ ___
 
 • **ontouchmove**? : *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchmove](_open_scd_base_.openscdbase.md#optional-ontouchmove)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchmove](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchmove)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchmove](_open_scd_base_.openscdbase.md#optional-ontouchmove)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchmove](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6010
 
@@ -2438,9 +2438,9 @@ ___
 
 • **ontouchstart**? : *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchstart](_open_scd_base_.openscdbase.md#optional-ontouchstart)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchstart](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchstart)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontouchstart](_open_scd_base_.openscdbase.md#optional-ontouchstart)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontouchstart](_editors_substation_editor_base_.substationeditorbase.md#optional-ontouchstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6011
 
@@ -2450,9 +2450,9 @@ ___
 
 • **ontransitioncancel**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitioncancel](_open_scd_base_.openscdbase.md#ontransitioncancel)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitioncancel](_editors_substation_editor_base_.substationeditorbase.md#ontransitioncancel)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitioncancel](_open_scd_base_.openscdbase.md#ontransitioncancel)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitioncancel](_editors_substation_editor_base_.substationeditorbase.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2462,9 +2462,9 @@ ___
 
 • **ontransitionend**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitionend](_open_scd_base_.openscdbase.md#ontransitionend)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitionend](_editors_substation_editor_base_.substationeditorbase.md#ontransitionend)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitionend](_open_scd_base_.openscdbase.md#ontransitionend)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitionend](_editors_substation_editor_base_.substationeditorbase.md#ontransitionend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6013
 
@@ -2474,9 +2474,9 @@ ___
 
 • **ontransitionrun**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitionrun](_open_scd_base_.openscdbase.md#ontransitionrun)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitionrun](_editors_substation_editor_base_.substationeditorbase.md#ontransitionrun)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitionrun](_open_scd_base_.openscdbase.md#ontransitionrun)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitionrun](_editors_substation_editor_base_.substationeditorbase.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6014
 
@@ -2486,9 +2486,9 @@ ___
 
 • **ontransitionstart**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitionstart](_open_scd_base_.openscdbase.md#ontransitionstart)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitionstart](_editors_substation_editor_base_.substationeditorbase.md#ontransitionstart)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[ontransitionstart](_open_scd_base_.openscdbase.md#ontransitionstart)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ontransitionstart](_editors_substation_editor_base_.substationeditorbase.md#ontransitionstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6015
 
@@ -2498,9 +2498,9 @@ ___
 
 • **onvolumechange**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onvolumechange](_open_scd_base_.openscdbase.md#onvolumechange)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onvolumechange](_editors_substation_editor_base_.substationeditorbase.md#onvolumechange)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onvolumechange](_open_scd_base_.openscdbase.md#onvolumechange)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onvolumechange](_editors_substation_editor_base_.substationeditorbase.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
@@ -2514,9 +2514,9 @@ ___
 
 • **onwaiting**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onwaiting](_open_scd_base_.openscdbase.md#onwaiting)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onwaiting](_editors_substation_editor_base_.substationeditorbase.md#onwaiting)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onwaiting](_open_scd_base_.openscdbase.md#onwaiting)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onwaiting](_editors_substation_editor_base_.substationeditorbase.md#onwaiting)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2530,9 +2530,9 @@ ___
 
 • **onwheel**: *function | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onwheel](_open_scd_base_.openscdbase.md#onwheel)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onwheel](_editors_substation_editor_base_.substationeditorbase.md#onwheel)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[onwheel](_open_scd_base_.openscdbase.md#onwheel)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[onwheel](_editors_substation_editor_base_.substationeditorbase.md#onwheel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
@@ -2542,9 +2542,9 @@ ___
 
 • **outerHTML**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[outerHTML](_open_scd_base_.openscdbase.md#outerhtml)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[outerHTML](_editors_substation_editor_base_.substationeditorbase.md#outerhtml)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[outerHTML](_open_scd_base_.openscdbase.md#outerhtml)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[outerHTML](_editors_substation_editor_base_.substationeditorbase.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5117
 
@@ -2554,7 +2554,7 @@ ___
 
 • **ownerDocument**: *Document*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[ownerDocument](_open_scd_base_.openscdbase.md#readonly-ownerdocument)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[ownerDocument](_editors_substation_editor_base_.substationeditorbase.md#readonly-ownerdocument)*
 
 *Overrides void*
 
@@ -2566,9 +2566,9 @@ ___
 
 • **parentElement**: *[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[parentElement](_editors_substation_editor_base_.substationeditorbase.md#readonly-parentelement)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[parentElement](_editors_substation_editor_base_.substationeditorbase.md#readonly-parentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10783
 
@@ -2580,9 +2580,9 @@ ___
 
 • **parentNode**: *Node & ParentNode | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[parentNode](_open_scd_base_.openscdbase.md#readonly-parentnode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[parentNode](_editors_substation_editor_base_.substationeditorbase.md#readonly-parentnode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[parentNode](_open_scd_base_.openscdbase.md#readonly-parentnode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[parentNode](_editors_substation_editor_base_.substationeditorbase.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
@@ -2594,9 +2594,9 @@ ___
 
 • **prefix**: *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[prefix](_open_scd_base_.openscdbase.md#readonly-prefix)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[prefix](_editors_substation_editor_base_.substationeditorbase.md#readonly-prefix)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[prefix](_open_scd_base_.openscdbase.md#readonly-prefix)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[prefix](_editors_substation_editor_base_.substationeditorbase.md#readonly-prefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5122
 
@@ -2608,9 +2608,9 @@ ___
 
 • **previousElementSibling**: *Element | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousElementSibling](_open_scd_base_.openscdbase.md#readonly-previouselementsibling)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[previousElementSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-previouselementsibling)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousElementSibling](_open_scd_base_.openscdbase.md#readonly-previouselementsibling)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[previousElementSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-previouselementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11035
 
@@ -2622,9 +2622,9 @@ ___
 
 • **previousSibling**: *ChildNode | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousSibling](_open_scd_base_.openscdbase.md#readonly-previoussibling)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[previousSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-previoussibling)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousSibling](_open_scd_base_.openscdbase.md#readonly-previoussibling)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[previousSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10791
 
@@ -2636,7 +2636,7 @@ ___
 
 • **renderRoot**: *Element | DocumentFragment*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderRoot](_open_scd_base_.openscdbase.md#readonly-renderroot)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[renderRoot](_editors_substation_editor_base_.substationeditorbase.md#readonly-renderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:65
 
@@ -2649,9 +2649,9 @@ ___
 
 • **scrollHeight**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollHeight](_open_scd_base_.openscdbase.md#readonly-scrollheight)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollHeight](_editors_substation_editor_base_.substationeditorbase.md#readonly-scrollheight)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollHeight](_open_scd_base_.openscdbase.md#readonly-scrollheight)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollHeight](_editors_substation_editor_base_.substationeditorbase.md#readonly-scrollheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5123
 
@@ -2661,9 +2661,9 @@ ___
 
 • **scrollLeft**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollLeft](_open_scd_base_.openscdbase.md#scrollleft)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollLeft](_editors_substation_editor_base_.substationeditorbase.md#scrollleft)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollLeft](_open_scd_base_.openscdbase.md#scrollleft)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollLeft](_editors_substation_editor_base_.substationeditorbase.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5124
 
@@ -2673,9 +2673,9 @@ ___
 
 • **scrollTop**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollTop](_open_scd_base_.openscdbase.md#scrolltop)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollTop](_editors_substation_editor_base_.substationeditorbase.md#scrolltop)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollTop](_open_scd_base_.openscdbase.md#scrolltop)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollTop](_editors_substation_editor_base_.substationeditorbase.md#scrolltop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
@@ -2685,9 +2685,9 @@ ___
 
 • **scrollWidth**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollWidth](_open_scd_base_.openscdbase.md#readonly-scrollwidth)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollWidth](_editors_substation_editor_base_.substationeditorbase.md#readonly-scrollwidth)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollWidth](_open_scd_base_.openscdbase.md#readonly-scrollwidth)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollWidth](_editors_substation_editor_base_.substationeditorbase.md#readonly-scrollwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -2697,9 +2697,9 @@ ___
 
 • **shadowRoot**: *ShadowRoot | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[shadowRoot](_open_scd_base_.openscdbase.md#readonly-shadowroot)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[shadowRoot](_editors_substation_editor_base_.substationeditorbase.md#readonly-shadowroot)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[shadowRoot](_open_scd_base_.openscdbase.md#readonly-shadowroot)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[shadowRoot](_editors_substation_editor_base_.substationeditorbase.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5130
 
@@ -2711,9 +2711,9 @@ ___
 
 • **slot**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[slot](_open_scd_base_.openscdbase.md#slot)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[slot](_editors_substation_editor_base_.substationeditorbase.md#slot)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[slot](_open_scd_base_.openscdbase.md#slot)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[slot](_editors_substation_editor_base_.substationeditorbase.md#slot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2725,9 +2725,9 @@ ___
 
 • **spellcheck**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[spellcheck](_open_scd_base_.openscdbase.md#spellcheck)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[spellcheck](_editors_substation_editor_base_.substationeditorbase.md#spellcheck)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[spellcheck](_open_scd_base_.openscdbase.md#spellcheck)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[spellcheck](_editors_substation_editor_base_.substationeditorbase.md#spellcheck)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
@@ -2747,9 +2747,9 @@ ___
 
 • **style**: *CSSStyleDeclaration*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[style](_open_scd_base_.openscdbase.md#readonly-style)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[style](_editors_substation_editor_base_.substationeditorbase.md#readonly-style)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[style](_open_scd_base_.openscdbase.md#readonly-style)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[style](_editors_substation_editor_base_.substationeditorbase.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5250
 
@@ -2759,9 +2759,9 @@ ___
 
 • **tabIndex**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tabIndex](_open_scd_base_.openscdbase.md#tabindex)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[tabIndex](_editors_substation_editor_base_.substationeditorbase.md#tabindex)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[tabIndex](_open_scd_base_.openscdbase.md#tabindex)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[tabIndex](_editors_substation_editor_base_.substationeditorbase.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
 
@@ -2781,9 +2781,9 @@ ___
 
 • **tagName**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tagName](_open_scd_base_.openscdbase.md#readonly-tagname)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[tagName](_editors_substation_editor_base_.substationeditorbase.md#readonly-tagname)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[tagName](_open_scd_base_.openscdbase.md#readonly-tagname)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[tagName](_editors_substation_editor_base_.substationeditorbase.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5138
 
@@ -2795,9 +2795,9 @@ ___
 
 • **textContent**: *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[textContent](_open_scd_base_.openscdbase.md#textcontent)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[textContent](_editors_substation_editor_base_.substationeditorbase.md#textcontent)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[textContent](_open_scd_base_.openscdbase.md#textcontent)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[textContent](_editors_substation_editor_base_.substationeditorbase.md#textcontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10792
 
@@ -2807,9 +2807,9 @@ ___
 
 • **title**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[title](_open_scd_base_.openscdbase.md#title)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[title](_editors_substation_editor_base_.substationeditorbase.md#title)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[title](_open_scd_base_.openscdbase.md#title)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[title](_editors_substation_editor_base_.substationeditorbase.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
@@ -2819,9 +2819,9 @@ ___
 
 • **translate**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[translate](_open_scd_base_.openscdbase.md#translate)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[translate](_editors_substation_editor_base_.substationeditorbase.md#translate)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[translate](_open_scd_base_.openscdbase.md#translate)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[translate](_editors_substation_editor_base_.substationeditorbase.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
@@ -2865,7 +2865,7 @@ ___
 
 ▪ **[finalized]**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[[finalized]](_open_scd_base_.openscdbase.md#static-protected-[finalized])*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[[finalized]](_editors_substation_editor_base_.substationeditorbase.md#static-protected-[finalized])*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
@@ -2885,7 +2885,7 @@ ___
 
 ▪ **finalized**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[finalized](_open_scd_base_.openscdbase.md#static-protected-finalized)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[finalized](_editors_substation_editor_base_.substationeditorbase.md#static-protected-finalized)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:36
 
@@ -2901,7 +2901,7 @@ ___
 
 ▪ **properties**: *PropertyDeclarations*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[properties](_open_scd_base_.openscdbase.md#static-properties)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[properties](_editors_substation_editor_base_.substationeditorbase.md#static-properties)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:148
 
@@ -2914,7 +2914,7 @@ ___
 
 ▪ **render**: *function*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#static-render)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:44
 
@@ -2946,7 +2946,7 @@ ___
 
 ▪ **styles**? : *CSSResult | CSSResultArray*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[styles](_editors_substation_editor_base_.substationeditorbase.md#static-optional-styles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:49
 
@@ -2959,7 +2959,7 @@ using the `css` tag function.
 
 • **get hasUpdated**(): *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasUpdated](_editors_substation_editor_base_.substationeditorbase.md#protected-hasupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
@@ -3009,7 +3009,7 @@ ___
 
 • **get updateComplete**(): *Promise‹unknown›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[updateComplete](_editors_substation_editor_base_.substationeditorbase.md#updatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:370
 
@@ -3035,7 +3035,7 @@ ___
 
 • **get observedAttributes**(): *string[]*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[observedAttributes](_editors_substation_editor_base_.substationeditorbase.md#static-observedattributes)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:153
 
@@ -3051,7 +3051,7 @@ Returns a list of attributes corresponding to the registered properties.
 
 ▸ **_getUpdateComplete**(): *Promise‹unknown›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[_getUpdateComplete](_open_scd_base_.openscdbase.md#protected-_getupdatecomplete)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[_getUpdateComplete](_editors_substation_editor_base_.substationeditorbase.md#protected-_getupdatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:387
 
@@ -3078,7 +3078,7 @@ ___
 
 ▸ **addEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[addEventListener](_open_scd_base_.openscdbase.md#addeventlistener)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[addEventListener](_editors_substation_editor_base_.substationeditorbase.md#addeventlistener)*
 
 *Overrides void*
 
@@ -3109,7 +3109,7 @@ Name | Type |
 
 ▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[addEventListener](_open_scd_base_.openscdbase.md#addeventlistener)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[addEventListener](_editors_substation_editor_base_.substationeditorbase.md#addeventlistener)*
 
 *Overrides void*
 
@@ -3131,7 +3131,7 @@ ___
 
 ▸ **adoptStyles**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[adoptStyles](_open_scd_base_.openscdbase.md#protected-adoptstyles)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[adoptStyles](_editors_substation_editor_base_.substationeditorbase.md#protected-adoptstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:89
 
@@ -3151,9 +3151,9 @@ ___
 
 ▸ **after**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[after](_open_scd_base_.openscdbase.md#after)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[after](_editors_substation_editor_base_.substationeditorbase.md#after)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[after](_open_scd_base_.openscdbase.md#after)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[after](_editors_substation_editor_base_.substationeditorbase.md#after)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3501
 
@@ -3175,9 +3175,9 @@ ___
 
 ▸ **animate**(`keyframes`: Keyframe[] | PropertyIndexedKeyframes | null, `options?`: number | KeyframeAnimationOptions): *Animation*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[animate](_open_scd_base_.openscdbase.md#animate)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[animate](_editors_substation_editor_base_.substationeditorbase.md#animate)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[animate](_open_scd_base_.openscdbase.md#animate)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[animate](_editors_substation_editor_base_.substationeditorbase.md#animate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
@@ -3196,9 +3196,9 @@ ___
 
 ▸ **append**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[append](_open_scd_base_.openscdbase.md#append)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[append](_editors_substation_editor_base_.substationeditorbase.md#append)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[append](_open_scd_base_.openscdbase.md#append)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[append](_editors_substation_editor_base_.substationeditorbase.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11319
 
@@ -3220,9 +3220,9 @@ ___
 
 ▸ **appendChild**‹**T**›(`newChild`: T): *T*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[appendChild](_open_scd_base_.openscdbase.md#appendchild)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[appendChild](_editors_substation_editor_base_.substationeditorbase.md#appendchild)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[appendChild](_open_scd_base_.openscdbase.md#appendchild)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[appendChild](_editors_substation_editor_base_.substationeditorbase.md#appendchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10793
 
@@ -3244,9 +3244,9 @@ ___
 
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[attachShadow](_open_scd_base_.openscdbase.md#attachshadow)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[attachShadow](_editors_substation_editor_base_.substationeditorbase.md#attachshadow)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[attachShadow](_open_scd_base_.openscdbase.md#attachshadow)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[attachShadow](_editors_substation_editor_base_.substationeditorbase.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5142
 
@@ -3266,7 +3266,7 @@ ___
 
 ▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[attributeChangedCallback](_open_scd_base_.openscdbase.md#attributechangedcallback)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[attributeChangedCallback](_editors_substation_editor_base_.substationeditorbase.md#attributechangedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:308
 
@@ -3288,9 +3288,9 @@ ___
 
 ▸ **before**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[before](_open_scd_base_.openscdbase.md#before)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[before](_editors_substation_editor_base_.substationeditorbase.md#before)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[before](_open_scd_base_.openscdbase.md#before)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[before](_editors_substation_editor_base_.substationeditorbase.md#before)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3507
 
@@ -3312,9 +3312,9 @@ ___
 
 ▸ **blur**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[blur](_open_scd_base_.openscdbase.md#blur)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[blur](_editors_substation_editor_base_.substationeditorbase.md#blur)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[blur](_open_scd_base_.openscdbase.md#blur)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[blur](_editors_substation_editor_base_.substationeditorbase.md#blur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7993
 
@@ -3326,9 +3326,9 @@ ___
 
 ▸ **click**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[click](_open_scd_base_.openscdbase.md#click)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[click](_editors_substation_editor_base_.substationeditorbase.md#click)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[click](_open_scd_base_.openscdbase.md#click)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[click](_editors_substation_editor_base_.substationeditorbase.md#click)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
@@ -3340,9 +3340,9 @@ ___
 
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[cloneNode](_open_scd_base_.openscdbase.md#clonenode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[cloneNode](_editors_substation_editor_base_.substationeditorbase.md#clonenode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[cloneNode](_open_scd_base_.openscdbase.md#clonenode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[cloneNode](_editors_substation_editor_base_.substationeditorbase.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10797
 
@@ -3362,9 +3362,9 @@ ___
 
 ▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[closest](_open_scd_base_.openscdbase.md#closest)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[closest](_editors_substation_editor_base_.substationeditorbase.md#closest)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[closest](_open_scd_base_.openscdbase.md#closest)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[closest](_editors_substation_editor_base_.substationeditorbase.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5146
 
@@ -3384,9 +3384,9 @@ Name | Type |
 
 ▸ **closest**‹**K**›(`selector`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[closest](_open_scd_base_.openscdbase.md#closest)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[closest](_editors_substation_editor_base_.substationeditorbase.md#closest)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[closest](_open_scd_base_.openscdbase.md#closest)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[closest](_editors_substation_editor_base_.substationeditorbase.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5147
 
@@ -3404,9 +3404,9 @@ Name | Type |
 
 ▸ **closest**‹**E**›(`selector`: string): *E | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[closest](_open_scd_base_.openscdbase.md#closest)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[closest](_editors_substation_editor_base_.substationeditorbase.md#closest)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[closest](_open_scd_base_.openscdbase.md#closest)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[closest](_editors_substation_editor_base_.substationeditorbase.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -3448,9 +3448,9 @@ ___
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[compareDocumentPosition](_open_scd_base_.openscdbase.md#comparedocumentposition)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[compareDocumentPosition](_editors_substation_editor_base_.substationeditorbase.md#comparedocumentposition)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[compareDocumentPosition](_open_scd_base_.openscdbase.md#comparedocumentposition)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[compareDocumentPosition](_editors_substation_editor_base_.substationeditorbase.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10801
 
@@ -3484,9 +3484,9 @@ ___
 
 ▸ **contains**(`other`: Node | null): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[contains](_open_scd_base_.openscdbase.md#contains)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[contains](_editors_substation_editor_base_.substationeditorbase.md#contains)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[contains](_open_scd_base_.openscdbase.md#contains)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[contains](_editors_substation_editor_base_.substationeditorbase.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
@@ -3506,7 +3506,7 @@ ___
 
 ▸ **createRenderRoot**(): *Element | ShadowRoot*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[createRenderRoot](_open_scd_base_.openscdbase.md#protected-createrenderroot)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[createRenderRoot](_editors_substation_editor_base_.substationeditorbase.md#protected-createrenderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:79
 
@@ -3525,7 +3525,7 @@ ___
 
 ▸ **disconnectedCallback**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[disconnectedCallback](_open_scd_base_.openscdbase.md#disconnectedcallback)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[disconnectedCallback](_editors_substation_editor_base_.substationeditorbase.md#disconnectedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:304
 
@@ -3541,9 +3541,9 @@ ___
 
 ▸ **dispatchEvent**(`event`: Event): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[dispatchEvent](_open_scd_base_.openscdbase.md#dispatchevent)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[dispatchEvent](_editors_substation_editor_base_.substationeditorbase.md#dispatchevent)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[dispatchEvent](_open_scd_base_.openscdbase.md#dispatchevent)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[dispatchEvent](_editors_substation_editor_base_.substationeditorbase.md#dispatchevent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5417
 
@@ -3563,7 +3563,7 @@ ___
 
 ▸ **enableUpdating**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[enableUpdating](_open_scd_base_.openscdbase.md#protected-enableupdating)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[enableUpdating](_editors_substation_editor_base_.substationeditorbase.md#protected-enableupdating)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:298
 
@@ -3594,7 +3594,7 @@ ___
 
 ▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[firstUpdated](_open_scd_base_.openscdbase.md#protected-firstupdated)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[firstUpdated](_editors_substation_editor_base_.substationeditorbase.md#protected-firstupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:424
 
@@ -3618,9 +3618,9 @@ ___
 
 ▸ **focus**(`options?`: FocusOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[focus](_open_scd_base_.openscdbase.md#focus)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[focus](_editors_substation_editor_base_.substationeditorbase.md#focus)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[focus](_open_scd_base_.openscdbase.md#focus)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[focus](_editors_substation_editor_base_.substationeditorbase.md#focus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7994
 
@@ -3638,9 +3638,9 @@ ___
 
 ▸ **getAnimations**(): *Animation[]*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAnimations](_open_scd_base_.openscdbase.md#getanimations)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAnimations](_editors_substation_editor_base_.substationeditorbase.md#getanimations)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAnimations](_open_scd_base_.openscdbase.md#getanimations)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAnimations](_editors_substation_editor_base_.substationeditorbase.md#getanimations)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
@@ -3652,9 +3652,9 @@ ___
 
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttribute](_open_scd_base_.openscdbase.md#getattribute)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttribute](_editors_substation_editor_base_.substationeditorbase.md#getattribute)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttribute](_open_scd_base_.openscdbase.md#getattribute)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttribute](_editors_substation_editor_base_.substationeditorbase.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3674,9 +3674,9 @@ ___
 
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNS](_open_scd_base_.openscdbase.md#getattributens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#getattributens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNS](_open_scd_base_.openscdbase.md#getattributens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3697,9 +3697,9 @@ ___
 
 ▸ **getAttributeNames**(): *string[]*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNames](_open_scd_base_.openscdbase.md#getattributenames)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNames](_editors_substation_editor_base_.substationeditorbase.md#getattributenames)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNames](_open_scd_base_.openscdbase.md#getattributenames)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNames](_editors_substation_editor_base_.substationeditorbase.md#getattributenames)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5160
 
@@ -3713,9 +3713,9 @@ ___
 
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNode](_open_scd_base_.openscdbase.md#getattributenode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNode](_editors_substation_editor_base_.substationeditorbase.md#getattributenode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNode](_open_scd_base_.openscdbase.md#getattributenode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNode](_editors_substation_editor_base_.substationeditorbase.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5161
 
@@ -3733,9 +3733,9 @@ ___
 
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNodeNS](_open_scd_base_.openscdbase.md#getattributenodens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNodeNS](_editors_substation_editor_base_.substationeditorbase.md#getattributenodens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getAttributeNodeNS](_open_scd_base_.openscdbase.md#getattributenodens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getAttributeNodeNS](_editors_substation_editor_base_.substationeditorbase.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3754,9 +3754,9 @@ ___
 
 ▸ **getBoundingClientRect**(): *DOMRect*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getBoundingClientRect](_open_scd_base_.openscdbase.md#getboundingclientrect)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getBoundingClientRect](_editors_substation_editor_base_.substationeditorbase.md#getboundingclientrect)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getBoundingClientRect](_open_scd_base_.openscdbase.md#getboundingclientrect)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getBoundingClientRect](_editors_substation_editor_base_.substationeditorbase.md#getboundingclientrect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5163
 
@@ -3768,9 +3768,9 @@ ___
 
 ▸ **getClientRects**(): *DOMRectList*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getClientRects](_open_scd_base_.openscdbase.md#getclientrects)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getClientRects](_editors_substation_editor_base_.substationeditorbase.md#getclientrects)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getClientRects](_open_scd_base_.openscdbase.md#getclientrects)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getClientRects](_editors_substation_editor_base_.substationeditorbase.md#getclientrects)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5164
 
@@ -3782,9 +3782,9 @@ ___
 
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByClassName](_open_scd_base_.openscdbase.md#getelementsbyclassname)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByClassName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbyclassname)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByClassName](_open_scd_base_.openscdbase.md#getelementsbyclassname)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByClassName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5168
 
@@ -3804,9 +3804,9 @@ ___
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagname)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5169
 
@@ -3824,9 +3824,9 @@ Name | Type |
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagname)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
@@ -3844,9 +3844,9 @@ Name | Type |
 
 ▸ **getElementsByTagName**(`qualifiedName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagname)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagName](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3864,9 +3864,9 @@ ___
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3881,9 +3881,9 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
@@ -3898,9 +3898,9 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
@@ -3919,9 +3919,9 @@ ___
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getRootNode](_open_scd_base_.openscdbase.md#getrootnode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getRootNode](_editors_substation_editor_base_.substationeditorbase.md#getrootnode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[getRootNode](_open_scd_base_.openscdbase.md#getrootnode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getRootNode](_editors_substation_editor_base_.substationeditorbase.md#getrootnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3941,9 +3941,9 @@ ___
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasAttribute](_open_scd_base_.openscdbase.md#hasattribute)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasAttribute](_editors_substation_editor_base_.substationeditorbase.md#hasattribute)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasAttribute](_open_scd_base_.openscdbase.md#hasattribute)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasAttribute](_editors_substation_editor_base_.substationeditorbase.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3963,9 +3963,9 @@ ___
 
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasAttributeNS](_open_scd_base_.openscdbase.md#hasattributens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#hasattributens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasAttributeNS](_open_scd_base_.openscdbase.md#hasattributens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
@@ -3986,9 +3986,9 @@ ___
 
 ▸ **hasAttributes**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasAttributes](_open_scd_base_.openscdbase.md#hasattributes)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasAttributes](_editors_substation_editor_base_.substationeditorbase.md#hasattributes)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasAttributes](_open_scd_base_.openscdbase.md#hasattributes)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasAttributes](_editors_substation_editor_base_.substationeditorbase.md#hasattributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5186
 
@@ -4002,9 +4002,9 @@ ___
 
 ▸ **hasChildNodes**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasChildNodes](_open_scd_base_.openscdbase.md#haschildnodes)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasChildNodes](_editors_substation_editor_base_.substationeditorbase.md#haschildnodes)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasChildNodes](_open_scd_base_.openscdbase.md#haschildnodes)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasChildNodes](_editors_substation_editor_base_.substationeditorbase.md#haschildnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -4018,9 +4018,9 @@ ___
 
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasPointerCapture](_open_scd_base_.openscdbase.md#haspointercapture)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasPointerCapture](_editors_substation_editor_base_.substationeditorbase.md#haspointercapture)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasPointerCapture](_open_scd_base_.openscdbase.md#haspointercapture)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[hasPointerCapture](_editors_substation_editor_base_.substationeditorbase.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5187
 
@@ -4038,7 +4038,7 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[info](../interfaces/_waiting_.__global.htmlelement.md#optional-info)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[info](_editors_substation_editor_base_.substationeditorbase.md#optional-info)*
 
 *Overrides void*
 
@@ -4059,7 +4059,7 @@ ___
 
 ▸ **initialize**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[initialize](_open_scd_base_.openscdbase.md#protected-initialize)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[initialize](_editors_substation_editor_base_.substationeditorbase.md#protected-initialize)*
 
 *Overrides void*
 
@@ -4077,9 +4077,9 @@ ___
 
 ▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): *Element | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertAdjacentElement](_open_scd_base_.openscdbase.md#insertadjacentelement)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertAdjacentElement](_editors_substation_editor_base_.substationeditorbase.md#insertadjacentelement)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertAdjacentElement](_open_scd_base_.openscdbase.md#insertadjacentelement)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertAdjacentElement](_editors_substation_editor_base_.substationeditorbase.md#insertadjacentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -4098,9 +4098,9 @@ ___
 
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertAdjacentHTML](_open_scd_base_.openscdbase.md#insertadjacenthtml)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertAdjacentHTML](_editors_substation_editor_base_.substationeditorbase.md#insertadjacenthtml)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertAdjacentHTML](_open_scd_base_.openscdbase.md#insertadjacenthtml)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertAdjacentHTML](_editors_substation_editor_base_.substationeditorbase.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5189
 
@@ -4119,9 +4119,9 @@ ___
 
 ▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertAdjacentText](_open_scd_base_.openscdbase.md#insertadjacenttext)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertAdjacentText](_editors_substation_editor_base_.substationeditorbase.md#insertadjacenttext)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertAdjacentText](_open_scd_base_.openscdbase.md#insertadjacenttext)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertAdjacentText](_editors_substation_editor_base_.substationeditorbase.md#insertadjacenttext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5190
 
@@ -4140,9 +4140,9 @@ ___
 
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertBefore](_open_scd_base_.openscdbase.md#insertbefore)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertBefore](_editors_substation_editor_base_.substationeditorbase.md#insertbefore)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[insertBefore](_open_scd_base_.openscdbase.md#insertbefore)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[insertBefore](_editors_substation_editor_base_.substationeditorbase.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10814
 
@@ -4165,9 +4165,9 @@ ___
 
 ▸ **isDefaultNamespace**(`namespace`: string | null): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[isDefaultNamespace](_open_scd_base_.openscdbase.md#isdefaultnamespace)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isDefaultNamespace](_editors_substation_editor_base_.substationeditorbase.md#isdefaultnamespace)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[isDefaultNamespace](_open_scd_base_.openscdbase.md#isdefaultnamespace)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isDefaultNamespace](_editors_substation_editor_base_.substationeditorbase.md#isdefaultnamespace)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10815
 
@@ -4185,9 +4185,9 @@ ___
 
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[isEqualNode](_open_scd_base_.openscdbase.md#isequalnode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isEqualNode](_editors_substation_editor_base_.substationeditorbase.md#isequalnode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[isEqualNode](_open_scd_base_.openscdbase.md#isequalnode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isEqualNode](_editors_substation_editor_base_.substationeditorbase.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10819
 
@@ -4207,9 +4207,9 @@ ___
 
 ▸ **isSameNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[isSameNode](_open_scd_base_.openscdbase.md#issamenode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isSameNode](_editors_substation_editor_base_.substationeditorbase.md#issamenode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[isSameNode](_open_scd_base_.openscdbase.md#issamenode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[isSameNode](_editors_substation_editor_base_.substationeditorbase.md#issamenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10820
 
@@ -4280,9 +4280,9 @@ ___
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lookupNamespaceURI](_open_scd_base_.openscdbase.md#lookupnamespaceuri)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lookupNamespaceURI](_editors_substation_editor_base_.substationeditorbase.md#lookupnamespaceuri)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[lookupNamespaceURI](_open_scd_base_.openscdbase.md#lookupnamespaceuri)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lookupNamespaceURI](_editors_substation_editor_base_.substationeditorbase.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
@@ -4300,9 +4300,9 @@ ___
 
 ▸ **lookupPrefix**(`namespace`: string | null): *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lookupPrefix](_open_scd_base_.openscdbase.md#lookupprefix)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lookupPrefix](_editors_substation_editor_base_.substationeditorbase.md#lookupprefix)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[lookupPrefix](_open_scd_base_.openscdbase.md#lookupprefix)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[lookupPrefix](_editors_substation_editor_base_.substationeditorbase.md#lookupprefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10822
 
@@ -4320,9 +4320,9 @@ ___
 
 ▸ **matches**(`selectors`: string): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[matches](_open_scd_base_.openscdbase.md#matches)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[matches](_editors_substation_editor_base_.substationeditorbase.md#matches)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[matches](_open_scd_base_.openscdbase.md#matches)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[matches](_editors_substation_editor_base_.substationeditorbase.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5194
 
@@ -4342,9 +4342,9 @@ ___
 
 ▸ **msGetRegionContent**(): *any*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[msGetRegionContent](_editors_substation_editor_base_.substationeditorbase.md#msgetregioncontent)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[msGetRegionContent](_editors_substation_editor_base_.substationeditorbase.md#msgetregioncontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5195
 
@@ -4356,9 +4356,9 @@ ___
 
 ▸ **normalize**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[normalize](_open_scd_base_.openscdbase.md#normalize)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[normalize](_editors_substation_editor_base_.substationeditorbase.md#normalize)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[normalize](_open_scd_base_.openscdbase.md#normalize)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[normalize](_editors_substation_editor_base_.substationeditorbase.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -4404,7 +4404,7 @@ ___
 
 ▸ **performUpdate**(): *void | Promise‹unknown›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[performUpdate](_editors_substation_editor_base_.substationeditorbase.md#protected-performupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:353
 
@@ -4431,9 +4431,9 @@ ___
 
 ▸ **prepend**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[prepend](_open_scd_base_.openscdbase.md#prepend)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[prepend](_editors_substation_editor_base_.substationeditorbase.md#prepend)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[prepend](_open_scd_base_.openscdbase.md#prepend)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[prepend](_editors_substation_editor_base_.substationeditorbase.md#prepend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
@@ -4455,9 +4455,9 @@ ___
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelector](_open_scd_base_.openscdbase.md#queryselector)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelector](_editors_substation_editor_base_.substationeditorbase.md#queryselector)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelector](_open_scd_base_.openscdbase.md#queryselector)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelector](_editors_substation_editor_base_.substationeditorbase.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11329
 
@@ -4477,9 +4477,9 @@ Name | Type |
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelector](_open_scd_base_.openscdbase.md#queryselector)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelector](_editors_substation_editor_base_.substationeditorbase.md#queryselector)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelector](_open_scd_base_.openscdbase.md#queryselector)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelector](_editors_substation_editor_base_.substationeditorbase.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11330
 
@@ -4497,9 +4497,9 @@ Name | Type |
 
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelector](_open_scd_base_.openscdbase.md#queryselector)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelector](_editors_substation_editor_base_.substationeditorbase.md#queryselector)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelector](_open_scd_base_.openscdbase.md#queryselector)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelector](_editors_substation_editor_base_.substationeditorbase.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -4521,9 +4521,9 @@ ___
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelectorAll](_editors_substation_editor_base_.substationeditorbase.md#queryselectorall)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelectorAll](_editors_substation_editor_base_.substationeditorbase.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11335
 
@@ -4543,9 +4543,9 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelectorAll](_editors_substation_editor_base_.substationeditorbase.md#queryselectorall)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelectorAll](_editors_substation_editor_base_.substationeditorbase.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11336
 
@@ -4563,9 +4563,9 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelectorAll](_editors_substation_editor_base_.substationeditorbase.md#queryselectorall)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[querySelectorAll](_editors_substation_editor_base_.substationeditorbase.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
@@ -4587,9 +4587,9 @@ ___
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[releasePointerCapture](_open_scd_base_.openscdbase.md#releasepointercapture)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[releasePointerCapture](_editors_substation_editor_base_.substationeditorbase.md#releasepointercapture)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[releasePointerCapture](_open_scd_base_.openscdbase.md#releasepointercapture)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[releasePointerCapture](_editors_substation_editor_base_.substationeditorbase.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
@@ -4607,9 +4607,9 @@ ___
 
 ▸ **remove**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[remove](_open_scd_base_.openscdbase.md#remove)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[remove](_editors_substation_editor_base_.substationeditorbase.md#remove)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[remove](_open_scd_base_.openscdbase.md#remove)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[remove](_editors_substation_editor_base_.substationeditorbase.md#remove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3511
 
@@ -4623,9 +4623,9 @@ ___
 
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeAttribute](_open_scd_base_.openscdbase.md#removeattribute)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeAttribute](_editors_substation_editor_base_.substationeditorbase.md#removeattribute)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeAttribute](_open_scd_base_.openscdbase.md#removeattribute)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeAttribute](_editors_substation_editor_base_.substationeditorbase.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
@@ -4645,9 +4645,9 @@ ___
 
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeAttributeNS](_open_scd_base_.openscdbase.md#removeattributens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#removeattributens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeAttributeNS](_open_scd_base_.openscdbase.md#removeattributens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -4668,9 +4668,9 @@ ___
 
 ▸ **removeAttributeNode**(`attr`: Attr): *Attr*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeAttributeNode](_open_scd_base_.openscdbase.md#removeattributenode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeAttributeNode](_editors_substation_editor_base_.substationeditorbase.md#removeattributenode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeAttributeNode](_open_scd_base_.openscdbase.md#removeattributenode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeAttributeNode](_editors_substation_editor_base_.substationeditorbase.md#removeattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
@@ -4688,9 +4688,9 @@ ___
 
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeChild](_open_scd_base_.openscdbase.md#removechild)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeChild](_editors_substation_editor_base_.substationeditorbase.md#removechild)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeChild](_open_scd_base_.openscdbase.md#removechild)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeChild](_editors_substation_editor_base_.substationeditorbase.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
@@ -4712,7 +4712,7 @@ ___
 
 ▸ **removeEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeEventListener](_open_scd_base_.openscdbase.md#removeeventlistener)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeEventListener](_editors_substation_editor_base_.substationeditorbase.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4743,7 +4743,7 @@ Name | Type |
 
 ▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[removeEventListener](_open_scd_base_.openscdbase.md#removeeventlistener)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[removeEventListener](_editors_substation_editor_base_.substationeditorbase.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4765,7 +4765,7 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#static-render)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
 Defined in src/open-scd-base.ts:38
 
@@ -4777,9 +4777,9 @@ ___
 
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[replaceChild](_open_scd_base_.openscdbase.md#replacechild)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[replaceChild](_editors_substation_editor_base_.substationeditorbase.md#replacechild)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[replaceChild](_open_scd_base_.openscdbase.md#replacechild)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[replaceChild](_editors_substation_editor_base_.substationeditorbase.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10828
 
@@ -4802,9 +4802,9 @@ ___
 
 ▸ **replaceWith**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[replaceWith](_open_scd_base_.openscdbase.md#replacewith)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[replaceWith](_editors_substation_editor_base_.substationeditorbase.md#replacewith)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[replaceWith](_open_scd_base_.openscdbase.md#replacewith)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[replaceWith](_editors_substation_editor_base_.substationeditorbase.md#replacewith)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3517
 
@@ -4826,9 +4826,9 @@ ___
 
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[requestFullscreen](_open_scd_base_.openscdbase.md#requestfullscreen)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestFullscreen](_editors_substation_editor_base_.substationeditorbase.md#requestfullscreen)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[requestFullscreen](_open_scd_base_.openscdbase.md#requestfullscreen)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestFullscreen](_editors_substation_editor_base_.substationeditorbase.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5211
 
@@ -4850,9 +4850,9 @@ ___
 
 ▸ **requestPointerLock**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[requestPointerLock](_open_scd_base_.openscdbase.md#requestpointerlock)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestPointerLock](_editors_substation_editor_base_.substationeditorbase.md#requestpointerlock)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[requestPointerLock](_open_scd_base_.openscdbase.md#requestpointerlock)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestPointerLock](_editors_substation_editor_base_.substationeditorbase.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5212
 
@@ -4864,7 +4864,7 @@ ___
 
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[requestUpdate](_open_scd_base_.openscdbase.md#requestupdate)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestUpdate](_editors_substation_editor_base_.substationeditorbase.md#requestupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:330
 
@@ -4893,9 +4893,9 @@ ___
 
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scroll](_open_scd_base_.openscdbase.md#scroll)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scroll](_editors_substation_editor_base_.substationeditorbase.md#scroll)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scroll](_open_scd_base_.openscdbase.md#scroll)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scroll](_editors_substation_editor_base_.substationeditorbase.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5213
 
@@ -4909,9 +4909,9 @@ Name | Type |
 
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scroll](_open_scd_base_.openscdbase.md#scroll)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scroll](_editors_substation_editor_base_.substationeditorbase.md#scroll)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scroll](_open_scd_base_.openscdbase.md#scroll)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scroll](_editors_substation_editor_base_.substationeditorbase.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4930,9 +4930,9 @@ ___
 
 ▸ **scrollBy**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollBy](_open_scd_base_.openscdbase.md#scrollby)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollBy](_editors_substation_editor_base_.substationeditorbase.md#scrollby)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollBy](_open_scd_base_.openscdbase.md#scrollby)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollBy](_editors_substation_editor_base_.substationeditorbase.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
@@ -4946,9 +4946,9 @@ Name | Type |
 
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollBy](_open_scd_base_.openscdbase.md#scrollby)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollBy](_editors_substation_editor_base_.substationeditorbase.md#scrollby)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollBy](_open_scd_base_.openscdbase.md#scrollby)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollBy](_editors_substation_editor_base_.substationeditorbase.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5216
 
@@ -4967,9 +4967,9 @@ ___
 
 ▸ **scrollIntoView**(`arg?`: boolean | ScrollIntoViewOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollIntoView](_open_scd_base_.openscdbase.md#scrollintoview)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollIntoView](_editors_substation_editor_base_.substationeditorbase.md#scrollintoview)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollIntoView](_open_scd_base_.openscdbase.md#scrollintoview)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollIntoView](_editors_substation_editor_base_.substationeditorbase.md#scrollintoview)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5217
 
@@ -4987,9 +4987,9 @@ ___
 
 ▸ **scrollTo**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollTo](_open_scd_base_.openscdbase.md#scrollto)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollTo](_editors_substation_editor_base_.substationeditorbase.md#scrollto)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollTo](_open_scd_base_.openscdbase.md#scrollto)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollTo](_editors_substation_editor_base_.substationeditorbase.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5218
 
@@ -5003,9 +5003,9 @@ Name | Type |
 
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollTo](_open_scd_base_.openscdbase.md#scrollto)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollTo](_editors_substation_editor_base_.substationeditorbase.md#scrollto)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[scrollTo](_open_scd_base_.openscdbase.md#scrollto)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[scrollTo](_editors_substation_editor_base_.substationeditorbase.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5219
 
@@ -5024,9 +5024,9 @@ ___
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttribute](_open_scd_base_.openscdbase.md#setattribute)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttribute](_editors_substation_editor_base_.substationeditorbase.md#setattribute)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttribute](_open_scd_base_.openscdbase.md#setattribute)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttribute](_editors_substation_editor_base_.substationeditorbase.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -5047,9 +5047,9 @@ ___
 
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttributeNS](_open_scd_base_.openscdbase.md#setattributens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#setattributens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttributeNS](_open_scd_base_.openscdbase.md#setattributens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttributeNS](_editors_substation_editor_base_.substationeditorbase.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
@@ -5071,9 +5071,9 @@ ___
 
 ▸ **setAttributeNode**(`attr`: Attr): *Attr | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttributeNode](_open_scd_base_.openscdbase.md#setattributenode)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttributeNode](_editors_substation_editor_base_.substationeditorbase.md#setattributenode)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttributeNode](_open_scd_base_.openscdbase.md#setattributenode)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttributeNode](_editors_substation_editor_base_.substationeditorbase.md#setattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
@@ -5091,9 +5091,9 @@ ___
 
 ▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttributeNodeNS](_editors_substation_editor_base_.substationeditorbase.md#setattributenodens)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setAttributeNodeNS](_editors_substation_editor_base_.substationeditorbase.md#setattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -5111,9 +5111,9 @@ ___
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setPointerCapture](_editors_substation_editor_base_.substationeditorbase.md#setpointercapture)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[setPointerCapture](_editors_substation_editor_base_.substationeditorbase.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5230
 
@@ -5131,7 +5131,7 @@ ___
 
 ▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[shouldUpdate](_open_scd_base_.openscdbase.md#protected-shouldupdate)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[shouldUpdate](_editors_substation_editor_base_.substationeditorbase.md#protected-shouldupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:395
 
@@ -5153,9 +5153,9 @@ ___
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[toggleAttribute](_editors_substation_editor_base_.substationeditorbase.md#toggleattribute)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[toggleAttribute](_editors_substation_editor_base_.substationeditorbase.md#toggleattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5236
 
@@ -5178,7 +5178,7 @@ ___
 
 ▸ **update**(`changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[update](_open_scd_base_.openscdbase.md#protected-update)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[update](_editors_substation_editor_base_.substationeditorbase.md#protected-update)*
 
 *Overrides void*
 
@@ -5202,7 +5202,7 @@ ___
 
 ▸ **updated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[updated](_open_scd_base_.openscdbase.md#protected-updated)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[updated](_editors_substation_editor_base_.substationeditorbase.md#protected-updated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:414
 
@@ -5226,7 +5226,7 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[warn](../interfaces/_waiting_.__global.htmlelement.md#optional-warn)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[warn](_editors_substation_editor_base_.substationeditorbase.md#optional-warn)*
 
 *Overrides void*
 
@@ -5247,9 +5247,9 @@ ___
 
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[webkitMatchesSelector](_open_scd_base_.openscdbase.md#webkitmatchesselector)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[webkitMatchesSelector](_editors_substation_editor_base_.substationeditorbase.md#webkitmatchesselector)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[webkitMatchesSelector](_open_scd_base_.openscdbase.md#webkitmatchesselector)*
+*Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[webkitMatchesSelector](_editors_substation_editor_base_.substationeditorbase.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -5267,7 +5267,7 @@ ___
 
 ▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[createProperty](_open_scd_base_.openscdbase.md#static-createproperty)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[createProperty](_editors_substation_editor_base_.substationeditorbase.md#static-createproperty)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:183
 
@@ -5307,7 +5307,7 @@ ___
 
 ▸ **finalize**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[finalize](_open_scd_base_.openscdbase.md#static-protected-finalize)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[finalize](_editors_substation_editor_base_.substationeditorbase.md#static-protected-finalize)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:232
 
@@ -5324,7 +5324,7 @@ ___
 
 ▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `_options`: PropertyDeclaration): *object*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getPropertyDescriptor](_open_scd_base_.openscdbase.md#static-protected-getpropertydescriptor)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getPropertyDescriptor](_editors_substation_editor_base_.substationeditorbase.md#static-protected-getpropertydescriptor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:208
 
@@ -5375,7 +5375,7 @@ ___
 
 ▸ **getPropertyOptions**(`name`: PropertyKey): *PropertyDeclaration‹unknown, unknown›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getPropertyOptions](_open_scd_base_.openscdbase.md#static-protected-getpropertyoptions)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getPropertyOptions](_editors_substation_editor_base_.substationeditorbase.md#static-protected-getpropertyoptions)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:226
 
@@ -5405,7 +5405,7 @@ ___
 
 ▸ **getStyles**(): *CSSResult | CSSResultArray | undefined*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getStyles](_open_scd_base_.openscdbase.md#static-getstyles)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getStyles](_editors_substation_editor_base_.substationeditorbase.md#static-getstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:57
 
@@ -5433,7 +5433,7 @@ Defined in src/open-scd-base.ts:223
         icon: zeroLineIcon,
         getContent: (): ((part: NodePart) => void) =>
           plugin(
-            './substation-editor.js',
+            './editors/substation-editor.js',
             html`<substation-editor
               .node=${this.doc.querySelector('Substation')}
               .doc=${this.doc}
