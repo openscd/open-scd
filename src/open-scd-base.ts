@@ -17,18 +17,12 @@ import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
 import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
 
-import { Waiting, PendingState } from './WaitingElement.js';
+import { Waiting, PendingState } from './waiting.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
-import {
-  Logging,
-  LogOptions,
-  LogEntry,
-  Create,
-  Update,
-} from './LoggingElement.js';
+import { Logging, LogOptions, LogEntry, Create, Update } from './logging.js';
 
 interface MenuEntry {
   icon: string;

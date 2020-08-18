@@ -7,7 +7,7 @@ import '@material/mwc-textfield';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { TextField } from '@material/mwc-textfield';
 
-import { Create, Update } from './LoggingElement.js';
+import { Create, Update } from './logging.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
