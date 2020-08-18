@@ -17,8 +17,6 @@ npm start
 ## Scripts
 
 - `start` runs `OpenSCD` for development, reloading on file changes
-- `start:build` runs `OpenSCD` after it has been built using the build command
-- `build` builds `OpenSCD` and outputs it in the `dist` directory
 - `test` runs the test suite with Karma
 - `lint` runs the linter
 - `doc` builds markdown documentation in the `doc` directory
