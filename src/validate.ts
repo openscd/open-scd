@@ -1,4 +1,5 @@
 import { encodeNonASCII } from './xml-entities.js';
+import { LogEntry, Change } from './logging.js';
 
 interface XMLParams {
   xml: string;
@@ -6,19 +7,30 @@ interface XMLParams {
   arguments: Array<string>;
 }
 // FIXME: Replace `xml.js` with imported `WASM` module
-declare function validateXML(parameters: XMLParams): null | string;
+declare function validateXML(parameters: XMLParams): string;
 
 /** Validates `doc` against the `SCL 2007 B1` schema. */
 export async function validateSCL(
   doc: XMLDocument,
-  fileName = 'untitled.scd'
-): Promise<Array<string>> {
-  const result = validateXML({
-    xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
-    schema: SCL2007B1_2014_07_18,
-    arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
-  });
-  return result?.split('\n').filter((s: string) => s) ?? [];
+  fileName = 'untitled.scd',
+  cause?: LogEntry
+): Promise<Array<Pick<LogEntry, 'title' | 'message' | 'cause'>>> {
+  const result =
+    validateXML({
+      xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
+      schema: SCL2007B1_2014_07_18,
+      arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
+    })
+      .split('\n')
+      .filter((s: string) => s)
+      .slice(0, -1) ?? [];
+  return result
+    .map(e => e.split(': ').map(s => s.trim()))
+    .map(a => {
+      //if (a[4]) [a[0], a[4]] = [a[4], a[0]];
+      a.reverse();
+      return { title: a[0], message: a.slice(1).reverse().join(' | '), cause };
+    });
 }
 
 const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>

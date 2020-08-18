@@ -39,24 +39,26 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
   return class LoggingElement extends Base {
     history: LogEntry[] = [];
 
-    log(title: string, entry?: Partial<LogEntry>): void {
-      this.history.unshift({
+    log(title: string, detail?: Partial<LogEntry>): LogEntry {
+      const entry = {
         time: new Date(),
         title,
-        ...entry,
-      });
+        ...detail,
+      };
+      this.history.unshift(entry);
+      return entry;
     }
-    info(title: string, options?: LogOptions): void {
-      this.log(title, { icon: 'info', ...options });
+    info(title: string, options?: LogOptions): LogEntry {
+      return this.log(title, { icon: 'info', ...options });
     }
-    warn(title: string, options?: LogOptions): void {
-      this.log(title, { icon: 'warning', ...options });
+    warn(title: string, options?: LogOptions): LogEntry {
+      return this.log(title, { icon: 'warning', ...options });
     }
-    error(title: string, options?: LogOptions): void {
-      this.log(title, { icon: 'error_outline', ...options });
+    error(title: string, options?: LogOptions): LogEntry {
+      return this.log(title, { icon: 'error_outline', ...options });
     }
-    commit(title: string, change: Change, options?: LogOptions): void {
-      this.log(title, { change, icon: 'history', ...options });
+    commit(title: string, change: Change, options?: LogOptions): LogEntry {
+      return this.log(title, { change, icon: 'history', ...options });
     }
 
     constructor(...args: any[]) {

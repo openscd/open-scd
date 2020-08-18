@@ -256,9 +256,9 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     ],
   };
 
-  error(title: string, options?: LogOptions): void {
-    super.error(title, options);
+  error(title: string, options?: LogOptions): LogEntry {
     this.messageUI.show();
+    return super.error(title, options);
   }
 
   private loadDoc(src: string): Promise<string> {
@@ -277,13 +277,11 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
           this.info(`${this.srcName} loaded.`);
           validateSCL(this.doc, this.srcName).then(errors => {
-            errors
-              ?.map(e => e.split(': ').map(s => s.trim()))
-              .map(a => {
-                if (a[4]) [a[0], a[4]] = [a[4], a[0]];
-                this.error(a[0], { message: a.slice(1).reverse().join(' | ') });
-              }) ?? this.info(`${this.srcName} validated successfully.`);
-            if (errors === null)
+            console.log(errors);
+            errors.map(le => {
+              this.error(le.title, le);
+            }) ?? this.info(`${this.srcName} validated successfully.`);
+            if (errors.length == 0)
               resolve(`${this.srcName} validation succesful.`);
             else reject(`${this.srcName} validation failed.`);
           });
