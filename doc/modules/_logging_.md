@@ -4,22 +4,12 @@
 
 ## Index
 
-### Namespaces
-
-* [__global](_logging_.__global.md)
-
 ### Interfaces
 
-* [Create](../interfaces/_logging_.create.md)
-* [Delete](../interfaces/_logging_.delete.md)
 * [LogEntry](../interfaces/_logging_.logentry.md)
-* [Move](../interfaces/_logging_.move.md)
-* [Update](../interfaces/_logging_.update.md)
 
 ### Type aliases
 
-* [Change](_logging_.md#change)
-* [ElementConstructor](_logging_.md#elementconstructor)
 * [LogOptions](_logging_.md#logoptions)
 
 ### Functions
@@ -28,31 +18,11 @@
 
 ## Type aliases
 
-###  Change
-
-Ƭ **Change**: *[Create](../interfaces/_logging_.create.md) | [Update](../interfaces/_logging_.update.md) | [Delete](../interfaces/_logging_.delete.md) | [Move](../interfaces/_logging_.move.md)*
-
-Defined in src/logging.ts:11
-
-Represents an intended change to an `Element`.
-
-___
-
-###  ElementConstructor
-
-Ƭ **ElementConstructor**: *object*
-
-Defined in src/logging.ts:1
-
-#### Type declaration:
-
-___
-
 ###  LogOptions
 
 Ƭ **LogOptions**: *Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "cause" | "icon" | "message"›*
 
-Defined in src/logging.ts:36
+Defined in src/logging.ts:12
 
 ## Functions
 
@@ -60,11 +30,11 @@ Defined in src/logging.ts:36
 
 ▸ **Logging**‹**TBase**›(`Base`: TBase): *LoggingElement & TBase*
 
-Defined in src/logging.ts:38
+Defined in src/logging.ts:14
 
 **Type parameters:**
 
-▪ **TBase**: *[ElementConstructor](_logging_.md#elementconstructor)*
+▪ **TBase**: *[ElementConstructor](_foundation_.md#elementconstructor)*
 
 **Parameters:**
 

@@ -22,4 +22,4 @@
 
 • **scl**: *"http://www.iec.ch/61850/2003/SCL"* = "http://www.iec.ch/61850/2003/SCL"
 
-Defined in src/open-scd-base.ts:35
+Defined in src/open-scd-base.ts:36

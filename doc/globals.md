@@ -9,6 +9,7 @@
 * ["editors/substation-editor"](modules/_editors_substation_editor_.md)
 * ["editors/substation-editor-base"](modules/_editors_substation_editor_base_.md)
 * ["editors/substation-editor-css"](modules/_editors_substation_editor_css_.md)
+* ["foundation"](modules/_foundation_.md)
 * ["icons"](modules/_icons_.md)
 * ["logging"](modules/_logging_.md)
 * ["open-scd"](modules/_open_scd_.md)

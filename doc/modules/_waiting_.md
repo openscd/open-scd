@@ -4,31 +4,9 @@
 
 ## Index
 
-### Namespaces
-
-* [__global](_waiting_.__global.md)
-
-### Interfaces
-
-* [PendingState](../interfaces/_waiting_.pendingstate.md)
-
-### Type aliases
-
-* [ElementConstructor](_waiting_.md#elementconstructor)
-
 ### Functions
 
 * [Waiting](_waiting_.md#waiting)
-
-## Type aliases
-
-###  ElementConstructor
-
-Ƭ **ElementConstructor**: *object*
-
-Defined in src/waiting.ts:1
-
-#### Type declaration:
 
 ## Functions
 
@@ -36,11 +14,11 @@ Defined in src/waiting.ts:1
 
 ▸ **Waiting**‹**TBase**›(`Base`: TBase): *WaitingElement & TBase*
 
-Defined in src/waiting.ts:18
+Defined in src/waiting.ts:3
 
 **Type parameters:**
 
-▪ **TBase**: *[ElementConstructor](_waiting_.md#elementconstructor)*
+▪ **TBase**: *[ElementConstructor](_foundation_.md#elementconstructor)*
 
 **Parameters:**
 

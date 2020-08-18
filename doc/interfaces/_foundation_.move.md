@@ -1,4 +1,4 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["logging"](../modules/_logging_.md) › [Move](_logging_.move.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["foundation"](../modules/_foundation_.md) › [Move](_foundation_.move.md)
 
 # Interface: Move
 
@@ -10,8 +10,8 @@
 
 ### Properties
 
-* [new](_logging_.move.md#new)
-* [old](_logging_.move.md#old)
+* [new](_foundation_.move.md#new)
+* [old](_foundation_.move.md#old)
 
 ## Properties
 
@@ -19,7 +19,7 @@
 
 • **new**: *object*
 
-Defined in src/logging.ts:14
+Defined in src/foundation.ts:5
 
 #### Type declaration:
 
@@ -31,7 +31,7 @@ ___
 
 • **old**: *object*
 
-Defined in src/logging.ts:13
+Defined in src/foundation.ts:4
 
 #### Type declaration:
 

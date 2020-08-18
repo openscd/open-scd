@@ -331,7 +331,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:333
+Defined in src/open-scd-base.ts:334
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -569,7 +569,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
 
-Defined in src/open-scd-base.ts:168
+Defined in src/open-scd-base.ts:169
 
 The currently active editor tab.
 
@@ -763,7 +763,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
 
-Defined in src/open-scd-base.ts:171
+Defined in src/open-scd-base.ts:172
 
 The `XMLDocument` representation of the current file.
 
@@ -785,7 +785,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-Defined in src/open-scd-base.ts:201
+Defined in src/open-scd-base.ts:202
 
 ___
 
@@ -841,7 +841,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:161
+Defined in src/open-scd-base.ts:162
 
 ___
 
@@ -967,11 +967,11 @@ ___
 
 ###  logUI
 
-• **logUI**: *DialogBase*
+• **logUI**: *Dialog*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-Defined in src/open-scd-base.ts:199
+Defined in src/open-scd-base.ts:200
 
 ___
 
@@ -999,27 +999,27 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
 
-Defined in src/open-scd-base.ts:203
+Defined in src/open-scd-base.ts:204
 
 ___
 
 ###  menuUI
 
-• **menuUI**: *DrawerBase*
+• **menuUI**: *Drawer*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-Defined in src/open-scd-base.ts:198
+Defined in src/open-scd-base.ts:199
 
 ___
 
 ###  messageUI
 
-• **messageUI**: *SnackbarBase*
+• **messageUI**: *Snackbar*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-Defined in src/open-scd-base.ts:200
+Defined in src/open-scd-base.ts:201
 
 ___
 
@@ -2259,7 +2259,7 @@ ___
 
 ### `Readonly` parentElement
 
-• **parentElement**: *[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) | null*
+• **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[parentElement](_editors_substation_editor_base_.substationeditorbase.md#readonly-parentelement)*
 
@@ -2410,7 +2410,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-Defined in src/open-scd-base.ts:180
+Defined in src/open-scd-base.ts:181
 
 The name of the current file.
 
@@ -2442,7 +2442,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tag](_open_scd_base_.openscdbase.md#tag)*
 
-Defined in src/open-scd-base.ts:178
+Defined in src/open-scd-base.ts:179
 
 The tag name this editor is responsible for editing
 
@@ -2498,7 +2498,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:165
+Defined in src/open-scd-base.ts:166
 
 Whewaiting editor is currently waiting for some async work.
 
@@ -2510,7 +2510,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
 
-Defined in src/waiting.ts:21
+Defined in src/waiting.ts:6
 
 ___
 
@@ -2520,7 +2520,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
 
-Defined in src/waiting.ts:23
+Defined in src/waiting.ts:8
 
 A promise which resolves once all currently pending work is done.
 
@@ -2544,7 +2544,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)*
 
-Defined in src/open-scd-base.ts:158
+Defined in src/open-scd-base.ts:159
 
 ___
 
@@ -2637,7 +2637,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[node](_open_scd_base_.openscdbase.md#node)*
 
-Defined in src/open-scd-base.ts:174
+Defined in src/open-scd-base.ts:175
 
 The `Node` this editor is responsible for editing
 
@@ -2651,7 +2651,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:184
+Defined in src/open-scd-base.ts:185
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2661,7 +2661,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:187
+Defined in src/open-scd-base.ts:188
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2764,13 +2764,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | AddEventListenerOptions*
@@ -3072,18 +3072,18 @@ ___
 
 ###  commit
 
-▸ **commit**(`title`: string, `change`: [Change](../modules/_logging_.md#change), `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *[LogEntry](../interfaces/_logging_.logentry.md)*
+▸ **commit**(`title`: string, `change`: [Change](../modules/_foundation_.md#change), `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
 
-Defined in src/logging.ts:60
+Defined in src/logging.ts:36
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `title` | string |
-`change` | [Change](../modules/_logging_.md#change) |
+`change` | [Change](../modules/_foundation_.md#change) |
 `options?` | [LogOptions](../modules/_logging_.md#logoptions) |
 
 **Returns:** *[LogEntry](../interfaces/_logging_.logentry.md)*
@@ -3114,11 +3114,11 @@ ___
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[connectedCallback](../interfaces/_waiting_.__global.htmlelement.md#optional-connectedcallback)*
+*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[connectedCallback](../interfaces/_foundation_.__global.htmlelement.md#optional-connectedcallback)*
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[connectedCallback](_editors_substation_editor_base_.substationeditorbase.md#connectedcallback)*
 
-Defined in src/waiting.ts:12
+Defined in src/foundation.ts:32
 
 **Returns:** *void*
 
@@ -3219,7 +3219,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:259
+Defined in src/open-scd-base.ts:260
 
 **Parameters:**
 
@@ -3478,7 +3478,7 @@ ___
 
 ###  getElementsByTagNameNS
 
-▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
+▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
@@ -3491,7 +3491,7 @@ Name | Type |
 `namespaceURI` | "http://www.w3.org/1999/xhtml" |
 `localName` | string |
 
-**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
+**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
@@ -3636,11 +3636,11 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[info](_editors_substation_editor_base_.substationeditorbase.md#optional-info)*
+*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
 *Overrides void*
 
-Defined in src/waiting.ts:13
+Defined in src/foundation.ts:33
 
 **Parameters:**
 
@@ -3813,7 +3813,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
 
-Defined in src/logging.ts:42
+Defined in src/logging.ts:18
 
 **Parameters:**
 
@@ -4210,13 +4210,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | EventListenerOptions*
@@ -4251,7 +4251,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:38
+Defined in src/open-scd-base.ts:39
 
 **Returns:** *TemplateResult*
 
@@ -4676,11 +4676,11 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[warn](_editors_substation_editor_base_.substationeditorbase.md#optional-warn)*
+*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
 *Overrides void*
 
-Defined in src/waiting.ts:14
+Defined in src/foundation.ts:34
 
 **Parameters:**
 
@@ -4872,7 +4872,7 @@ Override this method to integrate into a style management system.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
 
-Defined in src/open-scd-base.ts:223
+Defined in src/open-scd-base.ts:224
 
 ###  editors
 
@@ -4910,4 +4910,4 @@ Defined in src/open-scd-base.ts:223
       },
     ]
 
-Defined in src/open-scd-base.ts:224
+Defined in src/open-scd-base.ts:225

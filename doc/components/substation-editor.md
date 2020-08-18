@@ -7,7 +7,7 @@
 | `desc`         | `desc`    | readonly  | `string`               |              |
 | `descUI`       |           |           | `TextField`            |              |
 | `doc`          | `doc`     |           | `XMLDocument`          |              |
-| `editUI`       |           |           | `DialogBase`           |              |
+| `editUI`       |           |           | `Dialog`               |              |
 | `editorPaneUI` |           |           | `HTMLElement`          |              |
 | `name`         | `name`    | readonly  | `string`               |              |
 | `nameUI`       |           |           | `TextField`            |              |

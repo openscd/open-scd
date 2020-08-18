@@ -727,7 +727,7 @@ ___
 
 • **descUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:30
+Defined in src/editors/substation-editor-base.ts:29
 
 ___
 
@@ -745,7 +745,7 @@ ___
 
 • **doc**: *XMLDocument*
 
-Defined in src/editors/substation-editor-base.ts:17
+Defined in src/editors/substation-editor-base.ts:16
 
 ___
 
@@ -761,17 +761,17 @@ ___
 
 ###  editUI
 
-• **editUI**: *DialogBase*
+• **editUI**: *Dialog*
 
-Defined in src/editors/substation-editor-base.ts:28
+Defined in src/editors/substation-editor-base.ts:27
 
 ___
 
 ###  editorPaneUI
 
-• **editorPaneUI**: *[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)*
+• **editorPaneUI**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
 
-Defined in src/editors/substation-editor-base.ts:31
+Defined in src/editors/substation-editor-base.ts:30
 
 ___
 
@@ -943,7 +943,7 @@ ___
 
 • **nameUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:29
+Defined in src/editors/substation-editor-base.ts:28
 
 ___
 
@@ -989,7 +989,7 @@ ___
 
 • **node**? : *Element*
 
-Defined in src/editors/substation-editor-base.ts:14
+Defined in src/editors/substation-editor-base.ts:13
 
 ___
 
@@ -2191,7 +2191,7 @@ ___
 
 ### `Readonly` parentElement
 
-• **parentElement**: *[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) | null*
+• **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[parentElement](_editors_substation_editor_base_.substationeditorbase.md#readonly-parentelement)*
 
@@ -2360,7 +2360,7 @@ ___
 
 • **tag**: *string* = "Substation"
 
-Defined in src/editors/substation-editor-base.ts:15
+Defined in src/editors/substation-editor-base.ts:14
 
 ___
 
@@ -2496,7 +2496,7 @@ using the `css` tag function.
 
 • **get desc**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:24
+Defined in src/editors/substation-editor-base.ts:23
 
 **Returns:** *string*
 
@@ -2518,7 +2518,7 @@ ___
 
 • **get name**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:19
+Defined in src/editors/substation-editor-base.ts:18
 
 **Returns:** *string*
 
@@ -2613,13 +2613,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | AddEventListenerOptions*
@@ -2650,7 +2650,7 @@ ___
 
 ▸ **addSubstation**(`e`: Event): *void*
 
-Defined in src/editors/substation-editor-base.ts:57
+Defined in src/editors/substation-editor-base.ts:56
 
 **Parameters:**
 
@@ -3302,7 +3302,7 @@ ___
 
 ###  getElementsByTagNameNS
 
-▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
+▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[getElementsByTagNameNS](_editors_substation_editor_base_.substationeditorbase.md#getelementsbytagnamens)*
 
@@ -3315,7 +3315,7 @@ Name | Type |
 `namespaceURI` | "http://www.w3.org/1999/xhtml" |
 `localName` | string |
 
-**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
+**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
@@ -3460,9 +3460,9 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[info](_editors_substation_editor_base_.substationeditorbase.md#optional-info)*
+*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-Defined in src/waiting.ts:13
+Defined in src/foundation.ts:33
 
 **Parameters:**
 
@@ -4013,13 +4013,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | EventListenerOptions*
@@ -4052,7 +4052,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:86
+Defined in src/editors/substation-editor-base.ts:85
 
 **Returns:** *TemplateResult*
 
@@ -4170,7 +4170,7 @@ ___
 
 ▸ **saveSubstation**(`e`: Event): *void*
 
-Defined in src/editors/substation-editor-base.ts:33
+Defined in src/editors/substation-editor-base.ts:32
 
 **Parameters:**
 
@@ -4493,9 +4493,9 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[warn](_editors_substation_editor_base_.substationeditorbase.md#optional-warn)*
+*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-Defined in src/waiting.ts:14
+Defined in src/foundation.ts:34
 
 **Parameters:**
 
