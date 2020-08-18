@@ -7,22 +7,22 @@ import '@material/mwc-textfield';
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
 import { TextField } from '@material/mwc-textfield';
 
-import { Create, Update } from './logging.js';
+import { Create, Update } from '../logging.js'; // FIXME: factor out to CDN
 
 export class SubstationEditorBase extends LitElement {
   @property()
-  node!: Element;
+  node?: Element;
   tag = 'Substation';
   @property()
   doc!: XMLDocument;
   @property({ type: String })
   get name(): string {
-    return this.node!.getAttribute('name')!;
+    return this.node?.getAttribute('name') ?? '';
   }
 
   @property({ type: String })
   get desc(): string {
-    return this.node!.getAttribute('desc') ?? '';
+    return this.node?.getAttribute('desc') ?? '';
   }
 
   @query('mwc-dialog') editUI!: DialogBase;
@@ -41,8 +41,8 @@ export class SubstationEditorBase extends LitElement {
         composed: true,
         bubbles: true,
         detail: {
-          old: { element: this.node },
-          new: { element: <Element>this.node.cloneNode(false) },
+          old: { element: this.node! },
+          new: { element: <Element>this.node!.cloneNode(false) },
         },
       });
       if (this.nameUI.value != this.name)

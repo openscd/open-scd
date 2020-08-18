@@ -228,7 +228,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         icon: zeroLineIcon,
         getContent: (): ((part: NodePart) => void) =>
           plugin(
-            './substation-editor.js',
+            './editors/substation-editor.js',
             html`<substation-editor
               .node=${this.doc.querySelector('Substation')}
               .doc=${this.doc}

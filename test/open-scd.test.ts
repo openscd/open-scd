@@ -104,6 +104,6 @@ describe('open-scd', () => {
     expect(element.doc.lastElementChild)
       .property('childElementCount')
       .to.equal(21);
-    expect(element).property('history').to.have.length(28);
+    expect(element).property('history').to.have.length(27);
   }).timeout(60000);
 });

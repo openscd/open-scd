@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { SubstationEditor } from '../src/substation-editor.js';
-import '../src/substation-editor.js';
+import { SubstationEditor } from '../src/editors/substation-editor.js';
+import '../src/editors/substation-editor.js';
 
 import { trainingDocument } from './data.js';
 
@@ -20,9 +20,9 @@ describe('substation-editor', () => {
       /> `);
   });
 
-  it('renders an "add substation" button if none exists', () => {
-    expect(element).to.have.property('name', null);
-    expect(element).to.have.property('desc', null);
+  it('renders an "add substation" button if no substation exists', () => {
+    expect(element).to.have.property('name', '');
+    expect(element).to.have.property('desc', '');
     expect(element.shadowRoot!.querySelector('mwc-fab'))
       .attribute('icon')
       .to.equal('add');
