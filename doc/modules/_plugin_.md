@@ -21,7 +21,9 @@
         bubbles: true,
         detail: import(src).then(() => resolved.add(part)),
       });
-      part.startNode.parentNode!.dispatchEvent(event);
+      if (part.startNode.parentNode)
+        part.startNode.parentNode.dispatchEvent(event);
+      else part.startNode.dispatchEvent(event);
     }
 
     part.setValue(value);
