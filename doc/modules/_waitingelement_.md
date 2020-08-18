@@ -8,10 +8,44 @@
 
 * [__global](_waitingelement_.__global.md)
 
-### Classes
-
-* [WaitingElement](../classes/_waitingelement_.waitingelement.md)
-
 ### Interfaces
 
-* [PendingStateDetail](../interfaces/_waitingelement_.pendingstatedetail.md)
+* [PendingState](../interfaces/_waitingelement_.pendingstate.md)
+
+### Type aliases
+
+* [ElementConstructor](_waitingelement_.md#elementconstructor)
+
+### Functions
+
+* [Waiting](_waitingelement_.md#waiting)
+
+## Type aliases
+
+###  ElementConstructor
+
+Ƭ **ElementConstructor**: *object*
+
+Defined in src/WaitingElement.ts:1
+
+#### Type declaration:
+
+## Functions
+
+###  Waiting
+
+▸ **Waiting**‹**TBase**›(`Base`: TBase): *WaitingElement & TBase*
+
+Defined in src/WaitingElement.ts:18
+
+**Type parameters:**
+
+▪ **TBase**: *[ElementConstructor](_waitingelement_.md#elementconstructor)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`Base` | TBase |
+
+**Returns:** *WaitingElement & TBase*

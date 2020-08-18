@@ -7,3 +7,4 @@
 ### Interfaces
 
 * [ElementEventMap](../interfaces/_waitingelement_.__global.elementeventmap.md)
+* [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md)
