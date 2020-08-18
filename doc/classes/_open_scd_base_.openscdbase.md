@@ -336,7 +336,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:335
+Defined in src/open-scd-base.ts:333
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -3426,11 +3426,11 @@ ___
 
 ###  commit
 
-▸ **commit**(`title`: string, `change`: [Change](../modules/_logging_.md#change), `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *void*
+▸ **commit**(`title`: string, `change`: [Change](../modules/_logging_.md#change), `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
 
-Defined in src/logging.ts:58
+Defined in src/logging.ts:60
 
 **Parameters:**
 
@@ -3440,7 +3440,7 @@ Name | Type |
 `change` | [Change](../modules/_logging_.md#change) |
 `options?` | [LogOptions](../modules/_logging_.md#logoptions) |
 
-**Returns:** *void*
+**Returns:** *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 ___
 
@@ -3573,7 +3573,7 @@ ___
 
 ###  error
 
-▸ **error**(`title`: string, `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *void*
+▸ **error**(`title`: string, `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 *Overrides void*
 
@@ -3586,7 +3586,7 @@ Name | Type |
 `title` | string |
 `options?` | [LogOptions](../modules/_logging_.md#logoptions) |
 
-**Returns:** *void*
+**Returns:** *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 ___
 
@@ -4243,7 +4243,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:305
+Defined in src/open-scd-base.ts:303
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4259,7 +4259,7 @@ ___
 
 ###  log
 
-▸ **log**(`title`: string, `entry?`: Partial‹[LogEntry](../interfaces/_logging_.logentry.md)›): *void*
+▸ **log**(`title`: string, `detail?`: Partial‹[LogEntry](../interfaces/_logging_.logentry.md)›): *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
 
@@ -4270,9 +4270,9 @@ Defined in src/logging.ts:42
 Name | Type |
 ------ | ------ |
 `title` | string |
-`entry?` | Partial‹[LogEntry](../interfaces/_logging_.logentry.md)› |
+`detail?` | Partial‹[LogEntry](../interfaces/_logging_.logentry.md)› |
 
-**Returns:** *void*
+**Returns:** *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 ___
 
@@ -4372,7 +4372,7 @@ ___
 
 ▸ **onAdd**(`event`: CustomEvent‹[Create](../interfaces/_logging_.create.md)›): *void*
 
-Defined in src/open-scd-base.ts:327
+Defined in src/open-scd-base.ts:325
 
 **Parameters:**
 
@@ -4388,7 +4388,7 @@ ___
 
 ▸ **onEdit**(`event`: CustomEvent‹[Update](../interfaces/_logging_.update.md)›): *void*
 
-Defined in src/open-scd-base.ts:314
+Defined in src/open-scd-base.ts:312
 
 **Parameters:**
 

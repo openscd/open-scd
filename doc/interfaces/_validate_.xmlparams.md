@@ -20,7 +20,7 @@
 
 • **arguments**: *Array‹string›*
 
-Defined in src/validate.ts:6
+Defined in src/validate.ts:7
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **schema**: *string*
 
-Defined in src/validate.ts:5
+Defined in src/validate.ts:6
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **xml**: *string*
 
-Defined in src/validate.ts:4
+Defined in src/validate.ts:5

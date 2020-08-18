@@ -6583,15 +6583,15 @@
   </xs:element>
 </xs:schema>`
 
-Defined in src/validate.ts:24
+Defined in src/validate.ts:36
 
 ## Functions
 
 ###  validateSCL
 
-▸ **validateSCL**(`doc`: XMLDocument, `fileName`: string): *Promise‹Array‹string››*
+▸ **validateSCL**(`doc`: XMLDocument, `fileName`: string, `cause?`: [LogEntry](../interfaces/_logging_.logentry.md)): *Promise‹Array‹Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "title" | "message" | "cause"›››*
 
-Defined in src/validate.ts:12
+Defined in src/validate.ts:13
 
 Validates `doc` against the `SCL 2007 B1` schema.
 
@@ -6601,16 +6601,17 @@ Name | Type | Default |
 ------ | ------ | ------ |
 `doc` | XMLDocument | - |
 `fileName` | string | "untitled.scd" |
+`cause?` | [LogEntry](../interfaces/_logging_.logentry.md) | - |
 
-**Returns:** *Promise‹Array‹string››*
+**Returns:** *Promise‹Array‹Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "title" | "message" | "cause"›››*
 
 ___
 
 ###  validateXML
 
-▸ **validateXML**(`parameters`: [XMLParams](../interfaces/_validate_.xmlparams.md)): *null | string*
+▸ **validateXML**(`parameters`: [XMLParams](../interfaces/_validate_.xmlparams.md)): *string*
 
-Defined in src/validate.ts:9
+Defined in src/validate.ts:10
 
 **Parameters:**
 
@@ -6618,4 +6619,4 @@ Name | Type |
 ------ | ------ |
 `parameters` | [XMLParams](../interfaces/_validate_.xmlparams.md) |
 
-**Returns:** *null | string*
+**Returns:** *string*

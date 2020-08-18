@@ -30,11 +30,11 @@
 
 | Method   | Type                                             |
 |----------|--------------------------------------------------|
-| `commit` | `(title: string, change: Change, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): void` |
-| `error`  | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): void` |
-| `info`   | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): void` |
-| `log`    | `(title: string, entry?: Partial<LogEntry> \| undefined): void` |
-| `warn`   | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): void` |
+| `commit` | `(title: string, change: Change, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): LogEntry` |
+| `error`  | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): LogEntry` |
+| `info`   | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): LogEntry` |
+| `log`    | `(title: string, detail?: Partial<LogEntry> \| undefined): LogEntry` |
+| `warn`   | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): LogEntry` |
 
 ## Events
 
