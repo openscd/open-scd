@@ -1,19 +1,4 @@
-type ElementConstructor = new (...args: any[]) => HTMLElement;
-
-export interface PendingState {
-  promise: Promise<string>;
-}
-
-declare global {
-  interface ElementEventMap {
-    ['pending-state']: CustomEvent<PendingState>;
-  }
-  interface HTMLElement {
-    connectedCallback?(): void;
-    info?(message: string, ...data: any[]): void;
-    warn?(message: string, ...data: any[]): void;
-  }
-}
+import { ElementConstructor, PendingState } from './foundation.js';
 
 export function Waiting<TBase extends ElementConstructor>(Base: TBase) {
   return class WaitingElement extends Base {

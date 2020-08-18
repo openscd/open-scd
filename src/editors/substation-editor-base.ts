@@ -4,10 +4,9 @@ import '@material/mwc-dialog';
 import '@material/mwc-fab';
 import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
-import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
+import { Dialog } from '@material/mwc-dialog';
 import { TextField } from '@material/mwc-textfield';
-
-import { Create, Update } from '../logging.js'; // FIXME: factor out to CDN
+import { Update, Create } from '../foundation.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
@@ -25,13 +24,13 @@ export class SubstationEditorBase extends LitElement {
     return this.node?.getAttribute('desc') ?? '';
   }
 
-  @query('mwc-dialog') editUI!: DialogBase;
+  @query('mwc-dialog') editUI!: Dialog;
   @query('mwc-textfield[label="name"]') nameUI!: TextField;
   @query('mwc-textfield[label="desc"]') descUI!: TextField;
   @query('div#editor') editorPaneUI!: HTMLElement;
 
   saveSubstation(e: Event): void {
-    const dialog = <DialogBase>(<HTMLElement>e.target).parentElement!;
+    const dialog = <Dialog>(<HTMLElement>e.target).parentElement!;
     if (
       Array.from(dialog.querySelectorAll('mwc-textfield'))
         .map(tf => tf.checkValidity())
@@ -55,7 +54,7 @@ export class SubstationEditorBase extends LitElement {
   }
 
   addSubstation(e: Event): void {
-    const dialog = <DialogBase>(<HTMLElement>e.target).parentElement!;
+    const dialog = <Dialog>(<HTMLElement>e.target).parentElement!;
     if (
       Array.from(dialog.querySelectorAll('mwc-textfield'))
         .map(tf => tf.checkValidity())

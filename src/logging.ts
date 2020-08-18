@@ -1,28 +1,4 @@
-type ElementConstructor = new (...args: any[]) => HTMLElement;
-
-declare global {
-  interface ElementEventMap {
-    ['create']: CustomEvent<Create>;
-    ['update']: CustomEvent<Update>;
-  }
-}
-
-/** Represents an intended change to an `Element`. */
-export type Change = Create | Update | Delete | Move;
-export interface Move {
-  old: { parent: Element; element: Element };
-  new: { parent: Element };
-}
-export interface Create {
-  new: { parent: Element; element: Element };
-}
-export interface Delete {
-  old: { parent: Element; element: Element };
-}
-export interface Update {
-  old: { element: Element };
-  new: { element: Element };
-}
+import { Change, ElementConstructor } from './foundation.js';
 
 export interface LogEntry {
   time: Date;

@@ -13,16 +13,17 @@ import '@material/mwc-snackbar';
 import '@material/mwc-tab';
 import '@material/mwc-tab-bar';
 import '@material/mwc-top-app-bar-fixed';
-import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base';
-import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base';
-import { SnackbarBase } from '@material/mwc-snackbar/mwc-snackbar-base';
+import { Dialog } from '@material/mwc-dialog';
+import { Drawer } from '@material/mwc-drawer';
+import { Snackbar } from '@material/mwc-snackbar';
 
-import { Waiting, PendingState } from './waiting.js';
+import { Update, Create, PendingState } from './foundation.js';
+import { Logging, LogOptions, LogEntry } from './logging.js';
+import { Waiting } from './waiting.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
-import { Logging, LogOptions, LogEntry, Create, Update } from './logging.js';
 
 interface MenuEntry {
   icon: string;
@@ -195,9 +196,9 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     );
   }
 
-  @query('mwc-drawer') menuUI!: DrawerBase;
-  @query('mwc-dialog') logUI!: DialogBase;
-  @query('mwc-snackbar') messageUI!: SnackbarBase;
+  @query('mwc-drawer') menuUI!: Drawer;
+  @query('mwc-dialog') logUI!: Dialog;
+  @query('mwc-snackbar') messageUI!: Snackbar;
   @query('#file-input') fileUI!: HTMLInputElement;
 
   menu: MenuEntry[] = [
