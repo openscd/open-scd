@@ -1,4 +1,4 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["WaitingElement"](../modules/_waitingelement_.md) › [__global](../modules/_waitingelement_.__global.md) › [HTMLElement](_waitingelement_.__global.htmlelement.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["waiting"](../modules/_waiting_.md) › [__global](../modules/_waiting_.__global.md) › [HTMLElement](_waiting_.__global.htmlelement.md)
 
 # Interface: HTMLElement
 
@@ -10,9 +10,9 @@
 
 ### Methods
 
-* [connectedCallback](_waitingelement_.__global.htmlelement.md#optional-connectedcallback)
-* [info](_waitingelement_.__global.htmlelement.md#optional-info)
-* [warn](_waitingelement_.__global.htmlelement.md#optional-warn)
+* [connectedCallback](_waiting_.__global.htmlelement.md#optional-connectedcallback)
+* [info](_waiting_.__global.htmlelement.md#optional-info)
+* [warn](_waiting_.__global.htmlelement.md#optional-warn)
 
 ## Methods
 
@@ -20,7 +20,7 @@
 
 ▸ **connectedCallback**(): *void*
 
-Defined in src/WaitingElement.ts:12
+Defined in src/waiting.ts:12
 
 **Returns:** *void*
 
@@ -30,7 +30,7 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/WaitingElement.ts:13
+Defined in src/waiting.ts:13
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/WaitingElement.ts:14
+Defined in src/waiting.ts:14
 
 **Parameters:**
 

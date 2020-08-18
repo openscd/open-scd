@@ -769,7 +769,7 @@ ___
 
 ###  editorPaneUI
 
-• **editorPaneUI**: *[HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md)*
+• **editorPaneUI**: *[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)*
 
 Defined in src/substation-editor-base.ts:31
 
@@ -2191,7 +2191,7 @@ ___
 
 ### `Readonly` parentElement
 
-• **parentElement**: *[HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md) | null*
+• **parentElement**: *[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) | null*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)*
 
@@ -2613,13 +2613,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | AddEventListenerOptions*
@@ -3302,7 +3302,7 @@ ___
 
 ###  getElementsByTagNameNS
 
-▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md)›*
+▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
 
@@ -3315,7 +3315,7 @@ Name | Type |
 `namespaceURI` | "http://www.w3.org/1999/xhtml" |
 `localName` | string |
 
-**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md)›*
+**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
@@ -3460,9 +3460,9 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md).[info](../interfaces/_waitingelement_.__global.htmlelement.md#optional-info)*
+*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[info](../interfaces/_waiting_.__global.htmlelement.md#optional-info)*
 
-Defined in src/WaitingElement.ts:13
+Defined in src/waiting.ts:13
 
 **Parameters:**
 
@@ -4013,13 +4013,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | EventListenerOptions*
@@ -4493,9 +4493,9 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md).[warn](../interfaces/_waitingelement_.__global.htmlelement.md#optional-warn)*
+*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[warn](../interfaces/_waiting_.__global.htmlelement.md#optional-warn)*
 
-Defined in src/WaitingElement.ts:14
+Defined in src/waiting.ts:14
 
 **Parameters:**
 

@@ -22,7 +22,7 @@
 
 • **action**? : *undefined | function*
 
-Defined in src/open-scd-base.ts:38
+Defined in src/open-scd-base.ts:32
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **actionItem**? : *undefined | false | true*
 
-Defined in src/open-scd-base.ts:37
+Defined in src/open-scd-base.ts:31
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 • **icon**: *string*
 
-Defined in src/open-scd-base.ts:34
+Defined in src/open-scd-base.ts:28
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • **name**: *string*
 
-Defined in src/open-scd-base.ts:35
+Defined in src/open-scd-base.ts:29
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 • **startsGroup**? : *undefined | false | true*
 
-Defined in src/open-scd-base.ts:36
+Defined in src/open-scd-base.ts:30

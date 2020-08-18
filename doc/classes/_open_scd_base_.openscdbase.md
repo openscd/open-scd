@@ -336,7 +336,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:341
+Defined in src/open-scd-base.ts:335
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -612,7 +612,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:174
+Defined in src/open-scd-base.ts:168
 
 The currently active editor tab.
 
@@ -812,7 +812,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:187
+Defined in src/open-scd-base.ts:181
 
 ___
 
@@ -844,7 +844,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:177
+Defined in src/open-scd-base.ts:171
 
 The `XMLDocument` representation of the current file.
 
@@ -866,7 +866,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:207
+Defined in src/open-scd-base.ts:201
 
 ___
 
@@ -924,11 +924,11 @@ ___
 
 ###  history
 
-• **history**: *[LogEntry](../interfaces/_loggingelement_.logentry.md)[]* = []
+• **history**: *[LogEntry](../interfaces/_logging_.logentry.md)[]* = []
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:167
+Defined in src/open-scd-base.ts:161
 
 ___
 
@@ -1078,7 +1078,7 @@ ___
 
 • **logUI**: *DialogBase*
 
-Defined in src/open-scd-base.ts:205
+Defined in src/open-scd-base.ts:199
 
 ___
 
@@ -1104,7 +1104,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:209
+Defined in src/open-scd-base.ts:203
 
 ___
 
@@ -1112,7 +1112,7 @@ ___
 
 • **menuUI**: *DrawerBase*
 
-Defined in src/open-scd-base.ts:204
+Defined in src/open-scd-base.ts:198
 
 ___
 
@@ -1120,7 +1120,7 @@ ___
 
 • **messageUI**: *SnackbarBase*
 
-Defined in src/open-scd-base.ts:206
+Defined in src/open-scd-base.ts:200
 
 ___
 
@@ -2564,7 +2564,7 @@ ___
 
 ### `Readonly` parentElement
 
-• **parentElement**: *[HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md) | null*
+• **parentElement**: *[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) | null*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)*
 
@@ -2737,7 +2737,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:186
+Defined in src/open-scd-base.ts:180
 
 The name of the current file.
 
@@ -2771,7 +2771,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-Defined in src/open-scd-base.ts:184
+Defined in src/open-scd-base.ts:178
 
 The tag name this editor is responsible for editing
 
@@ -2833,7 +2833,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:171
+Defined in src/open-scd-base.ts:165
 
 Whewaiting editor is currently waiting for some async work.
 
@@ -2845,7 +2845,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
 
-Defined in src/WaitingElement.ts:21
+Defined in src/waiting.ts:21
 
 ___
 
@@ -2855,7 +2855,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
 
-Defined in src/WaitingElement.ts:23
+Defined in src/waiting.ts:23
 
 A promise which resolves once all currently pending work is done.
 
@@ -2877,7 +2877,7 @@ ___
 
 ▪ **emptySCD**: *Document* = document.implementation.createDocument(scl, 'SCL', null)
 
-Defined in src/open-scd-base.ts:164
+Defined in src/open-scd-base.ts:158
 
 ___
 
@@ -2971,7 +2971,7 @@ ___
 
 • **get node**(): *Element*
 
-Defined in src/open-scd-base.ts:180
+Defined in src/open-scd-base.ts:174
 
 The `Node` this editor is responsible for editing
 
@@ -2983,7 +2983,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:190
+Defined in src/open-scd-base.ts:184
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2991,7 +2991,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:193
+Defined in src/open-scd-base.ts:187
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3094,13 +3094,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | AddEventListenerOptions*
@@ -3426,19 +3426,19 @@ ___
 
 ###  commit
 
-▸ **commit**(`title`: string, `change`: [Change](../modules/_loggingelement_.md#change), `options?`: [LogOptions](../modules/_loggingelement_.md#logoptions)): *void*
+▸ **commit**(`title`: string, `change`: [Change](../modules/_logging_.md#change), `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *void*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
 
-Defined in src/LoggingElement.ts:58
+Defined in src/logging.ts:58
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `title` | string |
-`change` | [Change](../modules/_loggingelement_.md#change) |
-`options?` | [LogOptions](../modules/_loggingelement_.md#logoptions) |
+`change` | [Change](../modules/_logging_.md#change) |
+`options?` | [LogOptions](../modules/_logging_.md#logoptions) |
 
 **Returns:** *void*
 
@@ -3470,11 +3470,11 @@ ___
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md).[connectedCallback](../interfaces/_waitingelement_.__global.htmlelement.md#optional-connectedcallback)*
+*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[connectedCallback](../interfaces/_waiting_.__global.htmlelement.md#optional-connectedcallback)*
 
-*Overrides [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md).[connectedCallback](../interfaces/_waitingelement_.__global.htmlelement.md#optional-connectedcallback)*
+*Overrides [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[connectedCallback](../interfaces/_waiting_.__global.htmlelement.md#optional-connectedcallback)*
 
-Defined in src/WaitingElement.ts:12
+Defined in src/waiting.ts:12
 
 **Returns:** *void*
 
@@ -3573,18 +3573,18 @@ ___
 
 ###  error
 
-▸ **error**(`title`: string, `options?`: [LogOptions](../modules/_loggingelement_.md#logoptions)): *void*
+▸ **error**(`title`: string, `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *void*
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:265
+Defined in src/open-scd-base.ts:259
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `title` | string |
-`options?` | [LogOptions](../modules/_loggingelement_.md#logoptions) |
+`options?` | [LogOptions](../modules/_logging_.md#logoptions) |
 
 **Returns:** *void*
 
@@ -3862,7 +3862,7 @@ ___
 
 ###  getElementsByTagNameNS
 
-▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md)›*
+▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)*
 
@@ -3877,7 +3877,7 @@ Name | Type |
 `namespaceURI` | "http://www.w3.org/1999/xhtml" |
 `localName` | string |
 
-**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md)›*
+**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_waiting_.__global.htmlelement.md)›*
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
@@ -4038,11 +4038,11 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md).[info](../interfaces/_waitingelement_.__global.htmlelement.md#optional-info)*
+*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[info](../interfaces/_waiting_.__global.htmlelement.md#optional-info)*
 
 *Overrides void*
 
-Defined in src/WaitingElement.ts:13
+Defined in src/waiting.ts:13
 
 **Parameters:**
 
@@ -4227,7 +4227,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:270
+Defined in src/open-scd-base.ts:264
 
 **Parameters:**
 
@@ -4243,7 +4243,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:311
+Defined in src/open-scd-base.ts:305
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4259,18 +4259,18 @@ ___
 
 ###  log
 
-▸ **log**(`title`: string, `entry?`: Partial‹[LogEntry](../interfaces/_loggingelement_.logentry.md)›): *void*
+▸ **log**(`title`: string, `entry?`: Partial‹[LogEntry](../interfaces/_logging_.logentry.md)›): *void*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
 
-Defined in src/LoggingElement.ts:42
+Defined in src/logging.ts:42
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `title` | string |
-`entry?` | Partial‹[LogEntry](../interfaces/_loggingelement_.logentry.md)› |
+`entry?` | Partial‹[LogEntry](../interfaces/_logging_.logentry.md)› |
 
 **Returns:** *void*
 
@@ -4370,15 +4370,15 @@ ___
 
 ### `Private` onAdd
 
-▸ **onAdd**(`event`: CustomEvent‹[Create](../interfaces/_loggingelement_.create.md)›): *void*
+▸ **onAdd**(`event`: CustomEvent‹[Create](../interfaces/_logging_.create.md)›): *void*
 
-Defined in src/open-scd-base.ts:333
+Defined in src/open-scd-base.ts:327
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`event` | CustomEvent‹[Create](../interfaces/_loggingelement_.create.md)› |
+`event` | CustomEvent‹[Create](../interfaces/_logging_.create.md)› |
 
 **Returns:** *void*
 
@@ -4386,15 +4386,15 @@ ___
 
 ### `Private` onEdit
 
-▸ **onEdit**(`event`: CustomEvent‹[Update](../interfaces/_loggingelement_.update.md)›): *void*
+▸ **onEdit**(`event`: CustomEvent‹[Update](../interfaces/_logging_.update.md)›): *void*
 
-Defined in src/open-scd-base.ts:320
+Defined in src/open-scd-base.ts:314
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`event` | CustomEvent‹[Update](../interfaces/_loggingelement_.update.md)› |
+`event` | CustomEvent‹[Update](../interfaces/_logging_.update.md)› |
 
 **Returns:** *void*
 
@@ -4728,13 +4728,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
 
 ▪ **listener**: *function*
 
-▸ (`this`: [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
+▸ (`this`: [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md) |
+`this` | [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md) |
 `ev` | HTMLElementEventMap[K] |
 
 ▪`Optional`  **options**: *boolean | EventListenerOptions*
@@ -4767,7 +4767,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:44
+Defined in src/open-scd-base.ts:38
 
 **Returns:** *TemplateResult*
 
@@ -5226,11 +5226,11 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_waitingelement_.__global.htmlelement.md).[warn](../interfaces/_waitingelement_.__global.htmlelement.md#optional-warn)*
+*Inherited from [HTMLElement](../interfaces/_waiting_.__global.htmlelement.md).[warn](../interfaces/_waiting_.__global.htmlelement.md#optional-warn)*
 
 *Overrides void*
 
-Defined in src/WaitingElement.ts:14
+Defined in src/waiting.ts:14
 
 **Parameters:**
 
@@ -5422,7 +5422,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:229
+Defined in src/open-scd-base.ts:223
 
 ###  editors
 
@@ -5460,4 +5460,4 @@ Defined in src/open-scd-base.ts:229
       },
     ]
 
-Defined in src/open-scd-base.ts:230
+Defined in src/open-scd-base.ts:224
