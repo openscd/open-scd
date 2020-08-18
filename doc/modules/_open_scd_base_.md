@@ -11,15 +11,3 @@
 ### Interfaces
 
 * [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)
-
-### Variables
-
-* [scl](_open_scd_base_.md#const-scl)
-
-## Variables
-
-### `Const` scl
-
-• **scl**: *"http://www.iec.ch/61850/2003/SCL"* = "http://www.iec.ch/61850/2003/SCL"
-
-Defined in src/open-scd-base.ts:36

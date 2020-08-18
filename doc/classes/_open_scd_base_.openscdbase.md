@@ -336,7 +336,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:334
+Defined in src/open-scd-base.ts:336
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -612,7 +612,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:169
+Defined in src/open-scd-base.ts:171
 
 The currently active editor tab.
 
@@ -812,7 +812,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:182
+Defined in src/open-scd-base.ts:184
 
 ___
 
@@ -844,7 +844,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:172
+Defined in src/open-scd-base.ts:174
 
 The `XMLDocument` representation of the current file.
 
@@ -866,7 +866,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:202
+Defined in src/open-scd-base.ts:204
 
 ___
 
@@ -928,7 +928,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:162
+Defined in src/open-scd-base.ts:164
 
 ___
 
@@ -1078,7 +1078,7 @@ ___
 
 • **logUI**: *Dialog*
 
-Defined in src/open-scd-base.ts:200
+Defined in src/open-scd-base.ts:202
 
 ___
 
@@ -1104,7 +1104,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:204
+Defined in src/open-scd-base.ts:206
 
 ___
 
@@ -1112,7 +1112,7 @@ ___
 
 • **menuUI**: *Drawer*
 
-Defined in src/open-scd-base.ts:199
+Defined in src/open-scd-base.ts:201
 
 ___
 
@@ -1120,7 +1120,7 @@ ___
 
 • **messageUI**: *Snackbar*
 
-Defined in src/open-scd-base.ts:201
+Defined in src/open-scd-base.ts:203
 
 ___
 
@@ -2737,7 +2737,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:181
+Defined in src/open-scd-base.ts:183
 
 The name of the current file.
 
@@ -2771,7 +2771,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-Defined in src/open-scd-base.ts:179
+Defined in src/open-scd-base.ts:181
 
 The tag name this editor is responsible for editing
 
@@ -2833,7 +2833,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:166
+Defined in src/open-scd-base.ts:168
 
 Whewaiting editor is currently waiting for some async work.
 
@@ -2875,9 +2875,13 @@ ___
 
 ### `Static` emptySCD
 
-▪ **emptySCD**: *Document* = document.implementation.createDocument(scl, 'SCL', null)
+▪ **emptySCD**: *Document* = document.implementation.createDocument(
+    'http://www.iec.ch/61850/2003/SCL',
+    'SCL',
+    null
+  )
 
-Defined in src/open-scd-base.ts:159
+Defined in src/open-scd-base.ts:157
 
 ___
 
@@ -2971,7 +2975,7 @@ ___
 
 • **get node**(): *Element*
 
-Defined in src/open-scd-base.ts:175
+Defined in src/open-scd-base.ts:177
 
 The `Node` this editor is responsible for editing
 
@@ -2983,7 +2987,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:185
+Defined in src/open-scd-base.ts:187
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2991,7 +2995,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:188
+Defined in src/open-scd-base.ts:190
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3577,7 +3581,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:260
+Defined in src/open-scd-base.ts:262
 
 **Parameters:**
 
@@ -4227,7 +4231,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:265
+Defined in src/open-scd-base.ts:267
 
 **Parameters:**
 
@@ -4243,7 +4247,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:304
+Defined in src/open-scd-base.ts:306
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4372,7 +4376,7 @@ ___
 
 ▸ **onAdd**(`event`: CustomEvent‹[Create](../interfaces/_foundation_.create.md)›): *void*
 
-Defined in src/open-scd-base.ts:326
+Defined in src/open-scd-base.ts:328
 
 **Parameters:**
 
@@ -4388,7 +4392,7 @@ ___
 
 ▸ **onEdit**(`event`: CustomEvent‹[Update](../interfaces/_foundation_.update.md)›): *void*
 
-Defined in src/open-scd-base.ts:313
+Defined in src/open-scd-base.ts:315
 
 **Parameters:**
 
@@ -4767,7 +4771,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:39
+Defined in src/open-scd-base.ts:37
 
 **Returns:** *TemplateResult*
 
@@ -5422,7 +5426,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:224
+Defined in src/open-scd-base.ts:226
 
 ###  editors
 
@@ -5460,4 +5464,4 @@ Defined in src/open-scd-base.ts:224
       },
     ]
 
-Defined in src/open-scd-base.ts:225
+Defined in src/open-scd-base.ts:227

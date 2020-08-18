@@ -331,7 +331,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:334
+Defined in src/open-scd-base.ts:336
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -569,7 +569,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
 
-Defined in src/open-scd-base.ts:169
+Defined in src/open-scd-base.ts:171
 
 The currently active editor tab.
 
@@ -763,7 +763,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
 
-Defined in src/open-scd-base.ts:172
+Defined in src/open-scd-base.ts:174
 
 The `XMLDocument` representation of the current file.
 
@@ -785,7 +785,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-Defined in src/open-scd-base.ts:202
+Defined in src/open-scd-base.ts:204
 
 ___
 
@@ -841,7 +841,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:162
+Defined in src/open-scd-base.ts:164
 
 ___
 
@@ -971,7 +971,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-Defined in src/open-scd-base.ts:200
+Defined in src/open-scd-base.ts:202
 
 ___
 
@@ -999,7 +999,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
 
-Defined in src/open-scd-base.ts:204
+Defined in src/open-scd-base.ts:206
 
 ___
 
@@ -1009,7 +1009,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-Defined in src/open-scd-base.ts:199
+Defined in src/open-scd-base.ts:201
 
 ___
 
@@ -1019,7 +1019,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-Defined in src/open-scd-base.ts:201
+Defined in src/open-scd-base.ts:203
 
 ___
 
@@ -2410,7 +2410,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-Defined in src/open-scd-base.ts:181
+Defined in src/open-scd-base.ts:183
 
 The name of the current file.
 
@@ -2442,7 +2442,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tag](_open_scd_base_.openscdbase.md#tag)*
 
-Defined in src/open-scd-base.ts:179
+Defined in src/open-scd-base.ts:181
 
 The tag name this editor is responsible for editing
 
@@ -2498,7 +2498,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:166
+Defined in src/open-scd-base.ts:168
 
 Whewaiting editor is currently waiting for some async work.
 
@@ -2540,11 +2540,15 @@ ___
 
 ### `Static` emptySCD
 
-▪ **emptySCD**: *Document* = document.implementation.createDocument(scl, 'SCL', null)
+▪ **emptySCD**: *Document* = document.implementation.createDocument(
+    'http://www.iec.ch/61850/2003/SCL',
+    'SCL',
+    null
+  )
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)*
 
-Defined in src/open-scd-base.ts:159
+Defined in src/open-scd-base.ts:157
 
 ___
 
@@ -2637,7 +2641,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[node](_open_scd_base_.openscdbase.md#node)*
 
-Defined in src/open-scd-base.ts:175
+Defined in src/open-scd-base.ts:177
 
 The `Node` this editor is responsible for editing
 
@@ -2651,7 +2655,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:185
+Defined in src/open-scd-base.ts:187
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2661,7 +2665,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:188
+Defined in src/open-scd-base.ts:190
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3219,7 +3223,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:260
+Defined in src/open-scd-base.ts:262
 
 **Parameters:**
 
@@ -4251,7 +4255,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:39
+Defined in src/open-scd-base.ts:37
 
 **Returns:** *TemplateResult*
 
@@ -4872,7 +4876,7 @@ Override this method to integrate into a style management system.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
 
-Defined in src/open-scd-base.ts:224
+Defined in src/open-scd-base.ts:226
 
 ###  editors
 
@@ -4910,4 +4914,4 @@ Defined in src/open-scd-base.ts:224
       },
     ]
 
-Defined in src/open-scd-base.ts:225
+Defined in src/open-scd-base.ts:227
