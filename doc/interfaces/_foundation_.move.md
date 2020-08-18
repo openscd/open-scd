@@ -23,6 +23,8 @@ Defined in src/foundation.ts:5
 
 #### Type declaration:
 
+* **element**: *Element*
+
 * **parent**: *Element*
 
 ___

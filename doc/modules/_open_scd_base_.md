@@ -11,3 +11,4 @@
 ### Interfaces
 
 * [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)
+* [Tab](../interfaces/_open_scd_base_.tab.md)

@@ -20,4 +20,4 @@ Detail type for `'pending-state'` events.
 
 • **promise**: *Promise‹string›*
 
-Defined in src/foundation.ts:20
+Defined in src/foundation.ts:57

@@ -10,17 +10,26 @@
 
 ### Properties
 
+* [action](_foundation_.__global.elementeventmap.md#action)
 * [create](_foundation_.__global.elementeventmap.md#create)
 * [pending-state](_foundation_.__global.elementeventmap.md#pending-state)
 * [update](_foundation_.__global.elementeventmap.md#update)
 
 ## Properties
 
+###  action
+
+• **action**: *CustomEvent‹[Change](../modules/_foundation_.md#change)›*
+
+Defined in src/foundation.ts:65
+
+___
+
 ###  create
 
 • **create**: *CustomEvent‹[Create](_foundation_.create.md)›*
 
-Defined in src/foundation.ts:28
+Defined in src/foundation.ts:66
 
 ___
 
@@ -28,7 +37,7 @@ ___
 
 • **pending-state**: *CustomEvent‹[PendingState](_foundation_.pendingstate.md)›*
 
-Defined in src/foundation.ts:27
+Defined in src/foundation.ts:64
 
 ___
 
@@ -36,4 +45,4 @@ ___
 
 • **update**: *CustomEvent‹[Update](_foundation_.update.md)›*
 
-Defined in src/foundation.ts:29
+Defined in src/foundation.ts:67
