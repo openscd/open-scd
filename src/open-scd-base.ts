@@ -16,13 +16,13 @@ import '@material/mwc-top-app-bar-fixed';
 import { Dialog } from '@material/mwc-dialog';
 import { Drawer } from '@material/mwc-drawer';
 import { Snackbar } from '@material/mwc-snackbar';
+import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
 import { Update, Create, PendingState } from './foundation.js';
 import { Logging, LogOptions, LogEntry } from './logging.js';
 import { Waiting } from './waiting.js';
 import { validateSCL } from './validate.js';
 import { plugin } from './plugin.js';
-import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 
 interface MenuEntry {
@@ -32,8 +32,6 @@ interface MenuEntry {
   actionItem?: boolean;
   action?: () => void;
 }
-
-export const scl = 'http://www.iec.ch/61850/2003/SCL';
 
 export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   render(): TemplateResult {
@@ -156,7 +154,11 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     `;
   }
 
-  static emptySCD = document.implementation.createDocument(scl, 'SCL', null);
+  static emptySCD = document.implementation.createDocument(
+    'http://www.iec.ch/61850/2003/SCL',
+    'SCL',
+    null
+  );
 
   @property()
   history: LogEntry[] = [];
