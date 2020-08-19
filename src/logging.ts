@@ -99,6 +99,9 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
       this.info = this.info.bind(this); // and others to reference log...
       this.warn = this.warn.bind(this);
       this.error = this.error.bind(this);
+      this.commit = this.commit.bind(this);
+      this.undo = this.undo.bind(this);
+      this.redo = this.redo.bind(this);
     }
   };
 }

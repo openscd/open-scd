@@ -1,12 +1,13 @@
 import { LitElement, html, TemplateResult, property, query } from 'lit-element';
 
+import '@material/mwc-button';
 import '@material/mwc-dialog';
 import '@material/mwc-fab';
 import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { TextField } from '@material/mwc-textfield';
-import { Update, Create } from '../foundation.js';
+import { Update, newActionEvent } from '../foundation.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
@@ -34,20 +35,16 @@ export class SubstationEditorBase extends LitElement {
     if (
       Array.from(dialog.querySelectorAll('mwc-textfield'))
         .map(tf => tf.checkValidity())
-        .reduce((acc, v) => acc && v)
+        .reduce((acc, v) => acc && v) &&
+      (this.nameUI.value != this.name || this.descUI.value != this.desc)
     ) {
-      const event = new CustomEvent<Update>('update', {
-        composed: true,
-        bubbles: true,
-        detail: {
-          old: { element: this.node! },
-          new: { element: <Element>this.node!.cloneNode(false) },
-        },
+      const newElement = <Element>this.node!.cloneNode(false);
+      const event = newActionEvent({
+        old: { element: this.node! },
+        new: { element: newElement },
       });
-      if (this.nameUI.value != this.name)
-        event.detail.new.element.setAttribute('name', this.nameUI.value);
-      if (this.descUI.value != this.desc)
-        event.detail.new.element.setAttribute('desc', this.descUI.value);
+      newElement.setAttribute('name', this.nameUI.value);
+      newElement.setAttribute('desc', this.descUI.value);
       this.dispatchEvent(event);
       dialog.close();
     }
@@ -61,20 +58,16 @@ export class SubstationEditorBase extends LitElement {
         .reduce((acc, v) => acc && v)
     ) {
       if (this.nameUI.value == '') return;
-      const event = new CustomEvent<Create>('create', {
-        composed: true,
-        bubbles: true,
-        detail: {
-          new: {
-            parent: this.doc.documentElement,
-            element: new DOMParser().parseFromString(
-              `<Substation
+      const event = newActionEvent({
+        new: {
+          parent: this.doc.documentElement,
+          element: new DOMParser().parseFromString(
+            `<Substation
         name="${this.nameUI.value}"
         desc="${this.descUI.value}"
         ></Substation>`,
-              'application/xml'
-            ).documentElement,
-          },
+            'application/xml'
+          ).documentElement,
         },
       });
       this.dispatchEvent(event);

@@ -15,21 +15,26 @@ import '@material/mwc-tab-bar';
 import '@material/mwc-top-app-bar-fixed';
 import { Dialog } from '@material/mwc-dialog';
 import { Drawer } from '@material/mwc-drawer';
-import { Snackbar } from '@material/mwc-snackbar';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { Snackbar } from '@material/mwc-snackbar';
 
 import {
-  Update,
-  Create,
-  PendingState,
   Action,
+  Create,
+  Delete,
+  Move,
+  PendingState,
+  Update,
+  isCreate,
+  isDelete,
+  isMove,
   isUpdate,
 } from './foundation.js';
 import { Logging, LogOptions, LogEntry } from './logging.js';
 import { Waiting } from './waiting.js';
-import { validateSCL } from './validate.js';
-import { plugin } from './plugin.js';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
+import { plugin } from './plugin.js';
+import { validateSCL } from './validate.js';
 
 interface Tab {
   label: string;
@@ -346,37 +351,61 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     }
   }
 
-  private onUpdate(event: CustomEvent<Update>) {
-    const source = <LitElement>event.composedPath()[0];
+  private onMove(event: CustomEvent<Move>) {
+    event.detail.new.parent.prepend(event.detail.old.element);
+    this.commit(`Move ${event.detail.old.element.tagName}`, event.detail);
 
-    event.detail.new.element.append(
-      ...Array.from(event.detail.old.element.childNodes)
-    );
-    event.detail.old.element.replaceWith(event.detail.new.element);
-    this.commit(`Edit ${event.detail.new.element.tagName}`, event.detail);
-
-    source.requestUpdate('node');
+    (<LitElement>event.composedPath()[0]).requestUpdate('node');
     this.requestUpdate('doc');
   }
 
   private onCreate(event: CustomEvent<Create>) {
-    const source = <LitElement>event.composedPath()[0];
-
     event.detail.new.parent.prepend(event.detail.new.element);
-    this.commit(`Add ${event.detail.new.element.tagName}`, event.detail);
+    this.commit(`Create ${event.detail.new.element.tagName}`, event.detail);
 
-    source.requestUpdate('node');
+    (<LitElement>event.composedPath()[0]).requestUpdate('node');
+    this.requestUpdate('doc');
+  }
+
+  private onDelete(event: CustomEvent<Delete>) {
+    event.detail.old.element.remove();
+    this.commit(`Delete ${event.detail.old.element.tagName}`, event.detail);
+
+    (<LitElement>event.composedPath()[0]).requestUpdate('node');
+    this.requestUpdate('doc');
+  }
+
+  private onUpdate(event: CustomEvent<Update>) {
+    event.detail.new.element.append(
+      ...Array.from(event.detail.old.element.childNodes)
+    );
+    event.detail.old.element.replaceWith(event.detail.new.element);
+    this.commit(`Update ${event.detail.new.element.tagName}`, event.detail);
+
+    (<LitElement>event.composedPath()[0]).requestUpdate('node');
     this.requestUpdate('doc');
   }
 
   private onAction(event: CustomEvent<Action>) {
-    if (isUpdate(event.detail)) this.onUpdate(event as CustomEvent<Update>);
+    if (isMove(event.detail)) this.onMove(event as CustomEvent<Move>);
+    else if (isCreate(event.detail))
+      this.onCreate(event as CustomEvent<Create>);
+    else if (isDelete(event.detail))
+      this.onDelete(event as CustomEvent<Delete>);
+    else if (isUpdate(event.detail))
+      this.onUpdate(event as CustomEvent<Update>);
+  }
+
+  private handleKeyPress(event: KeyboardEvent): void {
+    if (event.keyCode == 89 /* y */ && event.ctrlKey) this.redo();
+    if (event.keyCode == 90 /* z */ && event.ctrlKey) this.undo();
   }
 
   constructor() {
     super();
-    this.addEventListener('update', this.onUpdate);
-    this.addEventListener('create', this.onCreate);
     this.addEventListener('action', this.onAction);
+
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    document.onkeydown = this.handleKeyPress;
   }
 }
