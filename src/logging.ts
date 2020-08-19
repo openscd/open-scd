@@ -1,11 +1,11 @@
-import { Change, ElementConstructor, invert } from './foundation.js';
+import { Action, ElementConstructor, invert } from './foundation.js';
 
 export interface LogEntry {
   time: Date;
   title: string;
   message?: string;
   icon?: string;
-  change?: Change;
+  action?: Action;
   cause?: LogEntry;
 }
 
@@ -15,29 +15,47 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
   return class LoggingElement extends Base {
     history: LogEntry[] = [];
 
-    currentChange = -1;
-    get hasChanges(): boolean {
-      return this.currentChange >= 0;
+    currentAction = -1;
+    get hasActions(): boolean {
+      return this.currentAction >= 0;
     }
-    get previousChangeIndex(): number {
-      if (!this.hasChanges) return -1;
+    get previousAction(): number {
+      if (!this.hasActions) return -1;
       return this.history
-        .slice(0, this.currentChange)
-        .map(entry => (entry.change ? true : false))
+        .slice(0, this.currentAction)
+        .map(entry => (entry.action ? true : false))
         .lastIndexOf(true);
     }
-    get nextChangeIndex(): number {
-      return this.history
-        .slice(this.currentChange + 1)
-        .findIndex(entry => entry.change);
+    get nextAction(): number {
+      let index = this.history
+        .slice(this.currentAction + 1)
+        .findIndex(entry => entry.action);
+      if (index >= 0) index += this.currentAction + 1;
+      return index;
     }
 
     undo(): boolean {
-      if (this.previousChangeIndex < 0) return false;
-      console.log(this.history[this.currentChange].change);
-      console.log(invert(this.history[this.currentChange].change!));
-      // FIXME: dispatch instead of logging!
-      this.currentChange = this.previousChangeIndex;
+      if (!this.hasActions) return false;
+      this.dispatchEvent(
+        new CustomEvent<Action>('action', {
+          bubbles: true,
+          composed: true,
+          detail: invert(this.history[this.currentAction].action!),
+        })
+      );
+      this.currentAction = this.previousAction;
+      return true;
+    }
+    redo(): boolean {
+      if (this.nextAction < 0) return false;
+      this.dispatchEvent(
+        new CustomEvent<Action>('action', {
+          bubbles: true,
+          composed: true,
+          detail: this.history[this.nextAction].action,
+        })
+      );
+      this.currentAction = this.nextAction;
       return true;
     }
 
@@ -47,17 +65,16 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
         title,
         ...detail,
       };
-      if (entry.change) {
-        if (this.hasChanges) this.history.splice(this.currentChange + 1);
-        this.currentChange = this.history.length;
-        console.log(
-          'current ',
-          this.currentChange,
-          ' next ',
-          this.nextChangeIndex,
-          ' prev ',
-          this.previousChangeIndex
-        );
+      if (entry.action) {
+        if (entry.action.derived) {
+          return {
+            time: new Date(),
+            title: `Will not log derivative action ${title}`,
+          };
+        }
+        entry.action.derived = true;
+        if (this.hasActions) this.history.splice(this.currentAction + 1);
+        this.currentAction = this.history.length;
       }
       this.history.push(entry);
       return entry;
@@ -72,8 +89,8 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
     error(title: string, options?: LogOptions): LogEntry {
       return this.log(title, { icon: 'error_outline', ...options });
     }
-    commit(title: string, change: Change, options?: LogOptions): LogEntry {
-      return this.log(title, { change, icon: 'history', ...options });
+    commit(title: string, action: Action, options?: LogOptions): LogEntry {
+      return this.log(title, { action, icon: 'history', ...options });
     }
 
     constructor(...args: any[]) {

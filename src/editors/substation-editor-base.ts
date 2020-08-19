@@ -97,6 +97,7 @@ ${this.node ? new XMLSerializer().serializeToString(this.node) : null}</pre
             value="${this.name ?? ''}"
             label="name"
             required
+            dialogInitialFocus
           ></mwc-textfield>
           <mwc-textfield
             value="${this.desc ?? ''}"

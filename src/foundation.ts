@@ -1,55 +1,61 @@
-/** Represents an intended change to an `Element`. */
-export type Change = Create | Update | Delete | Move;
+/** Represents an intended change to some `Element`. */
+export type Action = Create | Update | Delete | Move;
 export interface Move {
   old: { parent: Element; element: Element };
   new: { parent: Element; element: Element };
+  derived?: boolean;
 }
 export interface Create {
   new: { parent: Element; element: Element };
+  derived?: boolean;
 }
 export interface Delete {
   old: { parent: Element; element: Element };
+  derived?: boolean;
 }
 export interface Update {
   old: { element: Element };
   new: { element: Element };
+  derived?: boolean;
 }
 
-export function isMove(change: Change): change is Move {
+export function isMove(action: Action): action is Move {
   return (
-    (change as Move).old?.parent !== undefined &&
-    (change as Move).new?.parent !== undefined
+    (action as Move).old?.parent !== undefined &&
+    (action as Move).new?.parent !== undefined
   );
 }
-export function isCreate(change: Change): change is Create {
+export function isCreate(action: Action): action is Create {
   return (
-    (change as Create).new?.parent !== undefined &&
-    (change as Create).new?.element !== undefined &&
-    (change as Update).old === undefined
+    (action as Create).new?.parent !== undefined &&
+    (action as Create).new?.element !== undefined &&
+    (action as Update).old === undefined
   );
 }
-export function isDelete(change: Change): change is Delete {
+export function isDelete(action: Action): action is Delete {
   return (
-    (change as Delete).old?.parent !== undefined &&
-    (change as Delete).old?.element !== undefined &&
-    (change as Update).new === undefined
+    (action as Delete).old?.parent !== undefined &&
+    (action as Delete).old?.element !== undefined &&
+    (action as Update).new === undefined
   );
 }
-export function isUpdate(change: Change): change is Update {
+export function isUpdate(action: Action): action is Update {
   return (
-    (change as Update).old?.element !== undefined &&
-    (change as Update).new?.element !== undefined &&
-    (change as Move).old?.parent === undefined &&
-    (change as Move).new?.parent === undefined
+    (action as Update).old?.element !== undefined &&
+    (action as Update).new?.element !== undefined &&
+    (action as Move).old?.parent === undefined &&
+    (action as Move).new?.parent === undefined
   );
 }
 
-export function invert(change: Change): Change {
-  if (isMove(change) || isUpdate(change))
-    return { new: change.old, old: change.new };
-  else if (isCreate(change)) return { old: change.new };
-  else if (isDelete(change)) return { new: change.old };
-  else return change;
+export function invert(action: Action): Action {
+  if (isMove(action) || isUpdate(action))
+    return { new: action.old, old: action.new, derived: action.derived };
+  else if (isCreate(action))
+    return { old: action.new, derived: action.derived };
+  else if (isDelete(action))
+    return { new: action.old, derived: action.derived };
+  else return action;
 }
 
 /** Detail type for `'pending-state'` events. */
@@ -62,7 +68,7 @@ export type ElementConstructor = new (...args: any[]) => HTMLElement;
 declare global {
   interface ElementEventMap {
     ['pending-state']: CustomEvent<PendingState>;
-    ['action']: CustomEvent<Change>;
+    ['action']: CustomEvent<Action>;
     ['create']: CustomEvent<Create>;
     ['update']: CustomEvent<Update>;
   }

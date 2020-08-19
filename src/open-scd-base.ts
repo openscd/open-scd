@@ -18,7 +18,13 @@ import { Drawer } from '@material/mwc-drawer';
 import { Snackbar } from '@material/mwc-snackbar';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
-import { Update, Create, PendingState } from './foundation.js';
+import {
+  Update,
+  Create,
+  PendingState,
+  Action,
+  isUpdate,
+} from './foundation.js';
 import { Logging, LogOptions, LogEntry } from './logging.js';
 import { Waiting } from './waiting.js';
 import { validateSCL } from './validate.js';
@@ -46,6 +52,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         <span slot="title">${this.name ?? 'Menu'}</span>
         <span slot="subtitle">${this.srcName}</span>
         <mwc-list
+          wrapFocus
           @action=${(ae: CustomEvent<ActionDetail>) =>
             this.menu[ae.detail.index]?.action!()}
         >
@@ -75,7 +82,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       ${this.plugins.editors[this.activeTab].getContent()}
 
       <mwc-dialog id="log" heading="Log">
-        <mwc-list id="content" activatable>
+        <mwc-list id="content" wrapFocus>
           ${this.renderHistory(this.history)}
         </mwc-list>
         <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
@@ -84,8 +91,10 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       <mwc-snackbar
         id="message"
         timeoutMs="-1"
-        labelText="${this.history.find(le => le.icon == 'error_outline')
-          ?.title ?? 'No errors'}"
+        labelText="${this.history
+          .slice()
+          .reverse()
+          .find(le => le.icon == 'error_outline')?.title ?? 'No errors'}"
       >
         <mwc-button slot="action" icon="rule" @click=${() => this.logUI.show()}
           >Show</mwc-button
@@ -139,20 +148,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
 
   renderHistory(history: LogEntry[]): TemplateResult[] {
     if (history.length > 0)
-      return history.map(
-        item => html`<mwc-list-item
-          ?twoline=${item.message}
-          ?hasmeta=${item.icon}
-        >
-          <span>
-            <!-- FIXME: replace tt by mwc-chip asap -->
-            <tt>${item.time.toLocaleTimeString()}</tt>
-            ${item.title}</span
-          >
-          <span slot="secondary">${item.message}</span>
-          <mwc-icon slot="meta">${item.icon}</mwc-icon>
-        </mwc-list-item>`
-      );
+      return history.slice().reverse().map(this.renderLogEntry, this);
     else
       return [
         html`<mwc-list-item disabled hasmeta>
@@ -160,6 +156,26 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
           <mwc-icon slot="meta">info</mwc-icon>
         </mwc-list-item>`,
       ];
+  }
+
+  renderLogEntry(
+    entry: LogEntry,
+    index: number,
+    history: LogEntry[]
+  ): TemplateResult {
+    return html`<mwc-list-item
+      ?twoline=${entry.message}
+      ?hasmeta=${entry.icon}
+      ?activated=${this.currentAction == history.length - index - 1}
+    >
+      <span>
+        <!-- FIXME: replace tt by mwc-chip asap -->
+        <tt>${entry.time.toLocaleTimeString()}</tt>
+        ${entry.title}</span
+      >
+      <span slot="secondary">${entry.message}</span>
+      <mwc-icon slot="meta">${entry.icon}</mwc-icon>
+    </mwc-list-item>`;
   }
 
   static emptySCD = document.implementation.createDocument(
@@ -270,6 +286,14 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   @query('#message') messageUI!: Snackbar;
   @query('#file-input') fileUI!: HTMLInputElement;
 
+  showLog(): void {
+    this.logUI.show();
+    if (this.currentAction >= 0)
+      this.logUI
+        .querySelector('mwc-list')
+        ?.focusItemAtIndex(this.currentAction);
+  }
+
   error(title: string, options?: LogOptions): LogEntry {
     this.messageUI.show();
     return super.error(title, options);
@@ -322,7 +346,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     }
   }
 
-  private onEdit(event: CustomEvent<Update>) {
+  private onUpdate(event: CustomEvent<Update>) {
     const source = <LitElement>event.composedPath()[0];
 
     event.detail.new.element.append(
@@ -335,7 +359,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     this.requestUpdate('doc');
   }
 
-  private onAdd(event: CustomEvent<Create>) {
+  private onCreate(event: CustomEvent<Create>) {
     const source = <LitElement>event.composedPath()[0];
 
     event.detail.new.parent.prepend(event.detail.new.element);
@@ -345,9 +369,14 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     this.requestUpdate('doc');
   }
 
+  private onAction(event: CustomEvent<Action>) {
+    if (isUpdate(event.detail)) this.onUpdate(event as CustomEvent<Update>);
+  }
+
   constructor() {
     super();
-    this.addEventListener('update', this.onEdit);
-    this.addEventListener('create', this.onAdd);
+    this.addEventListener('update', this.onUpdate);
+    this.addEventListener('create', this.onCreate);
+    this.addEventListener('action', this.onAction);
   }
 }
