@@ -54,7 +54,7 @@
 * [clientTop](_open_scd_base_.openscdbase.md#readonly-clienttop)
 * [clientWidth](_open_scd_base_.openscdbase.md#readonly-clientwidth)
 * [contentEditable](_open_scd_base_.openscdbase.md#contenteditable)
-* [currentChange](_open_scd_base_.openscdbase.md#currentchange)
+* [currentAction](_open_scd_base_.openscdbase.md#currentaction)
 * [currentSrc](_open_scd_base_.openscdbase.md#private-currentsrc)
 * [dataset](_open_scd_base_.openscdbase.md#readonly-dataset)
 * [dir](_open_scd_base_.openscdbase.md#dir)
@@ -218,12 +218,12 @@
 
 ### Accessors
 
-* [hasChanges](_open_scd_base_.openscdbase.md#haschanges)
+* [hasActions](_open_scd_base_.openscdbase.md#hasactions)
 * [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
 * [name](_open_scd_base_.openscdbase.md#name)
-* [nextChangeIndex](_open_scd_base_.openscdbase.md#nextchangeindex)
+* [nextAction](_open_scd_base_.openscdbase.md#nextaction)
 * [node](_open_scd_base_.openscdbase.md#node)
-* [previousChangeIndex](_open_scd_base_.openscdbase.md#previouschangeindex)
+* [previousAction](_open_scd_base_.openscdbase.md#previousaction)
 * [src](_open_scd_base_.openscdbase.md#src)
 * [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
 * [observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)
@@ -289,12 +289,14 @@
 * [matches](_open_scd_base_.openscdbase.md#matches)
 * [msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)
 * [normalize](_open_scd_base_.openscdbase.md#normalize)
-* [onAdd](_open_scd_base_.openscdbase.md#private-onadd)
-* [onEdit](_open_scd_base_.openscdbase.md#private-onedit)
+* [onAction](_open_scd_base_.openscdbase.md#private-onaction)
+* [onCreate](_open_scd_base_.openscdbase.md#private-oncreate)
+* [onUpdate](_open_scd_base_.openscdbase.md#private-onupdate)
 * [performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)
 * [prepend](_open_scd_base_.openscdbase.md#prepend)
 * [querySelector](_open_scd_base_.openscdbase.md#queryselector)
 * [querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)
+* [redo](_open_scd_base_.openscdbase.md#redo)
 * [releasePointerCapture](_open_scd_base_.openscdbase.md#releasepointercapture)
 * [remove](_open_scd_base_.openscdbase.md#remove)
 * [removeAttribute](_open_scd_base_.openscdbase.md#removeattribute)
@@ -306,6 +308,7 @@
 * [renderActionItem](_open_scd_base_.openscdbase.md#renderactionitem)
 * [renderEditorTab](_open_scd_base_.openscdbase.md#rendereditortab)
 * [renderHistory](_open_scd_base_.openscdbase.md#renderhistory)
+* [renderLogEntry](_open_scd_base_.openscdbase.md#renderlogentry)
 * [renderMenuEntry](_open_scd_base_.openscdbase.md#rendermenuentry)
 * [replaceChild](_open_scd_base_.openscdbase.md#replacechild)
 * [replaceWith](_open_scd_base_.openscdbase.md#replacewith)
@@ -322,6 +325,7 @@
 * [setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)
 * [setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)
 * [shouldUpdate](_open_scd_base_.openscdbase.md#protected-shouldupdate)
+* [showLog](_open_scd_base_.openscdbase.md#showlog)
 * [toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)
 * [undo](_open_scd_base_.openscdbase.md#undo)
 * [update](_open_scd_base_.openscdbase.md#protected-update)
@@ -346,7 +350,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:346
+Defined in src/open-scd-base.ts:374
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -622,7 +626,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:234
+Defined in src/open-scd-base.ts:250
 
 The currently active editor tab.
 
@@ -818,11 +822,11 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
 ___
 
-###  currentChange
+###  currentAction
 
-• **currentChange**: *number* = -1
+• **currentAction**: *number* = -1
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[currentChange](_open_scd_base_.openscdbase.md#currentchange)*
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[currentAction](_open_scd_base_.openscdbase.md#currentaction)*
 
 Defined in src/logging.ts:18
 
@@ -832,7 +836,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:251
+Defined in src/open-scd-base.ts:267
 
 ___
 
@@ -864,7 +868,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:237
+Defined in src/open-scd-base.ts:253
 
 The `XMLDocument` representation of the current file.
 
@@ -886,7 +890,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:271
+Defined in src/open-scd-base.ts:287
 
 ___
 
@@ -948,7 +952,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:228
+Defined in src/open-scd-base.ts:244
 
 ___
 
@@ -1098,7 +1102,7 @@ ___
 
 • **logUI**: *Dialog*
 
-Defined in src/open-scd-base.ts:269
+Defined in src/open-scd-base.ts:285
 
 ___
 
@@ -1124,7 +1128,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:171
+Defined in src/open-scd-base.ts:187
 
 ___
 
@@ -1132,7 +1136,7 @@ ___
 
 • **menuUI**: *Drawer*
 
-Defined in src/open-scd-base.ts:268
+Defined in src/open-scd-base.ts:284
 
 ___
 
@@ -1140,7 +1144,7 @@ ___
 
 • **messageUI**: *Snackbar*
 
-Defined in src/open-scd-base.ts:270
+Defined in src/open-scd-base.ts:286
 
 ___
 
@@ -2757,7 +2761,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:250
+Defined in src/open-scd-base.ts:266
 
 The name of the current file.
 
@@ -2791,7 +2795,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-Defined in src/open-scd-base.ts:248
+Defined in src/open-scd-base.ts:264
 
 The tag name this editor is responsible for editing
 
@@ -2853,7 +2857,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:231
+Defined in src/open-scd-base.ts:247
 
 Whether the editor is currently waiting for some async work.
 
@@ -2901,7 +2905,7 @@ ___
     null
   )
 
-Defined in src/open-scd-base.ts:165
+Defined in src/open-scd-base.ts:181
 
 ___
 
@@ -2979,11 +2983,11 @@ using the `css` tag function.
 
 ## Accessors
 
-###  hasChanges
+###  hasActions
 
-• **get hasChanges**(): *boolean*
+• **get hasActions**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasChanges](_open_scd_base_.openscdbase.md#haschanges)*
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasActions](_open_scd_base_.openscdbase.md#hasactions)*
 
 Defined in src/logging.ts:19
 
@@ -3007,17 +3011,17 @@ ___
 
 • **get name**(): *string | null*
 
-Defined in src/open-scd-base.ts:244
+Defined in src/open-scd-base.ts:260
 
 **Returns:** *string | null*
 
 ___
 
-###  nextChangeIndex
+###  nextAction
 
-• **get nextChangeIndex**(): *number*
+• **get nextAction**(): *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextChangeIndex](_open_scd_base_.openscdbase.md#nextchangeindex)*
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
 
 Defined in src/logging.ts:29
 
@@ -3029,7 +3033,7 @@ ___
 
 • **get node**(): *Element*
 
-Defined in src/open-scd-base.ts:240
+Defined in src/open-scd-base.ts:256
 
 The `Node` this editor is responsible for editing
 
@@ -3037,11 +3041,11 @@ The `Node` this editor is responsible for editing
 
 ___
 
-###  previousChangeIndex
+###  previousAction
 
-• **get previousChangeIndex**(): *number*
+• **get previousAction**(): *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousChangeIndex](_open_scd_base_.openscdbase.md#previouschangeindex)*
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
 
 Defined in src/logging.ts:22
 
@@ -3053,7 +3057,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:254
+Defined in src/open-scd-base.ts:270
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3061,7 +3065,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:257
+Defined in src/open-scd-base.ts:273
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3496,18 +3500,18 @@ ___
 
 ###  commit
 
-▸ **commit**(`title`: string, `change`: [Change](../modules/_foundation_.md#change), `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *[LogEntry](../interfaces/_logging_.logentry.md)*
+▸ **commit**(`title`: string, `action`: [Action](../modules/_foundation_.md#action), `options?`: [LogOptions](../modules/_logging_.md#logoptions)): *[LogEntry](../interfaces/_logging_.logentry.md)*
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
 
-Defined in src/logging.ts:75
+Defined in src/logging.ts:92
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `title` | string |
-`change` | [Change](../modules/_foundation_.md#change) |
+`action` | [Action](../modules/_foundation_.md#action) |
 `options?` | [LogOptions](../modules/_logging_.md#logoptions) |
 
 **Returns:** *[LogEntry](../interfaces/_logging_.logentry.md)*
@@ -3544,7 +3548,7 @@ ___
 
 *Overrides [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[connectedCallback](../interfaces/_foundation_.__global.htmlelement.md#optional-connectedcallback)*
 
-Defined in src/foundation.ts:70
+Defined in src/foundation.ts:76
 
 **Returns:** *void*
 
@@ -3647,7 +3651,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:273
+Defined in src/open-scd-base.ts:297
 
 **Parameters:**
 
@@ -4112,7 +4116,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:71
+Defined in src/foundation.ts:77
 
 **Parameters:**
 
@@ -4297,7 +4301,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:278
+Defined in src/open-scd-base.ts:302
 
 **Parameters:**
 
@@ -4313,7 +4317,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:316
+Defined in src/open-scd-base.ts:340
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4333,7 +4337,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
 
-Defined in src/logging.ts:44
+Defined in src/logging.ts:62
 
 **Parameters:**
 
@@ -4438,11 +4442,27 @@ Removes empty exclusive Text nodes and concatenates the data of remaining contig
 
 ___
 
-### `Private` onAdd
+### `Private` onAction
 
-▸ **onAdd**(`event`: CustomEvent‹[Create](../interfaces/_foundation_.create.md)›): *void*
+▸ **onAction**(`event`: CustomEvent‹[Action](../modules/_foundation_.md#action)›): *void*
 
-Defined in src/open-scd-base.ts:338
+Defined in src/open-scd-base.ts:372
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | CustomEvent‹[Action](../modules/_foundation_.md#action)› |
+
+**Returns:** *void*
+
+___
+
+### `Private` onCreate
+
+▸ **onCreate**(`event`: CustomEvent‹[Create](../interfaces/_foundation_.create.md)›): *void*
+
+Defined in src/open-scd-base.ts:362
 
 **Parameters:**
 
@@ -4454,11 +4474,11 @@ Name | Type |
 
 ___
 
-### `Private` onEdit
+### `Private` onUpdate
 
-▸ **onEdit**(`event`: CustomEvent‹[Update](../interfaces/_foundation_.update.md)›): *void*
+▸ **onUpdate**(`event`: CustomEvent‹[Update](../interfaces/_foundation_.update.md)›): *void*
 
-Defined in src/open-scd-base.ts:325
+Defined in src/open-scd-base.ts:349
 
 **Parameters:**
 
@@ -4653,6 +4673,18 @@ Name | Type |
 
 ___
 
+###  redo
+
+▸ **redo**(): *boolean*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
+
+Defined in src/logging.ts:49
+
+**Returns:** *boolean*
+
+___
+
 ###  releasePointerCapture
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
@@ -4837,7 +4869,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:43
+Defined in src/open-scd-base.ts:49
 
 **Returns:** *TemplateResult*
 
@@ -4847,7 +4879,7 @@ ___
 
 ▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:117
+Defined in src/open-scd-base.ts:126
 
 **Parameters:**
 
@@ -4863,7 +4895,7 @@ ___
 
 ▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:129
+Defined in src/open-scd-base.ts:138
 
 **Parameters:**
 
@@ -4879,7 +4911,7 @@ ___
 
 ▸ **renderHistory**(`history`: [LogEntry](../interfaces/_logging_.logentry.md)[]): *TemplateResult[]*
 
-Defined in src/open-scd-base.ts:140
+Defined in src/open-scd-base.ts:149
 
 **Parameters:**
 
@@ -4891,11 +4923,29 @@ Name | Type |
 
 ___
 
+###  renderLogEntry
+
+▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_logging_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_logging_.logentry.md)[]): *TemplateResult*
+
+Defined in src/open-scd-base.ts:161
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`entry` | [LogEntry](../interfaces/_logging_.logentry.md) |
+`index` | number |
+`history` | [LogEntry](../interfaces/_logging_.logentry.md)[] |
+
+**Returns:** *TemplateResult*
+
+___
+
 ###  renderMenuEntry
 
 ▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:103
+Defined in src/open-scd-base.ts:112
 
 **Parameters:**
 
@@ -5283,6 +5333,16 @@ Name | Type | Description |
 
 ___
 
+###  showLog
+
+▸ **showLog**(): *void*
+
+Defined in src/open-scd-base.ts:289
+
+**Returns:** *void*
+
+___
+
 ###  toggleAttribute
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
@@ -5314,7 +5374,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
 
-Defined in src/logging.ts:35
+Defined in src/logging.ts:37
 
 **Returns:** *boolean*
 
@@ -5376,7 +5436,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:72
+Defined in src/foundation.ts:78
 
 **Parameters:**
 
@@ -5568,7 +5628,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:191
+Defined in src/open-scd-base.ts:207
 
 ###  editors
 
@@ -5606,4 +5666,4 @@ Defined in src/open-scd-base.ts:191
       },
     ]
 
-Defined in src/open-scd-base.ts:192
+Defined in src/open-scd-base.ts:208

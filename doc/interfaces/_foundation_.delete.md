@@ -10,15 +10,24 @@
 
 ### Properties
 
+* [derived](_foundation_.delete.md#optional-derived)
 * [old](_foundation_.delete.md#old)
 
 ## Properties
+
+### `Optional` derived
+
+• **derived**? : *undefined | false | true*
+
+Defined in src/foundation.ts:14
+
+___
 
 ###  old
 
 • **old**: *object*
 
-Defined in src/foundation.ts:11
+Defined in src/foundation.ts:13
 
 #### Type declaration:
 

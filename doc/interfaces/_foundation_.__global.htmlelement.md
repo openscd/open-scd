@@ -20,7 +20,7 @@
 
 ▸ **connectedCallback**(): *void*
 
-Defined in src/foundation.ts:70
+Defined in src/foundation.ts:76
 
 **Returns:** *void*
 
@@ -30,7 +30,7 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/foundation.ts:71
+Defined in src/foundation.ts:77
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/foundation.ts:72
+Defined in src/foundation.ts:78
 
 **Parameters:**
 

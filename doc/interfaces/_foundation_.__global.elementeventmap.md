@@ -19,9 +19,9 @@
 
 ###  action
 
-• **action**: *CustomEvent‹[Change](../modules/_foundation_.md#change)›*
+• **action**: *CustomEvent‹[Action](../modules/_foundation_.md#action)›*
 
-Defined in src/foundation.ts:65
+Defined in src/foundation.ts:71
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **create**: *CustomEvent‹[Create](_foundation_.create.md)›*
 
-Defined in src/foundation.ts:66
+Defined in src/foundation.ts:72
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **pending-state**: *CustomEvent‹[PendingState](_foundation_.pendingstate.md)›*
 
-Defined in src/foundation.ts:64
+Defined in src/foundation.ts:70
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **update**: *CustomEvent‹[Update](_foundation_.update.md)›*
 
-Defined in src/foundation.ts:67
+Defined in src/foundation.ts:73

@@ -18,7 +18,7 @@
 
 ### Type aliases
 
-* [Change](_foundation_.md#change)
+* [Action](_foundation_.md#action)
 * [ElementConstructor](_foundation_.md#elementconstructor)
 
 ### Functions
@@ -31,13 +31,13 @@
 
 ## Type aliases
 
-###  Change
+###  Action
 
-Ƭ **Change**: *[Create](../interfaces/_foundation_.create.md) | [Update](../interfaces/_foundation_.update.md) | [Delete](../interfaces/_foundation_.delete.md) | [Move](../interfaces/_foundation_.move.md)*
+Ƭ **Action**: *[Create](../interfaces/_foundation_.create.md) | [Update](../interfaces/_foundation_.update.md) | [Delete](../interfaces/_foundation_.delete.md) | [Move](../interfaces/_foundation_.move.md)*
 
 Defined in src/foundation.ts:2
 
-Represents an intended change to an `Element`.
+Represents an intended change to some `Element`.
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 Ƭ **ElementConstructor**: *object*
 
-Defined in src/foundation.ts:60
+Defined in src/foundation.ts:66
 
 #### Type declaration:
 
@@ -53,78 +53,78 @@ Defined in src/foundation.ts:60
 
 ###  invert
 
-▸ **invert**(`change`: [Change](_foundation_.md#change)): *[Change](_foundation_.md#change)*
+▸ **invert**(`action`: [Action](_foundation_.md#action)): *[Action](_foundation_.md#action)*
 
-Defined in src/foundation.ts:47
+Defined in src/foundation.ts:51
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`change` | [Change](_foundation_.md#change) |
+`action` | [Action](_foundation_.md#action) |
 
-**Returns:** *[Change](_foundation_.md#change)*
+**Returns:** *[Action](_foundation_.md#action)*
 
 ___
 
 ###  isCreate
 
-▸ **isCreate**(`change`: [Change](_foundation_.md#change)): *change is Create*
+▸ **isCreate**(`action`: [Action](_foundation_.md#action)): *action is Create*
 
-Defined in src/foundation.ts:24
+Defined in src/foundation.ts:28
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`change` | [Change](_foundation_.md#change) |
+`action` | [Action](_foundation_.md#action) |
 
-**Returns:** *change is Create*
+**Returns:** *action is Create*
 
 ___
 
 ###  isDelete
 
-▸ **isDelete**(`change`: [Change](_foundation_.md#change)): *change is Delete*
+▸ **isDelete**(`action`: [Action](_foundation_.md#action)): *action is Delete*
 
-Defined in src/foundation.ts:31
+Defined in src/foundation.ts:35
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`change` | [Change](_foundation_.md#change) |
+`action` | [Action](_foundation_.md#action) |
 
-**Returns:** *change is Delete*
+**Returns:** *action is Delete*
 
 ___
 
 ###  isMove
 
-▸ **isMove**(`change`: [Change](_foundation_.md#change)): *change is Move*
+▸ **isMove**(`action`: [Action](_foundation_.md#action)): *action is Move*
 
-Defined in src/foundation.ts:18
+Defined in src/foundation.ts:22
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`change` | [Change](_foundation_.md#change) |
+`action` | [Action](_foundation_.md#action) |
 
-**Returns:** *change is Move*
+**Returns:** *action is Move*
 
 ___
 
 ###  isUpdate
 
-▸ **isUpdate**(`change`: [Change](_foundation_.md#change)): *change is Update*
+▸ **isUpdate**(`action`: [Action](_foundation_.md#action)): *action is Update*
 
-Defined in src/foundation.ts:38
+Defined in src/foundation.ts:42
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`change` | [Change](_foundation_.md#change) |
+`action` | [Action](_foundation_.md#action) |
 
-**Returns:** *change is Update*
+**Returns:** *action is Update*

@@ -10,10 +10,19 @@
 
 ### Properties
 
+* [derived](_foundation_.move.md#optional-derived)
 * [new](_foundation_.move.md#new)
 * [old](_foundation_.move.md#old)
 
 ## Properties
+
+### `Optional` derived
+
+• **derived**? : *undefined | false | true*
+
+Defined in src/foundation.ts:6
+
+___
 
 ###  new
 

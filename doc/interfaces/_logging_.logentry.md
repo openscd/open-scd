@@ -10,8 +10,8 @@
 
 ### Properties
 
+* [action](_logging_.logentry.md#optional-action)
 * [cause](_logging_.logentry.md#optional-cause)
-* [change](_logging_.logentry.md#optional-change)
 * [icon](_logging_.logentry.md#optional-icon)
 * [message](_logging_.logentry.md#optional-message)
 * [time](_logging_.logentry.md#time)
@@ -19,19 +19,19 @@
 
 ## Properties
 
+### `Optional` action
+
+• **action**? : *[Action](../modules/_foundation_.md#action)*
+
+Defined in src/logging.ts:8
+
+___
+
 ### `Optional` cause
 
 • **cause**? : *[LogEntry](_logging_.logentry.md)*
 
 Defined in src/logging.ts:9
-
-___
-
-### `Optional` change
-
-• **change**? : *[Change](../modules/_foundation_.md#change)*
-
-Defined in src/logging.ts:8
 
 ___
 

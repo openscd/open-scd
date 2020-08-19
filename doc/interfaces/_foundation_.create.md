@@ -10,15 +10,24 @@
 
 ### Properties
 
+* [derived](_foundation_.create.md#optional-derived)
 * [new](_foundation_.create.md#new)
 
 ## Properties
+
+### `Optional` derived
+
+• **derived**? : *undefined | false | true*
+
+Defined in src/foundation.ts:10
+
+___
 
 ###  new
 
 • **new**: *object*
 
-Defined in src/foundation.ts:8
+Defined in src/foundation.ts:9
 
 #### Type declaration:
 
