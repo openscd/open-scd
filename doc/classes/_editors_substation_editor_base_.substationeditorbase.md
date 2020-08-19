@@ -727,7 +727,7 @@ ___
 
 • **descUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:29
+Defined in src/editors/substation-editor-base.ts:30
 
 ___
 
@@ -745,7 +745,7 @@ ___
 
 • **doc**: *XMLDocument*
 
-Defined in src/editors/substation-editor-base.ts:16
+Defined in src/editors/substation-editor-base.ts:17
 
 ___
 
@@ -763,7 +763,7 @@ ___
 
 • **editUI**: *Dialog*
 
-Defined in src/editors/substation-editor-base.ts:27
+Defined in src/editors/substation-editor-base.ts:28
 
 ___
 
@@ -771,7 +771,7 @@ ___
 
 • **editorPaneUI**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
 
-Defined in src/editors/substation-editor-base.ts:30
+Defined in src/editors/substation-editor-base.ts:31
 
 ___
 
@@ -943,7 +943,7 @@ ___
 
 • **nameUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:28
+Defined in src/editors/substation-editor-base.ts:29
 
 ___
 
@@ -989,7 +989,7 @@ ___
 
 • **node**? : *Element*
 
-Defined in src/editors/substation-editor-base.ts:13
+Defined in src/editors/substation-editor-base.ts:14
 
 ___
 
@@ -2360,7 +2360,7 @@ ___
 
 • **tag**: *string* = "Substation"
 
-Defined in src/editors/substation-editor-base.ts:14
+Defined in src/editors/substation-editor-base.ts:15
 
 ___
 
@@ -2496,7 +2496,7 @@ using the `css` tag function.
 
 • **get desc**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:23
+Defined in src/editors/substation-editor-base.ts:24
 
 **Returns:** *string*
 
@@ -2518,7 +2518,7 @@ ___
 
 • **get name**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:18
+Defined in src/editors/substation-editor-base.ts:19
 
 **Returns:** *string*
 
@@ -2650,7 +2650,7 @@ ___
 
 ▸ **addSubstation**(`e`: Event): *void*
 
-Defined in src/editors/substation-editor-base.ts:56
+Defined in src/editors/substation-editor-base.ts:53
 
 **Parameters:**
 
@@ -3462,7 +3462,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-Defined in src/foundation.ts:77
+Defined in src/foundation.ts:115
 
 **Parameters:**
 
@@ -4052,7 +4052,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:85
+Defined in src/editors/substation-editor-base.ts:78
 
 **Returns:** *TemplateResult*
 
@@ -4170,7 +4170,7 @@ ___
 
 ▸ **saveSubstation**(`e`: Event): *void*
 
-Defined in src/editors/substation-editor-base.ts:32
+Defined in src/editors/substation-editor-base.ts:33
 
 **Parameters:**
 
@@ -4495,7 +4495,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-Defined in src/foundation.ts:78
+Defined in src/foundation.ts:116
 
 **Parameters:**
 

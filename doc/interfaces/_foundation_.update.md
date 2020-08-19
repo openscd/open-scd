@@ -2,6 +2,8 @@
 
 # Interface: Update
 
+Represents replacement of `update.old.element` by `update.new.element`.
+
 ## Hierarchy
 
 * **Update**
@@ -20,7 +22,7 @@
 
 • **derived**? : *undefined | false | true*
 
-Defined in src/foundation.ts:19
+Defined in src/foundation.ts:23
 
 ___
 
@@ -28,7 +30,7 @@ ___
 
 • **new**: *object*
 
-Defined in src/foundation.ts:18
+Defined in src/foundation.ts:22
 
 #### Type declaration:
 
@@ -40,7 +42,7 @@ ___
 
 • **old**: *object*
 
-Defined in src/foundation.ts:17
+Defined in src/foundation.ts:21
 
 #### Type declaration:
 

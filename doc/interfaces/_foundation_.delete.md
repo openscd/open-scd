@@ -2,6 +2,8 @@
 
 # Interface: Delete
 
+Represents removal of `delete.old.element`.
+
 ## Hierarchy
 
 * **Delete**
@@ -19,7 +21,7 @@
 
 • **derived**? : *undefined | false | true*
 
-Defined in src/foundation.ts:14
+Defined in src/foundation.ts:17
 
 ___
 
@@ -27,7 +29,7 @@ ___
 
 • **old**: *object*
 
-Defined in src/foundation.ts:13
+Defined in src/foundation.ts:16
 
 #### Type declaration:
 

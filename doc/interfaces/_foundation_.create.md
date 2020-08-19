@@ -2,6 +2,8 @@
 
 # Interface: Create
 
+Represents prepending `create.new.element` to `create.new.parent`.
+
 ## Hierarchy
 
 * **Create**
@@ -19,7 +21,7 @@
 
 • **derived**? : *undefined | false | true*
 
-Defined in src/foundation.ts:10
+Defined in src/foundation.ts:12
 
 ___
 
@@ -27,7 +29,7 @@ ___
 
 • **new**: *object*
 
-Defined in src/foundation.ts:9
+Defined in src/foundation.ts:11
 
 #### Type declaration:
 

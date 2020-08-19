@@ -267,6 +267,7 @@
 * [getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)
 * [getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)
 * [getRootNode](_open_scd_base_.openscdbase.md#getrootnode)
+* [handleKeyPress](_open_scd_base_.openscdbase.md#private-handlekeypress)
 * [hasAttribute](_open_scd_base_.openscdbase.md#hasattribute)
 * [hasAttributeNS](_open_scd_base_.openscdbase.md#hasattributens)
 * [hasAttributes](_open_scd_base_.openscdbase.md#hasattributes)
@@ -291,6 +292,8 @@
 * [normalize](_open_scd_base_.openscdbase.md#normalize)
 * [onAction](_open_scd_base_.openscdbase.md#private-onaction)
 * [onCreate](_open_scd_base_.openscdbase.md#private-oncreate)
+* [onDelete](_open_scd_base_.openscdbase.md#private-ondelete)
+* [onMove](_open_scd_base_.openscdbase.md#private-onmove)
 * [onUpdate](_open_scd_base_.openscdbase.md#private-onupdate)
 * [performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)
 * [prepend](_open_scd_base_.openscdbase.md#prepend)
@@ -350,7 +353,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:374
+Defined in src/open-scd-base.ts:402
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -626,7 +629,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:250
+Defined in src/open-scd-base.ts:255
 
 The currently active editor tab.
 
@@ -836,7 +839,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:267
+Defined in src/open-scd-base.ts:272
 
 ___
 
@@ -868,7 +871,7 @@ ___
 
 • **doc**: *XMLDocument* = OpenSCDBase.emptySCD
 
-Defined in src/open-scd-base.ts:253
+Defined in src/open-scd-base.ts:258
 
 The `XMLDocument` representation of the current file.
 
@@ -890,7 +893,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:287
+Defined in src/open-scd-base.ts:292
 
 ___
 
@@ -952,7 +955,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:244
+Defined in src/open-scd-base.ts:249
 
 ___
 
@@ -1102,7 +1105,7 @@ ___
 
 • **logUI**: *Dialog*
 
-Defined in src/open-scd-base.ts:285
+Defined in src/open-scd-base.ts:290
 
 ___
 
@@ -1128,7 +1131,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:187
+Defined in src/open-scd-base.ts:192
 
 ___
 
@@ -1136,7 +1139,7 @@ ___
 
 • **menuUI**: *Drawer*
 
-Defined in src/open-scd-base.ts:284
+Defined in src/open-scd-base.ts:289
 
 ___
 
@@ -1144,7 +1147,7 @@ ___
 
 • **messageUI**: *Snackbar*
 
-Defined in src/open-scd-base.ts:286
+Defined in src/open-scd-base.ts:291
 
 ___
 
@@ -2761,7 +2764,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:266
+Defined in src/open-scd-base.ts:271
 
 The name of the current file.
 
@@ -2795,7 +2798,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-Defined in src/open-scd-base.ts:264
+Defined in src/open-scd-base.ts:269
 
 The tag name this editor is responsible for editing
 
@@ -2857,7 +2860,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:247
+Defined in src/open-scd-base.ts:252
 
 Whether the editor is currently waiting for some async work.
 
@@ -2905,7 +2908,7 @@ ___
     null
   )
 
-Defined in src/open-scd-base.ts:181
+Defined in src/open-scd-base.ts:186
 
 ___
 
@@ -3011,7 +3014,7 @@ ___
 
 • **get name**(): *string | null*
 
-Defined in src/open-scd-base.ts:260
+Defined in src/open-scd-base.ts:265
 
 **Returns:** *string | null*
 
@@ -3033,7 +3036,7 @@ ___
 
 • **get node**(): *Element*
 
-Defined in src/open-scd-base.ts:256
+Defined in src/open-scd-base.ts:261
 
 The `Node` this editor is responsible for editing
 
@@ -3057,7 +3060,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:270
+Defined in src/open-scd-base.ts:275
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3065,7 +3068,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:273
+Defined in src/open-scd-base.ts:278
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3548,7 +3551,7 @@ ___
 
 *Overrides [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[connectedCallback](../interfaces/_foundation_.__global.htmlelement.md#optional-connectedcallback)*
 
-Defined in src/foundation.ts:76
+Defined in src/foundation.ts:114
 
 **Returns:** *void*
 
@@ -3651,7 +3654,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:297
+Defined in src/open-scd-base.ts:302
 
 **Parameters:**
 
@@ -4011,6 +4014,22 @@ Name | Type |
 
 ___
 
+### `Private` handleKeyPress
+
+▸ **handleKeyPress**(`event`: KeyboardEvent): *void*
+
+Defined in src/open-scd-base.ts:399
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | KeyboardEvent |
+
+**Returns:** *void*
+
+___
+
 ###  hasAttribute
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
@@ -4116,7 +4135,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:77
+Defined in src/foundation.ts:115
 
 **Parameters:**
 
@@ -4301,7 +4320,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:302
+Defined in src/open-scd-base.ts:307
 
 **Parameters:**
 
@@ -4317,7 +4336,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:340
+Defined in src/open-scd-base.ts:345
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4446,7 +4465,7 @@ ___
 
 ▸ **onAction**(`event`: CustomEvent‹[Action](../modules/_foundation_.md#action)›): *void*
 
-Defined in src/open-scd-base.ts:372
+Defined in src/open-scd-base.ts:389
 
 **Parameters:**
 
@@ -4474,11 +4493,43 @@ Name | Type |
 
 ___
 
+### `Private` onDelete
+
+▸ **onDelete**(`event`: CustomEvent‹[Delete](../interfaces/_foundation_.delete.md)›): *void*
+
+Defined in src/open-scd-base.ts:370
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | CustomEvent‹[Delete](../interfaces/_foundation_.delete.md)› |
+
+**Returns:** *void*
+
+___
+
+### `Private` onMove
+
+▸ **onMove**(`event`: CustomEvent‹[Move](../interfaces/_foundation_.move.md)›): *void*
+
+Defined in src/open-scd-base.ts:354
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | CustomEvent‹[Move](../interfaces/_foundation_.move.md)› |
+
+**Returns:** *void*
+
+___
+
 ### `Private` onUpdate
 
 ▸ **onUpdate**(`event`: CustomEvent‹[Update](../interfaces/_foundation_.update.md)›): *void*
 
-Defined in src/open-scd-base.ts:349
+Defined in src/open-scd-base.ts:378
 
 **Parameters:**
 
@@ -4869,7 +4920,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:49
+Defined in src/open-scd-base.ts:54
 
 **Returns:** *TemplateResult*
 
@@ -4879,7 +4930,7 @@ ___
 
 ▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:126
+Defined in src/open-scd-base.ts:131
 
 **Parameters:**
 
@@ -4895,7 +4946,7 @@ ___
 
 ▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:138
+Defined in src/open-scd-base.ts:143
 
 **Parameters:**
 
@@ -4911,7 +4962,7 @@ ___
 
 ▸ **renderHistory**(`history`: [LogEntry](../interfaces/_logging_.logentry.md)[]): *TemplateResult[]*
 
-Defined in src/open-scd-base.ts:149
+Defined in src/open-scd-base.ts:154
 
 **Parameters:**
 
@@ -4927,7 +4978,7 @@ ___
 
 ▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_logging_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_logging_.logentry.md)[]): *TemplateResult*
 
-Defined in src/open-scd-base.ts:161
+Defined in src/open-scd-base.ts:166
 
 **Parameters:**
 
@@ -4945,7 +4996,7 @@ ___
 
 ▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:112
+Defined in src/open-scd-base.ts:117
 
 **Parameters:**
 
@@ -5337,7 +5388,7 @@ ___
 
 ▸ **showLog**(): *void*
 
-Defined in src/open-scd-base.ts:289
+Defined in src/open-scd-base.ts:294
 
 **Returns:** *void*
 
@@ -5436,7 +5487,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:78
+Defined in src/foundation.ts:116
 
 **Parameters:**
 
@@ -5628,7 +5679,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:207
+Defined in src/open-scd-base.ts:212
 
 ###  editors
 
@@ -5666,4 +5717,4 @@ Defined in src/open-scd-base.ts:207
       },
     ]
 
-Defined in src/open-scd-base.ts:208
+Defined in src/open-scd-base.ts:213

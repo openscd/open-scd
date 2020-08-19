@@ -727,7 +727,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[descUI](_editors_substation_editor_base_.substationeditorbase.md#descui)*
 
-Defined in src/editors/substation-editor-base.ts:29
+Defined in src/editors/substation-editor-base.ts:30
 
 ___
 
@@ -747,7 +747,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[doc](_editors_substation_editor_base_.substationeditorbase.md#doc)*
 
-Defined in src/editors/substation-editor-base.ts:16
+Defined in src/editors/substation-editor-base.ts:17
 
 ___
 
@@ -767,7 +767,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[editUI](_editors_substation_editor_base_.substationeditorbase.md#editui)*
 
-Defined in src/editors/substation-editor-base.ts:27
+Defined in src/editors/substation-editor-base.ts:28
 
 ___
 
@@ -777,7 +777,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[editorPaneUI](_editors_substation_editor_base_.substationeditorbase.md#editorpaneui)*
 
-Defined in src/editors/substation-editor-base.ts:30
+Defined in src/editors/substation-editor-base.ts:31
 
 ___
 
@@ -951,7 +951,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nameUI](_editors_substation_editor_base_.substationeditorbase.md#nameui)*
 
-Defined in src/editors/substation-editor-base.ts:28
+Defined in src/editors/substation-editor-base.ts:29
 
 ___
 
@@ -999,7 +999,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[node](_editors_substation_editor_base_.substationeditorbase.md#optional-node)*
 
-Defined in src/editors/substation-editor-base.ts:13
+Defined in src/editors/substation-editor-base.ts:14
 
 ___
 
@@ -2372,7 +2372,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[tag](_editors_substation_editor_base_.substationeditorbase.md#tag)*
 
-Defined in src/editors/substation-editor-base.ts:14
+Defined in src/editors/substation-editor-base.ts:15
 
 ___
 
@@ -2507,7 +2507,7 @@ Defined in src/editors/substation-editor.ts:13
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[desc](_editors_substation_editor_base_.substationeditorbase.md#desc)*
 
-Defined in src/editors/substation-editor-base.ts:23
+Defined in src/editors/substation-editor-base.ts:24
 
 **Returns:** *string*
 
@@ -2531,7 +2531,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[name](_editors_substation_editor_base_.substationeditorbase.md#name)*
 
-Defined in src/editors/substation-editor-base.ts:18
+Defined in src/editors/substation-editor-base.ts:19
 
 **Returns:** *string*
 
@@ -2665,7 +2665,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[addSubstation](_editors_substation_editor_base_.substationeditorbase.md#addsubstation)*
 
-Defined in src/editors/substation-editor-base.ts:56
+Defined in src/editors/substation-editor-base.ts:53
 
 **Parameters:**
 
@@ -3477,7 +3477,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-Defined in src/foundation.ts:77
+Defined in src/foundation.ts:115
 
 **Parameters:**
 
@@ -4069,7 +4069,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:85
+Defined in src/editors/substation-editor-base.ts:78
 
 **Returns:** *TemplateResult*
 
@@ -4189,7 +4189,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[saveSubstation](_editors_substation_editor_base_.substationeditorbase.md#savesubstation)*
 
-Defined in src/editors/substation-editor-base.ts:32
+Defined in src/editors/substation-editor-base.ts:33
 
 **Parameters:**
 
@@ -4514,7 +4514,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-Defined in src/foundation.ts:78
+Defined in src/foundation.ts:116
 
 **Parameters:**
 

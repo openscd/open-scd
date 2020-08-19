@@ -2,7 +2,7 @@
 
 # Interface: PendingState
 
-Detail type for `'pending-state'` events.
+Represents some work pending completion, upon which `promise` resolves.
 
 ## Hierarchy
 
@@ -20,4 +20,4 @@ Detail type for `'pending-state'` events.
 
 • **promise**: *Promise‹string›*
 
-Defined in src/foundation.ts:63
+Defined in src/foundation.ts:88

@@ -20,10 +20,3 @@
 |------------------|--------------------|
 | `addSubstation`  | `(e: Event): void` |
 | `saveSubstation` | `(e: Event): void` |
-
-## Events
-
-| Event    | Type                  |
-|----------|-----------------------|
-| `create` | `CustomEvent<Create>` |
-| `update` | `CustomEvent<Update>` |
