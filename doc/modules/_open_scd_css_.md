@@ -21,6 +21,10 @@
     --mdc-theme-on-background: #005496;
   }
 
+  mwc-top-app-bar-fixed {
+    --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
+  } /* hack to fix disabled icon buttons rendering black */
+
   mwc-snackbar * {
     --mdc-theme-primary: #ffdd00;
   }

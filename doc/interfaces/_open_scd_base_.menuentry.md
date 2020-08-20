@@ -12,7 +12,9 @@
 
 * [action](_open_scd_base_.menuentry.md#optional-action)
 * [actionItem](_open_scd_base_.menuentry.md#optional-actionitem)
+* [hint](_open_scd_base_.menuentry.md#optional-hint)
 * [icon](_open_scd_base_.menuentry.md#icon)
+* [isDisabled](_open_scd_base_.menuentry.md#optional-isdisabled)
 * [name](_open_scd_base_.menuentry.md#name)
 * [startsGroup](_open_scd_base_.menuentry.md#optional-startsgroup)
 
@@ -22,7 +24,7 @@
 
 • **action**? : *undefined | function*
 
-Defined in src/open-scd-base.ts:50
+Defined in src/open-scd-base.ts:51
 
 ___
 
@@ -30,7 +32,15 @@ ___
 
 • **actionItem**? : *undefined | false | true*
 
-Defined in src/open-scd-base.ts:49
+Defined in src/open-scd-base.ts:50
+
+___
+
+### `Optional` hint
+
+• **hint**? : *undefined | string*
+
+Defined in src/open-scd-base.ts:48
 
 ___
 
@@ -39,6 +49,14 @@ ___
 • **icon**: *string*
 
 Defined in src/open-scd-base.ts:46
+
+___
+
+### `Optional` isDisabled
+
+• **isDisabled**? : *undefined | function*
+
+Defined in src/open-scd-base.ts:52
 
 ___
 
@@ -54,4 +72,4 @@ ___
 
 • **startsGroup**? : *undefined | false | true*
 
-Defined in src/open-scd-base.ts:48
+Defined in src/open-scd-base.ts:49
