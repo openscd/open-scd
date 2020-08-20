@@ -112,6 +112,10 @@ export function newPendingStateEvent(
 /** Constructor type for defining `HTMLElement` mixins */
 export type ElementConstructor = new (...args: any[]) => HTMLElement;
 
+export type Mixin<T extends (...args: any[]) => any> = InstanceType<
+  ReturnType<T>
+>;
+
 declare global {
   interface ElementEventMap {
     ['pending-state']: CustomEvent<PendingStateDetail>;

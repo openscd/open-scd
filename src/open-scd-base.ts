@@ -98,14 +98,14 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         <mwc-button
           icon="undo"
           label="Undo"
-          ?disabled=${this.currentAction < 0}
+          ?disabled=${this.canUndo}
           @click=${this.undo}
           slot="secondaryAction"
         ></mwc-button>
         <mwc-button
           icon="redo"
           label="Redo"
-          ?disabled=${this.nextAction < 0}
+          ?disabled=${this.canRedo}
           @click=${this.redo}
           slot="secondaryAction"
         ></mwc-button>
@@ -196,7 +196,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     return html`<mwc-list-item
       ?twoline=${entry.message}
       ?hasmeta=${entry.icon}
-      ?activated=${this.currentAction == history.length - index - 1}
+      ?activated=${this.lastAction == history.length - index - 1}
     >
       <span>
         <!-- FIXME: replace tt by mwc-chip asap -->
@@ -232,7 +232,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       startsGroup: true,
       actionItem: true,
       action: this.undo,
-      isDisabled: (): boolean => this.currentAction < 0,
+      isDisabled: (): boolean => !this.canUndo,
     },
     {
       icon: 'redo',
@@ -240,7 +240,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       hint: 'CTRL+Y',
       actionItem: true,
       action: this.redo,
-      isDisabled: (): boolean => this.nextAction < 0,
+      isDisabled: (): boolean => !this.canRedo,
     },
     { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
     {
@@ -336,10 +336,10 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
 
   showLog(): void {
     this.logUI.show();
-    if (this.currentAction >= 0)
+    if (this.canUndo)
       this.logUI
         .querySelector('mwc-list')
-        ?.focusItemAtIndex(this.currentAction);
+        ?.focusItemAtIndex(this.history.length - this.lastAction - 1);
   }
 
   error(title: string, options?: LogOptions): LogEntry {

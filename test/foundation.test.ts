@@ -11,16 +11,10 @@ import {
   newPendingStateEvent,
 } from '../src/foundation.js';
 
+import { cre, del, mov, upd } from './mock-actions.js';
+
 describe('foundation', () => {
   describe('Action', () => {
-    const element = document.createElement('test-element');
-    const parent = document.createElement('test-parent');
-
-    const cre: Action = { new: { parent, element } };
-    const del: Action = { old: { parent, element } };
-    const mov: Action = { old: { parent, element }, new: { parent } };
-    const upd: Action = { old: { element }, new: { element } };
-
     it('consists of four disjunct types', () => {
       expect(cre).to.satisfy(isCreate);
       expect(del).to.satisfy(isDelete);

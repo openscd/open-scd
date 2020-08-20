@@ -1,4 +1,10 @@
-import { Action, ElementConstructor, invert } from './foundation.js';
+import {
+  Action,
+  ElementConstructor,
+  invert,
+  ActionDetail,
+  Mixin,
+} from './foundation.js';
 
 export interface LogEntry {
   time: Date;
@@ -11,51 +17,58 @@ export interface LogEntry {
 
 export type LogOptions = Pick<LogEntry, 'cause' | 'icon' | 'message'>;
 
+export type LoggingElement = Mixin<typeof Logging>;
+
 export function Logging<TBase extends ElementConstructor>(Base: TBase) {
   return class LoggingElement extends Base {
     history: LogEntry[] = [];
 
-    currentAction = -1;
-    get hasActions(): boolean {
-      return this.currentAction >= 0;
+    lastAction = -1;
+
+    get canUndo(): boolean {
+      return this.lastAction >= 0;
+    }
+    get canRedo(): boolean {
+      return this.nextAction >= 0;
     }
     get previousAction(): number {
-      if (!this.hasActions) return -1;
+      if (!this.canUndo) return -1;
       return this.history
-        .slice(0, this.currentAction)
+        .slice(0, this.lastAction)
         .map(entry => (entry.action ? true : false))
         .lastIndexOf(true);
     }
     get nextAction(): number {
       let index = this.history
-        .slice(this.currentAction + 1)
+        .slice(this.lastAction + 1)
         .findIndex(entry => entry.action);
-      if (index >= 0) index += this.currentAction + 1;
+      if (index >= 0) index += this.lastAction + 1;
       return index;
     }
 
     undo(): boolean {
-      if (!this.hasActions) return false;
+      if (!this.canUndo) return false;
       this.dispatchEvent(
-        new CustomEvent<Action>('action', {
+        new CustomEvent<ActionDetail<Action>>('action', {
           bubbles: true,
           composed: true,
-          detail: invert(this.history[this.currentAction].action!),
+          detail: { action: invert(this.history[this.lastAction].action!) },
         })
       );
-      this.currentAction = this.previousAction;
+      this.lastAction = this.previousAction;
       return true;
     }
+
     redo(): boolean {
-      if (this.nextAction < 0) return false;
+      if (!this.canRedo) return false;
       this.dispatchEvent(
-        new CustomEvent<Action>('action', {
+        new CustomEvent<ActionDetail<Action>>('action', {
           bubbles: true,
           composed: true,
-          detail: this.history[this.nextAction].action,
+          detail: { action: this.history[this.nextAction].action! },
         })
       );
-      this.currentAction = this.nextAction;
+      this.lastAction = this.nextAction;
       return true;
     }
 
@@ -73,8 +86,8 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
           };
         }
         entry.action.derived = true;
-        if (this.hasActions) this.history.splice(this.currentAction + 1);
-        this.currentAction = this.history.length;
+        if (this.canUndo) this.history.splice(this.lastAction + 1);
+        this.lastAction = this.history.length;
       }
       this.history.push(entry);
       return entry;
