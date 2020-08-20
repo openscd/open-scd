@@ -55,7 +55,7 @@
 
 ## Events
 
-| Event           | Type                        |
-|-----------------|-----------------------------|
-| `action`        | `CustomEvent<Action>`       |
-| `pending-state` | `CustomEvent<PendingState>` |
+| Event           | Type                              |
+|-----------------|-----------------------------------|
+| `action`        | `CustomEvent<Action>`             |
+| `pending-state` | `CustomEvent<PendingStateDetail>` |

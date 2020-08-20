@@ -17,14 +17,14 @@
 
 ###  action
 
-• **action**: *[ActionEvent](../modules/_foundation_.md#actionevent)*
+• **action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
 
-Defined in src/foundation.ts:111
+Defined in src/foundation.ts:118
 
 ___
 
 ###  pending-state
 
-• **pending-state**: *CustomEvent‹[PendingState](_foundation_.pendingstate.md)›*
+• **pending-state**: *CustomEvent‹[PendingStateDetail](_foundation_.pendingstatedetail.md)›*
 
-Defined in src/foundation.ts:110
+Defined in src/foundation.ts:117

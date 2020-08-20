@@ -21,7 +21,7 @@ Represents prepending `create.new.element` to `create.new.parent`.
 
 • **derived**? : *undefined | false | true*
 
-Defined in src/foundation.ts:12
+Defined in src/foundation.ts:6
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **new**: *object*
 
-Defined in src/foundation.ts:11
+Defined in src/foundation.ts:5
 
 #### Type declaration:
 

@@ -21,7 +21,7 @@ Represents removal of `delete.old.element`.
 
 • **derived**? : *undefined | false | true*
 
-Defined in src/foundation.ts:17
+Defined in src/foundation.ts:11
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **old**: *object*
 
-Defined in src/foundation.ts:16
+Defined in src/foundation.ts:10
 
 #### Type declaration:
 

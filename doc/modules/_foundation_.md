@@ -10,10 +10,11 @@
 
 ### Interfaces
 
+* [ActionDetail](../interfaces/_foundation_.actiondetail.md)
 * [Create](../interfaces/_foundation_.create.md)
 * [Delete](../interfaces/_foundation_.delete.md)
 * [Move](../interfaces/_foundation_.move.md)
-* [PendingState](../interfaces/_foundation_.pendingstate.md)
+* [PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)
 * [Update](../interfaces/_foundation_.update.md)
 
 ### Type aliases
@@ -32,6 +33,7 @@
 * [isUpdate](_foundation_.md#isupdate)
 * [newActionEvent](_foundation_.md#newactionevent)
 * [newPendingStateEvent](_foundation_.md#newpendingstateevent)
+* [unreachable](_foundation_.md#unreachable)
 
 ## Type aliases
 
@@ -47,9 +49,9 @@ ___
 
 ###  ActionEvent
 
-Ƭ **ActionEvent**: *CustomEvent‹[Action](_foundation_.md#action)›*
+Ƭ **ActionEvent**: *CustomEvent‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››*
 
-Defined in src/foundation.ts:72
+Defined in src/foundation.ts:79
 
 ___
 
@@ -57,7 +59,7 @@ ___
 
 Ƭ **ElementConstructor**: *object*
 
-Defined in src/foundation.ts:106
+Defined in src/foundation.ts:113
 
 Constructor type for defining `HTMLElement` mixins
 
@@ -67,9 +69,9 @@ ___
 
 ###  PendingStateEvent
 
-Ƭ **PendingStateEvent**: *CustomEvent‹[PendingState](../interfaces/_foundation_.pendingstate.md)›*
+Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›*
 
-Defined in src/foundation.ts:91
+Defined in src/foundation.ts:98
 
 ## Functions
 
@@ -77,7 +79,7 @@ Defined in src/foundation.ts:91
 
 ▸ **invert**(`action`: [Action](_foundation_.md#action)): *[Action](_foundation_.md#action)*
 
-Defined in src/foundation.ts:57
+Defined in src/foundation.ts:62
 
 Returns the inverse of `action`, i.e. an `Action` with opposite effect.
 
@@ -95,7 +97,7 @@ ___
 
 ▸ **isCreate**(`action`: [Action](_foundation_.md#action)): *action is Create*
 
-Defined in src/foundation.ts:33
+Defined in src/foundation.ts:26
 
 **Parameters:**
 
@@ -111,7 +113,7 @@ ___
 
 ▸ **isDelete**(`action`: [Action](_foundation_.md#action)): *action is Delete*
 
-Defined in src/foundation.ts:40
+Defined in src/foundation.ts:33
 
 **Parameters:**
 
@@ -127,7 +129,7 @@ ___
 
 ▸ **isMove**(`action`: [Action](_foundation_.md#action)): *action is Move*
 
-Defined in src/foundation.ts:26
+Defined in src/foundation.ts:40
 
 **Parameters:**
 
@@ -143,7 +145,7 @@ ___
 
 ▸ **isUpdate**(`action`: [Action](_foundation_.md#action)): *action is Update*
 
-Defined in src/foundation.ts:47
+Defined in src/foundation.ts:48
 
 **Parameters:**
 
@@ -157,32 +159,52 @@ ___
 
 ###  newActionEvent
 
-▸ **newActionEvent**(`action`: [Action](_foundation_.md#action), `eventInitDict?`: CustomEventInit‹[Action](_foundation_.md#action)›): *[ActionEvent](_foundation_.md#actionevent)*
+▸ **newActionEvent**‹**T**›(`action`: T, `eventInitDict?`: CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››): *[ActionEvent](_foundation_.md#actionevent)‹T›*
 
-Defined in src/foundation.ts:74
+Defined in src/foundation.ts:81
+
+**Type parameters:**
+
+▪ **T**: *[Action](_foundation_.md#action)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`action` | [Action](_foundation_.md#action) |
-`eventInitDict?` | CustomEventInit‹[Action](_foundation_.md#action)› |
+`action` | T |
+`eventInitDict?` | CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T›› |
 
-**Returns:** *[ActionEvent](_foundation_.md#actionevent)*
+**Returns:** *[ActionEvent](_foundation_.md#actionevent)‹T›*
 
 ___
 
 ###  newPendingStateEvent
 
-▸ **newPendingStateEvent**(`promise`: Promise‹string›, `eventInitDict?`: CustomEventInit‹[PendingState](../interfaces/_foundation_.pendingstate.md)›): *[PendingStateEvent](_foundation_.md#pendingstateevent)*
+▸ **newPendingStateEvent**(`promise`: Promise‹string›, `eventInitDict?`: CustomEventInit‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›): *[PendingStateEvent](_foundation_.md#pendingstateevent)*
 
-Defined in src/foundation.ts:93
+Defined in src/foundation.ts:100
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `promise` | Promise‹string› |
-`eventInitDict?` | CustomEventInit‹[PendingState](../interfaces/_foundation_.pendingstate.md)› |
+`eventInitDict?` | CustomEventInit‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)› |
 
 **Returns:** *[PendingStateEvent](_foundation_.md#pendingstateevent)*
+
+___
+
+###  unreachable
+
+▸ **unreachable**(`message`: string): *never*
+
+Defined in src/foundation.ts:57
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`message` | string |
+
+**Returns:** *never*

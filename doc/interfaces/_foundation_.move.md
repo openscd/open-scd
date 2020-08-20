@@ -22,7 +22,7 @@ Represents reparenting of `move.old.element` to `move.new.parent`.
 
 • **derived**? : *undefined | false | true*
 
-Defined in src/foundation.ts:7
+Defined in src/foundation.ts:17
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **new**: *object*
 
-Defined in src/foundation.ts:6
+Defined in src/foundation.ts:16
 
 #### Type declaration:
 
@@ -42,7 +42,7 @@ ___
 
 • **old**: *object*
 
-Defined in src/foundation.ts:5
+Defined in src/foundation.ts:15
 
 #### Type declaration:
 
