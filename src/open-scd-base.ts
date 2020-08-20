@@ -20,10 +20,11 @@ import { Snackbar } from '@material/mwc-snackbar';
 
 import {
   Action,
+  ActionEvent,
   Create,
   Delete,
   Move,
-  PendingState,
+  PendingStateDetail,
   Update,
   isCreate,
   isDelete,
@@ -320,7 +321,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   set src(value: string) {
     this.currentSrc = value;
     this.dispatchEvent(
-      new CustomEvent<PendingState>('pending-state', {
+      new CustomEvent<PendingStateDetail>('pending-state', {
         composed: true,
         bubbles: true,
         detail: { promise: this.loadDoc(value) },
@@ -393,49 +394,63 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     }
   }
 
-  private onMove(event: CustomEvent<Move>) {
-    event.detail.new.parent.prepend(event.detail.old.element);
-    this.commit(`Move ${event.detail.old.element.tagName}`, event.detail);
-
-    (<LitElement>event.composedPath()[0]).requestUpdate('node');
-    this.requestUpdate('doc');
-  }
-
-  private onCreate(event: CustomEvent<Create>) {
-    event.detail.new.parent.prepend(event.detail.new.element);
-    this.commit(`Create ${event.detail.new.element.tagName}`, event.detail);
-
-    (<LitElement>event.composedPath()[0]).requestUpdate('node');
-    this.requestUpdate('doc');
-  }
-
-  private onDelete(event: CustomEvent<Delete>) {
-    event.detail.old.element.remove();
-    this.commit(`Delete ${event.detail.old.element.tagName}`, event.detail);
-
-    (<LitElement>event.composedPath()[0]).requestUpdate('node');
-    this.requestUpdate('doc');
-  }
-
-  private onUpdate(event: CustomEvent<Update>) {
-    event.detail.new.element.append(
-      ...Array.from(event.detail.old.element.childNodes)
+  private onCreate(event: ActionEvent<Create>) {
+    event.detail.action.new.parent.prepend(event.detail.action.new.element);
+    this.commit(
+      `Create ${event.detail.action.new.element.tagName}`,
+      event.detail.action
     );
-    event.detail.old.element.replaceWith(event.detail.new.element);
-    this.commit(`Update ${event.detail.new.element.tagName}`, event.detail);
 
     (<LitElement>event.composedPath()[0]).requestUpdate('node');
     this.requestUpdate('doc');
   }
 
-  private onAction(event: CustomEvent<Action>) {
-    if (isMove(event.detail)) this.onMove(event as CustomEvent<Move>);
-    else if (isCreate(event.detail))
-      this.onCreate(event as CustomEvent<Create>);
-    else if (isDelete(event.detail))
-      this.onDelete(event as CustomEvent<Delete>);
-    else if (isUpdate(event.detail))
-      this.onUpdate(event as CustomEvent<Update>);
+  private onDelete(event: ActionEvent<Delete>) {
+    event.detail.action.old.element.remove();
+    this.commit(
+      `Delete ${event.detail.action.old.element.tagName}`,
+      event.detail.action
+    );
+
+    (<LitElement>event.composedPath()[0]).requestUpdate('node');
+    this.requestUpdate('doc');
+  }
+
+  private onMove(event: ActionEvent<Move>) {
+    event.detail.action.new.parent.prepend(event.detail.action.old.element);
+    this.commit(
+      `Move ${event.detail.action.old.element.tagName}`,
+      event.detail.action
+    );
+
+    (<LitElement>event.composedPath()[0]).requestUpdate('node');
+    this.requestUpdate('doc');
+  }
+
+  private onUpdate(event: ActionEvent<Update>) {
+    event.detail.action.new.element.append(
+      ...Array.from(event.detail.action.old.element.childNodes)
+    );
+    event.detail.action.old.element.replaceWith(
+      event.detail.action.new.element
+    );
+    this.commit(
+      `Update ${event.detail.action.new.element.tagName}`,
+      event.detail.action
+    );
+
+    (<LitElement>event.composedPath()[0]).requestUpdate('node');
+    this.requestUpdate('doc');
+  }
+
+  private onAction(event: ActionEvent<Action>) {
+    if (isMove(event.detail.action)) this.onMove(event as ActionEvent<Move>);
+    else if (isCreate(event.detail.action))
+      this.onCreate(event as ActionEvent<Create>);
+    else if (isDelete(event.detail.action))
+      this.onDelete(event as ActionEvent<Delete>);
+    else if (isUpdate(event.detail.action))
+      this.onUpdate(event as ActionEvent<Update>);
   }
 
   private handleKeyPress(e: KeyboardEvent): void {

@@ -1,4 +1,4 @@
-import { ElementConstructor, PendingState } from './foundation.js';
+import { ElementConstructor, PendingStateDetail } from './foundation.js';
 
 export function Waiting<TBase extends ElementConstructor>(Base: TBase) {
   return class WaitingElement extends Base {
@@ -10,7 +10,7 @@ export function Waiting<TBase extends ElementConstructor>(Base: TBase) {
       super(...args);
       this.addEventListener(
         'pending-state',
-        async (e: CustomEvent<PendingState>) => {
+        async (e: CustomEvent<PendingStateDetail>) => {
           this.waiting = true;
           this.work.add(e.detail.promise);
           this.workDone = Promise.allSettled(this.work);
