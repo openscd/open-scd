@@ -7,15 +7,16 @@
 | Property         | Attribute   | Modifiers | Type                                             | Default                                          | Description                                      |
 |------------------|-------------|-----------|--------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
 | `activeTab`      | `activeTab` |           | `number`                                         | 0                                                | The currently active editor tab.                 |
+| `canRedo`        |             | readonly  | `boolean`                                        |                                                  |                                                  |
+| `canUndo`        |             | readonly  | `boolean`                                        |                                                  |                                                  |
 | `commit`         |             |           |                                                  |                                                  |                                                  |
-| `currentAction`  |             |           | `number`                                         | -1                                               |                                                  |
 | `doc`            | `doc`       |           | `XMLDocument`                                    | "emptySCD"                                       | The `XMLDocument` representation of the current file. |
 | `error`          |             |           |                                                  |                                                  |                                                  |
 | `fileUI`         |             |           | `HTMLInputElement`                               |                                                  |                                                  |
 | `handleKeyPress` |             |           |                                                  |                                                  |                                                  |
-| `hasActions`     |             | readonly  | `boolean`                                        |                                                  |                                                  |
 | `history`        | `history`   |           | `LogEntry[]`                                     | []                                               |                                                  |
 | `info`           |             |           |                                                  |                                                  |                                                  |
+| `lastAction`     |             |           | `number`                                         | -1                                               |                                                  |
 | `log`            |             |           |                                                  |                                                  |                                                  |
 | `logUI`          |             |           | `Dialog`                                         |                                                  |                                                  |
 | `menu`           |             |           | `MenuEntry[]`                                    | [{"icon":"folder_open","name":"Open project","startsGroup":true,"actionItem":true},{"icon":"create_new_folder","name":"New project"},{"icon":"snippet_folder","name":"Import IED"},{"icon":"save","name":"Save project"},{"icon":"undo","name":"Undo","hint":"CTRL+Z","startsGroup":true,"actionItem":true,"action":true},{"icon":"redo","name":"Redo","hint":"CTRL+Y","actionItem":true,"action":true},{"icon":"rule_folder","name":"Validate project","startsGroup":true},{"icon":"rule","name":"View log","hint":"CTRL+L","actionItem":true}] |                                                  |
@@ -55,7 +56,7 @@
 
 ## Events
 
-| Event           | Type                              |
-|-----------------|-----------------------------------|
-| `action`        | `CustomEvent<Action>`             |
-| `pending-state` | `CustomEvent<PendingStateDetail>` |
+| Event           | Type                                |
+|-----------------|-------------------------------------|
+| `action`        | `CustomEvent<ActionDetail<Action>>` |
+| `pending-state` | `CustomEvent<PendingStateDetail>`   |

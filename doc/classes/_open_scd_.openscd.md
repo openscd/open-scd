@@ -52,7 +52,6 @@
 * [clientTop](_open_scd_.openscd.md#readonly-clienttop)
 * [clientWidth](_open_scd_.openscd.md#readonly-clientwidth)
 * [contentEditable](_open_scd_.openscd.md#contenteditable)
-* [currentAction](_open_scd_.openscd.md#currentaction)
 * [dataset](_open_scd_.openscd.md#readonly-dataset)
 * [dir](_open_scd_.openscd.md#dir)
 * [doc](_open_scd_.openscd.md#doc)
@@ -70,6 +69,7 @@
 * [isConnected](_open_scd_.openscd.md#readonly-isconnected)
 * [isContentEditable](_open_scd_.openscd.md#readonly-iscontenteditable)
 * [lang](_open_scd_.openscd.md#lang)
+* [lastAction](_open_scd_.openscd.md#lastaction)
 * [lastChild](_open_scd_.openscd.md#readonly-lastchild)
 * [lastElementChild](_open_scd_.openscd.md#readonly-lastelementchild)
 * [lineRippleFoundation](_open_scd_.openscd.md#optional-lineripplefoundation)
@@ -215,7 +215,8 @@
 
 ### Accessors
 
-* [hasActions](_open_scd_.openscd.md#hasactions)
+* [canRedo](_open_scd_.openscd.md#canredo)
+* [canUndo](_open_scd_.openscd.md#canundo)
 * [hasUpdated](_open_scd_.openscd.md#protected-hasupdated)
 * [name](_open_scd_.openscd.md#name)
 * [nextAction](_open_scd_.openscd.md#nextaction)
@@ -750,16 +751,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
 ___
 
-###  currentAction
-
-• **currentAction**: *number* = -1
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[currentAction](_open_scd_base_.openscdbase.md#currentaction)*
-
-Defined in src/logging.ts:18
-
-___
-
 ### `Readonly` dataset
 
 • **dataset**: *DOMStringMap*
@@ -942,6 +933,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6583
 
 ___
 
+###  lastAction
+
+• **lastAction**: *number* = -1
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastAction](_open_scd_base_.openscdbase.md#lastaction)*
+
+Defined in src/logging.ts:26
+
+___
+
 ### `Readonly` lastChild
 
 • **lastChild**: *ChildNode | null*
@@ -1018,7 +1019,7 @@ ___
       startsGroup: true,
       actionItem: true,
       action: this.undo,
-      isDisabled: (): boolean => this.currentAction < 0,
+      isDisabled: (): boolean => !this.canUndo,
     },
     {
       icon: 'redo',
@@ -1026,7 +1027,7 @@ ___
       hint: 'CTRL+Y',
       actionItem: true,
       action: this.redo,
-      isDisabled: (): boolean => this.nextAction < 0,
+      isDisabled: (): boolean => !this.canRedo,
     },
     { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
     {
@@ -2664,13 +2665,25 @@ Defined in src/open-scd.ts:13
 
 ## Accessors
 
-###  hasActions
+###  canRedo
 
-• **get hasActions**(): *boolean*
+• **get canRedo**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[hasActions](_open_scd_base_.openscdbase.md#hasactions)*
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
 
-Defined in src/logging.ts:19
+Defined in src/logging.ts:31
+
+**Returns:** *boolean*
+
+___
+
+###  canUndo
+
+• **get canUndo**(): *boolean*
+
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
+
+Defined in src/logging.ts:28
 
 **Returns:** *boolean*
 
@@ -2706,7 +2719,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
 
-Defined in src/logging.ts:29
+Defined in src/logging.ts:41
 
 **Returns:** *number*
 
@@ -2732,7 +2745,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
 
-Defined in src/logging.ts:22
+Defined in src/logging.ts:34
 
 **Returns:** *number*
 
@@ -3169,7 +3182,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
 
-Defined in src/logging.ts:92
+Defined in src/logging.ts:105
 
 **Parameters:**
 
@@ -3211,7 +3224,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[connectedCallback](_editors_substation_editor_base_.substationeditorbase.md#connectedcallback)*
 
-Defined in src/foundation.ts:121
+Defined in src/foundation.ts:125
 
 **Returns:** *void*
 
@@ -3733,7 +3746,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:122
+Defined in src/foundation.ts:126
 
 **Parameters:**
 
@@ -3906,7 +3919,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
 
-Defined in src/logging.ts:62
+Defined in src/logging.ts:75
 
 **Parameters:**
 
@@ -4176,7 +4189,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
 
-Defined in src/logging.ts:49
+Defined in src/logging.ts:62
 
 **Returns:** *boolean*
 
@@ -4839,7 +4852,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
 
-Defined in src/logging.ts:37
+Defined in src/logging.ts:49
 
 **Returns:** *boolean*
 
@@ -4901,7 +4914,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:123
+Defined in src/foundation.ts:127
 
 **Parameters:**
 

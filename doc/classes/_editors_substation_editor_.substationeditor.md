@@ -3477,7 +3477,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-Defined in src/foundation.ts:122
+Defined in src/foundation.ts:126
 
 **Parameters:**
 
@@ -4514,7 +4514,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-Defined in src/foundation.ts:123
+Defined in src/foundation.ts:127
 
 **Parameters:**
 

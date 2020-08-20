@@ -23,7 +23,7 @@
 
 • **action**? : *[Action](../modules/_foundation_.md#action)*
 
-Defined in src/logging.ts:8
+Defined in src/logging.ts:14
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **cause**? : *[LogEntry](_logging_.logentry.md)*
 
-Defined in src/logging.ts:9
+Defined in src/logging.ts:15
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **icon**? : *undefined | string*
 
-Defined in src/logging.ts:7
+Defined in src/logging.ts:13
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **message**? : *undefined | string*
 
-Defined in src/logging.ts:6
+Defined in src/logging.ts:12
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **time**: *Date*
 
-Defined in src/logging.ts:4
+Defined in src/logging.ts:10
 
 ___
 
@@ -63,4 +63,4 @@ ___
 
 • **title**: *string*
 
-Defined in src/logging.ts:5
+Defined in src/logging.ts:11

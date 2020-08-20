@@ -11,6 +11,7 @@
 ### Type aliases
 
 * [LogOptions](_logging_.md#logoptions)
+* [LoggingElement](_logging_.md#loggingelement)
 
 ### Functions
 
@@ -22,7 +23,15 @@
 
 Ƭ **LogOptions**: *Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "cause" | "icon" | "message"›*
 
-Defined in src/logging.ts:12
+Defined in src/logging.ts:18
+
+___
+
+###  LoggingElement
+
+Ƭ **LoggingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Logging›*
+
+Defined in src/logging.ts:20
 
 ## Functions
 
@@ -30,7 +39,7 @@ Defined in src/logging.ts:12
 
 ▸ **Logging**‹**TBase**›(`Base`: TBase): *LoggingElement & TBase*
 
-Defined in src/logging.ts:14
+Defined in src/logging.ts:22
 
 **Type parameters:**
 

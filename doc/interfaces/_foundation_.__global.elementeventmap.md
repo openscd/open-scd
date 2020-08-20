@@ -19,7 +19,7 @@
 
 • **action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
 
-Defined in src/foundation.ts:118
+Defined in src/foundation.ts:122
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **pending-state**: *CustomEvent‹[PendingStateDetail](_foundation_.pendingstatedetail.md)›*
 
-Defined in src/foundation.ts:117
+Defined in src/foundation.ts:121

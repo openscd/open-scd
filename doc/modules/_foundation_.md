@@ -22,6 +22,7 @@
 * [Action](_foundation_.md#action)
 * [ActionEvent](_foundation_.md#actionevent)
 * [ElementConstructor](_foundation_.md#elementconstructor)
+* [Mixin](_foundation_.md#mixin)
 * [PendingStateEvent](_foundation_.md#pendingstateevent)
 
 ### Functions
@@ -64,6 +65,14 @@ Defined in src/foundation.ts:113
 Constructor type for defining `HTMLElement` mixins
 
 #### Type declaration:
+
+___
+
+###  Mixin
+
+Ƭ **Mixin**: *InstanceType‹ReturnType‹T››*
+
+Defined in src/foundation.ts:115
 
 ___
 
