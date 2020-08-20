@@ -45,9 +45,11 @@ interface Tab {
 interface MenuEntry {
   icon: string;
   name: string;
+  hint?: string;
   startsGroup?: boolean;
   actionItem?: boolean;
   action?: () => void;
+  isDisabled?: () => boolean;
 }
 
 export class OpenSCDBase extends Waiting(Logging(LitElement)) {
@@ -55,7 +57,9 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     return html`
       <mwc-drawer hasheader type="modal" id="menu">
         <span slot="title">${this.name ?? 'Menu'}</span>
-        <span slot="subtitle">${this.srcName}</span>
+        <span slot="subtitle"
+          >${this.name ? this.srcName : html`<tt>CTRL+M</tt>`}</span
+        >
         <mwc-list
           wrapFocus
           @action=${(ae: CustomEvent<ActionDetail>) =>
@@ -90,6 +94,20 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         <mwc-list id="content" wrapFocus>
           ${this.renderHistory(this.history)}
         </mwc-list>
+        <mwc-button
+          icon="undo"
+          label="Undo"
+          ?disabled=${this.currentAction < 0}
+          @click=${this.undo}
+          slot="secondaryAction"
+        ></mwc-button>
+        <mwc-button
+          icon="redo"
+          label="Redo"
+          ?disabled=${this.nextAction < 0}
+          @click=${this.redo}
+          slot="secondaryAction"
+        ></mwc-button>
         <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
       </mwc-dialog>
 
@@ -119,11 +137,17 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       ${me.startsGroup
         ? html`<li divider padded role="separator"></li>`
         : nothing}
-      <mwc-list-item graphic="icon" .disabled=${me.action ? false : true}
+      <mwc-list-item
+        graphic="icon"
+        .disabled=${me.isDisabled?.() || (me.action ? false : true)}
+        ?twoline=${me.hint}
         ><mwc-icon slot="graphic">
           ${me.icon}
         </mwc-icon>
-        ${me.name}
+        <span>${me.name}</span>
+        ${me.hint
+          ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
+          : nothing}
       </mwc-list-item>
     `;
   }
@@ -134,7 +158,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         slot="actionItems"
         icon="${me.icon}"
         label="${me.name}"
-        .disabled=${me.action ? false : true}
+        ?disabled=${me.isDisabled?.() || !me.action}
         @click=${me.action}
       ></mwc-icon-button>`;
     else return html``;
@@ -200,10 +224,28 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     { icon: 'create_new_folder', name: 'New project' },
     { icon: 'snippet_folder', name: 'Import IED' },
     { icon: 'save', name: 'Save project' },
+    {
+      icon: 'undo',
+      name: 'Undo',
+      hint: 'CTRL+Z',
+      startsGroup: true,
+      actionItem: true,
+      action: this.undo,
+      isDisabled: (): boolean => this.currentAction < 0,
+    },
+    {
+      icon: 'redo',
+      name: 'Redo',
+      hint: 'CTRL+Y',
+      actionItem: true,
+      action: this.redo,
+      isDisabled: (): boolean => this.nextAction < 0,
+    },
     { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
     {
       icon: 'rule',
       name: 'View log',
+      hint: 'CTRL+L',
       actionItem: true,
       action: (): void => this.logUI.show(),
     },
@@ -396,9 +438,15 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       this.onUpdate(event as CustomEvent<Update>);
   }
 
-  private handleKeyPress(event: KeyboardEvent): void {
-    if (event.keyCode == 89 /* y */ && event.ctrlKey) this.redo();
-    if (event.keyCode == 90 /* z */ && event.ctrlKey) this.undo();
+  private handleKeyPress(e: KeyboardEvent): void {
+    let handled = false;
+    if (e.keyCode == 89 /* y */ && e.ctrlKey && (handled = true)) this.redo();
+    if (e.keyCode == 90 /* z */ && e.ctrlKey && (handled = true)) this.undo();
+    if (e.keyCode == 76 /* l */ && e.ctrlKey && (handled = true))
+      this.logUI.open ? this.logUI.close() : this.logUI.show();
+    if (e.keyCode == 77 /* m */ && e.ctrlKey && (handled = true))
+      this.menuUI.open = !this.menuUI.open;
+    if (handled) e.preventDefault();
   }
 
   constructor() {
