@@ -20,4 +20,14 @@ describe('WaitingElement', () => {
     element.dispatchEvent(newPendingStateEvent(promise));
     expect(element).property('waiting').to.be.true;
   });
+
+  it('stops waiting on promise resolution', async () => {
+    const promise = new Promise<string>(resolve =>
+      setTimeout(() => resolve('done'), 1000 /* ms */)
+    );
+    element.dispatchEvent(newPendingStateEvent(promise));
+    await promise;
+    await element.workDone;
+    expect(element).property('waiting').to.be.false;
+  });
 });
