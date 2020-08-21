@@ -3,7 +3,7 @@ import { newPendingStateEvent } from '../src/foundation.js';
 import { WaitingElement } from '../src/waiting.js';
 
 import './mock-waiter.js';
-import { cre, del, mov, upd } from './mock-actions.js';
+
 describe('WaitingElement', () => {
   let element: WaitingElement;
   beforeEach(async () => {
@@ -23,7 +23,7 @@ describe('WaitingElement', () => {
 
   it('stops waiting on promise resolution', async () => {
     const promise = new Promise<string>(resolve =>
-      setTimeout(() => resolve('done'), 1000 /* ms */)
+      setTimeout(() => resolve('done'), 100 /* ms */)
     );
     element.dispatchEvent(newPendingStateEvent(promise));
     await promise;

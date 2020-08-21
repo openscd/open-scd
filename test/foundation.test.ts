@@ -11,45 +11,45 @@ import {
   newPendingStateEvent,
 } from '../src/foundation.js';
 
-import { cre, del, mov, upd } from './mock-actions.js';
+import { MockAction } from './mock-actions.js';
 
 describe('foundation', () => {
   describe('Action', () => {
     it('consists of four disjunct types', () => {
-      expect(cre).to.satisfy(isCreate);
-      expect(del).to.satisfy(isDelete);
-      expect(mov).to.satisfy(isMove);
-      expect(upd).to.satisfy(isUpdate);
+      expect(MockAction.cre).to.satisfy(isCreate);
+      expect(MockAction.del).to.satisfy(isDelete);
+      expect(MockAction.mov).to.satisfy(isMove);
+      expect(MockAction.upd).to.satisfy(isUpdate);
 
-      expect(cre).to.not.satisfy(isDelete);
-      expect(cre).to.not.satisfy(isMove);
-      expect(cre).to.not.satisfy(isUpdate);
+      expect(MockAction.cre).to.not.satisfy(isDelete);
+      expect(MockAction.cre).to.not.satisfy(isMove);
+      expect(MockAction.cre).to.not.satisfy(isUpdate);
 
-      expect(del).to.not.satisfy(isCreate);
-      expect(del).to.not.satisfy(isMove);
-      expect(del).to.not.satisfy(isUpdate);
+      expect(MockAction.del).to.not.satisfy(isCreate);
+      expect(MockAction.del).to.not.satisfy(isMove);
+      expect(MockAction.del).to.not.satisfy(isUpdate);
 
-      expect(mov).to.not.satisfy(isCreate);
-      expect(mov).to.not.satisfy(isDelete);
-      expect(mov).to.not.satisfy(isUpdate);
+      expect(MockAction.mov).to.not.satisfy(isCreate);
+      expect(MockAction.mov).to.not.satisfy(isDelete);
+      expect(MockAction.mov).to.not.satisfy(isUpdate);
 
-      expect(upd).to.not.satisfy(isCreate);
-      expect(upd).to.not.satisfy(isDelete);
-      expect(upd).to.not.satisfy(isMove);
+      expect(MockAction.upd).to.not.satisfy(isCreate);
+      expect(MockAction.upd).to.not.satisfy(isDelete);
+      expect(MockAction.upd).to.not.satisfy(isMove);
     });
 
     describe('invert', () => {
       it('turns Create into Delete and vice versa', () => {
-        expect(invert(cre)).to.satisfy(isDelete);
-        expect(invert(del)).to.satisfy(isCreate);
+        expect(invert(MockAction.cre)).to.satisfy(isDelete);
+        expect(invert(MockAction.del)).to.satisfy(isCreate);
       });
 
       it('turns Move into Move', () => {
-        expect(invert(mov)).to.satisfy(isMove);
+        expect(invert(MockAction.mov)).to.satisfy(isMove);
       });
 
       it('turns Update into Update', () => {
-        expect(invert(upd)).to.satisfy(isUpdate);
+        expect(invert(MockAction.upd)).to.satisfy(isUpdate);
       });
 
       it('throws on unknown Action type', () => {
@@ -60,7 +60,7 @@ describe('foundation', () => {
 
     describe('ActionEvent', () => {
       it('bears an Action in its detail', async () => {
-        expect(newActionEvent(mov))
+        expect(newActionEvent(MockAction.mov))
           .property('detail')
           .property('action')
           .to.satisfy(isMove);

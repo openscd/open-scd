@@ -1,7 +1,19 @@
+import { Action } from '../src/foundation.js';
+
 const element = document.createElement('test-element');
 const parent = document.createElement('test-parent');
 
-export const cre = { new: { parent, element } };
-export const del = { old: { parent, element } };
-export const mov = { old: { parent, element }, new: { parent } };
-export const upd = { old: { element }, new: { element } };
+export class MockAction {
+  static get cre(): Action {
+    return { new: { parent, element } };
+  }
+  static get del(): Action {
+    return { old: { parent, element } };
+  }
+  static get mov(): Action {
+    return { old: { parent, element }, new: { parent } };
+  }
+  static get upd(): Action {
+    return { old: { element }, new: { element } };
+  }
+}

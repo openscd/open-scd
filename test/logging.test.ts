@@ -2,7 +2,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { LoggingElement } from '../src/logging.js';
 
 import './mock-logger.js';
-import { cre, del, mov, upd } from './mock-actions.js';
+import { MockAction } from './mock-actions.js';
 
 describe('LoggingElement', () => {
   let element: LoggingElement;
@@ -23,12 +23,18 @@ describe('LoggingElement', () => {
     element.info('test info');
     expect(element).property('history').to.have.lengthOf(1);
     expect(element).property('canUndo').to.be.false;
+
     element.warn('test warn');
     expect(element).property('history').to.have.lengthOf(2);
     expect(element).property('canUndo').to.be.false;
+
     element.error('test error');
     expect(element).property('history').to.have.lengthOf(3);
     expect(element).property('canUndo').to.be.false;
+
+    element.commit('test MockAction.move', MockAction.mov);
+    expect(element).property('canUndo').to.be.true;
+    expect(element).property('previousAction').to.equal(-1);
   });
 
   it('can undo and redo committed actions', () => {
@@ -36,19 +42,19 @@ describe('LoggingElement', () => {
     expect(element).property('previousAction').to.equal(-1);
     expect(element).property('nextAction').to.equal(-1);
 
-    element.commit('test create', cre);
+    element.commit('test MockAction.create', MockAction.cre);
     expect(element).property('canUndo').to.be.true;
     expect(element).property('canRedo').to.be.false;
     expect(element).property('lastAction').to.equal(0);
     expect(element).property('previousAction').to.equal(-1);
     expect(element).property('nextAction').to.equal(-1);
 
-    element.commit('test delete', del);
+    element.commit('test MockAction.delete', MockAction.del);
     expect(element).property('lastAction').to.equal(1);
     expect(element).property('previousAction').to.equal(0);
     expect(element).property('nextAction').to.equal(-1);
 
-    element.commit('test update', upd);
+    element.commit('test MockAction.update', MockAction.upd);
     expect(element).property('previousAction').to.equal(1);
     expect(element).property('lastAction').to.equal(2);
     expect(element).property('nextAction').to.equal(-1);
@@ -95,10 +101,10 @@ describe('LoggingElement', () => {
   });
 
   it('does not log derived actions', () => {
-    element.commit('test move', mov);
+    element.commit('test MockAction.move', MockAction.mov);
     expect(element).property('history').to.have.lengthOf(1);
 
-    element.commit('the same move', element.history[0].action!);
+    element.commit('the same MockAction.move', element.history[0].action!);
     expect(element).property('history').to.have.lengthOf(1);
   });
 });
