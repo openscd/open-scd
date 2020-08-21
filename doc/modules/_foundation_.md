@@ -52,7 +52,7 @@ ___
 
 Ƭ **ActionEvent**: *CustomEvent‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››*
 
-Defined in src/foundation.ts:79
+Defined in src/foundation.ts:77
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 Defined in src/foundation.ts:113
 
-Constructor type for defining `HTMLElement` mixins
+Constructor type for defining `HTMLElement` mixins.
 
 #### Type declaration:
 
@@ -72,7 +72,9 @@ ___
 
 Ƭ **Mixin**: *InstanceType‹ReturnType‹T››*
 
-Defined in src/foundation.ts:115
+Defined in src/foundation.ts:116
+
+The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`.
 
 ___
 
@@ -80,7 +82,7 @@ ___
 
 Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›*
 
-Defined in src/foundation.ts:98
+Defined in src/foundation.ts:94
 
 ## Functions
 
@@ -88,7 +90,7 @@ Defined in src/foundation.ts:98
 
 ▸ **invert**(`action`: [Action](_foundation_.md#action)): *[Action](_foundation_.md#action)*
 
-Defined in src/foundation.ts:62
+Defined in src/foundation.ts:59
 
 Returns the inverse of `action`, i.e. an `Action` with opposite effect.
 
@@ -106,7 +108,7 @@ ___
 
 ▸ **isCreate**(`action`: [Action](_foundation_.md#action)): *action is Create*
 
-Defined in src/foundation.ts:26
+Defined in src/foundation.ts:27
 
 **Parameters:**
 
@@ -122,7 +124,7 @@ ___
 
 ▸ **isDelete**(`action`: [Action](_foundation_.md#action)): *action is Delete*
 
-Defined in src/foundation.ts:33
+Defined in src/foundation.ts:34
 
 **Parameters:**
 
@@ -138,7 +140,7 @@ ___
 
 ▸ **isMove**(`action`: [Action](_foundation_.md#action)): *action is Move*
 
-Defined in src/foundation.ts:40
+Defined in src/foundation.ts:41
 
 **Parameters:**
 
@@ -154,7 +156,7 @@ ___
 
 ▸ **isUpdate**(`action`: [Action](_foundation_.md#action)): *action is Update*
 
-Defined in src/foundation.ts:48
+Defined in src/foundation.ts:49
 
 **Parameters:**
 
@@ -170,7 +172,7 @@ ___
 
 ▸ **newActionEvent**‹**T**›(`action`: T, `eventInitDict?`: CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››): *[ActionEvent](_foundation_.md#actionevent)‹T›*
 
-Defined in src/foundation.ts:81
+Defined in src/foundation.ts:78
 
 **Type parameters:**
 
@@ -191,7 +193,7 @@ ___
 
 ▸ **newPendingStateEvent**(`promise`: Promise‹string›, `eventInitDict?`: CustomEventInit‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›): *[PendingStateEvent](_foundation_.md#pendingstateevent)*
 
-Defined in src/foundation.ts:100
+Defined in src/foundation.ts:95
 
 **Parameters:**
 
@@ -208,7 +210,9 @@ ___
 
 ▸ **unreachable**(`message`: string): *never*
 
-Defined in src/foundation.ts:57
+Defined in src/foundation.ts:108
+
+Throws an error bearing `message`, never returning.
 
 **Parameters:**
 

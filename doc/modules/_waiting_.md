@@ -4,9 +4,21 @@
 
 ## Index
 
+### Type aliases
+
+* [WaitingElement](_waiting_.md#waitingelement)
+
 ### Functions
 
 * [Waiting](_waiting_.md#waiting)
+
+## Type aliases
+
+###  WaitingElement
+
+Ƭ **WaitingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Waiting›*
+
+Defined in src/waiting.ts:3
 
 ## Functions
 
@@ -14,7 +26,7 @@
 
 ▸ **Waiting**‹**TBase**›(`Base`: TBase): *WaitingElement & TBase*
 
-Defined in src/waiting.ts:3
+Defined in src/waiting.ts:5
 
 **Type parameters:**
 

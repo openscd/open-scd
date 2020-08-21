@@ -2,6 +2,8 @@
 
 # Interface: ActionDetail ‹**T**›
 
+Represents some modification of a `Document` being edited.
+
 ## Type parameters
 
 ▪ **T**: *[Action](../modules/_foundation_.md#action)*
@@ -22,4 +24,4 @@
 
 • **action**: *T*
 
-Defined in src/foundation.ts:77
+Defined in src/foundation.ts:75

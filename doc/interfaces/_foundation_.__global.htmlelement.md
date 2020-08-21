@@ -10,27 +10,16 @@
 
 ### Methods
 
-* [connectedCallback](_foundation_.__global.htmlelement.md#optional-connectedcallback)
 * [info](_foundation_.__global.htmlelement.md#optional-info)
 * [warn](_foundation_.__global.htmlelement.md#optional-warn)
 
 ## Methods
 
-### `Optional` connectedCallback
-
-▸ **connectedCallback**(): *void*
-
-Defined in src/foundation.ts:125
-
-**Returns:** *void*
-
-___
-
 ### `Optional` info
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/foundation.ts:126
+Defined in src/foundation.ts:127
 
 **Parameters:**
 
@@ -47,7 +36,7 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/foundation.ts:127
+Defined in src/foundation.ts:128
 
 **Parameters:**
 

@@ -247,7 +247,7 @@
 * [closest](_open_scd_base_.openscdbase.md#closest)
 * [commit](_open_scd_base_.openscdbase.md#commit)
 * [compareDocumentPosition](_open_scd_base_.openscdbase.md#comparedocumentposition)
-* [connectedCallback](_open_scd_base_.openscdbase.md#optional-connectedcallback)
+* [connectedCallback](_open_scd_base_.openscdbase.md#connectedcallback)
 * [contains](_open_scd_base_.openscdbase.md#contains)
 * [createRenderRoot](_open_scd_base_.openscdbase.md#protected-createrenderroot)
 * [disconnectedCallback](_open_scd_base_.openscdbase.md#disconnectedcallback)
@@ -2891,7 +2891,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
 
-Defined in src/waiting.ts:6
+Defined in src/waiting.ts:8
 
 ___
 
@@ -2901,7 +2901,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
 
-Defined in src/waiting.ts:8
+Defined in src/waiting.ts:10
 
 A promise which resolves once all currently pending work is done.
 
@@ -3574,15 +3574,15 @@ Name | Type |
 
 ___
 
-### `Optional` connectedCallback
+###  connectedCallback
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[connectedCallback](../interfaces/_foundation_.__global.htmlelement.md#optional-connectedcallback)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[connectedCallback](_editors_substation_editor_base_.substationeditorbase.md#connectedcallback)*
 
-*Overrides [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[connectedCallback](../interfaces/_foundation_.__global.htmlelement.md#optional-connectedcallback)*
+*Overrides void*
 
-Defined in src/foundation.ts:125
+Defined in node_modules/lit-element/lit-element.d.ts:90
 
 **Returns:** *void*
 
@@ -4166,7 +4166,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:126
+Defined in src/foundation.ts:127
 
 **Parameters:**
 
@@ -5518,7 +5518,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:127
+Defined in src/foundation.ts:128
 
 **Parameters:**
 
