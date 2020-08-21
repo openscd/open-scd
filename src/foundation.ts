@@ -23,6 +23,7 @@ export interface Update {
   derived?: boolean;
 }
 
+// typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards
 export function isCreate(action: Action): action is Create {
   return (
     (action as Update).old === undefined &&
@@ -54,10 +55,6 @@ export function isUpdate(action: Action): action is Update {
   );
 }
 
-export function unreachable(message: string): never {
-  throw new Error(message);
-}
-
 /** Returns the inverse of `action`, i.e. an `Action` with opposite effect. */
 export function invert(action: Action): Action {
   if (isCreate(action)) return { old: action.new, derived: action.derived };
@@ -73,11 +70,11 @@ export function invert(action: Action): Action {
   else return unreachable('Unknown Action type in invert.');
 }
 
+/** Represents some modification of a `Document` being edited. */
 export interface ActionDetail<T extends Action> {
   action: T;
 }
 export type ActionEvent<T extends Action> = CustomEvent<ActionDetail<T>>;
-
 export function newActionEvent<T extends Action>(
   action: T,
   eventInitDict?: CustomEventInit<ActionDetail<T>>
@@ -94,9 +91,7 @@ export function newActionEvent<T extends Action>(
 export interface PendingStateDetail {
   promise: Promise<string>;
 }
-
 export type PendingStateEvent = CustomEvent<PendingStateDetail>;
-
 export function newPendingStateEvent(
   promise: Promise<string>,
   eventInitDict?: CustomEventInit<PendingStateDetail>
@@ -109,20 +104,26 @@ export function newPendingStateEvent(
   });
 }
 
-/** Constructor type for defining `HTMLElement` mixins */
+/** Throws an error bearing `message`, never returning. */
+export function unreachable(message: string): never {
+  throw new Error(message);
+}
+
+/** Constructor type for defining `HTMLElement` mixins. */
 export type ElementConstructor = new (...args: any[]) => HTMLElement;
 
+/** The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`. */
 export type Mixin<T extends (...args: any[]) => any> = InstanceType<
   ReturnType<T>
 >;
 
 declare global {
   interface ElementEventMap {
-    ['pending-state']: CustomEvent<PendingStateDetail>;
+    ['pending-state']: PendingStateEvent;
     ['action']: ActionEvent<Action>;
   }
   interface HTMLElement {
-    connectedCallback?(): void;
+    // Extended for other mixins to be able to use `Logging` mixin.
     info?(message: string, ...data: any[]): void;
     warn?(message: string, ...data: any[]): void;
   }

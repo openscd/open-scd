@@ -1,4 +1,6 @@
-import { ElementConstructor, PendingStateDetail } from './foundation.js';
+import { ElementConstructor, PendingStateDetail, Mixin } from './foundation.js';
+
+export type WaitingElement = Mixin<typeof Waiting>;
 
 export function Waiting<TBase extends ElementConstructor>(Base: TBase) {
   return class WaitingElement extends Base {
