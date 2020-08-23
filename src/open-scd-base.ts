@@ -98,14 +98,14 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         <mwc-button
           icon="undo"
           label="Undo"
-          ?disabled=${this.canUndo}
+          ?disabled=${!this.canUndo}
           @click=${this.undo}
           slot="secondaryAction"
         ></mwc-button>
         <mwc-button
           icon="redo"
           label="Redo"
-          ?disabled=${this.canRedo}
+          ?disabled=${!this.canRedo}
           @click=${this.redo}
           slot="secondaryAction"
         ></mwc-button>
