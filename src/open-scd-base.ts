@@ -400,9 +400,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       `Create ${event.detail.action.new.element.tagName}`,
       event.detail.action
     );
-
-    (<LitElement>event.composedPath()[0]).requestUpdate('node');
-    this.requestUpdate('doc');
   }
 
   private onDelete(event: ActionEvent<Delete>) {
@@ -411,9 +408,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       `Delete ${event.detail.action.old.element.tagName}`,
       event.detail.action
     );
-
-    (<LitElement>event.composedPath()[0]).requestUpdate('node');
-    this.requestUpdate('doc');
   }
 
   private onMove(event: ActionEvent<Move>) {
@@ -422,9 +416,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       `Move ${event.detail.action.old.element.tagName}`,
       event.detail.action
     );
-
-    (<LitElement>event.composedPath()[0]).requestUpdate('node');
-    this.requestUpdate('doc');
   }
 
   private onUpdate(event: ActionEvent<Update>) {
@@ -438,9 +429,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       `Update ${event.detail.action.new.element.tagName}`,
       event.detail.action
     );
-
-    (<LitElement>event.composedPath()[0]).requestUpdate('node');
-    this.requestUpdate('doc');
   }
 
   private onAction(event: ActionEvent<Action>) {
@@ -451,6 +439,9 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
       this.onDelete(event as ActionEvent<Delete>);
     else if (isUpdate(event.detail.action))
       this.onUpdate(event as ActionEvent<Update>);
+
+    for (const element of event.composedPath())
+      if (element instanceof LitElement) element.requestUpdate();
   }
 
   private handleKeyPress(e: KeyboardEvent): void {
