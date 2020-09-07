@@ -56,7 +56,7 @@
 * [dataset](_editors_substation_editor_base_.substationeditorbase.md#readonly-dataset)
 * [descUI](_editors_substation_editor_base_.substationeditorbase.md#descui)
 * [dir](_editors_substation_editor_base_.substationeditorbase.md#dir)
-* [doc](_editors_substation_editor_base_.substationeditorbase.md#doc)
+* [doc](_editors_substation_editor_base_.substationeditorbase.md#optional-doc)
 * [draggable](_editors_substation_editor_base_.substationeditorbase.md#draggable)
 * [editUI](_editors_substation_editor_base_.substationeditorbase.md#editui)
 * [editorPaneUI](_editors_substation_editor_base_.substationeditorbase.md#editorpaneui)
@@ -79,7 +79,6 @@
 * [namespaceURI](_editors_substation_editor_base_.substationeditorbase.md#readonly-namespaceuri)
 * [nextElementSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-nextelementsibling)
 * [nextSibling](_editors_substation_editor_base_.substationeditorbase.md#readonly-nextsibling)
-* [node](_editors_substation_editor_base_.substationeditorbase.md#optional-node)
 * [nodeName](_editors_substation_editor_base_.substationeditorbase.md#readonly-nodename)
 * [nodeType](_editors_substation_editor_base_.substationeditorbase.md#readonly-nodetype)
 * [nodeValue](_editors_substation_editor_base_.substationeditorbase.md#nodevalue)
@@ -212,6 +211,7 @@
 * [desc](_editors_substation_editor_base_.substationeditorbase.md#desc)
 * [hasUpdated](_editors_substation_editor_base_.substationeditorbase.md#protected-hasupdated)
 * [name](_editors_substation_editor_base_.substationeditorbase.md#name)
+* [node](_editors_substation_editor_base_.substationeditorbase.md#node)
 * [updateComplete](_editors_substation_editor_base_.substationeditorbase.md#updatecomplete)
 * [observedAttributes](_editors_substation_editor_base_.substationeditorbase.md#static-observedattributes)
 
@@ -727,7 +727,7 @@ ___
 
 • **descUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:30
+Defined in src/editors/substation-editor-base.ts:32
 
 ___
 
@@ -741,11 +741,11 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
 ___
 
-###  doc
+### `Optional` doc
 
-• **doc**: *XMLDocument*
+• **doc**? : *XMLDocument*
 
-Defined in src/editors/substation-editor-base.ts:17
+Defined in src/editors/substation-editor-base.ts:19
 
 ___
 
@@ -763,7 +763,7 @@ ___
 
 • **editUI**: *Dialog*
 
-Defined in src/editors/substation-editor-base.ts:28
+Defined in src/editors/substation-editor-base.ts:30
 
 ___
 
@@ -771,7 +771,7 @@ ___
 
 • **editorPaneUI**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
 
-Defined in src/editors/substation-editor-base.ts:31
+Defined in src/editors/substation-editor-base.ts:33
 
 ___
 
@@ -943,7 +943,7 @@ ___
 
 • **nameUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:29
+Defined in src/editors/substation-editor-base.ts:31
 
 ___
 
@@ -982,14 +982,6 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10766
 
 Returns the next sibling.
-
-___
-
-### `Optional` node
-
-• **node**? : *Element*
-
-Defined in src/editors/substation-editor-base.ts:14
 
 ___
 
@@ -2360,7 +2352,7 @@ ___
 
 • **tag**: *string* = "Substation"
 
-Defined in src/editors/substation-editor-base.ts:15
+Defined in src/editors/substation-editor-base.ts:17
 
 ___
 
@@ -2496,7 +2488,7 @@ using the `css` tag function.
 
 • **get desc**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:24
+Defined in src/editors/substation-editor-base.ts:26
 
 **Returns:** *string*
 
@@ -2518,9 +2510,19 @@ ___
 
 • **get name**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:19
+Defined in src/editors/substation-editor-base.ts:21
 
 **Returns:** *string*
+
+___
+
+###  node
+
+• **get node**(): *Element | null*
+
+Defined in src/editors/substation-editor-base.ts:14
+
+**Returns:** *Element | null*
 
 ___
 
@@ -2650,7 +2652,7 @@ ___
 
 ▸ **addSubstation**(`e`: Event): *void*
 
-Defined in src/editors/substation-editor-base.ts:53
+Defined in src/editors/substation-editor-base.ts:55
 
 **Parameters:**
 
@@ -4052,7 +4054,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:78
+Defined in src/editors/substation-editor-base.ts:82
 
 **Returns:** *TemplateResult*
 
@@ -4170,7 +4172,7 @@ ___
 
 ▸ **saveSubstation**(`e`: Event): *void*
 
-Defined in src/editors/substation-editor-base.ts:33
+Defined in src/editors/substation-editor-base.ts:35
 
 **Parameters:**
 

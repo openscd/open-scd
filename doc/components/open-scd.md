@@ -25,7 +25,7 @@
 | `name`           | `name`      | readonly  | `string \| null`                                 |                                                  |                                                  |
 | `nextAction`     |             | readonly  | `number`                                         |                                                  |                                                  |
 | `node`           | `node`      | readonly  | `Element`                                        |                                                  | The `Node` this editor is responsible for editing |
-| `plugins`        |             |           | `{ editors: ({ label: string; id: string; icon: TemplateResult; getContent: () => (part: NodePart) => void; } \| { label: string; id: string; icon: string; getContent: () => TemplateResult; } \| { ...; })[]; }` | {"editors":[{"label":"Substation","id":"substation","icon":"zeroLineIcon"},{"label":"Communication","id":"communication","icon":"mediation"},{"label":"Network","id":"network","icon":"networkConfigIcon"},{"label":"IED","id":"ied","icon":"iedIcon"}]} |                                                  |
+| `plugins`        |             |           | `{ editors: ({ label: string; id: string; icon: TemplateResult; getContent: () => Promise<TemplateResult>; } \| { label: string; id: string; icon: string; getContent: () => TemplateResult; } \| { ...; })[]; }` | {"editors":[{"label":"Substation","id":"substation","icon":"zeroLineIcon"},{"label":"Communication","id":"communication","icon":"mediation"},{"label":"Network","id":"network","icon":"networkConfigIcon"},{"label":"IED","id":"ied","icon":"iedIcon"}]} |                                                  |
 | `previousAction` |             | readonly  | `number`                                         |                                                  |                                                  |
 | `redo`           |             |           |                                                  |                                                  |                                                  |
 | `src`            | `src`       |           | `string`                                         |                                                  | The current file's URL. `blob:` URLs are *revoked after parsing*! |
@@ -58,5 +58,5 @@
 
 | Event           | Type                                |
 |-----------------|-------------------------------------|
-| `action`        | `CustomEvent<ActionDetail<Action>>` |
+| `editor-action` | `CustomEvent<ActionDetail<Action>>` |
 | `pending-state` | `CustomEvent<PendingStateDetail>`   |

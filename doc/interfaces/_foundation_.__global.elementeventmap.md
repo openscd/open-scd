@@ -10,14 +10,14 @@
 
 ### Properties
 
-* [action](_foundation_.__global.elementeventmap.md#action)
+* [editor-action](_foundation_.__global.elementeventmap.md#editor-action)
 * [pending-state](_foundation_.__global.elementeventmap.md#pending-state)
 
 ## Properties
 
-###  action
+###  editor-action
 
-• **action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
+• **editor-action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
 
 Defined in src/foundation.ts:123
 

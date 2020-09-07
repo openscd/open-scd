@@ -4,10 +4,6 @@
 
 ## Index
 
-### Namespaces
-
-* [__global](_editors_substation_editor_.__global.md)
-
 ### Classes
 
 * [SubstationEditor](../classes/_editors_substation_editor_.substationeditor.md)

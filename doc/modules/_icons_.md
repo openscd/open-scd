@@ -20,7 +20,6 @@
   height="25"
   style="margin-bottom:0;"
 >
-  >
   <rect
     width="20"
     height="20"
@@ -141,7 +140,7 @@ ___
   />
 </svg>`
 
-Defined in src/icons.ts:48
+Defined in src/icons.ts:47
 
 ___
 
@@ -164,4 +163,4 @@ ___
   <path d="M 11 7 L 17.5 7 L 13.5 11 L 16.5 11 L 10 19 L 11.5 13 L 8.5 13 Z " />
 </svg>`
 
-Defined in src/icons.ts:124
+Defined in src/icons.ts:123

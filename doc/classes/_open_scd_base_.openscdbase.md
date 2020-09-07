@@ -1150,7 +1150,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:217
+Defined in src/open-scd-base.ts:221
 
 ___
 
@@ -2927,7 +2927,7 @@ ___
     null
   )
 
-Defined in src/open-scd-base.ts:211
+Defined in src/open-scd-base.ts:215
 
 ___
 
@@ -4951,7 +4951,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:57
+Defined in src/open-scd-base.ts:58
 
 **Returns:** *TemplateResult*
 
@@ -4961,7 +4961,7 @@ ___
 
 ▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:156
+Defined in src/open-scd-base.ts:160
 
 **Parameters:**
 
@@ -4977,7 +4977,7 @@ ___
 
 ▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:168
+Defined in src/open-scd-base.ts:172
 
 **Parameters:**
 
@@ -4993,7 +4993,7 @@ ___
 
 ▸ **renderHistory**(`history`: [LogEntry](../interfaces/_logging_.logentry.md)[]): *TemplateResult[]*
 
-Defined in src/open-scd-base.ts:179
+Defined in src/open-scd-base.ts:183
 
 **Parameters:**
 
@@ -5009,7 +5009,7 @@ ___
 
 ▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_logging_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_logging_.logentry.md)[]): *TemplateResult*
 
-Defined in src/open-scd-base.ts:191
+Defined in src/open-scd-base.ts:195
 
 **Parameters:**
 
@@ -5027,7 +5027,7 @@ ___
 
 ▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:136
+Defined in src/open-scd-base.ts:140
 
 **Parameters:**
 
@@ -5710,7 +5710,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:255
+Defined in src/open-scd-base.ts:259
 
 ###  editors
 
@@ -5719,14 +5719,10 @@ Defined in src/open-scd-base.ts:255
         label: 'Substation',
         id: 'substation',
         icon: zeroLineIcon,
-        getContent: (): ((part: NodePart) => void) =>
-          plugin(
-            './editors/substation-editor.js',
-            html`<substation-editor
-              .node=${this.doc.querySelector('Substation')}
-              .doc=${this.doc}
-            ></substation-editor>`
-          ),
+        getContent: async (): Promise<TemplateResult> => {
+          await plugin('./editors/substation-editor.js', 'editor-0');
+          return html`<editor-0 .doc=${this.doc!}></editor-0>`;
+        },
       },
       {
         label: 'Communication',
@@ -5748,4 +5744,4 @@ Defined in src/open-scd-base.ts:255
       },
     ]
 
-Defined in src/open-scd-base.ts:256
+Defined in src/open-scd-base.ts:260
