@@ -1,20 +1,10 @@
-import { directive, NodePart } from 'lit-html';
+const resolved: Set<string> = new Set();
 
-const resolved = new WeakSet();
-
-export const plugin = directive(
-  (src: string, value: unknown) => (part: NodePart) => {
-    if (!resolved.has(part)) {
-      const event = new CustomEvent('pending-state', {
-        composed: true,
-        bubbles: true,
-        detail: import(src).then(() => resolved.add(part)),
-      });
-      if (part.startNode.parentNode)
-        part.startNode.parentNode.dispatchEvent(event);
-      else part.startNode.dispatchEvent(event);
-    }
-
-    part.setValue(value);
+export async function plugin(src: string, tagName: string): Promise<void> {
+  if (!resolved.has(tagName)) {
+    const mod = await import(src);
+    customElements.define(tagName, mod.default);
+    resolved.add(tagName);
   }
-);
+  return;
+}

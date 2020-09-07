@@ -49,7 +49,7 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
     undo(): boolean {
       if (!this.canUndo) return false;
       this.dispatchEvent(
-        new CustomEvent<ActionDetail<Action>>('action', {
+        new CustomEvent<ActionDetail<Action>>('editor-action', {
           bubbles: true,
           composed: true,
           detail: { action: invert(this.history[this.lastAction].action!) },
@@ -62,7 +62,7 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
     redo(): boolean {
       if (!this.canRedo) return false;
       this.dispatchEvent(
-        new CustomEvent<ActionDetail<Action>>('action', {
+        new CustomEvent<ActionDetail<Action>>('editor-action', {
           bubbles: true,
           composed: true,
           detail: { action: this.history[this.nextAction].action! },

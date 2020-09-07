@@ -6,7 +6,6 @@ export const iedIcon = html`<svg
   height="25"
   style="margin-bottom:0;"
 >
-  >
   <rect
     width="20"
     height="20"

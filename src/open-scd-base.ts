@@ -1,5 +1,6 @@
 import { html, property, query, LitElement } from 'lit-element';
-import { TemplateResult, NodePart, nothing } from 'lit-html';
+import { TemplateResult, nothing } from 'lit-html';
+import { until } from 'lit-html/directives/until.js';
 
 import '@material/mwc-button';
 import '@material/mwc-circular-progress-four-color';
@@ -89,7 +90,10 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
-      ${this.plugins.editors[this.activeTab].getContent()}
+      ${until(
+        this.plugins.editors[this.activeTab].getContent(),
+        html`<span>Loading...</span>`
+      )}
 
       <mwc-dialog id="log" heading="Log">
         <mwc-list id="content" wrapFocus>
@@ -258,14 +262,10 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         label: 'Substation',
         id: 'substation',
         icon: zeroLineIcon,
-        getContent: (): ((part: NodePart) => void) =>
-          plugin(
-            './editors/substation-editor.js',
-            html`<substation-editor
-              .node=${this.doc.querySelector('Substation')}
-              .doc=${this.doc}
-            ></substation-editor>`
-          ),
+        getContent: async (): Promise<TemplateResult> => {
+          await plugin('./editors/substation-editor.js', 'editor-0');
+          return html`<editor-0 .doc=${this.doc!}></editor-0>`;
+        },
       },
       {
         label: 'Communication',
@@ -466,7 +466,8 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
 
   constructor() {
     super();
-    this.addEventListener('action', this.onAction);
+
+    this.addEventListener('editor-action', this.onAction);
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;

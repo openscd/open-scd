@@ -79,7 +79,7 @@ export function newActionEvent<T extends Action>(
   action: T,
   eventInitDict?: CustomEventInit<ActionDetail<T>>
 ): ActionEvent<T> {
-  return new CustomEvent<ActionDetail<T>>('action', {
+  return new CustomEvent<ActionDetail<T>>('editor-action', {
     bubbles: true,
     composed: true,
     detail: { action },
@@ -120,7 +120,7 @@ export type Mixin<T extends (...args: any[]) => any> = InstanceType<
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;
-    ['action']: ActionEvent<Action>;
+    ['editor-action']: ActionEvent<Action>;
   }
   interface HTMLElement {
     // Extended for other mixins to be able to use `Logging` mixin.

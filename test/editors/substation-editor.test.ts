@@ -1,12 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { SubstationEditor } from '../src/editors/substation-editor.js';
-import '../src/editors/substation-editor.js';
+import SubstationEditor from '../../src/editors/substation-editor.js';
 
-import { trainingDocument } from './data.js';
+import { trainingDocument } from '../data.js';
 
 describe('substation-editor', () => {
-  const substationSection = trainingDocument.querySelector('Substation')!;
+  customElements.define('substation-editor', SubstationEditor);
   let element: SubstationEditor;
   beforeEach(async () => {
     element = await fixture(html`<substation-editor></substation-editor>
@@ -29,7 +28,7 @@ describe('substation-editor', () => {
   });
 
   it('renders an "edit substation" button if a substation is loaded', async () => {
-    element.node = substationSection;
+    element.doc = trainingDocument;
     await element.updateComplete;
     expect(element).to.have.property('name', 'AA1');
     expect(element).to.have.property('desc', 'Substation');

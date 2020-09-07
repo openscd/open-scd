@@ -7,14 +7,16 @@ import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { TextField } from '@material/mwc-textfield';
-import { Update, newActionEvent } from '../foundation.js';
+import { newActionEvent } from '../foundation.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
-  node?: Element;
+  get node(): Element | null {
+    return this.doc?.querySelector('Substation') ?? null;
+  }
   tag = 'Substation';
   @property()
-  doc!: XMLDocument;
+  doc?: XMLDocument;
   @property({ type: String })
   get name(): string {
     return this.node?.getAttribute('name') ?? '';
@@ -58,19 +60,21 @@ export class SubstationEditorBase extends LitElement {
         .reduce((acc, v) => acc && v)
     ) {
       if (this.nameUI.value == '') return;
-      const event = newActionEvent({
-        new: {
-          parent: this.doc.documentElement,
-          element: new DOMParser().parseFromString(
-            `<Substation
+      if (this.doc) {
+        const event = newActionEvent({
+          new: {
+            parent: this.doc.documentElement,
+            element: new DOMParser().parseFromString(
+              `<Substation
         name="${this.nameUI.value}"
         desc="${this.descUI.value}"
         ></Substation>`,
-            'application/xml'
-          ).documentElement,
-        },
-      });
-      this.dispatchEvent(event);
+              'application/xml'
+            ).documentElement,
+          },
+        });
+        this.dispatchEvent(event);
+      }
       dialog.close();
     }
   }
