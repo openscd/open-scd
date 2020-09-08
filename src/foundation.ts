@@ -12,8 +12,8 @@ export interface Delete {
 }
 /** Represents reparenting of `move.old.element` to `move.new.parent`. */
 export interface Move {
-  old: { parent: Element; element: Element };
-  new: { parent: Element };
+  old: { parent: Element; element: Element; reference: Node | null };
+  new: { parent: Element; reference: Node | null };
   derived?: boolean;
 }
 /** Represents replacement of `update.old.element` by `update.new.element`. */
@@ -44,8 +44,10 @@ export function isMove(action: Action): action is Move {
   return (
     (action as Move).old?.parent !== undefined &&
     (action as Move).old?.element !== undefined &&
+    (action as Move).old?.reference !== undefined &&
     (action as Move).new?.parent !== undefined &&
-    (action as Update).new?.element == undefined
+    (action as Update).new?.element == undefined &&
+    (action as Move).new?.reference !== undefined
   );
 }
 export function isUpdate(action: Action): action is Update {
@@ -64,8 +66,12 @@ export function invert(action: Action): Action {
     return { new: action.old, derived: action.derived };
   else if (isMove(action))
     return {
-      old: { parent: action.new.parent, element: action.old.element },
-      new: { parent: action.old.parent },
+      old: {
+        parent: action.new.parent,
+        element: action.old.element,
+        reference: action.new.reference,
+      },
+      new: { parent: action.old.parent, reference: action.old.reference },
     };
   else if (isUpdate(action))
     return { new: action.old, old: action.new, derived: action.derived };

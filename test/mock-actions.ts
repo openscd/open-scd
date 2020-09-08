@@ -15,7 +15,7 @@ export class MockAction {
     return { old: { parent, element, reference } };
   }
   static get mov(): Action {
-    return { old: { parent, element }, new: { parent } };
+    return { old: { parent, element, reference }, new: { parent, reference } };
   }
   static get upd(): Action {
     return { old: { element }, new: { element } };

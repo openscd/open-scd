@@ -109,13 +109,10 @@ export function Editing<TBase extends ElementConstructor>(Base: TBase) {
     }
 
     private onCreate(event: ActionEvent<Create>) {
-      if (event.detail.action.new.reference)
-        event.detail.action.new.parent.insertBefore(
-          event.detail.action.new.element,
-          event.detail.action.new.reference
-        );
-      else
-        event.detail.action.new.parent.append(event.detail.action.new.element);
+      event.detail.action.new.parent.insertBefore(
+        event.detail.action.new.element,
+        event.detail.action.new.reference
+      );
       this.commit(
         `Create ${event.detail.action.new.element.tagName}`,
         event.detail.action
@@ -131,7 +128,10 @@ export function Editing<TBase extends ElementConstructor>(Base: TBase) {
     }
 
     private onMove(event: ActionEvent<Move>) {
-      event.detail.action.new.parent.prepend(event.detail.action.old.element);
+      event.detail.action.new.parent.insertBefore(
+        event.detail.action.old.element,
+        event.detail.action.new.reference
+      );
       this.commit(
         `Move ${event.detail.action.old.element.tagName}`,
         event.detail.action
