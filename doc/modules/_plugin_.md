@@ -4,21 +4,9 @@
 
 ## Index
 
-### Variables
-
-* [resolved](_plugin_.md#const-resolved)
-
 ### Functions
 
 * [plugin](_plugin_.md#plugin)
-
-## Variables
-
-### `Const` resolved
-
-• **resolved**: *Set‹string›* = new Set()
-
-Defined in src/plugin.ts:1
 
 ## Functions
 
@@ -26,7 +14,7 @@ Defined in src/plugin.ts:1
 
 ▸ **plugin**(`src`: string, `tagName`: string): *Promise‹void›*
 
-Defined in src/plugin.ts:3
+Defined in src/plugin.ts:1
 
 **Parameters:**
 

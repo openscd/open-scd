@@ -354,7 +354,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:465
+Defined in src/open-scd-base.ts:456
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -4049,7 +4049,7 @@ ___
 
 ▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
 
-Defined in src/open-scd-base.ts:456
+Defined in src/open-scd-base.ts:447
 
 **Parameters:**
 
@@ -4496,7 +4496,7 @@ ___
 
 ▸ **onAction**(`event`: [ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›): *void*
 
-Defined in src/open-scd-base.ts:446
+Defined in src/open-scd-base.ts:434
 
 **Parameters:**
 
@@ -4528,7 +4528,7 @@ ___
 
 ▸ **onDelete**(`event`: [ActionEvent](../modules/_foundation_.md#actionevent)‹[Delete](../interfaces/_foundation_.delete.md)›): *void*
 
-Defined in src/open-scd-base.ts:408
+Defined in src/open-scd-base.ts:405
 
 **Parameters:**
 
@@ -4544,7 +4544,7 @@ ___
 
 ▸ **onMove**(`event`: [ActionEvent](../modules/_foundation_.md#actionevent)‹[Move](../interfaces/_foundation_.move.md)›): *void*
 
-Defined in src/open-scd-base.ts:419
+Defined in src/open-scd-base.ts:413
 
 **Parameters:**
 
@@ -4560,7 +4560,7 @@ ___
 
 ▸ **onUpdate**(`event`: [ActionEvent](../modules/_foundation_.md#actionevent)‹[Update](../interfaces/_foundation_.update.md)›): *void*
 
-Defined in src/open-scd-base.ts:430
+Defined in src/open-scd-base.ts:421
 
 **Parameters:**
 

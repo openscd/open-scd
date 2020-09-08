@@ -345,7 +345,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:465
+Defined in src/open-scd-base.ts:456
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
