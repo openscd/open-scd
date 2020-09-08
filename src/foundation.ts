@@ -2,12 +2,12 @@
 export type Action = Create | Update | Delete | Move;
 /** Represents prepending `create.new.element` to `create.new.parent`. */
 export interface Create {
-  new: { parent: Element; element: Element };
+  new: { parent: Element; element: Element; siblingBefore: Element | null };
   derived?: boolean;
 }
 /** Represents removal of `delete.old.element`. */
 export interface Delete {
-  old: { parent: Element; element: Element };
+  old: { parent: Element; element: Element; siblingBefore: Element | null };
   derived?: boolean;
 }
 /** Represents reparenting of `move.old.element` to `move.new.parent`. */
@@ -28,13 +28,15 @@ export function isCreate(action: Action): action is Create {
   return (
     (action as Update).old === undefined &&
     (action as Create).new?.parent !== undefined &&
-    (action as Create).new?.element !== undefined
+    (action as Create).new?.element !== undefined &&
+    (action as Create).new?.siblingBefore !== undefined
   );
 }
 export function isDelete(action: Action): action is Delete {
   return (
     (action as Delete).old?.parent !== undefined &&
     (action as Delete).old?.element !== undefined &&
+    (action as Delete).old?.siblingBefore !== undefined &&
     (action as Update).new === undefined
   );
 }

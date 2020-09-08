@@ -66,11 +66,12 @@ export class SubstationEditorBase extends LitElement {
             parent: this.doc.documentElement,
             element: new DOMParser().parseFromString(
               `<Substation
-        name="${this.nameUI.value}"
-        desc="${this.descUI.value}"
-        ></Substation>`,
+                name="${this.nameUI.value}"
+                desc="${this.descUI.value}"
+              ></Substation>`,
               'application/xml'
             ).documentElement,
+            siblingBefore: null,
           },
         });
         this.dispatchEvent(event);
@@ -80,7 +81,7 @@ export class SubstationEditorBase extends LitElement {
   }
 
   render(): TemplateResult {
-    if (this.node)
+    if (this.doc)
       return html`
         <div id="editor">
           <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>

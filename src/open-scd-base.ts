@@ -395,7 +395,12 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   }
 
   private onCreate(event: ActionEvent<Create>) {
-    event.detail.action.new.parent.prepend(event.detail.action.new.element);
+    if (event.detail.action.new.siblingBefore)
+      event.detail.action.new.parent.insertBefore(
+        event.detail.action.new.element,
+        event.detail.action.new.siblingBefore
+      );
+    else event.detail.action.new.parent.append(event.detail.action.new.element);
     this.commit(
       `Create ${event.detail.action.new.element.tagName}`,
       event.detail.action
