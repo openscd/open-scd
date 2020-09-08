@@ -19,24 +19,12 @@ import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Snackbar } from '@material/mwc-snackbar';
 
-import {
-  Action,
-  ActionEvent,
-  Create,
-  Delete,
-  Move,
-  PendingStateDetail,
-  Update,
-  isCreate,
-  isDelete,
-  isMove,
-  isUpdate,
-} from './foundation.js';
-import { Logging, LogOptions, LogEntry } from './logging.js';
+import { newPendingStateEvent } from './foundation.js';
 import { Waiting } from './waiting.js';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
+import { Editing, LogEntry, LogOptions } from './editing.js';
 
 interface Tab {
   label: string;
@@ -54,7 +42,7 @@ interface MenuEntry {
   isDisabled?: () => boolean;
 }
 
-export class OpenSCDBase extends Waiting(Logging(LitElement)) {
+export class OpenSCDBase extends Waiting(Editing(LitElement)) {
   render(): TemplateResult {
     return html`
       <mwc-drawer hasheader type="modal" id="menu">
@@ -320,13 +308,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   }
   set src(value: string) {
     this.currentSrc = value;
-    this.dispatchEvent(
-      new CustomEvent<PendingStateDetail>('pending-state', {
-        composed: true,
-        bubbles: true,
-        detail: { promise: this.loadDoc(value) },
-      })
-    );
+    this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
   }
 
   @query('#menu') menuUI!: Drawer;
@@ -394,61 +376,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
     }
   }
 
-  private onCreate(event: ActionEvent<Create>) {
-    if (event.detail.action.new.reference)
-      event.detail.action.new.parent.insertBefore(
-        event.detail.action.new.element,
-        event.detail.action.new.reference
-      );
-    else event.detail.action.new.parent.append(event.detail.action.new.element);
-    this.commit(
-      `Create ${event.detail.action.new.element.tagName}`,
-      event.detail.action
-    );
-  }
-
-  private onDelete(event: ActionEvent<Delete>) {
-    event.detail.action.old.element.remove();
-    this.commit(
-      `Delete ${event.detail.action.old.element.tagName}`,
-      event.detail.action
-    );
-  }
-
-  private onMove(event: ActionEvent<Move>) {
-    event.detail.action.new.parent.prepend(event.detail.action.old.element);
-    this.commit(
-      `Move ${event.detail.action.old.element.tagName}`,
-      event.detail.action
-    );
-  }
-
-  private onUpdate(event: ActionEvent<Update>) {
-    event.detail.action.new.element.append(
-      ...Array.from(event.detail.action.old.element.childNodes)
-    );
-    event.detail.action.old.element.replaceWith(
-      event.detail.action.new.element
-    );
-    this.commit(
-      `Update ${event.detail.action.new.element.tagName}`,
-      event.detail.action
-    );
-  }
-
-  private onAction(event: ActionEvent<Action>) {
-    if (isMove(event.detail.action)) this.onMove(event as ActionEvent<Move>);
-    else if (isCreate(event.detail.action))
-      this.onCreate(event as ActionEvent<Create>);
-    else if (isDelete(event.detail.action))
-      this.onDelete(event as ActionEvent<Delete>);
-    else if (isUpdate(event.detail.action))
-      this.onUpdate(event as ActionEvent<Update>);
-
-    for (const element of event.composedPath())
-      if (element instanceof LitElement) element.requestUpdate();
-  }
-
   private handleKeyPress(e: KeyboardEvent): void {
     let handled = false;
     if (e.keyCode == 89 /* y */ && e.ctrlKey && (handled = true)) this.redo();
@@ -462,8 +389,6 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
 
   constructor() {
     super();
-
-    this.addEventListener('editor-action', this.onAction);
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;

@@ -1,5 +1,5 @@
 import { encodeNonASCII } from './xml-entities.js';
-import { LogEntry } from './logging.js';
+import { LogEntry } from './editing.js';
 
 interface XMLParams {
   xml: string;

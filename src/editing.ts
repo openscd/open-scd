@@ -1,10 +1,20 @@
 import {
-  Action,
   ElementConstructor,
-  invert,
-  ActionDetail,
   Mixin,
+  ActionEvent,
+  Create,
+  Delete,
+  Move,
+  Update,
+  Action,
+  isMove,
+  isCreate,
+  isDelete,
+  isUpdate,
+  newActionEvent,
+  invert,
 } from './foundation.js';
+import { LitElement } from 'lit-element';
 
 export interface LogEntry {
   time: Date;
@@ -17,10 +27,12 @@ export interface LogEntry {
 
 export type LogOptions = Pick<LogEntry, 'cause' | 'icon' | 'message'>;
 
-export type LoggingElement = Mixin<typeof Logging>;
+export type EditingElement = Mixin<typeof Editing>;
 
-export function Logging<TBase extends ElementConstructor>(Base: TBase) {
-  return class LoggingElement extends Base {
+export function Editing<TBase extends ElementConstructor>(Base: TBase) {
+  return class EditingElement extends Base {
+    doc!: XMLDocument;
+
     history: LogEntry[] = [];
 
     lastAction = -1;
@@ -49,11 +61,7 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
     undo(): boolean {
       if (!this.canUndo) return false;
       this.dispatchEvent(
-        new CustomEvent<ActionDetail<Action>>('editor-action', {
-          bubbles: true,
-          composed: true,
-          detail: { action: invert(this.history[this.lastAction].action!) },
-        })
+        newActionEvent(invert(this.history[this.lastAction].action!))
       );
       this.lastAction = this.previousAction;
       return true;
@@ -61,13 +69,7 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
 
     redo(): boolean {
       if (!this.canRedo) return false;
-      this.dispatchEvent(
-        new CustomEvent<ActionDetail<Action>>('editor-action', {
-          bubbles: true,
-          composed: true,
-          detail: { action: this.history[this.nextAction].action! },
-        })
-      );
+      this.dispatchEvent(newActionEvent(this.history[this.nextAction].action!));
       this.lastAction = this.nextAction;
       return true;
     }
@@ -106,8 +108,65 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
       return this.log(title, { action, icon: 'history', ...options });
     }
 
+    private onCreate(event: ActionEvent<Create>) {
+      if (event.detail.action.new.reference)
+        event.detail.action.new.parent.insertBefore(
+          event.detail.action.new.element,
+          event.detail.action.new.reference
+        );
+      else
+        event.detail.action.new.parent.append(event.detail.action.new.element);
+      this.commit(
+        `Create ${event.detail.action.new.element.tagName}`,
+        event.detail.action
+      );
+    }
+
+    private onDelete(event: ActionEvent<Delete>) {
+      event.detail.action.old.element.remove();
+      this.commit(
+        `Delete ${event.detail.action.old.element.tagName}`,
+        event.detail.action
+      );
+    }
+
+    private onMove(event: ActionEvent<Move>) {
+      event.detail.action.new.parent.prepend(event.detail.action.old.element);
+      this.commit(
+        `Move ${event.detail.action.old.element.tagName}`,
+        event.detail.action
+      );
+    }
+
+    private onUpdate(event: ActionEvent<Update>) {
+      event.detail.action.new.element.append(
+        ...Array.from(event.detail.action.old.element.childNodes)
+      );
+      event.detail.action.old.element.replaceWith(
+        event.detail.action.new.element
+      );
+      this.commit(
+        `Update ${event.detail.action.new.element.tagName}`,
+        event.detail.action
+      );
+    }
+
+    private onAction(event: ActionEvent<Action>) {
+      if (isMove(event.detail.action)) this.onMove(event as ActionEvent<Move>);
+      else if (isCreate(event.detail.action))
+        this.onCreate(event as ActionEvent<Create>);
+      else if (isDelete(event.detail.action))
+        this.onDelete(event as ActionEvent<Delete>);
+      else if (isUpdate(event.detail.action))
+        this.onUpdate(event as ActionEvent<Update>);
+
+      for (const element of event.composedPath())
+        if (element instanceof LitElement) element.requestUpdate();
+    }
+
     constructor(...args: any[]) {
       super(...args);
+
       this.log = this.log.bind(this); // allow log to reference history
       this.info = this.info.bind(this); // and others to reference log...
       this.warn = this.warn.bind(this);
@@ -115,6 +174,8 @@ export function Logging<TBase extends ElementConstructor>(Base: TBase) {
       this.commit = this.commit.bind(this);
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
+
+      this.addEventListener('editor-action', this.onAction);
     }
   };
 }
