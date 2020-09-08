@@ -6589,7 +6589,7 @@ Defined in src/validate.ts:36
 
 ###  validateSCL
 
-▸ **validateSCL**(`doc`: XMLDocument, `fileName`: string, `cause?`: [LogEntry](../interfaces/_logging_.logentry.md)): *Promise‹Array‹Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "title" | "message" | "cause"›››*
+▸ **validateSCL**(`doc`: XMLDocument, `fileName`: string, `cause?`: [LogEntry](../interfaces/_editing_.logentry.md)): *Promise‹Array‹Pick‹[LogEntry](../interfaces/_editing_.logentry.md), "title" | "message" | "cause"›››*
 
 Defined in src/validate.ts:13
 
@@ -6601,9 +6601,9 @@ Name | Type | Default |
 ------ | ------ | ------ |
 `doc` | XMLDocument | - |
 `fileName` | string | "untitled.scd" |
-`cause?` | [LogEntry](../interfaces/_logging_.logentry.md) | - |
+`cause?` | [LogEntry](../interfaces/_editing_.logentry.md) | - |
 
-**Returns:** *Promise‹Array‹Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "title" | "message" | "cause"›››*
+**Returns:** *Promise‹Array‹Pick‹[LogEntry](../interfaces/_editing_.logentry.md), "title" | "message" | "cause"›››*
 
 ___
 

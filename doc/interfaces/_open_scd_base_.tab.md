@@ -20,7 +20,7 @@
 
 • **icon**: *string | TemplateResult*
 
-Defined in src/open-scd-base.ts:44
+Defined in src/open-scd-base.ts:32
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **id**: *string*
 
-Defined in src/open-scd-base.ts:43
+Defined in src/open-scd-base.ts:31
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **label**: *string*
 
-Defined in src/open-scd-base.ts:42
+Defined in src/open-scd-base.ts:30

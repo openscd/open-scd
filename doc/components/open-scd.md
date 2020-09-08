@@ -1,6 +1,6 @@
 # open-scd
 
-**Mixins:** Waiting, Logging
+**Mixins:** Waiting, Editing
 
 ## Properties
 
@@ -53,10 +53,3 @@
 | `showLog`          | `(): void`                                       |
 | `undo`             | `(): boolean`                                    |
 | `warn`             | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): LogEntry` |
-
-## Events
-
-| Event           | Type                                |
-|-----------------|-------------------------------------|
-| `editor-action` | `CustomEvent<ActionDetail<Action>>` |
-| `pending-state` | `CustomEvent<PendingStateDetail>`   |
