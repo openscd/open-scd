@@ -3,7 +3,8 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { OpenSCD } from '../src/open-scd.js';
 import '../src/open-scd.js';
 
-import { training } from './data.js';
+import { getDocument, training, invalidSCL, validSCL } from './data.js';
+import { validateSCL } from '../src/validate.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -89,6 +90,28 @@ describe('open-scd', () => {
     await element.workDone;
     expect(element.src).to.be.a('string').and.equal(emptyBlobURL);
     expect(async () => await fetch(emptyBlobURL)).to.throw;
+  });
+
+  it('generates error messages for invalid SCL file', async () => {
+    const trainingBlobURL = URL.createObjectURL(
+      new Blob([invalidSCL], {
+        type: 'application/xml',
+      })
+    );
+    element.setAttribute('src', trainingBlobURL);
+    await element.workDone;
+    expect(element).property('history').to.have.length(5);
+  });
+
+  it('generates no error messages for valid SCL file', async () => {
+    const trainingBlobURL = URL.createObjectURL(
+      new Blob([validSCL], {
+        type: 'application/xml',
+      })
+    );
+    element.setAttribute('src', trainingBlobURL);
+    await element.workDone;
+    expect(element).property('history').to.have.length(3);
   });
 
   it('loads and validates XML data from a `src` URL', async () => {

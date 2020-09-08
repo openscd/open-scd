@@ -2,7 +2,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import SubstationEditor from '../../src/editors/substation-editor.js';
 
-import { trainingDocument } from '../data.js';
+import { getDocument } from '../data.js';
 
 describe('substation-editor', () => {
   customElements.define('substation-editor', SubstationEditor);
@@ -28,7 +28,7 @@ describe('substation-editor', () => {
   });
 
   it('renders an "edit substation" button if a substation is loaded', async () => {
-    element.doc = trainingDocument;
+    element.doc = getDocument();
     await element.updateComplete;
     expect(element).to.have.property('name', 'AA1');
     expect(element).to.have.property('desc', 'Substation');
