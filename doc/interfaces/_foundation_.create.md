@@ -37,4 +37,4 @@ Defined in src/foundation.ts:5
 
 * **parent**: *Element*
 
-* **siblingBefore**: *Element | null*
+* **reference**: *Element | null*
