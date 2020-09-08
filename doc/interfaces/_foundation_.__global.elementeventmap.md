@@ -19,7 +19,7 @@
 
 • **editor-action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
 
-Defined in src/foundation.ts:125
+Defined in src/foundation.ts:131
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **pending-state**: *[PendingStateEvent](../modules/_foundation_.md#pendingstateevent)*
 
-Defined in src/foundation.ts:124
+Defined in src/foundation.ts:130

@@ -24,4 +24,4 @@ Represents some modification of a `Document` being edited.
 
 • **action**: *T*
 
-Defined in src/foundation.ts:77
+Defined in src/foundation.ts:83

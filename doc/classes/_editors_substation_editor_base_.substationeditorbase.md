@@ -3466,7 +3466,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-Defined in src/foundation.ts:129
+Defined in src/foundation.ts:135
 
 **Parameters:**
 
@@ -4499,7 +4499,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-Defined in src/foundation.ts:130
+Defined in src/foundation.ts:136
 
 **Parameters:**
 

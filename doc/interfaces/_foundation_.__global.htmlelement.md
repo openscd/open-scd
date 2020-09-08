@@ -19,7 +19,7 @@
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/foundation.ts:129
+Defined in src/foundation.ts:135
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-Defined in src/foundation.ts:130
+Defined in src/foundation.ts:136
 
 **Parameters:**
 

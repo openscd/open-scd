@@ -52,7 +52,7 @@ ___
 
 Ƭ **ActionEvent**: *CustomEvent‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››*
 
-Defined in src/foundation.ts:79
+Defined in src/foundation.ts:85
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 Ƭ **ElementConstructor**: *object*
 
-Defined in src/foundation.ts:115
+Defined in src/foundation.ts:121
 
 Constructor type for defining `HTMLElement` mixins.
 
@@ -72,7 +72,7 @@ ___
 
 Ƭ **Mixin**: *InstanceType‹ReturnType‹T››*
 
-Defined in src/foundation.ts:118
+Defined in src/foundation.ts:124
 
 The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`.
 
@@ -82,7 +82,7 @@ ___
 
 Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›*
 
-Defined in src/foundation.ts:96
+Defined in src/foundation.ts:102
 
 ## Functions
 
@@ -90,7 +90,7 @@ Defined in src/foundation.ts:96
 
 ▸ **invert**(`action`: [Action](_foundation_.md#action)): *[Action](_foundation_.md#action)*
 
-Defined in src/foundation.ts:61
+Defined in src/foundation.ts:63
 
 Returns the inverse of `action`, i.e. an `Action` with opposite effect.
 
@@ -156,7 +156,7 @@ ___
 
 ▸ **isUpdate**(`action`: [Action](_foundation_.md#action)): *action is Update*
 
-Defined in src/foundation.ts:51
+Defined in src/foundation.ts:53
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ ___
 
 ▸ **newActionEvent**‹**T**›(`action`: T, `eventInitDict?`: CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››): *[ActionEvent](_foundation_.md#actionevent)‹T›*
 
-Defined in src/foundation.ts:80
+Defined in src/foundation.ts:86
 
 **Type parameters:**
 
@@ -193,7 +193,7 @@ ___
 
 ▸ **newPendingStateEvent**(`promise`: Promise‹string›, `eventInitDict?`: CustomEventInit‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›): *[PendingStateEvent](_foundation_.md#pendingstateevent)*
 
-Defined in src/foundation.ts:97
+Defined in src/foundation.ts:103
 
 **Parameters:**
 
@@ -210,7 +210,7 @@ ___
 
 ▸ **unreachable**(`message`: string): *never*
 
-Defined in src/foundation.ts:110
+Defined in src/foundation.ts:116
 
 Throws an error bearing `message`, never returning.
 

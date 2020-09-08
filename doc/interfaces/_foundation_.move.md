@@ -36,6 +36,8 @@ Defined in src/foundation.ts:16
 
 * **parent**: *Element*
 
+* **reference**: *Node | null*
+
 ___
 
 ###  old
@@ -49,3 +51,5 @@ Defined in src/foundation.ts:15
 * **element**: *Element*
 
 * **parent**: *Element*
+
+* **reference**: *Node | null*
