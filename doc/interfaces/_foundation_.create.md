@@ -36,3 +36,5 @@ Defined in src/foundation.ts:5
 * **element**: *Element*
 
 * **parent**: *Element*
+
+* **siblingBefore**: *Element | null*

@@ -3464,7 +3464,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-Defined in src/foundation.ts:127
+Defined in src/foundation.ts:129
 
 **Parameters:**
 
@@ -4054,7 +4054,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:82
+Defined in src/editors/substation-editor-base.ts:83
 
 **Returns:** *TemplateResult*
 
@@ -4497,7 +4497,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-Defined in src/foundation.ts:128
+Defined in src/foundation.ts:130
 
 **Parameters:**
 

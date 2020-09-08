@@ -345,7 +345,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:456
+Defined in src/open-scd-base.ts:461
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -3746,7 +3746,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:127
+Defined in src/foundation.ts:129
 
 **Parameters:**
 
@@ -4914,7 +4914,7 @@ ___
 
 *Overrides void*
 
-Defined in src/foundation.ts:128
+Defined in src/foundation.ts:130
 
 **Parameters:**
 
