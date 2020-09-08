@@ -220,7 +220,6 @@
 * [hasUpdated](_open_scd_.openscd.md#protected-hasupdated)
 * [name](_open_scd_.openscd.md#name)
 * [nextAction](_open_scd_.openscd.md#nextaction)
-* [node](_open_scd_.openscd.md#node)
 * [previousAction](_open_scd_.openscd.md#previousaction)
 * [src](_open_scd_.openscd.md#src)
 * [updateComplete](_open_scd_.openscd.md#updatecomplete)
@@ -345,7 +344,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:388
+Defined in src/open-scd-base.ts:383
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -801,7 +800,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-Defined in src/open-scd-base.ts:317
+Defined in src/open-scd-base.ts:312
 
 ___
 
@@ -997,7 +996,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-Defined in src/open-scd-base.ts:315
+Defined in src/open-scd-base.ts:310
 
 ___
 
@@ -1053,7 +1052,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-Defined in src/open-scd-base.ts:314
+Defined in src/open-scd-base.ts:309
 
 ___
 
@@ -1063,7 +1062,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-Defined in src/open-scd-base.ts:316
+Defined in src/open-scd-base.ts:311
 
 ___
 
@@ -2454,7 +2453,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-Defined in src/open-scd-base.ts:302
+Defined in src/open-scd-base.ts:297
 
 The name of the current file.
 
@@ -2486,7 +2485,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tag](_open_scd_base_.openscdbase.md#tag)*
 
-Defined in src/open-scd-base.ts:300
+Defined in src/open-scd-base.ts:295
 
 The tag name this editor is responsible for editing
 
@@ -2709,7 +2708,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[name](_open_scd_base_.openscdbase.md#name)*
 
-Defined in src/open-scd-base.ts:296
+Defined in src/open-scd-base.ts:291
 
 **Returns:** *string | null*
 
@@ -2724,20 +2723,6 @@ ___
 Defined in src/editing.ts:53
 
 **Returns:** *number*
-
-___
-
-###  node
-
-• **get node**(): *Element*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[node](_open_scd_base_.openscdbase.md#node)*
-
-Defined in src/open-scd-base.ts:292
-
-The `Node` this editor is responsible for editing
-
-**Returns:** *Element*
 
 ___
 
@@ -2759,7 +2744,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:306
+Defined in src/open-scd-base.ts:301
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2769,7 +2754,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-Defined in src/open-scd-base.ts:309
+Defined in src/open-scd-base.ts:304
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3327,7 +3312,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:327
+Defined in src/open-scd-base.ts:322
 
 **Parameters:**
 
@@ -4819,7 +4804,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[showLog](_open_scd_base_.openscdbase.md#showlog)*
 
-Defined in src/open-scd-base.ts:319
+Defined in src/open-scd-base.ts:314
 
 **Returns:** *void*
 

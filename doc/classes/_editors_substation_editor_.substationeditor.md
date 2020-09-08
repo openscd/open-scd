@@ -3011,17 +3011,11 @@ ___
 
 ###  createSubstation
 
-▸ **createSubstation**(`e`: Event): *void*
+▸ **createSubstation**(): *void*
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[createSubstation](_editors_substation_editor_base_.substationeditorbase.md#createsubstation)*
 
-Defined in src/editors/substation-editor-base.ts:59
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`e` | Event |
+Defined in src/editors/substation-editor-base.ts:57
 
 **Returns:** *void*
 
@@ -4073,7 +4067,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:86
+Defined in src/editors/substation-editor-base.ts:82
 
 **Returns:** *TemplateResult*
 
@@ -4472,17 +4466,11 @@ ___
 
 ###  updateSubstation
 
-▸ **updateSubstation**(`e`: Event): *void*
+▸ **updateSubstation**(): *void*
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[updateSubstation](_editors_substation_editor_base_.substationeditorbase.md#updatesubstation)*
 
 Defined in src/editors/substation-editor-base.ts:38
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`e` | Event |
 
 **Returns:** *void*
 

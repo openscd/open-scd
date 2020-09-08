@@ -223,7 +223,6 @@
 * [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
 * [name](_open_scd_base_.openscdbase.md#name)
 * [nextAction](_open_scd_base_.openscdbase.md#nextaction)
-* [node](_open_scd_base_.openscdbase.md#node)
 * [previousAction](_open_scd_base_.openscdbase.md#previousaction)
 * [src](_open_scd_base_.openscdbase.md#src)
 * [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
@@ -349,7 +348,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:388
+Defined in src/open-scd-base.ts:383
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -825,7 +824,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:303
+Defined in src/open-scd-base.ts:298
 
 ___
 
@@ -881,7 +880,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:317
+Defined in src/open-scd-base.ts:312
 
 ___
 
@@ -1103,7 +1102,7 @@ ___
 
 • **logUI**: *Dialog*
 
-Defined in src/open-scd-base.ts:315
+Defined in src/open-scd-base.ts:310
 
 ___
 
@@ -1155,7 +1154,7 @@ ___
 
 • **menuUI**: *Drawer*
 
-Defined in src/open-scd-base.ts:314
+Defined in src/open-scd-base.ts:309
 
 ___
 
@@ -1163,7 +1162,7 @@ ___
 
 • **messageUI**: *Snackbar*
 
-Defined in src/open-scd-base.ts:316
+Defined in src/open-scd-base.ts:311
 
 ___
 
@@ -2780,7 +2779,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:302
+Defined in src/open-scd-base.ts:297
 
 The name of the current file.
 
@@ -2814,7 +2813,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-Defined in src/open-scd-base.ts:300
+Defined in src/open-scd-base.ts:295
 
 The tag name this editor is responsible for editing
 
@@ -3042,7 +3041,7 @@ ___
 
 • **get name**(): *string | null*
 
-Defined in src/open-scd-base.ts:296
+Defined in src/open-scd-base.ts:291
 
 **Returns:** *string | null*
 
@@ -3057,18 +3056,6 @@ ___
 Defined in src/editing.ts:53
 
 **Returns:** *number*
-
-___
-
-###  node
-
-• **get node**(): *Element*
-
-Defined in src/open-scd-base.ts:292
-
-The `Node` this editor is responsible for editing
-
-**Returns:** *Element*
 
 ___
 
@@ -3088,7 +3075,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:306
+Defined in src/open-scd-base.ts:301
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3096,7 +3083,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:309
+Defined in src/open-scd-base.ts:304
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3682,7 +3669,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:327
+Defined in src/open-scd-base.ts:322
 
 **Parameters:**
 
@@ -4046,7 +4033,7 @@ ___
 
 ▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
 
-Defined in src/open-scd-base.ts:379
+Defined in src/open-scd-base.ts:374
 
 **Parameters:**
 
@@ -4348,7 +4335,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:332
+Defined in src/open-scd-base.ts:327
 
 **Parameters:**
 
@@ -4364,7 +4351,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:370
+Defined in src/open-scd-base.ts:365
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -5336,7 +5323,7 @@ ___
 
 ▸ **showLog**(): *void*
 
-Defined in src/open-scd-base.ts:319
+Defined in src/open-scd-base.ts:314
 
 **Returns:** *void*
 
