@@ -287,11 +287,6 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
   /** The `XMLDocument` representation of the current file. */
   @property()
   doc: XMLDocument = OpenSCDBase.emptySCD;
-  /** The `Node` this editor is responsible for editing */
-  @property()
-  get node(): Element {
-    return this.doc.documentElement;
-  }
   @property()
   get name(): string | null {
     return this.doc.querySelector('Substation')?.getAttribute('name') ?? null;
