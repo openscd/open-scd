@@ -71,7 +71,7 @@ export class SubstationEditorBase extends LitElement {
               ></Substation>`,
               'application/xml'
             ).documentElement,
-            siblingBefore: null,
+            reference: null,
           },
         });
         this.dispatchEvent(event);
@@ -81,7 +81,7 @@ export class SubstationEditorBase extends LitElement {
   }
 
   render(): TemplateResult {
-    if (this.doc)
+    if (this.node) {
       return html`
         <div id="editor">
           <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>
@@ -111,7 +111,7 @@ ${this.node ? new XMLSerializer().serializeToString(this.node) : null}</pre
         <mwc-fab @click=${() => (this.editUI.open = true)} icon="edit">
         </mwc-fab>
       `;
-    else
+    } else {
       return html`<div id="editor"></div>
         <mwc-fab icon="add" @click=${() => (this.editUI.open = true)}></mwc-fab>
         <mwc-dialog heading="Add Substation">
@@ -128,5 +128,6 @@ ${this.node ? new XMLSerializer().serializeToString(this.node) : null}</pre
             Add
           </mwc-button>
         </mwc-dialog>`;
+    }
   }
 }

@@ -395,10 +395,10 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
   }
 
   private onCreate(event: ActionEvent<Create>) {
-    if (event.detail.action.new.siblingBefore)
+    if (event.detail.action.new.reference)
       event.detail.action.new.parent.insertBefore(
         event.detail.action.new.element,
-        event.detail.action.new.siblingBefore
+        event.detail.action.new.reference
       );
     else event.detail.action.new.parent.append(event.detail.action.new.element);
     this.commit(
