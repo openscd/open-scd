@@ -35,13 +35,11 @@ export class SubstationEditorBase extends LitElement {
   @query('mwc-textfield[label="desc"]') descUI!: TextField;
   @query('div#editor') editorPaneUI!: HTMLElement;
 
-  updateSubstation(e: Event): void {
-    const dialog = <Dialog>(<HTMLElement>e.target).parentElement!;
+  updateSubstation(): void {
     if (
       this.element &&
-      Array.from(dialog.querySelectorAll('mwc-textfield'))
-        .map(tf => tf.checkValidity())
-        .reduce((acc, v) => acc && v) &&
+      this.nameUI.checkValidity() &&
+      this.descUI.checkValidity() &&
       (this.nameUI.value != this.name || this.descUI.value != this.desc)
     ) {
       const newElement = <Element>this.element!.cloneNode(false);
@@ -52,17 +50,15 @@ export class SubstationEditorBase extends LitElement {
       newElement.setAttribute('name', this.nameUI.value);
       newElement.setAttribute('desc', this.descUI.value);
       this.dispatchEvent(event);
-      dialog.close();
+      this.editUI.close();
     }
   }
 
-  createSubstation(e: Event): void {
-    const dialog = <Dialog>(<HTMLElement>e.target).parentElement!;
+  createSubstation(): void {
     if (
       !this.element &&
-      Array.from(dialog.querySelectorAll('mwc-textfield'))
-        .map(tf => tf.checkValidity())
-        .reduce((acc, v) => acc && v)
+      this.nameUI.checkValidity() &&
+      this.descUI.checkValidity()
     ) {
       if (this.nameUI.value == '') return;
       const event = newActionEvent({
@@ -79,7 +75,7 @@ export class SubstationEditorBase extends LitElement {
         },
       });
       this.dispatchEvent(event);
-      dialog.close();
+      this.editUI.close();
     }
   }
 
