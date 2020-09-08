@@ -56,7 +56,7 @@
 * [dataset](_editors_substation_editor_base_.substationeditorbase.md#readonly-dataset)
 * [descUI](_editors_substation_editor_base_.substationeditorbase.md#descui)
 * [dir](_editors_substation_editor_base_.substationeditorbase.md#dir)
-* [doc](_editors_substation_editor_base_.substationeditorbase.md#optional-doc)
+* [doc](_editors_substation_editor_base_.substationeditorbase.md#doc)
 * [draggable](_editors_substation_editor_base_.substationeditorbase.md#draggable)
 * [editUI](_editors_substation_editor_base_.substationeditorbase.md#editui)
 * [editorPaneUI](_editors_substation_editor_base_.substationeditorbase.md#editorpaneui)
@@ -195,7 +195,6 @@
 * [spellcheck](_editors_substation_editor_base_.substationeditorbase.md#spellcheck)
 * [style](_editors_substation_editor_base_.substationeditorbase.md#readonly-style)
 * [tabIndex](_editors_substation_editor_base_.substationeditorbase.md#tabindex)
-* [tag](_editors_substation_editor_base_.substationeditorbase.md#tag)
 * [tagName](_editors_substation_editor_base_.substationeditorbase.md#readonly-tagname)
 * [textContent](_editors_substation_editor_base_.substationeditorbase.md#textcontent)
 * [title](_editors_substation_editor_base_.substationeditorbase.md#title)
@@ -209,9 +208,10 @@
 ### Accessors
 
 * [desc](_editors_substation_editor_base_.substationeditorbase.md#desc)
+* [element](_editors_substation_editor_base_.substationeditorbase.md#element)
 * [hasUpdated](_editors_substation_editor_base_.substationeditorbase.md#protected-hasupdated)
 * [name](_editors_substation_editor_base_.substationeditorbase.md#name)
-* [node](_editors_substation_editor_base_.substationeditorbase.md#node)
+* [parent](_editors_substation_editor_base_.substationeditorbase.md#parent)
 * [updateComplete](_editors_substation_editor_base_.substationeditorbase.md#updatecomplete)
 * [observedAttributes](_editors_substation_editor_base_.substationeditorbase.md#static-observedattributes)
 
@@ -219,7 +219,6 @@
 
 * [_getUpdateComplete](_editors_substation_editor_base_.substationeditorbase.md#protected-_getupdatecomplete)
 * [addEventListener](_editors_substation_editor_base_.substationeditorbase.md#addeventlistener)
-* [addSubstation](_editors_substation_editor_base_.substationeditorbase.md#addsubstation)
 * [adoptStyles](_editors_substation_editor_base_.substationeditorbase.md#protected-adoptstyles)
 * [after](_editors_substation_editor_base_.substationeditorbase.md#after)
 * [animate](_editors_substation_editor_base_.substationeditorbase.md#animate)
@@ -236,6 +235,7 @@
 * [connectedCallback](_editors_substation_editor_base_.substationeditorbase.md#connectedcallback)
 * [contains](_editors_substation_editor_base_.substationeditorbase.md#contains)
 * [createRenderRoot](_editors_substation_editor_base_.substationeditorbase.md#protected-createrenderroot)
+* [createSubstation](_editors_substation_editor_base_.substationeditorbase.md#createsubstation)
 * [disconnectedCallback](_editors_substation_editor_base_.substationeditorbase.md#disconnectedcallback)
 * [dispatchEvent](_editors_substation_editor_base_.substationeditorbase.md#dispatchevent)
 * [enableUpdating](_editors_substation_editor_base_.substationeditorbase.md#protected-enableupdating)
@@ -289,7 +289,6 @@
 * [requestFullscreen](_editors_substation_editor_base_.substationeditorbase.md#requestfullscreen)
 * [requestPointerLock](_editors_substation_editor_base_.substationeditorbase.md#requestpointerlock)
 * [requestUpdate](_editors_substation_editor_base_.substationeditorbase.md#requestupdate)
-* [saveSubstation](_editors_substation_editor_base_.substationeditorbase.md#savesubstation)
 * [scroll](_editors_substation_editor_base_.substationeditorbase.md#scroll)
 * [scrollBy](_editors_substation_editor_base_.substationeditorbase.md#scrollby)
 * [scrollIntoView](_editors_substation_editor_base_.substationeditorbase.md#scrollintoview)
@@ -302,6 +301,7 @@
 * [shouldUpdate](_editors_substation_editor_base_.substationeditorbase.md#protected-shouldupdate)
 * [toggleAttribute](_editors_substation_editor_base_.substationeditorbase.md#toggleattribute)
 * [update](_editors_substation_editor_base_.substationeditorbase.md#protected-update)
+* [updateSubstation](_editors_substation_editor_base_.substationeditorbase.md#updatesubstation)
 * [updated](_editors_substation_editor_base_.substationeditorbase.md#protected-updated)
 * [warn](_editors_substation_editor_base_.substationeditorbase.md#optional-warn)
 * [webkitMatchesSelector](_editors_substation_editor_base_.substationeditorbase.md#webkitmatchesselector)
@@ -727,7 +727,7 @@ ___
 
 • **descUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:32
+Defined in src/editors/substation-editor-base.ts:35
 
 ___
 
@@ -741,11 +741,11 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
 ___
 
-### `Optional` doc
+###  doc
 
-• **doc**? : *XMLDocument*
+• **doc**: *XMLDocument*
 
-Defined in src/editors/substation-editor-base.ts:19
+Defined in src/editors/substation-editor-base.ts:14
 
 ___
 
@@ -763,7 +763,7 @@ ___
 
 • **editUI**: *Dialog*
 
-Defined in src/editors/substation-editor-base.ts:30
+Defined in src/editors/substation-editor-base.ts:33
 
 ___
 
@@ -771,7 +771,7 @@ ___
 
 • **editorPaneUI**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
 
-Defined in src/editors/substation-editor-base.ts:33
+Defined in src/editors/substation-editor-base.ts:36
 
 ___
 
@@ -943,7 +943,7 @@ ___
 
 • **nameUI**: *TextField*
 
-Defined in src/editors/substation-editor-base.ts:31
+Defined in src/editors/substation-editor-base.ts:34
 
 ___
 
@@ -2348,14 +2348,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
 
 ___
 
-###  tag
-
-• **tag**: *string* = "Substation"
-
-Defined in src/editors/substation-editor-base.ts:17
-
-___
-
 ### `Readonly` tagName
 
 • **tagName**: *string*
@@ -2488,9 +2480,19 @@ using the `css` tag function.
 
 • **get desc**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:26
+Defined in src/editors/substation-editor-base.ts:29
 
 **Returns:** *string*
+
+___
+
+###  element
+
+• **get element**(): *Element | null*
+
+Defined in src/editors/substation-editor-base.ts:16
+
+**Returns:** *Element | null*
 
 ___
 
@@ -2510,19 +2512,19 @@ ___
 
 • **get name**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:21
+Defined in src/editors/substation-editor-base.ts:24
 
 **Returns:** *string*
 
 ___
 
-###  node
+###  parent
 
-• **get node**(): *Element | null*
+• **get parent**(): *Element*
 
-Defined in src/editors/substation-editor-base.ts:14
+Defined in src/editors/substation-editor-base.ts:20
 
-**Returns:** *Element | null*
+**Returns:** *Element*
 
 ___
 
@@ -2643,22 +2645,6 @@ Name | Type |
 `type` | string |
 `listener` | EventListenerOrEventListenerObject |
 `options?` | boolean &#124; AddEventListenerOptions |
-
-**Returns:** *void*
-
-___
-
-###  addSubstation
-
-▸ **addSubstation**(`e`: Event): *void*
-
-Defined in src/editors/substation-editor-base.ts:55
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`e` | Event |
 
 **Returns:** *void*
 
@@ -3007,6 +2993,22 @@ childNodes, return `this`.
 **Returns:** *Element | ShadowRoot*
 
 Returns a node into which to render.
+
+___
+
+###  createSubstation
+
+▸ **createSubstation**(`e`: Event): *void*
+
+Defined in src/editors/substation-editor-base.ts:59
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`e` | Event |
+
+**Returns:** *void*
 
 ___
 
@@ -4054,7 +4056,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:83
+Defined in src/editors/substation-editor-base.ts:86
 
 **Returns:** *TemplateResult*
 
@@ -4165,22 +4167,6 @@ Name | Type | Description |
 **Returns:** *Promise‹unknown›*
 
 A Promise that is resolved when the update completes.
-
-___
-
-###  saveSubstation
-
-▸ **saveSubstation**(`e`: Event): *void*
-
-Defined in src/editors/substation-editor-base.ts:35
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`e` | Event |
-
-**Returns:** *void*
 
 ___
 
@@ -4462,6 +4448,22 @@ this method will *not* trigger another update.
 Name | Type |
 ------ | ------ |
 `changedProperties` | PropertyValues |
+
+**Returns:** *void*
+
+___
+
+###  updateSubstation
+
+▸ **updateSubstation**(`e`: Event): *void*
+
+Defined in src/editors/substation-editor-base.ts:38
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`e` | Event |
 
 **Returns:** *void*
 

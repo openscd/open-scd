@@ -5117,7 +5117,7 @@ Defined in src/open-scd-base.ts:259
         icon: zeroLineIcon,
         getContent: async (): Promise<TemplateResult> => {
           await plugin('./editors/substation-editor.js', 'editor-0');
-          return html`<editor-0 .doc=${this.doc!}></editor-0>`;
+          return html`<editor-0 .doc=${this.doc}></editor-0>`;
         },
       },
       {
