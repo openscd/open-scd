@@ -264,7 +264,7 @@ export class OpenSCDBase extends Waiting(Logging(LitElement)) {
         icon: zeroLineIcon,
         getContent: async (): Promise<TemplateResult> => {
           await plugin('./editors/substation-editor.js', 'editor-0');
-          return html`<editor-0 .doc=${this.doc!}></editor-0>`;
+          return html`<editor-0 .doc=${this.doc}></editor-0>`;
         },
       },
       {

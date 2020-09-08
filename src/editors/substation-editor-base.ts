@@ -11,20 +11,23 @@ import { newActionEvent } from '../foundation.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
-  get node(): Element | null {
+  doc!: XMLDocument;
+  @property()
+  get element(): Element | null {
     return this.doc?.querySelector('Substation') ?? null;
   }
-  tag = 'Substation';
   @property()
-  doc?: XMLDocument;
+  get parent(): Element {
+    return this.doc.documentElement; // <SCL>
+  }
   @property({ type: String })
   get name(): string {
-    return this.node?.getAttribute('name') ?? '';
+    return this.element?.getAttribute('name') ?? '';
   }
 
   @property({ type: String })
   get desc(): string {
-    return this.node?.getAttribute('desc') ?? '';
+    return this.element?.getAttribute('desc') ?? '';
   }
 
   @query('mwc-dialog') editUI!: Dialog;
@@ -32,17 +35,18 @@ export class SubstationEditorBase extends LitElement {
   @query('mwc-textfield[label="desc"]') descUI!: TextField;
   @query('div#editor') editorPaneUI!: HTMLElement;
 
-  saveSubstation(e: Event): void {
+  updateSubstation(e: Event): void {
     const dialog = <Dialog>(<HTMLElement>e.target).parentElement!;
     if (
+      this.element &&
       Array.from(dialog.querySelectorAll('mwc-textfield'))
         .map(tf => tf.checkValidity())
         .reduce((acc, v) => acc && v) &&
       (this.nameUI.value != this.name || this.descUI.value != this.desc)
     ) {
-      const newElement = <Element>this.node!.cloneNode(false);
+      const newElement = <Element>this.element!.cloneNode(false);
       const event = newActionEvent({
-        old: { element: this.node! },
+        old: { element: this.element! },
         new: { element: newElement },
       });
       newElement.setAttribute('name', this.nameUI.value);
@@ -52,43 +56,40 @@ export class SubstationEditorBase extends LitElement {
     }
   }
 
-  addSubstation(e: Event): void {
+  createSubstation(e: Event): void {
     const dialog = <Dialog>(<HTMLElement>e.target).parentElement!;
     if (
+      !this.element &&
       Array.from(dialog.querySelectorAll('mwc-textfield'))
         .map(tf => tf.checkValidity())
         .reduce((acc, v) => acc && v)
     ) {
       if (this.nameUI.value == '') return;
-      if (this.doc) {
-        const event = newActionEvent({
-          new: {
-            parent: this.doc.documentElement,
-            element: new DOMParser().parseFromString(
-              `<Substation
+      const event = newActionEvent({
+        new: {
+          parent: this.parent,
+          element: new DOMParser().parseFromString(
+            `<Substation
                 name="${this.nameUI.value}"
                 desc="${this.descUI.value}"
               ></Substation>`,
-              'application/xml'
-            ).documentElement,
-            reference: null,
-          },
-        });
-        this.dispatchEvent(event);
-      }
+            'application/xml'
+          ).documentElement,
+          reference: null,
+        },
+      });
+      this.dispatchEvent(event);
       dialog.close();
     }
   }
 
   render(): TemplateResult {
-    if (this.node) {
+    if (this.element) {
       return html`
         <div id="editor">
           <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>
           <h2>${this.desc}<mwc-icon-button icon="edit"></mwc-icon-button></h2>
-          <pre>
-${this.node ? new XMLSerializer().serializeToString(this.node) : null}</pre
-          >
+          <pre>${new XMLSerializer().serializeToString(this.element)}</pre>
         </div>
         <mwc-dialog heading="Edit Substation">
           <mwc-textfield
@@ -104,7 +105,7 @@ ${this.node ? new XMLSerializer().serializeToString(this.node) : null}</pre
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>
-          <mwc-button @click=${this.saveSubstation} slot="primaryAction">
+          <mwc-button @click=${this.updateSubstation} slot="primaryAction">
             Save
           </mwc-button>
         </mwc-dialog>
@@ -124,7 +125,7 @@ ${this.node ? new XMLSerializer().serializeToString(this.node) : null}</pre
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>
-          <mwc-button @click=${this.addSubstation} slot="primaryAction">
+          <mwc-button @click=${this.createSubstation} slot="primaryAction">
             Add
           </mwc-button>
         </mwc-dialog>`;

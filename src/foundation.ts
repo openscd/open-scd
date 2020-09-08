@@ -2,12 +2,12 @@
 export type Action = Create | Update | Delete | Move;
 /** Represents prepending `create.new.element` to `create.new.parent`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference: Element | null };
+  new: { parent: Element; element: Element; reference: Node | null };
   derived?: boolean;
 }
 /** Represents removal of `delete.old.element`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference: Element | null };
+  old: { parent: Element; element: Element; reference: Node | null };
   derived?: boolean;
 }
 /** Represents reparenting of `move.old.element` to `move.new.parent`. */
