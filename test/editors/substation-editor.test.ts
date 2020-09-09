@@ -7,6 +7,7 @@ import { getDocument } from '../data.js';
 import { emptySCD } from '../mock-document.js';
 
 import { Button } from '@material/mwc-button';
+import { get } from 'https';
 
 describe('substation-editor', () => {
   customElements.define('substation-editor', SubstationEditor);
@@ -82,5 +83,13 @@ describe('substation-editor', () => {
       element.shadowRoot!.querySelector('mwc-fab')
     ))?.click();
     expect(element.editUI.open).to.be.true;
+  });
+
+  it('opens menu on menu button click', async () => {
+    element.doc = getDocument();
+    await element.updateComplete;
+    expect(element.menuUI).to.have.property('open', false);
+    await element.menuIcon.click();
+    expect(element.menuUI).to.have.property('open', true);
   });
 });

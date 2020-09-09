@@ -5,8 +5,12 @@ import '@material/mwc-dialog';
 import '@material/mwc-fab';
 import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
+import '@material/mwc-menu';
+import '@material/mwc-list/mwc-list-item';
 import { Dialog } from '@material/mwc-dialog';
 import { TextField } from '@material/mwc-textfield';
+import { Menu } from '@material/mwc-menu';
+import { IconButton } from '@material/mwc-icon-button';
 import { newActionEvent, Action } from '../foundation.js';
 
 export class SubstationEditorBase extends LitElement {
@@ -34,6 +38,9 @@ export class SubstationEditorBase extends LitElement {
   @query('mwc-textfield[label="name"]') nameUI!: TextField;
   @query('mwc-textfield[label="desc"]') descUI!: TextField;
   @query('div#editor') editorPaneUI!: HTMLElement;
+
+  @query('mwc-menu') menuUI!: Menu;
+  @query('h1 > mwc-icon-button') menuIcon!: IconButton;
 
   checkValidity(): boolean {
     return this.nameUI.checkValidity() && this.descUI.checkValidity();
@@ -88,14 +95,23 @@ export class SubstationEditorBase extends LitElement {
     }
   }
 
+  updated(): void {
+    if (this.menuUI) this.menuUI.anchor = this.menuIcon;
+  }
+
   render(): TemplateResult {
     if (this.element) {
       return html`
-        <div id="editor">
-          <h1>${this.name}<mwc-icon-button icon="edit"></mwc-icon-button></h1>
-          <h2>${this.desc}<mwc-icon-button icon="edit"></mwc-icon-button></h2>
-          <pre>${new XMLSerializer().serializeToString(this.element)}</pre>
-        </div>
+        <h1>
+          ${this.name} - ${this.desc}
+          <mwc-icon-button
+            icon="more_vert"
+            @click=${() => this.menuUI.show()}
+          ></mwc-icon-button>
+          <mwc-menu .anchor=${this.menuIcon} corner="BOTTOM_RIGHT">
+            <mwc-list-item>Add Voltage Level</mwc-list-item>
+          </mwc-menu>
+        </h1>
         <mwc-dialog heading="Edit Substation">
           <mwc-textfield
             value="${this.name ?? ''}"
