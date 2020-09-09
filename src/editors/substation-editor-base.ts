@@ -7,7 +7,7 @@ import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { TextField } from '@material/mwc-textfield';
-import { newActionEvent } from '../foundation.js';
+import { newActionEvent, Action } from '../foundation.js';
 
 export class SubstationEditorBase extends LitElement {
   @property()
@@ -39,19 +39,18 @@ export class SubstationEditorBase extends LitElement {
     return this.nameUI.checkValidity() && this.descUI.checkValidity();
   }
 
-  dispatchUpdate(name: string, desc: string): void {
+  newUpdateAction(name: string, desc: string): Action {
     const newElement = <Element>this.element!.cloneNode(false);
-    const event = newActionEvent({
-      old: { element: this.element! },
-      new: { element: newElement },
-    });
     newElement.setAttribute('name', name);
     newElement.setAttribute('desc', desc);
-    this.dispatchEvent(event);
+    return {
+      old: { element: this.element! },
+      new: { element: newElement },
+    };
   }
 
-  dispatchCreate(name: string, desc: string): void {
-    const event = newActionEvent({
+  newCreateAction(name: string, desc: string): Action {
+    return {
       new: {
         parent: this.parent,
         element: new DOMParser().parseFromString(
@@ -60,8 +59,7 @@ export class SubstationEditorBase extends LitElement {
         ).documentElement,
         reference: null,
       },
-    });
-    this.dispatchEvent(event);
+    };
   }
 
   requestSubstationUpdate(): void {
@@ -70,14 +68,22 @@ export class SubstationEditorBase extends LitElement {
       this.checkValidity() &&
       (this.nameUI.value != this.name || this.descUI.value != this.desc)
     ) {
-      this.dispatchUpdate(this.nameUI.value, this.descUI.value);
+      this.dispatchEvent(
+        newActionEvent(
+          this.newUpdateAction(this.nameUI.value, this.descUI.value)
+        )
+      );
       this.editUI.close();
     }
   }
 
   requestSubstationCreate(): void {
     if (!this.element && this.checkValidity() && this.nameUI.value) {
-      this.dispatchCreate(this.nameUI.value, this.descUI.value);
+      this.dispatchEvent(
+        newActionEvent(
+          this.newCreateAction(this.nameUI.value, this.descUI.value)
+        )
+      );
       this.editUI.close();
     }
   }
