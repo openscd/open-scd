@@ -131,6 +131,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         ? html`<li divider padded role="separator"></li>`
         : nothing}
       <mwc-list-item
+        iconid="${me.icon}"
         graphic="icon"
         .disabled=${me.isDisabled?.() || (me.action ? false : true)}
         ?twoline=${me.hint}
@@ -250,10 +251,10 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         label: 'Substation',
         id: 'substation',
         icon: zeroLineIcon,
-        getContent: async (): Promise<TemplateResult> => {
-          await plugin('./editors/substation-editor.js', 'editor-0');
-          return html`<editor-0 .doc=${this.doc}></editor-0>`;
-        },
+        getContent: (): Promise<TemplateResult> =>
+          plugin('./editors/substation-editor.js', 'editor-0').then(
+            () => html`<editor-0 .doc=${this.doc}></editor-0>`
+          ),
       },
       {
         label: 'Communication',

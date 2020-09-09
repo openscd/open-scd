@@ -49,6 +49,13 @@ describe('open-scd', () => {
     expect(element.logUI).to.have.property('open', true);
   });
 
+  it('opens the log on log menu entry click', async () => {
+    await (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-list-item[iconid="rule"]')!
+    )).click();
+    expect(element.logUI).to.have.property('open', true);
+  });
+
   it('shows a snackbar on logging an error', () => {
     expect(element.messageUI).to.have.property('open', false);
     element.error('test error');
@@ -77,6 +84,11 @@ describe('open-scd', () => {
   it('initially edits an empty SCD document', () => {
     expect(element).property('doc').to.equal(OpenSCD.emptySCD);
     expect(element).property('srcName').to.equal('untitled.scd');
+  });
+
+  it('initially loads the first editor plugin', function () {
+    this.timeout(1000);
+    expect(<HTMLElement>element.shadowRoot!.querySelector('#test')).to.exist;
   });
 
   it('revokes `src="blob:..."` URLs after parsing', async () => {
