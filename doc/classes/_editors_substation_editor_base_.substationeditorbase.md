@@ -237,9 +237,7 @@
 * [contains](_editors_substation_editor_base_.substationeditorbase.md#contains)
 * [createRenderRoot](_editors_substation_editor_base_.substationeditorbase.md#protected-createrenderroot)
 * [disconnectedCallback](_editors_substation_editor_base_.substationeditorbase.md#disconnectedcallback)
-* [dispatchCreate](_editors_substation_editor_base_.substationeditorbase.md#dispatchcreate)
 * [dispatchEvent](_editors_substation_editor_base_.substationeditorbase.md#dispatchevent)
-* [dispatchUpdate](_editors_substation_editor_base_.substationeditorbase.md#dispatchupdate)
 * [enableUpdating](_editors_substation_editor_base_.substationeditorbase.md#protected-enableupdating)
 * [firstUpdated](_editors_substation_editor_base_.substationeditorbase.md#protected-firstupdated)
 * [focus](_editors_substation_editor_base_.substationeditorbase.md#focus)
@@ -273,6 +271,8 @@
 * [lookupPrefix](_editors_substation_editor_base_.substationeditorbase.md#lookupprefix)
 * [matches](_editors_substation_editor_base_.substationeditorbase.md#matches)
 * [msGetRegionContent](_editors_substation_editor_base_.substationeditorbase.md#msgetregioncontent)
+* [newCreateAction](_editors_substation_editor_base_.substationeditorbase.md#newcreateaction)
+* [newUpdateAction](_editors_substation_editor_base_.substationeditorbase.md#newupdateaction)
 * [normalize](_editors_substation_editor_base_.substationeditorbase.md#normalize)
 * [performUpdate](_editors_substation_editor_base_.substationeditorbase.md#protected-performupdate)
 * [prepend](_editors_substation_editor_base_.substationeditorbase.md#prepend)
@@ -3025,23 +3025,6 @@ when disconnecting at some point in the future.
 
 ___
 
-###  dispatchCreate
-
-▸ **dispatchCreate**(`name`: string, `desc`: string): *void*
-
-Defined in src/editors/substation-editor-base.ts:53
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string |
-`desc` | string |
-
-**Returns:** *void*
-
-___
-
 ###  dispatchEvent
 
 ▸ **dispatchEvent**(`event`: Event): *boolean*
@@ -3059,23 +3042,6 @@ Name | Type |
 `event` | Event |
 
 **Returns:** *boolean*
-
-___
-
-###  dispatchUpdate
-
-▸ **dispatchUpdate**(`name`: string, `desc`: string): *void*
-
-Defined in src/editors/substation-editor-base.ts:42
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string |
-`desc` | string |
-
-**Returns:** *void*
 
 ___
 
@@ -3732,6 +3698,40 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5195
 
 ___
 
+###  newCreateAction
+
+▸ **newCreateAction**(`name`: string, `desc`: string): *[Action](../modules/_foundation_.md#action)*
+
+Defined in src/editors/substation-editor-base.ts:52
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
+
+**Returns:** *[Action](../modules/_foundation_.md#action)*
+
+___
+
+###  newUpdateAction
+
+▸ **newUpdateAction**(`name`: string, `desc`: string): *[Action](../modules/_foundation_.md#action)*
+
+Defined in src/editors/substation-editor-base.ts:42
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
+
+**Returns:** *[Action](../modules/_foundation_.md#action)*
+
+___
+
 ###  normalize
 
 ▸ **normalize**(): *void*
@@ -4087,7 +4087,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:85
+Defined in src/editors/substation-editor-base.ts:91
 
 **Returns:** *TemplateResult*
 
@@ -4176,7 +4176,7 @@ ___
 
 ▸ **requestSubstationCreate**(): *void*
 
-Defined in src/editors/substation-editor-base.ts:78
+Defined in src/editors/substation-editor-base.ts:80
 
 **Returns:** *void*
 
@@ -4186,7 +4186,7 @@ ___
 
 ▸ **requestSubstationUpdate**(): *void*
 
-Defined in src/editors/substation-editor-base.ts:67
+Defined in src/editors/substation-editor-base.ts:65
 
 **Returns:** *void*
 
