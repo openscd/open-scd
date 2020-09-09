@@ -1,354 +1,344 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd-base"](../modules/_open_scd_base_.md) › [OpenSCDBase](_open_scd_base_.openscdbase.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["editors/SubstationEditor"](../modules/_editors_substationeditor_.md) › [SubstationEditor](_editors_substationeditor_.substationeditor.md)
 
-# Class: OpenSCDBase
+# Class: SubstationEditor
 
 ## Hierarchy
 
-* WaitingElement‹EditingElement & LitElement, this› & EditingElement‹LitElement, this› & LitElement‹this›
+* LitElement
 
-  ↳ **OpenSCDBase**
-
-  ↳ [OpenSCD](_open_scd_.openscd.md)
+  ↳ **SubstationEditor**
 
 ## Index
 
 ### Constructors
 
-* [constructor](_open_scd_base_.openscdbase.md#constructor)
+* [constructor](_editors_substationeditor_.substationeditor.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_open_scd_base_.openscdbase.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_open_scd_base_.openscdbase.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_open_scd_base_.openscdbase.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_base_.openscdbase.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_open_scd_base_.openscdbase.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_base_.openscdbase.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_open_scd_base_.openscdbase.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_base_.openscdbase.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_open_scd_base_.openscdbase.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_open_scd_base_.openscdbase.md#readonly-document_type_node)
-* [ELEMENT_NODE](_open_scd_base_.openscdbase.md#readonly-element_node)
-* [ENTITY_NODE](_open_scd_base_.openscdbase.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_open_scd_base_.openscdbase.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_open_scd_base_.openscdbase.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_open_scd_base_.openscdbase.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_open_scd_base_.openscdbase.md#readonly-text_node)
-* [accessKey](_open_scd_base_.openscdbase.md#accesskey)
-* [accessKeyLabel](_open_scd_base_.openscdbase.md#readonly-accesskeylabel)
-* [activeTab](_open_scd_base_.openscdbase.md#activetab)
-* [assignedSlot](_open_scd_base_.openscdbase.md#readonly-assignedslot)
-* [attributes](_open_scd_base_.openscdbase.md#readonly-attributes)
-* [autocapitalize](_open_scd_base_.openscdbase.md#autocapitalize)
-* [autofocus](_open_scd_base_.openscdbase.md#autofocus)
-* [baseURI](_open_scd_base_.openscdbase.md#readonly-baseuri)
-* [childElementCount](_open_scd_base_.openscdbase.md#readonly-childelementcount)
-* [childNodes](_open_scd_base_.openscdbase.md#readonly-childnodes)
-* [children](_open_scd_base_.openscdbase.md#readonly-children)
-* [classList](_open_scd_base_.openscdbase.md#readonly-classlist)
-* [className](_open_scd_base_.openscdbase.md#classname)
-* [clientHeight](_open_scd_base_.openscdbase.md#readonly-clientheight)
-* [clientLeft](_open_scd_base_.openscdbase.md#readonly-clientleft)
-* [clientTop](_open_scd_base_.openscdbase.md#readonly-clienttop)
-* [clientWidth](_open_scd_base_.openscdbase.md#readonly-clientwidth)
-* [contentEditable](_open_scd_base_.openscdbase.md#contenteditable)
-* [currentSrc](_open_scd_base_.openscdbase.md#private-currentsrc)
-* [dataset](_open_scd_base_.openscdbase.md#readonly-dataset)
-* [dir](_open_scd_base_.openscdbase.md#dir)
-* [doc](_open_scd_base_.openscdbase.md#doc)
-* [draggable](_open_scd_base_.openscdbase.md#draggable)
-* [fileUI](_open_scd_base_.openscdbase.md#fileui)
-* [firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)
-* [firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)
-* [floatingLabelFoundation](_open_scd_base_.openscdbase.md#optional-floatinglabelfoundation)
-* [hidden](_open_scd_base_.openscdbase.md#hidden)
-* [history](_open_scd_base_.openscdbase.md#history)
-* [id](_open_scd_base_.openscdbase.md#id)
-* [innerHTML](_open_scd_base_.openscdbase.md#innerhtml)
-* [innerText](_open_scd_base_.openscdbase.md#innertext)
-* [inputMode](_open_scd_base_.openscdbase.md#inputmode)
-* [isConnected](_open_scd_base_.openscdbase.md#readonly-isconnected)
-* [isContentEditable](_open_scd_base_.openscdbase.md#readonly-iscontenteditable)
-* [lang](_open_scd_base_.openscdbase.md#lang)
-* [lastAction](_open_scd_base_.openscdbase.md#lastaction)
-* [lastChild](_open_scd_base_.openscdbase.md#readonly-lastchild)
-* [lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)
-* [lineRippleFoundation](_open_scd_base_.openscdbase.md#optional-lineripplefoundation)
-* [localName](_open_scd_base_.openscdbase.md#readonly-localname)
-* [logUI](_open_scd_base_.openscdbase.md#logui)
-* [menu](_open_scd_base_.openscdbase.md#menu)
-* [menuUI](_open_scd_base_.openscdbase.md#menuui)
-* [messageUI](_open_scd_base_.openscdbase.md#messageui)
-* [namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)
-* [nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)
-* [nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)
-* [nodeName](_open_scd_base_.openscdbase.md#readonly-nodename)
-* [nodeType](_open_scd_base_.openscdbase.md#readonly-nodetype)
-* [nodeValue](_open_scd_base_.openscdbase.md#nodevalue)
-* [nonce](_open_scd_base_.openscdbase.md#optional-nonce)
-* [offsetHeight](_open_scd_base_.openscdbase.md#readonly-offsetheight)
-* [offsetLeft](_open_scd_base_.openscdbase.md#readonly-offsetleft)
-* [offsetParent](_open_scd_base_.openscdbase.md#readonly-offsetparent)
-* [offsetTop](_open_scd_base_.openscdbase.md#readonly-offsettop)
-* [offsetWidth](_open_scd_base_.openscdbase.md#readonly-offsetwidth)
-* [onabort](_open_scd_base_.openscdbase.md#onabort)
-* [onanimationcancel](_open_scd_base_.openscdbase.md#onanimationcancel)
-* [onanimationend](_open_scd_base_.openscdbase.md#onanimationend)
-* [onanimationiteration](_open_scd_base_.openscdbase.md#onanimationiteration)
-* [onanimationstart](_open_scd_base_.openscdbase.md#onanimationstart)
-* [onauxclick](_open_scd_base_.openscdbase.md#onauxclick)
-* [onblur](_open_scd_base_.openscdbase.md#onblur)
-* [oncancel](_open_scd_base_.openscdbase.md#oncancel)
-* [oncanplay](_open_scd_base_.openscdbase.md#oncanplay)
-* [oncanplaythrough](_open_scd_base_.openscdbase.md#oncanplaythrough)
-* [onchange](_open_scd_base_.openscdbase.md#onchange)
-* [onclick](_open_scd_base_.openscdbase.md#onclick)
-* [onclose](_open_scd_base_.openscdbase.md#onclose)
-* [oncontextmenu](_open_scd_base_.openscdbase.md#oncontextmenu)
-* [oncopy](_open_scd_base_.openscdbase.md#oncopy)
-* [oncuechange](_open_scd_base_.openscdbase.md#oncuechange)
-* [oncut](_open_scd_base_.openscdbase.md#oncut)
-* [ondblclick](_open_scd_base_.openscdbase.md#ondblclick)
-* [ondrag](_open_scd_base_.openscdbase.md#ondrag)
-* [ondragend](_open_scd_base_.openscdbase.md#ondragend)
-* [ondragenter](_open_scd_base_.openscdbase.md#ondragenter)
-* [ondragexit](_open_scd_base_.openscdbase.md#ondragexit)
-* [ondragleave](_open_scd_base_.openscdbase.md#ondragleave)
-* [ondragover](_open_scd_base_.openscdbase.md#ondragover)
-* [ondragstart](_open_scd_base_.openscdbase.md#ondragstart)
-* [ondrop](_open_scd_base_.openscdbase.md#ondrop)
-* [ondurationchange](_open_scd_base_.openscdbase.md#ondurationchange)
-* [onemptied](_open_scd_base_.openscdbase.md#onemptied)
-* [onended](_open_scd_base_.openscdbase.md#onended)
-* [onerror](_open_scd_base_.openscdbase.md#onerror)
-* [onfocus](_open_scd_base_.openscdbase.md#onfocus)
-* [onfullscreenchange](_open_scd_base_.openscdbase.md#onfullscreenchange)
-* [onfullscreenerror](_open_scd_base_.openscdbase.md#onfullscreenerror)
-* [ongotpointercapture](_open_scd_base_.openscdbase.md#ongotpointercapture)
-* [oninput](_open_scd_base_.openscdbase.md#oninput)
-* [oninvalid](_open_scd_base_.openscdbase.md#oninvalid)
-* [onkeydown](_open_scd_base_.openscdbase.md#onkeydown)
-* [onkeypress](_open_scd_base_.openscdbase.md#onkeypress)
-* [onkeyup](_open_scd_base_.openscdbase.md#onkeyup)
-* [onload](_open_scd_base_.openscdbase.md#onload)
-* [onloadeddata](_open_scd_base_.openscdbase.md#onloadeddata)
-* [onloadedmetadata](_open_scd_base_.openscdbase.md#onloadedmetadata)
-* [onloadstart](_open_scd_base_.openscdbase.md#onloadstart)
-* [onlostpointercapture](_open_scd_base_.openscdbase.md#onlostpointercapture)
-* [onmousedown](_open_scd_base_.openscdbase.md#onmousedown)
-* [onmouseenter](_open_scd_base_.openscdbase.md#onmouseenter)
-* [onmouseleave](_open_scd_base_.openscdbase.md#onmouseleave)
-* [onmousemove](_open_scd_base_.openscdbase.md#onmousemove)
-* [onmouseout](_open_scd_base_.openscdbase.md#onmouseout)
-* [onmouseover](_open_scd_base_.openscdbase.md#onmouseover)
-* [onmouseup](_open_scd_base_.openscdbase.md#onmouseup)
-* [onpaste](_open_scd_base_.openscdbase.md#onpaste)
-* [onpause](_open_scd_base_.openscdbase.md#onpause)
-* [onplay](_open_scd_base_.openscdbase.md#onplay)
-* [onplaying](_open_scd_base_.openscdbase.md#onplaying)
-* [onpointercancel](_open_scd_base_.openscdbase.md#onpointercancel)
-* [onpointerdown](_open_scd_base_.openscdbase.md#onpointerdown)
-* [onpointerenter](_open_scd_base_.openscdbase.md#onpointerenter)
-* [onpointerleave](_open_scd_base_.openscdbase.md#onpointerleave)
-* [onpointermove](_open_scd_base_.openscdbase.md#onpointermove)
-* [onpointerout](_open_scd_base_.openscdbase.md#onpointerout)
-* [onpointerover](_open_scd_base_.openscdbase.md#onpointerover)
-* [onpointerup](_open_scd_base_.openscdbase.md#onpointerup)
-* [onprogress](_open_scd_base_.openscdbase.md#onprogress)
-* [onratechange](_open_scd_base_.openscdbase.md#onratechange)
-* [onreset](_open_scd_base_.openscdbase.md#onreset)
-* [onresize](_open_scd_base_.openscdbase.md#onresize)
-* [onscroll](_open_scd_base_.openscdbase.md#onscroll)
-* [onsecuritypolicyviolation](_open_scd_base_.openscdbase.md#onsecuritypolicyviolation)
-* [onseeked](_open_scd_base_.openscdbase.md#onseeked)
-* [onseeking](_open_scd_base_.openscdbase.md#onseeking)
-* [onselect](_open_scd_base_.openscdbase.md#onselect)
-* [onselectionchange](_open_scd_base_.openscdbase.md#onselectionchange)
-* [onselectstart](_open_scd_base_.openscdbase.md#onselectstart)
-* [onstalled](_open_scd_base_.openscdbase.md#onstalled)
-* [onsubmit](_open_scd_base_.openscdbase.md#onsubmit)
-* [onsuspend](_open_scd_base_.openscdbase.md#onsuspend)
-* [ontimeupdate](_open_scd_base_.openscdbase.md#ontimeupdate)
-* [ontoggle](_open_scd_base_.openscdbase.md#ontoggle)
-* [ontouchcancel](_open_scd_base_.openscdbase.md#optional-ontouchcancel)
-* [ontouchend](_open_scd_base_.openscdbase.md#optional-ontouchend)
-* [ontouchmove](_open_scd_base_.openscdbase.md#optional-ontouchmove)
-* [ontouchstart](_open_scd_base_.openscdbase.md#optional-ontouchstart)
-* [ontransitioncancel](_open_scd_base_.openscdbase.md#ontransitioncancel)
-* [ontransitionend](_open_scd_base_.openscdbase.md#ontransitionend)
-* [ontransitionrun](_open_scd_base_.openscdbase.md#ontransitionrun)
-* [ontransitionstart](_open_scd_base_.openscdbase.md#ontransitionstart)
-* [onvolumechange](_open_scd_base_.openscdbase.md#onvolumechange)
-* [onwaiting](_open_scd_base_.openscdbase.md#onwaiting)
-* [onwheel](_open_scd_base_.openscdbase.md#onwheel)
-* [outerHTML](_open_scd_base_.openscdbase.md#outerhtml)
-* [ownerDocument](_open_scd_base_.openscdbase.md#readonly-ownerdocument)
-* [parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)
-* [parentNode](_open_scd_base_.openscdbase.md#readonly-parentnode)
-* [prefix](_open_scd_base_.openscdbase.md#readonly-prefix)
-* [previousElementSibling](_open_scd_base_.openscdbase.md#readonly-previouselementsibling)
-* [previousSibling](_open_scd_base_.openscdbase.md#readonly-previoussibling)
-* [renderRoot](_open_scd_base_.openscdbase.md#readonly-renderroot)
-* [scrollHeight](_open_scd_base_.openscdbase.md#readonly-scrollheight)
-* [scrollLeft](_open_scd_base_.openscdbase.md#scrollleft)
-* [scrollTop](_open_scd_base_.openscdbase.md#scrolltop)
-* [scrollWidth](_open_scd_base_.openscdbase.md#readonly-scrollwidth)
-* [shadowRoot](_open_scd_base_.openscdbase.md#readonly-shadowroot)
-* [slot](_open_scd_base_.openscdbase.md#slot)
-* [spellcheck](_open_scd_base_.openscdbase.md#spellcheck)
-* [srcName](_open_scd_base_.openscdbase.md#srcname)
-* [style](_open_scd_base_.openscdbase.md#readonly-style)
-* [tabIndex](_open_scd_base_.openscdbase.md#tabindex)
-* [tag](_open_scd_base_.openscdbase.md#tag)
-* [tagName](_open_scd_base_.openscdbase.md#readonly-tagname)
-* [textContent](_open_scd_base_.openscdbase.md#textcontent)
-* [title](_open_scd_base_.openscdbase.md#title)
-* [translate](_open_scd_base_.openscdbase.md#translate)
-* [waiting](_open_scd_base_.openscdbase.md#waiting)
-* [work](_open_scd_base_.openscdbase.md#protected-work)
-* [workDone](_open_scd_base_.openscdbase.md#workdone)
-* [[finalized]](_open_scd_base_.openscdbase.md#static-protected-[finalized])
-* [finalized](_open_scd_base_.openscdbase.md#static-protected-finalized)
-* [properties](_open_scd_base_.openscdbase.md#static-properties)
-* [render](_open_scd_base_.openscdbase.md#static-render)
-* [styles](_open_scd_base_.openscdbase.md#static-optional-styles)
+* [ATTRIBUTE_NODE](_editors_substationeditor_.substationeditor.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_editors_substationeditor_.substationeditor.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_editors_substationeditor_.substationeditor.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_editors_substationeditor_.substationeditor.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_editors_substationeditor_.substationeditor.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substationeditor_.substationeditor.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_editors_substationeditor_.substationeditor.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_type_node)
+* [ELEMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-element_node)
+* [ENTITY_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_editors_substationeditor_.substationeditor.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_editors_substationeditor_.substationeditor.md#readonly-text_node)
+* [accessKey](_editors_substationeditor_.substationeditor.md#accesskey)
+* [accessKeyLabel](_editors_substationeditor_.substationeditor.md#readonly-accesskeylabel)
+* [assignedSlot](_editors_substationeditor_.substationeditor.md#readonly-assignedslot)
+* [attributes](_editors_substationeditor_.substationeditor.md#readonly-attributes)
+* [autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)
+* [autofocus](_editors_substationeditor_.substationeditor.md#autofocus)
+* [baseURI](_editors_substationeditor_.substationeditor.md#readonly-baseuri)
+* [childElementCount](_editors_substationeditor_.substationeditor.md#readonly-childelementcount)
+* [childNodes](_editors_substationeditor_.substationeditor.md#readonly-childnodes)
+* [children](_editors_substationeditor_.substationeditor.md#readonly-children)
+* [classList](_editors_substationeditor_.substationeditor.md#readonly-classlist)
+* [className](_editors_substationeditor_.substationeditor.md#classname)
+* [clientHeight](_editors_substationeditor_.substationeditor.md#readonly-clientheight)
+* [clientLeft](_editors_substationeditor_.substationeditor.md#readonly-clientleft)
+* [clientTop](_editors_substationeditor_.substationeditor.md#readonly-clienttop)
+* [clientWidth](_editors_substationeditor_.substationeditor.md#readonly-clientwidth)
+* [contentEditable](_editors_substationeditor_.substationeditor.md#contenteditable)
+* [createVoltageLevelUI](_editors_substationeditor_.substationeditor.md#createvoltagelevelui)
+* [dataset](_editors_substationeditor_.substationeditor.md#readonly-dataset)
+* [defaultNomFreq](_editors_substationeditor_.substationeditor.md#defaultnomfreq)
+* [defaultNumPhases](_editors_substationeditor_.substationeditor.md#defaultnumphases)
+* [defaultVoltage](_editors_substationeditor_.substationeditor.md#defaultvoltage)
+* [dir](_editors_substationeditor_.substationeditor.md#dir)
+* [doc](_editors_substationeditor_.substationeditor.md#doc)
+* [draggable](_editors_substationeditor_.substationeditor.md#draggable)
+* [editSubstationUI](_editors_substationeditor_.substationeditor.md#editsubstationui)
+* [firstChild](_editors_substationeditor_.substationeditor.md#readonly-firstchild)
+* [firstElementChild](_editors_substationeditor_.substationeditor.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_editors_substationeditor_.substationeditor.md#optional-floatinglabelfoundation)
+* [hidden](_editors_substationeditor_.substationeditor.md#hidden)
+* [id](_editors_substationeditor_.substationeditor.md#id)
+* [innerHTML](_editors_substationeditor_.substationeditor.md#innerhtml)
+* [innerText](_editors_substationeditor_.substationeditor.md#innertext)
+* [inputMode](_editors_substationeditor_.substationeditor.md#inputmode)
+* [isConnected](_editors_substationeditor_.substationeditor.md#readonly-isconnected)
+* [isContentEditable](_editors_substationeditor_.substationeditor.md#readonly-iscontenteditable)
+* [lang](_editors_substationeditor_.substationeditor.md#lang)
+* [lastChild](_editors_substationeditor_.substationeditor.md#readonly-lastchild)
+* [lastElementChild](_editors_substationeditor_.substationeditor.md#readonly-lastelementchild)
+* [lineRippleFoundation](_editors_substationeditor_.substationeditor.md#optional-lineripplefoundation)
+* [localName](_editors_substationeditor_.substationeditor.md#readonly-localname)
+* [menuIconUI](_editors_substationeditor_.substationeditor.md#menuiconui)
+* [menuUI](_editors_substationeditor_.substationeditor.md#menuui)
+* [namespaceURI](_editors_substationeditor_.substationeditor.md#readonly-namespaceuri)
+* [nextElementSibling](_editors_substationeditor_.substationeditor.md#readonly-nextelementsibling)
+* [nextSibling](_editors_substationeditor_.substationeditor.md#readonly-nextsibling)
+* [nodeName](_editors_substationeditor_.substationeditor.md#readonly-nodename)
+* [nodeType](_editors_substationeditor_.substationeditor.md#readonly-nodetype)
+* [nodeValue](_editors_substationeditor_.substationeditor.md#nodevalue)
+* [nonce](_editors_substationeditor_.substationeditor.md#optional-nonce)
+* [offsetHeight](_editors_substationeditor_.substationeditor.md#readonly-offsetheight)
+* [offsetLeft](_editors_substationeditor_.substationeditor.md#readonly-offsetleft)
+* [offsetParent](_editors_substationeditor_.substationeditor.md#readonly-offsetparent)
+* [offsetTop](_editors_substationeditor_.substationeditor.md#readonly-offsettop)
+* [offsetWidth](_editors_substationeditor_.substationeditor.md#readonly-offsetwidth)
+* [onabort](_editors_substationeditor_.substationeditor.md#onabort)
+* [onanimationcancel](_editors_substationeditor_.substationeditor.md#onanimationcancel)
+* [onanimationend](_editors_substationeditor_.substationeditor.md#onanimationend)
+* [onanimationiteration](_editors_substationeditor_.substationeditor.md#onanimationiteration)
+* [onanimationstart](_editors_substationeditor_.substationeditor.md#onanimationstart)
+* [onauxclick](_editors_substationeditor_.substationeditor.md#onauxclick)
+* [onblur](_editors_substationeditor_.substationeditor.md#onblur)
+* [oncancel](_editors_substationeditor_.substationeditor.md#oncancel)
+* [oncanplay](_editors_substationeditor_.substationeditor.md#oncanplay)
+* [oncanplaythrough](_editors_substationeditor_.substationeditor.md#oncanplaythrough)
+* [onchange](_editors_substationeditor_.substationeditor.md#onchange)
+* [onclick](_editors_substationeditor_.substationeditor.md#onclick)
+* [onclose](_editors_substationeditor_.substationeditor.md#onclose)
+* [oncontextmenu](_editors_substationeditor_.substationeditor.md#oncontextmenu)
+* [oncopy](_editors_substationeditor_.substationeditor.md#oncopy)
+* [oncuechange](_editors_substationeditor_.substationeditor.md#oncuechange)
+* [oncut](_editors_substationeditor_.substationeditor.md#oncut)
+* [ondblclick](_editors_substationeditor_.substationeditor.md#ondblclick)
+* [ondrag](_editors_substationeditor_.substationeditor.md#ondrag)
+* [ondragend](_editors_substationeditor_.substationeditor.md#ondragend)
+* [ondragenter](_editors_substationeditor_.substationeditor.md#ondragenter)
+* [ondragexit](_editors_substationeditor_.substationeditor.md#ondragexit)
+* [ondragleave](_editors_substationeditor_.substationeditor.md#ondragleave)
+* [ondragover](_editors_substationeditor_.substationeditor.md#ondragover)
+* [ondragstart](_editors_substationeditor_.substationeditor.md#ondragstart)
+* [ondrop](_editors_substationeditor_.substationeditor.md#ondrop)
+* [ondurationchange](_editors_substationeditor_.substationeditor.md#ondurationchange)
+* [onemptied](_editors_substationeditor_.substationeditor.md#onemptied)
+* [onended](_editors_substationeditor_.substationeditor.md#onended)
+* [onerror](_editors_substationeditor_.substationeditor.md#onerror)
+* [onfocus](_editors_substationeditor_.substationeditor.md#onfocus)
+* [onfullscreenchange](_editors_substationeditor_.substationeditor.md#onfullscreenchange)
+* [onfullscreenerror](_editors_substationeditor_.substationeditor.md#onfullscreenerror)
+* [ongotpointercapture](_editors_substationeditor_.substationeditor.md#ongotpointercapture)
+* [oninput](_editors_substationeditor_.substationeditor.md#oninput)
+* [oninvalid](_editors_substationeditor_.substationeditor.md#oninvalid)
+* [onkeydown](_editors_substationeditor_.substationeditor.md#onkeydown)
+* [onkeypress](_editors_substationeditor_.substationeditor.md#onkeypress)
+* [onkeyup](_editors_substationeditor_.substationeditor.md#onkeyup)
+* [onload](_editors_substationeditor_.substationeditor.md#onload)
+* [onloadeddata](_editors_substationeditor_.substationeditor.md#onloadeddata)
+* [onloadedmetadata](_editors_substationeditor_.substationeditor.md#onloadedmetadata)
+* [onloadstart](_editors_substationeditor_.substationeditor.md#onloadstart)
+* [onlostpointercapture](_editors_substationeditor_.substationeditor.md#onlostpointercapture)
+* [onmousedown](_editors_substationeditor_.substationeditor.md#onmousedown)
+* [onmouseenter](_editors_substationeditor_.substationeditor.md#onmouseenter)
+* [onmouseleave](_editors_substationeditor_.substationeditor.md#onmouseleave)
+* [onmousemove](_editors_substationeditor_.substationeditor.md#onmousemove)
+* [onmouseout](_editors_substationeditor_.substationeditor.md#onmouseout)
+* [onmouseover](_editors_substationeditor_.substationeditor.md#onmouseover)
+* [onmouseup](_editors_substationeditor_.substationeditor.md#onmouseup)
+* [onpaste](_editors_substationeditor_.substationeditor.md#onpaste)
+* [onpause](_editors_substationeditor_.substationeditor.md#onpause)
+* [onplay](_editors_substationeditor_.substationeditor.md#onplay)
+* [onplaying](_editors_substationeditor_.substationeditor.md#onplaying)
+* [onpointercancel](_editors_substationeditor_.substationeditor.md#onpointercancel)
+* [onpointerdown](_editors_substationeditor_.substationeditor.md#onpointerdown)
+* [onpointerenter](_editors_substationeditor_.substationeditor.md#onpointerenter)
+* [onpointerleave](_editors_substationeditor_.substationeditor.md#onpointerleave)
+* [onpointermove](_editors_substationeditor_.substationeditor.md#onpointermove)
+* [onpointerout](_editors_substationeditor_.substationeditor.md#onpointerout)
+* [onpointerover](_editors_substationeditor_.substationeditor.md#onpointerover)
+* [onpointerup](_editors_substationeditor_.substationeditor.md#onpointerup)
+* [onprogress](_editors_substationeditor_.substationeditor.md#onprogress)
+* [onratechange](_editors_substationeditor_.substationeditor.md#onratechange)
+* [onreset](_editors_substationeditor_.substationeditor.md#onreset)
+* [onresize](_editors_substationeditor_.substationeditor.md#onresize)
+* [onscroll](_editors_substationeditor_.substationeditor.md#onscroll)
+* [onsecuritypolicyviolation](_editors_substationeditor_.substationeditor.md#onsecuritypolicyviolation)
+* [onseeked](_editors_substationeditor_.substationeditor.md#onseeked)
+* [onseeking](_editors_substationeditor_.substationeditor.md#onseeking)
+* [onselect](_editors_substationeditor_.substationeditor.md#onselect)
+* [onselectionchange](_editors_substationeditor_.substationeditor.md#onselectionchange)
+* [onselectstart](_editors_substationeditor_.substationeditor.md#onselectstart)
+* [onstalled](_editors_substationeditor_.substationeditor.md#onstalled)
+* [onsubmit](_editors_substationeditor_.substationeditor.md#onsubmit)
+* [onsuspend](_editors_substationeditor_.substationeditor.md#onsuspend)
+* [ontimeupdate](_editors_substationeditor_.substationeditor.md#ontimeupdate)
+* [ontoggle](_editors_substationeditor_.substationeditor.md#ontoggle)
+* [ontouchcancel](_editors_substationeditor_.substationeditor.md#optional-ontouchcancel)
+* [ontouchend](_editors_substationeditor_.substationeditor.md#optional-ontouchend)
+* [ontouchmove](_editors_substationeditor_.substationeditor.md#optional-ontouchmove)
+* [ontouchstart](_editors_substationeditor_.substationeditor.md#optional-ontouchstart)
+* [ontransitioncancel](_editors_substationeditor_.substationeditor.md#ontransitioncancel)
+* [ontransitionend](_editors_substationeditor_.substationeditor.md#ontransitionend)
+* [ontransitionrun](_editors_substationeditor_.substationeditor.md#ontransitionrun)
+* [ontransitionstart](_editors_substationeditor_.substationeditor.md#ontransitionstart)
+* [onvolumechange](_editors_substationeditor_.substationeditor.md#onvolumechange)
+* [onwaiting](_editors_substationeditor_.substationeditor.md#onwaiting)
+* [onwheel](_editors_substationeditor_.substationeditor.md#onwheel)
+* [outerHTML](_editors_substationeditor_.substationeditor.md#outerhtml)
+* [ownerDocument](_editors_substationeditor_.substationeditor.md#readonly-ownerdocument)
+* [parentElement](_editors_substationeditor_.substationeditor.md#readonly-parentelement)
+* [parentNode](_editors_substationeditor_.substationeditor.md#readonly-parentnode)
+* [prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)
+* [previousElementSibling](_editors_substationeditor_.substationeditor.md#readonly-previouselementsibling)
+* [previousSibling](_editors_substationeditor_.substationeditor.md#readonly-previoussibling)
+* [renderRoot](_editors_substationeditor_.substationeditor.md#readonly-renderroot)
+* [scrollHeight](_editors_substationeditor_.substationeditor.md#readonly-scrollheight)
+* [scrollLeft](_editors_substationeditor_.substationeditor.md#scrollleft)
+* [scrollTop](_editors_substationeditor_.substationeditor.md#scrolltop)
+* [scrollWidth](_editors_substationeditor_.substationeditor.md#readonly-scrollwidth)
+* [shadowRoot](_editors_substationeditor_.substationeditor.md#readonly-shadowroot)
+* [slot](_editors_substationeditor_.substationeditor.md#slot)
+* [spellcheck](_editors_substationeditor_.substationeditor.md#spellcheck)
+* [style](_editors_substationeditor_.substationeditor.md#readonly-style)
+* [substationDescUI](_editors_substationeditor_.substationeditor.md#substationdescui)
+* [substationNameUI](_editors_substationeditor_.substationeditor.md#substationnameui)
+* [tabIndex](_editors_substationeditor_.substationeditor.md#tabindex)
+* [tagName](_editors_substationeditor_.substationeditor.md#readonly-tagname)
+* [textContent](_editors_substationeditor_.substationeditor.md#textcontent)
+* [title](_editors_substationeditor_.substationeditor.md#title)
+* [translate](_editors_substationeditor_.substationeditor.md#translate)
+* [voltageLevelDescUI](_editors_substationeditor_.substationeditor.md#voltageleveldescui)
+* [voltageLevelNameUI](_editors_substationeditor_.substationeditor.md#voltagelevelnameui)
+* [voltageLevelNomFreqUI](_editors_substationeditor_.substationeditor.md#voltagelevelnomfrequi)
+* [voltageLevelNumPhasesUI](_editors_substationeditor_.substationeditor.md#voltagelevelnumphasesui)
+* [voltageLevelVoltageUI](_editors_substationeditor_.substationeditor.md#voltagelevelvoltageui)
+* [[finalized]](_editors_substationeditor_.substationeditor.md#static-protected-[finalized])
+* [finalized](_editors_substationeditor_.substationeditor.md#static-protected-finalized)
+* [properties](_editors_substationeditor_.substationeditor.md#static-properties)
+* [render](_editors_substationeditor_.substationeditor.md#static-render)
+* [styles](_editors_substationeditor_.substationeditor.md#static-styles)
 
 ### Accessors
 
-* [canRedo](_open_scd_base_.openscdbase.md#canredo)
-* [canUndo](_open_scd_base_.openscdbase.md#canundo)
-* [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
-* [name](_open_scd_base_.openscdbase.md#name)
-* [nextAction](_open_scd_base_.openscdbase.md#nextaction)
-* [previousAction](_open_scd_base_.openscdbase.md#previousaction)
-* [src](_open_scd_base_.openscdbase.md#src)
-* [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
-* [observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)
+* [desc](_editors_substationeditor_.substationeditor.md#desc)
+* [element](_editors_substationeditor_.substationeditor.md#element)
+* [hasUpdated](_editors_substationeditor_.substationeditor.md#protected-hasupdated)
+* [name](_editors_substationeditor_.substationeditor.md#name)
+* [parent](_editors_substationeditor_.substationeditor.md#parent)
+* [updateComplete](_editors_substationeditor_.substationeditor.md#updatecomplete)
+* [observedAttributes](_editors_substationeditor_.substationeditor.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_open_scd_base_.openscdbase.md#protected-_getupdatecomplete)
-* [addEventListener](_open_scd_base_.openscdbase.md#addeventlistener)
-* [adoptStyles](_open_scd_base_.openscdbase.md#protected-adoptstyles)
-* [after](_open_scd_base_.openscdbase.md#after)
-* [animate](_open_scd_base_.openscdbase.md#animate)
-* [append](_open_scd_base_.openscdbase.md#append)
-* [appendChild](_open_scd_base_.openscdbase.md#appendchild)
-* [attachShadow](_open_scd_base_.openscdbase.md#attachshadow)
-* [attributeChangedCallback](_open_scd_base_.openscdbase.md#attributechangedcallback)
-* [before](_open_scd_base_.openscdbase.md#before)
-* [blur](_open_scd_base_.openscdbase.md#blur)
-* [click](_open_scd_base_.openscdbase.md#click)
-* [cloneNode](_open_scd_base_.openscdbase.md#clonenode)
-* [closest](_open_scd_base_.openscdbase.md#closest)
-* [commit](_open_scd_base_.openscdbase.md#commit)
-* [compareDocumentPosition](_open_scd_base_.openscdbase.md#comparedocumentposition)
-* [connectedCallback](_open_scd_base_.openscdbase.md#connectedcallback)
-* [contains](_open_scd_base_.openscdbase.md#contains)
-* [createRenderRoot](_open_scd_base_.openscdbase.md#protected-createrenderroot)
-* [disconnectedCallback](_open_scd_base_.openscdbase.md#disconnectedcallback)
-* [dispatchEvent](_open_scd_base_.openscdbase.md#dispatchevent)
-* [enableUpdating](_open_scd_base_.openscdbase.md#protected-enableupdating)
-* [error](_open_scd_base_.openscdbase.md#error)
-* [firstUpdated](_open_scd_base_.openscdbase.md#protected-firstupdated)
-* [focus](_open_scd_base_.openscdbase.md#focus)
-* [getAnimations](_open_scd_base_.openscdbase.md#getanimations)
-* [getAttribute](_open_scd_base_.openscdbase.md#getattribute)
-* [getAttributeNS](_open_scd_base_.openscdbase.md#getattributens)
-* [getAttributeNames](_open_scd_base_.openscdbase.md#getattributenames)
-* [getAttributeNode](_open_scd_base_.openscdbase.md#getattributenode)
-* [getAttributeNodeNS](_open_scd_base_.openscdbase.md#getattributenodens)
-* [getBoundingClientRect](_open_scd_base_.openscdbase.md#getboundingclientrect)
-* [getClientRects](_open_scd_base_.openscdbase.md#getclientrects)
-* [getElementsByClassName](_open_scd_base_.openscdbase.md#getelementsbyclassname)
-* [getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)
-* [getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)
-* [getRootNode](_open_scd_base_.openscdbase.md#getrootnode)
-* [handleKeyPress](_open_scd_base_.openscdbase.md#private-handlekeypress)
-* [hasAttribute](_open_scd_base_.openscdbase.md#hasattribute)
-* [hasAttributeNS](_open_scd_base_.openscdbase.md#hasattributens)
-* [hasAttributes](_open_scd_base_.openscdbase.md#hasattributes)
-* [hasChildNodes](_open_scd_base_.openscdbase.md#haschildnodes)
-* [hasPointerCapture](_open_scd_base_.openscdbase.md#haspointercapture)
-* [info](_open_scd_base_.openscdbase.md#optional-info)
-* [initialize](_open_scd_base_.openscdbase.md#protected-initialize)
-* [insertAdjacentElement](_open_scd_base_.openscdbase.md#insertadjacentelement)
-* [insertAdjacentHTML](_open_scd_base_.openscdbase.md#insertadjacenthtml)
-* [insertAdjacentText](_open_scd_base_.openscdbase.md#insertadjacenttext)
-* [insertBefore](_open_scd_base_.openscdbase.md#insertbefore)
-* [isDefaultNamespace](_open_scd_base_.openscdbase.md#isdefaultnamespace)
-* [isEqualNode](_open_scd_base_.openscdbase.md#isequalnode)
-* [isSameNode](_open_scd_base_.openscdbase.md#issamenode)
-* [loadDoc](_open_scd_base_.openscdbase.md#private-loaddoc)
-* [loadFile](_open_scd_base_.openscdbase.md#private-loadfile)
-* [log](_open_scd_base_.openscdbase.md#log)
-* [lookupNamespaceURI](_open_scd_base_.openscdbase.md#lookupnamespaceuri)
-* [lookupPrefix](_open_scd_base_.openscdbase.md#lookupprefix)
-* [matches](_open_scd_base_.openscdbase.md#matches)
-* [msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)
-* [normalize](_open_scd_base_.openscdbase.md#normalize)
-* [performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)
-* [prepend](_open_scd_base_.openscdbase.md#prepend)
-* [querySelector](_open_scd_base_.openscdbase.md#queryselector)
-* [querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)
-* [redo](_open_scd_base_.openscdbase.md#redo)
-* [releasePointerCapture](_open_scd_base_.openscdbase.md#releasepointercapture)
-* [remove](_open_scd_base_.openscdbase.md#remove)
-* [removeAttribute](_open_scd_base_.openscdbase.md#removeattribute)
-* [removeAttributeNS](_open_scd_base_.openscdbase.md#removeattributens)
-* [removeAttributeNode](_open_scd_base_.openscdbase.md#removeattributenode)
-* [removeChild](_open_scd_base_.openscdbase.md#removechild)
-* [removeEventListener](_open_scd_base_.openscdbase.md#removeeventlistener)
-* [render](_open_scd_base_.openscdbase.md#render)
-* [renderActionItem](_open_scd_base_.openscdbase.md#renderactionitem)
-* [renderEditorTab](_open_scd_base_.openscdbase.md#rendereditortab)
-* [renderHistory](_open_scd_base_.openscdbase.md#renderhistory)
-* [renderLogEntry](_open_scd_base_.openscdbase.md#renderlogentry)
-* [renderMenuEntry](_open_scd_base_.openscdbase.md#rendermenuentry)
-* [replaceChild](_open_scd_base_.openscdbase.md#replacechild)
-* [replaceWith](_open_scd_base_.openscdbase.md#replacewith)
-* [requestFullscreen](_open_scd_base_.openscdbase.md#requestfullscreen)
-* [requestPointerLock](_open_scd_base_.openscdbase.md#requestpointerlock)
-* [requestUpdate](_open_scd_base_.openscdbase.md#requestupdate)
-* [scroll](_open_scd_base_.openscdbase.md#scroll)
-* [scrollBy](_open_scd_base_.openscdbase.md#scrollby)
-* [scrollIntoView](_open_scd_base_.openscdbase.md#scrollintoview)
-* [scrollTo](_open_scd_base_.openscdbase.md#scrollto)
-* [setAttribute](_open_scd_base_.openscdbase.md#setattribute)
-* [setAttributeNS](_open_scd_base_.openscdbase.md#setattributens)
-* [setAttributeNode](_open_scd_base_.openscdbase.md#setattributenode)
-* [setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)
-* [setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)
-* [shouldUpdate](_open_scd_base_.openscdbase.md#protected-shouldupdate)
-* [toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)
-* [undo](_open_scd_base_.openscdbase.md#undo)
-* [update](_open_scd_base_.openscdbase.md#protected-update)
-* [updated](_open_scd_base_.openscdbase.md#protected-updated)
-* [warn](_open_scd_base_.openscdbase.md#optional-warn)
-* [webkitMatchesSelector](_open_scd_base_.openscdbase.md#webkitmatchesselector)
-* [createProperty](_open_scd_base_.openscdbase.md#static-createproperty)
-* [finalize](_open_scd_base_.openscdbase.md#static-protected-finalize)
-* [getPropertyDescriptor](_open_scd_base_.openscdbase.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_open_scd_base_.openscdbase.md#static-protected-getpropertyoptions)
-* [getStyles](_open_scd_base_.openscdbase.md#static-getstyles)
-
-### Object literals
-
-* [plugins](_open_scd_base_.openscdbase.md#plugins)
+* [_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)
+* [addEventListener](_editors_substationeditor_.substationeditor.md#addeventlistener)
+* [adoptStyles](_editors_substationeditor_.substationeditor.md#protected-adoptstyles)
+* [after](_editors_substationeditor_.substationeditor.md#after)
+* [animate](_editors_substationeditor_.substationeditor.md#animate)
+* [append](_editors_substationeditor_.substationeditor.md#append)
+* [appendChild](_editors_substationeditor_.substationeditor.md#appendchild)
+* [attachShadow](_editors_substationeditor_.substationeditor.md#attachshadow)
+* [attributeChangedCallback](_editors_substationeditor_.substationeditor.md#attributechangedcallback)
+* [before](_editors_substationeditor_.substationeditor.md#before)
+* [blur](_editors_substationeditor_.substationeditor.md#blur)
+* [checkValidity](_editors_substationeditor_.substationeditor.md#checkvalidity)
+* [checkVoltageLevelValidity](_editors_substationeditor_.substationeditor.md#checkvoltagelevelvalidity)
+* [click](_editors_substationeditor_.substationeditor.md#click)
+* [cloneNode](_editors_substationeditor_.substationeditor.md#clonenode)
+* [closest](_editors_substationeditor_.substationeditor.md#closest)
+* [compareDocumentPosition](_editors_substationeditor_.substationeditor.md#comparedocumentposition)
+* [connectedCallback](_editors_substationeditor_.substationeditor.md#connectedcallback)
+* [contains](_editors_substationeditor_.substationeditor.md#contains)
+* [createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)
+* [disconnectedCallback](_editors_substationeditor_.substationeditor.md#disconnectedcallback)
+* [dispatchEvent](_editors_substationeditor_.substationeditor.md#dispatchevent)
+* [enableUpdating](_editors_substationeditor_.substationeditor.md#protected-enableupdating)
+* [firstUpdated](_editors_substationeditor_.substationeditor.md#protected-firstupdated)
+* [focus](_editors_substationeditor_.substationeditor.md#focus)
+* [getAnimations](_editors_substationeditor_.substationeditor.md#getanimations)
+* [getAttribute](_editors_substationeditor_.substationeditor.md#getattribute)
+* [getAttributeNS](_editors_substationeditor_.substationeditor.md#getattributens)
+* [getAttributeNames](_editors_substationeditor_.substationeditor.md#getattributenames)
+* [getAttributeNode](_editors_substationeditor_.substationeditor.md#getattributenode)
+* [getAttributeNodeNS](_editors_substationeditor_.substationeditor.md#getattributenodens)
+* [getBoundingClientRect](_editors_substationeditor_.substationeditor.md#getboundingclientrect)
+* [getClientRects](_editors_substationeditor_.substationeditor.md#getclientrects)
+* [getElementsByClassName](_editors_substationeditor_.substationeditor.md#getelementsbyclassname)
+* [getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)
+* [getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)
+* [getRootNode](_editors_substationeditor_.substationeditor.md#getrootnode)
+* [hasAttribute](_editors_substationeditor_.substationeditor.md#hasattribute)
+* [hasAttributeNS](_editors_substationeditor_.substationeditor.md#hasattributens)
+* [hasAttributes](_editors_substationeditor_.substationeditor.md#hasattributes)
+* [hasChildNodes](_editors_substationeditor_.substationeditor.md#haschildnodes)
+* [hasPointerCapture](_editors_substationeditor_.substationeditor.md#haspointercapture)
+* [info](_editors_substationeditor_.substationeditor.md#optional-info)
+* [initialize](_editors_substationeditor_.substationeditor.md#protected-initialize)
+* [insertAdjacentElement](_editors_substationeditor_.substationeditor.md#insertadjacentelement)
+* [insertAdjacentHTML](_editors_substationeditor_.substationeditor.md#insertadjacenthtml)
+* [insertAdjacentText](_editors_substationeditor_.substationeditor.md#insertadjacenttext)
+* [insertBefore](_editors_substationeditor_.substationeditor.md#insertbefore)
+* [isDefaultNamespace](_editors_substationeditor_.substationeditor.md#isdefaultnamespace)
+* [isEqualNode](_editors_substationeditor_.substationeditor.md#isequalnode)
+* [isSameNode](_editors_substationeditor_.substationeditor.md#issamenode)
+* [lookupNamespaceURI](_editors_substationeditor_.substationeditor.md#lookupnamespaceuri)
+* [lookupPrefix](_editors_substationeditor_.substationeditor.md#lookupprefix)
+* [matches](_editors_substationeditor_.substationeditor.md#matches)
+* [msGetRegionContent](_editors_substationeditor_.substationeditor.md#msgetregioncontent)
+* [newCreateAction](_editors_substationeditor_.substationeditor.md#newcreateaction)
+* [newUpdateAction](_editors_substationeditor_.substationeditor.md#newupdateaction)
+* [newVoltageLevelCreateAction](_editors_substationeditor_.substationeditor.md#newvoltagelevelcreateaction)
+* [normalize](_editors_substationeditor_.substationeditor.md#normalize)
+* [performUpdate](_editors_substationeditor_.substationeditor.md#protected-performupdate)
+* [prepend](_editors_substationeditor_.substationeditor.md#prepend)
+* [querySelector](_editors_substationeditor_.substationeditor.md#queryselector)
+* [querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)
+* [releasePointerCapture](_editors_substationeditor_.substationeditor.md#releasepointercapture)
+* [remove](_editors_substationeditor_.substationeditor.md#remove)
+* [removeAttribute](_editors_substationeditor_.substationeditor.md#removeattribute)
+* [removeAttributeNS](_editors_substationeditor_.substationeditor.md#removeattributens)
+* [removeAttributeNode](_editors_substationeditor_.substationeditor.md#removeattributenode)
+* [removeChild](_editors_substationeditor_.substationeditor.md#removechild)
+* [removeEventListener](_editors_substationeditor_.substationeditor.md#removeeventlistener)
+* [render](_editors_substationeditor_.substationeditor.md#render)
+* [renderCreateVoltageLevelUI](_editors_substationeditor_.substationeditor.md#rendercreatevoltagelevelui)
+* [renderEditSubstationUI](_editors_substationeditor_.substationeditor.md#rendereditsubstationui)
+* [renderHeader](_editors_substationeditor_.substationeditor.md#renderheader)
+* [replaceChild](_editors_substationeditor_.substationeditor.md#replacechild)
+* [replaceWith](_editors_substationeditor_.substationeditor.md#replacewith)
+* [requestFullscreen](_editors_substationeditor_.substationeditor.md#requestfullscreen)
+* [requestPointerLock](_editors_substationeditor_.substationeditor.md#requestpointerlock)
+* [requestSubstationCreate](_editors_substationeditor_.substationeditor.md#requestsubstationcreate)
+* [requestSubstationUpdate](_editors_substationeditor_.substationeditor.md#requestsubstationupdate)
+* [requestUpdate](_editors_substationeditor_.substationeditor.md#requestupdate)
+* [requestVoltageLevelCreate](_editors_substationeditor_.substationeditor.md#requestvoltagelevelcreate)
+* [scroll](_editors_substationeditor_.substationeditor.md#scroll)
+* [scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)
+* [scrollIntoView](_editors_substationeditor_.substationeditor.md#scrollintoview)
+* [scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)
+* [setAttribute](_editors_substationeditor_.substationeditor.md#setattribute)
+* [setAttributeNS](_editors_substationeditor_.substationeditor.md#setattributens)
+* [setAttributeNode](_editors_substationeditor_.substationeditor.md#setattributenode)
+* [setAttributeNodeNS](_editors_substationeditor_.substationeditor.md#setattributenodens)
+* [setPointerCapture](_editors_substationeditor_.substationeditor.md#setpointercapture)
+* [shouldUpdate](_editors_substationeditor_.substationeditor.md#protected-shouldupdate)
+* [toggleAttribute](_editors_substationeditor_.substationeditor.md#toggleattribute)
+* [update](_editors_substationeditor_.substationeditor.md#protected-update)
+* [updated](_editors_substationeditor_.substationeditor.md#updated)
+* [warn](_editors_substationeditor_.substationeditor.md#optional-warn)
+* [webkitMatchesSelector](_editors_substationeditor_.substationeditor.md#webkitmatchesselector)
+* [createProperty](_editors_substationeditor_.substationeditor.md#static-createproperty)
+* [finalize](_editors_substationeditor_.substationeditor.md#static-protected-finalize)
+* [getPropertyDescriptor](_editors_substationeditor_.substationeditor.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_editors_substationeditor_.substationeditor.md#static-protected-getpropertyoptions)
+* [getStyles](_editors_substationeditor_.substationeditor.md#static-getstyles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new OpenSCDBase**(): *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+\+ **new SubstationEditor**(): *[SubstationEditor](_editors_substationeditor_.substationeditor.md)*
 
-*Overrides void*
+*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[constructor](_editors_substationeditor_.substationeditor.md#constructor)*
 
-Defined in src/open-scd-base.ts:150
+Defined in node_modules/lit-element/lib/updating-element.d.ts:273
 
-**Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+**Returns:** *[SubstationEditor](_editors_substationeditor_.substationeditor.md)*
 
 ## Properties
 
@@ -357,8 +347,6 @@ Defined in src/open-scd-base.ts:150
 • **ATTRIBUTE_NODE**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ATTRIBUTE_NODE](_editors_substationeditor_.substationeditor.md#readonly-attribute_node)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ATTRIBUTE_NODE](_editors_substationeditor_.substationeditor.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10829
 
@@ -369,8 +357,6 @@ ___
 • **CDATA_SECTION_NODE**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[CDATA_SECTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-cdata_section_node)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[CDATA_SECTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -384,8 +370,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[COMMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-comment_node)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[COMMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-comment_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10837
 
 node is a Comment node.
@@ -397,8 +381,6 @@ ___
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_FRAGMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_fragment_node)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_FRAGMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -412,8 +394,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_node)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
 node is a document.
@@ -425,8 +405,6 @@ ___
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_CONTAINED_BY](_editors_substationeditor_.substationeditor.md#readonly-document_position_contained_by)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_CONTAINED_BY](_editors_substationeditor_.substationeditor.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
@@ -440,8 +418,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_CONTAINS](_editors_substationeditor_.substationeditor.md#readonly-document_position_contains)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_CONTAINS](_editors_substationeditor_.substationeditor.md#readonly-document_position_contains)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
 Set when other is an ancestor of node.
@@ -453,8 +429,6 @@ ___
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_DISCONNECTED](_editors_substationeditor_.substationeditor.md#readonly-document_position_disconnected)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_DISCONNECTED](_editors_substationeditor_.substationeditor.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
@@ -468,8 +442,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_FOLLOWING](_editors_substationeditor_.substationeditor.md#readonly-document_position_following)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_FOLLOWING](_editors_substationeditor_.substationeditor.md#readonly-document_position_following)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
 Set when other is following node.
@@ -482,8 +454,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substationeditor_.substationeditor.md#readonly-document_position_implementation_specific)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substationeditor_.substationeditor.md#readonly-document_position_implementation_specific)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10862
 
 ___
@@ -493,8 +463,6 @@ ___
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_PRECEDING](_editors_substationeditor_.substationeditor.md#readonly-document_position_preceding)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_PRECEDING](_editors_substationeditor_.substationeditor.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10866
 
@@ -508,8 +476,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_TYPE_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_type_node)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_TYPE_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_type_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10870
 
 node is a doctype.
@@ -521,8 +487,6 @@ ___
 • **ELEMENT_NODE**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ELEMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-element_node)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ELEMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
@@ -536,8 +500,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ENTITY_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_node)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ENTITY_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10875
 
 ___
@@ -547,8 +509,6 @@ ___
 • **ENTITY_REFERENCE_NODE**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ENTITY_REFERENCE_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_reference_node)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ENTITY_REFERENCE_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10876
 
@@ -560,8 +520,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[NOTATION_NODE](_editors_substationeditor_.substationeditor.md#readonly-notation_node)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[NOTATION_NODE](_editors_substationeditor_.substationeditor.md#readonly-notation_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10877
 
 ___
@@ -571,8 +529,6 @@ ___
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[PROCESSING_INSTRUCTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-processing_instruction_node)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[PROCESSING_INSTRUCTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10881
 
@@ -586,8 +542,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[TEXT_NODE](_editors_substationeditor_.substationeditor.md#readonly-text_node)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[TEXT_NODE](_editors_substationeditor_.substationeditor.md#readonly-text_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10885
 
 node is a Text node.
@@ -600,8 +554,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[accessKey](_editors_substationeditor_.substationeditor.md#accesskey)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[accessKey](_editors_substationeditor_.substationeditor.md#accesskey)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6576
 
 ___
@@ -612,19 +564,7 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[accessKeyLabel](_editors_substationeditor_.substationeditor.md#readonly-accesskeylabel)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[accessKeyLabel](_editors_substationeditor_.substationeditor.md#readonly-accesskeylabel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
-
-___
-
-###  activeTab
-
-• **activeTab**: *number* = 0
-
-Defined in src/open-scd-base.ts:61
-
-The currently active editor tab.
 
 ___
 
@@ -646,8 +586,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[attributes](_editors_substationeditor_.substationeditor.md#readonly-attributes)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[attributes](_editors_substationeditor_.substationeditor.md#readonly-attributes)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5090
 
 ___
@@ -657,8 +595,6 @@ ___
 • **autocapitalize**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6578
 
@@ -670,8 +606,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autofocus](_editors_substationeditor_.substationeditor.md#autofocus)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autofocus](_editors_substationeditor_.substationeditor.md#autofocus)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7989
 
 ___
@@ -681,8 +615,6 @@ ___
 • **baseURI**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[baseURI](_editors_substationeditor_.substationeditor.md#readonly-baseuri)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[baseURI](_editors_substationeditor_.substationeditor.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10744
 
@@ -696,8 +628,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[childElementCount](_editors_substationeditor_.substationeditor.md#readonly-childelementcount)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[childElementCount](_editors_substationeditor_.substationeditor.md#readonly-childelementcount)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11301
 
 ___
@@ -707,8 +637,6 @@ ___
 • **childNodes**: *NodeListOf‹ChildNode›*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[childNodes](_editors_substationeditor_.substationeditor.md#readonly-childnodes)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[childNodes](_editors_substationeditor_.substationeditor.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10748
 
@@ -722,8 +650,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[children](_editors_substationeditor_.substationeditor.md#readonly-children)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[children](_editors_substationeditor_.substationeditor.md#readonly-children)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11305
 
 Returns the child elements.
@@ -735,8 +661,6 @@ ___
 • **classList**: *DOMTokenList*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[classList](_editors_substationeditor_.substationeditor.md#readonly-classlist)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[classList](_editors_substationeditor_.substationeditor.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5094
 
@@ -750,8 +674,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[className](_editors_substationeditor_.substationeditor.md#classname)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[className](_editors_substationeditor_.substationeditor.md#classname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5098
 
 Returns the value of element's class content attribute. Can be set to change it.
@@ -764,8 +686,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientHeight](_editors_substationeditor_.substationeditor.md#readonly-clientheight)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientHeight](_editors_substationeditor_.substationeditor.md#readonly-clientheight)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5099
 
 ___
@@ -775,8 +695,6 @@ ___
 • **clientLeft**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientLeft](_editors_substationeditor_.substationeditor.md#readonly-clientleft)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientLeft](_editors_substationeditor_.substationeditor.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
@@ -788,8 +706,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientTop](_editors_substationeditor_.substationeditor.md#readonly-clienttop)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientTop](_editors_substationeditor_.substationeditor.md#readonly-clienttop)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5101
 
 ___
@@ -799,8 +715,6 @@ ___
 • **clientWidth**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientWidth](_editors_substationeditor_.substationeditor.md#readonly-clientwidth)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientWidth](_editors_substationeditor_.substationeditor.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5102
 
@@ -812,17 +726,15 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[contentEditable](_editors_substationeditor_.substationeditor.md#contenteditable)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[contentEditable](_editors_substationeditor_.substationeditor.md#contenteditable)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
 ___
 
-### `Private` currentSrc
+###  createVoltageLevelUI
 
-• **currentSrc**: *string* = ""
+• **createVoltageLevelUI**: *Dialog*
 
-Defined in src/open-scd-base.ts:73
+Defined in src/editors/SubstationEditor.ts:51
 
 ___
 
@@ -832,9 +744,31 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dataset](_editors_substationeditor_.substationeditor.md#readonly-dataset)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dataset](_editors_substationeditor_.substationeditor.md#readonly-dataset)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
+
+___
+
+###  defaultNomFreq
+
+• **defaultNomFreq**: *number* = 50
+
+Defined in src/editors/SubstationEditor.ts:20
+
+___
+
+###  defaultNumPhases
+
+• **defaultNumPhases**: *number* = 3
+
+Defined in src/editors/SubstationEditor.ts:21
+
+___
+
+###  defaultVoltage
+
+• **defaultVoltage**: *number* = 110
+
+Defined in src/editors/SubstationEditor.ts:22
 
 ___
 
@@ -844,21 +778,15 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dir](_editors_substationeditor_.substationeditor.md#dir)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dir](_editors_substationeditor_.substationeditor.md#dir)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
 ___
 
 ###  doc
 
-• **doc**: *XMLDocument* = newEmptySCD()
+• **doc**: *XMLDocument*
 
-*Overrides void*
-
-Defined in src/open-scd-base.ts:64
-
-The `XMLDocument` representation of the current file.
+Defined in src/editors/SubstationEditor.ts:25
 
 ___
 
@@ -868,17 +796,15 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[draggable](_editors_substationeditor_.substationeditor.md#draggable)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[draggable](_editors_substationeditor_.substationeditor.md#draggable)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
 ___
 
-###  fileUI
+###  editSubstationUI
 
-• **fileUI**: *HTMLInputElement*
+• **editSubstationUI**: *Dialog*
 
-Defined in src/open-scd-base.ts:87
+Defined in src/editors/SubstationEditor.ts:44
 
 ___
 
@@ -887,8 +813,6 @@ ___
 • **firstChild**: *ChildNode | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstChild](_editors_substationeditor_.substationeditor.md#readonly-firstchild)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstChild](_editors_substationeditor_.substationeditor.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10752
 
@@ -902,8 +826,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstElementChild](_editors_substationeditor_.substationeditor.md#readonly-firstelementchild)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstElementChild](_editors_substationeditor_.substationeditor.md#readonly-firstelementchild)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
 Returns the first child that is an element, and null otherwise.
@@ -916,8 +838,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[floatingLabelFoundation](_editors_substationeditor_.substationeditor.md#optional-floatinglabelfoundation)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[floatingLabelFoundation](_editors_substationeditor_.substationeditor.md#optional-floatinglabelfoundation)*
-
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
 
 ___
@@ -928,19 +848,7 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hidden](_editors_substationeditor_.substationeditor.md#hidden)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hidden](_editors_substationeditor_.substationeditor.md#hidden)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
-
-___
-
-###  history
-
-• **history**: *[LogEntry](../interfaces/_editing_.logentry.md)[]* = []
-
-*Overrides void*
-
-Defined in src/open-scd-base.ts:55
 
 ___
 
@@ -949,8 +857,6 @@ ___
 • **id**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[id](_editors_substationeditor_.substationeditor.md#id)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[id](_editors_substationeditor_.substationeditor.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5106
 
@@ -964,8 +870,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[innerHTML](_editors_substationeditor_.substationeditor.md#innerhtml)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[innerHTML](_editors_substationeditor_.substationeditor.md#innerhtml)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9574
 
 ___
@@ -975,8 +879,6 @@ ___
 • **innerText**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[innerText](_editors_substationeditor_.substationeditor.md#innertext)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[innerText](_editors_substationeditor_.substationeditor.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6582
 
@@ -988,8 +890,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5255
 
 ___
@@ -999,8 +899,6 @@ ___
 • **isConnected**: *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isConnected](_editors_substationeditor_.substationeditor.md#readonly-isconnected)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isConnected](_editors_substationeditor_.substationeditor.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -1014,8 +912,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isContentEditable](_editors_substationeditor_.substationeditor.md#readonly-iscontenteditable)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isContentEditable](_editors_substationeditor_.substationeditor.md#readonly-iscontenteditable)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5256
 
 ___
@@ -1026,19 +922,7 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lang](_editors_substationeditor_.substationeditor.md#lang)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lang](_editors_substationeditor_.substationeditor.md#lang)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6583
-
-___
-
-###  lastAction
-
-• **lastAction**: *number* = -1
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastAction](_open_scd_base_.openscdbase.md#lastaction)*
-
-Defined in src/editing.ts:38
 
 ___
 
@@ -1047,8 +931,6 @@ ___
 • **lastChild**: *ChildNode | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lastChild](_editors_substationeditor_.substationeditor.md#readonly-lastchild)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lastChild](_editors_substationeditor_.substationeditor.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -1062,8 +944,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lastElementChild](_editors_substationeditor_.substationeditor.md#readonly-lastelementchild)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lastElementChild](_editors_substationeditor_.substationeditor.md#readonly-lastelementchild)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
 Returns the last child that is an element, and null otherwise.
@@ -1076,8 +956,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lineRippleFoundation](_editors_substationeditor_.substationeditor.md#optional-lineripplefoundation)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lineRippleFoundation](_editors_substationeditor_.substationeditor.md#optional-lineripplefoundation)*
-
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
 ___
@@ -1088,79 +966,25 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[localName](_editors_substationeditor_.substationeditor.md#readonly-localname)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[localName](_editors_substationeditor_.substationeditor.md#readonly-localname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
 Returns the local name.
 
 ___
 
-###  logUI
+###  menuIconUI
 
-• **logUI**: *Dialog*
+• **menuIconUI**: *IconButton*
 
-Defined in src/open-scd-base.ts:85
-
-___
-
-###  menu
-
-• **menu**: *[MenuEntry](../interfaces/_open_scd_base_.menuentry.md)[]* = [
-    {
-      icon: 'folder_open',
-      name: 'Open project',
-      startsGroup: true,
-      actionItem: true,
-      action: (): void => this.fileUI.click(),
-    },
-    { icon: 'create_new_folder', name: 'New project' },
-    { icon: 'snippet_folder', name: 'Import IED' },
-    { icon: 'save', name: 'Save project' },
-    {
-      icon: 'undo',
-      name: 'Undo',
-      hint: 'CTRL+Z',
-      startsGroup: true,
-      actionItem: true,
-      action: this.undo,
-      isDisabled: (): boolean => !this.canUndo,
-    },
-    {
-      icon: 'redo',
-      name: 'Redo',
-      hint: 'CTRL+Y',
-      actionItem: true,
-      action: this.redo,
-      isDisabled: (): boolean => !this.canRedo,
-    },
-    { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
-    {
-      icon: 'rule',
-      name: 'View log',
-      hint: 'CTRL+L',
-      actionItem: true,
-      action: (): void => this.logUI.show(),
-    },
-  ]
-
-Defined in src/open-scd-base.ts:159
+Defined in src/editors/SubstationEditor.ts:50
 
 ___
 
 ###  menuUI
 
-• **menuUI**: *Drawer*
+• **menuUI**: *Menu*
 
-Defined in src/open-scd-base.ts:84
-
-___
-
-###  messageUI
-
-• **messageUI**: *Snackbar*
-
-Defined in src/open-scd-base.ts:86
+Defined in src/editors/SubstationEditor.ts:49
 
 ___
 
@@ -1184,8 +1008,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nextElementSibling](_editors_substationeditor_.substationeditor.md#readonly-nextelementsibling)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nextElementSibling](_editors_substationeditor_.substationeditor.md#readonly-nextelementsibling)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11031
 
 Returns the first following sibling that is an element, and null otherwise.
@@ -1197,8 +1019,6 @@ ___
 • **nextSibling**: *ChildNode | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nextSibling](_editors_substationeditor_.substationeditor.md#readonly-nextsibling)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nextSibling](_editors_substationeditor_.substationeditor.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10766
 
@@ -1212,8 +1032,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeName](_editors_substationeditor_.substationeditor.md#readonly-nodename)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeName](_editors_substationeditor_.substationeditor.md#readonly-nodename)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10770
 
 Returns a string appropriate for the type of node.
@@ -1225,8 +1043,6 @@ ___
 • **nodeType**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeType](_editors_substationeditor_.substationeditor.md#readonly-nodetype)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeType](_editors_substationeditor_.substationeditor.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10774
 
@@ -1240,8 +1056,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeValue](_editors_substationeditor_.substationeditor.md#nodevalue)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeValue](_editors_substationeditor_.substationeditor.md#nodevalue)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10775
 
 ___
@@ -1251,8 +1065,6 @@ ___
 • **nonce**? : *undefined | string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nonce](_editors_substationeditor_.substationeditor.md#optional-nonce)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nonce](_editors_substationeditor_.substationeditor.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7991
 
@@ -1264,8 +1076,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetHeight](_editors_substationeditor_.substationeditor.md#readonly-offsetheight)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetHeight](_editors_substationeditor_.substationeditor.md#readonly-offsetheight)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6584
 
 ___
@@ -1275,8 +1085,6 @@ ___
 • **offsetLeft**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetLeft](_editors_substationeditor_.substationeditor.md#readonly-offsetleft)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetLeft](_editors_substationeditor_.substationeditor.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6585
 
@@ -1288,8 +1096,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetParent](_editors_substationeditor_.substationeditor.md#readonly-offsetparent)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetParent](_editors_substationeditor_.substationeditor.md#readonly-offsetparent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6586
 
 ___
@@ -1299,8 +1105,6 @@ ___
 • **offsetTop**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetTop](_editors_substationeditor_.substationeditor.md#readonly-offsettop)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetTop](_editors_substationeditor_.substationeditor.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
@@ -1312,8 +1116,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetWidth](_editors_substationeditor_.substationeditor.md#readonly-offsetwidth)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetWidth](_editors_substationeditor_.substationeditor.md#readonly-offsetwidth)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
 ___
@@ -1323,8 +1125,6 @@ ___
 • **onabort**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onabort](_editors_substationeditor_.substationeditor.md#onabort)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onabort](_editors_substationeditor_.substationeditor.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5766
 
@@ -1340,8 +1140,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationcancel](_editors_substationeditor_.substationeditor.md#onanimationcancel)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationcancel](_editors_substationeditor_.substationeditor.md#onanimationcancel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5767
 
 ___
@@ -1351,8 +1149,6 @@ ___
 • **onanimationend**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationend](_editors_substationeditor_.substationeditor.md#onanimationend)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationend](_editors_substationeditor_.substationeditor.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5768
 
@@ -1364,8 +1160,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationiteration](_editors_substationeditor_.substationeditor.md#onanimationiteration)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationiteration](_editors_substationeditor_.substationeditor.md#onanimationiteration)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5769
 
 ___
@@ -1375,8 +1169,6 @@ ___
 • **onanimationstart**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationstart](_editors_substationeditor_.substationeditor.md#onanimationstart)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationstart](_editors_substationeditor_.substationeditor.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5770
 
@@ -1388,8 +1180,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onauxclick](_editors_substationeditor_.substationeditor.md#onauxclick)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onauxclick](_editors_substationeditor_.substationeditor.md#onauxclick)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5771
 
 ___
@@ -1399,8 +1189,6 @@ ___
 • **onblur**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onblur](_editors_substationeditor_.substationeditor.md#onblur)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onblur](_editors_substationeditor_.substationeditor.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5776
 
@@ -1416,8 +1204,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncancel](_editors_substationeditor_.substationeditor.md#oncancel)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncancel](_editors_substationeditor_.substationeditor.md#oncancel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
 ___
@@ -1427,8 +1213,6 @@ ___
 • **oncanplay**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncanplay](_editors_substationeditor_.substationeditor.md#oncanplay)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncanplay](_editors_substationeditor_.substationeditor.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
@@ -1444,8 +1228,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncanplaythrough](_editors_substationeditor_.substationeditor.md#oncanplaythrough)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncanplaythrough](_editors_substationeditor_.substationeditor.md#oncanplaythrough)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5783
 
 ___
@@ -1455,8 +1237,6 @@ ___
 • **onchange**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onchange](_editors_substationeditor_.substationeditor.md#onchange)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onchange](_editors_substationeditor_.substationeditor.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
@@ -1472,8 +1252,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onclick](_editors_substationeditor_.substationeditor.md#onclick)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onclick](_editors_substationeditor_.substationeditor.md#onclick)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
 Fires when the user clicks the left mouse button on the object
@@ -1488,8 +1266,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onclose](_editors_substationeditor_.substationeditor.md#onclose)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onclose](_editors_substationeditor_.substationeditor.md#onclose)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
 ___
@@ -1499,8 +1275,6 @@ ___
 • **oncontextmenu**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncontextmenu](_editors_substationeditor_.substationeditor.md#oncontextmenu)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncontextmenu](_editors_substationeditor_.substationeditor.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1516,8 +1290,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncopy](_editors_substationeditor_.substationeditor.md#oncopy)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncopy](_editors_substationeditor_.substationeditor.md#oncopy)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4888
 
 ___
@@ -1527,8 +1299,6 @@ ___
 • **oncuechange**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncuechange](_editors_substationeditor_.substationeditor.md#oncuechange)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncuechange](_editors_substationeditor_.substationeditor.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5800
 
@@ -1540,8 +1310,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncut](_editors_substationeditor_.substationeditor.md#oncut)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncut](_editors_substationeditor_.substationeditor.md#oncut)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4889
 
 ___
@@ -1551,8 +1319,6 @@ ___
 • **ondblclick**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondblclick](_editors_substationeditor_.substationeditor.md#ondblclick)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondblclick](_editors_substationeditor_.substationeditor.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
@@ -1568,8 +1334,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondrag](_editors_substationeditor_.substationeditor.md#ondrag)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondrag](_editors_substationeditor_.substationeditor.md#ondrag)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
 Fires on the source object continuously during a drag operation.
@@ -1583,8 +1347,6 @@ ___
 • **ondragend**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragend](_editors_substationeditor_.substationeditor.md#ondragend)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragend](_editors_substationeditor_.substationeditor.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5815
 
@@ -1600,8 +1362,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragenter](_editors_substationeditor_.substationeditor.md#ondragenter)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragenter](_editors_substationeditor_.substationeditor.md#ondragenter)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5820
 
 Fires on the target element when the user drags the object to a valid drop target.
@@ -1616,8 +1376,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragexit](_editors_substationeditor_.substationeditor.md#ondragexit)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragexit](_editors_substationeditor_.substationeditor.md#ondragexit)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
 ___
@@ -1627,8 +1385,6 @@ ___
 • **ondragleave**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragleave](_editors_substationeditor_.substationeditor.md#ondragleave)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragleave](_editors_substationeditor_.substationeditor.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1644,8 +1400,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragover](_editors_substationeditor_.substationeditor.md#ondragover)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragover](_editors_substationeditor_.substationeditor.md#ondragover)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
 Fires on the target element continuously while the user drags the object over a valid drop target.
@@ -1659,8 +1413,6 @@ ___
 • **ondragstart**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragstart](_editors_substationeditor_.substationeditor.md#ondragstart)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragstart](_editors_substationeditor_.substationeditor.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5836
 
@@ -1676,8 +1428,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondrop](_editors_substationeditor_.substationeditor.md#ondrop)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondrop](_editors_substationeditor_.substationeditor.md#ondrop)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
 ___
@@ -1687,8 +1437,6 @@ ___
 • **ondurationchange**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondurationchange](_editors_substationeditor_.substationeditor.md#ondurationchange)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondurationchange](_editors_substationeditor_.substationeditor.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
@@ -1704,8 +1452,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onemptied](_editors_substationeditor_.substationeditor.md#onemptied)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onemptied](_editors_substationeditor_.substationeditor.md#onemptied)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
 Occurs when the media element is reset to its initial state.
@@ -1719,8 +1465,6 @@ ___
 • **onended**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onended](_editors_substationeditor_.substationeditor.md#onended)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onended](_editors_substationeditor_.substationeditor.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5852
 
@@ -1736,8 +1480,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onerror](_editors_substationeditor_.substationeditor.md#onerror)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onerror](_editors_substationeditor_.substationeditor.md#onerror)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5857
 
 Fires when an error occurs during object loading.
@@ -1751,8 +1493,6 @@ ___
 • **onfocus**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfocus](_editors_substationeditor_.substationeditor.md#onfocus)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfocus](_editors_substationeditor_.substationeditor.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5862
 
@@ -1768,8 +1508,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfullscreenchange](_editors_substationeditor_.substationeditor.md#onfullscreenchange)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfullscreenchange](_editors_substationeditor_.substationeditor.md#onfullscreenchange)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5115
 
 ___
@@ -1779,8 +1517,6 @@ ___
 • **onfullscreenerror**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfullscreenerror](_editors_substationeditor_.substationeditor.md#onfullscreenerror)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfullscreenerror](_editors_substationeditor_.substationeditor.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -1792,8 +1528,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ongotpointercapture](_editors_substationeditor_.substationeditor.md#ongotpointercapture)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ongotpointercapture](_editors_substationeditor_.substationeditor.md#ongotpointercapture)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
 ___
@@ -1803,8 +1537,6 @@ ___
 • **oninput**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oninput](_editors_substationeditor_.substationeditor.md#oninput)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oninput](_editors_substationeditor_.substationeditor.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5864
 
@@ -1816,8 +1548,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oninvalid](_editors_substationeditor_.substationeditor.md#oninvalid)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oninvalid](_editors_substationeditor_.substationeditor.md#oninvalid)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5865
 
 ___
@@ -1827,8 +1557,6 @@ ___
 • **onkeydown**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeydown](_editors_substationeditor_.substationeditor.md#onkeydown)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeydown](_editors_substationeditor_.substationeditor.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5870
 
@@ -1844,8 +1572,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeypress](_editors_substationeditor_.substationeditor.md#onkeypress)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeypress](_editors_substationeditor_.substationeditor.md#onkeypress)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
 Fires when the user presses an alphanumeric key.
@@ -1859,8 +1585,6 @@ ___
 • **onkeyup**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeyup](_editors_substationeditor_.substationeditor.md#onkeyup)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeyup](_editors_substationeditor_.substationeditor.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5880
 
@@ -1876,8 +1600,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onload](_editors_substationeditor_.substationeditor.md#onload)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onload](_editors_substationeditor_.substationeditor.md#onload)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5885
 
 Fires immediately after the browser loads the object.
@@ -1891,8 +1613,6 @@ ___
 • **onloadeddata**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadeddata](_editors_substationeditor_.substationeditor.md#onloadeddata)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadeddata](_editors_substationeditor_.substationeditor.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5890
 
@@ -1908,8 +1628,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadedmetadata](_editors_substationeditor_.substationeditor.md#onloadedmetadata)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadedmetadata](_editors_substationeditor_.substationeditor.md#onloadedmetadata)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5895
 
 Occurs when the duration and dimensions of the media have been determined.
@@ -1923,8 +1641,6 @@ ___
 • **onloadstart**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadstart](_editors_substationeditor_.substationeditor.md#onloadstart)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadstart](_editors_substationeditor_.substationeditor.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5900
 
@@ -1940,8 +1656,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onlostpointercapture](_editors_substationeditor_.substationeditor.md#onlostpointercapture)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onlostpointercapture](_editors_substationeditor_.substationeditor.md#onlostpointercapture)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
 ___
@@ -1951,8 +1665,6 @@ ___
 • **onmousedown**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmousedown](_editors_substationeditor_.substationeditor.md#onmousedown)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmousedown](_editors_substationeditor_.substationeditor.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
@@ -1968,8 +1680,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseenter](_editors_substationeditor_.substationeditor.md#onmouseenter)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseenter](_editors_substationeditor_.substationeditor.md#onmouseenter)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5907
 
 ___
@@ -1980,8 +1690,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseleave](_editors_substationeditor_.substationeditor.md#onmouseleave)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseleave](_editors_substationeditor_.substationeditor.md#onmouseleave)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5908
 
 ___
@@ -1991,8 +1699,6 @@ ___
 • **onmousemove**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmousemove](_editors_substationeditor_.substationeditor.md#onmousemove)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmousemove](_editors_substationeditor_.substationeditor.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5913
 
@@ -2008,8 +1714,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseout](_editors_substationeditor_.substationeditor.md#onmouseout)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseout](_editors_substationeditor_.substationeditor.md#onmouseout)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
 Fires when the user moves the mouse pointer outside the boundaries of the object.
@@ -2023,8 +1727,6 @@ ___
 • **onmouseover**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseover](_editors_substationeditor_.substationeditor.md#onmouseover)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseover](_editors_substationeditor_.substationeditor.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5923
 
@@ -2040,8 +1742,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseup](_editors_substationeditor_.substationeditor.md#onmouseup)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseup](_editors_substationeditor_.substationeditor.md#onmouseup)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5928
 
 Fires when the user releases a mouse button while the mouse is over the object.
@@ -2056,8 +1756,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpaste](_editors_substationeditor_.substationeditor.md#onpaste)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpaste](_editors_substationeditor_.substationeditor.md#onpaste)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4890
 
 ___
@@ -2067,8 +1765,6 @@ ___
 • **onpause**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpause](_editors_substationeditor_.substationeditor.md#onpause)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpause](_editors_substationeditor_.substationeditor.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5933
 
@@ -2084,8 +1780,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onplay](_editors_substationeditor_.substationeditor.md#onplay)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onplay](_editors_substationeditor_.substationeditor.md#onplay)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5938
 
 Occurs when the play method is requested.
@@ -2099,8 +1793,6 @@ ___
 • **onplaying**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onplaying](_editors_substationeditor_.substationeditor.md#onplaying)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onplaying](_editors_substationeditor_.substationeditor.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5943
 
@@ -2116,8 +1808,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointercancel](_editors_substationeditor_.substationeditor.md#onpointercancel)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointercancel](_editors_substationeditor_.substationeditor.md#onpointercancel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
 ___
@@ -2127,8 +1817,6 @@ ___
 • **onpointerdown**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerdown](_editors_substationeditor_.substationeditor.md#onpointerdown)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerdown](_editors_substationeditor_.substationeditor.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5945
 
@@ -2140,8 +1828,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerenter](_editors_substationeditor_.substationeditor.md#onpointerenter)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerenter](_editors_substationeditor_.substationeditor.md#onpointerenter)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5946
 
 ___
@@ -2151,8 +1837,6 @@ ___
 • **onpointerleave**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerleave](_editors_substationeditor_.substationeditor.md#onpointerleave)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerleave](_editors_substationeditor_.substationeditor.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5947
 
@@ -2164,8 +1848,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointermove](_editors_substationeditor_.substationeditor.md#onpointermove)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointermove](_editors_substationeditor_.substationeditor.md#onpointermove)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5948
 
 ___
@@ -2175,8 +1857,6 @@ ___
 • **onpointerout**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerout](_editors_substationeditor_.substationeditor.md#onpointerout)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerout](_editors_substationeditor_.substationeditor.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
@@ -2188,8 +1868,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerover](_editors_substationeditor_.substationeditor.md#onpointerover)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerover](_editors_substationeditor_.substationeditor.md#onpointerover)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5950
 
 ___
@@ -2200,8 +1878,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerup](_editors_substationeditor_.substationeditor.md#onpointerup)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerup](_editors_substationeditor_.substationeditor.md#onpointerup)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5951
 
 ___
@@ -2211,8 +1887,6 @@ ___
 • **onprogress**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onprogress](_editors_substationeditor_.substationeditor.md#onprogress)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onprogress](_editors_substationeditor_.substationeditor.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -2228,8 +1902,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onratechange](_editors_substationeditor_.substationeditor.md#onratechange)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onratechange](_editors_substationeditor_.substationeditor.md#onratechange)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
 Occurs when the playback rate is increased or decreased.
@@ -2243,8 +1915,6 @@ ___
 • **onreset**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onreset](_editors_substationeditor_.substationeditor.md#onreset)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onreset](_editors_substationeditor_.substationeditor.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5966
 
@@ -2260,8 +1930,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onresize](_editors_substationeditor_.substationeditor.md#onresize)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onresize](_editors_substationeditor_.substationeditor.md#onresize)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
 ___
@@ -2271,8 +1939,6 @@ ___
 • **onscroll**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onscroll](_editors_substationeditor_.substationeditor.md#onscroll)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onscroll](_editors_substationeditor_.substationeditor.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
@@ -2288,8 +1954,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsecuritypolicyviolation](_editors_substationeditor_.substationeditor.md#onsecuritypolicyviolation)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsecuritypolicyviolation](_editors_substationeditor_.substationeditor.md#onsecuritypolicyviolation)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5973
 
 ___
@@ -2299,8 +1963,6 @@ ___
 • **onseeked**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onseeked](_editors_substationeditor_.substationeditor.md#onseeked)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onseeked](_editors_substationeditor_.substationeditor.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
@@ -2316,8 +1978,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onseeking](_editors_substationeditor_.substationeditor.md#onseeking)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onseeking](_editors_substationeditor_.substationeditor.md#onseeking)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
 Occurs when the current playback position is moved.
@@ -2331,8 +1991,6 @@ ___
 • **onselect**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselect](_editors_substationeditor_.substationeditor.md#onselect)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselect](_editors_substationeditor_.substationeditor.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5988
 
@@ -2348,8 +2006,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselectionchange](_editors_substationeditor_.substationeditor.md#onselectionchange)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselectionchange](_editors_substationeditor_.substationeditor.md#onselectionchange)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
 ___
@@ -2360,8 +2016,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselectstart](_editors_substationeditor_.substationeditor.md#onselectstart)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselectstart](_editors_substationeditor_.substationeditor.md#onselectstart)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5990
 
 ___
@@ -2371,8 +2025,6 @@ ___
 • **onstalled**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onstalled](_editors_substationeditor_.substationeditor.md#onstalled)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onstalled](_editors_substationeditor_.substationeditor.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5995
 
@@ -2388,8 +2040,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsubmit](_editors_substationeditor_.substationeditor.md#onsubmit)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsubmit](_editors_substationeditor_.substationeditor.md#onsubmit)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5996
 
 ___
@@ -2399,8 +2049,6 @@ ___
 • **onsuspend**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsuspend](_editors_substationeditor_.substationeditor.md#onsuspend)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsuspend](_editors_substationeditor_.substationeditor.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
@@ -2416,8 +2064,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontimeupdate](_editors_substationeditor_.substationeditor.md#ontimeupdate)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontimeupdate](_editors_substationeditor_.substationeditor.md#ontimeupdate)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
 Occurs to indicate the current playback position.
@@ -2432,8 +2078,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontoggle](_editors_substationeditor_.substationeditor.md#ontoggle)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontoggle](_editors_substationeditor_.substationeditor.md#ontoggle)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
 ___
@@ -2443,8 +2087,6 @@ ___
 • **ontouchcancel**? : *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchcancel](_editors_substationeditor_.substationeditor.md#optional-ontouchcancel)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchcancel](_editors_substationeditor_.substationeditor.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6008
 
@@ -2456,8 +2098,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchend](_editors_substationeditor_.substationeditor.md#optional-ontouchend)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchend](_editors_substationeditor_.substationeditor.md#optional-ontouchend)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6009
 
 ___
@@ -2467,8 +2107,6 @@ ___
 • **ontouchmove**? : *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchmove](_editors_substationeditor_.substationeditor.md#optional-ontouchmove)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchmove](_editors_substationeditor_.substationeditor.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6010
 
@@ -2480,8 +2118,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchstart](_editors_substationeditor_.substationeditor.md#optional-ontouchstart)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchstart](_editors_substationeditor_.substationeditor.md#optional-ontouchstart)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6011
 
 ___
@@ -2491,8 +2127,6 @@ ___
 • **ontransitioncancel**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitioncancel](_editors_substationeditor_.substationeditor.md#ontransitioncancel)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitioncancel](_editors_substationeditor_.substationeditor.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2504,8 +2138,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionend](_editors_substationeditor_.substationeditor.md#ontransitionend)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionend](_editors_substationeditor_.substationeditor.md#ontransitionend)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6013
 
 ___
@@ -2515,8 +2147,6 @@ ___
 • **ontransitionrun**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionrun](_editors_substationeditor_.substationeditor.md#ontransitionrun)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionrun](_editors_substationeditor_.substationeditor.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6014
 
@@ -2528,8 +2158,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionstart](_editors_substationeditor_.substationeditor.md#ontransitionstart)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionstart](_editors_substationeditor_.substationeditor.md#ontransitionstart)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6015
 
 ___
@@ -2539,8 +2167,6 @@ ___
 • **onvolumechange**: *function | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onvolumechange](_editors_substationeditor_.substationeditor.md#onvolumechange)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onvolumechange](_editors_substationeditor_.substationeditor.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
@@ -2556,8 +2182,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onwaiting](_editors_substationeditor_.substationeditor.md#onwaiting)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onwaiting](_editors_substationeditor_.substationeditor.md#onwaiting)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
 Occurs when playback stops because the next frame of a video resource is not available.
@@ -2572,8 +2196,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onwheel](_editors_substationeditor_.substationeditor.md#onwheel)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onwheel](_editors_substationeditor_.substationeditor.md#onwheel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
 ___
@@ -2583,8 +2205,6 @@ ___
 • **outerHTML**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[outerHTML](_editors_substationeditor_.substationeditor.md#outerhtml)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[outerHTML](_editors_substationeditor_.substationeditor.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5117
 
@@ -2608,8 +2228,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[parentElement](_editors_substationeditor_.substationeditor.md#readonly-parentelement)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[parentElement](_editors_substationeditor_.substationeditor.md#readonly-parentelement)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10783
 
 Returns the parent element.
@@ -2621,8 +2239,6 @@ ___
 • **parentNode**: *Node & ParentNode | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[parentNode](_editors_substationeditor_.substationeditor.md#readonly-parentnode)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[parentNode](_editors_substationeditor_.substationeditor.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
@@ -2636,8 +2252,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5122
 
 Returns the namespace prefix.
@@ -2650,8 +2264,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[previousElementSibling](_editors_substationeditor_.substationeditor.md#readonly-previouselementsibling)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[previousElementSibling](_editors_substationeditor_.substationeditor.md#readonly-previouselementsibling)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11035
 
 Returns the first preceding sibling that is an element, and null otherwise.
@@ -2663,8 +2275,6 @@ ___
 • **previousSibling**: *ChildNode | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[previousSibling](_editors_substationeditor_.substationeditor.md#readonly-previoussibling)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[previousSibling](_editors_substationeditor_.substationeditor.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10791
 
@@ -2691,8 +2301,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollHeight](_editors_substationeditor_.substationeditor.md#readonly-scrollheight)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollHeight](_editors_substationeditor_.substationeditor.md#readonly-scrollheight)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5123
 
 ___
@@ -2702,8 +2310,6 @@ ___
 • **scrollLeft**: *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollLeft](_editors_substationeditor_.substationeditor.md#scrollleft)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollLeft](_editors_substationeditor_.substationeditor.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5124
 
@@ -2715,8 +2321,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTop](_editors_substationeditor_.substationeditor.md#scrolltop)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTop](_editors_substationeditor_.substationeditor.md#scrolltop)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
 ___
@@ -2727,8 +2331,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollWidth](_editors_substationeditor_.substationeditor.md#readonly-scrollwidth)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollWidth](_editors_substationeditor_.substationeditor.md#readonly-scrollwidth)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
 ___
@@ -2738,8 +2340,6 @@ ___
 • **shadowRoot**: *ShadowRoot | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[shadowRoot](_editors_substationeditor_.substationeditor.md#readonly-shadowroot)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[shadowRoot](_editors_substationeditor_.substationeditor.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5130
 
@@ -2753,8 +2353,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[slot](_editors_substationeditor_.substationeditor.md#slot)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[slot](_editors_substationeditor_.substationeditor.md#slot)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
 Returns the value of element's slot content attribute. Can be set to change it.
@@ -2767,19 +2365,7 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[spellcheck](_editors_substationeditor_.substationeditor.md#spellcheck)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[spellcheck](_editors_substationeditor_.substationeditor.md#spellcheck)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
-
-___
-
-###  srcName
-
-• **srcName**: *string* = "untitled.scd"
-
-Defined in src/open-scd-base.ts:72
-
-The name of the current file.
 
 ___
 
@@ -2789,9 +2375,23 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[style](_editors_substationeditor_.substationeditor.md#readonly-style)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[style](_editors_substationeditor_.substationeditor.md#readonly-style)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5250
+
+___
+
+###  substationDescUI
+
+• **substationDescUI**: *TextField*
+
+Defined in src/editors/SubstationEditor.ts:48
+
+___
+
+###  substationNameUI
+
+• **substationNameUI**: *TextField*
+
+Defined in src/editors/SubstationEditor.ts:46
 
 ___
 
@@ -2801,19 +2401,7 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[tabIndex](_editors_substationeditor_.substationeditor.md#tabindex)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[tabIndex](_editors_substationeditor_.substationeditor.md#tabindex)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
-
-___
-
-###  tag
-
-• **tag**: *string* = "SCL"
-
-Defined in src/open-scd-base.ts:70
-
-The tag name this editor is responsible for editing
 
 ___
 
@@ -2822,8 +2410,6 @@ ___
 • **tagName**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[tagName](_editors_substationeditor_.substationeditor.md#readonly-tagname)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[tagName](_editors_substationeditor_.substationeditor.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5138
 
@@ -2837,8 +2423,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[textContent](_editors_substationeditor_.substationeditor.md#textcontent)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[textContent](_editors_substationeditor_.substationeditor.md#textcontent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10792
 
 ___
@@ -2848,8 +2432,6 @@ ___
 • **title**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[title](_editors_substationeditor_.substationeditor.md#title)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[title](_editors_substationeditor_.substationeditor.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
@@ -2861,43 +2443,47 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[translate](_editors_substationeditor_.substationeditor.md#translate)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[translate](_editors_substationeditor_.substationeditor.md#translate)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
 ___
 
-###  waiting
+###  voltageLevelDescUI
 
-• **waiting**: *boolean* = false
+• **voltageLevelDescUI**: *TextField*
 
-*Overrides void*
-
-Defined in src/open-scd-base.ts:58
-
-Whether the editor is currently waiting for some async work.
+Defined in src/editors/SubstationEditor.ts:55
 
 ___
 
-### `Protected` work
+###  voltageLevelNameUI
 
-• **work**: *Set‹Promise‹string››* = new Set()
+• **voltageLevelNameUI**: *TextField*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
-
-Defined in src/waiting.ts:8
+Defined in src/editors/SubstationEditor.ts:53
 
 ___
 
-###  workDone
+###  voltageLevelNomFreqUI
 
-• **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
+• **voltageLevelNomFreqUI**: *TextField*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
+Defined in src/editors/SubstationEditor.ts:57
 
-Defined in src/waiting.ts:10
+___
 
-A promise which resolves once all currently pending work is done.
+###  voltageLevelNumPhasesUI
+
+• **voltageLevelNumPhasesUI**: *TextField*
+
+Defined in src/editors/SubstationEditor.ts:59
+
+___
+
+###  voltageLevelVoltageUI
+
+• **voltageLevelVoltageUI**: *TextField*
+
+Defined in src/editors/SubstationEditor.ts:61
 
 ___
 
@@ -2974,40 +2560,33 @@ Name | Type |
 
 ___
 
-### `Static` `Optional` styles
+### `Static` styles
 
-▪ **styles**? : *CSSResult | CSSResultArray*
+▪ **styles**: *CSSResult‹›* = styles
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
+*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:49
-
-Array of styles to apply to the element. The styles should be defined
-using the `css` tag function.
+Defined in src/editors/SubstationEditor.ts:285
 
 ## Accessors
 
-###  canRedo
+###  desc
 
-• **get canRedo**(): *boolean*
+• **get desc**(): *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
+Defined in src/editors/SubstationEditor.ts:40
 
-Defined in src/editing.ts:43
-
-**Returns:** *boolean*
+**Returns:** *string*
 
 ___
 
-###  canUndo
+###  element
 
-• **get canUndo**(): *boolean*
+• **get element**(): *Element | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
+Defined in src/editors/SubstationEditor.ts:27
 
-Defined in src/editing.ts:40
-
-**Returns:** *boolean*
+**Returns:** *Element | null*
 
 ___
 
@@ -3025,61 +2604,21 @@ ___
 
 ###  name
 
-• **get name**(): *string | null*
+• **get name**(): *string*
 
-Defined in src/open-scd-base.ts:66
-
-**Returns:** *string | null*
-
-___
-
-###  nextAction
-
-• **get nextAction**(): *number*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
-
-Defined in src/editing.ts:53
-
-**Returns:** *number*
-
-___
-
-###  previousAction
-
-• **get previousAction**(): *number*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
-
-Defined in src/editing.ts:46
-
-**Returns:** *number*
-
-___
-
-###  src
-
-• **get src**(): *string*
-
-Defined in src/open-scd-base.ts:76
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
+Defined in src/editors/SubstationEditor.ts:36
 
 **Returns:** *string*
 
-• **set src**(`value`: string): *void*
+___
 
-Defined in src/open-scd-base.ts:79
+###  parent
 
-The current file's URL. `blob:` URLs are *revoked after parsing*!
+• **get parent**(): *Element*
 
-**Parameters:**
+Defined in src/editors/SubstationEditor.ts:31
 
-Name | Type |
------- | ------ |
-`value` | string |
-
-**Returns:** *void*
+**Returns:** *Element*
 
 ___
 
@@ -3231,8 +2770,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[after](_editors_substationeditor_.substationeditor.md#after)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[after](_editors_substationeditor_.substationeditor.md#after)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3501
 
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -3255,8 +2792,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[animate](_editors_substationeditor_.substationeditor.md#animate)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[animate](_editors_substationeditor_.substationeditor.md#animate)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
 **Parameters:**
@@ -3275,8 +2810,6 @@ ___
 ▸ **append**(...`nodes`: (string | Node)[]): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[append](_editors_substationeditor_.substationeditor.md#append)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[append](_editors_substationeditor_.substationeditor.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11319
 
@@ -3300,8 +2833,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[appendChild](_editors_substationeditor_.substationeditor.md#appendchild)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[appendChild](_editors_substationeditor_.substationeditor.md#appendchild)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10793
 
 **Type parameters:**
@@ -3323,8 +2854,6 @@ ___
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[attachShadow](_editors_substationeditor_.substationeditor.md#attachshadow)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[attachShadow](_editors_substationeditor_.substationeditor.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5142
 
@@ -3368,8 +2897,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[before](_editors_substationeditor_.substationeditor.md#before)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[before](_editors_substationeditor_.substationeditor.md#before)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3507
 
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -3392,11 +2919,29 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7993
 
 **Returns:** *void*
+
+___
+
+###  checkValidity
+
+▸ **checkValidity**(): *boolean*
+
+Defined in src/editors/SubstationEditor.ts:63
+
+**Returns:** *boolean*
+
+___
+
+###  checkVoltageLevelValidity
+
+▸ **checkVoltageLevelValidity**(): *boolean*
+
+Defined in src/editors/SubstationEditor.ts:70
+
+**Returns:** *boolean*
 
 ___
 
@@ -3405,8 +2950,6 @@ ___
 ▸ **click**(): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
@@ -3419,8 +2962,6 @@ ___
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[cloneNode](_editors_substationeditor_.substationeditor.md#clonenode)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[cloneNode](_editors_substationeditor_.substationeditor.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10797
 
@@ -3442,8 +2983,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5146
 
 Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
@@ -3464,8 +3003,6 @@ Name | Type |
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5147
 
 **Type parameters:**
@@ -3484,8 +3021,6 @@ Name | Type |
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
 **Type parameters:**
@@ -3502,33 +3037,11 @@ Name | Type |
 
 ___
 
-###  commit
-
-▸ **commit**(`title`: string, `action`: [Action](../modules/_foundation_.md#action), `options?`: [LogOptions](../modules/_editing_.md#logoptions)): *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
-
-Defined in src/editing.ts:107
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`action` | [Action](../modules/_foundation_.md#action) |
-`options?` | [LogOptions](../modules/_editing_.md#logoptions) |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-___
-
 ###  compareDocumentPosition
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[compareDocumentPosition](_editors_substationeditor_.substationeditor.md#comparedocumentposition)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[compareDocumentPosition](_editors_substationeditor_.substationeditor.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10801
 
@@ -3563,8 +3076,6 @@ ___
 ▸ **contains**(`other`: Node | null): *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[contains](_editors_substationeditor_.substationeditor.md#contains)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[contains](_editors_substationeditor_.substationeditor.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
@@ -3621,8 +3132,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dispatchEvent](_editors_substationeditor_.substationeditor.md#dispatchevent)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dispatchEvent](_editors_substationeditor_.substationeditor.md#dispatchevent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5417
 
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
@@ -3646,25 +3155,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:298
 
 **Returns:** *void*
-
-___
-
-###  error
-
-▸ **error**(`title`: string, `options?`: [LogOptions](../modules/_editing_.md#logoptions)): *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-*Overrides void*
-
-Defined in src/open-scd-base.ts:89
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`options?` | [LogOptions](../modules/_editing_.md#logoptions) |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
 
 ___
 
@@ -3698,8 +3188,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7994
 
 **Parameters:**
@@ -3718,8 +3206,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAnimations](_editors_substationeditor_.substationeditor.md#getanimations)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAnimations](_editors_substationeditor_.substationeditor.md#getanimations)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
 **Returns:** *Animation[]*
@@ -3731,8 +3217,6 @@ ___
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttribute](_editors_substationeditor_.substationeditor.md#getattribute)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttribute](_editors_substationeditor_.substationeditor.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3753,8 +3237,6 @@ ___
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNS](_editors_substationeditor_.substationeditor.md#getattributens)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNS](_editors_substationeditor_.substationeditor.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3777,8 +3259,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNames](_editors_substationeditor_.substationeditor.md#getattributenames)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNames](_editors_substationeditor_.substationeditor.md#getattributenames)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5160
 
 Returns the qualified names of all element's attributes. Can contain duplicates.
@@ -3792,8 +3272,6 @@ ___
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNode](_editors_substationeditor_.substationeditor.md#getattributenode)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNode](_editors_substationeditor_.substationeditor.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5161
 
@@ -3812,8 +3290,6 @@ ___
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNodeNS](_editors_substationeditor_.substationeditor.md#getattributenodens)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNodeNS](_editors_substationeditor_.substationeditor.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3834,8 +3310,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getBoundingClientRect](_editors_substationeditor_.substationeditor.md#getboundingclientrect)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getBoundingClientRect](_editors_substationeditor_.substationeditor.md#getboundingclientrect)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5163
 
 **Returns:** *DOMRect*
@@ -3848,8 +3322,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getClientRects](_editors_substationeditor_.substationeditor.md#getclientrects)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getClientRects](_editors_substationeditor_.substationeditor.md#getclientrects)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5164
 
 **Returns:** *DOMRectList*
@@ -3861,8 +3333,6 @@ ___
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByClassName](_editors_substationeditor_.substationeditor.md#getelementsbyclassname)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByClassName](_editors_substationeditor_.substationeditor.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5168
 
@@ -3884,8 +3354,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5169
 
 **Type parameters:**
@@ -3903,8 +3371,6 @@ Name | Type |
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
@@ -3924,8 +3390,6 @@ Name | Type |
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
 **Parameters:**
@@ -3944,8 +3408,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
 **Parameters:**
@@ -3961,8 +3423,6 @@ Name | Type |
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
 **Parameters:**
@@ -3977,8 +3437,6 @@ Name | Type |
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
@@ -3999,8 +3457,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getRootNode](_editors_substationeditor_.substationeditor.md#getrootnode)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getRootNode](_editors_substationeditor_.substationeditor.md#getrootnode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
 Returns node's root.
@@ -4015,29 +3471,11 @@ Name | Type |
 
 ___
 
-### `Private` handleKeyPress
-
-▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
-
-Defined in src/open-scd-base.ts:141
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`e` | KeyboardEvent |
-
-**Returns:** *void*
-
-___
-
 ###  hasAttribute
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttribute](_editors_substationeditor_.substationeditor.md#hasattribute)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttribute](_editors_substationeditor_.substationeditor.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -4058,8 +3496,6 @@ ___
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttributeNS](_editors_substationeditor_.substationeditor.md#hasattributens)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttributeNS](_editors_substationeditor_.substationeditor.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
@@ -4082,8 +3518,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttributes](_editors_substationeditor_.substationeditor.md#hasattributes)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttributes](_editors_substationeditor_.substationeditor.md#hasattributes)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5186
 
 Returns true if element has attributes, and false otherwise.
@@ -4098,8 +3532,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasChildNodes](_editors_substationeditor_.substationeditor.md#haschildnodes)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasChildNodes](_editors_substationeditor_.substationeditor.md#haschildnodes)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
 Returns whether node has children.
@@ -4113,8 +3545,6 @@ ___
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasPointerCapture](_editors_substationeditor_.substationeditor.md#haspointercapture)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasPointerCapture](_editors_substationeditor_.substationeditor.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5187
 
@@ -4133,8 +3563,6 @@ ___
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
-
-*Overrides void*
 
 Defined in src/foundation.ts:135
 
@@ -4173,8 +3601,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentElement](_editors_substationeditor_.substationeditor.md#insertadjacentelement)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentElement](_editors_substationeditor_.substationeditor.md#insertadjacentelement)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
 **Parameters:**
@@ -4193,8 +3619,6 @@ ___
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentHTML](_editors_substationeditor_.substationeditor.md#insertadjacenthtml)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentHTML](_editors_substationeditor_.substationeditor.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5189
 
@@ -4215,8 +3639,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentText](_editors_substationeditor_.substationeditor.md#insertadjacenttext)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentText](_editors_substationeditor_.substationeditor.md#insertadjacenttext)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5190
 
 **Parameters:**
@@ -4235,8 +3657,6 @@ ___
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertBefore](_editors_substationeditor_.substationeditor.md#insertbefore)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertBefore](_editors_substationeditor_.substationeditor.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10814
 
@@ -4261,8 +3681,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isDefaultNamespace](_editors_substationeditor_.substationeditor.md#isdefaultnamespace)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isDefaultNamespace](_editors_substationeditor_.substationeditor.md#isdefaultnamespace)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10815
 
 **Parameters:**
@@ -4280,8 +3698,6 @@ ___
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isEqualNode](_editors_substationeditor_.substationeditor.md#isequalnode)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isEqualNode](_editors_substationeditor_.substationeditor.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10819
 
@@ -4303,8 +3719,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isSameNode](_editors_substationeditor_.substationeditor.md#issamenode)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isSameNode](_editors_substationeditor_.substationeditor.md#issamenode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10820
 
 **Parameters:**
@@ -4317,66 +3731,11 @@ Name | Type |
 
 ___
 
-### `Private` loadDoc
-
-▸ **loadDoc**(`src`: string): *Promise‹string›*
-
-Defined in src/open-scd-base.ts:94
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`src` | string |
-
-**Returns:** *Promise‹string›*
-
-___
-
-### `Private` loadFile
-
-▸ **loadFile**(`event`: Event): *void*
-
-Defined in src/open-scd-base.ts:132
-
-Loads the file selected by input `event.target.files[0]`.
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`event` | Event |
-
-**Returns:** *void*
-
-___
-
-###  log
-
-▸ **log**(`title`: string, `detail?`: Partial‹[LogEntry](../interfaces/_editing_.logentry.md)›): *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
-
-Defined in src/editing.ts:77
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`detail?` | Partial‹[LogEntry](../interfaces/_editing_.logentry.md)› |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-___
-
 ###  lookupNamespaceURI
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lookupNamespaceURI](_editors_substationeditor_.substationeditor.md#lookupnamespaceuri)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lookupNamespaceURI](_editors_substationeditor_.substationeditor.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
@@ -4396,8 +3755,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lookupPrefix](_editors_substationeditor_.substationeditor.md#lookupprefix)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lookupPrefix](_editors_substationeditor_.substationeditor.md#lookupprefix)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10822
 
 **Parameters:**
@@ -4415,8 +3772,6 @@ ___
 ▸ **matches**(`selectors`: string): *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[matches](_editors_substationeditor_.substationeditor.md#matches)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[matches](_editors_substationeditor_.substationeditor.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5194
 
@@ -4438,11 +3793,63 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[msGetRegionContent](_editors_substationeditor_.substationeditor.md#msgetregioncontent)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[msGetRegionContent](_editors_substationeditor_.substationeditor.md#msgetregioncontent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5195
 
 **Returns:** *any*
+
+___
+
+###  newCreateAction
+
+▸ **newCreateAction**(`name`: string, `desc`: string): *[Action](../modules/_foundation_.md#action)*
+
+Defined in src/editors/SubstationEditor.ts:90
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
+
+**Returns:** *[Action](../modules/_foundation_.md#action)*
+
+___
+
+###  newUpdateAction
+
+▸ **newUpdateAction**(`name`: string, `desc`: string): *[Action](../modules/_foundation_.md#action)*
+
+Defined in src/editors/SubstationEditor.ts:79
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
+
+**Returns:** *[Action](../modules/_foundation_.md#action)*
+
+___
+
+###  newVoltageLevelCreateAction
+
+▸ **newVoltageLevelCreateAction**(`name`: string, `desc`: string, `nomFreq`: string, `numPhases`: string, `Voltage`: string): *[Action](../modules/_foundation_.md#action)*
+
+Defined in src/editors/SubstationEditor.ts:104
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
+`nomFreq` | string |
+`numPhases` | string |
+`Voltage` | string |
+
+**Returns:** *[Action](../modules/_foundation_.md#action)*
 
 ___
 
@@ -4451,8 +3858,6 @@ ___
 ▸ **normalize**(): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[normalize](_editors_substationeditor_.substationeditor.md#normalize)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[normalize](_editors_substationeditor_.substationeditor.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -4495,8 +3900,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prepend](_editors_substationeditor_.substationeditor.md#prepend)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prepend](_editors_substationeditor_.substationeditor.md#prepend)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -4519,8 +3922,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11329
 
 Returns the first element that is a descendant of node that matches selectors.
@@ -4541,8 +3942,6 @@ Name | Type |
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11330
 
 **Type parameters:**
@@ -4560,8 +3959,6 @@ Name | Type |
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -4585,8 +3982,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11335
 
 Returns all element descendants of node that match selectors.
@@ -4607,8 +4002,6 @@ Name | Type |
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11336
 
 **Type parameters:**
@@ -4627,8 +4020,6 @@ Name | Type |
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
 **Type parameters:**
@@ -4645,25 +4036,11 @@ Name | Type |
 
 ___
 
-###  redo
-
-▸ **redo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
-
-Defined in src/editing.ts:70
-
-**Returns:** *boolean*
-
-___
-
 ###  releasePointerCapture
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[releasePointerCapture](_editors_substationeditor_.substationeditor.md#releasepointercapture)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[releasePointerCapture](_editors_substationeditor_.substationeditor.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
@@ -4683,8 +4060,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[remove](_editors_substationeditor_.substationeditor.md#remove)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[remove](_editors_substationeditor_.substationeditor.md#remove)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3511
 
 Removes node.
@@ -4698,8 +4073,6 @@ ___
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttribute](_editors_substationeditor_.substationeditor.md#removeattribute)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttribute](_editors_substationeditor_.substationeditor.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
@@ -4720,8 +4093,6 @@ ___
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttributeNS](_editors_substationeditor_.substationeditor.md#removeattributens)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttributeNS](_editors_substationeditor_.substationeditor.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -4744,8 +4115,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttributeNode](_editors_substationeditor_.substationeditor.md#removeattributenode)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttributeNode](_editors_substationeditor_.substationeditor.md#removeattributenode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
 **Parameters:**
@@ -4763,8 +4132,6 @@ ___
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeChild](_editors_substationeditor_.substationeditor.md#removechild)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeChild](_editors_substationeditor_.substationeditor.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
@@ -4841,89 +4208,37 @@ ___
 
 *Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[render](_editors_substationeditor_.substationeditor.md#static-render)*
 
-Defined in src/open-scd-base.ts:305
+Defined in src/editors/SubstationEditor.ts:273
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderActionItem
+###  renderCreateVoltageLevelUI
 
-▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
+▸ **renderCreateVoltageLevelUI**(): *TemplateResult*
 
-Defined in src/open-scd-base.ts:250
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
+Defined in src/editors/SubstationEditor.ts:213
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderEditorTab
+###  renderEditSubstationUI
 
-▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
+▸ **renderEditSubstationUI**(): *TemplateResult*
 
-Defined in src/open-scd-base.ts:262
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`editor` | [Tab](../interfaces/_open_scd_base_.tab.md) |
+Defined in src/editors/SubstationEditor.ts:185
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderHistory
+###  renderHeader
 
-▸ **renderHistory**(`history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult[]*
+▸ **renderHeader**(): *TemplateResult*
 
-Defined in src/open-scd-base.ts:273
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`history` | [LogEntry](../interfaces/_editing_.logentry.md)[] |
-
-**Returns:** *TemplateResult[]*
-
-___
-
-###  renderLogEntry
-
-▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_editing_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult*
-
-Defined in src/open-scd-base.ts:285
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`entry` | [LogEntry](../interfaces/_editing_.logentry.md) |
-`index` | number |
-`history` | [LogEntry](../interfaces/_editing_.logentry.md)[] |
-
-**Returns:** *TemplateResult*
-
-___
-
-###  renderMenuEntry
-
-▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
-
-Defined in src/open-scd-base.ts:229
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
+Defined in src/editors/SubstationEditor.ts:251
 
 **Returns:** *TemplateResult*
 
@@ -4934,8 +4249,6 @@ ___
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[replaceChild](_editors_substationeditor_.substationeditor.md#replacechild)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[replaceChild](_editors_substationeditor_.substationeditor.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10828
 
@@ -4960,8 +4273,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[replaceWith](_editors_substationeditor_.substationeditor.md#replacewith)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[replaceWith](_editors_substationeditor_.substationeditor.md#replacewith)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3517
 
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -4983,8 +4294,6 @@ ___
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[requestFullscreen](_editors_substationeditor_.substationeditor.md#requestfullscreen)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[requestFullscreen](_editors_substationeditor_.substationeditor.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5211
 
@@ -5008,9 +4317,27 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[requestPointerLock](_editors_substationeditor_.substationeditor.md#requestpointerlock)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[requestPointerLock](_editors_substationeditor_.substationeditor.md#requestpointerlock)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5212
+
+**Returns:** *void*
+
+___
+
+###  requestSubstationCreate
+
+▸ **requestSubstationCreate**(): *void*
+
+Defined in src/editors/SubstationEditor.ts:150
+
+**Returns:** *void*
+
+___
+
+###  requestSubstationUpdate
+
+▸ **requestSubstationUpdate**(): *void*
+
+Defined in src/editors/SubstationEditor.ts:131
 
 **Returns:** *void*
 
@@ -5045,13 +4372,21 @@ A Promise that is resolved when the update completes.
 
 ___
 
+###  requestVoltageLevelCreate
+
+▸ **requestVoltageLevelCreate**(): *void*
+
+Defined in src/editors/SubstationEditor.ts:164
+
+**Returns:** *void*
+
+___
+
 ###  scroll
 
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scroll](_editors_substationeditor_.substationeditor.md#scroll)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scroll](_editors_substationeditor_.substationeditor.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5213
 
@@ -5066,8 +4401,6 @@ Name | Type |
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scroll](_editors_substationeditor_.substationeditor.md#scroll)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scroll](_editors_substationeditor_.substationeditor.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -5088,8 +4421,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
 **Parameters:**
@@ -5103,8 +4434,6 @@ Name | Type |
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5216
 
@@ -5125,8 +4454,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollIntoView](_editors_substationeditor_.substationeditor.md#scrollintoview)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollIntoView](_editors_substationeditor_.substationeditor.md#scrollintoview)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5217
 
 **Parameters:**
@@ -5145,8 +4472,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5218
 
 **Parameters:**
@@ -5160,8 +4485,6 @@ Name | Type |
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5219
 
@@ -5181,8 +4504,6 @@ ___
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttribute](_editors_substationeditor_.substationeditor.md#setattribute)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttribute](_editors_substationeditor_.substationeditor.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -5204,8 +4525,6 @@ ___
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNS](_editors_substationeditor_.substationeditor.md#setattributens)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNS](_editors_substationeditor_.substationeditor.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
@@ -5229,8 +4548,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNode](_editors_substationeditor_.substationeditor.md#setattributenode)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNode](_editors_substationeditor_.substationeditor.md#setattributenode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
 **Parameters:**
@@ -5249,8 +4566,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNodeNS](_editors_substationeditor_.substationeditor.md#setattributenodens)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNodeNS](_editors_substationeditor_.substationeditor.md#setattributenodens)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
 **Parameters:**
@@ -5268,8 +4583,6 @@ ___
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setPointerCapture](_editors_substationeditor_.substationeditor.md#setpointercapture)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setPointerCapture](_editors_substationeditor_.substationeditor.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5230
 
@@ -5311,8 +4624,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[toggleAttribute](_editors_substationeditor_.substationeditor.md#toggleattribute)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[toggleAttribute](_editors_substationeditor_.substationeditor.md#toggleattribute)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5236
 
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -5325,18 +4636,6 @@ Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
 `force?` | undefined &#124; false &#124; true |
-
-**Returns:** *boolean*
-
-___
-
-###  undo
-
-▸ **undo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
-
-Defined in src/editing.ts:61
 
 **Returns:** *boolean*
 
@@ -5366,25 +4665,13 @@ Name | Type |
 
 ___
 
-### `Protected` updated
+###  updated
 
-▸ **updated**(`_changedProperties`: PropertyValues): *void*
+▸ **updated**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[updated](_open_scd_base_.openscdbase.md#protected-updated)*
+*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[updated](_open_scd_base_.openscdbase.md#protected-updated)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:414
-
-Invoked whenever the element is updated. Implement to perform
-post-updating tasks via DOM APIs, for example, focusing an element.
-
-Setting properties inside this method will trigger the element to update
-again after this update cycle completes.
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`_changedProperties` | PropertyValues | Map of changed properties with old values  |
+Defined in src/editors/SubstationEditor.ts:181
 
 **Returns:** *void*
 
@@ -5395,8 +4682,6 @@ ___
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
-
-*Overrides void*
 
 Defined in src/foundation.ts:136
 
@@ -5416,8 +4701,6 @@ ___
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[webkitMatchesSelector](_editors_substationeditor_.substationeditor.md#webkitmatchesselector)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[webkitMatchesSelector](_editors_substationeditor_.substationeditor.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -5583,45 +4866,3 @@ Override this method to integrate into a style management system.
 **`nocollapse`** 
 
 **Returns:** *CSSResult | CSSResultArray | undefined*
-
-## Object literals
-
-###  plugins
-
-### ▪ **plugins**: *object*
-
-Defined in src/open-scd-base.ts:197
-
-###  editors
-
-• **editors**: *(object | object | object)[]* = [
-      {
-        label: 'Substation',
-        id: 'substation',
-        icon: zeroLineIcon,
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/SubstationEditor.js', 'editor-0').then(
-            () => html`<editor-0 .doc=${this.doc}></editor-0>`
-          ),
-      },
-      {
-        label: 'Communication',
-        id: 'communication',
-        icon: 'mediation',
-        getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
-      },
-      {
-        label: 'Network',
-        id: 'network',
-        icon: networkConfigIcon,
-        getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
-      },
-      {
-        label: 'IED',
-        id: 'ied',
-        icon: iedIcon,
-        getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
-      },
-    ]
-
-Defined in src/open-scd-base.ts:198

@@ -7,9 +7,8 @@
 ### Modules
 
 * ["editing"](modules/_editing_.md)
-* ["editors/substation-editor"](modules/_editors_substation_editor_.md)
-* ["editors/substation-editor-base"](modules/_editors_substation_editor_base_.md)
-* ["editors/substation-editor-css"](modules/_editors_substation_editor_css_.md)
+* ["editors/SubstationEditor"](modules/_editors_substationeditor_.md)
+* ["editors/substation/substation-css"](modules/_editors_substation_substation_css_.md)
 * ["foundation"](modules/_foundation_.md)
 * ["icons"](modules/_icons_.md)
 * ["open-scd"](modules/_open_scd_.md)

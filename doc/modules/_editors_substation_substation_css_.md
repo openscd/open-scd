@@ -1,12 +1,12 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["editors/substation-editor-css"](_editors_substation_editor_css_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["editors/substation/substation-css"](_editors_substation_substation_css_.md)
 
-# Module: "editors/substation-editor-css"
+# Module: "editors/substation/substation-css"
 
 ## Index
 
 ### Variables
 
-* [styles](_editors_substation_editor_css_.md#const-styles)
+* [styles](_editors_substation_substation_css_.md#const-styles)
 
 ## Variables
 
@@ -84,7 +84,7 @@
 
   mwc-dialog > * {
     display: block;
-    margin-top: 24px;
+    margin-top: 16px;
   }
 
   pre {
@@ -99,4 +99,4 @@
   }
 `
 
-Defined in src/editors/substation-editor-css.ts:3
+Defined in src/editors/substation/substation-css.ts:3
