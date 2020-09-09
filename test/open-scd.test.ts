@@ -86,11 +86,6 @@ describe('open-scd', () => {
     expect(element).property('srcName').to.equal('untitled.scd');
   });
 
-  it('initially loads the first editor plugin', function () {
-    this.timeout(1000);
-    expect(<HTMLElement>element.shadowRoot!.querySelector('#test')).to.exist;
-  });
-
   it('revokes `src="blob:..."` URLs after parsing', async () => {
     const emptyBlobURL = URL.createObjectURL(
       new Blob([new XMLSerializer().serializeToString(OpenSCD.emptySCD)], {
