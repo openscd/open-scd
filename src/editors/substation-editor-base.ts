@@ -20,11 +20,11 @@ export class SubstationEditorBase extends LitElement {
   get parent(): Element {
     return this.doc.documentElement; // <SCL>
   }
+
   @property({ type: String })
   get name(): string {
     return this.element?.getAttribute('name') ?? '';
   }
-
   @property({ type: String })
   get desc(): string {
     return this.element?.getAttribute('desc') ?? '';
@@ -35,46 +35,49 @@ export class SubstationEditorBase extends LitElement {
   @query('mwc-textfield[label="desc"]') descUI!: TextField;
   @query('div#editor') editorPaneUI!: HTMLElement;
 
-  updateSubstation(): void {
+  checkValidity(): boolean {
+    return this.nameUI.checkValidity() && this.descUI.checkValidity();
+  }
+
+  dispatchUpdate(name: string, desc: string): void {
+    const newElement = <Element>this.element!.cloneNode(false);
+    const event = newActionEvent({
+      old: { element: this.element! },
+      new: { element: newElement },
+    });
+    newElement.setAttribute('name', name);
+    newElement.setAttribute('desc', desc);
+    this.dispatchEvent(event);
+  }
+
+  dispatchCreate(name: string, desc: string): void {
+    const event = newActionEvent({
+      new: {
+        parent: this.parent,
+        element: new DOMParser().parseFromString(
+          `<Substation name="${name}" desc="${desc}"></Substation>`,
+          'application/xml'
+        ).documentElement,
+        reference: null,
+      },
+    });
+    this.dispatchEvent(event);
+  }
+
+  requestSubstationUpdate(): void {
     if (
       this.element &&
-      this.nameUI.checkValidity() &&
-      this.descUI.checkValidity() &&
+      this.checkValidity() &&
       (this.nameUI.value != this.name || this.descUI.value != this.desc)
     ) {
-      const newElement = <Element>this.element!.cloneNode(false);
-      const event = newActionEvent({
-        old: { element: this.element! },
-        new: { element: newElement },
-      });
-      newElement.setAttribute('name', this.nameUI.value);
-      newElement.setAttribute('desc', this.descUI.value);
-      this.dispatchEvent(event);
+      this.dispatchUpdate(this.nameUI.value, this.descUI.value);
       this.editUI.close();
     }
   }
 
-  createSubstation(): void {
-    if (
-      !this.element &&
-      this.nameUI.checkValidity() &&
-      this.descUI.checkValidity()
-    ) {
-      if (this.nameUI.value == '') return;
-      const event = newActionEvent({
-        new: {
-          parent: this.parent,
-          element: new DOMParser().parseFromString(
-            `<Substation
-                name="${this.nameUI.value}"
-                desc="${this.descUI.value}"
-              ></Substation>`,
-            'application/xml'
-          ).documentElement,
-          reference: null,
-        },
-      });
-      this.dispatchEvent(event);
+  requestSubstationCreate(): void {
+    if (!this.element && this.checkValidity() && this.nameUI.value) {
+      this.dispatchCreate(this.nameUI.value, this.descUI.value);
       this.editUI.close();
     }
   }
@@ -101,7 +104,10 @@ export class SubstationEditorBase extends LitElement {
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>
-          <mwc-button @click=${this.updateSubstation} slot="primaryAction">
+          <mwc-button
+            @click=${this.requestSubstationUpdate}
+            slot="primaryAction"
+          >
             Save
           </mwc-button>
         </mwc-dialog>
@@ -121,7 +127,10 @@ export class SubstationEditorBase extends LitElement {
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>
-          <mwc-button @click=${this.createSubstation} slot="primaryAction">
+          <mwc-button
+            @click=${this.requestSubstationCreate}
+            slot="primaryAction"
+          >
             Add
           </mwc-button>
         </mwc-dialog>`;
