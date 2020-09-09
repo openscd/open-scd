@@ -60,8 +60,9 @@ export const styles = css`
   }
 
   h1 > mwc-icon-button {
-    vertical-align: bottom;
     float: right;
+    position: relative;
+    top: -5px;
   }
 
   mwc-dialog {

@@ -11,9 +11,15 @@ import { Dialog } from '@material/mwc-dialog';
 import { TextField } from '@material/mwc-textfield';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
+import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+
 import { newActionEvent, Action } from '../foundation.js';
 
 export class SubstationEditorBase extends LitElement {
+  defaultNomFreq = 50;
+  defaultNumPhases = 3;
+  defaultVoltage = 110;
+
   @property()
   doc!: XMLDocument;
   @property()
@@ -34,29 +40,54 @@ export class SubstationEditorBase extends LitElement {
     return this.element?.getAttribute('desc') ?? '';
   }
 
-  @query('mwc-dialog') editUI!: Dialog;
-  @query('mwc-textfield[label="name"]') nameUI!: TextField;
-  @query('mwc-textfield[label="desc"]') descUI!: TextField;
-  @query('div#editor') editorPaneUI!: HTMLElement;
-
+  @query('mwc-dialog#edit-substation') editSubstationUI!: Dialog;
+  @query('#edit-substation > mwc-textfield[label="name"]')
+  substationNameUI!: TextField;
+  @query('#edit-substation > mwc-textfield[label="desc"]')
+  substationDescUI!: TextField;
   @query('mwc-menu') menuUI!: Menu;
-  @query('h1 > mwc-icon-button') menuIcon!: IconButton;
+  @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
+  @query('mwc-dialog#create-voltage-level') createVoltageLevelUI!: Dialog;
+  @query('#create-voltage-level > mwc-textfield[label="name"]')
+  voltageLevelNameUI!: TextField;
+  @query('#create-voltage-level > mwc-textfield[label="desc"]')
+  voltageLevelDescUI!: TextField;
+  @query('#create-voltage-level > mwc-textfield[label="nomFreq"]')
+  voltageLevelNomFreqUI!: TextField;
+  @query('#create-voltage-level > mwc-textfield[label="numPhases"]')
+  voltageLevelNumPhasesUI!: TextField;
+  @query('#create-voltage-level > mwc-textfield[label="Voltage"]')
+  voltageLevelVoltageUI!: TextField;
 
   checkValidity(): boolean {
-    return this.nameUI.checkValidity() && this.descUI.checkValidity();
+    return (
+      this.substationNameUI.checkValidity() &&
+      this.substationDescUI.checkValidity()
+    );
+  }
+
+  checkVoltageLevelValidity(): boolean {
+    return (
+      this.element !== null &&
+      Array.from(
+        this.createVoltageLevelUI.querySelectorAll('mwc-textfield')
+      ).every(tf => tf.checkValidity())
+    );
   }
 
   newUpdateAction(name: string, desc: string): Action {
-    const newElement = <Element>this.element!.cloneNode(false);
+    if (!this.element) throw new Error('Cannot edit a missing Substation');
+    const newElement = <Element>this.element.cloneNode(false);
     newElement.setAttribute('name', name);
     newElement.setAttribute('desc', desc);
     return {
-      old: { element: this.element! },
+      old: { element: this.element },
       new: { element: newElement },
     };
   }
 
   newCreateAction(name: string, desc: string): Action {
+    if (this.element) throw new Error('Will not create a second Substation');
     return {
       new: {
         parent: this.parent,
@@ -69,34 +100,85 @@ export class SubstationEditorBase extends LitElement {
     };
   }
 
+  newVoltageLevelCreateAction(
+    name: string,
+    desc: string,
+    nomFreq: string,
+    numPhases: string,
+    Voltage: string
+  ): Action {
+    if (!this.element)
+      throw new Error('Cannot create VoltageLevel without Substation');
+    return {
+      new: {
+        parent: this.element,
+        element: new DOMParser().parseFromString(
+          `<VoltageLevel
+            name="${name}"
+            desc="${desc}"
+            nomFreq="${nomFreq}"
+            numPhases="${numPhases}"
+          ><Voltage unit="V" multiplier="k">${Voltage}</Voltage>
+          </VoltageLevel>`,
+          'application/xml'
+        ).documentElement,
+        reference: null,
+      },
+    };
+  }
+
   requestSubstationUpdate(): void {
     if (
       this.element &&
       this.checkValidity() &&
-      (this.nameUI.value != this.name || this.descUI.value != this.desc)
+      (this.substationNameUI.value != this.name ||
+        this.substationDescUI.value != this.desc)
     ) {
       this.dispatchEvent(
         newActionEvent(
-          this.newUpdateAction(this.nameUI.value, this.descUI.value)
+          this.newUpdateAction(
+            this.substationNameUI.value,
+            this.substationDescUI.value
+          )
         )
       );
-      this.editUI.close();
+      this.editSubstationUI.close();
     }
   }
 
   requestSubstationCreate(): void {
-    if (!this.element && this.checkValidity() && this.nameUI.value) {
+    if (!this.element && this.checkValidity() && this.substationNameUI.value) {
       this.dispatchEvent(
         newActionEvent(
-          this.newCreateAction(this.nameUI.value, this.descUI.value)
+          this.newCreateAction(
+            this.substationNameUI.value,
+            this.substationDescUI.value
+          )
         )
       );
-      this.editUI.close();
+      this.editSubstationUI.close();
+    }
+  }
+
+  requestVoltageLevelCreate(): void {
+    if (this.element && this.checkVoltageLevelValidity()) {
+      this.dispatchEvent(
+        newActionEvent(
+          this.newVoltageLevelCreateAction(
+            this.voltageLevelNameUI.value,
+            this.voltageLevelDescUI.value,
+            this.voltageLevelNomFreqUI.value,
+            this.voltageLevelNumPhasesUI.value,
+            this.voltageLevelVoltageUI.value
+          )
+        )
+      );
+      this.createVoltageLevelUI.close();
     }
   }
 
   updated(): void {
-    if (this.menuUI) this.menuUI.anchor = this.menuIcon;
+    if (this.menuUI) this.menuUI.anchor = this.menuIconUI;
   }
 
   render(): TemplateResult {
@@ -108,20 +190,62 @@ export class SubstationEditorBase extends LitElement {
             icon="more_vert"
             @click=${() => this.menuUI.show()}
           ></mwc-icon-button>
-          <mwc-menu .anchor=${this.menuIcon} corner="BOTTOM_RIGHT">
+          <mwc-menu
+            .anchor=${this.menuIconUI}
+            corner="BOTTOM_RIGHT"
+            @action=${(ae: CustomEvent<ActionDetail>) => {
+              if (ae.detail.index == 0) this.createVoltageLevelUI.show();
+            }}
+          >
             <mwc-list-item>Add Voltage Level</mwc-list-item>
           </mwc-menu>
         </h1>
-        <mwc-dialog heading="Edit Substation">
+        <mwc-dialog heading="Add Voltage Level" id="create-voltage-level">
+          <mwc-textfield
+            label="name"
+            helper="Voltage Level Name"
+            required
+            dialogInitialFocus
+          ></mwc-textfield>
+          <mwc-textfield label="desc" helper="Description"></mwc-textfield>
+          <mwc-textfield
+            value="${this.defaultNomFreq}"
+            label="nomFreq"
+            helper="Nominal Frequency in Hz"
+          ></mwc-textfield>
+          <mwc-textfield
+            value="${this.defaultNumPhases}"
+            label="numPhases"
+            helper="Number of Phases"
+            type="number"
+          ></mwc-textfield>
+          <mwc-textfield
+            value="${this.defaultVoltage}"
+            label="Voltage"
+            helper="Voltage in kV"
+          ></mwc-textfield>
+          <mwc-button slot="secondaryAction" dialogAction="close">
+            Cancel
+          </mwc-button>
+          <mwc-button
+            @click=${this.requestVoltageLevelCreate}
+            slot="primaryAction"
+          >
+            Save
+          </mwc-button>
+        </mwc-dialog>
+        <mwc-dialog heading="Edit Substation" id="edit-substation">
           <mwc-textfield
             value="${this.name ?? ''}"
             label="name"
+            helper="Substation Name"
             required
             dialogInitialFocus
           ></mwc-textfield>
           <mwc-textfield
             value="${this.desc ?? ''}"
             label="desc"
+            helper="Description"
           ></mwc-textfield>
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
@@ -133,19 +257,22 @@ export class SubstationEditorBase extends LitElement {
             Save
           </mwc-button>
         </mwc-dialog>
-        <mwc-fab @click=${() => (this.editUI.open = true)} icon="edit">
+        <mwc-fab
+          @click=${() => (this.editSubstationUI.open = true)}
+          icon="edit"
+        >
         </mwc-fab>
       `;
     } else {
-      return html`<div id="editor"></div>
-        <mwc-fab icon="add" @click=${() => (this.editUI.open = true)}></mwc-fab>
-        <mwc-dialog heading="Add Substation">
+      return html`<h1>No Substation</h1>
+        <mwc-dialog heading="Add Substation" id="edit-substation">
           <mwc-textfield
             label="name"
+            helper="Substation Name"
             required
             dialogInitialFocus
           ></mwc-textfield>
-          <mwc-textfield label="desc"></mwc-textfield>
+          <mwc-textfield label="desc" helper="Description"></mwc-textfield>
           <mwc-button slot="secondaryAction" dialogAction="close">
             Cancel
           </mwc-button>
@@ -155,7 +282,11 @@ export class SubstationEditorBase extends LitElement {
           >
             Add
           </mwc-button>
-        </mwc-dialog>`;
+        </mwc-dialog>
+        <mwc-fab
+          icon="add"
+          @click=${() => (this.editSubstationUI.open = true)}
+        ></mwc-fab> `;
     }
   }
 }

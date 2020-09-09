@@ -7,7 +7,6 @@ import { getDocument } from '../data.js';
 import { emptySCD } from '../mock-document.js';
 
 import { Button } from '@material/mwc-button';
-import { get } from 'https';
 
 describe('substation-editor', () => {
   customElements.define('substation-editor', SubstationEditor);
@@ -68,28 +67,28 @@ describe('substation-editor', () => {
   });
 
   it('opens "Add Substation" dialog on mwc-fab button click', async () => {
-    expect(element.editUI.open).to.not.be.true;
+    expect(element.editSubstationUI.open).to.not.be.true;
     await (<Button | null>(
       element.shadowRoot!.querySelector('mwc-fab')
     ))?.click();
-    expect(element.editUI.open).to.be.true;
+    expect(element.editSubstationUI.open).to.be.true;
   });
 
   it('opens "Edit Substation" dialog on mwc-fab button click', async () => {
     element.doc = getDocument();
     await element.updateComplete;
-    expect(element.editUI.open).to.not.be.true;
+    expect(element.editSubstationUI.open).to.not.be.true;
     await (<Button | null>(
       element.shadowRoot!.querySelector('mwc-fab')
     ))?.click();
-    expect(element.editUI.open).to.be.true;
+    expect(element.editSubstationUI.open).to.be.true;
   });
 
   it('opens menu on menu button click', async () => {
     element.doc = getDocument();
     await element.updateComplete;
     expect(element.menuUI).to.have.property('open', false);
-    await element.menuIcon.click();
+    await element.menuIconUI.click();
     expect(element.menuUI).to.have.property('open', true);
   });
 });
