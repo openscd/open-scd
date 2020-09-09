@@ -317,7 +317,6 @@
 * [setAttributeNodeNS](_open_scd_.openscd.md#setattributenodens)
 * [setPointerCapture](_open_scd_.openscd.md#setpointercapture)
 * [shouldUpdate](_open_scd_.openscd.md#protected-shouldupdate)
-* [showLog](_open_scd_.openscd.md#showlog)
 * [toggleAttribute](_open_scd_.openscd.md#toggleattribute)
 * [undo](_open_scd_.openscd.md#undo)
 * [update](_open_scd_.openscd.md#protected-update)
@@ -344,7 +343,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:383
+Defined in src/open-scd-base.ts:375
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -3312,7 +3311,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:322
+Defined in src/open-scd-base.ts:314
 
 **Parameters:**
 
@@ -4795,18 +4794,6 @@ Name | Type | Description |
 `_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
 **Returns:** *boolean*
-
-___
-
-###  showLog
-
-▸ **showLog**(): *void*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[showLog](_open_scd_base_.openscdbase.md#showlog)*
-
-Defined in src/open-scd-base.ts:314
-
-**Returns:** *void*
 
 ___
 

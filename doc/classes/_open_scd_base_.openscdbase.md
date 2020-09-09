@@ -323,7 +323,6 @@
 * [setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)
 * [setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)
 * [shouldUpdate](_open_scd_base_.openscdbase.md#protected-shouldupdate)
-* [showLog](_open_scd_base_.openscdbase.md#showlog)
 * [toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)
 * [undo](_open_scd_base_.openscdbase.md#undo)
 * [update](_open_scd_base_.openscdbase.md#protected-update)
@@ -348,7 +347,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:383
+Defined in src/open-scd-base.ts:375
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -3669,7 +3668,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:322
+Defined in src/open-scd-base.ts:314
 
 **Parameters:**
 
@@ -4033,7 +4032,7 @@ ___
 
 ▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
 
-Defined in src/open-scd-base.ts:374
+Defined in src/open-scd-base.ts:366
 
 **Parameters:**
 
@@ -4335,7 +4334,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:327
+Defined in src/open-scd-base.ts:319
 
 **Parameters:**
 
@@ -4351,7 +4350,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:365
+Defined in src/open-scd-base.ts:357
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -5316,16 +5315,6 @@ Name | Type | Description |
 `_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
 **Returns:** *boolean*
-
-___
-
-###  showLog
-
-▸ **showLog**(): *void*
-
-Defined in src/open-scd-base.ts:314
-
-**Returns:** *void*
 
 ___
 

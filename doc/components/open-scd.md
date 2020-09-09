@@ -49,6 +49,5 @@
 | `renderHistory`    | `(history: LogEntry[]): TemplateResult[]`        |
 | `renderLogEntry`   | `(entry: LogEntry, index: number, history: LogEntry[]): TemplateResult` |
 | `renderMenuEntry`  | `(me: MenuEntry): TemplateResult`                |
-| `showLog`          | `(): void`                                       |
 | `undo`             | `(): boolean`                                    |
 | `warn`             | `(title: string, options?: Pick<LogEntry, "cause" \| "icon" \| "message"> \| undefined): LogEntry` |
