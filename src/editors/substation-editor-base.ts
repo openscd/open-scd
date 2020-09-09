@@ -181,112 +181,103 @@ export class SubstationEditorBase extends LitElement {
     if (this.menuUI) this.menuUI.anchor = this.menuIconUI;
   }
 
-  render(): TemplateResult {
-    if (this.element) {
-      return html`
-        <h1>
-          ${this.name} - ${this.desc}
-          <mwc-icon-button
-            icon="more_vert"
-            @click=${() => this.menuUI.show()}
-          ></mwc-icon-button>
-          <mwc-menu
-            .anchor=${this.menuIconUI}
-            corner="BOTTOM_RIGHT"
-            @action=${(ae: CustomEvent<ActionDetail>) => {
-              if (ae.detail.index == 0) this.createVoltageLevelUI.show();
-            }}
-          >
-            <mwc-list-item>Add Voltage Level</mwc-list-item>
-          </mwc-menu>
-        </h1>
-        <mwc-dialog heading="Add Voltage Level" id="create-voltage-level">
-          <mwc-textfield
-            label="name"
-            helper="Voltage Level Name"
-            required
-            dialogInitialFocus
-          ></mwc-textfield>
-          <mwc-textfield label="desc" helper="Description"></mwc-textfield>
-          <mwc-textfield
-            value="${this.defaultNomFreq}"
-            label="nomFreq"
-            helper="Nominal Frequency in Hz"
-          ></mwc-textfield>
-          <mwc-textfield
-            value="${this.defaultNumPhases}"
-            label="numPhases"
-            helper="Number of Phases"
-            type="number"
-          ></mwc-textfield>
-          <mwc-textfield
-            value="${this.defaultVoltage}"
-            label="Voltage"
-            helper="Voltage in kV"
-          ></mwc-textfield>
-          <mwc-button slot="secondaryAction" dialogAction="close">
-            Cancel
-          </mwc-button>
-          <mwc-button
-            @click=${this.requestVoltageLevelCreate}
-            slot="primaryAction"
-          >
-            Save
-          </mwc-button>
-        </mwc-dialog>
-        <mwc-dialog heading="Edit Substation" id="edit-substation">
-          <mwc-textfield
-            value="${this.name ?? ''}"
-            label="name"
-            helper="Substation Name"
-            required
-            dialogInitialFocus
-          ></mwc-textfield>
-          <mwc-textfield
-            value="${this.desc ?? ''}"
-            label="desc"
-            helper="Description"
-          ></mwc-textfield>
-          <mwc-button slot="secondaryAction" dialogAction="close">
-            Cancel
-          </mwc-button>
-          <mwc-button
-            @click=${this.requestSubstationUpdate}
-            slot="primaryAction"
-          >
-            Save
-          </mwc-button>
-        </mwc-dialog>
-        <mwc-fab
-          @click=${() => (this.editSubstationUI.open = true)}
-          icon="edit"
+  renderEditSubstationUI(): TemplateResult {
+    const [heading, action, actionName] = this.element
+      ? ['Edit Substation', this.requestSubstationUpdate, 'Save']
+      : ['Add Substation', this.requestSubstationCreate, 'Add'];
+    return html`
+      <mwc-dialog heading="${heading}" id="edit-substation">
+        <mwc-textfield
+          value="${this.name ?? ''}"
+          label="name"
+          helper="Substation Name"
+          required
+          dialogInitialFocus
+        ></mwc-textfield>
+        <mwc-textfield
+          value="${this.desc ?? ''}"
+          label="desc"
+          helper="Description"
+        ></mwc-textfield>
+        <mwc-button slot="secondaryAction" dialogAction="close">
+          Cancel
+        </mwc-button>
+        <mwc-button @click=${action} slot="primaryAction">
+          ${actionName}
+        </mwc-button>
+      </mwc-dialog>
+    `;
+  }
+
+  renderCreateVoltageLevelUI(): TemplateResult {
+    if (!this.element) return html``;
+    return html`<mwc-dialog
+      heading="Add Voltage Level"
+      id="create-voltage-level"
+    >
+      <mwc-textfield
+        label="name"
+        helper="Voltage Level Name"
+        required
+        dialogInitialFocus
+      ></mwc-textfield>
+      <mwc-textfield label="desc" helper="Description"></mwc-textfield>
+      <mwc-textfield
+        value="${this.defaultNomFreq}"
+        label="nomFreq"
+        helper="Nominal Frequency in Hz"
+      ></mwc-textfield>
+      <mwc-textfield
+        value="${this.defaultNumPhases}"
+        label="numPhases"
+        helper="Number of Phases"
+        type="number"
+      ></mwc-textfield>
+      <mwc-textfield
+        value="${this.defaultVoltage}"
+        label="Voltage"
+        helper="Voltage in kV"
+      ></mwc-textfield>
+      <mwc-button slot="secondaryAction" dialogAction="close">
+        Cancel
+      </mwc-button>
+      <mwc-button @click=${this.requestVoltageLevelCreate} slot="primaryAction">
+        Add
+      </mwc-button>
+    </mwc-dialog>`;
+  }
+
+  renderHeader(): TemplateResult {
+    if (!this.element) return html`<h1>No Substation</h1>`;
+    return html`
+      <h1>
+        ${this.name} - ${this.desc}
+        <mwc-icon-button
+          icon="more_vert"
+          @click=${() => this.menuUI.show()}
+        ></mwc-icon-button>
+        <mwc-menu
+          .anchor=${this.menuIconUI}
+          corner="BOTTOM_RIGHT"
+          @action=${(ae: CustomEvent<ActionDetail>) => {
+            if (ae.detail.index == 0) this.createVoltageLevelUI.show();
+          }}
         >
-        </mwc-fab>
-      `;
-    } else {
-      return html`<h1>No Substation</h1>
-        <mwc-dialog heading="Add Substation" id="edit-substation">
-          <mwc-textfield
-            label="name"
-            helper="Substation Name"
-            required
-            dialogInitialFocus
-          ></mwc-textfield>
-          <mwc-textfield label="desc" helper="Description"></mwc-textfield>
-          <mwc-button slot="secondaryAction" dialogAction="close">
-            Cancel
-          </mwc-button>
-          <mwc-button
-            @click=${this.requestSubstationCreate}
-            slot="primaryAction"
-          >
-            Add
-          </mwc-button>
-        </mwc-dialog>
-        <mwc-fab
-          icon="add"
-          @click=${() => (this.editSubstationUI.open = true)}
-        ></mwc-fab> `;
-    }
+          <mwc-list-item>Add Voltage Level</mwc-list-item>
+        </mwc-menu>
+      </h1>
+    `;
+  }
+
+  render(): TemplateResult {
+    return html`
+      ${this.renderHeader()} ${this.renderCreateVoltageLevelUI()}
+      ${this.renderEditSubstationUI()}
+      <mwc-fab
+        @click=${() => (this.editSubstationUI.open = true)}
+        icon="${this.element ? 'edit' : 'add'}"
+      >
+      </mwc-fab>
+    `;
   }
 }

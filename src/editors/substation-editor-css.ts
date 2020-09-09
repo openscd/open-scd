@@ -2,7 +2,7 @@ import { css } from 'lit-element';
 
 export const styles = css`
   :host {
-    height: calc(100vh - 140px);
+    height: calc(100vh - 122px);
     width: calc(100vw - 2 * 5px);
     overflow: auto;
     position: absolute;
@@ -28,7 +28,7 @@ export const styles = css`
 
   @media screen and (max-width: 600px) {
     :host {
-      height: calc(100vh - 104px);
+      height: calc(100vh - 114px);
     }
   }
 
