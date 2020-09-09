@@ -72,7 +72,7 @@ export const styles = css`
 
   mwc-dialog > * {
     display: block;
-    margin-top: 24px;
+    margin-top: 16px;
   }
 
   pre {

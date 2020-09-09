@@ -14,8 +14,9 @@ import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
 import { newActionEvent, Action } from '../foundation.js';
+import { styles } from './substation/substation-css.js';
 
-export class SubstationEditorBase extends LitElement {
+export default class SubstationEditor extends LitElement {
   defaultNomFreq = 50;
   defaultNumPhases = 3;
   defaultVoltage = 110;
@@ -251,7 +252,7 @@ export class SubstationEditorBase extends LitElement {
     if (!this.element) return html`<h1>No Substation</h1>`;
     return html`
       <h1>
-        ${this.name} - ${this.desc}
+        ${this.name} &mdash; ${this.desc}
         <mwc-icon-button
           icon="more_vert"
           @click=${() => this.menuUI.show()}
@@ -280,4 +281,6 @@ export class SubstationEditorBase extends LitElement {
       </mwc-fab>
     `;
   }
+
+  static styles = styles;
 }

@@ -201,7 +201,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         id: 'substation',
         icon: zeroLineIcon,
         getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/substation-editor.js', 'editor-0').then(
+          plugin('./editors/SubstationEditor.js', 'editor-0').then(
             () => html`<editor-0 .doc=${this.doc}></editor-0>`
           ),
       },

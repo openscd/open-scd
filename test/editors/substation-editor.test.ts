@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import SubstationEditor from '../../src/editors/substation-editor.js';
+import SubstationEditor from '../../src/editors/SubstationEditor.js';
 
 import { getDocument } from '../data.js';
 
