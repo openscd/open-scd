@@ -228,6 +228,7 @@
 * [attributeChangedCallback](_editors_substation_editor_base_.substationeditorbase.md#attributechangedcallback)
 * [before](_editors_substation_editor_base_.substationeditorbase.md#before)
 * [blur](_editors_substation_editor_base_.substationeditorbase.md#blur)
+* [checkValidity](_editors_substation_editor_base_.substationeditorbase.md#checkvalidity)
 * [click](_editors_substation_editor_base_.substationeditorbase.md#click)
 * [cloneNode](_editors_substation_editor_base_.substationeditorbase.md#clonenode)
 * [closest](_editors_substation_editor_base_.substationeditorbase.md#closest)
@@ -235,9 +236,10 @@
 * [connectedCallback](_editors_substation_editor_base_.substationeditorbase.md#connectedcallback)
 * [contains](_editors_substation_editor_base_.substationeditorbase.md#contains)
 * [createRenderRoot](_editors_substation_editor_base_.substationeditorbase.md#protected-createrenderroot)
-* [createSubstation](_editors_substation_editor_base_.substationeditorbase.md#createsubstation)
 * [disconnectedCallback](_editors_substation_editor_base_.substationeditorbase.md#disconnectedcallback)
+* [dispatchCreate](_editors_substation_editor_base_.substationeditorbase.md#dispatchcreate)
 * [dispatchEvent](_editors_substation_editor_base_.substationeditorbase.md#dispatchevent)
+* [dispatchUpdate](_editors_substation_editor_base_.substationeditorbase.md#dispatchupdate)
 * [enableUpdating](_editors_substation_editor_base_.substationeditorbase.md#protected-enableupdating)
 * [firstUpdated](_editors_substation_editor_base_.substationeditorbase.md#protected-firstupdated)
 * [focus](_editors_substation_editor_base_.substationeditorbase.md#focus)
@@ -288,6 +290,8 @@
 * [replaceWith](_editors_substation_editor_base_.substationeditorbase.md#replacewith)
 * [requestFullscreen](_editors_substation_editor_base_.substationeditorbase.md#requestfullscreen)
 * [requestPointerLock](_editors_substation_editor_base_.substationeditorbase.md#requestpointerlock)
+* [requestSubstationCreate](_editors_substation_editor_base_.substationeditorbase.md#requestsubstationcreate)
+* [requestSubstationUpdate](_editors_substation_editor_base_.substationeditorbase.md#requestsubstationupdate)
 * [requestUpdate](_editors_substation_editor_base_.substationeditorbase.md#requestupdate)
 * [scroll](_editors_substation_editor_base_.substationeditorbase.md#scroll)
 * [scrollBy](_editors_substation_editor_base_.substationeditorbase.md#scrollby)
@@ -301,7 +305,6 @@
 * [shouldUpdate](_editors_substation_editor_base_.substationeditorbase.md#protected-shouldupdate)
 * [toggleAttribute](_editors_substation_editor_base_.substationeditorbase.md#toggleattribute)
 * [update](_editors_substation_editor_base_.substationeditorbase.md#protected-update)
-* [updateSubstation](_editors_substation_editor_base_.substationeditorbase.md#updatesubstation)
 * [updated](_editors_substation_editor_base_.substationeditorbase.md#protected-updated)
 * [warn](_editors_substation_editor_base_.substationeditorbase.md#optional-warn)
 * [webkitMatchesSelector](_editors_substation_editor_base_.substationeditorbase.md#webkitmatchesselector)
@@ -2512,7 +2515,7 @@ ___
 
 • **get name**(): *string*
 
-Defined in src/editors/substation-editor-base.ts:24
+Defined in src/editors/substation-editor-base.ts:25
 
 **Returns:** *string*
 
@@ -2831,6 +2834,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:7993
 
 ___
 
+###  checkValidity
+
+▸ **checkValidity**(): *boolean*
+
+Defined in src/editors/substation-editor-base.ts:38
+
+**Returns:** *boolean*
+
+___
+
 ###  click
 
 ▸ **click**(): *void*
@@ -2996,16 +3009,6 @@ Returns a node into which to render.
 
 ___
 
-###  createSubstation
-
-▸ **createSubstation**(): *void*
-
-Defined in src/editors/substation-editor-base.ts:57
-
-**Returns:** *void*
-
-___
-
 ###  disconnectedCallback
 
 ▸ **disconnectedCallback**(): *void*
@@ -3017,6 +3020,23 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:304
 Allows for `super.disconnectedCallback()` in extensions while
 reserving the possibility of making non-breaking feature additions
 when disconnecting at some point in the future.
+
+**Returns:** *void*
+
+___
+
+###  dispatchCreate
+
+▸ **dispatchCreate**(`name`: string, `desc`: string): *void*
+
+Defined in src/editors/substation-editor-base.ts:53
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
 
 **Returns:** *void*
 
@@ -3039,6 +3059,23 @@ Name | Type |
 `event` | Event |
 
 **Returns:** *boolean*
+
+___
+
+###  dispatchUpdate
+
+▸ **dispatchUpdate**(`name`: string, `desc`: string): *void*
+
+Defined in src/editors/substation-editor-base.ts:42
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
+
+**Returns:** *void*
 
 ___
 
@@ -4050,7 +4087,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:82
+Defined in src/editors/substation-editor-base.ts:85
 
 **Returns:** *TemplateResult*
 
@@ -4130,6 +4167,26 @@ ___
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestPointerLock](_editors_substation_editor_base_.substationeditorbase.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5212
+
+**Returns:** *void*
+
+___
+
+###  requestSubstationCreate
+
+▸ **requestSubstationCreate**(): *void*
+
+Defined in src/editors/substation-editor-base.ts:78
+
+**Returns:** *void*
+
+___
+
+###  requestSubstationUpdate
+
+▸ **requestSubstationUpdate**(): *void*
+
+Defined in src/editors/substation-editor-base.ts:67
 
 **Returns:** *void*
 
@@ -4442,16 +4499,6 @@ this method will *not* trigger another update.
 Name | Type |
 ------ | ------ |
 `changedProperties` | PropertyValues |
-
-**Returns:** *void*
-
-___
-
-###  updateSubstation
-
-▸ **updateSubstation**(): *void*
-
-Defined in src/editors/substation-editor-base.ts:38
 
 **Returns:** *void*
 
