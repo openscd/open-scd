@@ -4,12 +4,7 @@ import { EditingElement } from '../src/editing.js';
 import { describeLogEntryHistory } from './logging.test.js';
 import { mockSCD } from './mock-document.js';
 import { newActionEvent } from '../src/foundation.js';
-
-const xmlSerializer = new XMLSerializer();
-
-function serialize(doc: XMLDocument): string {
-  return xmlSerializer.serializeToString(doc);
-}
+import { serialize } from './data.js';
 
 describe('EditingElement', () => {
   let elm: EditingElement;
