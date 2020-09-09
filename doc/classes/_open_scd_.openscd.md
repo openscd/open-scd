@@ -4845,7 +4845,7 @@ ___
 
 ▸ **updated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[updated](_editors_substation_editor_base_.substationeditorbase.md#protected-updated)*
+*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[updated](_open_scd_base_.openscdbase.md#protected-updated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:414
 

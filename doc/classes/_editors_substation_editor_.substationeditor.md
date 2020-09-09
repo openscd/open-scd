@@ -51,13 +51,15 @@
 * [clientTop](_editors_substation_editor_.substationeditor.md#readonly-clienttop)
 * [clientWidth](_editors_substation_editor_.substationeditor.md#readonly-clientwidth)
 * [contentEditable](_editors_substation_editor_.substationeditor.md#contenteditable)
+* [createVoltageLevelUI](_editors_substation_editor_.substationeditor.md#createvoltagelevelui)
 * [dataset](_editors_substation_editor_.substationeditor.md#readonly-dataset)
-* [descUI](_editors_substation_editor_.substationeditor.md#descui)
+* [defaultNomFreq](_editors_substation_editor_.substationeditor.md#defaultnomfreq)
+* [defaultNumPhases](_editors_substation_editor_.substationeditor.md#defaultnumphases)
+* [defaultVoltage](_editors_substation_editor_.substationeditor.md#defaultvoltage)
 * [dir](_editors_substation_editor_.substationeditor.md#dir)
 * [doc](_editors_substation_editor_.substationeditor.md#doc)
 * [draggable](_editors_substation_editor_.substationeditor.md#draggable)
-* [editUI](_editors_substation_editor_.substationeditor.md#editui)
-* [editorPaneUI](_editors_substation_editor_.substationeditor.md#editorpaneui)
+* [editSubstationUI](_editors_substation_editor_.substationeditor.md#editsubstationui)
 * [firstChild](_editors_substation_editor_.substationeditor.md#readonly-firstchild)
 * [firstElementChild](_editors_substation_editor_.substationeditor.md#readonly-firstelementchild)
 * [floatingLabelFoundation](_editors_substation_editor_.substationeditor.md#optional-floatinglabelfoundation)
@@ -73,7 +75,8 @@
 * [lastElementChild](_editors_substation_editor_.substationeditor.md#readonly-lastelementchild)
 * [lineRippleFoundation](_editors_substation_editor_.substationeditor.md#optional-lineripplefoundation)
 * [localName](_editors_substation_editor_.substationeditor.md#readonly-localname)
-* [nameUI](_editors_substation_editor_.substationeditor.md#nameui)
+* [menuIconUI](_editors_substation_editor_.substationeditor.md#menuiconui)
+* [menuUI](_editors_substation_editor_.substationeditor.md#menuui)
 * [namespaceURI](_editors_substation_editor_.substationeditor.md#readonly-namespaceuri)
 * [nextElementSibling](_editors_substation_editor_.substationeditor.md#readonly-nextelementsibling)
 * [nextSibling](_editors_substation_editor_.substationeditor.md#readonly-nextsibling)
@@ -192,11 +195,18 @@
 * [slot](_editors_substation_editor_.substationeditor.md#slot)
 * [spellcheck](_editors_substation_editor_.substationeditor.md#spellcheck)
 * [style](_editors_substation_editor_.substationeditor.md#readonly-style)
+* [substationDescUI](_editors_substation_editor_.substationeditor.md#substationdescui)
+* [substationNameUI](_editors_substation_editor_.substationeditor.md#substationnameui)
 * [tabIndex](_editors_substation_editor_.substationeditor.md#tabindex)
 * [tagName](_editors_substation_editor_.substationeditor.md#readonly-tagname)
 * [textContent](_editors_substation_editor_.substationeditor.md#textcontent)
 * [title](_editors_substation_editor_.substationeditor.md#title)
 * [translate](_editors_substation_editor_.substationeditor.md#translate)
+* [voltageLevelDescUI](_editors_substation_editor_.substationeditor.md#voltageleveldescui)
+* [voltageLevelNameUI](_editors_substation_editor_.substationeditor.md#voltagelevelnameui)
+* [voltageLevelNomFreqUI](_editors_substation_editor_.substationeditor.md#voltagelevelnomfrequi)
+* [voltageLevelNumPhasesUI](_editors_substation_editor_.substationeditor.md#voltagelevelnumphasesui)
+* [voltageLevelVoltageUI](_editors_substation_editor_.substationeditor.md#voltagelevelvoltageui)
 * [[finalized]](_editors_substation_editor_.substationeditor.md#static-protected-[finalized])
 * [finalized](_editors_substation_editor_.substationeditor.md#static-protected-finalized)
 * [properties](_editors_substation_editor_.substationeditor.md#static-properties)
@@ -227,6 +237,7 @@
 * [before](_editors_substation_editor_.substationeditor.md#before)
 * [blur](_editors_substation_editor_.substationeditor.md#blur)
 * [checkValidity](_editors_substation_editor_.substationeditor.md#checkvalidity)
+* [checkVoltageLevelValidity](_editors_substation_editor_.substationeditor.md#checkvoltagelevelvalidity)
 * [click](_editors_substation_editor_.substationeditor.md#click)
 * [cloneNode](_editors_substation_editor_.substationeditor.md#clonenode)
 * [closest](_editors_substation_editor_.substationeditor.md#closest)
@@ -271,6 +282,7 @@
 * [msGetRegionContent](_editors_substation_editor_.substationeditor.md#msgetregioncontent)
 * [newCreateAction](_editors_substation_editor_.substationeditor.md#newcreateaction)
 * [newUpdateAction](_editors_substation_editor_.substationeditor.md#newupdateaction)
+* [newVoltageLevelCreateAction](_editors_substation_editor_.substationeditor.md#newvoltagelevelcreateaction)
 * [normalize](_editors_substation_editor_.substationeditor.md#normalize)
 * [performUpdate](_editors_substation_editor_.substationeditor.md#protected-performupdate)
 * [prepend](_editors_substation_editor_.substationeditor.md#prepend)
@@ -291,6 +303,7 @@
 * [requestSubstationCreate](_editors_substation_editor_.substationeditor.md#requestsubstationcreate)
 * [requestSubstationUpdate](_editors_substation_editor_.substationeditor.md#requestsubstationupdate)
 * [requestUpdate](_editors_substation_editor_.substationeditor.md#requestupdate)
+* [requestVoltageLevelCreate](_editors_substation_editor_.substationeditor.md#requestvoltagelevelcreate)
 * [scroll](_editors_substation_editor_.substationeditor.md#scroll)
 * [scrollBy](_editors_substation_editor_.substationeditor.md#scrollby)
 * [scrollIntoView](_editors_substation_editor_.substationeditor.md#scrollintoview)
@@ -303,7 +316,7 @@
 * [shouldUpdate](_editors_substation_editor_.substationeditor.md#protected-shouldupdate)
 * [toggleAttribute](_editors_substation_editor_.substationeditor.md#toggleattribute)
 * [update](_editors_substation_editor_.substationeditor.md#protected-update)
-* [updated](_editors_substation_editor_.substationeditor.md#protected-updated)
+* [updated](_editors_substation_editor_.substationeditor.md#updated)
 * [warn](_editors_substation_editor_.substationeditor.md#optional-warn)
 * [webkitMatchesSelector](_editors_substation_editor_.substationeditor.md#webkitmatchesselector)
 * [createProperty](_editors_substation_editor_.substationeditor.md#static-createproperty)
@@ -714,6 +727,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
 ___
 
+###  createVoltageLevelUI
+
+• **createVoltageLevelUI**: *Dialog*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[createVoltageLevelUI](_editors_substation_editor_base_.substationeditorbase.md#createvoltagelevelui)*
+
+Defined in src/editors/substation-editor-base.ts:50
+
+___
+
 ### `Readonly` dataset
 
 • **dataset**: *DOMStringMap*
@@ -724,13 +747,33 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
 
 ___
 
-###  descUI
+###  defaultNomFreq
 
-• **descUI**: *TextField*
+• **defaultNomFreq**: *number* = 50
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[descUI](_editors_substation_editor_base_.substationeditorbase.md#descui)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[defaultNomFreq](_editors_substation_editor_base_.substationeditorbase.md#defaultnomfreq)*
 
-Defined in src/editors/substation-editor-base.ts:35
+Defined in src/editors/substation-editor-base.ts:19
+
+___
+
+###  defaultNumPhases
+
+• **defaultNumPhases**: *number* = 3
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[defaultNumPhases](_editors_substation_editor_base_.substationeditorbase.md#defaultnumphases)*
+
+Defined in src/editors/substation-editor-base.ts:20
+
+___
+
+###  defaultVoltage
+
+• **defaultVoltage**: *number* = 110
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[defaultVoltage](_editors_substation_editor_base_.substationeditorbase.md#defaultvoltage)*
+
+Defined in src/editors/substation-editor-base.ts:21
 
 ___
 
@@ -750,7 +793,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[doc](_editors_substation_editor_base_.substationeditorbase.md#doc)*
 
-Defined in src/editors/substation-editor-base.ts:14
+Defined in src/editors/substation-editor-base.ts:24
 
 ___
 
@@ -764,23 +807,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
 ___
 
-###  editUI
+###  editSubstationUI
 
-• **editUI**: *Dialog*
+• **editSubstationUI**: *Dialog*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[editUI](_editors_substation_editor_base_.substationeditorbase.md#editui)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[editSubstationUI](_editors_substation_editor_base_.substationeditorbase.md#editsubstationui)*
 
-Defined in src/editors/substation-editor-base.ts:33
-
-___
-
-###  editorPaneUI
-
-• **editorPaneUI**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
-
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[editorPaneUI](_editors_substation_editor_base_.substationeditorbase.md#editorpaneui)*
-
-Defined in src/editors/substation-editor-base.ts:36
+Defined in src/editors/substation-editor-base.ts:43
 
 ___
 
@@ -948,13 +981,23 @@ Returns the local name.
 
 ___
 
-###  nameUI
+###  menuIconUI
 
-• **nameUI**: *TextField*
+• **menuIconUI**: *IconButton*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[nameUI](_editors_substation_editor_base_.substationeditorbase.md#nameui)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[menuIconUI](_editors_substation_editor_base_.substationeditorbase.md#menuiconui)*
 
-Defined in src/editors/substation-editor-base.ts:34
+Defined in src/editors/substation-editor-base.ts:49
+
+___
+
+###  menuUI
+
+• **menuUI**: *Menu*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[menuUI](_editors_substation_editor_base_.substationeditorbase.md#menuui)*
+
+Defined in src/editors/substation-editor-base.ts:48
 
 ___
 
@@ -2349,6 +2392,26 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5250
 
 ___
 
+###  substationDescUI
+
+• **substationDescUI**: *TextField*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[substationDescUI](_editors_substation_editor_base_.substationeditorbase.md#substationdescui)*
+
+Defined in src/editors/substation-editor-base.ts:47
+
+___
+
+###  substationNameUI
+
+• **substationNameUI**: *TextField*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[substationNameUI](_editors_substation_editor_base_.substationeditorbase.md#substationnameui)*
+
+Defined in src/editors/substation-editor-base.ts:45
+
+___
+
 ###  tabIndex
 
 • **tabIndex**: *number*
@@ -2398,6 +2461,56 @@ ___
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[translate](_editors_substation_editor_base_.substationeditorbase.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
+
+___
+
+###  voltageLevelDescUI
+
+• **voltageLevelDescUI**: *TextField*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[voltageLevelDescUI](_editors_substation_editor_base_.substationeditorbase.md#voltageleveldescui)*
+
+Defined in src/editors/substation-editor-base.ts:54
+
+___
+
+###  voltageLevelNameUI
+
+• **voltageLevelNameUI**: *TextField*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[voltageLevelNameUI](_editors_substation_editor_base_.substationeditorbase.md#voltagelevelnameui)*
+
+Defined in src/editors/substation-editor-base.ts:52
+
+___
+
+###  voltageLevelNomFreqUI
+
+• **voltageLevelNomFreqUI**: *TextField*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[voltageLevelNomFreqUI](_editors_substation_editor_base_.substationeditorbase.md#voltagelevelnomfrequi)*
+
+Defined in src/editors/substation-editor-base.ts:56
+
+___
+
+###  voltageLevelNumPhasesUI
+
+• **voltageLevelNumPhasesUI**: *TextField*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[voltageLevelNumPhasesUI](_editors_substation_editor_base_.substationeditorbase.md#voltagelevelnumphasesui)*
+
+Defined in src/editors/substation-editor-base.ts:58
+
+___
+
+###  voltageLevelVoltageUI
+
+• **voltageLevelVoltageUI**: *TextField*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[voltageLevelVoltageUI](_editors_substation_editor_base_.substationeditorbase.md#voltagelevelvoltageui)*
+
+Defined in src/editors/substation-editor-base.ts:60
 
 ___
 
@@ -2490,7 +2603,7 @@ Defined in src/editors/substation-editor.ts:5
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[desc](_editors_substation_editor_base_.substationeditorbase.md#desc)*
 
-Defined in src/editors/substation-editor-base.ts:29
+Defined in src/editors/substation-editor-base.ts:39
 
 **Returns:** *string*
 
@@ -2502,7 +2615,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[element](_editors_substation_editor_base_.substationeditorbase.md#element)*
 
-Defined in src/editors/substation-editor-base.ts:16
+Defined in src/editors/substation-editor-base.ts:26
 
 **Returns:** *Element | null*
 
@@ -2526,7 +2639,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[name](_editors_substation_editor_base_.substationeditorbase.md#name)*
 
-Defined in src/editors/substation-editor-base.ts:25
+Defined in src/editors/substation-editor-base.ts:35
 
 **Returns:** *string*
 
@@ -2538,7 +2651,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[parent](_editors_substation_editor_base_.substationeditorbase.md#parent)*
 
-Defined in src/editors/substation-editor-base.ts:20
+Defined in src/editors/substation-editor-base.ts:30
 
 **Returns:** *Element*
 
@@ -2853,7 +2966,19 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[checkValidity](_editors_substation_editor_base_.substationeditorbase.md#checkvalidity)*
 
-Defined in src/editors/substation-editor-base.ts:38
+Defined in src/editors/substation-editor-base.ts:62
+
+**Returns:** *boolean*
+
+___
+
+###  checkVoltageLevelValidity
+
+▸ **checkVoltageLevelValidity**(): *boolean*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[checkVoltageLevelValidity](_editors_substation_editor_base_.substationeditorbase.md#checkvoltagelevelvalidity)*
+
+Defined in src/editors/substation-editor-base.ts:69
 
 **Returns:** *boolean*
 
@@ -3719,7 +3844,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[newCreateAction](_editors_substation_editor_base_.substationeditorbase.md#newcreateaction)*
 
-Defined in src/editors/substation-editor-base.ts:52
+Defined in src/editors/substation-editor-base.ts:89
 
 **Parameters:**
 
@@ -3738,7 +3863,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[newUpdateAction](_editors_substation_editor_base_.substationeditorbase.md#newupdateaction)*
 
-Defined in src/editors/substation-editor-base.ts:42
+Defined in src/editors/substation-editor-base.ts:78
 
 **Parameters:**
 
@@ -3746,6 +3871,28 @@ Name | Type |
 ------ | ------ |
 `name` | string |
 `desc` | string |
+
+**Returns:** *[Action](../modules/_foundation_.md#action)*
+
+___
+
+###  newVoltageLevelCreateAction
+
+▸ **newVoltageLevelCreateAction**(`name`: string, `desc`: string, `nomFreq`: string, `numPhases`: string, `Voltage`: string): *[Action](../modules/_foundation_.md#action)*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[newVoltageLevelCreateAction](_editors_substation_editor_base_.substationeditorbase.md#newvoltagelevelcreateaction)*
+
+Defined in src/editors/substation-editor-base.ts:103
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`name` | string |
+`desc` | string |
+`nomFreq` | string |
+`numPhases` | string |
+`Voltage` | string |
 
 **Returns:** *[Action](../modules/_foundation_.md#action)*
 
@@ -4108,7 +4255,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/editors/substation-editor-base.ts:91
+Defined in src/editors/substation-editor-base.ts:184
 
 **Returns:** *TemplateResult*
 
@@ -4199,7 +4346,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestSubstationCreate](_editors_substation_editor_base_.substationeditorbase.md#requestsubstationcreate)*
 
-Defined in src/editors/substation-editor-base.ts:80
+Defined in src/editors/substation-editor-base.ts:149
 
 **Returns:** *void*
 
@@ -4211,7 +4358,7 @@ ___
 
 *Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestSubstationUpdate](_editors_substation_editor_base_.substationeditorbase.md#requestsubstationupdate)*
 
-Defined in src/editors/substation-editor-base.ts:65
+Defined in src/editors/substation-editor-base.ts:130
 
 **Returns:** *void*
 
@@ -4243,6 +4390,18 @@ Name | Type | Description |
 **Returns:** *Promise‹unknown›*
 
 A Promise that is resolved when the update completes.
+
+___
+
+###  requestVoltageLevelCreate
+
+▸ **requestVoltageLevelCreate**(): *void*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[requestVoltageLevelCreate](_editors_substation_editor_base_.substationeditorbase.md#requestvoltagelevelcreate)*
+
+Defined in src/editors/substation-editor-base.ts:163
+
+**Returns:** *void*
 
 ___
 
@@ -4529,25 +4688,15 @@ Name | Type |
 
 ___
 
-### `Protected` updated
+###  updated
 
-▸ **updated**(`_changedProperties`: PropertyValues): *void*
+▸ **updated**(): *void*
 
-*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[updated](_editors_substation_editor_base_.substationeditorbase.md#protected-updated)*
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[updated](_editors_substation_editor_base_.substationeditorbase.md#updated)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:414
+*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[updated](_open_scd_base_.openscdbase.md#protected-updated)*
 
-Invoked whenever the element is updated. Implement to perform
-post-updating tasks via DOM APIs, for example, focusing an element.
-
-Setting properties inside this method will trigger the element to update
-again after this update cycle completes.
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`_changedProperties` | PropertyValues | Map of changed properties with old values  |
+Defined in src/editors/substation-editor-base.ts:180
 
 **Returns:** *void*
 
