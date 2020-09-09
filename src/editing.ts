@@ -88,7 +88,7 @@ export function Editing<TBase extends ElementConstructor>(Base: TBase) {
           };
         }
         entry.action.derived = true;
-        if (this.canUndo) this.history.splice(this.lastAction + 1);
+        this.history.splice(this.lastAction + 1);
         this.lastAction = this.history.length;
       }
       this.history.push(entry);
