@@ -12,3 +12,17 @@
 
 * [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)
 * [Tab](../interfaces/_open_scd_base_.tab.md)
+
+### Functions
+
+* [newEmptySCD](_open_scd_base_.md#newemptyscd)
+
+## Functions
+
+###  newEmptySCD
+
+▸ **newEmptySCD**(): *Document*
+
+Defined in src/open-scd-base.ts:45
+
+**Returns:** *Document*

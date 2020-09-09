@@ -210,7 +210,6 @@
 * [work](_open_scd_base_.openscdbase.md#protected-work)
 * [workDone](_open_scd_base_.openscdbase.md#workdone)
 * [[finalized]](_open_scd_base_.openscdbase.md#static-protected-[finalized])
-* [emptySCD](_open_scd_base_.openscdbase.md#static-emptyscd)
 * [finalized](_open_scd_base_.openscdbase.md#static-protected-finalized)
 * [properties](_open_scd_base_.openscdbase.md#static-properties)
 * [render](_open_scd_base_.openscdbase.md#static-render)
@@ -347,7 +346,7 @@
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:376
+Defined in src/open-scd-base.ts:150
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -623,7 +622,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-Defined in src/open-scd-base.ts:287
+Defined in src/open-scd-base.ts:61
 
 The currently active editor tab.
 
@@ -823,7 +822,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-Defined in src/open-scd-base.ts:299
+Defined in src/open-scd-base.ts:73
 
 ___
 
@@ -853,11 +852,11 @@ ___
 
 ###  doc
 
-• **doc**: *XMLDocument* = OpenSCDBase.emptySCD
+• **doc**: *XMLDocument* = newEmptySCD()
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:290
+Defined in src/open-scd-base.ts:64
 
 The `XMLDocument` representation of the current file.
 
@@ -879,7 +878,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-Defined in src/open-scd-base.ts:313
+Defined in src/open-scd-base.ts:87
 
 ___
 
@@ -941,7 +940,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:281
+Defined in src/open-scd-base.ts:55
 
 ___
 
@@ -1101,7 +1100,7 @@ ___
 
 • **logUI**: *Dialog*
 
-Defined in src/open-scd-base.ts:311
+Defined in src/open-scd-base.ts:85
 
 ___
 
@@ -1145,7 +1144,7 @@ ___
     },
   ]
 
-Defined in src/open-scd-base.ts:210
+Defined in src/open-scd-base.ts:159
 
 ___
 
@@ -1153,7 +1152,7 @@ ___
 
 • **menuUI**: *Drawer*
 
-Defined in src/open-scd-base.ts:310
+Defined in src/open-scd-base.ts:84
 
 ___
 
@@ -1161,7 +1160,7 @@ ___
 
 • **messageUI**: *Snackbar*
 
-Defined in src/open-scd-base.ts:312
+Defined in src/open-scd-base.ts:86
 
 ___
 
@@ -2778,7 +2777,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-Defined in src/open-scd-base.ts:298
+Defined in src/open-scd-base.ts:72
 
 The name of the current file.
 
@@ -2812,7 +2811,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-Defined in src/open-scd-base.ts:296
+Defined in src/open-scd-base.ts:70
 
 The tag name this editor is responsible for editing
 
@@ -2874,7 +2873,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:284
+Defined in src/open-scd-base.ts:58
 
 Whether the editor is currently waiting for some async work.
 
@@ -2911,18 +2910,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
 Marks class as having finished creating properties.
-
-___
-
-### `Static` emptySCD
-
-▪ **emptySCD**: *Document* = document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  )
-
-Defined in src/open-scd-base.ts:204
 
 ___
 
@@ -3040,7 +3027,7 @@ ___
 
 • **get name**(): *string | null*
 
-Defined in src/open-scd-base.ts:292
+Defined in src/open-scd-base.ts:66
 
 **Returns:** *string | null*
 
@@ -3074,7 +3061,7 @@ ___
 
 • **get src**(): *string*
 
-Defined in src/open-scd-base.ts:302
+Defined in src/open-scd-base.ts:76
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3082,7 +3069,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-Defined in src/open-scd-base.ts:305
+Defined in src/open-scd-base.ts:79
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3668,7 +3655,7 @@ ___
 
 *Overrides void*
 
-Defined in src/open-scd-base.ts:315
+Defined in src/open-scd-base.ts:89
 
 **Parameters:**
 
@@ -4032,7 +4019,7 @@ ___
 
 ▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
 
-Defined in src/open-scd-base.ts:367
+Defined in src/open-scd-base.ts:141
 
 **Parameters:**
 
@@ -4334,7 +4321,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-Defined in src/open-scd-base.ts:320
+Defined in src/open-scd-base.ts:94
 
 **Parameters:**
 
@@ -4350,7 +4337,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-Defined in src/open-scd-base.ts:358
+Defined in src/open-scd-base.ts:132
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4854,7 +4841,7 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
-Defined in src/open-scd-base.ts:46
+Defined in src/open-scd-base.ts:305
 
 **Returns:** *TemplateResult*
 
@@ -4864,7 +4851,7 @@ ___
 
 ▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:149
+Defined in src/open-scd-base.ts:250
 
 **Parameters:**
 
@@ -4880,7 +4867,7 @@ ___
 
 ▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:161
+Defined in src/open-scd-base.ts:262
 
 **Parameters:**
 
@@ -4896,7 +4883,7 @@ ___
 
 ▸ **renderHistory**(`history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult[]*
 
-Defined in src/open-scd-base.ts:172
+Defined in src/open-scd-base.ts:273
 
 **Parameters:**
 
@@ -4912,7 +4899,7 @@ ___
 
 ▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_editing_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult*
 
-Defined in src/open-scd-base.ts:184
+Defined in src/open-scd-base.ts:285
 
 **Parameters:**
 
@@ -4930,7 +4917,7 @@ ___
 
 ▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-Defined in src/open-scd-base.ts:128
+Defined in src/open-scd-base.ts:229
 
 **Parameters:**
 
@@ -5603,7 +5590,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-Defined in src/open-scd-base.ts:248
+Defined in src/open-scd-base.ts:197
 
 ###  editors
 
@@ -5637,4 +5624,4 @@ Defined in src/open-scd-base.ts:248
       },
     ]
 
-Defined in src/open-scd-base.ts:249
+Defined in src/open-scd-base.ts:198

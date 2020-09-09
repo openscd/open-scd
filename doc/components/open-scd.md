@@ -10,7 +10,7 @@
 | `canRedo`        |             | readonly  | `boolean`                                        |                                                  |                                                  |
 | `canUndo`        |             | readonly  | `boolean`                                        |                                                  |                                                  |
 | `commit`         |             |           |                                                  |                                                  |                                                  |
-| `doc`            | `doc`       |           | `XMLDocument`                                    | "emptySCD"                                       | The `XMLDocument` representation of the current file. |
+| `doc`            | `doc`       |           | `XMLDocument`                                    | "newEmptySCD()"                                  | The `XMLDocument` representation of the current file. |
 | `error`          |             |           |                                                  |                                                  |                                                  |
 | `fileUI`         |             |           | `HTMLInputElement`                               |                                                  |                                                  |
 | `handleKeyPress` |             |           |                                                  |                                                  |                                                  |
