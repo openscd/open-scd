@@ -298,6 +298,9 @@
 * [removeChild](_editors_substation_editor_base_.substationeditorbase.md#removechild)
 * [removeEventListener](_editors_substation_editor_base_.substationeditorbase.md#removeeventlistener)
 * [render](_editors_substation_editor_base_.substationeditorbase.md#render)
+* [renderCreateVoltageLevelUI](_editors_substation_editor_base_.substationeditorbase.md#rendercreatevoltagelevelui)
+* [renderEditSubstationUI](_editors_substation_editor_base_.substationeditorbase.md#rendereditsubstationui)
+* [renderHeader](_editors_substation_editor_base_.substationeditorbase.md#renderheader)
 * [replaceChild](_editors_substation_editor_base_.substationeditorbase.md#replacechild)
 * [replaceWith](_editors_substation_editor_base_.substationeditorbase.md#replacewith)
 * [requestFullscreen](_editors_substation_editor_base_.substationeditorbase.md#requestfullscreen)
@@ -4210,7 +4213,37 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
+Defined in src/editors/substation-editor-base.ts:272
+
+**Returns:** *TemplateResult*
+
+___
+
+###  renderCreateVoltageLevelUI
+
+▸ **renderCreateVoltageLevelUI**(): *TemplateResult*
+
+Defined in src/editors/substation-editor-base.ts:212
+
+**Returns:** *TemplateResult*
+
+___
+
+###  renderEditSubstationUI
+
+▸ **renderEditSubstationUI**(): *TemplateResult*
+
 Defined in src/editors/substation-editor-base.ts:184
+
+**Returns:** *TemplateResult*
+
+___
+
+###  renderHeader
+
+▸ **renderHeader**(): *TemplateResult*
+
+Defined in src/editors/substation-editor-base.ts:250
 
 **Returns:** *TemplateResult*
 

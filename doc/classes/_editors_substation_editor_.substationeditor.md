@@ -296,6 +296,9 @@
 * [removeChild](_editors_substation_editor_.substationeditor.md#removechild)
 * [removeEventListener](_editors_substation_editor_.substationeditor.md#removeeventlistener)
 * [render](_editors_substation_editor_.substationeditor.md#render)
+* [renderCreateVoltageLevelUI](_editors_substation_editor_.substationeditor.md#rendercreatevoltagelevelui)
+* [renderEditSubstationUI](_editors_substation_editor_.substationeditor.md#rendereditsubstationui)
+* [renderHeader](_editors_substation_editor_.substationeditor.md#renderheader)
 * [replaceChild](_editors_substation_editor_.substationeditor.md#replacechild)
 * [replaceWith](_editors_substation_editor_.substationeditor.md#replacewith)
 * [requestFullscreen](_editors_substation_editor_.substationeditor.md#requestfullscreen)
@@ -4255,7 +4258,43 @@ ___
 
 *Overrides [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[render](_editors_substation_editor_base_.substationeditorbase.md#static-render)*
 
+Defined in src/editors/substation-editor-base.ts:272
+
+**Returns:** *TemplateResult*
+
+___
+
+###  renderCreateVoltageLevelUI
+
+▸ **renderCreateVoltageLevelUI**(): *TemplateResult*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[renderCreateVoltageLevelUI](_editors_substation_editor_base_.substationeditorbase.md#rendercreatevoltagelevelui)*
+
+Defined in src/editors/substation-editor-base.ts:212
+
+**Returns:** *TemplateResult*
+
+___
+
+###  renderEditSubstationUI
+
+▸ **renderEditSubstationUI**(): *TemplateResult*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[renderEditSubstationUI](_editors_substation_editor_base_.substationeditorbase.md#rendereditsubstationui)*
+
 Defined in src/editors/substation-editor-base.ts:184
+
+**Returns:** *TemplateResult*
+
+___
+
+###  renderHeader
+
+▸ **renderHeader**(): *TemplateResult*
+
+*Inherited from [SubstationEditorBase](_editors_substation_editor_base_.substationeditorbase.md).[renderHeader](_editors_substation_editor_base_.substationeditorbase.md#renderheader)*
+
+Defined in src/editors/substation-editor-base.ts:250
 
 **Returns:** *TemplateResult*
 
