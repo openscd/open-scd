@@ -311,14 +311,6 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
   @query('#message') messageUI!: Snackbar;
   @query('#file-input') fileUI!: HTMLInputElement;
 
-  showLog(): void {
-    this.logUI.show();
-    if (this.canUndo)
-      this.logUI
-        .querySelector('mwc-list')
-        ?.focusItemAtIndex(this.history.length - this.lastAction - 1);
-  }
-
   error(title: string, options?: LogOptions): LogEntry {
     this.messageUI.show();
     return super.error(title, options);
