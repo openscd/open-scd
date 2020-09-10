@@ -111,7 +111,7 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:field xpath="@pathName" />
     </xs:key>
   </xs:element>
-  <!--Schema items added from C:\\Users\\chrhil00\\schemas\\SCL.2007B1.2014-07-18\\SCL_Substation.xsd-->
+  <!--Schema items added from SCL.2007B1.2014-07-18\\SCL_Substation.xsd-->
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
@@ -841,7 +841,7 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:field xpath="@prefix" />
     </xs:unique>
   </xs:element>
-  <!--Schema items added from C:\\Users\\chrhil00\\schemas\\SCL.2007B1.2014-07-18\\SCL_BaseTypes.xsd-->
+  <!--Schema items added from SCL.2007B1.2014-07-18\\SCL_BaseTypes.xsd-->
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
@@ -992,7 +992,7 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <!--Schema items added from C:\\Users\\chrhil00\\schemas\\SCL.2007B1.2014-07-18\\SCL_Enums.xsd-->
+  <!--Schema items added from SCL.2007B1.2014-07-18\\SCL_Enums.xsd-->
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
@@ -1688,7 +1688,7 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:enumeration value="SignatureAndEncryption" />
     </xs:restriction>
   </xs:simpleType>
-  <!--Schema items added from C:\\Users\\chrhil00\\schemas\\SCL.2007B1.2014-07-18\\SCL_BaseSimpleTypes.xsd-->
+  <!--Schema items added from SCL.2007B1.2014-07-18\\SCL_BaseSimpleTypes.xsd-->
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
@@ -1870,7 +1870,7 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:pattern value=".+(/.+)*" />
     </xs:restriction>
   </xs:simpleType>
-  <!--Schema items added from C:\\Users\\chrhil00\\schemas\\SCL.2007B1.2014-07-18\\SCL_IED.xsd-->
+  <!--Schema items added from SCL.2007B1.2014-07-18\\SCL_IED.xsd-->
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
@@ -2757,7 +2757,7 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:field xpath="@apName" />
     </xs:keyref>
   </xs:element>
-  <!--Schema items added from C:\\Users\\chrhil00\\schemas\\SCL.2007B1.2014-07-18\\SCL_Communication.xsd-->
+  <!--Schema items added from SCL.2007B1.2014-07-18\\SCL_Communication.xsd-->
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
@@ -3116,7 +3116,7 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:field xpath="@name" />
     </xs:unique>
   </xs:element>
-  <!--Schema items added from C:\\Users\\chrhil00\\schemas\\SCL.2007B1.2014-07-18\\SCL_DataTypeTemplates.xsd-->
+  <!--Schema items added from SCL.2007B1.2014-07-18\\SCL_DataTypeTemplates.xsd-->
   <xs:annotation>
     <xs:documentation xml:lang="en">
 			SCL schema version "2007" revision "B" release 1,  for IEC 61850-6 Ed. 2.1. Draft 2014-07-18.
