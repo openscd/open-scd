@@ -13,6 +13,7 @@ import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
+import '../mwc-textfield-nullable.js';
 import { newActionEvent, Action } from '../foundation.js';
 import { styles } from './substation/substation-css.js';
 
@@ -199,11 +200,11 @@ export default class SubstationEditor extends LitElement {
           required
           dialogInitialFocus
         ></mwc-textfield>
-        <mwc-textfield
+        <mwc-textfield-nullable
           value="${this.desc ?? ''}"
           label="desc"
           helper="Description"
-        ></mwc-textfield>
+        ></mwc-textfield-nullable>
         <mwc-button slot="secondaryAction" dialogAction="close">
           Cancel
         </mwc-button>
