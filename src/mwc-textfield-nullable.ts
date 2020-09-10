@@ -70,6 +70,7 @@ export class TextFieldNullable extends TextField {
           ${super.render()}
         </div>
         <mwc-switch
+          style="align-items: center "
           .checked=${!null}
           @change=${() => {
             this.null = !this.null;
