@@ -200,11 +200,11 @@ export default class SubstationEditor extends LitElement {
           required
           dialogInitialFocus
         ></mwc-textfield>
-        <mwc-textfield-nullable
+        <mwc-textfield
           value="${this.desc ?? ''}"
           label="desc"
           helper="Description"
-        ></mwc-textfield-nullable>
+        ></mwc-textfield>
         <mwc-button slot="secondaryAction" dialogAction="close">
           Cancel
         </mwc-button>
