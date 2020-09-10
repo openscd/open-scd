@@ -1,14 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
-
-import SubstationEditor from '../../src/editors/SubstationEditor.js';
-
-import { getDocument } from '../data.js';
-
-import { emptySCD } from '../mock-document.js';
-
 import { Button } from '@material/mwc-button';
 
-describe('substation-editor', () => {
+import SubstationEditor from '../../src/editors/SubstationEditor.js';
+import { isCreate, isUpdate } from '../../src/foundation.js';
+
+import { getDocument } from '../data.js';
+import { emptySCD } from '../mock-document.js';
+
+describe('SubstationEditor', () => {
   customElements.define('substation-editor', SubstationEditor);
   let element: SubstationEditor;
   beforeEach(async () => {
@@ -25,70 +24,177 @@ describe('substation-editor', () => {
       /> `);
   });
 
-  it('has a null element if no substation exists', () =>
-    expect(element).to.have.property('element', null));
-
-  it('has a non null element if substation exists', () => {
-    element.doc = getDocument();
-    expect(element).property('element').to.not.be.null;
-  });
-
-  it('has property parent which is never null', () =>
+  it('has a non null parent property', () =>
     expect(element).property('parent').to.not.be.null);
 
-  it('takes its name attribute from the substation section', () => {
-    expect(element).to.have.property('name', '');
-    element.doc = getDocument();
-    expect(element).to.have.property('name', 'AA1');
+  describe('checkSubstationValidity', () => {
+    it('accepts a valid (i.e. non-empty) name', async () => {
+      element.substationNameUI.value = 'test name';
+      await element.updateComplete;
+      expect(element.checkSubstationValidity()).to.be.true;
+    });
+
+    it('does not accept an invalid (i.e. empty) name', () => {
+      element.substationNameUI.value = '';
+      expect(element.checkSubstationValidity()).to.be.false;
+    });
   });
 
-  it('takes its desc attribute from the substation section', () => {
-    expect(element).to.have.property('desc', '');
-    element.doc = getDocument();
-    expect(element).to.have.property('desc', 'Substation');
+  describe('without a substation element loaded', () => {
+    it('has a null element property', () =>
+      expect(element).to.have.property('element', null));
+    it('has empty name and desc properties', () => {
+      expect(element).to.have.property('name', '');
+      expect(element).to.have.property('desc', '');
+    });
+
+    it('renders an "add substation" button', () => {
+      expect(element).to.have.property('name', '');
+      expect(element).to.have.property('desc', '');
+      expect(element.shadowRoot!.querySelector('mwc-fab'))
+        .attribute('icon')
+        .to.equal('add');
+    });
+
+    it('opens the "Add Substation" dialog on FAB click', async () => {
+      expect(element.editSubstationUI.open).to.not.be.true;
+      await (<Button | null>(
+        element.shadowRoot!.querySelector('mwc-fab')
+      ))?.click();
+      expect(element.editSubstationUI.open).to.be.true;
+    });
+
+    it('renders no substation action menu icon', async () => {
+      expect(element.menuUI).to.be.null;
+      expect(element.menuIconUI).to.be.null;
+    });
+
+    it('does not generate newUpdateAction', () =>
+      expect(() =>
+        element.newUpdateAction('test name', 'test desc')
+      ).to.throw());
+
+    it('does not generate newVoltageLevelCreateAction', () =>
+      expect(() =>
+        element.newVoltageLevelCreateAction(
+          'test name',
+          'test desc',
+          'test nomFreq',
+          'test numPhases',
+          'test Voltage'
+        )
+      ).to.throw());
+
+    it('generates a valid newCreateAction', () =>
+      expect(element.newCreateAction('test name', 'test desc')).to.satisfy(
+        isCreate
+      ));
   });
 
-  it('renders an "add substation" button if no substation exists', () => {
-    expect(element).to.have.property('name', '');
-    expect(element).to.have.property('desc', '');
-    expect(element.shadowRoot!.querySelector('mwc-fab'))
-      .attribute('icon')
-      .to.equal('add');
-  });
+  describe('with a substation element loaded', () => {
+    beforeEach(async () => {
+      element.doc = getDocument();
+      await element.updateComplete;
+    });
 
-  it('renders an "edit substation" button if a substation is loaded', async () => {
-    element.doc = getDocument();
-    await element.updateComplete;
-    expect(element).to.have.property('name', 'AA1');
-    expect(element).to.have.property('desc', 'Substation');
-    expect(element.shadowRoot!.querySelector('mwc-fab'))
-      .attribute('icon')
-      .to.equal('edit');
-  });
+    describe('checkVoltageLevelValidity', () => {
+      beforeEach(async () => {
+        element.voltageLevelNameUI.value = 'test name';
+        element.voltageLevelDescUI.value = 'test desc';
+        element.voltageLevelNomFreqUI.value = '50.0';
+        element.voltageLevelNumPhasesUI.value = '3';
+        element.voltageLevelVoltageUI.value = '110.0';
+        await element.updateComplete;
+      });
 
-  it('opens "Add Substation" dialog on mwc-fab button click', async () => {
-    expect(element.editSubstationUI.open).to.not.be.true;
-    await (<Button | null>(
-      element.shadowRoot!.querySelector('mwc-fab')
-    ))?.click();
-    expect(element.editSubstationUI.open).to.be.true;
-  });
+      it('accepts valid VoltageLevel attribute values', () =>
+        expect(element.checkVoltageLevelValidity()).to.be.true);
 
-  it('opens "Edit Substation" dialog on mwc-fab button click', async () => {
-    element.doc = getDocument();
-    await element.updateComplete;
-    expect(element.editSubstationUI.open).to.not.be.true;
-    await (<Button | null>(
-      element.shadowRoot!.querySelector('mwc-fab')
-    ))?.click();
-    expect(element.editSubstationUI.open).to.be.true;
-  });
+      it('does not accept an invalid (i.e. empty) VoltageLevel name', async () => {
+        element.voltageLevelNameUI.value = '';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+      });
 
-  it('opens menu on menu button click', async () => {
-    element.doc = getDocument();
-    await element.updateComplete;
-    expect(element.menuUI).to.have.property('open', false);
-    await element.menuIconUI.click();
-    expect(element.menuUI).to.have.property('open', true);
+      it('does not accept invalid numPhase values', async () => {
+        element.voltageLevelNumPhasesUI.value = '-1';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelNumPhasesUI.value = '0';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelNumPhasesUI.value = '256';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+      });
+    });
+
+    it('has a non null element property if substation exists', () =>
+      expect(element).property('element').to.not.be.null);
+
+    it('takes its name attribute from the substation section', () => {
+      expect(element).to.have.property('name', 'AA1');
+    });
+
+    it('takes its desc attribute from the substation section', () => {
+      expect(element).to.have.property('desc', 'Substation');
+    });
+
+    it('renders an "edit substation" button if a substation is loaded', () => {
+      expect(element).to.have.property('name', 'AA1');
+      expect(element).to.have.property('desc', 'Substation');
+      expect(element.shadowRoot!.querySelector('mwc-fab'))
+        .attribute('icon')
+        .to.equal('edit');
+    });
+
+    it('opens the "Edit Substation" dialog on FAB click if a substation exists', async () => {
+      expect(element.editSubstationUI.open).to.not.be.true;
+      await (<Button | null>(
+        element.shadowRoot!.querySelector('mwc-fab')
+      ))?.click();
+      expect(element.editSubstationUI.open).to.be.true;
+    });
+
+    it('renders a substation action menu icon only when a substation exists', () => {
+      expect(element.menuUI).to.not.be.null;
+      expect(element.menuIconUI).to.not.be.null;
+    });
+
+    it('opens a substation action menu on menu button click', async () => {
+      expect(element.menuUI).to.have.property('open', false);
+      await element.menuIconUI.click();
+      expect(element.menuUI).to.have.property('open', true);
+    });
+
+    it('opens the "Create Voltage Level" dialog on action menu entry click', async () => {
+      expect(element.createVoltageLevelUI).to.have.property('open', false);
+      await element.menuIconUI.click();
+      await element.menuUI.querySelector('mwc-list-item')?.click();
+      expect(element.createVoltageLevelUI).to.have.property('open', true);
+    });
+
+    it('does not generate newCreateAction if a substation already exists', () =>
+      expect(() =>
+        element.newCreateAction('test name', 'test desc')
+      ).to.throw());
+
+    it('generates a valid newUpdateAction if a substation exists', () =>
+      expect(element.newUpdateAction('test name', 'test desc')).to.satisfy(
+        isUpdate
+      ));
+
+    it('generates a valid newVoltageLevelCreateAction if a substation exists', () =>
+      expect(
+        element.newVoltageLevelCreateAction(
+          'test name',
+          'test desc',
+          'test nomFreq',
+          'test numPhases',
+          'test Voltage'
+        )
+      ).to.satisfy(isCreate));
   });
 });

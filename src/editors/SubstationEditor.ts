@@ -60,7 +60,7 @@ export default class SubstationEditor extends LitElement {
   @query('#create-voltage-level > mwc-textfield[label="Voltage"]')
   voltageLevelVoltageUI!: TextField;
 
-  checkValidity(): boolean {
+  checkSubstationValidity(): boolean {
     return (
       this.substationNameUI.checkValidity() &&
       this.substationDescUI.checkValidity()
@@ -131,7 +131,7 @@ export default class SubstationEditor extends LitElement {
   requestSubstationUpdate(): void {
     if (
       this.element &&
-      this.checkValidity() &&
+      this.checkSubstationValidity() &&
       (this.substationNameUI.value != this.name ||
         this.substationDescUI.value != this.desc)
     ) {
@@ -148,7 +148,11 @@ export default class SubstationEditor extends LitElement {
   }
 
   requestSubstationCreate(): void {
-    if (!this.element && this.checkValidity() && this.substationNameUI.value) {
+    if (
+      !this.element &&
+      this.checkSubstationValidity() &&
+      this.substationNameUI.value
+    ) {
       this.dispatchEvent(
         newActionEvent(
           this.newCreateAction(
@@ -233,6 +237,8 @@ export default class SubstationEditor extends LitElement {
         label="numPhases"
         helper="Number of Phases"
         type="number"
+        min="1"
+        max="255"
       ></mwc-textfield>
       <mwc-textfield
         value="${this.defaultVoltage}"
