@@ -23,7 +23,7 @@
 
 • **action**? : *[Action](../modules/_foundation_.md#action)*
 
-*Defined in [src/editing.ts:24](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L24)*
+*Defined in [src/editing.ts:24](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L24)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **cause**? : *[LogEntry](_editing_.logentry.md)*
 
-*Defined in [src/editing.ts:25](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L25)*
+*Defined in [src/editing.ts:25](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L25)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **icon**? : *undefined | string*
 
-*Defined in [src/editing.ts:23](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L23)*
+*Defined in [src/editing.ts:23](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L23)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **message**? : *undefined | string*
 
-*Defined in [src/editing.ts:22](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L22)*
+*Defined in [src/editing.ts:22](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L22)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **time**: *Date*
 
-*Defined in [src/editing.ts:20](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L20)*
+*Defined in [src/editing.ts:20](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L20)*
 
 ___
 
@@ -63,4 +63,4 @@ ___
 
 • **title**: *string*
 
-*Defined in [src/editing.ts:21](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L21)*
+*Defined in [src/editing.ts:21](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L21)*

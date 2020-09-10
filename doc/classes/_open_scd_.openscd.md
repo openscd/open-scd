@@ -342,7 +342,7 @@
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:150](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L150)*
+*Defined in [src/open-scd-base.ts:150](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L150)*
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -352,7 +352,7 @@
 
 • **ATTRIBUTE_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ATTRIBUTE_NODE](_editors_substationeditor_.substationeditor.md#readonly-attribute_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ATTRIBUTE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10829
 
@@ -362,7 +362,7 @@ ___
 
 • **CDATA_SECTION_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[CDATA_SECTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-cdata_section_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[CDATA_SECTION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -374,7 +374,7 @@ ___
 
 • **COMMENT_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[COMMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-comment_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[COMMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-comment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10837
 
@@ -386,7 +386,7 @@ ___
 
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_FRAGMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_fragment_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_FRAGMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -398,7 +398,7 @@ ___
 
 • **DOCUMENT_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -410,7 +410,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_CONTAINED_BY](_editors_substationeditor_.substationeditor.md#readonly-document_position_contained_by)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_CONTAINED_BY](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
@@ -422,7 +422,7 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINS**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_CONTAINS](_editors_substationeditor_.substationeditor.md#readonly-document_position_contains)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_CONTAINS](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -434,7 +434,7 @@ ___
 
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_DISCONNECTED](_editors_substationeditor_.substationeditor.md#readonly-document_position_disconnected)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_DISCONNECTED](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
@@ -446,7 +446,7 @@ ___
 
 • **DOCUMENT_POSITION_FOLLOWING**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_FOLLOWING](_editors_substationeditor_.substationeditor.md#readonly-document_position_following)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_FOLLOWING](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_following)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -458,7 +458,7 @@ ___
 
 • **DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substationeditor_.substationeditor.md#readonly-document_position_implementation_specific)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_implementation_specific)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10862
 
@@ -468,7 +468,7 @@ ___
 
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_POSITION_PRECEDING](_editors_substationeditor_.substationeditor.md#readonly-document_position_preceding)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_PRECEDING](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10866
 
@@ -480,7 +480,7 @@ ___
 
 • **DOCUMENT_TYPE_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[DOCUMENT_TYPE_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_type_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_TYPE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_type_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10870
 
@@ -492,7 +492,7 @@ ___
 
 • **ELEMENT_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ELEMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-element_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ELEMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
@@ -504,7 +504,7 @@ ___
 
 • **ENTITY_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ENTITY_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ENTITY_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-entity_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10875
 
@@ -514,7 +514,7 @@ ___
 
 • **ENTITY_REFERENCE_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ENTITY_REFERENCE_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_reference_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ENTITY_REFERENCE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10876
 
@@ -524,7 +524,7 @@ ___
 
 • **NOTATION_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[NOTATION_NODE](_editors_substationeditor_.substationeditor.md#readonly-notation_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[NOTATION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-notation_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10877
 
@@ -534,7 +534,7 @@ ___
 
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[PROCESSING_INSTRUCTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-processing_instruction_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[PROCESSING_INSTRUCTION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10881
 
@@ -546,7 +546,7 @@ ___
 
 • **TEXT_NODE**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[TEXT_NODE](_editors_substationeditor_.substationeditor.md#readonly-text_node)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[TEXT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-text_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10885
 
@@ -558,7 +558,7 @@ ___
 
 • **accessKey**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[accessKey](_editors_substationeditor_.substationeditor.md#accesskey)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[accessKey](_mwc_textfield_nullable_.textfieldnullable.md#accesskey)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6576
 
@@ -568,7 +568,7 @@ ___
 
 • **accessKeyLabel**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[accessKeyLabel](_editors_substationeditor_.substationeditor.md#readonly-accesskeylabel)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[accessKeyLabel](_mwc_textfield_nullable_.textfieldnullable.md#readonly-accesskeylabel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6577
 
@@ -580,7 +580,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
 
-*Defined in [src/open-scd-base.ts:61](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L61)*
+*Defined in [src/open-scd-base.ts:61](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L61)*
 
 The currently active editor tab.
 
@@ -590,7 +590,7 @@ ___
 
 • **assignedSlot**: *HTMLSlotElement | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[assignedSlot](_editors_substationeditor_.substationeditor.md#readonly-assignedslot)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[assignedSlot](_mwc_textfield_nullable_.textfieldnullable.md#readonly-assignedslot)*
 
 *Overrides void*
 
@@ -602,7 +602,7 @@ ___
 
 • **attributes**: *NamedNodeMap*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[attributes](_editors_substationeditor_.substationeditor.md#readonly-attributes)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[attributes](_mwc_textfield_nullable_.textfieldnullable.md#readonly-attributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5090
 
@@ -622,7 +622,7 @@ ___
 
 • **autofocus**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autofocus](_editors_substationeditor_.substationeditor.md#autofocus)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[autofocus](_mwc_textfield_nullable_.textfieldnullable.md#autofocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7989
 
@@ -632,7 +632,7 @@ ___
 
 • **baseURI**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[baseURI](_editors_substationeditor_.substationeditor.md#readonly-baseuri)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[baseURI](_mwc_textfield_nullable_.textfieldnullable.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10744
 
@@ -644,7 +644,7 @@ ___
 
 • **childElementCount**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[childElementCount](_editors_substationeditor_.substationeditor.md#readonly-childelementcount)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[childElementCount](_mwc_textfield_nullable_.textfieldnullable.md#readonly-childelementcount)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11301
 
@@ -654,7 +654,7 @@ ___
 
 • **childNodes**: *NodeListOf‹ChildNode›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[childNodes](_editors_substationeditor_.substationeditor.md#readonly-childnodes)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[childNodes](_mwc_textfield_nullable_.textfieldnullable.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10748
 
@@ -666,7 +666,7 @@ ___
 
 • **children**: *HTMLCollection*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[children](_editors_substationeditor_.substationeditor.md#readonly-children)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[children](_mwc_textfield_nullable_.textfieldnullable.md#readonly-children)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11305
 
@@ -678,7 +678,7 @@ ___
 
 • **classList**: *DOMTokenList*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[classList](_editors_substationeditor_.substationeditor.md#readonly-classlist)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[classList](_mwc_textfield_nullable_.textfieldnullable.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5094
 
@@ -690,7 +690,7 @@ ___
 
 • **className**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[className](_editors_substationeditor_.substationeditor.md#classname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[className](_mwc_textfield_nullable_.textfieldnullable.md#classname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5098
 
@@ -702,7 +702,7 @@ ___
 
 • **clientHeight**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientHeight](_editors_substationeditor_.substationeditor.md#readonly-clientheight)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5099
 
@@ -712,7 +712,7 @@ ___
 
 • **clientLeft**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientLeft](_editors_substationeditor_.substationeditor.md#readonly-clientleft)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientLeft](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
@@ -722,7 +722,7 @@ ___
 
 • **clientTop**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientTop](_editors_substationeditor_.substationeditor.md#readonly-clienttop)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientTop](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clienttop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5101
 
@@ -732,7 +732,7 @@ ___
 
 • **clientWidth**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[clientWidth](_editors_substationeditor_.substationeditor.md#readonly-clientwidth)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5102
 
@@ -742,7 +742,7 @@ ___
 
 • **contentEditable**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[contentEditable](_editors_substationeditor_.substationeditor.md#contenteditable)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[contentEditable](_mwc_textfield_nullable_.textfieldnullable.md#contenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5254
 
@@ -752,7 +752,7 @@ ___
 
 • **dataset**: *DOMStringMap*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dataset](_editors_substationeditor_.substationeditor.md#readonly-dataset)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dataset](_mwc_textfield_nullable_.textfieldnullable.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7990
 
@@ -762,7 +762,7 @@ ___
 
 • **dir**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dir](_editors_substationeditor_.substationeditor.md#dir)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dir](_mwc_textfield_nullable_.textfieldnullable.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6579
 
@@ -776,7 +776,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:64](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L64)*
+*Defined in [src/open-scd-base.ts:64](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L64)*
 
 The `XMLDocument` representation of the current file.
 
@@ -786,7 +786,7 @@ ___
 
 • **draggable**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[draggable](_editors_substationeditor_.substationeditor.md#draggable)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[draggable](_mwc_textfield_nullable_.textfieldnullable.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6580
 
@@ -798,7 +798,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-*Defined in [src/open-scd-base.ts:87](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L87)*
+*Defined in [src/open-scd-base.ts:87](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L87)*
 
 ___
 
@@ -806,7 +806,7 @@ ___
 
 • **firstChild**: *ChildNode | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstChild](_editors_substationeditor_.substationeditor.md#readonly-firstchild)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[firstChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10752
 
@@ -818,7 +818,7 @@ ___
 
 • **firstElementChild**: *Element | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstElementChild](_editors_substationeditor_.substationeditor.md#readonly-firstelementchild)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[firstElementChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-firstelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11309
 
@@ -830,7 +830,7 @@ ___
 
 • **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[floatingLabelFoundation](_editors_substationeditor_.substationeditor.md#optional-floatinglabelfoundation)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[floatingLabelFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-floatinglabelfoundation)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
 
@@ -840,7 +840,7 @@ ___
 
 • **hidden**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hidden](_editors_substationeditor_.substationeditor.md#hidden)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hidden](_mwc_textfield_nullable_.textfieldnullable.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6581
 
@@ -854,7 +854,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:55](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L55)*
+*Defined in [src/open-scd-base.ts:55](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L55)*
 
 ___
 
@@ -862,7 +862,7 @@ ___
 
 • **id**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[id](_editors_substationeditor_.substationeditor.md#id)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[id](_mwc_textfield_nullable_.textfieldnullable.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5106
 
@@ -874,7 +874,7 @@ ___
 
 • **innerHTML**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[innerHTML](_editors_substationeditor_.substationeditor.md#innerhtml)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[innerHTML](_mwc_textfield_nullable_.textfieldnullable.md#innerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9574
 
@@ -884,7 +884,7 @@ ___
 
 • **innerText**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[innerText](_editors_substationeditor_.substationeditor.md#innertext)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[innerText](_mwc_textfield_nullable_.textfieldnullable.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6582
 
@@ -904,7 +904,7 @@ ___
 
 • **isConnected**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isConnected](_editors_substationeditor_.substationeditor.md#readonly-isconnected)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isConnected](_mwc_textfield_nullable_.textfieldnullable.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -916,7 +916,7 @@ ___
 
 • **isContentEditable**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isContentEditable](_editors_substationeditor_.substationeditor.md#readonly-iscontenteditable)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isContentEditable](_mwc_textfield_nullable_.textfieldnullable.md#readonly-iscontenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5256
 
@@ -926,7 +926,7 @@ ___
 
 • **lang**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lang](_editors_substationeditor_.substationeditor.md#lang)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lang](_mwc_textfield_nullable_.textfieldnullable.md#lang)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6583
 
@@ -938,7 +938,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastAction](_open_scd_base_.openscdbase.md#lastaction)*
 
-*Defined in [src/editing.ts:38](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L38)*
+*Defined in [src/editing.ts:38](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L38)*
 
 ___
 
@@ -946,7 +946,7 @@ ___
 
 • **lastChild**: *ChildNode | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lastChild](_editors_substationeditor_.substationeditor.md#readonly-lastchild)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lastChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -958,7 +958,7 @@ ___
 
 • **lastElementChild**: *Element | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lastElementChild](_editors_substationeditor_.substationeditor.md#readonly-lastelementchild)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lastElementChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
@@ -970,7 +970,7 @@ ___
 
 • **lineRippleFoundation**? : *MDCLineRippleFoundation*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lineRippleFoundation](_editors_substationeditor_.substationeditor.md#optional-lineripplefoundation)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lineRippleFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-lineripplefoundation)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
 
@@ -980,7 +980,7 @@ ___
 
 • **localName**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[localName](_editors_substationeditor_.substationeditor.md#readonly-localname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[localName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-localname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -994,7 +994,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-*Defined in [src/open-scd-base.ts:85](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L85)*
+*Defined in [src/open-scd-base.ts:85](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L85)*
 
 ___
 
@@ -1040,7 +1040,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
 
-*Defined in [src/open-scd-base.ts:159](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L159)*
+*Defined in [src/open-scd-base.ts:159](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L159)*
 
 ___
 
@@ -1050,7 +1050,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-*Defined in [src/open-scd-base.ts:84](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L84)*
+*Defined in [src/open-scd-base.ts:84](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L84)*
 
 ___
 
@@ -1060,7 +1060,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-*Defined in [src/open-scd-base.ts:86](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L86)*
+*Defined in [src/open-scd-base.ts:86](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L86)*
 
 ___
 
@@ -1068,7 +1068,7 @@ ___
 
 • **namespaceURI**: *string | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[namespaceURI](_editors_substationeditor_.substationeditor.md#readonly-namespaceuri)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[namespaceURI](_mwc_textfield_nullable_.textfieldnullable.md#readonly-namespaceuri)*
 
 *Overrides void*
 
@@ -1082,7 +1082,7 @@ ___
 
 • **nextElementSibling**: *Element | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nextElementSibling](_editors_substationeditor_.substationeditor.md#readonly-nextelementsibling)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nextElementSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nextelementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11031
 
@@ -1094,7 +1094,7 @@ ___
 
 • **nextSibling**: *ChildNode | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nextSibling](_editors_substationeditor_.substationeditor.md#readonly-nextsibling)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nextSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10766
 
@@ -1106,7 +1106,7 @@ ___
 
 • **nodeName**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeName](_editors_substationeditor_.substationeditor.md#readonly-nodename)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nodename)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10770
 
@@ -1118,7 +1118,7 @@ ___
 
 • **nodeType**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeType](_editors_substationeditor_.substationeditor.md#readonly-nodetype)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeType](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10774
 
@@ -1130,7 +1130,7 @@ ___
 
 • **nodeValue**: *string | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nodeValue](_editors_substationeditor_.substationeditor.md#nodevalue)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeValue](_mwc_textfield_nullable_.textfieldnullable.md#nodevalue)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10775
 
@@ -1140,7 +1140,7 @@ ___
 
 • **nonce**? : *undefined | string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[nonce](_editors_substationeditor_.substationeditor.md#optional-nonce)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nonce](_mwc_textfield_nullable_.textfieldnullable.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7991
 
@@ -1150,7 +1150,7 @@ ___
 
 • **offsetHeight**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetHeight](_editors_substationeditor_.substationeditor.md#readonly-offsetheight)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6584
 
@@ -1160,7 +1160,7 @@ ___
 
 • **offsetLeft**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetLeft](_editors_substationeditor_.substationeditor.md#readonly-offsetleft)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetLeft](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6585
 
@@ -1170,7 +1170,7 @@ ___
 
 • **offsetParent**: *Element | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetParent](_editors_substationeditor_.substationeditor.md#readonly-offsetparent)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetParent](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetparent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6586
 
@@ -1180,7 +1180,7 @@ ___
 
 • **offsetTop**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetTop](_editors_substationeditor_.substationeditor.md#readonly-offsettop)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetTop](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
@@ -1190,7 +1190,7 @@ ___
 
 • **offsetWidth**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[offsetWidth](_editors_substationeditor_.substationeditor.md#readonly-offsetwidth)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
@@ -1200,7 +1200,7 @@ ___
 
 • **onabort**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onabort](_editors_substationeditor_.substationeditor.md#onabort)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onabort](_mwc_textfield_nullable_.textfieldnullable.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5766
 
@@ -1214,7 +1214,7 @@ ___
 
 • **onanimationcancel**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationcancel](_editors_substationeditor_.substationeditor.md#onanimationcancel)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationcancel](_mwc_textfield_nullable_.textfieldnullable.md#onanimationcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5767
 
@@ -1224,7 +1224,7 @@ ___
 
 • **onanimationend**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationend](_editors_substationeditor_.substationeditor.md#onanimationend)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationend](_mwc_textfield_nullable_.textfieldnullable.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5768
 
@@ -1234,7 +1234,7 @@ ___
 
 • **onanimationiteration**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationiteration](_editors_substationeditor_.substationeditor.md#onanimationiteration)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationiteration](_mwc_textfield_nullable_.textfieldnullable.md#onanimationiteration)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5769
 
@@ -1244,7 +1244,7 @@ ___
 
 • **onanimationstart**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onanimationstart](_editors_substationeditor_.substationeditor.md#onanimationstart)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationstart](_mwc_textfield_nullable_.textfieldnullable.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5770
 
@@ -1254,7 +1254,7 @@ ___
 
 • **onauxclick**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onauxclick](_editors_substationeditor_.substationeditor.md#onauxclick)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onauxclick](_mwc_textfield_nullable_.textfieldnullable.md#onauxclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5771
 
@@ -1264,7 +1264,7 @@ ___
 
 • **onblur**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onblur](_editors_substationeditor_.substationeditor.md#onblur)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onblur](_mwc_textfield_nullable_.textfieldnullable.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5776
 
@@ -1278,7 +1278,7 @@ ___
 
 • **oncancel**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncancel](_editors_substationeditor_.substationeditor.md#oncancel)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncancel](_mwc_textfield_nullable_.textfieldnullable.md#oncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1288,7 +1288,7 @@ ___
 
 • **oncanplay**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncanplay](_editors_substationeditor_.substationeditor.md#oncanplay)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncanplay](_mwc_textfield_nullable_.textfieldnullable.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
@@ -1302,7 +1302,7 @@ ___
 
 • **oncanplaythrough**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncanplaythrough](_editors_substationeditor_.substationeditor.md#oncanplaythrough)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncanplaythrough](_mwc_textfield_nullable_.textfieldnullable.md#oncanplaythrough)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5783
 
@@ -1312,7 +1312,7 @@ ___
 
 • **onchange**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onchange](_editors_substationeditor_.substationeditor.md#onchange)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onchange](_mwc_textfield_nullable_.textfieldnullable.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
@@ -1326,7 +1326,7 @@ ___
 
 • **onclick**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onclick](_editors_substationeditor_.substationeditor.md#onclick)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onclick](_mwc_textfield_nullable_.textfieldnullable.md#onclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1340,7 +1340,7 @@ ___
 
 • **onclose**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onclose](_editors_substationeditor_.substationeditor.md#onclose)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onclose](_mwc_textfield_nullable_.textfieldnullable.md#onclose)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
@@ -1350,7 +1350,7 @@ ___
 
 • **oncontextmenu**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncontextmenu](_editors_substationeditor_.substationeditor.md#oncontextmenu)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncontextmenu](_mwc_textfield_nullable_.textfieldnullable.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1364,7 +1364,7 @@ ___
 
 • **oncopy**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncopy](_editors_substationeditor_.substationeditor.md#oncopy)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncopy](_mwc_textfield_nullable_.textfieldnullable.md#oncopy)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4888
 
@@ -1374,7 +1374,7 @@ ___
 
 • **oncuechange**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncuechange](_editors_substationeditor_.substationeditor.md#oncuechange)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncuechange](_mwc_textfield_nullable_.textfieldnullable.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5800
 
@@ -1384,7 +1384,7 @@ ___
 
 • **oncut**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oncut](_editors_substationeditor_.substationeditor.md#oncut)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncut](_mwc_textfield_nullable_.textfieldnullable.md#oncut)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4889
 
@@ -1394,7 +1394,7 @@ ___
 
 • **ondblclick**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondblclick](_editors_substationeditor_.substationeditor.md#ondblclick)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondblclick](_mwc_textfield_nullable_.textfieldnullable.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
@@ -1408,7 +1408,7 @@ ___
 
 • **ondrag**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondrag](_editors_substationeditor_.substationeditor.md#ondrag)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondrag](_mwc_textfield_nullable_.textfieldnullable.md#ondrag)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1422,7 +1422,7 @@ ___
 
 • **ondragend**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragend](_editors_substationeditor_.substationeditor.md#ondragend)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragend](_mwc_textfield_nullable_.textfieldnullable.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5815
 
@@ -1436,7 +1436,7 @@ ___
 
 • **ondragenter**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragenter](_editors_substationeditor_.substationeditor.md#ondragenter)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragenter](_mwc_textfield_nullable_.textfieldnullable.md#ondragenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5820
 
@@ -1450,7 +1450,7 @@ ___
 
 • **ondragexit**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragexit](_editors_substationeditor_.substationeditor.md#ondragexit)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragexit](_mwc_textfield_nullable_.textfieldnullable.md#ondragexit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
@@ -1460,7 +1460,7 @@ ___
 
 • **ondragleave**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragleave](_editors_substationeditor_.substationeditor.md#ondragleave)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragleave](_mwc_textfield_nullable_.textfieldnullable.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1474,7 +1474,7 @@ ___
 
 • **ondragover**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragover](_editors_substationeditor_.substationeditor.md#ondragover)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragover](_mwc_textfield_nullable_.textfieldnullable.md#ondragover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
@@ -1488,7 +1488,7 @@ ___
 
 • **ondragstart**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondragstart](_editors_substationeditor_.substationeditor.md#ondragstart)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragstart](_mwc_textfield_nullable_.textfieldnullable.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5836
 
@@ -1502,7 +1502,7 @@ ___
 
 • **ondrop**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondrop](_editors_substationeditor_.substationeditor.md#ondrop)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondrop](_mwc_textfield_nullable_.textfieldnullable.md#ondrop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1512,7 +1512,7 @@ ___
 
 • **ondurationchange**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ondurationchange](_editors_substationeditor_.substationeditor.md#ondurationchange)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondurationchange](_mwc_textfield_nullable_.textfieldnullable.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
@@ -1526,7 +1526,7 @@ ___
 
 • **onemptied**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onemptied](_editors_substationeditor_.substationeditor.md#onemptied)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onemptied](_mwc_textfield_nullable_.textfieldnullable.md#onemptied)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1540,7 +1540,7 @@ ___
 
 • **onended**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onended](_editors_substationeditor_.substationeditor.md#onended)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onended](_mwc_textfield_nullable_.textfieldnullable.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5852
 
@@ -1554,7 +1554,7 @@ ___
 
 • **onerror**: *OnErrorEventHandler*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onerror](_editors_substationeditor_.substationeditor.md#onerror)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onerror](_mwc_textfield_nullable_.textfieldnullable.md#onerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5857
 
@@ -1568,7 +1568,7 @@ ___
 
 • **onfocus**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfocus](_editors_substationeditor_.substationeditor.md#onfocus)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfocus](_mwc_textfield_nullable_.textfieldnullable.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5862
 
@@ -1582,7 +1582,7 @@ ___
 
 • **onfullscreenchange**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfullscreenchange](_editors_substationeditor_.substationeditor.md#onfullscreenchange)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfullscreenchange](_mwc_textfield_nullable_.textfieldnullable.md#onfullscreenchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5115
 
@@ -1592,7 +1592,7 @@ ___
 
 • **onfullscreenerror**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onfullscreenerror](_editors_substationeditor_.substationeditor.md#onfullscreenerror)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfullscreenerror](_mwc_textfield_nullable_.textfieldnullable.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -1602,7 +1602,7 @@ ___
 
 • **ongotpointercapture**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ongotpointercapture](_editors_substationeditor_.substationeditor.md#ongotpointercapture)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ongotpointercapture](_mwc_textfield_nullable_.textfieldnullable.md#ongotpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1612,7 +1612,7 @@ ___
 
 • **oninput**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oninput](_editors_substationeditor_.substationeditor.md#oninput)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oninput](_mwc_textfield_nullable_.textfieldnullable.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5864
 
@@ -1622,7 +1622,7 @@ ___
 
 • **oninvalid**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[oninvalid](_editors_substationeditor_.substationeditor.md#oninvalid)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oninvalid](_mwc_textfield_nullable_.textfieldnullable.md#oninvalid)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5865
 
@@ -1632,7 +1632,7 @@ ___
 
 • **onkeydown**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeydown](_editors_substationeditor_.substationeditor.md#onkeydown)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeydown](_mwc_textfield_nullable_.textfieldnullable.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5870
 
@@ -1646,7 +1646,7 @@ ___
 
 • **onkeypress**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeypress](_editors_substationeditor_.substationeditor.md#onkeypress)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeypress](_mwc_textfield_nullable_.textfieldnullable.md#onkeypress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1660,7 +1660,7 @@ ___
 
 • **onkeyup**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onkeyup](_editors_substationeditor_.substationeditor.md#onkeyup)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeyup](_mwc_textfield_nullable_.textfieldnullable.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5880
 
@@ -1674,7 +1674,7 @@ ___
 
 • **onload**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onload](_editors_substationeditor_.substationeditor.md#onload)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onload](_mwc_textfield_nullable_.textfieldnullable.md#onload)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5885
 
@@ -1688,7 +1688,7 @@ ___
 
 • **onloadeddata**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadeddata](_editors_substationeditor_.substationeditor.md#onloadeddata)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadeddata](_mwc_textfield_nullable_.textfieldnullable.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5890
 
@@ -1702,7 +1702,7 @@ ___
 
 • **onloadedmetadata**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadedmetadata](_editors_substationeditor_.substationeditor.md#onloadedmetadata)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadedmetadata](_mwc_textfield_nullable_.textfieldnullable.md#onloadedmetadata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5895
 
@@ -1716,7 +1716,7 @@ ___
 
 • **onloadstart**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onloadstart](_editors_substationeditor_.substationeditor.md#onloadstart)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadstart](_mwc_textfield_nullable_.textfieldnullable.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5900
 
@@ -1730,7 +1730,7 @@ ___
 
 • **onlostpointercapture**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onlostpointercapture](_editors_substationeditor_.substationeditor.md#onlostpointercapture)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onlostpointercapture](_mwc_textfield_nullable_.textfieldnullable.md#onlostpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1740,7 +1740,7 @@ ___
 
 • **onmousedown**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmousedown](_editors_substationeditor_.substationeditor.md#onmousedown)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmousedown](_mwc_textfield_nullable_.textfieldnullable.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
@@ -1754,7 +1754,7 @@ ___
 
 • **onmouseenter**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseenter](_editors_substationeditor_.substationeditor.md#onmouseenter)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseenter](_mwc_textfield_nullable_.textfieldnullable.md#onmouseenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5907
 
@@ -1764,7 +1764,7 @@ ___
 
 • **onmouseleave**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseleave](_editors_substationeditor_.substationeditor.md#onmouseleave)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseleave](_mwc_textfield_nullable_.textfieldnullable.md#onmouseleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5908
 
@@ -1774,7 +1774,7 @@ ___
 
 • **onmousemove**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmousemove](_editors_substationeditor_.substationeditor.md#onmousemove)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmousemove](_mwc_textfield_nullable_.textfieldnullable.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5913
 
@@ -1788,7 +1788,7 @@ ___
 
 • **onmouseout**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseout](_editors_substationeditor_.substationeditor.md#onmouseout)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseout](_mwc_textfield_nullable_.textfieldnullable.md#onmouseout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
@@ -1802,7 +1802,7 @@ ___
 
 • **onmouseover**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseover](_editors_substationeditor_.substationeditor.md#onmouseover)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseover](_mwc_textfield_nullable_.textfieldnullable.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5923
 
@@ -1816,7 +1816,7 @@ ___
 
 • **onmouseup**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onmouseup](_editors_substationeditor_.substationeditor.md#onmouseup)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseup](_mwc_textfield_nullable_.textfieldnullable.md#onmouseup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5928
 
@@ -1830,7 +1830,7 @@ ___
 
 • **onpaste**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpaste](_editors_substationeditor_.substationeditor.md#onpaste)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpaste](_mwc_textfield_nullable_.textfieldnullable.md#onpaste)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4890
 
@@ -1840,7 +1840,7 @@ ___
 
 • **onpause**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpause](_editors_substationeditor_.substationeditor.md#onpause)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpause](_mwc_textfield_nullable_.textfieldnullable.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5933
 
@@ -1854,7 +1854,7 @@ ___
 
 • **onplay**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onplay](_editors_substationeditor_.substationeditor.md#onplay)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onplay](_mwc_textfield_nullable_.textfieldnullable.md#onplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5938
 
@@ -1868,7 +1868,7 @@ ___
 
 • **onplaying**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onplaying](_editors_substationeditor_.substationeditor.md#onplaying)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onplaying](_mwc_textfield_nullable_.textfieldnullable.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5943
 
@@ -1882,7 +1882,7 @@ ___
 
 • **onpointercancel**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointercancel](_editors_substationeditor_.substationeditor.md#onpointercancel)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointercancel](_mwc_textfield_nullable_.textfieldnullable.md#onpointercancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -1892,7 +1892,7 @@ ___
 
 • **onpointerdown**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerdown](_editors_substationeditor_.substationeditor.md#onpointerdown)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerdown](_mwc_textfield_nullable_.textfieldnullable.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5945
 
@@ -1902,7 +1902,7 @@ ___
 
 • **onpointerenter**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerenter](_editors_substationeditor_.substationeditor.md#onpointerenter)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerenter](_mwc_textfield_nullable_.textfieldnullable.md#onpointerenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5946
 
@@ -1912,7 +1912,7 @@ ___
 
 • **onpointerleave**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerleave](_editors_substationeditor_.substationeditor.md#onpointerleave)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerleave](_mwc_textfield_nullable_.textfieldnullable.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5947
 
@@ -1922,7 +1922,7 @@ ___
 
 • **onpointermove**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointermove](_editors_substationeditor_.substationeditor.md#onpointermove)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointermove](_mwc_textfield_nullable_.textfieldnullable.md#onpointermove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5948
 
@@ -1932,7 +1932,7 @@ ___
 
 • **onpointerout**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerout](_editors_substationeditor_.substationeditor.md#onpointerout)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerout](_mwc_textfield_nullable_.textfieldnullable.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
@@ -1942,7 +1942,7 @@ ___
 
 • **onpointerover**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerover](_editors_substationeditor_.substationeditor.md#onpointerover)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerover](_mwc_textfield_nullable_.textfieldnullable.md#onpointerover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5950
 
@@ -1952,7 +1952,7 @@ ___
 
 • **onpointerup**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onpointerup](_editors_substationeditor_.substationeditor.md#onpointerup)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerup](_mwc_textfield_nullable_.textfieldnullable.md#onpointerup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5951
 
@@ -1962,7 +1962,7 @@ ___
 
 • **onprogress**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onprogress](_editors_substationeditor_.substationeditor.md#onprogress)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onprogress](_mwc_textfield_nullable_.textfieldnullable.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -1976,7 +1976,7 @@ ___
 
 • **onratechange**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onratechange](_editors_substationeditor_.substationeditor.md#onratechange)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onratechange](_mwc_textfield_nullable_.textfieldnullable.md#onratechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
@@ -1990,7 +1990,7 @@ ___
 
 • **onreset**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onreset](_editors_substationeditor_.substationeditor.md#onreset)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onreset](_mwc_textfield_nullable_.textfieldnullable.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5966
 
@@ -2004,7 +2004,7 @@ ___
 
 • **onresize**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onresize](_editors_substationeditor_.substationeditor.md#onresize)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onresize](_mwc_textfield_nullable_.textfieldnullable.md#onresize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -2014,7 +2014,7 @@ ___
 
 • **onscroll**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onscroll](_editors_substationeditor_.substationeditor.md#onscroll)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onscroll](_mwc_textfield_nullable_.textfieldnullable.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
@@ -2028,7 +2028,7 @@ ___
 
 • **onsecuritypolicyviolation**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsecuritypolicyviolation](_editors_substationeditor_.substationeditor.md#onsecuritypolicyviolation)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsecuritypolicyviolation](_mwc_textfield_nullable_.textfieldnullable.md#onsecuritypolicyviolation)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5973
 
@@ -2038,7 +2038,7 @@ ___
 
 • **onseeked**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onseeked](_editors_substationeditor_.substationeditor.md#onseeked)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onseeked](_mwc_textfield_nullable_.textfieldnullable.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
@@ -2052,7 +2052,7 @@ ___
 
 • **onseeking**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onseeking](_editors_substationeditor_.substationeditor.md#onseeking)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onseeking](_mwc_textfield_nullable_.textfieldnullable.md#onseeking)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -2066,7 +2066,7 @@ ___
 
 • **onselect**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselect](_editors_substationeditor_.substationeditor.md#onselect)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselect](_mwc_textfield_nullable_.textfieldnullable.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5988
 
@@ -2080,7 +2080,7 @@ ___
 
 • **onselectionchange**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselectionchange](_editors_substationeditor_.substationeditor.md#onselectionchange)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselectionchange](_mwc_textfield_nullable_.textfieldnullable.md#onselectionchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -2090,7 +2090,7 @@ ___
 
 • **onselectstart**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onselectstart](_editors_substationeditor_.substationeditor.md#onselectstart)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselectstart](_mwc_textfield_nullable_.textfieldnullable.md#onselectstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5990
 
@@ -2100,7 +2100,7 @@ ___
 
 • **onstalled**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onstalled](_editors_substationeditor_.substationeditor.md#onstalled)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onstalled](_mwc_textfield_nullable_.textfieldnullable.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5995
 
@@ -2114,7 +2114,7 @@ ___
 
 • **onsubmit**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsubmit](_editors_substationeditor_.substationeditor.md#onsubmit)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsubmit](_mwc_textfield_nullable_.textfieldnullable.md#onsubmit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5996
 
@@ -2124,7 +2124,7 @@ ___
 
 • **onsuspend**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onsuspend](_editors_substationeditor_.substationeditor.md#onsuspend)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsuspend](_mwc_textfield_nullable_.textfieldnullable.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
@@ -2138,7 +2138,7 @@ ___
 
 • **ontimeupdate**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontimeupdate](_editors_substationeditor_.substationeditor.md#ontimeupdate)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontimeupdate](_mwc_textfield_nullable_.textfieldnullable.md#ontimeupdate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -2152,7 +2152,7 @@ ___
 
 • **ontoggle**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontoggle](_editors_substationeditor_.substationeditor.md#ontoggle)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontoggle](_mwc_textfield_nullable_.textfieldnullable.md#ontoggle)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
@@ -2162,7 +2162,7 @@ ___
 
 • **ontouchcancel**? : *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchcancel](_editors_substationeditor_.substationeditor.md#optional-ontouchcancel)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchcancel](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6008
 
@@ -2172,7 +2172,7 @@ ___
 
 • **ontouchend**? : *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchend](_editors_substationeditor_.substationeditor.md#optional-ontouchend)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchend](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6009
 
@@ -2182,7 +2182,7 @@ ___
 
 • **ontouchmove**? : *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchmove](_editors_substationeditor_.substationeditor.md#optional-ontouchmove)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchmove](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6010
 
@@ -2192,7 +2192,7 @@ ___
 
 • **ontouchstart**? : *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontouchstart](_editors_substationeditor_.substationeditor.md#optional-ontouchstart)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchstart](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6011
 
@@ -2202,7 +2202,7 @@ ___
 
 • **ontransitioncancel**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitioncancel](_editors_substationeditor_.substationeditor.md#ontransitioncancel)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitioncancel](_mwc_textfield_nullable_.textfieldnullable.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2212,7 +2212,7 @@ ___
 
 • **ontransitionend**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionend](_editors_substationeditor_.substationeditor.md#ontransitionend)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionend](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6013
 
@@ -2222,7 +2222,7 @@ ___
 
 • **ontransitionrun**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionrun](_editors_substationeditor_.substationeditor.md#ontransitionrun)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionrun](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6014
 
@@ -2232,7 +2232,7 @@ ___
 
 • **ontransitionstart**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ontransitionstart](_editors_substationeditor_.substationeditor.md#ontransitionstart)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionstart](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6015
 
@@ -2242,7 +2242,7 @@ ___
 
 • **onvolumechange**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onvolumechange](_editors_substationeditor_.substationeditor.md#onvolumechange)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onvolumechange](_mwc_textfield_nullable_.textfieldnullable.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
@@ -2256,7 +2256,7 @@ ___
 
 • **onwaiting**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onwaiting](_editors_substationeditor_.substationeditor.md#onwaiting)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onwaiting](_mwc_textfield_nullable_.textfieldnullable.md#onwaiting)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2270,7 +2270,7 @@ ___
 
 • **onwheel**: *function | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[onwheel](_editors_substationeditor_.substationeditor.md#onwheel)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onwheel](_mwc_textfield_nullable_.textfieldnullable.md#onwheel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
@@ -2280,7 +2280,7 @@ ___
 
 • **outerHTML**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[outerHTML](_editors_substationeditor_.substationeditor.md#outerhtml)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[outerHTML](_mwc_textfield_nullable_.textfieldnullable.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5117
 
@@ -2290,7 +2290,7 @@ ___
 
 • **ownerDocument**: *Document*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[ownerDocument](_editors_substationeditor_.substationeditor.md#readonly-ownerdocument)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ownerDocument](_mwc_textfield_nullable_.textfieldnullable.md#readonly-ownerdocument)*
 
 *Overrides void*
 
@@ -2302,7 +2302,7 @@ ___
 
 • **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[parentElement](_editors_substationeditor_.substationeditor.md#readonly-parentelement)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[parentElement](_mwc_textfield_nullable_.textfieldnullable.md#readonly-parentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10783
 
@@ -2314,7 +2314,7 @@ ___
 
 • **parentNode**: *Node & ParentNode | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[parentNode](_editors_substationeditor_.substationeditor.md#readonly-parentnode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[parentNode](_mwc_textfield_nullable_.textfieldnullable.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
@@ -2338,7 +2338,7 @@ ___
 
 • **previousElementSibling**: *Element | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[previousElementSibling](_editors_substationeditor_.substationeditor.md#readonly-previouselementsibling)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[previousElementSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-previouselementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11035
 
@@ -2350,7 +2350,7 @@ ___
 
 • **previousSibling**: *ChildNode | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[previousSibling](_editors_substationeditor_.substationeditor.md#readonly-previoussibling)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[previousSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10791
 
@@ -2362,7 +2362,7 @@ ___
 
 • **renderRoot**: *Element | DocumentFragment*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[renderRoot](_editors_substationeditor_.substationeditor.md#readonly-renderroot)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderRoot](_mwc_textfield_nullable_.textfieldnullable.md#readonly-renderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:65
 
@@ -2375,7 +2375,7 @@ ___
 
 • **scrollHeight**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollHeight](_editors_substationeditor_.substationeditor.md#readonly-scrollheight)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-scrollheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5123
 
@@ -2385,7 +2385,7 @@ ___
 
 • **scrollLeft**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollLeft](_editors_substationeditor_.substationeditor.md#scrollleft)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollLeft](_mwc_textfield_nullable_.textfieldnullable.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5124
 
@@ -2395,7 +2395,7 @@ ___
 
 • **scrollTop**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTop](_editors_substationeditor_.substationeditor.md#scrolltop)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTop](_mwc_textfield_nullable_.textfieldnullable.md#scrolltop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
@@ -2405,7 +2405,7 @@ ___
 
 • **scrollWidth**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollWidth](_editors_substationeditor_.substationeditor.md#readonly-scrollwidth)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-scrollwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -2415,7 +2415,7 @@ ___
 
 • **shadowRoot**: *ShadowRoot | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[shadowRoot](_editors_substationeditor_.substationeditor.md#readonly-shadowroot)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[shadowRoot](_mwc_textfield_nullable_.textfieldnullable.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5130
 
@@ -2427,7 +2427,7 @@ ___
 
 • **slot**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[slot](_editors_substationeditor_.substationeditor.md#slot)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[slot](_mwc_textfield_nullable_.textfieldnullable.md#slot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2439,7 +2439,7 @@ ___
 
 • **spellcheck**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[spellcheck](_editors_substationeditor_.substationeditor.md#spellcheck)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[spellcheck](_mwc_textfield_nullable_.textfieldnullable.md#spellcheck)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
@@ -2451,7 +2451,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-*Defined in [src/open-scd-base.ts:72](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L72)*
+*Defined in [src/open-scd-base.ts:72](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L72)*
 
 The name of the current file.
 
@@ -2461,7 +2461,7 @@ ___
 
 • **style**: *CSSStyleDeclaration*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[style](_editors_substationeditor_.substationeditor.md#readonly-style)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[style](_mwc_textfield_nullable_.textfieldnullable.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5250
 
@@ -2471,7 +2471,7 @@ ___
 
 • **tabIndex**: *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[tabIndex](_editors_substationeditor_.substationeditor.md#tabindex)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[tabIndex](_mwc_textfield_nullable_.textfieldnullable.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:7992
 
@@ -2483,7 +2483,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tag](_open_scd_base_.openscdbase.md#tag)*
 
-*Defined in [src/open-scd-base.ts:70](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L70)*
+*Defined in [src/open-scd-base.ts:70](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L70)*
 
 The tag name this editor is responsible for editing
 
@@ -2493,7 +2493,7 @@ ___
 
 • **tagName**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[tagName](_editors_substationeditor_.substationeditor.md#readonly-tagname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[tagName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5138
 
@@ -2505,7 +2505,7 @@ ___
 
 • **textContent**: *string | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[textContent](_editors_substationeditor_.substationeditor.md#textcontent)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[textContent](_mwc_textfield_nullable_.textfieldnullable.md#textcontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10792
 
@@ -2515,7 +2515,7 @@ ___
 
 • **title**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[title](_editors_substationeditor_.substationeditor.md#title)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[title](_mwc_textfield_nullable_.textfieldnullable.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
@@ -2525,7 +2525,7 @@ ___
 
 • **translate**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[translate](_editors_substationeditor_.substationeditor.md#translate)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[translate](_mwc_textfield_nullable_.textfieldnullable.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
@@ -2539,7 +2539,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:58](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L58)*
+*Defined in [src/open-scd-base.ts:58](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L58)*
 
 Whether the editor is currently waiting for some async work.
 
@@ -2551,7 +2551,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
 
-*Defined in [src/waiting.ts:8](https://github.com/openscd/open-scd/blob/040b519/src/waiting.ts#L8)*
+*Defined in [src/waiting.ts:8](https://github.com/openscd/open-scd/blob/3b3cfc2/src/waiting.ts#L8)*
 
 ___
 
@@ -2561,7 +2561,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
 
-*Defined in [src/waiting.ts:10](https://github.com/openscd/open-scd/blob/040b519/src/waiting.ts#L10)*
+*Defined in [src/waiting.ts:10](https://github.com/openscd/open-scd/blob/3b3cfc2/src/waiting.ts#L10)*
 
 A promise which resolves once all currently pending work is done.
 
@@ -2571,7 +2571,7 @@ ___
 
 ▪ **[finalized]**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[[finalized]](_editors_substationeditor_.substationeditor.md#static-protected-[finalized])*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[[finalized]](_mwc_textfield_nullable_.textfieldnullable.md#static-protected-[finalized])*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:138
 
@@ -2583,7 +2583,7 @@ ___
 
 ▪ **finalized**: *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[finalized](_editors_substationeditor_.substationeditor.md#static-protected-finalized)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[finalized](_mwc_textfield_nullable_.textfieldnullable.md#static-protected-finalized)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:36
 
@@ -2599,7 +2599,7 @@ ___
 
 ▪ **properties**: *PropertyDeclarations*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[properties](_editors_substationeditor_.substationeditor.md#static-properties)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[properties](_mwc_textfield_nullable_.textfieldnullable.md#static-properties)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:148
 
@@ -2612,7 +2612,7 @@ ___
 
 ▪ **render**: *function*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[render](_editors_substationeditor_.substationeditor.md#static-render)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[render](_mwc_textfield_nullable_.textfieldnullable.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:44
 
@@ -2646,7 +2646,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/open-scd.ts:13](https://github.com/openscd/open-scd/blob/040b519/src/open-scd.ts#L13)*
+*Defined in [src/open-scd.ts:13](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd.ts#L13)*
 
 ## Accessors
 
@@ -2656,7 +2656,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
 
-*Defined in [src/editing.ts:43](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L43)*
+*Defined in [src/editing.ts:43](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L43)*
 
 **Returns:** *boolean*
 
@@ -2668,7 +2668,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
 
-*Defined in [src/editing.ts:40](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L40)*
+*Defined in [src/editing.ts:40](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L40)*
 
 **Returns:** *boolean*
 
@@ -2678,7 +2678,7 @@ ___
 
 • **get hasUpdated**(): *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasUpdated](_editors_substationeditor_.substationeditor.md#protected-hasupdated)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasUpdated](_mwc_textfield_nullable_.textfieldnullable.md#protected-hasupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:336
 
@@ -2692,7 +2692,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[name](_open_scd_base_.openscdbase.md#name)*
 
-*Defined in [src/open-scd-base.ts:66](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L66)*
+*Defined in [src/open-scd-base.ts:66](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L66)*
 
 **Returns:** *string | null*
 
@@ -2704,7 +2704,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
 
-*Defined in [src/editing.ts:53](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L53)*
+*Defined in [src/editing.ts:53](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L53)*
 
 **Returns:** *number*
 
@@ -2716,7 +2716,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
 
-*Defined in [src/editing.ts:46](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L46)*
+*Defined in [src/editing.ts:46](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L46)*
 
 **Returns:** *number*
 
@@ -2728,7 +2728,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-*Defined in [src/open-scd-base.ts:76](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L76)*
+*Defined in [src/open-scd-base.ts:76](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L76)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2738,7 +2738,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-*Defined in [src/open-scd-base.ts:79](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L79)*
+*Defined in [src/open-scd-base.ts:79](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L79)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2756,7 +2756,7 @@ ___
 
 • **get updateComplete**(): *Promise‹unknown›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[updateComplete](_editors_substationeditor_.substationeditor.md#updatecomplete)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[updateComplete](_mwc_textfield_nullable_.textfieldnullable.md#updatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:370
 
@@ -2782,7 +2782,7 @@ ___
 
 • **get observedAttributes**(): *string[]*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[observedAttributes](_editors_substationeditor_.substationeditor.md#static-observedattributes)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[observedAttributes](_mwc_textfield_nullable_.textfieldnullable.md#static-observedattributes)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:153
 
@@ -2825,7 +2825,7 @@ ___
 
 ▸ **addEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[addEventListener](_editors_substationeditor_.substationeditor.md#addeventlistener)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[addEventListener](_mwc_textfield_nullable_.textfieldnullable.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2856,7 +2856,7 @@ Name | Type |
 
 ▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[addEventListener](_editors_substationeditor_.substationeditor.md#addeventlistener)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[addEventListener](_mwc_textfield_nullable_.textfieldnullable.md#addeventlistener)*
 
 *Overrides void*
 
@@ -2878,7 +2878,7 @@ ___
 
 ▸ **adoptStyles**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[adoptStyles](_editors_substationeditor_.substationeditor.md#protected-adoptstyles)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[adoptStyles](_mwc_textfield_nullable_.textfieldnullable.md#protected-adoptstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:89
 
@@ -2898,7 +2898,7 @@ ___
 
 ▸ **after**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[after](_editors_substationeditor_.substationeditor.md#after)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[after](_mwc_textfield_nullable_.textfieldnullable.md#after)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3501
 
@@ -2920,7 +2920,7 @@ ___
 
 ▸ **animate**(`keyframes`: Keyframe[] | PropertyIndexedKeyframes | null, `options?`: number | KeyframeAnimationOptions): *Animation*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[animate](_editors_substationeditor_.substationeditor.md#animate)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[animate](_mwc_textfield_nullable_.textfieldnullable.md#animate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
@@ -2939,7 +2939,7 @@ ___
 
 ▸ **append**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[append](_editors_substationeditor_.substationeditor.md#append)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[append](_mwc_textfield_nullable_.textfieldnullable.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11319
 
@@ -2961,7 +2961,7 @@ ___
 
 ▸ **appendChild**‹**T**›(`newChild`: T): *T*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[appendChild](_editors_substationeditor_.substationeditor.md#appendchild)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[appendChild](_mwc_textfield_nullable_.textfieldnullable.md#appendchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10793
 
@@ -2983,7 +2983,7 @@ ___
 
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[attachShadow](_editors_substationeditor_.substationeditor.md#attachshadow)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[attachShadow](_mwc_textfield_nullable_.textfieldnullable.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5142
 
@@ -3003,7 +3003,7 @@ ___
 
 ▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[attributeChangedCallback](_editors_substationeditor_.substationeditor.md#attributechangedcallback)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[attributeChangedCallback](_mwc_textfield_nullable_.textfieldnullable.md#attributechangedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:308
 
@@ -3025,7 +3025,7 @@ ___
 
 ▸ **before**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[before](_editors_substationeditor_.substationeditor.md#before)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[before](_mwc_textfield_nullable_.textfieldnullable.md#before)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3507
 
@@ -3071,7 +3071,7 @@ ___
 
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[cloneNode](_editors_substationeditor_.substationeditor.md#clonenode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[cloneNode](_mwc_textfield_nullable_.textfieldnullable.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10797
 
@@ -3091,7 +3091,7 @@ ___
 
 ▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5146
 
@@ -3111,7 +3111,7 @@ Name | Type |
 
 ▸ **closest**‹**K**›(`selector`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5147
 
@@ -3129,7 +3129,7 @@ Name | Type |
 
 ▸ **closest**‹**E**›(`selector`: string): *E | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[closest](_editors_substationeditor_.substationeditor.md#closest)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -3153,7 +3153,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
 
-*Defined in [src/editing.ts:107](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L107)*
+*Defined in [src/editing.ts:107](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L107)*
 
 **Parameters:**
 
@@ -3171,7 +3171,7 @@ ___
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[compareDocumentPosition](_editors_substationeditor_.substationeditor.md#comparedocumentposition)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[compareDocumentPosition](_mwc_textfield_nullable_.textfieldnullable.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10801
 
@@ -3191,7 +3191,7 @@ ___
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[connectedCallback](_editors_substationeditor_.substationeditor.md#connectedcallback)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[connectedCallback](_mwc_textfield_nullable_.textfieldnullable.md#connectedcallback)*
 
 *Overrides void*
 
@@ -3205,7 +3205,7 @@ ___
 
 ▸ **contains**(`other`: Node | null): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[contains](_editors_substationeditor_.substationeditor.md#contains)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[contains](_mwc_textfield_nullable_.textfieldnullable.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
@@ -3244,7 +3244,7 @@ ___
 
 ▸ **disconnectedCallback**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[disconnectedCallback](_editors_substationeditor_.substationeditor.md#disconnectedcallback)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[disconnectedCallback](_mwc_textfield_nullable_.textfieldnullable.md#disconnectedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:304
 
@@ -3260,7 +3260,7 @@ ___
 
 ▸ **dispatchEvent**(`event`: Event): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[dispatchEvent](_editors_substationeditor_.substationeditor.md#dispatchevent)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dispatchEvent](_mwc_textfield_nullable_.textfieldnullable.md#dispatchevent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5417
 
@@ -3280,7 +3280,7 @@ ___
 
 ▸ **enableUpdating**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[enableUpdating](_editors_substationeditor_.substationeditor.md#protected-enableupdating)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[enableUpdating](_mwc_textfield_nullable_.textfieldnullable.md#protected-enableupdating)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:298
 
@@ -3296,7 +3296,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:89](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L89)*
+*Defined in [src/open-scd-base.ts:89](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L89)*
 
 **Parameters:**
 
@@ -3355,7 +3355,7 @@ ___
 
 ▸ **getAnimations**(): *Animation[]*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAnimations](_editors_substationeditor_.substationeditor.md#getanimations)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAnimations](_mwc_textfield_nullable_.textfieldnullable.md#getanimations)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
@@ -3367,7 +3367,7 @@ ___
 
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttribute](_editors_substationeditor_.substationeditor.md#getattribute)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttribute](_mwc_textfield_nullable_.textfieldnullable.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3387,7 +3387,7 @@ ___
 
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNS](_editors_substationeditor_.substationeditor.md#getattributens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3408,7 +3408,7 @@ ___
 
 ▸ **getAttributeNames**(): *string[]*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNames](_editors_substationeditor_.substationeditor.md#getattributenames)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNames](_mwc_textfield_nullable_.textfieldnullable.md#getattributenames)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5160
 
@@ -3422,7 +3422,7 @@ ___
 
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNode](_editors_substationeditor_.substationeditor.md#getattributenode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5161
 
@@ -3440,7 +3440,7 @@ ___
 
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getAttributeNodeNS](_editors_substationeditor_.substationeditor.md#getattributenodens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNodeNS](_mwc_textfield_nullable_.textfieldnullable.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3459,7 +3459,7 @@ ___
 
 ▸ **getBoundingClientRect**(): *DOMRect*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getBoundingClientRect](_editors_substationeditor_.substationeditor.md#getboundingclientrect)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getBoundingClientRect](_mwc_textfield_nullable_.textfieldnullable.md#getboundingclientrect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5163
 
@@ -3471,7 +3471,7 @@ ___
 
 ▸ **getClientRects**(): *DOMRectList*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getClientRects](_editors_substationeditor_.substationeditor.md#getclientrects)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getClientRects](_mwc_textfield_nullable_.textfieldnullable.md#getclientrects)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5164
 
@@ -3483,7 +3483,7 @@ ___
 
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByClassName](_editors_substationeditor_.substationeditor.md#getelementsbyclassname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByClassName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5168
 
@@ -3503,7 +3503,7 @@ ___
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5169
 
@@ -3521,7 +3521,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
@@ -3539,7 +3539,7 @@ Name | Type |
 
 ▸ **getElementsByTagName**(`qualifiedName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3557,7 +3557,7 @@ ___
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3572,7 +3572,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
@@ -3587,7 +3587,7 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
@@ -3606,7 +3606,7 @@ ___
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getRootNode](_editors_substationeditor_.substationeditor.md#getrootnode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getRootNode](_mwc_textfield_nullable_.textfieldnullable.md#getrootnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3626,7 +3626,7 @@ ___
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttribute](_editors_substationeditor_.substationeditor.md#hasattribute)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttribute](_mwc_textfield_nullable_.textfieldnullable.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3646,7 +3646,7 @@ ___
 
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttributeNS](_editors_substationeditor_.substationeditor.md#hasattributens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
@@ -3667,7 +3667,7 @@ ___
 
 ▸ **hasAttributes**(): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasAttributes](_editors_substationeditor_.substationeditor.md#hasattributes)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttributes](_mwc_textfield_nullable_.textfieldnullable.md#hasattributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5186
 
@@ -3681,7 +3681,7 @@ ___
 
 ▸ **hasChildNodes**(): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasChildNodes](_editors_substationeditor_.substationeditor.md#haschildnodes)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasChildNodes](_mwc_textfield_nullable_.textfieldnullable.md#haschildnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -3695,7 +3695,7 @@ ___
 
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[hasPointerCapture](_editors_substationeditor_.substationeditor.md#haspointercapture)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasPointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5187
 
@@ -3717,7 +3717,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/foundation.ts:135](https://github.com/openscd/open-scd/blob/040b519/src/foundation.ts#L135)*
+*Defined in [src/foundation.ts:135](https://github.com/openscd/open-scd/blob/3b3cfc2/src/foundation.ts#L135)*
 
 **Parameters:**
 
@@ -3734,7 +3734,7 @@ ___
 
 ▸ **initialize**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[initialize](_editors_substationeditor_.substationeditor.md#protected-initialize)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[initialize](_mwc_textfield_nullable_.textfieldnullable.md#protected-initialize)*
 
 *Overrides void*
 
@@ -3752,7 +3752,7 @@ ___
 
 ▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): *Element | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentElement](_editors_substationeditor_.substationeditor.md#insertadjacentelement)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentElement](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -3771,7 +3771,7 @@ ___
 
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentHTML](_editors_substationeditor_.substationeditor.md#insertadjacenthtml)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentHTML](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5189
 
@@ -3790,7 +3790,7 @@ ___
 
 ▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertAdjacentText](_editors_substationeditor_.substationeditor.md#insertadjacenttext)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentText](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacenttext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5190
 
@@ -3809,7 +3809,7 @@ ___
 
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[insertBefore](_editors_substationeditor_.substationeditor.md#insertbefore)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertBefore](_mwc_textfield_nullable_.textfieldnullable.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10814
 
@@ -3832,7 +3832,7 @@ ___
 
 ▸ **isDefaultNamespace**(`namespace`: string | null): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isDefaultNamespace](_editors_substationeditor_.substationeditor.md#isdefaultnamespace)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isDefaultNamespace](_mwc_textfield_nullable_.textfieldnullable.md#isdefaultnamespace)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10815
 
@@ -3850,7 +3850,7 @@ ___
 
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isEqualNode](_editors_substationeditor_.substationeditor.md#isequalnode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isEqualNode](_mwc_textfield_nullable_.textfieldnullable.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10819
 
@@ -3870,7 +3870,7 @@ ___
 
 ▸ **isSameNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[isSameNode](_editors_substationeditor_.substationeditor.md#issamenode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isSameNode](_mwc_textfield_nullable_.textfieldnullable.md#issamenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10820
 
@@ -3890,7 +3890,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
 
-*Defined in [src/editing.ts:77](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L77)*
+*Defined in [src/editing.ts:77](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L77)*
 
 **Parameters:**
 
@@ -3907,7 +3907,7 @@ ___
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lookupNamespaceURI](_editors_substationeditor_.substationeditor.md#lookupnamespaceuri)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lookupNamespaceURI](_mwc_textfield_nullable_.textfieldnullable.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
@@ -3925,7 +3925,7 @@ ___
 
 ▸ **lookupPrefix**(`namespace`: string | null): *string | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[lookupPrefix](_editors_substationeditor_.substationeditor.md#lookupprefix)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lookupPrefix](_mwc_textfield_nullable_.textfieldnullable.md#lookupprefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10822
 
@@ -3943,7 +3943,7 @@ ___
 
 ▸ **matches**(`selectors`: string): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[matches](_editors_substationeditor_.substationeditor.md#matches)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[matches](_mwc_textfield_nullable_.textfieldnullable.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5194
 
@@ -3963,7 +3963,7 @@ ___
 
 ▸ **msGetRegionContent**(): *any*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[msGetRegionContent](_editors_substationeditor_.substationeditor.md#msgetregioncontent)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[msGetRegionContent](_mwc_textfield_nullable_.textfieldnullable.md#msgetregioncontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5195
 
@@ -3975,7 +3975,7 @@ ___
 
 ▸ **normalize**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[normalize](_editors_substationeditor_.substationeditor.md#normalize)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[normalize](_mwc_textfield_nullable_.textfieldnullable.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -3989,7 +3989,7 @@ ___
 
 ▸ **performUpdate**(): *void | Promise‹unknown›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[performUpdate](_editors_substationeditor_.substationeditor.md#protected-performupdate)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[performUpdate](_mwc_textfield_nullable_.textfieldnullable.md#protected-performupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:353
 
@@ -4016,7 +4016,7 @@ ___
 
 ▸ **prepend**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prepend](_editors_substationeditor_.substationeditor.md#prepend)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[prepend](_mwc_textfield_nullable_.textfieldnullable.md#prepend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
@@ -4038,7 +4038,7 @@ ___
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11329
 
@@ -4058,7 +4058,7 @@ Name | Type |
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11330
 
@@ -4076,7 +4076,7 @@ Name | Type |
 
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelector](_editors_substationeditor_.substationeditor.md#queryselector)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -4098,7 +4098,7 @@ ___
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11335
 
@@ -4118,7 +4118,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11336
 
@@ -4136,7 +4136,7 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
@@ -4160,7 +4160,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
 
-*Defined in [src/editing.ts:70](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L70)*
+*Defined in [src/editing.ts:70](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L70)*
 
 **Returns:** *boolean*
 
@@ -4170,7 +4170,7 @@ ___
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[releasePointerCapture](_editors_substationeditor_.substationeditor.md#releasepointercapture)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[releasePointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
@@ -4188,7 +4188,7 @@ ___
 
 ▸ **remove**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[remove](_editors_substationeditor_.substationeditor.md#remove)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[remove](_mwc_textfield_nullable_.textfieldnullable.md#remove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3511
 
@@ -4202,7 +4202,7 @@ ___
 
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttribute](_editors_substationeditor_.substationeditor.md#removeattribute)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttribute](_mwc_textfield_nullable_.textfieldnullable.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
@@ -4222,7 +4222,7 @@ ___
 
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttributeNS](_editors_substationeditor_.substationeditor.md#removeattributens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -4243,7 +4243,7 @@ ___
 
 ▸ **removeAttributeNode**(`attr`: Attr): *Attr*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeAttributeNode](_editors_substationeditor_.substationeditor.md#removeattributenode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#removeattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
@@ -4261,7 +4261,7 @@ ___
 
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeChild](_editors_substationeditor_.substationeditor.md#removechild)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeChild](_mwc_textfield_nullable_.textfieldnullable.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
@@ -4283,7 +4283,7 @@ ___
 
 ▸ **removeEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeEventListener](_editors_substationeditor_.substationeditor.md#removeeventlistener)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeEventListener](_mwc_textfield_nullable_.textfieldnullable.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4314,7 +4314,7 @@ Name | Type |
 
 ▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[removeEventListener](_editors_substationeditor_.substationeditor.md#removeeventlistener)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeEventListener](_mwc_textfield_nullable_.textfieldnullable.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4338,9 +4338,9 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#render)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[render](_editors_substationeditor_.substationeditor.md#static-render)*
+*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[render](_mwc_textfield_nullable_.textfieldnullable.md#static-render)*
 
-*Defined in [src/open-scd-base.ts:305](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L305)*
+*Defined in [src/open-scd-base.ts:305](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L305)*
 
 **Returns:** *TemplateResult*
 
@@ -4352,7 +4352,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderActionItem](_open_scd_base_.openscdbase.md#renderactionitem)*
 
-*Defined in [src/open-scd-base.ts:250](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L250)*
+*Defined in [src/open-scd-base.ts:250](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L250)*
 
 **Parameters:**
 
@@ -4370,7 +4370,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderEditorTab](_open_scd_base_.openscdbase.md#rendereditortab)*
 
-*Defined in [src/open-scd-base.ts:262](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L262)*
+*Defined in [src/open-scd-base.ts:262](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L262)*
 
 **Parameters:**
 
@@ -4388,7 +4388,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderHistory](_open_scd_base_.openscdbase.md#renderhistory)*
 
-*Defined in [src/open-scd-base.ts:273](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L273)*
+*Defined in [src/open-scd-base.ts:273](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L273)*
 
 **Parameters:**
 
@@ -4406,7 +4406,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderLogEntry](_open_scd_base_.openscdbase.md#renderlogentry)*
 
-*Defined in [src/open-scd-base.ts:285](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L285)*
+*Defined in [src/open-scd-base.ts:285](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L285)*
 
 **Parameters:**
 
@@ -4426,7 +4426,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderMenuEntry](_open_scd_base_.openscdbase.md#rendermenuentry)*
 
-*Defined in [src/open-scd-base.ts:229](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L229)*
+*Defined in [src/open-scd-base.ts:229](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L229)*
 
 **Parameters:**
 
@@ -4442,7 +4442,7 @@ ___
 
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[replaceChild](_editors_substationeditor_.substationeditor.md#replacechild)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[replaceChild](_mwc_textfield_nullable_.textfieldnullable.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10828
 
@@ -4465,7 +4465,7 @@ ___
 
 ▸ **replaceWith**(...`nodes`: (string | Node)[]): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[replaceWith](_editors_substationeditor_.substationeditor.md#replacewith)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[replaceWith](_mwc_textfield_nullable_.textfieldnullable.md#replacewith)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3517
 
@@ -4487,7 +4487,7 @@ ___
 
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[requestFullscreen](_editors_substationeditor_.substationeditor.md#requestfullscreen)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[requestFullscreen](_mwc_textfield_nullable_.textfieldnullable.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5211
 
@@ -4509,7 +4509,7 @@ ___
 
 ▸ **requestPointerLock**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[requestPointerLock](_editors_substationeditor_.substationeditor.md#requestpointerlock)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[requestPointerLock](_mwc_textfield_nullable_.textfieldnullable.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5212
 
@@ -4521,7 +4521,7 @@ ___
 
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[requestUpdate](_editors_substationeditor_.substationeditor.md#requestupdate)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[requestUpdate](_mwc_textfield_nullable_.textfieldnullable.md#requestupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:330
 
@@ -4550,7 +4550,7 @@ ___
 
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scroll](_editors_substationeditor_.substationeditor.md#scroll)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scroll](_mwc_textfield_nullable_.textfieldnullable.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5213
 
@@ -4564,7 +4564,7 @@ Name | Type |
 
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scroll](_editors_substationeditor_.substationeditor.md#scroll)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scroll](_mwc_textfield_nullable_.textfieldnullable.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4583,7 +4583,7 @@ ___
 
 ▸ **scrollBy**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollBy](_mwc_textfield_nullable_.textfieldnullable.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
@@ -4597,7 +4597,7 @@ Name | Type |
 
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollBy](_mwc_textfield_nullable_.textfieldnullable.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5216
 
@@ -4616,7 +4616,7 @@ ___
 
 ▸ **scrollIntoView**(`arg?`: boolean | ScrollIntoViewOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollIntoView](_editors_substationeditor_.substationeditor.md#scrollintoview)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollIntoView](_mwc_textfield_nullable_.textfieldnullable.md#scrollintoview)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5217
 
@@ -4634,7 +4634,7 @@ ___
 
 ▸ **scrollTo**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTo](_mwc_textfield_nullable_.textfieldnullable.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5218
 
@@ -4648,7 +4648,7 @@ Name | Type |
 
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTo](_mwc_textfield_nullable_.textfieldnullable.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5219
 
@@ -4667,7 +4667,7 @@ ___
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttribute](_editors_substationeditor_.substationeditor.md#setattribute)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttribute](_mwc_textfield_nullable_.textfieldnullable.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -4688,7 +4688,7 @@ ___
 
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNS](_editors_substationeditor_.substationeditor.md#setattributens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
@@ -4710,7 +4710,7 @@ ___
 
 ▸ **setAttributeNode**(`attr`: Attr): *Attr | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNode](_editors_substationeditor_.substationeditor.md#setattributenode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#setattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
@@ -4728,7 +4728,7 @@ ___
 
 ▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setAttributeNodeNS](_editors_substationeditor_.substationeditor.md#setattributenodens)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNodeNS](_mwc_textfield_nullable_.textfieldnullable.md#setattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -4746,7 +4746,7 @@ ___
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[setPointerCapture](_editors_substationeditor_.substationeditor.md#setpointercapture)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setPointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5230
 
@@ -4764,7 +4764,7 @@ ___
 
 ▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[shouldUpdate](_editors_substationeditor_.substationeditor.md#protected-shouldupdate)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[shouldUpdate](_mwc_textfield_nullable_.textfieldnullable.md#protected-shouldupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:395
 
@@ -4786,7 +4786,7 @@ ___
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[toggleAttribute](_editors_substationeditor_.substationeditor.md#toggleattribute)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[toggleAttribute](_mwc_textfield_nullable_.textfieldnullable.md#toggleattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5236
 
@@ -4811,7 +4811,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
 
-*Defined in [src/editing.ts:61](https://github.com/openscd/open-scd/blob/040b519/src/editing.ts#L61)*
+*Defined in [src/editing.ts:61](https://github.com/openscd/open-scd/blob/3b3cfc2/src/editing.ts#L61)*
 
 **Returns:** *boolean*
 
@@ -4873,7 +4873,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/foundation.ts:136](https://github.com/openscd/open-scd/blob/040b519/src/foundation.ts#L136)*
+*Defined in [src/foundation.ts:136](https://github.com/openscd/open-scd/blob/3b3cfc2/src/foundation.ts#L136)*
 
 **Parameters:**
 
@@ -4890,7 +4890,7 @@ ___
 
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[webkitMatchesSelector](_editors_substationeditor_.substationeditor.md#webkitmatchesselector)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[webkitMatchesSelector](_mwc_textfield_nullable_.textfieldnullable.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -4908,7 +4908,7 @@ ___
 
 ▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[createProperty](_editors_substationeditor_.substationeditor.md#static-createproperty)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[createProperty](_mwc_textfield_nullable_.textfieldnullable.md#static-createproperty)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:183
 
@@ -4948,7 +4948,7 @@ ___
 
 ▸ **finalize**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[finalize](_editors_substationeditor_.substationeditor.md#static-protected-finalize)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[finalize](_mwc_textfield_nullable_.textfieldnullable.md#static-protected-finalize)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:232
 
@@ -4965,7 +4965,7 @@ ___
 
 ▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `_options`: PropertyDeclaration): *object*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getPropertyDescriptor](_editors_substationeditor_.substationeditor.md#static-protected-getpropertydescriptor)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getPropertyDescriptor](_mwc_textfield_nullable_.textfieldnullable.md#static-protected-getpropertydescriptor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:208
 
@@ -5016,7 +5016,7 @@ ___
 
 ▸ **getPropertyOptions**(`name`: PropertyKey): *PropertyDeclaration‹unknown, unknown›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getPropertyOptions](_editors_substationeditor_.substationeditor.md#static-protected-getpropertyoptions)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getPropertyOptions](_mwc_textfield_nullable_.textfieldnullable.md#static-protected-getpropertyoptions)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:226
 
@@ -5046,7 +5046,7 @@ ___
 
 ▸ **getStyles**(): *CSSResult | CSSResultArray | undefined*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[getStyles](_editors_substationeditor_.substationeditor.md#static-getstyles)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getStyles](_mwc_textfield_nullable_.textfieldnullable.md#static-getstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:57
 
@@ -5065,7 +5065,7 @@ Override this method to integrate into a style management system.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
 
-*Defined in [src/open-scd-base.ts:197](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L197)*
+*Defined in [src/open-scd-base.ts:197](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L197)*
 
 ###  editors
 
@@ -5099,4 +5099,4 @@ Override this method to integrate into a style management system.
       },
     ]
 
-*Defined in [src/open-scd-base.ts:198](https://github.com/openscd/open-scd/blob/040b519/src/open-scd-base.ts#L198)*
+*Defined in [src/open-scd-base.ts:198](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L198)*
