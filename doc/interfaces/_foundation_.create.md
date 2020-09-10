@@ -21,7 +21,7 @@ Represents prepending `create.new.element` to `create.new.parent`.
 
 • **derived**? : *undefined | false | true*
 
-Defined in src/foundation.ts:6
+*Defined in [src/foundation.ts:6](https://github.com/openscd/open-scd/blob/b478bde/src/foundation.ts#L6)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **new**: *object*
 
-Defined in src/foundation.ts:5
+*Defined in [src/foundation.ts:5](https://github.com/openscd/open-scd/blob/b478bde/src/foundation.ts#L5)*
 
 #### Type declaration:
 
