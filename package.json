@@ -22,6 +22,7 @@
     "@material/mwc-fab": "^0.18.0",
     "@material/mwc-icon": "^0.18.0",
     "@material/mwc-icon-button": "^0.18.0",
+    "@material/mwc-icon-button-toggle": "^0.18.0",
     "@material/mwc-list": "^0.18.0",
     "@material/mwc-menu": "^0.18.0",
     "@material/mwc-snackbar": "^0.18.0",
