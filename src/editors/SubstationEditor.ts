@@ -38,14 +38,14 @@ export default class SubstationEditor extends LitElement {
     return this.element?.getAttribute('name') ?? '';
   }
   @property({ type: String })
-  get desc(): string {
-    return this.element?.getAttribute('desc') ?? '';
+  get desc(): string | null {
+    return this.element?.getAttribute('desc') ?? null;
   }
 
   @query('mwc-dialog#edit-substation') editSubstationUI!: Dialog;
   @query('#edit-substation > mwc-textfield[label="name"]')
   substationNameUI!: TextField;
-  @query('#edit-substation > mwc-textfield[label="desc"]')
+  @query('#edit-substation > mwc-textfield-nullable[label="desc"]')
   substationDescUI!: TextField;
   @query('mwc-menu') menuUI!: Menu;
   @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
@@ -200,11 +200,11 @@ export default class SubstationEditor extends LitElement {
           required
           dialogInitialFocus
         ></mwc-textfield>
-        <mwc-textfield
+        <mwc-textfield-nullable
           value="${this.desc ?? ''}"
           label="desc"
           helper="Description"
-        ></mwc-textfield>
+        ></mwc-textfield-nullable>
         <mwc-button slot="secondaryAction" dialogAction="close">
           Cancel
         </mwc-button>
@@ -227,7 +227,10 @@ export default class SubstationEditor extends LitElement {
         required
         dialogInitialFocus
       ></mwc-textfield>
-      <mwc-textfield label="desc" helper="Description"></mwc-textfield>
+      <mwc-textfield-nullable
+        label="desc"
+        helper="Description"
+      ></mwc-textfield-nullable>
       <mwc-textfield
         value="${this.defaultNomFreq}"
         label="nomFreq"
