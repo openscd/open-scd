@@ -23,6 +23,6 @@
 
 ▸ **newEmptySCD**(): *Document*
 
-*Defined in [src/open-scd-base.ts:45](https://github.com/openscd/open-scd/blob/3b3cfc2/src/open-scd-base.ts#L45)*
+*Defined in [src/open-scd-base.ts:45](https://github.com/openscd/open-scd/blob/a40b461/src/open-scd-base.ts#L45)*
 
 **Returns:** *Document*
