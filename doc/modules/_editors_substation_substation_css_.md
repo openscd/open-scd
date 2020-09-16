@@ -13,10 +13,11 @@
 ### `Const` styles
 
 • **styles**: *CSSResult‹›* = css`
-  :host {
+  :host,
+  div {
     height: calc(100vh - 122px);
     width: calc(100vw - 2 * 5px);
-    overflow: auto;
+    overflow: hidden;
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -99,4 +100,4 @@
   }
 `
 
-*Defined in [src/editors/substation/substation-css.ts:3](https://github.com/openscd/open-scd/blob/892d6d1/src/editors/substation/substation-css.ts#L3)*
+*Defined in [src/editors/substation/substation-css.ts:3](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/substation/substation-css.ts#L3)*
