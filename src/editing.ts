@@ -98,7 +98,6 @@ export function Editing<TBase extends ElementConstructor>(Base: TBase) {
         entry.action.derived = true;
         this.history.splice(this.lastAction + 1);
         this.lastAction = this.history.length;
-        console.log(this.doc);
       }
       this.history.push(entry);
       return entry;

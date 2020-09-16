@@ -12,6 +12,7 @@ import { TextField } from '@material/mwc-textfield';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
 
 import '../mwc-textfield-nullable.js';
 import { TextFieldNullable } from '../mwc-textfield-nullable.js';
@@ -25,6 +26,7 @@ export default class SubstationEditor extends LitElement {
 
   @property()
   doc!: XMLDocument;
+  panzoom?: PanzoomObject;
   @property()
   get element(): Element | null {
     return this.doc?.querySelector('Substation') ?? null;
@@ -191,6 +193,22 @@ export default class SubstationEditor extends LitElement {
     if (this.menuUI) this.menuUI.anchor = this.menuIconUI;
   }
 
+  firstUpdated(): void {
+    this.panzoom = Panzoom(this, {
+      maxScale: 5,
+    });
+
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  private handleKeyPress(e: KeyboardEvent): void {
+    let handled = false;
+    if (e.key == '+' && (handled = true)) this.panzoom?.zoomIn();
+    if (e.key == '-' && (handled = true)) this.panzoom?.zoomOut();
+    if (handled) e.preventDefault();
+  }
+
   renderEditSubstationUI(): TemplateResult {
     const [heading, action, actionName] = this.element
       ? ['Edit Substation', this.requestSubstationUpdate, 'Save']
@@ -267,7 +285,7 @@ export default class SubstationEditor extends LitElement {
     if (!this.element) return html`<h1>No Substation</h1>`;
     return html`
       <h1>
-        ${this.name} &mdash; ${this.desc}
+        ${this.name}${this.desc === null ? '' : html`&mdash;`}${this.desc}
         <mwc-icon-button
           icon="more_vert"
           @click=${() => this.menuUI.show()}

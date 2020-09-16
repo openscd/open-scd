@@ -1,10 +1,11 @@
 import { css } from 'lit-element';
 
 export const styles = css`
-  :host {
+  :host,
+  div {
     height: calc(100vh - 122px);
     width: calc(100vw - 2 * 5px);
-    overflow: auto;
+    overflow: hidden;
     position: absolute;
     bottom: 0px;
     left: 0px;
