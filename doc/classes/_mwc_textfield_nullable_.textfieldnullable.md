@@ -77,13 +77,13 @@
 * [inputMode](_mwc_textfield_nullable_.textfieldnullable.md#inputmode)
 * [isConnected](_mwc_textfield_nullable_.textfieldnullable.md#readonly-isconnected)
 * [isContentEditable](_mwc_textfield_nullable_.textfieldnullable.md#readonly-iscontenteditable)
+* [isNull](_mwc_textfield_nullable_.textfieldnullable.md#private-isnull)
 * [isUiValid](_mwc_textfield_nullable_.textfieldnullable.md#protected-isuivalid)
 * [label](_mwc_textfield_nullable_.textfieldnullable.md#label)
 * [labelElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-labelelement)
 * [lang](_mwc_textfield_nullable_.textfieldnullable.md#lang)
 * [lastChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastchild)
 * [lastElementChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastelementchild)
-* [lastValue](_mwc_textfield_nullable_.textfieldnullable.md#lastvalue)
 * [lineRippleElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-linerippleelement)
 * [lineRippleFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-lineripplefoundation)
 * [localName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-localname)
@@ -103,7 +103,6 @@
 * [nodeValue](_mwc_textfield_nullable_.textfieldnullable.md#nodevalue)
 * [nonce](_mwc_textfield_nullable_.textfieldnullable.md#optional-nonce)
 * [notchElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-notchelement)
-* [null](_mwc_textfield_nullable_.textfieldnullable.md#null)
 * [offsetHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetheight)
 * [offsetLeft](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetleft)
 * [offsetParent](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetparent)
@@ -248,6 +247,7 @@
 
 * [charCounterVisible](_mwc_textfield_nullable_.textfieldnullable.md#protected-charcountervisible)
 * [hasUpdated](_mwc_textfield_nullable_.textfieldnullable.md#protected-hasupdated)
+* [null](_mwc_textfield_nullable_.textfieldnullable.md#null)
 * [selectionEnd](_mwc_textfield_nullable_.textfieldnullable.md#selectionend)
 * [selectionStart](_mwc_textfield_nullable_.textfieldnullable.md#selectionstart)
 * [shouldRenderHelperText](_mwc_textfield_nullable_.textfieldnullable.md#protected-shouldrenderhelpertext)
@@ -844,7 +844,7 @@ ___
 
 • **defaultValue**: *string* = ""
 
-*Defined in [src/mwc-textfield-nullable.ts:22](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L22)*
+*Defined in [src/mwc-textfield-nullable.ts:22](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L22)*
 
 ___
 
@@ -1060,6 +1060,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5267
 
 ___
 
+### `Private` isNull
+
+• **isNull**: *boolean* = false
+
+*Defined in [src/mwc-textfield-nullable.ts:23](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L23)*
+
+___
+
 ### `Protected` isUiValid
 
 • **isUiValid**: *boolean*
@@ -1121,14 +1129,6 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
 Returns the last child that is an element, and null otherwise.
-
-___
-
-###  lastValue
-
-• **lastValue**: *string* = ""
-
-*Defined in [src/mwc-textfield-nullable.ts:62](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L62)*
 
 ___
 
@@ -1339,14 +1339,6 @@ ___
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[notchElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-notchelement)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:53
-
-___
-
-###  null
-
-• **null**: *boolean* = false
-
-*Defined in [src/mwc-textfield-nullable.ts:24](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L24)*
 
 ___
 
@@ -2785,7 +2777,7 @@ ___
 
 • **switch**? : *Switch*
 
-*Defined in [src/mwc-textfield-nullable.ts:53](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L53)*
+*Defined in [src/mwc-textfield-nullable.ts:35](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L35)*
 
 ___
 
@@ -3003,6 +2995,28 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:337
 
 **Returns:** *number*
+
+___
+
+###  null
+
+• **get null**(): *boolean*
+
+*Defined in [src/mwc-textfield-nullable.ts:25](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L25)*
+
+**Returns:** *boolean*
+
+• **set null**(`value`: boolean): *void*
+
+*Defined in [src/mwc-textfield-nullable.ts:28](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L28)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | boolean |
+
+**Returns:** *void*
 
 ___
 
@@ -4090,7 +4104,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-*Defined in [src/foundation.ts:135](https://github.com/openscd/open-scd/blob/a40b461/src/foundation.ts#L135)*
+*Defined in [src/foundation.ts:135](https://github.com/openscd/open-scd/blob/283718e/src/foundation.ts#L135)*
 
 **Parameters:**
 
@@ -4704,7 +4718,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/mwc-textfield-nullable.ts:85](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L85)*
+*Defined in [src/mwc-textfield-nullable.ts:66](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L66)*
 
 **Returns:** *TemplateResult*
 
@@ -5361,7 +5375,7 @@ ___
 
 ▸ **toggleValue**(): *void*
 
-*Defined in [src/mwc-textfield-nullable.ts:63](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L63)*
+*Defined in [src/mwc-textfield-nullable.ts:44](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L44)*
 
 **Returns:** *void*
 
@@ -5413,7 +5427,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-*Defined in [src/foundation.ts:136](https://github.com/openscd/open-scd/blob/a40b461/src/foundation.ts#L136)*
+*Defined in [src/foundation.ts:136](https://github.com/openscd/open-scd/blob/283718e/src/foundation.ts#L136)*
 
 **Parameters:**
 
@@ -5603,28 +5617,28 @@ Override this method to integrate into a style management system.
 
 ### ▪ **nulled**: *object*
 
-*Defined in [src/mwc-textfield-nullable.ts:55](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L55)*
+*Defined in [src/mwc-textfield-nullable.ts:37](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L37)*
 
 ###  disabled
 
 • **disabled**: *boolean* = this.disabled
 
-*Defined in [src/mwc-textfield-nullable.ts:59](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L59)*
+*Defined in [src/mwc-textfield-nullable.ts:41](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L41)*
 
 ###  helper
 
 • **helper**: *string* = this.helper
 
-*Defined in [src/mwc-textfield-nullable.ts:57](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L57)*
+*Defined in [src/mwc-textfield-nullable.ts:39](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L39)*
 
 ###  helperPersistent
 
 • **helperPersistent**: *boolean* = this.helperPersistent
 
-*Defined in [src/mwc-textfield-nullable.ts:58](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L58)*
+*Defined in [src/mwc-textfield-nullable.ts:40](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L40)*
 
 ###  value
 
 • **value**: *string* = this.value || this.defaultValue
 
-*Defined in [src/mwc-textfield-nullable.ts:56](https://github.com/openscd/open-scd/blob/a40b461/src/mwc-textfield-nullable.ts#L56)*
+*Defined in [src/mwc-textfield-nullable.ts:38](https://github.com/openscd/open-scd/blob/283718e/src/mwc-textfield-nullable.ts#L38)*
