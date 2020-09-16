@@ -52,10 +52,13 @@
 | `checkValidity`     | `(): boolean`                                    |
 | `click`             | `(): void`                                       |
 | `focus`             | `(): void`                                       |
+| `getValue`          | `(): string \| null`                             |
 | `layout`            | `(): Promise<void>`                              |
 | `reportValidity`    | `(): boolean`                                    |
+| `restoreNulled`     | `(): void`                                       |
 | `select`            | `(): void`                                       |
 | `setAriaLabel`      | `(label: string): void`                          |
 | `setCustomValidity` | `(message: string): void`                        |
 | `setSelectionRange` | `(selectionStart: number, selectionEnd: number, selectionDirection?: "forward" \| "backward" \| "none" \| undefined): void` |
+| `storeNulled`       | `(): void`                                       |
 | `toggleValue`       | `(): void`                                       |
