@@ -43,14 +43,14 @@ describe('SubstationEditor', () => {
   describe('without a substation element loaded', () => {
     it('has a null element property', () =>
       expect(element).to.have.property('element', null));
-    it('has empty name and desc properties', () => {
+    it('has empty name property', () => {
       expect(element).to.have.property('name', '');
-      expect(element).to.have.property('desc', '');
+    });
+    it('has null desc property', () => {
+      expect(element).to.have.property('desc', null);
     });
 
     it('renders an "add substation" button', () => {
-      expect(element).to.have.property('name', '');
-      expect(element).to.have.property('desc', '');
       expect(element.shadowRoot!.querySelector('mwc-fab'))
         .attribute('icon')
         .to.equal('add');
