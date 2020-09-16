@@ -5,6 +5,7 @@ import { describeLogEntryHistory } from './logging.test.js';
 import { mockSCD } from './mock-document.js';
 import { newActionEvent } from '../src/foundation.js';
 import { serialize } from './data.js';
+import './mock-editor.js';
 
 describe('EditingElement', () => {
   let elm: EditingElement;

@@ -31,6 +31,10 @@ export class TextFieldNullable extends TextField {
     }
   }
 
+  getValue(): string | null {
+    return this.null ? null : this.value;
+  }
+
   @query('mwc-switch') switch?: Switch;
 
   nulled = {
@@ -40,29 +44,40 @@ export class TextFieldNullable extends TextField {
     disabled: this.disabled,
   };
 
+  restoreNulled(): void {
+    this.value = this.nulled.value;
+    this.helper = this.nulled.helper;
+    this.helperPersistent = this.nulled.helperPersistent;
+    this.disabled = this.nulled.disabled;
+  }
+
+  storeNulled(): void {
+    this.nulled.value = this.value;
+    this.value = '';
+
+    this.nulled.helper = this.helper;
+    this.helper = this.defaultValue
+      ? 'Default: ' + this.defaultValue
+      : 'No default value';
+    this.nulled.helperPersistent = this.helperPersistent;
+    this.helperPersistent = true;
+
+    this.nulled.disabled = this.disabled;
+    this.disabled = true;
+  }
+
   toggleValue(): void {
     this.isNull = !this.isNull;
 
-    if (this.isNull) {
-      this.nulled.value = this.value;
-      this.value = '';
-
-      this.nulled.helper = this.helper;
-      this.helper = this.defaultValue
-        ? 'Default: ' + this.defaultValue
-        : 'No default value';
-      this.nulled.helperPersistent = this.helperPersistent;
-      this.helperPersistent = true;
-
-      this.nulled.disabled = this.disabled;
-      this.disabled = true;
-    } else {
-      this.value = this.nulled.value;
-      this.helper = this.nulled.helper;
-      this.helperPersistent = this.nulled.helperPersistent;
-      this.disabled = this.nulled.disabled;
-    }
+    if (this.isNull) this.storeNulled();
+    else this.restoreNulled();
     this.requestUpdate();
+  }
+
+  constructor() {
+    super();
+    if (this.isNull) this.storeNulled();
+    else this.restoreNulled();
   }
 
   render(): TemplateResult {
@@ -71,7 +86,7 @@ export class TextFieldNullable extends TextField {
         <div>${super.render()}</div>
         <mwc-switch
           style="margin-left: 24px;"
-          .checked=${!null}
+          .checked=${!this.null}
           @change=${() => {
             this.toggleValue();
           }}

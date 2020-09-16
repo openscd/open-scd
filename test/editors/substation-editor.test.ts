@@ -3,17 +3,15 @@ import { Button } from '@material/mwc-button';
 
 import SubstationEditor from '../../src/editors/SubstationEditor.js';
 import { isCreate, isUpdate } from '../../src/foundation.js';
+import { Editing } from '../../src/editing.js';
 
 import { getDocument } from '../data.js';
-import { emptySCD } from '../mock-document.js';
 
 describe('SubstationEditor', () => {
-  customElements.define('substation-editor', SubstationEditor);
+  customElements.define('substation-editor', Editing(SubstationEditor));
   let element: SubstationEditor;
   beforeEach(async () => {
-    element = await fixture(html`<substation-editor
-        .doc=${emptySCD()}
-      ></substation-editor>
+    element = await fixture(html`<substation-editor></substation-editor>
       <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap"
         rel="stylesheet"
@@ -89,6 +87,20 @@ describe('SubstationEditor', () => {
       expect(element.newCreateAction('test name', 'test desc')).to.satisfy(
         isCreate
       ));
+
+    it('creates a new substation with null desc correctly', async () => {
+      element.editSubstationUI.show();
+      element.substationNameUI.value = 'test name';
+      await element.substationDescUI.switch?.click();
+      await (<Button>(
+        element.editSubstationUI.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      await element.updateComplete;
+      expect(element).to.have.property('desc', null);
+      expect(element).to.have.property('name', 'test name');
+    });
   });
 
   describe('with a substation element loaded', () => {
@@ -196,5 +208,20 @@ describe('SubstationEditor', () => {
           'test Voltage'
         )
       ).to.satisfy(isCreate));
+
+    it('edits a substation with null desc correctly', async () => {
+      expect(element).to.have.property('desc', 'Substation');
+      element.editSubstationUI.show();
+      element.substationNameUI.value = 'test name';
+      await element.substationDescUI.switch?.click();
+      await (<Button>(
+        element.editSubstationUI.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      await element.updateComplete;
+      expect(element).to.have.property('desc', null);
+      expect(element).to.have.property('name', 'test name');
+    });
   });
 });

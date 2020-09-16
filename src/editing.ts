@@ -27,11 +27,19 @@ export interface LogEntry {
 
 export type LogOptions = Pick<LogEntry, 'cause' | 'icon' | 'message'>;
 
+export function newEmptySCD(): XMLDocument {
+  return document.implementation.createDocument(
+    'http://www.iec.ch/61850/2003/SCL',
+    'SCL',
+    null
+  );
+}
+
 export type EditingElement = Mixin<typeof Editing>;
 
 export function Editing<TBase extends ElementConstructor>(Base: TBase) {
   return class EditingElement extends Base {
-    doc!: XMLDocument;
+    doc: XMLDocument = newEmptySCD();
 
     history: LogEntry[] = [];
 
@@ -90,6 +98,7 @@ export function Editing<TBase extends ElementConstructor>(Base: TBase) {
         entry.action.derived = true;
         this.history.splice(this.lastAction + 1);
         this.lastAction = this.history.length;
+        console.log(this.doc);
       }
       this.history.push(entry);
       return entry;

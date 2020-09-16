@@ -14,6 +14,7 @@ import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
 import '../mwc-textfield-nullable.js';
+import { TextFieldNullable } from '../mwc-textfield-nullable.js';
 import { newActionEvent, Action } from '../foundation.js';
 import { styles } from './substation/substation-css.js';
 
@@ -46,14 +47,14 @@ export default class SubstationEditor extends LitElement {
   @query('#edit-substation > mwc-textfield[label="name"]')
   substationNameUI!: TextField;
   @query('#edit-substation > mwc-textfield-nullable[label="desc"]')
-  substationDescUI!: TextField;
+  substationDescUI!: TextFieldNullable;
   @query('mwc-menu') menuUI!: Menu;
   @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
   @query('mwc-dialog#create-voltage-level') createVoltageLevelUI!: Dialog;
   @query('#create-voltage-level > mwc-textfield[label="name"]')
   voltageLevelNameUI!: TextField;
   @query('#create-voltage-level > mwc-textfield-nullable[label="desc"]')
-  voltageLevelDescUI!: TextField;
+  voltageLevelDescUI!: TextFieldNullable;
   @query('#create-voltage-level > mwc-textfield[label="nomFreq"]')
   voltageLevelNomFreqUI!: TextField;
   @query('#create-voltage-level > mwc-textfield[label="numPhases"]')
@@ -77,24 +78,27 @@ export default class SubstationEditor extends LitElement {
     );
   }
 
-  newUpdateAction(name: string, desc: string): Action {
+  newUpdateAction(name: string, desc: string | null): Action {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
     const newElement = <Element>this.element.cloneNode(false);
     newElement.setAttribute('name', name);
-    newElement.setAttribute('desc', desc);
+    if (desc === null) newElement.removeAttribute('desc');
+    else newElement.setAttribute('desc', desc);
     return {
       old: { element: this.element },
       new: { element: newElement },
     };
   }
 
-  newCreateAction(name: string, desc: string): Action {
+  newCreateAction(name: string, desc: string | null): Action {
     if (this.element) throw new Error('Will not create a second Substation');
     return {
       new: {
         parent: this.parent,
         element: new DOMParser().parseFromString(
-          `<Substation name="${name}" desc="${desc}"></Substation>`,
+          `<Substation name="${name}"${
+            desc === null ? '' : ` desc="${desc}"`
+          }></Substation>`,
           'application/xml'
         ).documentElement,
         reference: null,
@@ -104,7 +108,7 @@ export default class SubstationEditor extends LitElement {
 
   newVoltageLevelCreateAction(
     name: string,
-    desc: string,
+    desc: string | null,
     nomFreq: string,
     numPhases: string,
     Voltage: string
@@ -117,7 +121,7 @@ export default class SubstationEditor extends LitElement {
         element: new DOMParser().parseFromString(
           `<VoltageLevel
             name="${name}"
-            desc="${desc}"
+            ${desc === null ? '' : `desc="${desc}"`}
             nomFreq="${nomFreq}"
             numPhases="${numPhases}"
           ><Voltage unit="V" multiplier="k">${Voltage}</Voltage>
@@ -133,14 +137,14 @@ export default class SubstationEditor extends LitElement {
     if (
       this.element &&
       this.checkSubstationValidity() &&
-      (this.substationNameUI.value != this.name ||
-        this.substationDescUI.value != this.desc)
+      (this.substationNameUI.value !== this.name ||
+        this.substationDescUI.getValue() !== this.desc)
     ) {
       this.dispatchEvent(
         newActionEvent(
           this.newUpdateAction(
             this.substationNameUI.value,
-            this.substationDescUI.value
+            this.substationDescUI.getValue()
           )
         )
       );
@@ -158,7 +162,7 @@ export default class SubstationEditor extends LitElement {
         newActionEvent(
           this.newCreateAction(
             this.substationNameUI.value,
-            this.substationDescUI.value
+            this.substationDescUI.getValue()
           )
         )
       );
@@ -172,7 +176,7 @@ export default class SubstationEditor extends LitElement {
         newActionEvent(
           this.newVoltageLevelCreateAction(
             this.voltageLevelNameUI.value,
-            this.voltageLevelDescUI.value,
+            this.voltageLevelDescUI.getValue(),
             this.voltageLevelNomFreqUI.value,
             this.voltageLevelNumPhasesUI.value,
             this.voltageLevelVoltageUI.value
@@ -202,6 +206,7 @@ export default class SubstationEditor extends LitElement {
         ></mwc-textfield>
         <mwc-textfield-nullable
           value="${this.desc ?? ''}"
+          ?null=${this.element !== null && this.desc === null}
           label="desc"
           helper="Description"
         ></mwc-textfield-nullable>

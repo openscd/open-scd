@@ -24,7 +24,7 @@ import { Waiting } from './waiting.js';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
-import { Editing, LogEntry, LogOptions } from './editing.js';
+import { Editing, LogEntry, LogOptions, newEmptySCD } from './editing.js';
 
 interface Tab {
   label: string;
@@ -40,14 +40,6 @@ interface MenuEntry {
   actionItem?: boolean;
   action?: () => void;
   isDisabled?: () => boolean;
-}
-
-export function newEmptySCD() {
-  return document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  );
 }
 
 export class OpenSCDBase extends Waiting(Editing(LitElement)) {
@@ -236,9 +228,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         graphic="icon"
         .disabled=${me.isDisabled?.() || (me.action ? false : true)}
         ?twoline=${me.hint}
-        ><mwc-icon slot="graphic">
-          ${me.icon}
-        </mwc-icon>
+        ><mwc-icon slot="graphic"> ${me.icon} </mwc-icon>
         <span>${me.name}</span>
         ${me.hint
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
@@ -324,9 +314,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
             slot="navigationIcon"
             @click=${() => (this.menuUI.open = true)}
           ></mwc-icon-button>
-          <div slot="title" id="title">
-            ${this.name ?? this.srcName}
-          </div>
+          <div slot="title" id="title">${this.name ?? this.srcName}</div>
           ${this.menu.map(this.renderActionItem)}
           <mwc-tab-bar
             @MDCTabBar:activated=${(e: CustomEvent) =>
