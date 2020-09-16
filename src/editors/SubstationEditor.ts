@@ -52,7 +52,7 @@ export default class SubstationEditor extends LitElement {
   @query('mwc-dialog#create-voltage-level') createVoltageLevelUI!: Dialog;
   @query('#create-voltage-level > mwc-textfield[label="name"]')
   voltageLevelNameUI!: TextField;
-  @query('#create-voltage-level > mwc-textfield[label="desc"]')
+  @query('#create-voltage-level > mwc-textfield-nullable[label="desc"]')
   voltageLevelDescUI!: TextField;
   @query('#create-voltage-level > mwc-textfield[label="nomFreq"]')
   voltageLevelNomFreqUI!: TextField;

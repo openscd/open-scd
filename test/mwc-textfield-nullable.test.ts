@@ -26,12 +26,15 @@ describe('Nullable Textfield', () => {
       expect(element).to.have.property('value', '');
     });
 
-    it('displays default value of the attribute in the helper if default value is present', () => {
+    it('displays default value of the attribute in the helper if present', async () => {
       element.defaultValue = 'Jakob';
+      element.null = false;
+      element.null = true;
+      await element.updateComplete;
       expect(element).to.have.property('helper', 'Default: Jakob');
     });
 
-    it('displays "No default value" in the helper if default value is present', () => {
+    it('displays "No default value" in the helper if default value is absent', () => {
       expect(element).to.have.property('helper', 'No default value');
     });
   });

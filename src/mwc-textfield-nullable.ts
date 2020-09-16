@@ -20,35 +20,17 @@ declare global {
 export class TextFieldNullable extends TextField {
   @property({ type: String })
   defaultValue = '';
-
-  @property({ type: Boolean }) null = false;
-
-  /*
-
-  @property({ type: String })
-  get helper(): string {
-    else return super.helper;
-  }
-  set helper(value: string) {
-    super.helper = value;
-  }
-
+  private isNull = false;
   @property({ type: Boolean })
-  get helperPersistent(): boolean {
+  get null(): boolean {
+    return this.isNull;
   }
-  set helperPersistent(value: boolean) {
-    super.helperPersistent = value;
+  set null(value: boolean) {
+    if (value != this.isNull) {
+      this.isNull = !this.isNull;
+      this.toggleValue();
+    }
   }
-
-  @property({ type: Boolean, reflect: true })
-  get disabled(): boolean {
-    return this.null || super.disabled;
-  }
-  set disabled(value: boolean) {
-    super.disabled = value;
-  }
-
-   */
 
   @query('mwc-switch') switch?: Switch;
 
@@ -59,7 +41,6 @@ export class TextFieldNullable extends TextField {
     disabled: this.disabled,
   };
 
-  lastValue = '';
   toggleValue(): void {
     if (this.null) {
       this.nulled.value = this.value;
