@@ -27,7 +27,6 @@ export class TextFieldNullable extends TextField {
   }
   set null(value: boolean) {
     if (value != this.isNull) {
-      this.isNull = !this.isNull;
       this.toggleValue();
     }
   }
@@ -42,7 +41,9 @@ export class TextFieldNullable extends TextField {
   };
 
   toggleValue(): void {
-    if (this.null) {
+    this.isNull = !this.isNull;
+
+    if (this.isNull) {
       this.nulled.value = this.value;
       this.value = '';
 
@@ -61,6 +62,7 @@ export class TextFieldNullable extends TextField {
       this.helperPersistent = this.nulled.helperPersistent;
       this.disabled = this.nulled.disabled;
     }
+    this.requestUpdate();
   }
 
   render(): TemplateResult {
@@ -71,9 +73,7 @@ export class TextFieldNullable extends TextField {
           style="margin-left: 24px;"
           .checked=${!null}
           @change=${() => {
-            this.null = !this.null;
             this.toggleValue();
-            this.requestUpdate();
           }}
         ></mwc-switch>
       </div>

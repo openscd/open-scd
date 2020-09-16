@@ -1,5 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { TextFieldNullable } from '../src/mwc-textfield-nullable.js';
+import { LitElement } from 'lit-element';
 
 describe('Nullable Textfield', () => {
   let element: TextFieldNullable;
@@ -7,6 +8,16 @@ describe('Nullable Textfield', () => {
     element = await fixture(
       html`<mwc-textfield-nullable></mwc-textfield-nullable>`
     );
+  });
+
+  it('toggles null attribute on switch click', async () => {
+    expect(element).to.have.property('null', false);
+    await element.switch?.click();
+    await element.updateComplete;
+    expect(element).to.have.property('null', true);
+    await element.switch?.click();
+    await element.updateComplete;
+    expect(element).to.have.property('null', false);
   });
 
   describe('with a missing attribute', () => {
