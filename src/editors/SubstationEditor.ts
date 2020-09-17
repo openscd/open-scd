@@ -12,7 +12,91 @@ import { TextField } from '@material/mwc-textfield';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
-import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
+
+interface Bounds {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
+
+declare interface TransformOrigin {
+  x: number;
+  y: number;
+}
+
+declare interface Transform {
+  x: number;
+  y: number;
+  scale: number;
+}
+
+declare interface PanZoomController {
+  getOwner: () => Element;
+  applyTransform: (transform: Transform) => void;
+}
+
+declare interface PanZoomOptions {
+  filterKey?: () => boolean;
+  bounds?: boolean | Bounds;
+  realPinch?: boolean;
+  maxZoom?: number;
+  minZoom?: number;
+  boundsPadding?: number;
+  zoomDoubleClickSpeed?: number;
+  zoomSpeed?: number;
+  pinchSpeed?: number;
+  beforeWheel?: (e: WheelEvent) => void;
+  beforeMouseDown?: (e: MouseEvent) => void;
+  autocenter?: boolean;
+  onTouch?: (e: TouchEvent) => void;
+  onDoubleClick?: (e: Event) => void;
+  smoothScroll?: boolean;
+  controller?: PanZoomController;
+  enableTextSelection?: boolean;
+  disableKeyboardInteraction?: boolean;
+  transformOrigin?: TransformOrigin;
+}
+
+declare interface PanZoom {
+  dispose: () => void;
+  moveBy: (dx: number, dy: number, smooth: boolean) => void;
+  moveTo: (x: number, y: number) => void;
+  centerOn: (ui: any) => void;
+  zoomTo: (clientX: number, clientY: number, scaleMultiplier: number) => void;
+  zoomAbs: (clientX: number, clientY: number, zoomLevel: number) => void;
+  smoothZoom: (
+    clientX: number,
+    clientY: number,
+    scaleMultiplier: number
+  ) => void;
+  smoothZoomAbs: (
+    clientX: number,
+    clientY: number,
+    toScaleValue: number
+  ) => void;
+  getTransform: () => Transform;
+  showRectangle: (rect: ClientRect) => void;
+  pause: () => void;
+  resume: () => void;
+  isPaused: () => boolean;
+  on: <T>(eventName: string, handler: (e: T) => void) => void;
+  off: <T>(eventName: string, handler: (e: T) => void) => void;
+  fire: (eventName: string) => void;
+  getMinZoom: () => number;
+  setMinZoom: (newMinZoom: number) => number;
+  getMaxZoom: () => number;
+  setMaxZoom: (newMaxZoom: number) => number;
+  getTransformOrigin: () => TransformOrigin;
+  setTransformOrigin: (newTransformOrigin: TransformOrigin) => void;
+  getZoomSpeed: () => number;
+  setZoomSpeed: (zoomSpeed: number) => void;
+}
+
+declare function panzoom(
+  domElement: HTMLElement | SVGElement,
+  options?: PanZoomOptions
+): PanZoom;
 
 import '../mwc-textfield-nullable.js';
 import { TextFieldNullable } from '../mwc-textfield-nullable.js';
@@ -26,7 +110,6 @@ export default class SubstationEditor extends LitElement {
 
   @property()
   doc!: XMLDocument;
-  panzoom?: PanzoomObject;
   @property()
   get element(): Element | null {
     return this.doc?.querySelector('Substation') ?? null;
@@ -63,6 +146,8 @@ export default class SubstationEditor extends LitElement {
   voltageLevelNumPhasesUI!: TextField;
   @query('#create-voltage-level > mwc-textfield[label="Voltage"]')
   voltageLevelVoltageUI!: TextField;
+  @query('div')
+  container!: HTMLElement;
 
   checkSubstationValidity(): boolean {
     return (
@@ -194,19 +279,7 @@ export default class SubstationEditor extends LitElement {
   }
 
   firstUpdated(): void {
-    this.panzoom = Panzoom(this, {
-      maxScale: 5,
-    });
-
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
-
-  private handleKeyPress(e: KeyboardEvent): void {
-    let handled = false;
-    if (e.key == '+' && (handled = true)) this.panzoom?.zoomIn();
-    if (e.key == '-' && (handled = true)) this.panzoom?.zoomOut();
-    if (handled) e.preventDefault();
+    panzoom(this);
   }
 
   renderEditSubstationUI(): TemplateResult {
@@ -305,8 +378,8 @@ export default class SubstationEditor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      ${this.renderHeader()} ${this.renderCreateVoltageLevelUI()}
-      ${this.renderEditSubstationUI()}
+      <div>${this.renderHeader()}</div>
+      ${this.renderCreateVoltageLevelUI()} ${this.renderEditSubstationUI()}
       <mwc-fab
         @click=${() => (this.editSubstationUI.open = true)}
         icon="${this.element ? 'edit' : 'add'}"
