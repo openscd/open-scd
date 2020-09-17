@@ -20,4 +20,4 @@ Represents some work pending completion, upon which `promise` resolves.
 
 • **promise**: *Promise‹string›*
 
-*Defined in [src/foundation.ts:100](https://github.com/openscd/open-scd/blob/6d28c64/src/foundation.ts#L100)*
+*Defined in [src/foundation.ts:100](https://github.com/openscd/open-scd/blob/32cb8f5/src/foundation.ts#L100)*

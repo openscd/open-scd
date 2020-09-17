@@ -18,4 +18,4 @@
 
 • **mwc-textfield-nullable**: *[TextFieldNullable](../classes/_mwc_textfield_nullable_.textfieldnullable.md)*
 
-*Defined in [src/mwc-textfield-nullable.ts:15](https://github.com/openscd/open-scd/blob/6d28c64/src/mwc-textfield-nullable.ts#L15)*
+*Defined in [src/mwc-textfield-nullable.ts:15](https://github.com/openscd/open-scd/blob/32cb8f5/src/mwc-textfield-nullable.ts#L15)*

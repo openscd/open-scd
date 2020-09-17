@@ -58,7 +58,7 @@
   <rect x="9" y="18.5" width="2" height="2" />
 </svg>`
 
-*Defined in [src/icons.ts:3](https://github.com/openscd/open-scd/blob/6d28c64/src/icons.ts#L3)*
+*Defined in [src/icons.ts:3](https://github.com/openscd/open-scd/blob/32cb8f5/src/icons.ts#L3)*
 
 ___
 
@@ -140,7 +140,7 @@ ___
   />
 </svg>`
 
-*Defined in [src/icons.ts:47](https://github.com/openscd/open-scd/blob/6d28c64/src/icons.ts#L47)*
+*Defined in [src/icons.ts:47](https://github.com/openscd/open-scd/blob/32cb8f5/src/icons.ts#L47)*
 
 ___
 
@@ -163,4 +163,4 @@ ___
   <path d="M 11 7 L 17.5 7 L 13.5 11 L 16.5 11 L 10 19 L 11.5 13 L 8.5 13 Z " />
 </svg>`
 
-*Defined in [src/icons.ts:123](https://github.com/openscd/open-scd/blob/6d28c64/src/icons.ts#L123)*
+*Defined in [src/icons.ts:123](https://github.com/openscd/open-scd/blob/32cb8f5/src/icons.ts#L123)*

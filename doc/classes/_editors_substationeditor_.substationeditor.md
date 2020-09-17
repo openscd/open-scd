@@ -50,6 +50,7 @@
 * [clientLeft](_editors_substationeditor_.substationeditor.md#readonly-clientleft)
 * [clientTop](_editors_substationeditor_.substationeditor.md#readonly-clienttop)
 * [clientWidth](_editors_substationeditor_.substationeditor.md#readonly-clientwidth)
+* [container](_editors_substationeditor_.substationeditor.md#container)
 * [contentEditable](_editors_substationeditor_.substationeditor.md#contenteditable)
 * [createVoltageLevelUI](_editors_substationeditor_.substationeditor.md#createvoltagelevelui)
 * [dataset](_editors_substationeditor_.substationeditor.md#readonly-dataset)
@@ -182,7 +183,6 @@
 * [onwheel](_editors_substationeditor_.substationeditor.md#onwheel)
 * [outerHTML](_editors_substationeditor_.substationeditor.md#outerhtml)
 * [ownerDocument](_editors_substationeditor_.substationeditor.md#readonly-ownerdocument)
-* [panzoom](_editors_substationeditor_.substationeditor.md#optional-panzoom)
 * [parentElement](_editors_substationeditor_.substationeditor.md#readonly-parentelement)
 * [parentNode](_editors_substationeditor_.substationeditor.md#readonly-parentnode)
 * [prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)
@@ -264,7 +264,6 @@
 * [getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)
 * [getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)
 * [getRootNode](_editors_substationeditor_.substationeditor.md#getrootnode)
-* [handleKeyPress](_editors_substationeditor_.substationeditor.md#private-handlekeypress)
 * [hasAttribute](_editors_substationeditor_.substationeditor.md#hasattribute)
 * [hasAttributeNS](_editors_substationeditor_.substationeditor.md#hasattributens)
 * [hasAttributes](_editors_substationeditor_.substationeditor.md#hasattributes)
@@ -724,6 +723,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5112
 
 ___
 
+###  container
+
+• **container**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
+
+*Defined in [src/editors/SubstationEditor.ts:150](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L150)*
+
+___
+
 ###  contentEditable
 
 • **contentEditable**: *string*
@@ -738,7 +745,7 @@ ___
 
 • **createVoltageLevelUI**: *Dialog*
 
-*Defined in [src/editors/SubstationEditor.ts:55](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L55)*
+*Defined in [src/editors/SubstationEditor.ts:138](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L138)*
 
 ___
 
@@ -756,7 +763,7 @@ ___
 
 • **defaultNomFreq**: *number* = 50
 
-*Defined in [src/editors/SubstationEditor.ts:23](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L23)*
+*Defined in [src/editors/SubstationEditor.ts:107](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L107)*
 
 ___
 
@@ -764,7 +771,7 @@ ___
 
 • **defaultNumPhases**: *number* = 3
 
-*Defined in [src/editors/SubstationEditor.ts:24](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L24)*
+*Defined in [src/editors/SubstationEditor.ts:108](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L108)*
 
 ___
 
@@ -772,7 +779,7 @@ ___
 
 • **defaultVoltage**: *number* = 110
 
-*Defined in [src/editors/SubstationEditor.ts:25](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L25)*
+*Defined in [src/editors/SubstationEditor.ts:109](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L109)*
 
 ___
 
@@ -790,7 +797,7 @@ ___
 
 • **doc**: *XMLDocument*
 
-*Defined in [src/editors/SubstationEditor.ts:28](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L28)*
+*Defined in [src/editors/SubstationEditor.ts:112](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L112)*
 
 ___
 
@@ -808,7 +815,7 @@ ___
 
 • **editSubstationUI**: *Dialog*
 
-*Defined in [src/editors/SubstationEditor.ts:48](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L48)*
+*Defined in [src/editors/SubstationEditor.ts:131](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L131)*
 
 ___
 
@@ -990,7 +997,7 @@ ___
 
 • **menuIconUI**: *IconButton*
 
-*Defined in [src/editors/SubstationEditor.ts:54](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L54)*
+*Defined in [src/editors/SubstationEditor.ts:137](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L137)*
 
 ___
 
@@ -998,7 +1005,7 @@ ___
 
 • **menuUI**: *Menu*
 
-*Defined in [src/editors/SubstationEditor.ts:53](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L53)*
+*Defined in [src/editors/SubstationEditor.ts:136](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L136)*
 
 ___
 
@@ -2236,14 +2243,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5128
 
 ___
 
-### `Optional` panzoom
-
-• **panzoom**? : *PanzoomObject*
-
-*Defined in [src/editors/SubstationEditor.ts:29](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L29)*
-
-___
-
 ### `Readonly` parentElement
 
 • **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
@@ -2405,7 +2404,7 @@ ___
 
 • **substationDescUI**: *[TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md)*
 
-*Defined in [src/editors/SubstationEditor.ts:52](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L52)*
+*Defined in [src/editors/SubstationEditor.ts:135](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L135)*
 
 ___
 
@@ -2413,7 +2412,7 @@ ___
 
 • **substationNameUI**: *TextField*
 
-*Defined in [src/editors/SubstationEditor.ts:50](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L50)*
+*Defined in [src/editors/SubstationEditor.ts:133](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L133)*
 
 ___
 
@@ -2473,7 +2472,7 @@ ___
 
 • **voltageLevelDescUI**: *[TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md)*
 
-*Defined in [src/editors/SubstationEditor.ts:59](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L59)*
+*Defined in [src/editors/SubstationEditor.ts:142](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L142)*
 
 ___
 
@@ -2481,7 +2480,7 @@ ___
 
 • **voltageLevelNameUI**: *TextField*
 
-*Defined in [src/editors/SubstationEditor.ts:57](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L57)*
+*Defined in [src/editors/SubstationEditor.ts:140](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L140)*
 
 ___
 
@@ -2489,7 +2488,7 @@ ___
 
 • **voltageLevelNomFreqUI**: *TextField*
 
-*Defined in [src/editors/SubstationEditor.ts:61](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L61)*
+*Defined in [src/editors/SubstationEditor.ts:144](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L144)*
 
 ___
 
@@ -2497,7 +2496,7 @@ ___
 
 • **voltageLevelNumPhasesUI**: *TextField*
 
-*Defined in [src/editors/SubstationEditor.ts:63](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L63)*
+*Defined in [src/editors/SubstationEditor.ts:146](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L146)*
 
 ___
 
@@ -2505,7 +2504,7 @@ ___
 
 • **voltageLevelVoltageUI**: *TextField*
 
-*Defined in [src/editors/SubstationEditor.ts:65](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L65)*
+*Defined in [src/editors/SubstationEditor.ts:148](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L148)*
 
 ___
 
@@ -2594,7 +2593,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/editors/SubstationEditor.ts:318](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L318)*
+*Defined in [src/editors/SubstationEditor.ts:391](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L391)*
 
 ## Accessors
 
@@ -2602,7 +2601,7 @@ ___
 
 • **get desc**(): *string | null*
 
-*Defined in [src/editors/SubstationEditor.ts:44](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L44)*
+*Defined in [src/editors/SubstationEditor.ts:127](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L127)*
 
 **Returns:** *string | null*
 
@@ -2612,7 +2611,7 @@ ___
 
 • **get element**(): *Element | null*
 
-*Defined in [src/editors/SubstationEditor.ts:31](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L31)*
+*Defined in [src/editors/SubstationEditor.ts:114](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L114)*
 
 **Returns:** *Element | null*
 
@@ -2634,7 +2633,7 @@ ___
 
 • **get name**(): *string*
 
-*Defined in [src/editors/SubstationEditor.ts:40](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L40)*
+*Defined in [src/editors/SubstationEditor.ts:123](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L123)*
 
 **Returns:** *string*
 
@@ -2644,7 +2643,7 @@ ___
 
 • **get parent**(): *Element*
 
-*Defined in [src/editors/SubstationEditor.ts:35](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L35)*
+*Defined in [src/editors/SubstationEditor.ts:118](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L118)*
 
 **Returns:** *Element*
 
@@ -2957,7 +2956,7 @@ ___
 
 ▸ **checkSubstationValidity**(): *boolean*
 
-*Defined in [src/editors/SubstationEditor.ts:67](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L67)*
+*Defined in [src/editors/SubstationEditor.ts:152](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L152)*
 
 **Returns:** *boolean*
 
@@ -2967,7 +2966,7 @@ ___
 
 ▸ **checkVoltageLevelValidity**(): *boolean*
 
-*Defined in [src/editors/SubstationEditor.ts:74](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L74)*
+*Defined in [src/editors/SubstationEditor.ts:159](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L159)*
 
 **Returns:** *boolean*
 
@@ -3192,7 +3191,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[firstUpdated](_open_scd_base_.openscdbase.md#protected-firstupdated)*
 
-*Defined in [src/editors/SubstationEditor.ts:196](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L196)*
+*Defined in [src/editors/SubstationEditor.ts:281](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L281)*
 
 **Returns:** *void*
 
@@ -3487,22 +3486,6 @@ Name | Type |
 
 ___
 
-### `Private` handleKeyPress
-
-▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
-
-*Defined in [src/editors/SubstationEditor.ts:205](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L205)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`e` | KeyboardEvent |
-
-**Returns:** *void*
-
-___
-
 ###  hasAttribute
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
@@ -3596,7 +3579,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
 
-*Defined in [src/foundation.ts:135](https://github.com/openscd/open-scd/blob/6d28c64/src/foundation.ts#L135)*
+*Defined in [src/foundation.ts:135](https://github.com/openscd/open-scd/blob/32cb8f5/src/foundation.ts#L135)*
 
 **Parameters:**
 
@@ -3835,7 +3818,7 @@ ___
 
 ▸ **newCreateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
 
-*Defined in [src/editors/SubstationEditor.ts:95](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L95)*
+*Defined in [src/editors/SubstationEditor.ts:180](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L180)*
 
 **Parameters:**
 
@@ -3852,7 +3835,7 @@ ___
 
 ▸ **newUpdateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
 
-*Defined in [src/editors/SubstationEditor.ts:83](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L83)*
+*Defined in [src/editors/SubstationEditor.ts:168](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L168)*
 
 **Parameters:**
 
@@ -3869,7 +3852,7 @@ ___
 
 ▸ **newVoltageLevelCreateAction**(`name`: string, `desc`: string | null, `nomFreq`: string, `numPhases`: string, `Voltage`: string): *[Action](../modules/_foundation_.md#action)*
 
-*Defined in [src/editors/SubstationEditor.ts:111](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L111)*
+*Defined in [src/editors/SubstationEditor.ts:196](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L196)*
 
 **Parameters:**
 
@@ -4240,7 +4223,7 @@ ___
 
 *Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[render](_mwc_textfield_nullable_.textfieldnullable.md#static-render)*
 
-*Defined in [src/editors/SubstationEditor.ts:306](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L306)*
+*Defined in [src/editors/SubstationEditor.ts:379](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L379)*
 
 **Returns:** *TemplateResult*
 
@@ -4250,7 +4233,7 @@ ___
 
 ▸ **renderCreateVoltageLevelUI**(): *TemplateResult*
 
-*Defined in [src/editors/SubstationEditor.ts:241](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L241)*
+*Defined in [src/editors/SubstationEditor.ts:314](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L314)*
 
 **Returns:** *TemplateResult*
 
@@ -4260,7 +4243,7 @@ ___
 
 ▸ **renderEditSubstationUI**(): *TemplateResult*
 
-*Defined in [src/editors/SubstationEditor.ts:212](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L212)*
+*Defined in [src/editors/SubstationEditor.ts:285](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L285)*
 
 **Returns:** *TemplateResult*
 
@@ -4270,7 +4253,7 @@ ___
 
 ▸ **renderHeader**(): *TemplateResult*
 
-*Defined in [src/editors/SubstationEditor.ts:284](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L284)*
+*Defined in [src/editors/SubstationEditor.ts:357](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L357)*
 
 **Returns:** *TemplateResult*
 
@@ -4359,7 +4342,7 @@ ___
 
 ▸ **requestSubstationCreate**(): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:157](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L157)*
+*Defined in [src/editors/SubstationEditor.ts:242](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L242)*
 
 **Returns:** *void*
 
@@ -4369,7 +4352,7 @@ ___
 
 ▸ **requestSubstationUpdate**(): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:138](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L138)*
+*Defined in [src/editors/SubstationEditor.ts:223](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L223)*
 
 **Returns:** *void*
 
@@ -4432,7 +4415,7 @@ ___
 
 ▸ **requestVoltageLevelCreate**(): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:175](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L175)*
+*Defined in [src/editors/SubstationEditor.ts:260](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L260)*
 
 **Returns:** *void*
 
@@ -4727,7 +4710,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[updated](_open_scd_base_.openscdbase.md#protected-updated)*
 
-*Defined in [src/editors/SubstationEditor.ts:192](https://github.com/openscd/open-scd/blob/6d28c64/src/editors/SubstationEditor.ts#L192)*
+*Defined in [src/editors/SubstationEditor.ts:277](https://github.com/openscd/open-scd/blob/32cb8f5/src/editors/SubstationEditor.ts#L277)*
 
 **Returns:** *void*
 
@@ -4739,7 +4722,7 @@ ___
 
 *Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
 
-*Defined in [src/foundation.ts:136](https://github.com/openscd/open-scd/blob/6d28c64/src/foundation.ts#L136)*
+*Defined in [src/foundation.ts:136](https://github.com/openscd/open-scd/blob/32cb8f5/src/foundation.ts#L136)*
 
 **Parameters:**
 
