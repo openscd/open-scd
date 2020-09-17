@@ -55,12 +55,12 @@ export default class SubstationEditor extends LitElement {
   voltageLevelNameUI!: TextField;
   @query('#create-voltage-level > mwc-textfield-nullable[label="desc"]')
   voltageLevelDescUI!: TextFieldNullable;
-  @query('#create-voltage-level > mwc-textfield[label="nomFreq"]')
-  voltageLevelNomFreqUI!: TextField;
-  @query('#create-voltage-level > mwc-textfield[label="numPhases"]')
-  voltageLevelNumPhasesUI!: TextField;
-  @query('#create-voltage-level > mwc-textfield[label="Voltage"]')
-  voltageLevelVoltageUI!: TextField;
+  @query('#create-voltage-level > mwc-textfield-nullable[label="nomFreq"]')
+  voltageLevelNomFreqUI!: TextFieldNullable;
+  @query('#create-voltage-level > mwc-textfield-nullable[label="numPhases"]')
+  voltageLevelNumPhasesUI!: TextFieldNullable;
+  @query('#create-voltage-level > mwc-textfield-nullable[label="Voltage"]')
+  voltageLevelVoltageUI!: TextFieldNullable;
 
   checkSubstationValidity(): boolean {
     return (
@@ -109,9 +109,9 @@ export default class SubstationEditor extends LitElement {
   newVoltageLevelCreateAction(
     name: string,
     desc: string | null,
-    nomFreq: string,
-    numPhases: string,
-    Voltage: string
+    nomFreq: string | null,
+    numPhases: string | null,
+    Voltage: string | null
   ): Action {
     if (!this.element)
       throw new Error('Cannot create VoltageLevel without Substation');
@@ -122,9 +122,14 @@ export default class SubstationEditor extends LitElement {
           `<VoltageLevel
             name="${name}"
             ${desc === null ? '' : `desc="${desc}"`}
-            nomFreq="${nomFreq}"
-            numPhases="${numPhases}"
-          ><Voltage unit="V" multiplier="k">${Voltage}</Voltage>
+            ${nomFreq === null ? '' : `nomFreq="${nomFreq}"`}
+            ${numPhases === null ? '' : `numPhases="${numPhases}"`}
+          >
+          ${
+            Voltage === null
+              ? ''
+              : `<Voltage unit="V" multiplier="k">${Voltage}</Voltage>`
+          }
           </VoltageLevel>`,
           'application/xml'
         ).documentElement,
@@ -177,9 +182,9 @@ export default class SubstationEditor extends LitElement {
           this.newVoltageLevelCreateAction(
             this.voltageLevelNameUI.value,
             this.voltageLevelDescUI.getValue(),
-            this.voltageLevelNomFreqUI.value,
-            this.voltageLevelNumPhasesUI.value,
-            this.voltageLevelVoltageUI.value
+            this.voltageLevelNomFreqUI.getValue(),
+            this.voltageLevelNumPhasesUI.getValue(),
+            this.voltageLevelVoltageUI.getValue()
           )
         )
       );
@@ -236,24 +241,24 @@ export default class SubstationEditor extends LitElement {
         label="desc"
         helper="Description"
       ></mwc-textfield-nullable>
-      <mwc-textfield
+      <mwc-textfield-nullable
         value="${this.defaultNomFreq}"
         label="nomFreq"
         helper="Nominal Frequency in Hz"
-      ></mwc-textfield>
-      <mwc-textfield
+      ></mwc-textfield-nullable>
+      <mwc-textfield-nullable
         value="${this.defaultNumPhases}"
         label="numPhases"
         helper="Number of Phases"
         type="number"
         min="1"
         max="255"
-      ></mwc-textfield>
-      <mwc-textfield
+      ></mwc-textfield-nullable>
+      <mwc-textfield-nullable
         value="${this.defaultVoltage}"
         label="Voltage"
         helper="Voltage in kV"
-      ></mwc-textfield>
+      ></mwc-textfield-nullable>
       <mwc-button slot="secondaryAction" dialogAction="close">
         Cancel
       </mwc-button>
