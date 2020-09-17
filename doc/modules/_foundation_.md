@@ -42,7 +42,7 @@
 
 Ƭ **Action**: *[Create](../interfaces/_foundation_.create.md) | [Update](../interfaces/_foundation_.update.md) | [Delete](../interfaces/_foundation_.delete.md) | [Move](../interfaces/_foundation_.move.md)*
 
-*Defined in [src/foundation.ts:2](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L2)*
+*Defined in [src/foundation.ts:2](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L2)*
 
 Represents a change to some `Element`.
 
@@ -52,7 +52,7 @@ ___
 
 Ƭ **ActionEvent**: *CustomEvent‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››*
 
-*Defined in [src/foundation.ts:85](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L85)*
+*Defined in [src/foundation.ts:85](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L85)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 Ƭ **ElementConstructor**: *object*
 
-*Defined in [src/foundation.ts:121](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L121)*
+*Defined in [src/foundation.ts:121](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L121)*
 
 Constructor type for defining `HTMLElement` mixins.
 
@@ -72,7 +72,7 @@ ___
 
 Ƭ **Mixin**: *InstanceType‹ReturnType‹T››*
 
-*Defined in [src/foundation.ts:124](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L124)*
+*Defined in [src/foundation.ts:124](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L124)*
 
 The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`.
 
@@ -82,7 +82,7 @@ ___
 
 Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›*
 
-*Defined in [src/foundation.ts:102](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L102)*
+*Defined in [src/foundation.ts:102](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L102)*
 
 ## Functions
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **invert**(`action`: [Action](_foundation_.md#action)): *[Action](_foundation_.md#action)*
 
-*Defined in [src/foundation.ts:63](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L63)*
+*Defined in [src/foundation.ts:63](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L63)*
 
 Returns the inverse of `action`, i.e. an `Action` with opposite effect.
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **isCreate**(`action`: [Action](_foundation_.md#action)): *action is Create*
 
-*Defined in [src/foundation.ts:27](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L27)*
+*Defined in [src/foundation.ts:27](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L27)*
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **isDelete**(`action`: [Action](_foundation_.md#action)): *action is Delete*
 
-*Defined in [src/foundation.ts:35](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L35)*
+*Defined in [src/foundation.ts:35](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L35)*
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **isMove**(`action`: [Action](_foundation_.md#action)): *action is Move*
 
-*Defined in [src/foundation.ts:43](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L43)*
+*Defined in [src/foundation.ts:43](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L43)*
 
 **Parameters:**
 
@@ -156,7 +156,7 @@ ___
 
 ▸ **isUpdate**(`action`: [Action](_foundation_.md#action)): *action is Update*
 
-*Defined in [src/foundation.ts:53](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L53)*
+*Defined in [src/foundation.ts:53](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L53)*
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ ___
 
 ▸ **newActionEvent**‹**T**›(`action`: T, `eventInitDict?`: CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››): *[ActionEvent](_foundation_.md#actionevent)‹T›*
 
-*Defined in [src/foundation.ts:86](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L86)*
+*Defined in [src/foundation.ts:86](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L86)*
 
 **Type parameters:**
 
@@ -193,7 +193,7 @@ ___
 
 ▸ **newPendingStateEvent**(`promise`: Promise‹string›, `eventInitDict?`: CustomEventInit‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›): *[PendingStateEvent](_foundation_.md#pendingstateevent)*
 
-*Defined in [src/foundation.ts:103](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L103)*
+*Defined in [src/foundation.ts:103](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L103)*
 
 **Parameters:**
 
@@ -210,7 +210,7 @@ ___
 
 ▸ **unreachable**(`message`: string): *never*
 
-*Defined in [src/foundation.ts:116](https://github.com/openscd/open-scd/blob/892d6d1/src/foundation.ts#L116)*
+*Defined in [src/foundation.ts:116](https://github.com/openscd/open-scd/blob/c970104/src/foundation.ts#L116)*
 
 Throws an error bearing `message`, never returning.
 
