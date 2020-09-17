@@ -79,7 +79,8 @@ describe('SubstationEditor', () => {
           'test desc',
           'test nomFreq',
           'test numPhases',
-          'test Voltage'
+          'test Voltage',
+          'test k'
         )
       ).to.throw());
 
@@ -138,6 +139,46 @@ describe('SubstationEditor', () => {
         expect(element.checkVoltageLevelValidity()).to.be.false;
 
         element.voltageLevelNumPhasesUI.value = '256';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelNumPhasesUI.value = '';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+      });
+
+      it('does not accept invalid nomFreq values', async () => {
+        element.voltageLevelNomFreqUI.value = 'a';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelNomFreqUI.value = '50.';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelNomFreqUI.value = '50.000';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelNomFreqUI.value = '';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+      });
+
+      it('does not accept invalid voltage values', async () => {
+        element.voltageLevelVoltageUI.value = 'a';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelVoltageUI.value = '110.';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelVoltageUI.value = '110.0000';
+        await element.updateComplete;
+        expect(element.checkVoltageLevelValidity()).to.be.false;
+
+        element.voltageLevelVoltageUI.value = '';
         await element.updateComplete;
         expect(element.checkVoltageLevelValidity()).to.be.false;
       });
@@ -205,7 +246,8 @@ describe('SubstationEditor', () => {
           'test desc',
           'test nomFreq',
           'test numPhases',
-          'test Voltage'
+          'test Voltage',
+          'test k'
         )
       ).to.satisfy(isCreate));
 

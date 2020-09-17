@@ -7,11 +7,13 @@ import '@material/mwc-icon-button';
 import '@material/mwc-textfield';
 import '@material/mwc-menu';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
 import { Dialog } from '@material/mwc-dialog';
 import { TextField } from '@material/mwc-textfield';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { Select } from '@material/mwc-select';
 
 import '../mwc-textfield-nullable.js';
 import { TextFieldNullable } from '../mwc-textfield-nullable.js';
@@ -59,8 +61,10 @@ export default class SubstationEditor extends LitElement {
   voltageLevelNomFreqUI!: TextFieldNullable;
   @query('#create-voltage-level > mwc-textfield-nullable[label="numPhases"]')
   voltageLevelNumPhasesUI!: TextFieldNullable;
-  @query('#create-voltage-level > mwc-textfield-nullable[label="Voltage"]')
+  @query('#Voltage')
   voltageLevelVoltageUI!: TextFieldNullable;
+  @query('#voltageUnitMultiplier')
+  voltageLevelUnitMultiplier!: Select;
 
   checkSubstationValidity(): boolean {
     return (
@@ -74,6 +78,9 @@ export default class SubstationEditor extends LitElement {
       this.element !== null &&
       Array.from(
         this.createVoltageLevelUI.querySelectorAll('mwc-textfield')
+      ).every(tf => tf.checkValidity()) &&
+      Array.from(
+        this.createVoltageLevelUI.querySelectorAll('mwc-textfield-nullable')
       ).every(tf => tf.checkValidity())
     );
   }
@@ -111,7 +118,8 @@ export default class SubstationEditor extends LitElement {
     desc: string | null,
     nomFreq: string | null,
     numPhases: string | null,
-    Voltage: string | null
+    Voltage: string | null,
+    voltageLevelUnitMultiplier: string
   ): Action {
     if (!this.element)
       throw new Error('Cannot create VoltageLevel without Substation');
@@ -128,7 +136,7 @@ export default class SubstationEditor extends LitElement {
           ${
             Voltage === null
               ? ''
-              : `<Voltage unit="V" multiplier="k">${Voltage}</Voltage>`
+              : `<Voltage unit="V" multiplier="${voltageLevelUnitMultiplier}">${Voltage}</Voltage>`
           }
           </VoltageLevel>`,
           'application/xml'
@@ -184,7 +192,8 @@ export default class SubstationEditor extends LitElement {
             this.voltageLevelDescUI.getValue(),
             this.voltageLevelNomFreqUI.getValue(),
             this.voltageLevelNumPhasesUI.getValue(),
-            this.voltageLevelVoltageUI.getValue()
+            this.voltageLevelVoltageUI.getValue(),
+            this.voltageLevelUnitMultiplier.selected!.innerText.replace('V', '')
           )
         )
       );
@@ -245,20 +254,37 @@ export default class SubstationEditor extends LitElement {
         value="${this.defaultNomFreq}"
         label="nomFreq"
         helper="Nominal Frequency in Hz"
+        required
+        pattern="[0-9]*[.]?[0-9]{1,2}"
       ></mwc-textfield-nullable>
       <mwc-textfield-nullable
         value="${this.defaultNumPhases}"
         label="numPhases"
         helper="Number of Phases"
+        required
         type="number"
         min="1"
         max="255"
       ></mwc-textfield-nullable>
-      <mwc-textfield-nullable
-        value="${this.defaultVoltage}"
-        label="Voltage"
-        helper="Voltage in kV"
-      ></mwc-textfield-nullable>
+      <div style="display: flex; flex-direction: row; ">
+        <mwc-textfield-nullable
+          id="Voltage"
+          value="${this.defaultVoltage}"
+          helper="Voltage in kV"
+          required
+          pattern="[0-9]*[.]?[0-9]{1,3}"
+        ></mwc-textfield-nullable>
+        <mwc-select
+          id="voltageUnitMultiplier"
+          style="--mdc-menu-max-width: 30px;"
+        >
+          <mwc-list-item>GV</mwc-list-item>
+          <mwc-list-item>MV</mwc-list-item>
+          <mwc-list-item selected>kV</mwc-list-item>
+          <mwc-list-item>V</mwc-list-item>
+          <mwc-list-item>mV</mwc-list-item>
+        </mwc-select>
+      </div>
       <mwc-button slot="secondaryAction" dialogAction="close">
         Cancel
       </mwc-button>
