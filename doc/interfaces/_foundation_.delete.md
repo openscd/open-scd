@@ -21,7 +21,7 @@ Represents removal of `delete.old.element`.
 
 • **derived**? : *undefined | false | true*
 
-*Defined in [src/foundation.ts:11](https://github.com/openscd/open-scd/blob/c830997/src/foundation.ts#L11)*
+*Defined in [src/foundation.ts:17](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L17)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **old**: *object*
 
-*Defined in [src/foundation.ts:10](https://github.com/openscd/open-scd/blob/c830997/src/foundation.ts#L10)*
+*Defined in [src/foundation.ts:16](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L16)*
 
 #### Type declaration:
 

@@ -7,6 +7,7 @@
 ### Classes
 
 * [OpenSCDBase](../classes/_open_scd_base_.openscdbase.md)
+* [WizardDialog](../classes/_open_scd_base_.wizarddialog.md)
 
 ### Interfaces
 

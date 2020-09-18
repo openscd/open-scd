@@ -12,6 +12,7 @@
 
 * [editor-action](_foundation_.__global.elementeventmap.md#editor-action)
 * [pending-state](_foundation_.__global.elementeventmap.md#pending-state)
+* [wizard](_foundation_.__global.elementeventmap.md#wizard)
 
 ## Properties
 
@@ -19,7 +20,7 @@
 
 • **editor-action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
 
-*Defined in [src/foundation.ts:131](https://github.com/openscd/open-scd/blob/c830997/src/foundation.ts#L131)*
+*Defined in [src/foundation.ts:152](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L152)*
 
 ___
 
@@ -27,4 +28,12 @@ ___
 
 • **pending-state**: *[PendingStateEvent](../modules/_foundation_.md#pendingstateevent)*
 
-*Defined in [src/foundation.ts:130](https://github.com/openscd/open-scd/blob/c830997/src/foundation.ts#L130)*
+*Defined in [src/foundation.ts:151](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L151)*
+
+___
+
+###  wizard
+
+• **wizard**: *CustomEvent‹object›*
+
+*Defined in [src/foundation.ts:153](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L153)*

@@ -395,9 +395,9 @@
 
 \+ **new TextFieldNullable**(): *[TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[constructor](_editors_substationeditor_.substationeditor.md#constructor)*
+*Overrides [WizardDialog](_open_scd_base_.wizarddialog.md).[constructor](_open_scd_base_.wizarddialog.md#constructor)*
 
-*Defined in [src/mwc-textfield-nullable.ts:75](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L75)*
+*Defined in [src/mwc-textfield-nullable.ts:75](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L75)*
 
 **Returns:** *[TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md)*
 
@@ -847,7 +847,7 @@ ___
 
 • **defaultValue**: *string* = ""
 
-*Defined in [src/mwc-textfield-nullable.ts:22](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L22)*
+*Defined in [src/mwc-textfield-nullable.ts:22](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L22)*
 
 ___
 
@@ -931,7 +931,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[floatingLabelFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-floatinglabelfoundation)*
 
-Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:30
+Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:34
 
 ___
 
@@ -1067,7 +1067,7 @@ ___
 
 • **isNull**: *boolean* = false
 
-*Defined in [src/mwc-textfield-nullable.ts:23](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L23)*
+*Defined in [src/mwc-textfield-nullable.ts:23](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L23)*
 
 ___
 
@@ -1151,7 +1151,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lineRippleFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-lineripplefoundation)*
 
-Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:31
+Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:35
 
 ___
 
@@ -2780,7 +2780,7 @@ ___
 
 • **switch**? : *Switch*
 
-*Defined in [src/mwc-textfield-nullable.ts:38](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L38)*
+*Defined in [src/mwc-textfield-nullable.ts:38](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L38)*
 
 ___
 
@@ -3005,13 +3005,13 @@ ___
 
 • **get null**(): *boolean*
 
-*Defined in [src/mwc-textfield-nullable.ts:25](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L25)*
+*Defined in [src/mwc-textfield-nullable.ts:25](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L25)*
 
 **Returns:** *boolean*
 
 • **set null**(`value`: boolean): *void*
 
-*Defined in [src/mwc-textfield-nullable.ts:28](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L28)*
+*Defined in [src/mwc-textfield-nullable.ts:28](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L28)*
 
 **Parameters:**
 
@@ -4006,7 +4006,7 @@ ___
 
 ▸ **getValue**(): *string | null*
 
-*Defined in [src/mwc-textfield-nullable.ts:34](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L34)*
+*Defined in [src/mwc-textfield-nullable.ts:34](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L34)*
 
 **Returns:** *string | null*
 
@@ -4115,9 +4115,9 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[info](../interfaces/_foundation_.__global.htmlelement.md#optional-info)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[info](_mwc_textfield_nullable_.textfieldnullable.md#optional-info)*
 
-*Defined in [src/foundation.ts:135](https://github.com/openscd/open-scd/blob/c830997/src/foundation.ts#L135)*
+*Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L157)*
 
 **Parameters:**
 
@@ -4731,7 +4731,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/mwc-textfield-nullable.ts:83](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L83)*
+*Defined in [src/mwc-textfield-nullable.ts:83](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L83)*
 
 **Returns:** *TemplateResult*
 
@@ -5061,7 +5061,7 @@ ___
 
 ▸ **restoreNulled**(): *void*
 
-*Defined in [src/mwc-textfield-nullable.ts:47](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L47)*
+*Defined in [src/mwc-textfield-nullable.ts:47](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L47)*
 
 **Returns:** *void*
 
@@ -5375,7 +5375,7 @@ ___
 
 ▸ **storeNulled**(): *void*
 
-*Defined in [src/mwc-textfield-nullable.ts:54](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L54)*
+*Defined in [src/mwc-textfield-nullable.ts:54](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L54)*
 
 **Returns:** *void*
 
@@ -5408,7 +5408,7 @@ ___
 
 ▸ **toggleValue**(): *void*
 
-*Defined in [src/mwc-textfield-nullable.ts:69](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L69)*
+*Defined in [src/mwc-textfield-nullable.ts:69](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L69)*
 
 **Returns:** *void*
 
@@ -5440,7 +5440,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[updated](_mwc_textfield_nullable_.textfieldnullable.md#updated)*
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[updated](_open_scd_base_.openscdbase.md#protected-updated)*
+*Overrides [WizardDialog](_open_scd_base_.wizarddialog.md).[updated](_open_scd_base_.wizarddialog.md#protected-updated)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:101
 
@@ -5458,9 +5458,9 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md).[warn](../interfaces/_foundation_.__global.htmlelement.md#optional-warn)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[warn](_mwc_textfield_nullable_.textfieldnullable.md#optional-warn)*
 
-*Defined in [src/foundation.ts:136](https://github.com/openscd/open-scd/blob/c830997/src/foundation.ts#L136)*
+*Defined in [src/foundation.ts:158](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L158)*
 
 **Parameters:**
 
@@ -5650,28 +5650,28 @@ Override this method to integrate into a style management system.
 
 ### ▪ **nulled**: *object*
 
-*Defined in [src/mwc-textfield-nullable.ts:40](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L40)*
+*Defined in [src/mwc-textfield-nullable.ts:40](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L40)*
 
 ###  disabled
 
 • **disabled**: *boolean* = this.disabled
 
-*Defined in [src/mwc-textfield-nullable.ts:44](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L44)*
+*Defined in [src/mwc-textfield-nullable.ts:44](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L44)*
 
 ###  helper
 
 • **helper**: *string* = this.helper
 
-*Defined in [src/mwc-textfield-nullable.ts:42](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L42)*
+*Defined in [src/mwc-textfield-nullable.ts:42](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L42)*
 
 ###  helperPersistent
 
 • **helperPersistent**: *boolean* = this.helperPersistent
 
-*Defined in [src/mwc-textfield-nullable.ts:43](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L43)*
+*Defined in [src/mwc-textfield-nullable.ts:43](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L43)*
 
 ###  value
 
 • **value**: *string* = this.value || this.defaultValue
 
-*Defined in [src/mwc-textfield-nullable.ts:41](https://github.com/openscd/open-scd/blob/c830997/src/mwc-textfield-nullable.ts#L41)*
+*Defined in [src/mwc-textfield-nullable.ts:41](https://github.com/openscd/open-scd/blob/e0075da/src/mwc-textfield-nullable.ts#L41)*

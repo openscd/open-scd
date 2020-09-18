@@ -1,357 +1,326 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd-base"](../modules/_open_scd_base_.md) › [OpenSCDBase](_open_scd_base_.openscdbase.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd-base"](../modules/_open_scd_base_.md) › [WizardDialog](_open_scd_base_.wizarddialog.md)
 
-# Class: OpenSCDBase
+# Class: WizardDialog
 
 ## Hierarchy
 
-* WaitingElement‹EditingElement & LitElement, this› & EditingElement‹LitElement, this› & LitElement‹this›
+* LitElement
 
-  ↳ **OpenSCDBase**
-
-  ↳ [OpenSCD](_open_scd_.openscd.md)
+  ↳ **WizardDialog**
 
 ## Index
 
 ### Constructors
 
-* [constructor](_open_scd_base_.openscdbase.md#constructor)
+* [constructor](_open_scd_base_.wizarddialog.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_open_scd_base_.openscdbase.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_open_scd_base_.openscdbase.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_open_scd_base_.openscdbase.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_open_scd_base_.openscdbase.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_base_.openscdbase.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_open_scd_base_.openscdbase.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_base_.openscdbase.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_open_scd_base_.openscdbase.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_base_.openscdbase.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_open_scd_base_.openscdbase.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_open_scd_base_.openscdbase.md#readonly-document_type_node)
-* [ELEMENT_NODE](_open_scd_base_.openscdbase.md#readonly-element_node)
-* [ENTITY_NODE](_open_scd_base_.openscdbase.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_open_scd_base_.openscdbase.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_open_scd_base_.openscdbase.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_open_scd_base_.openscdbase.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_open_scd_base_.openscdbase.md#readonly-text_node)
-* [accessKey](_open_scd_base_.openscdbase.md#accesskey)
-* [accessKeyLabel](_open_scd_base_.openscdbase.md#readonly-accesskeylabel)
-* [activeTab](_open_scd_base_.openscdbase.md#activetab)
-* [assignedSlot](_open_scd_base_.openscdbase.md#readonly-assignedslot)
-* [attributes](_open_scd_base_.openscdbase.md#readonly-attributes)
-* [autocapitalize](_open_scd_base_.openscdbase.md#autocapitalize)
-* [autofocus](_open_scd_base_.openscdbase.md#autofocus)
-* [baseURI](_open_scd_base_.openscdbase.md#readonly-baseuri)
-* [childElementCount](_open_scd_base_.openscdbase.md#readonly-childelementcount)
-* [childNodes](_open_scd_base_.openscdbase.md#readonly-childnodes)
-* [children](_open_scd_base_.openscdbase.md#readonly-children)
-* [classList](_open_scd_base_.openscdbase.md#readonly-classlist)
-* [className](_open_scd_base_.openscdbase.md#classname)
-* [clientHeight](_open_scd_base_.openscdbase.md#readonly-clientheight)
-* [clientLeft](_open_scd_base_.openscdbase.md#readonly-clientleft)
-* [clientTop](_open_scd_base_.openscdbase.md#readonly-clienttop)
-* [clientWidth](_open_scd_base_.openscdbase.md#readonly-clientwidth)
-* [contentEditable](_open_scd_base_.openscdbase.md#contenteditable)
-* [currentSrc](_open_scd_base_.openscdbase.md#private-currentsrc)
-* [dataset](_open_scd_base_.openscdbase.md#readonly-dataset)
-* [dir](_open_scd_base_.openscdbase.md#dir)
-* [doc](_open_scd_base_.openscdbase.md#doc)
-* [draggable](_open_scd_base_.openscdbase.md#draggable)
-* [enterKeyHint](_open_scd_base_.openscdbase.md#enterkeyhint)
-* [fileUI](_open_scd_base_.openscdbase.md#fileui)
-* [firstChild](_open_scd_base_.openscdbase.md#readonly-firstchild)
-* [firstElementChild](_open_scd_base_.openscdbase.md#readonly-firstelementchild)
-* [floatingLabelFoundation](_open_scd_base_.openscdbase.md#optional-floatinglabelfoundation)
-* [hidden](_open_scd_base_.openscdbase.md#hidden)
-* [history](_open_scd_base_.openscdbase.md#history)
-* [id](_open_scd_base_.openscdbase.md#id)
-* [innerHTML](_open_scd_base_.openscdbase.md#innerhtml)
-* [innerText](_open_scd_base_.openscdbase.md#innertext)
-* [inputMode](_open_scd_base_.openscdbase.md#inputmode)
-* [isConnected](_open_scd_base_.openscdbase.md#readonly-isconnected)
-* [isContentEditable](_open_scd_base_.openscdbase.md#readonly-iscontenteditable)
-* [lang](_open_scd_base_.openscdbase.md#lang)
-* [lastAction](_open_scd_base_.openscdbase.md#lastaction)
-* [lastChild](_open_scd_base_.openscdbase.md#readonly-lastchild)
-* [lastElementChild](_open_scd_base_.openscdbase.md#readonly-lastelementchild)
-* [lineRippleFoundation](_open_scd_base_.openscdbase.md#optional-lineripplefoundation)
-* [localName](_open_scd_base_.openscdbase.md#readonly-localname)
-* [logUI](_open_scd_base_.openscdbase.md#logui)
-* [menu](_open_scd_base_.openscdbase.md#menu)
-* [menuUI](_open_scd_base_.openscdbase.md#menuui)
-* [messageUI](_open_scd_base_.openscdbase.md#messageui)
-* [namespaceURI](_open_scd_base_.openscdbase.md#readonly-namespaceuri)
-* [nextElementSibling](_open_scd_base_.openscdbase.md#readonly-nextelementsibling)
-* [nextSibling](_open_scd_base_.openscdbase.md#readonly-nextsibling)
-* [nodeName](_open_scd_base_.openscdbase.md#readonly-nodename)
-* [nodeType](_open_scd_base_.openscdbase.md#readonly-nodetype)
-* [nodeValue](_open_scd_base_.openscdbase.md#nodevalue)
-* [nonce](_open_scd_base_.openscdbase.md#optional-nonce)
-* [offsetHeight](_open_scd_base_.openscdbase.md#readonly-offsetheight)
-* [offsetLeft](_open_scd_base_.openscdbase.md#readonly-offsetleft)
-* [offsetParent](_open_scd_base_.openscdbase.md#readonly-offsetparent)
-* [offsetTop](_open_scd_base_.openscdbase.md#readonly-offsettop)
-* [offsetWidth](_open_scd_base_.openscdbase.md#readonly-offsetwidth)
-* [onabort](_open_scd_base_.openscdbase.md#onabort)
-* [onanimationcancel](_open_scd_base_.openscdbase.md#onanimationcancel)
-* [onanimationend](_open_scd_base_.openscdbase.md#onanimationend)
-* [onanimationiteration](_open_scd_base_.openscdbase.md#onanimationiteration)
-* [onanimationstart](_open_scd_base_.openscdbase.md#onanimationstart)
-* [onauxclick](_open_scd_base_.openscdbase.md#onauxclick)
-* [onblur](_open_scd_base_.openscdbase.md#onblur)
-* [oncancel](_open_scd_base_.openscdbase.md#oncancel)
-* [oncanplay](_open_scd_base_.openscdbase.md#oncanplay)
-* [oncanplaythrough](_open_scd_base_.openscdbase.md#oncanplaythrough)
-* [onchange](_open_scd_base_.openscdbase.md#onchange)
-* [onclick](_open_scd_base_.openscdbase.md#onclick)
-* [onclose](_open_scd_base_.openscdbase.md#onclose)
-* [oncontextmenu](_open_scd_base_.openscdbase.md#oncontextmenu)
-* [oncopy](_open_scd_base_.openscdbase.md#oncopy)
-* [oncuechange](_open_scd_base_.openscdbase.md#oncuechange)
-* [oncut](_open_scd_base_.openscdbase.md#oncut)
-* [ondblclick](_open_scd_base_.openscdbase.md#ondblclick)
-* [ondrag](_open_scd_base_.openscdbase.md#ondrag)
-* [ondragend](_open_scd_base_.openscdbase.md#ondragend)
-* [ondragenter](_open_scd_base_.openscdbase.md#ondragenter)
-* [ondragexit](_open_scd_base_.openscdbase.md#ondragexit)
-* [ondragleave](_open_scd_base_.openscdbase.md#ondragleave)
-* [ondragover](_open_scd_base_.openscdbase.md#ondragover)
-* [ondragstart](_open_scd_base_.openscdbase.md#ondragstart)
-* [ondrop](_open_scd_base_.openscdbase.md#ondrop)
-* [ondurationchange](_open_scd_base_.openscdbase.md#ondurationchange)
-* [onemptied](_open_scd_base_.openscdbase.md#onemptied)
-* [onended](_open_scd_base_.openscdbase.md#onended)
-* [onerror](_open_scd_base_.openscdbase.md#onerror)
-* [onfocus](_open_scd_base_.openscdbase.md#onfocus)
-* [onfullscreenchange](_open_scd_base_.openscdbase.md#onfullscreenchange)
-* [onfullscreenerror](_open_scd_base_.openscdbase.md#onfullscreenerror)
-* [ongotpointercapture](_open_scd_base_.openscdbase.md#ongotpointercapture)
-* [oninput](_open_scd_base_.openscdbase.md#oninput)
-* [oninvalid](_open_scd_base_.openscdbase.md#oninvalid)
-* [onkeydown](_open_scd_base_.openscdbase.md#onkeydown)
-* [onkeypress](_open_scd_base_.openscdbase.md#onkeypress)
-* [onkeyup](_open_scd_base_.openscdbase.md#onkeyup)
-* [onload](_open_scd_base_.openscdbase.md#onload)
-* [onloadeddata](_open_scd_base_.openscdbase.md#onloadeddata)
-* [onloadedmetadata](_open_scd_base_.openscdbase.md#onloadedmetadata)
-* [onloadstart](_open_scd_base_.openscdbase.md#onloadstart)
-* [onlostpointercapture](_open_scd_base_.openscdbase.md#onlostpointercapture)
-* [onmousedown](_open_scd_base_.openscdbase.md#onmousedown)
-* [onmouseenter](_open_scd_base_.openscdbase.md#onmouseenter)
-* [onmouseleave](_open_scd_base_.openscdbase.md#onmouseleave)
-* [onmousemove](_open_scd_base_.openscdbase.md#onmousemove)
-* [onmouseout](_open_scd_base_.openscdbase.md#onmouseout)
-* [onmouseover](_open_scd_base_.openscdbase.md#onmouseover)
-* [onmouseup](_open_scd_base_.openscdbase.md#onmouseup)
-* [onpaste](_open_scd_base_.openscdbase.md#onpaste)
-* [onpause](_open_scd_base_.openscdbase.md#onpause)
-* [onplay](_open_scd_base_.openscdbase.md#onplay)
-* [onplaying](_open_scd_base_.openscdbase.md#onplaying)
-* [onpointercancel](_open_scd_base_.openscdbase.md#onpointercancel)
-* [onpointerdown](_open_scd_base_.openscdbase.md#onpointerdown)
-* [onpointerenter](_open_scd_base_.openscdbase.md#onpointerenter)
-* [onpointerleave](_open_scd_base_.openscdbase.md#onpointerleave)
-* [onpointermove](_open_scd_base_.openscdbase.md#onpointermove)
-* [onpointerout](_open_scd_base_.openscdbase.md#onpointerout)
-* [onpointerover](_open_scd_base_.openscdbase.md#onpointerover)
-* [onpointerup](_open_scd_base_.openscdbase.md#onpointerup)
-* [onprogress](_open_scd_base_.openscdbase.md#onprogress)
-* [onratechange](_open_scd_base_.openscdbase.md#onratechange)
-* [onreset](_open_scd_base_.openscdbase.md#onreset)
-* [onresize](_open_scd_base_.openscdbase.md#onresize)
-* [onscroll](_open_scd_base_.openscdbase.md#onscroll)
-* [onsecuritypolicyviolation](_open_scd_base_.openscdbase.md#onsecuritypolicyviolation)
-* [onseeked](_open_scd_base_.openscdbase.md#onseeked)
-* [onseeking](_open_scd_base_.openscdbase.md#onseeking)
-* [onselect](_open_scd_base_.openscdbase.md#onselect)
-* [onselectionchange](_open_scd_base_.openscdbase.md#onselectionchange)
-* [onselectstart](_open_scd_base_.openscdbase.md#onselectstart)
-* [onstalled](_open_scd_base_.openscdbase.md#onstalled)
-* [onsubmit](_open_scd_base_.openscdbase.md#onsubmit)
-* [onsuspend](_open_scd_base_.openscdbase.md#onsuspend)
-* [ontimeupdate](_open_scd_base_.openscdbase.md#ontimeupdate)
-* [ontoggle](_open_scd_base_.openscdbase.md#ontoggle)
-* [ontouchcancel](_open_scd_base_.openscdbase.md#optional-ontouchcancel)
-* [ontouchend](_open_scd_base_.openscdbase.md#optional-ontouchend)
-* [ontouchmove](_open_scd_base_.openscdbase.md#optional-ontouchmove)
-* [ontouchstart](_open_scd_base_.openscdbase.md#optional-ontouchstart)
-* [ontransitioncancel](_open_scd_base_.openscdbase.md#ontransitioncancel)
-* [ontransitionend](_open_scd_base_.openscdbase.md#ontransitionend)
-* [ontransitionrun](_open_scd_base_.openscdbase.md#ontransitionrun)
-* [ontransitionstart](_open_scd_base_.openscdbase.md#ontransitionstart)
-* [onvolumechange](_open_scd_base_.openscdbase.md#onvolumechange)
-* [onwaiting](_open_scd_base_.openscdbase.md#onwaiting)
-* [onwheel](_open_scd_base_.openscdbase.md#onwheel)
-* [outerHTML](_open_scd_base_.openscdbase.md#outerhtml)
-* [ownerDocument](_open_scd_base_.openscdbase.md#readonly-ownerdocument)
-* [parentElement](_open_scd_base_.openscdbase.md#readonly-parentelement)
-* [parentNode](_open_scd_base_.openscdbase.md#readonly-parentnode)
-* [prefix](_open_scd_base_.openscdbase.md#readonly-prefix)
-* [previousElementSibling](_open_scd_base_.openscdbase.md#readonly-previouselementsibling)
-* [previousSibling](_open_scd_base_.openscdbase.md#readonly-previoussibling)
-* [renderRoot](_open_scd_base_.openscdbase.md#readonly-renderroot)
-* [scrollHeight](_open_scd_base_.openscdbase.md#readonly-scrollheight)
-* [scrollLeft](_open_scd_base_.openscdbase.md#scrollleft)
-* [scrollTop](_open_scd_base_.openscdbase.md#scrolltop)
-* [scrollWidth](_open_scd_base_.openscdbase.md#readonly-scrollwidth)
-* [shadowRoot](_open_scd_base_.openscdbase.md#readonly-shadowroot)
-* [slot](_open_scd_base_.openscdbase.md#slot)
-* [spellcheck](_open_scd_base_.openscdbase.md#spellcheck)
-* [srcName](_open_scd_base_.openscdbase.md#srcname)
-* [style](_open_scd_base_.openscdbase.md#readonly-style)
-* [tabIndex](_open_scd_base_.openscdbase.md#tabindex)
-* [tag](_open_scd_base_.openscdbase.md#tag)
-* [tagName](_open_scd_base_.openscdbase.md#readonly-tagname)
-* [textContent](_open_scd_base_.openscdbase.md#textcontent)
-* [title](_open_scd_base_.openscdbase.md#title)
-* [translate](_open_scd_base_.openscdbase.md#translate)
-* [waiting](_open_scd_base_.openscdbase.md#waiting)
-* [work](_open_scd_base_.openscdbase.md#protected-work)
-* [workDone](_open_scd_base_.openscdbase.md#workdone)
-* [workflow](_open_scd_base_.openscdbase.md#workflow)
-* [[finalized]](_open_scd_base_.openscdbase.md#static-protected-[finalized])
-* [finalized](_open_scd_base_.openscdbase.md#static-protected-finalized)
-* [properties](_open_scd_base_.openscdbase.md#static-properties)
-* [render](_open_scd_base_.openscdbase.md#static-render)
-* [styles](_open_scd_base_.openscdbase.md#static-optional-styles)
+* [ATTRIBUTE_NODE](_open_scd_base_.wizarddialog.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_open_scd_base_.wizarddialog.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_open_scd_base_.wizarddialog.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_open_scd_base_.wizarddialog.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_open_scd_base_.wizarddialog.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_base_.wizarddialog.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_open_scd_base_.wizarddialog.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_base_.wizarddialog.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_open_scd_base_.wizarddialog.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_base_.wizarddialog.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_open_scd_base_.wizarddialog.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_open_scd_base_.wizarddialog.md#readonly-document_type_node)
+* [ELEMENT_NODE](_open_scd_base_.wizarddialog.md#readonly-element_node)
+* [ENTITY_NODE](_open_scd_base_.wizarddialog.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_open_scd_base_.wizarddialog.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_open_scd_base_.wizarddialog.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_open_scd_base_.wizarddialog.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_open_scd_base_.wizarddialog.md#readonly-text_node)
+* [accessKey](_open_scd_base_.wizarddialog.md#accesskey)
+* [accessKeyLabel](_open_scd_base_.wizarddialog.md#readonly-accesskeylabel)
+* [assignedSlot](_open_scd_base_.wizarddialog.md#readonly-assignedslot)
+* [attributes](_open_scd_base_.wizarddialog.md#readonly-attributes)
+* [autocapitalize](_open_scd_base_.wizarddialog.md#autocapitalize)
+* [autofocus](_open_scd_base_.wizarddialog.md#autofocus)
+* [baseURI](_open_scd_base_.wizarddialog.md#readonly-baseuri)
+* [childElementCount](_open_scd_base_.wizarddialog.md#readonly-childelementcount)
+* [childNodes](_open_scd_base_.wizarddialog.md#readonly-childnodes)
+* [children](_open_scd_base_.wizarddialog.md#readonly-children)
+* [classList](_open_scd_base_.wizarddialog.md#readonly-classlist)
+* [className](_open_scd_base_.wizarddialog.md#classname)
+* [clientHeight](_open_scd_base_.wizarddialog.md#readonly-clientheight)
+* [clientLeft](_open_scd_base_.wizarddialog.md#readonly-clientleft)
+* [clientTop](_open_scd_base_.wizarddialog.md#readonly-clienttop)
+* [clientWidth](_open_scd_base_.wizarddialog.md#readonly-clientwidth)
+* [contentEditable](_open_scd_base_.wizarddialog.md#contenteditable)
+* [dataset](_open_scd_base_.wizarddialog.md#readonly-dataset)
+* [dir](_open_scd_base_.wizarddialog.md#dir)
+* [draggable](_open_scd_base_.wizarddialog.md#draggable)
+* [enterKeyHint](_open_scd_base_.wizarddialog.md#enterkeyhint)
+* [firstChild](_open_scd_base_.wizarddialog.md#readonly-firstchild)
+* [firstElementChild](_open_scd_base_.wizarddialog.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_open_scd_base_.wizarddialog.md#optional-floatinglabelfoundation)
+* [hidden](_open_scd_base_.wizarddialog.md#hidden)
+* [id](_open_scd_base_.wizarddialog.md#id)
+* [innerHTML](_open_scd_base_.wizarddialog.md#innerhtml)
+* [innerText](_open_scd_base_.wizarddialog.md#innertext)
+* [inputMode](_open_scd_base_.wizarddialog.md#inputmode)
+* [inputs](_open_scd_base_.wizarddialog.md#inputs)
+* [isConnected](_open_scd_base_.wizarddialog.md#readonly-isconnected)
+* [isContentEditable](_open_scd_base_.wizarddialog.md#readonly-iscontenteditable)
+* [lang](_open_scd_base_.wizarddialog.md#lang)
+* [lastChild](_open_scd_base_.wizarddialog.md#readonly-lastchild)
+* [lastElementChild](_open_scd_base_.wizarddialog.md#readonly-lastelementchild)
+* [lineRippleFoundation](_open_scd_base_.wizarddialog.md#optional-lineripplefoundation)
+* [localName](_open_scd_base_.wizarddialog.md#readonly-localname)
+* [namespaceURI](_open_scd_base_.wizarddialog.md#readonly-namespaceuri)
+* [nextElementSibling](_open_scd_base_.wizarddialog.md#readonly-nextelementsibling)
+* [nextSibling](_open_scd_base_.wizarddialog.md#readonly-nextsibling)
+* [nodeName](_open_scd_base_.wizarddialog.md#readonly-nodename)
+* [nodeType](_open_scd_base_.wizarddialog.md#readonly-nodetype)
+* [nodeValue](_open_scd_base_.wizarddialog.md#nodevalue)
+* [nonce](_open_scd_base_.wizarddialog.md#optional-nonce)
+* [offsetHeight](_open_scd_base_.wizarddialog.md#readonly-offsetheight)
+* [offsetLeft](_open_scd_base_.wizarddialog.md#readonly-offsetleft)
+* [offsetParent](_open_scd_base_.wizarddialog.md#readonly-offsetparent)
+* [offsetTop](_open_scd_base_.wizarddialog.md#readonly-offsettop)
+* [offsetWidth](_open_scd_base_.wizarddialog.md#readonly-offsetwidth)
+* [onabort](_open_scd_base_.wizarddialog.md#onabort)
+* [onanimationcancel](_open_scd_base_.wizarddialog.md#onanimationcancel)
+* [onanimationend](_open_scd_base_.wizarddialog.md#onanimationend)
+* [onanimationiteration](_open_scd_base_.wizarddialog.md#onanimationiteration)
+* [onanimationstart](_open_scd_base_.wizarddialog.md#onanimationstart)
+* [onauxclick](_open_scd_base_.wizarddialog.md#onauxclick)
+* [onblur](_open_scd_base_.wizarddialog.md#onblur)
+* [oncancel](_open_scd_base_.wizarddialog.md#oncancel)
+* [oncanplay](_open_scd_base_.wizarddialog.md#oncanplay)
+* [oncanplaythrough](_open_scd_base_.wizarddialog.md#oncanplaythrough)
+* [onchange](_open_scd_base_.wizarddialog.md#onchange)
+* [onclick](_open_scd_base_.wizarddialog.md#onclick)
+* [onclose](_open_scd_base_.wizarddialog.md#onclose)
+* [oncontextmenu](_open_scd_base_.wizarddialog.md#oncontextmenu)
+* [oncopy](_open_scd_base_.wizarddialog.md#oncopy)
+* [oncuechange](_open_scd_base_.wizarddialog.md#oncuechange)
+* [oncut](_open_scd_base_.wizarddialog.md#oncut)
+* [ondblclick](_open_scd_base_.wizarddialog.md#ondblclick)
+* [ondrag](_open_scd_base_.wizarddialog.md#ondrag)
+* [ondragend](_open_scd_base_.wizarddialog.md#ondragend)
+* [ondragenter](_open_scd_base_.wizarddialog.md#ondragenter)
+* [ondragexit](_open_scd_base_.wizarddialog.md#ondragexit)
+* [ondragleave](_open_scd_base_.wizarddialog.md#ondragleave)
+* [ondragover](_open_scd_base_.wizarddialog.md#ondragover)
+* [ondragstart](_open_scd_base_.wizarddialog.md#ondragstart)
+* [ondrop](_open_scd_base_.wizarddialog.md#ondrop)
+* [ondurationchange](_open_scd_base_.wizarddialog.md#ondurationchange)
+* [onemptied](_open_scd_base_.wizarddialog.md#onemptied)
+* [onended](_open_scd_base_.wizarddialog.md#onended)
+* [onerror](_open_scd_base_.wizarddialog.md#onerror)
+* [onfocus](_open_scd_base_.wizarddialog.md#onfocus)
+* [onfullscreenchange](_open_scd_base_.wizarddialog.md#onfullscreenchange)
+* [onfullscreenerror](_open_scd_base_.wizarddialog.md#onfullscreenerror)
+* [ongotpointercapture](_open_scd_base_.wizarddialog.md#ongotpointercapture)
+* [oninput](_open_scd_base_.wizarddialog.md#oninput)
+* [oninvalid](_open_scd_base_.wizarddialog.md#oninvalid)
+* [onkeydown](_open_scd_base_.wizarddialog.md#onkeydown)
+* [onkeypress](_open_scd_base_.wizarddialog.md#onkeypress)
+* [onkeyup](_open_scd_base_.wizarddialog.md#onkeyup)
+* [onload](_open_scd_base_.wizarddialog.md#onload)
+* [onloadeddata](_open_scd_base_.wizarddialog.md#onloadeddata)
+* [onloadedmetadata](_open_scd_base_.wizarddialog.md#onloadedmetadata)
+* [onloadstart](_open_scd_base_.wizarddialog.md#onloadstart)
+* [onlostpointercapture](_open_scd_base_.wizarddialog.md#onlostpointercapture)
+* [onmousedown](_open_scd_base_.wizarddialog.md#onmousedown)
+* [onmouseenter](_open_scd_base_.wizarddialog.md#onmouseenter)
+* [onmouseleave](_open_scd_base_.wizarddialog.md#onmouseleave)
+* [onmousemove](_open_scd_base_.wizarddialog.md#onmousemove)
+* [onmouseout](_open_scd_base_.wizarddialog.md#onmouseout)
+* [onmouseover](_open_scd_base_.wizarddialog.md#onmouseover)
+* [onmouseup](_open_scd_base_.wizarddialog.md#onmouseup)
+* [onpaste](_open_scd_base_.wizarddialog.md#onpaste)
+* [onpause](_open_scd_base_.wizarddialog.md#onpause)
+* [onplay](_open_scd_base_.wizarddialog.md#onplay)
+* [onplaying](_open_scd_base_.wizarddialog.md#onplaying)
+* [onpointercancel](_open_scd_base_.wizarddialog.md#onpointercancel)
+* [onpointerdown](_open_scd_base_.wizarddialog.md#onpointerdown)
+* [onpointerenter](_open_scd_base_.wizarddialog.md#onpointerenter)
+* [onpointerleave](_open_scd_base_.wizarddialog.md#onpointerleave)
+* [onpointermove](_open_scd_base_.wizarddialog.md#onpointermove)
+* [onpointerout](_open_scd_base_.wizarddialog.md#onpointerout)
+* [onpointerover](_open_scd_base_.wizarddialog.md#onpointerover)
+* [onpointerup](_open_scd_base_.wizarddialog.md#onpointerup)
+* [onprogress](_open_scd_base_.wizarddialog.md#onprogress)
+* [onratechange](_open_scd_base_.wizarddialog.md#onratechange)
+* [onreset](_open_scd_base_.wizarddialog.md#onreset)
+* [onresize](_open_scd_base_.wizarddialog.md#onresize)
+* [onscroll](_open_scd_base_.wizarddialog.md#onscroll)
+* [onsecuritypolicyviolation](_open_scd_base_.wizarddialog.md#onsecuritypolicyviolation)
+* [onseeked](_open_scd_base_.wizarddialog.md#onseeked)
+* [onseeking](_open_scd_base_.wizarddialog.md#onseeking)
+* [onselect](_open_scd_base_.wizarddialog.md#onselect)
+* [onselectionchange](_open_scd_base_.wizarddialog.md#onselectionchange)
+* [onselectstart](_open_scd_base_.wizarddialog.md#onselectstart)
+* [onstalled](_open_scd_base_.wizarddialog.md#onstalled)
+* [onsubmit](_open_scd_base_.wizarddialog.md#onsubmit)
+* [onsuspend](_open_scd_base_.wizarddialog.md#onsuspend)
+* [ontimeupdate](_open_scd_base_.wizarddialog.md#ontimeupdate)
+* [ontoggle](_open_scd_base_.wizarddialog.md#ontoggle)
+* [ontouchcancel](_open_scd_base_.wizarddialog.md#optional-ontouchcancel)
+* [ontouchend](_open_scd_base_.wizarddialog.md#optional-ontouchend)
+* [ontouchmove](_open_scd_base_.wizarddialog.md#optional-ontouchmove)
+* [ontouchstart](_open_scd_base_.wizarddialog.md#optional-ontouchstart)
+* [ontransitioncancel](_open_scd_base_.wizarddialog.md#ontransitioncancel)
+* [ontransitionend](_open_scd_base_.wizarddialog.md#ontransitionend)
+* [ontransitionrun](_open_scd_base_.wizarddialog.md#ontransitionrun)
+* [ontransitionstart](_open_scd_base_.wizarddialog.md#ontransitionstart)
+* [onvolumechange](_open_scd_base_.wizarddialog.md#onvolumechange)
+* [onwaiting](_open_scd_base_.wizarddialog.md#onwaiting)
+* [onwheel](_open_scd_base_.wizarddialog.md#onwheel)
+* [outerHTML](_open_scd_base_.wizarddialog.md#outerhtml)
+* [ownerDocument](_open_scd_base_.wizarddialog.md#readonly-ownerdocument)
+* [pageIndex](_open_scd_base_.wizarddialog.md#pageindex)
+* [parentElement](_open_scd_base_.wizarddialog.md#readonly-parentelement)
+* [parentNode](_open_scd_base_.wizarddialog.md#readonly-parentnode)
+* [prefix](_open_scd_base_.wizarddialog.md#readonly-prefix)
+* [previousElementSibling](_open_scd_base_.wizarddialog.md#readonly-previouselementsibling)
+* [previousSibling](_open_scd_base_.wizarddialog.md#readonly-previoussibling)
+* [renderRoot](_open_scd_base_.wizarddialog.md#readonly-renderroot)
+* [scrollHeight](_open_scd_base_.wizarddialog.md#readonly-scrollheight)
+* [scrollLeft](_open_scd_base_.wizarddialog.md#scrollleft)
+* [scrollTop](_open_scd_base_.wizarddialog.md#scrolltop)
+* [scrollWidth](_open_scd_base_.wizarddialog.md#readonly-scrollwidth)
+* [shadowRoot](_open_scd_base_.wizarddialog.md#readonly-shadowroot)
+* [slot](_open_scd_base_.wizarddialog.md#slot)
+* [spellcheck](_open_scd_base_.wizarddialog.md#spellcheck)
+* [style](_open_scd_base_.wizarddialog.md#readonly-style)
+* [tabIndex](_open_scd_base_.wizarddialog.md#tabindex)
+* [tagName](_open_scd_base_.wizarddialog.md#readonly-tagname)
+* [textContent](_open_scd_base_.wizarddialog.md#textcontent)
+* [title](_open_scd_base_.wizarddialog.md#title)
+* [translate](_open_scd_base_.wizarddialog.md#translate)
+* [[finalized]](_open_scd_base_.wizarddialog.md#static-protected-[finalized])
+* [finalized](_open_scd_base_.wizarddialog.md#static-protected-finalized)
+* [properties](_open_scd_base_.wizarddialog.md#static-properties)
+* [render](_open_scd_base_.wizarddialog.md#static-render)
+* [styles](_open_scd_base_.wizarddialog.md#static-styles)
 
 ### Accessors
 
-* [canRedo](_open_scd_base_.openscdbase.md#canredo)
-* [canUndo](_open_scd_base_.openscdbase.md#canundo)
-* [hasUpdated](_open_scd_base_.openscdbase.md#protected-hasupdated)
-* [name](_open_scd_base_.openscdbase.md#name)
-* [nextAction](_open_scd_base_.openscdbase.md#nextaction)
-* [previousAction](_open_scd_base_.openscdbase.md#previousaction)
-* [src](_open_scd_base_.openscdbase.md#src)
-* [updateComplete](_open_scd_base_.openscdbase.md#updatecomplete)
-* [observedAttributes](_open_scd_base_.openscdbase.md#static-observedattributes)
+* [hasUpdated](_open_scd_base_.wizarddialog.md#protected-hasupdated)
+* [page](_open_scd_base_.wizarddialog.md#page)
+* [updateComplete](_open_scd_base_.wizarddialog.md#updatecomplete)
+* [observedAttributes](_open_scd_base_.wizarddialog.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_open_scd_base_.openscdbase.md#protected-_getupdatecomplete)
-* [addEventListener](_open_scd_base_.openscdbase.md#addeventlistener)
-* [adoptStyles](_open_scd_base_.openscdbase.md#protected-adoptstyles)
-* [after](_open_scd_base_.openscdbase.md#after)
-* [animate](_open_scd_base_.openscdbase.md#animate)
-* [append](_open_scd_base_.openscdbase.md#append)
-* [appendChild](_open_scd_base_.openscdbase.md#appendchild)
-* [attachShadow](_open_scd_base_.openscdbase.md#attachshadow)
-* [attributeChangedCallback](_open_scd_base_.openscdbase.md#attributechangedcallback)
-* [before](_open_scd_base_.openscdbase.md#before)
-* [blur](_open_scd_base_.openscdbase.md#blur)
-* [click](_open_scd_base_.openscdbase.md#click)
-* [cloneNode](_open_scd_base_.openscdbase.md#clonenode)
-* [closest](_open_scd_base_.openscdbase.md#closest)
-* [commit](_open_scd_base_.openscdbase.md#commit)
-* [compareDocumentPosition](_open_scd_base_.openscdbase.md#comparedocumentposition)
-* [connectedCallback](_open_scd_base_.openscdbase.md#connectedcallback)
-* [contains](_open_scd_base_.openscdbase.md#contains)
-* [createRenderRoot](_open_scd_base_.openscdbase.md#protected-createrenderroot)
-* [disconnectedCallback](_open_scd_base_.openscdbase.md#disconnectedcallback)
-* [dispatchEvent](_open_scd_base_.openscdbase.md#dispatchevent)
-* [enableUpdating](_open_scd_base_.openscdbase.md#protected-enableupdating)
-* [error](_open_scd_base_.openscdbase.md#error)
-* [firstUpdated](_open_scd_base_.openscdbase.md#protected-firstupdated)
-* [focus](_open_scd_base_.openscdbase.md#focus)
-* [getAnimations](_open_scd_base_.openscdbase.md#getanimations)
-* [getAttribute](_open_scd_base_.openscdbase.md#getattribute)
-* [getAttributeNS](_open_scd_base_.openscdbase.md#getattributens)
-* [getAttributeNames](_open_scd_base_.openscdbase.md#getattributenames)
-* [getAttributeNode](_open_scd_base_.openscdbase.md#getattributenode)
-* [getAttributeNodeNS](_open_scd_base_.openscdbase.md#getattributenodens)
-* [getBoundingClientRect](_open_scd_base_.openscdbase.md#getboundingclientrect)
-* [getClientRects](_open_scd_base_.openscdbase.md#getclientrects)
-* [getElementsByClassName](_open_scd_base_.openscdbase.md#getelementsbyclassname)
-* [getElementsByTagName](_open_scd_base_.openscdbase.md#getelementsbytagname)
-* [getElementsByTagNameNS](_open_scd_base_.openscdbase.md#getelementsbytagnamens)
-* [getRootNode](_open_scd_base_.openscdbase.md#getrootnode)
-* [handleKeyPress](_open_scd_base_.openscdbase.md#private-handlekeypress)
-* [hasAttribute](_open_scd_base_.openscdbase.md#hasattribute)
-* [hasAttributeNS](_open_scd_base_.openscdbase.md#hasattributens)
-* [hasAttributes](_open_scd_base_.openscdbase.md#hasattributes)
-* [hasChildNodes](_open_scd_base_.openscdbase.md#haschildnodes)
-* [hasPointerCapture](_open_scd_base_.openscdbase.md#haspointercapture)
-* [info](_open_scd_base_.openscdbase.md#optional-info)
-* [initialize](_open_scd_base_.openscdbase.md#protected-initialize)
-* [insertAdjacentElement](_open_scd_base_.openscdbase.md#insertadjacentelement)
-* [insertAdjacentHTML](_open_scd_base_.openscdbase.md#insertadjacenthtml)
-* [insertAdjacentText](_open_scd_base_.openscdbase.md#insertadjacenttext)
-* [insertBefore](_open_scd_base_.openscdbase.md#insertbefore)
-* [isDefaultNamespace](_open_scd_base_.openscdbase.md#isdefaultnamespace)
-* [isEqualNode](_open_scd_base_.openscdbase.md#isequalnode)
-* [isSameNode](_open_scd_base_.openscdbase.md#issamenode)
-* [loadDoc](_open_scd_base_.openscdbase.md#private-loaddoc)
-* [loadFile](_open_scd_base_.openscdbase.md#private-loadfile)
-* [log](_open_scd_base_.openscdbase.md#log)
-* [lookupNamespaceURI](_open_scd_base_.openscdbase.md#lookupnamespaceuri)
-* [lookupPrefix](_open_scd_base_.openscdbase.md#lookupprefix)
-* [matches](_open_scd_base_.openscdbase.md#matches)
-* [msGetRegionContent](_open_scd_base_.openscdbase.md#msgetregioncontent)
-* [normalize](_open_scd_base_.openscdbase.md#normalize)
-* [performUpdate](_open_scd_base_.openscdbase.md#protected-performupdate)
-* [prepend](_open_scd_base_.openscdbase.md#prepend)
-* [querySelector](_open_scd_base_.openscdbase.md#queryselector)
-* [querySelectorAll](_open_scd_base_.openscdbase.md#queryselectorall)
-* [redo](_open_scd_base_.openscdbase.md#redo)
-* [releasePointerCapture](_open_scd_base_.openscdbase.md#releasepointercapture)
-* [remove](_open_scd_base_.openscdbase.md#remove)
-* [removeAttribute](_open_scd_base_.openscdbase.md#removeattribute)
-* [removeAttributeNS](_open_scd_base_.openscdbase.md#removeattributens)
-* [removeAttributeNode](_open_scd_base_.openscdbase.md#removeattributenode)
-* [removeChild](_open_scd_base_.openscdbase.md#removechild)
-* [removeEventListener](_open_scd_base_.openscdbase.md#removeeventlistener)
-* [render](_open_scd_base_.openscdbase.md#render)
-* [renderActionItem](_open_scd_base_.openscdbase.md#renderactionitem)
-* [renderEditorTab](_open_scd_base_.openscdbase.md#rendereditortab)
-* [renderHistory](_open_scd_base_.openscdbase.md#renderhistory)
-* [renderLogEntry](_open_scd_base_.openscdbase.md#renderlogentry)
-* [renderMenuEntry](_open_scd_base_.openscdbase.md#rendermenuentry)
-* [replaceChild](_open_scd_base_.openscdbase.md#replacechild)
-* [replaceWith](_open_scd_base_.openscdbase.md#replacewith)
-* [requestFullscreen](_open_scd_base_.openscdbase.md#requestfullscreen)
-* [requestPointerLock](_open_scd_base_.openscdbase.md#requestpointerlock)
-* [requestUpdate](_open_scd_base_.openscdbase.md#requestupdate)
-* [requestUpdateInternal](_open_scd_base_.openscdbase.md#protected-requestupdateinternal)
-* [scroll](_open_scd_base_.openscdbase.md#scroll)
-* [scrollBy](_open_scd_base_.openscdbase.md#scrollby)
-* [scrollIntoView](_open_scd_base_.openscdbase.md#scrollintoview)
-* [scrollTo](_open_scd_base_.openscdbase.md#scrollto)
-* [setAttribute](_open_scd_base_.openscdbase.md#setattribute)
-* [setAttributeNS](_open_scd_base_.openscdbase.md#setattributens)
-* [setAttributeNode](_open_scd_base_.openscdbase.md#setattributenode)
-* [setAttributeNodeNS](_open_scd_base_.openscdbase.md#setattributenodens)
-* [setPointerCapture](_open_scd_base_.openscdbase.md#setpointercapture)
-* [shouldUpdate](_open_scd_base_.openscdbase.md#protected-shouldupdate)
-* [toggleAttribute](_open_scd_base_.openscdbase.md#toggleattribute)
-* [undo](_open_scd_base_.openscdbase.md#undo)
-* [update](_open_scd_base_.openscdbase.md#protected-update)
-* [updated](_open_scd_base_.openscdbase.md#protected-updated)
-* [warn](_open_scd_base_.openscdbase.md#optional-warn)
-* [webkitMatchesSelector](_open_scd_base_.openscdbase.md#webkitmatchesselector)
-* [createProperty](_open_scd_base_.openscdbase.md#static-createproperty)
-* [finalize](_open_scd_base_.openscdbase.md#static-protected-finalize)
-* [getPropertyDescriptor](_open_scd_base_.openscdbase.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_open_scd_base_.openscdbase.md#static-protected-getpropertyoptions)
-* [getStyles](_open_scd_base_.openscdbase.md#static-getstyles)
+* [_getUpdateComplete](_open_scd_base_.wizarddialog.md#protected-_getupdatecomplete)
+* [addEventListener](_open_scd_base_.wizarddialog.md#addeventlistener)
+* [adoptStyles](_open_scd_base_.wizarddialog.md#protected-adoptstyles)
+* [after](_open_scd_base_.wizarddialog.md#after)
+* [animate](_open_scd_base_.wizarddialog.md#animate)
+* [append](_open_scd_base_.wizarddialog.md#append)
+* [appendChild](_open_scd_base_.wizarddialog.md#appendchild)
+* [attachShadow](_open_scd_base_.wizarddialog.md#attachshadow)
+* [attributeChangedCallback](_open_scd_base_.wizarddialog.md#attributechangedcallback)
+* [before](_open_scd_base_.wizarddialog.md#before)
+* [blur](_open_scd_base_.wizarddialog.md#blur)
+* [click](_open_scd_base_.wizarddialog.md#click)
+* [cloneNode](_open_scd_base_.wizarddialog.md#clonenode)
+* [closed](_open_scd_base_.wizarddialog.md#closed)
+* [closest](_open_scd_base_.wizarddialog.md#closest)
+* [compareDocumentPosition](_open_scd_base_.wizarddialog.md#comparedocumentposition)
+* [connectedCallback](_open_scd_base_.wizarddialog.md#connectedcallback)
+* [contains](_open_scd_base_.wizarddialog.md#contains)
+* [createRenderRoot](_open_scd_base_.wizarddialog.md#protected-createrenderroot)
+* [disconnectedCallback](_open_scd_base_.wizarddialog.md#disconnectedcallback)
+* [dispatchEvent](_open_scd_base_.wizarddialog.md#dispatchevent)
+* [enableUpdating](_open_scd_base_.wizarddialog.md#protected-enableupdating)
+* [firstUpdated](_open_scd_base_.wizarddialog.md#protected-firstupdated)
+* [focus](_open_scd_base_.wizarddialog.md#focus)
+* [getAnimations](_open_scd_base_.wizarddialog.md#getanimations)
+* [getAttribute](_open_scd_base_.wizarddialog.md#getattribute)
+* [getAttributeNS](_open_scd_base_.wizarddialog.md#getattributens)
+* [getAttributeNames](_open_scd_base_.wizarddialog.md#getattributenames)
+* [getAttributeNode](_open_scd_base_.wizarddialog.md#getattributenode)
+* [getAttributeNodeNS](_open_scd_base_.wizarddialog.md#getattributenodens)
+* [getBoundingClientRect](_open_scd_base_.wizarddialog.md#getboundingclientrect)
+* [getClientRects](_open_scd_base_.wizarddialog.md#getclientrects)
+* [getElementsByClassName](_open_scd_base_.wizarddialog.md#getelementsbyclassname)
+* [getElementsByTagName](_open_scd_base_.wizarddialog.md#getelementsbytagname)
+* [getElementsByTagNameNS](_open_scd_base_.wizarddialog.md#getelementsbytagnamens)
+* [getRootNode](_open_scd_base_.wizarddialog.md#getrootnode)
+* [hasAttribute](_open_scd_base_.wizarddialog.md#hasattribute)
+* [hasAttributeNS](_open_scd_base_.wizarddialog.md#hasattributens)
+* [hasAttributes](_open_scd_base_.wizarddialog.md#hasattributes)
+* [hasChildNodes](_open_scd_base_.wizarddialog.md#haschildnodes)
+* [hasPointerCapture](_open_scd_base_.wizarddialog.md#haspointercapture)
+* [info](_open_scd_base_.wizarddialog.md#optional-info)
+* [initialize](_open_scd_base_.wizarddialog.md#protected-initialize)
+* [insertAdjacentElement](_open_scd_base_.wizarddialog.md#insertadjacentelement)
+* [insertAdjacentHTML](_open_scd_base_.wizarddialog.md#insertadjacenthtml)
+* [insertAdjacentText](_open_scd_base_.wizarddialog.md#insertadjacenttext)
+* [insertBefore](_open_scd_base_.wizarddialog.md#insertbefore)
+* [isDefaultNamespace](_open_scd_base_.wizarddialog.md#isdefaultnamespace)
+* [isEqualNode](_open_scd_base_.wizarddialog.md#isequalnode)
+* [isSameNode](_open_scd_base_.wizarddialog.md#issamenode)
+* [lookupNamespaceURI](_open_scd_base_.wizarddialog.md#lookupnamespaceuri)
+* [lookupPrefix](_open_scd_base_.wizarddialog.md#lookupprefix)
+* [matches](_open_scd_base_.wizarddialog.md#matches)
+* [msGetRegionContent](_open_scd_base_.wizarddialog.md#msgetregioncontent)
+* [next](_open_scd_base_.wizarddialog.md#next)
+* [normalize](_open_scd_base_.wizarddialog.md#normalize)
+* [performUpdate](_open_scd_base_.wizarddialog.md#protected-performupdate)
+* [prepend](_open_scd_base_.wizarddialog.md#prepend)
+* [prev](_open_scd_base_.wizarddialog.md#prev)
+* [querySelector](_open_scd_base_.wizarddialog.md#queryselector)
+* [querySelectorAll](_open_scd_base_.wizarddialog.md#queryselectorall)
+* [releasePointerCapture](_open_scd_base_.wizarddialog.md#releasepointercapture)
+* [remove](_open_scd_base_.wizarddialog.md#remove)
+* [removeAttribute](_open_scd_base_.wizarddialog.md#removeattribute)
+* [removeAttributeNS](_open_scd_base_.wizarddialog.md#removeattributens)
+* [removeAttributeNode](_open_scd_base_.wizarddialog.md#removeattributenode)
+* [removeChild](_open_scd_base_.wizarddialog.md#removechild)
+* [removeEventListener](_open_scd_base_.wizarddialog.md#removeeventlistener)
+* [render](_open_scd_base_.wizarddialog.md#render)
+* [replaceChild](_open_scd_base_.wizarddialog.md#replacechild)
+* [replaceWith](_open_scd_base_.wizarddialog.md#replacewith)
+* [requestFullscreen](_open_scd_base_.wizarddialog.md#requestfullscreen)
+* [requestPointerLock](_open_scd_base_.wizarddialog.md#requestpointerlock)
+* [requestUpdate](_open_scd_base_.wizarddialog.md#requestupdate)
+* [requestUpdateInternal](_open_scd_base_.wizarddialog.md#protected-requestupdateinternal)
+* [scroll](_open_scd_base_.wizarddialog.md#scroll)
+* [scrollBy](_open_scd_base_.wizarddialog.md#scrollby)
+* [scrollIntoView](_open_scd_base_.wizarddialog.md#scrollintoview)
+* [scrollTo](_open_scd_base_.wizarddialog.md#scrollto)
+* [setAttribute](_open_scd_base_.wizarddialog.md#setattribute)
+* [setAttributeNS](_open_scd_base_.wizarddialog.md#setattributens)
+* [setAttributeNode](_open_scd_base_.wizarddialog.md#setattributenode)
+* [setAttributeNodeNS](_open_scd_base_.wizarddialog.md#setattributenodens)
+* [setPointerCapture](_open_scd_base_.wizarddialog.md#setpointercapture)
+* [shouldUpdate](_open_scd_base_.wizarddialog.md#protected-shouldupdate)
+* [toggleAttribute](_open_scd_base_.wizarddialog.md#toggleattribute)
+* [update](_open_scd_base_.wizarddialog.md#protected-update)
+* [updated](_open_scd_base_.wizarddialog.md#protected-updated)
+* [warn](_open_scd_base_.wizarddialog.md#optional-warn)
+* [webkitMatchesSelector](_open_scd_base_.wizarddialog.md#webkitmatchesselector)
+* [createProperty](_open_scd_base_.wizarddialog.md#static-createproperty)
+* [finalize](_open_scd_base_.wizarddialog.md#static-protected-finalize)
+* [getPropertyDescriptor](_open_scd_base_.wizarddialog.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_open_scd_base_.wizarddialog.md#static-protected-getpropertyoptions)
+* [getStyles](_open_scd_base_.wizarddialog.md#static-getstyles)
 
 ### Object literals
 
-* [plugins](_open_scd_base_.openscdbase.md#plugins)
+* [wizard](_open_scd_base_.wizarddialog.md#optional-wizard)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new OpenSCDBase**(): *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+\+ **new WizardDialog**(): *[WizardDialog](_open_scd_base_.wizarddialog.md)*
 
-*Overrides void*
+*Inherited from [WizardDialog](_open_scd_base_.wizarddialog.md).[constructor](_open_scd_base_.wizarddialog.md#constructor)*
 
-*Defined in [src/open-scd-base.ts:247](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L247)*
+Defined in node_modules/lit-element/lib/updating-element.d.ts:274
 
-**Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
+**Returns:** *[WizardDialog](_open_scd_base_.wizarddialog.md)*
 
 ## Properties
 
@@ -360,8 +329,6 @@
 • **ATTRIBUTE_NODE**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ATTRIBUTE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-attribute_node)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ATTRIBUTE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -372,8 +339,6 @@ ___
 • **CDATA_SECTION_NODE**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[CDATA_SECTION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-cdata_section_node)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[CDATA_SECTION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -387,8 +352,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[COMMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-comment_node)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[COMMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-comment_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
 node is a Comment node.
@@ -400,8 +363,6 @@ ___
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_FRAGMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_fragment_node)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_FRAGMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -415,8 +376,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_node)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
 node is a document.
@@ -428,8 +387,6 @@ ___
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_CONTAINED_BY](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_contained_by)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_CONTAINED_BY](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -443,8 +400,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_CONTAINS](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_contains)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_CONTAINS](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_contains)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10865
 
 Set when other is an ancestor of node.
@@ -456,8 +411,6 @@ ___
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_DISCONNECTED](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_disconnected)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_DISCONNECTED](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10869
 
@@ -471,8 +424,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_FOLLOWING](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_following)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_FOLLOWING](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_following)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10873
 
 Set when other is following node.
@@ -485,8 +436,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_implementation_specific)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_implementation_specific)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
 ___
@@ -496,8 +445,6 @@ ___
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_PRECEDING](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_preceding)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_POSITION_PRECEDING](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10878
 
@@ -511,8 +458,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_TYPE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_type_node)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[DOCUMENT_TYPE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-document_type_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10882
 
 node is a doctype.
@@ -524,8 +469,6 @@ ___
 • **ELEMENT_NODE**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ELEMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-element_node)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ELEMENT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10886
 
@@ -539,8 +482,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ENTITY_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-entity_node)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ENTITY_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-entity_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10887
 
 ___
@@ -550,8 +491,6 @@ ___
 • **ENTITY_REFERENCE_NODE**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ENTITY_REFERENCE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-entity_reference_node)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ENTITY_REFERENCE_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10888
 
@@ -563,8 +502,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[NOTATION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-notation_node)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[NOTATION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-notation_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10889
 
 ___
@@ -574,8 +511,6 @@ ___
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[PROCESSING_INSTRUCTION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-processing_instruction_node)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[PROCESSING_INSTRUCTION_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10893
 
@@ -589,8 +524,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[TEXT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-text_node)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[TEXT_NODE](_mwc_textfield_nullable_.textfieldnullable.md#readonly-text_node)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10897
 
 node is a Text node.
@@ -603,8 +536,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[accessKey](_mwc_textfield_nullable_.textfieldnullable.md#accesskey)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[accessKey](_mwc_textfield_nullable_.textfieldnullable.md#accesskey)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
 ___
@@ -615,19 +546,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[accessKeyLabel](_mwc_textfield_nullable_.textfieldnullable.md#readonly-accesskeylabel)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[accessKeyLabel](_mwc_textfield_nullable_.textfieldnullable.md#readonly-accesskeylabel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
-
-___
-
-###  activeTab
-
-• **activeTab**: *number* = 0
-
-*Defined in [src/open-scd-base.ts:158](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L158)*
-
-The currently active editor tab.
 
 ___
 
@@ -649,8 +568,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[attributes](_mwc_textfield_nullable_.textfieldnullable.md#readonly-attributes)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[attributes](_mwc_textfield_nullable_.textfieldnullable.md#readonly-attributes)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
 ___
@@ -660,8 +577,6 @@ ___
 • **autocapitalize**: *string*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
@@ -673,8 +588,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[autofocus](_mwc_textfield_nullable_.textfieldnullable.md#autofocus)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[autofocus](_mwc_textfield_nullable_.textfieldnullable.md#autofocus)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8001
 
 ___
@@ -684,8 +597,6 @@ ___
 • **baseURI**: *string*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[baseURI](_mwc_textfield_nullable_.textfieldnullable.md#readonly-baseuri)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[baseURI](_mwc_textfield_nullable_.textfieldnullable.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -699,8 +610,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[childElementCount](_mwc_textfield_nullable_.textfieldnullable.md#readonly-childelementcount)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[childElementCount](_mwc_textfield_nullable_.textfieldnullable.md#readonly-childelementcount)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
 ___
@@ -710,8 +619,6 @@ ___
 • **childNodes**: *NodeListOf‹ChildNode›*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[childNodes](_mwc_textfield_nullable_.textfieldnullable.md#readonly-childnodes)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[childNodes](_mwc_textfield_nullable_.textfieldnullable.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -725,8 +632,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[children](_mwc_textfield_nullable_.textfieldnullable.md#readonly-children)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[children](_mwc_textfield_nullable_.textfieldnullable.md#readonly-children)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11317
 
 Returns the child elements.
@@ -738,8 +643,6 @@ ___
 • **classList**: *DOMTokenList*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[classList](_mwc_textfield_nullable_.textfieldnullable.md#readonly-classlist)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[classList](_mwc_textfield_nullable_.textfieldnullable.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5104
 
@@ -753,8 +656,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[className](_mwc_textfield_nullable_.textfieldnullable.md#classname)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[className](_mwc_textfield_nullable_.textfieldnullable.md#classname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5108
 
 Returns the value of element's class content attribute. Can be set to change it.
@@ -767,8 +668,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientheight)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientheight)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5109
 
 ___
@@ -778,8 +677,6 @@ ___
 • **clientLeft**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientLeft](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientleft)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientLeft](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -791,8 +688,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientTop](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clienttop)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientTop](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clienttop)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5111
 
 ___
@@ -802,8 +697,6 @@ ___
 • **clientWidth**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientwidth)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[clientWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5112
 
@@ -815,17 +708,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[contentEditable](_mwc_textfield_nullable_.textfieldnullable.md#contenteditable)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[contentEditable](_mwc_textfield_nullable_.textfieldnullable.md#contenteditable)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5264
-
-___
-
-### `Private` currentSrc
-
-• **currentSrc**: *string* = ""
-
-*Defined in [src/open-scd-base.ts:170](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L170)*
 
 ___
 
@@ -834,8 +717,6 @@ ___
 • **dataset**: *DOMStringMap*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dataset](_mwc_textfield_nullable_.textfieldnullable.md#readonly-dataset)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dataset](_mwc_textfield_nullable_.textfieldnullable.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8002
 
@@ -847,21 +728,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dir](_mwc_textfield_nullable_.textfieldnullable.md#dir)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dir](_mwc_textfield_nullable_.textfieldnullable.md#dir)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
-
-___
-
-###  doc
-
-• **doc**: *XMLDocument* = newEmptySCD()
-
-*Overrides void*
-
-*Defined in [src/open-scd-base.ts:161](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L161)*
-
-The `XMLDocument` representation of the current file.
 
 ___
 
@@ -870,8 +737,6 @@ ___
 • **draggable**: *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[draggable](_mwc_textfield_nullable_.textfieldnullable.md#draggable)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[draggable](_mwc_textfield_nullable_.textfieldnullable.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
@@ -883,17 +748,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[enterKeyHint](_mwc_textfield_nullable_.textfieldnullable.md#enterkeyhint)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[enterKeyHint](_mwc_textfield_nullable_.textfieldnullable.md#enterkeyhint)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5265
-
-___
-
-###  fileUI
-
-• **fileUI**: *HTMLInputElement*
-
-*Defined in [src/open-scd-base.ts:184](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L184)*
 
 ___
 
@@ -902,8 +757,6 @@ ___
 • **firstChild**: *ChildNode | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[firstChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-firstchild)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[firstChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10764
 
@@ -917,8 +770,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[firstElementChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-firstelementchild)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[firstElementChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-firstelementchild)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11321
 
 Returns the first child that is an element, and null otherwise.
@@ -931,8 +782,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[floatingLabelFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-floatinglabelfoundation)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[floatingLabelFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-floatinglabelfoundation)*
-
 Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:34
 
 ___
@@ -943,19 +792,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hidden](_mwc_textfield_nullable_.textfieldnullable.md#hidden)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hidden](_mwc_textfield_nullable_.textfieldnullable.md#hidden)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
-
-___
-
-###  history
-
-• **history**: *[LogEntry](../interfaces/_editing_.logentry.md)[]* = []
-
-*Overrides void*
-
-*Defined in [src/open-scd-base.ts:152](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L152)*
 
 ___
 
@@ -964,8 +801,6 @@ ___
 • **id**: *string*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[id](_mwc_textfield_nullable_.textfieldnullable.md#id)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[id](_mwc_textfield_nullable_.textfieldnullable.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -979,8 +814,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[innerHTML](_mwc_textfield_nullable_.textfieldnullable.md#innerhtml)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[innerHTML](_mwc_textfield_nullable_.textfieldnullable.md#innerhtml)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9586
 
 ___
@@ -990,8 +823,6 @@ ___
 • **innerText**: *string*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[innerText](_mwc_textfield_nullable_.textfieldnullable.md#innertext)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[innerText](_mwc_textfield_nullable_.textfieldnullable.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
 
@@ -1003,9 +834,15 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5266
+
+___
+
+###  inputs
+
+• **inputs**: *NodeListOf‹[WizardInput](../modules/_foundation_.md#wizardinput)›*
+
+*Defined in [src/open-scd-base.ts:72](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L72)*
 
 ___
 
@@ -1014,8 +851,6 @@ ___
 • **isConnected**: *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isConnected](_mwc_textfield_nullable_.textfieldnullable.md#readonly-isconnected)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isConnected](_mwc_textfield_nullable_.textfieldnullable.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10768
 
@@ -1029,8 +864,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isContentEditable](_mwc_textfield_nullable_.textfieldnullable.md#readonly-iscontenteditable)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isContentEditable](_mwc_textfield_nullable_.textfieldnullable.md#readonly-iscontenteditable)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5267
 
 ___
@@ -1041,19 +874,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lang](_mwc_textfield_nullable_.textfieldnullable.md#lang)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lang](_mwc_textfield_nullable_.textfieldnullable.md#lang)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6594
-
-___
-
-###  lastAction
-
-• **lastAction**: *number* = -1
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastAction](_open_scd_base_.openscdbase.md#lastaction)*
-
-*Defined in [src/editing.ts:46](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L46)*
 
 ___
 
@@ -1062,8 +883,6 @@ ___
 • **lastChild**: *ChildNode | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lastChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastchild)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lastChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10772
 
@@ -1077,8 +896,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lastElementChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastelementchild)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lastElementChild](_mwc_textfield_nullable_.textfieldnullable.md#readonly-lastelementchild)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
 Returns the last child that is an element, and null otherwise.
@@ -1091,8 +908,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lineRippleFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-lineripplefoundation)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lineRippleFoundation](_mwc_textfield_nullable_.textfieldnullable.md#optional-lineripplefoundation)*
-
 Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:35
 
 ___
@@ -1103,79 +918,9 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[localName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-localname)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[localName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-localname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5120
 
 Returns the local name.
-
-___
-
-###  logUI
-
-• **logUI**: *Dialog*
-
-*Defined in [src/open-scd-base.ts:182](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L182)*
-
-___
-
-###  menu
-
-• **menu**: *[MenuEntry](../interfaces/_open_scd_base_.menuentry.md)[]* = [
-    {
-      icon: 'folder_open',
-      name: 'Open project',
-      startsGroup: true,
-      actionItem: true,
-      action: (): void => this.fileUI.click(),
-    },
-    { icon: 'create_new_folder', name: 'New project' },
-    { icon: 'snippet_folder', name: 'Import IED' },
-    { icon: 'save', name: 'Save project' },
-    {
-      icon: 'undo',
-      name: 'Undo',
-      hint: 'CTRL+Z',
-      startsGroup: true,
-      actionItem: true,
-      action: this.undo,
-      isDisabled: (): boolean => !this.canUndo,
-    },
-    {
-      icon: 'redo',
-      name: 'Redo',
-      hint: 'CTRL+Y',
-      actionItem: true,
-      action: this.redo,
-      isDisabled: (): boolean => !this.canRedo,
-    },
-    { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
-    {
-      icon: 'rule',
-      name: 'View log',
-      hint: 'CTRL+L',
-      actionItem: true,
-      action: (): void => this.logUI.show(),
-    },
-  ]
-
-*Defined in [src/open-scd-base.ts:263](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L263)*
-
-___
-
-###  menuUI
-
-• **menuUI**: *Drawer*
-
-*Defined in [src/open-scd-base.ts:181](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L181)*
-
-___
-
-###  messageUI
-
-• **messageUI**: *Snackbar*
-
-*Defined in [src/open-scd-base.ts:183](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L183)*
 
 ___
 
@@ -1199,8 +944,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nextElementSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nextelementsibling)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nextElementSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nextelementsibling)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11043
 
 Returns the first following sibling that is an element, and null otherwise.
@@ -1212,8 +955,6 @@ ___
 • **nextSibling**: *ChildNode | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nextSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nextsibling)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nextSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10778
 
@@ -1227,8 +968,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nodename)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nodename)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10782
 
 Returns a string appropriate for the type of node.
@@ -1240,8 +979,6 @@ ___
 • **nodeType**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeType](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nodetype)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeType](_mwc_textfield_nullable_.textfieldnullable.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10786
 
@@ -1255,8 +992,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeValue](_mwc_textfield_nullable_.textfieldnullable.md#nodevalue)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nodeValue](_mwc_textfield_nullable_.textfieldnullable.md#nodevalue)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
 ___
@@ -1266,8 +1001,6 @@ ___
 • **nonce**? : *undefined | string*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nonce](_mwc_textfield_nullable_.textfieldnullable.md#optional-nonce)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nonce](_mwc_textfield_nullable_.textfieldnullable.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8003
 
@@ -1279,8 +1012,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetheight)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetheight)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
 
 ___
@@ -1290,8 +1021,6 @@ ___
 • **offsetLeft**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetLeft](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetleft)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetLeft](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6596
 
@@ -1303,8 +1032,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetParent](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetparent)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetParent](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetparent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6597
 
 ___
@@ -1314,8 +1041,6 @@ ___
 • **offsetTop**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetTop](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsettop)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetTop](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6598
 
@@ -1327,8 +1052,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetwidth)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[offsetWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-offsetwidth)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6599
 
 ___
@@ -1338,8 +1061,6 @@ ___
 • **onabort**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onabort](_mwc_textfield_nullable_.textfieldnullable.md#onabort)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onabort](_mwc_textfield_nullable_.textfieldnullable.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1355,8 +1076,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationcancel](_mwc_textfield_nullable_.textfieldnullable.md#onanimationcancel)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationcancel](_mwc_textfield_nullable_.textfieldnullable.md#onanimationcancel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5778
 
 ___
@@ -1366,8 +1085,6 @@ ___
 • **onanimationend**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationend](_mwc_textfield_nullable_.textfieldnullable.md#onanimationend)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationend](_mwc_textfield_nullable_.textfieldnullable.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5779
 
@@ -1379,8 +1096,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationiteration](_mwc_textfield_nullable_.textfieldnullable.md#onanimationiteration)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationiteration](_mwc_textfield_nullable_.textfieldnullable.md#onanimationiteration)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5780
 
 ___
@@ -1390,8 +1105,6 @@ ___
 • **onanimationstart**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationstart](_mwc_textfield_nullable_.textfieldnullable.md#onanimationstart)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onanimationstart](_mwc_textfield_nullable_.textfieldnullable.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5781
 
@@ -1403,8 +1116,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onauxclick](_mwc_textfield_nullable_.textfieldnullable.md#onauxclick)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onauxclick](_mwc_textfield_nullable_.textfieldnullable.md#onauxclick)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
 ___
@@ -1414,8 +1125,6 @@ ___
 • **onblur**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onblur](_mwc_textfield_nullable_.textfieldnullable.md#onblur)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onblur](_mwc_textfield_nullable_.textfieldnullable.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5787
 
@@ -1431,8 +1140,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncancel](_mwc_textfield_nullable_.textfieldnullable.md#oncancel)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncancel](_mwc_textfield_nullable_.textfieldnullable.md#oncancel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
 ___
@@ -1442,8 +1149,6 @@ ___
 • **oncanplay**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncanplay](_mwc_textfield_nullable_.textfieldnullable.md#oncanplay)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncanplay](_mwc_textfield_nullable_.textfieldnullable.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1459,8 +1164,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncanplaythrough](_mwc_textfield_nullable_.textfieldnullable.md#oncanplaythrough)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncanplaythrough](_mwc_textfield_nullable_.textfieldnullable.md#oncanplaythrough)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
 ___
@@ -1470,8 +1173,6 @@ ___
 • **onchange**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onchange](_mwc_textfield_nullable_.textfieldnullable.md#onchange)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onchange](_mwc_textfield_nullable_.textfieldnullable.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1487,8 +1188,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onclick](_mwc_textfield_nullable_.textfieldnullable.md#onclick)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onclick](_mwc_textfield_nullable_.textfieldnullable.md#onclick)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5804
 
 Fires when the user clicks the left mouse button on the object
@@ -1503,8 +1202,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onclose](_mwc_textfield_nullable_.textfieldnullable.md#onclose)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onclose](_mwc_textfield_nullable_.textfieldnullable.md#onclose)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
 ___
@@ -1514,8 +1211,6 @@ ___
 • **oncontextmenu**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncontextmenu](_mwc_textfield_nullable_.textfieldnullable.md#oncontextmenu)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncontextmenu](_mwc_textfield_nullable_.textfieldnullable.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1531,8 +1226,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncopy](_mwc_textfield_nullable_.textfieldnullable.md#oncopy)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncopy](_mwc_textfield_nullable_.textfieldnullable.md#oncopy)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4898
 
 ___
@@ -1542,8 +1235,6 @@ ___
 • **oncuechange**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncuechange](_mwc_textfield_nullable_.textfieldnullable.md#oncuechange)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncuechange](_mwc_textfield_nullable_.textfieldnullable.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5811
 
@@ -1555,8 +1246,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncut](_mwc_textfield_nullable_.textfieldnullable.md#oncut)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oncut](_mwc_textfield_nullable_.textfieldnullable.md#oncut)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4899
 
 ___
@@ -1566,8 +1255,6 @@ ___
 • **ondblclick**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondblclick](_mwc_textfield_nullable_.textfieldnullable.md#ondblclick)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondblclick](_mwc_textfield_nullable_.textfieldnullable.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5816
 
@@ -1583,8 +1270,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondrag](_mwc_textfield_nullable_.textfieldnullable.md#ondrag)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondrag](_mwc_textfield_nullable_.textfieldnullable.md#ondrag)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
 Fires on the source object continuously during a drag operation.
@@ -1598,8 +1283,6 @@ ___
 • **ondragend**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragend](_mwc_textfield_nullable_.textfieldnullable.md#ondragend)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragend](_mwc_textfield_nullable_.textfieldnullable.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1615,8 +1298,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragenter](_mwc_textfield_nullable_.textfieldnullable.md#ondragenter)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragenter](_mwc_textfield_nullable_.textfieldnullable.md#ondragenter)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
 Fires on the target element when the user drags the object to a valid drop target.
@@ -1631,8 +1312,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragexit](_mwc_textfield_nullable_.textfieldnullable.md#ondragexit)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragexit](_mwc_textfield_nullable_.textfieldnullable.md#ondragexit)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5832
 
 ___
@@ -1642,8 +1321,6 @@ ___
 • **ondragleave**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragleave](_mwc_textfield_nullable_.textfieldnullable.md#ondragleave)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragleave](_mwc_textfield_nullable_.textfieldnullable.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1659,8 +1336,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragover](_mwc_textfield_nullable_.textfieldnullable.md#ondragover)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragover](_mwc_textfield_nullable_.textfieldnullable.md#ondragover)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
 Fires on the target element continuously while the user drags the object over a valid drop target.
@@ -1674,8 +1349,6 @@ ___
 • **ondragstart**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragstart](_mwc_textfield_nullable_.textfieldnullable.md#ondragstart)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondragstart](_mwc_textfield_nullable_.textfieldnullable.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1691,8 +1364,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondrop](_mwc_textfield_nullable_.textfieldnullable.md#ondrop)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondrop](_mwc_textfield_nullable_.textfieldnullable.md#ondrop)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5848
 
 ___
@@ -1702,8 +1373,6 @@ ___
 • **ondurationchange**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondurationchange](_mwc_textfield_nullable_.textfieldnullable.md#ondurationchange)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ondurationchange](_mwc_textfield_nullable_.textfieldnullable.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5853
 
@@ -1719,8 +1388,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onemptied](_mwc_textfield_nullable_.textfieldnullable.md#onemptied)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onemptied](_mwc_textfield_nullable_.textfieldnullable.md#onemptied)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5858
 
 Occurs when the media element is reset to its initial state.
@@ -1734,8 +1401,6 @@ ___
 • **onended**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onended](_mwc_textfield_nullable_.textfieldnullable.md#onended)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onended](_mwc_textfield_nullable_.textfieldnullable.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1751,8 +1416,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onerror](_mwc_textfield_nullable_.textfieldnullable.md#onerror)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onerror](_mwc_textfield_nullable_.textfieldnullable.md#onerror)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5868
 
 Fires when an error occurs during object loading.
@@ -1766,8 +1429,6 @@ ___
 • **onfocus**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfocus](_mwc_textfield_nullable_.textfieldnullable.md#onfocus)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfocus](_mwc_textfield_nullable_.textfieldnullable.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5873
 
@@ -1783,8 +1444,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfullscreenchange](_mwc_textfield_nullable_.textfieldnullable.md#onfullscreenchange)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfullscreenchange](_mwc_textfield_nullable_.textfieldnullable.md#onfullscreenchange)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
 ___
@@ -1794,8 +1453,6 @@ ___
 • **onfullscreenerror**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfullscreenerror](_mwc_textfield_nullable_.textfieldnullable.md#onfullscreenerror)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onfullscreenerror](_mwc_textfield_nullable_.textfieldnullable.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -1807,8 +1464,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ongotpointercapture](_mwc_textfield_nullable_.textfieldnullable.md#ongotpointercapture)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ongotpointercapture](_mwc_textfield_nullable_.textfieldnullable.md#ongotpointercapture)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5874
 
 ___
@@ -1818,8 +1473,6 @@ ___
 • **oninput**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oninput](_mwc_textfield_nullable_.textfieldnullable.md#oninput)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oninput](_mwc_textfield_nullable_.textfieldnullable.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1831,8 +1484,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oninvalid](_mwc_textfield_nullable_.textfieldnullable.md#oninvalid)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[oninvalid](_mwc_textfield_nullable_.textfieldnullable.md#oninvalid)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5876
 
 ___
@@ -1842,8 +1493,6 @@ ___
 • **onkeydown**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeydown](_mwc_textfield_nullable_.textfieldnullable.md#onkeydown)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeydown](_mwc_textfield_nullable_.textfieldnullable.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5881
 
@@ -1859,8 +1508,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeypress](_mwc_textfield_nullable_.textfieldnullable.md#onkeypress)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeypress](_mwc_textfield_nullable_.textfieldnullable.md#onkeypress)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5886
 
 Fires when the user presses an alphanumeric key.
@@ -1874,8 +1521,6 @@ ___
 • **onkeyup**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeyup](_mwc_textfield_nullable_.textfieldnullable.md#onkeyup)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onkeyup](_mwc_textfield_nullable_.textfieldnullable.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5891
 
@@ -1891,8 +1536,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onload](_mwc_textfield_nullable_.textfieldnullable.md#onload)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onload](_mwc_textfield_nullable_.textfieldnullable.md#onload)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5896
 
 Fires immediately after the browser loads the object.
@@ -1906,8 +1549,6 @@ ___
 • **onloadeddata**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadeddata](_mwc_textfield_nullable_.textfieldnullable.md#onloadeddata)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadeddata](_mwc_textfield_nullable_.textfieldnullable.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1923,8 +1564,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadedmetadata](_mwc_textfield_nullable_.textfieldnullable.md#onloadedmetadata)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadedmetadata](_mwc_textfield_nullable_.textfieldnullable.md#onloadedmetadata)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
 Occurs when the duration and dimensions of the media have been determined.
@@ -1938,8 +1577,6 @@ ___
 • **onloadstart**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadstart](_mwc_textfield_nullable_.textfieldnullable.md#onloadstart)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onloadstart](_mwc_textfield_nullable_.textfieldnullable.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5911
 
@@ -1955,8 +1592,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onlostpointercapture](_mwc_textfield_nullable_.textfieldnullable.md#onlostpointercapture)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onlostpointercapture](_mwc_textfield_nullable_.textfieldnullable.md#onlostpointercapture)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5912
 
 ___
@@ -1966,8 +1601,6 @@ ___
 • **onmousedown**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmousedown](_mwc_textfield_nullable_.textfieldnullable.md#onmousedown)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmousedown](_mwc_textfield_nullable_.textfieldnullable.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5917
 
@@ -1983,8 +1616,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseenter](_mwc_textfield_nullable_.textfieldnullable.md#onmouseenter)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseenter](_mwc_textfield_nullable_.textfieldnullable.md#onmouseenter)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
 ___
@@ -1995,8 +1626,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseleave](_mwc_textfield_nullable_.textfieldnullable.md#onmouseleave)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseleave](_mwc_textfield_nullable_.textfieldnullable.md#onmouseleave)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5919
 
 ___
@@ -2006,8 +1635,6 @@ ___
 • **onmousemove**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmousemove](_mwc_textfield_nullable_.textfieldnullable.md#onmousemove)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmousemove](_mwc_textfield_nullable_.textfieldnullable.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5924
 
@@ -2023,8 +1650,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseout](_mwc_textfield_nullable_.textfieldnullable.md#onmouseout)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseout](_mwc_textfield_nullable_.textfieldnullable.md#onmouseout)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5929
 
 Fires when the user moves the mouse pointer outside the boundaries of the object.
@@ -2038,8 +1663,6 @@ ___
 • **onmouseover**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseover](_mwc_textfield_nullable_.textfieldnullable.md#onmouseover)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseover](_mwc_textfield_nullable_.textfieldnullable.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5934
 
@@ -2055,8 +1678,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseup](_mwc_textfield_nullable_.textfieldnullable.md#onmouseup)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onmouseup](_mwc_textfield_nullable_.textfieldnullable.md#onmouseup)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5939
 
 Fires when the user releases a mouse button while the mouse is over the object.
@@ -2071,8 +1692,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpaste](_mwc_textfield_nullable_.textfieldnullable.md#onpaste)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpaste](_mwc_textfield_nullable_.textfieldnullable.md#onpaste)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4900
 
 ___
@@ -2082,8 +1701,6 @@ ___
 • **onpause**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpause](_mwc_textfield_nullable_.textfieldnullable.md#onpause)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpause](_mwc_textfield_nullable_.textfieldnullable.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -2099,8 +1716,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onplay](_mwc_textfield_nullable_.textfieldnullable.md#onplay)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onplay](_mwc_textfield_nullable_.textfieldnullable.md#onplay)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
 Occurs when the play method is requested.
@@ -2114,8 +1729,6 @@ ___
 • **onplaying**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onplaying](_mwc_textfield_nullable_.textfieldnullable.md#onplaying)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onplaying](_mwc_textfield_nullable_.textfieldnullable.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5954
 
@@ -2131,8 +1744,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointercancel](_mwc_textfield_nullable_.textfieldnullable.md#onpointercancel)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointercancel](_mwc_textfield_nullable_.textfieldnullable.md#onpointercancel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5955
 
 ___
@@ -2142,8 +1753,6 @@ ___
 • **onpointerdown**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerdown](_mwc_textfield_nullable_.textfieldnullable.md#onpointerdown)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerdown](_mwc_textfield_nullable_.textfieldnullable.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -2155,8 +1764,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerenter](_mwc_textfield_nullable_.textfieldnullable.md#onpointerenter)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerenter](_mwc_textfield_nullable_.textfieldnullable.md#onpointerenter)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5957
 
 ___
@@ -2166,8 +1773,6 @@ ___
 • **onpointerleave**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerleave](_mwc_textfield_nullable_.textfieldnullable.md#onpointerleave)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerleave](_mwc_textfield_nullable_.textfieldnullable.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5958
 
@@ -2179,8 +1784,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointermove](_mwc_textfield_nullable_.textfieldnullable.md#onpointermove)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointermove](_mwc_textfield_nullable_.textfieldnullable.md#onpointermove)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5959
 
 ___
@@ -2190,8 +1793,6 @@ ___
 • **onpointerout**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerout](_mwc_textfield_nullable_.textfieldnullable.md#onpointerout)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerout](_mwc_textfield_nullable_.textfieldnullable.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5960
 
@@ -2203,8 +1804,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerover](_mwc_textfield_nullable_.textfieldnullable.md#onpointerover)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerover](_mwc_textfield_nullable_.textfieldnullable.md#onpointerover)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
 ___
@@ -2215,8 +1814,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerup](_mwc_textfield_nullable_.textfieldnullable.md#onpointerup)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onpointerup](_mwc_textfield_nullable_.textfieldnullable.md#onpointerup)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5962
 
 ___
@@ -2226,8 +1823,6 @@ ___
 • **onprogress**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onprogress](_mwc_textfield_nullable_.textfieldnullable.md#onprogress)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onprogress](_mwc_textfield_nullable_.textfieldnullable.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -2243,8 +1838,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onratechange](_mwc_textfield_nullable_.textfieldnullable.md#onratechange)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onratechange](_mwc_textfield_nullable_.textfieldnullable.md#onratechange)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
 Occurs when the playback rate is increased or decreased.
@@ -2258,8 +1851,6 @@ ___
 • **onreset**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onreset](_mwc_textfield_nullable_.textfieldnullable.md#onreset)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onreset](_mwc_textfield_nullable_.textfieldnullable.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5977
 
@@ -2275,8 +1866,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onresize](_mwc_textfield_nullable_.textfieldnullable.md#onresize)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onresize](_mwc_textfield_nullable_.textfieldnullable.md#onresize)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
 ___
@@ -2286,8 +1875,6 @@ ___
 • **onscroll**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onscroll](_mwc_textfield_nullable_.textfieldnullable.md#onscroll)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onscroll](_mwc_textfield_nullable_.textfieldnullable.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -2303,8 +1890,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsecuritypolicyviolation](_mwc_textfield_nullable_.textfieldnullable.md#onsecuritypolicyviolation)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsecuritypolicyviolation](_mwc_textfield_nullable_.textfieldnullable.md#onsecuritypolicyviolation)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5984
 
 ___
@@ -2314,8 +1899,6 @@ ___
 • **onseeked**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onseeked](_mwc_textfield_nullable_.textfieldnullable.md#onseeked)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onseeked](_mwc_textfield_nullable_.textfieldnullable.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -2331,8 +1914,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onseeking](_mwc_textfield_nullable_.textfieldnullable.md#onseeking)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onseeking](_mwc_textfield_nullable_.textfieldnullable.md#onseeking)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5994
 
 Occurs when the current playback position is moved.
@@ -2346,8 +1927,6 @@ ___
 • **onselect**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselect](_mwc_textfield_nullable_.textfieldnullable.md#onselect)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselect](_mwc_textfield_nullable_.textfieldnullable.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5999
 
@@ -2363,8 +1942,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselectionchange](_mwc_textfield_nullable_.textfieldnullable.md#onselectionchange)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselectionchange](_mwc_textfield_nullable_.textfieldnullable.md#onselectionchange)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6000
 
 ___
@@ -2375,8 +1952,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselectstart](_mwc_textfield_nullable_.textfieldnullable.md#onselectstart)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onselectstart](_mwc_textfield_nullable_.textfieldnullable.md#onselectstart)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
 ___
@@ -2386,8 +1961,6 @@ ___
 • **onstalled**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onstalled](_mwc_textfield_nullable_.textfieldnullable.md#onstalled)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onstalled](_mwc_textfield_nullable_.textfieldnullable.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -2403,8 +1976,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsubmit](_mwc_textfield_nullable_.textfieldnullable.md#onsubmit)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsubmit](_mwc_textfield_nullable_.textfieldnullable.md#onsubmit)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
 ___
@@ -2414,8 +1985,6 @@ ___
 • **onsuspend**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsuspend](_mwc_textfield_nullable_.textfieldnullable.md#onsuspend)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onsuspend](_mwc_textfield_nullable_.textfieldnullable.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2431,8 +2000,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontimeupdate](_mwc_textfield_nullable_.textfieldnullable.md#ontimeupdate)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontimeupdate](_mwc_textfield_nullable_.textfieldnullable.md#ontimeupdate)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6017
 
 Occurs to indicate the current playback position.
@@ -2447,8 +2014,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontoggle](_mwc_textfield_nullable_.textfieldnullable.md#ontoggle)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontoggle](_mwc_textfield_nullable_.textfieldnullable.md#ontoggle)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6018
 
 ___
@@ -2458,8 +2023,6 @@ ___
 • **ontouchcancel**? : *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchcancel](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchcancel)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchcancel](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6019
 
@@ -2471,8 +2034,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchend](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchend)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchend](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchend)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
 ___
@@ -2482,8 +2043,6 @@ ___
 • **ontouchmove**? : *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchmove](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchmove)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchmove](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6021
 
@@ -2495,8 +2054,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchstart](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchstart)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontouchstart](_mwc_textfield_nullable_.textfieldnullable.md#optional-ontouchstart)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6022
 
 ___
@@ -2506,8 +2063,6 @@ ___
 • **ontransitioncancel**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitioncancel](_mwc_textfield_nullable_.textfieldnullable.md#ontransitioncancel)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitioncancel](_mwc_textfield_nullable_.textfieldnullable.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6023
 
@@ -2519,8 +2074,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionend](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionend)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionend](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionend)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6024
 
 ___
@@ -2530,8 +2083,6 @@ ___
 • **ontransitionrun**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionrun](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionrun)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionrun](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2543,8 +2094,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionstart](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionstart)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ontransitionstart](_mwc_textfield_nullable_.textfieldnullable.md#ontransitionstart)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
 ___
@@ -2554,8 +2103,6 @@ ___
 • **onvolumechange**: *function | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onvolumechange](_mwc_textfield_nullable_.textfieldnullable.md#onvolumechange)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onvolumechange](_mwc_textfield_nullable_.textfieldnullable.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6031
 
@@ -2571,8 +2118,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onwaiting](_mwc_textfield_nullable_.textfieldnullable.md#onwaiting)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onwaiting](_mwc_textfield_nullable_.textfieldnullable.md#onwaiting)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6036
 
 Occurs when playback stops because the next frame of a video resource is not available.
@@ -2587,8 +2132,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onwheel](_mwc_textfield_nullable_.textfieldnullable.md#onwheel)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onwheel](_mwc_textfield_nullable_.textfieldnullable.md#onwheel)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6037
 
 ___
@@ -2598,8 +2141,6 @@ ___
 • **outerHTML**: *string*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[outerHTML](_mwc_textfield_nullable_.textfieldnullable.md#outerhtml)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[outerHTML](_mwc_textfield_nullable_.textfieldnullable.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5127
 
@@ -2617,13 +2158,19 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5128
 
 ___
 
+###  pageIndex
+
+• **pageIndex**: *number* = 0
+
+*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L65)*
+
+___
+
 ### `Readonly` parentElement
 
 • **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[parentElement](_mwc_textfield_nullable_.textfieldnullable.md#readonly-parentelement)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[parentElement](_mwc_textfield_nullable_.textfieldnullable.md#readonly-parentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10795
 
@@ -2637,8 +2184,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[parentNode](_mwc_textfield_nullable_.textfieldnullable.md#readonly-parentnode)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[parentNode](_mwc_textfield_nullable_.textfieldnullable.md#readonly-parentnode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10799
 
 Returns the parent.
@@ -2650,8 +2195,6 @@ ___
 • **prefix**: *string | null*
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
-
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5132
 
@@ -2665,8 +2208,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[previousElementSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-previouselementsibling)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[previousElementSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-previouselementsibling)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11047
 
 Returns the first preceding sibling that is an element, and null otherwise.
@@ -2678,8 +2219,6 @@ ___
 • **previousSibling**: *ChildNode | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[previousSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-previoussibling)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[previousSibling](_mwc_textfield_nullable_.textfieldnullable.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10803
 
@@ -2706,8 +2245,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-scrollheight)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollHeight](_mwc_textfield_nullable_.textfieldnullable.md#readonly-scrollheight)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5133
 
 ___
@@ -2717,8 +2254,6 @@ ___
 • **scrollLeft**: *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollLeft](_mwc_textfield_nullable_.textfieldnullable.md#scrollleft)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollLeft](_mwc_textfield_nullable_.textfieldnullable.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2730,8 +2265,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTop](_mwc_textfield_nullable_.textfieldnullable.md#scrolltop)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTop](_mwc_textfield_nullable_.textfieldnullable.md#scrolltop)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5135
 
 ___
@@ -2742,8 +2275,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-scrollwidth)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollWidth](_mwc_textfield_nullable_.textfieldnullable.md#readonly-scrollwidth)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5136
 
 ___
@@ -2753,8 +2284,6 @@ ___
 • **shadowRoot**: *ShadowRoot | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[shadowRoot](_mwc_textfield_nullable_.textfieldnullable.md#readonly-shadowroot)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[shadowRoot](_mwc_textfield_nullable_.textfieldnullable.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5140
 
@@ -2768,8 +2297,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[slot](_mwc_textfield_nullable_.textfieldnullable.md#slot)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[slot](_mwc_textfield_nullable_.textfieldnullable.md#slot)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5144
 
 Returns the value of element's slot content attribute. Can be set to change it.
@@ -2782,19 +2309,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[spellcheck](_mwc_textfield_nullable_.textfieldnullable.md#spellcheck)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[spellcheck](_mwc_textfield_nullable_.textfieldnullable.md#spellcheck)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6600
-
-___
-
-###  srcName
-
-• **srcName**: *string* = "untitled.scd"
-
-*Defined in [src/open-scd-base.ts:169](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L169)*
-
-The name of the current file.
 
 ___
 
@@ -2803,8 +2318,6 @@ ___
 • **style**: *CSSStyleDeclaration*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[style](_mwc_textfield_nullable_.textfieldnullable.md#readonly-style)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[style](_mwc_textfield_nullable_.textfieldnullable.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5260
 
@@ -2816,19 +2329,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[tabIndex](_mwc_textfield_nullable_.textfieldnullable.md#tabindex)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[tabIndex](_mwc_textfield_nullable_.textfieldnullable.md#tabindex)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8004
-
-___
-
-###  tag
-
-• **tag**: *string* = "SCL"
-
-*Defined in [src/open-scd-base.ts:167](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L167)*
-
-The tag name this editor is responsible for editing
 
 ___
 
@@ -2837,8 +2338,6 @@ ___
 • **tagName**: *string*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[tagName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-tagname)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[tagName](_mwc_textfield_nullable_.textfieldnullable.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -2852,8 +2351,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[textContent](_mwc_textfield_nullable_.textfieldnullable.md#textcontent)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[textContent](_mwc_textfield_nullable_.textfieldnullable.md#textcontent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10804
 
 ___
@@ -2863,8 +2360,6 @@ ___
 • **title**: *string*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[title](_mwc_textfield_nullable_.textfieldnullable.md#title)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[title](_mwc_textfield_nullable_.textfieldnullable.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6601
 
@@ -2876,51 +2371,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[translate](_mwc_textfield_nullable_.textfieldnullable.md#translate)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[translate](_mwc_textfield_nullable_.textfieldnullable.md#translate)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6602
-
-___
-
-###  waiting
-
-• **waiting**: *boolean* = false
-
-*Overrides void*
-
-*Defined in [src/open-scd-base.ts:155](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L155)*
-
-Whether the editor is currently waiting for some async work.
-
-___
-
-### `Protected` work
-
-• **work**: *Set‹Promise‹string››* = new Set()
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
-
-*Defined in [src/waiting.ts:8](https://github.com/openscd/open-scd/blob/e0075da/src/waiting.ts#L8)*
-
-___
-
-###  workDone
-
-• **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
-
-*Defined in [src/waiting.ts:10](https://github.com/openscd/open-scd/blob/e0075da/src/waiting.ts#L10)*
-
-A promise which resolves once all currently pending work is done.
-
-___
-
-###  workflow
-
-• **workflow**: *[Wizard](../interfaces/_foundation_.wizard.md)[]* = []
-
-*Defined in [src/open-scd-base.ts:150](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L150)*
 
 ___
 
@@ -3003,42 +2454,25 @@ Name | Type |
 
 ___
 
-### `Static` `Optional` styles
+### `Static` styles
 
-▪ **styles**? : *CSSResultOrNative | CSSResultArray*
+▪ **styles**: *CSSResult‹›* = css`
+    mwc-dialog {
+      display: flex;
+      flex-direction: column;
+    }
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
+    mwc-dialog > * {
+      display: block;
+      margin-top: 16px;
+    }
+  `
 
-Defined in node_modules/lit-element/lit-element.d.ts:110
+*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-Array of styles to apply to the element. The styles should be defined
-using the [[`css`]] tag function or via constructible stylesheets.
+*Defined in [src/open-scd-base.ts:96](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L96)*
 
 ## Accessors
-
-###  canRedo
-
-• **get canRedo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
-
-*Defined in [src/editing.ts:51](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L51)*
-
-**Returns:** *boolean*
-
-___
-
-###  canUndo
-
-• **get canUndo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
-
-*Defined in [src/editing.ts:48](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L48)*
-
-**Returns:** *boolean*
-
-___
 
 ### `Protected` hasUpdated
 
@@ -3052,63 +2486,13 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:337
 
 ___
 
-###  name
+###  page
 
-• **get name**(): *string | null*
+• **get page**(): *[WizardPage](../interfaces/_foundation_.wizardpage.md)*
 
-*Defined in [src/open-scd-base.ts:163](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L163)*
+*Defined in [src/open-scd-base.ts:67](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L67)*
 
-**Returns:** *string | null*
-
-___
-
-###  nextAction
-
-• **get nextAction**(): *number*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
-
-*Defined in [src/editing.ts:61](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L61)*
-
-**Returns:** *number*
-
-___
-
-###  previousAction
-
-• **get previousAction**(): *number*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
-
-*Defined in [src/editing.ts:54](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L54)*
-
-**Returns:** *number*
-
-___
-
-###  src
-
-• **get src**(): *string*
-
-*Defined in [src/open-scd-base.ts:173](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L173)*
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Returns:** *string*
-
-• **set src**(`value`: string): *void*
-
-*Defined in [src/open-scd-base.ts:176](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L176)*
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | string |
-
-**Returns:** *void*
+**Returns:** *[WizardPage](../interfaces/_foundation_.wizardpage.md)*
 
 ___
 
@@ -3260,8 +2644,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[after](_mwc_textfield_nullable_.textfieldnullable.md#after)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[after](_mwc_textfield_nullable_.textfieldnullable.md#after)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3506
 
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
@@ -3284,8 +2666,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[animate](_mwc_textfield_nullable_.textfieldnullable.md#animate)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[animate](_mwc_textfield_nullable_.textfieldnullable.md#animate)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
 **Parameters:**
@@ -3304,8 +2684,6 @@ ___
 ▸ **append**(...`nodes`: (Node | string)[]): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[append](_mwc_textfield_nullable_.textfieldnullable.md#append)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[append](_mwc_textfield_nullable_.textfieldnullable.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -3329,8 +2707,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[appendChild](_mwc_textfield_nullable_.textfieldnullable.md#appendchild)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[appendChild](_mwc_textfield_nullable_.textfieldnullable.md#appendchild)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
 **Type parameters:**
@@ -3352,8 +2728,6 @@ ___
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[attachShadow](_mwc_textfield_nullable_.textfieldnullable.md#attachshadow)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[attachShadow](_mwc_textfield_nullable_.textfieldnullable.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3397,8 +2771,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[before](_mwc_textfield_nullable_.textfieldnullable.md#before)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[before](_mwc_textfield_nullable_.textfieldnullable.md#before)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3512
 
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -3421,8 +2793,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8005
 
 **Returns:** *void*
@@ -3435,8 +2805,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6603
 
 **Returns:** *void*
@@ -3448,8 +2816,6 @@ ___
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[cloneNode](_mwc_textfield_nullable_.textfieldnullable.md#clonenode)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[cloneNode](_mwc_textfield_nullable_.textfieldnullable.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3465,13 +2831,27 @@ Name | Type |
 
 ___
 
+###  closed
+
+▸ **closed**(`action`: string): *void*
+
+*Defined in [src/open-scd-base.ts:81](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L81)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`action` | string |
+
+**Returns:** *void*
+
+___
+
 ###  closest
 
 ▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3493,8 +2873,6 @@ Name | Type |
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5157
 
 **Type parameters:**
@@ -3513,8 +2891,6 @@ Name | Type |
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[closest](_mwc_textfield_nullable_.textfieldnullable.md#closest)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5158
 
 **Type parameters:**
@@ -3531,33 +2907,11 @@ Name | Type |
 
 ___
 
-###  commit
-
-▸ **commit**(`title`: string, `action`: [Action](../modules/_foundation_.md#action), `options?`: [LogOptions](../modules/_editing_.md#logoptions)): *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
-
-*Defined in [src/editing.ts:116](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L116)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`action` | [Action](../modules/_foundation_.md#action) |
-`options?` | [LogOptions](../modules/_editing_.md#logoptions) |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-___
-
 ###  compareDocumentPosition
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[compareDocumentPosition](_mwc_textfield_nullable_.textfieldnullable.md#comparedocumentposition)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[compareDocumentPosition](_mwc_textfield_nullable_.textfieldnullable.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -3592,8 +2946,6 @@ ___
 ▸ **contains**(`other`: Node | null): *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[contains](_mwc_textfield_nullable_.textfieldnullable.md#contains)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[contains](_mwc_textfield_nullable_.textfieldnullable.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10817
 
@@ -3650,8 +3002,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dispatchEvent](_mwc_textfield_nullable_.textfieldnullable.md#dispatchevent)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[dispatchEvent](_mwc_textfield_nullable_.textfieldnullable.md#dispatchevent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5428
 
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
@@ -3675,25 +3025,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:299
 
 **Returns:** *void*
-
-___
-
-###  error
-
-▸ **error**(`title`: string, `options?`: [LogOptions](../modules/_editing_.md#logoptions)): *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-*Overrides void*
-
-*Defined in [src/open-scd-base.ts:186](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L186)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`options?` | [LogOptions](../modules/_editing_.md#logoptions) |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
 
 ___
 
@@ -3727,8 +3058,6 @@ ___
 
 *Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8006
 
 **Parameters:**
@@ -3747,8 +3076,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAnimations](_mwc_textfield_nullable_.textfieldnullable.md#getanimations)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAnimations](_mwc_textfield_nullable_.textfieldnullable.md#getanimations)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
 **Returns:** *Animation[]*
@@ -3760,8 +3087,6 @@ ___
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttribute](_mwc_textfield_nullable_.textfieldnullable.md#getattribute)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttribute](_mwc_textfield_nullable_.textfieldnullable.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3782,8 +3107,6 @@ ___
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#getattributens)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5166
 
@@ -3806,8 +3129,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNames](_mwc_textfield_nullable_.textfieldnullable.md#getattributenames)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNames](_mwc_textfield_nullable_.textfieldnullable.md#getattributenames)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
 Returns the qualified names of all element's attributes. Can contain duplicates.
@@ -3821,8 +3142,6 @@ ___
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#getattributenode)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3841,8 +3160,6 @@ ___
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNodeNS](_mwc_textfield_nullable_.textfieldnullable.md#getattributenodens)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getAttributeNodeNS](_mwc_textfield_nullable_.textfieldnullable.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3863,8 +3180,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getBoundingClientRect](_mwc_textfield_nullable_.textfieldnullable.md#getboundingclientrect)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getBoundingClientRect](_mwc_textfield_nullable_.textfieldnullable.md#getboundingclientrect)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
 **Returns:** *DOMRect*
@@ -3877,8 +3192,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getClientRects](_mwc_textfield_nullable_.textfieldnullable.md#getclientrects)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getClientRects](_mwc_textfield_nullable_.textfieldnullable.md#getclientrects)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
 **Returns:** *DOMRectList*
@@ -3890,8 +3203,6 @@ ___
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByClassName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbyclassname)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByClassName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3913,8 +3224,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5179
 
 **Type parameters:**
@@ -3932,8 +3241,6 @@ Name | Type |
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5180
 
@@ -3953,8 +3260,6 @@ Name | Type |
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagName](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagname)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5181
 
 **Parameters:**
@@ -3973,8 +3278,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
 **Parameters:**
@@ -3990,8 +3293,6 @@ Name | Type |
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5183
 
 **Parameters:**
@@ -4006,8 +3307,6 @@ Name | Type |
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getElementsByTagNameNS](_mwc_textfield_nullable_.textfieldnullable.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5184
 
@@ -4028,8 +3327,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getRootNode](_mwc_textfield_nullable_.textfieldnullable.md#getrootnode)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getRootNode](_mwc_textfield_nullable_.textfieldnullable.md#getrootnode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
 Returns node's root.
@@ -4044,29 +3341,11 @@ Name | Type |
 
 ___
 
-### `Private` handleKeyPress
-
-▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
-
-*Defined in [src/open-scd-base.ts:238](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L238)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`e` | KeyboardEvent |
-
-**Returns:** *void*
-
-___
-
 ###  hasAttribute
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttribute](_mwc_textfield_nullable_.textfieldnullable.md#hasattribute)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttribute](_mwc_textfield_nullable_.textfieldnullable.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -4087,8 +3366,6 @@ ___
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#hasattributens)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5192
 
@@ -4111,8 +3388,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttributes](_mwc_textfield_nullable_.textfieldnullable.md#hasattributes)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasAttributes](_mwc_textfield_nullable_.textfieldnullable.md#hasattributes)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
 Returns true if element has attributes, and false otherwise.
@@ -4127,8 +3402,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasChildNodes](_mwc_textfield_nullable_.textfieldnullable.md#haschildnodes)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasChildNodes](_mwc_textfield_nullable_.textfieldnullable.md#haschildnodes)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10825
 
 Returns whether node has children.
@@ -4142,8 +3415,6 @@ ___
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasPointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#haspointercapture)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[hasPointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5197
 
@@ -4162,8 +3433,6 @@ ___
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[info](_mwc_textfield_nullable_.textfieldnullable.md#optional-info)*
-
-*Overrides void*
 
 *Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L157)*
 
@@ -4202,8 +3471,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentElement](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacentelement)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentElement](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacentelement)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5198
 
 **Parameters:**
@@ -4222,8 +3489,6 @@ ___
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentHTML](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacenthtml)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentHTML](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5199
 
@@ -4244,8 +3509,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentText](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacenttext)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertAdjacentText](_mwc_textfield_nullable_.textfieldnullable.md#insertadjacenttext)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
 **Parameters:**
@@ -4264,8 +3527,6 @@ ___
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertBefore](_mwc_textfield_nullable_.textfieldnullable.md#insertbefore)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[insertBefore](_mwc_textfield_nullable_.textfieldnullable.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -4290,8 +3551,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isDefaultNamespace](_mwc_textfield_nullable_.textfieldnullable.md#isdefaultnamespace)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isDefaultNamespace](_mwc_textfield_nullable_.textfieldnullable.md#isdefaultnamespace)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
 **Parameters:**
@@ -4309,8 +3568,6 @@ ___
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isEqualNode](_mwc_textfield_nullable_.textfieldnullable.md#isequalnode)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isEqualNode](_mwc_textfield_nullable_.textfieldnullable.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10831
 
@@ -4332,8 +3589,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isSameNode](_mwc_textfield_nullable_.textfieldnullable.md#issamenode)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isSameNode](_mwc_textfield_nullable_.textfieldnullable.md#issamenode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10832
 
 **Parameters:**
@@ -4346,66 +3601,11 @@ Name | Type |
 
 ___
 
-### `Private` loadDoc
-
-▸ **loadDoc**(`src`: string): *Promise‹string›*
-
-*Defined in [src/open-scd-base.ts:191](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L191)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`src` | string |
-
-**Returns:** *Promise‹string›*
-
-___
-
-### `Private` loadFile
-
-▸ **loadFile**(`event`: Event): *void*
-
-*Defined in [src/open-scd-base.ts:229](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L229)*
-
-Loads the file selected by input `event.target.files[0]`.
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`event` | Event |
-
-**Returns:** *void*
-
-___
-
-###  log
-
-▸ **log**(`title`: string, `detail?`: Partial‹[LogEntry](../interfaces/_editing_.logentry.md)›): *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
-
-*Defined in [src/editing.ts:85](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L85)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`detail?` | Partial‹[LogEntry](../interfaces/_editing_.logentry.md)› |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-___
-
 ###  lookupNamespaceURI
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lookupNamespaceURI](_mwc_textfield_nullable_.textfieldnullable.md#lookupnamespaceuri)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lookupNamespaceURI](_mwc_textfield_nullable_.textfieldnullable.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -4425,8 +3625,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lookupPrefix](_mwc_textfield_nullable_.textfieldnullable.md#lookupprefix)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lookupPrefix](_mwc_textfield_nullable_.textfieldnullable.md#lookupprefix)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10834
 
 **Parameters:**
@@ -4444,8 +3642,6 @@ ___
 ▸ **matches**(`selectors`: string): *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[matches](_mwc_textfield_nullable_.textfieldnullable.md#matches)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[matches](_mwc_textfield_nullable_.textfieldnullable.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -4467,11 +3663,19 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[msGetRegionContent](_mwc_textfield_nullable_.textfieldnullable.md#msgetregioncontent)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[msGetRegionContent](_mwc_textfield_nullable_.textfieldnullable.md#msgetregioncontent)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
 **Returns:** *any*
+
+___
+
+###  next
+
+▸ **next**(): *void*
+
+*Defined in [src/open-scd-base.ts:74](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L74)*
+
+**Returns:** *void*
 
 ___
 
@@ -4480,8 +3684,6 @@ ___
 ▸ **normalize**(): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[normalize](_mwc_textfield_nullable_.textfieldnullable.md#normalize)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[normalize](_mwc_textfield_nullable_.textfieldnullable.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10838
 
@@ -4524,8 +3726,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[prepend](_mwc_textfield_nullable_.textfieldnullable.md#prepend)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[prepend](_mwc_textfield_nullable_.textfieldnullable.md#prepend)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -4542,13 +3742,21 @@ Name | Type |
 
 ___
 
+###  prev
+
+▸ **prev**(): *void*
+
+*Defined in [src/open-scd-base.ts:77](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L77)*
+
+**Returns:** *void*
+
+___
+
 ###  querySelector
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11341
 
@@ -4570,8 +3778,6 @@ Name | Type |
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11342
 
 **Type parameters:**
@@ -4589,8 +3795,6 @@ Name | Type |
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelector](_mwc_textfield_nullable_.textfieldnullable.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11343
 
@@ -4614,8 +3818,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11347
 
 Returns all element descendants of node that match selectors.
@@ -4636,8 +3838,6 @@ Name | Type |
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11348
 
 **Type parameters:**
@@ -4656,8 +3856,6 @@ Name | Type |
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[querySelectorAll](_mwc_textfield_nullable_.textfieldnullable.md#queryselectorall)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11349
 
 **Type parameters:**
@@ -4674,25 +3872,11 @@ Name | Type |
 
 ___
 
-###  redo
-
-▸ **redo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
-
-*Defined in [src/editing.ts:78](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L78)*
-
-**Returns:** *boolean*
-
-___
-
 ###  releasePointerCapture
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[releasePointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#releasepointercapture)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[releasePointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5206
 
@@ -4712,8 +3896,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[remove](_mwc_textfield_nullable_.textfieldnullable.md#remove)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[remove](_mwc_textfield_nullable_.textfieldnullable.md#remove)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3516
 
 Removes node.
@@ -4727,8 +3909,6 @@ ___
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttribute](_mwc_textfield_nullable_.textfieldnullable.md#removeattribute)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttribute](_mwc_textfield_nullable_.textfieldnullable.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5210
 
@@ -4749,8 +3929,6 @@ ___
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#removeattributens)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4773,8 +3951,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#removeattributenode)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#removeattributenode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
 **Parameters:**
@@ -4792,8 +3968,6 @@ ___
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeChild](_mwc_textfield_nullable_.textfieldnullable.md#removechild)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[removeChild](_mwc_textfield_nullable_.textfieldnullable.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10839
 
@@ -4866,95 +4040,13 @@ ___
 
 ###  render
 
-▸ **render**(): *TemplateResult*
+▸ **render**(): *TemplateResult‹›*
 
 *Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[render](_mwc_textfield_nullable_.textfieldnullable.md#static-render)*
 
-*Defined in [src/open-scd-base.ts:407](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L407)*
+*Defined in [src/open-scd-base.ts:108](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L108)*
 
-**Returns:** *TemplateResult*
-
-___
-
-###  renderActionItem
-
-▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
-
-*Defined in [src/open-scd-base.ts:352](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L352)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
-
-**Returns:** *TemplateResult*
-
-___
-
-###  renderEditorTab
-
-▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
-
-*Defined in [src/open-scd-base.ts:364](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L364)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`editor` | [Tab](../interfaces/_open_scd_base_.tab.md) |
-
-**Returns:** *TemplateResult*
-
-___
-
-###  renderHistory
-
-▸ **renderHistory**(`history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult[]*
-
-*Defined in [src/open-scd-base.ts:375](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L375)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`history` | [LogEntry](../interfaces/_editing_.logentry.md)[] |
-
-**Returns:** *TemplateResult[]*
-
-___
-
-###  renderLogEntry
-
-▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_editing_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult*
-
-*Defined in [src/open-scd-base.ts:387](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L387)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`entry` | [LogEntry](../interfaces/_editing_.logentry.md) |
-`index` | number |
-`history` | [LogEntry](../interfaces/_editing_.logentry.md)[] |
-
-**Returns:** *TemplateResult*
-
-___
-
-###  renderMenuEntry
-
-▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
-
-*Defined in [src/open-scd-base.ts:333](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L333)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
-
-**Returns:** *TemplateResult*
+**Returns:** *TemplateResult‹›*
 
 ___
 
@@ -4963,8 +4055,6 @@ ___
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[replaceChild](_mwc_textfield_nullable_.textfieldnullable.md#replacechild)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[replaceChild](_mwc_textfield_nullable_.textfieldnullable.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10840
 
@@ -4989,8 +4079,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[replaceWith](_mwc_textfield_nullable_.textfieldnullable.md#replacewith)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[replaceWith](_mwc_textfield_nullable_.textfieldnullable.md#replacewith)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3522
 
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -5013,8 +4101,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[requestFullscreen](_mwc_textfield_nullable_.textfieldnullable.md#requestfullscreen)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[requestFullscreen](_mwc_textfield_nullable_.textfieldnullable.md#requestfullscreen)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5221
 
 Displays element fullscreen and resolves promise when done.
@@ -5036,8 +4122,6 @@ ___
 ▸ **requestPointerLock**(): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[requestPointerLock](_mwc_textfield_nullable_.textfieldnullable.md#requestpointerlock)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[requestPointerLock](_mwc_textfield_nullable_.textfieldnullable.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5222
 
@@ -5104,8 +4188,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scroll](_mwc_textfield_nullable_.textfieldnullable.md#scroll)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scroll](_mwc_textfield_nullable_.textfieldnullable.md#scroll)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
 **Parameters:**
@@ -5119,8 +4201,6 @@ Name | Type |
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scroll](_mwc_textfield_nullable_.textfieldnullable.md#scroll)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scroll](_mwc_textfield_nullable_.textfieldnullable.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5224
 
@@ -5141,8 +4221,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollBy](_mwc_textfield_nullable_.textfieldnullable.md#scrollby)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollBy](_mwc_textfield_nullable_.textfieldnullable.md#scrollby)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5225
 
 **Parameters:**
@@ -5156,8 +4234,6 @@ Name | Type |
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollBy](_mwc_textfield_nullable_.textfieldnullable.md#scrollby)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollBy](_mwc_textfield_nullable_.textfieldnullable.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5226
 
@@ -5178,8 +4254,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollIntoView](_mwc_textfield_nullable_.textfieldnullable.md#scrollintoview)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollIntoView](_mwc_textfield_nullable_.textfieldnullable.md#scrollintoview)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
 **Parameters:**
@@ -5198,8 +4272,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTo](_mwc_textfield_nullable_.textfieldnullable.md#scrollto)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTo](_mwc_textfield_nullable_.textfieldnullable.md#scrollto)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
 **Parameters:**
@@ -5213,8 +4285,6 @@ Name | Type |
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTo](_mwc_textfield_nullable_.textfieldnullable.md#scrollto)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[scrollTo](_mwc_textfield_nullable_.textfieldnullable.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -5234,8 +4304,6 @@ ___
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttribute](_mwc_textfield_nullable_.textfieldnullable.md#setattribute)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttribute](_mwc_textfield_nullable_.textfieldnullable.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5233
 
@@ -5257,8 +4325,6 @@ ___
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#setattributens)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNS](_mwc_textfield_nullable_.textfieldnullable.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -5282,8 +4348,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#setattributenode)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNode](_mwc_textfield_nullable_.textfieldnullable.md#setattributenode)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5238
 
 **Parameters:**
@@ -5302,8 +4366,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNodeNS](_mwc_textfield_nullable_.textfieldnullable.md#setattributenodens)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAttributeNodeNS](_mwc_textfield_nullable_.textfieldnullable.md#setattributenodens)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5239
 
 **Parameters:**
@@ -5321,8 +4383,6 @@ ___
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setPointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#setpointercapture)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setPointerCapture](_mwc_textfield_nullable_.textfieldnullable.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5240
 
@@ -5364,8 +4424,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[toggleAttribute](_mwc_textfield_nullable_.textfieldnullable.md#toggleattribute)*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[toggleAttribute](_mwc_textfield_nullable_.textfieldnullable.md#toggleattribute)*
-
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5246
 
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -5378,18 +4436,6 @@ Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
 `force?` | undefined &#124; false &#124; true |
-
-**Returns:** *boolean*
-
-___
-
-###  undo
-
-▸ **undo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
-
-*Defined in [src/editing.ts:69](https://github.com/openscd/open-scd/blob/e0075da/src/editing.ts#L69)*
 
 **Returns:** *boolean*
 
@@ -5449,8 +4495,6 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[warn](_mwc_textfield_nullable_.textfieldnullable.md#optional-warn)*
 
-*Overrides void*
-
 *Defined in [src/foundation.ts:158](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L158)*
 
 **Parameters:**
@@ -5469,8 +4513,6 @@ ___
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[webkitMatchesSelector](_mwc_textfield_nullable_.textfieldnullable.md#webkitmatchesselector)*
-
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[webkitMatchesSelector](_mwc_textfield_nullable_.textfieldnullable.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5247
 
@@ -5639,42 +4681,22 @@ Override this method to integrate into a style management system.
 
 ## Object literals
 
-###  plugins
+### `Optional` wizard
 
-### ▪ **plugins**: *object*
+### ▪ **wizard**? : *object*
 
-*Defined in [src/open-scd-base.ts:301](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L301)*
+*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L63)*
 
-###  editors
+###  actions
 
-• **editors**: *(object | object | object)[]* = [
-      {
-        label: 'Substation',
-        id: 'substation',
-        icon: zeroLineIcon,
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/SubstationEditor.js', 'editor-0').then(
-            () => html`<editor-0 .doc=${this.doc}></editor-0>`
-          ),
-      },
-      {
-        label: 'Communication',
-        id: 'communication',
-        icon: 'mediation',
-        getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
-      },
-      {
-        label: 'Network',
-        id: 'network',
-        icon: networkConfigIcon,
-        getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
-      },
-      {
-        label: 'IED',
-        id: 'ied',
-        icon: iedIcon,
-        getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
-      },
-    ]
+• **actions**: *object*
 
-*Defined in [src/open-scd-base.ts:302](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L302)*
+*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L63)*
+
+#### Type declaration:
+
+###  pages
+
+• **pages**: *never[]* = []
+
+*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L63)*
