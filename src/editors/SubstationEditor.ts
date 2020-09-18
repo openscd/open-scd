@@ -17,9 +17,15 @@ import { Select } from '@material/mwc-select';
 
 import '../mwc-textfield-nullable.js';
 import { TextFieldNullable } from '../mwc-textfield-nullable.js';
-import { newActionEvent, Action } from '../foundation.js';
+import {
+  newActionEvent,
+  Action,
+  Wizard,
+  WizardInput,
+  Create,
+  ActionEvent,
+} from '../foundation.js';
 import { styles } from './substation/substation-css.js';
-
 export default class SubstationEditor extends LitElement {
   defaultNomFreq = 50;
   defaultNumPhases = 3;
@@ -165,22 +171,22 @@ export default class SubstationEditor extends LitElement {
     }
   }
 
-  requestSubstationCreate(): void {
+  requestSubstationCreate(inputs: WizardInput[]): Action[] {
     if (
       !this.element &&
-      this.checkSubstationValidity() &&
-      this.substationNameUI.value
+      inputs.every(wi => wi.checkValidity()) &&
+      inputs.find(i => i.label === 'desc')?.value
     ) {
-      this.dispatchEvent(
-        newActionEvent(
-          this.newCreateAction(
-            this.substationNameUI.value,
-            this.substationDescUI.getValue()
-          )
+      const action = <Create>(
+        this.newCreateAction(
+          inputs.find(i => i.label === 'name')!.value,
+          inputs.find(i => i.label === 'desc')!.value
         )
       );
-      this.editSubstationUI.close();
-    }
+      console.info(action.new.element, action.new.parent);
+      console.info(inputs);
+      return [action];
+    } else return [];
   }
 
   requestVoltageLevelCreate(): void {
@@ -209,6 +215,7 @@ export default class SubstationEditor extends LitElement {
     const [heading, action, actionName] = this.element
       ? ['Edit Substation', this.requestSubstationUpdate, 'Save']
       : ['Add Substation', this.requestSubstationCreate, 'Add'];
+    return html`<mwc-dialog id="edit-substation"></mwc-dialog>`;
     return html`
       <mwc-dialog heading="${heading}" id="edit-substation">
         <mwc-textfield
@@ -315,17 +322,91 @@ export default class SubstationEditor extends LitElement {
       </h1>
     `;
   }
+  /*
+? html`<mwc-button
+    slot="secondaryAction"
+    dialogAction=${this.page.secondary.dialogAction}
+    @click=${this.page.secondary.callback}
+    label=${this.page.secondary.title}
+    unelevated
+  ></mwc-button>`
+   */
 
   render(): TemplateResult {
     return html`
       ${this.renderHeader()} ${this.renderCreateVoltageLevelUI()}
       ${this.renderEditSubstationUI()}
       <mwc-fab
-        @click=${() => (this.editSubstationUI.open = true)}
+        @click=${() => {
+          const [heading, action, actionName] = this.element
+            ? ['Edit Substation', 'update', 'Save']
+            : ['Add Substation', 'create', 'Add'];
+          const event = new CustomEvent<{ wizard: Wizard }>('wizard', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              wizard: {
+                pages: [
+                  {
+                    title: heading,
+                    primary: html`<mwc-button
+                      slot="primaryAction"
+                      dialogAction=${action}
+                      label=${actionName}
+                      icon="add"
+                      trailingIcon
+                      raised
+                    ></mwc-button>`,
+                    content: [
+                      {
+                        qualifiedName: 'name',
+                        value: this.name ?? '',
+                        helper: 'Substation Name',
+                        dialogInitialFocus: true,
+                        required: true,
+                      },
+                      {
+                        qualifiedName: 'desc',
+                        value: this.desc,
+                        helper: 'Substation Name',
+                        nullable: true,
+                      },
+                    ]?.map(ip =>
+                      ip.nullable
+                        ? html`<mwc-textfield-nullable
+                            value=${ip.value}
+                            helper=${ip.helper}
+                            label=${ip.qualifiedName}
+                            fullwidth
+                          ></mwc-textfield-nullable>`
+                        : html`<mwc-textfield
+                            value=${ip.value}
+                            helper=${ip.helper}
+                            label=${ip.qualifiedName}
+                            fullwidth
+                          ></mwc-textfield>`
+                    ),
+                  },
+                ],
+                actions: { create: this.requestSubstationCreate },
+              },
+            },
+          });
+          console.log(event.detail.wizard);
+
+          this.dispatchEvent(event);
+        }}
         icon="${this.element ? 'edit' : 'add'}"
       >
       </mwc-fab>
     `;
+  }
+
+  constructor() {
+    super();
+
+    this.requestSubstationCreate = this.requestSubstationCreate.bind(this);
+    this.requestSubstationUpdate = this.requestSubstationUpdate.bind(this);
   }
 
   static styles = styles;

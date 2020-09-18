@@ -118,6 +118,7 @@ export function Editing<TBase extends ElementConstructor>(Base: TBase) {
     }
 
     private onCreate(event: ActionEvent<Create>) {
+      console.error(event);
       event.detail.action.new.parent.insertBefore(
         event.detail.action.new.element,
         event.detail.action.new.reference

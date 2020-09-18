@@ -1,4 +1,13 @@
-import { html, property, query, LitElement } from 'lit-element';
+import {
+  html,
+  property,
+  query,
+  LitElement,
+  customElement,
+  internalProperty,
+  css,
+  queryAll,
+} from 'lit-element';
 import { TemplateResult, nothing } from 'lit-html';
 import { until } from 'lit-html/directives/until.js';
 
@@ -19,13 +28,19 @@ import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Snackbar } from '@material/mwc-snackbar';
 
-import { newPendingStateEvent } from './foundation.js';
+import {
+  newActionEvent,
+  newPendingStateEvent,
+  Wizard,
+  WizardInput,
+  WizardPage,
+} from './foundation.js';
 import { Waiting } from './waiting.js';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
 import { Editing, LogEntry, LogOptions, newEmptySCD } from './editing.js';
-
+import { MDCDialogCloseEventDetail } from '@material/mwc-dialog/mwc-dialog-base';
 interface Tab {
   label: string;
   id: string;
@@ -42,7 +57,97 @@ interface MenuEntry {
   isDisabled?: () => boolean;
 }
 
+@customElement('mwc-wizard-dialog')
+class WizardDialog extends LitElement {
+  @property()
+  wizard?: Wizard = { pages: [], actions: {} };
+  @internalProperty()
+  pageIndex = 0;
+  @property()
+  get page(): WizardPage {
+    this.querySelectorAll;
+    return this.wizard?.pages[this.pageIndex] ?? { title: 'Error' };
+  }
+  @queryAll('mwc-textfield, mwc-textfield-nullable, mwc-select')
+  inputs!: NodeListOf<WizardInput>;
+
+  next() {
+    if ((this.wizard?.pages.length ?? 0) > this.pageIndex + 1) this.pageIndex++;
+  }
+  prev() {
+    if (this.pageIndex > 0) this.pageIndex--;
+  }
+
+  closed(action: string) {
+    if (action !== 'close') {
+      const editorActions =
+        this.wizard?.actions[action]?.(Array.from(this.inputs)) ?? [];
+      editorActions.map(ea => this.dispatchEvent(newActionEvent(ea)));
+    }
+    this.dispatchEvent(
+      new CustomEvent<{ wizard: Wizard | null }>('wizard', {
+        bubbles: true,
+        composed: true,
+        detail: { wizard: null },
+      })
+    );
+  }
+
+  static styles = css`
+    mwc-dialog {
+      display: flex;
+      flex-direction: column;
+    }
+
+    mwc-dialog > * {
+      display: block;
+      margin-top: 16px;
+    }
+  `;
+
+  render() {
+    return html`${this.wizard?.pages.map(
+      (wp, i) =>
+        html`<mwc-dialog
+          .heading=${this.page.title}
+          ?open=${this.pageIndex == i}
+          @closed=${(ae: CustomEvent<MDCDialogCloseEventDetail>) =>
+            this.closed(ae.detail.action ?? '')}
+        >
+          ${wp.content}
+          ${i > 0
+            ? html`<mwc-button
+                slot="secondaryAction"
+                @click=${() => this.prev()}
+                icon="navigate_before"
+              ></mwc-button>`
+            : html``}
+          ${wp.secondary ??
+          html`<mwc-button
+            slot="secondaryAction"
+            dialogAction="close"
+            label="cancel"
+            style="--mdc-theme-primary: var(--mdc-theme-secondary)"
+            outlined
+          ></mwc-button> `}
+          ${wp.primary ??
+          (i + 1 < (this.wizard?.pages.length ?? 0)
+            ? html`<mwc-button
+                slot="primaryAction"
+                @click=${() => this.next()}
+                icon="navigate_next"
+                label=${this.wizard?.pages[i + 1].title}
+                trailingicon
+              ></mwc-button>`
+            : html``)}
+        </mwc-dialog>`
+    )}`;
+  }
+}
+
 export class OpenSCDBase extends Waiting(Editing(LitElement)) {
+  @property()
+  workflow: Wizard[] = [];
   @property()
   history: LogEntry[] = [];
   /** Whether the editor is currently waiting for some async work. */
@@ -143,6 +248,13 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
 
   constructor() {
     super();
+
+    this.addEventListener('wizard', we => {
+      if (we.detail.wizard === null) this.workflow.shift();
+      else this.workflow.push(we.detail.wizard);
+      console.log(this.workflow);
+      this.requestUpdate('workflow');
+    });
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
@@ -329,6 +441,8 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         this.plugins.editors[this.activeTab].getContent(),
         html`<span>Loading...</span>`
       )}
+
+      <mwc-wizard-dialog .wizard=${this.workflow[0]}></mwc-wizard-dialog>
 
       <mwc-dialog id="log" heading="Log">
         <mwc-list id="content" wrapFocus>
