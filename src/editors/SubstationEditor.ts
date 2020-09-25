@@ -17,6 +17,7 @@ import { Select } from '@material/mwc-select';
 
 import '../mwc-textfield-nullable.js';
 import { TextFieldNullable } from '../mwc-textfield-nullable.js';
+import '../nullable-textfield-with-unit.js';
 import {
   newActionEvent,
   Action,
@@ -28,7 +29,7 @@ import {
 import { styles } from './substation/substation-css.js';
 export default class SubstationEditor extends LitElement {
   defaultNomFreq = 50;
-  defaultNumPhases = 3;
+  defaultNumPhases = null;
   defaultVoltage = 110;
 
   @property()
@@ -247,51 +248,49 @@ export default class SubstationEditor extends LitElement {
       heading="Add Voltage Level"
       id="create-voltage-level"
     >
-      <mwc-textfield
+      <nullable-textfield-with-unit
         label="name"
         helper="Voltage Level Name"
         required
         dialogInitialFocus
-      ></mwc-textfield>
-      <mwc-textfield-nullable
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        nullable="true"
         label="desc"
         helper="Description"
-      ></mwc-textfield-nullable>
-      <mwc-textfield-nullable
-        value="${this.defaultNomFreq}"
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        nullable="true"
+        style="flex:auto"
+        .Value="${this.defaultNomFreq}"
         label="nomFreq"
         helper="Nominal Frequency in Hz"
         required
         pattern="[0-9]*[.]?[0-9]{1,2}"
-      ></mwc-textfield-nullable>
-      <mwc-textfield-nullable
-        value="${this.defaultNumPhases}"
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        nullable="true"
+        .Value="${this.defaultNumPhases}"
         label="numPhases"
         helper="Number of Phases"
+        defaultValue="Jakob"
         required
         type="number"
         min="1"
         max="255"
-      ></mwc-textfield-nullable>
-      <div style="display: flex; flex-direction: row; ">
-        <mwc-textfield-nullable
-          id="Voltage"
-          value="${this.defaultVoltage}"
-          helper="Voltage in kV"
-          required
-          pattern="[0-9]*[.]?[0-9]{1,3}"
-        ></mwc-textfield-nullable>
-        <mwc-select
-          id="voltageUnitMultiplier"
-          style="--mdc-menu-max-width: 30px;"
-        >
-          <mwc-list-item>GV</mwc-list-item>
-          <mwc-list-item>MV</mwc-list-item>
-          <mwc-list-item selected>kV</mwc-list-item>
-          <mwc-list-item>V</mwc-list-item>
-          <mwc-list-item>mV</mwc-list-item>
-        </mwc-select>
-      </div>
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        nullable
+        .multiplierArray=${['G', 'M', 'k', '', 'm']}
+        unit="V"
+        preSelectedMultiplier="k"
+        id="Voltage"
+        label="Voltage"
+        .Value="${this.defaultVoltage}"
+        helper="Voltage in kV"
+        required
+        pattern="[0-9]*[.]?[0-9]{1,3}"
+      ></nullable-textfield-with-unit>
       <mwc-button slot="secondaryAction" dialogAction="close">
         Cancel
       </mwc-button>
