@@ -52,7 +52,17 @@ export class NullableTextFieldWithUnit extends TextField {
     initialized: false,
   };
 
+  getSelectedMultiplier(): string {
+    if (this.voltageLevelUnitMultiplier)
+      return this.voltageLevelUnitMultiplier.selected!.innerText.replace(
+        this.unit,
+        ''
+      );
+    return '';
+  }
+
   initialSetup(attributeValue: string | null): void {
+    this.value = attributeValue == null ? '' : attributeValue;
     this.isNull = attributeValue == null ? true : false;
     this.isNull ? this.disableAttribute() : this.enableAttribute();
   }

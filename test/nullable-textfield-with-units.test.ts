@@ -76,6 +76,68 @@ describe('Nullable Textfield with Units', () => {
     ).to.be.equal('mV');
   });
 
+  it('returns selected multiplier on existing multiplier and unit', async () => {
+    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    element.unit = 'V';
+    element.preSelectedMultiplier = 'k';
+    await element.updateComplete;
+    expect(element.getSelectedMultiplier()).to.equal('k');
+  });
+
+  it('returns selected empty string on empty multiplier', async () => {
+    element.unit = 'V';
+    element.preSelectedMultiplier = 'k';
+    await element.updateComplete;
+    expect(element.getSelectedMultiplier()).to.equal('');
+  });
+
+  it('returns selected empty string on empty unit', async () => {
+    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    expect(element.getSelectedMultiplier()).to.equal('');
+  });
+
+  it('disables textfield on switch toggle', async () => {
+    element.nullable = true;
+    element.Value = 'test';
+    await element.updateComplete;
+    element.switch!.click();
+    await element.updateComplete;
+    expect(element).to.have.property('Value', null);
+    expect(element).to.have.property('disabled', true);
+  });
+
+  it('disables mulktiplier select on switch toggle', async () => {
+    element.nullable = true;
+    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    element.unit = 'V';
+    element.preSelectedMultiplier = 'k';
+    await element.updateComplete;
+    element.switch!.click();
+    await element.updateComplete;
+    expect(element.voltageLevelUnitMultiplier).to.have.property(
+      'disabled',
+      true
+    );
+    element.switch!.click();
+    await element.updateComplete;
+    expect(element.voltageLevelUnitMultiplier).to.have.property(
+      'disabled',
+      false
+    );
+  });
+
+  it('remebers textfield value on switch toggle', async () => {
+    element.nullable = true;
+    element.Value = 'test';
+    await element.updateComplete;
+    element.switch!.click();
+    await element.updateComplete;
+    element.switch!.click();
+    await element.updateComplete;
+    expect(element).to.have.property('disabled', false);
+    expect(element).to.have.property('Value', 'test');
+  });
+
   describe('with a missing attribute', () => {
     beforeEach(async () => {
       element.Value = null;
@@ -103,6 +165,10 @@ describe('Nullable Textfield with Units', () => {
     it('displays "No default value" in the helper if default value is absent', () => {
       expect(element).to.have.property('helper', 'No default value');
     });
+
+    it('returns null', () => {
+      expect(element).to.have.property('Value', null);
+    });
   });
 
   describe('with a non empty attribute', () => {
@@ -121,6 +187,11 @@ describe('Nullable Textfield with Units', () => {
     it('displays helper as defined', () => {
       element.helper = 'Describe';
       expect(element).to.have.property('helper', 'Describe');
+    });
+
+    it('returns value of textfield', () => {
+      element.value = 'Test';
+      expect(element.Value).to.be.equal(element.value);
     });
   });
 });
