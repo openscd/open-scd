@@ -20,7 +20,7 @@
 
 • **editor-action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
 
-*Defined in [src/foundation.ts:152](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L152)*
+*Defined in [src/foundation.ts:152](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L152)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **pending-state**: *[PendingStateEvent](../modules/_foundation_.md#pendingstateevent)*
 
-*Defined in [src/foundation.ts:151](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L151)*
+*Defined in [src/foundation.ts:151](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L151)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **wizard**: *CustomEvent‹object›*
 
-*Defined in [src/foundation.ts:153](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L153)*
+*Defined in [src/foundation.ts:153](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L153)*

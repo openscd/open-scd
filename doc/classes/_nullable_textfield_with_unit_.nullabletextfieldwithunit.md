@@ -1,353 +1,416 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd"](../modules/_open_scd_.md) › [OpenSCD](_open_scd_.openscd.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["nullable-textfield-with-unit"](../modules/_nullable_textfield_with_unit_.md) › [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)
 
-# Class: OpenSCD
+# Class: NullableTextFieldWithUnit
 
 ## Hierarchy
 
-  ↳ [OpenSCDBase](_open_scd_base_.openscdbase.md)
+* TextField
 
-  ↳ **OpenSCD**
+  ↳ **NullableTextFieldWithUnit**
 
 ## Index
 
 ### Constructors
 
-* [constructor](_open_scd_.openscd.md#constructor)
+* [constructor](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_open_scd_.openscd.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_open_scd_.openscd.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_open_scd_.openscd.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_open_scd_.openscd.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_open_scd_.openscd.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_open_scd_.openscd.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_open_scd_.openscd.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_open_scd_.openscd.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_open_scd_.openscd.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_open_scd_.openscd.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_open_scd_.openscd.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_open_scd_.openscd.md#readonly-document_type_node)
-* [ELEMENT_NODE](_open_scd_.openscd.md#readonly-element_node)
-* [ENTITY_NODE](_open_scd_.openscd.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_open_scd_.openscd.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_open_scd_.openscd.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_open_scd_.openscd.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_open_scd_.openscd.md#readonly-text_node)
-* [accessKey](_open_scd_.openscd.md#accesskey)
-* [accessKeyLabel](_open_scd_.openscd.md#readonly-accesskeylabel)
-* [activeTab](_open_scd_.openscd.md#activetab)
-* [assignedSlot](_open_scd_.openscd.md#readonly-assignedslot)
-* [attributes](_open_scd_.openscd.md#readonly-attributes)
-* [autocapitalize](_open_scd_.openscd.md#autocapitalize)
-* [autofocus](_open_scd_.openscd.md#autofocus)
-* [baseURI](_open_scd_.openscd.md#readonly-baseuri)
-* [childElementCount](_open_scd_.openscd.md#readonly-childelementcount)
-* [childNodes](_open_scd_.openscd.md#readonly-childnodes)
-* [children](_open_scd_.openscd.md#readonly-children)
-* [classList](_open_scd_.openscd.md#readonly-classlist)
-* [className](_open_scd_.openscd.md#classname)
-* [clientHeight](_open_scd_.openscd.md#readonly-clientheight)
-* [clientLeft](_open_scd_.openscd.md#readonly-clientleft)
-* [clientTop](_open_scd_.openscd.md#readonly-clienttop)
-* [clientWidth](_open_scd_.openscd.md#readonly-clientwidth)
-* [contentEditable](_open_scd_.openscd.md#contenteditable)
-* [dataset](_open_scd_.openscd.md#readonly-dataset)
-* [dir](_open_scd_.openscd.md#dir)
-* [doc](_open_scd_.openscd.md#doc)
-* [draggable](_open_scd_.openscd.md#draggable)
-* [enterKeyHint](_open_scd_.openscd.md#enterkeyhint)
-* [fileUI](_open_scd_.openscd.md#fileui)
-* [firstChild](_open_scd_.openscd.md#readonly-firstchild)
-* [firstElementChild](_open_scd_.openscd.md#readonly-firstelementchild)
-* [floatingLabelFoundation](_open_scd_.openscd.md#optional-floatinglabelfoundation)
-* [hidden](_open_scd_.openscd.md#hidden)
-* [history](_open_scd_.openscd.md#history)
-* [id](_open_scd_.openscd.md#id)
-* [innerHTML](_open_scd_.openscd.md#innerhtml)
-* [innerText](_open_scd_.openscd.md#innertext)
-* [inputMode](_open_scd_.openscd.md#inputmode)
-* [isConnected](_open_scd_.openscd.md#readonly-isconnected)
-* [isContentEditable](_open_scd_.openscd.md#readonly-iscontenteditable)
-* [lang](_open_scd_.openscd.md#lang)
-* [lastAction](_open_scd_.openscd.md#lastaction)
-* [lastChild](_open_scd_.openscd.md#readonly-lastchild)
-* [lastElementChild](_open_scd_.openscd.md#readonly-lastelementchild)
-* [lineRippleFoundation](_open_scd_.openscd.md#optional-lineripplefoundation)
-* [localName](_open_scd_.openscd.md#readonly-localname)
-* [logUI](_open_scd_.openscd.md#logui)
-* [menu](_open_scd_.openscd.md#menu)
-* [menuUI](_open_scd_.openscd.md#menuui)
-* [messageUI](_open_scd_.openscd.md#messageui)
-* [namespaceURI](_open_scd_.openscd.md#readonly-namespaceuri)
-* [nextElementSibling](_open_scd_.openscd.md#readonly-nextelementsibling)
-* [nextSibling](_open_scd_.openscd.md#readonly-nextsibling)
-* [nodeName](_open_scd_.openscd.md#readonly-nodename)
-* [nodeType](_open_scd_.openscd.md#readonly-nodetype)
-* [nodeValue](_open_scd_.openscd.md#nodevalue)
-* [nonce](_open_scd_.openscd.md#optional-nonce)
-* [offsetHeight](_open_scd_.openscd.md#readonly-offsetheight)
-* [offsetLeft](_open_scd_.openscd.md#readonly-offsetleft)
-* [offsetParent](_open_scd_.openscd.md#readonly-offsetparent)
-* [offsetTop](_open_scd_.openscd.md#readonly-offsettop)
-* [offsetWidth](_open_scd_.openscd.md#readonly-offsetwidth)
-* [onabort](_open_scd_.openscd.md#onabort)
-* [onanimationcancel](_open_scd_.openscd.md#onanimationcancel)
-* [onanimationend](_open_scd_.openscd.md#onanimationend)
-* [onanimationiteration](_open_scd_.openscd.md#onanimationiteration)
-* [onanimationstart](_open_scd_.openscd.md#onanimationstart)
-* [onauxclick](_open_scd_.openscd.md#onauxclick)
-* [onblur](_open_scd_.openscd.md#onblur)
-* [oncancel](_open_scd_.openscd.md#oncancel)
-* [oncanplay](_open_scd_.openscd.md#oncanplay)
-* [oncanplaythrough](_open_scd_.openscd.md#oncanplaythrough)
-* [onchange](_open_scd_.openscd.md#onchange)
-* [onclick](_open_scd_.openscd.md#onclick)
-* [onclose](_open_scd_.openscd.md#onclose)
-* [oncontextmenu](_open_scd_.openscd.md#oncontextmenu)
-* [oncopy](_open_scd_.openscd.md#oncopy)
-* [oncuechange](_open_scd_.openscd.md#oncuechange)
-* [oncut](_open_scd_.openscd.md#oncut)
-* [ondblclick](_open_scd_.openscd.md#ondblclick)
-* [ondrag](_open_scd_.openscd.md#ondrag)
-* [ondragend](_open_scd_.openscd.md#ondragend)
-* [ondragenter](_open_scd_.openscd.md#ondragenter)
-* [ondragexit](_open_scd_.openscd.md#ondragexit)
-* [ondragleave](_open_scd_.openscd.md#ondragleave)
-* [ondragover](_open_scd_.openscd.md#ondragover)
-* [ondragstart](_open_scd_.openscd.md#ondragstart)
-* [ondrop](_open_scd_.openscd.md#ondrop)
-* [ondurationchange](_open_scd_.openscd.md#ondurationchange)
-* [onemptied](_open_scd_.openscd.md#onemptied)
-* [onended](_open_scd_.openscd.md#onended)
-* [onerror](_open_scd_.openscd.md#onerror)
-* [onfocus](_open_scd_.openscd.md#onfocus)
-* [onfullscreenchange](_open_scd_.openscd.md#onfullscreenchange)
-* [onfullscreenerror](_open_scd_.openscd.md#onfullscreenerror)
-* [ongotpointercapture](_open_scd_.openscd.md#ongotpointercapture)
-* [oninput](_open_scd_.openscd.md#oninput)
-* [oninvalid](_open_scd_.openscd.md#oninvalid)
-* [onkeydown](_open_scd_.openscd.md#onkeydown)
-* [onkeypress](_open_scd_.openscd.md#onkeypress)
-* [onkeyup](_open_scd_.openscd.md#onkeyup)
-* [onload](_open_scd_.openscd.md#onload)
-* [onloadeddata](_open_scd_.openscd.md#onloadeddata)
-* [onloadedmetadata](_open_scd_.openscd.md#onloadedmetadata)
-* [onloadstart](_open_scd_.openscd.md#onloadstart)
-* [onlostpointercapture](_open_scd_.openscd.md#onlostpointercapture)
-* [onmousedown](_open_scd_.openscd.md#onmousedown)
-* [onmouseenter](_open_scd_.openscd.md#onmouseenter)
-* [onmouseleave](_open_scd_.openscd.md#onmouseleave)
-* [onmousemove](_open_scd_.openscd.md#onmousemove)
-* [onmouseout](_open_scd_.openscd.md#onmouseout)
-* [onmouseover](_open_scd_.openscd.md#onmouseover)
-* [onmouseup](_open_scd_.openscd.md#onmouseup)
-* [onpaste](_open_scd_.openscd.md#onpaste)
-* [onpause](_open_scd_.openscd.md#onpause)
-* [onplay](_open_scd_.openscd.md#onplay)
-* [onplaying](_open_scd_.openscd.md#onplaying)
-* [onpointercancel](_open_scd_.openscd.md#onpointercancel)
-* [onpointerdown](_open_scd_.openscd.md#onpointerdown)
-* [onpointerenter](_open_scd_.openscd.md#onpointerenter)
-* [onpointerleave](_open_scd_.openscd.md#onpointerleave)
-* [onpointermove](_open_scd_.openscd.md#onpointermove)
-* [onpointerout](_open_scd_.openscd.md#onpointerout)
-* [onpointerover](_open_scd_.openscd.md#onpointerover)
-* [onpointerup](_open_scd_.openscd.md#onpointerup)
-* [onprogress](_open_scd_.openscd.md#onprogress)
-* [onratechange](_open_scd_.openscd.md#onratechange)
-* [onreset](_open_scd_.openscd.md#onreset)
-* [onresize](_open_scd_.openscd.md#onresize)
-* [onscroll](_open_scd_.openscd.md#onscroll)
-* [onsecuritypolicyviolation](_open_scd_.openscd.md#onsecuritypolicyviolation)
-* [onseeked](_open_scd_.openscd.md#onseeked)
-* [onseeking](_open_scd_.openscd.md#onseeking)
-* [onselect](_open_scd_.openscd.md#onselect)
-* [onselectionchange](_open_scd_.openscd.md#onselectionchange)
-* [onselectstart](_open_scd_.openscd.md#onselectstart)
-* [onstalled](_open_scd_.openscd.md#onstalled)
-* [onsubmit](_open_scd_.openscd.md#onsubmit)
-* [onsuspend](_open_scd_.openscd.md#onsuspend)
-* [ontimeupdate](_open_scd_.openscd.md#ontimeupdate)
-* [ontoggle](_open_scd_.openscd.md#ontoggle)
-* [ontouchcancel](_open_scd_.openscd.md#optional-ontouchcancel)
-* [ontouchend](_open_scd_.openscd.md#optional-ontouchend)
-* [ontouchmove](_open_scd_.openscd.md#optional-ontouchmove)
-* [ontouchstart](_open_scd_.openscd.md#optional-ontouchstart)
-* [ontransitioncancel](_open_scd_.openscd.md#ontransitioncancel)
-* [ontransitionend](_open_scd_.openscd.md#ontransitionend)
-* [ontransitionrun](_open_scd_.openscd.md#ontransitionrun)
-* [ontransitionstart](_open_scd_.openscd.md#ontransitionstart)
-* [onvolumechange](_open_scd_.openscd.md#onvolumechange)
-* [onwaiting](_open_scd_.openscd.md#onwaiting)
-* [onwheel](_open_scd_.openscd.md#onwheel)
-* [outerHTML](_open_scd_.openscd.md#outerhtml)
-* [ownerDocument](_open_scd_.openscd.md#readonly-ownerdocument)
-* [parentElement](_open_scd_.openscd.md#readonly-parentelement)
-* [parentNode](_open_scd_.openscd.md#readonly-parentnode)
-* [prefix](_open_scd_.openscd.md#readonly-prefix)
-* [previousElementSibling](_open_scd_.openscd.md#readonly-previouselementsibling)
-* [previousSibling](_open_scd_.openscd.md#readonly-previoussibling)
-* [renderRoot](_open_scd_.openscd.md#readonly-renderroot)
-* [scrollHeight](_open_scd_.openscd.md#readonly-scrollheight)
-* [scrollLeft](_open_scd_.openscd.md#scrollleft)
-* [scrollTop](_open_scd_.openscd.md#scrolltop)
-* [scrollWidth](_open_scd_.openscd.md#readonly-scrollwidth)
-* [shadowRoot](_open_scd_.openscd.md#readonly-shadowroot)
-* [slot](_open_scd_.openscd.md#slot)
-* [spellcheck](_open_scd_.openscd.md#spellcheck)
-* [srcName](_open_scd_.openscd.md#srcname)
-* [style](_open_scd_.openscd.md#readonly-style)
-* [tabIndex](_open_scd_.openscd.md#tabindex)
-* [tag](_open_scd_.openscd.md#tag)
-* [tagName](_open_scd_.openscd.md#readonly-tagname)
-* [textContent](_open_scd_.openscd.md#textcontent)
-* [title](_open_scd_.openscd.md#title)
-* [translate](_open_scd_.openscd.md#translate)
-* [waiting](_open_scd_.openscd.md#waiting)
-* [work](_open_scd_.openscd.md#protected-work)
-* [workDone](_open_scd_.openscd.md#workdone)
-* [workflow](_open_scd_.openscd.md#workflow)
-* [[finalized]](_open_scd_.openscd.md#static-protected-[finalized])
-* [finalized](_open_scd_.openscd.md#static-protected-finalized)
-* [properties](_open_scd_.openscd.md#static-properties)
-* [render](_open_scd_.openscd.md#static-render)
-* [styles](_open_scd_.openscd.md#static-styles)
+* [ATTRIBUTE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_type_node)
+* [ELEMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-element_node)
+* [ENTITY_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-text_node)
+* [_outlineUpdateComplete](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-_outlineupdatecomplete)
+* [_validity](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-_validity)
+* [accessKey](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#accesskey)
+* [accessKeyLabel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-accesskeylabel)
+* [assignedSlot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-assignedslot)
+* [attributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-attributes)
+* [autoValidate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#autovalidate)
+* [autocapitalize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#autocapitalize)
+* [autofocus](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#autofocus)
+* [baseURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-baseuri)
+* [charCounter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#charcounter)
+* [childElementCount](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-childelementcount)
+* [childNodes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-childnodes)
+* [children](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-children)
+* [classList](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-classlist)
+* [className](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#classname)
+* [clientHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientheight)
+* [clientLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientleft)
+* [clientTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clienttop)
+* [clientWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientwidth)
+* [contentEditable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#contenteditable)
+* [dataset](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-dataset)
+* [defaultValue](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#defaultvalue)
+* [dir](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#dir)
+* [disabled](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#disabled)
+* [draggable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#draggable)
+* [endAligned](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#endaligned)
+* [enterKeyHint](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#enterkeyhint)
+* [firstChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-firstchild)
+* [firstElementChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-floatinglabelfoundation)
+* [formElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-formelement)
+* [helper](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#helper)
+* [helperPersistent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#helperpersistent)
+* [hidden](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hidden)
+* [icon](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#icon)
+* [iconTrailing](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#icontrailing)
+* [id](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#id)
+* [innerHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#innerhtml)
+* [innerText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#innertext)
+* [inputMode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#inputmode)
+* [isConnected](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-isconnected)
+* [isContentEditable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-iscontenteditable)
+* [isNull](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#private-isnull)
+* [isUiValid](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-isuivalid)
+* [label](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#label)
+* [labelElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-labelelement)
+* [lang](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lang)
+* [lastChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-lastchild)
+* [lastElementChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-lastelementchild)
+* [lineRippleElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-linerippleelement)
+* [lineRippleFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-lineripplefoundation)
+* [localName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-localname)
+* [max](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#max)
+* [maxLength](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#maxlength)
+* [mdcFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-mdcfoundation)
+* [mdcFoundationClass](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-readonly-mdcfoundationclass)
+* [mdcRoot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-mdcroot)
+* [min](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#min)
+* [minLength](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#minlength)
+* [multiplierIndex](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#private-multiplierindex)
+* [multiplierSelect](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-multiplierselect)
+* [multipliers](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#multipliers)
+* [name](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#name)
+* [namespaceURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-namespaceuri)
+* [nextElementSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nextelementsibling)
+* [nextSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nextsibling)
+* [nodeName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nodename)
+* [nodeType](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nodetype)
+* [nodeValue](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#nodevalue)
+* [nonce](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-nonce)
+* [notchElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-notchelement)
+* [nullSwitch](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-nullswitch)
+* [nullable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#nullable)
+* [offsetHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetheight)
+* [offsetLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetleft)
+* [offsetParent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetparent)
+* [offsetTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsettop)
+* [offsetWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetwidth)
+* [onabort](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onabort)
+* [onanimationcancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationcancel)
+* [onanimationend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationend)
+* [onanimationiteration](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationiteration)
+* [onanimationstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationstart)
+* [onauxclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onauxclick)
+* [onblur](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onblur)
+* [oncancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncancel)
+* [oncanplay](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncanplay)
+* [oncanplaythrough](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncanplaythrough)
+* [onchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onchange)
+* [onclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onclick)
+* [onclose](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onclose)
+* [oncontextmenu](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncontextmenu)
+* [oncopy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncopy)
+* [oncuechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncuechange)
+* [oncut](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncut)
+* [ondblclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondblclick)
+* [ondrag](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondrag)
+* [ondragend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragend)
+* [ondragenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragenter)
+* [ondragexit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragexit)
+* [ondragleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragleave)
+* [ondragover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragover)
+* [ondragstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragstart)
+* [ondrop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondrop)
+* [ondurationchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondurationchange)
+* [onemptied](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onemptied)
+* [onended](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onended)
+* [onerror](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onerror)
+* [onfocus](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfocus)
+* [onfullscreenchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfullscreenchange)
+* [onfullscreenerror](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfullscreenerror)
+* [ongotpointercapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ongotpointercapture)
+* [oninput](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oninput)
+* [oninvalid](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oninvalid)
+* [onkeydown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeydown)
+* [onkeypress](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeypress)
+* [onkeyup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeyup)
+* [onload](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onload)
+* [onloadeddata](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadeddata)
+* [onloadedmetadata](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadedmetadata)
+* [onloadstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadstart)
+* [onlostpointercapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onlostpointercapture)
+* [onmousedown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmousedown)
+* [onmouseenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseenter)
+* [onmouseleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseleave)
+* [onmousemove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmousemove)
+* [onmouseout](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseout)
+* [onmouseover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseover)
+* [onmouseup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseup)
+* [onpaste](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpaste)
+* [onpause](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpause)
+* [onplay](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onplay)
+* [onplaying](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onplaying)
+* [onpointercancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointercancel)
+* [onpointerdown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerdown)
+* [onpointerenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerenter)
+* [onpointerleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerleave)
+* [onpointermove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointermove)
+* [onpointerout](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerout)
+* [onpointerover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerover)
+* [onpointerup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerup)
+* [onprogress](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onprogress)
+* [onratechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onratechange)
+* [onreset](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onreset)
+* [onresize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onresize)
+* [onscroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onscroll)
+* [onsecuritypolicyviolation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsecuritypolicyviolation)
+* [onseeked](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onseeked)
+* [onseeking](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onseeking)
+* [onselect](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselect)
+* [onselectionchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselectionchange)
+* [onselectstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselectstart)
+* [onstalled](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onstalled)
+* [onsubmit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsubmit)
+* [onsuspend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsuspend)
+* [ontimeupdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontimeupdate)
+* [ontoggle](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontoggle)
+* [ontouchcancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchcancel)
+* [ontouchend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchend)
+* [ontouchmove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchmove)
+* [ontouchstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchstart)
+* [ontransitioncancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitioncancel)
+* [ontransitionend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionend)
+* [ontransitionrun](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionrun)
+* [ontransitionstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionstart)
+* [onvolumechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onvolumechange)
+* [onwaiting](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onwaiting)
+* [onwheel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onwheel)
+* [outerHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#outerhtml)
+* [outlineElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-outlineelement)
+* [outlineOpen](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-outlineopen)
+* [outlineWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-outlinewidth)
+* [outlined](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#outlined)
+* [ownerDocument](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-ownerdocument)
+* [parentElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-parentelement)
+* [parentNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-parentnode)
+* [pattern](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#pattern)
+* [placeholder](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#placeholder)
+* [prefix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#prefix)
+* [previousElementSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-previouselementsibling)
+* [previousSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-previoussibling)
+* [readOnly](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly)
+* [renderRoot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-renderroot)
+* [required](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#required)
+* [ripple](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-readonly-ripple)
+* [scrollHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-scrollheight)
+* [scrollLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollleft)
+* [scrollTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrolltop)
+* [scrollWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-scrollwidth)
+* [shadowRoot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-shadowroot)
+* [size](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#size)
+* [slot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#slot)
+* [spellcheck](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#spellcheck)
+* [step](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#step)
+* [style](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-style)
+* [suffix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#suffix)
+* [tabIndex](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#tabindex)
+* [tagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-tagname)
+* [textContent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#textcontent)
+* [title](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#title)
+* [translate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#translate)
+* [type](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#type)
+* [unit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#unit)
+* [validateOnInitialRender](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#validateoninitialrender)
+* [validationMessage](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#validationmessage)
+* [validityTransform](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#validitytransform)
+* [value](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#value)
+* [[finalized]](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-[finalized])
+* [finalized](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-finalized)
+* [properties](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-properties)
+* [render](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-render)
+* [styles](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-styles)
 
 ### Accessors
 
-* [canRedo](_open_scd_.openscd.md#canredo)
-* [canUndo](_open_scd_.openscd.md#canundo)
-* [hasUpdated](_open_scd_.openscd.md#protected-hasupdated)
-* [name](_open_scd_.openscd.md#name)
-* [nextAction](_open_scd_.openscd.md#nextaction)
-* [previousAction](_open_scd_.openscd.md#previousaction)
-* [src](_open_scd_.openscd.md#src)
-* [updateComplete](_open_scd_.openscd.md#updatecomplete)
-* [observedAttributes](_open_scd_.openscd.md#static-observedattributes)
+* [charCounterVisible](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-charcountervisible)
+* [hasUpdated](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-hasupdated)
+* [maybeValue](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#maybevalue)
+* [multiplier](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#multiplier)
+* [null](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#null)
+* [selectionEnd](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#selectionend)
+* [selectionStart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#selectionstart)
+* [shouldRenderHelperText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-shouldrenderhelpertext)
+* [updateComplete](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#updatecomplete)
+* [validity](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#validity)
+* [willValidate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#willvalidate)
+* [observedAttributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_open_scd_.openscd.md#protected-_getupdatecomplete)
-* [addEventListener](_open_scd_.openscd.md#addeventlistener)
-* [adoptStyles](_open_scd_.openscd.md#protected-adoptstyles)
-* [after](_open_scd_.openscd.md#after)
-* [animate](_open_scd_.openscd.md#animate)
-* [append](_open_scd_.openscd.md#append)
-* [appendChild](_open_scd_.openscd.md#appendchild)
-* [attachShadow](_open_scd_.openscd.md#attachshadow)
-* [attributeChangedCallback](_open_scd_.openscd.md#attributechangedcallback)
-* [before](_open_scd_.openscd.md#before)
-* [blur](_open_scd_.openscd.md#blur)
-* [click](_open_scd_.openscd.md#click)
-* [cloneNode](_open_scd_.openscd.md#clonenode)
-* [closest](_open_scd_.openscd.md#closest)
-* [commit](_open_scd_.openscd.md#commit)
-* [compareDocumentPosition](_open_scd_.openscd.md#comparedocumentposition)
-* [connectedCallback](_open_scd_.openscd.md#connectedcallback)
-* [contains](_open_scd_.openscd.md#contains)
-* [createRenderRoot](_open_scd_.openscd.md#protected-createrenderroot)
-* [disconnectedCallback](_open_scd_.openscd.md#disconnectedcallback)
-* [dispatchEvent](_open_scd_.openscd.md#dispatchevent)
-* [enableUpdating](_open_scd_.openscd.md#protected-enableupdating)
-* [error](_open_scd_.openscd.md#error)
-* [firstUpdated](_open_scd_.openscd.md#protected-firstupdated)
-* [focus](_open_scd_.openscd.md#focus)
-* [getAnimations](_open_scd_.openscd.md#getanimations)
-* [getAttribute](_open_scd_.openscd.md#getattribute)
-* [getAttributeNS](_open_scd_.openscd.md#getattributens)
-* [getAttributeNames](_open_scd_.openscd.md#getattributenames)
-* [getAttributeNode](_open_scd_.openscd.md#getattributenode)
-* [getAttributeNodeNS](_open_scd_.openscd.md#getattributenodens)
-* [getBoundingClientRect](_open_scd_.openscd.md#getboundingclientrect)
-* [getClientRects](_open_scd_.openscd.md#getclientrects)
-* [getElementsByClassName](_open_scd_.openscd.md#getelementsbyclassname)
-* [getElementsByTagName](_open_scd_.openscd.md#getelementsbytagname)
-* [getElementsByTagNameNS](_open_scd_.openscd.md#getelementsbytagnamens)
-* [getRootNode](_open_scd_.openscd.md#getrootnode)
-* [hasAttribute](_open_scd_.openscd.md#hasattribute)
-* [hasAttributeNS](_open_scd_.openscd.md#hasattributens)
-* [hasAttributes](_open_scd_.openscd.md#hasattributes)
-* [hasChildNodes](_open_scd_.openscd.md#haschildnodes)
-* [hasPointerCapture](_open_scd_.openscd.md#haspointercapture)
-* [info](_open_scd_.openscd.md#optional-info)
-* [initialize](_open_scd_.openscd.md#protected-initialize)
-* [insertAdjacentElement](_open_scd_.openscd.md#insertadjacentelement)
-* [insertAdjacentHTML](_open_scd_.openscd.md#insertadjacenthtml)
-* [insertAdjacentText](_open_scd_.openscd.md#insertadjacenttext)
-* [insertBefore](_open_scd_.openscd.md#insertbefore)
-* [isDefaultNamespace](_open_scd_.openscd.md#isdefaultnamespace)
-* [isEqualNode](_open_scd_.openscd.md#isequalnode)
-* [isSameNode](_open_scd_.openscd.md#issamenode)
-* [log](_open_scd_.openscd.md#log)
-* [lookupNamespaceURI](_open_scd_.openscd.md#lookupnamespaceuri)
-* [lookupPrefix](_open_scd_.openscd.md#lookupprefix)
-* [matches](_open_scd_.openscd.md#matches)
-* [msGetRegionContent](_open_scd_.openscd.md#msgetregioncontent)
-* [normalize](_open_scd_.openscd.md#normalize)
-* [performUpdate](_open_scd_.openscd.md#protected-performupdate)
-* [prepend](_open_scd_.openscd.md#prepend)
-* [querySelector](_open_scd_.openscd.md#queryselector)
-* [querySelectorAll](_open_scd_.openscd.md#queryselectorall)
-* [redo](_open_scd_.openscd.md#redo)
-* [releasePointerCapture](_open_scd_.openscd.md#releasepointercapture)
-* [remove](_open_scd_.openscd.md#remove)
-* [removeAttribute](_open_scd_.openscd.md#removeattribute)
-* [removeAttributeNS](_open_scd_.openscd.md#removeattributens)
-* [removeAttributeNode](_open_scd_.openscd.md#removeattributenode)
-* [removeChild](_open_scd_.openscd.md#removechild)
-* [removeEventListener](_open_scd_.openscd.md#removeeventlistener)
-* [render](_open_scd_.openscd.md#render)
-* [renderActionItem](_open_scd_.openscd.md#renderactionitem)
-* [renderEditorTab](_open_scd_.openscd.md#rendereditortab)
-* [renderHistory](_open_scd_.openscd.md#renderhistory)
-* [renderLogEntry](_open_scd_.openscd.md#renderlogentry)
-* [renderMenuEntry](_open_scd_.openscd.md#rendermenuentry)
-* [replaceChild](_open_scd_.openscd.md#replacechild)
-* [replaceWith](_open_scd_.openscd.md#replacewith)
-* [requestFullscreen](_open_scd_.openscd.md#requestfullscreen)
-* [requestPointerLock](_open_scd_.openscd.md#requestpointerlock)
-* [requestUpdate](_open_scd_.openscd.md#requestupdate)
-* [requestUpdateInternal](_open_scd_.openscd.md#protected-requestupdateinternal)
-* [scroll](_open_scd_.openscd.md#scroll)
-* [scrollBy](_open_scd_.openscd.md#scrollby)
-* [scrollIntoView](_open_scd_.openscd.md#scrollintoview)
-* [scrollTo](_open_scd_.openscd.md#scrollto)
-* [setAttribute](_open_scd_.openscd.md#setattribute)
-* [setAttributeNS](_open_scd_.openscd.md#setattributens)
-* [setAttributeNode](_open_scd_.openscd.md#setattributenode)
-* [setAttributeNodeNS](_open_scd_.openscd.md#setattributenodens)
-* [setPointerCapture](_open_scd_.openscd.md#setpointercapture)
-* [shouldUpdate](_open_scd_.openscd.md#protected-shouldupdate)
-* [toggleAttribute](_open_scd_.openscd.md#toggleattribute)
-* [undo](_open_scd_.openscd.md#undo)
-* [update](_open_scd_.openscd.md#protected-update)
-* [updated](_open_scd_.openscd.md#protected-updated)
-* [warn](_open_scd_.openscd.md#optional-warn)
-* [webkitMatchesSelector](_open_scd_.openscd.md#webkitmatchesselector)
-* [createProperty](_open_scd_.openscd.md#static-createproperty)
-* [finalize](_open_scd_.openscd.md#static-protected-finalize)
-* [getPropertyDescriptor](_open_scd_.openscd.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_open_scd_.openscd.md#static-protected-getpropertyoptions)
-* [getStyles](_open_scd_.openscd.md#static-getstyles)
+* [_checkValidity](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-_checkvalidity)
+* [_getUpdateComplete](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#_getupdatecomplete)
+* [addEventListener](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#addeventlistener)
+* [adoptStyles](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-adoptstyles)
+* [after](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#after)
+* [animate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#animate)
+* [append](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#append)
+* [appendChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#appendchild)
+* [attachShadow](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#attachshadow)
+* [attributeChangedCallback](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#attributechangedcallback)
+* [before](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#before)
+* [blur](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#blur)
+* [checkValidity](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#checkvalidity)
+* [click](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#click)
+* [cloneNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#clonenode)
+* [closest](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#closest)
+* [compareDocumentPosition](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#comparedocumentposition)
+* [connectedCallback](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#connectedcallback)
+* [contains](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#contains)
+* [createAdapter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-createadapter)
+* [createFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-createfoundation)
+* [createRenderRoot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-createrenderroot)
+* [disable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#private-disable)
+* [disconnectedCallback](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#disconnectedcallback)
+* [dispatchEvent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#dispatchevent)
+* [enable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#private-enable)
+* [enableUpdating](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-enableupdating)
+* [firstUpdated](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#firstupdated)
+* [focus](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#focus)
+* [getAnimations](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getanimations)
+* [getAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattribute)
+* [getAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributens)
+* [getAttributeNames](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenames)
+* [getAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenode)
+* [getAttributeNodeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenodens)
+* [getBoundingClientRect](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getboundingclientrect)
+* [getClientRects](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getclientrects)
+* [getElementsByClassName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbyclassname)
+* [getElementsByTagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagname)
+* [getElementsByTagNameNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagnamens)
+* [getInputAdapterMethods](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-getinputadaptermethods)
+* [getLabelAdapterMethods](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-getlabeladaptermethods)
+* [getLineRippleAdapterMethods](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-getlinerippleadaptermethods)
+* [getOutlineAdapterMethods](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-getoutlineadaptermethods)
+* [getRootAdapterMethods](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-getrootadaptermethods)
+* [getRootNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getrootnode)
+* [handleInputChange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-handleinputchange)
+* [hasAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattribute)
+* [hasAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattributens)
+* [hasAttributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattributes)
+* [hasChildNodes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#haschildnodes)
+* [hasPointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#haspointercapture)
+* [info](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-info)
+* [initialize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-initialize)
+* [insertAdjacentElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacentelement)
+* [insertAdjacentHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacenthtml)
+* [insertAdjacentText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacenttext)
+* [insertBefore](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertbefore)
+* [isDefaultNamespace](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#isdefaultnamespace)
+* [isEqualNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#isequalnode)
+* [isSameNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#issamenode)
+* [layout](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#layout)
+* [lookupNamespaceURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lookupnamespaceuri)
+* [lookupPrefix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lookupprefix)
+* [matches](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#matches)
+* [msGetRegionContent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#msgetregioncontent)
+* [normalize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#normalize)
+* [onInputBlur](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-oninputblur)
+* [performUpdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-performupdate)
+* [prepend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#prepend)
+* [querySelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselector)
+* [querySelectorAll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselectorall)
+* [releasePointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#releasepointercapture)
+* [remove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#remove)
+* [removeAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattribute)
+* [removeAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattributens)
+* [removeAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattributenode)
+* [removeChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removechild)
+* [removeEventListener](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeeventlistener)
+* [render](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#render)
+* [renderAffix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderaffix)
+* [renderCharCounter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-rendercharcounter)
+* [renderHelperText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderhelpertext)
+* [renderIcon](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-rendericon)
+* [renderInput](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderinput)
+* [renderLabel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderlabel)
+* [renderLeadingIcon](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderleadingicon)
+* [renderLineRipple](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderlineripple)
+* [renderMulplierList](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#rendermulplierlist)
+* [renderOutline](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderoutline)
+* [renderPrefix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderprefix)
+* [renderRipple](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-renderripple)
+* [renderSuffix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-rendersuffix)
+* [renderSwitch](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#renderswitch)
+* [renderTrailingIcon](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-rendertrailingicon)
+* [renderUnitSelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#renderunitselector)
+* [replaceChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#replacechild)
+* [replaceWith](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#replacewith)
+* [reportValidity](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#reportvalidity)
+* [requestFullscreen](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestfullscreen)
+* [requestPointerLock](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestpointerlock)
+* [requestUpdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestupdate)
+* [requestUpdateInternal](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-requestupdateinternal)
+* [restoreNulled](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#restorenulled)
+* [scroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scroll)
+* [scrollBy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollby)
+* [scrollIntoView](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollintoview)
+* [scrollTo](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollto)
+* [select](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#select)
+* [selectMultiplier](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#private-selectmultiplier)
+* [setAriaLabel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setarialabel)
+* [setAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattribute)
+* [setAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributens)
+* [setAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributenode)
+* [setAttributeNodeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributenodens)
+* [setCustomValidity](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setcustomvalidity)
+* [setPointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setpointercapture)
+* [setSelectionRange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setselectionrange)
+* [shouldUpdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-shouldupdate)
+* [storeNulled](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#storenulled)
+* [toggleAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#toggleattribute)
+* [update](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#update)
+* [updated](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#updated)
+* [warn](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-warn)
+* [webkitMatchesSelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#webkitmatchesselector)
+* [createProperty](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-createproperty)
+* [finalize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-finalize)
+* [getPropertyDescriptor](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-getpropertyoptions)
+* [getStyles](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-getstyles)
 
 ### Object literals
 
-* [plugins](_open_scd_.openscd.md#plugins)
+* [nulled](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#private-nulled)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new OpenSCD**(): *[OpenSCD](_open_scd_.openscd.md)*
+\+ **new NullableTextFieldWithUnit**(): *[NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[constructor](_open_scd_base_.openscdbase.md#constructor)*
+*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[constructor](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#constructor)*
 
-*Overrides void*
+Defined in node_modules/lit-element/lib/updating-element.d.ts:274
 
-*Defined in [src/open-scd-base.ts:247](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L247)*
-
-**Returns:** *[OpenSCD](_open_scd_.openscd.md)*
+**Returns:** *[NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
 ## Properties
 
@@ -557,6 +620,26 @@ node is a Text node.
 
 ___
 
+### `Protected` _outlineUpdateComplete
+
+• **_outlineUpdateComplete**: *null | Promise‹unknown›*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[_outlineUpdateComplete](_mwc_textfield_nullable_.textfieldnullable.md#protected-_outlineupdatecomplete)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:87
+
+___
+
+### `Protected` _validity
+
+• **_validity**: *ValidityState*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[_validity](_mwc_textfield_nullable_.textfieldnullable.md#protected-_validity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:86
+
+___
+
 ###  accessKey
 
 • **accessKey**: *string*
@@ -574,18 +657,6 @@ ___
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[accessKeyLabel](_mwc_textfield_nullable_.textfieldnullable.md#readonly-accesskeylabel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
-
-___
-
-###  activeTab
-
-• **activeTab**: *number* = 0
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
-
-*Defined in [src/open-scd-base.ts:158](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L158)*
-
-The currently active editor tab.
 
 ___
 
@@ -611,13 +682,25 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
 ___
 
+###  autoValidate
+
+• **autoValidate**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[autoValidate](_mwc_textfield_nullable_.textfieldnullable.md#autovalidate)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:68
+
+___
+
 ###  autocapitalize
 
 • **autocapitalize**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[autocapitalize](_mwc_textfield_nullable_.textfieldnullable.md#autocapitalize)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:82
 
 ___
 
@@ -640,6 +723,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
 Returns node's node document's document base URL.
+
+___
+
+###  charCounter
+
+• **charCounter**: *boolean | TextAreaCharCounter*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[charCounter](_mwc_textfield_nullable_.textfieldnullable.md#charcounter)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:75
 
 ___
 
@@ -761,6 +854,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:8002
 
 ___
 
+###  defaultValue
+
+• **defaultValue**: *string* = ""
+
+*Defined in [src/nullable-textfield-with-unit.ts:42](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L42)*
+
+___
+
 ###  dir
 
 • **dir**: *string*
@@ -771,17 +872,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
 ___
 
-###  doc
+###  disabled
 
-• **doc**: *XMLDocument* = newEmptySCD()
+• **disabled**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[disabled](_mwc_textfield_nullable_.textfieldnullable.md#disabled)*
 
-*Overrides void*
-
-*Defined in [src/open-scd-base.ts:161](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L161)*
-
-The `XMLDocument` representation of the current file.
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:60
 
 ___
 
@@ -795,6 +892,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
 ___
 
+###  endAligned
+
+• **endAligned**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[endAligned](_mwc_textfield_nullable_.textfieldnullable.md#endaligned)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:76
+
+___
+
 ###  enterKeyHint
 
 • **enterKeyHint**: *string*
@@ -802,16 +909,6 @@ ___
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[enterKeyHint](_mwc_textfield_nullable_.textfieldnullable.md#enterkeyhint)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5265
-
-___
-
-###  fileUI
-
-• **fileUI**: *HTMLInputElement*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
-
-*Defined in [src/open-scd-base.ts:184](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L184)*
 
 ___
 
@@ -849,6 +946,38 @@ Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:34
 
 ___
 
+### `Protected` formElement
+
+• **formElement**: *HTMLInputElement*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[formElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-formelement)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:49
+
+___
+
+###  helper
+
+• **helper**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[helper](_mwc_textfield_nullable_.textfieldnullable.md#helper)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:65
+
+___
+
+###  helperPersistent
+
+• **helperPersistent**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[helperPersistent](_mwc_textfield_nullable_.textfieldnullable.md#helperpersistent)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:74
+
+___
+
 ###  hidden
 
 • **hidden**: *boolean*
@@ -859,15 +988,23 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
 ___
 
-###  history
+###  icon
 
-• **history**: *[LogEntry](../interfaces/_editing_.logentry.md)[]* = []
+• **icon**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[history](_open_scd_base_.openscdbase.md#history)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[icon](_mwc_textfield_nullable_.textfieldnullable.md#icon)*
 
-*Overrides void*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:58
 
-*Defined in [src/open-scd-base.ts:152](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L152)*
+___
+
+###  iconTrailing
+
+• **iconTrailing**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[iconTrailing](_mwc_textfield_nullable_.textfieldnullable.md#icontrailing)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:59
 
 ___
 
@@ -905,11 +1042,13 @@ ___
 
 ###  inputMode
 
-• **inputMode**: *string*
+• **inputMode**: *TextFieldInputMode*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[inputMode](_mwc_textfield_nullable_.textfieldnullable.md#inputmode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5266
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:80
 
 ___
 
@@ -935,6 +1074,44 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5267
 
 ___
 
+### `Private` isNull
+
+• **isNull**: *boolean* = false
+
+*Defined in [src/nullable-textfield-with-unit.ts:43](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L43)*
+
+___
+
+### `Protected` isUiValid
+
+• **isUiValid**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[isUiValid](_mwc_textfield_nullable_.textfieldnullable.md#protected-isuivalid)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:85
+
+___
+
+###  label
+
+• **label**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[label](_mwc_textfield_nullable_.textfieldnullable.md#label)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:57
+
+___
+
+### `Protected` labelElement
+
+• **labelElement**: *FloatingLabel | null*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[labelElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-labelelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:50
+
+___
+
 ###  lang
 
 • **lang**: *string*
@@ -942,16 +1119,6 @@ ___
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lang](_mwc_textfield_nullable_.textfieldnullable.md#lang)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6594
-
-___
-
-###  lastAction
-
-• **lastAction**: *number* = -1
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastAction](_open_scd_base_.openscdbase.md#lastaction)*
-
-*Defined in [src/editing.ts:46](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L46)*
 
 ___
 
@@ -979,6 +1146,16 @@ Returns the last child that is an element, and null otherwise.
 
 ___
 
+### `Protected` lineRippleElement
+
+• **lineRippleElement**: *LineRipple | null*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[lineRippleElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-linerippleelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:51
+
+___
+
 ### `Optional` lineRippleFoundation
 
 • **lineRippleFoundation**? : *MDCLineRippleFoundation*
@@ -1001,79 +1178,113 @@ Returns the local name.
 
 ___
 
-###  logUI
+###  max
 
-• **logUI**: *Dialog*
+• **max**: *number | string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[max](_mwc_textfield_nullable_.textfieldnullable.md#max)*
 
-*Defined in [src/open-scd-base.ts:182](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L182)*
-
-___
-
-###  menu
-
-• **menu**: *[MenuEntry](../interfaces/_open_scd_base_.menuentry.md)[]* = [
-    {
-      icon: 'folder_open',
-      name: 'Open project',
-      startsGroup: true,
-      actionItem: true,
-      action: (): void => this.fileUI.click(),
-    },
-    { icon: 'create_new_folder', name: 'New project' },
-    { icon: 'snippet_folder', name: 'Import IED' },
-    { icon: 'save', name: 'Save project' },
-    {
-      icon: 'undo',
-      name: 'Undo',
-      hint: 'CTRL+Z',
-      startsGroup: true,
-      actionItem: true,
-      action: this.undo,
-      isDisabled: (): boolean => !this.canUndo,
-    },
-    {
-      icon: 'redo',
-      name: 'Redo',
-      hint: 'CTRL+Y',
-      actionItem: true,
-      action: this.redo,
-      isDisabled: (): boolean => !this.canRedo,
-    },
-    { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
-    {
-      icon: 'rule',
-      name: 'View log',
-      hint: 'CTRL+L',
-      actionItem: true,
-      action: (): void => this.logUI.show(),
-    },
-  ]
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
-
-*Defined in [src/open-scd-base.ts:262](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L262)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:71
 
 ___
 
-###  menuUI
+###  maxLength
 
-• **menuUI**: *Drawer*
+• **maxLength**: *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[maxLength](_mwc_textfield_nullable_.textfieldnullable.md#maxlength)*
 
-*Defined in [src/open-scd-base.ts:181](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L181)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:63
 
 ___
 
-###  messageUI
+### `Protected` mdcFoundation
 
-• **messageUI**: *Snackbar*
+• **mdcFoundation**: *MDCTextFieldFoundation*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[mdcFoundation](_mwc_textfield_nullable_.textfieldnullable.md#protected-mdcfoundation)*
 
-*Defined in [src/open-scd-base.ts:183](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L183)*
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:46
+
+___
+
+### `Protected` `Readonly` mdcFoundationClass
+
+• **mdcFoundationClass**: *typeof MDCTextFieldFoundation*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[mdcFoundationClass](_mwc_textfield_nullable_.textfieldnullable.md#protected-readonly-mdcfoundationclass)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:47
+
+___
+
+### `Protected` mdcRoot
+
+• **mdcRoot**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[mdcRoot](_mwc_textfield_nullable_.textfieldnullable.md#protected-mdcroot)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:48
+
+___
+
+###  min
+
+• **min**: *number | string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[min](_mwc_textfield_nullable_.textfieldnullable.md#min)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:70
+
+___
+
+###  minLength
+
+• **minLength**: *number*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[minLength](_mwc_textfield_nullable_.textfieldnullable.md#minlength)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:62
+
+___
+
+### `Private` multiplierIndex
+
+• **multiplierIndex**: *number* = 0
+
+*Defined in [src/nullable-textfield-with-unit.ts:29](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L29)*
+
+___
+
+### `Optional` multiplierSelect
+
+• **multiplierSelect**? : *Select*
+
+*Defined in [src/nullable-textfield-with-unit.ts:61](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L61)*
+
+___
+
+###  multipliers
+
+• **multipliers**: *string[]* = ['']
+
+*Defined in [src/nullable-textfield-with-unit.ts:28](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L28)*
+
+___
+
+###  name
+
+• **name**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[name](_mwc_textfield_nullable_.textfieldnullable.md#name)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:79
 
 ___
 
@@ -1156,6 +1367,32 @@ ___
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[nonce](_mwc_textfield_nullable_.textfieldnullable.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8003
+
+___
+
+### `Protected` notchElement
+
+• **notchElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[notchElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-notchelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:53
+
+___
+
+### `Optional` nullSwitch
+
+• **nullSwitch**? : *Switch*
+
+*Defined in [src/nullable-textfield-with-unit.ts:59](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L59)*
+
+___
+
+###  nullable
+
+• **nullable**: *boolean* = false
+
+*Defined in [src/nullable-textfield-with-unit.ts:26](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L26)*
 
 ___
 
@@ -2299,6 +2536,46 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5127
 
 ___
 
+### `Protected` outlineElement
+
+• **outlineElement**: *NotchedOutline | null*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[outlineElement](_mwc_textfield_nullable_.textfieldnullable.md#protected-outlineelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:52
+
+___
+
+### `Protected` outlineOpen
+
+• **outlineOpen**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[outlineOpen](_mwc_textfield_nullable_.textfieldnullable.md#protected-outlineopen)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:83
+
+___
+
+### `Protected` outlineWidth
+
+• **outlineWidth**: *number*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[outlineWidth](_mwc_textfield_nullable_.textfieldnullable.md#protected-outlinewidth)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:84
+
+___
+
+###  outlined
+
+• **outlined**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[outlined](_mwc_textfield_nullable_.textfieldnullable.md#outlined)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:64
+
+___
+
 ### `Readonly` ownerDocument
 
 • **ownerDocument**: *Document*
@@ -2335,15 +2612,35 @@ Returns the parent.
 
 ___
 
-### `Readonly` prefix
+###  pattern
 
-• **prefix**: *string | null*
+• **pattern**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[pattern](_mwc_textfield_nullable_.textfieldnullable.md#pattern)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5132
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:69
 
-Returns the namespace prefix.
+___
+
+###  placeholder
+
+• **placeholder**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[placeholder](_mwc_textfield_nullable_.textfieldnullable.md#placeholder)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:56
+
+___
+
+###  prefix
+
+• **prefix**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[prefix](_mwc_textfield_nullable_.textfieldnullable.md#prefix)*
+
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:77
 
 ___
 
@@ -2371,6 +2668,16 @@ Returns the previous sibling.
 
 ___
 
+###  readOnly
+
+• **readOnly**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[readOnly](_mwc_textfield_nullable_.textfieldnullable.md#readonly)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:81
+
+___
+
 ### `Readonly` renderRoot
 
 • **renderRoot**: *Element | DocumentFragment*
@@ -2381,6 +2688,28 @@ Defined in node_modules/lit-element/lit-element.d.ts:126
 
 Node or ShadowRoot into which element DOM should be rendered. Defaults
 to an open shadowRoot.
+
+___
+
+###  required
+
+• **required**: *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[required](_mwc_textfield_nullable_.textfieldnullable.md#required)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:61
+
+___
+
+### `Optional` `Readonly` ripple
+
+• **ripple**? : *RippleInterface | Promise‹RippleInterface | null›*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[ripple](_mwc_textfield_nullable_.textfieldnullable.md#optional-readonly-ripple)*
+
+Defined in node_modules/@material/mwc-base/form-element.d.ts:32
+
+Implement ripple getter for Ripple integration with mwc-formfield
 
 ___
 
@@ -2436,6 +2765,16 @@ Returns element's shadow root, if any, and if shadow root's mode is "open", and 
 
 ___
 
+###  size
+
+• **size**: *number | null*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[size](_mwc_textfield_nullable_.textfieldnullable.md#size)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:73
+
+___
+
 ###  slot
 
 • **slot**: *string*
@@ -2458,15 +2797,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6600
 
 ___
 
-###  srcName
+###  step
 
-• **srcName**: *string* = "untitled.scd"
+• **step**: *number | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[step](_mwc_textfield_nullable_.textfieldnullable.md#step)*
 
-*Defined in [src/open-scd-base.ts:169](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L169)*
-
-The name of the current file.
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:72
 
 ___
 
@@ -2480,6 +2817,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5260
 
 ___
 
+###  suffix
+
+• **suffix**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[suffix](_mwc_textfield_nullable_.textfieldnullable.md#suffix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:78
+
+___
+
 ###  tabIndex
 
 • **tabIndex**: *number*
@@ -2487,18 +2834,6 @@ ___
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[tabIndex](_mwc_textfield_nullable_.textfieldnullable.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8004
-
-___
-
-###  tag
-
-• **tag**: *string* = "SCL"
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[tag](_open_scd_base_.openscdbase.md#tag)*
-
-*Defined in [src/open-scd-base.ts:167](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L167)*
-
-The tag name this editor is responsible for editing
 
 ___
 
@@ -2544,49 +2879,61 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6602
 
 ___
 
-###  waiting
+###  type
 
-• **waiting**: *boolean* = false
+• **type**: *TextFieldType*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[waiting](_open_scd_base_.openscdbase.md#waiting)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[type](_mwc_textfield_nullable_.textfieldnullable.md#type)*
 
-*Overrides void*
-
-*Defined in [src/open-scd-base.ts:155](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L155)*
-
-Whether the editor is currently waiting for some async work.
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:55
 
 ___
 
-### `Protected` work
+###  unit
 
-• **work**: *Set‹Promise‹string››* = new Set()
+• **unit**: *string* = ""
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
-
-*Defined in [src/waiting.ts:8](https://github.com/openscd/open-scd/blob/bbf7701/src/waiting.ts#L8)*
+*Defined in [src/nullable-textfield-with-unit.ts:40](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L40)*
 
 ___
 
-###  workDone
+###  validateOnInitialRender
 
-• **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
+• **validateOnInitialRender**: *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[validateOnInitialRender](_mwc_textfield_nullable_.textfieldnullable.md#validateoninitialrender)*
 
-*Defined in [src/waiting.ts:10](https://github.com/openscd/open-scd/blob/bbf7701/src/waiting.ts#L10)*
-
-A promise which resolves once all currently pending work is done.
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:66
 
 ___
 
-###  workflow
+###  validationMessage
 
-• **workflow**: *[Wizard](../interfaces/_foundation_.wizard.md)[]* = []
+• **validationMessage**: *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workflow](_open_scd_base_.openscdbase.md#workflow)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[validationMessage](_mwc_textfield_nullable_.textfieldnullable.md#validationmessage)*
 
-*Defined in [src/open-scd-base.ts:150](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L150)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:67
+
+___
+
+###  validityTransform
+
+• **validityTransform**: *function | null*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[validityTransform](_mwc_textfield_nullable_.textfieldnullable.md#validitytransform)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:94
+
+___
+
+###  value
+
+• **value**: *string*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[value](_mwc_textfield_nullable_.textfieldnullable.md#value)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:54
 
 ___
 
@@ -2671,33 +3018,23 @@ ___
 
 ### `Static` styles
 
-▪ **styles**: *CSSResult‹›* = styles
+▪ **styles**: *CSSResult*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[styles](_mwc_textfield_nullable_.textfieldnullable.md#static-styles)*
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/open-scd.ts:13](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd.ts#L13)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield.d.ts:25
 
 ## Accessors
 
-###  canRedo
+### `Protected` charCounterVisible
 
-• **get canRedo**(): *boolean*
+• **get charCounterVisible**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[charCounterVisible](_mwc_textfield_nullable_.textfieldnullable.md#protected-charcountervisible)*
 
-*Defined in [src/editing.ts:51](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L51)*
-
-**Returns:** *boolean*
-
-___
-
-###  canUndo
-
-• **get canUndo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
-
-*Defined in [src/editing.ts:48](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L48)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:93
 
 **Returns:** *boolean*
 
@@ -2715,61 +3052,27 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:337
 
 ___
 
-###  name
+###  maybeValue
 
-• **get name**(): *string | null*
+• **get maybeValue**(): *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[name](_open_scd_base_.openscdbase.md#name)*
-
-*Defined in [src/open-scd-base.ts:163](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L163)*
+*Defined in [src/nullable-textfield-with-unit.ts:55](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L55)*
 
 **Returns:** *string | null*
 
 ___
 
-###  nextAction
+###  multiplier
 
-• **get nextAction**(): *number*
+• **get multiplier**(): *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
-
-*Defined in [src/editing.ts:61](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L61)*
-
-**Returns:** *number*
-
-___
-
-###  previousAction
-
-• **get previousAction**(): *number*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
-
-*Defined in [src/editing.ts:54](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L54)*
-
-**Returns:** *number*
-
-___
-
-###  src
-
-• **get src**(): *string*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
-
-*Defined in [src/open-scd-base.ts:173](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L173)*
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
+*Defined in [src/nullable-textfield-with-unit.ts:31](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L31)*
 
 **Returns:** *string*
 
-• **set src**(`value`: string): *void*
+• **set multiplier**(`value`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
-
-*Defined in [src/open-scd-base.ts:176](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L176)*
-
-The current file's URL. `blob:` URLs are *revoked after parsing*!
+*Defined in [src/nullable-textfield-with-unit.ts:35](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L35)*
 
 **Parameters:**
 
@@ -2778,6 +3081,64 @@ Name | Type |
 `value` | string |
 
 **Returns:** *void*
+
+___
+
+###  null
+
+• **get null**(): *boolean*
+
+*Defined in [src/nullable-textfield-with-unit.ts:45](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L45)*
+
+**Returns:** *boolean*
+
+• **set null**(`value`: boolean): *void*
+
+*Defined in [src/nullable-textfield-with-unit.ts:48](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L48)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | boolean |
+
+**Returns:** *void*
+
+___
+
+###  selectionEnd
+
+• **get selectionEnd**(): *number | null*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[selectionEnd](_mwc_textfield_nullable_.textfieldnullable.md#selectionend)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:91
+
+**Returns:** *number | null*
+
+___
+
+###  selectionStart
+
+• **get selectionStart**(): *number | null*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[selectionStart](_mwc_textfield_nullable_.textfieldnullable.md#selectionstart)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:90
+
+**Returns:** *number | null*
+
+___
+
+### `Protected` shouldRenderHelperText
+
+• **get shouldRenderHelperText**(): *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[shouldRenderHelperText](_mwc_textfield_nullable_.textfieldnullable.md#protected-shouldrenderhelpertext)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:92
+
+**Returns:** *boolean*
 
 ___
 
@@ -2807,6 +3168,30 @@ update resolved without triggering another update.
 
 ___
 
+###  validity
+
+• **get validity**(): *ValidityState*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[validity](_mwc_textfield_nullable_.textfieldnullable.md#validity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:88
+
+**Returns:** *ValidityState*
+
+___
+
+###  willValidate
+
+• **get willValidate**(): *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[willValidate](_mwc_textfield_nullable_.textfieldnullable.md#willvalidate)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:89
+
+**Returns:** *boolean*
+
+___
+
 ### `Static` observedAttributes
 
 • **get observedAttributes**(): *string[]*
@@ -2823,30 +3208,35 @@ Returns a list of attributes corresponding to the registered properties.
 
 ## Methods
 
-### `Protected` _getUpdateComplete
+### `Protected` _checkValidity
 
-▸ **_getUpdateComplete**(): *Promise‹unknown›*
+▸ **_checkValidity**(`value`: string): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[_checkValidity](_mwc_textfield_nullable_.textfieldnullable.md#protected-_checkvalidity)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:388
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:118
 
-Override point for the `updateComplete` promise.
+**Parameters:**
 
-It is not safe to override the `updateComplete` getter directly due to a
-limitation in TypeScript which means it is not possible to call a
-superclass getter (e.g. `super.updateComplete.then(...)`) when the target
-language is ES5 (https://github.com/microsoft/TypeScript/issues/338).
-This method should be overridden instead. For example:
+Name | Type |
+------ | ------ |
+`value` | string |
 
-  class MyElement extends LitElement {
-    async _getUpdateComplete() {
-      await super._getUpdateComplete();
-      await this._myChild.updateComplete;
-    }
-  }
+**Returns:** *boolean*
 
-**Returns:** *Promise‹unknown›*
+___
+
+###  _getUpdateComplete
+
+▸ **_getUpdateComplete**(): *Promise‹void›*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[_getUpdateComplete](_mwc_textfield_nullable_.textfieldnullable.md#_getupdatecomplete)*
+
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:127
+
+**Returns:** *Promise‹void›*
 
 ___
 
@@ -3076,11 +3466,25 @@ ___
 
 ▸ **blur**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[blur](_mwc_textfield_nullable_.textfieldnullable.md#blur)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8005
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:96
 
 **Returns:** *void*
+
+___
+
+###  checkValidity
+
+▸ **checkValidity**(): *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[checkValidity](_mwc_textfield_nullable_.textfieldnullable.md#checkvalidity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:116
+
+**Returns:** *boolean*
 
 ___
 
@@ -3088,9 +3492,11 @@ ___
 
 ▸ **click**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[click](_mwc_textfield_nullable_.textfieldnullable.md#click)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6603
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
+
+Defined in node_modules/@material/mwc-base/form-element.d.ts:33
 
 **Returns:** *void*
 
@@ -3176,26 +3582,6 @@ Name | Type |
 
 ___
 
-###  commit
-
-▸ **commit**(`title`: string, `action`: [Action](../modules/_foundation_.md#action), `options?`: [LogOptions](../modules/_editing_.md#logoptions)): *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
-
-*Defined in [src/editing.ts:115](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L115)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`action` | [Action](../modules/_foundation_.md#action) |
-`options?` | [LogOptions](../modules/_editing_.md#logoptions) |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-___
-
 ###  compareDocumentPosition
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
@@ -3250,22 +3636,55 @@ Name | Type |
 
 ___
 
+### `Protected` createAdapter
+
+▸ **createAdapter**(): *MDCTextFieldAdapter*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[createAdapter](_mwc_textfield_nullable_.textfieldnullable.md#protected-createadapter)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:122
+
+**Returns:** *MDCTextFieldAdapter*
+
+___
+
+### `Protected` createFoundation
+
+▸ **createFoundation**(): *void*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[createFoundation](_mwc_textfield_nullable_.textfieldnullable.md#protected-createfoundation)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:121
+
+**Returns:** *void*
+
+___
+
 ### `Protected` createRenderRoot
 
-▸ **createRenderRoot**(): *Element | ShadowRoot*
+▸ **createRenderRoot**(): *ShadowRoot*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[createRenderRoot](_mwc_textfield_nullable_.textfieldnullable.md#protected-createrenderroot)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:140
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)*
 
-Returns the node into which the element should render and by default
-creates and returns an open shadowRoot. Implement to customize where the
-element's DOM is rendered. For example, to render into the element's
-childNodes, return `this`.
+Defined in node_modules/@material/mwc-base/form-element.d.ts:28
 
-**Returns:** *Element | ShadowRoot*
+**Returns:** *ShadowRoot*
 
-Returns a node into which to render.
+___
+
+### `Private` disable
+
+▸ **disable**(): *void*
+
+*Defined in [src/nullable-textfield-with-unit.ts:81](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L81)*
+
+**Returns:** *void*
 
 ___
 
@@ -3305,6 +3724,16 @@ Name | Type |
 
 ___
 
+### `Private` enable
+
+▸ **enable**(): *void*
+
+*Defined in [src/nullable-textfield-with-unit.ts:74](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L74)*
+
+**Returns:** *void*
+
+___
+
 ### `Protected` enableUpdating
 
 ▸ **enableUpdating**(): *void*
@@ -3317,64 +3746,27 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:299
 
 ___
 
-###  error
+###  firstUpdated
 
-▸ **error**(`title`: string, `options?`: [LogOptions](../modules/_editing_.md#logoptions)): *[LogEntry](../interfaces/_editing_.logentry.md)*
+▸ **firstUpdated**(): *Promise‹void›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[error](_open_scd_base_.openscdbase.md#error)*
+*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[firstUpdated](_mwc_textfield_nullable_.textfieldnullable.md#firstupdated)*
 
-*Overrides void*
+*Defined in [src/nullable-textfield-with-unit.ts:105](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L105)*
 
-*Defined in [src/open-scd-base.ts:186](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L186)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`options?` | [LogOptions](../modules/_editing_.md#logoptions) |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
-
-___
-
-### `Protected` firstUpdated
-
-▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
-
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstUpdated](_editors_substationeditor_.substationeditor.md#protected-firstupdated)*
-
-Defined in node_modules/lit-element/lib/updating-element.d.ts:425
-
-Invoked when the element is first updated. Implement to perform one time
-work on the element after update.
-
-Setting properties inside this method will trigger the element to update
-again after this update cycle completes.
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`_changedProperties` | PropertyValues | Map of changed properties with old values  |
-
-**Returns:** *void*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  focus
 
-▸ **focus**(`options?`: FocusOptions): *void*
+▸ **focus**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[focus](_mwc_textfield_nullable_.textfieldnullable.md#focus)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8006
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
 
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`options?` | FocusOptions |
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:95
 
 **Returns:** *void*
 
@@ -3631,6 +4023,66 @@ Name | Type |
 
 ___
 
+### `Protected` getInputAdapterMethods
+
+▸ **getInputAdapterMethods**(): *MDCTextFieldInputAdapter*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getInputAdapterMethods](_mwc_textfield_nullable_.textfieldnullable.md#protected-getinputadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:124
+
+**Returns:** *MDCTextFieldInputAdapter*
+
+___
+
+### `Protected` getLabelAdapterMethods
+
+▸ **getLabelAdapterMethods**(): *MDCTextFieldLabelAdapter*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getLabelAdapterMethods](_mwc_textfield_nullable_.textfieldnullable.md#protected-getlabeladaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:125
+
+**Returns:** *MDCTextFieldLabelAdapter*
+
+___
+
+### `Protected` getLineRippleAdapterMethods
+
+▸ **getLineRippleAdapterMethods**(): *MDCTextFieldLineRippleAdapter*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getLineRippleAdapterMethods](_mwc_textfield_nullable_.textfieldnullable.md#protected-getlinerippleadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:126
+
+**Returns:** *MDCTextFieldLineRippleAdapter*
+
+___
+
+### `Protected` getOutlineAdapterMethods
+
+▸ **getOutlineAdapterMethods**(): *MDCTextFieldOutlineAdapter*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getOutlineAdapterMethods](_mwc_textfield_nullable_.textfieldnullable.md#protected-getoutlineadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:129
+
+**Returns:** *MDCTextFieldOutlineAdapter*
+
+___
+
+### `Protected` getRootAdapterMethods
+
+▸ **getRootAdapterMethods**(): *MDCTextFieldRootAdapter*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[getRootAdapterMethods](_mwc_textfield_nullable_.textfieldnullable.md#protected-getrootadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:123
+
+**Returns:** *MDCTextFieldRootAdapter*
+
+___
+
 ###  getRootNode
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
@@ -3648,6 +4100,18 @@ Name | Type |
 `options?` | GetRootNodeOptions |
 
 **Returns:** *Node*
+
+___
+
+### `Protected` handleInputChange
+
+▸ **handleInputChange**(): *void*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[handleInputChange](_mwc_textfield_nullable_.textfieldnullable.md#protected-handleinputchange)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:120
+
+**Returns:** *void*
 
 ___
 
@@ -3743,8 +4207,6 @@ ___
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[info](_mwc_textfield_nullable_.textfieldnullable.md#optional-info)*
-
-*Overrides void*
 
 *Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L157)*
 
@@ -3913,22 +4375,15 @@ Name | Type |
 
 ___
 
-###  log
+###  layout
 
-▸ **log**(`title`: string, `detail?`: Partial‹[LogEntry](../interfaces/_editing_.logentry.md)›): *[LogEntry](../interfaces/_editing_.logentry.md)*
+▸ **layout**(): *Promise‹void›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[layout](_mwc_textfield_nullable_.textfieldnullable.md#layout)*
 
-*Defined in [src/editing.ts:85](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L85)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:130
 
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`title` | string |
-`detail?` | Partial‹[LogEntry](../interfaces/_editing_.logentry.md)› |
-
-**Returns:** *[LogEntry](../interfaces/_editing_.logentry.md)*
+**Returns:** *Promise‹void›*
 
 ___
 
@@ -4009,6 +4464,18 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10838
 
 Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
+
+**Returns:** *void*
+
+___
+
+### `Protected` onInputBlur
+
+▸ **onInputBlur**(): *void*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[onInputBlur](_mwc_textfield_nullable_.textfieldnullable.md#protected-oninputblur)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:115
 
 **Returns:** *void*
 
@@ -4183,18 +4650,6 @@ Name | Type |
 
 ___
 
-###  redo
-
-▸ **redo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
-
-*Defined in [src/editing.ts:78](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L78)*
-
-**Returns:** *boolean*
-
-___
-
 ###  releasePointerCapture
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
@@ -4365,103 +4820,215 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#render)*
+*Overrides void*
 
-*Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[render](_mwc_textfield_nullable_.textfieldnullable.md#static-render)*
-
-*Defined in [src/open-scd-base.ts:406](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L406)*
+*Defined in [src/nullable-textfield-with-unit.ts:110](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L110)*
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderActionItem
+### `Protected` renderAffix
 
-▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
+▸ **renderAffix**(`content`: string, `isSuffix?`: undefined | false | true): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderActionItem](_open_scd_base_.openscdbase.md#renderactionitem)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderAffix](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderaffix)*
 
-*Defined in [src/open-scd-base.ts:351](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L351)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:110
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
+`content` | string |
+`isSuffix?` | undefined &#124; false &#124; true |
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderEditorTab
+### `Protected` renderCharCounter
 
-▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
+▸ **renderCharCounter**(): *object*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderEditorTab](_open_scd_base_.openscdbase.md#rendereditortab)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderCharCounter](_mwc_textfield_nullable_.textfieldnullable.md#protected-rendercharcounter)*
 
-*Defined in [src/open-scd-base.ts:363](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L363)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:114
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderHelperText
+
+▸ **renderHelperText**(`charCounterTemplate?`: TemplateResult | typeof nothing): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderHelperText](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderhelpertext)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:113
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`editor` | [Tab](../interfaces/_open_scd_base_.tab.md) |
+`charCounterTemplate?` | TemplateResult &#124; typeof nothing |
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderIcon
+
+▸ **renderIcon**(`icon`: string, `isTrailingIcon?`: undefined | false | true): *TemplateResult*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderIcon](_mwc_textfield_nullable_.textfieldnullable.md#protected-rendericon)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:107
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`icon` | string |
+`isTrailingIcon?` | undefined &#124; false &#124; true |
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderHistory
+### `Protected` renderInput
 
-▸ **renderHistory**(`history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult[]*
+▸ **renderInput**(): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderHistory](_open_scd_base_.openscdbase.md#renderhistory)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderInput](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderinput)*
 
-*Defined in [src/open-scd-base.ts:374](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L374)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`history` | [LogEntry](../interfaces/_editing_.logentry.md)[] |
-
-**Returns:** *TemplateResult[]*
-
-___
-
-###  renderLogEntry
-
-▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_editing_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderLogEntry](_open_scd_base_.openscdbase.md#renderlogentry)*
-
-*Defined in [src/open-scd-base.ts:386](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L386)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`entry` | [LogEntry](../interfaces/_editing_.logentry.md) |
-`index` | number |
-`history` | [LogEntry](../interfaces/_editing_.logentry.md)[] |
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:111
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderMenuEntry
+### `Protected` renderLabel
 
-▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
+▸ **renderLabel**(): *object*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderMenuEntry](_open_scd_base_.openscdbase.md#rendermenuentry)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderLabel](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderlabel)*
 
-*Defined in [src/open-scd-base.ts:332](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L332)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:104
 
-**Parameters:**
+**Returns:** *object*
 
-Name | Type |
------- | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
+___
+
+### `Protected` renderLeadingIcon
+
+▸ **renderLeadingIcon**(): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderLeadingIcon](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderleadingicon)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:105
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderLineRipple
+
+▸ **renderLineRipple**(): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderLineRipple](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderlineripple)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:112
+
+**Returns:** *object*
+
+___
+
+###  renderMulplierList
+
+▸ **renderMulplierList**(): *TemplateResult*
+
+*Defined in [src/nullable-textfield-with-unit.ts:134](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L134)*
+
+**Returns:** *TemplateResult*
+
+___
+
+### `Protected` renderOutline
+
+▸ **renderOutline**(): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderOutline](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderoutline)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:103
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderPrefix
+
+▸ **renderPrefix**(): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderPrefix](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderprefix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:108
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderRipple
+
+▸ **renderRipple**(): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderRipple](_mwc_textfield_nullable_.textfieldnullable.md#protected-renderripple)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:102
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderSuffix
+
+▸ **renderSuffix**(): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderSuffix](_mwc_textfield_nullable_.textfieldnullable.md#protected-rendersuffix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:109
+
+**Returns:** *object*
+
+___
+
+###  renderSwitch
+
+▸ **renderSwitch**(): *TemplateResult*
+
+*Defined in [src/nullable-textfield-with-unit.ts:143](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L143)*
+
+**Returns:** *TemplateResult*
+
+___
+
+### `Protected` renderTrailingIcon
+
+▸ **renderTrailingIcon**(): *object*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[renderTrailingIcon](_mwc_textfield_nullable_.textfieldnullable.md#protected-rendertrailingicon)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:106
+
+**Returns:** *object*
+
+___
+
+###  renderUnitSelector
+
+▸ **renderUnitSelector**(): *TemplateResult*
+
+*Defined in [src/nullable-textfield-with-unit.ts:126](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L126)*
 
 **Returns:** *TemplateResult*
 
@@ -4509,6 +5076,18 @@ Name | Type |
 `...nodes` | (Node &#124; string)[] |
 
 **Returns:** *void*
+
+___
+
+###  reportValidity
+
+▸ **reportValidity**(): *boolean*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[reportValidity](_mwc_textfield_nullable_.textfieldnullable.md#reportvalidity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:117
+
+**Returns:** *boolean*
 
 ___
 
@@ -4594,6 +5173,16 @@ Name | Type |
 `name?` | PropertyKey |
 `oldValue?` | unknown |
 `options?` | PropertyDeclaration |
+
+**Returns:** *void*
+
+___
+
+###  restoreNulled
+
+▸ **restoreNulled**(): *void*
+
+*Defined in [src/nullable-textfield-with-unit.ts:93](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L93)*
 
 **Returns:** *void*
 
@@ -4716,6 +5305,52 @@ Name | Type |
 
 ___
 
+###  select
+
+▸ **select**(): *void*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[select](_mwc_textfield_nullable_.textfieldnullable.md#select)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:97
+
+**Returns:** *void*
+
+___
+
+### `Private` selectMultiplier
+
+▸ **selectMultiplier**(`se`: SingleSelectedEvent): *void*
+
+*Defined in [src/nullable-textfield-with-unit.ts:70](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L70)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`se` | SingleSelectedEvent |
+
+**Returns:** *void*
+
+___
+
+###  setAriaLabel
+
+▸ **setAriaLabel**(`label`: string): *void*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setAriaLabel](_mwc_textfield_nullable_.textfieldnullable.md#setarialabel)*
+
+Defined in node_modules/@material/mwc-base/form-element.d.ts:34
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`label` | string |
+
+**Returns:** *void*
+
+___
+
 ###  setAttribute
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
@@ -4795,6 +5430,24 @@ Name | Type |
 
 ___
 
+###  setCustomValidity
+
+▸ **setCustomValidity**(`message`: string): *void*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setCustomValidity](_mwc_textfield_nullable_.textfieldnullable.md#setcustomvalidity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:119
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`message` | string |
+
+**Returns:** *void*
+
+___
+
 ###  setPointerCapture
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
@@ -4808,6 +5461,26 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5240
 Name | Type |
 ------ | ------ |
 `pointerId` | number |
+
+**Returns:** *void*
+
+___
+
+###  setSelectionRange
+
+▸ **setSelectionRange**(`selectionStart`: number, `selectionEnd`: number, `selectionDirection?`: "forward" | "backward" | "none"): *void*
+
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[setSelectionRange](_mwc_textfield_nullable_.textfieldnullable.md#setselectionrange)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:98
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`selectionStart` | number |
+`selectionEnd` | number |
+`selectionDirection?` | "forward" &#124; "backward" &#124; "none" |
 
 **Returns:** *void*
 
@@ -4835,6 +5508,16 @@ Name | Type | Description |
 
 ___
 
+###  storeNulled
+
+▸ **storeNulled**(): *void*
+
+*Defined in [src/nullable-textfield-with-unit.ts:99](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L99)*
+
+**Returns:** *void*
+
+___
+
 ###  toggleAttribute
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
@@ -4858,31 +5541,15 @@ Name | Type |
 
 ___
 
-###  undo
-
-▸ **undo**(): *boolean*
-
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
-
-*Defined in [src/editing.ts:69](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L69)*
-
-**Returns:** *boolean*
-
-___
-
-### `Protected` update
+###  update
 
 ▸ **update**(`changedProperties`: PropertyValues): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[update](_editors_substationeditor_.substationeditor.md#protected-update)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[update](_mwc_textfield_nullable_.textfieldnullable.md#update)*
 
-*Overrides void*
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[update](_editors_substationeditor_.substationeditor.md#protected-update)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:158
-
-Updates the element. This method reflects property values to attributes
-and calls `render` to render DOM via lit-html. Setting properties inside
-this method will *not* trigger another update.
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:99
 
 **Parameters:**
 
@@ -4894,25 +5561,21 @@ Name | Type |
 
 ___
 
-### `Protected` updated
+###  updated
 
-▸ **updated**(`_changedProperties`: PropertyValues): *void*
+▸ **updated**(`changedProperties`: PropertyValues): *void*
 
-*Inherited from [WizardDialog](_open_scd_base_.wizarddialog.md).[updated](_open_scd_base_.wizarddialog.md#protected-updated)*
+*Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[updated](_mwc_textfield_nullable_.textfieldnullable.md#updated)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:415
+*Overrides [WizardDialog](_open_scd_base_.wizarddialog.md).[updated](_open_scd_base_.wizarddialog.md#protected-updated)*
 
-Invoked whenever the element is updated. Implement to perform
-post-updating tasks via DOM APIs, for example, focusing an element.
-
-Setting properties inside this method will trigger the element to update
-again after this update cycle completes.
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:101
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`_changedProperties` | PropertyValues | Map of changed properties with old values  |
+Name | Type |
+------ | ------ |
+`changedProperties` | PropertyValues |
 
 **Returns:** *void*
 
@@ -4923,8 +5586,6 @@ ___
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[warn](_mwc_textfield_nullable_.textfieldnullable.md#optional-warn)*
-
-*Overrides void*
 
 *Defined in [src/foundation.ts:158](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L158)*
 
@@ -5112,44 +5773,26 @@ Override this method to integrate into a style management system.
 
 ## Object literals
 
-###  plugins
+### `Private` nulled
 
-### ▪ **plugins**: *object*
+### ▪ **nulled**: *object*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
+*Defined in [src/nullable-textfield-with-unit.ts:64](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L64)*
 
-*Defined in [src/open-scd-base.ts:300](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L300)*
+###  helper
 
-###  editors
+• **helper**: *string* = this.helper
 
-• **editors**: *(object | object | object)[]* = [
-      {
-        label: 'Substation',
-        id: 'substation',
-        icon: zeroLineIcon,
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/SubstationEditor.js', 'editor-0').then(
-            () => html`<editor-0 .doc=${this.doc}></editor-0>`
-          ),
-      },
-      {
-        label: 'Communication',
-        id: 'communication',
-        icon: 'mediation',
-        getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
-      },
-      {
-        label: 'Network',
-        id: 'network',
-        icon: networkConfigIcon,
-        getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
-      },
-      {
-        label: 'IED',
-        id: 'ied',
-        icon: iedIcon,
-        getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
-      },
-    ]
+*Defined in [src/nullable-textfield-with-unit.ts:66](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L66)*
 
-*Defined in [src/open-scd-base.ts:301](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L301)*
+###  helperPersistent
+
+• **helperPersistent**: *boolean* = this.helperPersistent
+
+*Defined in [src/nullable-textfield-with-unit.ts:67](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L67)*
+
+###  value
+
+• **value**: *string* = this.value || this.defaultValue
+
+*Defined in [src/nullable-textfield-with-unit.ts:65](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L65)*

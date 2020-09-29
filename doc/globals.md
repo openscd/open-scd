@@ -12,6 +12,7 @@
 * ["foundation"](modules/_foundation_.md)
 * ["icons"](modules/_icons_.md)
 * ["mwc-textfield-nullable"](modules/_mwc_textfield_nullable_.md)
+* ["nullable-textfield-with-unit"](modules/_nullable_textfield_with_unit_.md)
 * ["open-scd"](modules/_open_scd_.md)
 * ["open-scd-base"](modules/_open_scd_base_.md)
 * ["open-scd-css"](modules/_open_scd_css_.md)
