@@ -86,12 +86,6 @@ export class NullableTextFieldWithUnit extends TextField {
       : 'No default value';
     this.helperPersistent = true;
     this.disabled = true;
-    console.warn(
-      'set helper to',
-      this.helper,
-      'because of default',
-      this.defaultValue
-    );
 
     if (this.multiplierSelect) this.multiplierSelect.disabled = true;
   }

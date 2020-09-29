@@ -182,8 +182,6 @@ export default class SubstationEditor extends LitElement {
           inputs.find(i => i.label === 'desc')!.value
         )
       );
-      console.info(action.new.element, action.new.parent);
-      console.info(inputs);
       return [action];
     } else return [];
   }
@@ -393,7 +391,6 @@ export default class SubstationEditor extends LitElement {
               },
             },
           });
-          console.log(event.detail.wizard);
 
           this.dispatchEvent(event);
         }}
