@@ -34,13 +34,13 @@ import {
   Wizard,
   WizardInput,
   WizardPage,
+  Action,
 } from './foundation.js';
 import { Waiting } from './waiting.js';
 import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
 import { Editing, LogEntry, LogOptions, newEmptySCD } from './editing.js';
-import { MDCDialogCloseEventDetail } from '@material/mwc-dialog/mwc-dialog-base';
 interface Tab {
   label: string;
   id: string;
@@ -60,30 +60,53 @@ interface MenuEntry {
 @customElement('mwc-wizard-dialog')
 class WizardDialog extends LitElement {
   @property()
-  wizard?: Wizard = { pages: [], actions: {} };
+  wizard?: Wizard = [];
   @internalProperty()
   pageIndex = 0;
   @property()
   get page(): WizardPage {
-    this.querySelectorAll;
-    return this.wizard?.pages[this.pageIndex] ?? { title: 'Error' };
+    return this.wizard?.[this.pageIndex] ?? { title: 'Error' };
+  }
+  @property({ type: Boolean })
+  get pageValid(): boolean {
+    return Array.from(this.pageInputs).every(wi => wi.checkValidity());
   }
   @queryAll('mwc-textfield, mwc-textfield-nullable, mwc-select')
-  inputs!: NodeListOf<WizardInput>;
+  pageInputs!: NodeListOf<WizardInput>;
 
   next() {
-    if ((this.wizard?.pages.length ?? 0) > this.pageIndex + 1) this.pageIndex++;
+    if ((this.wizard?.length ?? 0) > this.pageIndex + 1) this.pageIndex++;
   }
   prev() {
     if (this.pageIndex > 0) this.pageIndex--;
   }
 
-  closed(action: string) {
-    if (action !== 'close') {
-      const editorActions =
-        this.wizard?.actions[action]?.(Array.from(this.inputs)) ?? [];
-      editorActions.map(ea => this.dispatchEvent(newActionEvent(ea)));
+  async act(action?: (inputs: WizardInput[]) => Action[]): Promise<boolean> {
+    if (action === undefined) return false;
+    console.warn(action);
+    const inputs: WizardInput[] = [];
+    for (
+      this.pageIndex = 0;
+      this.pageIndex < (this.wizard?.length ?? 0);
+      this.pageIndex++
+    ) {
+      await this.updateComplete;
+      console.warn(this.pageValid);
+      if (!this.pageValid) {
+        Array.from(this.pageInputs).map(wi => wi.reportValidity());
+        return false;
+      }
+      inputs.push(...Array.from(this.pageInputs));
+      console.log(inputs);
+      action(inputs).map(ea => this.dispatchEvent(newActionEvent(ea)));
     }
+    this.reset();
+    return true;
+  }
+
+  reset(): void {
+    this.pageIndex = 0;
+    this.wizard = [];
     this.dispatchEvent(
       new CustomEvent<{ wizard: Wizard | null }>('wizard', {
         bubbles: true,
@@ -106,13 +129,12 @@ class WizardDialog extends LitElement {
   `;
 
   render() {
-    return html`${this.wizard?.pages.map(
+    return html`${this.wizard?.map(
       (wp, i) =>
         html`<mwc-dialog
           .heading=${this.page.title}
           ?open=${this.pageIndex == i}
-          @closed=${(ae: CustomEvent<MDCDialogCloseEventDetail>) =>
-            this.closed(ae.detail.action ?? '')}
+          @closed=${this.reset}
         >
           ${wp.content}
           ${i > 0
@@ -122,32 +144,51 @@ class WizardDialog extends LitElement {
                 icon="navigate_before"
               ></mwc-button>`
             : html``}
-          ${wp.secondary ??
-          html`<mwc-button
-            slot="secondaryAction"
-            dialogAction="close"
-            label="cancel"
-            style="--mdc-theme-primary: var(--mdc-theme-secondary)"
-            outlined
-          ></mwc-button> `}
-          ${wp.primary ??
-          (i + 1 < (this.wizard?.pages.length ?? 0)
+          ${wp.secondary
+            ? html`<mwc-button
+                slot="secondaryAction"
+                @click=${() => this.act(wp.secondary?.action)}
+                icon="${wp.secondary.icon}"
+                label="${wp.secondary.label}"
+                unelevated
+              ></mwc-button>`
+            : html`<mwc-button
+                slot="secondaryAction"
+                dialogAction="close"
+                label="cancel"
+                style="--mdc-theme-primary: var(--mdc-theme-secondary)"
+                outlined
+              ></mwc-button>`}
+          ${wp.primary
             ? html`<mwc-button
                 slot="primaryAction"
-                @click=${() => this.next()}
+                @click=${() => this.act(wp.primary?.action)}
+                icon="${wp.primary.icon}"
+                label="${wp.primary.label}"
+                trailingIcon
+                raised
+              ></mwc-button>`
+            : i + 1 < (this.wizard?.length ?? 0)
+            ? html`<mwc-button
+                slot="primaryAction"
+                @click=${() => (this.pageValid ? this.next() : null)}
                 icon="navigate_next"
-                label=${this.wizard?.pages[i + 1].title}
+                label=${this.wizard?.[i + 1].title}
                 trailingicon
               ></mwc-button>`
-            : html``)}
+            : html``}
         </mwc-dialog>`
     )}`;
   }
 }
 
 export class OpenSCDBase extends Waiting(Editing(LitElement)) {
-  @property()
+  @internalProperty()
   workflow: Wizard[] = [];
+  @property()
+  get wizard(): Wizard | undefined {
+    return this.workflow[0];
+  }
   @property()
   history: LogEntry[] = [];
   /** Whether the editor is currently waiting for some async work. */
@@ -441,7 +482,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         html`<span>Loading...</span>`
       )}
 
-      <mwc-wizard-dialog .wizard=${this.workflow[0]}></mwc-wizard-dialog>
+      <mwc-wizard-dialog .wizard=${this.wizard}></mwc-wizard-dialog>
 
       <mwc-dialog id="log" heading="Log">
         <mwc-list id="content" wrapFocus>

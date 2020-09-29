@@ -1,8 +1,7 @@
 import { Select } from '@material/mwc-select';
 import { TextField } from '@material/mwc-textfield';
 import { TemplateResult } from 'lit-element';
-
-import { TextFieldNullable } from './mwc-textfield-nullable.js';
+import { NullableTextFieldWithUnit } from './nullable-textfield-with-unit.js';
 
 /** Represents a change to some `Element`. */
 export type Action = Create | Update | Delete | Move;
@@ -101,20 +100,25 @@ export function newActionEvent<T extends Action>(
   });
 }
 
-export type WizardInput = TextField | TextFieldNullable | Select;
+export type WizardInput = TextField | NullableTextFieldWithUnit | Select;
 
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
   title: string;
   content?: TemplateResult[];
-  primary?: TemplateResult;
-  secondary?: TemplateResult;
+  primary?: {
+    icon: string;
+    label: string;
+    action: (inputs: WizardInput[]) => Action[];
+  };
+  secondary?: {
+    icon: string;
+    label: string;
+    action: (inputs: WizardInput[]) => Action[];
+  };
 }
 
-export interface Wizard {
-  pages: WizardPage[];
-  actions: Record<string, (inputs: WizardInput[]) => Action[]>;
-}
+export type Wizard = WizardPage[];
 
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {

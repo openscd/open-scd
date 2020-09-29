@@ -1,4 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
+
+import '../src/nullable-textfield-with-unit.js';
 import { NullableTextFieldWithUnit } from '../src/nullable-textfield-with-unit.js';
 
 describe('Nullable Textfield with Units', () => {
