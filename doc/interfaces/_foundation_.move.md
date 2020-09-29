@@ -22,7 +22,7 @@ Represents reparenting of `move.old.element` to `move.new.parent`.
 
 • **derived**? : *undefined | false | true*
 
-*Defined in [src/foundation.ts:23](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L23)*
+*Defined in [src/foundation.ts:23](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L23)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **new**: *object*
 
-*Defined in [src/foundation.ts:22](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L22)*
+*Defined in [src/foundation.ts:22](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L22)*
 
 #### Type declaration:
 
@@ -44,7 +44,7 @@ ___
 
 • **old**: *object*
 
-*Defined in [src/foundation.ts:21](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L21)*
+*Defined in [src/foundation.ts:21](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L21)*
 
 #### Type declaration:
 

@@ -316,7 +316,7 @@
 
 \+ **new WizardDialog**(): *[WizardDialog](_open_scd_base_.wizarddialog.md)*
 
-*Inherited from [WizardDialog](_open_scd_base_.wizarddialog.md).[constructor](_open_scd_base_.wizarddialog.md#constructor)*
+*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[constructor](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#constructor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:274
 
@@ -842,7 +842,7 @@ ___
 
 • **inputs**: *NodeListOf‹[WizardInput](../modules/_foundation_.md#wizardinput)›*
 
-*Defined in [src/open-scd-base.ts:72](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L72)*
+*Defined in [src/open-scd-base.ts:72](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L72)*
 
 ___
 
@@ -2162,7 +2162,7 @@ ___
 
 • **pageIndex**: *number* = 0
 
-*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L65)*
+*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L65)*
 
 ___
 
@@ -2470,7 +2470,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/open-scd-base.ts:96](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L96)*
+*Defined in [src/open-scd-base.ts:96](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L96)*
 
 ## Accessors
 
@@ -2490,7 +2490,7 @@ ___
 
 • **get page**(): *[WizardPage](../interfaces/_foundation_.wizardpage.md)*
 
-*Defined in [src/open-scd-base.ts:67](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L67)*
+*Defined in [src/open-scd-base.ts:67](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L67)*
 
 **Returns:** *[WizardPage](../interfaces/_foundation_.wizardpage.md)*
 
@@ -2835,7 +2835,7 @@ ___
 
 ▸ **closed**(`action`: string): *void*
 
-*Defined in [src/open-scd-base.ts:81](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L81)*
+*Defined in [src/open-scd-base.ts:81](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L81)*
 
 **Parameters:**
 
@@ -3434,7 +3434,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[info](_mwc_textfield_nullable_.textfieldnullable.md#optional-info)*
 
-*Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L157)*
+*Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L157)*
 
 **Parameters:**
 
@@ -3673,7 +3673,7 @@ ___
 
 ▸ **next**(): *void*
 
-*Defined in [src/open-scd-base.ts:74](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L74)*
+*Defined in [src/open-scd-base.ts:74](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L74)*
 
 **Returns:** *void*
 
@@ -3746,7 +3746,7 @@ ___
 
 ▸ **prev**(): *void*
 
-*Defined in [src/open-scd-base.ts:77](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L77)*
+*Defined in [src/open-scd-base.ts:77](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L77)*
 
 **Returns:** *void*
 
@@ -4044,7 +4044,7 @@ ___
 
 *Overrides [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[render](_mwc_textfield_nullable_.textfieldnullable.md#static-render)*
 
-*Defined in [src/open-scd-base.ts:108](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L108)*
+*Defined in [src/open-scd-base.ts:108](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L108)*
 
 **Returns:** *TemplateResult‹›*
 
@@ -4495,7 +4495,7 @@ ___
 
 *Inherited from [TextFieldNullable](_mwc_textfield_nullable_.textfieldnullable.md).[warn](_mwc_textfield_nullable_.textfieldnullable.md#optional-warn)*
 
-*Defined in [src/foundation.ts:158](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L158)*
+*Defined in [src/foundation.ts:158](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L158)*
 
 **Parameters:**
 
@@ -4685,13 +4685,13 @@ Override this method to integrate into a style management system.
 
 ### ▪ **wizard**? : *object*
 
-*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L63)*
+*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L63)*
 
 ###  actions
 
 • **actions**: *object*
 
-*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L63)*
+*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L63)*
 
 #### Type declaration:
 
@@ -4699,4 +4699,4 @@ Override this method to integrate into a style management system.
 
 • **pages**: *never[]* = []
 
-*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/e0075da/src/open-scd-base.ts#L63)*
+*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/bbf7701/src/open-scd-base.ts#L63)*

@@ -19,7 +19,7 @@
 
 • **actions**: *Record‹string, function›*
 
-*Defined in [src/foundation.ts:116](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L116)*
+*Defined in [src/foundation.ts:116](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L116)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **pages**: *[WizardPage](_foundation_.wizardpage.md)[]*
 
-*Defined in [src/foundation.ts:115](https://github.com/openscd/open-scd/blob/e0075da/src/foundation.ts#L115)*
+*Defined in [src/foundation.ts:115](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L115)*

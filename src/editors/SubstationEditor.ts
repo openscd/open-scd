@@ -17,6 +17,8 @@ import { Select } from '@material/mwc-select';
 
 import '../mwc-textfield-nullable.js';
 import { TextFieldNullable } from '../mwc-textfield-nullable.js';
+import { NullableTextFieldWithUnit } from '../nullable-textfield-with-unit.js';
+import '../nullable-textfield-with-unit.js';
 import {
   newActionEvent,
   Action,
@@ -28,7 +30,7 @@ import {
 import { styles } from './substation/substation-css.js';
 export default class SubstationEditor extends LitElement {
   defaultNomFreq = 50;
-  defaultNumPhases = 3;
+  defaultNumPhases = null;
   defaultVoltage = 110;
 
   @property()
@@ -59,18 +61,16 @@ export default class SubstationEditor extends LitElement {
   @query('mwc-menu') menuUI!: Menu;
   @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
   @query('mwc-dialog#create-voltage-level') createVoltageLevelUI!: Dialog;
-  @query('#create-voltage-level > mwc-textfield[label="name"]')
-  voltageLevelNameUI!: TextField;
-  @query('#create-voltage-level > mwc-textfield-nullable[label="desc"]')
-  voltageLevelDescUI!: TextFieldNullable;
-  @query('#create-voltage-level > mwc-textfield-nullable[label="nomFreq"]')
-  voltageLevelNomFreqUI!: TextFieldNullable;
-  @query('#create-voltage-level > mwc-textfield-nullable[label="numPhases"]')
-  voltageLevelNumPhasesUI!: TextFieldNullable;
+  @query('#voltageLevelName')
+  voltageLevelNameUI!: NullableTextFieldWithUnit;
+  @query('#voltageLevelDesc')
+  voltageLevelDescUI!: NullableTextFieldWithUnit;
+  @query('#voltageLevelNomFreq')
+  voltageLevelNomFreqUI!: NullableTextFieldWithUnit;
+  @query('#voltageLevelNumPhases')
+  voltageLevelNumPhasesUI!: NullableTextFieldWithUnit;
   @query('#Voltage')
-  voltageLevelVoltageUI!: TextFieldNullable;
-  @query('#voltageUnitMultiplier')
-  voltageLevelUnitMultiplier!: Select;
+  voltageLevelVoltageUI!: NullableTextFieldWithUnit;
 
   checkSubstationValidity(): boolean {
     return (
@@ -83,10 +83,9 @@ export default class SubstationEditor extends LitElement {
     return (
       this.element !== null &&
       Array.from(
-        this.createVoltageLevelUI.querySelectorAll('mwc-textfield')
-      ).every(tf => tf.checkValidity()) &&
-      Array.from(
-        this.createVoltageLevelUI.querySelectorAll('mwc-textfield-nullable')
+        this.createVoltageLevelUI.querySelectorAll(
+          'nullable-textfield-with-unit'
+        )
       ).every(tf => tf.checkValidity())
     );
   }
@@ -120,12 +119,12 @@ export default class SubstationEditor extends LitElement {
   }
 
   newVoltageLevelCreateAction(
-    name: string,
+    name: string | null,
     desc: string | null,
     nomFreq: string | null,
     numPhases: string | null,
     Voltage: string | null,
-    voltageLevelUnitMultiplier: string
+    multiplier: string
   ): Action {
     if (!this.element)
       throw new Error('Cannot create VoltageLevel without Substation');
@@ -142,7 +141,7 @@ export default class SubstationEditor extends LitElement {
           ${
             Voltage === null
               ? ''
-              : `<Voltage unit="V" multiplier="${voltageLevelUnitMultiplier}">${Voltage}</Voltage>`
+              : `<Voltage unit="V" multiplier="${multiplier}">${Voltage}</Voltage>`
           }
           </VoltageLevel>`,
           'application/xml'
@@ -183,8 +182,6 @@ export default class SubstationEditor extends LitElement {
           inputs.find(i => i.label === 'desc')!.value
         )
       );
-      console.info(action.new.element, action.new.parent);
-      console.info(inputs);
       return [action];
     } else return [];
   }
@@ -194,12 +191,12 @@ export default class SubstationEditor extends LitElement {
       this.dispatchEvent(
         newActionEvent(
           this.newVoltageLevelCreateAction(
-            this.voltageLevelNameUI.value,
-            this.voltageLevelDescUI.getValue(),
-            this.voltageLevelNomFreqUI.getValue(),
-            this.voltageLevelNumPhasesUI.getValue(),
-            this.voltageLevelVoltageUI.getValue(),
-            this.voltageLevelUnitMultiplier.selected!.innerText.replace('V', '')
+            this.voltageLevelNameUI.maybeValue,
+            this.voltageLevelDescUI.maybeValue,
+            this.voltageLevelNomFreqUI.maybeValue,
+            this.voltageLevelNumPhasesUI.maybeValue,
+            this.voltageLevelVoltageUI.maybeValue,
+            this.voltageLevelVoltageUI.multiplier
           )
         )
       );
@@ -247,51 +244,53 @@ export default class SubstationEditor extends LitElement {
       heading="Add Voltage Level"
       id="create-voltage-level"
     >
-      <mwc-textfield
+      <nullable-textfield-with-unit
+        id="voltageLevelName"
         label="name"
         helper="Voltage Level Name"
         required
         dialogInitialFocus
-      ></mwc-textfield>
-      <mwc-textfield-nullable
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        id="voltageLevelDesc"
         label="desc"
+        nullable="true"
         helper="Description"
-      ></mwc-textfield-nullable>
-      <mwc-textfield-nullable
-        value="${this.defaultNomFreq}"
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        id="voltageLevelNomFreq"
         label="nomFreq"
+        nullable="true"
+        style="flex:auto"
+        .Value="${this.defaultNomFreq}"
         helper="Nominal Frequency in Hz"
         required
         pattern="[0-9]*[.]?[0-9]{1,2}"
-      ></mwc-textfield-nullable>
-      <mwc-textfield-nullable
-        value="${this.defaultNumPhases}"
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        id="voltageLevelNumPhases"
         label="numPhases"
+        nullable="true"
+        .Value="${this.defaultNumPhases}"
         helper="Number of Phases"
+        defaultValue="Jakob"
         required
         type="number"
         min="1"
         max="255"
-      ></mwc-textfield-nullable>
-      <div style="display: flex; flex-direction: row; ">
-        <mwc-textfield-nullable
-          id="Voltage"
-          value="${this.defaultVoltage}"
-          helper="Voltage in kV"
-          required
-          pattern="[0-9]*[.]?[0-9]{1,3}"
-        ></mwc-textfield-nullable>
-        <mwc-select
-          id="voltageUnitMultiplier"
-          style="--mdc-menu-max-width: 30px;"
-        >
-          <mwc-list-item>GV</mwc-list-item>
-          <mwc-list-item>MV</mwc-list-item>
-          <mwc-list-item selected>kV</mwc-list-item>
-          <mwc-list-item>V</mwc-list-item>
-          <mwc-list-item>mV</mwc-list-item>
-        </mwc-select>
-      </div>
+      ></nullable-textfield-with-unit>
+      <nullable-textfield-with-unit
+        id="Voltage"
+        nullable
+        unit="V"
+        .multipliers=${['G', 'M', 'k', '', 'm']}
+        preSelectedMultiplier="k"
+        label="Voltage"
+        .Value="${this.defaultVoltage}"
+        helper="Voltage in kV"
+        required
+        pattern="[0-9]*[.]?[0-9]{1,3}"
+      ></nullable-textfield-with-unit>
       <mwc-button slot="secondaryAction" dialogAction="close">
         Cancel
       </mwc-button>
@@ -392,7 +391,6 @@ export default class SubstationEditor extends LitElement {
               },
             },
           });
-          console.log(event.detail.wizard);
 
           this.dispatchEvent(event);
         }}
