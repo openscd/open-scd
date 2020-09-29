@@ -32,8 +32,6 @@ export default class SubstationEditor extends LitElement {
   defaultNomFreq = 50;
   defaultNumPhases = null;
   defaultVoltage = 110;
-  multipliers = ['G', 'M', 'k', '', 'm'];
-  unit = 'V';
 
   @property()
   doc!: XMLDocument;
@@ -126,7 +124,7 @@ export default class SubstationEditor extends LitElement {
     nomFreq: string | null,
     numPhases: string | null,
     Voltage: string | null,
-    voltageLevelUnitMultiplier: string
+    multiplier: string
   ): Action {
     if (!this.element)
       throw new Error('Cannot create VoltageLevel without Substation');
@@ -143,7 +141,7 @@ export default class SubstationEditor extends LitElement {
           ${
             Voltage === null
               ? ''
-              : `<Voltage unit="${this.unit}" multiplier="${voltageLevelUnitMultiplier}">${Voltage}</Voltage>`
+              : `<Voltage unit="V" multiplier="${multiplier}">${Voltage}</Voltage>`
           }
           </VoltageLevel>`,
           'application/xml'
@@ -195,12 +193,12 @@ export default class SubstationEditor extends LitElement {
       this.dispatchEvent(
         newActionEvent(
           this.newVoltageLevelCreateAction(
-            this.voltageLevelNameUI.Value,
-            this.voltageLevelDescUI.Value,
-            this.voltageLevelNomFreqUI.Value,
-            this.voltageLevelNumPhasesUI.Value,
-            this.voltageLevelVoltageUI.Value,
-            this.voltageLevelVoltageUI.getSelectedMultiplier()
+            this.voltageLevelNameUI.maybeValue,
+            this.voltageLevelDescUI.maybeValue,
+            this.voltageLevelNomFreqUI.maybeValue,
+            this.voltageLevelNumPhasesUI.maybeValue,
+            this.voltageLevelVoltageUI.maybeValue,
+            this.voltageLevelVoltageUI.multiplier
           )
         )
       );
@@ -286,8 +284,8 @@ export default class SubstationEditor extends LitElement {
       <nullable-textfield-with-unit
         id="Voltage"
         nullable
-        .multiplierArray=${this.multipliers}
-        unit=${this.unit}
+        unit="V"
+        .multipliers=${['G', 'M', 'k', '', 'm']}
         preSelectedMultiplier="k"
         label="Voltage"
         .Value="${this.defaultVoltage}"

@@ -1,17 +1,18 @@
 import {
+  TemplateResult,
   customElement,
   html,
-  TemplateResult,
-  query,
   property,
+  query,
 } from 'lit-element';
 
-import '@material/mwc-switch';
-import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+import '@material/mwc-switch';
+import { Select } from '@material/mwc-select';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
-import { Select } from '@material/mwc-select';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -24,93 +25,92 @@ export class NullableTextFieldWithUnit extends TextField {
   @property({ type: Boolean })
   nullable = false;
   @property({ type: Array })
-  multiplierArray = [] as string[];
+  multipliers = [''];
+  private multiplierIndex = 0;
   @property({ type: String })
-  preSelectedMultiplier = '';
+  get multiplier(): string {
+    if (this.unit == '') return '';
+    return this.multipliers[this.multiplierIndex] ?? this.multipliers[0] ?? '';
+  }
+  set multiplier(value: string) {
+    const index = this.multipliers.indexOf(value);
+    if (index >= 0) this.multiplierIndex = index;
+  }
   @property({ type: String })
   unit = '';
   @property({ type: String })
   defaultValue = '';
   private isNull = false;
+  @property({ type: Boolean })
+  get null(): boolean {
+    return this.nullable && this.isNull;
+  }
+  set null(value: boolean) {
+    if (!this.nullable || value == this.isNull) return;
+    this.isNull = value;
+    if (this.null) this.disable();
+    else this.enable();
+  }
   @property()
-  get Value(): string | null {
-    return this.isNull ? null : super.value;
-  }
-  set Value(attributeValue: string | null) {
-    this.initialSetup(attributeValue);
+  get maybeValue(): string | null {
+    return this.null ? null : this.value;
   }
 
-  @query('mwc-switch') switch?: Switch;
-  @query('#voltageUnitMultiplier')
-  voltageLevelUnitMultiplier!: Select;
+  @query('mwc-switch') nullSwitch?: Switch;
+  @query('mwc-select')
+  multiplierSelect?: Select;
 
-  //JSON Object to save the state before disable
-  nulled = {
-    value: super.value || this.defaultValue,
-    helper: super.helper,
-    helperPersistent: super.helperPersistent,
-    initialized: false,
+  // TextField state before disable()
+  private nulled = {
+    value: this.value || this.defaultValue,
+    helper: this.helper,
+    helperPersistent: this.helperPersistent,
   };
 
-  getSelectedMultiplier(): string {
-    if (this.voltageLevelUnitMultiplier)
-      return this.voltageLevelUnitMultiplier.selected!.innerText.replace(
-        this.unit,
-        ''
-      );
-    return '';
+  private selectMultiplier(se: SingleSelectedEvent): void {
+    this.multiplierIndex = se.detail.index;
   }
 
-  initialSetup(attributeValue: string | null): void {
-    this.value = attributeValue == null ? '' : attributeValue;
-    this.isNull = attributeValue == null ? true : false;
-    this.isNull ? this.disableAttribute() : this.enableAttribute();
-  }
-
-  enableAttribute(): void {
+  private enable(): void {
     this.restoreNulled();
-    super.disabled = false;
+    this.disabled = false;
 
-    if (this.voltageLevelUnitMultiplier)
-      this.voltageLevelUnitMultiplier.disabled = false;
+    if (this.multiplierSelect) this.multiplierSelect.disabled = false;
   }
 
-  disableAttribute(): void {
+  private disable(): void {
     this.storeNulled();
-    super.value = '';
-    super.helper = this.defaultValue
+    this.value = '';
+    this.helper = this.defaultValue
       ? 'Default: ' + this.defaultValue
       : 'No default value';
     this.helperPersistent = true;
     this.disabled = true;
+    console.warn(
+      'set helper to',
+      this.helper,
+      'because of default',
+      this.defaultValue
+    );
 
-    if (this.voltageLevelUnitMultiplier)
-      this.voltageLevelUnitMultiplier.disabled = true;
+    if (this.multiplierSelect) this.multiplierSelect.disabled = true;
   }
 
   restoreNulled(): void {
-    if (this.nulled.initialized) {
-      super.value = this.nulled.value;
-      super.helper = this.nulled.helper;
-      super.helperPersistent = this.nulled.helperPersistent;
-    }
-    this.nulled.initialized = true;
+    this.value = this.nulled.value;
+    this.helper = this.nulled.helper;
+    this.helperPersistent = this.nulled.helperPersistent;
   }
 
   storeNulled(): void {
-    this.nulled.value = super.value;
-    this.nulled.helper = super.helper;
-    this.nulled.helperPersistent = super.helperPersistent;
-    this.nulled.initialized = true;
+    this.nulled.value = this.value;
+    this.nulled.helper = this.helper;
+    this.nulled.helperPersistent = this.helperPersistent;
   }
 
-  toggleValue(): void {
-    this.isNull = !this.isNull;
-    this.isNull ? this.disableAttribute() : this.enableAttribute();
-  }
-
-  constructor() {
-    super();
+  async firstUpdated(): Promise<void> {
+    await super.firstUpdated();
+    this.storeNulled();
   }
 
   render(): TemplateResult {
@@ -130,19 +130,18 @@ export class NullableTextFieldWithUnit extends TextField {
   }
 
   renderUnitSelector(): TemplateResult {
-    if (this.multiplierArray.length && this.unit) {
-      return html`<mwc-select id="voltageUnitMultiplier">
+    if (this.multipliers.length && this.unit)
+      return html`<mwc-select @selected=${this.selectMultiplier}>
         ${this.renderMulplierList()}
       </mwc-select>`;
-    }
-    return html``;
+    else return html``;
   }
 
   renderMulplierList(): TemplateResult {
-    return html`${Array.from(this.multiplierArray).map(
-      multi =>
-        html`<mwc-list-item ?selected=${multi == this.preSelectedMultiplier}
-          >${multi}${this.unit}</mwc-list-item
+    return html`${this.multipliers.map(
+      multiplier =>
+        html`<mwc-list-item ?selected=${multiplier == this.multiplier}
+          >${multiplier}${this.unit}</mwc-list-item
         >`
     )}`;
   }
@@ -151,9 +150,9 @@ export class NullableTextFieldWithUnit extends TextField {
     if (this.nullable) {
       return html`<mwc-switch
         style="margin-left: 24px;"
-        ?checked=${!this.isNull}
+        ?checked=${!this.null}
         @change=${() => {
-          this.toggleValue();
+          this.null = !this.nullSwitch!.checked;
         }}
       ></mwc-switch>`;
     }

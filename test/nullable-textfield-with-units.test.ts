@@ -12,138 +12,129 @@ describe('Nullable Textfield with Units', () => {
   it('adds a switch element with nullable option', async () => {
     element.nullable = true;
     await element.updateComplete;
-    expect(element.switch).to.exist;
+    expect(element.nullSwitch).to.exist;
   });
 
   it('does not add a switch element without nullable option', async () => {
     element.nullable = false;
-    expect(element.switch).to.not.exist;
+    expect(element.nullSwitch).to.not.exist;
   });
 
   it('adds a select element with non-empty multiplier array and non empty unit', async () => {
-    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    element.multipliers = ['G', 'M', 'k', '', 'm'];
     element.unit = 'V';
     await element.updateComplete;
-    expect(element.voltageLevelUnitMultiplier).to.exist;
+    expect(element.multiplierSelect).to.exist;
   });
 
   it('does not add a select element without specified multiplier', async () => {
-    element.multiplierArray = [];
+    element.multipliers = [];
     element.unit = 'V';
     await element.updateComplete;
-    expect(element.voltageLevelUnitMultiplier).to.not.exist;
+    expect(element.multiplierSelect).to.not.exist;
   });
 
   it('does not add a select element on missing unit', async () => {
-    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    element.multipliers = ['G', 'M', 'k', '', 'm'];
     await element.updateComplete;
-    expect(element.voltageLevelUnitMultiplier).to.not.exist;
+    expect(element.multiplierSelect).to.not.exist;
   });
 
   it('combines multiplier and unit in select field', async () => {
-    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    element.multipliers = ['G', 'M', 'k', '', 'm'];
     element.unit = 'V';
     await element.updateComplete;
     expect(
-      element.voltageLevelUnitMultiplier!.querySelectorAll('mwc-list-item')
-        .length
+      element.multiplierSelect!.querySelectorAll('mwc-list-item').length
     ).to.equal(5);
 
     expect(
-      element
-        .voltageLevelUnitMultiplier!.querySelectorAll('mwc-list-item')
-        .item(0).innerText
+      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(0)
+        .innerText
     ).to.be.equal('GV');
     expect(
-      element
-        .voltageLevelUnitMultiplier!.querySelectorAll('mwc-list-item')
-        .item(1).innerText
+      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(1)
+        .innerText
     ).to.be.equal('MV');
     expect(
-      element
-        .voltageLevelUnitMultiplier!.querySelectorAll('mwc-list-item')
-        .item(2).innerText
+      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(2)
+        .innerText
     ).to.be.equal('kV');
     expect(
-      element
-        .voltageLevelUnitMultiplier!.querySelectorAll('mwc-list-item')
-        .item(3).innerText
+      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(3)
+        .innerText
     ).to.be.equal('V');
     expect(
-      element
-        .voltageLevelUnitMultiplier!.querySelectorAll('mwc-list-item')
-        .item(4).innerText
+      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(4)
+        .innerText
     ).to.be.equal('mV');
   });
 
   it('returns selected multiplier on existing multiplier and unit', async () => {
-    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    element.multipliers = ['G', 'M', 'k', '', 'm'];
     element.unit = 'V';
-    element.preSelectedMultiplier = 'k';
+    element.multiplier = 'k';
     await element.updateComplete;
-    expect(element.getSelectedMultiplier()).to.equal('k');
+    expect(element.multiplier).to.equal('k');
   });
 
   it('returns selected empty string on empty multiplier', async () => {
     element.unit = 'V';
-    element.preSelectedMultiplier = 'k';
+    element.multiplier = 'k';
     await element.updateComplete;
-    expect(element.getSelectedMultiplier()).to.equal('');
+    expect(element.multiplier).to.equal('');
   });
 
   it('returns selected empty string on empty unit', async () => {
-    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
-    expect(element.getSelectedMultiplier()).to.equal('');
+    element.multipliers = ['G', 'M', 'k', '', 'm'];
+    expect(element.multiplier).to.equal('');
   });
 
   it('disables textfield on switch toggle', async () => {
     element.nullable = true;
-    element.Value = 'test';
+    element.value = 'test';
     await element.updateComplete;
-    element.switch!.click();
+    element.nullSwitch!.click();
     await element.updateComplete;
-    expect(element).to.have.property('Value', null);
+    expect(element).to.have.property('maybeValue', null);
     expect(element).to.have.property('disabled', true);
   });
 
   it('disables mulktiplier select on switch toggle', async () => {
     element.nullable = true;
-    element.multiplierArray = ['G', 'M', 'k', '', 'm'];
+    element.multipliers = ['G', 'M', 'k', '', 'm'];
     element.unit = 'V';
-    element.preSelectedMultiplier = 'k';
+    element.multiplier = 'k';
     await element.updateComplete;
-    element.switch!.click();
+    element.nullSwitch!.click();
     await element.updateComplete;
-    expect(element.voltageLevelUnitMultiplier).to.have.property(
-      'disabled',
-      true
-    );
-    element.switch!.click();
+    expect(element.multiplierSelect).to.have.property('disabled', true);
+    element.nullSwitch!.click();
     await element.updateComplete;
-    expect(element.voltageLevelUnitMultiplier).to.have.property(
-      'disabled',
-      false
-    );
+    expect(element.multiplierSelect).to.have.property('disabled', false);
   });
 
   it('remebers textfield value on switch toggle', async () => {
     element.nullable = true;
-    element.Value = 'test';
+    element.value = 'test';
     await element.updateComplete;
-    element.switch!.click();
+    element.nullSwitch!.click();
     await element.updateComplete;
-    element.switch!.click();
+    element.nullSwitch!.click();
     await element.updateComplete;
     expect(element).to.have.property('disabled', false);
-    expect(element).to.have.property('Value', 'test');
+    expect(element).to.have.property('maybeValue', 'test');
   });
 
-  describe('with a missing attribute', () => {
+  describe('with a null value', () => {
     beforeEach(async () => {
-      element.Value = null;
+      element.nullable = true;
+      element.null = true;
+      await element.updateComplete;
     });
 
-    it('has a persistant helper', () => {
+    it('has a persistent helper', async () => {
+      await element.updateComplete;
       expect(element).to.have.property('helperPersistent', true);
     });
 
@@ -156,8 +147,10 @@ describe('Nullable Textfield with Units', () => {
     });
 
     it('displays default value of the attribute in the helper if present', async () => {
+      element.null = false;
+      await element.updateComplete;
       element.defaultValue = 'Jakob';
-      element.Value = null;
+      element.null = true;
       await element.updateComplete;
       expect(element).to.have.property('helper', 'Default: Jakob');
     });
@@ -167,13 +160,13 @@ describe('Nullable Textfield with Units', () => {
     });
 
     it('returns null', () => {
-      expect(element).to.have.property('Value', null);
+      expect(element).to.have.property('maybeValue', null);
     });
   });
 
   describe('with a non empty attribute', () => {
     beforeEach(async () => {
-      element.Value = 'value';
+      element.value = 'value';
     });
 
     it('has a non persistant helper', () => {
@@ -191,7 +184,7 @@ describe('Nullable Textfield with Units', () => {
 
     it('returns value of textfield', () => {
       element.value = 'Test';
-      expect(element.Value).to.be.equal(element.value);
+      expect(element.maybeValue).to.be.equal(element.value);
     });
   });
 });
