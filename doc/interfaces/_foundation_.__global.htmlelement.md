@@ -19,7 +19,7 @@
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L157)*
+*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L161)*
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Defined in [src/foundation.ts:158](https://github.com/openscd/open-scd/blob/bbf7701/src/foundation.ts#L158)*
+*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L162)*
 
 **Parameters:**
 

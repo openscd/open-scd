@@ -24,7 +24,7 @@
 
 Ƭ **EditingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Editing›*
 
-*Defined in [src/editing.ts:38](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L38)*
+*Defined in [src/editing.ts:38](https://github.com/openscd/open-scd/blob/a0d6da1/src/editing.ts#L38)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 Ƭ **LogOptions**: *Pick‹[LogEntry](../interfaces/_editing_.logentry.md), "cause" | "icon" | "message"›*
 
-*Defined in [src/editing.ts:28](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L28)*
+*Defined in [src/editing.ts:28](https://github.com/openscd/open-scd/blob/a0d6da1/src/editing.ts#L28)*
 
 ## Functions
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **Editing**‹**TBase**›(`Base`: TBase): *EditingElement & TBase*
 
-*Defined in [src/editing.ts:40](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L40)*
+*Defined in [src/editing.ts:40](https://github.com/openscd/open-scd/blob/a0d6da1/src/editing.ts#L40)*
 
 **Type parameters:**
 
@@ -60,6 +60,6 @@ ___
 
 ▸ **newEmptySCD**(): *XMLDocument*
 
-*Defined in [src/editing.ts:30](https://github.com/openscd/open-scd/blob/bbf7701/src/editing.ts#L30)*
+*Defined in [src/editing.ts:30](https://github.com/openscd/open-scd/blob/a0d6da1/src/editing.ts#L30)*
 
 **Returns:** *XMLDocument*

@@ -99,4 +99,4 @@
   }
 `
 
-*Defined in [src/editors/substation/substation-css.ts:3](https://github.com/openscd/open-scd/blob/bbf7701/src/editors/substation/substation-css.ts#L3)*
+*Defined in [src/editors/substation/substation-css.ts:3](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/substation/substation-css.ts#L3)*

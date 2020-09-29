@@ -18,4 +18,4 @@
 
 • **nullable-textfield-with-unit**: *[NullableTextFieldWithUnit](../classes/_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
-*Defined in [src/nullable-textfield-with-unit.ts:19](https://github.com/openscd/open-scd/blob/bbf7701/src/nullable-textfield-with-unit.ts#L19)*
+*Defined in [src/nullable-textfield-with-unit.ts:19](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L19)*

@@ -33,8 +33,9 @@
 | `undo`           |             |           |                                                  |                                                  |                                                  |
 | `waiting`        | `waiting`   |           | `boolean`                                        | false                                            | Whether the editor is currently waiting for some async work. |
 | `warn`           |             |           |                                                  |                                                  |                                                  |
+| `wizard`         | `wizard`    | readonly  | `Wizard \| undefined`                            |                                                  |                                                  |
 | `workDone`       |             |           | `Promise<PromiseSettledResult<string>[]>`        | "Promise.allSettled(this.work)"                  | A promise which resolves once all currently pending work is done. |
-| `workflow`       | `workflow`  |           | `Wizard[]`                                       | []                                               |                                                  |
+| `workflow`       |             |           | `Wizard[]`                                       | []                                               |                                                  |
 
 ## Methods
 
