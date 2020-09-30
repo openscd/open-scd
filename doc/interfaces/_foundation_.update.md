@@ -22,7 +22,7 @@ Represents replacement of `update.old.element` by `update.new.element`.
 
 • **derived**? : *undefined | false | true*
 
-*Defined in [src/foundation.ts:28](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L28)*
+*Defined in [src/foundation.ts:28](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L28)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **new**: *object*
 
-*Defined in [src/foundation.ts:27](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L27)*
+*Defined in [src/foundation.ts:27](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L27)*
 
 #### Type declaration:
 
@@ -42,7 +42,7 @@ ___
 
 • **old**: *object*
 
-*Defined in [src/foundation.ts:26](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L26)*
+*Defined in [src/foundation.ts:26](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L26)*
 
 #### Type declaration:
 

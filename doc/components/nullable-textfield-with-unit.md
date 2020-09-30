@@ -18,7 +18,7 @@
 | `label`                   |                |           | `string`                                         |         |                                                  |
 | `max`                     |                |           | `string \| number`                               |         |                                                  |
 | `maxLength`               |                |           | `number`                                         |         |                                                  |
-| `maybeValue`              | `maybeValue`   | readonly  | `string \| null`                                 |         |                                                  |
+| `maybeValue`              | `maybeValue`   |           | `string \| null`                                 |         |                                                  |
 | `min`                     |                |           | `string \| number`                               |         |                                                  |
 | `minLength`               |                |           | `number`                                         |         |                                                  |
 | `multiplier`              | `multiplier`   |           | `string`                                         |         |                                                  |

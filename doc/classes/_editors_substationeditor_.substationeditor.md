@@ -333,7 +333,7 @@
 
 *Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[constructor](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#constructor)*
 
-*Defined in [src/editors/SubstationEditor.ts:302](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L302)*
+*Defined in [src/editors/SubstationEditor.ts:302](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L302)*
 
 **Returns:** *[SubstationEditor](_editors_substationeditor_.substationeditor.md)*
 
@@ -731,7 +731,7 @@ ___
 
 • **createVoltageLevelUI**: *Dialog*
 
-*Defined in [src/editors/SubstationEditor.ts:49](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L49)*
+*Defined in [src/editors/SubstationEditor.ts:49](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L49)*
 
 ___
 
@@ -749,7 +749,7 @@ ___
 
 • **defaultNomFreq**: *number* = 50
 
-*Defined in [src/editors/SubstationEditor.ts:23](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L23)*
+*Defined in [src/editors/SubstationEditor.ts:23](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L23)*
 
 ___
 
@@ -757,7 +757,7 @@ ___
 
 • **defaultNumPhases**: *null* = null
 
-*Defined in [src/editors/SubstationEditor.ts:24](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L24)*
+*Defined in [src/editors/SubstationEditor.ts:24](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L24)*
 
 ___
 
@@ -765,7 +765,7 @@ ___
 
 • **defaultVoltage**: *number* = 110
 
-*Defined in [src/editors/SubstationEditor.ts:25](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L25)*
+*Defined in [src/editors/SubstationEditor.ts:25](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L25)*
 
 ___
 
@@ -783,7 +783,7 @@ ___
 
 • **doc**: *XMLDocument*
 
-*Defined in [src/editors/SubstationEditor.ts:28](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L28)*
+*Defined in [src/editors/SubstationEditor.ts:28](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L28)*
 
 ___
 
@@ -975,7 +975,7 @@ ___
 
 • **menuIconUI**: *IconButton*
 
-*Defined in [src/editors/SubstationEditor.ts:48](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L48)*
+*Defined in [src/editors/SubstationEditor.ts:48](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L48)*
 
 ___
 
@@ -983,7 +983,7 @@ ___
 
 • **menuUI**: *Menu*
 
-*Defined in [src/editors/SubstationEditor.ts:47](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L47)*
+*Defined in [src/editors/SubstationEditor.ts:47](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L47)*
 
 ___
 
@@ -2434,7 +2434,7 @@ ___
 
 • **voltageLevelDescUI**: *[NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
-*Defined in [src/editors/SubstationEditor.ts:53](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L53)*
+*Defined in [src/editors/SubstationEditor.ts:53](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L53)*
 
 ___
 
@@ -2442,7 +2442,7 @@ ___
 
 • **voltageLevelNameUI**: *[NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
-*Defined in [src/editors/SubstationEditor.ts:51](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L51)*
+*Defined in [src/editors/SubstationEditor.ts:51](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L51)*
 
 ___
 
@@ -2450,7 +2450,7 @@ ___
 
 • **voltageLevelNomFreqUI**: *[NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
-*Defined in [src/editors/SubstationEditor.ts:55](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L55)*
+*Defined in [src/editors/SubstationEditor.ts:55](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L55)*
 
 ___
 
@@ -2458,7 +2458,7 @@ ___
 
 • **voltageLevelNumPhasesUI**: *[NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
-*Defined in [src/editors/SubstationEditor.ts:57](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L57)*
+*Defined in [src/editors/SubstationEditor.ts:57](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L57)*
 
 ___
 
@@ -2466,7 +2466,7 @@ ___
 
 • **voltageLevelVoltageUI**: *[NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md)*
 
-*Defined in [src/editors/SubstationEditor.ts:59](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L59)*
+*Defined in [src/editors/SubstationEditor.ts:59](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L59)*
 
 ___
 
@@ -2555,7 +2555,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/editors/SubstationEditor.ts:311](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L311)*
+*Defined in [src/editors/SubstationEditor.ts:311](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L311)*
 
 ## Accessors
 
@@ -2563,7 +2563,7 @@ ___
 
 • **get desc**(): *string | null*
 
-*Defined in [src/editors/SubstationEditor.ts:43](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L43)*
+*Defined in [src/editors/SubstationEditor.ts:43](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L43)*
 
 **Returns:** *string | null*
 
@@ -2573,7 +2573,7 @@ ___
 
 • **get element**(): *Element | null*
 
-*Defined in [src/editors/SubstationEditor.ts:30](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L30)*
+*Defined in [src/editors/SubstationEditor.ts:30](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L30)*
 
 **Returns:** *Element | null*
 
@@ -2595,7 +2595,7 @@ ___
 
 • **get name**(): *string*
 
-*Defined in [src/editors/SubstationEditor.ts:39](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L39)*
+*Defined in [src/editors/SubstationEditor.ts:39](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L39)*
 
 **Returns:** *string*
 
@@ -2605,7 +2605,7 @@ ___
 
 • **get parent**(): *Element*
 
-*Defined in [src/editors/SubstationEditor.ts:34](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L34)*
+*Defined in [src/editors/SubstationEditor.ts:34](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L34)*
 
 **Returns:** *Element*
 
@@ -2918,7 +2918,7 @@ ___
 
 ▸ **checkVoltageLevelValidity**(): *boolean*
 
-*Defined in [src/editors/SubstationEditor.ts:61](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L61)*
+*Defined in [src/editors/SubstationEditor.ts:61](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L61)*
 
 **Returns:** *boolean*
 
@@ -3543,7 +3543,7 @@ ___
 
 *Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[info](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-info)*
 
-*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L161)*
+*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L161)*
 
 **Parameters:**
 
@@ -3782,7 +3782,7 @@ ___
 
 ▸ **newCreateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
 
-*Defined in [src/editors/SubstationEditor.ts:84](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L84)*
+*Defined in [src/editors/SubstationEditor.ts:84](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L84)*
 
 **Parameters:**
 
@@ -3799,7 +3799,7 @@ ___
 
 ▸ **newUpdateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
 
-*Defined in [src/editors/SubstationEditor.ts:72](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L72)*
+*Defined in [src/editors/SubstationEditor.ts:72](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L72)*
 
 **Parameters:**
 
@@ -3816,7 +3816,7 @@ ___
 
 ▸ **newVoltageLevelCreateAction**(`name`: string | null, `desc`: string | null, `nomFreq`: string | null, `numPhases`: string | null, `Voltage`: string | null, `multiplier`: string): *[Action](../modules/_foundation_.md#action)*
 
-*Defined in [src/editors/SubstationEditor.ts:100](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L100)*
+*Defined in [src/editors/SubstationEditor.ts:100](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L100)*
 
 **Parameters:**
 
@@ -3851,7 +3851,7 @@ ___
 
 ▸ **openSubstationWizard**(): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:249](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L249)*
+*Defined in [src/editors/SubstationEditor.ts:249](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L249)*
 
 **Returns:** *void*
 
@@ -4198,7 +4198,7 @@ ___
 
 *Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[render](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-render)*
 
-*Defined in [src/editors/SubstationEditor.ts:293](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L293)*
+*Defined in [src/editors/SubstationEditor.ts:293](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L293)*
 
 **Returns:** *TemplateResult*
 
@@ -4208,7 +4208,7 @@ ___
 
 ▸ **renderCreateVoltageLevelUI**(): *TemplateResult*
 
-*Defined in [src/editors/SubstationEditor.ts:165](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L165)*
+*Defined in [src/editors/SubstationEditor.ts:165](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L165)*
 
 **Returns:** *TemplateResult*
 
@@ -4218,7 +4218,7 @@ ___
 
 ▸ **renderHeader**(): *TemplateResult*
 
-*Defined in [src/editors/SubstationEditor.ts:227](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L227)*
+*Defined in [src/editors/SubstationEditor.ts:227](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L227)*
 
 **Returns:** *TemplateResult*
 
@@ -4307,7 +4307,7 @@ ___
 
 ▸ **requestSubstationEdit**(`inputs`: [WizardInput](../modules/_foundation_.md#wizardinput)[]): *[Action](../modules/_foundation_.md#action)[]*
 
-*Defined in [src/editors/SubstationEditor.ts:133](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L133)*
+*Defined in [src/editors/SubstationEditor.ts:133](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L133)*
 
 **Parameters:**
 
@@ -4376,7 +4376,7 @@ ___
 
 ▸ **requestVoltageLevelCreate**(`inputs`: [WizardInput](../modules/_foundation_.md#wizardinput)[]): *[Action](../modules/_foundation_.md#action)[]*
 
-*Defined in [src/editors/SubstationEditor.ts:143](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L143)*
+*Defined in [src/editors/SubstationEditor.ts:143](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L143)*
 
 **Parameters:**
 
@@ -4677,7 +4677,7 @@ ___
 
 *Overrides [WizardDialog](_open_scd_base_.wizarddialog.md).[updated](_open_scd_base_.wizarddialog.md#protected-updated)*
 
-*Defined in [src/editors/SubstationEditor.ts:161](https://github.com/openscd/open-scd/blob/a0d6da1/src/editors/SubstationEditor.ts#L161)*
+*Defined in [src/editors/SubstationEditor.ts:161](https://github.com/openscd/open-scd/blob/b4790ce/src/editors/SubstationEditor.ts#L161)*
 
 **Returns:** *void*
 
@@ -4689,7 +4689,7 @@ ___
 
 *Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[warn](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-warn)*
 
-*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L162)*
+*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L162)*
 
 **Parameters:**
 

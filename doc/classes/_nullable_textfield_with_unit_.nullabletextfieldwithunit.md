@@ -858,7 +858,7 @@ ___
 
 • **defaultValue**: *string* = ""
 
-*Defined in [src/nullable-textfield-with-unit.ts:42](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L42)*
+*Defined in [src/nullable-textfield-with-unit.ts:42](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L42)*
 
 ___
 
@@ -1078,7 +1078,7 @@ ___
 
 • **isNull**: *boolean* = false
 
-*Defined in [src/nullable-textfield-with-unit.ts:43](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L43)*
+*Defined in [src/nullable-textfield-with-unit.ts:43](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L43)*
 
 ___
 
@@ -1258,7 +1258,7 @@ ___
 
 • **multiplierIndex**: *number* = 0
 
-*Defined in [src/nullable-textfield-with-unit.ts:29](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L29)*
+*Defined in [src/nullable-textfield-with-unit.ts:29](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L29)*
 
 ___
 
@@ -1266,7 +1266,7 @@ ___
 
 • **multiplierSelect**? : *Select*
 
-*Defined in [src/nullable-textfield-with-unit.ts:61](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L61)*
+*Defined in [src/nullable-textfield-with-unit.ts:68](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L68)*
 
 ___
 
@@ -1274,7 +1274,7 @@ ___
 
 • **multipliers**: *string[]* = ['']
 
-*Defined in [src/nullable-textfield-with-unit.ts:28](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L28)*
+*Defined in [src/nullable-textfield-with-unit.ts:28](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L28)*
 
 ___
 
@@ -1384,7 +1384,7 @@ ___
 
 • **nullSwitch**? : *Switch*
 
-*Defined in [src/nullable-textfield-with-unit.ts:59](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L59)*
+*Defined in [src/nullable-textfield-with-unit.ts:66](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L66)*
 
 ___
 
@@ -1392,7 +1392,7 @@ ___
 
 • **nullable**: *boolean* = false
 
-*Defined in [src/nullable-textfield-with-unit.ts:26](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L26)*
+*Defined in [src/nullable-textfield-with-unit.ts:26](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L26)*
 
 ___
 
@@ -2893,7 +2893,7 @@ ___
 
 • **unit**: *string* = ""
 
-*Defined in [src/nullable-textfield-with-unit.ts:40](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L40)*
+*Defined in [src/nullable-textfield-with-unit.ts:40](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L40)*
 
 ___
 
@@ -3056,9 +3056,21 @@ ___
 
 • **get maybeValue**(): *string | null*
 
-*Defined in [src/nullable-textfield-with-unit.ts:55](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L55)*
+*Defined in [src/nullable-textfield-with-unit.ts:55](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L55)*
 
 **Returns:** *string | null*
+
+• **set maybeValue**(`value`: string | null): *void*
+
+*Defined in [src/nullable-textfield-with-unit.ts:58](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L58)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | string &#124; null |
+
+**Returns:** *void*
 
 ___
 
@@ -3066,13 +3078,13 @@ ___
 
 • **get multiplier**(): *string*
 
-*Defined in [src/nullable-textfield-with-unit.ts:31](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L31)*
+*Defined in [src/nullable-textfield-with-unit.ts:31](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L31)*
 
 **Returns:** *string*
 
 • **set multiplier**(`value`: string): *void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:35](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L35)*
+*Defined in [src/nullable-textfield-with-unit.ts:35](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L35)*
 
 **Parameters:**
 
@@ -3088,13 +3100,13 @@ ___
 
 • **get null**(): *boolean*
 
-*Defined in [src/nullable-textfield-with-unit.ts:45](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L45)*
+*Defined in [src/nullable-textfield-with-unit.ts:45](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L45)*
 
 **Returns:** *boolean*
 
 • **set null**(`value`: boolean): *void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:48](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L48)*
+*Defined in [src/nullable-textfield-with-unit.ts:48](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L48)*
 
 **Parameters:**
 
@@ -3682,7 +3694,7 @@ ___
 
 ▸ **disable**(): *void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:81](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L81)*
+*Defined in [src/nullable-textfield-with-unit.ts:88](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L88)*
 
 **Returns:** *void*
 
@@ -3728,7 +3740,7 @@ ___
 
 ▸ **enable**(): *void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:74](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L74)*
+*Defined in [src/nullable-textfield-with-unit.ts:81](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L81)*
 
 **Returns:** *void*
 
@@ -3752,7 +3764,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:105](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L105)*
+*Defined in [src/nullable-textfield-with-unit.ts:112](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L112)*
 
 **Returns:** *Promise‹void›*
 
@@ -4208,7 +4220,7 @@ ___
 
 *Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[info](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-info)*
 
-*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L161)*
+*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L161)*
 
 **Parameters:**
 
@@ -4822,7 +4834,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:110](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L110)*
+*Defined in [src/nullable-textfield-with-unit.ts:117](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L117)*
 
 **Returns:** *TemplateResult*
 
@@ -4948,7 +4960,7 @@ ___
 
 ▸ **renderMulplierList**(): *TemplateResult*
 
-*Defined in [src/nullable-textfield-with-unit.ts:134](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L134)*
+*Defined in [src/nullable-textfield-with-unit.ts:141](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L141)*
 
 **Returns:** *TemplateResult*
 
@@ -5006,7 +5018,7 @@ ___
 
 ▸ **renderSwitch**(): *TemplateResult*
 
-*Defined in [src/nullable-textfield-with-unit.ts:143](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L143)*
+*Defined in [src/nullable-textfield-with-unit.ts:150](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L150)*
 
 **Returns:** *TemplateResult*
 
@@ -5028,7 +5040,7 @@ ___
 
 ▸ **renderUnitSelector**(): *TemplateResult*
 
-*Defined in [src/nullable-textfield-with-unit.ts:126](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L126)*
+*Defined in [src/nullable-textfield-with-unit.ts:133](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L133)*
 
 **Returns:** *TemplateResult*
 
@@ -5182,7 +5194,7 @@ ___
 
 ▸ **restoreNulled**(): *void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:93](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L93)*
+*Defined in [src/nullable-textfield-with-unit.ts:100](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L100)*
 
 **Returns:** *void*
 
@@ -5321,7 +5333,7 @@ ___
 
 ▸ **selectMultiplier**(`se`: SingleSelectedEvent): *void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:70](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L70)*
+*Defined in [src/nullable-textfield-with-unit.ts:77](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L77)*
 
 **Parameters:**
 
@@ -5512,7 +5524,7 @@ ___
 
 ▸ **storeNulled**(): *void*
 
-*Defined in [src/nullable-textfield-with-unit.ts:99](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L99)*
+*Defined in [src/nullable-textfield-with-unit.ts:106](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L106)*
 
 **Returns:** *void*
 
@@ -5587,7 +5599,7 @@ ___
 
 *Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[warn](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-warn)*
 
-*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L162)*
+*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L162)*
 
 **Parameters:**
 
@@ -5777,22 +5789,22 @@ Override this method to integrate into a style management system.
 
 ### ▪ **nulled**: *object*
 
-*Defined in [src/nullable-textfield-with-unit.ts:64](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L64)*
+*Defined in [src/nullable-textfield-with-unit.ts:71](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L71)*
 
 ###  helper
 
 • **helper**: *string* = this.helper
 
-*Defined in [src/nullable-textfield-with-unit.ts:66](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L66)*
+*Defined in [src/nullable-textfield-with-unit.ts:73](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L73)*
 
 ###  helperPersistent
 
 • **helperPersistent**: *boolean* = this.helperPersistent
 
-*Defined in [src/nullable-textfield-with-unit.ts:67](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L67)*
+*Defined in [src/nullable-textfield-with-unit.ts:74](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L74)*
 
 ###  value
 
 • **value**: *string* = this.value || this.defaultValue
 
-*Defined in [src/nullable-textfield-with-unit.ts:65](https://github.com/openscd/open-scd/blob/a0d6da1/src/nullable-textfield-with-unit.ts#L65)*
+*Defined in [src/nullable-textfield-with-unit.ts:72](https://github.com/openscd/open-scd/blob/b4790ce/src/nullable-textfield-with-unit.ts#L72)*

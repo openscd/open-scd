@@ -23,7 +23,7 @@ Represents a page of a wizard dialog
 
 • **content**? : *TemplateResult[]*
 
-*Defined in [src/foundation.ts:108](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L108)*
+*Defined in [src/foundation.ts:108](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L108)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **primary**? : *undefined | object*
 
-*Defined in [src/foundation.ts:109](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L109)*
+*Defined in [src/foundation.ts:109](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L109)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **secondary**? : *undefined | object*
 
-*Defined in [src/foundation.ts:114](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L114)*
+*Defined in [src/foundation.ts:114](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L114)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • **title**: *string*
 
-*Defined in [src/foundation.ts:107](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L107)*
+*Defined in [src/foundation.ts:107](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L107)*

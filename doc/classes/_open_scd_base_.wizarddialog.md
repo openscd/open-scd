@@ -2153,7 +2153,7 @@ ___
 
 • **pageIndex**: *number* = 0
 
-*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L65)*
+*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L65)*
 
 ___
 
@@ -2161,7 +2161,7 @@ ___
 
 • **pageInputs**: *NodeListOf‹[WizardInput](../modules/_foundation_.md#wizardinput)›*
 
-*Defined in [src/open-scd-base.ts:75](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L75)*
+*Defined in [src/open-scd-base.ts:75](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L75)*
 
 ___
 
@@ -2378,7 +2378,7 @@ ___
 
 • **wizard**? : *[Wizard](../modules/_foundation_.md#wizard)* = []
 
-*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L63)*
+*Defined in [src/open-scd-base.ts:63](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L63)*
 
 ___
 
@@ -2477,7 +2477,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/open-scd-base.ts:119](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L119)*
+*Defined in [src/open-scd-base.ts:119](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L119)*
 
 ## Accessors
 
@@ -2497,7 +2497,7 @@ ___
 
 • **get page**(): *[WizardPage](../interfaces/_foundation_.wizardpage.md)*
 
-*Defined in [src/open-scd-base.ts:67](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L67)*
+*Defined in [src/open-scd-base.ts:67](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L67)*
 
 **Returns:** *[WizardPage](../interfaces/_foundation_.wizardpage.md)*
 
@@ -2507,7 +2507,7 @@ ___
 
 • **get pageValid**(): *boolean*
 
-*Defined in [src/open-scd-base.ts:71](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L71)*
+*Defined in [src/open-scd-base.ts:71](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L71)*
 
 **Returns:** *boolean*
 
@@ -2586,7 +2586,7 @@ ___
 
 ▸ **act**(`action?`: undefined | function): *Promise‹boolean›*
 
-*Defined in [src/open-scd-base.ts:84](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L84)*
+*Defined in [src/open-scd-base.ts:84](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L84)*
 
 **Parameters:**
 
@@ -3451,7 +3451,7 @@ ___
 
 *Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[info](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-info)*
 
-*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L161)*
+*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L161)*
 
 **Parameters:**
 
@@ -3690,7 +3690,7 @@ ___
 
 ▸ **next**(): *void*
 
-*Defined in [src/open-scd-base.ts:77](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L77)*
+*Defined in [src/open-scd-base.ts:77](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L77)*
 
 **Returns:** *void*
 
@@ -3763,7 +3763,7 @@ ___
 
 ▸ **prev**(): *void*
 
-*Defined in [src/open-scd-base.ts:80](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L80)*
+*Defined in [src/open-scd-base.ts:80](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L80)*
 
 **Returns:** *void*
 
@@ -4061,7 +4061,7 @@ ___
 
 *Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[render](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-render)*
 
-*Defined in [src/open-scd-base.ts:131](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L131)*
+*Defined in [src/open-scd-base.ts:131](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L131)*
 
 **Returns:** *TemplateResult‹›*
 
@@ -4203,7 +4203,7 @@ ___
 
 ▸ **reset**(): *void*
 
-*Defined in [src/open-scd-base.ts:107](https://github.com/openscd/open-scd/blob/a0d6da1/src/open-scd-base.ts#L107)*
+*Defined in [src/open-scd-base.ts:107](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L107)*
 
 **Returns:** *void*
 
@@ -4522,7 +4522,7 @@ ___
 
 *Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[warn](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-warn)*
 
-*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/a0d6da1/src/foundation.ts#L162)*
+*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L162)*
 
 **Parameters:**
 
