@@ -55,6 +55,13 @@ export class NullableTextFieldWithUnit extends TextField {
   get maybeValue(): string | null {
     return this.null ? null : this.value;
   }
+  set maybeValue(value: string | null) {
+    if (value === null) this.null = true;
+    else {
+      this.null = false;
+      this.value = value;
+    }
+  }
 
   @query('mwc-switch') nullSwitch?: Switch;
   @query('mwc-select')
