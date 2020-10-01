@@ -20,7 +20,7 @@
 
 • **icon**: *string | TemplateResult*
 
-*Defined in [src/open-scd-base.ts:47](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L47)*
+*Defined in [src/open-scd-base.ts:39](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L39)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **id**: *string*
 
-*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L46)*
+*Defined in [src/open-scd-base.ts:38](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L38)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **label**: *string*
 
-*Defined in [src/open-scd-base.ts:45](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L45)*
+*Defined in [src/open-scd-base.ts:37](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L37)*

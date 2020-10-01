@@ -1,339 +1,416 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["editors/SubstationEditor"](../modules/_editors_substationeditor_.md) › [SubstationEditor](_editors_substationeditor_.substationeditor.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["wizard-textfield"](../modules/_wizard_textfield_.md) › [WizardTextField](_wizard_textfield_.wizardtextfield.md)
 
-# Class: SubstationEditor
+# Class: WizardTextField
 
 ## Hierarchy
 
-* LitElement
+* TextField
 
-  ↳ **SubstationEditor**
+  ↳ **WizardTextField**
 
 ## Index
 
 ### Constructors
 
-* [constructor](_editors_substationeditor_.substationeditor.md#constructor)
+* [constructor](_wizard_textfield_.wizardtextfield.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_editors_substationeditor_.substationeditor.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_editors_substationeditor_.substationeditor.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_editors_substationeditor_.substationeditor.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_editors_substationeditor_.substationeditor.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_editors_substationeditor_.substationeditor.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substationeditor_.substationeditor.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_editors_substationeditor_.substationeditor.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_type_node)
-* [ELEMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-element_node)
-* [ENTITY_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_editors_substationeditor_.substationeditor.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_editors_substationeditor_.substationeditor.md#readonly-text_node)
-* [accessKey](_editors_substationeditor_.substationeditor.md#accesskey)
-* [accessKeyLabel](_editors_substationeditor_.substationeditor.md#readonly-accesskeylabel)
-* [assignedSlot](_editors_substationeditor_.substationeditor.md#readonly-assignedslot)
-* [attributes](_editors_substationeditor_.substationeditor.md#readonly-attributes)
-* [autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)
-* [autofocus](_editors_substationeditor_.substationeditor.md#autofocus)
-* [baseURI](_editors_substationeditor_.substationeditor.md#readonly-baseuri)
-* [childElementCount](_editors_substationeditor_.substationeditor.md#readonly-childelementcount)
-* [childNodes](_editors_substationeditor_.substationeditor.md#readonly-childnodes)
-* [children](_editors_substationeditor_.substationeditor.md#readonly-children)
-* [classList](_editors_substationeditor_.substationeditor.md#readonly-classlist)
-* [className](_editors_substationeditor_.substationeditor.md#classname)
-* [clientHeight](_editors_substationeditor_.substationeditor.md#readonly-clientheight)
-* [clientLeft](_editors_substationeditor_.substationeditor.md#readonly-clientleft)
-* [clientTop](_editors_substationeditor_.substationeditor.md#readonly-clienttop)
-* [clientWidth](_editors_substationeditor_.substationeditor.md#readonly-clientwidth)
-* [contentEditable](_editors_substationeditor_.substationeditor.md#contenteditable)
-* [dataset](_editors_substationeditor_.substationeditor.md#readonly-dataset)
-* [defaultNomFreq](_editors_substationeditor_.substationeditor.md#defaultnomfreq)
-* [defaultNumPhases](_editors_substationeditor_.substationeditor.md#defaultnumphases)
-* [defaultVoltage](_editors_substationeditor_.substationeditor.md#defaultvoltage)
-* [dir](_editors_substationeditor_.substationeditor.md#dir)
-* [doc](_editors_substationeditor_.substationeditor.md#doc)
-* [draggable](_editors_substationeditor_.substationeditor.md#draggable)
-* [enterKeyHint](_editors_substationeditor_.substationeditor.md#enterkeyhint)
-* [firstChild](_editors_substationeditor_.substationeditor.md#readonly-firstchild)
-* [firstElementChild](_editors_substationeditor_.substationeditor.md#readonly-firstelementchild)
-* [floatingLabelFoundation](_editors_substationeditor_.substationeditor.md#optional-floatinglabelfoundation)
-* [hidden](_editors_substationeditor_.substationeditor.md#hidden)
-* [id](_editors_substationeditor_.substationeditor.md#id)
-* [innerHTML](_editors_substationeditor_.substationeditor.md#innerhtml)
-* [innerText](_editors_substationeditor_.substationeditor.md#innertext)
-* [inputMode](_editors_substationeditor_.substationeditor.md#inputmode)
-* [isConnected](_editors_substationeditor_.substationeditor.md#readonly-isconnected)
-* [isContentEditable](_editors_substationeditor_.substationeditor.md#readonly-iscontenteditable)
-* [lang](_editors_substationeditor_.substationeditor.md#lang)
-* [lastChild](_editors_substationeditor_.substationeditor.md#readonly-lastchild)
-* [lastElementChild](_editors_substationeditor_.substationeditor.md#readonly-lastelementchild)
-* [lineRippleFoundation](_editors_substationeditor_.substationeditor.md#optional-lineripplefoundation)
-* [localName](_editors_substationeditor_.substationeditor.md#readonly-localname)
-* [menuIconUI](_editors_substationeditor_.substationeditor.md#menuiconui)
-* [menuUI](_editors_substationeditor_.substationeditor.md#menuui)
-* [namespaceURI](_editors_substationeditor_.substationeditor.md#readonly-namespaceuri)
-* [nextElementSibling](_editors_substationeditor_.substationeditor.md#readonly-nextelementsibling)
-* [nextSibling](_editors_substationeditor_.substationeditor.md#readonly-nextsibling)
-* [nodeName](_editors_substationeditor_.substationeditor.md#readonly-nodename)
-* [nodeType](_editors_substationeditor_.substationeditor.md#readonly-nodetype)
-* [nodeValue](_editors_substationeditor_.substationeditor.md#nodevalue)
-* [nonce](_editors_substationeditor_.substationeditor.md#optional-nonce)
-* [offsetHeight](_editors_substationeditor_.substationeditor.md#readonly-offsetheight)
-* [offsetLeft](_editors_substationeditor_.substationeditor.md#readonly-offsetleft)
-* [offsetParent](_editors_substationeditor_.substationeditor.md#readonly-offsetparent)
-* [offsetTop](_editors_substationeditor_.substationeditor.md#readonly-offsettop)
-* [offsetWidth](_editors_substationeditor_.substationeditor.md#readonly-offsetwidth)
-* [onabort](_editors_substationeditor_.substationeditor.md#onabort)
-* [onanimationcancel](_editors_substationeditor_.substationeditor.md#onanimationcancel)
-* [onanimationend](_editors_substationeditor_.substationeditor.md#onanimationend)
-* [onanimationiteration](_editors_substationeditor_.substationeditor.md#onanimationiteration)
-* [onanimationstart](_editors_substationeditor_.substationeditor.md#onanimationstart)
-* [onauxclick](_editors_substationeditor_.substationeditor.md#onauxclick)
-* [onblur](_editors_substationeditor_.substationeditor.md#onblur)
-* [oncancel](_editors_substationeditor_.substationeditor.md#oncancel)
-* [oncanplay](_editors_substationeditor_.substationeditor.md#oncanplay)
-* [oncanplaythrough](_editors_substationeditor_.substationeditor.md#oncanplaythrough)
-* [onchange](_editors_substationeditor_.substationeditor.md#onchange)
-* [onclick](_editors_substationeditor_.substationeditor.md#onclick)
-* [onclose](_editors_substationeditor_.substationeditor.md#onclose)
-* [oncontextmenu](_editors_substationeditor_.substationeditor.md#oncontextmenu)
-* [oncopy](_editors_substationeditor_.substationeditor.md#oncopy)
-* [oncuechange](_editors_substationeditor_.substationeditor.md#oncuechange)
-* [oncut](_editors_substationeditor_.substationeditor.md#oncut)
-* [ondblclick](_editors_substationeditor_.substationeditor.md#ondblclick)
-* [ondrag](_editors_substationeditor_.substationeditor.md#ondrag)
-* [ondragend](_editors_substationeditor_.substationeditor.md#ondragend)
-* [ondragenter](_editors_substationeditor_.substationeditor.md#ondragenter)
-* [ondragexit](_editors_substationeditor_.substationeditor.md#ondragexit)
-* [ondragleave](_editors_substationeditor_.substationeditor.md#ondragleave)
-* [ondragover](_editors_substationeditor_.substationeditor.md#ondragover)
-* [ondragstart](_editors_substationeditor_.substationeditor.md#ondragstart)
-* [ondrop](_editors_substationeditor_.substationeditor.md#ondrop)
-* [ondurationchange](_editors_substationeditor_.substationeditor.md#ondurationchange)
-* [onemptied](_editors_substationeditor_.substationeditor.md#onemptied)
-* [onended](_editors_substationeditor_.substationeditor.md#onended)
-* [onerror](_editors_substationeditor_.substationeditor.md#onerror)
-* [onfocus](_editors_substationeditor_.substationeditor.md#onfocus)
-* [onfullscreenchange](_editors_substationeditor_.substationeditor.md#onfullscreenchange)
-* [onfullscreenerror](_editors_substationeditor_.substationeditor.md#onfullscreenerror)
-* [ongotpointercapture](_editors_substationeditor_.substationeditor.md#ongotpointercapture)
-* [oninput](_editors_substationeditor_.substationeditor.md#oninput)
-* [oninvalid](_editors_substationeditor_.substationeditor.md#oninvalid)
-* [onkeydown](_editors_substationeditor_.substationeditor.md#onkeydown)
-* [onkeypress](_editors_substationeditor_.substationeditor.md#onkeypress)
-* [onkeyup](_editors_substationeditor_.substationeditor.md#onkeyup)
-* [onload](_editors_substationeditor_.substationeditor.md#onload)
-* [onloadeddata](_editors_substationeditor_.substationeditor.md#onloadeddata)
-* [onloadedmetadata](_editors_substationeditor_.substationeditor.md#onloadedmetadata)
-* [onloadstart](_editors_substationeditor_.substationeditor.md#onloadstart)
-* [onlostpointercapture](_editors_substationeditor_.substationeditor.md#onlostpointercapture)
-* [onmousedown](_editors_substationeditor_.substationeditor.md#onmousedown)
-* [onmouseenter](_editors_substationeditor_.substationeditor.md#onmouseenter)
-* [onmouseleave](_editors_substationeditor_.substationeditor.md#onmouseleave)
-* [onmousemove](_editors_substationeditor_.substationeditor.md#onmousemove)
-* [onmouseout](_editors_substationeditor_.substationeditor.md#onmouseout)
-* [onmouseover](_editors_substationeditor_.substationeditor.md#onmouseover)
-* [onmouseup](_editors_substationeditor_.substationeditor.md#onmouseup)
-* [onpaste](_editors_substationeditor_.substationeditor.md#onpaste)
-* [onpause](_editors_substationeditor_.substationeditor.md#onpause)
-* [onplay](_editors_substationeditor_.substationeditor.md#onplay)
-* [onplaying](_editors_substationeditor_.substationeditor.md#onplaying)
-* [onpointercancel](_editors_substationeditor_.substationeditor.md#onpointercancel)
-* [onpointerdown](_editors_substationeditor_.substationeditor.md#onpointerdown)
-* [onpointerenter](_editors_substationeditor_.substationeditor.md#onpointerenter)
-* [onpointerleave](_editors_substationeditor_.substationeditor.md#onpointerleave)
-* [onpointermove](_editors_substationeditor_.substationeditor.md#onpointermove)
-* [onpointerout](_editors_substationeditor_.substationeditor.md#onpointerout)
-* [onpointerover](_editors_substationeditor_.substationeditor.md#onpointerover)
-* [onpointerup](_editors_substationeditor_.substationeditor.md#onpointerup)
-* [onprogress](_editors_substationeditor_.substationeditor.md#onprogress)
-* [onratechange](_editors_substationeditor_.substationeditor.md#onratechange)
-* [onreset](_editors_substationeditor_.substationeditor.md#onreset)
-* [onresize](_editors_substationeditor_.substationeditor.md#onresize)
-* [onscroll](_editors_substationeditor_.substationeditor.md#onscroll)
-* [onsecuritypolicyviolation](_editors_substationeditor_.substationeditor.md#onsecuritypolicyviolation)
-* [onseeked](_editors_substationeditor_.substationeditor.md#onseeked)
-* [onseeking](_editors_substationeditor_.substationeditor.md#onseeking)
-* [onselect](_editors_substationeditor_.substationeditor.md#onselect)
-* [onselectionchange](_editors_substationeditor_.substationeditor.md#onselectionchange)
-* [onselectstart](_editors_substationeditor_.substationeditor.md#onselectstart)
-* [onstalled](_editors_substationeditor_.substationeditor.md#onstalled)
-* [onsubmit](_editors_substationeditor_.substationeditor.md#onsubmit)
-* [onsuspend](_editors_substationeditor_.substationeditor.md#onsuspend)
-* [ontimeupdate](_editors_substationeditor_.substationeditor.md#ontimeupdate)
-* [ontoggle](_editors_substationeditor_.substationeditor.md#ontoggle)
-* [ontouchcancel](_editors_substationeditor_.substationeditor.md#optional-ontouchcancel)
-* [ontouchend](_editors_substationeditor_.substationeditor.md#optional-ontouchend)
-* [ontouchmove](_editors_substationeditor_.substationeditor.md#optional-ontouchmove)
-* [ontouchstart](_editors_substationeditor_.substationeditor.md#optional-ontouchstart)
-* [ontransitioncancel](_editors_substationeditor_.substationeditor.md#ontransitioncancel)
-* [ontransitionend](_editors_substationeditor_.substationeditor.md#ontransitionend)
-* [ontransitionrun](_editors_substationeditor_.substationeditor.md#ontransitionrun)
-* [ontransitionstart](_editors_substationeditor_.substationeditor.md#ontransitionstart)
-* [onvolumechange](_editors_substationeditor_.substationeditor.md#onvolumechange)
-* [onwaiting](_editors_substationeditor_.substationeditor.md#onwaiting)
-* [onwheel](_editors_substationeditor_.substationeditor.md#onwheel)
-* [outerHTML](_editors_substationeditor_.substationeditor.md#outerhtml)
-* [ownerDocument](_editors_substationeditor_.substationeditor.md#readonly-ownerdocument)
-* [parentElement](_editors_substationeditor_.substationeditor.md#readonly-parentelement)
-* [parentNode](_editors_substationeditor_.substationeditor.md#readonly-parentnode)
-* [prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)
-* [previousElementSibling](_editors_substationeditor_.substationeditor.md#readonly-previouselementsibling)
-* [previousSibling](_editors_substationeditor_.substationeditor.md#readonly-previoussibling)
-* [renderRoot](_editors_substationeditor_.substationeditor.md#readonly-renderroot)
-* [scrollHeight](_editors_substationeditor_.substationeditor.md#readonly-scrollheight)
-* [scrollLeft](_editors_substationeditor_.substationeditor.md#scrollleft)
-* [scrollTop](_editors_substationeditor_.substationeditor.md#scrolltop)
-* [scrollWidth](_editors_substationeditor_.substationeditor.md#readonly-scrollwidth)
-* [shadowRoot](_editors_substationeditor_.substationeditor.md#readonly-shadowroot)
-* [slot](_editors_substationeditor_.substationeditor.md#slot)
-* [spellcheck](_editors_substationeditor_.substationeditor.md#spellcheck)
-* [style](_editors_substationeditor_.substationeditor.md#readonly-style)
-* [tabIndex](_editors_substationeditor_.substationeditor.md#tabindex)
-* [tagName](_editors_substationeditor_.substationeditor.md#readonly-tagname)
-* [textContent](_editors_substationeditor_.substationeditor.md#textcontent)
-* [title](_editors_substationeditor_.substationeditor.md#title)
-* [translate](_editors_substationeditor_.substationeditor.md#translate)
-* [voltageLevelDescUI](_editors_substationeditor_.substationeditor.md#voltageleveldescui)
-* [voltageLevelNameUI](_editors_substationeditor_.substationeditor.md#voltagelevelnameui)
-* [voltageLevelNomFreqUI](_editors_substationeditor_.substationeditor.md#voltagelevelnomfrequi)
-* [voltageLevelNumPhasesUI](_editors_substationeditor_.substationeditor.md#voltagelevelnumphasesui)
-* [voltageLevelVoltageUI](_editors_substationeditor_.substationeditor.md#voltagelevelvoltageui)
-* [[finalized]](_editors_substationeditor_.substationeditor.md#static-protected-[finalized])
-* [finalized](_editors_substationeditor_.substationeditor.md#static-protected-finalized)
-* [properties](_editors_substationeditor_.substationeditor.md#static-properties)
-* [render](_editors_substationeditor_.substationeditor.md#static-render)
-* [styles](_editors_substationeditor_.substationeditor.md#static-styles)
+* [ATTRIBUTE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_wizard_textfield_.wizardtextfield.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_textfield_.wizardtextfield.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_type_node)
+* [ELEMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-element_node)
+* [ENTITY_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-text_node)
+* [_outlineUpdateComplete](_wizard_textfield_.wizardtextfield.md#protected-_outlineupdatecomplete)
+* [_validity](_wizard_textfield_.wizardtextfield.md#protected-_validity)
+* [accessKey](_wizard_textfield_.wizardtextfield.md#accesskey)
+* [accessKeyLabel](_wizard_textfield_.wizardtextfield.md#readonly-accesskeylabel)
+* [assignedSlot](_wizard_textfield_.wizardtextfield.md#readonly-assignedslot)
+* [attributes](_wizard_textfield_.wizardtextfield.md#readonly-attributes)
+* [autoValidate](_wizard_textfield_.wizardtextfield.md#autovalidate)
+* [autocapitalize](_wizard_textfield_.wizardtextfield.md#autocapitalize)
+* [autofocus](_wizard_textfield_.wizardtextfield.md#autofocus)
+* [baseURI](_wizard_textfield_.wizardtextfield.md#readonly-baseuri)
+* [charCounter](_wizard_textfield_.wizardtextfield.md#charcounter)
+* [childElementCount](_wizard_textfield_.wizardtextfield.md#readonly-childelementcount)
+* [childNodes](_wizard_textfield_.wizardtextfield.md#readonly-childnodes)
+* [children](_wizard_textfield_.wizardtextfield.md#readonly-children)
+* [classList](_wizard_textfield_.wizardtextfield.md#readonly-classlist)
+* [className](_wizard_textfield_.wizardtextfield.md#classname)
+* [clientHeight](_wizard_textfield_.wizardtextfield.md#readonly-clientheight)
+* [clientLeft](_wizard_textfield_.wizardtextfield.md#readonly-clientleft)
+* [clientTop](_wizard_textfield_.wizardtextfield.md#readonly-clienttop)
+* [clientWidth](_wizard_textfield_.wizardtextfield.md#readonly-clientwidth)
+* [contentEditable](_wizard_textfield_.wizardtextfield.md#contenteditable)
+* [dataset](_wizard_textfield_.wizardtextfield.md#readonly-dataset)
+* [defaultValue](_wizard_textfield_.wizardtextfield.md#defaultvalue)
+* [dir](_wizard_textfield_.wizardtextfield.md#dir)
+* [disabled](_wizard_textfield_.wizardtextfield.md#disabled)
+* [draggable](_wizard_textfield_.wizardtextfield.md#draggable)
+* [endAligned](_wizard_textfield_.wizardtextfield.md#endaligned)
+* [enterKeyHint](_wizard_textfield_.wizardtextfield.md#enterkeyhint)
+* [firstChild](_wizard_textfield_.wizardtextfield.md#readonly-firstchild)
+* [firstElementChild](_wizard_textfield_.wizardtextfield.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_wizard_textfield_.wizardtextfield.md#optional-floatinglabelfoundation)
+* [formElement](_wizard_textfield_.wizardtextfield.md#protected-formelement)
+* [helper](_wizard_textfield_.wizardtextfield.md#helper)
+* [helperPersistent](_wizard_textfield_.wizardtextfield.md#helperpersistent)
+* [hidden](_wizard_textfield_.wizardtextfield.md#hidden)
+* [icon](_wizard_textfield_.wizardtextfield.md#icon)
+* [iconTrailing](_wizard_textfield_.wizardtextfield.md#icontrailing)
+* [id](_wizard_textfield_.wizardtextfield.md#id)
+* [innerHTML](_wizard_textfield_.wizardtextfield.md#innerhtml)
+* [innerText](_wizard_textfield_.wizardtextfield.md#innertext)
+* [inputMode](_wizard_textfield_.wizardtextfield.md#inputmode)
+* [isConnected](_wizard_textfield_.wizardtextfield.md#readonly-isconnected)
+* [isContentEditable](_wizard_textfield_.wizardtextfield.md#readonly-iscontenteditable)
+* [isNull](_wizard_textfield_.wizardtextfield.md#private-isnull)
+* [isUiValid](_wizard_textfield_.wizardtextfield.md#protected-isuivalid)
+* [label](_wizard_textfield_.wizardtextfield.md#label)
+* [labelElement](_wizard_textfield_.wizardtextfield.md#protected-labelelement)
+* [lang](_wizard_textfield_.wizardtextfield.md#lang)
+* [lastChild](_wizard_textfield_.wizardtextfield.md#readonly-lastchild)
+* [lastElementChild](_wizard_textfield_.wizardtextfield.md#readonly-lastelementchild)
+* [lineRippleElement](_wizard_textfield_.wizardtextfield.md#protected-linerippleelement)
+* [lineRippleFoundation](_wizard_textfield_.wizardtextfield.md#optional-lineripplefoundation)
+* [localName](_wizard_textfield_.wizardtextfield.md#readonly-localname)
+* [max](_wizard_textfield_.wizardtextfield.md#max)
+* [maxLength](_wizard_textfield_.wizardtextfield.md#maxlength)
+* [mdcFoundation](_wizard_textfield_.wizardtextfield.md#protected-mdcfoundation)
+* [mdcFoundationClass](_wizard_textfield_.wizardtextfield.md#protected-readonly-mdcfoundationclass)
+* [mdcRoot](_wizard_textfield_.wizardtextfield.md#protected-mdcroot)
+* [min](_wizard_textfield_.wizardtextfield.md#min)
+* [minLength](_wizard_textfield_.wizardtextfield.md#minlength)
+* [multiplierIndex](_wizard_textfield_.wizardtextfield.md#private-multiplierindex)
+* [multiplierSelect](_wizard_textfield_.wizardtextfield.md#optional-multiplierselect)
+* [multipliers](_wizard_textfield_.wizardtextfield.md#multipliers)
+* [name](_wizard_textfield_.wizardtextfield.md#name)
+* [namespaceURI](_wizard_textfield_.wizardtextfield.md#readonly-namespaceuri)
+* [nextElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextelementsibling)
+* [nextSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextsibling)
+* [nodeName](_wizard_textfield_.wizardtextfield.md#readonly-nodename)
+* [nodeType](_wizard_textfield_.wizardtextfield.md#readonly-nodetype)
+* [nodeValue](_wizard_textfield_.wizardtextfield.md#nodevalue)
+* [nonce](_wizard_textfield_.wizardtextfield.md#optional-nonce)
+* [notchElement](_wizard_textfield_.wizardtextfield.md#protected-notchelement)
+* [nullSwitch](_wizard_textfield_.wizardtextfield.md#optional-nullswitch)
+* [nullable](_wizard_textfield_.wizardtextfield.md#nullable)
+* [offsetHeight](_wizard_textfield_.wizardtextfield.md#readonly-offsetheight)
+* [offsetLeft](_wizard_textfield_.wizardtextfield.md#readonly-offsetleft)
+* [offsetParent](_wizard_textfield_.wizardtextfield.md#readonly-offsetparent)
+* [offsetTop](_wizard_textfield_.wizardtextfield.md#readonly-offsettop)
+* [offsetWidth](_wizard_textfield_.wizardtextfield.md#readonly-offsetwidth)
+* [onabort](_wizard_textfield_.wizardtextfield.md#onabort)
+* [onanimationcancel](_wizard_textfield_.wizardtextfield.md#onanimationcancel)
+* [onanimationend](_wizard_textfield_.wizardtextfield.md#onanimationend)
+* [onanimationiteration](_wizard_textfield_.wizardtextfield.md#onanimationiteration)
+* [onanimationstart](_wizard_textfield_.wizardtextfield.md#onanimationstart)
+* [onauxclick](_wizard_textfield_.wizardtextfield.md#onauxclick)
+* [onblur](_wizard_textfield_.wizardtextfield.md#onblur)
+* [oncancel](_wizard_textfield_.wizardtextfield.md#oncancel)
+* [oncanplay](_wizard_textfield_.wizardtextfield.md#oncanplay)
+* [oncanplaythrough](_wizard_textfield_.wizardtextfield.md#oncanplaythrough)
+* [onchange](_wizard_textfield_.wizardtextfield.md#onchange)
+* [onclick](_wizard_textfield_.wizardtextfield.md#onclick)
+* [onclose](_wizard_textfield_.wizardtextfield.md#onclose)
+* [oncontextmenu](_wizard_textfield_.wizardtextfield.md#oncontextmenu)
+* [oncopy](_wizard_textfield_.wizardtextfield.md#oncopy)
+* [oncuechange](_wizard_textfield_.wizardtextfield.md#oncuechange)
+* [oncut](_wizard_textfield_.wizardtextfield.md#oncut)
+* [ondblclick](_wizard_textfield_.wizardtextfield.md#ondblclick)
+* [ondrag](_wizard_textfield_.wizardtextfield.md#ondrag)
+* [ondragend](_wizard_textfield_.wizardtextfield.md#ondragend)
+* [ondragenter](_wizard_textfield_.wizardtextfield.md#ondragenter)
+* [ondragexit](_wizard_textfield_.wizardtextfield.md#ondragexit)
+* [ondragleave](_wizard_textfield_.wizardtextfield.md#ondragleave)
+* [ondragover](_wizard_textfield_.wizardtextfield.md#ondragover)
+* [ondragstart](_wizard_textfield_.wizardtextfield.md#ondragstart)
+* [ondrop](_wizard_textfield_.wizardtextfield.md#ondrop)
+* [ondurationchange](_wizard_textfield_.wizardtextfield.md#ondurationchange)
+* [onemptied](_wizard_textfield_.wizardtextfield.md#onemptied)
+* [onended](_wizard_textfield_.wizardtextfield.md#onended)
+* [onerror](_wizard_textfield_.wizardtextfield.md#onerror)
+* [onfocus](_wizard_textfield_.wizardtextfield.md#onfocus)
+* [onfullscreenchange](_wizard_textfield_.wizardtextfield.md#onfullscreenchange)
+* [onfullscreenerror](_wizard_textfield_.wizardtextfield.md#onfullscreenerror)
+* [ongotpointercapture](_wizard_textfield_.wizardtextfield.md#ongotpointercapture)
+* [oninput](_wizard_textfield_.wizardtextfield.md#oninput)
+* [oninvalid](_wizard_textfield_.wizardtextfield.md#oninvalid)
+* [onkeydown](_wizard_textfield_.wizardtextfield.md#onkeydown)
+* [onkeypress](_wizard_textfield_.wizardtextfield.md#onkeypress)
+* [onkeyup](_wizard_textfield_.wizardtextfield.md#onkeyup)
+* [onload](_wizard_textfield_.wizardtextfield.md#onload)
+* [onloadeddata](_wizard_textfield_.wizardtextfield.md#onloadeddata)
+* [onloadedmetadata](_wizard_textfield_.wizardtextfield.md#onloadedmetadata)
+* [onloadstart](_wizard_textfield_.wizardtextfield.md#onloadstart)
+* [onlostpointercapture](_wizard_textfield_.wizardtextfield.md#onlostpointercapture)
+* [onmousedown](_wizard_textfield_.wizardtextfield.md#onmousedown)
+* [onmouseenter](_wizard_textfield_.wizardtextfield.md#onmouseenter)
+* [onmouseleave](_wizard_textfield_.wizardtextfield.md#onmouseleave)
+* [onmousemove](_wizard_textfield_.wizardtextfield.md#onmousemove)
+* [onmouseout](_wizard_textfield_.wizardtextfield.md#onmouseout)
+* [onmouseover](_wizard_textfield_.wizardtextfield.md#onmouseover)
+* [onmouseup](_wizard_textfield_.wizardtextfield.md#onmouseup)
+* [onpaste](_wizard_textfield_.wizardtextfield.md#onpaste)
+* [onpause](_wizard_textfield_.wizardtextfield.md#onpause)
+* [onplay](_wizard_textfield_.wizardtextfield.md#onplay)
+* [onplaying](_wizard_textfield_.wizardtextfield.md#onplaying)
+* [onpointercancel](_wizard_textfield_.wizardtextfield.md#onpointercancel)
+* [onpointerdown](_wizard_textfield_.wizardtextfield.md#onpointerdown)
+* [onpointerenter](_wizard_textfield_.wizardtextfield.md#onpointerenter)
+* [onpointerleave](_wizard_textfield_.wizardtextfield.md#onpointerleave)
+* [onpointermove](_wizard_textfield_.wizardtextfield.md#onpointermove)
+* [onpointerout](_wizard_textfield_.wizardtextfield.md#onpointerout)
+* [onpointerover](_wizard_textfield_.wizardtextfield.md#onpointerover)
+* [onpointerup](_wizard_textfield_.wizardtextfield.md#onpointerup)
+* [onprogress](_wizard_textfield_.wizardtextfield.md#onprogress)
+* [onratechange](_wizard_textfield_.wizardtextfield.md#onratechange)
+* [onreset](_wizard_textfield_.wizardtextfield.md#onreset)
+* [onresize](_wizard_textfield_.wizardtextfield.md#onresize)
+* [onscroll](_wizard_textfield_.wizardtextfield.md#onscroll)
+* [onsecuritypolicyviolation](_wizard_textfield_.wizardtextfield.md#onsecuritypolicyviolation)
+* [onseeked](_wizard_textfield_.wizardtextfield.md#onseeked)
+* [onseeking](_wizard_textfield_.wizardtextfield.md#onseeking)
+* [onselect](_wizard_textfield_.wizardtextfield.md#onselect)
+* [onselectionchange](_wizard_textfield_.wizardtextfield.md#onselectionchange)
+* [onselectstart](_wizard_textfield_.wizardtextfield.md#onselectstart)
+* [onstalled](_wizard_textfield_.wizardtextfield.md#onstalled)
+* [onsubmit](_wizard_textfield_.wizardtextfield.md#onsubmit)
+* [onsuspend](_wizard_textfield_.wizardtextfield.md#onsuspend)
+* [ontimeupdate](_wizard_textfield_.wizardtextfield.md#ontimeupdate)
+* [ontoggle](_wizard_textfield_.wizardtextfield.md#ontoggle)
+* [ontouchcancel](_wizard_textfield_.wizardtextfield.md#optional-ontouchcancel)
+* [ontouchend](_wizard_textfield_.wizardtextfield.md#optional-ontouchend)
+* [ontouchmove](_wizard_textfield_.wizardtextfield.md#optional-ontouchmove)
+* [ontouchstart](_wizard_textfield_.wizardtextfield.md#optional-ontouchstart)
+* [ontransitioncancel](_wizard_textfield_.wizardtextfield.md#ontransitioncancel)
+* [ontransitionend](_wizard_textfield_.wizardtextfield.md#ontransitionend)
+* [ontransitionrun](_wizard_textfield_.wizardtextfield.md#ontransitionrun)
+* [ontransitionstart](_wizard_textfield_.wizardtextfield.md#ontransitionstart)
+* [onvolumechange](_wizard_textfield_.wizardtextfield.md#onvolumechange)
+* [onwaiting](_wizard_textfield_.wizardtextfield.md#onwaiting)
+* [onwheel](_wizard_textfield_.wizardtextfield.md#onwheel)
+* [outerHTML](_wizard_textfield_.wizardtextfield.md#outerhtml)
+* [outlineElement](_wizard_textfield_.wizardtextfield.md#protected-outlineelement)
+* [outlineOpen](_wizard_textfield_.wizardtextfield.md#protected-outlineopen)
+* [outlineWidth](_wizard_textfield_.wizardtextfield.md#protected-outlinewidth)
+* [outlined](_wizard_textfield_.wizardtextfield.md#outlined)
+* [ownerDocument](_wizard_textfield_.wizardtextfield.md#readonly-ownerdocument)
+* [parentElement](_wizard_textfield_.wizardtextfield.md#readonly-parentelement)
+* [parentNode](_wizard_textfield_.wizardtextfield.md#readonly-parentnode)
+* [pattern](_wizard_textfield_.wizardtextfield.md#pattern)
+* [placeholder](_wizard_textfield_.wizardtextfield.md#placeholder)
+* [prefix](_wizard_textfield_.wizardtextfield.md#prefix)
+* [previousElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-previouselementsibling)
+* [previousSibling](_wizard_textfield_.wizardtextfield.md#readonly-previoussibling)
+* [readOnly](_wizard_textfield_.wizardtextfield.md#readonly)
+* [renderRoot](_wizard_textfield_.wizardtextfield.md#readonly-renderroot)
+* [required](_wizard_textfield_.wizardtextfield.md#required)
+* [ripple](_wizard_textfield_.wizardtextfield.md#optional-readonly-ripple)
+* [scrollHeight](_wizard_textfield_.wizardtextfield.md#readonly-scrollheight)
+* [scrollLeft](_wizard_textfield_.wizardtextfield.md#scrollleft)
+* [scrollTop](_wizard_textfield_.wizardtextfield.md#scrolltop)
+* [scrollWidth](_wizard_textfield_.wizardtextfield.md#readonly-scrollwidth)
+* [shadowRoot](_wizard_textfield_.wizardtextfield.md#readonly-shadowroot)
+* [size](_wizard_textfield_.wizardtextfield.md#size)
+* [slot](_wizard_textfield_.wizardtextfield.md#slot)
+* [spellcheck](_wizard_textfield_.wizardtextfield.md#spellcheck)
+* [step](_wizard_textfield_.wizardtextfield.md#step)
+* [style](_wizard_textfield_.wizardtextfield.md#readonly-style)
+* [suffix](_wizard_textfield_.wizardtextfield.md#suffix)
+* [tabIndex](_wizard_textfield_.wizardtextfield.md#tabindex)
+* [tagName](_wizard_textfield_.wizardtextfield.md#readonly-tagname)
+* [textContent](_wizard_textfield_.wizardtextfield.md#textcontent)
+* [title](_wizard_textfield_.wizardtextfield.md#title)
+* [translate](_wizard_textfield_.wizardtextfield.md#translate)
+* [type](_wizard_textfield_.wizardtextfield.md#type)
+* [unit](_wizard_textfield_.wizardtextfield.md#unit)
+* [validateOnInitialRender](_wizard_textfield_.wizardtextfield.md#validateoninitialrender)
+* [validationMessage](_wizard_textfield_.wizardtextfield.md#validationmessage)
+* [validityTransform](_wizard_textfield_.wizardtextfield.md#validitytransform)
+* [value](_wizard_textfield_.wizardtextfield.md#value)
+* [[finalized]](_wizard_textfield_.wizardtextfield.md#static-protected-[finalized])
+* [finalized](_wizard_textfield_.wizardtextfield.md#static-protected-finalized)
+* [properties](_wizard_textfield_.wizardtextfield.md#static-properties)
+* [render](_wizard_textfield_.wizardtextfield.md#static-render)
+* [styles](_wizard_textfield_.wizardtextfield.md#static-styles)
 
 ### Accessors
 
-* [desc](_editors_substationeditor_.substationeditor.md#desc)
-* [element](_editors_substationeditor_.substationeditor.md#element)
-* [hasUpdated](_editors_substationeditor_.substationeditor.md#protected-hasupdated)
-* [name](_editors_substationeditor_.substationeditor.md#name)
-* [parent](_editors_substationeditor_.substationeditor.md#parent)
-* [updateComplete](_editors_substationeditor_.substationeditor.md#updatecomplete)
-* [observedAttributes](_editors_substationeditor_.substationeditor.md#static-observedattributes)
+* [charCounterVisible](_wizard_textfield_.wizardtextfield.md#protected-charcountervisible)
+* [hasUpdated](_wizard_textfield_.wizardtextfield.md#protected-hasupdated)
+* [maybeValue](_wizard_textfield_.wizardtextfield.md#maybevalue)
+* [multiplier](_wizard_textfield_.wizardtextfield.md#multiplier)
+* [null](_wizard_textfield_.wizardtextfield.md#null)
+* [selectionEnd](_wizard_textfield_.wizardtextfield.md#selectionend)
+* [selectionStart](_wizard_textfield_.wizardtextfield.md#selectionstart)
+* [shouldRenderHelperText](_wizard_textfield_.wizardtextfield.md#protected-shouldrenderhelpertext)
+* [updateComplete](_wizard_textfield_.wizardtextfield.md#updatecomplete)
+* [validity](_wizard_textfield_.wizardtextfield.md#validity)
+* [willValidate](_wizard_textfield_.wizardtextfield.md#willvalidate)
+* [observedAttributes](_wizard_textfield_.wizardtextfield.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)
-* [addEventListener](_editors_substationeditor_.substationeditor.md#addeventlistener)
-* [adoptStyles](_editors_substationeditor_.substationeditor.md#protected-adoptstyles)
-* [after](_editors_substationeditor_.substationeditor.md#after)
-* [animate](_editors_substationeditor_.substationeditor.md#animate)
-* [append](_editors_substationeditor_.substationeditor.md#append)
-* [appendChild](_editors_substationeditor_.substationeditor.md#appendchild)
-* [attachShadow](_editors_substationeditor_.substationeditor.md#attachshadow)
-* [attributeChangedCallback](_editors_substationeditor_.substationeditor.md#attributechangedcallback)
-* [before](_editors_substationeditor_.substationeditor.md#before)
-* [blur](_editors_substationeditor_.substationeditor.md#blur)
-* [click](_editors_substationeditor_.substationeditor.md#click)
-* [cloneNode](_editors_substationeditor_.substationeditor.md#clonenode)
-* [closest](_editors_substationeditor_.substationeditor.md#closest)
-* [compareDocumentPosition](_editors_substationeditor_.substationeditor.md#comparedocumentposition)
-* [connectedCallback](_editors_substationeditor_.substationeditor.md#connectedcallback)
-* [contains](_editors_substationeditor_.substationeditor.md#contains)
-* [createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)
-* [disconnectedCallback](_editors_substationeditor_.substationeditor.md#disconnectedcallback)
-* [dispatchEvent](_editors_substationeditor_.substationeditor.md#dispatchevent)
-* [enableUpdating](_editors_substationeditor_.substationeditor.md#protected-enableupdating)
-* [firstUpdated](_editors_substationeditor_.substationeditor.md#protected-firstupdated)
-* [focus](_editors_substationeditor_.substationeditor.md#focus)
-* [getAnimations](_editors_substationeditor_.substationeditor.md#getanimations)
-* [getAttribute](_editors_substationeditor_.substationeditor.md#getattribute)
-* [getAttributeNS](_editors_substationeditor_.substationeditor.md#getattributens)
-* [getAttributeNames](_editors_substationeditor_.substationeditor.md#getattributenames)
-* [getAttributeNode](_editors_substationeditor_.substationeditor.md#getattributenode)
-* [getAttributeNodeNS](_editors_substationeditor_.substationeditor.md#getattributenodens)
-* [getBoundingClientRect](_editors_substationeditor_.substationeditor.md#getboundingclientrect)
-* [getClientRects](_editors_substationeditor_.substationeditor.md#getclientrects)
-* [getElementsByClassName](_editors_substationeditor_.substationeditor.md#getelementsbyclassname)
-* [getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)
-* [getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)
-* [getRootNode](_editors_substationeditor_.substationeditor.md#getrootnode)
-* [hasAttribute](_editors_substationeditor_.substationeditor.md#hasattribute)
-* [hasAttributeNS](_editors_substationeditor_.substationeditor.md#hasattributens)
-* [hasAttributes](_editors_substationeditor_.substationeditor.md#hasattributes)
-* [hasChildNodes](_editors_substationeditor_.substationeditor.md#haschildnodes)
-* [hasPointerCapture](_editors_substationeditor_.substationeditor.md#haspointercapture)
-* [info](_editors_substationeditor_.substationeditor.md#optional-info)
-* [initialize](_editors_substationeditor_.substationeditor.md#protected-initialize)
-* [insertAdjacentElement](_editors_substationeditor_.substationeditor.md#insertadjacentelement)
-* [insertAdjacentHTML](_editors_substationeditor_.substationeditor.md#insertadjacenthtml)
-* [insertAdjacentText](_editors_substationeditor_.substationeditor.md#insertadjacenttext)
-* [insertBefore](_editors_substationeditor_.substationeditor.md#insertbefore)
-* [isDefaultNamespace](_editors_substationeditor_.substationeditor.md#isdefaultnamespace)
-* [isEqualNode](_editors_substationeditor_.substationeditor.md#isequalnode)
-* [isSameNode](_editors_substationeditor_.substationeditor.md#issamenode)
-* [lookupNamespaceURI](_editors_substationeditor_.substationeditor.md#lookupnamespaceuri)
-* [lookupPrefix](_editors_substationeditor_.substationeditor.md#lookupprefix)
-* [matches](_editors_substationeditor_.substationeditor.md#matches)
-* [msGetRegionContent](_editors_substationeditor_.substationeditor.md#msgetregioncontent)
-* [newCreateAction](_editors_substationeditor_.substationeditor.md#newcreateaction)
-* [newUpdateAction](_editors_substationeditor_.substationeditor.md#newupdateaction)
-* [newVoltageLevelCreateAction](_editors_substationeditor_.substationeditor.md#newvoltagelevelcreateaction)
-* [normalize](_editors_substationeditor_.substationeditor.md#normalize)
-* [openSubstationWizard](_editors_substationeditor_.substationeditor.md#opensubstationwizard)
-* [openVoltageLevelWizard](_editors_substationeditor_.substationeditor.md#openvoltagelevelwizard)
-* [performUpdate](_editors_substationeditor_.substationeditor.md#protected-performupdate)
-* [prepend](_editors_substationeditor_.substationeditor.md#prepend)
-* [querySelector](_editors_substationeditor_.substationeditor.md#queryselector)
-* [querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)
-* [releasePointerCapture](_editors_substationeditor_.substationeditor.md#releasepointercapture)
-* [remove](_editors_substationeditor_.substationeditor.md#remove)
-* [removeAttribute](_editors_substationeditor_.substationeditor.md#removeattribute)
-* [removeAttributeNS](_editors_substationeditor_.substationeditor.md#removeattributens)
-* [removeAttributeNode](_editors_substationeditor_.substationeditor.md#removeattributenode)
-* [removeChild](_editors_substationeditor_.substationeditor.md#removechild)
-* [removeEventListener](_editors_substationeditor_.substationeditor.md#removeeventlistener)
-* [render](_editors_substationeditor_.substationeditor.md#render)
-* [renderHeader](_editors_substationeditor_.substationeditor.md#renderheader)
-* [replaceChild](_editors_substationeditor_.substationeditor.md#replacechild)
-* [replaceWith](_editors_substationeditor_.substationeditor.md#replacewith)
-* [requestFullscreen](_editors_substationeditor_.substationeditor.md#requestfullscreen)
-* [requestPointerLock](_editors_substationeditor_.substationeditor.md#requestpointerlock)
-* [requestSubstationEdit](_editors_substationeditor_.substationeditor.md#requestsubstationedit)
-* [requestUpdate](_editors_substationeditor_.substationeditor.md#requestupdate)
-* [requestUpdateInternal](_editors_substationeditor_.substationeditor.md#protected-requestupdateinternal)
-* [requestVoltageLevelCreate](_editors_substationeditor_.substationeditor.md#requestvoltagelevelcreate)
-* [scroll](_editors_substationeditor_.substationeditor.md#scroll)
-* [scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)
-* [scrollIntoView](_editors_substationeditor_.substationeditor.md#scrollintoview)
-* [scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)
-* [setAttribute](_editors_substationeditor_.substationeditor.md#setattribute)
-* [setAttributeNS](_editors_substationeditor_.substationeditor.md#setattributens)
-* [setAttributeNode](_editors_substationeditor_.substationeditor.md#setattributenode)
-* [setAttributeNodeNS](_editors_substationeditor_.substationeditor.md#setattributenodens)
-* [setPointerCapture](_editors_substationeditor_.substationeditor.md#setpointercapture)
-* [shouldUpdate](_editors_substationeditor_.substationeditor.md#protected-shouldupdate)
-* [toggleAttribute](_editors_substationeditor_.substationeditor.md#toggleattribute)
-* [update](_editors_substationeditor_.substationeditor.md#protected-update)
-* [updated](_editors_substationeditor_.substationeditor.md#updated)
-* [warn](_editors_substationeditor_.substationeditor.md#optional-warn)
-* [webkitMatchesSelector](_editors_substationeditor_.substationeditor.md#webkitmatchesselector)
-* [createProperty](_editors_substationeditor_.substationeditor.md#static-createproperty)
-* [finalize](_editors_substationeditor_.substationeditor.md#static-protected-finalize)
-* [getPropertyDescriptor](_editors_substationeditor_.substationeditor.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_editors_substationeditor_.substationeditor.md#static-protected-getpropertyoptions)
-* [getStyles](_editors_substationeditor_.substationeditor.md#static-getstyles)
+* [_checkValidity](_wizard_textfield_.wizardtextfield.md#protected-_checkvalidity)
+* [_getUpdateComplete](_wizard_textfield_.wizardtextfield.md#_getupdatecomplete)
+* [addEventListener](_wizard_textfield_.wizardtextfield.md#addeventlistener)
+* [adoptStyles](_wizard_textfield_.wizardtextfield.md#protected-adoptstyles)
+* [after](_wizard_textfield_.wizardtextfield.md#after)
+* [animate](_wizard_textfield_.wizardtextfield.md#animate)
+* [append](_wizard_textfield_.wizardtextfield.md#append)
+* [appendChild](_wizard_textfield_.wizardtextfield.md#appendchild)
+* [attachShadow](_wizard_textfield_.wizardtextfield.md#attachshadow)
+* [attributeChangedCallback](_wizard_textfield_.wizardtextfield.md#attributechangedcallback)
+* [before](_wizard_textfield_.wizardtextfield.md#before)
+* [blur](_wizard_textfield_.wizardtextfield.md#blur)
+* [checkValidity](_wizard_textfield_.wizardtextfield.md#checkvalidity)
+* [click](_wizard_textfield_.wizardtextfield.md#click)
+* [cloneNode](_wizard_textfield_.wizardtextfield.md#clonenode)
+* [closest](_wizard_textfield_.wizardtextfield.md#closest)
+* [compareDocumentPosition](_wizard_textfield_.wizardtextfield.md#comparedocumentposition)
+* [connectedCallback](_wizard_textfield_.wizardtextfield.md#connectedcallback)
+* [contains](_wizard_textfield_.wizardtextfield.md#contains)
+* [createAdapter](_wizard_textfield_.wizardtextfield.md#protected-createadapter)
+* [createFoundation](_wizard_textfield_.wizardtextfield.md#protected-createfoundation)
+* [createRenderRoot](_wizard_textfield_.wizardtextfield.md#protected-createrenderroot)
+* [disable](_wizard_textfield_.wizardtextfield.md#private-disable)
+* [disconnectedCallback](_wizard_textfield_.wizardtextfield.md#disconnectedcallback)
+* [dispatchEvent](_wizard_textfield_.wizardtextfield.md#dispatchevent)
+* [enable](_wizard_textfield_.wizardtextfield.md#private-enable)
+* [enableUpdating](_wizard_textfield_.wizardtextfield.md#protected-enableupdating)
+* [firstUpdated](_wizard_textfield_.wizardtextfield.md#firstupdated)
+* [focus](_wizard_textfield_.wizardtextfield.md#focus)
+* [getAnimations](_wizard_textfield_.wizardtextfield.md#getanimations)
+* [getAttribute](_wizard_textfield_.wizardtextfield.md#getattribute)
+* [getAttributeNS](_wizard_textfield_.wizardtextfield.md#getattributens)
+* [getAttributeNames](_wizard_textfield_.wizardtextfield.md#getattributenames)
+* [getAttributeNode](_wizard_textfield_.wizardtextfield.md#getattributenode)
+* [getAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#getattributenodens)
+* [getBoundingClientRect](_wizard_textfield_.wizardtextfield.md#getboundingclientrect)
+* [getClientRects](_wizard_textfield_.wizardtextfield.md#getclientrects)
+* [getElementsByClassName](_wizard_textfield_.wizardtextfield.md#getelementsbyclassname)
+* [getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)
+* [getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)
+* [getInputAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getinputadaptermethods)
+* [getLabelAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getlabeladaptermethods)
+* [getLineRippleAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getlinerippleadaptermethods)
+* [getOutlineAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getoutlineadaptermethods)
+* [getRootAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getrootadaptermethods)
+* [getRootNode](_wizard_textfield_.wizardtextfield.md#getrootnode)
+* [handleInputChange](_wizard_textfield_.wizardtextfield.md#protected-handleinputchange)
+* [hasAttribute](_wizard_textfield_.wizardtextfield.md#hasattribute)
+* [hasAttributeNS](_wizard_textfield_.wizardtextfield.md#hasattributens)
+* [hasAttributes](_wizard_textfield_.wizardtextfield.md#hasattributes)
+* [hasChildNodes](_wizard_textfield_.wizardtextfield.md#haschildnodes)
+* [hasPointerCapture](_wizard_textfield_.wizardtextfield.md#haspointercapture)
+* [info](_wizard_textfield_.wizardtextfield.md#optional-info)
+* [initialize](_wizard_textfield_.wizardtextfield.md#protected-initialize)
+* [insertAdjacentElement](_wizard_textfield_.wizardtextfield.md#insertadjacentelement)
+* [insertAdjacentHTML](_wizard_textfield_.wizardtextfield.md#insertadjacenthtml)
+* [insertAdjacentText](_wizard_textfield_.wizardtextfield.md#insertadjacenttext)
+* [insertBefore](_wizard_textfield_.wizardtextfield.md#insertbefore)
+* [isDefaultNamespace](_wizard_textfield_.wizardtextfield.md#isdefaultnamespace)
+* [isEqualNode](_wizard_textfield_.wizardtextfield.md#isequalnode)
+* [isSameNode](_wizard_textfield_.wizardtextfield.md#issamenode)
+* [layout](_wizard_textfield_.wizardtextfield.md#layout)
+* [lookupNamespaceURI](_wizard_textfield_.wizardtextfield.md#lookupnamespaceuri)
+* [lookupPrefix](_wizard_textfield_.wizardtextfield.md#lookupprefix)
+* [matches](_wizard_textfield_.wizardtextfield.md#matches)
+* [msGetRegionContent](_wizard_textfield_.wizardtextfield.md#msgetregioncontent)
+* [normalize](_wizard_textfield_.wizardtextfield.md#normalize)
+* [onInputBlur](_wizard_textfield_.wizardtextfield.md#protected-oninputblur)
+* [performUpdate](_wizard_textfield_.wizardtextfield.md#protected-performupdate)
+* [prepend](_wizard_textfield_.wizardtextfield.md#prepend)
+* [querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)
+* [querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)
+* [releasePointerCapture](_wizard_textfield_.wizardtextfield.md#releasepointercapture)
+* [remove](_wizard_textfield_.wizardtextfield.md#remove)
+* [removeAttribute](_wizard_textfield_.wizardtextfield.md#removeattribute)
+* [removeAttributeNS](_wizard_textfield_.wizardtextfield.md#removeattributens)
+* [removeAttributeNode](_wizard_textfield_.wizardtextfield.md#removeattributenode)
+* [removeChild](_wizard_textfield_.wizardtextfield.md#removechild)
+* [removeEventListener](_wizard_textfield_.wizardtextfield.md#removeeventlistener)
+* [render](_wizard_textfield_.wizardtextfield.md#render)
+* [renderAffix](_wizard_textfield_.wizardtextfield.md#protected-renderaffix)
+* [renderCharCounter](_wizard_textfield_.wizardtextfield.md#protected-rendercharcounter)
+* [renderHelperText](_wizard_textfield_.wizardtextfield.md#protected-renderhelpertext)
+* [renderIcon](_wizard_textfield_.wizardtextfield.md#protected-rendericon)
+* [renderInput](_wizard_textfield_.wizardtextfield.md#protected-renderinput)
+* [renderLabel](_wizard_textfield_.wizardtextfield.md#protected-renderlabel)
+* [renderLeadingIcon](_wizard_textfield_.wizardtextfield.md#protected-renderleadingicon)
+* [renderLineRipple](_wizard_textfield_.wizardtextfield.md#protected-renderlineripple)
+* [renderMulplierList](_wizard_textfield_.wizardtextfield.md#rendermulplierlist)
+* [renderOutline](_wizard_textfield_.wizardtextfield.md#protected-renderoutline)
+* [renderPrefix](_wizard_textfield_.wizardtextfield.md#protected-renderprefix)
+* [renderRipple](_wizard_textfield_.wizardtextfield.md#protected-renderripple)
+* [renderSuffix](_wizard_textfield_.wizardtextfield.md#protected-rendersuffix)
+* [renderSwitch](_wizard_textfield_.wizardtextfield.md#renderswitch)
+* [renderTrailingIcon](_wizard_textfield_.wizardtextfield.md#protected-rendertrailingicon)
+* [renderUnitSelector](_wizard_textfield_.wizardtextfield.md#renderunitselector)
+* [replaceChild](_wizard_textfield_.wizardtextfield.md#replacechild)
+* [replaceWith](_wizard_textfield_.wizardtextfield.md#replacewith)
+* [reportValidity](_wizard_textfield_.wizardtextfield.md#reportvalidity)
+* [requestFullscreen](_wizard_textfield_.wizardtextfield.md#requestfullscreen)
+* [requestPointerLock](_wizard_textfield_.wizardtextfield.md#requestpointerlock)
+* [requestUpdate](_wizard_textfield_.wizardtextfield.md#requestupdate)
+* [requestUpdateInternal](_wizard_textfield_.wizardtextfield.md#protected-requestupdateinternal)
+* [restoreNulled](_wizard_textfield_.wizardtextfield.md#restorenulled)
+* [scroll](_wizard_textfield_.wizardtextfield.md#scroll)
+* [scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)
+* [scrollIntoView](_wizard_textfield_.wizardtextfield.md#scrollintoview)
+* [scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)
+* [select](_wizard_textfield_.wizardtextfield.md#select)
+* [selectMultiplier](_wizard_textfield_.wizardtextfield.md#private-selectmultiplier)
+* [setAriaLabel](_wizard_textfield_.wizardtextfield.md#setarialabel)
+* [setAttribute](_wizard_textfield_.wizardtextfield.md#setattribute)
+* [setAttributeNS](_wizard_textfield_.wizardtextfield.md#setattributens)
+* [setAttributeNode](_wizard_textfield_.wizardtextfield.md#setattributenode)
+* [setAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#setattributenodens)
+* [setCustomValidity](_wizard_textfield_.wizardtextfield.md#setcustomvalidity)
+* [setPointerCapture](_wizard_textfield_.wizardtextfield.md#setpointercapture)
+* [setSelectionRange](_wizard_textfield_.wizardtextfield.md#setselectionrange)
+* [shouldUpdate](_wizard_textfield_.wizardtextfield.md#protected-shouldupdate)
+* [storeNulled](_wizard_textfield_.wizardtextfield.md#storenulled)
+* [toggleAttribute](_wizard_textfield_.wizardtextfield.md#toggleattribute)
+* [update](_wizard_textfield_.wizardtextfield.md#update)
+* [updated](_wizard_textfield_.wizardtextfield.md#updated)
+* [warn](_wizard_textfield_.wizardtextfield.md#optional-warn)
+* [webkitMatchesSelector](_wizard_textfield_.wizardtextfield.md#webkitmatchesselector)
+* [createProperty](_wizard_textfield_.wizardtextfield.md#static-createproperty)
+* [finalize](_wizard_textfield_.wizardtextfield.md#static-protected-finalize)
+* [getPropertyDescriptor](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertyoptions)
+* [getStyles](_wizard_textfield_.wizardtextfield.md#static-getstyles)
+
+### Object literals
+
+* [nulled](_wizard_textfield_.wizardtextfield.md#private-nulled)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new SubstationEditor**(): *[SubstationEditor](_editors_substationeditor_.substationeditor.md)*
+\+ **new WizardTextField**(): *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
 
-*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[constructor](_wizard_textfield_.wizardtextfield.md#constructor)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[constructor](_wizard_textfield_.wizardtextfield.md#constructor)*
 
-*Defined in [src/editors/SubstationEditor.ts:279](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L279)*
+Defined in node_modules/lit-element/lib/updating-element.d.ts:274
 
-**Returns:** *[SubstationEditor](_editors_substationeditor_.substationeditor.md)*
+**Returns:** *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
 
 ## Properties
 
@@ -543,6 +620,26 @@ node is a Text node.
 
 ___
 
+### `Protected` _outlineUpdateComplete
+
+• **_outlineUpdateComplete**: *null | Promise‹unknown›*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[_outlineUpdateComplete](_wizard_textfield_.wizardtextfield.md#protected-_outlineupdatecomplete)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:87
+
+___
+
+### `Protected` _validity
+
+• **_validity**: *ValidityState*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[_validity](_wizard_textfield_.wizardtextfield.md#protected-_validity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:86
+
+___
+
 ###  accessKey
 
 • **accessKey**: *string*
@@ -585,13 +682,25 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
 ___
 
+###  autoValidate
+
+• **autoValidate**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autoValidate](_wizard_textfield_.wizardtextfield.md#autovalidate)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:68
+
+___
+
 ###  autocapitalize
 
 • **autocapitalize**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autocapitalize](_wizard_textfield_.wizardtextfield.md#autocapitalize)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:82
 
 ___
 
@@ -614,6 +723,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
 Returns node's node document's document base URL.
+
+___
+
+###  charCounter
+
+• **charCounter**: *boolean | TextAreaCharCounter*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[charCounter](_wizard_textfield_.wizardtextfield.md#charcounter)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:75
 
 ___
 
@@ -735,27 +854,11 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:8002
 
 ___
 
-###  defaultNomFreq
+###  defaultValue
 
-• **defaultNomFreq**: *number* = 50
+• **defaultValue**: *string* = ""
 
-*Defined in [src/editors/SubstationEditor.ts:21](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L21)*
-
-___
-
-###  defaultNumPhases
-
-• **defaultNumPhases**: *number* = 3
-
-*Defined in [src/editors/SubstationEditor.ts:22](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L22)*
-
-___
-
-###  defaultVoltage
-
-• **defaultVoltage**: *number* = 110
-
-*Defined in [src/editors/SubstationEditor.ts:23](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L23)*
+*Defined in [src/wizard-textfield.ts:42](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L42)*
 
 ___
 
@@ -769,11 +872,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
 ___
 
-###  doc
+###  disabled
 
-• **doc**: *XMLDocument*
+• **disabled**: *boolean*
 
-*Defined in [src/editors/SubstationEditor.ts:26](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L26)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[disabled](_wizard_textfield_.wizardtextfield.md#disabled)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:60
 
 ___
 
@@ -784,6 +889,16 @@ ___
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[draggable](_wizard_textfield_.wizardtextfield.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
+
+___
+
+###  endAligned
+
+• **endAligned**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[endAligned](_wizard_textfield_.wizardtextfield.md#endaligned)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:76
 
 ___
 
@@ -831,6 +946,38 @@ Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:34
 
 ___
 
+### `Protected` formElement
+
+• **formElement**: *HTMLInputElement*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[formElement](_wizard_textfield_.wizardtextfield.md#protected-formelement)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:49
+
+___
+
+###  helper
+
+• **helper**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[helper](_wizard_textfield_.wizardtextfield.md#helper)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:65
+
+___
+
+###  helperPersistent
+
+• **helperPersistent**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[helperPersistent](_wizard_textfield_.wizardtextfield.md#helperpersistent)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:74
+
+___
+
 ###  hidden
 
 • **hidden**: *boolean*
@@ -838,6 +985,26 @@ ___
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hidden](_wizard_textfield_.wizardtextfield.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
+
+___
+
+###  icon
+
+• **icon**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[icon](_wizard_textfield_.wizardtextfield.md#icon)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:58
+
+___
+
+###  iconTrailing
+
+• **iconTrailing**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[iconTrailing](_wizard_textfield_.wizardtextfield.md#icontrailing)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:59
 
 ___
 
@@ -875,11 +1042,13 @@ ___
 
 ###  inputMode
 
-• **inputMode**: *string*
+• **inputMode**: *TextFieldInputMode*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[inputMode](_wizard_textfield_.wizardtextfield.md#inputmode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5266
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:80
 
 ___
 
@@ -902,6 +1071,44 @@ ___
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isContentEditable](_wizard_textfield_.wizardtextfield.md#readonly-iscontenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5267
+
+___
+
+### `Private` isNull
+
+• **isNull**: *boolean* = false
+
+*Defined in [src/wizard-textfield.ts:43](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L43)*
+
+___
+
+### `Protected` isUiValid
+
+• **isUiValid**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isUiValid](_wizard_textfield_.wizardtextfield.md#protected-isuivalid)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:85
+
+___
+
+###  label
+
+• **label**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[label](_wizard_textfield_.wizardtextfield.md#label)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:57
+
+___
+
+### `Protected` labelElement
+
+• **labelElement**: *FloatingLabel | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[labelElement](_wizard_textfield_.wizardtextfield.md#protected-labelelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:50
 
 ___
 
@@ -939,6 +1146,16 @@ Returns the last child that is an element, and null otherwise.
 
 ___
 
+### `Protected` lineRippleElement
+
+• **lineRippleElement**: *LineRipple | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lineRippleElement](_wizard_textfield_.wizardtextfield.md#protected-linerippleelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:51
+
+___
+
 ### `Optional` lineRippleFoundation
 
 • **lineRippleFoundation**? : *MDCLineRippleFoundation*
@@ -961,19 +1178,113 @@ Returns the local name.
 
 ___
 
-###  menuIconUI
+###  max
 
-• **menuIconUI**: *IconButton*
+• **max**: *number | string*
 
-*Defined in [src/editors/SubstationEditor.ts:46](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L46)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[max](_wizard_textfield_.wizardtextfield.md#max)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:71
 
 ___
 
-###  menuUI
+###  maxLength
 
-• **menuUI**: *Menu*
+• **maxLength**: *number*
 
-*Defined in [src/editors/SubstationEditor.ts:45](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L45)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[maxLength](_wizard_textfield_.wizardtextfield.md#maxlength)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:63
+
+___
+
+### `Protected` mdcFoundation
+
+• **mdcFoundation**: *MDCTextFieldFoundation*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[mdcFoundation](_wizard_textfield_.wizardtextfield.md#protected-mdcfoundation)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:46
+
+___
+
+### `Protected` `Readonly` mdcFoundationClass
+
+• **mdcFoundationClass**: *typeof MDCTextFieldFoundation*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[mdcFoundationClass](_wizard_textfield_.wizardtextfield.md#protected-readonly-mdcfoundationclass)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:47
+
+___
+
+### `Protected` mdcRoot
+
+• **mdcRoot**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[mdcRoot](_wizard_textfield_.wizardtextfield.md#protected-mdcroot)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:48
+
+___
+
+###  min
+
+• **min**: *number | string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[min](_wizard_textfield_.wizardtextfield.md#min)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:70
+
+___
+
+###  minLength
+
+• **minLength**: *number*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[minLength](_wizard_textfield_.wizardtextfield.md#minlength)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:62
+
+___
+
+### `Private` multiplierIndex
+
+• **multiplierIndex**: *number* = 0
+
+*Defined in [src/wizard-textfield.ts:29](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L29)*
+
+___
+
+### `Optional` multiplierSelect
+
+• **multiplierSelect**? : *Select*
+
+*Defined in [src/wizard-textfield.ts:68](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L68)*
+
+___
+
+###  multipliers
+
+• **multipliers**: *string[]* = ['']
+
+*Defined in [src/wizard-textfield.ts:28](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L28)*
+
+___
+
+###  name
+
+• **name**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[name](_wizard_textfield_.wizardtextfield.md#name)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:79
 
 ___
 
@@ -1056,6 +1367,32 @@ ___
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nonce](_wizard_textfield_.wizardtextfield.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8003
+
+___
+
+### `Protected` notchElement
+
+• **notchElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[notchElement](_wizard_textfield_.wizardtextfield.md#protected-notchelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:53
+
+___
+
+### `Optional` nullSwitch
+
+• **nullSwitch**? : *Switch*
+
+*Defined in [src/wizard-textfield.ts:66](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L66)*
+
+___
+
+###  nullable
+
+• **nullable**: *boolean* = false
+
+*Defined in [src/wizard-textfield.ts:26](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L26)*
 
 ___
 
@@ -2199,6 +2536,46 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5127
 
 ___
 
+### `Protected` outlineElement
+
+• **outlineElement**: *NotchedOutline | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outlineElement](_wizard_textfield_.wizardtextfield.md#protected-outlineelement)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:52
+
+___
+
+### `Protected` outlineOpen
+
+• **outlineOpen**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outlineOpen](_wizard_textfield_.wizardtextfield.md#protected-outlineopen)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:83
+
+___
+
+### `Protected` outlineWidth
+
+• **outlineWidth**: *number*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outlineWidth](_wizard_textfield_.wizardtextfield.md#protected-outlinewidth)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:84
+
+___
+
+###  outlined
+
+• **outlined**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outlined](_wizard_textfield_.wizardtextfield.md#outlined)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:64
+
+___
+
 ### `Readonly` ownerDocument
 
 • **ownerDocument**: *Document*
@@ -2235,15 +2612,35 @@ Returns the parent.
 
 ___
 
-### `Readonly` prefix
+###  pattern
 
-• **prefix**: *string | null*
+• **pattern**: *string*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[pattern](_wizard_textfield_.wizardtextfield.md#pattern)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5132
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:69
 
-Returns the namespace prefix.
+___
+
+###  placeholder
+
+• **placeholder**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[placeholder](_wizard_textfield_.wizardtextfield.md#placeholder)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:56
+
+___
+
+###  prefix
+
+• **prefix**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[prefix](_wizard_textfield_.wizardtextfield.md#prefix)*
+
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:77
 
 ___
 
@@ -2271,6 +2668,16 @@ Returns the previous sibling.
 
 ___
 
+###  readOnly
+
+• **readOnly**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[readOnly](_wizard_textfield_.wizardtextfield.md#readonly)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:81
+
+___
+
 ### `Readonly` renderRoot
 
 • **renderRoot**: *Element | DocumentFragment*
@@ -2281,6 +2688,28 @@ Defined in node_modules/lit-element/lit-element.d.ts:126
 
 Node or ShadowRoot into which element DOM should be rendered. Defaults
 to an open shadowRoot.
+
+___
+
+###  required
+
+• **required**: *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[required](_wizard_textfield_.wizardtextfield.md#required)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:61
+
+___
+
+### `Optional` `Readonly` ripple
+
+• **ripple**? : *RippleInterface | Promise‹RippleInterface | null›*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ripple](_wizard_textfield_.wizardtextfield.md#optional-readonly-ripple)*
+
+Defined in node_modules/@material/mwc-base/form-element.d.ts:32
+
+Implement ripple getter for Ripple integration with mwc-formfield
 
 ___
 
@@ -2336,6 +2765,16 @@ Returns element's shadow root, if any, and if shadow root's mode is "open", and 
 
 ___
 
+###  size
+
+• **size**: *number | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[size](_wizard_textfield_.wizardtextfield.md#size)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:73
+
+___
+
 ###  slot
 
 • **slot**: *string*
@@ -2358,6 +2797,16 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6600
 
 ___
 
+###  step
+
+• **step**: *number | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[step](_wizard_textfield_.wizardtextfield.md#step)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:72
+
+___
+
 ### `Readonly` style
 
 • **style**: *CSSStyleDeclaration*
@@ -2365,6 +2814,16 @@ ___
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[style](_wizard_textfield_.wizardtextfield.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5260
+
+___
+
+###  suffix
+
+• **suffix**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[suffix](_wizard_textfield_.wizardtextfield.md#suffix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:78
 
 ___
 
@@ -2420,43 +2879,61 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6602
 
 ___
 
-###  voltageLevelDescUI
+###  type
 
-• **voltageLevelDescUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
+• **type**: *TextFieldType*
 
-*Defined in [src/editors/SubstationEditor.ts:50](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L50)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[type](_wizard_textfield_.wizardtextfield.md#type)*
 
-___
-
-###  voltageLevelNameUI
-
-• **voltageLevelNameUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
-
-*Defined in [src/editors/SubstationEditor.ts:48](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L48)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:55
 
 ___
 
-###  voltageLevelNomFreqUI
+###  unit
 
-• **voltageLevelNomFreqUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
+• **unit**: *string* = ""
 
-*Defined in [src/editors/SubstationEditor.ts:52](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L52)*
-
-___
-
-###  voltageLevelNumPhasesUI
-
-• **voltageLevelNumPhasesUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
-
-*Defined in [src/editors/SubstationEditor.ts:54](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L54)*
+*Defined in [src/wizard-textfield.ts:40](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L40)*
 
 ___
 
-###  voltageLevelVoltageUI
+###  validateOnInitialRender
 
-• **voltageLevelVoltageUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
+• **validateOnInitialRender**: *boolean*
 
-*Defined in [src/editors/SubstationEditor.ts:56](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L56)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[validateOnInitialRender](_wizard_textfield_.wizardtextfield.md#validateoninitialrender)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:66
+
+___
+
+###  validationMessage
+
+• **validationMessage**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[validationMessage](_wizard_textfield_.wizardtextfield.md#validationmessage)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:67
+
+___
+
+###  validityTransform
+
+• **validityTransform**: *function | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[validityTransform](_wizard_textfield_.wizardtextfield.md#validitytransform)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:94
+
+___
+
+###  value
+
+• **value**: *string*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[value](_wizard_textfield_.wizardtextfield.md#value)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:54
 
 ___
 
@@ -2541,31 +3018,25 @@ ___
 
 ### `Static` styles
 
-▪ **styles**: *CSSResult‹›* = styles
+▪ **styles**: *CSSResult*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[styles](_wizard_textfield_.wizardtextfield.md#static-styles)*
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/editors/SubstationEditor.ts:288](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L288)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield.d.ts:25
 
 ## Accessors
 
-###  desc
+### `Protected` charCounterVisible
 
-• **get desc**(): *string | null*
+• **get charCounterVisible**(): *boolean*
 
-*Defined in [src/editors/SubstationEditor.ts:41](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L41)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[charCounterVisible](_wizard_textfield_.wizardtextfield.md#protected-charcountervisible)*
 
-**Returns:** *string | null*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:93
 
-___
-
-###  element
-
-• **get element**(): *Element | null*
-
-*Defined in [src/editors/SubstationEditor.ts:28](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L28)*
-
-**Returns:** *Element | null*
+**Returns:** *boolean*
 
 ___
 
@@ -2581,23 +3052,105 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:337
 
 ___
 
-###  name
+###  maybeValue
 
-• **get name**(): *string*
+• **get maybeValue**(): *string | null*
 
-*Defined in [src/editors/SubstationEditor.ts:37](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L37)*
+*Defined in [src/wizard-textfield.ts:55](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L55)*
 
-**Returns:** *string*
+**Returns:** *string | null*
+
+• **set maybeValue**(`value`: string | null): *void*
+
+*Defined in [src/wizard-textfield.ts:58](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L58)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | string &#124; null |
+
+**Returns:** *void*
 
 ___
 
-###  parent
+###  multiplier
 
-• **get parent**(): *Element*
+• **get multiplier**(): *string*
 
-*Defined in [src/editors/SubstationEditor.ts:32](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L32)*
+*Defined in [src/wizard-textfield.ts:31](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L31)*
 
-**Returns:** *Element*
+**Returns:** *string*
+
+• **set multiplier**(`value`: string): *void*
+
+*Defined in [src/wizard-textfield.ts:35](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L35)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | string |
+
+**Returns:** *void*
+
+___
+
+###  null
+
+• **get null**(): *boolean*
+
+*Defined in [src/wizard-textfield.ts:45](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L45)*
+
+**Returns:** *boolean*
+
+• **set null**(`value`: boolean): *void*
+
+*Defined in [src/wizard-textfield.ts:48](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L48)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | boolean |
+
+**Returns:** *void*
+
+___
+
+###  selectionEnd
+
+• **get selectionEnd**(): *number | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[selectionEnd](_wizard_textfield_.wizardtextfield.md#selectionend)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:91
+
+**Returns:** *number | null*
+
+___
+
+###  selectionStart
+
+• **get selectionStart**(): *number | null*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[selectionStart](_wizard_textfield_.wizardtextfield.md#selectionstart)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:90
+
+**Returns:** *number | null*
+
+___
+
+### `Protected` shouldRenderHelperText
+
+• **get shouldRenderHelperText**(): *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shouldRenderHelperText](_wizard_textfield_.wizardtextfield.md#protected-shouldrenderhelpertext)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:92
+
+**Returns:** *boolean*
 
 ___
 
@@ -2627,6 +3180,30 @@ update resolved without triggering another update.
 
 ___
 
+###  validity
+
+• **get validity**(): *ValidityState*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[validity](_wizard_textfield_.wizardtextfield.md#validity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:88
+
+**Returns:** *ValidityState*
+
+___
+
+###  willValidate
+
+• **get willValidate**(): *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[willValidate](_wizard_textfield_.wizardtextfield.md#willvalidate)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:89
+
+**Returns:** *boolean*
+
+___
+
 ### `Static` observedAttributes
 
 • **get observedAttributes**(): *string[]*
@@ -2643,30 +3220,35 @@ Returns a list of attributes corresponding to the registered properties.
 
 ## Methods
 
-### `Protected` _getUpdateComplete
+### `Protected` _checkValidity
 
-▸ **_getUpdateComplete**(): *Promise‹unknown›*
+▸ **_checkValidity**(`value`: string): *boolean*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[_checkValidity](_wizard_textfield_.wizardtextfield.md#protected-_checkvalidity)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:388
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:118
 
-Override point for the `updateComplete` promise.
+**Parameters:**
 
-It is not safe to override the `updateComplete` getter directly due to a
-limitation in TypeScript which means it is not possible to call a
-superclass getter (e.g. `super.updateComplete.then(...)`) when the target
-language is ES5 (https://github.com/microsoft/TypeScript/issues/338).
-This method should be overridden instead. For example:
+Name | Type |
+------ | ------ |
+`value` | string |
 
-  class MyElement extends LitElement {
-    async _getUpdateComplete() {
-      await super._getUpdateComplete();
-      await this._myChild.updateComplete;
-    }
-  }
+**Returns:** *boolean*
 
-**Returns:** *Promise‹unknown›*
+___
+
+###  _getUpdateComplete
+
+▸ **_getUpdateComplete**(): *Promise‹void›*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[_getUpdateComplete](_wizard_textfield_.wizardtextfield.md#_getupdatecomplete)*
+
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:127
+
+**Returns:** *Promise‹void›*
 
 ___
 
@@ -2896,11 +3478,25 @@ ___
 
 ▸ **blur**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[blur](_wizard_textfield_.wizardtextfield.md#blur)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8005
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:96
 
 **Returns:** *void*
+
+___
+
+###  checkValidity
+
+▸ **checkValidity**(): *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[checkValidity](_wizard_textfield_.wizardtextfield.md#checkvalidity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:116
+
+**Returns:** *boolean*
 
 ___
 
@@ -2908,9 +3504,11 @@ ___
 
 ▸ **click**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[click](_wizard_textfield_.wizardtextfield.md#click)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6603
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
+
+Defined in node_modules/@material/mwc-base/form-element.d.ts:33
 
 **Returns:** *void*
 
@@ -3050,22 +3648,55 @@ Name | Type |
 
 ___
 
+### `Protected` createAdapter
+
+▸ **createAdapter**(): *MDCTextFieldAdapter*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createAdapter](_wizard_textfield_.wizardtextfield.md#protected-createadapter)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:122
+
+**Returns:** *MDCTextFieldAdapter*
+
+___
+
+### `Protected` createFoundation
+
+▸ **createFoundation**(): *void*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createFoundation](_wizard_textfield_.wizardtextfield.md#protected-createfoundation)*
+
+*Overrides void*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:121
+
+**Returns:** *void*
+
+___
+
 ### `Protected` createRenderRoot
 
-▸ **createRenderRoot**(): *Element | ShadowRoot*
+▸ **createRenderRoot**(): *ShadowRoot*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createRenderRoot](_wizard_textfield_.wizardtextfield.md#protected-createrenderroot)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:140
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)*
 
-Returns the node into which the element should render and by default
-creates and returns an open shadowRoot. Implement to customize where the
-element's DOM is rendered. For example, to render into the element's
-childNodes, return `this`.
+Defined in node_modules/@material/mwc-base/form-element.d.ts:28
 
-**Returns:** *Element | ShadowRoot*
+**Returns:** *ShadowRoot*
 
-Returns a node into which to render.
+___
+
+### `Private` disable
+
+▸ **disable**(): *void*
+
+*Defined in [src/wizard-textfield.ts:88](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L88)*
+
+**Returns:** *void*
 
 ___
 
@@ -3105,6 +3736,16 @@ Name | Type |
 
 ___
 
+### `Private` enable
+
+▸ **enable**(): *void*
+
+*Defined in [src/wizard-textfield.ts:81](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L81)*
+
+**Returns:** *void*
+
+___
+
 ### `Protected` enableUpdating
 
 ▸ **enableUpdating**(): *void*
@@ -3117,43 +3758,27 @@ Defined in node_modules/lit-element/lib/updating-element.d.ts:299
 
 ___
 
-### `Protected` firstUpdated
+###  firstUpdated
 
-▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
+▸ **firstUpdated**(): *Promise‹void›*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[firstUpdated](_editors_substationeditor_.substationeditor.md#protected-firstupdated)*
+*Overrides void*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:425
+*Defined in [src/wizard-textfield.ts:112](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L112)*
 
-Invoked when the element is first updated. Implement to perform one time
-work on the element after update.
-
-Setting properties inside this method will trigger the element to update
-again after this update cycle completes.
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`_changedProperties` | PropertyValues | Map of changed properties with old values  |
-
-**Returns:** *void*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  focus
 
-▸ **focus**(`options?`: FocusOptions): *void*
+▸ **focus**(): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[focus](_wizard_textfield_.wizardtextfield.md#focus)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8006
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
 
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`options?` | FocusOptions |
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:95
 
 **Returns:** *void*
 
@@ -3410,6 +4035,66 @@ Name | Type |
 
 ___
 
+### `Protected` getInputAdapterMethods
+
+▸ **getInputAdapterMethods**(): *MDCTextFieldInputAdapter*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getInputAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getinputadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:124
+
+**Returns:** *MDCTextFieldInputAdapter*
+
+___
+
+### `Protected` getLabelAdapterMethods
+
+▸ **getLabelAdapterMethods**(): *MDCTextFieldLabelAdapter*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getLabelAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getlabeladaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:125
+
+**Returns:** *MDCTextFieldLabelAdapter*
+
+___
+
+### `Protected` getLineRippleAdapterMethods
+
+▸ **getLineRippleAdapterMethods**(): *MDCTextFieldLineRippleAdapter*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getLineRippleAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getlinerippleadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:126
+
+**Returns:** *MDCTextFieldLineRippleAdapter*
+
+___
+
+### `Protected` getOutlineAdapterMethods
+
+▸ **getOutlineAdapterMethods**(): *MDCTextFieldOutlineAdapter*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getOutlineAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getoutlineadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:129
+
+**Returns:** *MDCTextFieldOutlineAdapter*
+
+___
+
+### `Protected` getRootAdapterMethods
+
+▸ **getRootAdapterMethods**(): *MDCTextFieldRootAdapter*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getRootAdapterMethods](_wizard_textfield_.wizardtextfield.md#protected-getrootadaptermethods)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:123
+
+**Returns:** *MDCTextFieldRootAdapter*
+
+___
+
 ###  getRootNode
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
@@ -3427,6 +4112,18 @@ Name | Type |
 `options?` | GetRootNodeOptions |
 
 **Returns:** *Node*
+
+___
+
+### `Protected` handleInputChange
+
+▸ **handleInputChange**(): *void*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[handleInputChange](_wizard_textfield_.wizardtextfield.md#protected-handleinputchange)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:120
+
+**Returns:** *void*
 
 ___
 
@@ -3690,6 +4387,18 @@ Name | Type |
 
 ___
 
+###  layout
+
+▸ **layout**(): *Promise‹void›*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[layout](_wizard_textfield_.wizardtextfield.md#layout)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:130
+
+**Returns:** *Promise‹void›*
+
+___
+
 ###  lookupNamespaceURI
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
@@ -3758,61 +4467,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
 ___
 
-###  newCreateAction
-
-▸ **newCreateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
-
-*Defined in [src/editors/SubstationEditor.ts:70](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L70)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string |
-`desc` | string &#124; null |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)*
-
-___
-
-###  newUpdateAction
-
-▸ **newUpdateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
-
-*Defined in [src/editors/SubstationEditor.ts:58](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L58)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string |
-`desc` | string &#124; null |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)*
-
-___
-
-###  newVoltageLevelCreateAction
-
-▸ **newVoltageLevelCreateAction**(`name`: string | null, `desc`: string | null, `nomFreq`: string | null, `numPhases`: string | null, `Voltage`: string | null, `multiplier`: string): *[Action](../modules/_foundation_.md#action)*
-
-*Defined in [src/editors/SubstationEditor.ts:86](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L86)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string &#124; null |
-`desc` | string &#124; null |
-`nomFreq` | string &#124; null |
-`numPhases` | string &#124; null |
-`Voltage` | string &#124; null |
-`multiplier` | string |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)*
-
-___
-
 ###  normalize
 
 ▸ **normalize**(): *void*
@@ -3827,21 +4481,13 @@ Removes empty exclusive Text nodes and concatenates the data of remaining contig
 
 ___
 
-###  openSubstationWizard
+### `Protected` onInputBlur
 
-▸ **openSubstationWizard**(): *void*
+▸ **onInputBlur**(): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:215](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L215)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onInputBlur](_wizard_textfield_.wizardtextfield.md#protected-oninputblur)*
 
-**Returns:** *void*
-
-___
-
-###  openVoltageLevelWizard
-
-▸ **openVoltageLevelWizard**(): *void*
-
-*Defined in [src/editors/SubstationEditor.ts:152](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L152)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:115
 
 **Returns:** *void*
 
@@ -4186,19 +4832,215 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
+*Overrides void*
 
-*Defined in [src/editors/SubstationEditor.ts:270](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L270)*
+*Defined in [src/wizard-textfield.ts:117](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L117)*
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderHeader
+### `Protected` renderAffix
 
-▸ **renderHeader**(): *TemplateResult*
+▸ **renderAffix**(`content`: string, `isSuffix?`: undefined | false | true): *TemplateResult*
 
-*Defined in [src/editors/SubstationEditor.ts:248](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L248)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderAffix](_wizard_textfield_.wizardtextfield.md#protected-renderaffix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:110
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`content` | string |
+`isSuffix?` | undefined &#124; false &#124; true |
+
+**Returns:** *TemplateResult*
+
+___
+
+### `Protected` renderCharCounter
+
+▸ **renderCharCounter**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderCharCounter](_wizard_textfield_.wizardtextfield.md#protected-rendercharcounter)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:114
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderHelperText
+
+▸ **renderHelperText**(`charCounterTemplate?`: TemplateResult | typeof nothing): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderHelperText](_wizard_textfield_.wizardtextfield.md#protected-renderhelpertext)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:113
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`charCounterTemplate?` | TemplateResult &#124; typeof nothing |
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderIcon
+
+▸ **renderIcon**(`icon`: string, `isTrailingIcon?`: undefined | false | true): *TemplateResult*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderIcon](_wizard_textfield_.wizardtextfield.md#protected-rendericon)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:107
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`icon` | string |
+`isTrailingIcon?` | undefined &#124; false &#124; true |
+
+**Returns:** *TemplateResult*
+
+___
+
+### `Protected` renderInput
+
+▸ **renderInput**(): *TemplateResult*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderInput](_wizard_textfield_.wizardtextfield.md#protected-renderinput)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:111
+
+**Returns:** *TemplateResult*
+
+___
+
+### `Protected` renderLabel
+
+▸ **renderLabel**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderLabel](_wizard_textfield_.wizardtextfield.md#protected-renderlabel)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:104
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderLeadingIcon
+
+▸ **renderLeadingIcon**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderLeadingIcon](_wizard_textfield_.wizardtextfield.md#protected-renderleadingicon)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:105
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderLineRipple
+
+▸ **renderLineRipple**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderLineRipple](_wizard_textfield_.wizardtextfield.md#protected-renderlineripple)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:112
+
+**Returns:** *object*
+
+___
+
+###  renderMulplierList
+
+▸ **renderMulplierList**(): *TemplateResult*
+
+*Defined in [src/wizard-textfield.ts:141](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L141)*
+
+**Returns:** *TemplateResult*
+
+___
+
+### `Protected` renderOutline
+
+▸ **renderOutline**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderOutline](_wizard_textfield_.wizardtextfield.md#protected-renderoutline)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:103
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderPrefix
+
+▸ **renderPrefix**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderPrefix](_wizard_textfield_.wizardtextfield.md#protected-renderprefix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:108
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderRipple
+
+▸ **renderRipple**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderRipple](_wizard_textfield_.wizardtextfield.md#protected-renderripple)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:102
+
+**Returns:** *object*
+
+___
+
+### `Protected` renderSuffix
+
+▸ **renderSuffix**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderSuffix](_wizard_textfield_.wizardtextfield.md#protected-rendersuffix)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:109
+
+**Returns:** *object*
+
+___
+
+###  renderSwitch
+
+▸ **renderSwitch**(): *TemplateResult*
+
+*Defined in [src/wizard-textfield.ts:150](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L150)*
+
+**Returns:** *TemplateResult*
+
+___
+
+### `Protected` renderTrailingIcon
+
+▸ **renderTrailingIcon**(): *object*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderTrailingIcon](_wizard_textfield_.wizardtextfield.md#protected-rendertrailingicon)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:106
+
+**Returns:** *object*
+
+___
+
+###  renderUnitSelector
+
+▸ **renderUnitSelector**(): *TemplateResult*
+
+*Defined in [src/wizard-textfield.ts:133](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L133)*
 
 **Returns:** *TemplateResult*
 
@@ -4249,6 +5091,18 @@ Name | Type |
 
 ___
 
+###  reportValidity
+
+▸ **reportValidity**(): *boolean*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[reportValidity](_wizard_textfield_.wizardtextfield.md#reportvalidity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:117
+
+**Returns:** *boolean*
+
+___
+
 ###  requestFullscreen
 
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
@@ -4280,22 +5134,6 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5222
 
 **Returns:** *void*
-
-___
-
-###  requestSubstationEdit
-
-▸ **requestSubstationEdit**(`inputs`: [WizardInput](../modules/_foundation_.md#wizardinput)[]): *[Action](../modules/_foundation_.md#action)[]*
-
-*Defined in [src/editors/SubstationEditor.ts:120](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L120)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`inputs` | [WizardInput](../modules/_foundation_.md#wizardinput)[] |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)[]*
 
 ___
 
@@ -4352,19 +5190,13 @@ Name | Type |
 
 ___
 
-###  requestVoltageLevelCreate
+###  restoreNulled
 
-▸ **requestVoltageLevelCreate**(`inputs`: [WizardInput](../modules/_foundation_.md#wizardinput)[]): *[Action](../modules/_foundation_.md#action)[]*
+▸ **restoreNulled**(): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:130](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L130)*
+*Defined in [src/wizard-textfield.ts:100](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L100)*
 
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`inputs` | [WizardInput](../modules/_foundation_.md#wizardinput)[] |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)[]*
+**Returns:** *void*
 
 ___
 
@@ -4485,6 +5317,52 @@ Name | Type |
 
 ___
 
+###  select
+
+▸ **select**(): *void*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[select](_wizard_textfield_.wizardtextfield.md#select)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:97
+
+**Returns:** *void*
+
+___
+
+### `Private` selectMultiplier
+
+▸ **selectMultiplier**(`se`: SingleSelectedEvent): *void*
+
+*Defined in [src/wizard-textfield.ts:77](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L77)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`se` | SingleSelectedEvent |
+
+**Returns:** *void*
+
+___
+
+###  setAriaLabel
+
+▸ **setAriaLabel**(`label`: string): *void*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAriaLabel](_wizard_textfield_.wizardtextfield.md#setarialabel)*
+
+Defined in node_modules/@material/mwc-base/form-element.d.ts:34
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`label` | string |
+
+**Returns:** *void*
+
+___
+
 ###  setAttribute
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
@@ -4564,6 +5442,24 @@ Name | Type |
 
 ___
 
+###  setCustomValidity
+
+▸ **setCustomValidity**(`message`: string): *void*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setCustomValidity](_wizard_textfield_.wizardtextfield.md#setcustomvalidity)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:119
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`message` | string |
+
+**Returns:** *void*
+
+___
+
 ###  setPointerCapture
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
@@ -4577,6 +5473,26 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5240
 Name | Type |
 ------ | ------ |
 `pointerId` | number |
+
+**Returns:** *void*
+
+___
+
+###  setSelectionRange
+
+▸ **setSelectionRange**(`selectionStart`: number, `selectionEnd`: number, `selectionDirection?`: "forward" | "backward" | "none"): *void*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setSelectionRange](_wizard_textfield_.wizardtextfield.md#setselectionrange)*
+
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:98
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`selectionStart` | number |
+`selectionEnd` | number |
+`selectionDirection?` | "forward" &#124; "backward" &#124; "none" |
 
 **Returns:** *void*
 
@@ -4604,6 +5520,16 @@ Name | Type | Description |
 
 ___
 
+###  storeNulled
+
+▸ **storeNulled**(): *void*
+
+*Defined in [src/wizard-textfield.ts:106](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L106)*
+
+**Returns:** *void*
+
+___
+
 ###  toggleAttribute
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
@@ -4627,19 +5553,15 @@ Name | Type |
 
 ___
 
-### `Protected` update
+###  update
 
 ▸ **update**(`changedProperties`: PropertyValues): *void*
 
-*Inherited from [SubstationEditor](_editors_substationeditor_.substationeditor.md).[update](_editors_substationeditor_.substationeditor.md#protected-update)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[update](_wizard_textfield_.wizardtextfield.md#update)*
 
-*Overrides void*
+*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[update](_editors_substationeditor_.substationeditor.md#protected-update)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:158
-
-Updates the element. This method reflects property values to attributes
-and calls `render` to render DOM via lit-html. Setting properties inside
-this method will *not* trigger another update.
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:99
 
 **Parameters:**
 
@@ -4653,11 +5575,19 @@ ___
 
 ###  updated
 
-▸ **updated**(): *void*
+▸ **updated**(`changedProperties`: PropertyValues): *void*
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[updated](_wizard_textfield_.wizardtextfield.md#updated)*
 
 *Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#protected-updated)*
 
-*Defined in [src/editors/SubstationEditor.ts:148](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L148)*
+Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:101
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`changedProperties` | PropertyValues |
 
 **Returns:** *void*
 
@@ -4852,3 +5782,29 @@ Override this method to integrate into a style management system.
 **`nocollapse`** 
 
 **Returns:** *CSSResultOrNative | CSSResultArray | undefined*
+
+## Object literals
+
+### `Private` nulled
+
+### ▪ **nulled**: *object*
+
+*Defined in [src/wizard-textfield.ts:71](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L71)*
+
+###  helper
+
+• **helper**: *string* = this.helper
+
+*Defined in [src/wizard-textfield.ts:73](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L73)*
+
+###  helperPersistent
+
+• **helperPersistent**: *boolean* = this.helperPersistent
+
+*Defined in [src/wizard-textfield.ts:74](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L74)*
+
+###  value
+
+• **value**: *string* = this.value || this.defaultValue
+
+*Defined in [src/wizard-textfield.ts:72](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-textfield.ts#L72)*

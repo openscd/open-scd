@@ -1,339 +1,329 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["editors/SubstationEditor"](../modules/_editors_substationeditor_.md) › [SubstationEditor](_editors_substationeditor_.substationeditor.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["wizard-dialog"](../modules/_wizard_dialog_.md) › [WizardDialog](_wizard_dialog_.wizarddialog.md)
 
-# Class: SubstationEditor
+# Class: WizardDialog
 
 ## Hierarchy
 
 * LitElement
 
-  ↳ **SubstationEditor**
+  ↳ **WizardDialog**
 
 ## Index
 
 ### Constructors
 
-* [constructor](_editors_substationeditor_.substationeditor.md#constructor)
+* [constructor](_wizard_dialog_.wizarddialog.md#constructor)
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_editors_substationeditor_.substationeditor.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_editors_substationeditor_.substationeditor.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_editors_substationeditor_.substationeditor.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_editors_substationeditor_.substationeditor.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_editors_substationeditor_.substationeditor.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_editors_substationeditor_.substationeditor.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_editors_substationeditor_.substationeditor.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_editors_substationeditor_.substationeditor.md#readonly-document_type_node)
-* [ELEMENT_NODE](_editors_substationeditor_.substationeditor.md#readonly-element_node)
-* [ENTITY_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_editors_substationeditor_.substationeditor.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_editors_substationeditor_.substationeditor.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_editors_substationeditor_.substationeditor.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_editors_substationeditor_.substationeditor.md#readonly-text_node)
-* [accessKey](_editors_substationeditor_.substationeditor.md#accesskey)
-* [accessKeyLabel](_editors_substationeditor_.substationeditor.md#readonly-accesskeylabel)
-* [assignedSlot](_editors_substationeditor_.substationeditor.md#readonly-assignedslot)
-* [attributes](_editors_substationeditor_.substationeditor.md#readonly-attributes)
-* [autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)
-* [autofocus](_editors_substationeditor_.substationeditor.md#autofocus)
-* [baseURI](_editors_substationeditor_.substationeditor.md#readonly-baseuri)
-* [childElementCount](_editors_substationeditor_.substationeditor.md#readonly-childelementcount)
-* [childNodes](_editors_substationeditor_.substationeditor.md#readonly-childnodes)
-* [children](_editors_substationeditor_.substationeditor.md#readonly-children)
-* [classList](_editors_substationeditor_.substationeditor.md#readonly-classlist)
-* [className](_editors_substationeditor_.substationeditor.md#classname)
-* [clientHeight](_editors_substationeditor_.substationeditor.md#readonly-clientheight)
-* [clientLeft](_editors_substationeditor_.substationeditor.md#readonly-clientleft)
-* [clientTop](_editors_substationeditor_.substationeditor.md#readonly-clienttop)
-* [clientWidth](_editors_substationeditor_.substationeditor.md#readonly-clientwidth)
-* [contentEditable](_editors_substationeditor_.substationeditor.md#contenteditable)
-* [dataset](_editors_substationeditor_.substationeditor.md#readonly-dataset)
-* [defaultNomFreq](_editors_substationeditor_.substationeditor.md#defaultnomfreq)
-* [defaultNumPhases](_editors_substationeditor_.substationeditor.md#defaultnumphases)
-* [defaultVoltage](_editors_substationeditor_.substationeditor.md#defaultvoltage)
-* [dir](_editors_substationeditor_.substationeditor.md#dir)
-* [doc](_editors_substationeditor_.substationeditor.md#doc)
-* [draggable](_editors_substationeditor_.substationeditor.md#draggable)
-* [enterKeyHint](_editors_substationeditor_.substationeditor.md#enterkeyhint)
-* [firstChild](_editors_substationeditor_.substationeditor.md#readonly-firstchild)
-* [firstElementChild](_editors_substationeditor_.substationeditor.md#readonly-firstelementchild)
-* [floatingLabelFoundation](_editors_substationeditor_.substationeditor.md#optional-floatinglabelfoundation)
-* [hidden](_editors_substationeditor_.substationeditor.md#hidden)
-* [id](_editors_substationeditor_.substationeditor.md#id)
-* [innerHTML](_editors_substationeditor_.substationeditor.md#innerhtml)
-* [innerText](_editors_substationeditor_.substationeditor.md#innertext)
-* [inputMode](_editors_substationeditor_.substationeditor.md#inputmode)
-* [isConnected](_editors_substationeditor_.substationeditor.md#readonly-isconnected)
-* [isContentEditable](_editors_substationeditor_.substationeditor.md#readonly-iscontenteditable)
-* [lang](_editors_substationeditor_.substationeditor.md#lang)
-* [lastChild](_editors_substationeditor_.substationeditor.md#readonly-lastchild)
-* [lastElementChild](_editors_substationeditor_.substationeditor.md#readonly-lastelementchild)
-* [lineRippleFoundation](_editors_substationeditor_.substationeditor.md#optional-lineripplefoundation)
-* [localName](_editors_substationeditor_.substationeditor.md#readonly-localname)
-* [menuIconUI](_editors_substationeditor_.substationeditor.md#menuiconui)
-* [menuUI](_editors_substationeditor_.substationeditor.md#menuui)
-* [namespaceURI](_editors_substationeditor_.substationeditor.md#readonly-namespaceuri)
-* [nextElementSibling](_editors_substationeditor_.substationeditor.md#readonly-nextelementsibling)
-* [nextSibling](_editors_substationeditor_.substationeditor.md#readonly-nextsibling)
-* [nodeName](_editors_substationeditor_.substationeditor.md#readonly-nodename)
-* [nodeType](_editors_substationeditor_.substationeditor.md#readonly-nodetype)
-* [nodeValue](_editors_substationeditor_.substationeditor.md#nodevalue)
-* [nonce](_editors_substationeditor_.substationeditor.md#optional-nonce)
-* [offsetHeight](_editors_substationeditor_.substationeditor.md#readonly-offsetheight)
-* [offsetLeft](_editors_substationeditor_.substationeditor.md#readonly-offsetleft)
-* [offsetParent](_editors_substationeditor_.substationeditor.md#readonly-offsetparent)
-* [offsetTop](_editors_substationeditor_.substationeditor.md#readonly-offsettop)
-* [offsetWidth](_editors_substationeditor_.substationeditor.md#readonly-offsetwidth)
-* [onabort](_editors_substationeditor_.substationeditor.md#onabort)
-* [onanimationcancel](_editors_substationeditor_.substationeditor.md#onanimationcancel)
-* [onanimationend](_editors_substationeditor_.substationeditor.md#onanimationend)
-* [onanimationiteration](_editors_substationeditor_.substationeditor.md#onanimationiteration)
-* [onanimationstart](_editors_substationeditor_.substationeditor.md#onanimationstart)
-* [onauxclick](_editors_substationeditor_.substationeditor.md#onauxclick)
-* [onblur](_editors_substationeditor_.substationeditor.md#onblur)
-* [oncancel](_editors_substationeditor_.substationeditor.md#oncancel)
-* [oncanplay](_editors_substationeditor_.substationeditor.md#oncanplay)
-* [oncanplaythrough](_editors_substationeditor_.substationeditor.md#oncanplaythrough)
-* [onchange](_editors_substationeditor_.substationeditor.md#onchange)
-* [onclick](_editors_substationeditor_.substationeditor.md#onclick)
-* [onclose](_editors_substationeditor_.substationeditor.md#onclose)
-* [oncontextmenu](_editors_substationeditor_.substationeditor.md#oncontextmenu)
-* [oncopy](_editors_substationeditor_.substationeditor.md#oncopy)
-* [oncuechange](_editors_substationeditor_.substationeditor.md#oncuechange)
-* [oncut](_editors_substationeditor_.substationeditor.md#oncut)
-* [ondblclick](_editors_substationeditor_.substationeditor.md#ondblclick)
-* [ondrag](_editors_substationeditor_.substationeditor.md#ondrag)
-* [ondragend](_editors_substationeditor_.substationeditor.md#ondragend)
-* [ondragenter](_editors_substationeditor_.substationeditor.md#ondragenter)
-* [ondragexit](_editors_substationeditor_.substationeditor.md#ondragexit)
-* [ondragleave](_editors_substationeditor_.substationeditor.md#ondragleave)
-* [ondragover](_editors_substationeditor_.substationeditor.md#ondragover)
-* [ondragstart](_editors_substationeditor_.substationeditor.md#ondragstart)
-* [ondrop](_editors_substationeditor_.substationeditor.md#ondrop)
-* [ondurationchange](_editors_substationeditor_.substationeditor.md#ondurationchange)
-* [onemptied](_editors_substationeditor_.substationeditor.md#onemptied)
-* [onended](_editors_substationeditor_.substationeditor.md#onended)
-* [onerror](_editors_substationeditor_.substationeditor.md#onerror)
-* [onfocus](_editors_substationeditor_.substationeditor.md#onfocus)
-* [onfullscreenchange](_editors_substationeditor_.substationeditor.md#onfullscreenchange)
-* [onfullscreenerror](_editors_substationeditor_.substationeditor.md#onfullscreenerror)
-* [ongotpointercapture](_editors_substationeditor_.substationeditor.md#ongotpointercapture)
-* [oninput](_editors_substationeditor_.substationeditor.md#oninput)
-* [oninvalid](_editors_substationeditor_.substationeditor.md#oninvalid)
-* [onkeydown](_editors_substationeditor_.substationeditor.md#onkeydown)
-* [onkeypress](_editors_substationeditor_.substationeditor.md#onkeypress)
-* [onkeyup](_editors_substationeditor_.substationeditor.md#onkeyup)
-* [onload](_editors_substationeditor_.substationeditor.md#onload)
-* [onloadeddata](_editors_substationeditor_.substationeditor.md#onloadeddata)
-* [onloadedmetadata](_editors_substationeditor_.substationeditor.md#onloadedmetadata)
-* [onloadstart](_editors_substationeditor_.substationeditor.md#onloadstart)
-* [onlostpointercapture](_editors_substationeditor_.substationeditor.md#onlostpointercapture)
-* [onmousedown](_editors_substationeditor_.substationeditor.md#onmousedown)
-* [onmouseenter](_editors_substationeditor_.substationeditor.md#onmouseenter)
-* [onmouseleave](_editors_substationeditor_.substationeditor.md#onmouseleave)
-* [onmousemove](_editors_substationeditor_.substationeditor.md#onmousemove)
-* [onmouseout](_editors_substationeditor_.substationeditor.md#onmouseout)
-* [onmouseover](_editors_substationeditor_.substationeditor.md#onmouseover)
-* [onmouseup](_editors_substationeditor_.substationeditor.md#onmouseup)
-* [onpaste](_editors_substationeditor_.substationeditor.md#onpaste)
-* [onpause](_editors_substationeditor_.substationeditor.md#onpause)
-* [onplay](_editors_substationeditor_.substationeditor.md#onplay)
-* [onplaying](_editors_substationeditor_.substationeditor.md#onplaying)
-* [onpointercancel](_editors_substationeditor_.substationeditor.md#onpointercancel)
-* [onpointerdown](_editors_substationeditor_.substationeditor.md#onpointerdown)
-* [onpointerenter](_editors_substationeditor_.substationeditor.md#onpointerenter)
-* [onpointerleave](_editors_substationeditor_.substationeditor.md#onpointerleave)
-* [onpointermove](_editors_substationeditor_.substationeditor.md#onpointermove)
-* [onpointerout](_editors_substationeditor_.substationeditor.md#onpointerout)
-* [onpointerover](_editors_substationeditor_.substationeditor.md#onpointerover)
-* [onpointerup](_editors_substationeditor_.substationeditor.md#onpointerup)
-* [onprogress](_editors_substationeditor_.substationeditor.md#onprogress)
-* [onratechange](_editors_substationeditor_.substationeditor.md#onratechange)
-* [onreset](_editors_substationeditor_.substationeditor.md#onreset)
-* [onresize](_editors_substationeditor_.substationeditor.md#onresize)
-* [onscroll](_editors_substationeditor_.substationeditor.md#onscroll)
-* [onsecuritypolicyviolation](_editors_substationeditor_.substationeditor.md#onsecuritypolicyviolation)
-* [onseeked](_editors_substationeditor_.substationeditor.md#onseeked)
-* [onseeking](_editors_substationeditor_.substationeditor.md#onseeking)
-* [onselect](_editors_substationeditor_.substationeditor.md#onselect)
-* [onselectionchange](_editors_substationeditor_.substationeditor.md#onselectionchange)
-* [onselectstart](_editors_substationeditor_.substationeditor.md#onselectstart)
-* [onstalled](_editors_substationeditor_.substationeditor.md#onstalled)
-* [onsubmit](_editors_substationeditor_.substationeditor.md#onsubmit)
-* [onsuspend](_editors_substationeditor_.substationeditor.md#onsuspend)
-* [ontimeupdate](_editors_substationeditor_.substationeditor.md#ontimeupdate)
-* [ontoggle](_editors_substationeditor_.substationeditor.md#ontoggle)
-* [ontouchcancel](_editors_substationeditor_.substationeditor.md#optional-ontouchcancel)
-* [ontouchend](_editors_substationeditor_.substationeditor.md#optional-ontouchend)
-* [ontouchmove](_editors_substationeditor_.substationeditor.md#optional-ontouchmove)
-* [ontouchstart](_editors_substationeditor_.substationeditor.md#optional-ontouchstart)
-* [ontransitioncancel](_editors_substationeditor_.substationeditor.md#ontransitioncancel)
-* [ontransitionend](_editors_substationeditor_.substationeditor.md#ontransitionend)
-* [ontransitionrun](_editors_substationeditor_.substationeditor.md#ontransitionrun)
-* [ontransitionstart](_editors_substationeditor_.substationeditor.md#ontransitionstart)
-* [onvolumechange](_editors_substationeditor_.substationeditor.md#onvolumechange)
-* [onwaiting](_editors_substationeditor_.substationeditor.md#onwaiting)
-* [onwheel](_editors_substationeditor_.substationeditor.md#onwheel)
-* [outerHTML](_editors_substationeditor_.substationeditor.md#outerhtml)
-* [ownerDocument](_editors_substationeditor_.substationeditor.md#readonly-ownerdocument)
-* [parentElement](_editors_substationeditor_.substationeditor.md#readonly-parentelement)
-* [parentNode](_editors_substationeditor_.substationeditor.md#readonly-parentnode)
-* [prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)
-* [previousElementSibling](_editors_substationeditor_.substationeditor.md#readonly-previouselementsibling)
-* [previousSibling](_editors_substationeditor_.substationeditor.md#readonly-previoussibling)
-* [renderRoot](_editors_substationeditor_.substationeditor.md#readonly-renderroot)
-* [scrollHeight](_editors_substationeditor_.substationeditor.md#readonly-scrollheight)
-* [scrollLeft](_editors_substationeditor_.substationeditor.md#scrollleft)
-* [scrollTop](_editors_substationeditor_.substationeditor.md#scrolltop)
-* [scrollWidth](_editors_substationeditor_.substationeditor.md#readonly-scrollwidth)
-* [shadowRoot](_editors_substationeditor_.substationeditor.md#readonly-shadowroot)
-* [slot](_editors_substationeditor_.substationeditor.md#slot)
-* [spellcheck](_editors_substationeditor_.substationeditor.md#spellcheck)
-* [style](_editors_substationeditor_.substationeditor.md#readonly-style)
-* [tabIndex](_editors_substationeditor_.substationeditor.md#tabindex)
-* [tagName](_editors_substationeditor_.substationeditor.md#readonly-tagname)
-* [textContent](_editors_substationeditor_.substationeditor.md#textcontent)
-* [title](_editors_substationeditor_.substationeditor.md#title)
-* [translate](_editors_substationeditor_.substationeditor.md#translate)
-* [voltageLevelDescUI](_editors_substationeditor_.substationeditor.md#voltageleveldescui)
-* [voltageLevelNameUI](_editors_substationeditor_.substationeditor.md#voltagelevelnameui)
-* [voltageLevelNomFreqUI](_editors_substationeditor_.substationeditor.md#voltagelevelnomfrequi)
-* [voltageLevelNumPhasesUI](_editors_substationeditor_.substationeditor.md#voltagelevelnumphasesui)
-* [voltageLevelVoltageUI](_editors_substationeditor_.substationeditor.md#voltagelevelvoltageui)
-* [[finalized]](_editors_substationeditor_.substationeditor.md#static-protected-[finalized])
-* [finalized](_editors_substationeditor_.substationeditor.md#static-protected-finalized)
-* [properties](_editors_substationeditor_.substationeditor.md#static-properties)
-* [render](_editors_substationeditor_.substationeditor.md#static-render)
-* [styles](_editors_substationeditor_.substationeditor.md#static-styles)
+* [ATTRIBUTE_NODE](_wizard_dialog_.wizarddialog.md#readonly-attribute_node)
+* [CDATA_SECTION_NODE](_wizard_dialog_.wizarddialog.md#readonly-cdata_section_node)
+* [COMMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-comment_node)
+* [DOCUMENT_FRAGMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-document_fragment_node)
+* [DOCUMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-document_node)
+* [DOCUMENT_POSITION_CONTAINED_BY](_wizard_dialog_.wizarddialog.md#readonly-document_position_contained_by)
+* [DOCUMENT_POSITION_CONTAINS](_wizard_dialog_.wizarddialog.md#readonly-document_position_contains)
+* [DOCUMENT_POSITION_DISCONNECTED](_wizard_dialog_.wizarddialog.md#readonly-document_position_disconnected)
+* [DOCUMENT_POSITION_FOLLOWING](_wizard_dialog_.wizarddialog.md#readonly-document_position_following)
+* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_dialog_.wizarddialog.md#readonly-document_position_implementation_specific)
+* [DOCUMENT_POSITION_PRECEDING](_wizard_dialog_.wizarddialog.md#readonly-document_position_preceding)
+* [DOCUMENT_TYPE_NODE](_wizard_dialog_.wizarddialog.md#readonly-document_type_node)
+* [ELEMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-element_node)
+* [ENTITY_NODE](_wizard_dialog_.wizarddialog.md#readonly-entity_node)
+* [ENTITY_REFERENCE_NODE](_wizard_dialog_.wizarddialog.md#readonly-entity_reference_node)
+* [NOTATION_NODE](_wizard_dialog_.wizarddialog.md#readonly-notation_node)
+* [PROCESSING_INSTRUCTION_NODE](_wizard_dialog_.wizarddialog.md#readonly-processing_instruction_node)
+* [TEXT_NODE](_wizard_dialog_.wizarddialog.md#readonly-text_node)
+* [accessKey](_wizard_dialog_.wizarddialog.md#accesskey)
+* [accessKeyLabel](_wizard_dialog_.wizarddialog.md#readonly-accesskeylabel)
+* [assignedSlot](_wizard_dialog_.wizarddialog.md#readonly-assignedslot)
+* [attributes](_wizard_dialog_.wizarddialog.md#readonly-attributes)
+* [autocapitalize](_wizard_dialog_.wizarddialog.md#autocapitalize)
+* [autofocus](_wizard_dialog_.wizarddialog.md#autofocus)
+* [baseURI](_wizard_dialog_.wizarddialog.md#readonly-baseuri)
+* [childElementCount](_wizard_dialog_.wizarddialog.md#readonly-childelementcount)
+* [childNodes](_wizard_dialog_.wizarddialog.md#readonly-childnodes)
+* [children](_wizard_dialog_.wizarddialog.md#readonly-children)
+* [classList](_wizard_dialog_.wizarddialog.md#readonly-classlist)
+* [className](_wizard_dialog_.wizarddialog.md#classname)
+* [clientHeight](_wizard_dialog_.wizarddialog.md#readonly-clientheight)
+* [clientLeft](_wizard_dialog_.wizarddialog.md#readonly-clientleft)
+* [clientTop](_wizard_dialog_.wizarddialog.md#readonly-clienttop)
+* [clientWidth](_wizard_dialog_.wizarddialog.md#readonly-clientwidth)
+* [contentEditable](_wizard_dialog_.wizarddialog.md#contenteditable)
+* [dataset](_wizard_dialog_.wizarddialog.md#readonly-dataset)
+* [dialogs](_wizard_dialog_.wizarddialog.md#dialogs)
+* [dir](_wizard_dialog_.wizarddialog.md#dir)
+* [draggable](_wizard_dialog_.wizarddialog.md#draggable)
+* [enterKeyHint](_wizard_dialog_.wizarddialog.md#enterkeyhint)
+* [firstChild](_wizard_dialog_.wizarddialog.md#readonly-firstchild)
+* [firstElementChild](_wizard_dialog_.wizarddialog.md#readonly-firstelementchild)
+* [floatingLabelFoundation](_wizard_dialog_.wizarddialog.md#optional-floatinglabelfoundation)
+* [hidden](_wizard_dialog_.wizarddialog.md#hidden)
+* [id](_wizard_dialog_.wizarddialog.md#id)
+* [innerHTML](_wizard_dialog_.wizarddialog.md#innerhtml)
+* [innerText](_wizard_dialog_.wizarddialog.md#innertext)
+* [inputMode](_wizard_dialog_.wizarddialog.md#inputmode)
+* [inputs](_wizard_dialog_.wizarddialog.md#inputs)
+* [isConnected](_wizard_dialog_.wizarddialog.md#readonly-isconnected)
+* [isContentEditable](_wizard_dialog_.wizarddialog.md#readonly-iscontenteditable)
+* [lang](_wizard_dialog_.wizarddialog.md#lang)
+* [lastChild](_wizard_dialog_.wizarddialog.md#readonly-lastchild)
+* [lastElementChild](_wizard_dialog_.wizarddialog.md#readonly-lastelementchild)
+* [lineRippleFoundation](_wizard_dialog_.wizarddialog.md#optional-lineripplefoundation)
+* [localName](_wizard_dialog_.wizarddialog.md#readonly-localname)
+* [namespaceURI](_wizard_dialog_.wizarddialog.md#readonly-namespaceuri)
+* [nextElementSibling](_wizard_dialog_.wizarddialog.md#readonly-nextelementsibling)
+* [nextSibling](_wizard_dialog_.wizarddialog.md#readonly-nextsibling)
+* [nodeName](_wizard_dialog_.wizarddialog.md#readonly-nodename)
+* [nodeType](_wizard_dialog_.wizarddialog.md#readonly-nodetype)
+* [nodeValue](_wizard_dialog_.wizarddialog.md#nodevalue)
+* [nonce](_wizard_dialog_.wizarddialog.md#optional-nonce)
+* [offsetHeight](_wizard_dialog_.wizarddialog.md#readonly-offsetheight)
+* [offsetLeft](_wizard_dialog_.wizarddialog.md#readonly-offsetleft)
+* [offsetParent](_wizard_dialog_.wizarddialog.md#readonly-offsetparent)
+* [offsetTop](_wizard_dialog_.wizarddialog.md#readonly-offsettop)
+* [offsetWidth](_wizard_dialog_.wizarddialog.md#readonly-offsetwidth)
+* [onabort](_wizard_dialog_.wizarddialog.md#onabort)
+* [onanimationcancel](_wizard_dialog_.wizarddialog.md#onanimationcancel)
+* [onanimationend](_wizard_dialog_.wizarddialog.md#onanimationend)
+* [onanimationiteration](_wizard_dialog_.wizarddialog.md#onanimationiteration)
+* [onanimationstart](_wizard_dialog_.wizarddialog.md#onanimationstart)
+* [onauxclick](_wizard_dialog_.wizarddialog.md#onauxclick)
+* [onblur](_wizard_dialog_.wizarddialog.md#onblur)
+* [oncancel](_wizard_dialog_.wizarddialog.md#oncancel)
+* [oncanplay](_wizard_dialog_.wizarddialog.md#oncanplay)
+* [oncanplaythrough](_wizard_dialog_.wizarddialog.md#oncanplaythrough)
+* [onchange](_wizard_dialog_.wizarddialog.md#onchange)
+* [onclick](_wizard_dialog_.wizarddialog.md#onclick)
+* [onclose](_wizard_dialog_.wizarddialog.md#onclose)
+* [oncontextmenu](_wizard_dialog_.wizarddialog.md#oncontextmenu)
+* [oncopy](_wizard_dialog_.wizarddialog.md#oncopy)
+* [oncuechange](_wizard_dialog_.wizarddialog.md#oncuechange)
+* [oncut](_wizard_dialog_.wizarddialog.md#oncut)
+* [ondblclick](_wizard_dialog_.wizarddialog.md#ondblclick)
+* [ondrag](_wizard_dialog_.wizarddialog.md#ondrag)
+* [ondragend](_wizard_dialog_.wizarddialog.md#ondragend)
+* [ondragenter](_wizard_dialog_.wizarddialog.md#ondragenter)
+* [ondragexit](_wizard_dialog_.wizarddialog.md#ondragexit)
+* [ondragleave](_wizard_dialog_.wizarddialog.md#ondragleave)
+* [ondragover](_wizard_dialog_.wizarddialog.md#ondragover)
+* [ondragstart](_wizard_dialog_.wizarddialog.md#ondragstart)
+* [ondrop](_wizard_dialog_.wizarddialog.md#ondrop)
+* [ondurationchange](_wizard_dialog_.wizarddialog.md#ondurationchange)
+* [onemptied](_wizard_dialog_.wizarddialog.md#onemptied)
+* [onended](_wizard_dialog_.wizarddialog.md#onended)
+* [onerror](_wizard_dialog_.wizarddialog.md#onerror)
+* [onfocus](_wizard_dialog_.wizarddialog.md#onfocus)
+* [onfullscreenchange](_wizard_dialog_.wizarddialog.md#onfullscreenchange)
+* [onfullscreenerror](_wizard_dialog_.wizarddialog.md#onfullscreenerror)
+* [ongotpointercapture](_wizard_dialog_.wizarddialog.md#ongotpointercapture)
+* [oninput](_wizard_dialog_.wizarddialog.md#oninput)
+* [oninvalid](_wizard_dialog_.wizarddialog.md#oninvalid)
+* [onkeydown](_wizard_dialog_.wizarddialog.md#onkeydown)
+* [onkeypress](_wizard_dialog_.wizarddialog.md#onkeypress)
+* [onkeyup](_wizard_dialog_.wizarddialog.md#onkeyup)
+* [onload](_wizard_dialog_.wizarddialog.md#onload)
+* [onloadeddata](_wizard_dialog_.wizarddialog.md#onloadeddata)
+* [onloadedmetadata](_wizard_dialog_.wizarddialog.md#onloadedmetadata)
+* [onloadstart](_wizard_dialog_.wizarddialog.md#onloadstart)
+* [onlostpointercapture](_wizard_dialog_.wizarddialog.md#onlostpointercapture)
+* [onmousedown](_wizard_dialog_.wizarddialog.md#onmousedown)
+* [onmouseenter](_wizard_dialog_.wizarddialog.md#onmouseenter)
+* [onmouseleave](_wizard_dialog_.wizarddialog.md#onmouseleave)
+* [onmousemove](_wizard_dialog_.wizarddialog.md#onmousemove)
+* [onmouseout](_wizard_dialog_.wizarddialog.md#onmouseout)
+* [onmouseover](_wizard_dialog_.wizarddialog.md#onmouseover)
+* [onmouseup](_wizard_dialog_.wizarddialog.md#onmouseup)
+* [onpaste](_wizard_dialog_.wizarddialog.md#onpaste)
+* [onpause](_wizard_dialog_.wizarddialog.md#onpause)
+* [onplay](_wizard_dialog_.wizarddialog.md#onplay)
+* [onplaying](_wizard_dialog_.wizarddialog.md#onplaying)
+* [onpointercancel](_wizard_dialog_.wizarddialog.md#onpointercancel)
+* [onpointerdown](_wizard_dialog_.wizarddialog.md#onpointerdown)
+* [onpointerenter](_wizard_dialog_.wizarddialog.md#onpointerenter)
+* [onpointerleave](_wizard_dialog_.wizarddialog.md#onpointerleave)
+* [onpointermove](_wizard_dialog_.wizarddialog.md#onpointermove)
+* [onpointerout](_wizard_dialog_.wizarddialog.md#onpointerout)
+* [onpointerover](_wizard_dialog_.wizarddialog.md#onpointerover)
+* [onpointerup](_wizard_dialog_.wizarddialog.md#onpointerup)
+* [onprogress](_wizard_dialog_.wizarddialog.md#onprogress)
+* [onratechange](_wizard_dialog_.wizarddialog.md#onratechange)
+* [onreset](_wizard_dialog_.wizarddialog.md#onreset)
+* [onresize](_wizard_dialog_.wizarddialog.md#onresize)
+* [onscroll](_wizard_dialog_.wizarddialog.md#onscroll)
+* [onsecuritypolicyviolation](_wizard_dialog_.wizarddialog.md#onsecuritypolicyviolation)
+* [onseeked](_wizard_dialog_.wizarddialog.md#onseeked)
+* [onseeking](_wizard_dialog_.wizarddialog.md#onseeking)
+* [onselect](_wizard_dialog_.wizarddialog.md#onselect)
+* [onselectionchange](_wizard_dialog_.wizarddialog.md#onselectionchange)
+* [onselectstart](_wizard_dialog_.wizarddialog.md#onselectstart)
+* [onstalled](_wizard_dialog_.wizarddialog.md#onstalled)
+* [onsubmit](_wizard_dialog_.wizarddialog.md#onsubmit)
+* [onsuspend](_wizard_dialog_.wizarddialog.md#onsuspend)
+* [ontimeupdate](_wizard_dialog_.wizarddialog.md#ontimeupdate)
+* [ontoggle](_wizard_dialog_.wizarddialog.md#ontoggle)
+* [ontouchcancel](_wizard_dialog_.wizarddialog.md#optional-ontouchcancel)
+* [ontouchend](_wizard_dialog_.wizarddialog.md#optional-ontouchend)
+* [ontouchmove](_wizard_dialog_.wizarddialog.md#optional-ontouchmove)
+* [ontouchstart](_wizard_dialog_.wizarddialog.md#optional-ontouchstart)
+* [ontransitioncancel](_wizard_dialog_.wizarddialog.md#ontransitioncancel)
+* [ontransitionend](_wizard_dialog_.wizarddialog.md#ontransitionend)
+* [ontransitionrun](_wizard_dialog_.wizarddialog.md#ontransitionrun)
+* [ontransitionstart](_wizard_dialog_.wizarddialog.md#ontransitionstart)
+* [onvolumechange](_wizard_dialog_.wizarddialog.md#onvolumechange)
+* [onwaiting](_wizard_dialog_.wizarddialog.md#onwaiting)
+* [onwheel](_wizard_dialog_.wizarddialog.md#onwheel)
+* [outerHTML](_wizard_dialog_.wizarddialog.md#outerhtml)
+* [ownerDocument](_wizard_dialog_.wizarddialog.md#readonly-ownerdocument)
+* [pageIndex](_wizard_dialog_.wizarddialog.md#pageindex)
+* [parentElement](_wizard_dialog_.wizarddialog.md#readonly-parentelement)
+* [parentNode](_wizard_dialog_.wizarddialog.md#readonly-parentnode)
+* [prefix](_wizard_dialog_.wizarddialog.md#readonly-prefix)
+* [previousElementSibling](_wizard_dialog_.wizarddialog.md#readonly-previouselementsibling)
+* [previousSibling](_wizard_dialog_.wizarddialog.md#readonly-previoussibling)
+* [renderRoot](_wizard_dialog_.wizarddialog.md#readonly-renderroot)
+* [scrollHeight](_wizard_dialog_.wizarddialog.md#readonly-scrollheight)
+* [scrollLeft](_wizard_dialog_.wizarddialog.md#scrollleft)
+* [scrollTop](_wizard_dialog_.wizarddialog.md#scrolltop)
+* [scrollWidth](_wizard_dialog_.wizarddialog.md#readonly-scrollwidth)
+* [shadowRoot](_wizard_dialog_.wizarddialog.md#readonly-shadowroot)
+* [slot](_wizard_dialog_.wizarddialog.md#slot)
+* [spellcheck](_wizard_dialog_.wizarddialog.md#spellcheck)
+* [style](_wizard_dialog_.wizarddialog.md#readonly-style)
+* [tabIndex](_wizard_dialog_.wizarddialog.md#tabindex)
+* [tagName](_wizard_dialog_.wizarddialog.md#readonly-tagname)
+* [textContent](_wizard_dialog_.wizarddialog.md#textcontent)
+* [title](_wizard_dialog_.wizarddialog.md#title)
+* [translate](_wizard_dialog_.wizarddialog.md#translate)
+* [wizard](_wizard_dialog_.wizarddialog.md#wizard)
+* [[finalized]](_wizard_dialog_.wizarddialog.md#static-protected-[finalized])
+* [finalized](_wizard_dialog_.wizarddialog.md#static-protected-finalized)
+* [properties](_wizard_dialog_.wizarddialog.md#static-properties)
+* [render](_wizard_dialog_.wizarddialog.md#static-render)
+* [styles](_wizard_dialog_.wizarddialog.md#static-styles)
 
 ### Accessors
 
-* [desc](_editors_substationeditor_.substationeditor.md#desc)
-* [element](_editors_substationeditor_.substationeditor.md#element)
-* [hasUpdated](_editors_substationeditor_.substationeditor.md#protected-hasupdated)
-* [name](_editors_substationeditor_.substationeditor.md#name)
-* [parent](_editors_substationeditor_.substationeditor.md#parent)
-* [updateComplete](_editors_substationeditor_.substationeditor.md#updatecomplete)
-* [observedAttributes](_editors_substationeditor_.substationeditor.md#static-observedattributes)
+* [dialog](_wizard_dialog_.wizarddialog.md#dialog)
+* [firstInvalidPage](_wizard_dialog_.wizarddialog.md#firstinvalidpage)
+* [hasUpdated](_wizard_dialog_.wizarddialog.md#protected-hasupdated)
+* [updateComplete](_wizard_dialog_.wizarddialog.md#updatecomplete)
+* [observedAttributes](_wizard_dialog_.wizarddialog.md#static-observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)
-* [addEventListener](_editors_substationeditor_.substationeditor.md#addeventlistener)
-* [adoptStyles](_editors_substationeditor_.substationeditor.md#protected-adoptstyles)
-* [after](_editors_substationeditor_.substationeditor.md#after)
-* [animate](_editors_substationeditor_.substationeditor.md#animate)
-* [append](_editors_substationeditor_.substationeditor.md#append)
-* [appendChild](_editors_substationeditor_.substationeditor.md#appendchild)
-* [attachShadow](_editors_substationeditor_.substationeditor.md#attachshadow)
-* [attributeChangedCallback](_editors_substationeditor_.substationeditor.md#attributechangedcallback)
-* [before](_editors_substationeditor_.substationeditor.md#before)
-* [blur](_editors_substationeditor_.substationeditor.md#blur)
-* [click](_editors_substationeditor_.substationeditor.md#click)
-* [cloneNode](_editors_substationeditor_.substationeditor.md#clonenode)
-* [closest](_editors_substationeditor_.substationeditor.md#closest)
-* [compareDocumentPosition](_editors_substationeditor_.substationeditor.md#comparedocumentposition)
-* [connectedCallback](_editors_substationeditor_.substationeditor.md#connectedcallback)
-* [contains](_editors_substationeditor_.substationeditor.md#contains)
-* [createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)
-* [disconnectedCallback](_editors_substationeditor_.substationeditor.md#disconnectedcallback)
-* [dispatchEvent](_editors_substationeditor_.substationeditor.md#dispatchevent)
-* [enableUpdating](_editors_substationeditor_.substationeditor.md#protected-enableupdating)
-* [firstUpdated](_editors_substationeditor_.substationeditor.md#protected-firstupdated)
-* [focus](_editors_substationeditor_.substationeditor.md#focus)
-* [getAnimations](_editors_substationeditor_.substationeditor.md#getanimations)
-* [getAttribute](_editors_substationeditor_.substationeditor.md#getattribute)
-* [getAttributeNS](_editors_substationeditor_.substationeditor.md#getattributens)
-* [getAttributeNames](_editors_substationeditor_.substationeditor.md#getattributenames)
-* [getAttributeNode](_editors_substationeditor_.substationeditor.md#getattributenode)
-* [getAttributeNodeNS](_editors_substationeditor_.substationeditor.md#getattributenodens)
-* [getBoundingClientRect](_editors_substationeditor_.substationeditor.md#getboundingclientrect)
-* [getClientRects](_editors_substationeditor_.substationeditor.md#getclientrects)
-* [getElementsByClassName](_editors_substationeditor_.substationeditor.md#getelementsbyclassname)
-* [getElementsByTagName](_editors_substationeditor_.substationeditor.md#getelementsbytagname)
-* [getElementsByTagNameNS](_editors_substationeditor_.substationeditor.md#getelementsbytagnamens)
-* [getRootNode](_editors_substationeditor_.substationeditor.md#getrootnode)
-* [hasAttribute](_editors_substationeditor_.substationeditor.md#hasattribute)
-* [hasAttributeNS](_editors_substationeditor_.substationeditor.md#hasattributens)
-* [hasAttributes](_editors_substationeditor_.substationeditor.md#hasattributes)
-* [hasChildNodes](_editors_substationeditor_.substationeditor.md#haschildnodes)
-* [hasPointerCapture](_editors_substationeditor_.substationeditor.md#haspointercapture)
-* [info](_editors_substationeditor_.substationeditor.md#optional-info)
-* [initialize](_editors_substationeditor_.substationeditor.md#protected-initialize)
-* [insertAdjacentElement](_editors_substationeditor_.substationeditor.md#insertadjacentelement)
-* [insertAdjacentHTML](_editors_substationeditor_.substationeditor.md#insertadjacenthtml)
-* [insertAdjacentText](_editors_substationeditor_.substationeditor.md#insertadjacenttext)
-* [insertBefore](_editors_substationeditor_.substationeditor.md#insertbefore)
-* [isDefaultNamespace](_editors_substationeditor_.substationeditor.md#isdefaultnamespace)
-* [isEqualNode](_editors_substationeditor_.substationeditor.md#isequalnode)
-* [isSameNode](_editors_substationeditor_.substationeditor.md#issamenode)
-* [lookupNamespaceURI](_editors_substationeditor_.substationeditor.md#lookupnamespaceuri)
-* [lookupPrefix](_editors_substationeditor_.substationeditor.md#lookupprefix)
-* [matches](_editors_substationeditor_.substationeditor.md#matches)
-* [msGetRegionContent](_editors_substationeditor_.substationeditor.md#msgetregioncontent)
-* [newCreateAction](_editors_substationeditor_.substationeditor.md#newcreateaction)
-* [newUpdateAction](_editors_substationeditor_.substationeditor.md#newupdateaction)
-* [newVoltageLevelCreateAction](_editors_substationeditor_.substationeditor.md#newvoltagelevelcreateaction)
-* [normalize](_editors_substationeditor_.substationeditor.md#normalize)
-* [openSubstationWizard](_editors_substationeditor_.substationeditor.md#opensubstationwizard)
-* [openVoltageLevelWizard](_editors_substationeditor_.substationeditor.md#openvoltagelevelwizard)
-* [performUpdate](_editors_substationeditor_.substationeditor.md#protected-performupdate)
-* [prepend](_editors_substationeditor_.substationeditor.md#prepend)
-* [querySelector](_editors_substationeditor_.substationeditor.md#queryselector)
-* [querySelectorAll](_editors_substationeditor_.substationeditor.md#queryselectorall)
-* [releasePointerCapture](_editors_substationeditor_.substationeditor.md#releasepointercapture)
-* [remove](_editors_substationeditor_.substationeditor.md#remove)
-* [removeAttribute](_editors_substationeditor_.substationeditor.md#removeattribute)
-* [removeAttributeNS](_editors_substationeditor_.substationeditor.md#removeattributens)
-* [removeAttributeNode](_editors_substationeditor_.substationeditor.md#removeattributenode)
-* [removeChild](_editors_substationeditor_.substationeditor.md#removechild)
-* [removeEventListener](_editors_substationeditor_.substationeditor.md#removeeventlistener)
-* [render](_editors_substationeditor_.substationeditor.md#render)
-* [renderHeader](_editors_substationeditor_.substationeditor.md#renderheader)
-* [replaceChild](_editors_substationeditor_.substationeditor.md#replacechild)
-* [replaceWith](_editors_substationeditor_.substationeditor.md#replacewith)
-* [requestFullscreen](_editors_substationeditor_.substationeditor.md#requestfullscreen)
-* [requestPointerLock](_editors_substationeditor_.substationeditor.md#requestpointerlock)
-* [requestSubstationEdit](_editors_substationeditor_.substationeditor.md#requestsubstationedit)
-* [requestUpdate](_editors_substationeditor_.substationeditor.md#requestupdate)
-* [requestUpdateInternal](_editors_substationeditor_.substationeditor.md#protected-requestupdateinternal)
-* [requestVoltageLevelCreate](_editors_substationeditor_.substationeditor.md#requestvoltagelevelcreate)
-* [scroll](_editors_substationeditor_.substationeditor.md#scroll)
-* [scrollBy](_editors_substationeditor_.substationeditor.md#scrollby)
-* [scrollIntoView](_editors_substationeditor_.substationeditor.md#scrollintoview)
-* [scrollTo](_editors_substationeditor_.substationeditor.md#scrollto)
-* [setAttribute](_editors_substationeditor_.substationeditor.md#setattribute)
-* [setAttributeNS](_editors_substationeditor_.substationeditor.md#setattributens)
-* [setAttributeNode](_editors_substationeditor_.substationeditor.md#setattributenode)
-* [setAttributeNodeNS](_editors_substationeditor_.substationeditor.md#setattributenodens)
-* [setPointerCapture](_editors_substationeditor_.substationeditor.md#setpointercapture)
-* [shouldUpdate](_editors_substationeditor_.substationeditor.md#protected-shouldupdate)
-* [toggleAttribute](_editors_substationeditor_.substationeditor.md#toggleattribute)
-* [update](_editors_substationeditor_.substationeditor.md#protected-update)
-* [updated](_editors_substationeditor_.substationeditor.md#updated)
-* [warn](_editors_substationeditor_.substationeditor.md#optional-warn)
-* [webkitMatchesSelector](_editors_substationeditor_.substationeditor.md#webkitmatchesselector)
-* [createProperty](_editors_substationeditor_.substationeditor.md#static-createproperty)
-* [finalize](_editors_substationeditor_.substationeditor.md#static-protected-finalize)
-* [getPropertyDescriptor](_editors_substationeditor_.substationeditor.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_editors_substationeditor_.substationeditor.md#static-protected-getpropertyoptions)
-* [getStyles](_editors_substationeditor_.substationeditor.md#static-getstyles)
+* [_getUpdateComplete](_wizard_dialog_.wizarddialog.md#protected-_getupdatecomplete)
+* [act](_wizard_dialog_.wizarddialog.md#act)
+* [addEventListener](_wizard_dialog_.wizarddialog.md#addeventlistener)
+* [adoptStyles](_wizard_dialog_.wizarddialog.md#protected-adoptstyles)
+* [after](_wizard_dialog_.wizarddialog.md#after)
+* [animate](_wizard_dialog_.wizarddialog.md#animate)
+* [append](_wizard_dialog_.wizarddialog.md#append)
+* [appendChild](_wizard_dialog_.wizarddialog.md#appendchild)
+* [attachShadow](_wizard_dialog_.wizarddialog.md#attachshadow)
+* [attributeChangedCallback](_wizard_dialog_.wizarddialog.md#attributechangedcallback)
+* [before](_wizard_dialog_.wizarddialog.md#before)
+* [blur](_wizard_dialog_.wizarddialog.md#blur)
+* [checkValidity](_wizard_dialog_.wizarddialog.md#checkvalidity)
+* [click](_wizard_dialog_.wizarddialog.md#click)
+* [cloneNode](_wizard_dialog_.wizarddialog.md#clonenode)
+* [closest](_wizard_dialog_.wizarddialog.md#closest)
+* [compareDocumentPosition](_wizard_dialog_.wizarddialog.md#comparedocumentposition)
+* [connectedCallback](_wizard_dialog_.wizarddialog.md#connectedcallback)
+* [contains](_wizard_dialog_.wizarddialog.md#contains)
+* [createRenderRoot](_wizard_dialog_.wizarddialog.md#protected-createrenderroot)
+* [disconnectedCallback](_wizard_dialog_.wizarddialog.md#disconnectedcallback)
+* [dispatchEvent](_wizard_dialog_.wizarddialog.md#dispatchevent)
+* [enableUpdating](_wizard_dialog_.wizarddialog.md#protected-enableupdating)
+* [firstUpdated](_wizard_dialog_.wizarddialog.md#protected-firstupdated)
+* [focus](_wizard_dialog_.wizarddialog.md#focus)
+* [getAnimations](_wizard_dialog_.wizarddialog.md#getanimations)
+* [getAttribute](_wizard_dialog_.wizarddialog.md#getattribute)
+* [getAttributeNS](_wizard_dialog_.wizarddialog.md#getattributens)
+* [getAttributeNames](_wizard_dialog_.wizarddialog.md#getattributenames)
+* [getAttributeNode](_wizard_dialog_.wizarddialog.md#getattributenode)
+* [getAttributeNodeNS](_wizard_dialog_.wizarddialog.md#getattributenodens)
+* [getBoundingClientRect](_wizard_dialog_.wizarddialog.md#getboundingclientrect)
+* [getClientRects](_wizard_dialog_.wizarddialog.md#getclientrects)
+* [getElementsByClassName](_wizard_dialog_.wizarddialog.md#getelementsbyclassname)
+* [getElementsByTagName](_wizard_dialog_.wizarddialog.md#getelementsbytagname)
+* [getElementsByTagNameNS](_wizard_dialog_.wizarddialog.md#getelementsbytagnamens)
+* [getRootNode](_wizard_dialog_.wizarddialog.md#getrootnode)
+* [hasAttribute](_wizard_dialog_.wizarddialog.md#hasattribute)
+* [hasAttributeNS](_wizard_dialog_.wizarddialog.md#hasattributens)
+* [hasAttributes](_wizard_dialog_.wizarddialog.md#hasattributes)
+* [hasChildNodes](_wizard_dialog_.wizarddialog.md#haschildnodes)
+* [hasPointerCapture](_wizard_dialog_.wizarddialog.md#haspointercapture)
+* [info](_wizard_dialog_.wizarddialog.md#optional-info)
+* [initialize](_wizard_dialog_.wizarddialog.md#protected-initialize)
+* [insertAdjacentElement](_wizard_dialog_.wizarddialog.md#insertadjacentelement)
+* [insertAdjacentHTML](_wizard_dialog_.wizarddialog.md#insertadjacenthtml)
+* [insertAdjacentText](_wizard_dialog_.wizarddialog.md#insertadjacenttext)
+* [insertBefore](_wizard_dialog_.wizarddialog.md#insertbefore)
+* [isDefaultNamespace](_wizard_dialog_.wizarddialog.md#isdefaultnamespace)
+* [isEqualNode](_wizard_dialog_.wizarddialog.md#isequalnode)
+* [isSameNode](_wizard_dialog_.wizarddialog.md#issamenode)
+* [lookupNamespaceURI](_wizard_dialog_.wizarddialog.md#lookupnamespaceuri)
+* [lookupPrefix](_wizard_dialog_.wizarddialog.md#lookupprefix)
+* [matches](_wizard_dialog_.wizarddialog.md#matches)
+* [msGetRegionContent](_wizard_dialog_.wizarddialog.md#msgetregioncontent)
+* [next](_wizard_dialog_.wizarddialog.md#next)
+* [normalize](_wizard_dialog_.wizarddialog.md#normalize)
+* [onClosed](_wizard_dialog_.wizarddialog.md#onclosed)
+* [performUpdate](_wizard_dialog_.wizarddialog.md#protected-performupdate)
+* [prepend](_wizard_dialog_.wizarddialog.md#prepend)
+* [prev](_wizard_dialog_.wizarddialog.md#prev)
+* [querySelector](_wizard_dialog_.wizarddialog.md#queryselector)
+* [querySelectorAll](_wizard_dialog_.wizarddialog.md#queryselectorall)
+* [releasePointerCapture](_wizard_dialog_.wizarddialog.md#releasepointercapture)
+* [remove](_wizard_dialog_.wizarddialog.md#remove)
+* [removeAttribute](_wizard_dialog_.wizarddialog.md#removeattribute)
+* [removeAttributeNS](_wizard_dialog_.wizarddialog.md#removeattributens)
+* [removeAttributeNode](_wizard_dialog_.wizarddialog.md#removeattributenode)
+* [removeChild](_wizard_dialog_.wizarddialog.md#removechild)
+* [removeEventListener](_wizard_dialog_.wizarddialog.md#removeeventlistener)
+* [render](_wizard_dialog_.wizarddialog.md#render)
+* [renderPage](_wizard_dialog_.wizarddialog.md#renderpage)
+* [replaceChild](_wizard_dialog_.wizarddialog.md#replacechild)
+* [replaceWith](_wizard_dialog_.wizarddialog.md#replacewith)
+* [requestFullscreen](_wizard_dialog_.wizarddialog.md#requestfullscreen)
+* [requestPointerLock](_wizard_dialog_.wizarddialog.md#requestpointerlock)
+* [requestUpdate](_wizard_dialog_.wizarddialog.md#requestupdate)
+* [requestUpdateInternal](_wizard_dialog_.wizarddialog.md#protected-requestupdateinternal)
+* [reset](_wizard_dialog_.wizarddialog.md#reset)
+* [scroll](_wizard_dialog_.wizarddialog.md#scroll)
+* [scrollBy](_wizard_dialog_.wizarddialog.md#scrollby)
+* [scrollIntoView](_wizard_dialog_.wizarddialog.md#scrollintoview)
+* [scrollTo](_wizard_dialog_.wizarddialog.md#scrollto)
+* [setAttribute](_wizard_dialog_.wizarddialog.md#setattribute)
+* [setAttributeNS](_wizard_dialog_.wizarddialog.md#setattributens)
+* [setAttributeNode](_wizard_dialog_.wizarddialog.md#setattributenode)
+* [setAttributeNodeNS](_wizard_dialog_.wizarddialog.md#setattributenodens)
+* [setPointerCapture](_wizard_dialog_.wizarddialog.md#setpointercapture)
+* [shouldUpdate](_wizard_dialog_.wizarddialog.md#protected-shouldupdate)
+* [toggleAttribute](_wizard_dialog_.wizarddialog.md#toggleattribute)
+* [update](_wizard_dialog_.wizarddialog.md#protected-update)
+* [updated](_wizard_dialog_.wizarddialog.md#protected-updated)
+* [warn](_wizard_dialog_.wizarddialog.md#optional-warn)
+* [webkitMatchesSelector](_wizard_dialog_.wizarddialog.md#webkitmatchesselector)
+* [createProperty](_wizard_dialog_.wizarddialog.md#static-createproperty)
+* [finalize](_wizard_dialog_.wizarddialog.md#static-protected-finalize)
+* [getPropertyDescriptor](_wizard_dialog_.wizarddialog.md#static-protected-getpropertydescriptor)
+* [getPropertyOptions](_wizard_dialog_.wizarddialog.md#static-protected-getpropertyoptions)
+* [getStyles](_wizard_dialog_.wizarddialog.md#static-getstyles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new SubstationEditor**(): *[SubstationEditor](_editors_substationeditor_.substationeditor.md)*
+\+ **new WizardDialog**(): *[WizardDialog](_wizard_dialog_.wizarddialog.md)*
 
 *Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[constructor](_wizard_textfield_.wizardtextfield.md#constructor)*
 
-*Defined in [src/editors/SubstationEditor.ts:279](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L279)*
+*Defined in [src/wizard-dialog.ts:165](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L165)*
 
-**Returns:** *[SubstationEditor](_editors_substationeditor_.substationeditor.md)*
+**Returns:** *[WizardDialog](_wizard_dialog_.wizarddialog.md)*
 
 ## Properties
 
@@ -735,27 +725,11 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:8002
 
 ___
 
-###  defaultNomFreq
+###  dialogs
 
-• **defaultNomFreq**: *number* = 50
+• **dialogs**: *NodeListOf‹Dialog›*
 
-*Defined in [src/editors/SubstationEditor.ts:21](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L21)*
-
-___
-
-###  defaultNumPhases
-
-• **defaultNumPhases**: *number* = 3
-
-*Defined in [src/editors/SubstationEditor.ts:22](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L22)*
-
-___
-
-###  defaultVoltage
-
-• **defaultVoltage**: *number* = 110
-
-*Defined in [src/editors/SubstationEditor.ts:23](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L23)*
+*Defined in [src/wizard-dialog.ts:42](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L42)*
 
 ___
 
@@ -766,14 +740,6 @@ ___
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dir](_wizard_textfield_.wizardtextfield.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
-
-___
-
-###  doc
-
-• **doc**: *XMLDocument*
-
-*Defined in [src/editors/SubstationEditor.ts:26](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L26)*
 
 ___
 
@@ -883,6 +849,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5266
 
 ___
 
+###  inputs
+
+• **inputs**: *NodeListOf‹[WizardInput](../modules/_foundation_.md#wizardinput)›*
+
+*Defined in [src/wizard-dialog.ts:44](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L44)*
+
+___
+
 ### `Readonly` isConnected
 
 • **isConnected**: *boolean*
@@ -958,22 +932,6 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5120
 
 Returns the local name.
-
-___
-
-###  menuIconUI
-
-• **menuIconUI**: *IconButton*
-
-*Defined in [src/editors/SubstationEditor.ts:46](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L46)*
-
-___
-
-###  menuUI
-
-• **menuUI**: *Menu*
-
-*Defined in [src/editors/SubstationEditor.ts:45](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L45)*
 
 ___
 
@@ -2211,6 +2169,14 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5128
 
 ___
 
+###  pageIndex
+
+• **pageIndex**: *number* = 0
+
+*Defined in [src/wizard-dialog.ts:40](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L40)*
+
+___
+
 ### `Readonly` parentElement
 
 • **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
@@ -2420,43 +2386,11 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:6602
 
 ___
 
-###  voltageLevelDescUI
+###  wizard
 
-• **voltageLevelDescUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
+• **wizard**: *[Wizard](../modules/_foundation_.md#wizard)* = []
 
-*Defined in [src/editors/SubstationEditor.ts:50](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L50)*
-
-___
-
-###  voltageLevelNameUI
-
-• **voltageLevelNameUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
-
-*Defined in [src/editors/SubstationEditor.ts:48](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L48)*
-
-___
-
-###  voltageLevelNomFreqUI
-
-• **voltageLevelNomFreqUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
-
-*Defined in [src/editors/SubstationEditor.ts:52](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L52)*
-
-___
-
-###  voltageLevelNumPhasesUI
-
-• **voltageLevelNumPhasesUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
-
-*Defined in [src/editors/SubstationEditor.ts:54](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L54)*
-
-___
-
-###  voltageLevelVoltageUI
-
-• **voltageLevelVoltageUI**: *[WizardTextField](_wizard_textfield_.wizardtextfield.md)*
-
-*Defined in [src/editors/SubstationEditor.ts:56](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L56)*
+*Defined in [src/wizard-dialog.ts:38](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L38)*
 
 ___
 
@@ -2541,31 +2475,45 @@ ___
 
 ### `Static` styles
 
-▪ **styles**: *CSSResult‹›* = styles
+▪ **styles**: *CSSResult‹›* = css`
+    mwc-dialog {
+      --mdc-dialog-max-width: 92vw;
+    }
+
+    #wizard-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #wizard-content > * {
+      display: block;
+      margin-top: 16px;
+    }
+  `
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/editors/SubstationEditor.ts:288](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L288)*
+*Defined in [src/wizard-dialog.ts:96](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L96)*
 
 ## Accessors
 
-###  desc
+###  dialog
 
-• **get desc**(): *string | null*
+• **get dialog**(): *Dialog*
 
-*Defined in [src/editors/SubstationEditor.ts:41](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L41)*
+*Defined in [src/wizard-dialog.ts:46](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L46)*
 
-**Returns:** *string | null*
+**Returns:** *Dialog*
 
 ___
 
-###  element
+###  firstInvalidPage
 
-• **get element**(): *Element | null*
+• **get firstInvalidPage**(): *number*
 
-*Defined in [src/editors/SubstationEditor.ts:28](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L28)*
+*Defined in [src/wizard-dialog.ts:54](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L54)*
 
-**Returns:** *Element | null*
+**Returns:** *number*
 
 ___
 
@@ -2578,26 +2526,6 @@ ___
 Defined in node_modules/lit-element/lib/updating-element.d.ts:337
 
 **Returns:** *number*
-
-___
-
-###  name
-
-• **get name**(): *string*
-
-*Defined in [src/editors/SubstationEditor.ts:37](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L37)*
-
-**Returns:** *string*
-
-___
-
-###  parent
-
-• **get parent**(): *Element*
-
-*Defined in [src/editors/SubstationEditor.ts:32](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L32)*
-
-**Returns:** *Element*
 
 ___
 
@@ -2667,6 +2595,22 @@ This method should be overridden instead. For example:
   }
 
 **Returns:** *Promise‹unknown›*
+
+___
+
+###  act
+
+▸ **act**(`action?`: undefined | function): *Promise‹boolean›*
+
+*Defined in [src/wizard-dialog.ts:75](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L75)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`action?` | undefined &#124; function |
+
+**Returns:** *Promise‹boolean›*
 
 ___
 
@@ -2901,6 +2845,16 @@ ___
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8005
 
 **Returns:** *void*
+
+___
+
+###  checkValidity
+
+▸ **checkValidity**(): *boolean*
+
+*Defined in [src/wizard-dialog.ts:50](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L50)*
+
+**Returns:** *boolean*
 
 ___
 
@@ -3758,58 +3712,13 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
 ___
 
-###  newCreateAction
+###  next
 
-▸ **newCreateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
+▸ **next**(): *Promise‹void›*
 
-*Defined in [src/editors/SubstationEditor.ts:70](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L70)*
+*Defined in [src/wizard-dialog.ts:58](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L58)*
 
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string |
-`desc` | string &#124; null |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)*
-
-___
-
-###  newUpdateAction
-
-▸ **newUpdateAction**(`name`: string, `desc`: string | null): *[Action](../modules/_foundation_.md#action)*
-
-*Defined in [src/editors/SubstationEditor.ts:58](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L58)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string |
-`desc` | string &#124; null |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)*
-
-___
-
-###  newVoltageLevelCreateAction
-
-▸ **newVoltageLevelCreateAction**(`name`: string | null, `desc`: string | null, `nomFreq`: string | null, `numPhases`: string | null, `Voltage`: string | null, `multiplier`: string): *[Action](../modules/_foundation_.md#action)*
-
-*Defined in [src/editors/SubstationEditor.ts:86](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L86)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`name` | string &#124; null |
-`desc` | string &#124; null |
-`nomFreq` | string &#124; null |
-`numPhases` | string &#124; null |
-`Voltage` | string &#124; null |
-`multiplier` | string |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)*
+**Returns:** *Promise‹void›*
 
 ___
 
@@ -3827,21 +3736,17 @@ Removes empty exclusive Text nodes and concatenates the data of remaining contig
 
 ___
 
-###  openSubstationWizard
+###  onClosed
 
-▸ **openSubstationWizard**(): *void*
+▸ **onClosed**(`ae`: CustomEvent‹object | null›): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:215](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L215)*
+*Defined in [src/wizard-dialog.ts:89](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L89)*
 
-**Returns:** *void*
+**Parameters:**
 
-___
-
-###  openVoltageLevelWizard
-
-▸ **openVoltageLevelWizard**(): *void*
-
-*Defined in [src/editors/SubstationEditor.ts:152](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L152)*
+Name | Type |
+------ | ------ |
+`ae` | CustomEvent‹object &#124; null› |
 
 **Returns:** *void*
 
@@ -3891,6 +3796,16 @@ Throws a "HierarchyRequestError" DOMException if the constraints of the node tre
 Name | Type |
 ------ | ------ |
 `...nodes` | (Node &#124; string)[] |
+
+**Returns:** *void*
+
+___
+
+###  prev
+
+▸ **prev**(): *void*
+
+*Defined in [src/wizard-dialog.ts:67](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L67)*
 
 **Returns:** *void*
 
@@ -4188,17 +4103,24 @@ ___
 
 *Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
 
-*Defined in [src/editors/SubstationEditor.ts:270](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L270)*
+*Defined in [src/wizard-dialog.ts:163](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L163)*
 
 **Returns:** *TemplateResult*
 
 ___
 
-###  renderHeader
+###  renderPage
 
-▸ **renderHeader**(): *TemplateResult*
+▸ **renderPage**(`wp`: [WizardPage](../interfaces/_foundation_.wizardpage.md), `i`: number): *TemplateResult*
 
-*Defined in [src/editors/SubstationEditor.ts:248](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L248)*
+*Defined in [src/wizard-dialog.ts:112](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L112)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`wp` | [WizardPage](../interfaces/_foundation_.wizardpage.md) |
+`i` | number |
 
 **Returns:** *TemplateResult*
 
@@ -4283,22 +4205,6 @@ Defined in node_modules/typescript/lib/lib.dom.d.ts:5222
 
 ___
 
-###  requestSubstationEdit
-
-▸ **requestSubstationEdit**(`inputs`: [WizardInput](../modules/_foundation_.md#wizardinput)[]): *[Action](../modules/_foundation_.md#action)[]*
-
-*Defined in [src/editors/SubstationEditor.ts:120](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L120)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`inputs` | [WizardInput](../modules/_foundation_.md#wizardinput)[] |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)[]*
-
-___
-
 ###  requestUpdate
 
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
@@ -4352,19 +4258,13 @@ Name | Type |
 
 ___
 
-###  requestVoltageLevelCreate
+###  reset
 
-▸ **requestVoltageLevelCreate**(`inputs`: [WizardInput](../modules/_foundation_.md#wizardinput)[]): *[Action](../modules/_foundation_.md#action)[]*
+▸ **reset**(): *void*
 
-*Defined in [src/editors/SubstationEditor.ts:130](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L130)*
+*Defined in [src/wizard-dialog.ts:71](https://github.com/openscd/open-scd/blob/0a1b62d/src/wizard-dialog.ts#L71)*
 
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`inputs` | [WizardInput](../modules/_foundation_.md#wizardinput)[] |
-
-**Returns:** *[Action](../modules/_foundation_.md#action)[]*
+**Returns:** *void*
 
 ___
 
@@ -4651,13 +4551,25 @@ Name | Type |
 
 ___
 
-###  updated
+### `Protected` updated
 
-▸ **updated**(): *void*
+▸ **updated**(`_changedProperties`: PropertyValues): *void*
 
-*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#protected-updated)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#protected-updated)*
 
-*Defined in [src/editors/SubstationEditor.ts:148](https://github.com/openscd/open-scd/blob/0a1b62d/src/editors/SubstationEditor.ts#L148)*
+Defined in node_modules/lit-element/lib/updating-element.d.ts:415
+
+Invoked whenever the element is updated. Implement to perform
+post-updating tasks via DOM APIs, for example, focusing an element.
+
+Setting properties inside this method will trigger the element to update
+again after this update cycle completes.
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
 **Returns:** *void*
 

@@ -350,7 +350,7 @@
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:288](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L288)*
+*Defined in [src/open-scd-base.ts:157](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L157)*
 
 **Returns:** *[OpenSCDBase](_open_scd_base_.openscdbase.md)*
 
@@ -360,9 +360,9 @@
 
 • **ATTRIBUTE_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ATTRIBUTE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-attribute_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ATTRIBUTE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-attribute_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ATTRIBUTE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-attribute_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ATTRIBUTE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-attribute_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
@@ -372,9 +372,9 @@ ___
 
 • **CDATA_SECTION_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[CDATA_SECTION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-cdata_section_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[CDATA_SECTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-cdata_section_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[CDATA_SECTION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-cdata_section_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[CDATA_SECTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -386,9 +386,9 @@ ___
 
 • **COMMENT_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[COMMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-comment_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[COMMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-comment_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[COMMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-comment_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[COMMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-comment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
@@ -400,9 +400,9 @@ ___
 
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_FRAGMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_fragment_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_FRAGMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_fragment_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_FRAGMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_fragment_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_FRAGMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -414,9 +414,9 @@ ___
 
 • **DOCUMENT_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
@@ -428,9 +428,9 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_CONTAINED_BY](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_contained_by)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINED_BY](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contained_by)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_CONTAINED_BY](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_contained_by)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINED_BY](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -442,9 +442,9 @@ ___
 
 • **DOCUMENT_POSITION_CONTAINS**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_CONTAINS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_contains)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINS](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contains)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_CONTAINS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_contains)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINS](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10865
 
@@ -456,9 +456,9 @@ ___
 
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_DISCONNECTED](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_disconnected)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_DISCONNECTED](_wizard_textfield_.wizardtextfield.md#readonly-document_position_disconnected)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_DISCONNECTED](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_disconnected)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_DISCONNECTED](_wizard_textfield_.wizardtextfield.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10869
 
@@ -470,9 +470,9 @@ ___
 
 • **DOCUMENT_POSITION_FOLLOWING**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_FOLLOWING](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_following)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_FOLLOWING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_following)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_FOLLOWING](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_following)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_FOLLOWING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_following)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10873
 
@@ -484,9 +484,9 @@ ___
 
 • **DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_implementation_specific)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_textfield_.wizardtextfield.md#readonly-document_position_implementation_specific)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_implementation_specific)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_textfield_.wizardtextfield.md#readonly-document_position_implementation_specific)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
@@ -496,9 +496,9 @@ ___
 
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_PRECEDING](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_preceding)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_PRECEDING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_preceding)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_POSITION_PRECEDING](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_position_preceding)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_PRECEDING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10878
 
@@ -510,9 +510,9 @@ ___
 
 • **DOCUMENT_TYPE_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_TYPE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_type_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_TYPE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_type_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[DOCUMENT_TYPE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-document_type_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_TYPE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_type_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10882
 
@@ -524,9 +524,9 @@ ___
 
 • **ELEMENT_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ELEMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-element_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ELEMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-element_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ELEMENT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-element_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ELEMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10886
 
@@ -538,9 +538,9 @@ ___
 
 • **ENTITY_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ENTITY_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-entity_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ENTITY_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-entity_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10887
 
@@ -550,9 +550,9 @@ ___
 
 • **ENTITY_REFERENCE_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ENTITY_REFERENCE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-entity_reference_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_REFERENCE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_reference_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ENTITY_REFERENCE_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-entity_reference_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_REFERENCE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10888
 
@@ -562,9 +562,9 @@ ___
 
 • **NOTATION_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[NOTATION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-notation_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[NOTATION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-notation_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[NOTATION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-notation_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[NOTATION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-notation_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10889
 
@@ -574,9 +574,9 @@ ___
 
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[PROCESSING_INSTRUCTION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-processing_instruction_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[PROCESSING_INSTRUCTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-processing_instruction_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[PROCESSING_INSTRUCTION_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-processing_instruction_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[PROCESSING_INSTRUCTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10893
 
@@ -588,9 +588,9 @@ ___
 
 • **TEXT_NODE**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[TEXT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-text_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[TEXT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-text_node)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[TEXT_NODE](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-text_node)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[TEXT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-text_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10897
 
@@ -602,9 +602,9 @@ ___
 
 • **accessKey**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[accessKey](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#accesskey)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKey](_wizard_textfield_.wizardtextfield.md#accesskey)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[accessKey](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#accesskey)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKey](_wizard_textfield_.wizardtextfield.md#accesskey)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
@@ -614,9 +614,9 @@ ___
 
 • **accessKeyLabel**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[accessKeyLabel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-accesskeylabel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKeyLabel](_wizard_textfield_.wizardtextfield.md#readonly-accesskeylabel)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[accessKeyLabel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-accesskeylabel)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKeyLabel](_wizard_textfield_.wizardtextfield.md#readonly-accesskeylabel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
@@ -626,7 +626,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-*Defined in [src/open-scd-base.ts:199](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L199)*
+*Defined in [src/open-scd-base.ts:68](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L68)*
 
 The currently active editor tab.
 
@@ -636,7 +636,7 @@ ___
 
 • **assignedSlot**: *HTMLSlotElement | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[assignedSlot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-assignedslot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[assignedSlot](_wizard_textfield_.wizardtextfield.md#readonly-assignedslot)*
 
 *Overrides void*
 
@@ -648,9 +648,9 @@ ___
 
 • **attributes**: *NamedNodeMap*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[attributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-attributes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributes](_wizard_textfield_.wizardtextfield.md#readonly-attributes)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[attributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-attributes)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributes](_wizard_textfield_.wizardtextfield.md#readonly-attributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
@@ -672,9 +672,9 @@ ___
 
 • **autofocus**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[autofocus](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#autofocus)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autofocus](_wizard_textfield_.wizardtextfield.md#autofocus)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[autofocus](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#autofocus)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autofocus](_wizard_textfield_.wizardtextfield.md#autofocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8001
 
@@ -684,9 +684,9 @@ ___
 
 • **baseURI**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[baseURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-baseuri)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[baseURI](_wizard_textfield_.wizardtextfield.md#readonly-baseuri)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[baseURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-baseuri)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[baseURI](_wizard_textfield_.wizardtextfield.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -698,9 +698,9 @@ ___
 
 • **childElementCount**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[childElementCount](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-childelementcount)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childElementCount](_wizard_textfield_.wizardtextfield.md#readonly-childelementcount)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[childElementCount](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-childelementcount)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childElementCount](_wizard_textfield_.wizardtextfield.md#readonly-childelementcount)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
@@ -710,9 +710,9 @@ ___
 
 • **childNodes**: *NodeListOf‹ChildNode›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[childNodes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-childnodes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childNodes](_wizard_textfield_.wizardtextfield.md#readonly-childnodes)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[childNodes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-childnodes)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childNodes](_wizard_textfield_.wizardtextfield.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -724,9 +724,9 @@ ___
 
 • **children**: *HTMLCollection*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[children](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-children)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[children](_wizard_textfield_.wizardtextfield.md#readonly-children)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[children](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-children)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[children](_wizard_textfield_.wizardtextfield.md#readonly-children)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11317
 
@@ -738,9 +738,9 @@ ___
 
 • **classList**: *DOMTokenList*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[classList](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-classlist)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[classList](_wizard_textfield_.wizardtextfield.md#readonly-classlist)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[classList](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-classlist)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[classList](_wizard_textfield_.wizardtextfield.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5104
 
@@ -752,9 +752,9 @@ ___
 
 • **className**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[className](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#classname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[className](_wizard_textfield_.wizardtextfield.md#classname)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[className](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#classname)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[className](_wizard_textfield_.wizardtextfield.md#classname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5108
 
@@ -766,9 +766,9 @@ ___
 
 • **clientHeight**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientheight)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientHeight](_wizard_textfield_.wizardtextfield.md#readonly-clientheight)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientheight)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientHeight](_wizard_textfield_.wizardtextfield.md#readonly-clientheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5109
 
@@ -778,9 +778,9 @@ ___
 
 • **clientLeft**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientleft)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientLeft](_wizard_textfield_.wizardtextfield.md#readonly-clientleft)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientleft)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientLeft](_wizard_textfield_.wizardtextfield.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -790,9 +790,9 @@ ___
 
 • **clientTop**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clienttop)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientTop](_wizard_textfield_.wizardtextfield.md#readonly-clienttop)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clienttop)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientTop](_wizard_textfield_.wizardtextfield.md#readonly-clienttop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5111
 
@@ -802,9 +802,9 @@ ___
 
 • **clientWidth**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientwidth)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientWidth](_wizard_textfield_.wizardtextfield.md#readonly-clientwidth)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[clientWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-clientwidth)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientWidth](_wizard_textfield_.wizardtextfield.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5112
 
@@ -814,9 +814,9 @@ ___
 
 • **contentEditable**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[contentEditable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#contenteditable)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contentEditable](_wizard_textfield_.wizardtextfield.md#contenteditable)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[contentEditable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#contenteditable)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contentEditable](_wizard_textfield_.wizardtextfield.md#contenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5264
 
@@ -826,7 +826,7 @@ ___
 
 • **currentSrc**: *string* = ""
 
-*Defined in [src/open-scd-base.ts:211](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L211)*
+*Defined in [src/open-scd-base.ts:80](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L80)*
 
 ___
 
@@ -834,9 +834,9 @@ ___
 
 • **dataset**: *DOMStringMap*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[dataset](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-dataset)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dataset](_wizard_textfield_.wizardtextfield.md#readonly-dataset)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[dataset](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-dataset)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dataset](_wizard_textfield_.wizardtextfield.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8002
 
@@ -846,9 +846,9 @@ ___
 
 • **dir**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[dir](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#dir)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dir](_wizard_textfield_.wizardtextfield.md#dir)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[dir](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#dir)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dir](_wizard_textfield_.wizardtextfield.md#dir)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
@@ -860,7 +860,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:202](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L202)*
+*Defined in [src/open-scd-base.ts:71](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L71)*
 
 The `XMLDocument` representation of the current file.
 
@@ -870,9 +870,9 @@ ___
 
 • **draggable**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[draggable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#draggable)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[draggable](_wizard_textfield_.wizardtextfield.md#draggable)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[draggable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#draggable)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[draggable](_wizard_textfield_.wizardtextfield.md#draggable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
@@ -882,9 +882,9 @@ ___
 
 • **enterKeyHint**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[enterKeyHint](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#enterkeyhint)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enterKeyHint](_wizard_textfield_.wizardtextfield.md#enterkeyhint)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[enterKeyHint](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#enterkeyhint)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enterKeyHint](_wizard_textfield_.wizardtextfield.md#enterkeyhint)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5265
 
@@ -894,7 +894,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-*Defined in [src/open-scd-base.ts:225](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L225)*
+*Defined in [src/open-scd-base.ts:94](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L94)*
 
 ___
 
@@ -902,9 +902,9 @@ ___
 
 • **firstChild**: *ChildNode | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[firstChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-firstchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstChild](_wizard_textfield_.wizardtextfield.md#readonly-firstchild)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[firstChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-firstchild)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstChild](_wizard_textfield_.wizardtextfield.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10764
 
@@ -916,9 +916,9 @@ ___
 
 • **firstElementChild**: *Element | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[firstElementChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-firstelementchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstElementChild](_wizard_textfield_.wizardtextfield.md#readonly-firstelementchild)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[firstElementChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-firstelementchild)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstElementChild](_wizard_textfield_.wizardtextfield.md#readonly-firstelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11321
 
@@ -930,9 +930,9 @@ ___
 
 • **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[floatingLabelFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-floatinglabelfoundation)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[floatingLabelFoundation](_wizard_textfield_.wizardtextfield.md#optional-floatinglabelfoundation)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[floatingLabelFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-floatinglabelfoundation)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[floatingLabelFoundation](_wizard_textfield_.wizardtextfield.md#optional-floatinglabelfoundation)*
 
 Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:34
 
@@ -942,9 +942,9 @@ ___
 
 • **hidden**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hidden](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hidden)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hidden](_wizard_textfield_.wizardtextfield.md#hidden)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hidden](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hidden)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hidden](_wizard_textfield_.wizardtextfield.md#hidden)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
@@ -956,7 +956,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:193](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L193)*
+*Defined in [src/open-scd-base.ts:62](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L62)*
 
 ___
 
@@ -964,9 +964,9 @@ ___
 
 • **id**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[id](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#id)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[id](_wizard_textfield_.wizardtextfield.md#id)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[id](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#id)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[id](_wizard_textfield_.wizardtextfield.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -978,9 +978,9 @@ ___
 
 • **innerHTML**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[innerHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#innerhtml)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerHTML](_wizard_textfield_.wizardtextfield.md#innerhtml)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[innerHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#innerhtml)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerHTML](_wizard_textfield_.wizardtextfield.md#innerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9586
 
@@ -990,9 +990,9 @@ ___
 
 • **innerText**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[innerText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#innertext)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerText](_wizard_textfield_.wizardtextfield.md#innertext)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[innerText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#innertext)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerText](_wizard_textfield_.wizardtextfield.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
 
@@ -1014,9 +1014,9 @@ ___
 
 • **isConnected**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isConnected](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-isconnected)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isConnected](_wizard_textfield_.wizardtextfield.md#readonly-isconnected)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isConnected](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-isconnected)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isConnected](_wizard_textfield_.wizardtextfield.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10768
 
@@ -1028,9 +1028,9 @@ ___
 
 • **isContentEditable**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isContentEditable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-iscontenteditable)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isContentEditable](_wizard_textfield_.wizardtextfield.md#readonly-iscontenteditable)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isContentEditable](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-iscontenteditable)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isContentEditable](_wizard_textfield_.wizardtextfield.md#readonly-iscontenteditable)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5267
 
@@ -1040,9 +1040,9 @@ ___
 
 • **lang**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lang](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lang)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lang](_wizard_textfield_.wizardtextfield.md#lang)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lang](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lang)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lang](_wizard_textfield_.wizardtextfield.md#lang)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6594
 
@@ -1054,7 +1054,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[lastAction](_open_scd_base_.openscdbase.md#lastaction)*
 
-*Defined in [src/editing.ts:46](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L46)*
+*Defined in [src/editing.ts:46](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L46)*
 
 ___
 
@@ -1062,9 +1062,9 @@ ___
 
 • **lastChild**: *ChildNode | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lastChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-lastchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastChild](_wizard_textfield_.wizardtextfield.md#readonly-lastchild)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lastChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-lastchild)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastChild](_wizard_textfield_.wizardtextfield.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10772
 
@@ -1076,9 +1076,9 @@ ___
 
 • **lastElementChild**: *Element | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lastElementChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-lastelementchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastElementChild](_wizard_textfield_.wizardtextfield.md#readonly-lastelementchild)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lastElementChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-lastelementchild)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastElementChild](_wizard_textfield_.wizardtextfield.md#readonly-lastelementchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
@@ -1090,9 +1090,9 @@ ___
 
 • **lineRippleFoundation**? : *MDCLineRippleFoundation*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lineRippleFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-lineripplefoundation)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lineRippleFoundation](_wizard_textfield_.wizardtextfield.md#optional-lineripplefoundation)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lineRippleFoundation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-lineripplefoundation)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lineRippleFoundation](_wizard_textfield_.wizardtextfield.md#optional-lineripplefoundation)*
 
 Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:35
 
@@ -1102,9 +1102,9 @@ ___
 
 • **localName**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[localName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-localname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[localName](_wizard_textfield_.wizardtextfield.md#readonly-localname)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[localName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-localname)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[localName](_wizard_textfield_.wizardtextfield.md#readonly-localname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5120
 
@@ -1116,7 +1116,7 @@ ___
 
 • **logUI**: *Dialog*
 
-*Defined in [src/open-scd-base.ts:223](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L223)*
+*Defined in [src/open-scd-base.ts:92](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L92)*
 
 ___
 
@@ -1160,7 +1160,7 @@ ___
     },
   ]
 
-*Defined in [src/open-scd-base.ts:303](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L303)*
+*Defined in [src/open-scd-base.ts:172](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L172)*
 
 ___
 
@@ -1168,7 +1168,7 @@ ___
 
 • **menuUI**: *Drawer*
 
-*Defined in [src/open-scd-base.ts:222](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L222)*
+*Defined in [src/open-scd-base.ts:91](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L91)*
 
 ___
 
@@ -1176,7 +1176,7 @@ ___
 
 • **messageUI**: *Snackbar*
 
-*Defined in [src/open-scd-base.ts:224](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L224)*
+*Defined in [src/open-scd-base.ts:93](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L93)*
 
 ___
 
@@ -1184,7 +1184,7 @@ ___
 
 • **namespaceURI**: *string | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[namespaceURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-namespaceuri)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[namespaceURI](_wizard_textfield_.wizardtextfield.md#readonly-namespaceuri)*
 
 *Overrides void*
 
@@ -1198,9 +1198,9 @@ ___
 
 • **nextElementSibling**: *Element | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nextElementSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nextelementsibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextelementsibling)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nextElementSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nextelementsibling)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextelementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11043
 
@@ -1212,9 +1212,9 @@ ___
 
 • **nextSibling**: *ChildNode | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nextSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nextsibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextsibling)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nextSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nextsibling)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10778
 
@@ -1226,9 +1226,9 @@ ___
 
 • **nodeName**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nodeName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nodename)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeName](_wizard_textfield_.wizardtextfield.md#readonly-nodename)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nodeName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nodename)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeName](_wizard_textfield_.wizardtextfield.md#readonly-nodename)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10782
 
@@ -1240,9 +1240,9 @@ ___
 
 • **nodeType**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nodeType](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nodetype)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeType](_wizard_textfield_.wizardtextfield.md#readonly-nodetype)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nodeType](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-nodetype)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeType](_wizard_textfield_.wizardtextfield.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10786
 
@@ -1254,9 +1254,9 @@ ___
 
 • **nodeValue**: *string | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nodeValue](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#nodevalue)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeValue](_wizard_textfield_.wizardtextfield.md#nodevalue)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nodeValue](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#nodevalue)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeValue](_wizard_textfield_.wizardtextfield.md#nodevalue)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
@@ -1266,9 +1266,9 @@ ___
 
 • **nonce**? : *undefined | string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nonce](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-nonce)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nonce](_wizard_textfield_.wizardtextfield.md#optional-nonce)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[nonce](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-nonce)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nonce](_wizard_textfield_.wizardtextfield.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8003
 
@@ -1278,9 +1278,9 @@ ___
 
 • **offsetHeight**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetheight)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetHeight](_wizard_textfield_.wizardtextfield.md#readonly-offsetheight)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetheight)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetHeight](_wizard_textfield_.wizardtextfield.md#readonly-offsetheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
 
@@ -1290,9 +1290,9 @@ ___
 
 • **offsetLeft**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetleft)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetLeft](_wizard_textfield_.wizardtextfield.md#readonly-offsetleft)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetleft)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetLeft](_wizard_textfield_.wizardtextfield.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6596
 
@@ -1302,9 +1302,9 @@ ___
 
 • **offsetParent**: *Element | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetParent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetparent)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetParent](_wizard_textfield_.wizardtextfield.md#readonly-offsetparent)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetParent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetparent)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetParent](_wizard_textfield_.wizardtextfield.md#readonly-offsetparent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6597
 
@@ -1314,9 +1314,9 @@ ___
 
 • **offsetTop**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsettop)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetTop](_wizard_textfield_.wizardtextfield.md#readonly-offsettop)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsettop)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetTop](_wizard_textfield_.wizardtextfield.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6598
 
@@ -1326,9 +1326,9 @@ ___
 
 • **offsetWidth**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetwidth)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetWidth](_wizard_textfield_.wizardtextfield.md#readonly-offsetwidth)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[offsetWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-offsetwidth)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetWidth](_wizard_textfield_.wizardtextfield.md#readonly-offsetwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6599
 
@@ -1338,9 +1338,9 @@ ___
 
 • **onabort**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onabort](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onabort)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onabort](_wizard_textfield_.wizardtextfield.md#onabort)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onabort](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onabort)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onabort](_wizard_textfield_.wizardtextfield.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1354,9 +1354,9 @@ ___
 
 • **onanimationcancel**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationcancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationcancel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationcancel](_wizard_textfield_.wizardtextfield.md#onanimationcancel)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationcancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationcancel)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationcancel](_wizard_textfield_.wizardtextfield.md#onanimationcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5778
 
@@ -1366,9 +1366,9 @@ ___
 
 • **onanimationend**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationend)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationend](_wizard_textfield_.wizardtextfield.md#onanimationend)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationend)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationend](_wizard_textfield_.wizardtextfield.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5779
 
@@ -1378,9 +1378,9 @@ ___
 
 • **onanimationiteration**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationiteration](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationiteration)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationiteration](_wizard_textfield_.wizardtextfield.md#onanimationiteration)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationiteration](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationiteration)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationiteration](_wizard_textfield_.wizardtextfield.md#onanimationiteration)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5780
 
@@ -1390,9 +1390,9 @@ ___
 
 • **onanimationstart**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationstart)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationstart](_wizard_textfield_.wizardtextfield.md#onanimationstart)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onanimationstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onanimationstart)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationstart](_wizard_textfield_.wizardtextfield.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5781
 
@@ -1402,9 +1402,9 @@ ___
 
 • **onauxclick**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onauxclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onauxclick)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onauxclick](_wizard_textfield_.wizardtextfield.md#onauxclick)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onauxclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onauxclick)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onauxclick](_wizard_textfield_.wizardtextfield.md#onauxclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
@@ -1414,9 +1414,9 @@ ___
 
 • **onblur**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onblur](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onblur)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onblur](_wizard_textfield_.wizardtextfield.md#onblur)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onblur](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onblur)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onblur](_wizard_textfield_.wizardtextfield.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5787
 
@@ -1430,9 +1430,9 @@ ___
 
 • **oncancel**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncancel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncancel](_wizard_textfield_.wizardtextfield.md#oncancel)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncancel)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncancel](_wizard_textfield_.wizardtextfield.md#oncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
@@ -1442,9 +1442,9 @@ ___
 
 • **oncanplay**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncanplay](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncanplay)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplay](_wizard_textfield_.wizardtextfield.md#oncanplay)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncanplay](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncanplay)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplay](_wizard_textfield_.wizardtextfield.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1458,9 +1458,9 @@ ___
 
 • **oncanplaythrough**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncanplaythrough](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncanplaythrough)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplaythrough](_wizard_textfield_.wizardtextfield.md#oncanplaythrough)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncanplaythrough](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncanplaythrough)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplaythrough](_wizard_textfield_.wizardtextfield.md#oncanplaythrough)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
@@ -1470,9 +1470,9 @@ ___
 
 • **onchange**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onchange)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onchange](_wizard_textfield_.wizardtextfield.md#onchange)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onchange)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onchange](_wizard_textfield_.wizardtextfield.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1486,9 +1486,9 @@ ___
 
 • **onclick**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onclick)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclick](_wizard_textfield_.wizardtextfield.md#onclick)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onclick)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclick](_wizard_textfield_.wizardtextfield.md#onclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5804
 
@@ -1502,9 +1502,9 @@ ___
 
 • **onclose**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onclose](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onclose)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclose](_wizard_textfield_.wizardtextfield.md#onclose)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onclose](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onclose)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclose](_wizard_textfield_.wizardtextfield.md#onclose)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
@@ -1514,9 +1514,9 @@ ___
 
 • **oncontextmenu**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncontextmenu](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncontextmenu)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncontextmenu](_wizard_textfield_.wizardtextfield.md#oncontextmenu)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncontextmenu](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncontextmenu)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncontextmenu](_wizard_textfield_.wizardtextfield.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1530,9 +1530,9 @@ ___
 
 • **oncopy**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncopy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncopy)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncopy](_wizard_textfield_.wizardtextfield.md#oncopy)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncopy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncopy)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncopy](_wizard_textfield_.wizardtextfield.md#oncopy)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4898
 
@@ -1542,9 +1542,9 @@ ___
 
 • **oncuechange**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncuechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncuechange)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncuechange](_wizard_textfield_.wizardtextfield.md#oncuechange)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncuechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncuechange)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncuechange](_wizard_textfield_.wizardtextfield.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5811
 
@@ -1554,9 +1554,9 @@ ___
 
 • **oncut**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncut](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncut)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncut](_wizard_textfield_.wizardtextfield.md#oncut)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oncut](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oncut)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncut](_wizard_textfield_.wizardtextfield.md#oncut)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4899
 
@@ -1566,9 +1566,9 @@ ___
 
 • **ondblclick**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondblclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondblclick)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondblclick](_wizard_textfield_.wizardtextfield.md#ondblclick)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondblclick](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondblclick)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondblclick](_wizard_textfield_.wizardtextfield.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5816
 
@@ -1582,9 +1582,9 @@ ___
 
 • **ondrag**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondrag](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondrag)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrag](_wizard_textfield_.wizardtextfield.md#ondrag)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondrag](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondrag)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrag](_wizard_textfield_.wizardtextfield.md#ondrag)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
@@ -1598,9 +1598,9 @@ ___
 
 • **ondragend**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragend)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragend](_wizard_textfield_.wizardtextfield.md#ondragend)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragend)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragend](_wizard_textfield_.wizardtextfield.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1614,9 +1614,9 @@ ___
 
 • **ondragenter**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragenter)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragenter](_wizard_textfield_.wizardtextfield.md#ondragenter)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragenter)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragenter](_wizard_textfield_.wizardtextfield.md#ondragenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
@@ -1630,9 +1630,9 @@ ___
 
 • **ondragexit**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragexit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragexit)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragexit](_wizard_textfield_.wizardtextfield.md#ondragexit)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragexit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragexit)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragexit](_wizard_textfield_.wizardtextfield.md#ondragexit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5832
 
@@ -1642,9 +1642,9 @@ ___
 
 • **ondragleave**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragleave)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragleave](_wizard_textfield_.wizardtextfield.md#ondragleave)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragleave)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragleave](_wizard_textfield_.wizardtextfield.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1658,9 +1658,9 @@ ___
 
 • **ondragover**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragover)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragover](_wizard_textfield_.wizardtextfield.md#ondragover)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragover)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragover](_wizard_textfield_.wizardtextfield.md#ondragover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
@@ -1674,9 +1674,9 @@ ___
 
 • **ondragstart**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragstart)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragstart](_wizard_textfield_.wizardtextfield.md#ondragstart)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondragstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondragstart)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragstart](_wizard_textfield_.wizardtextfield.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1690,9 +1690,9 @@ ___
 
 • **ondrop**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondrop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondrop)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrop](_wizard_textfield_.wizardtextfield.md#ondrop)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondrop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondrop)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrop](_wizard_textfield_.wizardtextfield.md#ondrop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5848
 
@@ -1702,9 +1702,9 @@ ___
 
 • **ondurationchange**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondurationchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondurationchange)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondurationchange](_wizard_textfield_.wizardtextfield.md#ondurationchange)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ondurationchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ondurationchange)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondurationchange](_wizard_textfield_.wizardtextfield.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5853
 
@@ -1718,9 +1718,9 @@ ___
 
 • **onemptied**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onemptied](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onemptied)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onemptied](_wizard_textfield_.wizardtextfield.md#onemptied)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onemptied](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onemptied)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onemptied](_wizard_textfield_.wizardtextfield.md#onemptied)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5858
 
@@ -1734,9 +1734,9 @@ ___
 
 • **onended**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onended](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onended)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onended](_wizard_textfield_.wizardtextfield.md#onended)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onended](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onended)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onended](_wizard_textfield_.wizardtextfield.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1750,9 +1750,9 @@ ___
 
 • **onerror**: *OnErrorEventHandler*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onerror](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onerror)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onerror](_wizard_textfield_.wizardtextfield.md#onerror)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onerror](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onerror)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onerror](_wizard_textfield_.wizardtextfield.md#onerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5868
 
@@ -1766,9 +1766,9 @@ ___
 
 • **onfocus**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onfocus](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfocus)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfocus](_wizard_textfield_.wizardtextfield.md#onfocus)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onfocus](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfocus)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfocus](_wizard_textfield_.wizardtextfield.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5873
 
@@ -1782,9 +1782,9 @@ ___
 
 • **onfullscreenchange**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onfullscreenchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfullscreenchange)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenchange](_wizard_textfield_.wizardtextfield.md#onfullscreenchange)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onfullscreenchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfullscreenchange)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenchange](_wizard_textfield_.wizardtextfield.md#onfullscreenchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
@@ -1794,9 +1794,9 @@ ___
 
 • **onfullscreenerror**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onfullscreenerror](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfullscreenerror)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenerror](_wizard_textfield_.wizardtextfield.md#onfullscreenerror)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onfullscreenerror](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onfullscreenerror)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenerror](_wizard_textfield_.wizardtextfield.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -1806,9 +1806,9 @@ ___
 
 • **ongotpointercapture**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ongotpointercapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ongotpointercapture)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ongotpointercapture](_wizard_textfield_.wizardtextfield.md#ongotpointercapture)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ongotpointercapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ongotpointercapture)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ongotpointercapture](_wizard_textfield_.wizardtextfield.md#ongotpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5874
 
@@ -1818,9 +1818,9 @@ ___
 
 • **oninput**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oninput](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oninput)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninput](_wizard_textfield_.wizardtextfield.md#oninput)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oninput](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oninput)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninput](_wizard_textfield_.wizardtextfield.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1830,9 +1830,9 @@ ___
 
 • **oninvalid**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oninvalid](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oninvalid)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninvalid](_wizard_textfield_.wizardtextfield.md#oninvalid)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[oninvalid](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#oninvalid)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninvalid](_wizard_textfield_.wizardtextfield.md#oninvalid)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5876
 
@@ -1842,9 +1842,9 @@ ___
 
 • **onkeydown**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onkeydown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeydown)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeydown](_wizard_textfield_.wizardtextfield.md#onkeydown)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onkeydown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeydown)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeydown](_wizard_textfield_.wizardtextfield.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5881
 
@@ -1858,9 +1858,9 @@ ___
 
 • **onkeypress**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onkeypress](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeypress)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeypress](_wizard_textfield_.wizardtextfield.md#onkeypress)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onkeypress](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeypress)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeypress](_wizard_textfield_.wizardtextfield.md#onkeypress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5886
 
@@ -1874,9 +1874,9 @@ ___
 
 • **onkeyup**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onkeyup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeyup)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeyup](_wizard_textfield_.wizardtextfield.md#onkeyup)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onkeyup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onkeyup)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeyup](_wizard_textfield_.wizardtextfield.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5891
 
@@ -1890,9 +1890,9 @@ ___
 
 • **onload**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onload](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onload)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onload](_wizard_textfield_.wizardtextfield.md#onload)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onload](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onload)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onload](_wizard_textfield_.wizardtextfield.md#onload)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5896
 
@@ -1906,9 +1906,9 @@ ___
 
 • **onloadeddata**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onloadeddata](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadeddata)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadeddata](_wizard_textfield_.wizardtextfield.md#onloadeddata)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onloadeddata](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadeddata)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadeddata](_wizard_textfield_.wizardtextfield.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1922,9 +1922,9 @@ ___
 
 • **onloadedmetadata**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onloadedmetadata](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadedmetadata)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadedmetadata](_wizard_textfield_.wizardtextfield.md#onloadedmetadata)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onloadedmetadata](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadedmetadata)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadedmetadata](_wizard_textfield_.wizardtextfield.md#onloadedmetadata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
@@ -1938,9 +1938,9 @@ ___
 
 • **onloadstart**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onloadstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadstart)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadstart](_wizard_textfield_.wizardtextfield.md#onloadstart)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onloadstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onloadstart)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadstart](_wizard_textfield_.wizardtextfield.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5911
 
@@ -1954,9 +1954,9 @@ ___
 
 • **onlostpointercapture**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onlostpointercapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onlostpointercapture)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onlostpointercapture](_wizard_textfield_.wizardtextfield.md#onlostpointercapture)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onlostpointercapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onlostpointercapture)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onlostpointercapture](_wizard_textfield_.wizardtextfield.md#onlostpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5912
 
@@ -1966,9 +1966,9 @@ ___
 
 • **onmousedown**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmousedown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmousedown)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousedown](_wizard_textfield_.wizardtextfield.md#onmousedown)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmousedown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmousedown)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousedown](_wizard_textfield_.wizardtextfield.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5917
 
@@ -1982,9 +1982,9 @@ ___
 
 • **onmouseenter**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseenter)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseenter](_wizard_textfield_.wizardtextfield.md#onmouseenter)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseenter)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseenter](_wizard_textfield_.wizardtextfield.md#onmouseenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
@@ -1994,9 +1994,9 @@ ___
 
 • **onmouseleave**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseleave)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseleave](_wizard_textfield_.wizardtextfield.md#onmouseleave)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseleave)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseleave](_wizard_textfield_.wizardtextfield.md#onmouseleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5919
 
@@ -2006,9 +2006,9 @@ ___
 
 • **onmousemove**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmousemove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmousemove)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousemove](_wizard_textfield_.wizardtextfield.md#onmousemove)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmousemove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmousemove)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousemove](_wizard_textfield_.wizardtextfield.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5924
 
@@ -2022,9 +2022,9 @@ ___
 
 • **onmouseout**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseout](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseout)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseout](_wizard_textfield_.wizardtextfield.md#onmouseout)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseout](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseout)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseout](_wizard_textfield_.wizardtextfield.md#onmouseout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5929
 
@@ -2038,9 +2038,9 @@ ___
 
 • **onmouseover**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseover)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseover](_wizard_textfield_.wizardtextfield.md#onmouseover)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseover)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseover](_wizard_textfield_.wizardtextfield.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5934
 
@@ -2054,9 +2054,9 @@ ___
 
 • **onmouseup**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseup)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseup](_wizard_textfield_.wizardtextfield.md#onmouseup)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onmouseup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onmouseup)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseup](_wizard_textfield_.wizardtextfield.md#onmouseup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5939
 
@@ -2070,9 +2070,9 @@ ___
 
 • **onpaste**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpaste](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpaste)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpaste](_wizard_textfield_.wizardtextfield.md#onpaste)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpaste](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpaste)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpaste](_wizard_textfield_.wizardtextfield.md#onpaste)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4900
 
@@ -2082,9 +2082,9 @@ ___
 
 • **onpause**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpause](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpause)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpause](_wizard_textfield_.wizardtextfield.md#onpause)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpause](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpause)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpause](_wizard_textfield_.wizardtextfield.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -2098,9 +2098,9 @@ ___
 
 • **onplay**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onplay](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onplay)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplay](_wizard_textfield_.wizardtextfield.md#onplay)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onplay](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onplay)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplay](_wizard_textfield_.wizardtextfield.md#onplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
@@ -2114,9 +2114,9 @@ ___
 
 • **onplaying**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onplaying](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onplaying)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplaying](_wizard_textfield_.wizardtextfield.md#onplaying)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onplaying](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onplaying)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplaying](_wizard_textfield_.wizardtextfield.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5954
 
@@ -2130,9 +2130,9 @@ ___
 
 • **onpointercancel**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointercancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointercancel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointercancel](_wizard_textfield_.wizardtextfield.md#onpointercancel)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointercancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointercancel)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointercancel](_wizard_textfield_.wizardtextfield.md#onpointercancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5955
 
@@ -2142,9 +2142,9 @@ ___
 
 • **onpointerdown**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerdown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerdown)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerdown](_wizard_textfield_.wizardtextfield.md#onpointerdown)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerdown](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerdown)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerdown](_wizard_textfield_.wizardtextfield.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -2154,9 +2154,9 @@ ___
 
 • **onpointerenter**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerenter)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerenter](_wizard_textfield_.wizardtextfield.md#onpointerenter)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerenter](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerenter)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerenter](_wizard_textfield_.wizardtextfield.md#onpointerenter)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5957
 
@@ -2166,9 +2166,9 @@ ___
 
 • **onpointerleave**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerleave)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerleave](_wizard_textfield_.wizardtextfield.md#onpointerleave)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerleave](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerleave)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerleave](_wizard_textfield_.wizardtextfield.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5958
 
@@ -2178,9 +2178,9 @@ ___
 
 • **onpointermove**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointermove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointermove)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointermove](_wizard_textfield_.wizardtextfield.md#onpointermove)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointermove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointermove)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointermove](_wizard_textfield_.wizardtextfield.md#onpointermove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5959
 
@@ -2190,9 +2190,9 @@ ___
 
 • **onpointerout**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerout](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerout)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerout](_wizard_textfield_.wizardtextfield.md#onpointerout)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerout](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerout)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerout](_wizard_textfield_.wizardtextfield.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5960
 
@@ -2202,9 +2202,9 @@ ___
 
 • **onpointerover**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerover)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerover](_wizard_textfield_.wizardtextfield.md#onpointerover)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerover](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerover)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerover](_wizard_textfield_.wizardtextfield.md#onpointerover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
@@ -2214,9 +2214,9 @@ ___
 
 • **onpointerup**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerup)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerup](_wizard_textfield_.wizardtextfield.md#onpointerup)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onpointerup](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onpointerup)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerup](_wizard_textfield_.wizardtextfield.md#onpointerup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5962
 
@@ -2226,9 +2226,9 @@ ___
 
 • **onprogress**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onprogress](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onprogress)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onprogress](_wizard_textfield_.wizardtextfield.md#onprogress)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onprogress](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onprogress)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onprogress](_wizard_textfield_.wizardtextfield.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -2242,9 +2242,9 @@ ___
 
 • **onratechange**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onratechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onratechange)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onratechange](_wizard_textfield_.wizardtextfield.md#onratechange)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onratechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onratechange)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onratechange](_wizard_textfield_.wizardtextfield.md#onratechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
@@ -2258,9 +2258,9 @@ ___
 
 • **onreset**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onreset](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onreset)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onreset](_wizard_textfield_.wizardtextfield.md#onreset)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onreset](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onreset)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onreset](_wizard_textfield_.wizardtextfield.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5977
 
@@ -2274,9 +2274,9 @@ ___
 
 • **onresize**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onresize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onresize)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onresize](_wizard_textfield_.wizardtextfield.md#onresize)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onresize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onresize)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onresize](_wizard_textfield_.wizardtextfield.md#onresize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
@@ -2286,9 +2286,9 @@ ___
 
 • **onscroll**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onscroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onscroll)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onscroll](_wizard_textfield_.wizardtextfield.md#onscroll)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onscroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onscroll)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onscroll](_wizard_textfield_.wizardtextfield.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -2302,9 +2302,9 @@ ___
 
 • **onsecuritypolicyviolation**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onsecuritypolicyviolation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsecuritypolicyviolation)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsecuritypolicyviolation](_wizard_textfield_.wizardtextfield.md#onsecuritypolicyviolation)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onsecuritypolicyviolation](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsecuritypolicyviolation)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsecuritypolicyviolation](_wizard_textfield_.wizardtextfield.md#onsecuritypolicyviolation)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5984
 
@@ -2314,9 +2314,9 @@ ___
 
 • **onseeked**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onseeked](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onseeked)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeked](_wizard_textfield_.wizardtextfield.md#onseeked)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onseeked](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onseeked)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeked](_wizard_textfield_.wizardtextfield.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -2330,9 +2330,9 @@ ___
 
 • **onseeking**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onseeking](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onseeking)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeking](_wizard_textfield_.wizardtextfield.md#onseeking)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onseeking](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onseeking)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeking](_wizard_textfield_.wizardtextfield.md#onseeking)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5994
 
@@ -2346,9 +2346,9 @@ ___
 
 • **onselect**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onselect](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselect)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselect](_wizard_textfield_.wizardtextfield.md#onselect)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onselect](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselect)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselect](_wizard_textfield_.wizardtextfield.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5999
 
@@ -2362,9 +2362,9 @@ ___
 
 • **onselectionchange**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onselectionchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselectionchange)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectionchange](_wizard_textfield_.wizardtextfield.md#onselectionchange)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onselectionchange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselectionchange)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectionchange](_wizard_textfield_.wizardtextfield.md#onselectionchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6000
 
@@ -2374,9 +2374,9 @@ ___
 
 • **onselectstart**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onselectstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselectstart)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectstart](_wizard_textfield_.wizardtextfield.md#onselectstart)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onselectstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onselectstart)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectstart](_wizard_textfield_.wizardtextfield.md#onselectstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
@@ -2386,9 +2386,9 @@ ___
 
 • **onstalled**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onstalled](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onstalled)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onstalled](_wizard_textfield_.wizardtextfield.md#onstalled)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onstalled](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onstalled)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onstalled](_wizard_textfield_.wizardtextfield.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -2402,9 +2402,9 @@ ___
 
 • **onsubmit**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onsubmit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsubmit)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsubmit](_wizard_textfield_.wizardtextfield.md#onsubmit)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onsubmit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsubmit)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsubmit](_wizard_textfield_.wizardtextfield.md#onsubmit)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
@@ -2414,9 +2414,9 @@ ___
 
 • **onsuspend**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onsuspend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsuspend)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsuspend](_wizard_textfield_.wizardtextfield.md#onsuspend)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onsuspend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onsuspend)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsuspend](_wizard_textfield_.wizardtextfield.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2430,9 +2430,9 @@ ___
 
 • **ontimeupdate**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontimeupdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontimeupdate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontimeupdate](_wizard_textfield_.wizardtextfield.md#ontimeupdate)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontimeupdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontimeupdate)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontimeupdate](_wizard_textfield_.wizardtextfield.md#ontimeupdate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6017
 
@@ -2446,9 +2446,9 @@ ___
 
 • **ontoggle**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontoggle](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontoggle)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontoggle](_wizard_textfield_.wizardtextfield.md#ontoggle)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontoggle](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontoggle)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontoggle](_wizard_textfield_.wizardtextfield.md#ontoggle)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6018
 
@@ -2458,9 +2458,9 @@ ___
 
 • **ontouchcancel**? : *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchcancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchcancel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchcancel](_wizard_textfield_.wizardtextfield.md#optional-ontouchcancel)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchcancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchcancel)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchcancel](_wizard_textfield_.wizardtextfield.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6019
 
@@ -2470,9 +2470,9 @@ ___
 
 • **ontouchend**? : *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchend)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchend](_wizard_textfield_.wizardtextfield.md#optional-ontouchend)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchend)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchend](_wizard_textfield_.wizardtextfield.md#optional-ontouchend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
@@ -2482,9 +2482,9 @@ ___
 
 • **ontouchmove**? : *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchmove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchmove)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchmove](_wizard_textfield_.wizardtextfield.md#optional-ontouchmove)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchmove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchmove)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchmove](_wizard_textfield_.wizardtextfield.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6021
 
@@ -2494,9 +2494,9 @@ ___
 
 • **ontouchstart**? : *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchstart)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchstart](_wizard_textfield_.wizardtextfield.md#optional-ontouchstart)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontouchstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-ontouchstart)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchstart](_wizard_textfield_.wizardtextfield.md#optional-ontouchstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6022
 
@@ -2506,9 +2506,9 @@ ___
 
 • **ontransitioncancel**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitioncancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitioncancel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitioncancel](_wizard_textfield_.wizardtextfield.md#ontransitioncancel)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitioncancel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitioncancel)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitioncancel](_wizard_textfield_.wizardtextfield.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6023
 
@@ -2518,9 +2518,9 @@ ___
 
 • **ontransitionend**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitionend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionend)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionend](_wizard_textfield_.wizardtextfield.md#ontransitionend)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitionend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionend)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionend](_wizard_textfield_.wizardtextfield.md#ontransitionend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6024
 
@@ -2530,9 +2530,9 @@ ___
 
 • **ontransitionrun**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitionrun](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionrun)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionrun](_wizard_textfield_.wizardtextfield.md#ontransitionrun)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitionrun](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionrun)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionrun](_wizard_textfield_.wizardtextfield.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2542,9 +2542,9 @@ ___
 
 • **ontransitionstart**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitionstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionstart)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionstart](_wizard_textfield_.wizardtextfield.md#ontransitionstart)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ontransitionstart](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#ontransitionstart)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionstart](_wizard_textfield_.wizardtextfield.md#ontransitionstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
@@ -2554,9 +2554,9 @@ ___
 
 • **onvolumechange**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onvolumechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onvolumechange)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onvolumechange](_wizard_textfield_.wizardtextfield.md#onvolumechange)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onvolumechange](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onvolumechange)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onvolumechange](_wizard_textfield_.wizardtextfield.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6031
 
@@ -2570,9 +2570,9 @@ ___
 
 • **onwaiting**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onwaiting](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onwaiting)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwaiting](_wizard_textfield_.wizardtextfield.md#onwaiting)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onwaiting](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onwaiting)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwaiting](_wizard_textfield_.wizardtextfield.md#onwaiting)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6036
 
@@ -2586,9 +2586,9 @@ ___
 
 • **onwheel**: *function | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onwheel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onwheel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwheel](_wizard_textfield_.wizardtextfield.md#onwheel)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[onwheel](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#onwheel)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwheel](_wizard_textfield_.wizardtextfield.md#onwheel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6037
 
@@ -2598,9 +2598,9 @@ ___
 
 • **outerHTML**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[outerHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#outerhtml)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outerHTML](_wizard_textfield_.wizardtextfield.md#outerhtml)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[outerHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#outerhtml)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outerHTML](_wizard_textfield_.wizardtextfield.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5127
 
@@ -2610,7 +2610,7 @@ ___
 
 • **ownerDocument**: *Document*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[ownerDocument](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-ownerdocument)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ownerDocument](_wizard_textfield_.wizardtextfield.md#readonly-ownerdocument)*
 
 *Overrides void*
 
@@ -2622,9 +2622,9 @@ ___
 
 • **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[parentElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-parentelement)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentElement](_wizard_textfield_.wizardtextfield.md#readonly-parentelement)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[parentElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-parentelement)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentElement](_wizard_textfield_.wizardtextfield.md#readonly-parentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10795
 
@@ -2636,9 +2636,9 @@ ___
 
 • **parentNode**: *Node & ParentNode | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[parentNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-parentnode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentNode](_wizard_textfield_.wizardtextfield.md#readonly-parentnode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[parentNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-parentnode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentNode](_wizard_textfield_.wizardtextfield.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10799
 
@@ -2664,9 +2664,9 @@ ___
 
 • **previousElementSibling**: *Element | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[previousElementSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-previouselementsibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-previouselementsibling)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[previousElementSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-previouselementsibling)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-previouselementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11047
 
@@ -2678,9 +2678,9 @@ ___
 
 • **previousSibling**: *ChildNode | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[previousSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-previoussibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousSibling](_wizard_textfield_.wizardtextfield.md#readonly-previoussibling)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[previousSibling](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-previoussibling)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousSibling](_wizard_textfield_.wizardtextfield.md#readonly-previoussibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10803
 
@@ -2692,7 +2692,7 @@ ___
 
 • **renderRoot**: *Element | DocumentFragment*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[renderRoot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-renderroot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderRoot](_wizard_textfield_.wizardtextfield.md#readonly-renderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:126
 
@@ -2705,9 +2705,9 @@ ___
 
 • **scrollHeight**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-scrollheight)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollHeight](_wizard_textfield_.wizardtextfield.md#readonly-scrollheight)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollHeight](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-scrollheight)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollHeight](_wizard_textfield_.wizardtextfield.md#readonly-scrollheight)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5133
 
@@ -2717,9 +2717,9 @@ ___
 
 • **scrollLeft**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollleft)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollLeft](_wizard_textfield_.wizardtextfield.md#scrollleft)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollLeft](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollleft)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollLeft](_wizard_textfield_.wizardtextfield.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2729,9 +2729,9 @@ ___
 
 • **scrollTop**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrolltop)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTop](_wizard_textfield_.wizardtextfield.md#scrolltop)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollTop](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrolltop)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTop](_wizard_textfield_.wizardtextfield.md#scrolltop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5135
 
@@ -2741,9 +2741,9 @@ ___
 
 • **scrollWidth**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-scrollwidth)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollWidth](_wizard_textfield_.wizardtextfield.md#readonly-scrollwidth)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollWidth](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-scrollwidth)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollWidth](_wizard_textfield_.wizardtextfield.md#readonly-scrollwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5136
 
@@ -2753,9 +2753,9 @@ ___
 
 • **shadowRoot**: *ShadowRoot | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[shadowRoot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-shadowroot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shadowRoot](_wizard_textfield_.wizardtextfield.md#readonly-shadowroot)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[shadowRoot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-shadowroot)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shadowRoot](_wizard_textfield_.wizardtextfield.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5140
 
@@ -2767,9 +2767,9 @@ ___
 
 • **slot**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[slot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#slot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[slot](_wizard_textfield_.wizardtextfield.md#slot)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[slot](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#slot)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[slot](_wizard_textfield_.wizardtextfield.md#slot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5144
 
@@ -2781,9 +2781,9 @@ ___
 
 • **spellcheck**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[spellcheck](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#spellcheck)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[spellcheck](_wizard_textfield_.wizardtextfield.md#spellcheck)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[spellcheck](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#spellcheck)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[spellcheck](_wizard_textfield_.wizardtextfield.md#spellcheck)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6600
 
@@ -2793,7 +2793,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-*Defined in [src/open-scd-base.ts:210](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L210)*
+*Defined in [src/open-scd-base.ts:79](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L79)*
 
 The name of the current file.
 
@@ -2803,9 +2803,9 @@ ___
 
 • **style**: *CSSStyleDeclaration*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[style](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-style)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[style](_wizard_textfield_.wizardtextfield.md#readonly-style)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[style](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-style)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[style](_wizard_textfield_.wizardtextfield.md#readonly-style)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5260
 
@@ -2815,9 +2815,9 @@ ___
 
 • **tabIndex**: *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[tabIndex](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#tabindex)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tabIndex](_wizard_textfield_.wizardtextfield.md#tabindex)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[tabIndex](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#tabindex)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tabIndex](_wizard_textfield_.wizardtextfield.md#tabindex)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8004
 
@@ -2827,7 +2827,7 @@ ___
 
 • **tag**: *string* = "SCL"
 
-*Defined in [src/open-scd-base.ts:208](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L208)*
+*Defined in [src/open-scd-base.ts:77](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L77)*
 
 The tag name this editor is responsible for editing
 
@@ -2837,9 +2837,9 @@ ___
 
 • **tagName**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[tagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-tagname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tagName](_wizard_textfield_.wizardtextfield.md#readonly-tagname)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[tagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#readonly-tagname)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tagName](_wizard_textfield_.wizardtextfield.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -2851,9 +2851,9 @@ ___
 
 • **textContent**: *string | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[textContent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#textcontent)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[textContent](_wizard_textfield_.wizardtextfield.md#textcontent)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[textContent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#textcontent)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[textContent](_wizard_textfield_.wizardtextfield.md#textcontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10804
 
@@ -2863,9 +2863,9 @@ ___
 
 • **title**: *string*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[title](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#title)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[title](_wizard_textfield_.wizardtextfield.md#title)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[title](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#title)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[title](_wizard_textfield_.wizardtextfield.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6601
 
@@ -2875,9 +2875,9 @@ ___
 
 • **translate**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[translate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#translate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[translate](_wizard_textfield_.wizardtextfield.md#translate)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[translate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#translate)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[translate](_wizard_textfield_.wizardtextfield.md#translate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6602
 
@@ -2889,7 +2889,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:196](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L196)*
+*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L65)*
 
 Whether the editor is currently waiting for some async work.
 
@@ -2901,7 +2901,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
 
-*Defined in [src/waiting.ts:8](https://github.com/openscd/open-scd/blob/b4790ce/src/waiting.ts#L8)*
+*Defined in [src/waiting.ts:8](https://github.com/openscd/open-scd/blob/0a1b62d/src/waiting.ts#L8)*
 
 ___
 
@@ -2911,7 +2911,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
 
-*Defined in [src/waiting.ts:10](https://github.com/openscd/open-scd/blob/b4790ce/src/waiting.ts#L10)*
+*Defined in [src/waiting.ts:10](https://github.com/openscd/open-scd/blob/0a1b62d/src/waiting.ts#L10)*
 
 A promise which resolves once all currently pending work is done.
 
@@ -2921,7 +2921,7 @@ ___
 
 • **workflow**: *[Wizard](../modules/_foundation_.md#wizard)[]* = []
 
-*Defined in [src/open-scd-base.ts:187](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L187)*
+*Defined in [src/open-scd-base.ts:54](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L54)*
 
 ___
 
@@ -2929,7 +2929,7 @@ ___
 
 ▪ **[finalized]**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[[finalized]](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-[finalized])*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[[finalized]](_wizard_textfield_.wizardtextfield.md#static-protected-[finalized])*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:139
 
@@ -2941,7 +2941,7 @@ ___
 
 ▪ **finalized**: *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[finalized](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-finalized)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalized](_wizard_textfield_.wizardtextfield.md#static-protected-finalized)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:87
 
@@ -2957,7 +2957,7 @@ ___
 
 ▪ **properties**: *PropertyDeclarations*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[properties](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-properties)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[properties](_wizard_textfield_.wizardtextfield.md#static-properties)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:149
 
@@ -2970,7 +2970,7 @@ ___
 
 ▪ **render**: *function*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[render](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-render)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:105
 
@@ -3023,7 +3023,7 @@ using the [[`css`]] tag function or via constructible stylesheets.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
 
-*Defined in [src/editing.ts:51](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L51)*
+*Defined in [src/editing.ts:51](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L51)*
 
 **Returns:** *boolean*
 
@@ -3035,7 +3035,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
 
-*Defined in [src/editing.ts:48](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L48)*
+*Defined in [src/editing.ts:48](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L48)*
 
 **Returns:** *boolean*
 
@@ -3045,7 +3045,7 @@ ___
 
 • **get hasUpdated**(): *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasUpdated](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-hasupdated)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasUpdated](_wizard_textfield_.wizardtextfield.md#protected-hasupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:337
 
@@ -3057,7 +3057,7 @@ ___
 
 • **get name**(): *string | null*
 
-*Defined in [src/open-scd-base.ts:204](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L204)*
+*Defined in [src/open-scd-base.ts:73](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L73)*
 
 **Returns:** *string | null*
 
@@ -3069,7 +3069,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
 
-*Defined in [src/editing.ts:61](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L61)*
+*Defined in [src/editing.ts:61](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L61)*
 
 **Returns:** *number*
 
@@ -3081,7 +3081,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
 
-*Defined in [src/editing.ts:54](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L54)*
+*Defined in [src/editing.ts:54](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L54)*
 
 **Returns:** *number*
 
@@ -3091,7 +3091,7 @@ ___
 
 • **get src**(): *string*
 
-*Defined in [src/open-scd-base.ts:214](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L214)*
+*Defined in [src/open-scd-base.ts:83](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L83)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3099,7 +3099,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-*Defined in [src/open-scd-base.ts:217](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L217)*
+*Defined in [src/open-scd-base.ts:86](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L86)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3117,7 +3117,7 @@ ___
 
 • **get updateComplete**(): *Promise‹unknown›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[updateComplete](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#updatecomplete)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[updateComplete](_wizard_textfield_.wizardtextfield.md#updatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:371
 
@@ -3141,11 +3141,11 @@ ___
 
 ###  wizard
 
-• **get wizard**(): *[Wizard](../modules/_foundation_.md#wizard) | undefined*
+• **get wizard**(): *TemplateResult*
 
-*Defined in [src/open-scd-base.ts:189](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L189)*
+*Defined in [src/open-scd-base.ts:56](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L56)*
 
-**Returns:** *[Wizard](../modules/_foundation_.md#wizard) | undefined*
+**Returns:** *TemplateResult*
 
 ___
 
@@ -3153,7 +3153,7 @@ ___
 
 • **get observedAttributes**(): *string[]*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[observedAttributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-observedattributes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[observedAttributes](_wizard_textfield_.wizardtextfield.md#static-observedattributes)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:154
 
@@ -3196,7 +3196,7 @@ ___
 
 ▸ **addEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[addEventListener](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#addeventlistener)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[addEventListener](_wizard_textfield_.wizardtextfield.md#addeventlistener)*
 
 *Overrides void*
 
@@ -3227,7 +3227,7 @@ Name | Type |
 
 ▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | AddEventListenerOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[addEventListener](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#addeventlistener)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[addEventListener](_wizard_textfield_.wizardtextfield.md#addeventlistener)*
 
 *Overrides void*
 
@@ -3249,7 +3249,7 @@ ___
 
 ▸ **adoptStyles**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[adoptStyles](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-adoptstyles)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[adoptStyles](_wizard_textfield_.wizardtextfield.md#protected-adoptstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:150
 
@@ -3269,9 +3269,9 @@ ___
 
 ▸ **after**(...`nodes`: (Node | string)[]): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[after](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#after)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[after](_wizard_textfield_.wizardtextfield.md#after)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[after](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#after)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[after](_wizard_textfield_.wizardtextfield.md#after)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3506
 
@@ -3293,9 +3293,9 @@ ___
 
 ▸ **animate**(`keyframes`: Keyframe[] | PropertyIndexedKeyframes | null, `options?`: number | KeyframeAnimationOptions): *Animation*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[animate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#animate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[animate](_wizard_textfield_.wizardtextfield.md#animate)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[animate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#animate)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[animate](_wizard_textfield_.wizardtextfield.md#animate)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
@@ -3314,9 +3314,9 @@ ___
 
 ▸ **append**(...`nodes`: (Node | string)[]): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[append](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#append)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[append](_wizard_textfield_.wizardtextfield.md#append)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[append](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#append)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[append](_wizard_textfield_.wizardtextfield.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -3338,9 +3338,9 @@ ___
 
 ▸ **appendChild**‹**T**›(`newChild`: T): *T*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[appendChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#appendchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[appendChild](_wizard_textfield_.wizardtextfield.md#appendchild)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[appendChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#appendchild)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[appendChild](_wizard_textfield_.wizardtextfield.md#appendchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
@@ -3362,9 +3362,9 @@ ___
 
 ▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[attachShadow](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#attachshadow)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attachShadow](_wizard_textfield_.wizardtextfield.md#attachshadow)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[attachShadow](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#attachshadow)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attachShadow](_wizard_textfield_.wizardtextfield.md#attachshadow)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
@@ -3384,7 +3384,7 @@ ___
 
 ▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[attributeChangedCallback](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#attributechangedcallback)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributeChangedCallback](_wizard_textfield_.wizardtextfield.md#attributechangedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:309
 
@@ -3406,9 +3406,9 @@ ___
 
 ▸ **before**(...`nodes`: (Node | string)[]): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[before](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#before)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[before](_wizard_textfield_.wizardtextfield.md#before)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[before](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#before)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[before](_wizard_textfield_.wizardtextfield.md#before)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3512
 
@@ -3458,9 +3458,9 @@ ___
 
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[cloneNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#clonenode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[cloneNode](_wizard_textfield_.wizardtextfield.md#clonenode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[cloneNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#clonenode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[cloneNode](_wizard_textfield_.wizardtextfield.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3480,9 +3480,9 @@ ___
 
 ▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[closest](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#closest)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[closest](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#closest)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
@@ -3502,9 +3502,9 @@ Name | Type |
 
 ▸ **closest**‹**K**›(`selector`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[closest](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#closest)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[closest](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#closest)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5157
 
@@ -3522,9 +3522,9 @@ Name | Type |
 
 ▸ **closest**‹**E**›(`selector`: string): *E | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[closest](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#closest)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[closest](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#closest)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5158
 
@@ -3548,7 +3548,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[commit](_open_scd_base_.openscdbase.md#commit)*
 
-*Defined in [src/editing.ts:115](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L115)*
+*Defined in [src/editing.ts:115](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L115)*
 
 **Parameters:**
 
@@ -3566,9 +3566,9 @@ ___
 
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[compareDocumentPosition](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#comparedocumentposition)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[compareDocumentPosition](_wizard_textfield_.wizardtextfield.md#comparedocumentposition)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[compareDocumentPosition](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#comparedocumentposition)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[compareDocumentPosition](_wizard_textfield_.wizardtextfield.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -3588,7 +3588,7 @@ ___
 
 ▸ **connectedCallback**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[connectedCallback](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#connectedcallback)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[connectedCallback](_wizard_textfield_.wizardtextfield.md#connectedcallback)*
 
 *Overrides void*
 
@@ -3602,9 +3602,9 @@ ___
 
 ▸ **contains**(`other`: Node | null): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[contains](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#contains)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contains](_wizard_textfield_.wizardtextfield.md#contains)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[contains](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#contains)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contains](_wizard_textfield_.wizardtextfield.md#contains)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10817
 
@@ -3643,7 +3643,7 @@ ___
 
 ▸ **disconnectedCallback**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[disconnectedCallback](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#disconnectedcallback)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[disconnectedCallback](_wizard_textfield_.wizardtextfield.md#disconnectedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:305
 
@@ -3659,9 +3659,9 @@ ___
 
 ▸ **dispatchEvent**(`event`: Event): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[dispatchEvent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#dispatchevent)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dispatchEvent](_wizard_textfield_.wizardtextfield.md#dispatchevent)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[dispatchEvent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#dispatchevent)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dispatchEvent](_wizard_textfield_.wizardtextfield.md#dispatchevent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5428
 
@@ -3681,7 +3681,7 @@ ___
 
 ▸ **enableUpdating**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[enableUpdating](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-enableupdating)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enableUpdating](_wizard_textfield_.wizardtextfield.md#protected-enableupdating)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:299
 
@@ -3695,7 +3695,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:227](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L227)*
+*Defined in [src/open-scd-base.ts:96](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L96)*
 
 **Parameters:**
 
@@ -3756,9 +3756,9 @@ ___
 
 ▸ **getAnimations**(): *Animation[]*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAnimations](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getanimations)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAnimations](_wizard_textfield_.wizardtextfield.md#getanimations)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAnimations](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getanimations)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAnimations](_wizard_textfield_.wizardtextfield.md#getanimations)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
@@ -3770,9 +3770,9 @@ ___
 
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattribute)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttribute](_wizard_textfield_.wizardtextfield.md#getattribute)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattribute)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttribute](_wizard_textfield_.wizardtextfield.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3792,9 +3792,9 @@ ___
 
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNS](_wizard_textfield_.wizardtextfield.md#getattributens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNS](_wizard_textfield_.wizardtextfield.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5166
 
@@ -3815,9 +3815,9 @@ ___
 
 ▸ **getAttributeNames**(): *string[]*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNames](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenames)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNames](_wizard_textfield_.wizardtextfield.md#getattributenames)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNames](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenames)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNames](_wizard_textfield_.wizardtextfield.md#getattributenames)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
@@ -3831,9 +3831,9 @@ ___
 
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNode](_wizard_textfield_.wizardtextfield.md#getattributenode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNode](_wizard_textfield_.wizardtextfield.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3851,9 +3851,9 @@ ___
 
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNodeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenodens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#getattributenodens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getAttributeNodeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getattributenodens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3872,9 +3872,9 @@ ___
 
 ▸ **getBoundingClientRect**(): *DOMRect*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getBoundingClientRect](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getboundingclientrect)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getBoundingClientRect](_wizard_textfield_.wizardtextfield.md#getboundingclientrect)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getBoundingClientRect](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getboundingclientrect)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getBoundingClientRect](_wizard_textfield_.wizardtextfield.md#getboundingclientrect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
@@ -3886,9 +3886,9 @@ ___
 
 ▸ **getClientRects**(): *DOMRectList*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getClientRects](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getclientrects)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getClientRects](_wizard_textfield_.wizardtextfield.md#getclientrects)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getClientRects](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getclientrects)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getClientRects](_wizard_textfield_.wizardtextfield.md#getclientrects)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
@@ -3900,9 +3900,9 @@ ___
 
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByClassName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbyclassname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByClassName](_wizard_textfield_.wizardtextfield.md#getelementsbyclassname)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByClassName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbyclassname)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByClassName](_wizard_textfield_.wizardtextfield.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3922,9 +3922,9 @@ ___
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagname)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5179
 
@@ -3942,9 +3942,9 @@ Name | Type |
 
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagname)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5180
 
@@ -3962,9 +3962,9 @@ Name | Type |
 
 ▸ **getElementsByTagName**(`qualifiedName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagName](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagname)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5181
 
@@ -3982,9 +3982,9 @@ ___
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagNameNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagnamens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagNameNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagnamens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
@@ -3999,9 +3999,9 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagNameNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagnamens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagNameNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagnamens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5183
 
@@ -4016,9 +4016,9 @@ Name | Type |
 
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagNameNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagnamens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getElementsByTagNameNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getelementsbytagnamens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5184
 
@@ -4037,9 +4037,9 @@ ___
 
 ▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getRootNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getrootnode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getRootNode](_wizard_textfield_.wizardtextfield.md#getrootnode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getRootNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#getrootnode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getRootNode](_wizard_textfield_.wizardtextfield.md#getrootnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
@@ -4059,7 +4059,7 @@ ___
 
 ▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
 
-*Defined in [src/open-scd-base.ts:279](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L279)*
+*Defined in [src/open-scd-base.ts:148](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L148)*
 
 **Parameters:**
 
@@ -4075,9 +4075,9 @@ ___
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattribute)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttribute](_wizard_textfield_.wizardtextfield.md#hasattribute)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattribute)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttribute](_wizard_textfield_.wizardtextfield.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -4097,9 +4097,9 @@ ___
 
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattributens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributeNS](_wizard_textfield_.wizardtextfield.md#hasattributens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattributens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributeNS](_wizard_textfield_.wizardtextfield.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5192
 
@@ -4120,9 +4120,9 @@ ___
 
 ▸ **hasAttributes**(): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasAttributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattributes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributes](_wizard_textfield_.wizardtextfield.md#hasattributes)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasAttributes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#hasattributes)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributes](_wizard_textfield_.wizardtextfield.md#hasattributes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
@@ -4136,9 +4136,9 @@ ___
 
 ▸ **hasChildNodes**(): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasChildNodes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#haschildnodes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasChildNodes](_wizard_textfield_.wizardtextfield.md#haschildnodes)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasChildNodes](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#haschildnodes)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasChildNodes](_wizard_textfield_.wizardtextfield.md#haschildnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10825
 
@@ -4152,9 +4152,9 @@ ___
 
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasPointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#haspointercapture)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasPointerCapture](_wizard_textfield_.wizardtextfield.md#haspointercapture)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[hasPointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#haspointercapture)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasPointerCapture](_wizard_textfield_.wizardtextfield.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5197
 
@@ -4172,11 +4172,11 @@ ___
 
 ▸ **info**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[info](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-info)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[info](_wizard_textfield_.wizardtextfield.md#optional-info)*
 
 *Overrides void*
 
-*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L161)*
+*Defined in [src/foundation.ts:176](https://github.com/openscd/open-scd/blob/0a1b62d/src/foundation.ts#L176)*
 
 **Parameters:**
 
@@ -4193,7 +4193,7 @@ ___
 
 ▸ **initialize**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[initialize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-initialize)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[initialize](_wizard_textfield_.wizardtextfield.md#protected-initialize)*
 
 *Overrides void*
 
@@ -4211,9 +4211,9 @@ ___
 
 ▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): *Element | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertAdjacentElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacentelement)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentElement](_wizard_textfield_.wizardtextfield.md#insertadjacentelement)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertAdjacentElement](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacentelement)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentElement](_wizard_textfield_.wizardtextfield.md#insertadjacentelement)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5198
 
@@ -4232,9 +4232,9 @@ ___
 
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertAdjacentHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacenthtml)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentHTML](_wizard_textfield_.wizardtextfield.md#insertadjacenthtml)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertAdjacentHTML](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacenthtml)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentHTML](_wizard_textfield_.wizardtextfield.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5199
 
@@ -4253,9 +4253,9 @@ ___
 
 ▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertAdjacentText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacenttext)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentText](_wizard_textfield_.wizardtextfield.md#insertadjacenttext)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertAdjacentText](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertadjacenttext)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentText](_wizard_textfield_.wizardtextfield.md#insertadjacenttext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
@@ -4274,9 +4274,9 @@ ___
 
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertBefore](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertbefore)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertBefore](_wizard_textfield_.wizardtextfield.md#insertbefore)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[insertBefore](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#insertbefore)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertBefore](_wizard_textfield_.wizardtextfield.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -4299,9 +4299,9 @@ ___
 
 ▸ **isDefaultNamespace**(`namespace`: string | null): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isDefaultNamespace](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#isdefaultnamespace)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isDefaultNamespace](_wizard_textfield_.wizardtextfield.md#isdefaultnamespace)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isDefaultNamespace](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#isdefaultnamespace)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isDefaultNamespace](_wizard_textfield_.wizardtextfield.md#isdefaultnamespace)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
@@ -4319,9 +4319,9 @@ ___
 
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isEqualNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#isequalnode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isEqualNode](_wizard_textfield_.wizardtextfield.md#isequalnode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isEqualNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#isequalnode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isEqualNode](_wizard_textfield_.wizardtextfield.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10831
 
@@ -4341,9 +4341,9 @@ ___
 
 ▸ **isSameNode**(`otherNode`: Node | null): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isSameNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#issamenode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isSameNode](_wizard_textfield_.wizardtextfield.md#issamenode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[isSameNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#issamenode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isSameNode](_wizard_textfield_.wizardtextfield.md#issamenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10832
 
@@ -4361,7 +4361,7 @@ ___
 
 ▸ **loadDoc**(`src`: string): *Promise‹string›*
 
-*Defined in [src/open-scd-base.ts:232](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L232)*
+*Defined in [src/open-scd-base.ts:101](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L101)*
 
 **Parameters:**
 
@@ -4377,7 +4377,7 @@ ___
 
 ▸ **loadFile**(`event`: Event): *void*
 
-*Defined in [src/open-scd-base.ts:270](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L270)*
+*Defined in [src/open-scd-base.ts:139](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L139)*
 
 Loads the file selected by input `event.target.files[0]`.
 
@@ -4397,7 +4397,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[log](_open_scd_base_.openscdbase.md#log)*
 
-*Defined in [src/editing.ts:85](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L85)*
+*Defined in [src/editing.ts:85](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L85)*
 
 **Parameters:**
 
@@ -4414,9 +4414,9 @@ ___
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lookupNamespaceURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lookupnamespaceuri)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupNamespaceURI](_wizard_textfield_.wizardtextfield.md#lookupnamespaceuri)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lookupNamespaceURI](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lookupnamespaceuri)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupNamespaceURI](_wizard_textfield_.wizardtextfield.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -4434,9 +4434,9 @@ ___
 
 ▸ **lookupPrefix**(`namespace`: string | null): *string | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lookupPrefix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lookupprefix)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupPrefix](_wizard_textfield_.wizardtextfield.md#lookupprefix)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[lookupPrefix](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#lookupprefix)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupPrefix](_wizard_textfield_.wizardtextfield.md#lookupprefix)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10834
 
@@ -4454,9 +4454,9 @@ ___
 
 ▸ **matches**(`selectors`: string): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[matches](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#matches)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[matches](_wizard_textfield_.wizardtextfield.md#matches)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[matches](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#matches)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[matches](_wizard_textfield_.wizardtextfield.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -4476,9 +4476,9 @@ ___
 
 ▸ **msGetRegionContent**(): *any*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[msGetRegionContent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#msgetregioncontent)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[msGetRegionContent](_wizard_textfield_.wizardtextfield.md#msgetregioncontent)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[msGetRegionContent](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#msgetregioncontent)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[msGetRegionContent](_wizard_textfield_.wizardtextfield.md#msgetregioncontent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
@@ -4490,9 +4490,9 @@ ___
 
 ▸ **normalize**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[normalize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#normalize)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[normalize](_wizard_textfield_.wizardtextfield.md#normalize)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[normalize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#normalize)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[normalize](_wizard_textfield_.wizardtextfield.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10838
 
@@ -4506,7 +4506,7 @@ ___
 
 ▸ **performUpdate**(): *void | Promise‹unknown›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[performUpdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-performupdate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[performUpdate](_wizard_textfield_.wizardtextfield.md#protected-performupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:354
 
@@ -4533,9 +4533,9 @@ ___
 
 ▸ **prepend**(...`nodes`: (Node | string)[]): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[prepend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#prepend)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[prepend](_wizard_textfield_.wizardtextfield.md#prepend)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[prepend](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#prepend)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[prepend](_wizard_textfield_.wizardtextfield.md#prepend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
@@ -4557,9 +4557,9 @@ ___
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselector)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselector)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11341
 
@@ -4579,9 +4579,9 @@ Name | Type |
 
 ▸ **querySelector**‹**K**›(`selectors`: K): *SVGElementTagNameMap[K] | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselector)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselector)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11342
 
@@ -4599,9 +4599,9 @@ Name | Type |
 
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselector)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselector)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11343
 
@@ -4623,9 +4623,9 @@ ___
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹HTMLElementTagNameMap[K]›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelectorAll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselectorall)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelectorAll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselectorall)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11347
 
@@ -4645,9 +4645,9 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹SVGElementTagNameMap[K]›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelectorAll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselectorall)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelectorAll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselectorall)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11348
 
@@ -4665,9 +4665,9 @@ Name | Type |
 
 ▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelectorAll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselectorall)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[querySelectorAll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#queryselectorall)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11349
 
@@ -4691,7 +4691,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
 
-*Defined in [src/editing.ts:78](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L78)*
+*Defined in [src/editing.ts:78](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L78)*
 
 **Returns:** *boolean*
 
@@ -4701,9 +4701,9 @@ ___
 
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[releasePointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#releasepointercapture)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[releasePointerCapture](_wizard_textfield_.wizardtextfield.md#releasepointercapture)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[releasePointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#releasepointercapture)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[releasePointerCapture](_wizard_textfield_.wizardtextfield.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5206
 
@@ -4721,9 +4721,9 @@ ___
 
 ▸ **remove**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[remove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#remove)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[remove](_wizard_textfield_.wizardtextfield.md#remove)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[remove](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#remove)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[remove](_wizard_textfield_.wizardtextfield.md#remove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3516
 
@@ -4737,9 +4737,9 @@ ___
 
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattribute)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttribute](_wizard_textfield_.wizardtextfield.md#removeattribute)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattribute)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttribute](_wizard_textfield_.wizardtextfield.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5210
 
@@ -4759,9 +4759,9 @@ ___
 
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattributens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNS](_wizard_textfield_.wizardtextfield.md#removeattributens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattributens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNS](_wizard_textfield_.wizardtextfield.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4782,9 +4782,9 @@ ___
 
 ▸ **removeAttributeNode**(`attr`: Attr): *Attr*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattributenode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNode](_wizard_textfield_.wizardtextfield.md#removeattributenode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeattributenode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNode](_wizard_textfield_.wizardtextfield.md#removeattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
@@ -4802,9 +4802,9 @@ ___
 
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removechild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeChild](_wizard_textfield_.wizardtextfield.md#removechild)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removechild)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeChild](_wizard_textfield_.wizardtextfield.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10839
 
@@ -4826,7 +4826,7 @@ ___
 
 ▸ **removeEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeEventListener](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeeventlistener)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeEventListener](_wizard_textfield_.wizardtextfield.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4857,7 +4857,7 @@ Name | Type |
 
 ▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | EventListenerOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[removeEventListener](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#removeeventlistener)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeEventListener](_wizard_textfield_.wizardtextfield.md#removeeventlistener)*
 
 *Overrides void*
 
@@ -4879,9 +4879,9 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[render](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-render)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
 
-*Defined in [src/open-scd-base.ts:447](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L447)*
+*Defined in [src/open-scd-base.ts:316](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L316)*
 
 **Returns:** *TemplateResult*
 
@@ -4891,7 +4891,7 @@ ___
 
 ▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-*Defined in [src/open-scd-base.ts:392](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L392)*
+*Defined in [src/open-scd-base.ts:261](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L261)*
 
 **Parameters:**
 
@@ -4907,7 +4907,7 @@ ___
 
 ▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
 
-*Defined in [src/open-scd-base.ts:404](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L404)*
+*Defined in [src/open-scd-base.ts:273](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L273)*
 
 **Parameters:**
 
@@ -4923,7 +4923,7 @@ ___
 
 ▸ **renderHistory**(`history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult[]*
 
-*Defined in [src/open-scd-base.ts:415](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L415)*
+*Defined in [src/open-scd-base.ts:284](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L284)*
 
 **Parameters:**
 
@@ -4939,7 +4939,7 @@ ___
 
 ▸ **renderLogEntry**(`entry`: [LogEntry](../interfaces/_editing_.logentry.md), `index`: number, `history`: [LogEntry](../interfaces/_editing_.logentry.md)[]): *TemplateResult*
 
-*Defined in [src/open-scd-base.ts:427](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L427)*
+*Defined in [src/open-scd-base.ts:296](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L296)*
 
 **Parameters:**
 
@@ -4957,7 +4957,7 @@ ___
 
 ▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
 
-*Defined in [src/open-scd-base.ts:373](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L373)*
+*Defined in [src/open-scd-base.ts:242](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L242)*
 
 **Parameters:**
 
@@ -4973,9 +4973,9 @@ ___
 
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[replaceChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#replacechild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceChild](_wizard_textfield_.wizardtextfield.md#replacechild)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[replaceChild](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#replacechild)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceChild](_wizard_textfield_.wizardtextfield.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10840
 
@@ -4998,9 +4998,9 @@ ___
 
 ▸ **replaceWith**(...`nodes`: (Node | string)[]): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[replaceWith](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#replacewith)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceWith](_wizard_textfield_.wizardtextfield.md#replacewith)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[replaceWith](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#replacewith)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceWith](_wizard_textfield_.wizardtextfield.md#replacewith)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3522
 
@@ -5022,9 +5022,9 @@ ___
 
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[requestFullscreen](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestfullscreen)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestFullscreen](_wizard_textfield_.wizardtextfield.md#requestfullscreen)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[requestFullscreen](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestfullscreen)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestFullscreen](_wizard_textfield_.wizardtextfield.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5221
 
@@ -5046,9 +5046,9 @@ ___
 
 ▸ **requestPointerLock**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[requestPointerLock](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestpointerlock)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestPointerLock](_wizard_textfield_.wizardtextfield.md#requestpointerlock)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[requestPointerLock](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestpointerlock)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestPointerLock](_wizard_textfield_.wizardtextfield.md#requestpointerlock)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5222
 
@@ -5060,7 +5060,7 @@ ___
 
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[requestUpdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#requestupdate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdate](_wizard_textfield_.wizardtextfield.md#requestupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:331
 
@@ -5089,7 +5089,7 @@ ___
 
 ▸ **requestUpdateInternal**(`name?`: PropertyKey, `oldValue?`: unknown, `options?`: PropertyDeclaration): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[requestUpdateInternal](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-requestupdateinternal)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdateInternal](_wizard_textfield_.wizardtextfield.md#protected-requestupdateinternal)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:317
 
@@ -5113,9 +5113,9 @@ ___
 
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scroll)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scroll)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -5129,9 +5129,9 @@ Name | Type |
 
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scroll)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scroll](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scroll)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5224
 
@@ -5150,9 +5150,9 @@ ___
 
 ▸ **scrollBy**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollBy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollby)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollBy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollby)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5225
 
@@ -5166,9 +5166,9 @@ Name | Type |
 
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollBy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollby)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollBy](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollby)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5226
 
@@ -5187,9 +5187,9 @@ ___
 
 ▸ **scrollIntoView**(`arg?`: boolean | ScrollIntoViewOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollIntoView](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollintoview)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollIntoView](_wizard_textfield_.wizardtextfield.md#scrollintoview)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollIntoView](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollintoview)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollIntoView](_wizard_textfield_.wizardtextfield.md#scrollintoview)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
@@ -5207,9 +5207,9 @@ ___
 
 ▸ **scrollTo**(`options?`: ScrollToOptions): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollTo](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollto)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollTo](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollto)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
@@ -5223,9 +5223,9 @@ Name | Type |
 
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollTo](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollto)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[scrollTo](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#scrollto)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -5244,9 +5244,9 @@ ___
 
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattribute)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttribute](_wizard_textfield_.wizardtextfield.md#setattribute)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattribute)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttribute](_wizard_textfield_.wizardtextfield.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5233
 
@@ -5267,9 +5267,9 @@ ___
 
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNS](_wizard_textfield_.wizardtextfield.md#setattributens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttributeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNS](_wizard_textfield_.wizardtextfield.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -5291,9 +5291,9 @@ ___
 
 ▸ **setAttributeNode**(`attr`: Attr): *Attr | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributenode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNode](_wizard_textfield_.wizardtextfield.md#setattributenode)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttributeNode](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributenode)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNode](_wizard_textfield_.wizardtextfield.md#setattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5238
 
@@ -5311,9 +5311,9 @@ ___
 
 ▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttributeNodeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributenodens)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#setattributenodens)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setAttributeNodeNS](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setattributenodens)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#setattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5239
 
@@ -5331,9 +5331,9 @@ ___
 
 ▸ **setPointerCapture**(`pointerId`: number): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setPointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setpointercapture)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setPointerCapture](_wizard_textfield_.wizardtextfield.md#setpointercapture)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[setPointerCapture](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#setpointercapture)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setPointerCapture](_wizard_textfield_.wizardtextfield.md#setpointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5240
 
@@ -5351,7 +5351,7 @@ ___
 
 ▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[shouldUpdate](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#protected-shouldupdate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shouldUpdate](_wizard_textfield_.wizardtextfield.md#protected-shouldupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:396
 
@@ -5373,9 +5373,9 @@ ___
 
 ▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[toggleAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#toggleattribute)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[toggleAttribute](_wizard_textfield_.wizardtextfield.md#toggleattribute)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[toggleAttribute](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#toggleattribute)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[toggleAttribute](_wizard_textfield_.wizardtextfield.md#toggleattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5246
 
@@ -5400,7 +5400,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
 
-*Defined in [src/editing.ts:69](https://github.com/openscd/open-scd/blob/b4790ce/src/editing.ts#L69)*
+*Defined in [src/editing.ts:69](https://github.com/openscd/open-scd/blob/0a1b62d/src/editing.ts#L69)*
 
 **Returns:** *boolean*
 
@@ -5434,7 +5434,7 @@ ___
 
 ▸ **updated**(`_changedProperties`: PropertyValues): *void*
 
-*Inherited from [WizardDialog](_open_scd_base_.wizarddialog.md).[updated](_open_scd_base_.wizarddialog.md#protected-updated)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#protected-updated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:415
 
@@ -5458,11 +5458,11 @@ ___
 
 ▸ **warn**(`message`: string, ...`data`: any[]): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[warn](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#optional-warn)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[warn](_wizard_textfield_.wizardtextfield.md#optional-warn)*
 
 *Overrides void*
 
-*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/b4790ce/src/foundation.ts#L162)*
+*Defined in [src/foundation.ts:177](https://github.com/openscd/open-scd/blob/0a1b62d/src/foundation.ts#L177)*
 
 **Parameters:**
 
@@ -5479,9 +5479,9 @@ ___
 
 ▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[webkitMatchesSelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#webkitmatchesselector)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[webkitMatchesSelector](_wizard_textfield_.wizardtextfield.md#webkitmatchesselector)*
 
-*Overrides [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[webkitMatchesSelector](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#webkitmatchesselector)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[webkitMatchesSelector](_wizard_textfield_.wizardtextfield.md#webkitmatchesselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5247
 
@@ -5499,7 +5499,7 @@ ___
 
 ▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[createProperty](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-createproperty)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createProperty](_wizard_textfield_.wizardtextfield.md#static-createproperty)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:184
 
@@ -5539,7 +5539,7 @@ ___
 
 ▸ **finalize**(): *void*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[finalize](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-finalize)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalize](_wizard_textfield_.wizardtextfield.md#static-protected-finalize)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:233
 
@@ -5556,7 +5556,7 @@ ___
 
 ▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `options`: PropertyDeclaration): *object*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getPropertyDescriptor](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-getpropertydescriptor)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyDescriptor](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertydescriptor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:209
 
@@ -5607,7 +5607,7 @@ ___
 
 ▸ **getPropertyOptions**(`name`: PropertyKey): *PropertyDeclaration‹unknown, unknown›*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getPropertyOptions](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-protected-getpropertyoptions)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyOptions](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertyoptions)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:227
 
@@ -5637,7 +5637,7 @@ ___
 
 ▸ **getStyles**(): *CSSResultOrNative | CSSResultArray | undefined*
 
-*Inherited from [NullableTextFieldWithUnit](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md).[getStyles](_nullable_textfield_with_unit_.nullabletextfieldwithunit.md#static-getstyles)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getStyles](_wizard_textfield_.wizardtextfield.md#static-getstyles)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:118
 
@@ -5654,7 +5654,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-*Defined in [src/open-scd-base.ts:341](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L341)*
+*Defined in [src/open-scd-base.ts:210](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L210)*
 
 ###  editors
 
@@ -5688,4 +5688,4 @@ Override this method to integrate into a style management system.
       },
     ]
 
-*Defined in [src/open-scd-base.ts:342](https://github.com/openscd/open-scd/blob/b4790ce/src/open-scd-base.ts#L342)*
+*Defined in [src/open-scd-base.ts:211](https://github.com/openscd/open-scd/blob/0a1b62d/src/open-scd-base.ts#L211)*
