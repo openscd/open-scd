@@ -1,14 +1,12 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../src/nullable-textfield-with-unit.js';
-import { NullableTextFieldWithUnit } from '../src/nullable-textfield-with-unit.js';
+import '../src/wizard-textfield.js';
+import { WizardTextField } from '../src/wizard-textfield.js';
 
 describe('Nullable Textfield with Units', () => {
-  let element: NullableTextFieldWithUnit;
+  let element: WizardTextField;
   beforeEach(async () => {
-    element = await fixture(
-      html`<nullable-textfield-with-unit></nullable-textfield-with-unit>`
-    );
+    element = await fixture(html`<wizard-textfield></wizard-textfield>`);
   });
 
   it('adds a switch element with nullable option', async () => {

@@ -1,7 +1,7 @@
 import { Select } from '@material/mwc-select';
 import { TextField } from '@material/mwc-textfield';
 import { TemplateResult } from 'lit-element';
-import { NullableTextFieldWithUnit } from './nullable-textfield-with-unit.js';
+import { WizardTextField } from './wizard-textfield.js';
 
 /** Represents a change to some `Element`. */
 export type Action = Create | Update | Delete | Move;
@@ -100,7 +100,7 @@ export function newActionEvent<T extends Action>(
   });
 }
 
-export type WizardInput = TextField | NullableTextFieldWithUnit | Select;
+export type WizardInput = WizardTextField;
 
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
@@ -117,8 +117,23 @@ export interface WizardPage {
     action: (inputs: WizardInput[]) => Action[];
   };
 }
-
 export type Wizard = WizardPage[];
+
+export interface WizardDetail {
+  wizard: Wizard | null;
+}
+export type WizardEvent = CustomEvent<WizardDetail>;
+export function newWizardEvent(
+  wizard: Wizard | null = null,
+  eventInitDict?: CustomEventInit<WizardDetail>
+): WizardEvent {
+  return new CustomEvent<WizardDetail>('wizard', {
+    bubbles: true,
+    composed: true,
+    detail: { wizard },
+    ...eventInitDict,
+  });
+}
 
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {
@@ -154,7 +169,7 @@ declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;
     ['editor-action']: ActionEvent<Action>;
-    ['wizard']: CustomEvent<{ wizard: Wizard | null }>;
+    ['wizard']: WizardEvent;
   }
   interface HTMLElement {
     // Extended for other mixins to be able to use `Logging` mixin.

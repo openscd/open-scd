@@ -12,16 +12,14 @@ import { Dialog } from '@material/mwc-dialog';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
-import { Select } from '@material/mwc-select';
 
-import '../mwc-textfield-nullable.js';
-import { NullableTextFieldWithUnit } from '../nullable-textfield-with-unit.js';
-import '../nullable-textfield-with-unit.js';
-import { Action, Wizard, WizardInput } from '../foundation.js';
+import { WizardTextField } from '../wizard-textfield.js';
+import '../wizard-textfield.js';
+import { Action, newWizardEvent, WizardInput } from '../foundation.js';
 import { styles } from './substation/substation-css.js';
 export default class SubstationEditor extends LitElement {
   defaultNomFreq = 50;
-  defaultNumPhases = null;
+  defaultNumPhases = 3;
   defaultVoltage = 110;
 
   @property()
@@ -46,28 +44,16 @@ export default class SubstationEditor extends LitElement {
 
   @query('mwc-menu') menuUI!: Menu;
   @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
-  @query('mwc-dialog#create-voltage-level') createVoltageLevelUI!: Dialog;
   @query('#voltageLevelName')
-  voltageLevelNameUI!: NullableTextFieldWithUnit;
+  voltageLevelNameUI!: WizardTextField;
   @query('#voltageLevelDesc')
-  voltageLevelDescUI!: NullableTextFieldWithUnit;
+  voltageLevelDescUI!: WizardTextField;
   @query('#voltageLevelNomFreq')
-  voltageLevelNomFreqUI!: NullableTextFieldWithUnit;
+  voltageLevelNomFreqUI!: WizardTextField;
   @query('#voltageLevelNumPhases')
-  voltageLevelNumPhasesUI!: NullableTextFieldWithUnit;
+  voltageLevelNumPhasesUI!: WizardTextField;
   @query('#Voltage')
-  voltageLevelVoltageUI!: NullableTextFieldWithUnit;
-
-  checkVoltageLevelValidity(): boolean {
-    return (
-      this.element !== null &&
-      Array.from(
-        this.createVoltageLevelUI.querySelectorAll(
-          'nullable-textfield-with-unit'
-        )
-      ).every(tf => tf.checkValidity())
-    );
-  }
+  voltageLevelVoltageUI!: WizardTextField;
 
   newUpdateAction(name: string, desc: string | null): Action {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
@@ -120,7 +106,8 @@ export default class SubstationEditor extends LitElement {
           ${
             Voltage === null
               ? ''
-              : `<Voltage unit="V" multiplier="${multiplier}">${Voltage}</Voltage>`
+              : `<Voltage unit="V" multiplier="${multiplier}">
+              ${Voltage}</Voltage>`
           }
           </VoltageLevel>`,
           'application/xml'
@@ -142,18 +129,18 @@ export default class SubstationEditor extends LitElement {
 
   requestVoltageLevelCreate(inputs: WizardInput[]): Action[] {
     if (!(this.element && inputs.every(wi => wi.checkValidity()))) return [];
-    const name = inputs.find(i => i.label === 'name')?.value ?? '';
-    const desc = inputs.find(i => i.label === 'desc')?.value ?? null;
-    const nomFreq = inputs.find(i => i.label === 'nomFreq')?.value ?? null;
-    const numPhases = inputs.find(i => i.label === 'numPhases')?.value ?? null;
-    const Voltage = inputs.find(i => i.label === 'Voltage')?.value ?? null;
+    const name = inputs.find(i => i.label === 'name')!;
+    const desc = inputs.find(i => i.label === 'desc')!;
+    const nomFreq = inputs.find(i => i.label === 'nomFreq')!;
+    const numPhases = inputs.find(i => i.label === 'numPhases')!;
+    const Voltage = inputs.find(i => i.label === 'Voltage')!;
     this.newVoltageLevelCreateAction(
-      this.voltageLevelNameUI.value,
-      this.voltageLevelDescUI.maybeValue,
-      this.voltageLevelNomFreqUI.maybeValue,
-      this.voltageLevelNumPhasesUI.maybeValue,
-      this.voltageLevelVoltageUI.maybeValue,
-      this.voltageLevelVoltageUI.multiplier
+      name.value,
+      desc.maybeValue,
+      nomFreq.maybeValue,
+      numPhases.maybeValue,
+      Voltage.maybeValue,
+      Voltage.multiplier
     );
     return [];
   }
@@ -162,66 +149,100 @@ export default class SubstationEditor extends LitElement {
     if (this.menuUI) this.menuUI.anchor = this.menuIconUI;
   }
 
-  renderCreateVoltageLevelUI(): TemplateResult {
-    if (!this.element) return html``;
-    return html`<mwc-dialog
-      heading="Add Voltage Level"
-      id="create-voltage-level"
-    >
-      <nullable-textfield-with-unit
-        id="voltageLevelName"
-        label="name"
-        helper="Voltage Level Name"
-        required
-        dialogInitialFocus
-      ></nullable-textfield-with-unit>
-      <nullable-textfield-with-unit
-        id="voltageLevelDesc"
-        label="desc"
-        nullable="true"
-        helper="Description"
-      ></nullable-textfield-with-unit>
-      <nullable-textfield-with-unit
-        id="voltageLevelNomFreq"
-        label="nomFreq"
-        nullable="true"
-        style="flex:auto"
-        .Value="${this.defaultNomFreq}"
-        helper="Nominal Frequency in Hz"
-        required
-        pattern="[0-9]*[.]?[0-9]{1,2}"
-      ></nullable-textfield-with-unit>
-      <nullable-textfield-with-unit
-        id="voltageLevelNumPhases"
-        label="numPhases"
-        nullable="true"
-        .Value="${this.defaultNumPhases}"
-        helper="Number of Phases"
-        defaultValue="Jakob"
-        required
-        type="number"
-        min="1"
-        max="255"
-      ></nullable-textfield-with-unit>
-      <nullable-textfield-with-unit
-        id="Voltage"
-        nullable
-        unit="V"
-        .multipliers=${['G', 'M', 'k', '', 'm']}
-        preSelectedMultiplier="k"
-        label="Voltage"
-        .Value="${this.defaultVoltage}"
-        helper="Voltage in kV"
-        required
-        pattern="[0-9]*[.]?[0-9]{1,3}"
-      ></nullable-textfield-with-unit>
-      <mwc-button slot="secondaryAction" dialogAction="close">
-        Cancel
-      </mwc-button>
-      <mwc-button @click=${this.requestVoltageLevelCreate} slot="primaryAction">
-        Add
-      </mwc-button>
-    </mwc-dialog>`;
+  openVoltageLevelWizard(): void {
+    const event = newWizardEvent([
+      {
+        title: 'Add Voltage Level PAGE ONE',
+        content: [
+          html`<wizard-textfield
+            label="name"
+            helper="Name"
+            iconTrailing="title"
+            required
+            validationMessage="Required"
+            dialogInitialFocus
+          ></wizard-textfield>`,
+          html`<wizard-textfield
+            label="desc"
+            nullable="true"
+            helper="Description"
+            iconTrailing="description"
+          ></wizard-textfield>`,
+          html`<wizard-textfield
+            label="nomFreq"
+            nullable="true"
+            style="flex:auto"
+            .maybeValue=${this.defaultNomFreq}
+            defaultValue=${this.defaultNomFreq}
+            helper="Nominal Frequency"
+            suffix="Hz"
+            required
+            validationMessage="Must not be empty"
+            pattern="[0-9]*[.]?[0-9]{1,2}"
+          ></wizard-textfield>`,
+          html`<wizard-textfield
+            label="numPhases"
+            nullable="true"
+            .maybeValue=${this.defaultNumPhases}
+            defaultValue=${this.defaultNumPhases}
+            helper="Number of Phases"
+            suffix="#"
+            required
+            validationMessage="Must not be empty"
+            type="number"
+            min="1"
+            max="255"
+          ></wizard-textfield>`,
+          html`<wizard-textfield
+            nullable
+            unit="V"
+            .multipliers=${['G', 'M', 'k', '', 'm']}
+            preSelectedMultiplier="k"
+            label="Voltage"
+            .maybeValue=${this.defaultVoltage}
+            defaultValue=${this.defaultVoltage}
+            helper="Voltage"
+            required
+            validationMessage="Must not be empty"
+            pattern="[0-9]*[.]?[0-9]{1,3}"
+          ></wizard-textfield>`,
+        ],
+      },
+    ]);
+    this.dispatchEvent(event);
+  }
+
+  openSubstationWizard(): void {
+    const [heading, actionName, actionIcon] = this.element
+      ? ['Edit Substation', 'Save', 'edit']
+      : ['Add Substation', 'Add', 'add'];
+    const event = newWizardEvent([
+      {
+        title: heading,
+        primary: {
+          icon: actionIcon,
+          action: this.requestSubstationEdit,
+          label: actionName,
+        },
+        content: [
+          html`<wizard-textfield
+            value=${this.name ?? ''}
+            helper="Substation Name"
+            label="name"
+            required
+            dialogInitialFocus
+          ></wizard-textfield>`,
+          html`<p>Testing</p>`,
+          html`<wizard-textfield
+            value=${this.desc ?? ''}
+            helper="Substation Description"
+            label="desc"
+            nullable
+          ></wizard-textfield>`,
+        ],
+      },
+    ]);
+    this.dispatchEvent(event);
   }
 
   renderHeader(): TemplateResult {
@@ -237,7 +258,7 @@ export default class SubstationEditor extends LitElement {
           .anchor=${this.menuIconUI}
           corner="BOTTOM_RIGHT"
           @action=${(ae: CustomEvent<ActionDetail>) => {
-            if (ae.detail.index == 0) this.createVoltageLevelUI.show();
+            if (ae.detail.index == 0) this.openVoltageLevelWizard();
           }}
         >
           <mwc-list-item>Add Voltage Level</mwc-list-item>
@@ -246,53 +267,9 @@ export default class SubstationEditor extends LitElement {
     `;
   }
 
-  openSubstationWizard(): void {
-    const [heading, actionName, actionIcon] = this.element
-      ? ['Edit Substation', 'Save', 'edit']
-      : ['Add Substation', 'Add', 'add'];
-    const event = new CustomEvent<{ wizard: Wizard }>('wizard', {
-      bubbles: true,
-      composed: true,
-      detail: {
-        wizard: [
-          {
-            title: 'Enter Substation name',
-            content: [
-              html`<mwc-textfield
-                value=${this.name ?? ''}
-                helper="Substation Name"
-                label="name"
-                required
-                dialogInitialFocus
-              ></mwc-textfield>`,
-              html`<p>Testing</p>`,
-            ],
-          },
-          {
-            title: heading,
-            primary: {
-              icon: actionIcon,
-              action: this.requestSubstationEdit,
-              label: actionName,
-            },
-            content: [
-              html`<p>Test</p>`,
-              html`<mwc-textfield-nullable
-                value=${this.desc ?? ''}
-                helper="Substation Description"
-                label="desc"
-              ></mwc-textfield-nullable>`,
-            ],
-          },
-        ],
-      },
-    });
-    this.dispatchEvent(event);
-  }
-
   render(): TemplateResult {
     return html`
-      ${this.renderHeader()} ${this.renderCreateVoltageLevelUI()}
+      ${this.renderHeader()}
       <mwc-fab
         @click=${this.openSubstationWizard}
         icon="${this.element ? 'edit' : 'add'}"
@@ -305,7 +282,7 @@ export default class SubstationEditor extends LitElement {
     super();
 
     this.requestSubstationEdit = this.requestSubstationEdit.bind(this);
-    this.requestSubstationEdit = this.requestSubstationEdit.bind(this);
+    this.requestVoltageLevelCreate = this.requestVoltageLevelCreate.bind(this);
   }
 
   static styles = styles;

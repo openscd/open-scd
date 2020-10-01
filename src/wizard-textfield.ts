@@ -16,12 +16,12 @@ import { TextField } from '@material/mwc-textfield';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'nullable-textfield-with-unit': NullableTextFieldWithUnit;
+    'wizard-textfield': WizardTextField;
   }
 }
 
-@customElement('nullable-textfield-with-unit')
-export class NullableTextFieldWithUnit extends TextField {
+@customElement('wizard-textfield')
+export class WizardTextField extends TextField {
   @property({ type: Boolean })
   nullable = false;
   @property({ type: Array })
