@@ -41,11 +41,10 @@ export class WizardTextField extends TextField {
   @property({ type: String })
   defaultValue = '';
   private isNull = false;
-  @property({ type: Boolean })
-  get null(): boolean {
+  private get null(): boolean {
     return this.nullable && this.isNull;
   }
-  set null(value: boolean) {
+  private set null(value: boolean) {
     if (!this.nullable || value == this.isNull) return;
     this.isNull = value;
     if (this.null) this.disable();

@@ -129,7 +129,7 @@ describe('Nullable Textfield with Units', () => {
   describe('with a null value', () => {
     beforeEach(async () => {
       element.nullable = true;
-      element.null = true;
+      element.maybeValue = null;
       await element.updateComplete;
     });
 
@@ -147,10 +147,10 @@ describe('Nullable Textfield with Units', () => {
     });
 
     it('displays default value of the attribute in the helper if present', async () => {
-      element.null = false;
+      element.maybeValue = '';
       await element.updateComplete;
       element.defaultValue = 'Jakob';
-      element.null = true;
+      element.maybeValue = null;
       await element.updateComplete;
       expect(element).to.have.property('helper', 'Default: Jakob');
     });
