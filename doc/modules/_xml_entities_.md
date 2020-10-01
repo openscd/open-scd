@@ -14,7 +14,7 @@
 
 ▸ **encodeNonASCII**(`str`: string): *string*
 
-*Defined in [src/xml-entities.ts:2](https://github.com/openscd/open-scd/blob/0a1b62d/src/xml-entities.ts#L2)*
+*Defined in [src/xml-entities.ts:2](https://github.com/openscd/open-scd/blob/0307dca/src/xml-entities.ts#L2)*
 
 Encodes all non ASCII symbols in `str` as XML entities.
 

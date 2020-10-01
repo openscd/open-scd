@@ -25,7 +25,6 @@
 | `multiplierSelect`        |                |           | `Select \| undefined`                            |         |                                                  |
 | `multipliers`             | `multipliers`  |           | `string[]`                                       | [""]    |                                                  |
 | `name`                    |                |           | `string`                                         |         |                                                  |
-| `null`                    | `null`         |           | `boolean`                                        |         |                                                  |
 | `nullSwitch`              |                |           | `Switch \| undefined`                            |         |                                                  |
 | `nullable`                | `nullable`     |           | `boolean`                                        | false   |                                                  |
 | `outlined`                |                |           | `boolean`                                        |         |                                                  |
