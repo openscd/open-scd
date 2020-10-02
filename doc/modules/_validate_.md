@@ -6583,15 +6583,15 @@
   </xs:element>
 </xs:schema>`
 
-*Defined in [src/validate.ts:36](https://github.com/openscd/open-scd/blob/f0117a7/src/validate.ts#L36)*
+*Defined in [src/validate.ts:36](https://github.com/openscd/open-scd/blob/6a0bb7d/src/validate.ts#L36)*
 
 ## Functions
 
 ###  validateSCL
 
-▸ **validateSCL**(`doc`: XMLDocument, `fileName`: string, `cause?`: [LogEntry](../interfaces/_editing_.logentry.md)): *Promise‹Array‹Pick‹[LogEntry](../interfaces/_editing_.logentry.md), "title" | "message" | "cause"›››*
+▸ **validateSCL**(`doc`: XMLDocument, `fileName`: string, `cause?`: [LogEntry](../interfaces/_logging_.logentry.md)): *Promise‹Array‹Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "title" | "message" | "cause"›››*
 
-*Defined in [src/validate.ts:13](https://github.com/openscd/open-scd/blob/f0117a7/src/validate.ts#L13)*
+*Defined in [src/validate.ts:13](https://github.com/openscd/open-scd/blob/6a0bb7d/src/validate.ts#L13)*
 
 Validates `doc` against the `SCL 2007 B1` schema.
 
@@ -6601,9 +6601,9 @@ Name | Type | Default |
 ------ | ------ | ------ |
 `doc` | XMLDocument | - |
 `fileName` | string | "untitled.scd" |
-`cause?` | [LogEntry](../interfaces/_editing_.logentry.md) | - |
+`cause?` | [LogEntry](../interfaces/_logging_.logentry.md) | - |
 
-**Returns:** *Promise‹Array‹Pick‹[LogEntry](../interfaces/_editing_.logentry.md), "title" | "message" | "cause"›››*
+**Returns:** *Promise‹Array‹Pick‹[LogEntry](../interfaces/_logging_.logentry.md), "title" | "message" | "cause"›››*
 
 ___
 
@@ -6611,7 +6611,7 @@ ___
 
 ▸ **validateXML**(`parameters`: [XMLParams](../interfaces/_validate_.xmlparams.md)): *string*
 
-*Defined in [src/validate.ts:10](https://github.com/openscd/open-scd/blob/f0117a7/src/validate.ts#L10)*
+*Defined in [src/validate.ts:10](https://github.com/openscd/open-scd/blob/6a0bb7d/src/validate.ts#L10)*
 
 **Parameters:**
 

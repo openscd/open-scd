@@ -10,9 +10,9 @@
 
 ### Interfaces
 
-* [ActionDetail](../interfaces/_foundation_.actiondetail.md)
 * [Create](../interfaces/_foundation_.create.md)
 * [Delete](../interfaces/_foundation_.delete.md)
+* [EditorActionDetail](../interfaces/_foundation_.editoractiondetail.md)
 * [Move](../interfaces/_foundation_.move.md)
 * [PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)
 * [Update](../interfaces/_foundation_.update.md)
@@ -21,16 +21,20 @@
 
 ### Type aliases
 
-* [Action](_foundation_.md#action)
-* [ActionEvent](_foundation_.md#actionevent)
 * [CloseableElement](_foundation_.md#closeableelement)
-* [ElementConstructor](_foundation_.md#elementconstructor)
+* [EditorAction](_foundation_.md#editoraction)
+* [EditorActionEvent](_foundation_.md#editoractionevent)
+* [LitElementConstructor](_foundation_.md#litelementconstructor)
 * [Mixin](_foundation_.md#mixin)
 * [PendingStateEvent](_foundation_.md#pendingstateevent)
 * [Wizard](_foundation_.md#wizard)
 * [WizardAction](_foundation_.md#wizardaction)
 * [WizardEvent](_foundation_.md#wizardevent)
 * [WizardInput](_foundation_.md#wizardinput)
+
+### Variables
+
+* [ifImplemented](_foundation_.md#const-ifimplemented)
 
 ### Functions
 
@@ -46,37 +50,37 @@
 
 ## Type aliases
 
-###  Action
+###  CloseableElement
 
-Ƭ **Action**: *[Create](../interfaces/_foundation_.create.md) | [Update](../interfaces/_foundation_.update.md) | [Delete](../interfaces/_foundation_.delete.md) | [Move](../interfaces/_foundation_.move.md)*
+Ƭ **CloseableElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) & object*
 
-*Defined in [src/foundation.ts:7](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L7)*
+*Defined in [src/foundation.ts:105](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L105)*
+
+___
+
+###  EditorAction
+
+Ƭ **EditorAction**: *[Create](../interfaces/_foundation_.create.md) | [Update](../interfaces/_foundation_.update.md) | [Delete](../interfaces/_foundation_.delete.md) | [Move](../interfaces/_foundation_.move.md)*
+
+*Defined in [src/foundation.ts:7](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L7)*
 
 Represents a change to some `Element`.
 
 ___
 
-###  ActionEvent
+###  EditorActionEvent
 
-Ƭ **ActionEvent**: *CustomEvent‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››*
+Ƭ **EditorActionEvent**: *CustomEvent‹[EditorActionDetail](../interfaces/_foundation_.editoractiondetail.md)‹T››*
 
-*Defined in [src/foundation.ts:90](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L90)*
-
-___
-
-###  CloseableElement
-
-Ƭ **CloseableElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) & object*
-
-*Defined in [src/foundation.ts:103](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L103)*
+*Defined in [src/foundation.ts:90](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L90)*
 
 ___
 
-###  ElementConstructor
+###  LitElementConstructor
 
-Ƭ **ElementConstructor**: *object*
+Ƭ **LitElementConstructor**: *object*
 
-*Defined in [src/foundation.ts:167](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L167)*
+*Defined in [src/foundation.ts:175](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L175)*
 
 Constructor type for defining `HTMLElement` mixins.
 
@@ -88,7 +92,7 @@ ___
 
 Ƭ **Mixin**: *InstanceType‹ReturnType‹T››*
 
-*Defined in [src/foundation.ts:170](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L170)*
+*Defined in [src/foundation.ts:178](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L178)*
 
 The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`.
 
@@ -98,7 +102,7 @@ ___
 
 Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›*
 
-*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L148)*
+*Defined in [src/foundation.ts:150](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L150)*
 
 ___
 
@@ -106,7 +110,7 @@ ___
 
 Ƭ **Wizard**: *[WizardPage](../interfaces/_foundation_.wizardpage.md)[]*
 
-*Defined in [src/foundation.ts:126](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L126)*
+*Defined in [src/foundation.ts:128](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L128)*
 
 ___
 
@@ -114,11 +118,11 @@ ___
 
 Ƭ **WizardAction**: *function*
 
-*Defined in [src/foundation.ts:106](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L106)*
+*Defined in [src/foundation.ts:108](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L108)*
 
 #### Type declaration:
 
-▸ (`inputs`: [WizardInput](_foundation_.md#wizardinput)[], `dialog`: [CloseableElement](_foundation_.md#closeableelement)): *[Action](_foundation_.md#action)[]*
+▸ (`inputs`: [WizardInput](_foundation_.md#wizardinput)[], `dialog`: [CloseableElement](_foundation_.md#closeableelement)): *[EditorAction](_foundation_.md#editoraction)[]*
 
 **Parameters:**
 
@@ -133,7 +137,7 @@ ___
 
 Ƭ **WizardEvent**: *CustomEvent‹[WizardDetail](../interfaces/_foundation_.wizarddetail.md)›*
 
-*Defined in [src/foundation.ts:131](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L131)*
+*Defined in [src/foundation.ts:133](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L133)*
 
 ___
 
@@ -141,39 +145,52 @@ ___
 
 Ƭ **WizardInput**: *[WizardTextField](../classes/_wizard_textfield_.wizardtextfield.md)*
 
-*Defined in [src/foundation.ts:105](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L105)*
+*Defined in [src/foundation.ts:107](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L107)*
+
+## Variables
+
+### `Const` ifImplemented
+
+• **ifImplemented**: *(Anonymous function)* = directive(rendered => (part: Part) => {
+  if (Object.keys(rendered).length) part.setValue(rendered);
+  else part.setValue('');
+})
+
+*Defined in [src/foundation.ts:164](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L164)*
+
+Useful `lit-html` directives
 
 ## Functions
 
 ###  invert
 
-▸ **invert**(`action`: [Action](_foundation_.md#action)): *[Action](_foundation_.md#action)*
+▸ **invert**(`action`: [EditorAction](_foundation_.md#editoraction)): *[EditorAction](_foundation_.md#editoraction)*
 
-*Defined in [src/foundation.ts:68](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L68)*
+*Defined in [src/foundation.ts:68](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L68)*
 
-Returns the inverse of `action`, i.e. an `Action` with opposite effect.
+Returns the inverse of `action`, i.e. an `EditorAction` with opposite effect.
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`action` | [Action](_foundation_.md#action) |
+`action` | [EditorAction](_foundation_.md#editoraction) |
 
-**Returns:** *[Action](_foundation_.md#action)*
+**Returns:** *[EditorAction](_foundation_.md#editoraction)*
 
 ___
 
 ###  isCreate
 
-▸ **isCreate**(`action`: [Action](_foundation_.md#action)): *action is Create*
+▸ **isCreate**(`action`: [EditorAction](_foundation_.md#editoraction)): *action is Create*
 
-*Defined in [src/foundation.ts:32](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L32)*
+*Defined in [src/foundation.ts:32](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L32)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`action` | [Action](_foundation_.md#action) |
+`action` | [EditorAction](_foundation_.md#editoraction) |
 
 **Returns:** *action is Create*
 
@@ -181,15 +198,15 @@ ___
 
 ###  isDelete
 
-▸ **isDelete**(`action`: [Action](_foundation_.md#action)): *action is Delete*
+▸ **isDelete**(`action`: [EditorAction](_foundation_.md#editoraction)): *action is Delete*
 
-*Defined in [src/foundation.ts:40](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L40)*
+*Defined in [src/foundation.ts:40](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L40)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`action` | [Action](_foundation_.md#action) |
+`action` | [EditorAction](_foundation_.md#editoraction) |
 
 **Returns:** *action is Delete*
 
@@ -197,15 +214,15 @@ ___
 
 ###  isMove
 
-▸ **isMove**(`action`: [Action](_foundation_.md#action)): *action is Move*
+▸ **isMove**(`action`: [EditorAction](_foundation_.md#editoraction)): *action is Move*
 
-*Defined in [src/foundation.ts:48](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L48)*
+*Defined in [src/foundation.ts:48](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L48)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`action` | [Action](_foundation_.md#action) |
+`action` | [EditorAction](_foundation_.md#editoraction) |
 
 **Returns:** *action is Move*
 
@@ -213,15 +230,15 @@ ___
 
 ###  isUpdate
 
-▸ **isUpdate**(`action`: [Action](_foundation_.md#action)): *action is Update*
+▸ **isUpdate**(`action`: [EditorAction](_foundation_.md#editoraction)): *action is Update*
 
-*Defined in [src/foundation.ts:58](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L58)*
+*Defined in [src/foundation.ts:58](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L58)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`action` | [Action](_foundation_.md#action) |
+`action` | [EditorAction](_foundation_.md#editoraction) |
 
 **Returns:** *action is Update*
 
@@ -229,22 +246,22 @@ ___
 
 ###  newActionEvent
 
-▸ **newActionEvent**‹**T**›(`action`: T, `eventInitDict?`: CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››): *[ActionEvent](_foundation_.md#actionevent)‹T›*
+▸ **newActionEvent**‹**T**›(`action`: T, `eventInitDict?`: CustomEventInit‹[EditorActionDetail](../interfaces/_foundation_.editoractiondetail.md)‹T››): *[EditorActionEvent](_foundation_.md#editoractionevent)‹T›*
 
-*Defined in [src/foundation.ts:91](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L91)*
+*Defined in [src/foundation.ts:93](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L93)*
 
 **Type parameters:**
 
-▪ **T**: *[Action](_foundation_.md#action)*
+▪ **T**: *[EditorAction](_foundation_.md#editoraction)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `action` | T |
-`eventInitDict?` | CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T›› |
+`eventInitDict?` | CustomEventInit‹[EditorActionDetail](../interfaces/_foundation_.editoractiondetail.md)‹T›› |
 
-**Returns:** *[ActionEvent](_foundation_.md#actionevent)‹T›*
+**Returns:** *[EditorActionEvent](_foundation_.md#editoractionevent)‹T›*
 
 ___
 
@@ -252,7 +269,7 @@ ___
 
 ▸ **newPendingStateEvent**(`promise`: Promise‹string›, `eventInitDict?`: CustomEventInit‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›): *[PendingStateEvent](_foundation_.md#pendingstateevent)*
 
-*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L149)*
+*Defined in [src/foundation.ts:151](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L151)*
 
 **Parameters:**
 
@@ -269,7 +286,7 @@ ___
 
 ▸ **newWizardEvent**(`wizard`: [Wizard](_foundation_.md#wizard) | null, `eventInitDict?`: CustomEventInit‹[WizardDetail](../interfaces/_foundation_.wizarddetail.md)›): *[WizardEvent](_foundation_.md#wizardevent)*
 
-*Defined in [src/foundation.ts:132](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L132)*
+*Defined in [src/foundation.ts:134](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L134)*
 
 **Parameters:**
 
@@ -286,7 +303,7 @@ ___
 
 ▸ **unreachable**(`message`: string): *never*
 
-*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L162)*
+*Defined in [src/foundation.ts:170](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L170)*
 
 Throws an error bearing `message`, never returning.
 

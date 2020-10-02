@@ -12,9 +12,9 @@
 
 * [action](_open_scd_base_.menuentry.md#optional-action)
 * [actionItem](_open_scd_base_.menuentry.md#optional-actionitem)
+* [disabled](_open_scd_base_.menuentry.md#optional-disabled)
 * [hint](_open_scd_base_.menuentry.md#optional-hint)
 * [icon](_open_scd_base_.menuentry.md#icon)
-* [isDisabled](_open_scd_base_.menuentry.md#optional-isdisabled)
 * [name](_open_scd_base_.menuentry.md#name)
 * [startsGroup](_open_scd_base_.menuentry.md#optional-startsgroup)
 
@@ -24,7 +24,7 @@
 
 • **action**? : *undefined | function*
 
-*Defined in [src/open-scd-base.ts:48](https://github.com/openscd/open-scd/blob/f0117a7/src/open-scd-base.ts#L48)*
+*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/6a0bb7d/src/open-scd-base.ts#L46)*
 
 ___
 
@@ -32,7 +32,15 @@ ___
 
 • **actionItem**? : *undefined | false | true*
 
-*Defined in [src/open-scd-base.ts:47](https://github.com/openscd/open-scd/blob/f0117a7/src/open-scd-base.ts#L47)*
+*Defined in [src/open-scd-base.ts:45](https://github.com/openscd/open-scd/blob/6a0bb7d/src/open-scd-base.ts#L45)*
+
+___
+
+### `Optional` disabled
+
+• **disabled**? : *undefined | function*
+
+*Defined in [src/open-scd-base.ts:47](https://github.com/openscd/open-scd/blob/6a0bb7d/src/open-scd-base.ts#L47)*
 
 ___
 
@@ -40,7 +48,7 @@ ___
 
 • **hint**? : *undefined | string*
 
-*Defined in [src/open-scd-base.ts:45](https://github.com/openscd/open-scd/blob/f0117a7/src/open-scd-base.ts#L45)*
+*Defined in [src/open-scd-base.ts:43](https://github.com/openscd/open-scd/blob/6a0bb7d/src/open-scd-base.ts#L43)*
 
 ___
 
@@ -48,15 +56,7 @@ ___
 
 • **icon**: *string*
 
-*Defined in [src/open-scd-base.ts:43](https://github.com/openscd/open-scd/blob/f0117a7/src/open-scd-base.ts#L43)*
-
-___
-
-### `Optional` isDisabled
-
-• **isDisabled**? : *undefined | function*
-
-*Defined in [src/open-scd-base.ts:49](https://github.com/openscd/open-scd/blob/f0117a7/src/open-scd-base.ts#L49)*
+*Defined in [src/open-scd-base.ts:41](https://github.com/openscd/open-scd/blob/6a0bb7d/src/open-scd-base.ts#L41)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [src/open-scd-base.ts:44](https://github.com/openscd/open-scd/blob/f0117a7/src/open-scd-base.ts#L44)*
+*Defined in [src/open-scd-base.ts:42](https://github.com/openscd/open-scd/blob/6a0bb7d/src/open-scd-base.ts#L42)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **startsGroup**? : *undefined | false | true*
 
-*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/f0117a7/src/open-scd-base.ts#L46)*
+*Defined in [src/open-scd-base.ts:44](https://github.com/openscd/open-scd/blob/6a0bb7d/src/open-scd-base.ts#L44)*

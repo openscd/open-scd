@@ -18,9 +18,9 @@
 
 ###  editor-action
 
-• **editor-action**: *[ActionEvent](../modules/_foundation_.md#actionevent)‹[Action](../modules/_foundation_.md#action)›*
+• **editor-action**: *[EditorActionEvent](../modules/_foundation_.md#editoractionevent)‹[EditorAction](../modules/_foundation_.md#editoraction)›*
 
-*Defined in [src/foundation.ts:177](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L177)*
+*Defined in [src/foundation.ts:185](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L185)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **pending-state**: *[PendingStateEvent](../modules/_foundation_.md#pendingstateevent)*
 
-*Defined in [src/foundation.ts:176](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L176)*
+*Defined in [src/foundation.ts:184](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L184)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **wizard**: *[WizardEvent](../modules/_foundation_.md#wizardevent)*
 
-*Defined in [src/foundation.ts:178](https://github.com/openscd/open-scd/blob/f0117a7/src/foundation.ts#L178)*
+*Defined in [src/foundation.ts:186](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L186)*

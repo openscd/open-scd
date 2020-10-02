@@ -11,6 +11,7 @@
 * ["editors/substation/substation-css"](modules/_editors_substation_substation_css_.md)
 * ["foundation"](modules/_foundation_.md)
 * ["icons"](modules/_icons_.md)
+* ["logging"](modules/_logging_.md)
 * ["open-scd"](modules/_open_scd_.md)
 * ["open-scd-base"](modules/_open_scd_base_.md)
 * ["open-scd-css"](modules/_open_scd_css_.md)
@@ -19,4 +20,5 @@
 * ["waiting"](modules/_waiting_.md)
 * ["wizard-dialog"](modules/_wizard_dialog_.md)
 * ["wizard-textfield"](modules/_wizard_textfield_.md)
+* ["wizarding"](modules/_wizarding_.md)
 * ["xml-entities"](modules/_xml_entities_.md)
