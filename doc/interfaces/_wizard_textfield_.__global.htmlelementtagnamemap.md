@@ -18,4 +18,4 @@
 
 • **wizard-textfield**: *[WizardTextField](../classes/_wizard_textfield_.wizardtextfield.md)*
 
-*Defined in [src/wizard-textfield.ts:19](https://github.com/openscd/open-scd/blob/bbce01e/src/wizard-textfield.ts#L19)*
+*Defined in [src/wizard-textfield.ts:19](https://github.com/openscd/open-scd/blob/f0117a7/src/wizard-textfield.ts#L19)*
