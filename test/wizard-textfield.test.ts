@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import '../src/wizard-textfield.js';
 import { WizardTextField } from '../src/wizard-textfield.js';
 
-describe('Nullable Textfield with Units', () => {
+describe('wizard-textfield', () => {
   let element: WizardTextField;
   beforeEach(async () => {
     element = await fixture(html`<wizard-textfield></wizard-textfield>`);

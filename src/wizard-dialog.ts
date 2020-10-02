@@ -6,7 +6,6 @@ import {
   property,
   internalProperty,
   TemplateResult,
-  query,
   html,
 } from 'lit-element';
 
@@ -24,11 +23,11 @@ import {
   newWizardEvent,
 } from './foundation.js';
 
-function dialogInputs(dialog: Dialog): WizardInput[] {
-  return Array.from(dialog.querySelectorAll('wizard-textfield'));
+function dialogInputs(dialog?: Dialog): WizardInput[] {
+  return Array.from(dialog?.querySelectorAll('wizard-textfield') ?? []);
 }
 
-function dialogValid(dialog: Dialog): boolean {
+function dialogValid(dialog?: Dialog): boolean {
   return dialogInputs(dialog).every(wi => wi.checkValidity());
 }
 
@@ -43,7 +42,7 @@ export class WizardDialog extends LitElement {
   @queryAll('wizard-textfield')
   inputs!: NodeListOf<WizardInput>;
 
-  get dialog(): Dialog {
+  get dialog(): Dialog | undefined {
     return this.dialogs[this.pageIndex];
   }
 
@@ -55,17 +54,18 @@ export class WizardDialog extends LitElement {
     return Array.from(this.dialogs).findIndex(dialog => !dialogValid(dialog));
   }
 
+  prev(): void {
+    if (this.pageIndex > 0) this.pageIndex--;
+  }
+
   async next(): Promise<void> {
     if (dialogValid(this.dialog)) {
       if ((this.wizard.length ?? 0) > this.pageIndex + 1) this.pageIndex++;
     } else {
-      this.dialog.show();
-      await this.dialog.updateComplete;
+      this.dialog?.show();
+      await this.dialog?.updateComplete;
       dialogInputs(this.dialog).map(wi => wi.reportValidity());
     }
-  }
-  prev(): void {
-    if (this.pageIndex > 0) this.pageIndex--;
   }
 
   reset(): void {
@@ -80,7 +80,6 @@ export class WizardDialog extends LitElement {
       inputArray.map(wi => wi.reportValidity());
       return false;
     }
-    console.warn(action(inputArray));
     action(inputArray).map(ea => this.dispatchEvent(newActionEvent(ea)));
     this.reset();
     return true;
@@ -109,28 +108,28 @@ export class WizardDialog extends LitElement {
     }
   `;
 
-  renderPage(wp: WizardPage, i: number): TemplateResult {
+  renderPage(page: WizardPage, index: number): TemplateResult {
     return html`<mwc-dialog
       defaultAction="none"
-      ?open=${i === this.pageIndex}
-      .heading=${wp.title}
+      ?open=${index === this.pageIndex}
+      heading=${page.title}
       @closed=${this.onClosed}
     >
-      <div id="wizard-content">${wp.content}</div>
-      ${i > 0
+      <div id="wizard-content">${page.content}</div>
+      ${index > 0
         ? html`<mwc-button
             slot="secondaryAction"
             dialogAction="prev"
             icon="navigate_before"
-            label=${this.wizard?.[i - 1].title}
+            label=${this.wizard?.[index - 1].title}
           ></mwc-button>`
         : html``}
-      ${wp.secondary
+      ${page.secondary
         ? html`<mwc-button
             slot="secondaryAction"
-            @click=${() => this.act(wp.secondary?.action)}
-            icon="${wp.secondary.icon}"
-            label="${wp.secondary.label}"
+            @click=${() => this.act(page.secondary?.action)}
+            icon="${page.secondary.icon}"
+            label="${page.secondary.label}"
             outlined
           ></mwc-button>`
         : html`<mwc-button
@@ -139,21 +138,21 @@ export class WizardDialog extends LitElement {
             label="cancel"
             style="--mdc-theme-primary: var(--mdc-theme-secondary)"
           ></mwc-button>`}
-      ${wp.primary
+      ${page.primary
         ? html`<mwc-button
             slot="primaryAction"
-            @click=${() => this.act(wp.primary?.action)}
-            icon="${wp.primary.icon}"
-            label="${wp.primary.label}"
+            @click=${() => this.act(page.primary?.action)}
+            icon="${page.primary.icon}"
+            label="${page.primary.label}"
             trailingIcon
             unelevated
           ></mwc-button>`
-        : i + 1 < (this.wizard?.length ?? 0)
+        : index + 1 < (this.wizard?.length ?? 0)
         ? html`<mwc-button
             slot="primaryAction"
             dialogAction="next"
             icon="navigate_next"
-            label=${this.wizard?.[i + 1].title}
+            label=${this.wizard?.[index + 1].title}
             trailingicon
           ></mwc-button>`
         : html``}

@@ -153,6 +153,11 @@ export default class SubstationEditor extends LitElement {
     const event = newWizardEvent([
       {
         title: 'Add Voltage Level PAGE ONE',
+        primary: {
+          icon: 'add',
+          label: 'Add',
+          action: this.requestVoltageLevelCreate,
+        },
         content: [
           html`<wizard-textfield
             label="name"

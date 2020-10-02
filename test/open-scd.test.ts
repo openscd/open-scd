@@ -33,13 +33,6 @@ describe('open-scd', () => {
     expect(menu).property('open').to.be.true;
   });
 
-  it('opens the file selection dialog on open button click', done => {
-    element.fileUI.onclick = () => done();
-    (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-icon-button[icon="folder_open"]')!
-    )).click();
-  });
-
   it('opens the log on log icon click', async () => {
     expect(element.logUI).to.have.property('open', false);
     await (<HTMLElement>(
