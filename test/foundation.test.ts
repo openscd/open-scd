@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
 
 import {
-  Action,
+  EditorAction,
   invert,
   isCreate,
   isDelete,
@@ -53,7 +53,7 @@ describe('foundation', () => {
       });
 
       it('throws on unknown Action type', () => {
-        const invalid = <Action>(<unknown>'Not an action!');
+        const invalid = <EditorAction>(<unknown>'Not an action!');
         expect(() => invert(invalid)).to.throw();
       });
     });

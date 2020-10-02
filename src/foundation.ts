@@ -1,10 +1,10 @@
-import { Select } from '@material/mwc-select';
-import { TextField } from '@material/mwc-textfield';
-import { TemplateResult } from 'lit-element';
+import { LitElement, TemplateResult } from 'lit-element';
+import { directive, Part } from 'lit-html';
+
 import { WizardTextField } from './wizard-textfield.js';
 
 /** Represents a change to some `Element`. */
-export type Action = Create | Update | Delete | Move;
+export type EditorAction = Create | Update | Delete | Move;
 /** Represents prepending `create.new.element` to `create.new.parent`. */
 export interface Create {
   new: { parent: Element; element: Element; reference: Node | null };
@@ -29,7 +29,7 @@ export interface Update {
 }
 
 // typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards
-export function isCreate(action: Action): action is Create {
+export function isCreate(action: EditorAction): action is Create {
   return (
     (action as Update).old === undefined &&
     (action as Create).new?.parent !== undefined &&
@@ -37,7 +37,7 @@ export function isCreate(action: Action): action is Create {
     (action as Create).new?.reference !== undefined
   );
 }
-export function isDelete(action: Action): action is Delete {
+export function isDelete(action: EditorAction): action is Delete {
   return (
     (action as Delete).old?.parent !== undefined &&
     (action as Delete).old?.element !== undefined &&
@@ -45,7 +45,7 @@ export function isDelete(action: Action): action is Delete {
     (action as Update).new === undefined
   );
 }
-export function isMove(action: Action): action is Move {
+export function isMove(action: EditorAction): action is Move {
   return (
     (action as Move).old?.parent !== undefined &&
     (action as Move).old?.element !== undefined &&
@@ -55,7 +55,7 @@ export function isMove(action: Action): action is Move {
     (action as Move).new?.reference !== undefined
   );
 }
-export function isUpdate(action: Action): action is Update {
+export function isUpdate(action: EditorAction): action is Update {
   return (
     (action as Move).old?.parent === undefined &&
     (action as Update).old?.element !== undefined &&
@@ -64,8 +64,8 @@ export function isUpdate(action: Action): action is Update {
   );
 }
 
-/** Returns the inverse of `action`, i.e. an `Action` with opposite effect. */
-export function invert(action: Action): Action {
+/** Returns the inverse of `action`, i.e. an `EditorAction` with opposite effect. */
+export function invert(action: EditorAction): EditorAction {
   if (isCreate(action)) return { old: action.new, derived: action.derived };
   else if (isDelete(action))
     return { new: action.old, derived: action.derived };
@@ -80,19 +80,21 @@ export function invert(action: Action): Action {
     };
   else if (isUpdate(action))
     return { new: action.old, old: action.new, derived: action.derived };
-  else return unreachable('Unknown Action type in invert.');
+  else return unreachable('Unknown EditorAction type in invert.');
 }
 
 /** Represents some modification of a `Document` being edited. */
-export interface ActionDetail<T extends Action> {
+export interface EditorActionDetail<T extends EditorAction> {
   action: T;
 }
-export type ActionEvent<T extends Action> = CustomEvent<ActionDetail<T>>;
-export function newActionEvent<T extends Action>(
+export type EditorActionEvent<T extends EditorAction> = CustomEvent<
+  EditorActionDetail<T>
+>;
+export function newActionEvent<T extends EditorAction>(
   action: T,
-  eventInitDict?: CustomEventInit<ActionDetail<T>>
-): ActionEvent<T> {
-  return new CustomEvent<ActionDetail<T>>('editor-action', {
+  eventInitDict?: CustomEventInit<EditorActionDetail<T>>
+): EditorActionEvent<T> {
+  return new CustomEvent<EditorActionDetail<T>>('editor-action', {
     bubbles: true,
     composed: true,
     detail: { action },
@@ -106,7 +108,7 @@ export type WizardInput = WizardTextField;
 export type WizardAction = (
   inputs: WizardInput[],
   dialog: CloseableElement
-) => Action[];
+) => EditorAction[];
 
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
@@ -158,13 +160,19 @@ export function newPendingStateEvent(
   });
 }
 
+/** Useful `lit-html` directives */
+export const ifImplemented = directive(rendered => (part: Part) => {
+  if (Object.keys(rendered).length) part.setValue(rendered);
+  else part.setValue('');
+});
+
 /** Throws an error bearing `message`, never returning. */
 export function unreachable(message: string): never {
   throw new Error(message);
 }
 
 /** Constructor type for defining `HTMLElement` mixins. */
-export type ElementConstructor = new (...args: any[]) => HTMLElement;
+export type LitElementConstructor = new (...args: any[]) => LitElement;
 
 /** The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`. */
 export type Mixin<T extends (...args: any[]) => any> = InstanceType<
@@ -174,7 +182,7 @@ export type Mixin<T extends (...args: any[]) => any> = InstanceType<
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;
-    ['editor-action']: ActionEvent<Action>;
+    ['editor-action']: EditorActionEvent<EditorAction>;
     ['wizard']: WizardEvent;
   }
   interface HTMLElement {

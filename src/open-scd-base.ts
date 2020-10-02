@@ -1,16 +1,14 @@
 import {
+  LitElement,
   html,
+  internalProperty,
   property,
   query,
-  LitElement,
-  internalProperty,
+  TemplateResult,
 } from 'lit-element';
-import { TemplateResult, nothing } from 'lit-html';
 import { until } from 'lit-html/directives/until.js';
 
 import '@material/mwc-button';
-import '@material/mwc-circular-progress-four-color';
-import '@material/mwc-dialog';
 import '@material/mwc-drawer';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
@@ -20,18 +18,18 @@ import '@material/mwc-snackbar';
 import '@material/mwc-tab';
 import '@material/mwc-tab-bar';
 import '@material/mwc-top-app-bar-fixed';
-import { Dialog } from '@material/mwc-dialog';
-import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { Drawer } from '@material/mwc-drawer';
 import { Snackbar } from '@material/mwc-snackbar';
 
-import './wizard-dialog.js';
-import { newPendingStateEvent, Wizard } from './foundation.js';
+import { Editing, newEmptySCD } from './editing.js';
+import { LogEntry, LogOptions } from './logging.js';
 import { Waiting } from './waiting.js';
-import { iedIcon, networkConfigIcon, zeroLineIcon } from './icons.js';
+import { Wizarding } from './wizarding.js';
+import { newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
-import { Editing, LogEntry, LogOptions, newEmptySCD } from './editing.js';
+import { zeroLineIcon } from './icons.js';
 
 interface Tab {
   label: string;
@@ -46,35 +44,17 @@ interface MenuEntry {
   startsGroup?: boolean;
   actionItem?: boolean;
   action?: () => void;
-  isDisabled?: () => boolean;
+  disabled?: () => boolean;
 }
 
-export class OpenSCDBase extends Waiting(Editing(LitElement)) {
-  @internalProperty()
-  workflow: Wizard[] = [];
-  @property()
-  get wizard(): TemplateResult {
-    if (this.workflow.length)
-      return html`<wizard-dialog .wizard=${this.workflow[0]}></wizard-dialog>`;
-    else return html``;
-  }
-  @property()
-  history: LogEntry[] = [];
-  /** Whether the editor is currently waiting for some async work. */
-  @property({ type: Boolean })
-  waiting = false;
+export class OpenSCDBase extends Wizarding(Waiting(Editing(LitElement))) {
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
-  /** The `XMLDocument` representation of the current file. */
-  @property()
-  doc: XMLDocument = newEmptySCD();
   @property()
   get name(): string | null {
     return this.doc.querySelector('Substation')?.getAttribute('name') ?? null;
   }
-  /** The tag name this editor is responsible for editing */
-  tag = 'SCL';
   /** The name of the current file. */
   @property({ type: String }) srcName = 'untitled.scd';
   private currentSrc = '';
@@ -89,7 +69,6 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
   }
 
   @query('#menu') menuUI!: Drawer;
-  @query('#log') logUI!: Dialog;
   @query('#message') messageUI!: Snackbar;
   @query('#file-input') fileUI!: HTMLInputElement;
 
@@ -156,20 +135,6 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
     if (handled) e.preventDefault();
   }
 
-  constructor() {
-    super();
-
-    this.addEventListener('wizard', we => {
-      console.warn(we);
-      if (we.detail.wizard === null) this.workflow.shift();
-      else this.workflow.push(we.detail.wizard);
-      this.requestUpdate('workflow');
-    });
-
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    document.onkeydown = this.handleKeyPress;
-  }
-
   menu: MenuEntry[] = [
     {
       icon: 'folder_open',
@@ -188,7 +153,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
       startsGroup: true,
       actionItem: true,
       action: this.undo,
-      isDisabled: (): boolean => !this.canUndo,
+      disabled: (): boolean => !this.canUndo,
     },
     {
       icon: 'redo',
@@ -196,7 +161,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
       hint: 'CTRL+Y',
       actionItem: true,
       action: this.redo,
-      isDisabled: (): boolean => !this.canRedo,
+      disabled: (): boolean => !this.canRedo,
     },
     { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
     {
@@ -219,42 +184,29 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
             () => html`<editor-0 .doc=${this.doc}></editor-0>`
           ),
       },
-      {
-        label: 'Communication',
-        id: 'communication',
-        icon: 'mediation',
-        getContent: (): TemplateResult => html`<tt>Communication mappings</tt>`,
-      },
-      {
-        label: 'Network',
-        id: 'network',
-        icon: networkConfigIcon,
-        getContent: (): TemplateResult => html`<tt>Network configuration</tt>`,
-      },
-      {
-        label: 'IED',
-        id: 'ied',
-        icon: iedIcon,
-        getContent: (): TemplateResult => html`<tt>IED configuration</tt>`,
-      },
     ],
   };
 
+  constructor() {
+    super();
+
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    document.onkeydown = this.handleKeyPress;
+  }
+
   renderMenuEntry(me: MenuEntry): TemplateResult {
     return html`
-      ${me.startsGroup
-        ? html`<li divider padded role="separator"></li>`
-        : nothing}
+      ${me.startsGroup ? html`<li divider padded role="separator"></li>` : ''}
       <mwc-list-item
         iconid="${me.icon}"
         graphic="icon"
-        .disabled=${me.isDisabled?.() || (me.action ? false : true)}
+        .disabled=${me.disabled?.() || (me.action ? false : true)}
         ?twoline=${me.hint}
         ><mwc-icon slot="graphic"> ${me.icon} </mwc-icon>
         <span>${me.name}</span>
         ${me.hint
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
-          : nothing}
+          : ''}
       </mwc-list-item>
     `;
   }
@@ -265,7 +217,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         slot="actionItems"
         icon="${me.icon}"
         label="${me.name}"
-        ?disabled=${me.isDisabled?.() || !me.action}
+        ?disabled=${me.disabled?.() || !me.action}
         @click=${me.action}
       ></mwc-icon-button>`;
     else return html``;
@@ -278,40 +230,8 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
       id=${editor.id}
       hasimageicon
     >
-      ${editor.icon instanceof TemplateResult ? editor.icon : nothing}
+      ${editor.icon instanceof TemplateResult ? editor.icon : ''}
     </mwc-tab>`;
-  }
-
-  renderHistory(history: LogEntry[]): TemplateResult[] {
-    if (history.length > 0)
-      return history.slice().reverse().map(this.renderLogEntry, this);
-    else
-      return [
-        html`<mwc-list-item disabled hasmeta>
-          <span>Edits, errors, and other notifications will show up here.</span>
-          <mwc-icon slot="meta">info</mwc-icon>
-        </mwc-list-item>`,
-      ];
-  }
-
-  renderLogEntry(
-    entry: LogEntry,
-    index: number,
-    history: LogEntry[]
-  ): TemplateResult {
-    return html`<mwc-list-item
-      ?twoline=${entry.message}
-      ?hasmeta=${entry.icon}
-      ?activated=${this.lastAction == history.length - index - 1}
-    >
-      <span>
-        <!-- FIXME: replace tt by mwc-chip asap -->
-        <tt>${entry.time.toLocaleTimeString()}</tt>
-        ${entry.title}</span
-      >
-      <span slot="secondary">${entry.message}</span>
-      <mwc-icon slot="meta">${entry.icon}</mwc-icon>
-    </mwc-list-item>`;
   }
 
   render(): TemplateResult {
@@ -351,47 +271,10 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
         this.plugins.editors[this.activeTab].getContent(),
         html`<span>Loading...</span>`
       )}
-      ${this.wizard}
 
-      <mwc-dialog id="log" heading="Log">
-        <mwc-list id="content" wrapFocus>
-          ${this.renderHistory(this.history)}
-        </mwc-list>
-        <mwc-button
-          icon="undo"
-          label="Undo"
-          ?disabled=${!this.canUndo}
-          @click=${this.undo}
-          slot="secondaryAction"
-        ></mwc-button>
-        <mwc-button
-          icon="redo"
-          label="Redo"
-          ?disabled=${!this.canRedo}
-          @click=${this.redo}
-          slot="secondaryAction"
-        ></mwc-button>
-        <mwc-button slot="primaryAction" dialogaction="close">Close</mwc-button>
-      </mwc-dialog>
-
-      <mwc-snackbar
-        id="message"
-        timeoutMs="-1"
-        labelText="${this.history
-          .slice()
-          .reverse()
-          .find(le => le.icon == 'error_outline')?.title ?? 'No errors'}"
-      >
-        <mwc-button slot="action" icon="rule" @click=${() => this.logUI.show()}
-          >Show</mwc-button
-        >
-        <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
-      </mwc-snackbar>
-
-      <mwc-circular-progress-four-color .closed=${!this.waiting} indeterminate>
-      </mwc-circular-progress-four-color>
-
-      <input id="file-input" type="file" @change="${this.loadFile}" />
+      <input id="file-input" type="file" @change="${this.loadFile}"></input>
+      <!--EOopenscd-->
+      ${super.render()}
     `;
   }
 }

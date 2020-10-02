@@ -40,66 +40,66 @@ export function describeLogEntryHistory(): void {
     });
 
     it('can undo and redo committed actions', () => {
-      expect(element).property('lastAction').to.equal(-1);
+      expect(element).property('currentAction').to.equal(-1);
       expect(element).property('previousAction').to.equal(-1);
       expect(element).property('nextAction').to.equal(-1);
 
       element.commit('test MockAction.create', MockAction.cre);
       expect(element).property('canUndo').to.be.true;
       expect(element).property('canRedo').to.be.false;
-      expect(element).property('lastAction').to.equal(0);
+      expect(element).property('currentAction').to.equal(0);
       expect(element).property('previousAction').to.equal(-1);
       expect(element).property('nextAction').to.equal(-1);
 
       element.commit('test MockAction.delete', MockAction.del);
-      expect(element).property('lastAction').to.equal(1);
+      expect(element).property('currentAction').to.equal(1);
       expect(element).property('previousAction').to.equal(0);
       expect(element).property('nextAction').to.equal(-1);
 
       element.commit('test MockAction.update', MockAction.upd);
       expect(element).property('previousAction').to.equal(1);
-      expect(element).property('lastAction').to.equal(2);
+      expect(element).property('currentAction').to.equal(2);
       expect(element).property('nextAction').to.equal(-1);
       expect(element).property('canRedo').to.be.false;
 
       element.undo();
       expect(element).property('previousAction').to.equal(0);
-      expect(element).property('lastAction').to.equal(1);
+      expect(element).property('currentAction').to.equal(1);
       expect(element).property('nextAction').to.equal(2);
       expect(element).property('canRedo').to.be.true;
 
       element.undo();
       expect(element).property('previousAction').to.equal(-1);
-      expect(element).property('lastAction').to.equal(0);
+      expect(element).property('currentAction').to.equal(0);
       expect(element).property('nextAction').to.equal(1);
 
       element.undo();
       expect(element).property('previousAction').to.equal(-1);
-      expect(element).property('lastAction').to.equal(-1);
+      expect(element).property('currentAction').to.equal(-1);
       expect(element).property('nextAction').to.equal(0);
       expect(element).property('canUndo').to.be.false;
       expect(element).property('canRedo').to.be.true;
 
       expect(element.undo()).to.be.false;
       expect(element).property('previousAction').to.equal(-1);
-      expect(element).property('lastAction').to.equal(-1);
+      expect(element).property('currentAction').to.equal(-1);
       expect(element).property('nextAction').to.equal(0);
 
       element.redo();
-      expect(element).property('lastAction').to.equal(0);
+      expect(element).property('currentAction').to.equal(0);
       expect(element).property('canUndo').to.be.true;
 
       element.redo();
-      expect(element).property('lastAction').to.equal(1);
+      expect(element).property('currentAction').to.equal(1);
 
       element.redo();
       expect(element).property('previousAction').to.equal(1);
-      expect(element).property('lastAction').to.equal(2);
+      expect(element).property('currentAction').to.equal(2);
       expect(element).property('nextAction').to.equal(-1);
       expect(element).property('canRedo').to.be.false;
 
       expect(element.redo()).to.be.false;
-      expect(element).property('lastAction').to.equal(2);
+      expect(element).property('currentAction').to.equal(2);
     });
 
     it('does not log derived actions', () => {

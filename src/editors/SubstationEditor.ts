@@ -10,7 +10,7 @@ import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
 import {
-  Action,
+  EditorAction,
   CloseableElement,
   newWizardEvent,
   WizardInput,
@@ -45,7 +45,7 @@ export default class SubstationEditor extends LitElement {
   @query('mwc-menu') menuUI!: Menu;
   @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
 
-  newUpdateAction(name: string, desc: string | null): Action {
+  newUpdateAction(name: string, desc: string | null): EditorAction {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
     const newElement = <Element>this.element.cloneNode(false);
     newElement.setAttribute('name', name);
@@ -57,7 +57,7 @@ export default class SubstationEditor extends LitElement {
     };
   }
 
-  newCreateAction(name: string, desc: string | null): Action {
+  newCreateAction(name: string, desc: string | null): EditorAction {
     if (this.element) throw new Error('Will not create a second Substation');
     return {
       new: {
@@ -80,7 +80,7 @@ export default class SubstationEditor extends LitElement {
     numPhases: string | null,
     Voltage: string | null,
     multiplier: string
-  ): Action {
+  ): EditorAction {
     if (!this.element)
       throw new Error('Cannot create VoltageLevel without Substation');
     return {
@@ -110,7 +110,7 @@ export default class SubstationEditor extends LitElement {
   requestSubstationEdit(
     inputs: WizardInput[],
     dialog: CloseableElement
-  ): Action[] {
+  ): EditorAction[] {
     if (inputs.length < 2) return [];
     const name = inputs.find(i => i.label === 'name')?.maybeValue ?? '';
     const desc = inputs.find(i => i.label === 'desc')?.maybeValue ?? null;
@@ -125,7 +125,7 @@ export default class SubstationEditor extends LitElement {
   requestVoltageLevelCreate(
     inputs: WizardInput[],
     dialog: CloseableElement
-  ): Action[] {
+  ): EditorAction[] {
     if (inputs.length < 5 || !this.element) return [];
     const name = inputs.find(i => i.label === 'name')!;
     const desc = inputs.find(i => i.label === 'desc')!;
