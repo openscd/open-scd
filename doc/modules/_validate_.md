@@ -6583,7 +6583,7 @@
   </xs:element>
 </xs:schema>`
 
-*Defined in [src/validate.ts:36](https://github.com/openscd/open-scd/blob/9ac9814/src/validate.ts#L36)*
+*Defined in [src/validate.ts:36](https://github.com/openscd/open-scd/blob/bbce01e/src/validate.ts#L36)*
 
 ## Functions
 
@@ -6591,7 +6591,7 @@
 
 ▸ **validateSCL**(`doc`: XMLDocument, `fileName`: string, `cause?`: [LogEntry](../interfaces/_editing_.logentry.md)): *Promise‹Array‹Pick‹[LogEntry](../interfaces/_editing_.logentry.md), "title" | "message" | "cause"›››*
 
-*Defined in [src/validate.ts:13](https://github.com/openscd/open-scd/blob/9ac9814/src/validate.ts#L13)*
+*Defined in [src/validate.ts:13](https://github.com/openscd/open-scd/blob/bbce01e/src/validate.ts#L13)*
 
 Validates `doc` against the `SCL 2007 B1` schema.
 
@@ -6611,7 +6611,7 @@ ___
 
 ▸ **validateXML**(`parameters`: [XMLParams](../interfaces/_validate_.xmlparams.md)): *string*
 
-*Defined in [src/validate.ts:10](https://github.com/openscd/open-scd/blob/9ac9814/src/validate.ts#L10)*
+*Defined in [src/validate.ts:10](https://github.com/openscd/open-scd/blob/bbce01e/src/validate.ts#L10)*
 
 **Parameters:**
 

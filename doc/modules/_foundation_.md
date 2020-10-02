@@ -23,10 +23,12 @@
 
 * [Action](_foundation_.md#action)
 * [ActionEvent](_foundation_.md#actionevent)
+* [CloseableElement](_foundation_.md#closeableelement)
 * [ElementConstructor](_foundation_.md#elementconstructor)
 * [Mixin](_foundation_.md#mixin)
 * [PendingStateEvent](_foundation_.md#pendingstateevent)
 * [Wizard](_foundation_.md#wizard)
+* [WizardAction](_foundation_.md#wizardaction)
 * [WizardEvent](_foundation_.md#wizardevent)
 * [WizardInput](_foundation_.md#wizardinput)
 
@@ -48,7 +50,7 @@
 
 Ƭ **Action**: *[Create](../interfaces/_foundation_.create.md) | [Update](../interfaces/_foundation_.update.md) | [Delete](../interfaces/_foundation_.delete.md) | [Move](../interfaces/_foundation_.move.md)*
 
-*Defined in [src/foundation.ts:7](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L7)*
+*Defined in [src/foundation.ts:7](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L7)*
 
 Represents a change to some `Element`.
 
@@ -58,7 +60,15 @@ ___
 
 Ƭ **ActionEvent**: *CustomEvent‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››*
 
-*Defined in [src/foundation.ts:90](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L90)*
+*Defined in [src/foundation.ts:90](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L90)*
+
+___
+
+###  CloseableElement
+
+Ƭ **CloseableElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) & object*
+
+*Defined in [src/foundation.ts:103](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L103)*
 
 ___
 
@@ -66,7 +76,7 @@ ___
 
 Ƭ **ElementConstructor**: *object*
 
-*Defined in [src/foundation.ts:161](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L161)*
+*Defined in [src/foundation.ts:167](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L167)*
 
 Constructor type for defining `HTMLElement` mixins.
 
@@ -78,7 +88,7 @@ ___
 
 Ƭ **Mixin**: *InstanceType‹ReturnType‹T››*
 
-*Defined in [src/foundation.ts:164](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L164)*
+*Defined in [src/foundation.ts:170](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L170)*
 
 The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`.
 
@@ -88,7 +98,7 @@ ___
 
 Ƭ **PendingStateEvent**: *CustomEvent‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›*
 
-*Defined in [src/foundation.ts:142](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L142)*
+*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L148)*
 
 ___
 
@@ -96,7 +106,26 @@ ___
 
 Ƭ **Wizard**: *[WizardPage](../interfaces/_foundation_.wizardpage.md)[]*
 
-*Defined in [src/foundation.ts:120](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L120)*
+*Defined in [src/foundation.ts:126](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L126)*
+
+___
+
+###  WizardAction
+
+Ƭ **WizardAction**: *function*
+
+*Defined in [src/foundation.ts:106](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L106)*
+
+#### Type declaration:
+
+▸ (`inputs`: [WizardInput](_foundation_.md#wizardinput)[], `dialog`: [CloseableElement](_foundation_.md#closeableelement)): *[Action](_foundation_.md#action)[]*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`inputs` | [WizardInput](_foundation_.md#wizardinput)[] |
+`dialog` | [CloseableElement](_foundation_.md#closeableelement) |
 
 ___
 
@@ -104,7 +133,7 @@ ___
 
 Ƭ **WizardEvent**: *CustomEvent‹[WizardDetail](../interfaces/_foundation_.wizarddetail.md)›*
 
-*Defined in [src/foundation.ts:125](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L125)*
+*Defined in [src/foundation.ts:131](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L131)*
 
 ___
 
@@ -112,7 +141,7 @@ ___
 
 Ƭ **WizardInput**: *[WizardTextField](../classes/_wizard_textfield_.wizardtextfield.md)*
 
-*Defined in [src/foundation.ts:103](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L103)*
+*Defined in [src/foundation.ts:105](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L105)*
 
 ## Functions
 
@@ -120,7 +149,7 @@ ___
 
 ▸ **invert**(`action`: [Action](_foundation_.md#action)): *[Action](_foundation_.md#action)*
 
-*Defined in [src/foundation.ts:68](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L68)*
+*Defined in [src/foundation.ts:68](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L68)*
 
 Returns the inverse of `action`, i.e. an `Action` with opposite effect.
 
@@ -138,7 +167,7 @@ ___
 
 ▸ **isCreate**(`action`: [Action](_foundation_.md#action)): *action is Create*
 
-*Defined in [src/foundation.ts:32](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L32)*
+*Defined in [src/foundation.ts:32](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L32)*
 
 **Parameters:**
 
@@ -154,7 +183,7 @@ ___
 
 ▸ **isDelete**(`action`: [Action](_foundation_.md#action)): *action is Delete*
 
-*Defined in [src/foundation.ts:40](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L40)*
+*Defined in [src/foundation.ts:40](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L40)*
 
 **Parameters:**
 
@@ -170,7 +199,7 @@ ___
 
 ▸ **isMove**(`action`: [Action](_foundation_.md#action)): *action is Move*
 
-*Defined in [src/foundation.ts:48](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L48)*
+*Defined in [src/foundation.ts:48](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L48)*
 
 **Parameters:**
 
@@ -186,7 +215,7 @@ ___
 
 ▸ **isUpdate**(`action`: [Action](_foundation_.md#action)): *action is Update*
 
-*Defined in [src/foundation.ts:58](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L58)*
+*Defined in [src/foundation.ts:58](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L58)*
 
 **Parameters:**
 
@@ -202,7 +231,7 @@ ___
 
 ▸ **newActionEvent**‹**T**›(`action`: T, `eventInitDict?`: CustomEventInit‹[ActionDetail](../interfaces/_foundation_.actiondetail.md)‹T››): *[ActionEvent](_foundation_.md#actionevent)‹T›*
 
-*Defined in [src/foundation.ts:91](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L91)*
+*Defined in [src/foundation.ts:91](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L91)*
 
 **Type parameters:**
 
@@ -223,7 +252,7 @@ ___
 
 ▸ **newPendingStateEvent**(`promise`: Promise‹string›, `eventInitDict?`: CustomEventInit‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›): *[PendingStateEvent](_foundation_.md#pendingstateevent)*
 
-*Defined in [src/foundation.ts:143](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L143)*
+*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L149)*
 
 **Parameters:**
 
@@ -240,7 +269,7 @@ ___
 
 ▸ **newWizardEvent**(`wizard`: [Wizard](_foundation_.md#wizard) | null, `eventInitDict?`: CustomEventInit‹[WizardDetail](../interfaces/_foundation_.wizarddetail.md)›): *[WizardEvent](_foundation_.md#wizardevent)*
 
-*Defined in [src/foundation.ts:126](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L126)*
+*Defined in [src/foundation.ts:132](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L132)*
 
 **Parameters:**
 
@@ -257,7 +286,7 @@ ___
 
 ▸ **unreachable**(`message`: string): *never*
 
-*Defined in [src/foundation.ts:156](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L156)*
+*Defined in [src/foundation.ts:162](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L162)*
 
 Throws an error bearing `message`, never returning.
 

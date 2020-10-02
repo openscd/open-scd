@@ -24,7 +24,7 @@
 
 • **action**? : *undefined | function*
 
-*Defined in [src/open-scd-base.ts:48](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-base.ts#L48)*
+*Defined in [src/open-scd-base.ts:48](https://github.com/openscd/open-scd/blob/bbce01e/src/open-scd-base.ts#L48)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **actionItem**? : *undefined | false | true*
 
-*Defined in [src/open-scd-base.ts:47](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-base.ts#L47)*
+*Defined in [src/open-scd-base.ts:47](https://github.com/openscd/open-scd/blob/bbce01e/src/open-scd-base.ts#L47)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **hint**? : *undefined | string*
 
-*Defined in [src/open-scd-base.ts:45](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-base.ts#L45)*
+*Defined in [src/open-scd-base.ts:45](https://github.com/openscd/open-scd/blob/bbce01e/src/open-scd-base.ts#L45)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **icon**: *string*
 
-*Defined in [src/open-scd-base.ts:43](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-base.ts#L43)*
+*Defined in [src/open-scd-base.ts:43](https://github.com/openscd/open-scd/blob/bbce01e/src/open-scd-base.ts#L43)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **isDisabled**? : *undefined | function*
 
-*Defined in [src/open-scd-base.ts:49](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-base.ts#L49)*
+*Defined in [src/open-scd-base.ts:49](https://github.com/openscd/open-scd/blob/bbce01e/src/open-scd-base.ts#L49)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [src/open-scd-base.ts:44](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-base.ts#L44)*
+*Defined in [src/open-scd-base.ts:44](https://github.com/openscd/open-scd/blob/bbce01e/src/open-scd-base.ts#L44)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **startsGroup**? : *undefined | false | true*
 
-*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-base.ts#L46)*
+*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/bbce01e/src/open-scd-base.ts#L46)*

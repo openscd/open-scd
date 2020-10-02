@@ -23,7 +23,7 @@ Represents a page of a wizard dialog
 
 • **content**? : *TemplateResult[]*
 
-*Defined in [src/foundation.ts:108](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L108)*
+*Defined in [src/foundation.ts:114](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L114)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **primary**? : *undefined | object*
 
-*Defined in [src/foundation.ts:109](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L109)*
+*Defined in [src/foundation.ts:115](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L115)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **secondary**? : *undefined | object*
 
-*Defined in [src/foundation.ts:114](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L114)*
+*Defined in [src/foundation.ts:120](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L120)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • **title**: *string*
 
-*Defined in [src/foundation.ts:107](https://github.com/openscd/open-scd/blob/9ac9814/src/foundation.ts#L107)*
+*Defined in [src/foundation.ts:113](https://github.com/openscd/open-scd/blob/bbce01e/src/foundation.ts#L113)*

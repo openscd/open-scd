@@ -20,7 +20,7 @@
 
 • **arguments**: *Array‹string›*
 
-*Defined in [src/validate.ts:7](https://github.com/openscd/open-scd/blob/9ac9814/src/validate.ts#L7)*
+*Defined in [src/validate.ts:7](https://github.com/openscd/open-scd/blob/bbce01e/src/validate.ts#L7)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **schema**: *string*
 
-*Defined in [src/validate.ts:6](https://github.com/openscd/open-scd/blob/9ac9814/src/validate.ts#L6)*
+*Defined in [src/validate.ts:6](https://github.com/openscd/open-scd/blob/bbce01e/src/validate.ts#L6)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **xml**: *string*
 
-*Defined in [src/validate.ts:5](https://github.com/openscd/open-scd/blob/9ac9814/src/validate.ts#L5)*
+*Defined in [src/validate.ts:5](https://github.com/openscd/open-scd/blob/bbce01e/src/validate.ts#L5)*
