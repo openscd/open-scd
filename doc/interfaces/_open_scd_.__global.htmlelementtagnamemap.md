@@ -18,4 +18,4 @@
 
 • **open-scd**: *[OpenSCD](../classes/_open_scd_.openscd.md)*
 
-*Defined in [src/open-scd.ts:7](https://github.com/openscd/open-scd/blob/0307dca/src/open-scd.ts#L7)*
+*Defined in [src/open-scd.ts:7](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd.ts#L7)*

@@ -4,7 +4,7 @@
 
 | Property           | Attribute | Modifiers | Type                          | Default |
 |--------------------|-----------|-----------|-------------------------------|---------|
-| `dialog`           |           | readonly  | `Dialog`                      |         |
+| `dialog`           |           | readonly  | `Dialog \| undefined`         |         |
 | `dialogs`          |           |           | `NodeListOf<Dialog>`          |         |
 | `firstInvalidPage` |           | readonly  | `number`                      |         |
 | `inputs`           |           |           | `NodeListOf<WizardTextField>` |         |
@@ -21,5 +21,5 @@
 | `next`          | `(): Promise<void>`                              |
 | `onClosed`      | `(ae: CustomEvent<{ action: string; } \| null>): void` |
 | `prev`          | `(): void`                                       |
-| `renderPage`    | `(wp: WizardPage, i: number): TemplateResult`    |
+| `renderPage`    | `(page: WizardPage, index: number): TemplateResult` |
 | `reset`         | `(): void`                                       |

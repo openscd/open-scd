@@ -17,15 +17,15 @@
 
 ###  dialogInputs
 
-▸ **dialogInputs**(`dialog`: Dialog): *[WizardInput](_foundation_.md#wizardinput)[]*
+▸ **dialogInputs**(`dialog?`: Dialog): *[WizardInput](_foundation_.md#wizardinput)[]*
 
-*Defined in [src/wizard-dialog.ts:27](https://github.com/openscd/open-scd/blob/0307dca/src/wizard-dialog.ts#L27)*
+*Defined in [src/wizard-dialog.ts:26](https://github.com/openscd/open-scd/blob/9ac9814/src/wizard-dialog.ts#L26)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`dialog` | Dialog |
+`dialog?` | Dialog |
 
 **Returns:** *[WizardInput](_foundation_.md#wizardinput)[]*
 
@@ -33,14 +33,14 @@ ___
 
 ###  dialogValid
 
-▸ **dialogValid**(`dialog`: Dialog): *boolean*
+▸ **dialogValid**(`dialog?`: Dialog): *boolean*
 
-*Defined in [src/wizard-dialog.ts:31](https://github.com/openscd/open-scd/blob/0307dca/src/wizard-dialog.ts#L31)*
+*Defined in [src/wizard-dialog.ts:30](https://github.com/openscd/open-scd/blob/9ac9814/src/wizard-dialog.ts#L30)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`dialog` | Dialog |
+`dialog?` | Dialog |
 
 **Returns:** *boolean*

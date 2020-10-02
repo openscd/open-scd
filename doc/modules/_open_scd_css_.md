@@ -55,4 +55,4 @@
   }
 `
 
-*Defined in [src/open-scd-css.ts:3](https://github.com/openscd/open-scd/blob/0307dca/src/open-scd-css.ts#L3)*
+*Defined in [src/open-scd-css.ts:3](https://github.com/openscd/open-scd/blob/9ac9814/src/open-scd-css.ts#L3)*
