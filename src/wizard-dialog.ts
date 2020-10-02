@@ -19,7 +19,6 @@ import {
   Wizard,
   WizardInput,
   WizardPage,
-  Action,
   newWizardEvent,
   WizardAction,
 } from './foundation.js';
@@ -61,7 +60,7 @@ export class WizardDialog extends LitElement {
 
   async next(): Promise<void> {
     if (dialogValid(this.dialog)) {
-      if ((this.wizard.length ?? 0) > this.pageIndex + 1) this.pageIndex++;
+      if (this.wizard.length > this.pageIndex + 1) this.pageIndex++;
     } else {
       this.dialog?.show();
       await this.dialog?.updateComplete;
