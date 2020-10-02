@@ -21,6 +21,7 @@ import {
   WizardPage,
   Action,
   newWizardEvent,
+  WizardAction,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
@@ -68,11 +69,11 @@ export class WizardDialog extends LitElement {
     }
   }
 
-  reset(): void {
+  close(): void {
     this.dispatchEvent(newWizardEvent());
   }
 
-  async act(action?: (inputs: WizardInput[]) => Action[]): Promise<boolean> {
+  async act(action?: WizardAction): Promise<boolean> {
     if (action === undefined) return false;
     const inputArray = Array.from(this.inputs);
     if (!this.checkValidity()) {
@@ -80,14 +81,13 @@ export class WizardDialog extends LitElement {
       inputArray.map(wi => wi.reportValidity());
       return false;
     }
-    action(inputArray).map(ea => this.dispatchEvent(newActionEvent(ea)));
-    this.reset();
+    action(inputArray, this).map(ea => this.dispatchEvent(newActionEvent(ea)));
     return true;
   }
 
   onClosed(ae: CustomEvent<{ action: string } | null>): void {
     if (!(ae.target instanceof Dialog && ae.detail?.action)) return;
-    if (ae.detail.action === 'close') this.reset();
+    if (ae.detail.action === 'close') this.close();
     else if (ae.detail.action === 'prev') this.prev();
     else if (ae.detail.action === 'next') this.next();
   }
@@ -166,6 +166,7 @@ export class WizardDialog extends LitElement {
   constructor() {
     super();
 
+    this.act = this.act.bind(this);
     this.renderPage = this.renderPage.bind(this);
   }
 }

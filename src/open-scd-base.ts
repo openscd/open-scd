@@ -160,6 +160,7 @@ export class OpenSCDBase extends Waiting(Editing(LitElement)) {
     super();
 
     this.addEventListener('wizard', we => {
+      console.warn(we);
       if (we.detail.wizard === null) this.workflow.shift();
       else this.workflow.push(we.detail.wizard);
       this.requestUpdate('workflow');

@@ -1,22 +1,22 @@
 import { LitElement, html, TemplateResult, property, query } from 'lit-element';
 
 import '@material/mwc-button';
-import '@material/mwc-dialog';
 import '@material/mwc-fab';
 import '@material/mwc-icon-button';
-import '@material/mwc-textfield';
 import '@material/mwc-menu';
 import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-select';
-import { Dialog } from '@material/mwc-dialog';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
-import { WizardTextField } from '../wizard-textfield.js';
-import '../wizard-textfield.js';
-import { Action, newWizardEvent, WizardInput } from '../foundation.js';
+import {
+  Action,
+  CloseableElement,
+  newWizardEvent,
+  WizardInput,
+} from '../foundation.js';
 import { styles } from './substation/substation-css.js';
+
 export default class SubstationEditor extends LitElement {
   defaultNomFreq = 50;
   defaultNumPhases = 3;
@@ -44,16 +44,6 @@ export default class SubstationEditor extends LitElement {
 
   @query('mwc-menu') menuUI!: Menu;
   @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
-  @query('#voltageLevelName')
-  voltageLevelNameUI!: WizardTextField;
-  @query('#voltageLevelDesc')
-  voltageLevelDescUI!: WizardTextField;
-  @query('#voltageLevelNomFreq')
-  voltageLevelNomFreqUI!: WizardTextField;
-  @query('#voltageLevelNumPhases')
-  voltageLevelNumPhasesUI!: WizardTextField;
-  @query('#Voltage')
-  voltageLevelVoltageUI!: WizardTextField;
 
   newUpdateAction(name: string, desc: string | null): Action {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
@@ -117,32 +107,41 @@ export default class SubstationEditor extends LitElement {
     };
   }
 
-  requestSubstationEdit(inputs: WizardInput[]): Action[] {
-    if (!inputs.every(wi => wi.checkValidity())) return [];
-    const name = inputs.find(i => i.label === 'name')?.value ?? '';
-    const desc = inputs.find(i => i.label === 'desc')?.value ?? null;
+  requestSubstationEdit(
+    inputs: WizardInput[],
+    dialog: CloseableElement
+  ): Action[] {
+    if (inputs.length < 2) return [];
+    const name = inputs.find(i => i.label === 'name')?.maybeValue ?? '';
+    const desc = inputs.find(i => i.label === 'desc')?.maybeValue ?? null;
     const action = this.element
       ? this.newUpdateAction(name, desc)
       : this.newCreateAction(name, desc);
+    console.dirxml(this);
+    dialog.close();
     return [action];
   }
 
-  requestVoltageLevelCreate(inputs: WizardInput[]): Action[] {
-    if (!(this.element && inputs.every(wi => wi.checkValidity()))) return [];
+  requestVoltageLevelCreate(
+    inputs: WizardInput[],
+    dialog: CloseableElement
+  ): Action[] {
+    if (inputs.length < 5 || !this.element) return [];
     const name = inputs.find(i => i.label === 'name')!;
     const desc = inputs.find(i => i.label === 'desc')!;
     const nomFreq = inputs.find(i => i.label === 'nomFreq')!;
     const numPhases = inputs.find(i => i.label === 'numPhases')!;
     const Voltage = inputs.find(i => i.label === 'Voltage')!;
-    this.newVoltageLevelCreateAction(
-      name.value,
+    const action = this.newVoltageLevelCreateAction(
+      name.maybeValue,
       desc.maybeValue,
       nomFreq.maybeValue,
       numPhases.maybeValue,
       Voltage.maybeValue,
       Voltage.multiplier
     );
-    return [];
+    dialog.close();
+    return [action];
   }
 
   updated(): void {
@@ -152,7 +151,7 @@ export default class SubstationEditor extends LitElement {
   openVoltageLevelWizard(): void {
     const event = newWizardEvent([
       {
-        title: 'Add Voltage Level PAGE ONE',
+        title: 'Add Voltage Level',
         primary: {
           icon: 'add',
           label: 'Add',

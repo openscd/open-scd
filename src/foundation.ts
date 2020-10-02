@@ -100,7 +100,13 @@ export function newActionEvent<T extends Action>(
   });
 }
 
+export type CloseableElement = HTMLElement & { close: () => void };
+
 export type WizardInput = WizardTextField;
+export type WizardAction = (
+  inputs: WizardInput[],
+  dialog: CloseableElement
+) => Action[];
 
 /** Represents a page of a wizard dialog */
 export interface WizardPage {
@@ -109,12 +115,12 @@ export interface WizardPage {
   primary?: {
     icon: string;
     label: string;
-    action: (inputs: WizardInput[]) => Action[];
+    action: WizardAction;
   };
   secondary?: {
     icon: string;
     label: string;
-    action: (inputs: WizardInput[]) => Action[];
+    action: WizardAction;
   };
 }
 export type Wizard = WizardPage[];
