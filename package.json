@@ -87,7 +87,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run doc"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
