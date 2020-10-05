@@ -81,6 +81,7 @@ export class OpenSCDBase extends Wizarding(
                 'application/xml'
               )
             : newEmptySCD();
+          this.reset();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
           this.dispatchEvent(
