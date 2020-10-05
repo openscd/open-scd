@@ -29,12 +29,10 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`<!--BOWizarding-->
-        ${ifImplemented(super.render())}
-        ${this.workflow.length
-          ? html`<wizard-dialog .wizard=${this.workflow[0]}></wizard-dialog>`
-          : ''}
-        <!--EOWizarding-->`;
+      return html`${ifImplemented(super.render())}
+      ${this.workflow.length
+        ? html`<wizard-dialog .wizard=${this.workflow[0]}></wizard-dialog>`
+        : ''}`;
     }
   }
 

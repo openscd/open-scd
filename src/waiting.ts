@@ -4,9 +4,10 @@ import '@material/mwc-circular-progress-four-color';
 
 import {
   LitElementConstructor,
-  PendingStateDetail,
   Mixin,
+  PendingStateDetail,
   ifImplemented,
+  newLogEvent,
 } from './foundation.js';
 
 export type WaitingElement = Mixin<typeof Waiting>;
@@ -26,8 +27,8 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
       this.work.add(e.detail.promise);
       this.workDone = Promise.allSettled(this.work);
       await e.detail.promise.then(
-        this.info ?? console.info,
-        this.warn ?? console.warn
+        msg => this.dispatchEvent(newLogEvent({ kind: 'info', title: msg })),
+        msg => this.dispatchEvent(newLogEvent({ kind: 'warning', title: msg }))
       );
       this.work.delete(e.detail.promise);
       this.waiting = this.work.size > 0;
@@ -41,13 +42,11 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     render(): TemplateResult {
-      return html`<!--BOWaiting-->
-        ${ifImplemented(super.render())}
+      return html`${ifImplemented(super.render())}
         <mwc-circular-progress-four-color
           .closed=${!this.waiting}
           indeterminate
-        ></mwc-circular-progress-four-color>
-        <!--EOWaiting-->`;
+        ></mwc-circular-progress-four-color>`;
     }
   }
 

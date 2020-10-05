@@ -48,11 +48,14 @@ describe('open-scd', () => {
     expect(element.logUI).to.have.property('open', true);
   });
 
+  /*
+  // FIXME: Move to logging.test.ts
   it('shows a snackbar on logging an error', () => {
     expect(element.messageUI).to.have.property('open', false);
     element.error('test error');
     expect(element.messageUI).to.have.property('open', true);
   });
+   */
 
   it('opens the log on snackbar button click', async () => {
     expect(element.logUI).to.have.property('open', false);

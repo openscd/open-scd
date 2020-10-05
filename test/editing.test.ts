@@ -37,6 +37,8 @@ describe('EditingElement', () => {
     expect(elm.doc.querySelector('child3')).to.not.be.null;
   });
 
+  /*
+  //FIXME: Move to Logging integration test
   it('restores the initial document after undoing a single Create', () => {
     const initialDoc = serialize(elm.doc);
     elm.dispatchEvent(
@@ -53,6 +55,7 @@ describe('EditingElement', () => {
     expect(elm.doc.querySelector('child3')).to.be.null;
     expect(serialize(elm.doc)).to.equal(initialDoc);
   });
+   */
 
   it('deletes an element on receiving a delete action', () => {
     elm.dispatchEvent(
@@ -67,6 +70,8 @@ describe('EditingElement', () => {
     expect(elm.doc.querySelector('parent1 > child1')).to.be.null;
   });
 
+  /*
+  //FIXME: Move to Logging integration test
   it('restores the initial document after undoing a single Delete', () => {
     const initialDoc = serialize(elm.doc);
     elm.dispatchEvent(
@@ -83,6 +88,7 @@ describe('EditingElement', () => {
     expect(elm.doc.querySelector('parent1 > child1')).to.not.be.null;
     expect(serialize(elm.doc)).to.equal(initialDoc);
   });
+   */
 
   it('updates an element on receiving an Update action', () => {
     elm.dispatchEvent(
@@ -102,6 +108,8 @@ describe('EditingElement', () => {
     );
   });
 
+  /*
+  //FIXME: Move to Logging integration test
   it('restores the initial document after undoing a single Update', () => {
     const initialDoc = serialize(elm.doc);
     elm.dispatchEvent(
@@ -120,6 +128,7 @@ describe('EditingElement', () => {
     expect(parent.querySelector('child3')).to.be.null;
     expect(serialize(elm.doc)).to.equal(initialDoc);
   });
+   */
 
   it('moves element on receiving a Move action', () => {
     elm.dispatchEvent(
@@ -139,6 +148,8 @@ describe('EditingElement', () => {
     expect(elm.doc.querySelector('parent2 > child1')).to.not.be.null;
   });
 
+  /*
+  //FIXME: Move to Logging integration test
   it('restores the initial document after undoing a single Move', () => {
     const initialDoc = serialize(elm.doc);
     elm.dispatchEvent(
@@ -160,6 +171,7 @@ describe('EditingElement', () => {
     expect(elm.doc.querySelector('parent2 > child1')).to.be.null;
     expect(serialize(elm.doc)).to.equal(initialDoc);
   });
+   */
 
   describeLogEntryHistory();
 });

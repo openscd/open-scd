@@ -143,6 +143,43 @@ export function newWizardEvent(
   });
 }
 
+type InfoEntryKind = 'info' | 'warning' | 'error';
+interface LogDetailBase {
+  title: string;
+  message?: string;
+}
+export interface CommitDetail extends LogDetailBase {
+  kind: 'action';
+  action: EditorAction;
+}
+export interface InfoDetail extends LogDetailBase {
+  kind: InfoEntryKind;
+  cause?: LogEntry;
+}
+
+export type LogDetail = InfoDetail | CommitDetail;
+export type LogEvent = CustomEvent<LogDetail>;
+export function newLogEvent(
+  detail: LogDetail,
+  eventInitDict?: CustomEventInit<LogDetail>
+): LogEvent {
+  return new CustomEvent<LogDetail>('log', {
+    bubbles: true,
+    composed: true,
+    detail: detail,
+    ...eventInitDict,
+  });
+}
+
+interface Timestamped {
+  time: Date;
+}
+
+export type CommitEntry = Timestamped & CommitDetail;
+export type InfoEntry = Timestamped & InfoDetail;
+
+export type LogEntry = InfoEntry | CommitEntry;
+
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {
   promise: Promise<string>;
@@ -184,6 +221,7 @@ declare global {
     ['pending-state']: PendingStateEvent;
     ['editor-action']: EditorActionEvent<EditorAction>;
     ['wizard']: WizardEvent;
+    ['log']: LogEvent;
   }
   interface HTMLElement {
     // Extended for other mixins to be able to use `Logging` mixin.

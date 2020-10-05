@@ -1,11 +1,3 @@
-export function emptySCD(): XMLDocument {
-  return document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  );
-}
-
 export function mockSCD(): XMLDocument {
   return new DOMParser().parseFromString(
     `<documentelement>

@@ -1,20 +1,20 @@
 import {
-  LitElementConstructor,
-  Mixin,
-  EditorActionEvent,
   Create,
   Delete,
+  EditorAction,
+  EditorActionEvent,
+  LitElementConstructor,
+  Mixin,
   Move,
   Update,
-  EditorAction,
-  isMove,
   isCreate,
   isDelete,
+  isMove,
   isUpdate,
+  newLogEvent,
 } from './foundation.js';
-import { Logging } from './logging.js';
 
-import { html, LitElement, property } from 'lit-element';
+import { LitElement, property } from 'lit-element';
 
 export function newEmptySCD(): XMLDocument {
   return document.implementation.createDocument(
@@ -27,7 +27,7 @@ export function newEmptySCD(): XMLDocument {
 export type EditingElement = Mixin<typeof Editing>;
 
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
-  class EditingElement extends Logging(Base) {
+  class EditingElement extends Base {
     /** The `XMLDocument` being edited. */
     @property()
     doc: XMLDocument = newEmptySCD();
@@ -37,17 +37,23 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         event.detail.action.new.element,
         event.detail.action.new.reference
       );
-      this.commit(
-        `Create ${event.detail.action.new.element.tagName}`,
-        event.detail.action
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'action',
+          title: `Create ${event.detail.action.new.element.tagName}`,
+          action: event.detail.action,
+        })
       );
     }
 
     private onDelete(event: EditorActionEvent<Delete>) {
       event.detail.action.old.element.remove();
-      this.commit(
-        `Delete ${event.detail.action.old.element.tagName}`,
-        event.detail.action
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'action',
+          title: `Delete ${event.detail.action.old.element.tagName}`,
+          action: event.detail.action,
+        })
       );
     }
 
@@ -56,9 +62,12 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         event.detail.action.old.element,
         event.detail.action.new.reference
       );
-      this.commit(
-        `Move ${event.detail.action.old.element.tagName}`,
-        event.detail.action
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'action',
+          title: `Move ${event.detail.action.old.element.tagName}`,
+          action: event.detail.action,
+        })
       );
     }
 
@@ -69,9 +78,12 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       event.detail.action.old.element.replaceWith(
         event.detail.action.new.element
       );
-      this.commit(
-        `Update ${event.detail.action.new.element.tagName}`,
-        event.detail.action
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'action',
+          title: `Update ${event.detail.action.new.element.tagName}`,
+          action: event.detail.action,
+        })
       );
     }
 

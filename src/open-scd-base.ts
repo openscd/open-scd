@@ -1,11 +1,4 @@
-import {
-  LitElement,
-  html,
-  internalProperty,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { LitElement, html, property, query, TemplateResult } from 'lit-element';
 import { until } from 'lit-html/directives/until.js';
 
 import '@material/mwc-button';
@@ -14,19 +7,17 @@ import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-snackbar';
 import '@material/mwc-tab';
 import '@material/mwc-tab-bar';
 import '@material/mwc-top-app-bar-fixed';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Drawer } from '@material/mwc-drawer';
-import { Snackbar } from '@material/mwc-snackbar';
 
 import { Editing, newEmptySCD } from './editing.js';
-import { LogEntry, LogOptions } from './logging.js';
+import { Logging } from './logging.js';
 import { Waiting } from './waiting.js';
 import { Wizarding } from './wizarding.js';
-import { newPendingStateEvent } from './foundation.js';
+import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
 import { zeroLineIcon } from './icons.js';
@@ -47,7 +38,9 @@ interface MenuEntry {
   disabled?: () => boolean;
 }
 
-export class OpenSCDBase extends Wizarding(Waiting(Editing(LitElement))) {
+export class OpenSCDBase extends Wizarding(
+  Waiting(Editing(Logging(LitElement)))
+) {
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
@@ -69,18 +62,17 @@ export class OpenSCDBase extends Wizarding(Waiting(Editing(LitElement))) {
   }
 
   @query('#menu') menuUI!: Drawer;
-  @query('#message') messageUI!: Snackbar;
   @query('#file-input') fileUI!: HTMLInputElement;
-
-  error(title: string, options?: LogOptions): LogEntry {
-    this.messageUI.show();
-    return super.error(title, options);
-  }
 
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
-        this.info(`Loading project ${this.srcName}.`);
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: `Loading project ${this.srcName}.`,
+          })
+        );
         const reader: FileReader = new FileReader();
         reader.addEventListener('load', () => {
           this.doc = reader.result
@@ -91,11 +83,22 @@ export class OpenSCDBase extends Wizarding(Waiting(Editing(LitElement))) {
             : newEmptySCD();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.info(`${this.srcName} loaded.`);
+          this.dispatchEvent(
+            newLogEvent({
+              kind: 'info',
+              title: `${this.srcName} loaded.`,
+            })
+          );
           validateSCL(this.doc, this.srcName).then(errors => {
-            errors.map(le => {
-              this.error(le.title, le);
-            }) ?? this.info(`${this.srcName} validated successfully.`);
+            errors.map(id => {
+              this.dispatchEvent(newLogEvent(id));
+            }) ??
+              this.dispatchEvent(
+                newLogEvent({
+                  kind: 'info',
+                  title: `${this.srcName} validated successfully.`,
+                })
+              );
             if (errors.length == 0)
               resolve(`${this.srcName} validation succesful.`);
             else reject(`${this.srcName} validation failed.`);
