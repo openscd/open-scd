@@ -19,7 +19,7 @@
 
 Ƭ **EditingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Editing›*
 
-*Defined in [src/editing.ts:27](https://github.com/openscd/open-scd/blob/6a0bb7d/src/editing.ts#L27)*
+*Defined in [src/editing.ts:27](https://github.com/openscd/open-scd/blob/c3ac6a3/src/editing.ts#L27)*
 
 ## Functions
 
@@ -27,7 +27,7 @@
 
 ▸ **Editing**‹**TBase**›(`Base`: TBase): *EditingElement & TBase*
 
-*Defined in [src/editing.ts:29](https://github.com/openscd/open-scd/blob/6a0bb7d/src/editing.ts#L29)*
+*Defined in [src/editing.ts:29](https://github.com/openscd/open-scd/blob/c3ac6a3/src/editing.ts#L29)*
 
 **Type parameters:**
 
@@ -47,6 +47,6 @@ ___
 
 ▸ **newEmptySCD**(): *XMLDocument*
 
-*Defined in [src/editing.ts:19](https://github.com/openscd/open-scd/blob/6a0bb7d/src/editing.ts#L19)*
+*Defined in [src/editing.ts:19](https://github.com/openscd/open-scd/blob/c3ac6a3/src/editing.ts#L19)*
 
 **Returns:** *XMLDocument*

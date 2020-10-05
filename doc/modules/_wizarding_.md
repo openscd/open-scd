@@ -18,7 +18,7 @@
 
 Ƭ **WizardingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Wizarding›*
 
-*Defined in [src/wizarding.ts:12](https://github.com/openscd/open-scd/blob/6a0bb7d/src/wizarding.ts#L12)*
+*Defined in [src/wizarding.ts:12](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizarding.ts#L12)*
 
 ## Functions
 
@@ -26,7 +26,7 @@
 
 ▸ **Wizarding**‹**TBase**›(`Base`: TBase): *WizardingElement & TBase*
 
-*Defined in [src/wizarding.ts:14](https://github.com/openscd/open-scd/blob/6a0bb7d/src/wizarding.ts#L14)*
+*Defined in [src/wizarding.ts:14](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizarding.ts#L14)*
 
 **Type parameters:**
 

@@ -14,7 +14,7 @@
 
 ▸ **plugin**(`src`: string, `tagName`: string): *Promise‹void›*
 
-*Defined in [src/plugin.ts:1](https://github.com/openscd/open-scd/blob/6a0bb7d/src/plugin.ts#L1)*
+*Defined in [src/plugin.ts:1](https://github.com/openscd/open-scd/blob/c3ac6a3/src/plugin.ts#L1)*
 
 **Parameters:**
 

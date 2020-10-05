@@ -18,7 +18,7 @@
 
 Ƭ **WaitingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Waiting›*
 
-*Defined in [src/waiting.ts:12](https://github.com/openscd/open-scd/blob/6a0bb7d/src/waiting.ts#L12)*
+*Defined in [src/waiting.ts:13](https://github.com/openscd/open-scd/blob/c3ac6a3/src/waiting.ts#L13)*
 
 ## Functions
 
@@ -26,7 +26,7 @@
 
 ▸ **Waiting**‹**TBase**›(`Base`: TBase): *WaitingElement & TBase*
 
-*Defined in [src/waiting.ts:14](https://github.com/openscd/open-scd/blob/6a0bb7d/src/waiting.ts#L14)*
+*Defined in [src/waiting.ts:15](https://github.com/openscd/open-scd/blob/c3ac6a3/src/waiting.ts#L15)*
 
 **Type parameters:**
 

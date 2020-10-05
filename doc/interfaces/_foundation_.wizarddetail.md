@@ -18,4 +18,4 @@
 
 • **wizard**: *[Wizard](../modules/_foundation_.md#wizard) | null*
 
-*Defined in [src/foundation.ts:131](https://github.com/openscd/open-scd/blob/6a0bb7d/src/foundation.ts#L131)*
+*Defined in [src/foundation.ts:131](https://github.com/openscd/open-scd/blob/c3ac6a3/src/foundation.ts#L131)*
