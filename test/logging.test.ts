@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { LoggingElement } from '../src/logging.js';
 import { MockAction } from './mock-actions.js';
 import './mock-logger.js';
-import { newLogEvent } from '../src/foundation.js';
+import { CommitEntry, newLogEvent } from '../src/foundation.js';
 
 describe('LoggingElement', () => {
   let element: LoggingElement;
@@ -13,14 +13,11 @@ describe('LoggingElement', () => {
   it('starts out with an empty history', () =>
     expect(element).property('history').to.be.empty);
 
-  it('cannot undo anything with an empty history', () =>
-    expect(element).property('canUndo').to.be.false);
-
-  it('cannot redo anything with an empty history', () =>
-    expect(element).property('canRedo').to.be.false);
+  it('cannot undo', () => expect(element).property('canUndo').to.be.false);
+  it('cannot redo', () => expect(element).property('canRedo').to.be.false);
 
   it('cannot undo info messages', () => {
-    element.dispatchEvent(newLogEvent({ kind: 'info', title: 'testinfo' }));
+    element.dispatchEvent(newLogEvent({ kind: 'info', title: 'test info' }));
     expect(element).property('history').to.have.lengthOf(1);
     expect(element).property('canUndo').to.be.false;
   });
@@ -39,39 +36,47 @@ describe('LoggingElement', () => {
     expect(element).property('canUndo').to.be.false;
   });
 
-  it('has no current, previous and next actions', () => {
-    expect(element).property('currentAction').to.equal(-1);
-    expect(element).property('previousAction').to.equal(-1);
-    expect(element).property('nextAction').to.equal(-1);
-  });
+  it('has no previous action', () =>
+    expect(element).to.have.property('previousAction', -1));
+  it('has no current action', () =>
+    expect(element).to.have.property('currentAction', -1));
+  it('has no next action', () =>
+    expect(element).to.have.property('nextAction', -1));
 
   describe('with an action logged', () => {
-    beforeEach(async () => {
+    beforeEach(() =>
       element.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: 'test MockAction',
           action: MockAction.cre,
         })
+      )
+    );
+
+    it('can undo', () => expect(element).property('canUndo').to.be.true);
+    it('cannot redo', () => expect(element).property('canRedo').to.be.false);
+
+    it('has no previous action', () =>
+      expect(element).to.have.property('previousAction', -1));
+    it('has a current action', () =>
+      expect(element).to.have.property('currentAction', 0));
+    it('has no next action', () =>
+      expect(element).to.have.property('nextAction', -1));
+
+    it('does not log derived actions', () => {
+      expect(element).property('history').to.have.lengthOf(1);
+      element.dispatchEvent(
+        newLogEvent({
+          kind: 'action',
+          title: 'test MockAction',
+          action: (<CommitEntry>element.history[0]).action,
+        })
       );
+      expect(element).property('history').to.have.lengthOf(1);
     });
-
-    it('can undo', () => {
-      expect(element).property('canUndo').to.be.true;
-    });
-
-    it('cannot redo', () => {
-      expect(element).property('canRedo').to.be.false;
-    });
-
-    it('has a current action', () => {
-      expect(element).property('currentAction').to.equal(0);
-      expect(element).property('previousAction').to.equal(-1);
-      expect(element).property('nextAction').to.equal(-1);
-    });
-
     describe('with a second action logged', () => {
-      beforeEach(async () => {
+      beforeEach(() => {
         element.dispatchEvent(
           newLogEvent({
             kind: 'action',
@@ -81,71 +86,49 @@ describe('LoggingElement', () => {
         );
       });
 
-      it('has a current and previous action', () => {
-        expect(element).property('currentAction').to.equal(1);
-        expect(element).property('previousAction').to.equal(0);
-        expect(element).property('nextAction').to.equal(-1);
-      });
+      it('has a previous action', () =>
+        expect(element).to.have.property('previousAction', 0));
+      it('has a current action', () =>
+        expect(element).to.have.property('currentAction', 1));
+      it('has no next action', () =>
+        expect(element).to.have.property('nextAction', -1));
 
-      describe('with the second action undone', () => {
-        beforeEach(async () => {
-          element.undo();
-        });
+      describe('with an action undone', () => {
+        beforeEach(() => element.undo());
 
-        it('has a current and next action', () => {
-          expect(element).property('previousAction').to.equal(-1);
-          expect(element).property('currentAction').to.equal(0);
-          expect(element).property('nextAction').to.equal(1);
-        });
+        it('has no previous action', () =>
+          expect(element).to.have.property('previousAction', -1));
+        it('has a current action', () =>
+          expect(element).to.have.property('currentAction', 0));
+        it('has a next action', () =>
+          expect(element).to.have.property('nextAction', 1));
 
         it('can redo', () => expect(element).property('canRedo').to.be.true);
+
+        describe('with the second action undone', () => {
+          beforeEach(() => element.undo());
+
+          it('cannot undo any funther', () =>
+            expect(element.undo()).to.be.false);
+        });
+
+        describe('with the action redone', () => {
+          beforeEach(() => element.redo());
+
+          it('has a previous action', () =>
+            expect(element).to.have.property('previousAction', 0));
+          it('has a current action', () =>
+            expect(element).to.have.property('currentAction', 1));
+          it('has no next action', () =>
+            expect(element).to.have.property('nextAction', -1));
+
+          it('cannot redo any further', () =>
+            expect(element.redo()).to.be.false);
+        });
       });
     });
   });
 
   /*
-    it('can undo and redo committed actions', () => {
-
-      element.undo();
-      expect(element).property('previousAction').to.equal(-1);
-      expect(element).property('currentAction').to.equal(0);
-      expect(element).property('nextAction').to.equal(1);
-
-      element.undo();
-      expect(element).property('previousAction').to.equal(-1);
-      expect(element).property('currentAction').to.equal(-1);
-      expect(element).property('nextAction').to.equal(0);
-      expect(element).property('canUndo').to.be.false;
-      expect(element).property('canRedo').to.be.true;
-
-      expect(element.undo()).to.be.false;
-      expect(element).property('previousAction').to.equal(-1);
-      expect(element).property('currentAction').to.equal(-1);
-      expect(element).property('nextAction').to.equal(0);
-
-      element.redo();
-      expect(element).property('currentAction').to.equal(0);
-      expect(element).property('canUndo').to.be.true;
-
-      element.redo();
-      expect(element).property('currentAction').to.equal(1);
-
-      element.redo();
-      expect(element).property('previousAction').to.equal(1);
-      expect(element).property('currentAction').to.equal(2);
-      expect(element).property('nextAction').to.equal(-1);
-      expect(element).property('canRedo').to.be.false;
-
-      expect(element.redo()).to.be.false;
-      expect(element).property('currentAction').to.equal(2);
-    });
-
-    it('does not log derived actions', () => {
-      element.commit('test MockAction.move', MockAction.mov);
-      expect(element).property('history').to.have.lengthOf(1);
-
-      element.commit('the same MockAction.move', element.history[0].action!);
-      expect(element).property('history').to.have.lengthOf(1);
-    });
-    */
+   */
 });
