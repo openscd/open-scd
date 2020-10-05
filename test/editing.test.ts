@@ -1,7 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import { EditingElement } from '../src/editing.js';
-import { describeLogEntryHistory } from './logging.test.js';
 import { mockSCD } from './mock-document.js';
 import { newActionEvent } from '../src/foundation.js';
 import { serialize } from './data.js';
@@ -172,6 +171,4 @@ describe('EditingElement', () => {
     expect(serialize(elm.doc)).to.equal(initialDoc);
   });
    */
-
-  describeLogEntryHistory();
 });
