@@ -88,6 +88,11 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
+    reset(): void {
+      this.history = [];
+      this.currentAction = -1;
+    }
+
     onLog(le: LogEvent): void {
       const entry: LogEntry = {
         time: new Date(),
