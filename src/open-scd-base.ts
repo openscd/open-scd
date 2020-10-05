@@ -67,6 +67,7 @@ export class OpenSCDBase extends Wizarding(
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
+        this.reset();
         this.dispatchEvent(
           newLogEvent({
             kind: 'info',
@@ -81,7 +82,6 @@ export class OpenSCDBase extends Wizarding(
                 'application/xml'
               )
             : newEmptySCD();
-          this.reset();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
           this.dispatchEvent(
