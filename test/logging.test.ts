@@ -129,6 +129,9 @@ describe('LoggingElement', () => {
     });
   });
 
-  /*
-   */
+  it('shows a snackbar on logging an error', () => {
+    expect(element.messageUI).to.have.property('open', false);
+    element.dispatchEvent(newLogEvent({ kind: 'error', title: 'test error' }));
+    expect(element.messageUI).to.have.property('open', true);
+  });
 });
