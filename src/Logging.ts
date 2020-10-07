@@ -101,7 +101,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       if (entry.kind == 'action') {
         if (entry.action.derived) return;
         entry.action.derived = true;
-        this.history.splice(this.currentAction + 1);
+        if (this.nextAction !== -1) this.history.splice(this.nextAction);
         this.currentAction = this.history.length;
       }
       this.history.push(entry);

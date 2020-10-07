@@ -106,20 +106,26 @@ describe('LoggingElement', () => {
       expect(element.logUI).to.contain.text('test'));
 
     describe('with a second action logged', () => {
-      beforeEach(() =>
+      beforeEach(() => {
+        element.dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: 'test info',
+          })
+        );
         element.dispatchEvent(
           newLogEvent({
             kind: 'action',
             title: 'test MockAction',
             action: MockAction.del,
           })
-        )
-      );
+        );
+      });
 
       it('has a previous action', () =>
         expect(element).to.have.property('previousAction', 0));
       it('has a current action', () =>
-        expect(element).to.have.property('currentAction', 1));
+        expect(element).to.have.property('currentAction', 2));
       it('has no next action', () =>
         expect(element).to.have.property('nextAction', -1));
 
@@ -131,9 +137,22 @@ describe('LoggingElement', () => {
         it('has a current action', () =>
           expect(element).to.have.property('currentAction', 0));
         it('has a next action', () =>
-          expect(element).to.have.property('nextAction', 1));
+          expect(element).to.have.property('nextAction', 2));
 
         it('can redo', () => expect(element).property('canRedo').to.be.true);
+
+        it('removes the undone action when a new action is logged', () => {
+          element.dispatchEvent(
+            newLogEvent({
+              kind: 'action',
+              title: 'test MockAction',
+              action: MockAction.mov,
+            })
+          );
+          expect(element).property('history').to.have.lengthOf(3);
+          expect(element).to.have.property('currentAction', 2);
+          expect(element).to.have.property('nextAction', -1);
+        });
 
         describe('with the second action undone', () => {
           beforeEach(() => element.undo());
@@ -148,7 +167,7 @@ describe('LoggingElement', () => {
           it('has a previous action', () =>
             expect(element).to.have.property('previousAction', 0));
           it('has a current action', () =>
-            expect(element).to.have.property('currentAction', 1));
+            expect(element).to.have.property('currentAction', 2));
           it('has no next action', () =>
             expect(element).to.have.property('nextAction', -1));
 
