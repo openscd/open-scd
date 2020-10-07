@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-  ↳ [OpenSCDBase](_open_scd_base_.openscdbase.md)
+* WizardingElement‹WaitingElement & EditingElement & LoggingElement & LitElement, this› & WaitingElement‹EditingElement & LoggingElement & LitElement, this› & EditingElement‹LoggingElement & LitElement, this› & LoggingElement‹LitElement, this› & LitElement‹this›
 
   ↳ **OpenSCD**
 
@@ -53,6 +53,7 @@
 * [clientWidth](_open_scd_.openscd.md#readonly-clientwidth)
 * [contentEditable](_open_scd_.openscd.md#contenteditable)
 * [currentAction](_open_scd_.openscd.md#currentaction)
+* [currentSrc](_open_scd_.openscd.md#private-currentsrc)
 * [dataset](_open_scd_.openscd.md#readonly-dataset)
 * [dir](_open_scd_.openscd.md#dir)
 * [doc](_open_scd_.openscd.md#doc)
@@ -262,6 +263,7 @@
 * [getElementsByTagName](_open_scd_.openscd.md#getelementsbytagname)
 * [getElementsByTagNameNS](_open_scd_.openscd.md#getelementsbytagnamens)
 * [getRootNode](_open_scd_.openscd.md#getrootnode)
+* [handleKeyPress](_open_scd_.openscd.md#private-handlekeypress)
 * [hasAttribute](_open_scd_.openscd.md#hasattribute)
 * [hasAttributeNS](_open_scd_.openscd.md#hasattributens)
 * [hasAttributes](_open_scd_.openscd.md#hasattributes)
@@ -276,6 +278,8 @@
 * [isDefaultNamespace](_open_scd_.openscd.md#isdefaultnamespace)
 * [isEqualNode](_open_scd_.openscd.md#isequalnode)
 * [isSameNode](_open_scd_.openscd.md#issamenode)
+* [loadDoc](_open_scd_.openscd.md#private-loaddoc)
+* [loadFile](_open_scd_.openscd.md#private-loadfile)
 * [lookupNamespaceURI](_open_scd_.openscd.md#lookupnamespaceuri)
 * [lookupPrefix](_open_scd_.openscd.md#lookupprefix)
 * [matches](_open_scd_.openscd.md#matches)
@@ -341,11 +345,9 @@
 
 \+ **new OpenSCD**(): *[OpenSCD](_open_scd_.openscd.md)*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[constructor](_open_scd_base_.openscdbase.md#constructor)*
-
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:192](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L192)*
+*Defined in [src/open-scd.ts:199](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L199)*
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -357,6 +359,8 @@
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ATTRIBUTE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-attribute_node)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ATTRIBUTE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-attribute_node)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
 
 ___
@@ -366,6 +370,8 @@ ___
 • **CDATA_SECTION_NODE**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[CDATA_SECTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-cdata_section_node)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[CDATA_SECTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-cdata_section_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
 
@@ -379,6 +385,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[COMMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-comment_node)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[COMMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-comment_node)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
 
 node is a Comment node.
@@ -390,6 +398,8 @@ ___
 • **DOCUMENT_FRAGMENT_NODE**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_FRAGMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_fragment_node)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_FRAGMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_fragment_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
 
@@ -403,6 +413,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_node)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_node)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
 
 node is a document.
@@ -414,6 +426,8 @@ ___
 • **DOCUMENT_POSITION_CONTAINED_BY**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINED_BY](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contained_by)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINED_BY](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contained_by)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
 
@@ -427,6 +441,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINS](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contains)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINS](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contains)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10865
 
 Set when other is an ancestor of node.
@@ -438,6 +454,8 @@ ___
 • **DOCUMENT_POSITION_DISCONNECTED**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_DISCONNECTED](_wizard_textfield_.wizardtextfield.md#readonly-document_position_disconnected)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_DISCONNECTED](_wizard_textfield_.wizardtextfield.md#readonly-document_position_disconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10869
 
@@ -451,6 +469,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_FOLLOWING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_following)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_FOLLOWING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_following)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10873
 
 Set when other is following node.
@@ -463,6 +483,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_textfield_.wizardtextfield.md#readonly-document_position_implementation_specific)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_textfield_.wizardtextfield.md#readonly-document_position_implementation_specific)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
 
 ___
@@ -472,6 +494,8 @@ ___
 • **DOCUMENT_POSITION_PRECEDING**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_PRECEDING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_preceding)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_PRECEDING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_preceding)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10878
 
@@ -485,6 +509,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_TYPE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_type_node)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_TYPE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_type_node)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10882
 
 node is a doctype.
@@ -496,6 +522,8 @@ ___
 • **ELEMENT_NODE**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ELEMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-element_node)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ELEMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-element_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10886
 
@@ -509,6 +537,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_node)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_node)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10887
 
 ___
@@ -518,6 +548,8 @@ ___
 • **ENTITY_REFERENCE_NODE**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_REFERENCE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_reference_node)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_REFERENCE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_reference_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10888
 
@@ -529,6 +561,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[NOTATION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-notation_node)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[NOTATION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-notation_node)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10889
 
 ___
@@ -538,6 +572,8 @@ ___
 • **PROCESSING_INSTRUCTION_NODE**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[PROCESSING_INSTRUCTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-processing_instruction_node)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[PROCESSING_INSTRUCTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-processing_instruction_node)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10893
 
@@ -551,6 +587,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[TEXT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-text_node)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[TEXT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-text_node)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10897
 
 node is a Text node.
@@ -563,6 +601,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKey](_wizard_textfield_.wizardtextfield.md#accesskey)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKey](_wizard_textfield_.wizardtextfield.md#accesskey)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
 
 ___
@@ -573,6 +613,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKeyLabel](_wizard_textfield_.wizardtextfield.md#readonly-accesskeylabel)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKeyLabel](_wizard_textfield_.wizardtextfield.md#readonly-accesskeylabel)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
 
 ___
@@ -581,9 +623,7 @@ ___
 
 • **activeTab**: *number* = 0
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
-
-*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L46)*
+*Defined in [src/open-scd.ts:53](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L53)*
 
 The currently active editor tab.
 
@@ -607,6 +647,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributes](_wizard_textfield_.wizardtextfield.md#readonly-attributes)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributes](_wizard_textfield_.wizardtextfield.md#readonly-attributes)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
 
 ___
@@ -616,6 +658,8 @@ ___
 • **autocapitalize**: *string*
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[autocapitalize](_wizard_dialog_.wizarddialog.md#autocapitalize)*
+
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[autocapitalize](_wizard_dialog_.wizarddialog.md#autocapitalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
 
@@ -627,6 +671,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autofocus](_wizard_textfield_.wizardtextfield.md#autofocus)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autofocus](_wizard_textfield_.wizardtextfield.md#autofocus)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8001
 
 ___
@@ -636,6 +682,8 @@ ___
 • **baseURI**: *string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[baseURI](_wizard_textfield_.wizardtextfield.md#readonly-baseuri)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[baseURI](_wizard_textfield_.wizardtextfield.md#readonly-baseuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
 
@@ -649,6 +697,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childElementCount](_wizard_textfield_.wizardtextfield.md#readonly-childelementcount)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childElementCount](_wizard_textfield_.wizardtextfield.md#readonly-childelementcount)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
 
 ___
@@ -658,6 +708,8 @@ ___
 • **childNodes**: *NodeListOf‹ChildNode›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childNodes](_wizard_textfield_.wizardtextfield.md#readonly-childnodes)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childNodes](_wizard_textfield_.wizardtextfield.md#readonly-childnodes)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
 
@@ -671,6 +723,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[children](_wizard_textfield_.wizardtextfield.md#readonly-children)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[children](_wizard_textfield_.wizardtextfield.md#readonly-children)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11317
 
 Returns the child elements.
@@ -682,6 +736,8 @@ ___
 • **classList**: *DOMTokenList*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[classList](_wizard_textfield_.wizardtextfield.md#readonly-classlist)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[classList](_wizard_textfield_.wizardtextfield.md#readonly-classlist)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5104
 
@@ -695,6 +751,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[className](_wizard_textfield_.wizardtextfield.md#classname)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[className](_wizard_textfield_.wizardtextfield.md#classname)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5108
 
 Returns the value of element's class content attribute. Can be set to change it.
@@ -707,6 +765,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientHeight](_wizard_textfield_.wizardtextfield.md#readonly-clientheight)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientHeight](_wizard_textfield_.wizardtextfield.md#readonly-clientheight)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5109
 
 ___
@@ -716,6 +776,8 @@ ___
 • **clientLeft**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientLeft](_wizard_textfield_.wizardtextfield.md#readonly-clientleft)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientLeft](_wizard_textfield_.wizardtextfield.md#readonly-clientleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
 
@@ -727,6 +789,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientTop](_wizard_textfield_.wizardtextfield.md#readonly-clienttop)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientTop](_wizard_textfield_.wizardtextfield.md#readonly-clienttop)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5111
 
 ___
@@ -736,6 +800,8 @@ ___
 • **clientWidth**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientWidth](_wizard_textfield_.wizardtextfield.md#readonly-clientwidth)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientWidth](_wizard_textfield_.wizardtextfield.md#readonly-clientwidth)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5112
 
@@ -747,6 +813,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contentEditable](_wizard_textfield_.wizardtextfield.md#contenteditable)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contentEditable](_wizard_textfield_.wizardtextfield.md#contenteditable)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5264
 
 ___
@@ -755,9 +823,17 @@ ___
 
 • **currentAction**: *number* = -1
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[currentAction](_open_scd_base_.openscdbase.md#currentaction)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[currentAction](_open_scd_.openscd.md#currentaction)*
 
-*Defined in [src/Logging.ts:48](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L48)*
+*Defined in [src/Logging.ts:48](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L48)*
+
+___
+
+### `Private` currentSrc
+
+• **currentSrc**: *string* = ""
+
+*Defined in [src/open-scd.ts:60](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L60)*
 
 ___
 
@@ -766,6 +842,8 @@ ___
 • **dataset**: *DOMStringMap*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dataset](_wizard_textfield_.wizardtextfield.md#readonly-dataset)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dataset](_wizard_textfield_.wizardtextfield.md#readonly-dataset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8002
 
@@ -777,6 +855,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dir](_wizard_textfield_.wizardtextfield.md#dir)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dir](_wizard_textfield_.wizardtextfield.md#dir)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
 
 ___
@@ -785,9 +865,9 @@ ___
 
 • **doc**: *XMLDocument* = newEmptySCD()
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[doc](_open_scd_.openscd.md#doc)*
 
-*Defined in [src/Editing.ts:33](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Editing.ts#L33)*
+*Defined in [src/Editing.ts:33](https://github.com/openscd/open-scd/blob/a86044f/src/Editing.ts#L33)*
 
 The `XMLDocument` being edited.
 
@@ -799,6 +879,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[draggable](_wizard_textfield_.wizardtextfield.md#draggable)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[draggable](_wizard_textfield_.wizardtextfield.md#draggable)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
 
 ___
@@ -809,6 +891,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enterKeyHint](_wizard_textfield_.wizardtextfield.md#enterkeyhint)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enterKeyHint](_wizard_textfield_.wizardtextfield.md#enterkeyhint)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5265
 
 ___
@@ -817,9 +901,7 @@ ___
 
 • **fileUI**: *HTMLInputElement*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
-
-*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L65)*
+*Defined in [src/open-scd.ts:72](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L72)*
 
 ___
 
@@ -828,6 +910,8 @@ ___
 • **firstChild**: *ChildNode | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstChild](_wizard_textfield_.wizardtextfield.md#readonly-firstchild)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstChild](_wizard_textfield_.wizardtextfield.md#readonly-firstchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10764
 
@@ -841,6 +925,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstElementChild](_wizard_textfield_.wizardtextfield.md#readonly-firstelementchild)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstElementChild](_wizard_textfield_.wizardtextfield.md#readonly-firstelementchild)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11321
 
 Returns the first child that is an element, and null otherwise.
@@ -853,6 +939,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[floatingLabelFoundation](_wizard_textfield_.wizardtextfield.md#optional-floatinglabelfoundation)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[floatingLabelFoundation](_wizard_textfield_.wizardtextfield.md#optional-floatinglabelfoundation)*
+
 Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:34
 
 ___
@@ -863,6 +951,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hidden](_wizard_textfield_.wizardtextfield.md#hidden)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hidden](_wizard_textfield_.wizardtextfield.md#hidden)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
 
 ___
@@ -871,9 +961,9 @@ ___
 
 • **history**: *[LogEntry](../modules/_foundation_.md#logentry)[]* = []
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[history](_open_scd_base_.openscdbase.md#history)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[history](_open_scd_.openscd.md#history)*
 
-*Defined in [src/Logging.ts:44](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L44)*
+*Defined in [src/Logging.ts:44](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L44)*
 
 ___
 
@@ -882,6 +972,8 @@ ___
 • **id**: *string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[id](_wizard_textfield_.wizardtextfield.md#id)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[id](_wizard_textfield_.wizardtextfield.md#id)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
 
@@ -895,6 +987,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerHTML](_wizard_textfield_.wizardtextfield.md#innerhtml)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerHTML](_wizard_textfield_.wizardtextfield.md#innerhtml)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:9586
 
 ___
@@ -904,6 +998,8 @@ ___
 • **innerText**: *string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerText](_wizard_textfield_.wizardtextfield.md#innertext)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerText](_wizard_textfield_.wizardtextfield.md#innertext)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
 
@@ -915,6 +1011,8 @@ ___
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[inputMode](_wizard_dialog_.wizarddialog.md#inputmode)*
 
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[inputMode](_wizard_dialog_.wizarddialog.md#inputmode)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5266
 
 ___
@@ -924,6 +1022,8 @@ ___
 • **isConnected**: *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isConnected](_wizard_textfield_.wizardtextfield.md#readonly-isconnected)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isConnected](_wizard_textfield_.wizardtextfield.md#readonly-isconnected)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10768
 
@@ -937,6 +1037,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isContentEditable](_wizard_textfield_.wizardtextfield.md#readonly-iscontenteditable)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isContentEditable](_wizard_textfield_.wizardtextfield.md#readonly-iscontenteditable)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5267
 
 ___
@@ -947,6 +1049,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lang](_wizard_textfield_.wizardtextfield.md#lang)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lang](_wizard_textfield_.wizardtextfield.md#lang)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6594
 
 ___
@@ -956,6 +1060,8 @@ ___
 • **lastChild**: *ChildNode | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastChild](_wizard_textfield_.wizardtextfield.md#readonly-lastchild)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastChild](_wizard_textfield_.wizardtextfield.md#readonly-lastchild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10772
 
@@ -969,6 +1075,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastElementChild](_wizard_textfield_.wizardtextfield.md#readonly-lastelementchild)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastElementChild](_wizard_textfield_.wizardtextfield.md#readonly-lastelementchild)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
 
 Returns the last child that is an element, and null otherwise.
@@ -981,6 +1089,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lineRippleFoundation](_wizard_textfield_.wizardtextfield.md#optional-lineripplefoundation)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lineRippleFoundation](_wizard_textfield_.wizardtextfield.md#optional-lineripplefoundation)*
+
 Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:35
 
 ___
@@ -990,6 +1100,8 @@ ___
 • **localName**: *string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[localName](_wizard_textfield_.wizardtextfield.md#readonly-localname)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[localName](_wizard_textfield_.wizardtextfield.md#readonly-localname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5120
 
@@ -1001,15 +1113,15 @@ ___
 
 • **logUI**: *Dialog*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[logUI](_open_scd_.openscd.md#logui)*
 
-*Defined in [src/Logging.ts:45](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L45)*
+*Defined in [src/Logging.ts:45](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L45)*
 
 ___
 
 ###  menu
 
-• **menu**: *[MenuEntry](../interfaces/_open_scd_base_.menuentry.md)[]* = [
+• **menu**: *[MenuEntry](../interfaces/_open_scd_.menuentry.md)[]* = [
     {
       icon: 'folder_open',
       name: 'Open project',
@@ -1047,9 +1159,7 @@ ___
     },
   ]
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
-
-*Defined in [src/open-scd-base.ts:142](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L142)*
+*Defined in [src/open-scd.ts:149](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L149)*
 
 ___
 
@@ -1057,9 +1167,7 @@ ___
 
 • **menuUI**: *Drawer*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
-
-*Defined in [src/open-scd-base.ts:64](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L64)*
+*Defined in [src/open-scd.ts:71](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L71)*
 
 ___
 
@@ -1067,9 +1175,9 @@ ___
 
 • **messageUI**: *Snackbar*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[messageUI](_open_scd_.openscd.md#messageui)*
 
-*Defined in [src/Logging.ts:46](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L46)*
+*Defined in [src/Logging.ts:46](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L46)*
 
 ___
 
@@ -1093,6 +1201,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextelementsibling)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextelementsibling)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11043
 
 Returns the first following sibling that is an element, and null otherwise.
@@ -1104,6 +1214,8 @@ ___
 • **nextSibling**: *ChildNode | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextsibling)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10778
 
@@ -1117,6 +1229,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeName](_wizard_textfield_.wizardtextfield.md#readonly-nodename)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeName](_wizard_textfield_.wizardtextfield.md#readonly-nodename)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10782
 
 Returns a string appropriate for the type of node.
@@ -1128,6 +1242,8 @@ ___
 • **nodeType**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeType](_wizard_textfield_.wizardtextfield.md#readonly-nodetype)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeType](_wizard_textfield_.wizardtextfield.md#readonly-nodetype)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10786
 
@@ -1141,6 +1257,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeValue](_wizard_textfield_.wizardtextfield.md#nodevalue)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeValue](_wizard_textfield_.wizardtextfield.md#nodevalue)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
 
 ___
@@ -1150,6 +1268,8 @@ ___
 • **nonce**? : *undefined | string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nonce](_wizard_textfield_.wizardtextfield.md#optional-nonce)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nonce](_wizard_textfield_.wizardtextfield.md#optional-nonce)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8003
 
@@ -1161,6 +1281,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetHeight](_wizard_textfield_.wizardtextfield.md#readonly-offsetheight)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetHeight](_wizard_textfield_.wizardtextfield.md#readonly-offsetheight)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
 
 ___
@@ -1170,6 +1292,8 @@ ___
 • **offsetLeft**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetLeft](_wizard_textfield_.wizardtextfield.md#readonly-offsetleft)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetLeft](_wizard_textfield_.wizardtextfield.md#readonly-offsetleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6596
 
@@ -1181,6 +1305,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetParent](_wizard_textfield_.wizardtextfield.md#readonly-offsetparent)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetParent](_wizard_textfield_.wizardtextfield.md#readonly-offsetparent)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6597
 
 ___
@@ -1190,6 +1316,8 @@ ___
 • **offsetTop**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetTop](_wizard_textfield_.wizardtextfield.md#readonly-offsettop)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetTop](_wizard_textfield_.wizardtextfield.md#readonly-offsettop)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6598
 
@@ -1201,6 +1329,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetWidth](_wizard_textfield_.wizardtextfield.md#readonly-offsetwidth)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetWidth](_wizard_textfield_.wizardtextfield.md#readonly-offsetwidth)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6599
 
 ___
@@ -1210,6 +1340,8 @@ ___
 • **onabort**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onabort](_wizard_textfield_.wizardtextfield.md#onabort)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onabort](_wizard_textfield_.wizardtextfield.md#onabort)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
 
@@ -1225,6 +1357,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationcancel](_wizard_textfield_.wizardtextfield.md#onanimationcancel)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationcancel](_wizard_textfield_.wizardtextfield.md#onanimationcancel)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5778
 
 ___
@@ -1234,6 +1368,8 @@ ___
 • **onanimationend**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationend](_wizard_textfield_.wizardtextfield.md#onanimationend)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationend](_wizard_textfield_.wizardtextfield.md#onanimationend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5779
 
@@ -1245,6 +1381,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationiteration](_wizard_textfield_.wizardtextfield.md#onanimationiteration)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationiteration](_wizard_textfield_.wizardtextfield.md#onanimationiteration)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5780
 
 ___
@@ -1254,6 +1392,8 @@ ___
 • **onanimationstart**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationstart](_wizard_textfield_.wizardtextfield.md#onanimationstart)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationstart](_wizard_textfield_.wizardtextfield.md#onanimationstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5781
 
@@ -1265,6 +1405,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onauxclick](_wizard_textfield_.wizardtextfield.md#onauxclick)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onauxclick](_wizard_textfield_.wizardtextfield.md#onauxclick)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
 
 ___
@@ -1274,6 +1416,8 @@ ___
 • **onblur**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onblur](_wizard_textfield_.wizardtextfield.md#onblur)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onblur](_wizard_textfield_.wizardtextfield.md#onblur)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5787
 
@@ -1289,6 +1433,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncancel](_wizard_textfield_.wizardtextfield.md#oncancel)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncancel](_wizard_textfield_.wizardtextfield.md#oncancel)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
 
 ___
@@ -1298,6 +1444,8 @@ ___
 • **oncanplay**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplay](_wizard_textfield_.wizardtextfield.md#oncanplay)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplay](_wizard_textfield_.wizardtextfield.md#oncanplay)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
 
@@ -1313,6 +1461,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplaythrough](_wizard_textfield_.wizardtextfield.md#oncanplaythrough)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplaythrough](_wizard_textfield_.wizardtextfield.md#oncanplaythrough)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
 
 ___
@@ -1322,6 +1472,8 @@ ___
 • **onchange**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onchange](_wizard_textfield_.wizardtextfield.md#onchange)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onchange](_wizard_textfield_.wizardtextfield.md#onchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
 
@@ -1337,6 +1489,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclick](_wizard_textfield_.wizardtextfield.md#onclick)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclick](_wizard_textfield_.wizardtextfield.md#onclick)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5804
 
 Fires when the user clicks the left mouse button on the object
@@ -1351,6 +1505,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclose](_wizard_textfield_.wizardtextfield.md#onclose)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclose](_wizard_textfield_.wizardtextfield.md#onclose)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
 
 ___
@@ -1360,6 +1516,8 @@ ___
 • **oncontextmenu**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncontextmenu](_wizard_textfield_.wizardtextfield.md#oncontextmenu)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncontextmenu](_wizard_textfield_.wizardtextfield.md#oncontextmenu)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
 
@@ -1375,6 +1533,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncopy](_wizard_textfield_.wizardtextfield.md#oncopy)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncopy](_wizard_textfield_.wizardtextfield.md#oncopy)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4898
 
 ___
@@ -1384,6 +1544,8 @@ ___
 • **oncuechange**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncuechange](_wizard_textfield_.wizardtextfield.md#oncuechange)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncuechange](_wizard_textfield_.wizardtextfield.md#oncuechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5811
 
@@ -1395,6 +1557,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncut](_wizard_textfield_.wizardtextfield.md#oncut)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncut](_wizard_textfield_.wizardtextfield.md#oncut)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4899
 
 ___
@@ -1404,6 +1568,8 @@ ___
 • **ondblclick**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondblclick](_wizard_textfield_.wizardtextfield.md#ondblclick)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondblclick](_wizard_textfield_.wizardtextfield.md#ondblclick)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5816
 
@@ -1419,6 +1585,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrag](_wizard_textfield_.wizardtextfield.md#ondrag)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrag](_wizard_textfield_.wizardtextfield.md#ondrag)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
 
 Fires on the source object continuously during a drag operation.
@@ -1432,6 +1600,8 @@ ___
 • **ondragend**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragend](_wizard_textfield_.wizardtextfield.md#ondragend)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragend](_wizard_textfield_.wizardtextfield.md#ondragend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
 
@@ -1447,6 +1617,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragenter](_wizard_textfield_.wizardtextfield.md#ondragenter)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragenter](_wizard_textfield_.wizardtextfield.md#ondragenter)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
 
 Fires on the target element when the user drags the object to a valid drop target.
@@ -1461,6 +1633,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragexit](_wizard_textfield_.wizardtextfield.md#ondragexit)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragexit](_wizard_textfield_.wizardtextfield.md#ondragexit)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5832
 
 ___
@@ -1470,6 +1644,8 @@ ___
 • **ondragleave**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragleave](_wizard_textfield_.wizardtextfield.md#ondragleave)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragleave](_wizard_textfield_.wizardtextfield.md#ondragleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
 
@@ -1485,6 +1661,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragover](_wizard_textfield_.wizardtextfield.md#ondragover)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragover](_wizard_textfield_.wizardtextfield.md#ondragover)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
 
 Fires on the target element continuously while the user drags the object over a valid drop target.
@@ -1498,6 +1676,8 @@ ___
 • **ondragstart**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragstart](_wizard_textfield_.wizardtextfield.md#ondragstart)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragstart](_wizard_textfield_.wizardtextfield.md#ondragstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
 
@@ -1513,6 +1693,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrop](_wizard_textfield_.wizardtextfield.md#ondrop)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrop](_wizard_textfield_.wizardtextfield.md#ondrop)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5848
 
 ___
@@ -1522,6 +1704,8 @@ ___
 • **ondurationchange**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondurationchange](_wizard_textfield_.wizardtextfield.md#ondurationchange)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondurationchange](_wizard_textfield_.wizardtextfield.md#ondurationchange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5853
 
@@ -1537,6 +1721,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onemptied](_wizard_textfield_.wizardtextfield.md#onemptied)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onemptied](_wizard_textfield_.wizardtextfield.md#onemptied)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5858
 
 Occurs when the media element is reset to its initial state.
@@ -1550,6 +1736,8 @@ ___
 • **onended**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onended](_wizard_textfield_.wizardtextfield.md#onended)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onended](_wizard_textfield_.wizardtextfield.md#onended)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
 
@@ -1565,6 +1753,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onerror](_wizard_textfield_.wizardtextfield.md#onerror)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onerror](_wizard_textfield_.wizardtextfield.md#onerror)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5868
 
 Fires when an error occurs during object loading.
@@ -1578,6 +1768,8 @@ ___
 • **onfocus**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfocus](_wizard_textfield_.wizardtextfield.md#onfocus)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfocus](_wizard_textfield_.wizardtextfield.md#onfocus)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5873
 
@@ -1593,6 +1785,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenchange](_wizard_textfield_.wizardtextfield.md#onfullscreenchange)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenchange](_wizard_textfield_.wizardtextfield.md#onfullscreenchange)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
 
 ___
@@ -1602,6 +1796,8 @@ ___
 • **onfullscreenerror**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenerror](_wizard_textfield_.wizardtextfield.md#onfullscreenerror)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenerror](_wizard_textfield_.wizardtextfield.md#onfullscreenerror)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
 
@@ -1613,6 +1809,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ongotpointercapture](_wizard_textfield_.wizardtextfield.md#ongotpointercapture)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ongotpointercapture](_wizard_textfield_.wizardtextfield.md#ongotpointercapture)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5874
 
 ___
@@ -1622,6 +1820,8 @@ ___
 • **oninput**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninput](_wizard_textfield_.wizardtextfield.md#oninput)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninput](_wizard_textfield_.wizardtextfield.md#oninput)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
 
@@ -1633,6 +1833,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninvalid](_wizard_textfield_.wizardtextfield.md#oninvalid)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninvalid](_wizard_textfield_.wizardtextfield.md#oninvalid)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5876
 
 ___
@@ -1642,6 +1844,8 @@ ___
 • **onkeydown**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeydown](_wizard_textfield_.wizardtextfield.md#onkeydown)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeydown](_wizard_textfield_.wizardtextfield.md#onkeydown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5881
 
@@ -1657,6 +1861,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeypress](_wizard_textfield_.wizardtextfield.md#onkeypress)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeypress](_wizard_textfield_.wizardtextfield.md#onkeypress)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5886
 
 Fires when the user presses an alphanumeric key.
@@ -1670,6 +1876,8 @@ ___
 • **onkeyup**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeyup](_wizard_textfield_.wizardtextfield.md#onkeyup)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeyup](_wizard_textfield_.wizardtextfield.md#onkeyup)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5891
 
@@ -1685,6 +1893,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onload](_wizard_textfield_.wizardtextfield.md#onload)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onload](_wizard_textfield_.wizardtextfield.md#onload)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5896
 
 Fires immediately after the browser loads the object.
@@ -1698,6 +1908,8 @@ ___
 • **onloadeddata**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadeddata](_wizard_textfield_.wizardtextfield.md#onloadeddata)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadeddata](_wizard_textfield_.wizardtextfield.md#onloadeddata)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
 
@@ -1713,6 +1925,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadedmetadata](_wizard_textfield_.wizardtextfield.md#onloadedmetadata)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadedmetadata](_wizard_textfield_.wizardtextfield.md#onloadedmetadata)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
 
 Occurs when the duration and dimensions of the media have been determined.
@@ -1726,6 +1940,8 @@ ___
 • **onloadstart**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadstart](_wizard_textfield_.wizardtextfield.md#onloadstart)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadstart](_wizard_textfield_.wizardtextfield.md#onloadstart)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5911
 
@@ -1741,6 +1957,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onlostpointercapture](_wizard_textfield_.wizardtextfield.md#onlostpointercapture)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onlostpointercapture](_wizard_textfield_.wizardtextfield.md#onlostpointercapture)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5912
 
 ___
@@ -1750,6 +1968,8 @@ ___
 • **onmousedown**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousedown](_wizard_textfield_.wizardtextfield.md#onmousedown)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousedown](_wizard_textfield_.wizardtextfield.md#onmousedown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5917
 
@@ -1765,6 +1985,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseenter](_wizard_textfield_.wizardtextfield.md#onmouseenter)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseenter](_wizard_textfield_.wizardtextfield.md#onmouseenter)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
 
 ___
@@ -1775,6 +1997,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseleave](_wizard_textfield_.wizardtextfield.md#onmouseleave)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseleave](_wizard_textfield_.wizardtextfield.md#onmouseleave)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5919
 
 ___
@@ -1784,6 +2008,8 @@ ___
 • **onmousemove**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousemove](_wizard_textfield_.wizardtextfield.md#onmousemove)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousemove](_wizard_textfield_.wizardtextfield.md#onmousemove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5924
 
@@ -1799,6 +2025,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseout](_wizard_textfield_.wizardtextfield.md#onmouseout)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseout](_wizard_textfield_.wizardtextfield.md#onmouseout)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5929
 
 Fires when the user moves the mouse pointer outside the boundaries of the object.
@@ -1812,6 +2040,8 @@ ___
 • **onmouseover**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseover](_wizard_textfield_.wizardtextfield.md#onmouseover)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseover](_wizard_textfield_.wizardtextfield.md#onmouseover)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5934
 
@@ -1827,6 +2057,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseup](_wizard_textfield_.wizardtextfield.md#onmouseup)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseup](_wizard_textfield_.wizardtextfield.md#onmouseup)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5939
 
 Fires when the user releases a mouse button while the mouse is over the object.
@@ -1841,6 +2073,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpaste](_wizard_textfield_.wizardtextfield.md#onpaste)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpaste](_wizard_textfield_.wizardtextfield.md#onpaste)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:4900
 
 ___
@@ -1850,6 +2084,8 @@ ___
 • **onpause**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpause](_wizard_textfield_.wizardtextfield.md#onpause)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpause](_wizard_textfield_.wizardtextfield.md#onpause)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
 
@@ -1865,6 +2101,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplay](_wizard_textfield_.wizardtextfield.md#onplay)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplay](_wizard_textfield_.wizardtextfield.md#onplay)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
 
 Occurs when the play method is requested.
@@ -1878,6 +2116,8 @@ ___
 • **onplaying**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplaying](_wizard_textfield_.wizardtextfield.md#onplaying)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplaying](_wizard_textfield_.wizardtextfield.md#onplaying)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5954
 
@@ -1893,6 +2133,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointercancel](_wizard_textfield_.wizardtextfield.md#onpointercancel)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointercancel](_wizard_textfield_.wizardtextfield.md#onpointercancel)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5955
 
 ___
@@ -1902,6 +2144,8 @@ ___
 • **onpointerdown**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerdown](_wizard_textfield_.wizardtextfield.md#onpointerdown)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerdown](_wizard_textfield_.wizardtextfield.md#onpointerdown)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
 
@@ -1913,6 +2157,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerenter](_wizard_textfield_.wizardtextfield.md#onpointerenter)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerenter](_wizard_textfield_.wizardtextfield.md#onpointerenter)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5957
 
 ___
@@ -1922,6 +2168,8 @@ ___
 • **onpointerleave**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerleave](_wizard_textfield_.wizardtextfield.md#onpointerleave)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerleave](_wizard_textfield_.wizardtextfield.md#onpointerleave)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5958
 
@@ -1933,6 +2181,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointermove](_wizard_textfield_.wizardtextfield.md#onpointermove)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointermove](_wizard_textfield_.wizardtextfield.md#onpointermove)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5959
 
 ___
@@ -1942,6 +2192,8 @@ ___
 • **onpointerout**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerout](_wizard_textfield_.wizardtextfield.md#onpointerout)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerout](_wizard_textfield_.wizardtextfield.md#onpointerout)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5960
 
@@ -1953,6 +2205,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerover](_wizard_textfield_.wizardtextfield.md#onpointerover)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerover](_wizard_textfield_.wizardtextfield.md#onpointerover)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
 
 ___
@@ -1963,6 +2217,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerup](_wizard_textfield_.wizardtextfield.md#onpointerup)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerup](_wizard_textfield_.wizardtextfield.md#onpointerup)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5962
 
 ___
@@ -1972,6 +2228,8 @@ ___
 • **onprogress**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onprogress](_wizard_textfield_.wizardtextfield.md#onprogress)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onprogress](_wizard_textfield_.wizardtextfield.md#onprogress)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
 
@@ -1987,6 +2245,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onratechange](_wizard_textfield_.wizardtextfield.md#onratechange)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onratechange](_wizard_textfield_.wizardtextfield.md#onratechange)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
 
 Occurs when the playback rate is increased or decreased.
@@ -2000,6 +2260,8 @@ ___
 • **onreset**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onreset](_wizard_textfield_.wizardtextfield.md#onreset)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onreset](_wizard_textfield_.wizardtextfield.md#onreset)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5977
 
@@ -2015,6 +2277,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onresize](_wizard_textfield_.wizardtextfield.md#onresize)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onresize](_wizard_textfield_.wizardtextfield.md#onresize)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
 
 ___
@@ -2024,6 +2288,8 @@ ___
 • **onscroll**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onscroll](_wizard_textfield_.wizardtextfield.md#onscroll)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onscroll](_wizard_textfield_.wizardtextfield.md#onscroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
 
@@ -2039,6 +2305,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsecuritypolicyviolation](_wizard_textfield_.wizardtextfield.md#onsecuritypolicyviolation)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsecuritypolicyviolation](_wizard_textfield_.wizardtextfield.md#onsecuritypolicyviolation)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5984
 
 ___
@@ -2048,6 +2316,8 @@ ___
 • **onseeked**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeked](_wizard_textfield_.wizardtextfield.md#onseeked)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeked](_wizard_textfield_.wizardtextfield.md#onseeked)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
 
@@ -2063,6 +2333,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeking](_wizard_textfield_.wizardtextfield.md#onseeking)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeking](_wizard_textfield_.wizardtextfield.md#onseeking)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5994
 
 Occurs when the current playback position is moved.
@@ -2076,6 +2348,8 @@ ___
 • **onselect**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselect](_wizard_textfield_.wizardtextfield.md#onselect)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselect](_wizard_textfield_.wizardtextfield.md#onselect)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5999
 
@@ -2091,6 +2365,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectionchange](_wizard_textfield_.wizardtextfield.md#onselectionchange)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectionchange](_wizard_textfield_.wizardtextfield.md#onselectionchange)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6000
 
 ___
@@ -2101,6 +2377,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectstart](_wizard_textfield_.wizardtextfield.md#onselectstart)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectstart](_wizard_textfield_.wizardtextfield.md#onselectstart)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
 
 ___
@@ -2110,6 +2388,8 @@ ___
 • **onstalled**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onstalled](_wizard_textfield_.wizardtextfield.md#onstalled)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onstalled](_wizard_textfield_.wizardtextfield.md#onstalled)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
 
@@ -2125,6 +2405,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsubmit](_wizard_textfield_.wizardtextfield.md#onsubmit)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsubmit](_wizard_textfield_.wizardtextfield.md#onsubmit)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
 
 ___
@@ -2134,6 +2416,8 @@ ___
 • **onsuspend**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsuspend](_wizard_textfield_.wizardtextfield.md#onsuspend)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsuspend](_wizard_textfield_.wizardtextfield.md#onsuspend)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
 
@@ -2149,6 +2433,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontimeupdate](_wizard_textfield_.wizardtextfield.md#ontimeupdate)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontimeupdate](_wizard_textfield_.wizardtextfield.md#ontimeupdate)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6017
 
 Occurs to indicate the current playback position.
@@ -2163,6 +2449,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontoggle](_wizard_textfield_.wizardtextfield.md#ontoggle)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontoggle](_wizard_textfield_.wizardtextfield.md#ontoggle)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6018
 
 ___
@@ -2172,6 +2460,8 @@ ___
 • **ontouchcancel**? : *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchcancel](_wizard_textfield_.wizardtextfield.md#optional-ontouchcancel)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchcancel](_wizard_textfield_.wizardtextfield.md#optional-ontouchcancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6019
 
@@ -2183,6 +2473,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchend](_wizard_textfield_.wizardtextfield.md#optional-ontouchend)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchend](_wizard_textfield_.wizardtextfield.md#optional-ontouchend)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
 
 ___
@@ -2192,6 +2484,8 @@ ___
 • **ontouchmove**? : *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchmove](_wizard_textfield_.wizardtextfield.md#optional-ontouchmove)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchmove](_wizard_textfield_.wizardtextfield.md#optional-ontouchmove)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6021
 
@@ -2203,6 +2497,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchstart](_wizard_textfield_.wizardtextfield.md#optional-ontouchstart)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchstart](_wizard_textfield_.wizardtextfield.md#optional-ontouchstart)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6022
 
 ___
@@ -2212,6 +2508,8 @@ ___
 • **ontransitioncancel**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitioncancel](_wizard_textfield_.wizardtextfield.md#ontransitioncancel)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitioncancel](_wizard_textfield_.wizardtextfield.md#ontransitioncancel)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6023
 
@@ -2223,6 +2521,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionend](_wizard_textfield_.wizardtextfield.md#ontransitionend)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionend](_wizard_textfield_.wizardtextfield.md#ontransitionend)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6024
 
 ___
@@ -2232,6 +2532,8 @@ ___
 • **ontransitionrun**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionrun](_wizard_textfield_.wizardtextfield.md#ontransitionrun)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionrun](_wizard_textfield_.wizardtextfield.md#ontransitionrun)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
 
@@ -2243,6 +2545,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionstart](_wizard_textfield_.wizardtextfield.md#ontransitionstart)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionstart](_wizard_textfield_.wizardtextfield.md#ontransitionstart)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
 
 ___
@@ -2252,6 +2556,8 @@ ___
 • **onvolumechange**: *function | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onvolumechange](_wizard_textfield_.wizardtextfield.md#onvolumechange)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onvolumechange](_wizard_textfield_.wizardtextfield.md#onvolumechange)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6031
 
@@ -2267,6 +2573,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwaiting](_wizard_textfield_.wizardtextfield.md#onwaiting)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwaiting](_wizard_textfield_.wizardtextfield.md#onwaiting)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6036
 
 Occurs when playback stops because the next frame of a video resource is not available.
@@ -2281,6 +2589,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwheel](_wizard_textfield_.wizardtextfield.md#onwheel)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwheel](_wizard_textfield_.wizardtextfield.md#onwheel)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6037
 
 ___
@@ -2290,6 +2600,8 @@ ___
 • **outerHTML**: *string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outerHTML](_wizard_textfield_.wizardtextfield.md#outerhtml)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outerHTML](_wizard_textfield_.wizardtextfield.md#outerhtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5127
 
@@ -2313,6 +2625,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentElement](_wizard_textfield_.wizardtextfield.md#readonly-parentelement)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentElement](_wizard_textfield_.wizardtextfield.md#readonly-parentelement)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10795
 
 Returns the parent element.
@@ -2324,6 +2638,8 @@ ___
 • **parentNode**: *Node & ParentNode | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentNode](_wizard_textfield_.wizardtextfield.md#readonly-parentnode)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentNode](_wizard_textfield_.wizardtextfield.md#readonly-parentnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10799
 
@@ -2337,6 +2653,8 @@ ___
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[prefix](_wizard_dialog_.wizarddialog.md#readonly-prefix)*
 
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[prefix](_wizard_dialog_.wizarddialog.md#readonly-prefix)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5132
 
 Returns the namespace prefix.
@@ -2348,6 +2666,8 @@ ___
 • **previousElementSibling**: *Element | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-previouselementsibling)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-previouselementsibling)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11047
 
@@ -2361,6 +2681,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousSibling](_wizard_textfield_.wizardtextfield.md#readonly-previoussibling)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousSibling](_wizard_textfield_.wizardtextfield.md#readonly-previoussibling)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10803
 
 Returns the previous sibling.
@@ -2372,6 +2694,8 @@ ___
 • **renderRoot**: *Element | DocumentFragment*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderRoot](_wizard_textfield_.wizardtextfield.md#readonly-renderroot)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderRoot](_wizard_textfield_.wizardtextfield.md#readonly-renderroot)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:126
 
@@ -2386,6 +2710,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollHeight](_wizard_textfield_.wizardtextfield.md#readonly-scrollheight)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollHeight](_wizard_textfield_.wizardtextfield.md#readonly-scrollheight)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5133
 
 ___
@@ -2395,6 +2721,8 @@ ___
 • **scrollLeft**: *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollLeft](_wizard_textfield_.wizardtextfield.md#scrollleft)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollLeft](_wizard_textfield_.wizardtextfield.md#scrollleft)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
 
@@ -2406,6 +2734,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTop](_wizard_textfield_.wizardtextfield.md#scrolltop)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTop](_wizard_textfield_.wizardtextfield.md#scrolltop)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5135
 
 ___
@@ -2416,6 +2746,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollWidth](_wizard_textfield_.wizardtextfield.md#readonly-scrollwidth)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollWidth](_wizard_textfield_.wizardtextfield.md#readonly-scrollwidth)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5136
 
 ___
@@ -2425,6 +2757,8 @@ ___
 • **shadowRoot**: *ShadowRoot | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shadowRoot](_wizard_textfield_.wizardtextfield.md#readonly-shadowroot)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shadowRoot](_wizard_textfield_.wizardtextfield.md#readonly-shadowroot)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5140
 
@@ -2438,6 +2772,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[slot](_wizard_textfield_.wizardtextfield.md#slot)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[slot](_wizard_textfield_.wizardtextfield.md#slot)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5144
 
 Returns the value of element's slot content attribute. Can be set to change it.
@@ -2450,6 +2786,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[spellcheck](_wizard_textfield_.wizardtextfield.md#spellcheck)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[spellcheck](_wizard_textfield_.wizardtextfield.md#spellcheck)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6600
 
 ___
@@ -2458,9 +2796,7 @@ ___
 
 • **srcName**: *string* = "untitled.scd"
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
-
-*Defined in [src/open-scd-base.ts:52](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L52)*
+*Defined in [src/open-scd.ts:59](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L59)*
 
 The name of the current file.
 
@@ -2472,6 +2808,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[style](_wizard_textfield_.wizardtextfield.md#readonly-style)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[style](_wizard_textfield_.wizardtextfield.md#readonly-style)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5260
 
 ___
@@ -2482,6 +2820,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tabIndex](_wizard_textfield_.wizardtextfield.md#tabindex)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tabIndex](_wizard_textfield_.wizardtextfield.md#tabindex)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8004
 
 ___
@@ -2491,6 +2831,8 @@ ___
 • **tagName**: *string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tagName](_wizard_textfield_.wizardtextfield.md#readonly-tagname)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tagName](_wizard_textfield_.wizardtextfield.md#readonly-tagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
 
@@ -2504,6 +2846,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[textContent](_wizard_textfield_.wizardtextfield.md#textcontent)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[textContent](_wizard_textfield_.wizardtextfield.md#textcontent)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10804
 
 ___
@@ -2513,6 +2857,8 @@ ___
 • **title**: *string*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[title](_wizard_textfield_.wizardtextfield.md#title)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[title](_wizard_textfield_.wizardtextfield.md#title)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6601
 
@@ -2524,6 +2870,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[translate](_wizard_textfield_.wizardtextfield.md#translate)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[translate](_wizard_textfield_.wizardtextfield.md#translate)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6602
 
 ___
@@ -2532,9 +2880,9 @@ ___
 
 • **waiting**: *boolean* = false
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[waiting](_open_scd_base_.openscdbase.md#waiting)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[waiting](_open_scd_.openscd.md#waiting)*
 
-*Defined in [src/Waiting.ts:19](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L19)*
+*Defined in [src/Waiting.ts:19](https://github.com/openscd/open-scd/blob/a86044f/src/Waiting.ts#L19)*
 
 Whether the element is currently waiting for some async work.
 
@@ -2544,9 +2892,9 @@ ___
 
 • **work**: *Set‹Promise‹string››* = new Set()
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[work](_open_scd_.openscd.md#protected-work)*
 
-*Defined in [src/Waiting.ts:21](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L21)*
+*Defined in [src/Waiting.ts:21](https://github.com/openscd/open-scd/blob/a86044f/src/Waiting.ts#L21)*
 
 ___
 
@@ -2554,9 +2902,9 @@ ___
 
 • **workDone**: *Promise‹PromiseSettledResult‹string›[]›* = Promise.allSettled(this.work)
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[workDone](_open_scd_.openscd.md#workdone)*
 
-*Defined in [src/Waiting.ts:23](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L23)*
+*Defined in [src/Waiting.ts:23](https://github.com/openscd/open-scd/blob/a86044f/src/Waiting.ts#L23)*
 
 A promise which resolves once all currently pending work is done.
 
@@ -2566,9 +2914,9 @@ ___
 
 • **workflow**: *[Wizard](../modules/_foundation_.md#wizard)[]* = []
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workflow](_open_scd_base_.openscdbase.md#workflow)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[workflow](_open_scd_.openscd.md#workflow)*
 
-*Defined in [src/Wizarding.ts:17](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Wizarding.ts#L17)*
+*Defined in [src/Wizarding.ts:17](https://github.com/openscd/open-scd/blob/a86044f/src/Wizarding.ts#L17)*
 
 ___
 
@@ -2577,6 +2925,8 @@ ___
 ▪ **[finalized]**: *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[[finalized]](_wizard_textfield_.wizardtextfield.md#static-protected-[finalized])*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[[finalized]](_wizard_textfield_.wizardtextfield.md#static-protected-[finalized])*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:139
 
@@ -2589,6 +2939,8 @@ ___
 ▪ **finalized**: *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalized](_wizard_textfield_.wizardtextfield.md#static-protected-finalized)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalized](_wizard_textfield_.wizardtextfield.md#static-protected-finalized)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:87
 
@@ -2606,6 +2958,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[properties](_wizard_textfield_.wizardtextfield.md#static-properties)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[properties](_wizard_textfield_.wizardtextfield.md#static-properties)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:149
 
 User-supplied object that maps property names to `PropertyDeclaration`
@@ -2618,6 +2972,8 @@ ___
 ▪ **render**: *function*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
 
 Defined in node_modules/lit-element/lit-element.d.ts:105
 
@@ -2653,11 +3009,52 @@ ___
 
 ### `Static` styles
 
-▪ **styles**: *CSSResult‹›* = styles
+▪ **styles**: *CSSResult‹›* = css`
+    * {
+      --mdc-theme-primary: #005496;
+      --mdc-theme-secondary: #d20a11;
+      --mdc-theme-background: #ffdd00;
+      --mdc-theme-on-secondary: #ffdd00;
+      --mdc-theme-on-background: #005496;
+    }
 
-*Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
+    mwc-top-app-bar-fixed {
+      --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
+    } /* hack to fix disabled icon buttons rendering black */
 
-*Defined in [src/open-scd.ts:13](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd.ts#L13)*
+    mwc-snackbar * {
+      --mdc-theme-primary: #ffdd00;
+    }
+
+    #file-input {
+      display: none;
+    }
+
+    mwc-dialog {
+      --mdc-dialog-max-width: 92vw;
+    }
+
+    mwc-circular-progress-four-color {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      --mdc-circular-progress-bar-color-1: #005496;
+      --mdc-circular-progress-bar-color-2: #d20a11;
+      --mdc-circular-progress-bar-color-3: #005496;
+      --mdc-circular-progress-bar-color-4: #ffdd00;
+    }
+
+    tt {
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 300;
+    }
+  `
+
+*Overrides void*
+
+*Defined in [src/open-scd.ts:291](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L291)*
 
 ## Accessors
 
@@ -2665,9 +3062,9 @@ ___
 
 • **get canRedo**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[canRedo](_open_scd_.openscd.md#canredo)*
 
-*Defined in [src/Logging.ts:53](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L53)*
+*Defined in [src/Logging.ts:53](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L53)*
 
 **Returns:** *boolean*
 
@@ -2677,9 +3074,9 @@ ___
 
 • **get canUndo**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[canUndo](_open_scd_.openscd.md#canundo)*
 
-*Defined in [src/Logging.ts:50](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L50)*
+*Defined in [src/Logging.ts:50](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L50)*
 
 **Returns:** *boolean*
 
@@ -2691,6 +3088,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasUpdated](_wizard_textfield_.wizardtextfield.md#protected-hasupdated)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasUpdated](_wizard_textfield_.wizardtextfield.md#protected-hasupdated)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:337
 
 **Returns:** *number*
@@ -2701,9 +3100,7 @@ ___
 
 • **get name**(): *string | null*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[name](_open_scd_base_.openscdbase.md#name)*
-
-*Defined in [src/open-scd-base.ts:48](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L48)*
+*Defined in [src/open-scd.ts:55](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L55)*
 
 **Returns:** *string | null*
 
@@ -2713,9 +3110,9 @@ ___
 
 • **get nextAction**(): *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[nextAction](_open_scd_.openscd.md#nextaction)*
 
-*Defined in [src/Logging.ts:63](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L63)*
+*Defined in [src/Logging.ts:63](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L63)*
 
 **Returns:** *number*
 
@@ -2725,9 +3122,9 @@ ___
 
 • **get previousAction**(): *number*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[previousAction](_open_scd_.openscd.md#previousaction)*
 
-*Defined in [src/Logging.ts:56](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L56)*
+*Defined in [src/Logging.ts:56](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L56)*
 
 **Returns:** *number*
 
@@ -2737,9 +3134,7 @@ ___
 
 • **get src**(): *string*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
-
-*Defined in [src/open-scd-base.ts:56](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L56)*
+*Defined in [src/open-scd.ts:63](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L63)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2747,9 +3142,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 • **set src**(`value`: string): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
-
-*Defined in [src/open-scd-base.ts:59](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L59)*
+*Defined in [src/open-scd.ts:66](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L66)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2768,6 +3161,8 @@ ___
 • **get updateComplete**(): *Promise‹unknown›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[updateComplete](_wizard_textfield_.wizardtextfield.md#updatecomplete)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[updateComplete](_wizard_textfield_.wizardtextfield.md#updatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:371
 
@@ -2795,6 +3190,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[observedAttributes](_wizard_textfield_.wizardtextfield.md#static-observedattributes)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[observedAttributes](_wizard_textfield_.wizardtextfield.md#static-observedattributes)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:154
 
 Returns a list of attributes corresponding to the registered properties.
@@ -2810,6 +3207,8 @@ Returns a list of attributes corresponding to the registered properties.
 ▸ **_getUpdateComplete**(): *Promise‹unknown›*
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[_getUpdateComplete](_wizard_dialog_.wizarddialog.md#protected-_getupdatecomplete)*
+
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[_getUpdateComplete](_wizard_dialog_.wizarddialog.md#protected-_getupdatecomplete)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:388
 
@@ -2891,6 +3290,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[adoptStyles](_wizard_textfield_.wizardtextfield.md#protected-adoptstyles)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[adoptStyles](_wizard_textfield_.wizardtextfield.md#protected-adoptstyles)*
+
 Defined in node_modules/lit-element/lit-element.d.ts:150
 
 Applies styling to the element shadowRoot using the [[`styles`]]
@@ -2910,6 +3311,8 @@ ___
 ▸ **after**(...`nodes`: (Node | string)[]): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[after](_wizard_textfield_.wizardtextfield.md#after)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[after](_wizard_textfield_.wizardtextfield.md#after)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3506
 
@@ -2933,6 +3336,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[animate](_wizard_textfield_.wizardtextfield.md#animate)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[animate](_wizard_textfield_.wizardtextfield.md#animate)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
 
 **Parameters:**
@@ -2951,6 +3356,8 @@ ___
 ▸ **append**(...`nodes`: (Node | string)[]): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[append](_wizard_textfield_.wizardtextfield.md#append)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[append](_wizard_textfield_.wizardtextfield.md#append)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
 
@@ -2974,6 +3381,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[appendChild](_wizard_textfield_.wizardtextfield.md#appendchild)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[appendChild](_wizard_textfield_.wizardtextfield.md#appendchild)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
 
 **Type parameters:**
@@ -2996,6 +3405,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attachShadow](_wizard_textfield_.wizardtextfield.md#attachshadow)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attachShadow](_wizard_textfield_.wizardtextfield.md#attachshadow)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
 
 Creates a shadow root for element and returns it.
@@ -3015,6 +3426,8 @@ ___
 ▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributeChangedCallback](_wizard_textfield_.wizardtextfield.md#attributechangedcallback)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributeChangedCallback](_wizard_textfield_.wizardtextfield.md#attributechangedcallback)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:309
 
@@ -3038,6 +3451,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[before](_wizard_textfield_.wizardtextfield.md#before)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[before](_wizard_textfield_.wizardtextfield.md#before)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3512
 
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
@@ -3060,6 +3475,8 @@ ___
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[blur](_wizard_dialog_.wizarddialog.md#blur)*
 
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[blur](_wizard_dialog_.wizarddialog.md#blur)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8005
 
 **Returns:** *void*
@@ -3072,6 +3489,8 @@ ___
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[click](_wizard_dialog_.wizarddialog.md#click)*
 
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[click](_wizard_dialog_.wizarddialog.md#click)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:6603
 
 **Returns:** *void*
@@ -3083,6 +3502,8 @@ ___
 ▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[cloneNode](_wizard_textfield_.wizardtextfield.md#clonenode)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[cloneNode](_wizard_textfield_.wizardtextfield.md#clonenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
 
@@ -3104,6 +3525,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
 
 Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
@@ -3124,6 +3547,8 @@ Name | Type |
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5157
 
 **Type parameters:**
@@ -3141,6 +3566,8 @@ Name | Type |
 ▸ **closest**‹**E**›(`selector`: string): *E | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5158
 
@@ -3163,6 +3590,8 @@ ___
 ▸ **compareDocumentPosition**(`other`: Node): *number*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[compareDocumentPosition](_wizard_textfield_.wizardtextfield.md#comparedocumentposition)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[compareDocumentPosition](_wizard_textfield_.wizardtextfield.md#comparedocumentposition)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
 
@@ -3198,6 +3627,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contains](_wizard_textfield_.wizardtextfield.md#contains)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contains](_wizard_textfield_.wizardtextfield.md#contains)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10817
 
 Returns true if other is an inclusive descendant of node, and false otherwise.
@@ -3218,6 +3649,8 @@ ___
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[createRenderRoot](_wizard_dialog_.wizarddialog.md#protected-createrenderroot)*
 
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[createRenderRoot](_wizard_dialog_.wizarddialog.md#protected-createrenderroot)*
+
 Defined in node_modules/lit-element/lit-element.d.ts:140
 
 Returns the node into which the element should render and by default
@@ -3237,6 +3670,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[disconnectedCallback](_wizard_textfield_.wizardtextfield.md#disconnectedcallback)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[disconnectedCallback](_wizard_textfield_.wizardtextfield.md#disconnectedcallback)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:305
 
 Allows for `super.disconnectedCallback()` in extensions while
@@ -3252,6 +3687,8 @@ ___
 ▸ **dispatchEvent**(`event`: Event): *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dispatchEvent](_wizard_textfield_.wizardtextfield.md#dispatchevent)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dispatchEvent](_wizard_textfield_.wizardtextfield.md#dispatchevent)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5428
 
@@ -3273,6 +3710,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enableUpdating](_wizard_textfield_.wizardtextfield.md#protected-enableupdating)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enableUpdating](_wizard_textfield_.wizardtextfield.md#protected-enableupdating)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:299
 
 **Returns:** *void*
@@ -3284,6 +3723,8 @@ ___
 ▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[firstUpdated](_wizard_dialog_.wizarddialog.md#protected-firstupdated)*
+
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[firstUpdated](_wizard_dialog_.wizarddialog.md#protected-firstupdated)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:425
 
@@ -3309,6 +3750,8 @@ ___
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[focus](_wizard_dialog_.wizarddialog.md#focus)*
 
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[focus](_wizard_dialog_.wizarddialog.md#focus)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:8006
 
 **Parameters:**
@@ -3327,6 +3770,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAnimations](_wizard_textfield_.wizardtextfield.md#getanimations)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAnimations](_wizard_textfield_.wizardtextfield.md#getanimations)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
 
 **Returns:** *Animation[]*
@@ -3338,6 +3783,8 @@ ___
 ▸ **getAttribute**(`qualifiedName`: string): *string | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttribute](_wizard_textfield_.wizardtextfield.md#getattribute)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttribute](_wizard_textfield_.wizardtextfield.md#getattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
 
@@ -3358,6 +3805,8 @@ ___
 ▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNS](_wizard_textfield_.wizardtextfield.md#getattributens)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNS](_wizard_textfield_.wizardtextfield.md#getattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5166
 
@@ -3380,6 +3829,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNames](_wizard_textfield_.wizardtextfield.md#getattributenames)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNames](_wizard_textfield_.wizardtextfield.md#getattributenames)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
 
 Returns the qualified names of all element's attributes. Can contain duplicates.
@@ -3393,6 +3844,8 @@ ___
 ▸ **getAttributeNode**(`name`: string): *Attr | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNode](_wizard_textfield_.wizardtextfield.md#getattributenode)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNode](_wizard_textfield_.wizardtextfield.md#getattributenode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
 
@@ -3411,6 +3864,8 @@ ___
 ▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#getattributenodens)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#getattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
 
@@ -3431,6 +3886,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getBoundingClientRect](_wizard_textfield_.wizardtextfield.md#getboundingclientrect)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getBoundingClientRect](_wizard_textfield_.wizardtextfield.md#getboundingclientrect)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
 
 **Returns:** *DOMRect*
@@ -3443,6 +3900,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getClientRects](_wizard_textfield_.wizardtextfield.md#getclientrects)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getClientRects](_wizard_textfield_.wizardtextfield.md#getclientrects)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
 
 **Returns:** *DOMRectList*
@@ -3454,6 +3913,8 @@ ___
 ▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByClassName](_wizard_textfield_.wizardtextfield.md#getelementsbyclassname)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByClassName](_wizard_textfield_.wizardtextfield.md#getelementsbyclassname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
 
@@ -3475,6 +3936,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5179
 
 **Type parameters:**
@@ -3492,6 +3955,8 @@ Name | Type |
 ▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5180
 
@@ -3511,6 +3976,8 @@ Name | Type |
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5181
 
 **Parameters:**
@@ -3529,6 +3996,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
 
 **Parameters:**
@@ -3544,6 +4013,8 @@ Name | Type |
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5183
 
 **Parameters:**
@@ -3558,6 +4029,8 @@ Name | Type |
 ▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5184
 
@@ -3578,6 +4051,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getRootNode](_wizard_textfield_.wizardtextfield.md#getrootnode)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getRootNode](_wizard_textfield_.wizardtextfield.md#getrootnode)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
 
 Returns node's root.
@@ -3592,11 +4067,29 @@ Name | Type |
 
 ___
 
+### `Private` handleKeyPress
+
+▸ **handleKeyPress**(`e`: KeyboardEvent): *void*
+
+*Defined in [src/open-scd.ts:138](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L138)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`e` | KeyboardEvent |
+
+**Returns:** *void*
+
+___
+
 ###  hasAttribute
 
 ▸ **hasAttribute**(`qualifiedName`: string): *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttribute](_wizard_textfield_.wizardtextfield.md#hasattribute)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttribute](_wizard_textfield_.wizardtextfield.md#hasattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
 
@@ -3617,6 +4110,8 @@ ___
 ▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributeNS](_wizard_textfield_.wizardtextfield.md#hasattributens)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributeNS](_wizard_textfield_.wizardtextfield.md#hasattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5192
 
@@ -3639,6 +4134,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributes](_wizard_textfield_.wizardtextfield.md#hasattributes)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributes](_wizard_textfield_.wizardtextfield.md#hasattributes)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
 
 Returns true if element has attributes, and false otherwise.
@@ -3653,6 +4150,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasChildNodes](_wizard_textfield_.wizardtextfield.md#haschildnodes)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasChildNodes](_wizard_textfield_.wizardtextfield.md#haschildnodes)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10825
 
 Returns whether node has children.
@@ -3666,6 +4165,8 @@ ___
 ▸ **hasPointerCapture**(`pointerId`: number): *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasPointerCapture](_wizard_textfield_.wizardtextfield.md#haspointercapture)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasPointerCapture](_wizard_textfield_.wizardtextfield.md#haspointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5197
 
@@ -3685,7 +4186,9 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[info](_wizard_textfield_.wizardtextfield.md#optional-info)*
 
-*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L228)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[info](_wizard_textfield_.wizardtextfield.md#optional-info)*
+
+*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L228)*
 
 **Parameters:**
 
@@ -3722,6 +4225,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentElement](_wizard_textfield_.wizardtextfield.md#insertadjacentelement)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentElement](_wizard_textfield_.wizardtextfield.md#insertadjacentelement)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5198
 
 **Parameters:**
@@ -3740,6 +4245,8 @@ ___
 ▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentHTML](_wizard_textfield_.wizardtextfield.md#insertadjacenthtml)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentHTML](_wizard_textfield_.wizardtextfield.md#insertadjacenthtml)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5199
 
@@ -3760,6 +4267,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentText](_wizard_textfield_.wizardtextfield.md#insertadjacenttext)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentText](_wizard_textfield_.wizardtextfield.md#insertadjacenttext)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
 
 **Parameters:**
@@ -3778,6 +4287,8 @@ ___
 ▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertBefore](_wizard_textfield_.wizardtextfield.md#insertbefore)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertBefore](_wizard_textfield_.wizardtextfield.md#insertbefore)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
 
@@ -3802,6 +4313,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isDefaultNamespace](_wizard_textfield_.wizardtextfield.md#isdefaultnamespace)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isDefaultNamespace](_wizard_textfield_.wizardtextfield.md#isdefaultnamespace)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
 
 **Parameters:**
@@ -3819,6 +4332,8 @@ ___
 ▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isEqualNode](_wizard_textfield_.wizardtextfield.md#isequalnode)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isEqualNode](_wizard_textfield_.wizardtextfield.md#isequalnode)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10831
 
@@ -3840,6 +4355,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isSameNode](_wizard_textfield_.wizardtextfield.md#issamenode)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isSameNode](_wizard_textfield_.wizardtextfield.md#issamenode)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10832
 
 **Parameters:**
@@ -3852,11 +4369,47 @@ Name | Type |
 
 ___
 
+### `Private` loadDoc
+
+▸ **loadDoc**(`src`: string): *Promise‹string›*
+
+*Defined in [src/open-scd.ts:74](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L74)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`src` | string |
+
+**Returns:** *Promise‹string›*
+
+___
+
+### `Private` loadFile
+
+▸ **loadFile**(`event`: Event): *void*
+
+*Defined in [src/open-scd.ts:129](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L129)*
+
+Loads the file selected by input `event.target.files[0]`.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`event` | Event |
+
+**Returns:** *void*
+
+___
+
 ###  lookupNamespaceURI
 
 ▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupNamespaceURI](_wizard_textfield_.wizardtextfield.md#lookupnamespaceuri)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupNamespaceURI](_wizard_textfield_.wizardtextfield.md#lookupnamespaceuri)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
 
@@ -3876,6 +4429,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupPrefix](_wizard_textfield_.wizardtextfield.md#lookupprefix)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupPrefix](_wizard_textfield_.wizardtextfield.md#lookupprefix)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10834
 
 **Parameters:**
@@ -3893,6 +4448,8 @@ ___
 ▸ **matches**(`selectors`: string): *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[matches](_wizard_textfield_.wizardtextfield.md#matches)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[matches](_wizard_textfield_.wizardtextfield.md#matches)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
 
@@ -3914,6 +4471,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[msGetRegionContent](_wizard_textfield_.wizardtextfield.md#msgetregioncontent)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[msGetRegionContent](_wizard_textfield_.wizardtextfield.md#msgetregioncontent)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
 
 **Returns:** *any*
@@ -3925,6 +4484,8 @@ ___
 ▸ **normalize**(): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[normalize](_wizard_textfield_.wizardtextfield.md#normalize)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[normalize](_wizard_textfield_.wizardtextfield.md#normalize)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10838
 
@@ -3938,9 +4499,9 @@ ___
 
 ▸ **onLog**(`le`: [LogEvent](../modules/_foundation_.md#logevent)): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onLog](_open_scd_base_.openscdbase.md#onlog)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[onLog](_open_scd_.openscd.md#onlog)*
 
-*Defined in [src/Logging.ts:96](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L96)*
+*Defined in [src/Logging.ts:96](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L96)*
 
 **Parameters:**
 
@@ -3956,9 +4517,9 @@ ___
 
 ▸ **onPendingState**(`e`: CustomEvent‹[PendingStateDetail](../interfaces/_foundation_.pendingstatedetail.md)›): *Promise‹void›*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onPendingState](_open_scd_base_.openscdbase.md#onpendingstate)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[onPendingState](_open_scd_.openscd.md#onpendingstate)*
 
-*Defined in [src/Waiting.ts:25](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L25)*
+*Defined in [src/Waiting.ts:25](https://github.com/openscd/open-scd/blob/a86044f/src/Waiting.ts#L25)*
 
 **Parameters:**
 
@@ -3974,9 +4535,9 @@ ___
 
 ▸ **onWizard**(`we`: [WizardEvent](../modules/_foundation_.md#wizardevent)): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onWizard](_open_scd_base_.openscdbase.md#onwizard)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[onWizard](_open_scd_.openscd.md#onwizard)*
 
-*Defined in [src/Wizarding.ts:19](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Wizarding.ts#L19)*
+*Defined in [src/Wizarding.ts:19](https://github.com/openscd/open-scd/blob/a86044f/src/Wizarding.ts#L19)*
 
 **Parameters:**
 
@@ -3993,6 +4554,8 @@ ___
 ▸ **performUpdate**(): *void | Promise‹unknown›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[performUpdate](_wizard_textfield_.wizardtextfield.md#protected-performupdate)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[performUpdate](_wizard_textfield_.wizardtextfield.md#protected-performupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:354
 
@@ -4021,6 +4584,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[prepend](_wizard_textfield_.wizardtextfield.md#prepend)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[prepend](_wizard_textfield_.wizardtextfield.md#prepend)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
 
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
@@ -4043,6 +4608,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11341
 
 Returns the first element that is a descendant of node that matches selectors.
@@ -4063,6 +4630,8 @@ Name | Type |
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11342
 
 **Type parameters:**
@@ -4080,6 +4649,8 @@ Name | Type |
 ▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11343
 
@@ -4103,6 +4674,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11347
 
 Returns all element descendants of node that match selectors.
@@ -4123,6 +4696,8 @@ Name | Type |
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11348
 
 **Type parameters:**
@@ -4140,6 +4715,8 @@ Name | Type |
 ▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:11349
 
@@ -4161,9 +4738,9 @@ ___
 
 ▸ **redo**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[redo](_open_scd_.openscd.md#redo)*
 
-*Defined in [src/Logging.ts:82](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L82)*
+*Defined in [src/Logging.ts:82](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L82)*
 
 **Returns:** *boolean*
 
@@ -4174,6 +4751,8 @@ ___
 ▸ **releasePointerCapture**(`pointerId`: number): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[releasePointerCapture](_wizard_textfield_.wizardtextfield.md#releasepointercapture)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[releasePointerCapture](_wizard_textfield_.wizardtextfield.md#releasepointercapture)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5206
 
@@ -4193,6 +4772,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[remove](_wizard_textfield_.wizardtextfield.md#remove)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[remove](_wizard_textfield_.wizardtextfield.md#remove)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3516
 
 Removes node.
@@ -4206,6 +4787,8 @@ ___
 ▸ **removeAttribute**(`qualifiedName`: string): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttribute](_wizard_textfield_.wizardtextfield.md#removeattribute)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttribute](_wizard_textfield_.wizardtextfield.md#removeattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5210
 
@@ -4226,6 +4809,8 @@ ___
 ▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNS](_wizard_textfield_.wizardtextfield.md#removeattributens)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNS](_wizard_textfield_.wizardtextfield.md#removeattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
 
@@ -4248,6 +4833,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNode](_wizard_textfield_.wizardtextfield.md#removeattributenode)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNode](_wizard_textfield_.wizardtextfield.md#removeattributenode)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
 
 **Parameters:**
@@ -4265,6 +4852,8 @@ ___
 ▸ **removeChild**‹**T**›(`oldChild`: T): *T*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeChild](_wizard_textfield_.wizardtextfield.md#removechild)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeChild](_wizard_textfield_.wizardtextfield.md#removechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10839
 
@@ -4339,11 +4928,9 @@ ___
 
 ▸ **render**(): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[render](_open_scd_base_.openscdbase.md#render)*
-
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:241](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L241)*
+*Defined in [src/open-scd.ts:248](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L248)*
 
 **Returns:** *TemplateResult*
 
@@ -4351,17 +4938,15 @@ ___
 
 ###  renderActionItem
 
-▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
+▸ **renderActionItem**(`me`: [MenuEntry](../interfaces/_open_scd_.menuentry.md)): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderActionItem](_open_scd_base_.openscdbase.md#renderactionitem)*
-
-*Defined in [src/open-scd-base.ts:218](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L218)*
+*Defined in [src/open-scd.ts:225](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L225)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
+`me` | [MenuEntry](../interfaces/_open_scd_.menuentry.md) |
 
 **Returns:** *TemplateResult*
 
@@ -4369,17 +4954,15 @@ ___
 
 ###  renderEditorTab
 
-▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_base_.tab.md)): *TemplateResult*
+▸ **renderEditorTab**(`editor`: [Tab](../interfaces/_open_scd_.tab.md)): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderEditorTab](_open_scd_base_.openscdbase.md#rendereditortab)*
-
-*Defined in [src/open-scd-base.ts:230](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L230)*
+*Defined in [src/open-scd.ts:237](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L237)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`editor` | [Tab](../interfaces/_open_scd_base_.tab.md) |
+`editor` | [Tab](../interfaces/_open_scd_.tab.md) |
 
 **Returns:** *TemplateResult*
 
@@ -4389,9 +4972,9 @@ ___
 
 ▸ **renderHistory**(): *TemplateResult[] | TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderHistory](_open_scd_base_.openscdbase.md#renderhistory)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[renderHistory](_open_scd_.openscd.md#renderhistory)*
 
-*Defined in [src/Logging.ts:144](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L144)*
+*Defined in [src/Logging.ts:144](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L144)*
 
 **Returns:** *TemplateResult[] | TemplateResult*
 
@@ -4401,9 +4984,9 @@ ___
 
 ▸ **renderLogEntry**(`entry`: [LogEntry](../modules/_foundation_.md#logentry), `index`: number, `history`: [LogEntry](../modules/_foundation_.md#logentry)[]): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderLogEntry](_open_scd_base_.openscdbase.md#renderlogentry)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[renderLogEntry](_open_scd_.openscd.md#renderlogentry)*
 
-*Defined in [src/Logging.ts:121](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L121)*
+*Defined in [src/Logging.ts:121](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L121)*
 
 **Parameters:**
 
@@ -4419,17 +5002,15 @@ ___
 
 ###  renderMenuEntry
 
-▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_base_.menuentry.md)): *TemplateResult*
+▸ **renderMenuEntry**(`me`: [MenuEntry](../interfaces/_open_scd_.menuentry.md)): *TemplateResult*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderMenuEntry](_open_scd_base_.openscdbase.md#rendermenuentry)*
-
-*Defined in [src/open-scd-base.ts:201](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L201)*
+*Defined in [src/open-scd.ts:208](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L208)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`me` | [MenuEntry](../interfaces/_open_scd_base_.menuentry.md) |
+`me` | [MenuEntry](../interfaces/_open_scd_.menuentry.md) |
 
 **Returns:** *TemplateResult*
 
@@ -4440,6 +5021,8 @@ ___
 ▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceChild](_wizard_textfield_.wizardtextfield.md#replacechild)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceChild](_wizard_textfield_.wizardtextfield.md#replacechild)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:10840
 
@@ -4464,6 +5047,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceWith](_wizard_textfield_.wizardtextfield.md#replacewith)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceWith](_wizard_textfield_.wizardtextfield.md#replacewith)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:3522
 
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
@@ -4485,6 +5070,8 @@ ___
 ▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestFullscreen](_wizard_textfield_.wizardtextfield.md#requestfullscreen)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestFullscreen](_wizard_textfield_.wizardtextfield.md#requestfullscreen)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5221
 
@@ -4508,6 +5095,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestPointerLock](_wizard_textfield_.wizardtextfield.md#requestpointerlock)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestPointerLock](_wizard_textfield_.wizardtextfield.md#requestpointerlock)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5222
 
 **Returns:** *void*
@@ -4519,6 +5108,8 @@ ___
 ▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdate](_wizard_textfield_.wizardtextfield.md#requestupdate)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdate](_wizard_textfield_.wizardtextfield.md#requestupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:331
 
@@ -4549,6 +5140,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdateInternal](_wizard_textfield_.wizardtextfield.md#protected-requestupdateinternal)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdateInternal](_wizard_textfield_.wizardtextfield.md#protected-requestupdateinternal)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:317
 
 This protected version of `requestUpdate` does not access or return the
@@ -4571,9 +5164,9 @@ ___
 
 ▸ **reset**(): *void*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[reset](_open_scd_base_.openscdbase.md#reset)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[reset](_open_scd_.openscd.md#reset)*
 
-*Defined in [src/Logging.ts:91](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L91)*
+*Defined in [src/Logging.ts:91](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L91)*
 
 **Returns:** *void*
 
@@ -4584,6 +5177,8 @@ ___
 ▸ **scroll**(`options?`: ScrollToOptions): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
 
@@ -4598,6 +5193,8 @@ Name | Type |
 ▸ **scroll**(`x`: number, `y`: number): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5224
 
@@ -4618,6 +5215,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5225
 
 **Parameters:**
@@ -4631,6 +5230,8 @@ Name | Type |
 ▸ **scrollBy**(`x`: number, `y`: number): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5226
 
@@ -4651,6 +5252,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollIntoView](_wizard_textfield_.wizardtextfield.md#scrollintoview)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollIntoView](_wizard_textfield_.wizardtextfield.md#scrollintoview)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
 
 **Parameters:**
@@ -4669,6 +5272,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
 
 **Parameters:**
@@ -4682,6 +5287,8 @@ Name | Type |
 ▸ **scrollTo**(`x`: number, `y`: number): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
 
@@ -4701,6 +5308,8 @@ ___
 ▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttribute](_wizard_textfield_.wizardtextfield.md#setattribute)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttribute](_wizard_textfield_.wizardtextfield.md#setattribute)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5233
 
@@ -4722,6 +5331,8 @@ ___
 ▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNS](_wizard_textfield_.wizardtextfield.md#setattributens)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNS](_wizard_textfield_.wizardtextfield.md#setattributens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
 
@@ -4745,6 +5356,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNode](_wizard_textfield_.wizardtextfield.md#setattributenode)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNode](_wizard_textfield_.wizardtextfield.md#setattributenode)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5238
 
 **Parameters:**
@@ -4762,6 +5375,8 @@ ___
 ▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#setattributenodens)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#setattributenodens)*
 
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5239
 
@@ -4781,6 +5396,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setPointerCapture](_wizard_textfield_.wizardtextfield.md#setpointercapture)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setPointerCapture](_wizard_textfield_.wizardtextfield.md#setpointercapture)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5240
 
 **Parameters:**
@@ -4798,6 +5415,8 @@ ___
 ▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shouldUpdate](_wizard_textfield_.wizardtextfield.md#protected-shouldupdate)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shouldUpdate](_wizard_textfield_.wizardtextfield.md#protected-shouldupdate)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:396
 
@@ -4821,6 +5440,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[toggleAttribute](_wizard_textfield_.wizardtextfield.md#toggleattribute)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[toggleAttribute](_wizard_textfield_.wizardtextfield.md#toggleattribute)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5246
 
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
@@ -4842,9 +5463,9 @@ ___
 
 ▸ **undo**(): *boolean*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
+*Inherited from [OpenSCD](_open_scd_.openscd.md).[undo](_open_scd_.openscd.md#undo)*
 
-*Defined in [src/Logging.ts:71](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L71)*
+*Defined in [src/Logging.ts:71](https://github.com/openscd/open-scd/blob/a86044f/src/Logging.ts#L71)*
 
 **Returns:** *boolean*
 
@@ -4880,6 +5501,8 @@ ___
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#protected-updated)*
 
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#protected-updated)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:415
 
 Invoked whenever the element is updated. Implement to perform
@@ -4904,7 +5527,9 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[warn](_wizard_textfield_.wizardtextfield.md#optional-warn)*
 
-*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L229)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[warn](_wizard_textfield_.wizardtextfield.md#optional-warn)*
+
+*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L229)*
 
 **Parameters:**
 
@@ -4923,6 +5548,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[webkitMatchesSelector](_wizard_textfield_.wizardtextfield.md#webkitmatchesselector)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[webkitMatchesSelector](_wizard_textfield_.wizardtextfield.md#webkitmatchesselector)*
+
 Defined in node_modules/typescript/lib/lib.dom.d.ts:5247
 
 **Parameters:**
@@ -4940,6 +5567,8 @@ ___
 ▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createProperty](_wizard_textfield_.wizardtextfield.md#static-createproperty)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createProperty](_wizard_textfield_.wizardtextfield.md#static-createproperty)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:184
 
@@ -4981,6 +5610,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalize](_wizard_textfield_.wizardtextfield.md#static-protected-finalize)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalize](_wizard_textfield_.wizardtextfield.md#static-protected-finalize)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:233
 
 Creates property accessors for registered properties and ensures
@@ -4997,6 +5628,8 @@ ___
 ▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `options`: PropertyDeclaration): *object*
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyDescriptor](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertydescriptor)*
+
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyDescriptor](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertydescriptor)*
 
 Defined in node_modules/lit-element/lib/updating-element.d.ts:209
 
@@ -5049,6 +5682,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyOptions](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertyoptions)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyOptions](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertyoptions)*
+
 Defined in node_modules/lit-element/lib/updating-element.d.ts:227
 
 Returns the property options associated with the given property.
@@ -5079,6 +5714,8 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getStyles](_wizard_textfield_.wizardtextfield.md#static-getstyles)*
 
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getStyles](_wizard_textfield_.wizardtextfield.md#static-getstyles)*
+
 Defined in node_modules/lit-element/lit-element.d.ts:118
 
 Return the array of styles to apply to the element.
@@ -5094,9 +5731,7 @@ Override this method to integrate into a style management system.
 
 ### ▪ **plugins**: *object*
 
-*Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
-
-*Defined in [src/open-scd-base.ts:180](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L180)*
+*Defined in [src/open-scd.ts:187](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L187)*
 
 ###  editors
 
@@ -5112,4 +5747,4 @@ Override this method to integrate into a style management system.
       },
     ]
 
-*Defined in [src/open-scd-base.ts:181](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L181)*
+*Defined in [src/open-scd.ts:188](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L188)*

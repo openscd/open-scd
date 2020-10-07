@@ -4,10 +4,11 @@
 
 ## Index
 
-### Namespaces
-
-* [__global](_open_scd_.__global.md)
-
 ### Classes
 
 * [OpenSCD](../classes/_open_scd_.openscd.md)
+
+### Interfaces
+
+* [MenuEntry](../interfaces/_open_scd_.menuentry.md)
+* [Tab](../interfaces/_open_scd_.tab.md)

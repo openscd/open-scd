@@ -23,7 +23,7 @@
 
 • **message**? : *undefined | string*
 
-*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L149)*
+*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L149)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **title**: *string*
 
-*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L148)*
+*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L148)*
