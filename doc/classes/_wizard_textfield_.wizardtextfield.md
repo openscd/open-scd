@@ -698,7 +698,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autocapitalize](_wizard_textfield_.wizardtextfield.md#autocapitalize)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[autocapitalize](_editors_substationeditor_.substationeditor.md#autocapitalize)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[autocapitalize](_wizard_dialog_.wizarddialog.md#autocapitalize)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:82
 
@@ -858,7 +858,7 @@ ___
 
 • **defaultValue**: *string* = ""
 
-*Defined in [src/wizard-textfield.ts:42](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L42)*
+*Defined in [src/wizard-textfield.ts:42](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L42)*
 
 ___
 
@@ -1046,7 +1046,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[inputMode](_wizard_textfield_.wizardtextfield.md#inputmode)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[inputMode](_editors_substationeditor_.substationeditor.md#inputmode)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[inputMode](_wizard_dialog_.wizarddialog.md#inputmode)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:80
 
@@ -1078,7 +1078,7 @@ ___
 
 • **isNull**: *boolean* = false
 
-*Defined in [src/wizard-textfield.ts:43](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L43)*
+*Defined in [src/wizard-textfield.ts:43](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L43)*
 
 ___
 
@@ -1258,7 +1258,7 @@ ___
 
 • **multiplierIndex**: *number* = 0
 
-*Defined in [src/wizard-textfield.ts:29](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L29)*
+*Defined in [src/wizard-textfield.ts:29](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L29)*
 
 ___
 
@@ -1266,7 +1266,7 @@ ___
 
 • **multiplierSelect**? : *Select*
 
-*Defined in [src/wizard-textfield.ts:67](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L67)*
+*Defined in [src/wizard-textfield.ts:67](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L67)*
 
 ___
 
@@ -1274,7 +1274,7 @@ ___
 
 • **multipliers**: *string[]* = ['']
 
-*Defined in [src/wizard-textfield.ts:28](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L28)*
+*Defined in [src/wizard-textfield.ts:28](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L28)*
 
 ___
 
@@ -1384,7 +1384,7 @@ ___
 
 • **nullSwitch**? : *Switch*
 
-*Defined in [src/wizard-textfield.ts:65](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L65)*
+*Defined in [src/wizard-textfield.ts:65](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L65)*
 
 ___
 
@@ -1392,7 +1392,7 @@ ___
 
 • **nullable**: *boolean* = false
 
-*Defined in [src/wizard-textfield.ts:26](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L26)*
+*Defined in [src/wizard-textfield.ts:26](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L26)*
 
 ___
 
@@ -2638,7 +2638,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[prefix](_wizard_textfield_.wizardtextfield.md#prefix)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[prefix](_editors_substationeditor_.substationeditor.md#readonly-prefix)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[prefix](_wizard_dialog_.wizarddialog.md#readonly-prefix)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:77
 
@@ -2893,7 +2893,7 @@ ___
 
 • **unit**: *string* = ""
 
-*Defined in [src/wizard-textfield.ts:40](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L40)*
+*Defined in [src/wizard-textfield.ts:40](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L40)*
 
 ___
 
@@ -3056,13 +3056,13 @@ ___
 
 • **get maybeValue**(): *string | null*
 
-*Defined in [src/wizard-textfield.ts:54](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L54)*
+*Defined in [src/wizard-textfield.ts:54](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L54)*
 
 **Returns:** *string | null*
 
 • **set maybeValue**(`value`: string | null): *void*
 
-*Defined in [src/wizard-textfield.ts:57](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L57)*
+*Defined in [src/wizard-textfield.ts:57](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L57)*
 
 **Parameters:**
 
@@ -3078,13 +3078,13 @@ ___
 
 • **get multiplier**(): *string*
 
-*Defined in [src/wizard-textfield.ts:31](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L31)*
+*Defined in [src/wizard-textfield.ts:31](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L31)*
 
 **Returns:** *string*
 
 • **set multiplier**(`value`: string): *void*
 
-*Defined in [src/wizard-textfield.ts:35](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L35)*
+*Defined in [src/wizard-textfield.ts:35](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L35)*
 
 **Parameters:**
 
@@ -3100,13 +3100,13 @@ ___
 
 • **get null**(): *boolean*
 
-*Defined in [src/wizard-textfield.ts:44](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L44)*
+*Defined in [src/wizard-textfield.ts:44](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L44)*
 
 **Returns:** *boolean*
 
 • **set null**(`value`: boolean): *void*
 
-*Defined in [src/wizard-textfield.ts:47](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L47)*
+*Defined in [src/wizard-textfield.ts:47](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L47)*
 
 **Parameters:**
 
@@ -3244,7 +3244,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[_getUpdateComplete](_wizard_textfield_.wizardtextfield.md#_getupdatecomplete)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[_getUpdateComplete](_editors_substationeditor_.substationeditor.md#protected-_getupdatecomplete)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[_getUpdateComplete](_wizard_dialog_.wizarddialog.md#protected-_getupdatecomplete)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:127
 
@@ -3480,7 +3480,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[blur](_wizard_textfield_.wizardtextfield.md#blur)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[blur](_editors_substationeditor_.substationeditor.md#blur)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[blur](_wizard_dialog_.wizarddialog.md#blur)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:96
 
@@ -3506,7 +3506,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[click](_wizard_textfield_.wizardtextfield.md#click)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[click](_editors_substationeditor_.substationeditor.md#click)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[click](_wizard_dialog_.wizarddialog.md#click)*
 
 Defined in node_modules/@material/mwc-base/form-element.d.ts:33
 
@@ -3682,7 +3682,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createRenderRoot](_wizard_textfield_.wizardtextfield.md#protected-createrenderroot)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[createRenderRoot](_editors_substationeditor_.substationeditor.md#protected-createrenderroot)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[createRenderRoot](_wizard_dialog_.wizarddialog.md#protected-createrenderroot)*
 
 Defined in node_modules/@material/mwc-base/form-element.d.ts:28
 
@@ -3694,7 +3694,7 @@ ___
 
 ▸ **disable**(): *void*
 
-*Defined in [src/wizard-textfield.ts:87](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L87)*
+*Defined in [src/wizard-textfield.ts:87](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L87)*
 
 **Returns:** *void*
 
@@ -3740,7 +3740,7 @@ ___
 
 ▸ **enable**(): *void*
 
-*Defined in [src/wizard-textfield.ts:80](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L80)*
+*Defined in [src/wizard-textfield.ts:80](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L80)*
 
 **Returns:** *void*
 
@@ -3764,7 +3764,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/wizard-textfield.ts:111](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L111)*
+*Defined in [src/wizard-textfield.ts:111](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L111)*
 
 **Returns:** *Promise‹void›*
 
@@ -3776,7 +3776,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[focus](_wizard_textfield_.wizardtextfield.md#focus)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[focus](_editors_substationeditor_.substationeditor.md#focus)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[focus](_wizard_dialog_.wizarddialog.md#focus)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:95
 
@@ -4220,7 +4220,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[info](_wizard_textfield_.wizardtextfield.md#optional-info)*
 
-*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/c3ac6a3/src/foundation.ts#L228)*
+*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L228)*
 
 **Parameters:**
 
@@ -4834,7 +4834,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/wizard-textfield.ts:116](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L116)*
+*Defined in [src/wizard-textfield.ts:116](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L116)*
 
 **Returns:** *TemplateResult*
 
@@ -4960,7 +4960,7 @@ ___
 
 ▸ **renderMulplierList**(): *TemplateResult*
 
-*Defined in [src/wizard-textfield.ts:140](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L140)*
+*Defined in [src/wizard-textfield.ts:140](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L140)*
 
 **Returns:** *TemplateResult*
 
@@ -5018,7 +5018,7 @@ ___
 
 ▸ **renderSwitch**(): *TemplateResult*
 
-*Defined in [src/wizard-textfield.ts:149](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L149)*
+*Defined in [src/wizard-textfield.ts:149](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L149)*
 
 **Returns:** *TemplateResult*
 
@@ -5040,7 +5040,7 @@ ___
 
 ▸ **renderUnitSelector**(): *TemplateResult*
 
-*Defined in [src/wizard-textfield.ts:132](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L132)*
+*Defined in [src/wizard-textfield.ts:132](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L132)*
 
 **Returns:** *TemplateResult*
 
@@ -5194,7 +5194,7 @@ ___
 
 ▸ **restoreNulled**(): *void*
 
-*Defined in [src/wizard-textfield.ts:99](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L99)*
+*Defined in [src/wizard-textfield.ts:99](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L99)*
 
 **Returns:** *void*
 
@@ -5333,7 +5333,7 @@ ___
 
 ▸ **selectMultiplier**(`se`: SingleSelectedEvent): *void*
 
-*Defined in [src/wizard-textfield.ts:76](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L76)*
+*Defined in [src/wizard-textfield.ts:76](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L76)*
 
 **Parameters:**
 
@@ -5524,7 +5524,7 @@ ___
 
 ▸ **storeNulled**(): *void*
 
-*Defined in [src/wizard-textfield.ts:105](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L105)*
+*Defined in [src/wizard-textfield.ts:105](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L105)*
 
 **Returns:** *void*
 
@@ -5559,7 +5559,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[update](_wizard_textfield_.wizardtextfield.md#update)*
 
-*Overrides [SubstationEditor](_editors_substationeditor_.substationeditor.md).[update](_editors_substationeditor_.substationeditor.md#protected-update)*
+*Overrides [WizardDialog](_wizard_dialog_.wizarddialog.md).[update](_wizard_dialog_.wizarddialog.md#protected-update)*
 
 Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:99
 
@@ -5599,7 +5599,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[warn](_wizard_textfield_.wizardtextfield.md#optional-warn)*
 
-*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/c3ac6a3/src/foundation.ts#L229)*
+*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L229)*
 
 **Parameters:**
 
@@ -5789,22 +5789,22 @@ Override this method to integrate into a style management system.
 
 ### ▪ **nulled**: *object*
 
-*Defined in [src/wizard-textfield.ts:70](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L70)*
+*Defined in [src/wizard-textfield.ts:70](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L70)*
 
 ###  helper
 
 • **helper**: *string* = this.helper
 
-*Defined in [src/wizard-textfield.ts:72](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L72)*
+*Defined in [src/wizard-textfield.ts:72](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L72)*
 
 ###  helperPersistent
 
 • **helperPersistent**: *boolean* = this.helperPersistent
 
-*Defined in [src/wizard-textfield.ts:73](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L73)*
+*Defined in [src/wizard-textfield.ts:73](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L73)*
 
 ###  value
 
 • **value**: *string* = this.value || this.defaultValue
 
-*Defined in [src/wizard-textfield.ts:71](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizard-textfield.ts#L71)*
+*Defined in [src/wizard-textfield.ts:71](https://github.com/openscd/open-scd/blob/2534042/src/wizard-textfield.ts#L71)*

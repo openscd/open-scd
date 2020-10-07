@@ -18,4 +18,4 @@
 
 • **time**: *Date*
 
-*Defined in [src/foundation.ts:175](https://github.com/openscd/open-scd/blob/c3ac6a3/src/foundation.ts#L175)*
+*Defined in [src/foundation.ts:175](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L175)*

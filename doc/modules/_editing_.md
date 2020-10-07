@@ -1,6 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["editing"](_editing_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["Editing"](_editing_.md)
 
-# Module: "editing"
+# Module: "Editing"
 
 ## Index
 
@@ -19,7 +19,7 @@
 
 Ƭ **EditingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Editing›*
 
-*Defined in [src/editing.ts:27](https://github.com/openscd/open-scd/blob/c3ac6a3/src/editing.ts#L27)*
+*Defined in [src/Editing.ts:27](https://github.com/openscd/open-scd/blob/2534042/src/Editing.ts#L27)*
 
 ## Functions
 
@@ -27,7 +27,7 @@
 
 ▸ **Editing**‹**TBase**›(`Base`: TBase): *EditingElement & TBase*
 
-*Defined in [src/editing.ts:29](https://github.com/openscd/open-scd/blob/c3ac6a3/src/editing.ts#L29)*
+*Defined in [src/Editing.ts:29](https://github.com/openscd/open-scd/blob/2534042/src/Editing.ts#L29)*
 
 **Type parameters:**
 
@@ -47,6 +47,6 @@ ___
 
 ▸ **newEmptySCD**(): *XMLDocument*
 
-*Defined in [src/editing.ts:19](https://github.com/openscd/open-scd/blob/c3ac6a3/src/editing.ts#L19)*
+*Defined in [src/Editing.ts:19](https://github.com/openscd/open-scd/blob/2534042/src/Editing.ts#L19)*
 
 **Returns:** *XMLDocument*

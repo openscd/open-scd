@@ -1,6 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["logging"](_logging_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["Logging"](_logging_.md)
 
-# Module: "logging"
+# Module: "Logging"
 
 ## Index
 
@@ -23,7 +23,7 @@
 
 Ƭ **LoggingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Logging›*
 
-*Defined in [src/logging.ts:39](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L39)*
+*Defined in [src/Logging.ts:39](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L39)*
 
 ## Functions
 
@@ -31,7 +31,7 @@
 
 ▸ **Logging**‹**TBase**›(`Base`: TBase): *LoggingElement & TBase*
 
-*Defined in [src/logging.ts:41](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L41)*
+*Defined in [src/Logging.ts:41](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L41)*
 
 **Type parameters:**
 
@@ -51,31 +51,31 @@ Name | Type |
 
 ### ▪ **colors**: *object*
 
-*Defined in [src/logging.ts:32](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L32)*
+*Defined in [src/Logging.ts:32](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L32)*
 
 ###  action
 
 • **action**: *undefined* = undefined
 
-*Defined in [src/logging.ts:36](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L36)*
+*Defined in [src/Logging.ts:36](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L36)*
 
 ###  error
 
 • **error**: *string* = "--mdc-theme-secondary"
 
-*Defined in [src/logging.ts:35](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L35)*
+*Defined in [src/Logging.ts:35](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L35)*
 
 ###  info
 
 • **info**: *string* = "--mdc-theme-primary"
 
-*Defined in [src/logging.ts:33](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L33)*
+*Defined in [src/Logging.ts:33](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L33)*
 
 ###  warning
 
 • **warning**: *string* = "--mdc-theme-background"
 
-*Defined in [src/logging.ts:34](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L34)*
+*Defined in [src/Logging.ts:34](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L34)*
 
 ___
 
@@ -83,28 +83,28 @@ ___
 
 ### ▪ **icons**: *object*
 
-*Defined in [src/logging.ts:25](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L25)*
+*Defined in [src/Logging.ts:25](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L25)*
 
 ###  action
 
 • **action**: *string* = "history"
 
-*Defined in [src/logging.ts:29](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L29)*
+*Defined in [src/Logging.ts:29](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L29)*
 
 ###  error
 
 • **error**: *string* = "report"
 
-*Defined in [src/logging.ts:28](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L28)*
+*Defined in [src/Logging.ts:28](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L28)*
 
 ###  info
 
 • **info**: *string* = "info"
 
-*Defined in [src/logging.ts:26](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L26)*
+*Defined in [src/Logging.ts:26](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L26)*
 
 ###  warning
 
 • **warning**: *string* = "warning"
 
-*Defined in [src/logging.ts:27](https://github.com/openscd/open-scd/blob/c3ac6a3/src/logging.ts#L27)*
+*Defined in [src/Logging.ts:27](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L27)*

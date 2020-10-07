@@ -1,6 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["wizarding"](_wizarding_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["Wizarding"](_wizarding_.md)
 
-# Module: "wizarding"
+# Module: "Wizarding"
 
 ## Index
 
@@ -18,7 +18,7 @@
 
 Ƭ **WizardingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Wizarding›*
 
-*Defined in [src/wizarding.ts:12](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizarding.ts#L12)*
+*Defined in [src/Wizarding.ts:12](https://github.com/openscd/open-scd/blob/2534042/src/Wizarding.ts#L12)*
 
 ## Functions
 
@@ -26,7 +26,7 @@
 
 ▸ **Wizarding**‹**TBase**›(`Base`: TBase): *WizardingElement & TBase*
 
-*Defined in [src/wizarding.ts:14](https://github.com/openscd/open-scd/blob/c3ac6a3/src/wizarding.ts#L14)*
+*Defined in [src/Wizarding.ts:14](https://github.com/openscd/open-scd/blob/2534042/src/Wizarding.ts#L14)*
 
 **Type parameters:**
 

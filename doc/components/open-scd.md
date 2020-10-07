@@ -45,4 +45,5 @@
 | `renderHistory`    | `(): TemplateResult \| TemplateResult[]`         |
 | `renderLogEntry`   | `(entry: LogEntry, index: number, history: LogEntry[]): TemplateResult` |
 | `renderMenuEntry`  | `(me: MenuEntry): TemplateResult`                |
+| `reset`            | `(): void`                                       |
 | `undo`             | `(): boolean`                                    |
