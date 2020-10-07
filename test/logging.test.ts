@@ -43,16 +43,34 @@ describe('LoggingElement', () => {
   it('has no next action', () =>
     expect(element).to.have.property('nextAction', -1));
 
+  it('renders a placeholder message', () =>
+    expect(element.logUI).to.contain('mwc-list-item[disabled]')); // dirty hack: ask @open-wc/shadowDomDiff for contains support
+
+  it('shows a snackbar on logging an error', () => {
+    expect(element.messageUI).to.have.property('open', false);
+    element.dispatchEvent(newLogEvent({ kind: 'error', title: 'test error' }));
+    expect(element.messageUI).to.have.property('open', true);
+  });
+
+  it('opens the log dialog on snackbar "Show" button click', async () => {
+    expect(element.logUI).to.have.property('open', false);
+    await element.messageUI.querySelector('mwc-button')!.click();
+    await element.updateComplete;
+    expect(element.logUI).to.have.property('open', true);
+  });
+
   describe('with an action logged', () => {
-    beforeEach(() =>
+    beforeEach(async () => {
       element.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: 'test MockAction',
           action: MockAction.cre,
         })
-      )
-    );
+      );
+      element.requestUpdate();
+      await element.updateComplete;
+    });
 
     it('can undo', () => expect(element).property('canUndo').to.be.true);
     it('cannot redo', () => expect(element).property('canRedo').to.be.false);
@@ -75,16 +93,26 @@ describe('LoggingElement', () => {
       );
       expect(element).property('history').to.have.lengthOf(1);
     });
+
+    it('can reset its history', () => {
+      element.reset();
+      expect(element).property('history').to.be.empty;
+      expect(element).to.have.property('currentAction', -1);
+    });
+
+    it('renders a log message for the action', () =>
+      expect(element.logUI).to.contain.text('test'));
+
     describe('with a second action logged', () => {
-      beforeEach(() => {
+      beforeEach(() =>
         element.dispatchEvent(
           newLogEvent({
             kind: 'action',
             title: 'test MockAction',
             action: MockAction.del,
           })
-        );
-      });
+        )
+      );
 
       it('has a previous action', () =>
         expect(element).to.have.property('previousAction', 0));
@@ -127,11 +155,5 @@ describe('LoggingElement', () => {
         });
       });
     });
-  });
-
-  it('shows a snackbar on logging an error', () => {
-    expect(element.messageUI).to.have.property('open', false);
-    element.dispatchEvent(newLogEvent({ kind: 'error', title: 'test error' }));
-    expect(element.messageUI).to.have.property('open', true);
   });
 });
