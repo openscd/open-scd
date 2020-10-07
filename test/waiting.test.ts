@@ -23,10 +23,20 @@ describe('WaitingElement', () => {
 
   it('stops waiting on promise resolution', async () => {
     const promise = new Promise<string>(resolve =>
-      setTimeout(() => resolve('done'), 100 /* ms */)
+      setTimeout(() => resolve('done'), 20 /* ms */)
     );
     element.dispatchEvent(newPendingStateEvent(promise));
     await promise;
+    await element.workDone;
+    expect(element).property('waiting').to.be.false;
+  });
+
+  it('stops waiting on promise rejection', async () => {
+    const promise = new Promise<string>((_resolve, reject) =>
+      setTimeout(() => reject('done'), 20 /* ms */)
+    );
+    element.dispatchEvent(newPendingStateEvent(promise));
+    await promise.catch(() => null);
     await element.workDone;
     expect(element).property('waiting').to.be.false;
   });
