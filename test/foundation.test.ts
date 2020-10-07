@@ -1,7 +1,8 @@
-import { expect } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import {
   EditorAction,
+  ifImplemented,
   invert,
   isCreate,
   isDelete,
@@ -9,6 +10,7 @@ import {
   isUpdate,
   newActionEvent,
   newPendingStateEvent,
+  newWizardEvent,
 } from '../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -59,7 +61,7 @@ describe('foundation', () => {
     });
 
     describe('ActionEvent', () => {
-      it('bears an Action in its detail', async () => {
+      it('bears an Action in its detail', () => {
         expect(newActionEvent(MockAction.mov))
           .property('detail')
           .property('action')
@@ -69,11 +71,37 @@ describe('foundation', () => {
   });
 
   describe('PendingStateEvent', () => {
-    it('bears a string Promise in its detail', async () => {
+    it('bears a string Promise in its detail', () => {
       expect(newPendingStateEvent(Promise.resolve('test promise')))
         .property('detail')
         .property('promise')
         .to.be.a('promise');
     });
+  });
+
+  describe('WizardEvent', () => {
+    it('optionally bears a wizard in its detail', () => {
+      expect(newWizardEvent()).property('detail').property('wizard').to.be.null;
+      expect(newWizardEvent([]))
+        .property('detail')
+        .property('wizard')
+        .to.be.an('array').and.to.be.empty;
+    });
+  });
+
+  describe('ifImplemented', () => {
+    let nonEmpty: HTMLElement;
+    let empty: HTMLElement;
+
+    beforeEach(async () => {
+      nonEmpty = await fixture(html`<p>${ifImplemented('test')}</p>`);
+      empty = await fixture(html`<p>${ifImplemented({})}</p>`);
+    });
+
+    it('renders non-empty objects into its template', () =>
+      expect(nonEmpty).dom.to.have.text('test'));
+
+    it('does not render empty objects into its template', () =>
+      expect(empty).dom.to.be.empty);
   });
 });
