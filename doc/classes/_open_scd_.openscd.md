@@ -345,7 +345,7 @@
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:192](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L192)*
+*Defined in [src/open-scd-base.ts:192](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L192)*
 
 **Returns:** *[OpenSCD](_open_scd_.openscd.md)*
 
@@ -583,7 +583,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[activeTab](_open_scd_base_.openscdbase.md#activetab)*
 
-*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L46)*
+*Defined in [src/open-scd-base.ts:46](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L46)*
 
 The currently active editor tab.
 
@@ -757,7 +757,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[currentAction](_open_scd_base_.openscdbase.md#currentaction)*
 
-*Defined in [src/Logging.ts:48](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L48)*
+*Defined in [src/Logging.ts:48](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L48)*
 
 ___
 
@@ -787,7 +787,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[doc](_open_scd_base_.openscdbase.md#doc)*
 
-*Defined in [src/Editing.ts:33](https://github.com/openscd/open-scd/blob/2534042/src/Editing.ts#L33)*
+*Defined in [src/Editing.ts:33](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Editing.ts#L33)*
 
 The `XMLDocument` being edited.
 
@@ -819,7 +819,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[fileUI](_open_scd_base_.openscdbase.md#fileui)*
 
-*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L65)*
+*Defined in [src/open-scd-base.ts:65](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L65)*
 
 ___
 
@@ -873,7 +873,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[history](_open_scd_base_.openscdbase.md#history)*
 
-*Defined in [src/Logging.ts:44](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L44)*
+*Defined in [src/Logging.ts:44](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L44)*
 
 ___
 
@@ -1003,7 +1003,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[logUI](_open_scd_base_.openscdbase.md#logui)*
 
-*Defined in [src/Logging.ts:45](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L45)*
+*Defined in [src/Logging.ts:45](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L45)*
 
 ___
 
@@ -1049,7 +1049,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menu](_open_scd_base_.openscdbase.md#menu)*
 
-*Defined in [src/open-scd-base.ts:142](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L142)*
+*Defined in [src/open-scd-base.ts:142](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L142)*
 
 ___
 
@@ -1059,7 +1059,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[menuUI](_open_scd_base_.openscdbase.md#menuui)*
 
-*Defined in [src/open-scd-base.ts:64](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L64)*
+*Defined in [src/open-scd-base.ts:64](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L64)*
 
 ___
 
@@ -1069,7 +1069,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[messageUI](_open_scd_base_.openscdbase.md#messageui)*
 
-*Defined in [src/Logging.ts:46](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L46)*
+*Defined in [src/Logging.ts:46](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L46)*
 
 ___
 
@@ -2460,7 +2460,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[srcName](_open_scd_base_.openscdbase.md#srcname)*
 
-*Defined in [src/open-scd-base.ts:52](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L52)*
+*Defined in [src/open-scd-base.ts:52](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L52)*
 
 The name of the current file.
 
@@ -2534,7 +2534,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[waiting](_open_scd_base_.openscdbase.md#waiting)*
 
-*Defined in [src/Waiting.ts:19](https://github.com/openscd/open-scd/blob/2534042/src/Waiting.ts#L19)*
+*Defined in [src/Waiting.ts:19](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L19)*
 
 Whether the element is currently waiting for some async work.
 
@@ -2546,7 +2546,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[work](_open_scd_base_.openscdbase.md#protected-work)*
 
-*Defined in [src/Waiting.ts:21](https://github.com/openscd/open-scd/blob/2534042/src/Waiting.ts#L21)*
+*Defined in [src/Waiting.ts:21](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L21)*
 
 ___
 
@@ -2556,7 +2556,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workDone](_open_scd_base_.openscdbase.md#workdone)*
 
-*Defined in [src/Waiting.ts:23](https://github.com/openscd/open-scd/blob/2534042/src/Waiting.ts#L23)*
+*Defined in [src/Waiting.ts:23](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L23)*
 
 A promise which resolves once all currently pending work is done.
 
@@ -2568,7 +2568,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[workflow](_open_scd_base_.openscdbase.md#workflow)*
 
-*Defined in [src/Wizarding.ts:17](https://github.com/openscd/open-scd/blob/2534042/src/Wizarding.ts#L17)*
+*Defined in [src/Wizarding.ts:17](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Wizarding.ts#L17)*
 
 ___
 
@@ -2657,7 +2657,7 @@ ___
 
 *Overrides [OpenSCDBase](_open_scd_base_.openscdbase.md).[styles](_open_scd_base_.openscdbase.md#static-optional-styles)*
 
-*Defined in [src/open-scd.ts:13](https://github.com/openscd/open-scd/blob/2534042/src/open-scd.ts#L13)*
+*Defined in [src/open-scd.ts:13](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd.ts#L13)*
 
 ## Accessors
 
@@ -2667,7 +2667,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canRedo](_open_scd_base_.openscdbase.md#canredo)*
 
-*Defined in [src/Logging.ts:53](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L53)*
+*Defined in [src/Logging.ts:53](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L53)*
 
 **Returns:** *boolean*
 
@@ -2679,7 +2679,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[canUndo](_open_scd_base_.openscdbase.md#canundo)*
 
-*Defined in [src/Logging.ts:50](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L50)*
+*Defined in [src/Logging.ts:50](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L50)*
 
 **Returns:** *boolean*
 
@@ -2703,7 +2703,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[name](_open_scd_base_.openscdbase.md#name)*
 
-*Defined in [src/open-scd-base.ts:48](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L48)*
+*Defined in [src/open-scd-base.ts:48](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L48)*
 
 **Returns:** *string | null*
 
@@ -2715,7 +2715,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[nextAction](_open_scd_base_.openscdbase.md#nextaction)*
 
-*Defined in [src/Logging.ts:63](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L63)*
+*Defined in [src/Logging.ts:63](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L63)*
 
 **Returns:** *number*
 
@@ -2727,7 +2727,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[previousAction](_open_scd_base_.openscdbase.md#previousaction)*
 
-*Defined in [src/Logging.ts:56](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L56)*
+*Defined in [src/Logging.ts:56](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L56)*
 
 **Returns:** *number*
 
@@ -2739,7 +2739,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-*Defined in [src/open-scd-base.ts:56](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L56)*
+*Defined in [src/open-scd-base.ts:56](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L56)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -2749,7 +2749,7 @@ The current file's URL. `blob:` URLs are *revoked after parsing*!
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[src](_open_scd_base_.openscdbase.md#src)*
 
-*Defined in [src/open-scd-base.ts:59](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L59)*
+*Defined in [src/open-scd-base.ts:59](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L59)*
 
 The current file's URL. `blob:` URLs are *revoked after parsing*!
 
@@ -3685,7 +3685,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[info](_wizard_textfield_.wizardtextfield.md#optional-info)*
 
-*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L228)*
+*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L228)*
 
 **Parameters:**
 
@@ -3940,7 +3940,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onLog](_open_scd_base_.openscdbase.md#onlog)*
 
-*Defined in [src/Logging.ts:96](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L96)*
+*Defined in [src/Logging.ts:96](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L96)*
 
 **Parameters:**
 
@@ -3958,7 +3958,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onPendingState](_open_scd_base_.openscdbase.md#onpendingstate)*
 
-*Defined in [src/Waiting.ts:25](https://github.com/openscd/open-scd/blob/2534042/src/Waiting.ts#L25)*
+*Defined in [src/Waiting.ts:25](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Waiting.ts#L25)*
 
 **Parameters:**
 
@@ -3976,7 +3976,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[onWizard](_open_scd_base_.openscdbase.md#onwizard)*
 
-*Defined in [src/Wizarding.ts:19](https://github.com/openscd/open-scd/blob/2534042/src/Wizarding.ts#L19)*
+*Defined in [src/Wizarding.ts:19](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Wizarding.ts#L19)*
 
 **Parameters:**
 
@@ -4163,7 +4163,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[redo](_open_scd_base_.openscdbase.md#redo)*
 
-*Defined in [src/Logging.ts:82](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L82)*
+*Defined in [src/Logging.ts:82](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L82)*
 
 **Returns:** *boolean*
 
@@ -4343,7 +4343,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/open-scd-base.ts:241](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L241)*
+*Defined in [src/open-scd-base.ts:241](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L241)*
 
 **Returns:** *TemplateResult*
 
@@ -4355,7 +4355,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderActionItem](_open_scd_base_.openscdbase.md#renderactionitem)*
 
-*Defined in [src/open-scd-base.ts:218](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L218)*
+*Defined in [src/open-scd-base.ts:218](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L218)*
 
 **Parameters:**
 
@@ -4373,7 +4373,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderEditorTab](_open_scd_base_.openscdbase.md#rendereditortab)*
 
-*Defined in [src/open-scd-base.ts:230](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L230)*
+*Defined in [src/open-scd-base.ts:230](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L230)*
 
 **Parameters:**
 
@@ -4391,7 +4391,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderHistory](_open_scd_base_.openscdbase.md#renderhistory)*
 
-*Defined in [src/Logging.ts:144](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L144)*
+*Defined in [src/Logging.ts:144](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L144)*
 
 **Returns:** *TemplateResult[] | TemplateResult*
 
@@ -4403,7 +4403,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderLogEntry](_open_scd_base_.openscdbase.md#renderlogentry)*
 
-*Defined in [src/Logging.ts:121](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L121)*
+*Defined in [src/Logging.ts:121](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L121)*
 
 **Parameters:**
 
@@ -4423,7 +4423,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[renderMenuEntry](_open_scd_base_.openscdbase.md#rendermenuentry)*
 
-*Defined in [src/open-scd-base.ts:201](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L201)*
+*Defined in [src/open-scd-base.ts:201](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L201)*
 
 **Parameters:**
 
@@ -4573,7 +4573,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[reset](_open_scd_base_.openscdbase.md#reset)*
 
-*Defined in [src/Logging.ts:91](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L91)*
+*Defined in [src/Logging.ts:91](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L91)*
 
 **Returns:** *void*
 
@@ -4844,7 +4844,7 @@ ___
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[undo](_open_scd_base_.openscdbase.md#undo)*
 
-*Defined in [src/Logging.ts:71](https://github.com/openscd/open-scd/blob/2534042/src/Logging.ts#L71)*
+*Defined in [src/Logging.ts:71](https://github.com/openscd/open-scd/blob/2f1ab2c/src/Logging.ts#L71)*
 
 **Returns:** *boolean*
 
@@ -4904,7 +4904,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[warn](_wizard_textfield_.wizardtextfield.md#optional-warn)*
 
-*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L229)*
+*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L229)*
 
 **Parameters:**
 
@@ -5096,7 +5096,7 @@ Override this method to integrate into a style management system.
 
 *Inherited from [OpenSCDBase](_open_scd_base_.openscdbase.md).[plugins](_open_scd_base_.openscdbase.md#plugins)*
 
-*Defined in [src/open-scd-base.ts:180](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L180)*
+*Defined in [src/open-scd-base.ts:180](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L180)*
 
 ###  editors
 
@@ -5112,4 +5112,4 @@ Override this method to integrate into a style management system.
       },
     ]
 
-*Defined in [src/open-scd-base.ts:181](https://github.com/openscd/open-scd/blob/2534042/src/open-scd-base.ts#L181)*
+*Defined in [src/open-scd-base.ts:181](https://github.com/openscd/open-scd/blob/2f1ab2c/src/open-scd-base.ts#L181)*

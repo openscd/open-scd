@@ -23,7 +23,7 @@
 
 • **cause**? : *[LogEntry](../modules/_foundation_.md#logentry)*
 
-*Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L157)*
+*Defined in [src/foundation.ts:157](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L157)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **kind**: *[InfoEntryKind](../modules/_foundation_.md#infoentrykind)*
 
-*Defined in [src/foundation.ts:156](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L156)*
+*Defined in [src/foundation.ts:156](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L156)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 *Inherited from [LogDetailBase](_foundation_.logdetailbase.md).[message](_foundation_.logdetailbase.md#optional-message)*
 
-*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L149)*
+*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L149)*
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 *Inherited from [LogDetailBase](_foundation_.logdetailbase.md).[title](_foundation_.logdetailbase.md#title)*
 
-*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L148)*
+*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L148)*

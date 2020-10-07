@@ -24,4 +24,4 @@ Represents some modification of a `Document` being edited.
 
 • **action**: *T*
 
-*Defined in [src/foundation.ts:88](https://github.com/openscd/open-scd/blob/2534042/src/foundation.ts#L88)*
+*Defined in [src/foundation.ts:88](https://github.com/openscd/open-scd/blob/2f1ab2c/src/foundation.ts#L88)*
