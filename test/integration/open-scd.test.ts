@@ -1,8 +1,8 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { OpenSCD } from '../src/open-scd.js';
-import '../src/open-scd.js';
-import { newEmptySCD } from '../src/editing.js';
+import { OpenSCD } from '../../src/open-scd.js';
+import '../../src/open-scd.js';
+import { newEmptySCD } from '../../src/Editing.js';
 import { training, invalidSCL, validSCL, serialize } from './data.js';
 
 describe('open-scd', () => {
@@ -47,15 +47,6 @@ describe('open-scd', () => {
     )).click();
     expect(element.logUI).to.have.property('open', true);
   });
-
-  /*
-  // FIXME: Move to logging.test.ts
-  it('shows a snackbar on logging an error', () => {
-    expect(element.messageUI).to.have.property('open', false);
-    element.error('test error');
-    expect(element.messageUI).to.have.property('open', true);
-  });
-   */
 
   it('opens the log on snackbar button click', async () => {
     expect(element.logUI).to.have.property('open', false);

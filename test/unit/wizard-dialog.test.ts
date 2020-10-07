@@ -1,9 +1,9 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../src/wizard-textfield.js';
-import '../src/wizard-dialog.js';
-import { WizardDialog } from '../src/wizard-dialog.js';
-import { WizardInput } from '../src/foundation.js';
+import '../../src/wizard-textfield.js';
+import '../../src/wizard-dialog.js';
+import { WizardDialog } from '../../src/wizard-dialog.js';
+import { WizardInput } from '../../src/foundation.js';
 
 describe('wizard-dialog', () => {
   let element: WizardDialog;

@@ -11,7 +11,7 @@ import {
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
-} from '../src/foundation.js';
+} from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
 

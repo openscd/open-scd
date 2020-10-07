@@ -1,9 +1,9 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { Button } from '@material/mwc-button';
 
-import SubstationEditor from '../../src/editors/SubstationEditor.js';
-import { isCreate, isUpdate } from '../../src/foundation.js';
-import { Editing } from '../../src/editing.js';
+import SubstationEditor from '../../../src/editors/SubstationEditor.js';
+import { isCreate, isUpdate } from '../../../src/foundation.js';
+import { Editing } from '../../../src/Editing.js';
 
 import { getDocument } from '../data.js';
 

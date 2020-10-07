@@ -1,4 +1,4 @@
-import { EditorAction } from '../src/foundation.js';
+import { EditorAction } from '../../src/foundation.js';
 
 const element = document.createElement('test-element');
 const parent = document.createElement('test-parent');

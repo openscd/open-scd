@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { LoggingElement } from '../src/Logging.js';
-import { CommitEntry, newLogEvent } from '../src/foundation.js';
+import { LoggingElement } from '../../src/Logging.js';
+import { CommitEntry, newLogEvent } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
 import './mock-logger.js';
