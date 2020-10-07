@@ -107,22 +107,22 @@ export default class SubstationEditor extends LitElement {
     };
   }
 
-  requestSubstationEdit(
+  substationEditAction(
     inputs: WizardInput[],
     dialog: CloseableElement
   ): EditorAction[] {
     if (inputs.length < 2) return [];
     const name = inputs.find(i => i.label === 'name')?.maybeValue ?? '';
     const desc = inputs.find(i => i.label === 'desc')?.maybeValue ?? null;
+    if (name && name === this.name && desc === this.desc) return [];
     const action = this.element
       ? this.newUpdateAction(name, desc)
       : this.newCreateAction(name, desc);
-    console.dirxml(this);
     dialog.close();
     return [action];
   }
 
-  requestVoltageLevelCreate(
+  voltageLevelCreateAction(
     inputs: WizardInput[],
     dialog: CloseableElement
   ): EditorAction[] {
@@ -155,7 +155,7 @@ export default class SubstationEditor extends LitElement {
         primary: {
           icon: 'add',
           label: 'Add',
-          action: this.requestVoltageLevelCreate,
+          action: this.voltageLevelCreateAction,
         },
         content: [
           html`<wizard-textfield
@@ -225,20 +225,19 @@ export default class SubstationEditor extends LitElement {
         title: heading,
         primary: {
           icon: actionIcon,
-          action: this.requestSubstationEdit,
+          action: this.substationEditAction,
           label: actionName,
         },
         content: [
           html`<wizard-textfield
-            value=${this.name ?? ''}
+            .maybeValue=${this.name}
             helper="Substation Name"
             label="name"
             required
             dialogInitialFocus
           ></wizard-textfield>`,
-          html`<p>Testing</p>`,
           html`<wizard-textfield
-            value=${this.desc ?? ''}
+            .maybeValue=${this.desc}
             helper="Substation Description"
             label="desc"
             nullable
@@ -253,7 +252,7 @@ export default class SubstationEditor extends LitElement {
     if (!this.element) return html`<h1>No Substation</h1>`;
     return html`
       <h1>
-        ${this.name} &mdash; ${this.desc}
+        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
         <mwc-icon-button
           icon="more_vert"
           @click=${() => this.menuUI.show()}
@@ -285,8 +284,8 @@ export default class SubstationEditor extends LitElement {
   constructor() {
     super();
 
-    this.requestSubstationEdit = this.requestSubstationEdit.bind(this);
-    this.requestVoltageLevelCreate = this.requestVoltageLevelCreate.bind(this);
+    this.substationEditAction = this.substationEditAction.bind(this);
+    this.voltageLevelCreateAction = this.voltageLevelCreateAction.bind(this);
   }
 
   static styles = styles;

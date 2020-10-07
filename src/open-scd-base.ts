@@ -277,7 +277,6 @@ export class OpenSCDBase extends Wizarding(
       )}
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
-      <!--EOopenscd-->
       ${super.render()}
     `;
   }
