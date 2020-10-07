@@ -24,7 +24,7 @@
 
 • **action**? : *undefined | function*
 
-*Defined in [src/open-scd.ts:45](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L45)*
+*Defined in [src/open-scd.ts:45](https://github.com/openscd/open-scd/blob/56480b8/src/open-scd.ts#L45)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **actionItem**? : *undefined | false | true*
 
-*Defined in [src/open-scd.ts:44](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L44)*
+*Defined in [src/open-scd.ts:44](https://github.com/openscd/open-scd/blob/56480b8/src/open-scd.ts#L44)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **disabled**? : *undefined | function*
 
-*Defined in [src/open-scd.ts:46](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L46)*
+*Defined in [src/open-scd.ts:46](https://github.com/openscd/open-scd/blob/56480b8/src/open-scd.ts#L46)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **hint**? : *undefined | string*
 
-*Defined in [src/open-scd.ts:42](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L42)*
+*Defined in [src/open-scd.ts:42](https://github.com/openscd/open-scd/blob/56480b8/src/open-scd.ts#L42)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **icon**: *string*
 
-*Defined in [src/open-scd.ts:40](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L40)*
+*Defined in [src/open-scd.ts:40](https://github.com/openscd/open-scd/blob/56480b8/src/open-scd.ts#L40)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [src/open-scd.ts:41](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L41)*
+*Defined in [src/open-scd.ts:41](https://github.com/openscd/open-scd/blob/56480b8/src/open-scd.ts#L41)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **startsGroup**? : *undefined | false | true*
 
-*Defined in [src/open-scd.ts:43](https://github.com/openscd/open-scd/blob/a86044f/src/open-scd.ts#L43)*
+*Defined in [src/open-scd.ts:43](https://github.com/openscd/open-scd/blob/56480b8/src/open-scd.ts#L43)*

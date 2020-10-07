@@ -23,7 +23,7 @@
 
 • **action**: *[EditorAction](../modules/_foundation_.md#editoraction)*
 
-*Defined in [src/foundation.ts:153](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L153)*
+*Defined in [src/foundation.ts:153](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L153)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **kind**: *"action"*
 
-*Defined in [src/foundation.ts:152](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L152)*
+*Defined in [src/foundation.ts:152](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L152)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 *Inherited from [LogDetailBase](_foundation_.logdetailbase.md).[message](_foundation_.logdetailbase.md#optional-message)*
 
-*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L149)*
+*Defined in [src/foundation.ts:149](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L149)*
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 *Inherited from [LogDetailBase](_foundation_.logdetailbase.md).[title](_foundation_.logdetailbase.md#title)*
 
-*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L148)*
+*Defined in [src/foundation.ts:148](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L148)*

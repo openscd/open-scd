@@ -321,7 +321,7 @@
 
 *Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[constructor](_wizard_textfield_.wizardtextfield.md#constructor)*
 
-*Defined in [src/wizard-dialog.ts:163](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L163)*
+*Defined in [src/wizard-dialog.ts:163](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L163)*
 
 **Returns:** *[WizardDialog](_wizard_dialog_.wizarddialog.md)*
 
@@ -729,7 +729,7 @@ ___
 
 • **dialogs**: *NodeListOf‹Dialog›*
 
-*Defined in [src/wizard-dialog.ts:41](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L41)*
+*Defined in [src/wizard-dialog.ts:41](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L41)*
 
 ___
 
@@ -853,7 +853,7 @@ ___
 
 • **inputs**: *NodeListOf‹[WizardInput](../modules/_foundation_.md#wizardinput)›*
 
-*Defined in [src/wizard-dialog.ts:43](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L43)*
+*Defined in [src/wizard-dialog.ts:43](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L43)*
 
 ___
 
@@ -2173,7 +2173,7 @@ ___
 
 • **pageIndex**: *number* = 0
 
-*Defined in [src/wizard-dialog.ts:39](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L39)*
+*Defined in [src/wizard-dialog.ts:39](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L39)*
 
 ___
 
@@ -2390,7 +2390,7 @@ ___
 
 • **wizard**: *[Wizard](../modules/_foundation_.md#wizard)* = []
 
-*Defined in [src/wizard-dialog.ts:37](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L37)*
+*Defined in [src/wizard-dialog.ts:37](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L37)*
 
 ___
 
@@ -2493,7 +2493,7 @@ ___
 
 *Overrides void*
 
-*Defined in [src/wizard-dialog.ts:94](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L94)*
+*Defined in [src/wizard-dialog.ts:94](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L94)*
 
 ## Accessors
 
@@ -2501,7 +2501,7 @@ ___
 
 • **get dialog**(): *Dialog | undefined*
 
-*Defined in [src/wizard-dialog.ts:45](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L45)*
+*Defined in [src/wizard-dialog.ts:45](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L45)*
 
 **Returns:** *Dialog | undefined*
 
@@ -2511,7 +2511,7 @@ ___
 
 • **get firstInvalidPage**(): *number*
 
-*Defined in [src/wizard-dialog.ts:53](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L53)*
+*Defined in [src/wizard-dialog.ts:53](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L53)*
 
 **Returns:** *number*
 
@@ -2602,7 +2602,7 @@ ___
 
 ▸ **act**(`action?`: [WizardAction](../modules/_foundation_.md#wizardaction)): *Promise‹boolean›*
 
-*Defined in [src/wizard-dialog.ts:75](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L75)*
+*Defined in [src/wizard-dialog.ts:75](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L75)*
 
 **Parameters:**
 
@@ -2852,7 +2852,7 @@ ___
 
 ▸ **checkValidity**(): *boolean*
 
-*Defined in [src/wizard-dialog.ts:49](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L49)*
+*Defined in [src/wizard-dialog.ts:49](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L49)*
 
 **Returns:** *boolean*
 
@@ -2894,7 +2894,7 @@ ___
 
 ▸ **close**(): *void*
 
-*Defined in [src/wizard-dialog.ts:71](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L71)*
+*Defined in [src/wizard-dialog.ts:71](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L71)*
 
 **Returns:** *void*
 
@@ -3487,7 +3487,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[info](_wizard_textfield_.wizardtextfield.md#optional-info)*
 
-*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L228)*
+*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L228)*
 
 **Parameters:**
 
@@ -3726,7 +3726,7 @@ ___
 
 ▸ **next**(): *Promise‹void›*
 
-*Defined in [src/wizard-dialog.ts:61](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L61)*
+*Defined in [src/wizard-dialog.ts:61](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L61)*
 
 **Returns:** *Promise‹void›*
 
@@ -3750,7 +3750,7 @@ ___
 
 ▸ **onClosed**(`ae`: CustomEvent‹object | null›): *void*
 
-*Defined in [src/wizard-dialog.ts:87](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L87)*
+*Defined in [src/wizard-dialog.ts:87](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L87)*
 
 **Parameters:**
 
@@ -3815,7 +3815,7 @@ ___
 
 ▸ **prev**(): *void*
 
-*Defined in [src/wizard-dialog.ts:57](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L57)*
+*Defined in [src/wizard-dialog.ts:57](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L57)*
 
 **Returns:** *void*
 
@@ -4113,7 +4113,7 @@ ___
 
 *Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
 
-*Defined in [src/wizard-dialog.ts:161](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L161)*
+*Defined in [src/wizard-dialog.ts:161](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L161)*
 
 **Returns:** *TemplateResult*
 
@@ -4123,7 +4123,7 @@ ___
 
 ▸ **renderPage**(`page`: [WizardPage](../interfaces/_foundation_.wizardpage.md), `index`: number): *TemplateResult*
 
-*Defined in [src/wizard-dialog.ts:110](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L110)*
+*Defined in [src/wizard-dialog.ts:110](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L110)*
 
 **Parameters:**
 
@@ -4581,7 +4581,7 @@ ___
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[warn](_wizard_textfield_.wizardtextfield.md#optional-warn)*
 
-*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/a86044f/src/foundation.ts#L229)*
+*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L229)*
 
 **Parameters:**
 

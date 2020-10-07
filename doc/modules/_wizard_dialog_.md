@@ -19,7 +19,7 @@
 
 ▸ **dialogInputs**(`dialog?`: Dialog): *[WizardInput](_foundation_.md#wizardinput)[]*
 
-*Defined in [src/wizard-dialog.ts:26](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L26)*
+*Defined in [src/wizard-dialog.ts:26](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L26)*
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **dialogValid**(`dialog?`: Dialog): *boolean*
 
-*Defined in [src/wizard-dialog.ts:30](https://github.com/openscd/open-scd/blob/a86044f/src/wizard-dialog.ts#L30)*
+*Defined in [src/wizard-dialog.ts:30](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L30)*
 
 **Parameters:**
 
