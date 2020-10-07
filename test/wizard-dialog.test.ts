@@ -21,7 +21,7 @@ describe('wizard-dialog', () => {
       expect(element).to.have.property('firstInvalidPage', -1));
   });
 
-  describe('with a wizard loaded', () => {
+  describe('with a nonempty wizard property', () => {
     beforeEach(async () => {
       element.wizard = [
         {
@@ -56,6 +56,51 @@ describe('wizard-dialog', () => {
       expect(element.dialog).to.have.property('heading', 'Page 1');
     });
 
+    it('advances to the second page on next button click', async () => {
+      await (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-button[dialogaction="next"]')
+      )).click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      await element.updateComplete;
+      expect(element.dialog).to.have.property('heading', 'Page 2');
+    });
+
+    it('returns to the first page on prev button click', async () => {
+      element.next();
+      await element.updateComplete;
+      expect(element.dialog).to.have.property('heading', 'Page 2');
+      await (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-button[dialogaction="prev"]')
+      )).click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      await element.updateComplete;
+      expect(element.dialog).to.have.property('heading', 'Page 1');
+    });
+
+    it('executes the secondary action on secondary button click', done => {
+      element.wizard[0].secondary!.action = () => {
+        done();
+        return [];
+      };
+      (<HTMLElement>(
+        element.dialog!.querySelector('mwc-button[slot="secondaryAction"]')
+      )).click();
+    });
+
+    it('executes the primary action on primary button click', done => {
+      element.wizard[2].primary!.action = () => {
+        done();
+        return [];
+      };
+      element.next();
+      element.next();
+      element.updateComplete.then(() =>
+        (<HTMLElement>(
+          element.dialog!.querySelector('mwc-button[slot="primaryAction"]')
+        )).click()
+      );
+    });
+
     describe('with invalid inputs', () => {
       beforeEach(async () => {
         element.dialogs[1].querySelector<WizardInput>(
@@ -70,7 +115,7 @@ describe('wizard-dialog', () => {
       it('detects the first invalid page', () =>
         expect(element).to.have.property('firstInvalidPage', 1));
 
-      it('does not allow to go past the invalid page', async () => {
+      it('does not allow to advance past the invalid page', async () => {
         element.next();
         element.next();
         await element.updateComplete;
