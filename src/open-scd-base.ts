@@ -13,10 +13,10 @@ import '@material/mwc-top-app-bar-fixed';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Drawer } from '@material/mwc-drawer';
 
-import { Editing, newEmptySCD } from './editing.js';
-import { Logging } from './logging.js';
-import { Waiting } from './waiting.js';
-import { Wizarding } from './wizarding.js';
+import { Editing, newEmptySCD } from './Editing.js';
+import { Logging } from './Logging.js';
+import { Waiting } from './Waiting.js';
+import { Wizarding } from './Wizarding.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
