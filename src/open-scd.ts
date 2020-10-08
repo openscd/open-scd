@@ -25,6 +25,7 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { mdcTheme } from './colors.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
@@ -247,7 +248,7 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
 
   render(): TemplateResult {
     return html`
-      <mwc-drawer hasheader type="modal" id="menu">
+      <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
         <span slot="title">${this.name ?? 'Menu'}</span>
         <span slot="subtitle"
           >${this.name ? this.srcName : html`<tt>CTRL+M</tt>`}</span
@@ -289,21 +290,10 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
   }
 
   static styles = css`
-    * {
-      --mdc-theme-primary: #005496;
-      --mdc-theme-secondary: #d20a11;
-      --mdc-theme-background: #ffdd00;
-      --mdc-theme-on-secondary: #ffdd00;
-      --mdc-theme-on-background: #005496;
-    }
-
+    ${mdcTheme}
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
     } /* hack to fix disabled icon buttons rendering black */
-
-    mwc-snackbar * {
-      --mdc-theme-primary: #ffdd00;
-    }
 
     #file-input {
       display: none;
@@ -319,10 +309,10 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
-      --mdc-circular-progress-bar-color-1: #005496;
-      --mdc-circular-progress-bar-color-2: #d20a11;
-      --mdc-circular-progress-bar-color-3: #005496;
-      --mdc-circular-progress-bar-color-4: #ffdd00;
+      --mdc-circular-progress-bar-color-1: var(--mdc-theme-primary);
+      --mdc-circular-progress-bar-color-2: var(--mdc-theme-secondary);
+      --mdc-circular-progress-bar-color-3: var(--mdc-theme-primary);
+      --mdc-circular-progress-bar-color-4: var(--mdc-theme-background);
     }
 
     tt {

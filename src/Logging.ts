@@ -1,4 +1,4 @@
-import { html, property, query, TemplateResult } from 'lit-element';
+import { css, html, property, query, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import '@material/mwc-button';
@@ -30,9 +30,9 @@ const icons = {
 };
 
 const colors = {
-  info: '--mdc-theme-primary',
-  warning: '--mdc-theme-background',
-  error: '--mdc-theme-secondary',
+  info: '--cyan',
+  warning: '--yellow',
+  error: '--red',
   action: undefined,
 };
 

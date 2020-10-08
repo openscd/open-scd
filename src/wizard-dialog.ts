@@ -135,7 +135,7 @@ export class WizardDialog extends LitElement {
             slot="secondaryAction"
             dialogAction="close"
             label="cancel"
-            style="--mdc-theme-primary: var(--mdc-theme-secondary)"
+            style="--mdc-theme-primary: var(--mdc-theme-error)"
           ></mwc-button>`}
       ${page.primary
         ? html`<mwc-button
