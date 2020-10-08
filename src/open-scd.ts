@@ -7,6 +7,7 @@ import {
   property,
   query,
 } from 'lit-element';
+import { registerTranslateConfig, use, translate } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
 
 import '@material/mwc-button';
@@ -46,6 +47,13 @@ interface MenuEntry {
   action?: () => void;
   disabled?: () => boolean;
 }
+
+// internalization of all editors
+registerTranslateConfig({
+  loader: lang =>
+    fetch(`../../public/json/${lang}.json`).then(res => res.json()),
+});
+use('de');
 
 @customElement('open-scd')
 export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
