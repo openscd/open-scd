@@ -73,7 +73,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onUpdate(event: EditorActionEvent<Update>) {
       event.detail.action.new.element.append(
-        ...Array.from(event.detail.action.old.element.childNodes)
+        ...Array.from(event.detail.action.old.element.children)
       );
       event.detail.action.old.element.replaceWith(
         event.detail.action.new.element

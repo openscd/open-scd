@@ -27,6 +27,8 @@ function voltageLevelCreateAction(parent: Element): WizardAction {
     const Voltage = inputs.find(i => i.label === 'Voltage')!.maybeValue;
     const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
 
+    console.warn(multiplier === null);
+
     const action = {
       new: {
         parent,
@@ -39,7 +41,9 @@ function voltageLevelCreateAction(parent: Element): WizardAction {
           >${
             Voltage === null
               ? ''
-              : `<Voltage unit="V" multiplier="${multiplier}"
+              : `<Voltage unit="V" ${
+                  multiplier === null ? '' : `multiplier="${multiplier}"`
+                }
           >${Voltage}</Voltage>`
           }</VoltageLevel>`,
           'application/xml'
@@ -62,44 +66,80 @@ function voltageLevelUpdateAction(element: Element): WizardAction {
     const Voltage = inputs.find(i => i.label === 'Voltage')!.maybeValue;
     const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
 
+    let voltageLevelAction: EditorAction | null;
+    let voltageAction: EditorAction | null = null;
+
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc') &&
       nomFreq === element.getAttribute('nomFreq') &&
-      numPhases === element.getAttribute('numPhases') &&
+      numPhases === element.getAttribute('numPhases')
+    ) {
+      voltageLevelAction = null;
+    } else {
+      const newElement = <Element>element.cloneNode(false);
+      newElement.setAttribute('name', name);
+      if (desc === null) newElement.removeAttribute('desc');
+      else newElement.setAttribute('desc', desc);
+      if (nomFreq === null) newElement.removeAttribute('nomFreq');
+      else newElement.setAttribute('nomFreq', nomFreq);
+      if (numPhases === null) newElement.removeAttribute('numPhases');
+      else newElement.setAttribute('numPhases', numPhases);
+      voltageLevelAction = { old: { element }, new: { element: newElement } };
+    }
+
+    if (
       Voltage ===
         (element.querySelector('Voltage')?.textContent?.trim() ?? null) &&
       multiplier ===
-        (element.querySelector('Voltage')?.getAttribute('multiplier') ?? '')
-    )
-      return [];
+        (element.querySelector('Voltage')?.getAttribute('multiplier') ?? null)
+    ) {
+      voltageAction = null;
+    } else {
+      const oldVoltage = element.querySelector('Voltage');
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    if (nomFreq === null) newElement.removeAttribute('nomFreq');
-    else newElement.setAttribute('nomFreq', nomFreq);
-    if (numPhases === null) newElement.removeAttribute('numPhases');
-    else newElement.setAttribute('numPhases', numPhases);
-
-    let newVoltage = <Element | null>(
-      (element.querySelector('Voltage')?.cloneNode(true) ?? null)
-    );
-    if (newVoltage) newElement.appendChild(newVoltage);
-    if (Voltage !== null) {
-      if (!newVoltage)
-        newVoltage = new DOMParser().parseFromString(
-          '<Voltage></Voltage>',
+      if (oldVoltage === null) {
+        const newVoltage = new DOMParser().parseFromString(
+          '<Voltage unit="V"></Voltage>',
           'application/xml'
         ).documentElement;
-      newVoltage.textContent = Voltage;
-      if (multiplier === null) newVoltage.removeAttribute('multiplier');
-      else newVoltage.setAttribute('multiplier', multiplier);
+        newVoltage.textContent = Voltage;
+        if (multiplier !== null)
+          newVoltage.setAttribute('multiplier', multiplier);
+        voltageAction = {
+          new: {
+            parent: voltageLevelAction?.new.element ?? element,
+            element: newVoltage,
+            reference: element.firstElementChild,
+          },
+        };
+      } else {
+        if (Voltage === null)
+          voltageAction = {
+            old: {
+              parent: voltageLevelAction?.new.element ?? element,
+              element: oldVoltage,
+              reference: oldVoltage.nextElementSibling,
+            },
+          };
+        else {
+          const newVoltage = <Element>oldVoltage.cloneNode(false);
+          newVoltage.textContent = Voltage;
+          if (multiplier === null) newVoltage.removeAttribute('multiplier');
+          else newVoltage.setAttribute('multiplier', multiplier);
+          voltageAction = {
+            old: { element: oldVoltage },
+            new: { element: newVoltage },
+          };
+        }
+      }
     }
 
-    dialog.close();
-    return [{ old: { element }, new: { element: newElement } }];
+    if (voltageLevelAction || voltageAction) dialog.close();
+    const actions: EditorAction[] = [];
+    if (voltageLevelAction) actions.push(voltageLevelAction);
+    if (voltageAction) actions.push(voltageAction);
+    return actions;
   };
 }
 
@@ -164,7 +204,7 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
         options.element.getAttribute('numPhases'),
         options.element.querySelector('Voltage')?.textContent?.trim() ?? null,
         options.element.querySelector('Voltage')?.getAttribute('multiplier') ??
-          '',
+          null,
       ];
   return [
     {
@@ -218,8 +258,8 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
           .maybeValue=${Voltage}
           nullable
           unit="V"
-          .multipliers=${['G', 'M', 'k', '', 'm']}
-          .preSelectedMultiplier=${multiplier}
+          .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
+          .multiplier=${multiplier}
           helper="Voltage"
           required
           validationMessage="Must not be empty"
@@ -236,13 +276,22 @@ export class VoltageLevelEditor extends LitElement {
   parent!: Element;
   @property()
   element!: Element;
-  @property({ type: String })
+  @property()
   get name(): string {
-    return this.element?.getAttribute('name') ?? '';
+    return this.element.getAttribute('name') ?? '';
   }
-  @property({ type: String })
+  @property()
   get desc(): string | null {
-    return this.element?.getAttribute('desc') ?? null;
+    return this.element.getAttribute('desc') ?? null;
+  }
+  @property()
+  get voltage(): string | null {
+    const V = this.element.querySelector('Voltage');
+    if (V === null) return null;
+    const v = V.textContent ?? '';
+    const m = V.getAttribute('multiplier');
+    const u = m === null ? 'V' : ' ' + m + 'V';
+    return v ? v + u : null;
   }
 
   @query('h1') header!: Element;
@@ -256,6 +305,7 @@ export class VoltageLevelEditor extends LitElement {
   renderHeader(): TemplateResult {
     return html`<h1>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+      ${this.voltage === null ? '' : html`(${this.voltage})`}
       <mwc-icon-button
         icon="edit"
         @click=${() => this.openEditWizard()}

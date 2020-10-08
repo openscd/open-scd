@@ -84,6 +84,8 @@ describe('SubstationEditor', () => {
         element.newUpdateAction('test name', 'test desc')
       ).to.throw());
 
+    /*
+
     it('does not generate newVoltageLevelCreateAction', () =>
       expect(() =>
         element.newVoltageLevelCreateAction(
@@ -95,6 +97,8 @@ describe('SubstationEditor', () => {
           'test k'
         )
       ).to.throw());
+
+     */
 
     it('generates a valid newCreateAction', () =>
       expect(element.newCreateAction('test name', 'test desc')).to.satisfy(
@@ -267,6 +271,8 @@ describe('SubstationEditor', () => {
         isUpdate
       ));
 
+    /*
+
     it('generates a valid newVoltageLevelCreateAction if a substation exists', () =>
       expect(
         element.newVoltageLevelCreateAction(
@@ -278,6 +284,8 @@ describe('SubstationEditor', () => {
           'test k'
         )
       ).to.satisfy(isCreate));
+
+     */
 
     /*
 

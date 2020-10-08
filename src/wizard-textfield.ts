@@ -25,14 +25,16 @@ export class WizardTextField extends TextField {
   @property({ type: Boolean })
   nullable = false;
   @property({ type: Array })
-  multipliers = [''];
+  multipliers = [null, ''];
   private multiplierIndex = 0;
   @property({ type: String })
-  get multiplier(): string {
-    if (this.unit == '') return '';
-    return this.multipliers[this.multiplierIndex] ?? this.multipliers[0] ?? '';
+  get multiplier(): string | null {
+    if (this.unit == '') return null;
+    return (
+      this.multipliers[this.multiplierIndex] ?? this.multipliers[0] ?? null
+    );
   }
-  set multiplier(value: string) {
+  set multiplier(value: string | null) {
     const index = this.multipliers.indexOf(value);
     if (index >= 0) this.multiplierIndex = index;
   }
@@ -111,6 +113,8 @@ export class WizardTextField extends TextField {
   async firstUpdated(): Promise<void> {
     await super.firstUpdated();
     this.storeNulled();
+    if (this.null && this.multiplierSelect)
+      this.multiplierSelect.disabled = true;
   }
 
   render(): TemplateResult {
@@ -140,8 +144,8 @@ export class WizardTextField extends TextField {
   renderMulplierList(): TemplateResult {
     return html`${this.multipliers.map(
       multiplier =>
-        html`<mwc-list-item ?selected=${multiplier == this.multiplier}
-          >${multiplier}${this.unit}</mwc-list-item
+        html`<mwc-list-item ?selected=${multiplier === this.multiplier}
+          >${multiplier === null ? 'none' : multiplier}</mwc-list-item
         >`
     )}`;
   }
