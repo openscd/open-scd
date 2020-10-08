@@ -27,8 +27,6 @@ function voltageLevelCreateAction(parent: Element): WizardAction {
     const Voltage = inputs.find(i => i.label === 'Voltage')!.maybeValue;
     const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
 
-    console.warn(multiplier === null);
-
     const action = {
       new: {
         parent,
