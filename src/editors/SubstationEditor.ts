@@ -6,6 +6,7 @@ import {
   query,
   css,
 } from 'lit-element';
+import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-fab';
@@ -105,8 +106,12 @@ export default class SubstationEditor extends LitElement {
 
   openSubstationWizard(): void {
     const [heading, actionName, actionIcon] = this.element
-      ? ['Edit Substation', 'Save', 'edit']
-      : ['Add Substation', 'Add', 'add'];
+      ? [
+          get('substation.dialog.title.edit'),
+          get('general.button.edit'),
+          'edit',
+        ]
+      : [get('substation.dialog.title.add'), get('general.button.add'), 'add'];
     const event = newWizardEvent([
       {
         title: heading,
@@ -118,14 +123,14 @@ export default class SubstationEditor extends LitElement {
         content: [
           html`<wizard-textfield
             .maybeValue=${this.name}
-            helper="Substation Name"
+            helper="${translate('substation.dialog.nameHelper')}"
             label="name"
             required
             dialogInitialFocus
           ></wizard-textfield>`,
           html`<wizard-textfield
             .maybeValue=${this.desc}
-            helper="Substation Description"
+            helper="${translate('substation.dialog.descHelper')}"
             label="desc"
             nullable
           ></wizard-textfield>`,
@@ -157,7 +162,9 @@ export default class SubstationEditor extends LitElement {
             if (ae.detail.index == 0) this.openVoltageLevelWizard();
           }}
         >
-          <mwc-list-item>Add Voltage Level</mwc-list-item>
+          <mwc-list-item
+            >${translate('substation.action.addvoltagelevel')}</mwc-list-item
+          >
         </mwc-menu>
       </h1>
     `;
