@@ -6,7 +6,7 @@ import { isCreate, isUpdate } from '../../../src/foundation.js';
 import { Editing } from '../../../src/Editing.js';
 import { Wizarding } from '../../../src/Wizarding.js';
 
-import { getDocument } from '../data.js';
+import { getDocument } from '../../data.js';
 
 describe('SubstationEditor', () => {
   customElements.define(

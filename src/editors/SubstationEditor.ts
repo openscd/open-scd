@@ -16,6 +16,7 @@ import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
+import './substation/voltage-level-editor.js';
 import {
   EditorAction,
   CloseableElement,
@@ -279,6 +280,13 @@ export default class SubstationEditor extends LitElement {
   render(): TemplateResult {
     return html`
       ${this.renderHeader()}
+      ${Array.from(this.element?.querySelectorAll('VoltageLevel') ?? []).map(
+        voltageLevel =>
+          html`<voltage-level-editor
+            .element=${voltageLevel}
+            .parent=${this.element}
+          ></voltage-level-editor>`
+      )}
       <mwc-fab
         @click=${this.openSubstationWizard}
         icon="${this.element ? 'edit' : 'add'}"
