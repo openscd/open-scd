@@ -4,11 +4,15 @@ import { Button } from '@material/mwc-button';
 import SubstationEditor from '../../../src/editors/SubstationEditor.js';
 import { isCreate, isUpdate } from '../../../src/foundation.js';
 import { Editing } from '../../../src/Editing.js';
+import { Wizarding } from '../../../src/Wizarding.js';
 
 import { getDocument } from '../data.js';
 
 describe('SubstationEditor', () => {
-  customElements.define('substation-editor', Editing(SubstationEditor));
+  customElements.define(
+    'substation-editor',
+    Wizarding(Editing(SubstationEditor))
+  );
   let element: SubstationEditor;
   beforeEach(async () => {
     element = await fixture(html`<substation-editor></substation-editor>
@@ -60,12 +64,12 @@ describe('SubstationEditor', () => {
 
     /*
 
-    it('opens the "Add Substation" dialog on FAB click', async () => {
-      expect(element.editSubstationUI.open).to.not.be.true;
+    it('opens the "Add Substation" wizard on FAB click', async () => {
+      expect(element).shadowDom.to.not.contain('wizard-dialog');
       await (<Button | null>(
         element.shadowRoot!.querySelector('mwc-fab')
       ))?.click();
-      expect(element.editSubstationUI.open).to.be.true;
+      expect(element).shadowDom.to.contain('wizard-dialog');
     });
 
      */

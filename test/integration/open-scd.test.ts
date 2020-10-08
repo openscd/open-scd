@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/Editing.js';
-import { training, invalidSCL, validSCL, serialize } from './data.js';
+import { invalidSCL, validSCL, serialize } from './data.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -86,40 +86,25 @@ describe('open-scd', () => {
   });
 
   it('generates error messages for invalid SCL file', async () => {
-    const trainingBlobURL = URL.createObjectURL(
+    const invalidBlobURL = URL.createObjectURL(
       new Blob([invalidSCL], {
         type: 'application/xml',
       })
     );
-    element.setAttribute('src', trainingBlobURL);
+    element.setAttribute('src', invalidBlobURL);
     await element.workDone;
     expect(element).property('history').to.have.length(5);
+    expect(element.doc.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
   });
 
   it('generates no error messages for valid SCL file', async () => {
-    const trainingBlobURL = URL.createObjectURL(
+    const validBlobURL = URL.createObjectURL(
       new Blob([validSCL], {
         type: 'application/xml',
       })
     );
-    element.setAttribute('src', trainingBlobURL);
+    element.setAttribute('src', validBlobURL);
     await element.workDone;
     expect(element).property('history').to.have.length(3);
   });
-
-  it('loads and validates XML data from a `src` URL', async () => {
-    element.setAttribute('srcName', 'training.scd');
-    expect(element).property('waiting').to.be.false;
-    expect(element).property('history').to.have.length(0);
-    element.setAttribute('src', training);
-    expect(element).property('waiting').to.be.true;
-    await element.workDone;
-    expect(element.doc.querySelector('DataTypeTemplates > DOType')).to.have.id(
-      'ABBIED600_Rev1_ENC_Mod_OnTestBlock'
-    );
-    expect(element.doc.lastElementChild)
-      .property('childElementCount')
-      .to.equal(21);
-    expect(element).property('history').to.have.length(27);
-  }).timeout(60000);
 });

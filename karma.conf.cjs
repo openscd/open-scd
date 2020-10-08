@@ -11,7 +11,7 @@ module.exports = config => {
       {
         browserDisconnectTimeout: 20000,
         files: [
-          'xmllint.js',
+          'public/js/xmllint.js',
           // runs all files ending with .test in the test folder,
           // can be overwritten by passing a --grep flag. examples:
           //

@@ -18,7 +18,7 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
     @property({ type: Boolean })
     waiting = false;
 
-    protected work: Set<Promise<string>> = new Set();
+    work: Set<Promise<string>> = new Set();
     /** A promise which resolves once all currently pending work is done. */
     workDone = Promise.allSettled(this.work);
 
