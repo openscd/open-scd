@@ -120,7 +120,7 @@ export default class SubstationEditor extends LitElement {
     if (inputs.length < 2) return [];
     const name = inputs.find(i => i.label === 'name')?.maybeValue ?? '';
     const desc = inputs.find(i => i.label === 'desc')?.maybeValue ?? null;
-    if (name && name === this.name && desc === this.desc) return [];
+    if (!name || (name === this.name && desc === this.desc)) return [];
     const action = this.element
       ? this.newUpdateAction(name, desc)
       : this.newCreateAction(name, desc);
