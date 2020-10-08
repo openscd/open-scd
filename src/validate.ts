@@ -1,5 +1,5 @@
 import { encodeNonASCII } from './xml-entities.js';
-import { LogEntry } from './editing.js';
+import { InfoDetail, LogEntry } from './foundation.js';
 
 interface XMLParams {
   xml: string;
@@ -14,7 +14,7 @@ export async function validateSCL(
   doc: XMLDocument,
   fileName = 'untitled.scd',
   cause?: LogEntry
-): Promise<Array<Pick<LogEntry, 'title' | 'message' | 'cause'>>> {
+): Promise<Array<InfoDetail>> {
   const result =
     validateXML({
       xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
@@ -29,7 +29,12 @@ export async function validateSCL(
     .map(a => {
       //if (a[4]) [a[0], a[4]] = [a[4], a[0]];
       a.reverse();
-      return { title: a[0], message: a.slice(1).reverse().join(' | '), cause };
+      return {
+        kind: 'error',
+        title: a[0],
+        message: a.slice(1).reverse().join(' | '),
+        cause,
+      };
     });
 }
 

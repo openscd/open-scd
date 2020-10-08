@@ -47,7 +47,9 @@
     "doc:typedoc": "typedoc --out doc --plugin typedoc-plugin-markdown src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
-    "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --coverage\"",
+    "test:watch": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false\"",
+    "test:unit": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --coverage --grep out-tsc/**/test/unit/**/*.test.js\"",
+    "test:integration": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --grep out-tsc/**/test/integration/**/*.test.js\"",
     "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch\"",
     "tsc:watch": "tsc --watch"
   },
@@ -87,7 +89,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run doc"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {

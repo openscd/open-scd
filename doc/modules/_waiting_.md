@@ -1,6 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["waiting"](_waiting_.md)
+[open-scd](../README.md) › [Globals](../globals.md) › ["Waiting"](_waiting_.md)
 
-# Module: "waiting"
+# Module: "Waiting"
 
 ## Index
 
@@ -18,7 +18,7 @@
 
 Ƭ **WaitingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Waiting›*
 
-*Defined in [src/waiting.ts:3](https://github.com/openscd/open-scd/blob/c830997/src/waiting.ts#L3)*
+*Defined in [src/Waiting.ts:13](https://github.com/openscd/open-scd/blob/56480b8/src/Waiting.ts#L13)*
 
 ## Functions
 
@@ -26,11 +26,11 @@
 
 ▸ **Waiting**‹**TBase**›(`Base`: TBase): *WaitingElement & TBase*
 
-*Defined in [src/waiting.ts:5](https://github.com/openscd/open-scd/blob/c830997/src/waiting.ts#L5)*
+*Defined in [src/Waiting.ts:15](https://github.com/openscd/open-scd/blob/56480b8/src/Waiting.ts#L15)*
 
 **Type parameters:**
 
-▪ **TBase**: *[ElementConstructor](_foundation_.md#elementconstructor)*
+▪ **TBase**: *[LitElementConstructor](_foundation_.md#litelementconstructor)*
 
 **Parameters:**
 
