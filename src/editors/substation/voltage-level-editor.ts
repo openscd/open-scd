@@ -66,7 +66,8 @@ function voltageLevelUpdateAction(element: Element): WizardAction {
     const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
 
     let voltageLevelAction: EditorAction | null;
-    let voltageAction: EditorAction | null = null;
+    let voltageAction: EditorAction | null;
+    console.warn(element.attributes);
 
     if (
       name === element.getAttribute('name') &&

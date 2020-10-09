@@ -155,6 +155,10 @@ export default class SubstationEditor extends LitElement {
           icon="more_vert"
           @click=${() => this.menuUI.show()}
         ></mwc-icon-button>
+        <mwc-icon-button
+          icon="add"
+          @click=${() => this.openVoltageLevelWizard()}
+        ></mwc-icon-button>
         <mwc-menu
           .anchor=${this.menuIconUI}
           corner="BOTTOM_RIGHT"
