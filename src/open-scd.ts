@@ -7,13 +7,14 @@ import {
   property,
   query,
 } from 'lit-element';
-import { registerTranslateConfig, use, translate } from 'lit-translate';
+import { registerTranslateConfig, use, translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
 
 import '@material/mwc-button';
 import '@material/mwc-drawer';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
+import '@material/mwc-linear-progress';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-tab';
@@ -26,14 +27,16 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { Setting } from './Setting.js';
 import { mdcTheme } from './colors.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
 import { zeroLineIcon } from './icons.js';
+import { loader } from './translations/loader.js';
 
 interface Tab {
-  label: string;
+  name: string;
   id: string;
   icon: string | TemplateResult;
 }
@@ -48,15 +51,10 @@ interface MenuEntry {
   disabled?: () => boolean;
 }
 
-// internalization of all editors
-registerTranslateConfig({
-  loader: lang =>
-    fetch(`../../public/json/${lang}.json`).then(res => res.json()),
-});
-use('de');
-
 @customElement('open-scd')
-export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
+export class OpenSCD extends Setting(
+  Wizarding(Waiting(Editing(Logging(LitElement))))
+) {
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
@@ -87,7 +85,7 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'info',
-            title: `Loading project ${this.srcName}.`,
+            title: get('openSCD.loading', { name: this.srcName }),
           })
         );
         const reader: FileReader = new FileReader();
@@ -103,29 +101,23 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
           this.dispatchEvent(
             newLogEvent({
               kind: 'info',
-              title: `${this.srcName} loaded.`,
+              title: get('openSCD.loaded', { name: this.srcName }),
             })
           );
           validateSCL(this.doc, this.srcName).then(errors => {
             errors.map(id => {
               this.dispatchEvent(newLogEvent(id));
-            }) ??
-              this.dispatchEvent(
-                newLogEvent({
-                  kind: 'info',
-                  title: `${this.srcName} validated successfully.`,
-                })
-              );
+            });
             if (errors.length == 0)
-              resolve(`${this.srcName} validation succesful.`);
-            else reject(`${this.srcName} validation failed.`);
+              resolve(get('openSCD.validated', { name: this.srcName }));
+            else reject(get('openSCD.invalidated', { name: this.srcName }));
           });
         });
         reader.addEventListener('error', () =>
-          reject(`${this.srcName} read error.`)
+          reject(get('openSCD.readError', { name: this.srcName }))
         );
         reader.addEventListener('abort', () =>
-          reject(`${this.srcName} read aborted.`)
+          reject(get('openSCD.readAbort', { name: this.srcName }))
         );
         fetch(src ?? '').then(res =>
           res.blob().then(b => reader.readAsText(b))
@@ -158,18 +150,17 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
   menu: MenuEntry[] = [
     {
       icon: 'folder_open',
-      name: 'Open project',
+      name: 'menu.open',
       startsGroup: true,
       actionItem: true,
       action: (): void => this.fileUI.click(),
     },
-    { icon: 'create_new_folder', name: 'New project' },
-    { icon: 'snippet_folder', name: 'Import IED' },
-    { icon: 'save', name: 'Save project' },
+    { icon: 'create_new_folder', name: 'menu.new' },
+    { icon: 'snippet_folder', name: 'menu.importIED' },
+    { icon: 'save', name: 'save' },
     {
       icon: 'undo',
-      name: 'Undo',
-      hint: 'CTRL+Z',
+      name: 'undo',
       startsGroup: true,
       actionItem: true,
       action: this.undo,
@@ -177,26 +168,30 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
     },
     {
       icon: 'redo',
-      name: 'Redo',
-      hint: 'CTRL+Y',
+      name: 'redo',
       actionItem: true,
       action: this.redo,
       disabled: (): boolean => !this.canRedo,
     },
-    { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
+    { icon: 'rule_folder', name: 'menu.validate', startsGroup: true },
     {
       icon: 'rule',
-      name: 'View log',
-      hint: 'CTRL+L',
+      name: 'menu.viewLog',
       actionItem: true,
       action: (): void => this.logUI.show(),
+    },
+    {
+      icon: 'settings',
+      name: 'settings.name',
+      startsGroup: true,
+      action: (): void => this.settingsUI.show(),
     },
   ];
 
   plugins = {
     editors: [
       {
-        label: 'Substation',
+        name: 'substation.name',
         id: 'substation',
         icon: zeroLineIcon,
         getContent: (): Promise<TemplateResult> =>
@@ -209,6 +204,9 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
 
   constructor() {
     super();
+
+    registerTranslateConfig({ loader, empty: key => key });
+    use(this.settings.language);
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
@@ -223,7 +221,7 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
         .disabled=${me.disabled?.() || (me.action ? false : true)}
         ?twoline=${me.hint}
         ><mwc-icon slot="graphic"> ${me.icon} </mwc-icon>
-        <span>${me.name}</span>
+        <span>${translate(me.name)}</span>
         ${me.hint
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
           : ''}
@@ -245,7 +243,7 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
 
   renderEditorTab(editor: Tab): TemplateResult {
     return html`<mwc-tab
-      label=${editor.label}
+      label=${translate(editor.name)}
       icon=${editor.icon instanceof TemplateResult ? '' : editor.icon}
       id=${editor.id}
       hasimageicon
@@ -258,15 +256,12 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
     return html`
       <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
         <span slot="title">${this.name ?? 'Menu'}</span>
-        <span slot="subtitle"
-          >${this.name ? this.srcName : html`<tt>CTRL+M</tt>`}</span
-        >
+        ${this.name ? html`<span slot="subtitle">${this.srcName}</span>` : ''}
         <mwc-list
           wrapFocus
           @action=${(ae: CustomEvent<ActionDetail>) =>
             this.menu[ae.detail.index]?.action!()}
-        >
-          ${this.menu.map(this.renderMenuEntry)}
+        > ${this.menu.map(this.renderMenuEntry)}
         </mwc-list>
 
         <mwc-top-app-bar-fixed slot="appContent">
@@ -281,15 +276,14 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
           <mwc-tab-bar
             @MDCTabBar:activated=${(e: CustomEvent) =>
               (this.activeTab = e.detail.index)}
-          >
-            ${this.plugins.editors.map(this.renderEditorTab)}
+          > ${this.plugins.editors.map(this.renderEditorTab)}
           </mwc-tab-bar>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
       ${until(
         this.plugins.editors[this.activeTab].getContent(),
-        html`<span>Loading...</span>`
+        html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
       )}
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
@@ -309,6 +303,16 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
 
     mwc-dialog {
       --mdc-dialog-max-width: 92vw;
+    }
+
+    mwc-dialog > form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    mwc-dialog > form > * {
+      display: block;
+      margin-top: 16px;
     }
 
     mwc-circular-progress-four-color {

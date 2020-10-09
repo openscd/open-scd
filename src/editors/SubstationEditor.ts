@@ -106,12 +106,8 @@ export default class SubstationEditor extends LitElement {
 
   openSubstationWizard(): void {
     const [heading, actionName, actionIcon] = this.element
-      ? [
-          get('substation.dialog.title.edit'),
-          get('general.button.edit'),
-          'edit',
-        ]
-      : [get('substation.dialog.title.add'), get('general.button.add'), 'add'];
+      ? [get('substation.wizard.title.edit'), get('edit'), 'edit']
+      : [get('substation.wizard.title.add'), get('add'), 'add'];
     const event = newWizardEvent([
       {
         title: heading,
@@ -123,14 +119,14 @@ export default class SubstationEditor extends LitElement {
         content: [
           html`<wizard-textfield
             .maybeValue=${this.name}
-            helper="${translate('substation.dialog.nameHelper')}"
+            helper="${translate('substation.wizard.nameHelper')}"
             label="name"
             required
             dialogInitialFocus
           ></wizard-textfield>`,
           html`<wizard-textfield
             .maybeValue=${this.desc}
-            helper="${translate('substation.dialog.descHelper')}"
+            helper="${translate('substation.wizard.descHelper')}"
             label="desc"
             nullable
           ></wizard-textfield>`,

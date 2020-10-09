@@ -5,6 +5,7 @@ import {
   property,
   query,
 } from 'lit-element';
+import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';
@@ -90,8 +91,8 @@ export class WizardTextField extends TextField {
     this.storeNulled();
     this.value = '';
     this.helper = this.defaultValue
-      ? 'Default: ' + this.defaultValue
-      : 'No default value';
+      ? get('textfield.default', { value: this.defaultValue })
+      : get('textfield.noDefault');
     this.helperPersistent = true;
     this.disabled = true;
 
