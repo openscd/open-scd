@@ -110,27 +110,11 @@ export class WizardTextField extends TextField {
     this.nulled.helperPersistent = this.helperPersistent;
   }
 
-  async firstUpdated(): Promise<void> {
-    await super.firstUpdated();
+  constructor() {
+    super();
     this.storeNulled();
     if (this.null && this.multiplierSelect)
       this.multiplierSelect.disabled = true;
-  }
-
-  render(): TemplateResult {
-    return html`
-      <div style="display: flex; flex-direction: row;">
-        <div style="flex:auto;">${super.render()}</div>
-        ${this.renderUnitSelector()}
-        <div
-          style="display:flex;
-            align-items:center;
-            height:56px;"
-        >
-          ${this.renderSwitch()}
-        </div>
-      </div>
-    `;
   }
 
   renderUnitSelector(): TemplateResult {
@@ -161,5 +145,21 @@ export class WizardTextField extends TextField {
       ></mwc-switch>`;
     }
     return html``;
+  }
+
+  render(): TemplateResult {
+    return html`
+      <div style="display: flex; flex-direction: row;">
+        <div style="flex:auto;">${super.render()}</div>
+        ${this.renderUnitSelector()}
+        <div
+          style="display:flex;
+            align-items:center;
+            height:56px;"
+        >
+          ${this.renderSwitch()}
+        </div>
+      </div>
+    `;
   }
 }
