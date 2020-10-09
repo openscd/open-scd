@@ -26,7 +26,7 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
-import { mdcTheme } from './colors.js';
+import { mdcThemeLigth, mdcThemeNight } from './colors.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
@@ -298,9 +298,11 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
   }
 
   static styles = css`
-    ${mdcTheme}
+    ${mdcThemeLigth}
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
+      background-color: var(--mdc-theme-surface);
+      --mdc-theme-on-primary: var(--mdc-theme-surface);
     } /* hack to fix disabled icon buttons rendering black */
 
     #file-input {
@@ -317,10 +319,6 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
-      --mdc-circular-progress-bar-color-1: var(--mdc-theme-primary);
-      --mdc-circular-progress-bar-color-2: var(--mdc-theme-secondary);
-      --mdc-circular-progress-bar-color-3: var(--mdc-theme-primary);
-      --mdc-circular-progress-bar-color-4: var(--mdc-theme-background);
     }
 
     tt {

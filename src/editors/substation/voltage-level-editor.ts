@@ -9,7 +9,7 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
-import { mdcTheme } from '../../colors.js';
+import { mdcThemeLigth, mdcThemeNight } from '../../colors.js';
 import {
   CloseableElement,
   EditorAction,
@@ -318,6 +318,6 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   static styles = css`
-    ${mdcTheme}
+    ${mdcThemeLigth}
   `;
 }
