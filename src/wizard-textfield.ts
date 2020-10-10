@@ -1,25 +1,22 @@
 import {
-  TemplateResult,
   customElement,
   html,
+  internalProperty,
   property,
   query,
+  TemplateResult,
 } from 'lit-element';
-import { get } from 'lit-translate';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-select';
+import '@material/mwc-menu';
 import '@material/mwc-switch';
-import { Select } from '@material/mwc-select';
+import '@material/mwc-textfield';
+import { IconButton } from '@material/mwc-icon-button';
+import { Menu } from '@material/mwc-menu';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'wizard-textfield': WizardTextField;
-  }
-}
 
 @customElement('wizard-textfield')
 export class WizardTextField extends TextField {
@@ -38,22 +35,22 @@ export class WizardTextField extends TextField {
   set multiplier(value: string | null) {
     const index = this.multipliers.indexOf(value);
     if (index >= 0) this.multiplierIndex = index;
+    this.suffix = (this.multiplier ?? '') + this.unit;
   }
   @property({ type: String })
   unit = '';
-  @property({ type: String })
-  defaultValue = '';
   private isNull = false;
+  @internalProperty()
   private get null(): boolean {
     return this.nullable && this.isNull;
   }
   private set null(value: boolean) {
-    if (!this.nullable || value == this.isNull) return;
+    if (!this.nullable || value === this.isNull) return;
     this.isNull = value;
     if (this.null) this.disable();
     else this.enable();
   }
-  @property()
+  @property({ type: String })
   get maybeValue(): string | null {
     return this.null ? null : this.value;
   }
@@ -64,65 +61,57 @@ export class WizardTextField extends TextField {
       this.value = value;
     }
   }
+  @property({ type: String })
+  defaultValue = '';
 
   @query('mwc-switch') nullSwitch?: Switch;
-  @query('mwc-select')
-  multiplierSelect?: Select;
+  @query('mwc-menu') multiplierMenu?: Menu;
+  @query('mwc-icon-button') multiplierButton?: IconButton;
 
-  // TextField state before disable()
-  private nulled = {
-    value: this.value || this.defaultValue,
-    helper: this.helper,
-    helperPersistent: this.helperPersistent,
-  };
+  private nulled: string | null = null;
 
   private selectMultiplier(se: SingleSelectedEvent): void {
-    this.multiplierIndex = se.detail.index;
+    this.multiplier = this.multipliers[se.detail.index];
   }
 
   private enable(): void {
-    this.restoreNulled();
+    if (this.nulled === null) return;
+    this.value = this.nulled;
+    this.nulled = null;
+    this.helperPersistent = false;
     this.disabled = false;
-
-    if (this.multiplierSelect) this.multiplierSelect.disabled = false;
   }
 
   private disable(): void {
-    this.storeNulled();
-    this.value = '';
-    this.helper = this.defaultValue
-      ? get('textfield.default', { value: this.defaultValue })
-      : get('textfield.noDefault');
+    if (this.nulled !== null) return;
+    this.nulled = this.value;
+    this.value = this.defaultValue;
     this.helperPersistent = true;
     this.disabled = true;
-
-    if (this.multiplierSelect) this.multiplierSelect.disabled = true;
   }
 
-  restoreNulled(): void {
-    this.value = this.nulled.value;
-    this.helper = this.nulled.helper;
-    this.helperPersistent = this.nulled.helperPersistent;
-  }
-
-  storeNulled(): void {
-    this.nulled.value = this.value;
-    this.nulled.helper = this.helper;
-    this.nulled.helperPersistent = this.helperPersistent;
-  }
-
-  constructor() {
-    super();
-    this.storeNulled();
-    if (this.null && this.multiplierSelect)
-      this.multiplierSelect.disabled = true;
+  async firstUpdated(): Promise<void> {
+    await super.firstUpdated();
+    if (this.multiplierMenu)
+      this.multiplierMenu.anchor = this.multiplierButton ?? null;
   }
 
   renderUnitSelector(): TemplateResult {
     if (this.multipliers.length && this.unit)
-      return html`<mwc-select @selected=${this.selectMultiplier}>
-        ${this.renderMulplierList()}
-      </mwc-select>`;
+      return html`<div style="position:relative;">
+        <mwc-icon-button
+          style="margin:5px;"
+          icon="more"
+          ?disabled=${this.null}
+          @click=${() => this.multiplierMenu?.show()}
+        ></mwc-icon-button>
+        <mwc-menu
+          @selected=${this.selectMultiplier}
+          fixed
+          .anchor=${this.multiplierButton ?? null}
+          >${this.renderMulplierList()}</mwc-menu
+        >
+      </div>`;
     else return html``;
   }
 
@@ -130,7 +119,9 @@ export class WizardTextField extends TextField {
     return html`${this.multipliers.map(
       multiplier =>
         html`<mwc-list-item ?selected=${multiplier === this.multiplier}
-          >${multiplier === null ? 'none' : multiplier}</mwc-list-item
+          >${multiplier === null
+            ? translate('textfield.noMultiplier')
+            : multiplier}</mwc-list-item
         >`
     )}`;
   }
@@ -138,7 +129,7 @@ export class WizardTextField extends TextField {
   renderSwitch(): TemplateResult {
     if (this.nullable) {
       return html`<mwc-switch
-        style="margin-left: 24px;"
+        style="margin-left: 12px;"
         ?checked=${!this.null}
         @change=${() => {
           this.null = !this.nullSwitch!.checked;
@@ -151,13 +142,9 @@ export class WizardTextField extends TextField {
   render(): TemplateResult {
     return html`
       <div style="display: flex; flex-direction: row;">
-        <div style="flex:auto;">${super.render()}</div>
+        <div style="flex: auto;">${super.render()}</div>
         ${this.renderUnitSelector()}
-        <div
-          style="display:flex;
-            align-items:center;
-            height:56px;"
-        >
+        <div style="display: flex; align-items: center; height: 56px;">
           ${this.renderSwitch()}
         </div>
       </div>

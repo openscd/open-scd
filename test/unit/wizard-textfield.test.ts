@@ -20,6 +20,7 @@ describe('wizard-textfield', () => {
     expect(element.nullSwitch).to.not.exist;
   });
 
+  /*
   it('adds a select element with non-empty multiplier array and non empty unit', async () => {
     element.multipliers = ['G', 'M', 'k', '', 'm'];
     element.unit = 'V';
@@ -113,6 +114,7 @@ describe('wizard-textfield', () => {
     await element.updateComplete;
     expect(element.multiplierSelect).to.have.property('disabled', false);
   });
+  */
 
   it('remebers textfield value on switch toggle', async () => {
     element.nullable = true;
@@ -144,15 +146,6 @@ describe('wizard-textfield', () => {
 
     it('does not show anything in the textfield', () => {
       expect(element).to.have.property('value', '');
-    });
-
-    it('displays default value of the attribute in the helper if present', async () => {
-      element.maybeValue = '';
-      await element.updateComplete;
-      element.defaultValue = 'Jakob';
-      element.maybeValue = null;
-      await element.updateComplete;
-      expect(element).to.have.property('helper', 'Default: Jakob');
     });
 
     it('displays "No default value" in the helper if default value is absent', () => {

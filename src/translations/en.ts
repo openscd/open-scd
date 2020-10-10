@@ -29,10 +29,9 @@ export const en = {
     updated: '{{ name }} edited',
   },
   textfield: {
-    default: 'Default: {{ value }}',
-    noDefault: 'No default value',
     required: 'Required',
     nonempty: 'Must not be empty',
+    noMultiplier: 'none',
   },
   log: {
     name: 'Log',
