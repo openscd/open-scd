@@ -6,6 +6,7 @@ export const en = {
     dark: 'Dark theme',
   },
   menu: {
+    name: 'Menu',
     open: 'Open project',
     new: 'New project',
     importIED: 'Import IED',

@@ -255,7 +255,9 @@ export class OpenSCD extends Setting(
   render(): TemplateResult {
     return html`
       <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
-        <span slot="title">${this.name ?? 'Menu'}</span>
+        <span slot="title">${
+          this.name ?? html`${translate('menu.name')}`
+        }</span>
         ${this.name ? html`<span slot="subtitle">${this.srcName}</span>` : ''}
         <mwc-list
           wrapFocus

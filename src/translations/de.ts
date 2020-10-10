@@ -8,6 +8,7 @@ export const de: Translations = {
     dark: 'Dunkles Design',
   },
   menu: {
+    name: 'Menü',
     open: 'Projekt öffnen',
     new: 'Neues Project',
     importIED: 'IED Importieren',
