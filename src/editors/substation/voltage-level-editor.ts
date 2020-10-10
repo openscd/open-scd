@@ -221,7 +221,7 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
           helper="${translate('voltagelevel.wizard.nameHelper')}"
           iconTrailing="title"
           required
-          validationMessage="Required"
+          validationMessage="${translate('textfield.required')}"
           dialogInitialFocus
         ></wizard-textfield>`,
         html`<wizard-textfield
@@ -238,7 +238,7 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
           helper="${translate('voltagelevel.wizard.nomFreqHelper')}"
           suffix="Hz"
           required
-          validationMessage="Must not be empty"
+          validationMessage="${translate('textfield.nonempty')}"
           pattern="[0-9]*[.]?[0-9]+"
         ></wizard-textfield>`,
         html`<wizard-textfield
@@ -248,7 +248,7 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
           helper="${translate('voltagelevel.wizard.numPhaseHelper')}"
           suffix="#"
           required
-          validationMessage="Must not be empty"
+          validationMessage="${translate('textfield.nonempty')}"
           type="number"
           min="1"
           max="255"
@@ -262,7 +262,7 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
           .multiplier=${multiplier}
           helper="${translate('voltagelevel.wizard.voltageHelper')}"
           required
-          validationMessage="Must not be empty"
+          validationMessage="${translate('textfield.nonempty')}"
           pattern="[0-9]*[.]?[0-9]+"
         ></wizard-textfield>`,
       ],

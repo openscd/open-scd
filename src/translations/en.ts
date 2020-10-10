@@ -31,6 +31,8 @@ export const en = {
   textfield: {
     default: 'Default: {{ value }}',
     noDefault: 'No default value',
+    required: 'Required',
+    nonempty: 'Must not be empty',
   },
   log: {
     name: 'Log',
@@ -42,6 +44,7 @@ export const en = {
   },
   substation: {
     name: 'Substation',
+    missing: 'No Substation',
     wizard: {
       nameHelper: 'Substation Name',
       descHelper: 'Substation Description',

@@ -143,7 +143,7 @@ export default class SubstationEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    if (!this.element) return html`<h1>No Substation</h1>`;
+    if (!this.element) return html`<h1>${translate('substation.missing')}</h1>`;
     return html`
       <h1>
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}

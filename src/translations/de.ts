@@ -33,6 +33,8 @@ export const de: Translations = {
   textfield: {
     default: 'Standardwert: {{ value }}',
     noDefault: 'Kein Standardwert',
+    required: 'Pflichtfeld',
+    nonempty: 'Darf nicht leer sein',
   },
   log: {
     name: 'Protokoll',
@@ -45,6 +47,7 @@ export const de: Translations = {
   },
   substation: {
     name: 'Schaltanlage',
+    missing: 'Keine Schaltanlage',
     wizard: {
       nameHelper: 'Name der Schaltanlage',
       descHelper: 'Beschreibung der Schaltanlage',
