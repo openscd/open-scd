@@ -1,7 +1,7 @@
 import { css, CSSResult } from 'lit-element';
 
 export function getTheme(theme: string): CSSResult {
-  return theme === 'night' ? mdcThemeLigth : mdcThemeNight;
+  return theme === 'night' ? mdcThemeLight : mdcThemeDark;
 }
 
 export const baseThemeColor = css`
@@ -25,7 +25,7 @@ export const baseThemeColor = css`
   }
 `;
 
-export const mdcThemeLigth = css`
+export const mdcThemeLight = css`
   * {
     --base03: #002b36;
     --base02: #073642;
@@ -46,34 +46,35 @@ export const mdcThemeLigth = css`
 
     --mdc-theme-primary: var(--violet);
     --mdc-theme-secondary: var(--orange);
-    --mdc-theme-background: var(--base02);
-    --mdc-theme-surface: var(--base2);
-    --mdc-theme-on-secondary: var(--base3);
-    --mdc-theme-on-background: var(--base2);
-    --mdc-theme-on-surface: var(--base01);
+    --mdc-theme-background: var(--base3);
+    --mdc-theme-surface: var(--base3);
+    --mdc-theme-on-primary: var(--base2);
+    --mdc-theme-on-secondary: var(--base2);
+    --mdc-theme-on-background: var(--base00);
+    --mdc-theme-on-surface: var(--base00);
     --mdc-theme-error: var(--red);
 
-    --mdc-drawer-heading-ink-color: var(--base01);
+    --mdc-drawer-heading-ink-color: var(--base00);
 
     --mdc-text-field-fill-color: var(--base2);
-    --mdc-text-field-disabled-fill-color: var(--base2);
-    --mdc-text-field-ink-color: var(--base01);
-    --mdc-text-field-label-ink-color: var(--base01);
+    --mdc-text-field-disabled-fill-color: var(--base3);
+    --mdc-text-field-ink-color: var(--base00);
+    --mdc-text-field-label-ink-color: var(--base00);
 
     --mdc-select-fill-color: var(--base2);
-    --mdc-select-disabled-fill-color: var(--base2);
-    --mdc-select-ink-color: var(--base01);
+    --mdc-select-disabled-fill-color: var(--base3);
+    --mdc-select-ink-color: var(--base00);
 
-    --mdc-dialog-heading-ink-color: var(--base01);
+    --mdc-dialog-heading-ink-color: var(--base00);
 
     --mdc-circular-progress-bar-color-1: var(--mdc-theme-primary);
     --mdc-circular-progress-bar-color-2: var(--mdc-theme-secondary);
     --mdc-circular-progress-bar-color-3: var(--mdc-theme-primary);
-    --mdc-circular-progress-bar-color-4: var(--mdc-theme-background);
+    --mdc-circular-progress-bar-color-4: var(--mdc-theme-on-background);
   }
 `;
 
-export const mdcThemeNight = css`
+export const mdcThemeDark = css`
   * {
     --base03: #002b36;
     --base02: #073642;
@@ -94,29 +95,26 @@ export const mdcThemeNight = css`
 
     --mdc-theme-primary: var(--violet);
     --mdc-theme-secondary: var(--orange);
-    --mdc-theme-background: var(--base2);
-    --mdc-theme-surface: var(--base02);
-    --mdc-theme-on-secondary: var(--base3);
-    --mdc-theme-on-background: var(--base1);
-    --mdc-theme-on-surface: var(--base01);
+    --mdc-theme-background: var(--base03);
+    --mdc-theme-surface: var(--base03);
+    --mdc-theme-on-secondary: var(--base02);
+    --mdc-theme-on-background: var(--base02);
+    --mdc-theme-on-surface: var(--base0);
     --mdc-theme-error: var(--red);
 
-    --mdc-text-field-fill-color: var(--base02);
-    --mdc-text-field-disabled-fill-color: var(--base02);
-
-    --mdc-select-fill-color: var(--base02);
-    --mdc-select-disabled-fill-color: var(--base02);
+    --mdc-drawer-ink-color: var(--base0);
 
     --mdc-text-field-fill-color: var(--base02);
-    --mdc-text-field-disabled-fill-color: var(--base02);
-    --mdc-text-field-ink-color: var(--base2);
-    --mdc-text-field-label-ink-color: var(--base2);
-    --mdc-text-field-disabled-ink-color: var(--base2);
+    --mdc-text-field-disabled-fill-color: var(--base03);
+    --mdc-text-field-ink-color: var(--base0);
+    --mdc-text-field-label-ink-color: var(--base0);
+    --mdc-text-field-disabled-ink-color: var(--base0);
 
     --mdc-select-fill-color: var(--base02);
-    --mdc-select-disabled-fill-color: var(--base02);
+    --mdc-select-disabled-fill-color: var(--base03);
+    --mdc-select-ink-color: var(--base0);
 
-    --mdc-dialog-heading-ink-color: var(--base2);
+    --mdc-dialog-heading-ink-color: var(--base0);
 
     --mdc-circular-progress-bar-color-1: var(--mdc-theme-primary);
     --mdc-circular-progress-bar-color-2: var(--mdc-theme-secondary);
