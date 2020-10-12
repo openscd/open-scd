@@ -8,6 +8,7 @@ import {
   TemplateResult,
   html,
 } from 'lit-element';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -91,21 +92,12 @@ export class WizardDialog extends LitElement {
     else if (ae.detail.action === 'next') this.next();
   }
 
-  static styles = css`
-    mwc-dialog {
-      --mdc-dialog-max-width: 92vw;
-    }
+  constructor() {
+    super();
 
-    #wizard-content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #wizard-content > * {
-      display: block;
-      margin-top: 16px;
-    }
-  `;
+    this.act = this.act.bind(this);
+    this.renderPage = this.renderPage.bind(this);
+  }
 
   renderPage(page: WizardPage, index: number): TemplateResult {
     return html`<mwc-dialog
@@ -134,7 +126,7 @@ export class WizardDialog extends LitElement {
         : html`<mwc-button
             slot="secondaryAction"
             dialogAction="close"
-            label="cancel"
+            label="${translate('cancel')}"
             style="--mdc-theme-primary: var(--mdc-theme-error)"
           ></mwc-button>`}
       ${page.primary
@@ -162,10 +154,19 @@ export class WizardDialog extends LitElement {
     return html`${this.wizard.map(this.renderPage)}`;
   }
 
-  constructor() {
-    super();
+  static styles = css`
+    mwc-dialog {
+      --mdc-dialog-max-width: 92vw;
+    }
 
-    this.act = this.act.bind(this);
-    this.renderPage = this.renderPage.bind(this);
-  }
+    #wizard-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #wizard-content > * {
+      display: block;
+      margin-top: 16px;
+    }
+  `;
 }

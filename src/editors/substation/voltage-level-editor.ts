@@ -7,6 +7,7 @@ import {
   property,
   query,
 } from 'lit-element';
+import { translate, get } from 'lit-translate';
 
 import { mdcTheme } from '../../colors.js';
 import {
@@ -169,14 +170,14 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
     options
   )
     ? [
-        'Add Voltage Level',
-        'Add',
+        get('voltagelevel.wizard.title.add'),
+        get('add'),
         'add',
         voltageLevelCreateAction(options.parent),
       ]
     : [
-        'Edit Voltage Level',
-        'Save',
+        get('voltagelevel.wizard.title.edit'),
+        get('save'),
         'edit',
         voltageLevelUpdateAction(options.element),
       ];
@@ -217,37 +218,37 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
         html`<wizard-textfield
           label="name"
           .maybeValue=${name}
-          helper="Name"
+          helper="${translate('voltagelevel.wizard.nameHelper')}"
           iconTrailing="title"
           required
-          validationMessage="Required"
+          validationMessage="${translate('textfield.required')}"
           dialogInitialFocus
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
           .maybeValue=${desc}
           nullable="true"
-          helper="Description"
+          helper="${translate('voltagelevel.wizard.descHelper')}"
           iconTrailing="description"
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="nomFreq"
           .maybeValue=${nomFreq}
           nullable="true"
-          helper="Nominal Frequency"
+          helper="${translate('voltagelevel.wizard.nomFreqHelper')}"
           suffix="Hz"
           required
-          validationMessage="Must not be empty"
+          validationMessage="${translate('textfield.nonempty')}"
           pattern="[0-9]*[.]?[0-9]+"
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="numPhases"
           .maybeValue=${numPhases}
           nullable="true"
-          helper="Number of Phases"
+          helper="${translate('voltagelevel.wizard.numPhaseHelper')}"
           suffix="#"
           required
-          validationMessage="Must not be empty"
+          validationMessage="${translate('textfield.nonempty')}"
           type="number"
           min="1"
           max="255"
@@ -259,9 +260,9 @@ export function voltageLevelWizard(options: VoltageLevelWizardOptions): Wizard {
           unit="V"
           .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
           .multiplier=${multiplier}
-          helper="Voltage"
+          helper="${translate('voltagelevel.wizard.voltageHelper')}"
           required
-          validationMessage="Must not be empty"
+          validationMessage="${translate('textfield.nonempty')}"
           pattern="[0-9]*[.]?[0-9]+"
         ></wizard-textfield>`,
       ],

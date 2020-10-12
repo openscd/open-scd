@@ -6,6 +6,7 @@ import {
   query,
   css,
 } from 'lit-element';
+import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-fab';
@@ -105,8 +106,8 @@ export default class SubstationEditor extends LitElement {
 
   openSubstationWizard(): void {
     const [heading, actionName, actionIcon] = this.element
-      ? ['Edit Substation', 'Save', 'edit']
-      : ['Add Substation', 'Add', 'add'];
+      ? [get('substation.wizard.title.edit'), get('edit'), 'edit']
+      : [get('substation.wizard.title.add'), get('add'), 'add'];
     const event = newWizardEvent([
       {
         title: heading,
@@ -118,14 +119,14 @@ export default class SubstationEditor extends LitElement {
         content: [
           html`<wizard-textfield
             .maybeValue=${this.name}
-            helper="Substation Name"
+            helper="${translate('substation.wizard.nameHelper')}"
             label="name"
             required
             dialogInitialFocus
           ></wizard-textfield>`,
           html`<wizard-textfield
             .maybeValue=${this.desc}
-            helper="Substation Description"
+            helper="${translate('substation.wizard.descHelper')}"
             label="desc"
             nullable
           ></wizard-textfield>`,
@@ -142,7 +143,7 @@ export default class SubstationEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    if (!this.element) return html`<h1>No Substation</h1>`;
+    if (!this.element) return html`<h1>${translate('substation.missing')}</h1>`;
     return html`
       <h1>
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
@@ -161,7 +162,9 @@ export default class SubstationEditor extends LitElement {
             if (ae.detail.index == 0) this.openVoltageLevelWizard();
           }}
         >
-          <mwc-list-item>Add Voltage Level</mwc-list-item>
+          <mwc-list-item
+            >${translate('substation.action.addvoltagelevel')}</mwc-list-item
+          >
         </mwc-menu>
       </h1>
     `;
