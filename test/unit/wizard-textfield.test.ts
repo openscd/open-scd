@@ -2,6 +2,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../src/wizard-textfield.js';
 import { WizardTextField } from '../../src/wizard-textfield.js';
+import { exists } from 'fs';
 
 describe('wizard-textfield', () => {
   let element: WizardTextField;
@@ -20,58 +21,36 @@ describe('wizard-textfield', () => {
     expect(element.nullSwitch).to.not.exist;
   });
 
-  /*
-  it('adds a select element with non-empty multiplier array and non empty unit', async () => {
+  it('opens multiprier menu list on multiplier option button', async () => {
     element.multipliers = ['G', 'M', 'k', '', 'm'];
     element.unit = 'V';
     await element.updateComplete;
-    expect(element.multiplierSelect).to.exist;
+    element.multiplierButton?.click();
+    await element.updateComplete;
+    expect(element.multiplierMenu).to.have.property('open', true);
   });
 
-  it('does not add a select element without specified multiplier', async () => {
+  it('adds a select multipliert option with non-empty multiplier array and non empty unit', async () => {
+    element.multipliers = ['G', 'M', 'k', '', 'm'];
+    element.unit = 'V';
+    await element.updateComplete;
+    expect(element.multiplierMenu).to.exist;
+  });
+
+  it('does not add a multiprier menu list without specified multiplier', async () => {
     element.multipliers = [];
     element.unit = 'V';
     await element.updateComplete;
-    expect(element.multiplierSelect).to.not.exist;
+    expect(element.multiplierMenu).to.not.exist;
   });
 
-  it('does not add a select element on missing unit', async () => {
+  it('does not add a multiprier menu list element on missing unit', async () => {
     element.multipliers = ['G', 'M', 'k', '', 'm'];
     await element.updateComplete;
-    expect(element.multiplierSelect).to.not.exist;
+    expect(element.multiplierMenu).to.not.exist;
   });
 
-  it('combines multiplier and unit in select field', async () => {
-    element.multipliers = ['G', 'M', 'k', '', 'm'];
-    element.unit = 'V';
-    await element.updateComplete;
-    expect(
-      element.multiplierSelect!.querySelectorAll('mwc-list-item').length
-    ).to.equal(5);
-
-    expect(
-      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(0)
-        .innerText
-    ).to.be.equal('GV');
-    expect(
-      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(1)
-        .innerText
-    ).to.be.equal('MV');
-    expect(
-      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(2)
-        .innerText
-    ).to.be.equal('kV');
-    expect(
-      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(3)
-        .innerText
-    ).to.be.equal('V');
-    expect(
-      element.multiplierSelect!.querySelectorAll('mwc-list-item').item(4)
-        .innerText
-    ).to.be.equal('mV');
-  });
-
-  it('returns selected multiplier on existing multiplier and unit', async () => {
+  it('returns selected multiplier on existing multipliers and unit', async () => {
     element.multipliers = ['G', 'M', 'k', '', 'm'];
     element.unit = 'V';
     element.multiplier = 'k';
@@ -79,16 +58,85 @@ describe('wizard-textfield', () => {
     expect(element.multiplier).to.equal('k');
   });
 
-  it('returns selected empty string on empty multiplier', async () => {
+  it('returns null on empty multipliers list', async () => {
     element.unit = 'V';
     element.multiplier = 'k';
     await element.updateComplete;
-    expect(element.multiplier).to.equal('');
+    expect(element.multiplier).to.equal(null);
   });
 
-  it('returns selected empty string on empty unit', async () => {
+  it('returns null on empty unit', async () => {
     element.multipliers = ['G', 'M', 'k', '', 'm'];
-    expect(element.multiplier).to.equal('');
+    expect(element.multiplier).to.equal(null);
+  });
+
+  describe('with a avalable multiplier', () => {
+    it('shows all multipliers in multiprier menu list', async () => {
+      element.multipliers = ['G', 'M', 'k', '', 'm'];
+      element.unit = 'V';
+      await element.updateComplete;
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').length
+      ).to.equal(5);
+
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(0)
+          .innerText
+      ).to.be.equal('G');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(1)
+          .innerText
+      ).to.be.equal('M');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(2)
+          .innerText
+      ).to.be.equal('k');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(3)
+          .innerText
+      ).to.be.equal('');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(4)
+          .innerText
+      ).to.be.equal('m');
+    });
+  });
+
+  describe('with a missing multiplier', () => {
+    it('shows all multipliers in multiprier menu list and the option none at the first place', async () => {
+      element.multipliers = [null, 'G', 'M', 'k', '', 'm'];
+      element.unit = 'V';
+      await element.updateComplete;
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').length
+      ).to.equal(6);
+
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(0)
+          .innerText
+      ).to.be.equal('[textfield.noMultiplier]');
+
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(1)
+          .innerText
+      ).to.be.equal('G');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(2)
+          .innerText
+      ).to.be.equal('M');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(3)
+          .innerText
+      ).to.be.equal('k');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(4)
+          .innerText
+      ).to.be.equal('');
+      expect(
+        element.multiplierMenu!.querySelectorAll('mwc-list-item').item(5)
+          .innerText
+      ).to.be.equal('m');
+    });
   });
 
   it('disables textfield on switch toggle', async () => {
@@ -109,12 +157,11 @@ describe('wizard-textfield', () => {
     await element.updateComplete;
     element.nullSwitch!.click();
     await element.updateComplete;
-    expect(element.multiplierSelect).to.have.property('disabled', true);
+    expect(element.multiplierButton).to.have.property('disabled', true);
     element.nullSwitch!.click();
     await element.updateComplete;
-    expect(element.multiplierSelect).to.have.property('disabled', false);
+    expect(element.multiplierButton).to.have.property('disabled', false);
   });
-  */
 
   it('remebers textfield value on switch toggle', async () => {
     element.nullable = true;
@@ -148,12 +195,14 @@ describe('wizard-textfield', () => {
       expect(element).to.have.property('value', '');
     });
 
-    it('displays "No default value" in the helper if default value is absent', () => {
-      expect(element).to.have.property('helper', 'No default value');
-    });
-
     it('returns null', () => {
       expect(element).to.have.property('maybeValue', null);
+    });
+
+    it('enables textfield edit on switch toggle', async () => {
+      element.nullSwitch?.click();
+      await element.updateComplete;
+      expect(element).to.have.property('disabled', false);
     });
   });
 
