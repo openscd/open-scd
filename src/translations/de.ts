@@ -31,10 +31,9 @@ export const de: Translations = {
     updated: '{{ name }} bearbeitet',
   },
   textfield: {
-    default: 'Standardwert: {{ value }}',
-    noDefault: 'Kein Standardwert',
     required: 'Pflichtfeld',
     nonempty: 'Darf nicht leer sein',
+    noMultiplier: 'keiner',
   },
   log: {
     name: 'Protokoll',
