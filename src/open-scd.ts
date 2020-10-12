@@ -205,9 +205,6 @@ export class OpenSCD extends Setting(
   constructor() {
     super();
 
-    registerTranslateConfig({ loader, empty: key => key });
-    use(this.settings.language);
-
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
   }

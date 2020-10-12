@@ -1,5 +1,5 @@
 import { html, property, query, TemplateResult } from 'lit-element';
-import { translate, use } from 'lit-translate';
+import { registerTranslateConfig, translate, use } from 'lit-translate';
 
 import '@material/mwc-dialog';
 import '@material/mwc-formfield';
@@ -11,13 +11,13 @@ import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
-import { Language, languages } from './translations/loader.js';
+import { Language, languages, loader } from './translations/loader.js';
 
 type Settings = {
   language: Language;
   theme: 'light' | 'dark';
 };
-const defaults: Settings = { language: 'en', theme: 'light' };
+export const defaults: Settings = { language: 'en', theme: 'light' };
 
 export type SettingElement = Mixin<typeof Setting>;
 
@@ -47,21 +47,27 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       this.requestUpdate();
     }
 
-    onClosed(ae: CustomEvent<{ action: string } | null>): void {
+    onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
         localStorage.clear();
         this.requestUpdate('settings');
+      } else if (ae.detail?.action === 'save') {
+        this.setSetting('language', <Language>this.languageUI.value);
+        this.setSetting('theme', this.darkThemeUI.checked ? 'dark' : 'light');
+        this.requestUpdate('settings');
       }
-      if (ae.detail?.action !== 'save') return;
-      this.setSetting('language', <Language>this.languageUI.value);
-      this.setSetting('theme', this.darkThemeUI.checked ? 'dark' : 'light');
     }
 
     updated(changedProperties: Map<string | number | symbol, unknown>): void {
       super.updated(changedProperties);
-      if (changedProperties.get('settings') === this.settings) return;
+      if (changedProperties.has('settings')) use(this.settings.language);
+    }
+
+    constructor(...params: any[]) {
+      super(...params);
+
+      registerTranslateConfig({ loader, empty: key => key });
       use(this.settings.language);
-      this.languageUI.requestUpdate();
     }
 
     render(): TemplateResult {
@@ -69,7 +75,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-dialog
           id="settings"
           heading="${translate('settings.name')}"
-          @closed=${this.onClosed}
+          @closing=${this.onClosing}
         >
           <form>
             <mwc-select
