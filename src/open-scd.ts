@@ -286,7 +286,7 @@ export class OpenSCD extends Setting(
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
       ${super.render()}
-      <style>${getTheme(this.settings.theme)}</style>
+      ${getTheme(this.settings.theme)}
     `;
   }
 
