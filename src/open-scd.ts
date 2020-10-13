@@ -7,7 +7,7 @@ import {
   property,
   query,
 } from 'lit-element';
-import { registerTranslateConfig, use, translate, get } from 'lit-translate';
+import { translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
 
 import '@material/mwc-button';
@@ -27,13 +27,12 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { getTheme } from './themes.js';
 import { Setting } from './Setting.js';
-import { mdcTheme } from './colors.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
 import { zeroLineIcon } from './icons.js';
-import { loader } from './translations/loader.js';
 
 interface Tab {
   name: string;
@@ -287,14 +286,20 @@ export class OpenSCD extends Setting(
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
       ${super.render()}
+      ${getTheme(this.settings.theme)}
     `;
   }
 
   static styles = css`
-    ${mdcTheme}
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
+      --mdc-theme-primary: var(--mdc-theme-on-surface);
     } /* hack to fix disabled icon buttons rendering black */
+
+    mwc-tab {
+      --mdc-theme-primary: var(--base3);
+      background-color: var(--mdc-theme-on-surface);
+    }
 
     #file-input {
       display: none;
@@ -320,10 +325,6 @@ export class OpenSCD extends Setting(
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
-      --mdc-circular-progress-bar-color-1: var(--mdc-theme-primary);
-      --mdc-circular-progress-bar-color-2: var(--mdc-theme-secondary);
-      --mdc-circular-progress-bar-color-3: var(--mdc-theme-primary);
-      --mdc-circular-progress-bar-color-4: var(--mdc-theme-background);
     }
 
     tt {

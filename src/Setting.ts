@@ -13,7 +13,7 @@ import { Switch } from '@material/mwc-switch';
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
-type Settings = {
+export type Settings = {
   language: Language;
   theme: 'light' | 'dark';
 };

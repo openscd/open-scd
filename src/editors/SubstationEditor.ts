@@ -17,7 +17,6 @@ import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
-import { mdcTheme } from '../colors.js';
 import {
   CloseableElement,
   EditorAction,
@@ -189,10 +188,8 @@ export default class SubstationEditor extends LitElement {
   }
 
   static styles = css`
-    ${mdcTheme}
-
     :host {
-      height: calc(100vh - 122px);
+      height: calc(100vh - 120px);
       width: calc(100vw - 2 * 5px);
       overflow: auto;
       position: absolute;
