@@ -15,7 +15,7 @@ import {
 } from './foundation.js';
 
 import { LitElement, property } from 'lit-element';
-
+import { get } from 'lit-translate';
 export function newEmptySCD(): XMLDocument {
   return document.implementation.createDocument(
     'http://www.iec.ch/61850/2003/SCL',
@@ -40,7 +40,9 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: `Create ${event.detail.action.new.element.tagName}`,
+          title: get('editing.created', {
+            name: event.detail.action.new.element.tagName,
+          }),
           action: event.detail.action,
         })
       );
@@ -51,7 +53,9 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: `Delete ${event.detail.action.old.element.tagName}`,
+          title: get('editing.deleted', {
+            name: event.detail.action.old.element.tagName,
+          }),
           action: event.detail.action,
         })
       );
@@ -65,7 +69,9 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: `Move ${event.detail.action.old.element.tagName}`,
+          title: get('editing.moved', {
+            name: event.detail.action.old.element.tagName,
+          }),
           action: event.detail.action,
         })
       );
@@ -81,7 +87,9 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: `Update ${event.detail.action.new.element.tagName}`,
+          title: get('editing.updated', {
+            name: event.detail.action.new.element.tagName,
+          }),
           action: event.detail.action,
         })
       );
