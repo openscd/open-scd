@@ -7,7 +7,7 @@ import {
   property,
   query,
 } from 'lit-element';
-import { registerTranslateConfig, use, translate, get } from 'lit-translate';
+import { translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
 
 import '@material/mwc-button';
@@ -27,7 +27,7 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
-import { mdcThemeLight, mdcThemeDark } from './themes.js';
+import { getTheme } from './themes.js';
 import { Setting } from './Setting.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
@@ -286,11 +286,11 @@ export class OpenSCD extends Setting(
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
       ${super.render()}
+      <style>${getTheme(this.settings.theme)}</style>
     `;
   }
 
   static styles = css`
-    ${mdcThemeDark}
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
       --mdc-theme-primary: var(--mdc-theme-on-surface);

@@ -1,7 +1,6 @@
 import {
   LitElement,
   TemplateResult,
-  css,
   customElement,
   html,
   property,
@@ -9,7 +8,6 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
-import { mdcThemeLight, mdcThemeDark } from '../../themes.js';
 import {
   CloseableElement,
   EditorAction,
@@ -316,8 +314,4 @@ export class VoltageLevelEditor extends LitElement {
   render(): TemplateResult {
     return html`${this.renderHeader()}`;
   }
-
-  static styles = css`
-    ${mdcThemeDark}
-  `;
 }
