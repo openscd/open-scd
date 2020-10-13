@@ -25,7 +25,7 @@ import {
 } from '../foundation.js';
 
 import './substation/voltage-level-editor.js';
-import { voltageLevelWizard } from './substation/voltage-level-editor.js';
+import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
 
 export default class SubstationEditor extends LitElement {
   @property()
@@ -99,7 +99,9 @@ export default class SubstationEditor extends LitElement {
 
   openVoltageLevelWizard(): void {
     if (!this.element) return;
-    const event = newWizardEvent(voltageLevelWizard({ parent: this.element }));
+    const event = newWizardEvent(
+      VoltageLevelEditor.wizard({ parent: this.element })
+    );
     this.dispatchEvent(event);
   }
 
