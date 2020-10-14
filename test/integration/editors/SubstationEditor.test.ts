@@ -1,5 +1,4 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { Button } from '@material/mwc-button';
 
 import SubstationEditor from '../../../src/editors/SubstationEditor.js';
 import { isCreate, isUpdate } from '../../../src/foundation.js';
@@ -73,11 +72,6 @@ describe('SubstationEditor', () => {
     });
 
      */
-
-    it('renders no substation action menu icon', async () => {
-      expect(element.menuUI).to.be.null;
-      expect(element.menuIconUI).to.be.null;
-    });
 
     it('does not generate newUpdateAction', () =>
       expect(() =>
@@ -238,17 +232,6 @@ describe('SubstationEditor', () => {
     });
 
      */
-
-    it('renders a substation action menu icon only when a substation exists', () => {
-      expect(element.menuUI).to.not.be.null;
-      expect(element.menuIconUI).to.not.be.null;
-    });
-
-    it('opens a substation action menu on menu button click', async () => {
-      expect(element.menuUI).to.have.property('open', false);
-      await element.menuIconUI.click();
-      expect(element.menuUI).to.have.property('open', true);
-    });
 
     /*
 

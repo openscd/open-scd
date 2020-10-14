@@ -1,21 +1,10 @@
-import {
-  LitElement,
-  html,
-  TemplateResult,
-  property,
-  query,
-  css,
-} from 'lit-element';
+import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-fab';
 import '@material/mwc-icon-button';
-import '@material/mwc-menu';
 import '@material/mwc-list/mwc-list-item';
-import { Menu } from '@material/mwc-menu';
-import { IconButton } from '@material/mwc-icon-button';
-import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 
 import {
   CloseableElement,
@@ -48,9 +37,6 @@ export default class SubstationEditor extends LitElement {
   get desc(): string | null {
     return this.element?.getAttribute('desc') ?? null;
   }
-
-  @query('mwc-menu') menuUI!: Menu;
-  @query('h1 > mwc-icon-button') menuIconUI!: IconButton;
 
   newUpdateAction(name: string, desc: string | null): EditorAction {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
@@ -92,10 +78,6 @@ export default class SubstationEditor extends LitElement {
       : this.newCreateAction(name, desc);
     dialog.close();
     return [action];
-  }
-
-  updated(): void {
-    if (this.menuUI) this.menuUI.anchor = this.menuIconUI;
   }
 
   openVoltageLevelWizard(): void {
@@ -160,10 +142,17 @@ export default class SubstationEditor extends LitElement {
           icon="add"
           @click=${() => this.openSubstationWizard()}
         ></mwc-icon-button>
-        ${translate('substation.missing')}
+        <span style="color: var(--base1)"
+          >${translate('substation.missing')}</span
+        >
       </h1>`;
     return html`
       <h1>
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => this.openVoltageLevelWizard()}
+        ></mwc-icon-button>
+        &vert;
         <mwc-icon-button
           icon="delete"
           @click=${() => this.removeSubstation()}
@@ -172,23 +161,7 @@ export default class SubstationEditor extends LitElement {
           icon="edit"
           @click=${() => this.openSubstationWizard()}
         ></mwc-icon-button>
-        &vert;
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => this.openVoltageLevelWizard()}
-        ></mwc-icon-button>
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-        <mwc-menu
-          .anchor=${this.menuIconUI}
-          corner="BOTTOM_RIGHT"
-          @action=${(ae: CustomEvent<ActionDetail>) => {
-            if (ae.detail.index == 0) this.openVoltageLevelWizard();
-          }}
-        >
-          <mwc-list-item
-            >${translate('substation.action.addvoltagelevel')}</mwc-list-item
-          >
-        </mwc-menu>
       </h1>
     `;
   }
@@ -225,8 +198,8 @@ export default class SubstationEditor extends LitElement {
       background: var(--mdc-theme-primary);
       color: var(--mdc-theme-surface);
       margin: 0px;
-      padding-left: 0.1em;
-      padding-top: 0.25em;
+      padding-left: 0.15em;
+      padding-top: 0.3em;
     }
 
     h1 > mwc-icon-button {
