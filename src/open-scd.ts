@@ -137,12 +137,15 @@ export class OpenSCD extends Setting(
 
   private handleKeyPress(e: KeyboardEvent): void {
     let handled = false;
-    if (e.keyCode == 89 /* y */ && e.ctrlKey && (handled = true)) this.redo();
-    if (e.keyCode == 90 /* z */ && e.ctrlKey && (handled = true)) this.undo();
-    if (e.keyCode == 76 /* l */ && e.ctrlKey && (handled = true))
-      this.logUI.open ? this.logUI.close() : this.logUI.show();
-    if (e.keyCode == 77 /* m */ && e.ctrlKey && (handled = true))
-      this.menuUI.open = !this.menuUI.open;
+    const ctrlAnd = (key: string) =>
+      e.key === key && e.ctrlKey && (handled = true);
+
+    if (ctrlAnd('y')) this.redo();
+    if (ctrlAnd('z')) this.undo();
+    if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
+    if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
+    if (ctrlAnd('o')) this.fileUI.click();
+
     if (handled) e.preventDefault();
   }
 
