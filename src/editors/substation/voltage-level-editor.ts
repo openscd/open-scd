@@ -89,7 +89,7 @@ export class VoltageLevelEditor extends LitElement {
   static createAction(parent: Element): WizardAction {
     return (
       inputs: WizardInput[],
-      dialog: CloseableElement
+      wizard: CloseableElement
     ): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.maybeValue;
       const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
@@ -121,7 +121,7 @@ export class VoltageLevelEditor extends LitElement {
         },
       };
 
-      dialog.close();
+      wizard.close();
       return [action];
     };
   }
@@ -129,7 +129,7 @@ export class VoltageLevelEditor extends LitElement {
   static updateAction(element: Element): WizardAction {
     return (
       inputs: WizardInput[],
-      dialog: CloseableElement
+      wizard: CloseableElement
     ): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
       const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
@@ -208,7 +208,7 @@ export class VoltageLevelEditor extends LitElement {
         }
       }
 
-      if (voltageLevelAction || voltageAction) dialog.close();
+      if (voltageLevelAction || voltageAction) wizard.close();
       const actions: EditorAction[] = [];
       if (voltageLevelAction) actions.push(voltageLevelAction);
       if (voltageAction) actions.push(voltageAction);

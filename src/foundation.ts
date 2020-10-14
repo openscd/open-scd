@@ -107,7 +107,7 @@ export type CloseableElement = HTMLElement & { close: () => void };
 export type WizardInput = WizardTextField;
 export type WizardAction = (
   inputs: WizardInput[],
-  dialog: CloseableElement
+  wizard: CloseableElement
 ) => EditorAction[];
 
 /** Represents a page of a wizard dialog */
