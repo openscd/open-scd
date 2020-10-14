@@ -20,8 +20,9 @@ import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import {
   CloseableElement,
   EditorAction,
-  WizardInput,
+  newActionEvent,
   newWizardEvent,
+  WizardInput,
 } from '../foundation.js';
 
 import './substation/voltage-level-editor.js';
@@ -137,6 +138,15 @@ export default class SubstationEditor extends LitElement {
     this.dispatchEvent(event);
   }
 
+  removeSubstation(): void {
+    if (this.element)
+      this.dispatchEvent(
+        newActionEvent({
+          old: { parent: this.parent, element: this.element, reference: null },
+        })
+      );
+  }
+
   constructor() {
     super();
 
@@ -144,18 +154,30 @@ export default class SubstationEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    if (!this.element) return html`<h1>${translate('substation.missing')}</h1>`;
-    return html`
-      <h1>
-        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-        <mwc-icon-button
-          icon="more_vert"
-          @click=${() => this.menuUI.show()}
-        ></mwc-icon-button>
+    if (!this.element)
+      return html`<h1>
         <mwc-icon-button
           icon="add"
+          @click=${() => this.openSubstationWizard()}
+        ></mwc-icon-button>
+        ${translate('substation.missing')}
+      </h1>`;
+    return html`
+      <h1>
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.removeSubstation()}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openSubstationWizard()}
+        ></mwc-icon-button>
+        &vert;
+        <mwc-icon-button
+          icon="playlist_add"
           @click=${() => this.openVoltageLevelWizard()}
         ></mwc-icon-button>
+        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
         <mwc-menu
           .anchor=${this.menuIconUI}
           corner="BOTTOM_RIGHT"
@@ -191,35 +213,23 @@ export default class SubstationEditor extends LitElement {
 
   static styles = css`
     :host {
-      height: calc(100vh - 120px);
-      width: calc(100vw - 2 * 5px);
-      overflow: auto;
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      margin: 5px;
+      width: calc(100vw);
+      overflow-x: hidden;
+      margin: 0px;
       background: var(--mdc-theme-surface);
-    }
-
-    @media screen and (max-width: 600px) {
-      :host {
-        height: calc(100vh - 114px);
-      }
     }
 
     h1 {
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      background: var(--mdc-theme-on-surface);
+      background: var(--mdc-theme-primary);
       color: var(--mdc-theme-surface);
       margin: 0px;
-      padding-left: 0.5em;
+      padding-left: 0.1em;
       padding-top: 0.25em;
-      padding-bottom: 0.25em;
     }
 
     h1 > mwc-icon-button {
-      float: right;
       position: relative;
       top: -5px;
     }
