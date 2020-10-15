@@ -17,13 +17,13 @@ describe('bay-editor', () => {
   });
 
   it('has a name property', () =>
-    expect(element).to.have.property('name', 'Coupling_Bay'));
+    expect(element).to.have.property('name', 'COUPLING_BAY'));
 
   it('has a desc property', () =>
     expect(element).to.have.property('desc', 'Bay'));
 
   it('renders header with name and desc visible', () => {
-    expect(element).property('header').to.contain.text('Coupling_Bay');
+    expect(element).property('header').to.contain.text('COUPLING_BAY');
     expect(element).property('header').to.contain.text('Bay');
   });
 });
