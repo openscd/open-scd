@@ -17,6 +17,8 @@ import {
   newActionEvent,
 } from '../../foundation.js';
 import { get, translate } from 'lit-translate';
+
+import './conducting-equipment-editor.js';
 import { bayIcon } from '../../icons.js';
 
 interface BayUpdateOptions {
@@ -84,7 +86,16 @@ export class BayEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`${this.renderHeader()}`;
+    return html`${this.renderHeader()}
+    ${Array.from(
+      this.element?.querySelectorAll('ConductingEquipment') ?? []
+    ).map(
+      voltageLevel =>
+        html`<conducting-equipment-editor
+          .element=${voltageLevel}
+          .parent=${this.element}
+        ></conducting-equipment-editor>`
+    )} `;
   }
 
   static createAction(parent: Element): WizardAction {
