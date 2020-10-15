@@ -226,6 +226,40 @@ export const disconnectorIcon = html`<svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 25 25"
 >
+  <path
+    d="M 12.5 2 L 12.5 8"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <path
+    d=" M 12.5 23 L 12.5 18"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 12.5 18 L 8 9"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 11.5 8 L 13.5 8"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+</svg>`;
+
+export const circuitBreakerIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25 25"
+>
   <line
     x1="12.5"
     y1="2"
@@ -255,9 +289,93 @@ export const disconnectorIcon = html`<svg
   />
   <line
     x1="11.5"
-    y1="8"
+    y1="7"
     x2="13.5"
-    y2="8"
+    y2="9"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <line
+    x1="11.5"
+    y1="9"
+    x2="13.5"
+    y2="7"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+</svg>`;
+
+export const currentTransformerIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25 25"
+>
+  <line
+    x1="12.5"
+    y1="2"
+    x2="12.5"
+    y2="23"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <circle
+    cx="12.5"
+    cy="12.5"
+    r="7.5"
+    stroke="currentColor"
+    fill="transparent"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+</svg>`;
+
+export const voltageTransformerIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25 25"
+>
+  <line
+    x1="12.5"
+    y1="2"
+    x2="12.5"
+    y2="5"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <circle
+    cx="12.5"
+    cy="10"
+    r="5"
+    stroke="currentColor"
+    fill="transparent"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <circle
+    cx="12.5"
+    cy="15"
+    r="5"
+    stroke="currentColor"
+    fill="transparent"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <line
+    x1="12.5"
+    y1="20"
+    x2="12.5"
+    y2="23"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <line
+    x1="11"
+    y1="23"
+    x2="14"
+    y2="23"
     stroke="currentColor"
     stroke-width="1.5"
     stroke-linecap="round"

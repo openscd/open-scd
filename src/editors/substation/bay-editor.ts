@@ -86,16 +86,18 @@ export class BayEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`${this.renderHeader()}
-    ${Array.from(
-      this.element?.querySelectorAll('ConductingEquipment') ?? []
-    ).map(
-      voltageLevel =>
-        html`<conducting-equipment-editor
-          .element=${voltageLevel}
-          .parent=${this.element}
-        ></conducting-equipment-editor>`
-    )} `;
+    return html`<div id="bayContainer">
+      ${this.renderHeader()}
+      ${Array.from(
+        this.element?.querySelectorAll('ConductingEquipment') ?? []
+      ).map(
+        voltageLevel =>
+          html`<conducting-equipment-editor
+            .element=${voltageLevel}
+            .parent=${this.element}
+          ></conducting-equipment-editor>`
+      )}
+    </div> `;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -209,6 +211,11 @@ export class BayEditor extends LitElement {
   }
 
   static styles = css`
+    #bayContainer {
+      min-width: 300px;
+      max-width: 300px;
+    }
+
     h1 {
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
@@ -217,6 +224,7 @@ export class BayEditor extends LitElement {
       margin-top: 5px;
       margin-left: 10px;
       min-width: 200px;
+      min-height: 150px;
       padding-left: 0.15em;
       padding-top: 0.3em;
     }

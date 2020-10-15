@@ -114,7 +114,7 @@ export class VoltageLevelEditor extends LitElement {
 
   render(): TemplateResult {
     return html`${this.renderHeader()}
-      <div id="bayContainer">
+      <div id="voltageLevelContainer">
         ${Array.from(this.element?.querySelectorAll('Bay') ?? []).map(
           bay =>
             html`<bay-editor
@@ -382,13 +382,14 @@ export class VoltageLevelEditor extends LitElement {
       top: -5px;
     }
 
-    #bayContainer {
+    #voltageLevelContainer {
       display: flex;
       flex-direction: row;
       overflow-x: auto;
+      overflow-y: hidden;
     }
 
-    h1 > svg {
+    svg {
       width: 25px;
       height: 25px;
       position: relative;
