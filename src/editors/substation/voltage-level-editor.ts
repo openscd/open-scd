@@ -20,6 +20,7 @@ import {
 } from '../../foundation.js';
 
 import './bay-editor.js';
+import { BayEditor } from './bay-editor.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
@@ -75,6 +76,12 @@ export class VoltageLevelEditor extends LitElement {
     );
   }
 
+  openBayWizard(): void {
+    if (!this.element) return;
+    const event = newWizardEvent(BayEditor.wizard({ parent: this.element }));
+    this.dispatchEvent(event);
+  }
+
   removeAction(): void {
     if (this.element)
       this.dispatchEvent(
@@ -86,7 +93,10 @@ export class VoltageLevelEditor extends LitElement {
 
   renderHeader(): TemplateResult {
     return html`<h1>
-      <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+      <mwc-icon-button
+        icon="playlist_add"
+        @click=${() => this.openBayWizard()}
+      ></mwc-icon-button>
       &vert;
       <mwc-icon-button
         icon="delete"
