@@ -19,6 +19,8 @@ import {
   newActionEvent,
 } from '../../foundation.js';
 
+import './bay-editor.js';
+
 interface VoltageLevelUpdateOptions {
   element: Element;
 }
@@ -100,7 +102,16 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`${this.renderHeader()}`;
+    return html`${this.renderHeader()}
+      <div id="bayContainer">
+        ${Array.from(this.element?.querySelectorAll('Bay') ?? []).map(
+          bay =>
+            html`<bay-editor
+              .element=${bay}
+              .parent=${this.element}
+            ></bay-editor>`
+        )}
+      </div>`;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -358,6 +369,12 @@ export class VoltageLevelEditor extends LitElement {
     h1 > mwc-icon-button {
       position: relative;
       top: -5px;
+    }
+
+    #bayContainer {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
     }
   `;
 }
