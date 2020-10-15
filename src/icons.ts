@@ -221,3 +221,45 @@ export const bayIcon = html`<svg
     stroke-linecap="round"
   />
 </svg>`;
+
+export const disconnectorIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25 25"
+>
+  <line
+    x1="12.5"
+    y1="2"
+    x2="12.5"
+    y2="8"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <line
+    x1="12.5"
+    y1="23"
+    x2="12.5"
+    y2="18"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <line
+    x1="12.5"
+    y1="18"
+    x2="8"
+    y2="9"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <line
+    x1="11.5"
+    y1="8"
+    x2="13.5"
+    y2="8"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+</svg>`;
