@@ -16,6 +16,7 @@ import {
 
 import './substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
+import { zeroLineIcon } from '../icons.js';
 
 export default class SubstationEditor extends LitElement {
   @property()
@@ -148,11 +149,11 @@ export default class SubstationEditor extends LitElement {
       </h1>`;
     return html`
       <h1>
+        ${zeroLineIcon} &vert;
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => this.openVoltageLevelWizard()}
         ></mwc-icon-button>
-        &vert;
         <mwc-icon-button
           icon="delete"
           @click=${() => this.removeSubstation()}
@@ -226,6 +227,14 @@ export default class SubstationEditor extends LitElement {
       position: fixed;
       bottom: 32px;
       right: 32px;
+    }
+
+    h1 > svg {
+      widht: 30px;
+      height: 30px;
+      position: relative;
+      top: 6px;
+      left: 3px;
     }
   `;
 }

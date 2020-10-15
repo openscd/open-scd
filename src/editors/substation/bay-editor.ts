@@ -17,6 +17,7 @@ import {
   newActionEvent,
 } from '../../foundation.js';
 import { get, translate } from 'lit-translate';
+import { bayIcon } from '../../icons.js';
 
 interface BayUpdateOptions {
   element: Element;
@@ -68,6 +69,8 @@ export class BayEditor extends LitElement {
 
   renderHeader(): TemplateResult {
     return html`<h1>
+      ${bayIcon} &vert;
+      <mwc-icon-button icon="playlist_add"></mwc-icon-button>
       <mwc-icon-button
         icon="delete"
         @click=${() => this.removeAction()}
@@ -210,6 +213,14 @@ export class BayEditor extends LitElement {
     h1 > mwc-icon-button {
       position: relative;
       top: -5px;
+    }
+
+    h1 > svg {
+      width: 25px;
+      height: 25px;
+      position: relative;
+      top: 3px;
+      left: 3px;
     }
   `;
 }

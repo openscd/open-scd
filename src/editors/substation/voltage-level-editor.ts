@@ -21,6 +21,7 @@ import {
 
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
+import { voltageLevelIcon } from '../../icons.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
@@ -93,11 +94,11 @@ export class VoltageLevelEditor extends LitElement {
 
   renderHeader(): TemplateResult {
     return html`<h1>
+      ${voltageLevelIcon} &vert;
       <mwc-icon-button
         icon="playlist_add"
         @click=${() => this.openBayWizard()}
       ></mwc-icon-button>
-      &vert;
       <mwc-icon-button
         icon="delete"
         @click=${() => this.removeAction()}
@@ -385,6 +386,14 @@ export class VoltageLevelEditor extends LitElement {
       display: flex;
       flex-direction: row;
       overflow-x: auto;
+    }
+
+    h1 > svg {
+      width: 25px;
+      height: 25px;
+      position: relative;
+      top: 3px;
+      left: 3px;
     }
   `;
 }
