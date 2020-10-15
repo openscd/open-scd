@@ -72,6 +72,16 @@ export const de: Translations = {
       },
     },
   },
+  bay: {
+    wizard: {
+      nameHelper: 'Feldname',
+      descHelper: 'Beschreibung des Feldes',
+      title: {
+        add: 'Feld hinzufügen',
+        edit: 'Feld bearbeiten',
+      },
+    },
+  },
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
   save: 'Speichern',

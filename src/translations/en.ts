@@ -69,6 +69,16 @@ export const en = {
       },
     },
   },
+  bay: {
+    wizard: {
+      nameHelper: 'Bay Name',
+      descHelper: 'Bay Description',
+      title: {
+        add: 'Add Bay',
+        edit: 'Edit Bay',
+      },
+    },
+  },
   add: 'Add',
   edit: 'Edit',
   save: 'Save',
