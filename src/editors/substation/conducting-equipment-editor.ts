@@ -4,6 +4,7 @@ import {
   html,
   TemplateResult,
   property,
+  query,
 } from 'lit-element';
 import { disconnectorIcon } from '../../icons.js';
 
@@ -21,6 +22,8 @@ export class ConductingEquipmentEditor extends LitElement {
   get desc(): string {
     return this.element?.getAttribute('desc') ?? '';
   }
+
+  @query('h1') header!: Element;
 
   renderHeader(): TemplateResult {
     return html`<h1>${this.name}</h1>`;
