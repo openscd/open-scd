@@ -5,6 +5,7 @@ import {
   html,
   property,
   query,
+  css,
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
@@ -15,6 +16,7 @@ import {
   Wizard,
   WizardAction,
   WizardInput,
+  newActionEvent,
 } from '../../foundation.js';
 
 interface VoltageLevelUpdateOptions {
@@ -71,14 +73,29 @@ export class VoltageLevelEditor extends LitElement {
     );
   }
 
+  removeAction(): void {
+    if (this.element)
+      this.dispatchEvent(
+        newActionEvent({
+          old: { parent: this.parent, element: this.element, reference: null },
+        })
+      );
+  }
+
   renderHeader(): TemplateResult {
     return html`<h1>
-      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-      ${this.voltage === null ? '' : html`(${this.voltage})`}
+      <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+      &vert;
+      <mwc-icon-button
+        icon="delete"
+        @click=${() => this.removeAction()}
+      ></mwc-icon-button>
       <mwc-icon-button
         icon="edit"
         @click=${() => this.openEditWizard()}
       ></mwc-icon-button>
+      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+      ${this.voltage === null ? '' : html`(${this.voltage})`}
     </h1>`;
   }
 
@@ -324,4 +341,23 @@ export class VoltageLevelEditor extends LitElement {
       },
     ];
   }
+
+  static styles = css`
+    h1 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      background: var(--mdc-theme-primary);
+      color: var(--mdc-theme-surface);
+      margin: 0px;
+      margin-top: 5px;
+      margin-left: 5px;
+      padding-left: 0.15em;
+      padding-top: 0.3em;
+    }
+
+    h1 > mwc-icon-button {
+      position: relative;
+      top: -5px;
+    }
+  `;
 }
