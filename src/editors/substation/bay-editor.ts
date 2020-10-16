@@ -20,6 +20,7 @@ import { get, translate } from 'lit-translate';
 
 import './conducting-equipment-editor.js';
 import { bayIcon } from '../../icons.js';
+import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 
 interface BayUpdateOptions {
   element: Element;
@@ -60,6 +61,14 @@ export class BayEditor extends LitElement {
     );
   }
 
+  openConductingEquipmentWizard(): void {
+    if (!this.element) return;
+    const event = newWizardEvent(
+      ConductingEquipmentEditor.wizard({ parent: this.element })
+    );
+    this.dispatchEvent(event);
+  }
+
   removeAction(): void {
     if (this.element)
       this.dispatchEvent(
@@ -72,7 +81,10 @@ export class BayEditor extends LitElement {
   renderHeader(): TemplateResult {
     return html`<h1>
       ${bayIcon} &vert;
-      <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+      <mwc-icon-button
+        icon="playlist_add"
+        @click=${() => this.openConductingEquipmentWizard()}
+      ></mwc-icon-button>
       <mwc-icon-button
         icon="delete"
         @click=${() => this.removeAction()}
@@ -136,7 +148,6 @@ export class BayEditor extends LitElement {
       const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
 
       let bayAction: EditorAction | null;
-      console.warn(element.attributes);
 
       if (
         name === element.getAttribute('name') &&

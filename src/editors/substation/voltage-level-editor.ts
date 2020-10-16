@@ -179,7 +179,6 @@ export class VoltageLevelEditor extends LitElement {
 
       let voltageLevelAction: EditorAction | null;
       let voltageAction: EditorAction | null;
-      console.warn(element.attributes);
 
       if (
         name === element.getAttribute('name') &&
