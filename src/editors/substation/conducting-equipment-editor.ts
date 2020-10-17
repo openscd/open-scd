@@ -112,22 +112,22 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<h1 id="header">
-      <mwc-icon-button
-        icon="delete"
-        @click="${() => this.removeAction()}}"
-      ></mwc-icon-button>
-      <mwc-icon-button
-        icon="edit"
-        @click="${() => this.openEditWizard()}}"
-      ></mwc-icon-button
-      >${this.name}
-    </h1>`;
+    return html`<h1 id="header">${this.name}</h1>`;
   }
 
   render(): TemplateResult {
-    return html`<div id="condEqContainer">
-      ${this.renderHeader()} ${typeIcons[this.type] ?? disconnectorIcon}
+    return html` <div id="condEqContainer">
+      <div>
+        <mwc-icon-button
+          icon="delete"
+          @click="${() => this.removeAction()}}"
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="edit"
+          @click="${() => this.openEditWizard()}}"
+        ></mwc-icon-button>
+      </div>
+      ${typeIcons[this.type] ?? disconnectorIcon} ${this.renderHeader()}
     </div>`;
   }
 
@@ -293,21 +293,24 @@ export class ConductingEquipmentEditor extends LitElement {
 
   static styles = css`
     #condEqContainer {
-      position: relative;
-      top: 5px;
-      left: 20px;
-      border: 2px solid var(--mdc-theme-primary);
-      max-width: 200px;
+      max-width: 100px;
       margin: 10px;
+      display: inline-block;
+      color: var(--mdc-theme-on-surface);
+    }
+    #condEqContainer:hover {
+      color: var(--mdc-theme-on-surface);
     }
 
     #header {
-      background-color: var(--mdc-theme-primary);
-      color: var(--mdc-theme-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      color: var(--mdc-theme-on-surface);
       margin: 0px;
     }
 
     svg {
+      color: var(--mdc-theme-on-surface);
       width: 100px;
       height: 100px;
       position: relative;

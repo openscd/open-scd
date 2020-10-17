@@ -139,21 +139,21 @@ export default class SubstationEditor extends LitElement {
   renderHeader(): TemplateResult {
     if (!this.element)
       return html`<h1>
+        <span style="color: var(--base1)"
+          >${translate('substation.missing')}</span
+        >
         <mwc-icon-button
           icon="add"
           @click=${() => this.openSubstationWizard()}
         ></mwc-icon-button>
-        <span style="color: var(--base1)"
-          >${translate('substation.missing')}</span
-        >
       </h1>`;
     return html`
       <h1>
-        ${zeroLineIcon} &vert;
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => this.openVoltageLevelWizard()}
         ></mwc-icon-button>
+        <span style="position:relative; float:right;">&#124;</span>
         <mwc-icon-button
           icon="delete"
           @click=${() => this.removeSubstation()}
@@ -169,19 +169,21 @@ export default class SubstationEditor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      ${this.renderHeader()}
-      ${Array.from(this.element?.querySelectorAll('VoltageLevel') ?? []).map(
-        voltageLevel =>
-          html`<voltage-level-editor
-            .element=${voltageLevel}
-            .parent=${this.element}
-          ></voltage-level-editor>`
-      )}
-      <mwc-fab
-        @click=${this.openSubstationWizard}
-        icon="${this.element ? 'edit' : 'add'}"
-      >
-      </mwc-fab>
+      <div id="container">
+        ${this.renderHeader()}
+        ${Array.from(this.element?.querySelectorAll('VoltageLevel') ?? []).map(
+          voltageLevel =>
+            html`<voltage-level-editor
+              .element=${voltageLevel}
+              .parent=${this.element}
+            ></voltage-level-editor>`
+        )}
+        <mwc-fab
+          @click=${this.openSubstationWizard}
+          icon="${this.element ? 'edit' : 'add'}"
+        >
+        </mwc-fab>
+      </div>
     `;
   }
 
@@ -189,22 +191,25 @@ export default class SubstationEditor extends LitElement {
     :host {
       width: calc(100vw);
       overflow-x: hidden;
-      margin: 0px;
-      background: var(--mdc-theme-surface);
+    }
+
+    #container {
+      background-color: var(--mdc-theme-surface);
+      margin: 10px;
     }
 
     h1 {
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      background: var(--mdc-theme-primary);
-      color: var(--mdc-theme-surface);
+      color: var(--mdc-theme-on-surface);
       margin: 0px;
-      padding-left: 0.15em;
       padding-top: 0.3em;
+      padding-bottom: 0.3em;
     }
 
     h1 > mwc-icon-button {
       position: relative;
+      float: right;
       top: -5px;
     }
 
@@ -220,7 +225,7 @@ export default class SubstationEditor extends LitElement {
 
     pre {
       font-family: 'Roboto Mono', monospace;
-      font-weight: 300;
+      font-weight: 100;
     }
 
     mwc-fab {
@@ -230,11 +235,10 @@ export default class SubstationEditor extends LitElement {
     }
 
     h1 > svg {
+      position: relative;
       widht: 30px;
       height: 30px;
-      position: relative;
-      top: 6px;
-      left: 3px;
+      padding: 6px;
     }
   `;
 }

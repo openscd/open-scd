@@ -80,11 +80,11 @@ export class BayEditor extends LitElement {
 
   renderHeader(): TemplateResult {
     return html`<h1>
-      ${bayIcon} &vert;
       <mwc-icon-button
         icon="playlist_add"
         @click=${() => this.openConductingEquipmentWizard()}
       ></mwc-icon-button>
+      <span style="position:relative; float:right;">&#124;</span>
       <mwc-icon-button
         icon="delete"
         @click=${() => this.removeAction()}
@@ -93,12 +93,12 @@ export class BayEditor extends LitElement {
         icon="edit"
         @click=${() => this.openEditWizard()}
       ></mwc-icon-button>
-      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+      ${this.name} ${this.desc === null ? '' : html`&mdash; ${this.desc}`}
     </h1> `;
   }
 
   render(): TemplateResult {
-    return html`<div id="bayContainer">
+    return html`<div id="container">
       ${this.renderHeader()}
       ${Array.from(
         this.element?.querySelectorAll('ConductingEquipment') ?? []
@@ -222,35 +222,28 @@ export class BayEditor extends LitElement {
   }
 
   static styles = css`
-    #bayContainer {
+    #container {
       min-width: 300px;
-      max-width: 300px;
+      max-widht: 500px;
+      background-color: var(--mdc-theme-surface);
+      margin: 10px;
     }
 
     h1 {
+      min-height: 100px;
+      max-height: 100px;
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      background: var(--mdc-theme-primary);
-      color: var(--mdc-theme-surface);
-      margin-top: 5px;
-      margin-left: 10px;
-      min-width: 200px;
-      min-height: 150px;
+      color: var(--mdc-theme-on-surface);
       padding-left: 0.15em;
       padding-top: 0.3em;
+      padding-bottom: 0.3em;
     }
 
     h1 > mwc-icon-button {
       position: relative;
+      float: right;
       top: -5px;
-    }
-
-    h1 > svg {
-      width: 25px;
-      height: 25px;
-      position: relative;
-      top: 3px;
-      left: 3px;
     }
   `;
 }

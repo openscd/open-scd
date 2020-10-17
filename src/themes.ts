@@ -6,8 +6,8 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
     ${themes[theme]}
     <style>
       * {
-        --mdc-theme-primary: var(--violet);
-        --mdc-theme-secondary: var(--orange);
+        --mdc-theme-primary: var(--blue);
+        --mdc-theme-secondary: var(--cyan);
         --mdc-theme-background: var(--base3);
         --mdc-theme-surface: var(--base3);
         --mdc-theme-on-primary: var(--base2);

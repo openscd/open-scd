@@ -296,12 +296,11 @@ export class OpenSCD extends Setting(
   static styles = css`
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
-      --mdc-theme-primary: var(--mdc-theme-on-surface);
     } /* hack to fix disabled icon buttons rendering black */
 
     mwc-tab {
-      --mdc-theme-primary: var(--base3);
-      background-color: var(--mdc-theme-on-surface);
+      background-color: var(--blue);
+      --mdc-theme-primary: var(--mdc-theme-on-primary);
     }
 
     #file-input {

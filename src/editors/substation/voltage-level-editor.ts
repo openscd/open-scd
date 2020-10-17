@@ -94,11 +94,11 @@ export class VoltageLevelEditor extends LitElement {
 
   renderHeader(): TemplateResult {
     return html`<h1>
-      ${voltageLevelIcon} &vert;
       <mwc-icon-button
         icon="playlist_add"
         @click=${() => this.openBayWizard()}
       ></mwc-icon-button>
+      <span style="position:relative;float:right;">&vert;</span>
       <mwc-icon-button
         icon="delete"
         @click=${() => this.removeAction()}
@@ -113,7 +113,8 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`${this.renderHeader()}
+    return html`<div id="conainer">
+      ${this.renderHeader()}
       <div id="voltageLevelContainer">
         ${Array.from(this.element?.querySelectorAll('Bay') ?? []).map(
           bay =>
@@ -122,7 +123,8 @@ export class VoltageLevelEditor extends LitElement {
               .parent=${this.element}
             ></bay-editor>`
         )}
-      </div>`;
+      </div>
+    </div>`;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -364,21 +366,9 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   static styles = css`
-    h1 {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      background: var(--mdc-theme-primary);
-      color: var(--mdc-theme-surface);
-      margin: 0px;
-      margin-top: 5px;
-      margin-left: 5px;
-      padding-left: 0.15em;
-      padding-top: 0.3em;
-    }
-
-    h1 > mwc-icon-button {
-      position: relative;
-      top: -5px;
+    #conainer {
+      background-color: var(--mdc-theme-on-primary);
+      margin: 10px;
     }
 
     #voltageLevelContainer {
@@ -388,12 +378,26 @@ export class VoltageLevelEditor extends LitElement {
       overflow-y: hidden;
     }
 
+    h1 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      color: var(--mdc-theme-on-surface);
+      margin: 0px;
+      padding-top: 0.3em;
+      padding-bottom: 0.3em;
+    }
+
+    h1 > mwc-icon-button {
+      position: relative;
+      top: -5px;
+      float: right;
+    }
+
     svg {
       width: 25px;
       height: 25px;
       position: relative;
-      top: 3px;
-      left: 3px;
+      padding: 5px;
     }
   `;
 }
