@@ -7,13 +7,16 @@ import {
   query,
   css,
 } from 'lit-element';
+import { translate, get } from 'lit-translate';
+
+import { Select } from '@material/mwc-select';
+
 import {
   disconnectorIcon,
   circuitBreakerIcon,
   currentTransformerIcon,
   voltageTransformerIcon,
 } from '../../icons.js';
-import { translate, get } from 'lit-translate';
 import {
   Wizard,
   WizardAction,
@@ -23,7 +26,6 @@ import {
   newWizardEvent,
   newActionEvent,
 } from '../../foundation.js';
-import { Select } from '@material/mwc-select';
 
 const typeIcons: Partial<Record<string, TemplateResult>> = {
   CBR: circuitBreakerIcon,
@@ -106,7 +108,11 @@ export class ConductingEquipmentEditor extends LitElement {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.parent,
+            element: this.element,
+            reference: this.element.nextElementSibling,
+          },
         })
       );
   }
