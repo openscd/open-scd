@@ -63,6 +63,8 @@ export class WizardTextField extends TextField {
   }
   @property({ type: String })
   defaultValue = '';
+  @property({ type: Array })
+  reservedValues: string[] = [];
 
   @query('mwc-switch') nullSwitch?: Switch;
   @query('mwc-menu') multiplierMenu?: Menu;
@@ -94,6 +96,15 @@ export class WizardTextField extends TextField {
     await super.firstUpdated();
     if (this.multiplierMenu)
       this.multiplierMenu.anchor = this.multiplierButton ?? null;
+  }
+
+  checkValidity(): boolean {
+    if (
+      this.reservedValues &&
+      this.reservedValues.some(array => array === this.value)
+    )
+      return false;
+    return super.checkValidity();
   }
 
   renderUnitSelector(): TemplateResult {

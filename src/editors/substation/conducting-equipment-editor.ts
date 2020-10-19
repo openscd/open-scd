@@ -259,6 +259,17 @@ export class ConductingEquipmentEditor extends LitElement {
             >
           </mwc-select>`,
         ];
+    const [reservedValues] = isConductingEquipmentCreateOptions(options)
+      ? [
+          Array.from(
+            options.parent.querySelectorAll('ConductingEquipment')
+          ).map(condEq => condEq.getAttribute('name')),
+        ]
+      : [
+          Array.from(
+            options.element.parentNode!.querySelectorAll('ConductingEquipment')
+          ).map(condEq => condEq.getAttribute('name')),
+        ];
 
     return [
       {
@@ -277,6 +288,7 @@ export class ConductingEquipmentEditor extends LitElement {
             required
             validationMessage="${translate('textfield.required')}"
             dialogInitialFocus
+            .reservedArray="${reservedValues}"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="desc"
