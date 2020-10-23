@@ -19,7 +19,6 @@ import {
 import { get, translate } from 'lit-translate';
 
 import './conducting-equipment-editor.js';
-import { bayIcon } from '../../icons.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 
 interface BayUpdateOptions {
@@ -49,8 +48,8 @@ export class BayEditor extends LitElement {
   }
 
   @property({ type: String })
-  get desc(): string {
-    return this.element.getAttribute('desc') ?? '';
+  get desc(): string | null {
+    return this.element.getAttribute('desc') ?? null;
   }
 
   @query('h1') header!: Element;
@@ -79,22 +78,26 @@ export class BayEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<h1>
-      <mwc-icon-button
-        icon="playlist_add"
-        @click=${() => this.openConductingEquipmentWizard()}
-      ></mwc-icon-button>
-      <span style="position:relative; float:right;">&#124;</span>
-      <mwc-icon-button
-        icon="delete"
-        @click=${() => this.removeAction()}
-      ></mwc-icon-button>
-      <mwc-icon-button
-        icon="edit"
-        @click=${() => this.openEditWizard()}
-      ></mwc-icon-button>
-      ${this.name} ${this.desc === null ? '' : html`&mdash; ${this.desc}`}
-    </h1> `;
+    return html`<div id="header">
+      <h3>
+        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+      </h3>
+      <div id="header-icon">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.removeAction()}
+        ></mwc-icon-button>
+        <span style="position:relative; float:right;">&#124;</span>
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => this.openConductingEquipmentWizard()}
+        ></mwc-icon-button>
+      </div>
+    </div> `;
   }
 
   render(): TemplateResult {
@@ -223,24 +226,32 @@ export class BayEditor extends LitElement {
 
   static styles = css`
     #container {
-      min-width: 300px;
-      max-widht: 500px;
+      width: 320px;
       background-color: var(--mdc-theme-surface);
       margin: 10px;
     }
 
-    h1 {
-      min-height: 100px;
-      max-height: 100px;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
+    #header {
+      display: flex;
       color: var(--mdc-theme-on-surface);
-      padding-left: 0.15em;
-      padding-top: 0.3em;
-      padding-bottom: 0.3em;
     }
 
-    h1 > mwc-icon-button {
+    h3 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      flex: auto;
+      padding-left: 0.5em;
+    }
+
+    #header-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    #header > mwc-icon-button {
       position: relative;
       float: right;
       top: -5px;

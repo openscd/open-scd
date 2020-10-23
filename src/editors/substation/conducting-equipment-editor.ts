@@ -112,22 +112,33 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<h1 id="header">${this.name}</h1>`;
+    return html``;
   }
 
   render(): TemplateResult {
-    return html` <div id="condEqContainer">
-      <div>
-        <mwc-icon-button
-          icon="delete"
-          @click="${() => this.removeAction()}}"
-        ></mwc-icon-button>
-        <mwc-icon-button
-          icon="edit"
-          @click="${() => this.openEditWizard()}}"
-        ></mwc-icon-button>
-      </div>
-      ${typeIcons[this.type] ?? disconnectorIcon} ${this.renderHeader()}
+    return html` <div id="container">
+      <input
+        type="checkbox"
+        href="#"
+        class="menu-open"
+        name="menu-open"
+        id="menu-open"
+      />
+      <label class="type-icon-button" for="menu-open">
+        ${typeIcons[this.type] ?? disconnectorIcon}
+        <h4 id="header">${this.name}</h4>
+      </label>
+      <mwc-icon-button
+        class="menu-item delete"
+        id="delete"
+        icon="delete"
+        @click="${() => this.removeAction()}}"
+      ></mwc-icon-button>
+      <mwc-icon-button
+        class="menu-item edit"
+        icon="edit"
+        @click="${() => this.openEditWizard()}}"
+      ></mwc-icon-button>
     </div>`;
   }
 
@@ -304,14 +315,72 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   static styles = css`
-    #condEqContainer {
-      max-width: 100px;
+    #container {
+      width: 80px;
+      height: 80px;
       margin: 10px;
       display: inline-block;
+    }
+
+    .type-icon-button {
+      display: inline-block;
+      background: var(--mdc-theme-surface);
+      color: var(--mdc-theme-on-surface);
+      width: 80px;
+      height: 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .menu-open {
+      display: none;
+    }
+
+    .menu-item:nth-child(3) {
+      position: relative;
+      top: -80px;
+      left: 15px;
       color: var(--mdc-theme-on-surface);
     }
-    #condEqContainer:hover {
+
+    .menu-item:nth-child(4) {
+      position: relative;
+      top: -128px;
+      left: 15px;
       color: var(--mdc-theme-on-surface);
+    }
+
+    .type-icon-button:hover {
+      -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+      transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+    }
+
+    .menu-open:checked + .type-icon-button {
+      -webkit-transition-timing-function: linear;
+      transition-timing-function: linear;
+      -webkit-transition-duration: 200ms;
+      transition-duration: 200ms;
+      -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+      transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+    }
+
+    .menu-open:checked ~ .menu-item {
+      -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+      transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+    }
+
+    .menu-open:checked ~ .menu-item:nth-child(3) {
+      transition-duration: 200ms;
+      -webkit-transition-duration: 200ms;
+      -webkit-transform: translate3d(0px, -60px, 0);
+      transform: translate3d(0px, -60px, 0);
+    }
+
+    .menu-open:checked ~ .menu-item:nth-child(4) {
+      transition-duration: 400ms;
+      -webkit-transition-duration: 400ms;
+      -webkit-transform: translate3d(0px, 60px, 0);
+      transform: translate3d(0px, 60px, 0);
     }
 
     #header {
@@ -319,15 +388,16 @@ export class ConductingEquipmentEditor extends LitElement {
       font-weight: 300;
       color: var(--mdc-theme-on-surface);
       margin: 0px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     svg {
       color: var(--mdc-theme-on-surface);
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       position: relative;
-      top: 3px;
-      left: 3px;
     }
   `;
 }

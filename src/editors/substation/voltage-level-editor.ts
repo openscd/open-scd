@@ -93,23 +93,27 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<h1>
-      <mwc-icon-button
-        icon="playlist_add"
-        @click=${() => this.openBayWizard()}
-      ></mwc-icon-button>
-      <span style="position:relative;float:right;">&vert;</span>
-      <mwc-icon-button
-        icon="delete"
-        @click=${() => this.removeAction()}
-      ></mwc-icon-button>
-      <mwc-icon-button
-        icon="edit"
-        @click=${() => this.openEditWizard()}
-      ></mwc-icon-button>
-      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-      ${this.voltage === null ? '' : html`(${this.voltage})`}
-    </h1>`;
+    return html`<div id="header">
+      <h2>
+        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+        ${this.voltage === null ? '' : html`(${this.voltage})`}
+      </h2>
+      <div id="header-icon">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.removeAction()}
+        ></mwc-icon-button>
+        <span style="position:relative;float:right;">&vert;</span>
+        <mwc-icon-button
+          icon="playlist_add"
+          @click=${() => this.openBayWizard()}
+        ></mwc-icon-button>
+      </div>
+    </div>`;
   }
 
   render(): TemplateResult {
@@ -368,7 +372,27 @@ export class VoltageLevelEditor extends LitElement {
   static styles = css`
     #conainer {
       background-color: var(--mdc-theme-on-primary);
+      color: var(--mdc-theme-on-surface);
       margin: 10px;
+    }
+
+    #header {
+      display: flex;
+    }
+
+    #header-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    h2 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      flex: auto;
+      padding-left: 0.5em;
     }
 
     #voltageLevelContainer {
@@ -376,21 +400,6 @@ export class VoltageLevelEditor extends LitElement {
       flex-direction: row;
       overflow-x: auto;
       overflow-y: hidden;
-    }
-
-    h1 {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      color: var(--mdc-theme-on-surface);
-      margin: 0px;
-      padding-top: 0.3em;
-      padding-bottom: 0.3em;
-    }
-
-    h1 > mwc-icon-button {
-      position: relative;
-      top: -5px;
-      float: right;
     }
 
     svg {
