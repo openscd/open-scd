@@ -79,6 +79,17 @@ export const en = {
       },
     },
   },
+  conductingequipment: {
+    wizard: {
+      nameHelper: 'Conducting Equipment Name',
+      descHelper: 'Conducting Equipment Description',
+      typeHelper: 'Conducting Equipment Type',
+      title: {
+        add: 'Add Conducting Equipment',
+        edit: 'Edit Conducting Equipment',
+      },
+    },
+  },
   add: 'Add',
   edit: 'Edit',
   save: 'Save',

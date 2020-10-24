@@ -82,6 +82,17 @@ export const de: Translations = {
       },
     },
   },
+  conductingequipment: {
+    wizard: {
+      nameHelper: 'Name des Primärelements',
+      descHelper: 'Beschreibung des Primärelements',
+      typeHelper: 'Type des Primärelements',
+      title: {
+        add: 'Primärelement hinzufügen',
+        edit: 'Primärelement bearbeiten',
+      },
+    },
+  },
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
   save: 'Speichern',

@@ -180,13 +180,13 @@ export class ConductingEquipmentEditor extends LitElement {
       action,
     ] = isConductingEquipmentCreateOptions(options)
       ? [
-          get('voltagelevel.wizard.title.add'),
+          get('conductingequipment.wizard.title.add'),
           get('add'),
           'add',
           ConductingEquipmentEditor.createAction(options.parent),
         ]
       : [
-          get('voltagelevel.wizard.title.edit'),
+          get('conductingequipment.wizard.title.edit'),
           get('save'),
           'edit',
           ConductingEquipmentEditor.updateAction(options.element),
@@ -224,7 +224,7 @@ export class ConductingEquipmentEditor extends LitElement {
           html`<wizard-textfield
             label="name"
             .maybeValue=${name}
-            helper="${translate('voltagelevel.wizard.nameHelper')}"
+            helper="${translate('conductingequipment.wizard.nameHelper')}"
             iconTrailing="title"
             required
             validationMessage="${translate('textfield.required')}"
@@ -235,7 +235,7 @@ export class ConductingEquipmentEditor extends LitElement {
             label="desc"
             .maybeValue=${desc}
             nullable="true"
-            helper="${translate('voltagelevel.wizard.descHelper')}"
+            helper="${translate('conductingequipment.wizard.descHelper')}"
             iconTrailing="description"
           ></wizard-textfield>`,
           ConductingEquipmentEditor.renderTypeSelector(options),
@@ -251,7 +251,8 @@ export class ConductingEquipmentEditor extends LitElement {
       ? html`<mwc-select
           required
           label="type"
-          helper="Equipment Type"
+          helper="${translate('conductingequipment.wizard.typeHelper')}"
+          validationMessage="${translate('textfield.required')}"
           helperPersistant="true"
         >
           ${Object.keys(typeNames).map(
@@ -261,7 +262,8 @@ export class ConductingEquipmentEditor extends LitElement {
         </mwc-select>`
       : html`<mwc-select
           label="type"
-          helper="Equipment Type"
+          helper="${translate('conductingequipment.wizard.typeHelper')}"
+          validationMessage="${translate('textfield.required')}"
           helperPersistant="true"
           disabled
         >
