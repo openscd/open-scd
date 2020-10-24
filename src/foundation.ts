@@ -8,18 +8,18 @@ import { Select } from '@material/mwc-select';
 export type EditorAction = Create | Update | Delete | Move;
 /** Represents prepending `create.new.element` to `create.new.parent`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference: Node | null };
+  new: { parent: Element; element: Element; reference: Element | null };
   derived?: boolean;
 }
 /** Represents removal of `delete.old.element`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference: Node | null };
+  old: { parent: Element; element: Element; reference: Element | null };
   derived?: boolean;
 }
 /** Represents reparenting of `move.old.element` to `move.new.parent`. */
 export interface Move {
-  old: { parent: Element; element: Element; reference: Node | null };
-  new: { parent: Element; reference: Node | null };
+  old: { parent: Element; element: Element; reference: Element | null };
+  new: { parent: Element; reference: Element | null };
   derived?: boolean;
 }
 /** Represents replacement of `update.old.element` by `update.new.element`. */

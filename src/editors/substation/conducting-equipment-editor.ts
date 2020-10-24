@@ -69,7 +69,11 @@ export class ConductingEquipmentEditor extends LitElement {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.parent,
+            element: this.element,
+            reference: this.element.nextElementSibling,
+          },
         })
       );
   }
