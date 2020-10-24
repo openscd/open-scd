@@ -381,3 +381,58 @@ export const voltageTransformerIcon = html`<svg
     stroke-linecap="round"
   />
 </svg>`;
+
+export const generalConductingEquipmentIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25 25"
+>
+  <circle
+    cx="12.5"
+    cy="12.5"
+    r="11"
+    stroke-width="1.5"
+    stroke="currentColor"
+    fill="transparent"
+  />
+
+  <path
+    d=" M 7.5 17.5 
+    L 12 13 
+    Z"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+  <path
+    d="	M 11 7
+      L 10 8				
+      C 5 13, 11 20, 17 15
+      L 18 14
+      Z"
+    fill="currentColor"
+    stroke="currentColor"
+    stroke-linejoin="round"
+  />
+  <path
+    d=" M 13 9
+    L 16 6 
+    Z"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+  <path
+    d=" M 16 12
+    L 19 9 
+    Z"
+    fill="transparent"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+</svg>`;

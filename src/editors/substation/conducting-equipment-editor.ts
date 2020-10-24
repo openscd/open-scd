@@ -19,7 +19,7 @@ import {
   getValue,
 } from '../../foundation.js';
 import { typeIcons, typeNames } from './conducting-equipment-types.js';
-import { disconnectorIcon } from '../../icons.js';
+import { generalConductingEquipmentIcon } from '../../icons.js';
 
 interface ConductingEquipmentUpdateOptions {
   element: Element;
@@ -88,7 +88,7 @@ export class ConductingEquipmentEditor extends LitElement {
         id="menu-open"
       />
       <label class="type-icon-button" for="menu-open">
-        ${typeIcons[this.type] ?? disconnectorIcon}
+        ${typeIcons[this.type] ?? generalConductingEquipmentIcon}
         <h4 id="header">${this.name}</h4>
       </label>
       <mwc-icon-button
