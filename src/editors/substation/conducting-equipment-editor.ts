@@ -18,7 +18,6 @@ import {
   newActionEvent,
   getValue,
 } from '../../foundation.js';
-import { Select } from '@material/mwc-select';
 import { typeIcons, typeNames } from './conducting-equipment-types.js';
 import { disconnectorIcon } from '../../icons.js';
 
@@ -56,8 +55,7 @@ export class ConductingEquipmentEditor extends LitElement {
     return this.element.getAttribute('type') ?? 'missing';
   }
 
-  @query('h1') header!: Element;
-  @query('mwc-select') select!: Select;
+  @query('h4') header!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -74,10 +72,6 @@ export class ConductingEquipmentEditor extends LitElement {
           old: { parent: this.parent, element: this.element, reference: null },
         })
       );
-  }
-
-  renderHeader(): TemplateResult {
-    return html``;
   }
 
   render(): TemplateResult {

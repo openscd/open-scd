@@ -53,7 +53,7 @@ export class BayEditor extends LitElement {
     return this.element.getAttribute('desc') ?? null;
   }
 
-  @query('h1') header!: Element;
+  @query('h3') header!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(

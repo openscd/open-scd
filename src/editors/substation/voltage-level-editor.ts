@@ -70,7 +70,7 @@ export class VoltageLevelEditor extends LitElement {
     return v ? v + u : null;
   }
 
-  @query('h1') header!: Element;
+  @query('h2') header!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
