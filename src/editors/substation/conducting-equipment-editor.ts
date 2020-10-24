@@ -7,12 +7,6 @@ import {
   query,
   css,
 } from 'lit-element';
-import {
-  disconnectorIcon,
-  circuitBreakerIcon,
-  currentTransformerIcon,
-  voltageTransformerIcon,
-} from '../../icons.js';
 import { translate, get } from 'lit-translate';
 import {
   Wizard,
@@ -22,40 +16,11 @@ import {
   EditorAction,
   newWizardEvent,
   newActionEvent,
+  getValue,
 } from '../../foundation.js';
 import { Select } from '@material/mwc-select';
-
-const typeIcons: Partial<Record<string, TemplateResult>> = {
-  CBR: circuitBreakerIcon,
-  DIS: disconnectorIcon,
-  CTR: currentTransformerIcon,
-  VTR: voltageTransformerIcon,
-  missing: disconnectorIcon,
-};
-
-const typeAttribute: Partial<Record<string, string>> = {
-  'Circuit Breaker': 'CBR',
-  Disconnector: 'DIS',
-  'Earth Switch': 'ERS',
-  'Current Transformer': 'CTR',
-  'Voltage Transformer': 'VTR',
-};
-
-const typeNames: Partial<Record<string, string>> = {
-  CBR: 'Circuit Breaker',
-  DIS: 'Disconnector',
-  CTR: 'Current Transformer',
-  VTR: 'Voltage Transformer',
-  '': 'Attribute Missing',
-};
-
-const condEqTypes: string[] = [
-  'Circuit Breaker',
-  'Disconnector',
-  'Earth Switch',
-  'Current Transformer',
-  'Voltage Transformer',
-];
+import { typeIcons, typeNames } from './conducting-equipment-types.js';
+import { disconnectorIcon } from '../../icons.js';
 
 interface ConductingEquipmentUpdateOptions {
   element: Element;
@@ -147,19 +112,9 @@ export class ConductingEquipmentEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.maybeValue;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
-      const type =
-        typeAttribute[
-          wizard.shadowRoot
-            ?.querySelector('mwc-dialog')
-            ?.querySelector('mwc-select')?.selected!.innerText ?? ''
-        ] ?? null;
-
-      // Earth Switch does not have a specific type in IEC61850-6.
-      // It is handled as 'DIS'
-      // The difference between a disconnector and a earth switch
-      // is a terminal that has an attribute cNodeName="grounded"
+      const name = getValue(inputs.find(i => i.label === 'name')!);
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const type = getValue(inputs.find(i => i.label === 'type')!);
 
       const action = {
         new: {
@@ -192,7 +147,7 @@ export class ConductingEquipmentEditor extends LitElement {
       wizard: CloseableElement
     ): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
       let condunctingEquipmentAction: EditorAction | null;
 
@@ -246,30 +201,7 @@ export class ConductingEquipmentEditor extends LitElement {
           options.element.getAttribute('desc'),
           options.element.getAttribute('type'),
         ];
-    const [select] = isConductingEquipmentCreateOptions(options)
-      ? [
-          html`<mwc-select helper="Equipment Type" helperPersistant="true">
-            ${condEqTypes.map(v => html`<mwc-list-item>${v}</mwc-list-item>`)}
-          </mwc-select>`,
-        ]
-      : [
-          html`<mwc-select
-            helper="Equipment Type"
-            helperPersistant="true"
-            disabled
-          >
-            <mwc-list-item
-              >${options.element.getAttribute('type') === 'DIS' &&
-              options.element
-                .querySelector('Terminal')
-                ?.getAttribute('cNodeName') === 'grounded'
-                ? 'Earth Switch'
-                : typeNames[
-                    options.element.getAttribute('type') ?? ''
-                  ]}</mwc-list-item
-            >
-          </mwc-select>`,
-        ];
+
     const [reservedValues] = isConductingEquipmentCreateOptions(options)
       ? [
           Array.from(
@@ -299,7 +231,7 @@ export class ConductingEquipmentEditor extends LitElement {
             required
             validationMessage="${translate('textfield.required')}"
             dialogInitialFocus
-            .reservedArray="${reservedValues}"
+            .reservedValues="${reservedValues}"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="desc"
@@ -308,10 +240,44 @@ export class ConductingEquipmentEditor extends LitElement {
             helper="${translate('voltagelevel.wizard.descHelper')}"
             iconTrailing="description"
           ></wizard-textfield>`,
-          select,
+          ConductingEquipmentEditor.renderTypeSelector(options),
         ],
       },
     ];
+  }
+
+  static renderTypeSelector(
+    options: ConductingEquipmentWizardOptions
+  ): TemplateResult {
+    return isConductingEquipmentCreateOptions(options)
+      ? html`<mwc-select
+          required
+          label="type"
+          helper="Equipment Type"
+          helperPersistant="true"
+        >
+          ${Object.keys(typeNames).map(
+            v =>
+              html`<mwc-list-item value="${v}">${typeNames[v]}</mwc-list-item>`
+          )}
+        </mwc-select>`
+      : html`<mwc-select
+          label="type"
+          helper="Equipment Type"
+          helperPersistant="true"
+          disabled
+        >
+          <mwc-list-item selected value="0"
+            >${options.element.getAttribute('type') === 'DIS' &&
+            options.element
+              .querySelector('Terminal')
+              ?.getAttribute('cNodeName') === 'grounded'
+              ? 'Earth Switch'
+              : typeNames[
+                  options.element.getAttribute('type') ?? ''
+                ]}</mwc-list-item
+          >
+        </mwc-select>`;
   }
 
   static styles = css`

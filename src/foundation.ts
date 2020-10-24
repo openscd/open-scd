@@ -2,6 +2,7 @@ import { LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
 
 import { WizardTextField } from './wizard-textfield.js';
+import { Select } from '@material/mwc-select';
 
 /** Represents a change to some `Element`. */
 export type EditorAction = Create | Update | Delete | Move;
@@ -104,11 +105,23 @@ export function newActionEvent<T extends EditorAction>(
 
 export type CloseableElement = HTMLElement & { close: () => void };
 
-export type WizardInput = WizardTextField;
+export const wizardInputSelector = 'wizard-textfield, mwc-select';
+
+export type WizardInput = WizardTextField | Select;
 export type WizardAction = (
   inputs: WizardInput[],
   wizard: CloseableElement
 ) => EditorAction[];
+
+export function getValue(input: WizardInput): string | null {
+  if (input instanceof WizardTextField) return input.maybeValue;
+  else return input.value;
+}
+
+export function getMultiplier(input: WizardInput): string | null {
+  if (input instanceof WizardTextField) return input.multiplier;
+  else return null;
+}
 
 /** Represents a page of a wizard dialog */
 export interface WizardPage {

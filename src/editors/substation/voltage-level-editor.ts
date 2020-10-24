@@ -17,11 +17,12 @@ import {
   WizardAction,
   WizardInput,
   newActionEvent,
+  getValue,
+  getMultiplier,
 } from '../../foundation.js';
 
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
-import { voltageLevelIcon } from '../../icons.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
@@ -136,12 +137,14 @@ export class VoltageLevelEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.maybeValue;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
-      const nomFreq = inputs.find(i => i.label === 'nomFreq')!.maybeValue;
-      const numPhases = inputs.find(i => i.label === 'numPhases')!.maybeValue;
-      const Voltage = inputs.find(i => i.label === 'Voltage')!.maybeValue;
-      const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
+      const name = getValue(inputs.find(i => i.label === 'name')!);
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
+      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
+      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
+      const multiplier = getMultiplier(
+        inputs.find(i => i.label === 'Voltage')!
+      );
 
       const action = {
         new: {
@@ -177,11 +180,13 @@ export class VoltageLevelEditor extends LitElement {
       wizard: CloseableElement
     ): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
-      const nomFreq = inputs.find(i => i.label === 'nomFreq')!.maybeValue;
-      const numPhases = inputs.find(i => i.label === 'numPhases')!.maybeValue;
-      const Voltage = inputs.find(i => i.label === 'Voltage')!.maybeValue;
-      const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
+      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
+      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
+      const multiplier = getMultiplier(
+        inputs.find(i => i.label === 'Voltage')!
+      );
 
       let voltageLevelAction: EditorAction | null;
       let voltageAction: EditorAction | null;

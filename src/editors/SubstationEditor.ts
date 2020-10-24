@@ -12,11 +12,11 @@ import {
   newActionEvent,
   newWizardEvent,
   WizardInput,
+  getValue,
 } from '../foundation.js';
 
 import './substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
-import { zeroLineIcon } from '../icons.js';
 
 export default class SubstationEditor extends LitElement {
   @property()
@@ -72,7 +72,7 @@ export default class SubstationEditor extends LitElement {
     dialog: CloseableElement
   ): EditorAction[] {
     const name = inputs.find(i => i.label === 'name')!.value;
-    const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
     if (name === this.name && desc === this.desc) return [];
     const action = this.element
       ? this.newUpdateAction(name, desc)

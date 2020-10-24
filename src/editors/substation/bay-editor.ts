@@ -15,6 +15,7 @@ import {
   EditorAction,
   newWizardEvent,
   newActionEvent,
+  getValue,
 } from '../../foundation.js';
 import { get, translate } from 'lit-translate';
 
@@ -120,8 +121,8 @@ export class BayEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.maybeValue;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
+      const name = getValue(inputs.find(i => i.label === 'name')!);
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
       const action = {
         new: {
@@ -148,7 +149,7 @@ export class BayEditor extends LitElement {
       wizard: CloseableElement
     ): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
       let bayAction: EditorAction | null;
 
@@ -227,6 +228,7 @@ export class BayEditor extends LitElement {
   static styles = css`
     #container {
       width: 320px;
+      min-height: 320px;
       background-color: var(--mdc-theme-surface);
       margin: 10px;
     }

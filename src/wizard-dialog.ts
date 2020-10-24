@@ -22,10 +22,11 @@ import {
   WizardPage,
   newWizardEvent,
   WizardAction,
+  wizardInputSelector,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
-  return Array.from(dialog?.querySelectorAll('wizard-textfield') ?? []);
+  return Array.from(dialog?.querySelectorAll(wizardInputSelector) ?? []);
 }
 
 function dialogValid(dialog?: Dialog): boolean {
@@ -40,7 +41,7 @@ export class WizardDialog extends LitElement {
   pageIndex = 0;
   @queryAll('mwc-dialog')
   dialogs!: NodeListOf<Dialog>;
-  @queryAll('wizard-textfield')
+  @queryAll(wizardInputSelector)
   inputs!: NodeListOf<WizardInput>;
 
   get dialog(): Dialog | undefined {
