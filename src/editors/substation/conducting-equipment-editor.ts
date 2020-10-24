@@ -79,7 +79,7 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <div id="container">
+    return html` <div id="container" tabindex="0">
       <input
         type="checkbox"
         href="#"
@@ -281,7 +281,7 @@ export class ConductingEquipmentEditor extends LitElement {
   static styles = css`
     #container {
       width: 80px;
-      height: 80px;
+      height: 100px;
       margin: 10px;
       display: inline-block;
     }
@@ -290,10 +290,31 @@ export class ConductingEquipmentEditor extends LitElement {
       display: inline-block;
       background: var(--mdc-theme-surface);
       color: var(--mdc-theme-on-surface);
+      margin: 0px;
       width: 80px;
-      height: 80px;
+      height: 100px;
       position: relative;
       z-index: 2;
+    }
+
+    .container:hover {
+      -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+      transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+    }
+
+    #container:focus-within {
+      outline: none;
+    }
+
+    #container:focus-within > .type-icon-button {
+      background: var(--mdc-theme-on-primary);
+      outline: none;
+      -webkit-transition-timing-function: linear;
+      transition-timing-function: linear;
+      -webkit-transition-duration: 200ms;
+      transition-duration: 200ms;
+      -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+      transform: scale(0.8, 0.8) translate3d(0, 0, 0);
     }
 
     .menu-open {
@@ -314,37 +335,23 @@ export class ConductingEquipmentEditor extends LitElement {
       color: var(--mdc-theme-on-surface);
     }
 
-    .type-icon-button:hover {
-      -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-      transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-    }
-
-    .menu-open:checked + .type-icon-button {
-      -webkit-transition-timing-function: linear;
-      transition-timing-function: linear;
-      -webkit-transition-duration: 200ms;
-      transition-duration: 200ms;
-      -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-      transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-    }
-
-    .menu-open:checked ~ .menu-item {
+    #container:focus-within > .menu-item {
       -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
       transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
     }
 
-    .menu-open:checked ~ .menu-item:nth-child(3) {
+    #container:focus-within > .menu-item:nth-child(3) {
       transition-duration: 200ms;
       -webkit-transition-duration: 200ms;
-      -webkit-transform: translate3d(0px, -60px, 0);
-      transform: translate3d(0px, -60px, 0);
+      -webkit-transform: translate3d(0px, -65px, 0);
+      transform: translate3d(0px, -65px, 0);
     }
 
-    .menu-open:checked ~ .menu-item:nth-child(4) {
+    #container:focus-within > .menu-item:nth-child(4) {
       transition-duration: 400ms;
       -webkit-transition-duration: 400ms;
-      -webkit-transform: translate3d(0px, 60px, 0);
-      transform: translate3d(0px, 60px, 0);
+      -webkit-transform: translate3d(0px, 65px, 0);
+      transform: translate3d(0px, 65px, 0);
     }
 
     #header {
