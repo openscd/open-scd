@@ -10,4 +10,8 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
+  repo: openscd/openscd.github.io
+  target_branch: master
   local_dir: build
+  on:
+    branch: test-travis-ci
