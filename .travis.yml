@@ -6,8 +6,7 @@ script:
 
 deploy:
   edge: true
-  provider: pages:git
-  skip_cleanup: true
+  provider: pages
   token: $GITHUB_TOKEN
   keep_history: true
   repo: openscd/openscd.github.io
