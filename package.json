@@ -108,6 +108,18 @@
     ]
   },
   "snowpack": {
+    "exclude": [
+      "**/node_modules/**/*",
+      "**/test/*",
+      "**/*.@(spec|test).@(js|mjs)",
+      ".editorconfig",
+      ".eslintrc.cjs",
+      ".gitignore",
+      ".travis.yml",
+      "karma.conf.cjs",
+      "package*",
+      "tsconfig.json"
+    ],
     "plugins": [
       "@snowpack/plugin-typescript"
     ]
