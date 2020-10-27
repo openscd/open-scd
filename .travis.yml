@@ -5,9 +5,10 @@ script:
   npm test && npm run build
 
 deploy:
-  provider: pages
+  edge: true
+  provider: pages:git
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  token: $GITHUB_TOKEN
   keep_history: true
   repo: openscd/openscd.github.io
   target_branch: master
