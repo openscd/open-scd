@@ -47,7 +47,7 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "test": "tsc && karma start karma.conf.cjs --coverage",
     "doc:clean": "npx rimraf doc",
-    "doc:typedoc": "typedoc --out doc --plugin typedoc-plugin-markdown src",
+    "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
     "test:watch": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false\"",
