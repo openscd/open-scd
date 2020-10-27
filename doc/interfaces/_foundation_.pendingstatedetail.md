@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["foundation"](../modules/_foundation_.md) › [PendingStateDetail](_foundation_.pendingstatedetail.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / ["foundation"](../modules/_foundation_.md) / PendingStateDetail
 
 # Interface: PendingStateDetail
 
@@ -16,8 +18,8 @@ Represents some work pending completion, upon which `promise` resolves.
 
 ## Properties
 
-###  promise
+### promise
 
-• **promise**: *Promise‹string›*
+•  **promise**: Promise\<string>
 
-*Defined in [src/foundation.ts:185](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L185)*
+*Defined in [src/foundation.ts:198](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L198)*

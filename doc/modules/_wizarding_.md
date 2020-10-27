@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["Wizarding"](_wizarding_.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / "Wizarding"
 
 # Module: "Wizarding"
 
@@ -14,28 +16,30 @@
 
 ## Type aliases
 
-###  WizardingElement
+### WizardingElement
 
-Ƭ **WizardingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Wizarding›*
+Ƭ  **WizardingElement**: [Mixin](_foundation_.md#mixin)\<*typeof* [Wizarding](_wizarding_.md#wizarding)>
 
-*Defined in [src/Wizarding.ts:12](https://github.com/openscd/open-scd/blob/56480b8/src/Wizarding.ts#L12)*
+*Defined in [src/Wizarding.ts:12](https://github.com/openscd/open-scd/blob/12e7252/src/Wizarding.ts#L12)*
 
 ## Functions
 
-###  Wizarding
+### Wizarding
 
-▸ **Wizarding**‹**TBase**›(`Base`: TBase): *WizardingElement & TBase*
+▸ **Wizarding**\<TBase>(`Base`: TBase): WizardingElement & TBase
 
-*Defined in [src/Wizarding.ts:14](https://github.com/openscd/open-scd/blob/56480b8/src/Wizarding.ts#L14)*
+*Defined in [src/Wizarding.ts:14](https://github.com/openscd/open-scd/blob/12e7252/src/Wizarding.ts#L14)*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **TBase**: *[LitElementConstructor](_foundation_.md#litelementconstructor)*
+Name | Type |
+------ | ------ |
+`TBase` | [LitElementConstructor](_foundation_.md#litelementconstructor) |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `Base` | TBase |
 
-**Returns:** *WizardingElement & TBase*
+**Returns:** WizardingElement & TBase

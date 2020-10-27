@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["open-scd"](_open_scd_.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / "open-scd"
 
 # Module: "open-scd"
 

@@ -1,8 +1,8 @@
-[open-scd](README.md) › [Globals](globals.md)
+**[open-scd](README.md)**
 
-# open-scd
+> [Globals](globals.md)
 
-## `OpenSCD`
+# `OpenSCD`
 
 [![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
 
@@ -24,3 +24,12 @@ npm start
 - `test` runs the test suite with Karma
 - `lint` runs the linter
 - `doc` builds markdown documentation in the `doc` directory
+
+## License
+
+The [IEC 61850](https://webstore.iec.ch/publication/63319) XML schemas used are
+distributed under their [end user license agreement](CC-EULA.pdf).
+
+This project is licensed under the [Apache License 2.0](LICENSE).
+
+&copy; 2020 OMICRON electronics GmbH

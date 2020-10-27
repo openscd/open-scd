@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["foundation"](../modules/_foundation_.md) › [Delete](_foundation_.delete.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / ["foundation"](../modules/_foundation_.md) / Delete
 
 # Interface: Delete
 
@@ -12,29 +14,29 @@ Represents removal of `delete.old.element`.
 
 ### Properties
 
-* [derived](_foundation_.delete.md#optional-derived)
+* [derived](_foundation_.delete.md#derived)
 * [old](_foundation_.delete.md#old)
 
 ## Properties
 
-### `Optional` derived
+### derived
 
-• **derived**? : *undefined | false | true*
+• `Optional` **derived**: undefined \| false \| true
 
-*Defined in [src/foundation.ts:16](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L16)*
+*Defined in [src/foundation.ts:17](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L17)*
 
 ___
 
-###  old
+### old
 
-• **old**: *object*
+•  **old**: { element: Element ; parent: Element ; reference: Element \| null  }
 
-*Defined in [src/foundation.ts:15](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L15)*
+*Defined in [src/foundation.ts:16](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L16)*
 
 #### Type declaration:
 
-* **element**: *Element*
-
-* **parent**: *Element*
-
-* **reference**: *Node | null*
+Name | Type |
+------ | ------ |
+`element` | Element |
+`parent` | Element |
+`reference` | Element \| null |

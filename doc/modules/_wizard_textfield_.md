@@ -1,12 +1,10 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["wizard-textfield"](_wizard_textfield_.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / "wizard-textfield"
 
 # Module: "wizard-textfield"
 
 ## Index
-
-### Namespaces
-
-* [__global](_wizard_textfield_.__global.md)
 
 ### Classes
 

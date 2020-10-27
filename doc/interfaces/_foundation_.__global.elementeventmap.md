@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["foundation"](../modules/_foundation_.md) › [__global](../modules/_foundation_.__global.md) › [ElementEventMap](_foundation_.__global.elementeventmap.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / ["foundation"](../modules/_foundation_.md) / [\_\_global](../modules/_foundation_.__global.md) / ElementEventMap
 
 # Interface: ElementEventMap
 
@@ -17,32 +19,32 @@
 
 ## Properties
 
-###  editor-action
+### editor-action
 
-• **editor-action**: *[EditorActionEvent](../modules/_foundation_.md#editoractionevent)‹[EditorAction](../modules/_foundation_.md#editoraction)›*
+•  **editor-action**: [EditorActionEvent](../modules/_foundation_.md#editoractionevent)\<[EditorAction](../modules/_foundation_.md#editoraction)>
 
-*Defined in [src/foundation.ts:222](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L222)*
-
-___
-
-###  log
-
-• **log**: *[LogEvent](../modules/_foundation_.md#logevent)*
-
-*Defined in [src/foundation.ts:224](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L224)*
+*Defined in [src/foundation.ts:235](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L235)*
 
 ___
 
-###  pending-state
+### log
 
-• **pending-state**: *[PendingStateEvent](../modules/_foundation_.md#pendingstateevent)*
+•  **log**: [LogEvent](../modules/_foundation_.md#logevent)
 
-*Defined in [src/foundation.ts:221](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L221)*
+*Defined in [src/foundation.ts:237](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L237)*
 
 ___
 
-###  wizard
+### pending-state
 
-• **wizard**: *[WizardEvent](../modules/_foundation_.md#wizardevent)*
+•  **pending-state**: [PendingStateEvent](../modules/_foundation_.md#pendingstateevent)
 
-*Defined in [src/foundation.ts:223](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L223)*
+*Defined in [src/foundation.ts:234](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L234)*
+
+___
+
+### wizard
+
+•  **wizard**: [WizardEvent](../modules/_foundation_.md#wizardevent)
+
+*Defined in [src/foundation.ts:236](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L236)*

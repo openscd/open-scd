@@ -2,16 +2,16 @@
 
 ## Properties
 
-| Property           | Attribute | Modifiers | Type                          | Default |
-|--------------------|-----------|-----------|-------------------------------|---------|
-| `act`              |           |           |                               |         |
-| `dialog`           |           | readonly  | `Dialog \| undefined`         |         |
-| `dialogs`          |           |           | `NodeListOf<Dialog>`          |         |
-| `firstInvalidPage` |           | readonly  | `number`                      |         |
-| `inputs`           |           |           | `NodeListOf<WizardTextField>` |         |
-| `pageIndex`        |           |           | `number`                      | 0       |
-| `renderPage`       |           |           |                               |         |
-| `wizard`           | `wizard`  |           | `Wizard`                      | []      |
+| Property           | Attribute | Modifiers | Type                      | Default |
+|--------------------|-----------|-----------|---------------------------|---------|
+| `act`              |           |           |                           |         |
+| `dialog`           |           | readonly  | `Dialog \| undefined`     |         |
+| `dialogs`          |           |           | `NodeListOf<Dialog>`      |         |
+| `firstInvalidPage` |           | readonly  | `number`                  |         |
+| `inputs`           |           |           | `NodeListOf<WizardInput>` |         |
+| `pageIndex`        |           |           | `number`                  | 0       |
+| `renderPage`       |           |           |                           |         |
+| `wizard`           | `wizard`  |           | `Wizard`                  | []      |
 
 ## Methods
 

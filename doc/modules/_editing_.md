@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["Editing"](_editing_.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / "Editing"
 
 # Module: "Editing"
 
@@ -15,38 +17,40 @@
 
 ## Type aliases
 
-###  EditingElement
+### EditingElement
 
-Ƭ **EditingElement**: *[Mixin](_foundation_.md#mixin)‹typeof Editing›*
+Ƭ  **EditingElement**: [Mixin](_foundation_.md#mixin)\<*typeof* [Editing](_editing_.md#editing)>
 
-*Defined in [src/Editing.ts:27](https://github.com/openscd/open-scd/blob/56480b8/src/Editing.ts#L27)*
+*Defined in [src/Editing.ts:27](https://github.com/openscd/open-scd/blob/12e7252/src/Editing.ts#L27)*
 
 ## Functions
 
-###  Editing
+### Editing
 
-▸ **Editing**‹**TBase**›(`Base`: TBase): *EditingElement & TBase*
+▸ **Editing**\<TBase>(`Base`: TBase): EditingElement & TBase
 
-*Defined in [src/Editing.ts:29](https://github.com/openscd/open-scd/blob/56480b8/src/Editing.ts#L29)*
+*Defined in [src/Editing.ts:29](https://github.com/openscd/open-scd/blob/12e7252/src/Editing.ts#L29)*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **TBase**: *[LitElementConstructor](_foundation_.md#litelementconstructor)*
+Name | Type |
+------ | ------ |
+`TBase` | [LitElementConstructor](_foundation_.md#litelementconstructor) |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `Base` | TBase |
 
-**Returns:** *EditingElement & TBase*
+**Returns:** EditingElement & TBase
 
 ___
 
-###  newEmptySCD
+### newEmptySCD
 
-▸ **newEmptySCD**(): *XMLDocument*
+▸ **newEmptySCD**(): XMLDocument
 
-*Defined in [src/Editing.ts:19](https://github.com/openscd/open-scd/blob/56480b8/src/Editing.ts#L19)*
+*Defined in [src/Editing.ts:19](https://github.com/openscd/open-scd/blob/12e7252/src/Editing.ts#L19)*
 
-**Returns:** *XMLDocument*
+**Returns:** XMLDocument

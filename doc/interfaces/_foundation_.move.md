@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["foundation"](../modules/_foundation_.md) › [Move](_foundation_.move.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / ["foundation"](../modules/_foundation_.md) / Move
 
 # Interface: Move
 
@@ -12,44 +14,45 @@ Represents reparenting of `move.old.element` to `move.new.parent`.
 
 ### Properties
 
-* [derived](_foundation_.move.md#optional-derived)
+* [derived](_foundation_.move.md#derived)
 * [new](_foundation_.move.md#new)
 * [old](_foundation_.move.md#old)
 
 ## Properties
 
-### `Optional` derived
+### derived
 
-• **derived**? : *undefined | false | true*
+• `Optional` **derived**: undefined \| false \| true
 
-*Defined in [src/foundation.ts:22](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L22)*
-
-___
-
-###  new
-
-• **new**: *object*
-
-*Defined in [src/foundation.ts:21](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L21)*
-
-#### Type declaration:
-
-* **parent**: *Element*
-
-* **reference**: *Node | null*
+*Defined in [src/foundation.ts:23](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L23)*
 
 ___
 
-###  old
+### new
 
-• **old**: *object*
+•  **new**: { parent: Element ; reference: Element \| null  }
 
-*Defined in [src/foundation.ts:20](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L20)*
+*Defined in [src/foundation.ts:22](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L22)*
 
 #### Type declaration:
 
-* **element**: *Element*
+Name | Type |
+------ | ------ |
+`parent` | Element |
+`reference` | Element \| null |
 
-* **parent**: *Element*
+___
 
-* **reference**: *Node | null*
+### old
+
+•  **old**: { element: Element ; parent: Element ; reference: Element \| null  }
+
+*Defined in [src/foundation.ts:21](https://github.com/openscd/open-scd/blob/12e7252/src/foundation.ts#L21)*
+
+#### Type declaration:
+
+Name | Type |
+------ | ------ |
+`element` | Element |
+`parent` | Element |
+`reference` | Element \| null |

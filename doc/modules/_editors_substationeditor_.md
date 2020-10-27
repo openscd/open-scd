@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["editors/SubstationEditor"](_editors_substationeditor_.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / "editors/SubstationEditor"
 
 # Module: "editors/SubstationEditor"
 

@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["xml-entities"](_xml_entities_.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / "xml-entities"
 
 # Module: "xml-entities"
 
@@ -10,18 +12,18 @@
 
 ## Functions
 
-###  encodeNonASCII
+### encodeNonASCII
 
-▸ **encodeNonASCII**(`str`: string): *string*
+▸ **encodeNonASCII**(`str`: string): string
 
-*Defined in [src/xml-entities.ts:2](https://github.com/openscd/open-scd/blob/56480b8/src/xml-entities.ts#L2)*
+*Defined in [src/xml-entities.ts:2](https://github.com/openscd/open-scd/blob/12e7252/src/xml-entities.ts#L2)*
 
 Encodes all non ASCII symbols in `str` as XML entities.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `str` | string |
 
-**Returns:** *string*
+**Returns:** string

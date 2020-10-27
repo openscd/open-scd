@@ -1,4 +1,6 @@
-[open-scd](../README.md) › [Globals](../globals.md) › ["wizard-dialog"](../modules/_wizard_dialog_.md) › [WizardDialog](_wizard_dialog_.wizarddialog.md)
+**[open-scd](../README.md)**
+
+> [Globals](../globals.md) / ["wizard-dialog"](../modules/_wizard_dialog_.md) / WizardDialog
 
 # Class: WizardDialog
 
@@ -16,74 +18,74 @@
 
 ### Properties
 
-* [ATTRIBUTE_NODE](_wizard_dialog_.wizarddialog.md#readonly-attribute_node)
-* [CDATA_SECTION_NODE](_wizard_dialog_.wizarddialog.md#readonly-cdata_section_node)
-* [COMMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-comment_node)
-* [DOCUMENT_FRAGMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-document_fragment_node)
-* [DOCUMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-document_node)
-* [DOCUMENT_POSITION_CONTAINED_BY](_wizard_dialog_.wizarddialog.md#readonly-document_position_contained_by)
-* [DOCUMENT_POSITION_CONTAINS](_wizard_dialog_.wizarddialog.md#readonly-document_position_contains)
-* [DOCUMENT_POSITION_DISCONNECTED](_wizard_dialog_.wizarddialog.md#readonly-document_position_disconnected)
-* [DOCUMENT_POSITION_FOLLOWING](_wizard_dialog_.wizarddialog.md#readonly-document_position_following)
-* [DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_dialog_.wizarddialog.md#readonly-document_position_implementation_specific)
-* [DOCUMENT_POSITION_PRECEDING](_wizard_dialog_.wizarddialog.md#readonly-document_position_preceding)
-* [DOCUMENT_TYPE_NODE](_wizard_dialog_.wizarddialog.md#readonly-document_type_node)
-* [ELEMENT_NODE](_wizard_dialog_.wizarddialog.md#readonly-element_node)
-* [ENTITY_NODE](_wizard_dialog_.wizarddialog.md#readonly-entity_node)
-* [ENTITY_REFERENCE_NODE](_wizard_dialog_.wizarddialog.md#readonly-entity_reference_node)
-* [NOTATION_NODE](_wizard_dialog_.wizarddialog.md#readonly-notation_node)
-* [PROCESSING_INSTRUCTION_NODE](_wizard_dialog_.wizarddialog.md#readonly-processing_instruction_node)
-* [TEXT_NODE](_wizard_dialog_.wizarddialog.md#readonly-text_node)
+* [ATTRIBUTE\_NODE](_wizard_dialog_.wizarddialog.md#attribute_node)
+* [CDATA\_SECTION\_NODE](_wizard_dialog_.wizarddialog.md#cdata_section_node)
+* [COMMENT\_NODE](_wizard_dialog_.wizarddialog.md#comment_node)
+* [DOCUMENT\_FRAGMENT\_NODE](_wizard_dialog_.wizarddialog.md#document_fragment_node)
+* [DOCUMENT\_NODE](_wizard_dialog_.wizarddialog.md#document_node)
+* [DOCUMENT\_POSITION\_CONTAINED\_BY](_wizard_dialog_.wizarddialog.md#document_position_contained_by)
+* [DOCUMENT\_POSITION\_CONTAINS](_wizard_dialog_.wizarddialog.md#document_position_contains)
+* [DOCUMENT\_POSITION\_DISCONNECTED](_wizard_dialog_.wizarddialog.md#document_position_disconnected)
+* [DOCUMENT\_POSITION\_FOLLOWING](_wizard_dialog_.wizarddialog.md#document_position_following)
+* [DOCUMENT\_POSITION\_IMPLEMENTATION\_SPECIFIC](_wizard_dialog_.wizarddialog.md#document_position_implementation_specific)
+* [DOCUMENT\_POSITION\_PRECEDING](_wizard_dialog_.wizarddialog.md#document_position_preceding)
+* [DOCUMENT\_TYPE\_NODE](_wizard_dialog_.wizarddialog.md#document_type_node)
+* [ELEMENT\_NODE](_wizard_dialog_.wizarddialog.md#element_node)
+* [ENTITY\_NODE](_wizard_dialog_.wizarddialog.md#entity_node)
+* [ENTITY\_REFERENCE\_NODE](_wizard_dialog_.wizarddialog.md#entity_reference_node)
+* [NOTATION\_NODE](_wizard_dialog_.wizarddialog.md#notation_node)
+* [PROCESSING\_INSTRUCTION\_NODE](_wizard_dialog_.wizarddialog.md#processing_instruction_node)
+* [TEXT\_NODE](_wizard_dialog_.wizarddialog.md#text_node)
 * [accessKey](_wizard_dialog_.wizarddialog.md#accesskey)
-* [accessKeyLabel](_wizard_dialog_.wizarddialog.md#readonly-accesskeylabel)
-* [assignedSlot](_wizard_dialog_.wizarddialog.md#readonly-assignedslot)
-* [attributes](_wizard_dialog_.wizarddialog.md#readonly-attributes)
+* [accessKeyLabel](_wizard_dialog_.wizarddialog.md#accesskeylabel)
+* [assignedSlot](_wizard_dialog_.wizarddialog.md#assignedslot)
+* [attributes](_wizard_dialog_.wizarddialog.md#attributes)
 * [autocapitalize](_wizard_dialog_.wizarddialog.md#autocapitalize)
 * [autofocus](_wizard_dialog_.wizarddialog.md#autofocus)
-* [baseURI](_wizard_dialog_.wizarddialog.md#readonly-baseuri)
-* [childElementCount](_wizard_dialog_.wizarddialog.md#readonly-childelementcount)
-* [childNodes](_wizard_dialog_.wizarddialog.md#readonly-childnodes)
-* [children](_wizard_dialog_.wizarddialog.md#readonly-children)
-* [classList](_wizard_dialog_.wizarddialog.md#readonly-classlist)
+* [baseURI](_wizard_dialog_.wizarddialog.md#baseuri)
+* [childElementCount](_wizard_dialog_.wizarddialog.md#childelementcount)
+* [childNodes](_wizard_dialog_.wizarddialog.md#childnodes)
+* [children](_wizard_dialog_.wizarddialog.md#children)
+* [classList](_wizard_dialog_.wizarddialog.md#classlist)
 * [className](_wizard_dialog_.wizarddialog.md#classname)
-* [clientHeight](_wizard_dialog_.wizarddialog.md#readonly-clientheight)
-* [clientLeft](_wizard_dialog_.wizarddialog.md#readonly-clientleft)
-* [clientTop](_wizard_dialog_.wizarddialog.md#readonly-clienttop)
-* [clientWidth](_wizard_dialog_.wizarddialog.md#readonly-clientwidth)
+* [clientHeight](_wizard_dialog_.wizarddialog.md#clientheight)
+* [clientLeft](_wizard_dialog_.wizarddialog.md#clientleft)
+* [clientTop](_wizard_dialog_.wizarddialog.md#clienttop)
+* [clientWidth](_wizard_dialog_.wizarddialog.md#clientwidth)
 * [contentEditable](_wizard_dialog_.wizarddialog.md#contenteditable)
-* [dataset](_wizard_dialog_.wizarddialog.md#readonly-dataset)
+* [dataset](_wizard_dialog_.wizarddialog.md#dataset)
 * [dialogs](_wizard_dialog_.wizarddialog.md#dialogs)
 * [dir](_wizard_dialog_.wizarddialog.md#dir)
 * [draggable](_wizard_dialog_.wizarddialog.md#draggable)
 * [enterKeyHint](_wizard_dialog_.wizarddialog.md#enterkeyhint)
-* [firstChild](_wizard_dialog_.wizarddialog.md#readonly-firstchild)
-* [firstElementChild](_wizard_dialog_.wizarddialog.md#readonly-firstelementchild)
-* [floatingLabelFoundation](_wizard_dialog_.wizarddialog.md#optional-floatinglabelfoundation)
+* [firstChild](_wizard_dialog_.wizarddialog.md#firstchild)
+* [firstElementChild](_wizard_dialog_.wizarddialog.md#firstelementchild)
+* [floatingLabelFoundation](_wizard_dialog_.wizarddialog.md#floatinglabelfoundation)
 * [hidden](_wizard_dialog_.wizarddialog.md#hidden)
 * [id](_wizard_dialog_.wizarddialog.md#id)
 * [innerHTML](_wizard_dialog_.wizarddialog.md#innerhtml)
 * [innerText](_wizard_dialog_.wizarddialog.md#innertext)
 * [inputMode](_wizard_dialog_.wizarddialog.md#inputmode)
 * [inputs](_wizard_dialog_.wizarddialog.md#inputs)
-* [isConnected](_wizard_dialog_.wizarddialog.md#readonly-isconnected)
-* [isContentEditable](_wizard_dialog_.wizarddialog.md#readonly-iscontenteditable)
+* [isConnected](_wizard_dialog_.wizarddialog.md#isconnected)
+* [isContentEditable](_wizard_dialog_.wizarddialog.md#iscontenteditable)
 * [lang](_wizard_dialog_.wizarddialog.md#lang)
-* [lastChild](_wizard_dialog_.wizarddialog.md#readonly-lastchild)
-* [lastElementChild](_wizard_dialog_.wizarddialog.md#readonly-lastelementchild)
-* [lineRippleFoundation](_wizard_dialog_.wizarddialog.md#optional-lineripplefoundation)
-* [localName](_wizard_dialog_.wizarddialog.md#readonly-localname)
-* [namespaceURI](_wizard_dialog_.wizarddialog.md#readonly-namespaceuri)
-* [nextElementSibling](_wizard_dialog_.wizarddialog.md#readonly-nextelementsibling)
-* [nextSibling](_wizard_dialog_.wizarddialog.md#readonly-nextsibling)
-* [nodeName](_wizard_dialog_.wizarddialog.md#readonly-nodename)
-* [nodeType](_wizard_dialog_.wizarddialog.md#readonly-nodetype)
+* [lastChild](_wizard_dialog_.wizarddialog.md#lastchild)
+* [lastElementChild](_wizard_dialog_.wizarddialog.md#lastelementchild)
+* [lineRippleFoundation](_wizard_dialog_.wizarddialog.md#lineripplefoundation)
+* [localName](_wizard_dialog_.wizarddialog.md#localname)
+* [namespaceURI](_wizard_dialog_.wizarddialog.md#namespaceuri)
+* [nextElementSibling](_wizard_dialog_.wizarddialog.md#nextelementsibling)
+* [nextSibling](_wizard_dialog_.wizarddialog.md#nextsibling)
+* [nodeName](_wizard_dialog_.wizarddialog.md#nodename)
+* [nodeType](_wizard_dialog_.wizarddialog.md#nodetype)
 * [nodeValue](_wizard_dialog_.wizarddialog.md#nodevalue)
-* [nonce](_wizard_dialog_.wizarddialog.md#optional-nonce)
-* [offsetHeight](_wizard_dialog_.wizarddialog.md#readonly-offsetheight)
-* [offsetLeft](_wizard_dialog_.wizarddialog.md#readonly-offsetleft)
-* [offsetParent](_wizard_dialog_.wizarddialog.md#readonly-offsetparent)
-* [offsetTop](_wizard_dialog_.wizarddialog.md#readonly-offsettop)
-* [offsetWidth](_wizard_dialog_.wizarddialog.md#readonly-offsetwidth)
+* [nonce](_wizard_dialog_.wizarddialog.md#nonce)
+* [offsetHeight](_wizard_dialog_.wizarddialog.md#offsetheight)
+* [offsetLeft](_wizard_dialog_.wizarddialog.md#offsetleft)
+* [offsetParent](_wizard_dialog_.wizarddialog.md#offsetparent)
+* [offsetTop](_wizard_dialog_.wizarddialog.md#offsettop)
+* [offsetWidth](_wizard_dialog_.wizarddialog.md#offsetwidth)
 * [onabort](_wizard_dialog_.wizarddialog.md#onabort)
 * [onanimationcancel](_wizard_dialog_.wizarddialog.md#onanimationcancel)
 * [onanimationend](_wizard_dialog_.wizarddialog.md#onanimationend)
@@ -163,10 +165,10 @@
 * [onsuspend](_wizard_dialog_.wizarddialog.md#onsuspend)
 * [ontimeupdate](_wizard_dialog_.wizarddialog.md#ontimeupdate)
 * [ontoggle](_wizard_dialog_.wizarddialog.md#ontoggle)
-* [ontouchcancel](_wizard_dialog_.wizarddialog.md#optional-ontouchcancel)
-* [ontouchend](_wizard_dialog_.wizarddialog.md#optional-ontouchend)
-* [ontouchmove](_wizard_dialog_.wizarddialog.md#optional-ontouchmove)
-* [ontouchstart](_wizard_dialog_.wizarddialog.md#optional-ontouchstart)
+* [ontouchcancel](_wizard_dialog_.wizarddialog.md#ontouchcancel)
+* [ontouchend](_wizard_dialog_.wizarddialog.md#ontouchend)
+* [ontouchmove](_wizard_dialog_.wizarddialog.md#ontouchmove)
+* [ontouchstart](_wizard_dialog_.wizarddialog.md#ontouchstart)
 * [ontransitioncancel](_wizard_dialog_.wizarddialog.md#ontransitioncancel)
 * [ontransitionend](_wizard_dialog_.wizarddialog.md#ontransitionend)
 * [ontransitionrun](_wizard_dialog_.wizarddialog.md#ontransitionrun)
@@ -175,48 +177,48 @@
 * [onwaiting](_wizard_dialog_.wizarddialog.md#onwaiting)
 * [onwheel](_wizard_dialog_.wizarddialog.md#onwheel)
 * [outerHTML](_wizard_dialog_.wizarddialog.md#outerhtml)
-* [ownerDocument](_wizard_dialog_.wizarddialog.md#readonly-ownerdocument)
+* [ownerDocument](_wizard_dialog_.wizarddialog.md#ownerdocument)
 * [pageIndex](_wizard_dialog_.wizarddialog.md#pageindex)
-* [parentElement](_wizard_dialog_.wizarddialog.md#readonly-parentelement)
-* [parentNode](_wizard_dialog_.wizarddialog.md#readonly-parentnode)
-* [prefix](_wizard_dialog_.wizarddialog.md#readonly-prefix)
-* [previousElementSibling](_wizard_dialog_.wizarddialog.md#readonly-previouselementsibling)
-* [previousSibling](_wizard_dialog_.wizarddialog.md#readonly-previoussibling)
-* [renderRoot](_wizard_dialog_.wizarddialog.md#readonly-renderroot)
-* [scrollHeight](_wizard_dialog_.wizarddialog.md#readonly-scrollheight)
+* [parentElement](_wizard_dialog_.wizarddialog.md#parentelement)
+* [parentNode](_wizard_dialog_.wizarddialog.md#parentnode)
+* [prefix](_wizard_dialog_.wizarddialog.md#prefix)
+* [previousElementSibling](_wizard_dialog_.wizarddialog.md#previouselementsibling)
+* [previousSibling](_wizard_dialog_.wizarddialog.md#previoussibling)
+* [renderRoot](_wizard_dialog_.wizarddialog.md#renderroot)
+* [scrollHeight](_wizard_dialog_.wizarddialog.md#scrollheight)
 * [scrollLeft](_wizard_dialog_.wizarddialog.md#scrollleft)
 * [scrollTop](_wizard_dialog_.wizarddialog.md#scrolltop)
-* [scrollWidth](_wizard_dialog_.wizarddialog.md#readonly-scrollwidth)
-* [shadowRoot](_wizard_dialog_.wizarddialog.md#readonly-shadowroot)
+* [scrollWidth](_wizard_dialog_.wizarddialog.md#scrollwidth)
+* [shadowRoot](_wizard_dialog_.wizarddialog.md#shadowroot)
 * [slot](_wizard_dialog_.wizarddialog.md#slot)
 * [spellcheck](_wizard_dialog_.wizarddialog.md#spellcheck)
-* [style](_wizard_dialog_.wizarddialog.md#readonly-style)
+* [style](_wizard_dialog_.wizarddialog.md#style)
 * [tabIndex](_wizard_dialog_.wizarddialog.md#tabindex)
-* [tagName](_wizard_dialog_.wizarddialog.md#readonly-tagname)
+* [tagName](_wizard_dialog_.wizarddialog.md#tagname)
 * [textContent](_wizard_dialog_.wizarddialog.md#textcontent)
 * [title](_wizard_dialog_.wizarddialog.md#title)
 * [translate](_wizard_dialog_.wizarddialog.md#translate)
 * [wizard](_wizard_dialog_.wizarddialog.md#wizard)
-* [[finalized]](_wizard_dialog_.wizarddialog.md#static-protected-[finalized])
-* [finalized](_wizard_dialog_.wizarddialog.md#static-protected-finalized)
-* [properties](_wizard_dialog_.wizarddialog.md#static-properties)
-* [render](_wizard_dialog_.wizarddialog.md#static-render)
-* [styles](_wizard_dialog_.wizarddialog.md#static-styles)
+* [[finalized]](_wizard_dialog_.wizarddialog.md#[finalized])
+* [finalized](_wizard_dialog_.wizarddialog.md#finalized)
+* [properties](_wizard_dialog_.wizarddialog.md#properties)
+* [render](_wizard_dialog_.wizarddialog.md#render)
+* [styles](_wizard_dialog_.wizarddialog.md#styles)
 
 ### Accessors
 
 * [dialog](_wizard_dialog_.wizarddialog.md#dialog)
 * [firstInvalidPage](_wizard_dialog_.wizarddialog.md#firstinvalidpage)
-* [hasUpdated](_wizard_dialog_.wizarddialog.md#protected-hasupdated)
+* [hasUpdated](_wizard_dialog_.wizarddialog.md#hasupdated)
 * [updateComplete](_wizard_dialog_.wizarddialog.md#updatecomplete)
-* [observedAttributes](_wizard_dialog_.wizarddialog.md#static-observedattributes)
+* [observedAttributes](_wizard_dialog_.wizarddialog.md#observedattributes)
 
 ### Methods
 
-* [_getUpdateComplete](_wizard_dialog_.wizarddialog.md#protected-_getupdatecomplete)
+* [\_getUpdateComplete](_wizard_dialog_.wizarddialog.md#_getupdatecomplete)
 * [act](_wizard_dialog_.wizarddialog.md#act)
 * [addEventListener](_wizard_dialog_.wizarddialog.md#addeventlistener)
-* [adoptStyles](_wizard_dialog_.wizarddialog.md#protected-adoptstyles)
+* [adoptStyles](_wizard_dialog_.wizarddialog.md#adoptstyles)
 * [after](_wizard_dialog_.wizarddialog.md#after)
 * [animate](_wizard_dialog_.wizarddialog.md#animate)
 * [append](_wizard_dialog_.wizarddialog.md#append)
@@ -233,11 +235,11 @@
 * [compareDocumentPosition](_wizard_dialog_.wizarddialog.md#comparedocumentposition)
 * [connectedCallback](_wizard_dialog_.wizarddialog.md#connectedcallback)
 * [contains](_wizard_dialog_.wizarddialog.md#contains)
-* [createRenderRoot](_wizard_dialog_.wizarddialog.md#protected-createrenderroot)
+* [createRenderRoot](_wizard_dialog_.wizarddialog.md#createrenderroot)
 * [disconnectedCallback](_wizard_dialog_.wizarddialog.md#disconnectedcallback)
 * [dispatchEvent](_wizard_dialog_.wizarddialog.md#dispatchevent)
-* [enableUpdating](_wizard_dialog_.wizarddialog.md#protected-enableupdating)
-* [firstUpdated](_wizard_dialog_.wizarddialog.md#protected-firstupdated)
+* [enableUpdating](_wizard_dialog_.wizarddialog.md#enableupdating)
+* [firstUpdated](_wizard_dialog_.wizarddialog.md#firstupdated)
 * [focus](_wizard_dialog_.wizarddialog.md#focus)
 * [getAnimations](_wizard_dialog_.wizarddialog.md#getanimations)
 * [getAttribute](_wizard_dialog_.wizarddialog.md#getattribute)
@@ -256,8 +258,7 @@
 * [hasAttributes](_wizard_dialog_.wizarddialog.md#hasattributes)
 * [hasChildNodes](_wizard_dialog_.wizarddialog.md#haschildnodes)
 * [hasPointerCapture](_wizard_dialog_.wizarddialog.md#haspointercapture)
-* [info](_wizard_dialog_.wizarddialog.md#optional-info)
-* [initialize](_wizard_dialog_.wizarddialog.md#protected-initialize)
+* [initialize](_wizard_dialog_.wizarddialog.md#initialize)
 * [insertAdjacentElement](_wizard_dialog_.wizarddialog.md#insertadjacentelement)
 * [insertAdjacentHTML](_wizard_dialog_.wizarddialog.md#insertadjacenthtml)
 * [insertAdjacentText](_wizard_dialog_.wizarddialog.md#insertadjacenttext)
@@ -272,7 +273,7 @@
 * [next](_wizard_dialog_.wizarddialog.md#next)
 * [normalize](_wizard_dialog_.wizarddialog.md#normalize)
 * [onClosed](_wizard_dialog_.wizarddialog.md#onclosed)
-* [performUpdate](_wizard_dialog_.wizarddialog.md#protected-performupdate)
+* [performUpdate](_wizard_dialog_.wizarddialog.md#performupdate)
 * [prepend](_wizard_dialog_.wizarddialog.md#prepend)
 * [prev](_wizard_dialog_.wizarddialog.md#prev)
 * [querySelector](_wizard_dialog_.wizarddialog.md#queryselector)
@@ -291,7 +292,7 @@
 * [requestFullscreen](_wizard_dialog_.wizarddialog.md#requestfullscreen)
 * [requestPointerLock](_wizard_dialog_.wizarddialog.md#requestpointerlock)
 * [requestUpdate](_wizard_dialog_.wizarddialog.md#requestupdate)
-* [requestUpdateInternal](_wizard_dialog_.wizarddialog.md#protected-requestupdateinternal)
+* [requestUpdateInternal](_wizard_dialog_.wizarddialog.md#requestupdateinternal)
 * [scroll](_wizard_dialog_.wizarddialog.md#scroll)
 * [scrollBy](_wizard_dialog_.wizarddialog.md#scrollby)
 * [scrollIntoView](_wizard_dialog_.wizarddialog.md#scrollintoview)
@@ -301,779 +302,782 @@
 * [setAttributeNode](_wizard_dialog_.wizarddialog.md#setattributenode)
 * [setAttributeNodeNS](_wizard_dialog_.wizarddialog.md#setattributenodens)
 * [setPointerCapture](_wizard_dialog_.wizarddialog.md#setpointercapture)
-* [shouldUpdate](_wizard_dialog_.wizarddialog.md#protected-shouldupdate)
+* [shouldUpdate](_wizard_dialog_.wizarddialog.md#shouldupdate)
 * [toggleAttribute](_wizard_dialog_.wizarddialog.md#toggleattribute)
-* [update](_wizard_dialog_.wizarddialog.md#protected-update)
-* [updated](_wizard_dialog_.wizarddialog.md#protected-updated)
-* [warn](_wizard_dialog_.wizarddialog.md#optional-warn)
+* [update](_wizard_dialog_.wizarddialog.md#update)
+* [updated](_wizard_dialog_.wizarddialog.md#updated)
 * [webkitMatchesSelector](_wizard_dialog_.wizarddialog.md#webkitmatchesselector)
-* [createProperty](_wizard_dialog_.wizarddialog.md#static-createproperty)
-* [finalize](_wizard_dialog_.wizarddialog.md#static-protected-finalize)
-* [getPropertyDescriptor](_wizard_dialog_.wizarddialog.md#static-protected-getpropertydescriptor)
-* [getPropertyOptions](_wizard_dialog_.wizarddialog.md#static-protected-getpropertyoptions)
-* [getStyles](_wizard_dialog_.wizarddialog.md#static-getstyles)
+* [createProperty](_wizard_dialog_.wizarddialog.md#createproperty)
+* [finalize](_wizard_dialog_.wizarddialog.md#finalize)
+* [getPropertyDescriptor](_wizard_dialog_.wizarddialog.md#getpropertydescriptor)
+* [getPropertyOptions](_wizard_dialog_.wizarddialog.md#getpropertyoptions)
+* [getStyles](_wizard_dialog_.wizarddialog.md#getstyles)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new WizardDialog**(): *[WizardDialog](_wizard_dialog_.wizarddialog.md)*
+\+ **new WizardDialog**(): [WizardDialog](_wizard_dialog_.wizarddialog.md)
 
 *Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[constructor](_wizard_textfield_.wizardtextfield.md#constructor)*
 
-*Defined in [src/wizard-dialog.ts:163](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L163)*
+*Defined in [src/wizard-dialog.ts:94](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L94)*
 
-**Returns:** *[WizardDialog](_wizard_dialog_.wizarddialog.md)*
+**Returns:** [WizardDialog](_wizard_dialog_.wizarddialog.md)
 
 ## Properties
 
-### `Readonly` ATTRIBUTE_NODE
+### ATTRIBUTE\_NODE
 
-• **ATTRIBUTE_NODE**: *number*
+• `Readonly` **ATTRIBUTE\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ATTRIBUTE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-attribute_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ATTRIBUTE_NODE](_wizard_textfield_.wizardtextfield.md#attribute_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10841
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10841*
 
 ___
 
-### `Readonly` CDATA_SECTION_NODE
+### CDATA\_SECTION\_NODE
 
-• **CDATA_SECTION_NODE**: *number*
+• `Readonly` **CDATA\_SECTION\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[CDATA_SECTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-cdata_section_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[CDATA_SECTION_NODE](_wizard_textfield_.wizardtextfield.md#cdata_section_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10845
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10845*
 
 node is a CDATASection node.
 
 ___
 
-### `Readonly` COMMENT_NODE
+### COMMENT\_NODE
 
-• **COMMENT_NODE**: *number*
+• `Readonly` **COMMENT\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[COMMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-comment_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[COMMENT_NODE](_wizard_textfield_.wizardtextfield.md#comment_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10849
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10849*
 
 node is a Comment node.
 
 ___
 
-### `Readonly` DOCUMENT_FRAGMENT_NODE
+### DOCUMENT\_FRAGMENT\_NODE
 
-• **DOCUMENT_FRAGMENT_NODE**: *number*
+• `Readonly` **DOCUMENT\_FRAGMENT\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_FRAGMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_fragment_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_FRAGMENT_NODE](_wizard_textfield_.wizardtextfield.md#document_fragment_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10853
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10853*
 
 node is a DocumentFragment node.
 
 ___
 
-### `Readonly` DOCUMENT_NODE
+### DOCUMENT\_NODE
 
-• **DOCUMENT_NODE**: *number*
+• `Readonly` **DOCUMENT\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_NODE](_wizard_textfield_.wizardtextfield.md#document_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10857
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10857*
 
 node is a document.
 
 ___
 
-### `Readonly` DOCUMENT_POSITION_CONTAINED_BY
+### DOCUMENT\_POSITION\_CONTAINED\_BY
 
-• **DOCUMENT_POSITION_CONTAINED_BY**: *number*
+• `Readonly` **DOCUMENT\_POSITION\_CONTAINED\_BY**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINED_BY](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contained_by)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINED_BY](_wizard_textfield_.wizardtextfield.md#document_position_contained_by)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10861
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10861*
 
 Set when other is a descendant of node.
 
 ___
 
-### `Readonly` DOCUMENT_POSITION_CONTAINS
+### DOCUMENT\_POSITION\_CONTAINS
 
-• **DOCUMENT_POSITION_CONTAINS**: *number*
+• `Readonly` **DOCUMENT\_POSITION\_CONTAINS**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINS](_wizard_textfield_.wizardtextfield.md#readonly-document_position_contains)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_CONTAINS](_wizard_textfield_.wizardtextfield.md#document_position_contains)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10865
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10865*
 
 Set when other is an ancestor of node.
 
 ___
 
-### `Readonly` DOCUMENT_POSITION_DISCONNECTED
+### DOCUMENT\_POSITION\_DISCONNECTED
 
-• **DOCUMENT_POSITION_DISCONNECTED**: *number*
+• `Readonly` **DOCUMENT\_POSITION\_DISCONNECTED**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_DISCONNECTED](_wizard_textfield_.wizardtextfield.md#readonly-document_position_disconnected)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_DISCONNECTED](_wizard_textfield_.wizardtextfield.md#document_position_disconnected)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10869
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10869*
 
 Set when node and other are not in the same tree.
 
 ___
 
-### `Readonly` DOCUMENT_POSITION_FOLLOWING
+### DOCUMENT\_POSITION\_FOLLOWING
 
-• **DOCUMENT_POSITION_FOLLOWING**: *number*
+• `Readonly` **DOCUMENT\_POSITION\_FOLLOWING**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_FOLLOWING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_following)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_FOLLOWING](_wizard_textfield_.wizardtextfield.md#document_position_following)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10873
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10873*
 
 Set when other is following node.
 
 ___
 
-### `Readonly` DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC
+### DOCUMENT\_POSITION\_IMPLEMENTATION\_SPECIFIC
 
-• **DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC**: *number*
+• `Readonly` **DOCUMENT\_POSITION\_IMPLEMENTATION\_SPECIFIC**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_textfield_.wizardtextfield.md#readonly-document_position_implementation_specific)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC](_wizard_textfield_.wizardtextfield.md#document_position_implementation_specific)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10874
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10874*
 
 ___
 
-### `Readonly` DOCUMENT_POSITION_PRECEDING
+### DOCUMENT\_POSITION\_PRECEDING
 
-• **DOCUMENT_POSITION_PRECEDING**: *number*
+• `Readonly` **DOCUMENT\_POSITION\_PRECEDING**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_PRECEDING](_wizard_textfield_.wizardtextfield.md#readonly-document_position_preceding)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_POSITION_PRECEDING](_wizard_textfield_.wizardtextfield.md#document_position_preceding)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10878
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10878*
 
 Set when other is preceding node.
 
 ___
 
-### `Readonly` DOCUMENT_TYPE_NODE
+### DOCUMENT\_TYPE\_NODE
 
-• **DOCUMENT_TYPE_NODE**: *number*
+• `Readonly` **DOCUMENT\_TYPE\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_TYPE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-document_type_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[DOCUMENT_TYPE_NODE](_wizard_textfield_.wizardtextfield.md#document_type_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10882
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10882*
 
 node is a doctype.
 
 ___
 
-### `Readonly` ELEMENT_NODE
+### ELEMENT\_NODE
 
-• **ELEMENT_NODE**: *number*
+• `Readonly` **ELEMENT\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ELEMENT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-element_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ELEMENT_NODE](_wizard_textfield_.wizardtextfield.md#element_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10886
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10886*
 
 node is an element.
 
 ___
 
-### `Readonly` ENTITY_NODE
+### ENTITY\_NODE
 
-• **ENTITY_NODE**: *number*
+• `Readonly` **ENTITY\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_NODE](_wizard_textfield_.wizardtextfield.md#entity_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10887
-
-___
-
-### `Readonly` ENTITY_REFERENCE_NODE
-
-• **ENTITY_REFERENCE_NODE**: *number*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_REFERENCE_NODE](_wizard_textfield_.wizardtextfield.md#readonly-entity_reference_node)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10888
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10887*
 
 ___
 
-### `Readonly` NOTATION_NODE
+### ENTITY\_REFERENCE\_NODE
 
-• **NOTATION_NODE**: *number*
+• `Readonly` **ENTITY\_REFERENCE\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[NOTATION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-notation_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ENTITY_REFERENCE_NODE](_wizard_textfield_.wizardtextfield.md#entity_reference_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10889
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10888*
 
 ___
 
-### `Readonly` PROCESSING_INSTRUCTION_NODE
+### NOTATION\_NODE
 
-• **PROCESSING_INSTRUCTION_NODE**: *number*
+• `Readonly` **NOTATION\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[PROCESSING_INSTRUCTION_NODE](_wizard_textfield_.wizardtextfield.md#readonly-processing_instruction_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[NOTATION_NODE](_wizard_textfield_.wizardtextfield.md#notation_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10893
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10889*
+
+___
+
+### PROCESSING\_INSTRUCTION\_NODE
+
+• `Readonly` **PROCESSING\_INSTRUCTION\_NODE**: number
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[PROCESSING_INSTRUCTION_NODE](_wizard_textfield_.wizardtextfield.md#processing_instruction_node)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10893*
 
 node is a ProcessingInstruction node.
 
 ___
 
-### `Readonly` TEXT_NODE
+### TEXT\_NODE
 
-• **TEXT_NODE**: *number*
+• `Readonly` **TEXT\_NODE**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[TEXT_NODE](_wizard_textfield_.wizardtextfield.md#readonly-text_node)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[TEXT_NODE](_wizard_textfield_.wizardtextfield.md#text_node)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10897
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10897*
 
 node is a Text node.
 
 ___
 
-###  accessKey
+### accessKey
 
-• **accessKey**: *string*
+•  **accessKey**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKey](_wizard_textfield_.wizardtextfield.md#accesskey)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6587
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6587*
 
 ___
 
-### `Readonly` accessKeyLabel
+### accessKeyLabel
 
-• **accessKeyLabel**: *string*
+• `Readonly` **accessKeyLabel**: string
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKeyLabel](_wizard_textfield_.wizardtextfield.md#readonly-accesskeylabel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[accessKeyLabel](_wizard_textfield_.wizardtextfield.md#accesskeylabel)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6588
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6588*
 
 ___
 
-### `Readonly` assignedSlot
+### assignedSlot
 
-• **assignedSlot**: *HTMLSlotElement | null*
+• `Readonly` **assignedSlot**: HTMLSlotElement \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[assignedSlot](_wizard_textfield_.wizardtextfield.md#readonly-assignedslot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[assignedSlot](_wizard_textfield_.wizardtextfield.md#assignedslot)*
 
 *Overrides void*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5099
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5099*
 
 ___
 
-### `Readonly` attributes
+### attributes
 
-• **attributes**: *NamedNodeMap*
+• `Readonly` **attributes**: NamedNodeMap
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributes](_wizard_textfield_.wizardtextfield.md#readonly-attributes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributes](_wizard_textfield_.wizardtextfield.md#attributes)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5100
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5100*
 
 ___
 
-###  autocapitalize
+### autocapitalize
 
-• **autocapitalize**: *string*
+•  **autocapitalize**: string
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[autocapitalize](_wizard_dialog_.wizarddialog.md#autocapitalize)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6589
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6589*
 
 ___
 
-###  autofocus
+### autofocus
 
-• **autofocus**: *boolean*
+•  **autofocus**: boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[autofocus](_wizard_textfield_.wizardtextfield.md#autofocus)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8001
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:8001*
 
 ___
 
-### `Readonly` baseURI
+### baseURI
 
-• **baseURI**: *string*
+• `Readonly` **baseURI**: string
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[baseURI](_wizard_textfield_.wizardtextfield.md#readonly-baseuri)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[baseURI](_wizard_textfield_.wizardtextfield.md#baseuri)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10756
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10756*
 
 Returns node's node document's document base URL.
 
 ___
 
-### `Readonly` childElementCount
+### childElementCount
 
-• **childElementCount**: *number*
+• `Readonly` **childElementCount**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childElementCount](_wizard_textfield_.wizardtextfield.md#readonly-childelementcount)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childElementCount](_wizard_textfield_.wizardtextfield.md#childelementcount)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11313
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11313*
 
 ___
 
-### `Readonly` childNodes
+### childNodes
 
-• **childNodes**: *NodeListOf‹ChildNode›*
+• `Readonly` **childNodes**: NodeListOf\<ChildNode>
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childNodes](_wizard_textfield_.wizardtextfield.md#readonly-childnodes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[childNodes](_wizard_textfield_.wizardtextfield.md#childnodes)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10760
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10760*
 
 Returns the children.
 
 ___
 
-### `Readonly` children
+### children
 
-• **children**: *HTMLCollection*
+• `Readonly` **children**: HTMLCollection
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[children](_wizard_textfield_.wizardtextfield.md#readonly-children)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[children](_wizard_textfield_.wizardtextfield.md#children)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11317
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11317*
 
 Returns the child elements.
 
 ___
 
-### `Readonly` classList
+### classList
 
-• **classList**: *DOMTokenList*
+• `Readonly` **classList**: DOMTokenList
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[classList](_wizard_textfield_.wizardtextfield.md#readonly-classlist)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[classList](_wizard_textfield_.wizardtextfield.md#classlist)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5104
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5104*
 
 Allows for manipulation of element's class content attribute as a set of whitespace-separated tokens through a DOMTokenList object.
 
 ___
 
-###  className
+### className
 
-• **className**: *string*
+•  **className**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[className](_wizard_textfield_.wizardtextfield.md#classname)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5108
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5108*
 
 Returns the value of element's class content attribute. Can be set to change it.
 
 ___
 
-### `Readonly` clientHeight
+### clientHeight
 
-• **clientHeight**: *number*
+• `Readonly` **clientHeight**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientHeight](_wizard_textfield_.wizardtextfield.md#readonly-clientheight)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientHeight](_wizard_textfield_.wizardtextfield.md#clientheight)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5109
-
-___
-
-### `Readonly` clientLeft
-
-• **clientLeft**: *number*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientLeft](_wizard_textfield_.wizardtextfield.md#readonly-clientleft)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5110
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5109*
 
 ___
 
-### `Readonly` clientTop
+### clientLeft
 
-• **clientTop**: *number*
+• `Readonly` **clientLeft**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientTop](_wizard_textfield_.wizardtextfield.md#readonly-clienttop)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientLeft](_wizard_textfield_.wizardtextfield.md#clientleft)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5111
-
-___
-
-### `Readonly` clientWidth
-
-• **clientWidth**: *number*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientWidth](_wizard_textfield_.wizardtextfield.md#readonly-clientwidth)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5112
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5110*
 
 ___
 
-###  contentEditable
+### clientTop
 
-• **contentEditable**: *string*
+• `Readonly` **clientTop**: number
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientTop](_wizard_textfield_.wizardtextfield.md#clienttop)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5111*
+
+___
+
+### clientWidth
+
+• `Readonly` **clientWidth**: number
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[clientWidth](_wizard_textfield_.wizardtextfield.md#clientwidth)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5112*
+
+___
+
+### contentEditable
+
+•  **contentEditable**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contentEditable](_wizard_textfield_.wizardtextfield.md#contenteditable)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5264
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5264*
 
 ___
 
-### `Readonly` dataset
+### dataset
 
-• **dataset**: *DOMStringMap*
+• `Readonly` **dataset**: DOMStringMap
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dataset](_wizard_textfield_.wizardtextfield.md#readonly-dataset)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dataset](_wizard_textfield_.wizardtextfield.md#dataset)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8002
-
-___
-
-###  dialogs
-
-• **dialogs**: *NodeListOf‹Dialog›*
-
-*Defined in [src/wizard-dialog.ts:41](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L41)*
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:8002*
 
 ___
 
-###  dir
+### dialogs
 
-• **dir**: *string*
+•  **dialogs**: NodeListOf\<Dialog>
+
+*Defined in [src/wizard-dialog.ts:43](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L43)*
+
+___
+
+### dir
+
+•  **dir**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dir](_wizard_textfield_.wizardtextfield.md#dir)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6590
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6590*
 
 ___
 
-###  draggable
+### draggable
 
-• **draggable**: *boolean*
+•  **draggable**: boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[draggable](_wizard_textfield_.wizardtextfield.md#draggable)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6591
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6591*
 
 ___
 
-###  enterKeyHint
+### enterKeyHint
 
-• **enterKeyHint**: *string*
+•  **enterKeyHint**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enterKeyHint](_wizard_textfield_.wizardtextfield.md#enterkeyhint)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5265
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5265*
 
 ___
 
-### `Readonly` firstChild
+### firstChild
 
-• **firstChild**: *ChildNode | null*
+• `Readonly` **firstChild**: ChildNode \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstChild](_wizard_textfield_.wizardtextfield.md#readonly-firstchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstChild](_wizard_textfield_.wizardtextfield.md#firstchild)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10764
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10764*
 
 Returns the first child.
 
 ___
 
-### `Readonly` firstElementChild
+### firstElementChild
 
-• **firstElementChild**: *Element | null*
+• `Readonly` **firstElementChild**: Element \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstElementChild](_wizard_textfield_.wizardtextfield.md#readonly-firstelementchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[firstElementChild](_wizard_textfield_.wizardtextfield.md#firstelementchild)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11321
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11321*
 
 Returns the first child that is an element, and null otherwise.
 
 ___
 
-### `Optional` floatingLabelFoundation
+### floatingLabelFoundation
 
-• **floatingLabelFoundation**? : *MDCFloatingLabelFoundation*
+• `Optional` **floatingLabelFoundation**: MDCFloatingLabelFoundation
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[floatingLabelFoundation](_wizard_textfield_.wizardtextfield.md#optional-floatinglabelfoundation)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[floatingLabelFoundation](_wizard_textfield_.wizardtextfield.md#floatinglabelfoundation)*
 
-Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:34
+*Overrides void*
+
+*Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:34*
 
 ___
 
-###  hidden
+### hidden
 
-• **hidden**: *boolean*
+•  **hidden**: boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hidden](_wizard_textfield_.wizardtextfield.md#hidden)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6592
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6592*
 
 ___
 
-###  id
+### id
 
-• **id**: *string*
+•  **id**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[id](_wizard_textfield_.wizardtextfield.md#id)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5116
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5116*
 
 Returns the value of element's id content attribute. Can be set to change it.
 
 ___
 
-###  innerHTML
+### innerHTML
 
-• **innerHTML**: *string*
+•  **innerHTML**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerHTML](_wizard_textfield_.wizardtextfield.md#innerhtml)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:9586
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:9586*
 
 ___
 
-###  innerText
+### innerText
 
-• **innerText**: *string*
+•  **innerText**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[innerText](_wizard_textfield_.wizardtextfield.md#innertext)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6593
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6593*
 
 ___
 
-###  inputMode
+### inputMode
 
-• **inputMode**: *string*
+•  **inputMode**: string
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[inputMode](_wizard_dialog_.wizarddialog.md#inputmode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5266
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5266*
 
 ___
 
-###  inputs
+### inputs
 
-• **inputs**: *NodeListOf‹[WizardInput](../modules/_foundation_.md#wizardinput)›*
+•  **inputs**: NodeListOf\<[WizardInput](../modules/_foundation_.md#wizardinput)>
 
-*Defined in [src/wizard-dialog.ts:43](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L43)*
+*Defined in [src/wizard-dialog.ts:45](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L45)*
 
 ___
 
-### `Readonly` isConnected
+### isConnected
 
-• **isConnected**: *boolean*
+• `Readonly` **isConnected**: boolean
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isConnected](_wizard_textfield_.wizardtextfield.md#readonly-isconnected)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isConnected](_wizard_textfield_.wizardtextfield.md#isconnected)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10768
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10768*
 
 Returns true if node is connected and false otherwise.
 
 ___
 
-### `Readonly` isContentEditable
+### isContentEditable
 
-• **isContentEditable**: *boolean*
+• `Readonly` **isContentEditable**: boolean
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isContentEditable](_wizard_textfield_.wizardtextfield.md#readonly-iscontenteditable)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isContentEditable](_wizard_textfield_.wizardtextfield.md#iscontenteditable)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5267
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5267*
 
 ___
 
-###  lang
+### lang
 
-• **lang**: *string*
+•  **lang**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lang](_wizard_textfield_.wizardtextfield.md#lang)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6594
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6594*
 
 ___
 
-### `Readonly` lastChild
+### lastChild
 
-• **lastChild**: *ChildNode | null*
+• `Readonly` **lastChild**: ChildNode \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastChild](_wizard_textfield_.wizardtextfield.md#readonly-lastchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastChild](_wizard_textfield_.wizardtextfield.md#lastchild)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10772
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10772*
 
 Returns the last child.
 
 ___
 
-### `Readonly` lastElementChild
+### lastElementChild
 
-• **lastElementChild**: *Element | null*
+• `Readonly` **lastElementChild**: Element \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastElementChild](_wizard_textfield_.wizardtextfield.md#readonly-lastelementchild)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lastElementChild](_wizard_textfield_.wizardtextfield.md#lastelementchild)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11325
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11325*
 
 Returns the last child that is an element, and null otherwise.
 
 ___
 
-### `Optional` lineRippleFoundation
+### lineRippleFoundation
 
-• **lineRippleFoundation**? : *MDCLineRippleFoundation*
+• `Optional` **lineRippleFoundation**: MDCLineRippleFoundation
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lineRippleFoundation](_wizard_textfield_.wizardtextfield.md#optional-lineripplefoundation)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lineRippleFoundation](_wizard_textfield_.wizardtextfield.md#lineripplefoundation)*
 
-Defined in node_modules/@material/mwc-select/mwc-select-base.d.ts:35
+*Overrides void*
+
+*Defined in node_modules/@material/mwc-textfield/mwc-textfield-base.d.ts:35*
 
 ___
 
-### `Readonly` localName
+### localName
 
-• **localName**: *string*
+• `Readonly` **localName**: string
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[localName](_wizard_textfield_.wizardtextfield.md#readonly-localname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[localName](_wizard_textfield_.wizardtextfield.md#localname)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5120
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5120*
 
 Returns the local name.
 
 ___
 
-### `Readonly` namespaceURI
+### namespaceURI
 
-• **namespaceURI**: *string | null*
+• `Readonly` **namespaceURI**: string \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[namespaceURI](_wizard_textfield_.wizardtextfield.md#readonly-namespaceuri)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[namespaceURI](_wizard_textfield_.wizardtextfield.md#namespaceuri)*
 
 *Overrides void*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5124
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5124*
 
 Returns the namespace.
 
 ___
 
-### `Readonly` nextElementSibling
+### nextElementSibling
 
-• **nextElementSibling**: *Element | null*
+• `Readonly` **nextElementSibling**: Element \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextelementsibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextElementSibling](_wizard_textfield_.wizardtextfield.md#nextelementsibling)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11043
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11043*
 
 Returns the first following sibling that is an element, and null otherwise.
 
 ___
 
-### `Readonly` nextSibling
+### nextSibling
 
-• **nextSibling**: *ChildNode | null*
+• `Readonly` **nextSibling**: ChildNode \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextSibling](_wizard_textfield_.wizardtextfield.md#readonly-nextsibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nextSibling](_wizard_textfield_.wizardtextfield.md#nextsibling)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10778
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10778*
 
 Returns the next sibling.
 
 ___
 
-### `Readonly` nodeName
+### nodeName
 
-• **nodeName**: *string*
+• `Readonly` **nodeName**: string
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeName](_wizard_textfield_.wizardtextfield.md#readonly-nodename)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeName](_wizard_textfield_.wizardtextfield.md#nodename)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10782
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10782*
 
 Returns a string appropriate for the type of node.
 
 ___
 
-### `Readonly` nodeType
+### nodeType
 
-• **nodeType**: *number*
+• `Readonly` **nodeType**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeType](_wizard_textfield_.wizardtextfield.md#readonly-nodetype)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeType](_wizard_textfield_.wizardtextfield.md#nodetype)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10786
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10786*
 
 Returns the type of node.
 
 ___
 
-###  nodeValue
+### nodeValue
 
-• **nodeValue**: *string | null*
+•  **nodeValue**: string \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nodeValue](_wizard_textfield_.wizardtextfield.md#nodevalue)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10787
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10787*
 
 ___
 
-### `Optional` nonce
+### nonce
 
-• **nonce**? : *undefined | string*
+• `Optional` **nonce**: undefined \| string
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nonce](_wizard_textfield_.wizardtextfield.md#optional-nonce)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[nonce](_wizard_textfield_.wizardtextfield.md#nonce)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8003
-
-___
-
-### `Readonly` offsetHeight
-
-• **offsetHeight**: *number*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetHeight](_wizard_textfield_.wizardtextfield.md#readonly-offsetheight)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6595
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:8003*
 
 ___
 
-### `Readonly` offsetLeft
+### offsetHeight
 
-• **offsetLeft**: *number*
+• `Readonly` **offsetHeight**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetLeft](_wizard_textfield_.wizardtextfield.md#readonly-offsetleft)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetHeight](_wizard_textfield_.wizardtextfield.md#offsetheight)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6596
-
-___
-
-### `Readonly` offsetParent
-
-• **offsetParent**: *Element | null*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetParent](_wizard_textfield_.wizardtextfield.md#readonly-offsetparent)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6597
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6595*
 
 ___
 
-### `Readonly` offsetTop
+### offsetLeft
 
-• **offsetTop**: *number*
+• `Readonly` **offsetLeft**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetTop](_wizard_textfield_.wizardtextfield.md#readonly-offsettop)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetLeft](_wizard_textfield_.wizardtextfield.md#offsetleft)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6598
-
-___
-
-### `Readonly` offsetWidth
-
-• **offsetWidth**: *number*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetWidth](_wizard_textfield_.wizardtextfield.md#readonly-offsetwidth)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6599
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6596*
 
 ___
 
-###  onabort
+### offsetParent
 
-• **onabort**: *function | null*
+• `Readonly` **offsetParent**: Element \| null
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetParent](_wizard_textfield_.wizardtextfield.md#offsetparent)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6597*
+
+___
+
+### offsetTop
+
+• `Readonly` **offsetTop**: number
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetTop](_wizard_textfield_.wizardtextfield.md#offsettop)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6598*
+
+___
+
+### offsetWidth
+
+• `Readonly` **offsetWidth**: number
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[offsetWidth](_wizard_textfield_.wizardtextfield.md#offsetwidth)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6599*
+
+___
+
+### onabort
+
+•  **onabort**: (this: GlobalEventHandlers, ev: UIEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onabort](_wizard_textfield_.wizardtextfield.md#onabort)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5777
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5777*
 
 Fires when the user aborts the download.
 
@@ -1081,63 +1085,63 @@ Fires when the user aborts the download.
 
 ___
 
-###  onanimationcancel
+### onanimationcancel
 
-• **onanimationcancel**: *function | null*
+•  **onanimationcancel**: (this: GlobalEventHandlers, ev: AnimationEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationcancel](_wizard_textfield_.wizardtextfield.md#onanimationcancel)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5778
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5778*
 
 ___
 
-###  onanimationend
+### onanimationend
 
-• **onanimationend**: *function | null*
+•  **onanimationend**: (this: GlobalEventHandlers, ev: AnimationEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationend](_wizard_textfield_.wizardtextfield.md#onanimationend)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5779
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5779*
 
 ___
 
-###  onanimationiteration
+### onanimationiteration
 
-• **onanimationiteration**: *function | null*
+•  **onanimationiteration**: (this: GlobalEventHandlers, ev: AnimationEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationiteration](_wizard_textfield_.wizardtextfield.md#onanimationiteration)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5780
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5780*
 
 ___
 
-###  onanimationstart
+### onanimationstart
 
-• **onanimationstart**: *function | null*
+•  **onanimationstart**: (this: GlobalEventHandlers, ev: AnimationEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onanimationstart](_wizard_textfield_.wizardtextfield.md#onanimationstart)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5781
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5781*
 
 ___
 
-###  onauxclick
+### onauxclick
 
-• **onauxclick**: *function | null*
+•  **onauxclick**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onauxclick](_wizard_textfield_.wizardtextfield.md#onauxclick)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5782
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5782*
 
 ___
 
-###  onblur
+### onblur
 
-• **onblur**: *function | null*
+•  **onblur**: (this: GlobalEventHandlers, ev: FocusEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onblur](_wizard_textfield_.wizardtextfield.md#onblur)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5787
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5787*
 
 Fires when the object loses the input focus.
 
@@ -1145,23 +1149,23 @@ Fires when the object loses the input focus.
 
 ___
 
-###  oncancel
+### oncancel
 
-• **oncancel**: *function | null*
+•  **oncancel**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncancel](_wizard_textfield_.wizardtextfield.md#oncancel)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5788
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5788*
 
 ___
 
-###  oncanplay
+### oncanplay
 
-• **oncanplay**: *function | null*
+•  **oncanplay**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplay](_wizard_textfield_.wizardtextfield.md#oncanplay)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5793
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5793*
 
 Occurs when playback is possible, but would require further buffering.
 
@@ -1169,23 +1173,23 @@ Occurs when playback is possible, but would require further buffering.
 
 ___
 
-###  oncanplaythrough
+### oncanplaythrough
 
-• **oncanplaythrough**: *function | null*
+•  **oncanplaythrough**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncanplaythrough](_wizard_textfield_.wizardtextfield.md#oncanplaythrough)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5794
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5794*
 
 ___
 
-###  onchange
+### onchange
 
-• **onchange**: *function | null*
+•  **onchange**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onchange](_wizard_textfield_.wizardtextfield.md#onchange)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5799
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5799*
 
 Fires when the contents of the object or selection have changed.
 
@@ -1193,13 +1197,13 @@ Fires when the contents of the object or selection have changed.
 
 ___
 
-###  onclick
+### onclick
 
-• **onclick**: *function | null*
+•  **onclick**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclick](_wizard_textfield_.wizardtextfield.md#onclick)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5804
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5804*
 
 Fires when the user clicks the left mouse button on the object
 
@@ -1207,23 +1211,23 @@ Fires when the user clicks the left mouse button on the object
 
 ___
 
-###  onclose
+### onclose
 
-• **onclose**: *function | null*
+•  **onclose**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onclose](_wizard_textfield_.wizardtextfield.md#onclose)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5805
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5805*
 
 ___
 
-###  oncontextmenu
+### oncontextmenu
 
-• **oncontextmenu**: *function | null*
+•  **oncontextmenu**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncontextmenu](_wizard_textfield_.wizardtextfield.md#oncontextmenu)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5810
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5810*
 
 Fires when the user clicks the right mouse button in the client area, opening the context menu.
 
@@ -1231,43 +1235,43 @@ Fires when the user clicks the right mouse button in the client area, opening th
 
 ___
 
-###  oncopy
+### oncopy
 
-• **oncopy**: *function | null*
+•  **oncopy**: (this: DocumentAndElementEventHandlers, ev: ClipboardEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncopy](_wizard_textfield_.wizardtextfield.md#oncopy)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:4898
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:4898*
 
 ___
 
-###  oncuechange
+### oncuechange
 
-• **oncuechange**: *function | null*
+•  **oncuechange**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncuechange](_wizard_textfield_.wizardtextfield.md#oncuechange)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5811
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5811*
 
 ___
 
-###  oncut
+### oncut
 
-• **oncut**: *function | null*
+•  **oncut**: (this: DocumentAndElementEventHandlers, ev: ClipboardEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oncut](_wizard_textfield_.wizardtextfield.md#oncut)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:4899
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:4899*
 
 ___
 
-###  ondblclick
+### ondblclick
 
-• **ondblclick**: *function | null*
+•  **ondblclick**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondblclick](_wizard_textfield_.wizardtextfield.md#ondblclick)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5816
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5816*
 
 Fires when the user double-clicks the object.
 
@@ -1275,13 +1279,13 @@ Fires when the user double-clicks the object.
 
 ___
 
-###  ondrag
+### ondrag
 
-• **ondrag**: *function | null*
+•  **ondrag**: (this: GlobalEventHandlers, ev: DragEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrag](_wizard_textfield_.wizardtextfield.md#ondrag)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5821
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5821*
 
 Fires on the source object continuously during a drag operation.
 
@@ -1289,13 +1293,13 @@ Fires on the source object continuously during a drag operation.
 
 ___
 
-###  ondragend
+### ondragend
 
-• **ondragend**: *function | null*
+•  **ondragend**: (this: GlobalEventHandlers, ev: DragEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragend](_wizard_textfield_.wizardtextfield.md#ondragend)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5826
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5826*
 
 Fires on the source object when the user releases the mouse at the close of a drag operation.
 
@@ -1303,13 +1307,13 @@ Fires on the source object when the user releases the mouse at the close of a dr
 
 ___
 
-###  ondragenter
+### ondragenter
 
-• **ondragenter**: *function | null*
+•  **ondragenter**: (this: GlobalEventHandlers, ev: DragEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragenter](_wizard_textfield_.wizardtextfield.md#ondragenter)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5831
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5831*
 
 Fires on the target element when the user drags the object to a valid drop target.
 
@@ -1317,23 +1321,23 @@ Fires on the target element when the user drags the object to a valid drop targe
 
 ___
 
-###  ondragexit
+### ondragexit
 
-• **ondragexit**: *function | null*
+•  **ondragexit**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragexit](_wizard_textfield_.wizardtextfield.md#ondragexit)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5832
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5832*
 
 ___
 
-###  ondragleave
+### ondragleave
 
-• **ondragleave**: *function | null*
+•  **ondragleave**: (this: GlobalEventHandlers, ev: DragEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragleave](_wizard_textfield_.wizardtextfield.md#ondragleave)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5837
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5837*
 
 Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
 
@@ -1341,13 +1345,13 @@ Fires on the target object when the user moves the mouse out of a valid drop tar
 
 ___
 
-###  ondragover
+### ondragover
 
-• **ondragover**: *function | null*
+•  **ondragover**: (this: GlobalEventHandlers, ev: DragEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragover](_wizard_textfield_.wizardtextfield.md#ondragover)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5842
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5842*
 
 Fires on the target element continuously while the user drags the object over a valid drop target.
 
@@ -1355,13 +1359,13 @@ Fires on the target element continuously while the user drags the object over a 
 
 ___
 
-###  ondragstart
+### ondragstart
 
-• **ondragstart**: *function | null*
+•  **ondragstart**: (this: GlobalEventHandlers, ev: DragEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondragstart](_wizard_textfield_.wizardtextfield.md#ondragstart)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5847
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5847*
 
 Fires on the source object when the user starts to drag a text selection or selected object.
 
@@ -1369,23 +1373,23 @@ Fires on the source object when the user starts to drag a text selection or sele
 
 ___
 
-###  ondrop
+### ondrop
 
-• **ondrop**: *function | null*
+•  **ondrop**: (this: GlobalEventHandlers, ev: DragEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondrop](_wizard_textfield_.wizardtextfield.md#ondrop)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5848
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5848*
 
 ___
 
-###  ondurationchange
+### ondurationchange
 
-• **ondurationchange**: *function | null*
+•  **ondurationchange**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ondurationchange](_wizard_textfield_.wizardtextfield.md#ondurationchange)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5853
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5853*
 
 Occurs when the duration attribute is updated.
 
@@ -1393,13 +1397,13 @@ Occurs when the duration attribute is updated.
 
 ___
 
-###  onemptied
+### onemptied
 
-• **onemptied**: *function | null*
+•  **onemptied**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onemptied](_wizard_textfield_.wizardtextfield.md#onemptied)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5858
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5858*
 
 Occurs when the media element is reset to its initial state.
 
@@ -1407,13 +1411,13 @@ Occurs when the media element is reset to its initial state.
 
 ___
 
-###  onended
+### onended
 
-• **onended**: *function | null*
+•  **onended**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onended](_wizard_textfield_.wizardtextfield.md#onended)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5863
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5863*
 
 Occurs when the end of playback is reached.
 
@@ -1421,13 +1425,13 @@ Occurs when the end of playback is reached.
 
 ___
 
-###  onerror
+### onerror
 
-• **onerror**: *OnErrorEventHandler*
+•  **onerror**: OnErrorEventHandler
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onerror](_wizard_textfield_.wizardtextfield.md#onerror)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5868
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5868*
 
 Fires when an error occurs during object loading.
 
@@ -1435,13 +1439,13 @@ Fires when an error occurs during object loading.
 
 ___
 
-###  onfocus
+### onfocus
 
-• **onfocus**: *function | null*
+•  **onfocus**: (this: GlobalEventHandlers, ev: FocusEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfocus](_wizard_textfield_.wizardtextfield.md#onfocus)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5873
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5873*
 
 Fires when the object receives focus.
 
@@ -1449,63 +1453,63 @@ Fires when the object receives focus.
 
 ___
 
-###  onfullscreenchange
+### onfullscreenchange
 
-• **onfullscreenchange**: *function | null*
+•  **onfullscreenchange**: (this: Element, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenchange](_wizard_textfield_.wizardtextfield.md#onfullscreenchange)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5125
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5125*
 
 ___
 
-###  onfullscreenerror
+### onfullscreenerror
 
-• **onfullscreenerror**: *function | null*
+•  **onfullscreenerror**: (this: Element, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onfullscreenerror](_wizard_textfield_.wizardtextfield.md#onfullscreenerror)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5126
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5126*
 
 ___
 
-###  ongotpointercapture
+### ongotpointercapture
 
-• **ongotpointercapture**: *function | null*
+•  **ongotpointercapture**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ongotpointercapture](_wizard_textfield_.wizardtextfield.md#ongotpointercapture)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5874
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5874*
 
 ___
 
-###  oninput
+### oninput
 
-• **oninput**: *function | null*
+•  **oninput**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninput](_wizard_textfield_.wizardtextfield.md#oninput)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5875
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5875*
 
 ___
 
-###  oninvalid
+### oninvalid
 
-• **oninvalid**: *function | null*
+•  **oninvalid**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[oninvalid](_wizard_textfield_.wizardtextfield.md#oninvalid)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5876
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5876*
 
 ___
 
-###  onkeydown
+### onkeydown
 
-• **onkeydown**: *function | null*
+•  **onkeydown**: (this: GlobalEventHandlers, ev: KeyboardEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeydown](_wizard_textfield_.wizardtextfield.md#onkeydown)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5881
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5881*
 
 Fires when the user presses a key.
 
@@ -1513,13 +1517,13 @@ Fires when the user presses a key.
 
 ___
 
-###  onkeypress
+### onkeypress
 
-• **onkeypress**: *function | null*
+•  **onkeypress**: (this: GlobalEventHandlers, ev: KeyboardEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeypress](_wizard_textfield_.wizardtextfield.md#onkeypress)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5886
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5886*
 
 Fires when the user presses an alphanumeric key.
 
@@ -1527,13 +1531,13 @@ Fires when the user presses an alphanumeric key.
 
 ___
 
-###  onkeyup
+### onkeyup
 
-• **onkeyup**: *function | null*
+•  **onkeyup**: (this: GlobalEventHandlers, ev: KeyboardEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onkeyup](_wizard_textfield_.wizardtextfield.md#onkeyup)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5891
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5891*
 
 Fires when the user releases a key.
 
@@ -1541,13 +1545,13 @@ Fires when the user releases a key.
 
 ___
 
-###  onload
+### onload
 
-• **onload**: *function | null*
+•  **onload**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onload](_wizard_textfield_.wizardtextfield.md#onload)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5896
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5896*
 
 Fires immediately after the browser loads the object.
 
@@ -1555,13 +1559,13 @@ Fires immediately after the browser loads the object.
 
 ___
 
-###  onloadeddata
+### onloadeddata
 
-• **onloadeddata**: *function | null*
+•  **onloadeddata**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadeddata](_wizard_textfield_.wizardtextfield.md#onloadeddata)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5901
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5901*
 
 Occurs when media data is loaded at the current playback position.
 
@@ -1569,13 +1573,13 @@ Occurs when media data is loaded at the current playback position.
 
 ___
 
-###  onloadedmetadata
+### onloadedmetadata
 
-• **onloadedmetadata**: *function | null*
+•  **onloadedmetadata**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadedmetadata](_wizard_textfield_.wizardtextfield.md#onloadedmetadata)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5906
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5906*
 
 Occurs when the duration and dimensions of the media have been determined.
 
@@ -1583,13 +1587,13 @@ Occurs when the duration and dimensions of the media have been determined.
 
 ___
 
-###  onloadstart
+### onloadstart
 
-• **onloadstart**: *function | null*
+•  **onloadstart**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onloadstart](_wizard_textfield_.wizardtextfield.md#onloadstart)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5911
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5911*
 
 Occurs when Internet Explorer begins looking for media data.
 
@@ -1597,23 +1601,23 @@ Occurs when Internet Explorer begins looking for media data.
 
 ___
 
-###  onlostpointercapture
+### onlostpointercapture
 
-• **onlostpointercapture**: *function | null*
+•  **onlostpointercapture**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onlostpointercapture](_wizard_textfield_.wizardtextfield.md#onlostpointercapture)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5912
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5912*
 
 ___
 
-###  onmousedown
+### onmousedown
 
-• **onmousedown**: *function | null*
+•  **onmousedown**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousedown](_wizard_textfield_.wizardtextfield.md#onmousedown)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5917
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5917*
 
 Fires when the user clicks the object with either mouse button.
 
@@ -1621,33 +1625,33 @@ Fires when the user clicks the object with either mouse button.
 
 ___
 
-###  onmouseenter
+### onmouseenter
 
-• **onmouseenter**: *function | null*
+•  **onmouseenter**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseenter](_wizard_textfield_.wizardtextfield.md#onmouseenter)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5918
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5918*
 
 ___
 
-###  onmouseleave
+### onmouseleave
 
-• **onmouseleave**: *function | null*
+•  **onmouseleave**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseleave](_wizard_textfield_.wizardtextfield.md#onmouseleave)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5919
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5919*
 
 ___
 
-###  onmousemove
+### onmousemove
 
-• **onmousemove**: *function | null*
+•  **onmousemove**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmousemove](_wizard_textfield_.wizardtextfield.md#onmousemove)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5924
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5924*
 
 Fires when the user moves the mouse over the object.
 
@@ -1655,13 +1659,13 @@ Fires when the user moves the mouse over the object.
 
 ___
 
-###  onmouseout
+### onmouseout
 
-• **onmouseout**: *function | null*
+•  **onmouseout**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseout](_wizard_textfield_.wizardtextfield.md#onmouseout)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5929
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5929*
 
 Fires when the user moves the mouse pointer outside the boundaries of the object.
 
@@ -1669,13 +1673,13 @@ Fires when the user moves the mouse pointer outside the boundaries of the object
 
 ___
 
-###  onmouseover
+### onmouseover
 
-• **onmouseover**: *function | null*
+•  **onmouseover**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseover](_wizard_textfield_.wizardtextfield.md#onmouseover)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5934
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5934*
 
 Fires when the user moves the mouse pointer into the object.
 
@@ -1683,13 +1687,13 @@ Fires when the user moves the mouse pointer into the object.
 
 ___
 
-###  onmouseup
+### onmouseup
 
-• **onmouseup**: *function | null*
+•  **onmouseup**: (this: GlobalEventHandlers, ev: MouseEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onmouseup](_wizard_textfield_.wizardtextfield.md#onmouseup)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5939
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5939*
 
 Fires when the user releases a mouse button while the mouse is over the object.
 
@@ -1697,23 +1701,23 @@ Fires when the user releases a mouse button while the mouse is over the object.
 
 ___
 
-###  onpaste
+### onpaste
 
-• **onpaste**: *function | null*
+•  **onpaste**: (this: DocumentAndElementEventHandlers, ev: ClipboardEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpaste](_wizard_textfield_.wizardtextfield.md#onpaste)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:4900
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:4900*
 
 ___
 
-###  onpause
+### onpause
 
-• **onpause**: *function | null*
+•  **onpause**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpause](_wizard_textfield_.wizardtextfield.md#onpause)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5944
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5944*
 
 Occurs when playback is paused.
 
@@ -1721,13 +1725,13 @@ Occurs when playback is paused.
 
 ___
 
-###  onplay
+### onplay
 
-• **onplay**: *function | null*
+•  **onplay**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplay](_wizard_textfield_.wizardtextfield.md#onplay)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5949
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5949*
 
 Occurs when the play method is requested.
 
@@ -1735,13 +1739,13 @@ Occurs when the play method is requested.
 
 ___
 
-###  onplaying
+### onplaying
 
-• **onplaying**: *function | null*
+•  **onplaying**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onplaying](_wizard_textfield_.wizardtextfield.md#onplaying)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5954
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5954*
 
 Occurs when the audio or video has started playing.
 
@@ -1749,93 +1753,93 @@ Occurs when the audio or video has started playing.
 
 ___
 
-###  onpointercancel
+### onpointercancel
 
-• **onpointercancel**: *function | null*
+•  **onpointercancel**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointercancel](_wizard_textfield_.wizardtextfield.md#onpointercancel)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5955
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5955*
 
 ___
 
-###  onpointerdown
+### onpointerdown
 
-• **onpointerdown**: *function | null*
+•  **onpointerdown**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerdown](_wizard_textfield_.wizardtextfield.md#onpointerdown)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5956
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5956*
 
 ___
 
-###  onpointerenter
+### onpointerenter
 
-• **onpointerenter**: *function | null*
+•  **onpointerenter**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerenter](_wizard_textfield_.wizardtextfield.md#onpointerenter)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5957
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5957*
 
 ___
 
-###  onpointerleave
+### onpointerleave
 
-• **onpointerleave**: *function | null*
+•  **onpointerleave**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerleave](_wizard_textfield_.wizardtextfield.md#onpointerleave)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5958
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5958*
 
 ___
 
-###  onpointermove
+### onpointermove
 
-• **onpointermove**: *function | null*
+•  **onpointermove**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointermove](_wizard_textfield_.wizardtextfield.md#onpointermove)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5959
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5959*
 
 ___
 
-###  onpointerout
+### onpointerout
 
-• **onpointerout**: *function | null*
+•  **onpointerout**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerout](_wizard_textfield_.wizardtextfield.md#onpointerout)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5960
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5960*
 
 ___
 
-###  onpointerover
+### onpointerover
 
-• **onpointerover**: *function | null*
+•  **onpointerover**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerover](_wizard_textfield_.wizardtextfield.md#onpointerover)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5961
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5961*
 
 ___
 
-###  onpointerup
+### onpointerup
 
-• **onpointerup**: *function | null*
+•  **onpointerup**: (this: GlobalEventHandlers, ev: PointerEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onpointerup](_wizard_textfield_.wizardtextfield.md#onpointerup)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5962
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5962*
 
 ___
 
-###  onprogress
+### onprogress
 
-• **onprogress**: *function | null*
+•  **onprogress**: (this: GlobalEventHandlers, ev: ProgressEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onprogress](_wizard_textfield_.wizardtextfield.md#onprogress)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5967
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5967*
 
 Occurs to indicate progress while downloading media data.
 
@@ -1843,13 +1847,13 @@ Occurs to indicate progress while downloading media data.
 
 ___
 
-###  onratechange
+### onratechange
 
-• **onratechange**: *function | null*
+•  **onratechange**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onratechange](_wizard_textfield_.wizardtextfield.md#onratechange)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5972
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5972*
 
 Occurs when the playback rate is increased or decreased.
 
@@ -1857,13 +1861,13 @@ Occurs when the playback rate is increased or decreased.
 
 ___
 
-###  onreset
+### onreset
 
-• **onreset**: *function | null*
+•  **onreset**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onreset](_wizard_textfield_.wizardtextfield.md#onreset)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5977
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5977*
 
 Fires when the user resets a form.
 
@@ -1871,23 +1875,23 @@ Fires when the user resets a form.
 
 ___
 
-###  onresize
+### onresize
 
-• **onresize**: *function | null*
+•  **onresize**: (this: GlobalEventHandlers, ev: UIEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onresize](_wizard_textfield_.wizardtextfield.md#onresize)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5978
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5978*
 
 ___
 
-###  onscroll
+### onscroll
 
-• **onscroll**: *function | null*
+•  **onscroll**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onscroll](_wizard_textfield_.wizardtextfield.md#onscroll)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5983
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5983*
 
 Fires when the user repositions the scroll box in the scroll bar on the object.
 
@@ -1895,23 +1899,23 @@ Fires when the user repositions the scroll box in the scroll bar on the object.
 
 ___
 
-###  onsecuritypolicyviolation
+### onsecuritypolicyviolation
 
-• **onsecuritypolicyviolation**: *function | null*
+•  **onsecuritypolicyviolation**: (this: GlobalEventHandlers, ev: SecurityPolicyViolationEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsecuritypolicyviolation](_wizard_textfield_.wizardtextfield.md#onsecuritypolicyviolation)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5984
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5984*
 
 ___
 
-###  onseeked
+### onseeked
 
-• **onseeked**: *function | null*
+•  **onseeked**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeked](_wizard_textfield_.wizardtextfield.md#onseeked)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5989
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5989*
 
 Occurs when the seek operation ends.
 
@@ -1919,13 +1923,13 @@ Occurs when the seek operation ends.
 
 ___
 
-###  onseeking
+### onseeking
 
-• **onseeking**: *function | null*
+•  **onseeking**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onseeking](_wizard_textfield_.wizardtextfield.md#onseeking)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5994
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5994*
 
 Occurs when the current playback position is moved.
 
@@ -1933,13 +1937,13 @@ Occurs when the current playback position is moved.
 
 ___
 
-###  onselect
+### onselect
 
-• **onselect**: *function | null*
+•  **onselect**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselect](_wizard_textfield_.wizardtextfield.md#onselect)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5999
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5999*
 
 Fires when the current selection changes.
 
@@ -1947,33 +1951,33 @@ Fires when the current selection changes.
 
 ___
 
-###  onselectionchange
+### onselectionchange
 
-• **onselectionchange**: *function | null*
+•  **onselectionchange**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectionchange](_wizard_textfield_.wizardtextfield.md#onselectionchange)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6000
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6000*
 
 ___
 
-###  onselectstart
+### onselectstart
 
-• **onselectstart**: *function | null*
+•  **onselectstart**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onselectstart](_wizard_textfield_.wizardtextfield.md#onselectstart)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6001
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6001*
 
 ___
 
-###  onstalled
+### onstalled
 
-• **onstalled**: *function | null*
+•  **onstalled**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onstalled](_wizard_textfield_.wizardtextfield.md#onstalled)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6006
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6006*
 
 Occurs when the download has stopped.
 
@@ -1981,23 +1985,23 @@ Occurs when the download has stopped.
 
 ___
 
-###  onsubmit
+### onsubmit
 
-• **onsubmit**: *function | null*
+•  **onsubmit**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsubmit](_wizard_textfield_.wizardtextfield.md#onsubmit)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6007
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6007*
 
 ___
 
-###  onsuspend
+### onsuspend
 
-• **onsuspend**: *function | null*
+•  **onsuspend**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onsuspend](_wizard_textfield_.wizardtextfield.md#onsuspend)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6012
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6012*
 
 Occurs if the load operation has been intentionally halted.
 
@@ -2005,13 +2009,13 @@ Occurs if the load operation has been intentionally halted.
 
 ___
 
-###  ontimeupdate
+### ontimeupdate
 
-• **ontimeupdate**: *function | null*
+•  **ontimeupdate**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontimeupdate](_wizard_textfield_.wizardtextfield.md#ontimeupdate)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6017
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6017*
 
 Occurs to indicate the current playback position.
 
@@ -2019,103 +2023,103 @@ Occurs to indicate the current playback position.
 
 ___
 
-###  ontoggle
+### ontoggle
 
-• **ontoggle**: *function | null*
+•  **ontoggle**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontoggle](_wizard_textfield_.wizardtextfield.md#ontoggle)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6018
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6018*
 
 ___
 
-### `Optional` ontouchcancel
+### ontouchcancel
 
-• **ontouchcancel**? : *function | null*
+• `Optional` **ontouchcancel**: (this: GlobalEventHandlers, ev: TouchEvent) => any \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchcancel](_wizard_textfield_.wizardtextfield.md#optional-ontouchcancel)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchcancel](_wizard_textfield_.wizardtextfield.md#ontouchcancel)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6019
-
-___
-
-### `Optional` ontouchend
-
-• **ontouchend**? : *function | null*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchend](_wizard_textfield_.wizardtextfield.md#optional-ontouchend)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6020
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6019*
 
 ___
 
-### `Optional` ontouchmove
+### ontouchend
 
-• **ontouchmove**? : *function | null*
+• `Optional` **ontouchend**: (this: GlobalEventHandlers, ev: TouchEvent) => any \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchmove](_wizard_textfield_.wizardtextfield.md#optional-ontouchmove)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchend](_wizard_textfield_.wizardtextfield.md#ontouchend)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6021
-
-___
-
-### `Optional` ontouchstart
-
-• **ontouchstart**? : *function | null*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchstart](_wizard_textfield_.wizardtextfield.md#optional-ontouchstart)*
-
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6022
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6020*
 
 ___
 
-###  ontransitioncancel
+### ontouchmove
 
-• **ontransitioncancel**: *function | null*
+• `Optional` **ontouchmove**: (this: GlobalEventHandlers, ev: TouchEvent) => any \| null
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchmove](_wizard_textfield_.wizardtextfield.md#ontouchmove)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6021*
+
+___
+
+### ontouchstart
+
+• `Optional` **ontouchstart**: (this: GlobalEventHandlers, ev: TouchEvent) => any \| null
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontouchstart](_wizard_textfield_.wizardtextfield.md#ontouchstart)*
+
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6022*
+
+___
+
+### ontransitioncancel
+
+•  **ontransitioncancel**: (this: GlobalEventHandlers, ev: TransitionEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitioncancel](_wizard_textfield_.wizardtextfield.md#ontransitioncancel)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6023
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6023*
 
 ___
 
-###  ontransitionend
+### ontransitionend
 
-• **ontransitionend**: *function | null*
+•  **ontransitionend**: (this: GlobalEventHandlers, ev: TransitionEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionend](_wizard_textfield_.wizardtextfield.md#ontransitionend)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6024
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6024*
 
 ___
 
-###  ontransitionrun
+### ontransitionrun
 
-• **ontransitionrun**: *function | null*
+•  **ontransitionrun**: (this: GlobalEventHandlers, ev: TransitionEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionrun](_wizard_textfield_.wizardtextfield.md#ontransitionrun)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6025
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6025*
 
 ___
 
-###  ontransitionstart
+### ontransitionstart
 
-• **ontransitionstart**: *function | null*
+•  **ontransitionstart**: (this: GlobalEventHandlers, ev: TransitionEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ontransitionstart](_wizard_textfield_.wizardtextfield.md#ontransitionstart)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6026
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6026*
 
 ___
 
-###  onvolumechange
+### onvolumechange
 
-• **onvolumechange**: *function | null*
+•  **onvolumechange**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onvolumechange](_wizard_textfield_.wizardtextfield.md#onvolumechange)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6031
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6031*
 
 Occurs when the volume is changed, or playback is muted or unmuted.
 
@@ -2123,13 +2127,13 @@ Occurs when the volume is changed, or playback is muted or unmuted.
 
 ___
 
-###  onwaiting
+### onwaiting
 
-• **onwaiting**: *function | null*
+•  **onwaiting**: (this: GlobalEventHandlers, ev: Event) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwaiting](_wizard_textfield_.wizardtextfield.md#onwaiting)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6036
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6036*
 
 Occurs when playback stops because the next frame of a video resource is not available.
 
@@ -2137,282 +2141,282 @@ Occurs when playback stops because the next frame of a video resource is not ava
 
 ___
 
-###  onwheel
+### onwheel
 
-• **onwheel**: *function | null*
+•  **onwheel**: (this: GlobalEventHandlers, ev: WheelEvent) => any \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[onwheel](_wizard_textfield_.wizardtextfield.md#onwheel)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6037
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6037*
 
 ___
 
-###  outerHTML
+### outerHTML
 
-• **outerHTML**: *string*
+•  **outerHTML**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[outerHTML](_wizard_textfield_.wizardtextfield.md#outerhtml)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5127
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5127*
 
 ___
 
-### `Readonly` ownerDocument
+### ownerDocument
 
-• **ownerDocument**: *Document*
+• `Readonly` **ownerDocument**: Document
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ownerDocument](_wizard_textfield_.wizardtextfield.md#readonly-ownerdocument)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[ownerDocument](_wizard_textfield_.wizardtextfield.md#ownerdocument)*
 
 *Overrides void*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5128
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5128*
 
 ___
 
-###  pageIndex
+### pageIndex
 
-• **pageIndex**: *number* = 0
+•  **pageIndex**: number = 0
 
-*Defined in [src/wizard-dialog.ts:39](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L39)*
+*Defined in [src/wizard-dialog.ts:41](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L41)*
 
 ___
 
-### `Readonly` parentElement
+### parentElement
 
-• **parentElement**: *[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) | null*
+• `Readonly` **parentElement**: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentElement](_wizard_textfield_.wizardtextfield.md#readonly-parentelement)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentElement](_wizard_textfield_.wizardtextfield.md#parentelement)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10795
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10795*
 
 Returns the parent element.
 
 ___
 
-### `Readonly` parentNode
+### parentNode
 
-• **parentNode**: *Node & ParentNode | null*
+• `Readonly` **parentNode**: Node & ParentNode \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentNode](_wizard_textfield_.wizardtextfield.md#readonly-parentnode)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[parentNode](_wizard_textfield_.wizardtextfield.md#parentnode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10799
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10799*
 
 Returns the parent.
 
 ___
 
-### `Readonly` prefix
+### prefix
 
-• **prefix**: *string | null*
+• `Readonly` **prefix**: string \| null
 
-*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[prefix](_wizard_dialog_.wizarddialog.md#readonly-prefix)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[prefix](_wizard_dialog_.wizarddialog.md#prefix)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5132
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5132*
 
 Returns the namespace prefix.
 
 ___
 
-### `Readonly` previousElementSibling
+### previousElementSibling
 
-• **previousElementSibling**: *Element | null*
+• `Readonly` **previousElementSibling**: Element \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousElementSibling](_wizard_textfield_.wizardtextfield.md#readonly-previouselementsibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousElementSibling](_wizard_textfield_.wizardtextfield.md#previouselementsibling)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11047
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11047*
 
 Returns the first preceding sibling that is an element, and null otherwise.
 
 ___
 
-### `Readonly` previousSibling
+### previousSibling
 
-• **previousSibling**: *ChildNode | null*
+• `Readonly` **previousSibling**: ChildNode \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousSibling](_wizard_textfield_.wizardtextfield.md#readonly-previoussibling)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[previousSibling](_wizard_textfield_.wizardtextfield.md#previoussibling)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10803
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10803*
 
 Returns the previous sibling.
 
 ___
 
-### `Readonly` renderRoot
+### renderRoot
 
-• **renderRoot**: *Element | DocumentFragment*
+• `Readonly` **renderRoot**: Element \| DocumentFragment
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderRoot](_wizard_textfield_.wizardtextfield.md#readonly-renderroot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[renderRoot](_wizard_textfield_.wizardtextfield.md#renderroot)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:126
+*Defined in node_modules/lit-element/lit-element.d.ts:126*
 
 Node or ShadowRoot into which element DOM should be rendered. Defaults
 to an open shadowRoot.
 
 ___
 
-### `Readonly` scrollHeight
+### scrollHeight
 
-• **scrollHeight**: *number*
+• `Readonly` **scrollHeight**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollHeight](_wizard_textfield_.wizardtextfield.md#readonly-scrollheight)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollHeight](_wizard_textfield_.wizardtextfield.md#scrollheight)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5133
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5133*
 
 ___
 
-###  scrollLeft
+### scrollLeft
 
-• **scrollLeft**: *number*
+•  **scrollLeft**: number
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollLeft](_wizard_textfield_.wizardtextfield.md#scrollleft)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5134
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5134*
 
 ___
 
-###  scrollTop
+### scrollTop
 
-• **scrollTop**: *number*
+•  **scrollTop**: number
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTop](_wizard_textfield_.wizardtextfield.md#scrolltop)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5135
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5135*
 
 ___
 
-### `Readonly` scrollWidth
+### scrollWidth
 
-• **scrollWidth**: *number*
+• `Readonly` **scrollWidth**: number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollWidth](_wizard_textfield_.wizardtextfield.md#readonly-scrollwidth)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollWidth](_wizard_textfield_.wizardtextfield.md#scrollwidth)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5136
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5136*
 
 ___
 
-### `Readonly` shadowRoot
+### shadowRoot
 
-• **shadowRoot**: *ShadowRoot | null*
+• `Readonly` **shadowRoot**: ShadowRoot \| null
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shadowRoot](_wizard_textfield_.wizardtextfield.md#readonly-shadowroot)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shadowRoot](_wizard_textfield_.wizardtextfield.md#shadowroot)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5140
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5140*
 
 Returns element's shadow root, if any, and if shadow root's mode is "open", and null otherwise.
 
 ___
 
-###  slot
+### slot
 
-• **slot**: *string*
+•  **slot**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[slot](_wizard_textfield_.wizardtextfield.md#slot)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5144
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5144*
 
 Returns the value of element's slot content attribute. Can be set to change it.
 
 ___
 
-###  spellcheck
+### spellcheck
 
-• **spellcheck**: *boolean*
+•  **spellcheck**: boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[spellcheck](_wizard_textfield_.wizardtextfield.md#spellcheck)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6600
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6600*
 
 ___
 
-### `Readonly` style
+### style
 
-• **style**: *CSSStyleDeclaration*
+• `Readonly` **style**: CSSStyleDeclaration
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[style](_wizard_textfield_.wizardtextfield.md#readonly-style)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[style](_wizard_textfield_.wizardtextfield.md#style)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5260
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5260*
 
 ___
 
-###  tabIndex
+### tabIndex
 
-• **tabIndex**: *number*
+•  **tabIndex**: number
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tabIndex](_wizard_textfield_.wizardtextfield.md#tabindex)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8004
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:8004*
 
 ___
 
-### `Readonly` tagName
+### tagName
 
-• **tagName**: *string*
+• `Readonly` **tagName**: string
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tagName](_wizard_textfield_.wizardtextfield.md#readonly-tagname)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[tagName](_wizard_textfield_.wizardtextfield.md#tagname)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5148
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5148*
 
 Returns the HTML-uppercased qualified name.
 
 ___
 
-###  textContent
+### textContent
 
-• **textContent**: *string | null*
+•  **textContent**: string \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[textContent](_wizard_textfield_.wizardtextfield.md#textcontent)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10804
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10804*
 
 ___
 
-###  title
+### title
 
-• **title**: *string*
+•  **title**: string
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[title](_wizard_textfield_.wizardtextfield.md#title)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6601
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6601*
 
 ___
 
-###  translate
+### translate
 
-• **translate**: *boolean*
+•  **translate**: boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[translate](_wizard_textfield_.wizardtextfield.md#translate)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6602
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6602*
 
 ___
 
-###  wizard
+### wizard
 
-• **wizard**: *[Wizard](../modules/_foundation_.md#wizard)* = []
+•  **wizard**: [Wizard](../modules/_foundation_.md#wizard) = []
 
-*Defined in [src/wizard-dialog.ts:37](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L37)*
+*Defined in [src/wizard-dialog.ts:39](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L39)*
 
 ___
 
-### `Static` `Protected` [finalized]
+### [finalized]
 
-▪ **[finalized]**: *boolean*
+▪ `Static` `Protected` **[finalized]**: boolean
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[[finalized]](_wizard_textfield_.wizardtextfield.md#static-protected-[finalized])*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[[finalized]](_wizard_textfield_.wizardtextfield.md#[finalized])*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:139
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:139*
 
 Marks class as having finished creating properties.
 
 ___
 
-### `Static` `Protected` finalized
+### finalized
 
-▪ **finalized**: *boolean*
+▪ `Static` `Protected` **finalized**: boolean
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalized](_wizard_textfield_.wizardtextfield.md#static-protected-finalized)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalized](_wizard_textfield_.wizardtextfield.md#finalized)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:87
+*Defined in node_modules/lit-element/lit-element.d.ts:87*
 
 Ensure this class is marked as `finalized` as an optimization ensuring
 it will not needlessly try to `finalize`.
@@ -2422,26 +2426,26 @@ optimizations. See updating-element.ts for more information.
 
 ___
 
-### `Static` properties
+### properties
 
-▪ **properties**: *PropertyDeclarations*
+▪ `Static` **properties**: PropertyDeclarations
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[properties](_wizard_textfield_.wizardtextfield.md#static-properties)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[properties](_wizard_textfield_.wizardtextfield.md#properties)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:149
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:149*
 
 User-supplied object that maps property names to `PropertyDeclaration`
 objects containing options for configuring the property.
 
 ___
 
-### `Static` render
+### render
 
-▪ **render**: *function*
+▪ `Static` **render**: (result: unknown, container: Element \| DocumentFragment, options: ShadyRenderOptions) => void
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#render)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:105
+*Defined in node_modules/lit-element/lit-element.d.ts:105*
 
 Reference to the underlying library method used to render the element's
 DOM. By default, points to the `render` method from lit-html's shady-render
@@ -2459,83 +2463,57 @@ method](https://lit-html.polymer-project.org/api/modules/shady_render.html#rende
 
 **`nocollapse`** 
 
-#### Type declaration:
-
-▸ (`result`: unknown, `container`: Element | DocumentFragment, `options`: ShadyRenderOptions): *void*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`result` | unknown |
-`container` | Element &#124; DocumentFragment |
-`options` | ShadyRenderOptions |
-
 ___
 
-### `Static` styles
+### styles
 
-▪ **styles**: *CSSResult‹›* = css`
-    mwc-dialog {
-      --mdc-dialog-max-width: 92vw;
-    }
-
-    #wizard-content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #wizard-content > * {
-      display: block;
-      margin-top: 16px;
-    }
-  `
+▪ `Static` **styles**: CSSResult = css\` mwc-dialog { --mdc-dialog-max-width: 92vw; } #wizard-content { display: flex; flex-direction: column; } #wizard-content > * { display: block; margin-top: 16px; } \`
 
 *Overrides void*
 
-*Defined in [src/wizard-dialog.ts:94](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L94)*
+*Defined in [src/wizard-dialog.ts:158](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L158)*
 
 ## Accessors
 
-###  dialog
+### dialog
 
-• **get dialog**(): *Dialog | undefined*
+• get **dialog**(): Dialog \| undefined
 
-*Defined in [src/wizard-dialog.ts:45](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L45)*
+*Defined in [src/wizard-dialog.ts:47](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L47)*
 
-**Returns:** *Dialog | undefined*
-
-___
-
-###  firstInvalidPage
-
-• **get firstInvalidPage**(): *number*
-
-*Defined in [src/wizard-dialog.ts:53](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L53)*
-
-**Returns:** *number*
+**Returns:** Dialog \| undefined
 
 ___
 
-### `Protected` hasUpdated
+### firstInvalidPage
 
-• **get hasUpdated**(): *number*
+• get **firstInvalidPage**(): number
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasUpdated](_wizard_textfield_.wizardtextfield.md#protected-hasupdated)*
+*Defined in [src/wizard-dialog.ts:55](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L55)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:337
-
-**Returns:** *number*
+**Returns:** number
 
 ___
 
-###  updateComplete
+### hasUpdated
 
-• **get updateComplete**(): *Promise‹unknown›*
+• `Protected`get **hasUpdated**(): number
+
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasUpdated](_wizard_textfield_.wizardtextfield.md#hasupdated)*
+
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:337*
+
+**Returns:** number
+
+___
+
+### updateComplete
+
+• get **updateComplete**(): Promise\<unknown>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[updateComplete](_wizard_textfield_.wizardtextfield.md#updatecomplete)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:371
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:371*
 
 Returns a Promise that resolves when the element has completed updating.
 The Promise value is a boolean that is `true` if the element completed the
@@ -2548,36 +2526,36 @@ method. For example, it is sometimes useful to await a rendered element
 before fulfilling this Promise. To do this, first await
 `super._getUpdateComplete()`, then any subsequent state.
 
-**Returns:** *Promise‹unknown›*
+**Returns:** Promise\<unknown>
 
 The Promise returns a boolean that indicates if the
 update resolved without triggering another update.
 
 ___
 
-### `Static` observedAttributes
+### observedAttributes
 
-• **get observedAttributes**(): *string[]*
+• `Static`get **observedAttributes**(): string[]
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[observedAttributes](_wizard_textfield_.wizardtextfield.md#static-observedattributes)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[observedAttributes](_wizard_textfield_.wizardtextfield.md#observedattributes)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:154
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:154*
 
 Returns a list of attributes corresponding to the registered properties.
 
 **`nocollapse`** 
 
-**Returns:** *string[]*
+**Returns:** string[]
 
 ## Methods
 
-### `Protected` _getUpdateComplete
+### \_getUpdateComplete
 
-▸ **_getUpdateComplete**(): *Promise‹unknown›*
+▸ `Protected`**_getUpdateComplete**(): Promise\<unknown>
 
-*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[_getUpdateComplete](_wizard_dialog_.wizarddialog.md#protected-_getupdatecomplete)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[_getUpdateComplete](_wizard_dialog_.wizarddialog.md#_getupdatecomplete)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:388
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:388*
 
 Override point for the `updateComplete` promise.
 
@@ -2594,86 +2572,79 @@ This method should be overridden instead. For example:
     }
   }
 
-**Returns:** *Promise‹unknown›*
+**Returns:** Promise\<unknown>
 
 ___
 
-###  act
+### act
 
-▸ **act**(`action?`: [WizardAction](../modules/_foundation_.md#wizardaction)): *Promise‹boolean›*
+▸ **act**(`action?`: [WizardAction](../modules/_foundation_.md#wizardaction)): Promise\<boolean>
 
-*Defined in [src/wizard-dialog.ts:75](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L75)*
+*Defined in [src/wizard-dialog.ts:77](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L77)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `action?` | [WizardAction](../modules/_foundation_.md#wizardaction) |
 
-**Returns:** *Promise‹boolean›*
+**Returns:** Promise\<boolean>
 
 ___
 
-###  addEventListener
+### addEventListener
 
-▸ **addEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | AddEventListenerOptions): *void*
+▸ **addEventListener**\<K>(`type`: K, `listener`: (this: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), ev: HTMLElementEventMap[K]) => any, `options?`: boolean \| AddEventListenerOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[addEventListener](_wizard_textfield_.wizardtextfield.md#addeventlistener)*
 
 *Overrides void*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6604
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6604*
 
-**Type parameters:**
-
-▪ **K**: *keyof HTMLElementEventMap*
-
-**Parameters:**
-
-▪ **type**: *K*
-
-▪ **listener**: *function*
-
-▸ (`this`: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
-
-**Parameters:**
+#### Type parameters:
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) |
-`ev` | HTMLElementEventMap[K] |
+`K` | keyof HTMLElementEventMap |
 
-▪`Optional`  **options**: *boolean | AddEventListenerOptions*
+#### Parameters:
 
-**Returns:** *void*
+Name | Type |
+------ | ------ |
+`type` | K |
+`listener` | (this: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), ev: HTMLElementEventMap[K]) => any |
+`options?` | boolean \| AddEventListenerOptions |
 
-▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | AddEventListenerOptions): *void*
+**Returns:** void
+
+▸ **addEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean \| AddEventListenerOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[addEventListener](_wizard_textfield_.wizardtextfield.md#addeventlistener)*
 
 *Overrides void*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6605
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6605*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `type` | string |
 `listener` | EventListenerOrEventListenerObject |
-`options?` | boolean &#124; AddEventListenerOptions |
+`options?` | boolean \| AddEventListenerOptions |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Protected` adoptStyles
+### adoptStyles
 
-▸ **adoptStyles**(): *void*
+▸ `Protected`**adoptStyles**(): void
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[adoptStyles](_wizard_textfield_.wizardtextfield.md#protected-adoptstyles)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[adoptStyles](_wizard_textfield_.wizardtextfield.md#adoptstyles)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:150
+*Defined in node_modules/lit-element/lit-element.d.ts:150*
 
 Applies styling to the element shadowRoot using the [[`styles`]]
 property. Styling will apply using `shadowRoot.adoptedStyleSheets` where
@@ -2683,411 +2654,419 @@ is available but `adoptedStyleSheets` is not, styles are appended to the
 end of the `shadowRoot` to [mimic spec
 behavior](https://wicg.github.io/construct-stylesheets/#using-constructed-stylesheets).
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  after
+### after
 
-▸ **after**(...`nodes`: (Node | string)[]): *void*
+▸ **after**(...`nodes`: (Node \| string)[]): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[after](_wizard_textfield_.wizardtextfield.md#after)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:3506
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:3506*
 
 Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.
 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`...nodes` | (Node &#124; string)[] |
+`...nodes` | (Node \| string)[] |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  animate
+### animate
 
-▸ **animate**(`keyframes`: Keyframe[] | PropertyIndexedKeyframes | null, `options?`: number | KeyframeAnimationOptions): *Animation*
+▸ **animate**(`keyframes`: Keyframe[] \| PropertyIndexedKeyframes \| null, `options?`: number \| KeyframeAnimationOptions): Animation
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[animate](_wizard_textfield_.wizardtextfield.md#animate)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:2044
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:2044*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`keyframes` | Keyframe[] &#124; PropertyIndexedKeyframes &#124; null |
-`options?` | number &#124; KeyframeAnimationOptions |
+`keyframes` | Keyframe[] \| PropertyIndexedKeyframes \| null |
+`options?` | number \| KeyframeAnimationOptions |
 
-**Returns:** *Animation*
+**Returns:** Animation
 
 ___
 
-###  append
+### append
 
-▸ **append**(...`nodes`: (Node | string)[]): *void*
+▸ **append**(...`nodes`: (Node \| string)[]): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[append](_wizard_textfield_.wizardtextfield.md#append)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11331
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11331*
 
 Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`...nodes` | (Node &#124; string)[] |
+`...nodes` | (Node \| string)[] |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  appendChild
+### appendChild
 
-▸ **appendChild**‹**T**›(`newChild`: T): *T*
+▸ **appendChild**\<T>(`newChild`: T): T
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[appendChild](_wizard_textfield_.wizardtextfield.md#appendchild)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10805
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10805*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **T**: *Node*
+Name | Type |
+------ | ------ |
+`T` | Node |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `newChild` | T |
 
-**Returns:** *T*
+**Returns:** T
 
 ___
 
-###  attachShadow
+### attachShadow
 
-▸ **attachShadow**(`init`: ShadowRootInit): *ShadowRoot*
+▸ **attachShadow**(`init`: ShadowRootInit): ShadowRoot
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attachShadow](_wizard_textfield_.wizardtextfield.md#attachshadow)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5152
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5152*
 
 Creates a shadow root for element and returns it.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `init` | ShadowRootInit |
 
-**Returns:** *ShadowRoot*
+**Returns:** ShadowRoot
 
 ___
 
-###  attributeChangedCallback
+### attributeChangedCallback
 
-▸ **attributeChangedCallback**(`name`: string, `old`: string | null, `value`: string | null): *void*
+▸ **attributeChangedCallback**(`name`: string, `old`: string \| null, `value`: string \| null): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[attributeChangedCallback](_wizard_textfield_.wizardtextfield.md#attributechangedcallback)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:309
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:309*
 
 Synchronizes property values when attributes change.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `name` | string |
-`old` | string &#124; null |
-`value` | string &#124; null |
+`old` | string \| null |
+`value` | string \| null |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  before
+### before
 
-▸ **before**(...`nodes`: (Node | string)[]): *void*
+▸ **before**(...`nodes`: (Node \| string)[]): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[before](_wizard_textfield_.wizardtextfield.md#before)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:3512
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:3512*
 
 Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.
 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`...nodes` | (Node &#124; string)[] |
+`...nodes` | (Node \| string)[] |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  blur
+### blur
 
-▸ **blur**(): *void*
+▸ **blur**(): void
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[blur](_wizard_dialog_.wizarddialog.md#blur)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8005
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:8005*
 
-**Returns:** *void*
-
-___
-
-###  checkValidity
-
-▸ **checkValidity**(): *boolean*
-
-*Defined in [src/wizard-dialog.ts:49](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L49)*
-
-**Returns:** *boolean*
+**Returns:** void
 
 ___
 
-###  click
+### checkValidity
 
-▸ **click**(): *void*
+▸ **checkValidity**(): boolean
+
+*Defined in [src/wizard-dialog.ts:51](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L51)*
+
+**Returns:** boolean
+
+___
+
+### click
+
+▸ **click**(): void
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[click](_wizard_dialog_.wizarddialog.md#click)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6603
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6603*
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  cloneNode
+### cloneNode
 
-▸ **cloneNode**(`deep?`: undefined | false | true): *Node*
+▸ **cloneNode**(`deep?`: undefined \| false \| true): Node
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[cloneNode](_wizard_textfield_.wizardtextfield.md#clonenode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10809
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10809*
 
 Returns a copy of node. If deep is true, the copy also includes the node's descendants.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`deep?` | undefined &#124; false &#124; true |
+`deep?` | undefined \| false \| true |
 
-**Returns:** *Node*
-
-___
-
-###  close
-
-▸ **close**(): *void*
-
-*Defined in [src/wizard-dialog.ts:71](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L71)*
-
-**Returns:** *void*
+**Returns:** Node
 
 ___
 
-###  closest
+### close
 
-▸ **closest**‹**K**›(`selector`: K): *HTMLElementTagNameMap[K] | null*
+▸ **close**(): void
+
+*Defined in [src/wizard-dialog.ts:73](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L73)*
+
+**Returns:** void
+
+___
+
+### closest
+
+▸ **closest**\<K>(`selector`: K): HTMLElementTagNameMap[K] \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5156
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5156*
 
 Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise.
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof HTMLElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof HTMLElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selector` | K |
 
-**Returns:** *HTMLElementTagNameMap[K] | null*
+**Returns:** HTMLElementTagNameMap[K] \| null
 
-▸ **closest**‹**K**›(`selector`: K): *SVGElementTagNameMap[K] | null*
+▸ **closest**\<K>(`selector`: K): SVGElementTagNameMap[K] \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5157
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5157*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof SVGElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof SVGElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selector` | K |
 
-**Returns:** *SVGElementTagNameMap[K] | null*
+**Returns:** SVGElementTagNameMap[K] \| null
 
-▸ **closest**‹**E**›(`selector`: string): *E | null*
+▸ **closest**\<E>(`selector`: string): E \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[closest](_wizard_textfield_.wizardtextfield.md#closest)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5158
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5158*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **E**: *Element*
+Name | Type | Default |
+------ | ------ | ------ |
+`E` | Element | Element |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selector` | string |
 
-**Returns:** *E | null*
+**Returns:** E \| null
 
 ___
 
-###  compareDocumentPosition
+### compareDocumentPosition
 
-▸ **compareDocumentPosition**(`other`: Node): *number*
+▸ **compareDocumentPosition**(`other`: Node): number
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[compareDocumentPosition](_wizard_textfield_.wizardtextfield.md#comparedocumentposition)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10813
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10813*
 
 Returns a bitmask indicating the position of other relative to node.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `other` | Node |
 
-**Returns:** *number*
+**Returns:** number
 
 ___
 
-###  connectedCallback
+### connectedCallback
 
-▸ **connectedCallback**(): *void*
+▸ **connectedCallback**(): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[connectedCallback](_wizard_textfield_.wizardtextfield.md#connectedcallback)*
 
 *Overrides void*
 
-Defined in node_modules/lit-element/lit-element.d.ts:151
+*Defined in node_modules/lit-element/lit-element.d.ts:151*
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  contains
+### contains
 
-▸ **contains**(`other`: Node | null): *boolean*
+▸ **contains**(`other`: Node \| null): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[contains](_wizard_textfield_.wizardtextfield.md#contains)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10817
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10817*
 
 Returns true if other is an inclusive descendant of node, and false otherwise.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`other` | Node &#124; null |
+`other` | Node \| null |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-### `Protected` createRenderRoot
+### createRenderRoot
 
-▸ **createRenderRoot**(): *Element | ShadowRoot*
+▸ `Protected`**createRenderRoot**(): Element \| ShadowRoot
 
-*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[createRenderRoot](_wizard_dialog_.wizarddialog.md#protected-createrenderroot)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[createRenderRoot](_wizard_dialog_.wizarddialog.md#createrenderroot)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:140
+*Defined in node_modules/lit-element/lit-element.d.ts:140*
 
 Returns the node into which the element should render and by default
 creates and returns an open shadowRoot. Implement to customize where the
 element's DOM is rendered. For example, to render into the element's
 childNodes, return `this`.
 
-**Returns:** *Element | ShadowRoot*
+**Returns:** Element \| ShadowRoot
 
 Returns a node into which to render.
 
 ___
 
-###  disconnectedCallback
+### disconnectedCallback
 
-▸ **disconnectedCallback**(): *void*
+▸ **disconnectedCallback**(): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[disconnectedCallback](_wizard_textfield_.wizardtextfield.md#disconnectedcallback)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:305
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:305*
 
 Allows for `super.disconnectedCallback()` in extensions while
 reserving the possibility of making non-breaking feature additions
 when disconnecting at some point in the future.
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  dispatchEvent
+### dispatchEvent
 
-▸ **dispatchEvent**(`event`: Event): *boolean*
+▸ **dispatchEvent**(`event`: Event): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[dispatchEvent](_wizard_textfield_.wizardtextfield.md#dispatchevent)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5428
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5428*
 
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `event` | Event |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-### `Protected` enableUpdating
+### enableUpdating
 
-▸ **enableUpdating**(): *void*
+▸ `Protected`**enableUpdating**(): void
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enableUpdating](_wizard_textfield_.wizardtextfield.md#protected-enableupdating)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[enableUpdating](_wizard_textfield_.wizardtextfield.md#enableupdating)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:299
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:299*
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Protected` firstUpdated
+### firstUpdated
 
-▸ **firstUpdated**(`_changedProperties`: PropertyValues): *void*
+▸ `Protected`**firstUpdated**(`_changedProperties`: PropertyValues): void
 
-*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[firstUpdated](_wizard_dialog_.wizarddialog.md#protected-firstupdated)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[firstUpdated](_wizard_dialog_.wizarddialog.md#firstupdated)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:425
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:425*
 
 Invoked when the element is first updated. Implement to perform one time
 work on the element after update.
@@ -3095,680 +3074,667 @@ work on the element after update.
 Setting properties inside this method will trigger the element to update
 again after this update cycle completes.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
 `_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  focus
+### focus
 
-▸ **focus**(`options?`: FocusOptions): *void*
+▸ **focus**(`options?`: FocusOptions): void
 
 *Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[focus](_wizard_dialog_.wizarddialog.md#focus)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:8006
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:8006*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `options?` | FocusOptions |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  getAnimations
+### getAnimations
 
-▸ **getAnimations**(): *Animation[]*
+▸ **getAnimations**(): Animation[]
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAnimations](_wizard_textfield_.wizardtextfield.md#getanimations)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:2045
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:2045*
 
-**Returns:** *Animation[]*
+**Returns:** Animation[]
 
 ___
 
-###  getAttribute
+### getAttribute
 
-▸ **getAttribute**(`qualifiedName`: string): *string | null*
+▸ **getAttribute**(`qualifiedName`: string): string \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttribute](_wizard_textfield_.wizardtextfield.md#getattribute)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5162
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5162*
 
 Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
 
-**Returns:** *string | null*
+**Returns:** string \| null
 
 ___
 
-###  getAttributeNS
+### getAttributeNS
 
-▸ **getAttributeNS**(`namespace`: string | null, `localName`: string): *string | null*
+▸ **getAttributeNS**(`namespace`: string \| null, `localName`: string): string \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNS](_wizard_textfield_.wizardtextfield.md#getattributens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5166
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5166*
 
 Returns element's attribute whose namespace is namespace and local name is localName, and null if there is no such attribute otherwise.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespace` | string &#124; null |
+`namespace` | string \| null |
 `localName` | string |
 
-**Returns:** *string | null*
+**Returns:** string \| null
 
 ___
 
-###  getAttributeNames
+### getAttributeNames
 
-▸ **getAttributeNames**(): *string[]*
+▸ **getAttributeNames**(): string[]
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNames](_wizard_textfield_.wizardtextfield.md#getattributenames)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5170
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5170*
 
 Returns the qualified names of all element's attributes. Can contain duplicates.
 
-**Returns:** *string[]*
+**Returns:** string[]
 
 ___
 
-###  getAttributeNode
+### getAttributeNode
 
-▸ **getAttributeNode**(`name`: string): *Attr | null*
+▸ **getAttributeNode**(`name`: string): Attr \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNode](_wizard_textfield_.wizardtextfield.md#getattributenode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5171
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5171*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `name` | string |
 
-**Returns:** *Attr | null*
+**Returns:** Attr \| null
 
 ___
 
-###  getAttributeNodeNS
+### getAttributeNodeNS
 
-▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): *Attr | null*
+▸ **getAttributeNodeNS**(`namespaceURI`: string, `localName`: string): Attr \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#getattributenodens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5172
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5172*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `namespaceURI` | string |
 `localName` | string |
 
-**Returns:** *Attr | null*
+**Returns:** Attr \| null
 
 ___
 
-###  getBoundingClientRect
+### getBoundingClientRect
 
-▸ **getBoundingClientRect**(): *DOMRect*
+▸ **getBoundingClientRect**(): DOMRect
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getBoundingClientRect](_wizard_textfield_.wizardtextfield.md#getboundingclientrect)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5173
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5173*
 
-**Returns:** *DOMRect*
+**Returns:** DOMRect
 
 ___
 
-###  getClientRects
+### getClientRects
 
-▸ **getClientRects**(): *DOMRectList*
+▸ **getClientRects**(): DOMRectList
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getClientRects](_wizard_textfield_.wizardtextfield.md#getclientrects)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5174
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5174*
 
-**Returns:** *DOMRectList*
+**Returns:** DOMRectList
 
 ___
 
-###  getElementsByClassName
+### getElementsByClassName
 
-▸ **getElementsByClassName**(`classNames`: string): *HTMLCollectionOf‹Element›*
+▸ **getElementsByClassName**(`classNames`: string): HTMLCollectionOf\<Element>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByClassName](_wizard_textfield_.wizardtextfield.md#getelementsbyclassname)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5178
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5178*
 
 Returns a HTMLCollection of the elements in the object on which the method was invoked (a document or an element) that have all the classes given by classNames. The classNames argument is interpreted as a space-separated list of classes.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `classNames` | string |
 
-**Returns:** *HTMLCollectionOf‹Element›*
+**Returns:** HTMLCollectionOf\<Element>
 
 ___
 
-###  getElementsByTagName
+### getElementsByTagName
 
-▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
+▸ **getElementsByTagName**\<K>(`qualifiedName`: K): HTMLCollectionOf\<HTMLElementTagNameMap[K]>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5179
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5179*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof HTMLElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof HTMLElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | K |
 
-**Returns:** *HTMLCollectionOf‹HTMLElementTagNameMap[K]›*
+**Returns:** HTMLCollectionOf\<HTMLElementTagNameMap[K]>
 
-▸ **getElementsByTagName**‹**K**›(`qualifiedName`: K): *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
+▸ **getElementsByTagName**\<K>(`qualifiedName`: K): HTMLCollectionOf\<SVGElementTagNameMap[K]>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5180
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5180*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof SVGElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof SVGElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | K |
 
-**Returns:** *HTMLCollectionOf‹SVGElementTagNameMap[K]›*
+**Returns:** HTMLCollectionOf\<SVGElementTagNameMap[K]>
 
-▸ **getElementsByTagName**(`qualifiedName`: string): *HTMLCollectionOf‹Element›*
+▸ **getElementsByTagName**(`qualifiedName`: string): HTMLCollectionOf\<Element>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagName](_wizard_textfield_.wizardtextfield.md#getelementsbytagname)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5181
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5181*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
 
-**Returns:** *HTMLCollectionOf‹Element›*
+**Returns:** HTMLCollectionOf\<Element>
 
 ___
 
-###  getElementsByTagNameNS
+### getElementsByTagNameNS
 
-▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/1999/xhtml", `localName`: string): *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
+▸ **getElementsByTagNameNS**(`namespaceURI`: \"http://www.w3.org/1999/xhtml\", `localName`: string): HTMLCollectionOf\<[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5182
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5182*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespaceURI` | "http://www.w3.org/1999/xhtml" |
+`namespaceURI` | \"http://www.w3.org/1999/xhtml\" |
 `localName` | string |
 
-**Returns:** *HTMLCollectionOf‹[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)›*
+**Returns:** HTMLCollectionOf\<[HTMLElement](../interfaces/_foundation_.__global.htmlelement.md)>
 
-▸ **getElementsByTagNameNS**(`namespaceURI`: "http://www.w3.org/2000/svg", `localName`: string): *HTMLCollectionOf‹SVGElement›*
+▸ **getElementsByTagNameNS**(`namespaceURI`: \"http://www.w3.org/2000/svg\", `localName`: string): HTMLCollectionOf\<SVGElement>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5183
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5183*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespaceURI` | "http://www.w3.org/2000/svg" |
+`namespaceURI` | \"http://www.w3.org/2000/svg\" |
 `localName` | string |
 
-**Returns:** *HTMLCollectionOf‹SVGElement›*
+**Returns:** HTMLCollectionOf\<SVGElement>
 
-▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): *HTMLCollectionOf‹Element›*
+▸ **getElementsByTagNameNS**(`namespaceURI`: string, `localName`: string): HTMLCollectionOf\<Element>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getElementsByTagNameNS](_wizard_textfield_.wizardtextfield.md#getelementsbytagnamens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5184
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5184*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `namespaceURI` | string |
 `localName` | string |
 
-**Returns:** *HTMLCollectionOf‹Element›*
+**Returns:** HTMLCollectionOf\<Element>
 
 ___
 
-###  getRootNode
+### getRootNode
 
-▸ **getRootNode**(`options?`: GetRootNodeOptions): *Node*
+▸ **getRootNode**(`options?`: GetRootNodeOptions): Node
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getRootNode](_wizard_textfield_.wizardtextfield.md#getrootnode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10821
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10821*
 
 Returns node's root.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `options?` | GetRootNodeOptions |
 
-**Returns:** *Node*
+**Returns:** Node
 
 ___
 
-###  hasAttribute
+### hasAttribute
 
-▸ **hasAttribute**(`qualifiedName`: string): *boolean*
+▸ **hasAttribute**(`qualifiedName`: string): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttribute](_wizard_textfield_.wizardtextfield.md#hasattribute)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5188
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5188*
 
 Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  hasAttributeNS
+### hasAttributeNS
 
-▸ **hasAttributeNS**(`namespace`: string | null, `localName`: string): *boolean*
+▸ **hasAttributeNS**(`namespace`: string \| null, `localName`: string): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributeNS](_wizard_textfield_.wizardtextfield.md#hasattributens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5192
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5192*
 
 Returns true if element has an attribute whose namespace is namespace and local name is localName.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespace` | string &#124; null |
+`namespace` | string \| null |
 `localName` | string |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  hasAttributes
+### hasAttributes
 
-▸ **hasAttributes**(): *boolean*
+▸ **hasAttributes**(): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasAttributes](_wizard_textfield_.wizardtextfield.md#hasattributes)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5196
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5196*
 
 Returns true if element has attributes, and false otherwise.
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  hasChildNodes
+### hasChildNodes
 
-▸ **hasChildNodes**(): *boolean*
+▸ **hasChildNodes**(): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasChildNodes](_wizard_textfield_.wizardtextfield.md#haschildnodes)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10825
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10825*
 
 Returns whether node has children.
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  hasPointerCapture
+### hasPointerCapture
 
-▸ **hasPointerCapture**(`pointerId`: number): *boolean*
+▸ **hasPointerCapture**(`pointerId`: number): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[hasPointerCapture](_wizard_textfield_.wizardtextfield.md#haspointercapture)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5197
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5197*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `pointerId` | number |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-### `Optional` info
+### initialize
 
-▸ **info**(`message`: string, ...`data`: any[]): *void*
+▸ `Protected`**initialize**(): void
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[info](_wizard_textfield_.wizardtextfield.md#optional-info)*
-
-*Defined in [src/foundation.ts:228](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L228)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`message` | string |
-`...data` | any[] |
-
-**Returns:** *void*
-
-___
-
-### `Protected` initialize
-
-▸ **initialize**(): *void*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[initialize](_wizard_textfield_.wizardtextfield.md#protected-initialize)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[initialize](_wizard_textfield_.wizardtextfield.md#initialize)*
 
 *Overrides void*
 
-Defined in node_modules/lit-element/lit-element.d.ts:132
+*Defined in node_modules/lit-element/lit-element.d.ts:132*
 
 Performs element initialization. By default this calls
 [[`createRenderRoot`]] to create the element [[`renderRoot`]] node and
 captures any pre-set values for registered properties.
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  insertAdjacentElement
+### insertAdjacentElement
 
-▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): *Element | null*
+▸ **insertAdjacentElement**(`position`: InsertPosition, `insertedElement`: Element): Element \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentElement](_wizard_textfield_.wizardtextfield.md#insertadjacentelement)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5198
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5198*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `position` | InsertPosition |
 `insertedElement` | Element |
 
-**Returns:** *Element | null*
+**Returns:** Element \| null
 
 ___
 
-###  insertAdjacentHTML
+### insertAdjacentHTML
 
-▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): *void*
+▸ **insertAdjacentHTML**(`where`: InsertPosition, `html`: string): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentHTML](_wizard_textfield_.wizardtextfield.md#insertadjacenthtml)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5199
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5199*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `where` | InsertPosition |
 `html` | string |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  insertAdjacentText
+### insertAdjacentText
 
-▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): *void*
+▸ **insertAdjacentText**(`where`: InsertPosition, `text`: string): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertAdjacentText](_wizard_textfield_.wizardtextfield.md#insertadjacenttext)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5200
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5200*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `where` | InsertPosition |
 `text` | string |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  insertBefore
+### insertBefore
 
-▸ **insertBefore**‹**T**›(`newChild`: T, `refChild`: Node | null): *T*
+▸ **insertBefore**\<T>(`newChild`: T, `refChild`: Node \| null): T
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[insertBefore](_wizard_textfield_.wizardtextfield.md#insertbefore)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10826
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10826*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **T**: *Node*
+Name | Type |
+------ | ------ |
+`T` | Node |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `newChild` | T |
-`refChild` | Node &#124; null |
+`refChild` | Node \| null |
 
-**Returns:** *T*
+**Returns:** T
 
 ___
 
-###  isDefaultNamespace
+### isDefaultNamespace
 
-▸ **isDefaultNamespace**(`namespace`: string | null): *boolean*
+▸ **isDefaultNamespace**(`namespace`: string \| null): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isDefaultNamespace](_wizard_textfield_.wizardtextfield.md#isdefaultnamespace)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10827
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10827*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespace` | string &#124; null |
+`namespace` | string \| null |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  isEqualNode
+### isEqualNode
 
-▸ **isEqualNode**(`otherNode`: Node | null): *boolean*
+▸ **isEqualNode**(`otherNode`: Node \| null): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isEqualNode](_wizard_textfield_.wizardtextfield.md#isequalnode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10831
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10831*
 
 Returns whether node and otherNode have the same properties.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`otherNode` | Node &#124; null |
+`otherNode` | Node \| null |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  isSameNode
+### isSameNode
 
-▸ **isSameNode**(`otherNode`: Node | null): *boolean*
+▸ **isSameNode**(`otherNode`: Node \| null): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[isSameNode](_wizard_textfield_.wizardtextfield.md#issamenode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10832
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10832*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`otherNode` | Node &#124; null |
+`otherNode` | Node \| null |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  lookupNamespaceURI
+### lookupNamespaceURI
 
-▸ **lookupNamespaceURI**(`prefix`: string | null): *string | null*
+▸ **lookupNamespaceURI**(`prefix`: string \| null): string \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupNamespaceURI](_wizard_textfield_.wizardtextfield.md#lookupnamespaceuri)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10833
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10833*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`prefix` | string &#124; null |
+`prefix` | string \| null |
 
-**Returns:** *string | null*
+**Returns:** string \| null
 
 ___
 
-###  lookupPrefix
+### lookupPrefix
 
-▸ **lookupPrefix**(`namespace`: string | null): *string | null*
+▸ **lookupPrefix**(`namespace`: string \| null): string \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[lookupPrefix](_wizard_textfield_.wizardtextfield.md#lookupprefix)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10834
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10834*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespace` | string &#124; null |
+`namespace` | string \| null |
 
-**Returns:** *string | null*
+**Returns:** string \| null
 
 ___
 
-###  matches
+### matches
 
-▸ **matches**(`selectors`: string): *boolean*
+▸ **matches**(`selectors`: string): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[matches](_wizard_textfield_.wizardtextfield.md#matches)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5204
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5204*
 
 Returns true if matching selectors against element's root yields element, and false otherwise.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | string |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  msGetRegionContent
+### msGetRegionContent
 
-▸ **msGetRegionContent**(): *any*
+▸ **msGetRegionContent**(): any
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[msGetRegionContent](_wizard_textfield_.wizardtextfield.md#msgetregioncontent)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5205
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5205*
 
-**Returns:** *any*
-
-___
-
-###  next
-
-▸ **next**(): *Promise‹void›*
-
-*Defined in [src/wizard-dialog.ts:61](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L61)*
-
-**Returns:** *Promise‹void›*
+**Returns:** any
 
 ___
 
-###  normalize
+### next
 
-▸ **normalize**(): *void*
+▸ **next**(): Promise\<void>
+
+*Defined in [src/wizard-dialog.ts:63](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L63)*
+
+**Returns:** Promise\<void>
+
+___
+
+### normalize
+
+▸ **normalize**(): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[normalize](_wizard_textfield_.wizardtextfield.md#normalize)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10838
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10838*
 
 Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes.
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  onClosed
+### onClosed
 
-▸ **onClosed**(`ae`: CustomEvent‹object | null›): *void*
+▸ **onClosed**(`ae`: CustomEvent\<{ action: string  } \| null>): void
 
-*Defined in [src/wizard-dialog.ts:87](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L87)*
+*Defined in [src/wizard-dialog.ts:89](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L89)*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`ae` | CustomEvent‹object &#124; null› |
+`ae` | CustomEvent\<{ action: string  } \| null> |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Protected` performUpdate
+### performUpdate
 
-▸ **performUpdate**(): *void | Promise‹unknown›*
+▸ `Protected`**performUpdate**(): void \| Promise\<unknown>
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[performUpdate](_wizard_textfield_.wizardtextfield.md#protected-performupdate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[performUpdate](_wizard_textfield_.wizardtextfield.md#performupdate)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:354
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:354*
 
 Performs an element update. Note, if an exception is thrown during the
 update, `firstUpdated` and `updated` will not be called.
@@ -3785,443 +3751,452 @@ protected async performUpdate(): Promise<unknown> {
 }
 ```
 
-**Returns:** *void | Promise‹unknown›*
+**Returns:** void \| Promise\<unknown>
 
 ___
 
-###  prepend
+### prepend
 
-▸ **prepend**(...`nodes`: (Node | string)[]): *void*
+▸ **prepend**(...`nodes`: (Node \| string)[]): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[prepend](_wizard_textfield_.wizardtextfield.md#prepend)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11337
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11337*
 
 Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`...nodes` | (Node &#124; string)[] |
+`...nodes` | (Node \| string)[] |
 
-**Returns:** *void*
-
-___
-
-###  prev
-
-▸ **prev**(): *void*
-
-*Defined in [src/wizard-dialog.ts:57](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L57)*
-
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  querySelector
+### prev
 
-▸ **querySelector**‹**K**›(`selectors`: K): *HTMLElementTagNameMap[K] | null*
+▸ **prev**(): void
+
+*Defined in [src/wizard-dialog.ts:59](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L59)*
+
+**Returns:** void
+
+___
+
+### querySelector
+
+▸ **querySelector**\<K>(`selectors`: K): HTMLElementTagNameMap[K] \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11341
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11341*
 
 Returns the first element that is a descendant of node that matches selectors.
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof HTMLElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof HTMLElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | K |
 
-**Returns:** *HTMLElementTagNameMap[K] | null*
+**Returns:** HTMLElementTagNameMap[K] \| null
 
-▸ **querySelector**‹**K**›(`selectors`: K): *SVGElementTagNameMap[K] | null*
+▸ **querySelector**\<K>(`selectors`: K): SVGElementTagNameMap[K] \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11342
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11342*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof SVGElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof SVGElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | K |
 
-**Returns:** *SVGElementTagNameMap[K] | null*
+**Returns:** SVGElementTagNameMap[K] \| null
 
-▸ **querySelector**‹**E**›(`selectors`: string): *E | null*
+▸ **querySelector**\<E>(`selectors`: string): E \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelector](_wizard_textfield_.wizardtextfield.md#queryselector)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11343
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11343*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **E**: *Element*
+Name | Type | Default |
+------ | ------ | ------ |
+`E` | Element | Element |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | string |
 
-**Returns:** *E | null*
+**Returns:** E \| null
 
 ___
 
-###  querySelectorAll
+### querySelectorAll
 
-▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹HTMLElementTagNameMap[K]›*
+▸ **querySelectorAll**\<K>(`selectors`: K): NodeListOf\<HTMLElementTagNameMap[K]>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11347
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11347*
 
 Returns all element descendants of node that match selectors.
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof HTMLElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof HTMLElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | K |
 
-**Returns:** *NodeListOf‹HTMLElementTagNameMap[K]›*
+**Returns:** NodeListOf\<HTMLElementTagNameMap[K]>
 
-▸ **querySelectorAll**‹**K**›(`selectors`: K): *NodeListOf‹SVGElementTagNameMap[K]›*
+▸ **querySelectorAll**\<K>(`selectors`: K): NodeListOf\<SVGElementTagNameMap[K]>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11348
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11348*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **K**: *keyof SVGElementTagNameMap*
+Name | Type |
+------ | ------ |
+`K` | keyof SVGElementTagNameMap |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | K |
 
-**Returns:** *NodeListOf‹SVGElementTagNameMap[K]›*
+**Returns:** NodeListOf\<SVGElementTagNameMap[K]>
 
-▸ **querySelectorAll**‹**E**›(`selectors`: string): *NodeListOf‹E›*
+▸ **querySelectorAll**\<E>(`selectors`: string): NodeListOf\<E>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[querySelectorAll](_wizard_textfield_.wizardtextfield.md#queryselectorall)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:11349
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:11349*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **E**: *Element*
+Name | Type | Default |
+------ | ------ | ------ |
+`E` | Element | Element |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | string |
 
-**Returns:** *NodeListOf‹E›*
+**Returns:** NodeListOf\<E>
 
 ___
 
-###  releasePointerCapture
+### releasePointerCapture
 
-▸ **releasePointerCapture**(`pointerId`: number): *void*
+▸ **releasePointerCapture**(`pointerId`: number): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[releasePointerCapture](_wizard_textfield_.wizardtextfield.md#releasepointercapture)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5206
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5206*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `pointerId` | number |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  remove
+### remove
 
-▸ **remove**(): *void*
+▸ **remove**(): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[remove](_wizard_textfield_.wizardtextfield.md#remove)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:3516
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:3516*
 
 Removes node.
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  removeAttribute
+### removeAttribute
 
-▸ **removeAttribute**(`qualifiedName`: string): *void*
+▸ **removeAttribute**(`qualifiedName`: string): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttribute](_wizard_textfield_.wizardtextfield.md#removeattribute)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5210
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5210*
 
 Removes element's first attribute whose qualified name is qualifiedName.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  removeAttributeNS
+### removeAttributeNS
 
-▸ **removeAttributeNS**(`namespace`: string | null, `localName`: string): *void*
+▸ **removeAttributeNS**(`namespace`: string \| null, `localName`: string): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNS](_wizard_textfield_.wizardtextfield.md#removeattributens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5214
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5214*
 
 Removes element's attribute whose namespace is namespace and local name is localName.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespace` | string &#124; null |
+`namespace` | string \| null |
 `localName` | string |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  removeAttributeNode
+### removeAttributeNode
 
-▸ **removeAttributeNode**(`attr`: Attr): *Attr*
+▸ **removeAttributeNode**(`attr`: Attr): Attr
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeAttributeNode](_wizard_textfield_.wizardtextfield.md#removeattributenode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5215
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5215*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `attr` | Attr |
 
-**Returns:** *Attr*
+**Returns:** Attr
 
 ___
 
-###  removeChild
+### removeChild
 
-▸ **removeChild**‹**T**›(`oldChild`: T): *T*
+▸ **removeChild**\<T>(`oldChild`: T): T
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeChild](_wizard_textfield_.wizardtextfield.md#removechild)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10839
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10839*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **T**: *Node*
+Name | Type |
+------ | ------ |
+`T` | Node |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `oldChild` | T |
 
-**Returns:** *T*
+**Returns:** T
 
 ___
 
-###  removeEventListener
+### removeEventListener
 
-▸ **removeEventListener**‹**K**›(`type`: K, `listener`: function, `options?`: boolean | EventListenerOptions): *void*
+▸ **removeEventListener**\<K>(`type`: K, `listener`: (this: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), ev: HTMLElementEventMap[K]) => any, `options?`: boolean \| EventListenerOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeEventListener](_wizard_textfield_.wizardtextfield.md#removeeventlistener)*
 
 *Overrides void*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6606
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6606*
 
-**Type parameters:**
-
-▪ **K**: *keyof HTMLElementEventMap*
-
-**Parameters:**
-
-▪ **type**: *K*
-
-▪ **listener**: *function*
-
-▸ (`this`: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), `ev`: HTMLElementEventMap[K]): *any*
-
-**Parameters:**
+#### Type parameters:
 
 Name | Type |
 ------ | ------ |
-`this` | [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md) |
-`ev` | HTMLElementEventMap[K] |
+`K` | keyof HTMLElementEventMap |
 
-▪`Optional`  **options**: *boolean | EventListenerOptions*
+#### Parameters:
 
-**Returns:** *void*
+Name | Type |
+------ | ------ |
+`type` | K |
+`listener` | (this: [HTMLElement](../interfaces/_foundation_.__global.htmlelement.md), ev: HTMLElementEventMap[K]) => any |
+`options?` | boolean \| EventListenerOptions |
 
-▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean | EventListenerOptions): *void*
+**Returns:** void
+
+▸ **removeEventListener**(`type`: string, `listener`: EventListenerOrEventListenerObject, `options?`: boolean \| EventListenerOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[removeEventListener](_wizard_textfield_.wizardtextfield.md#removeeventlistener)*
 
 *Overrides void*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:6607
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:6607*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `type` | string |
 `listener` | EventListenerOrEventListenerObject |
-`options?` | boolean &#124; EventListenerOptions |
+`options?` | boolean \| EventListenerOptions |
 
-**Returns:** *void*
-
-___
-
-###  render
-
-▸ **render**(): *TemplateResult*
-
-*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#static-render)*
-
-*Defined in [src/wizard-dialog.ts:161](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L161)*
-
-**Returns:** *TemplateResult*
+**Returns:** void
 
 ___
 
-###  renderPage
+### render
 
-▸ **renderPage**(`page`: [WizardPage](../interfaces/_foundation_.wizardpage.md), `index`: number): *TemplateResult*
+▸ **render**(): TemplateResult
 
-*Defined in [src/wizard-dialog.ts:110](https://github.com/openscd/open-scd/blob/56480b8/src/wizard-dialog.ts#L110)*
+*Overrides [WizardTextField](_wizard_textfield_.wizardtextfield.md).[render](_wizard_textfield_.wizardtextfield.md#render)*
 
-**Parameters:**
+*Defined in [src/wizard-dialog.ts:154](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L154)*
+
+**Returns:** TemplateResult
+
+___
+
+### renderPage
+
+▸ **renderPage**(`page`: [WizardPage](../interfaces/_foundation_.wizardpage.md), `index`: number): TemplateResult
+
+*Defined in [src/wizard-dialog.ts:103](https://github.com/openscd/open-scd/blob/12e7252/src/wizard-dialog.ts#L103)*
+
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `page` | [WizardPage](../interfaces/_foundation_.wizardpage.md) |
 `index` | number |
 
-**Returns:** *TemplateResult*
+**Returns:** TemplateResult
 
 ___
 
-###  replaceChild
+### replaceChild
 
-▸ **replaceChild**‹**T**›(`newChild`: Node, `oldChild`: T): *T*
+▸ **replaceChild**\<T>(`newChild`: Node, `oldChild`: T): T
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceChild](_wizard_textfield_.wizardtextfield.md#replacechild)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:10840
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:10840*
 
-**Type parameters:**
+#### Type parameters:
 
-▪ **T**: *Node*
+Name | Type |
+------ | ------ |
+`T` | Node |
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `newChild` | Node |
 `oldChild` | T |
 
-**Returns:** *T*
+**Returns:** T
 
 ___
 
-###  replaceWith
+### replaceWith
 
-▸ **replaceWith**(...`nodes`: (Node | string)[]): *void*
+▸ **replaceWith**(...`nodes`: (Node \| string)[]): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[replaceWith](_wizard_textfield_.wizardtextfield.md#replacewith)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:3522
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:3522*
 
 Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.
 
 Throws a "HierarchyRequestError" DOMException if the constraints of the node tree are violated.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`...nodes` | (Node &#124; string)[] |
+`...nodes` | (Node \| string)[] |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  requestFullscreen
+### requestFullscreen
 
-▸ **requestFullscreen**(`options?`: FullscreenOptions): *Promise‹void›*
+▸ **requestFullscreen**(`options?`: FullscreenOptions): Promise\<void>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestFullscreen](_wizard_textfield_.wizardtextfield.md#requestfullscreen)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5221
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5221*
 
 Displays element fullscreen and resolves promise when done.
 
 When supplied, options's navigationUI member indicates whether showing navigation UI while in fullscreen is preferred or not. If set to "show", navigation simplicity is preferred over screen space, and if set to "hide", more screen space is preferred. User agents are always free to honor user preference over the application's. The default value "auto" indicates no application preference.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `options?` | FullscreenOptions |
 
-**Returns:** *Promise‹void›*
+**Returns:** Promise\<void>
 
 ___
 
-###  requestPointerLock
+### requestPointerLock
 
-▸ **requestPointerLock**(): *void*
+▸ **requestPointerLock**(): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestPointerLock](_wizard_textfield_.wizardtextfield.md#requestpointerlock)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5222
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5222*
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  requestUpdate
+### requestUpdate
 
-▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): *Promise‹unknown›*
+▸ **requestUpdate**(`name?`: PropertyKey, `oldValue?`: unknown): Promise\<unknown>
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdate](_wizard_textfield_.wizardtextfield.md#requestupdate)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:331
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:331*
 
 Requests an update which is processed asynchronously. This should
 be called when an element should update based on some state not triggered
@@ -4231,32 +4206,32 @@ property `name` and `oldValue` to ensure that any configured property
 options are honored. Returns the `updateComplete` Promise which is resolved
 when the update completes.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
 `name?` | PropertyKey | (optional) name of requesting property |
 `oldValue?` | unknown | (optional) old value of requesting property |
 
-**Returns:** *Promise‹unknown›*
+**Returns:** Promise\<unknown>
 
 A Promise that is resolved when the update completes.
 
 ___
 
-### `Protected` requestUpdateInternal
+### requestUpdateInternal
 
-▸ **requestUpdateInternal**(`name?`: PropertyKey, `oldValue?`: unknown, `options?`: PropertyDeclaration): *void*
+▸ `Protected`**requestUpdateInternal**(`name?`: PropertyKey, `oldValue?`: unknown, `options?`: PropertyDeclaration): void
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdateInternal](_wizard_textfield_.wizardtextfield.md#protected-requestupdateinternal)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[requestUpdateInternal](_wizard_textfield_.wizardtextfield.md#requestupdateinternal)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:317
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:317*
 
 This protected version of `requestUpdate` does not access or return the
 `updateComplete` promise. This promise can be overridden and is therefore
 not free to access.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
@@ -4264,300 +4239,300 @@ Name | Type |
 `oldValue?` | unknown |
 `options?` | PropertyDeclaration |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  scroll
+### scroll
 
-▸ **scroll**(`options?`: ScrollToOptions): *void*
+▸ **scroll**(`options?`: ScrollToOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5223
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5223*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `options?` | ScrollToOptions |
 
-**Returns:** *void*
+**Returns:** void
 
-▸ **scroll**(`x`: number, `y`: number): *void*
+▸ **scroll**(`x`: number, `y`: number): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scroll](_wizard_textfield_.wizardtextfield.md#scroll)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5224
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5224*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `x` | number |
 `y` | number |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  scrollBy
+### scrollBy
 
-▸ **scrollBy**(`options?`: ScrollToOptions): *void*
+▸ **scrollBy**(`options?`: ScrollToOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5225
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5225*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `options?` | ScrollToOptions |
 
-**Returns:** *void*
+**Returns:** void
 
-▸ **scrollBy**(`x`: number, `y`: number): *void*
+▸ **scrollBy**(`x`: number, `y`: number): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollBy](_wizard_textfield_.wizardtextfield.md#scrollby)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5226
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5226*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `x` | number |
 `y` | number |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  scrollIntoView
+### scrollIntoView
 
-▸ **scrollIntoView**(`arg?`: boolean | ScrollIntoViewOptions): *void*
+▸ **scrollIntoView**(`arg?`: boolean \| ScrollIntoViewOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollIntoView](_wizard_textfield_.wizardtextfield.md#scrollintoview)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5227
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5227*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`arg?` | boolean &#124; ScrollIntoViewOptions |
+`arg?` | boolean \| ScrollIntoViewOptions |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  scrollTo
+### scrollTo
 
-▸ **scrollTo**(`options?`: ScrollToOptions): *void*
+▸ **scrollTo**(`options?`: ScrollToOptions): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5228
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5228*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `options?` | ScrollToOptions |
 
-**Returns:** *void*
+**Returns:** void
 
-▸ **scrollTo**(`x`: number, `y`: number): *void*
+▸ **scrollTo**(`x`: number, `y`: number): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[scrollTo](_wizard_textfield_.wizardtextfield.md#scrollto)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5229
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5229*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `x` | number |
 `y` | number |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  setAttribute
+### setAttribute
 
-▸ **setAttribute**(`qualifiedName`: string, `value`: string): *void*
+▸ **setAttribute**(`qualifiedName`: string, `value`: string): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttribute](_wizard_textfield_.wizardtextfield.md#setattribute)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5233
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5233*
 
 Sets the value of element's first attribute whose qualified name is qualifiedName to value.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
 `value` | string |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  setAttributeNS
+### setAttributeNS
 
-▸ **setAttributeNS**(`namespace`: string | null, `qualifiedName`: string, `value`: string): *void*
+▸ **setAttributeNS**(`namespace`: string \| null, `qualifiedName`: string, `value`: string): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNS](_wizard_textfield_.wizardtextfield.md#setattributens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5237
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5237*
 
 Sets the value of element's attribute whose namespace is namespace and local name is localName to value.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
-`namespace` | string &#124; null |
+`namespace` | string \| null |
 `qualifiedName` | string |
 `value` | string |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-###  setAttributeNode
+### setAttributeNode
 
-▸ **setAttributeNode**(`attr`: Attr): *Attr | null*
+▸ **setAttributeNode**(`attr`: Attr): Attr \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNode](_wizard_textfield_.wizardtextfield.md#setattributenode)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5238
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5238*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `attr` | Attr |
 
-**Returns:** *Attr | null*
+**Returns:** Attr \| null
 
 ___
 
-###  setAttributeNodeNS
+### setAttributeNodeNS
 
-▸ **setAttributeNodeNS**(`attr`: Attr): *Attr | null*
+▸ **setAttributeNodeNS**(`attr`: Attr): Attr \| null
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setAttributeNodeNS](_wizard_textfield_.wizardtextfield.md#setattributenodens)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5239
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5239*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `attr` | Attr |
 
-**Returns:** *Attr | null*
+**Returns:** Attr \| null
 
 ___
 
-###  setPointerCapture
+### setPointerCapture
 
-▸ **setPointerCapture**(`pointerId`: number): *void*
+▸ **setPointerCapture**(`pointerId`: number): void
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[setPointerCapture](_wizard_textfield_.wizardtextfield.md#setpointercapture)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5240
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5240*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `pointerId` | number |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Protected` shouldUpdate
+### shouldUpdate
 
-▸ **shouldUpdate**(`_changedProperties`: PropertyValues): *boolean*
+▸ `Protected`**shouldUpdate**(`_changedProperties`: PropertyValues): boolean
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shouldUpdate](_wizard_textfield_.wizardtextfield.md#protected-shouldupdate)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[shouldUpdate](_wizard_textfield_.wizardtextfield.md#shouldupdate)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:396
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:396*
 
 Controls whether or not `update` should be called when the element requests
 an update. By default, this method always returns `true`, but this can be
 customized to control when to update.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
 `_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-###  toggleAttribute
+### toggleAttribute
 
-▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined | false | true): *boolean*
+▸ **toggleAttribute**(`qualifiedName`: string, `force?`: undefined \| false \| true): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[toggleAttribute](_wizard_textfield_.wizardtextfield.md#toggleattribute)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5246
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5246*
 
 If force is not given, "toggles" qualifiedName, removing it if it is present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.
 
 Returns true if qualifiedName is now present, and false otherwise.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `qualifiedName` | string |
-`force?` | undefined &#124; false &#124; true |
+`force?` | undefined \| false \| true |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-### `Protected` update
+### update
 
-▸ **update**(`changedProperties`: PropertyValues): *void*
+▸ `Protected`**update**(`changedProperties`: PropertyValues): void
 
-*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[update](_wizard_dialog_.wizarddialog.md#protected-update)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[update](_wizard_dialog_.wizarddialog.md#update)*
 
 *Overrides void*
 
-Defined in node_modules/lit-element/lit-element.d.ts:158
+*Defined in node_modules/lit-element/lit-element.d.ts:158*
 
 Updates the element. This method reflects property values to attributes
 and calls `render` to render DOM via lit-html. Setting properties inside
 this method will *not* trigger another update.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `changedProperties` | PropertyValues |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Protected` updated
+### updated
 
-▸ **updated**(`_changedProperties`: PropertyValues): *void*
+▸ `Protected`**updated**(`_changedProperties`: PropertyValues): void
 
-*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#protected-updated)*
+*Inherited from [WizardDialog](_wizard_dialog_.wizarddialog.md).[updated](_wizard_dialog_.wizarddialog.md#updated)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:415
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:415*
 
 Invoked whenever the element is updated. Implement to perform
 post-updating tasks via DOM APIs, for example, focusing an element.
@@ -4565,60 +4540,41 @@ post-updating tasks via DOM APIs, for example, focusing an element.
 Setting properties inside this method will trigger the element to update
 again after this update cycle completes.
 
-**Parameters:**
+#### Parameters:
 
 Name | Type | Description |
 ------ | ------ | ------ |
 `_changedProperties` | PropertyValues | Map of changed properties with old values  |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Optional` warn
+### webkitMatchesSelector
 
-▸ **warn**(`message`: string, ...`data`: any[]): *void*
-
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[warn](_wizard_textfield_.wizardtextfield.md#optional-warn)*
-
-*Defined in [src/foundation.ts:229](https://github.com/openscd/open-scd/blob/56480b8/src/foundation.ts#L229)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`message` | string |
-`...data` | any[] |
-
-**Returns:** *void*
-
-___
-
-###  webkitMatchesSelector
-
-▸ **webkitMatchesSelector**(`selectors`: string): *boolean*
+▸ **webkitMatchesSelector**(`selectors`: string): boolean
 
 *Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[webkitMatchesSelector](_wizard_textfield_.wizardtextfield.md#webkitmatchesselector)*
 
-Defined in node_modules/typescript/lib/lib.dom.d.ts:5247
+*Defined in node_modules/typescript/lib/lib.dom.d.ts:5247*
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `selectors` | string |
 
-**Returns:** *boolean*
+**Returns:** boolean
 
 ___
 
-### `Static` createProperty
+### createProperty
 
-▸ **createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): *void*
+▸ `Static`**createProperty**(`name`: PropertyKey, `options?`: PropertyDeclaration): void
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createProperty](_wizard_textfield_.wizardtextfield.md#static-createproperty)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[createProperty](_wizard_textfield_.wizardtextfield.md#createproperty)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:184
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:184*
 
 Creates a property accessor on the element prototype if one does not exist
 and stores a PropertyDeclaration for the property with the given options.
@@ -4641,41 +4597,41 @@ static createProperty(name, options) {
 
 **`nocollapse`** 
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `name` | PropertyKey |
 `options?` | PropertyDeclaration |
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Static` `Protected` finalize
+### finalize
 
-▸ **finalize**(): *void*
+▸ `Static` `Protected`**finalize**(): void
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalize](_wizard_textfield_.wizardtextfield.md#static-protected-finalize)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[finalize](_wizard_textfield_.wizardtextfield.md#finalize)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:233
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:233*
 
 Creates property accessors for registered properties and ensures
 any superclasses are also finalized.
 
 **`nocollapse`** 
 
-**Returns:** *void*
+**Returns:** void
 
 ___
 
-### `Static` `Protected` getPropertyDescriptor
+### getPropertyDescriptor
 
-▸ **getPropertyDescriptor**(`name`: PropertyKey, `key`: string | symbol, `options`: PropertyDeclaration): *object*
+▸ `Static` `Protected`**getPropertyDescriptor**(`name`: PropertyKey, `key`: string \| symbol, `options`: PropertyDeclaration): object
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyDescriptor](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertydescriptor)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyDescriptor](_wizard_textfield_.wizardtextfield.md#getpropertydescriptor)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:209
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:209*
 
 Returns a property descriptor to be defined on the given named property.
 If no descriptor is returned, the property will not become an accessor.
@@ -4700,33 +4656,32 @@ For example,
 
 **`nocollapse`** 
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `name` | PropertyKey |
-`key` | string &#124; symbol |
+`key` | string \| symbol |
 `options` | PropertyDeclaration |
 
-**Returns:** *object*
+**Returns:** object
 
-* **configurable**: *boolean*
-
-* **enumerable**: *boolean*
-
-* **get**(): *any*
-
-* **set**(`this`: UpdatingElement, `value`: unknown): *void*
+Name | Type |
+------ | ------ |
+`configurable` | boolean |
+`enumerable` | boolean |
+`get` | () => any |
+`set` | (this: UpdatingElement, value: unknown) => void |
 
 ___
 
-### `Static` `Protected` getPropertyOptions
+### getPropertyOptions
 
-▸ **getPropertyOptions**(`name`: PropertyKey): *PropertyDeclaration‹unknown, unknown›*
+▸ `Static` `Protected`**getPropertyOptions**(`name`: PropertyKey): PropertyDeclaration\<unknown, unknown>
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyOptions](_wizard_textfield_.wizardtextfield.md#static-protected-getpropertyoptions)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getPropertyOptions](_wizard_textfield_.wizardtextfield.md#getpropertyoptions)*
 
-Defined in node_modules/lit-element/lib/updating-element.d.ts:227
+*Defined in node_modules/lit-element/lib/updating-element.d.ts:227*
 
 Returns the property options associated with the given property.
 These options are defined with a PropertyDeclaration via the `properties`
@@ -4740,27 +4695,27 @@ customize the options for a given property, override `createProperty`.
 
 **`final`** 
 
-**Parameters:**
+#### Parameters:
 
 Name | Type |
 ------ | ------ |
 `name` | PropertyKey |
 
-**Returns:** *PropertyDeclaration‹unknown, unknown›*
+**Returns:** PropertyDeclaration\<unknown, unknown>
 
 ___
 
-### `Static` getStyles
+### getStyles
 
-▸ **getStyles**(): *CSSResultOrNative | CSSResultArray | undefined*
+▸ `Static`**getStyles**(): CSSResultOrNative \| CSSResultArray \| undefined
 
-*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getStyles](_wizard_textfield_.wizardtextfield.md#static-getstyles)*
+*Inherited from [WizardTextField](_wizard_textfield_.wizardtextfield.md).[getStyles](_wizard_textfield_.wizardtextfield.md#getstyles)*
 
-Defined in node_modules/lit-element/lit-element.d.ts:118
+*Defined in node_modules/lit-element/lit-element.d.ts:118*
 
 Return the array of styles to apply to the element.
 Override this method to integrate into a style management system.
 
 **`nocollapse`** 
 
-**Returns:** *CSSResultOrNative | CSSResultArray | undefined*
+**Returns:** CSSResultOrNative \| CSSResultArray \| undefined
