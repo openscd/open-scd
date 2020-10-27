@@ -8,6 +8,10 @@ module.exports = config => {
     merge(
       createDefaultConfig(config),
       {
+        coverageReporter: {
+          dir: 'coverage',
+          subdir: '.'
+        },
         browserDisconnectTimeout: 20000,
         files: [
           'public/js/xmllint.js',
