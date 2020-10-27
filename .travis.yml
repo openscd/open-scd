@@ -1,8 +1,6 @@
 language: node_js
 node_js:
   - 14
-
-jobs:
-  include:
-    - stage: snowpack build
-      script: snowpack build
+script:
+  - npm test
+  - npm run build
