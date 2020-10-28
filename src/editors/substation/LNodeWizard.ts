@@ -6,17 +6,14 @@ import {
   EditorAction,
 } from '../../foundation.js';
 
+import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-textfield';
 import { TextField } from '@material/mwc-textfield';
-import {
-  SingleSelectedEvent,
-  isEventMulti,
-  MWCListIndex,
-} from '@material/mwc-list/mwc-list-foundation';
+import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { html } from 'lit-html';
+import { html, render } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 function createAction(parent: Element): WizardAction {
@@ -31,7 +28,7 @@ function createAction(parent: Element): WizardAction {
           parent,
           element: new DOMParser().parseFromString(
             `<LNode iedName="${value.iedName}" ldInst="${value.ldInst}" ${
-              value.prefix ? `prefix="${value.prefix}"` : ``
+              value.prefix ? `prefix="${value.prefix}"` : ''
             } lnClass="${value.lnClass}" lnInst="${value.inst}"></LNode>`,
             'application/xml'
           ).documentElement,
@@ -70,94 +67,79 @@ function removeAction(parent: Element): WizardAction {
   };
 }
 
-function clearChildren(element: Element | null | undefined): void {
-  if (element)
-    while (element.lastElementChild)
-      element.removeChild(element?.lastElementChild);
+function onIEDSelect(evt: MultiSelectedEvent, doc: Document): void {
+  const ldList =
+    (<Element>(
+      evt.target
+    )).parentElement?.parentElement?.nextElementSibling?.querySelector(
+      '#ldList'
+    ) ?? null;
+  if (ldList === null) return;
+
+  const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
+    .map(item => doc.querySelector(`IED[name="${item.value}"]`)!)
+    .map(ied => {
+      const values = Array.from(ied.querySelectorAll('LDevice')).map(
+        lDevice => {
+          return {
+            iedName: ied.getAttribute('name'),
+            ldInst: lDevice.getAttribute('inst')!,
+          };
+        }
+      );
+      const deviceItems = values.map(
+        value =>
+          html`<mwc-check-list-item value="${JSON.stringify(value)}" twoline
+            ><span>${value.ldInst}</span
+            ><span slot="secondary">${value.iedName}</span></mwc-check-list-item
+          >`
+      );
+      return html`${deviceItems}
+        <li divider role="separator"></li>`;
+    });
+
+  render(html`${itemGroups}`, ldList);
 }
 
-function onIedSelect(evt: SingleSelectedEvent, doc: Document): void {
-  const element: Element | null | undefined = (<Element>(
-    evt.target
-  )).parentElement?.parentElement?.nextElementSibling?.querySelector('#ldList');
+function onLdSelect(evt: MultiSelectedEvent, doc: Document): void {
+  const lnList =
+    (<Element>(
+      evt.target
+    )).parentElement?.parentElement?.nextElementSibling?.querySelector(
+      '#lnList'
+    ) ?? null;
+  if (lnList === null) return;
 
-  clearChildren(element);
-
-  if (isEventMulti(evt)) {
-    (<ListItemBase[]>(<List>evt.target).selected).map(item => {
-      Array.from(doc.querySelectorAll('IED')).map(ied => {
-        if (ied.getAttribute('name') === item.value) {
-          Array.from(ied.querySelectorAll('LDevice')).map(lDevice => {
-            const value = {
-              iedName: ied.getAttribute('name'),
-              ldInst: lDevice.getAttribute('inst'),
-            };
-            const listItem = document.createElement('mwc-list-item');
-            listItem.setAttribute('value', JSON.stringify(value));
-            listItem.setAttribute('twoline', 'true');
-            const span1 = document.createElement('span');
-            span1.append(lDevice.getAttribute('inst') ?? '');
-            listItem.append(span1);
-            const span2 = document.createElement('span');
-            span2.setAttribute('slot', 'secondary');
-            span2.append(ied.getAttribute('name') ?? '');
-            listItem.append(span2);
-            element?.appendChild(listItem);
-          });
-          const divider = document.createElement('li');
-          divider.setAttribute('divider', '');
-          divider.setAttribute('role', 'separator');
-          element?.appendChild(divider);
-        }
+  const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
+    .map((item): { iedName: string; ldInst: string } => JSON.parse(item.value))
+    .map(ldValue => {
+      const values = Array.from(
+        doc.querySelectorAll(
+          `IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN
+          ,IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN0`
+        )
+      ).map(ln => {
+        return {
+          prefix: ln.getAttribute('prefix'),
+          lnClass: ln.getAttribute('lnClass'),
+          inst: ln.getAttribute('inst'),
+          ...ldValue,
+        };
       });
+      const nodeItems = values.map(
+        value =>
+          html`<mwc-check-list-item value="${JSON.stringify(value)}" twoline
+            ><span>${value.prefix}${value.lnClass}${value.inst}</span
+            ><span slot="secondary"
+              >${value.iedName} | ${value.ldInst}</span
+            ></mwc-check-list-item
+          >`
+      );
+      return html`${nodeItems}
+        <li divider role="separator"></li>`;
     });
-  }
-}
 
-function onLdSelect(evt: SingleSelectedEvent, doc: Document): void {
-  const element: Element | null | undefined = (<Element>(
-    evt.target
-  )).parentElement?.parentElement?.nextElementSibling?.querySelector('#lnList');
-
-  clearChildren(element);
-
-  if (isEventMulti(evt)) {
-    (<ListItemBase[]>(<List>evt.target).selected).map(item => {
-      Array.from(doc.querySelectorAll('IED')).map(ied => {
-        const parentValue = JSON.parse(item.value);
-        if (ied.getAttribute('name') === parentValue.iedName) {
-          Array.from(ied.querySelectorAll('LDevice')).map(lDevice => {
-            if (lDevice.getAttribute('inst') === parentValue.ldInst) {
-              Array.from(lDevice.querySelectorAll('LN,LN0')).map(ln => {
-                const value = {
-                  iedName: ied.getAttribute('name'),
-                  ldInst: lDevice.getAttribute('inst'),
-                  prefix: ln.getAttribute('prefix'),
-                  lnClass: ln.getAttribute('lnClass'),
-                  inst: ln.getAttribute('inst'),
-                };
-                const listItem = document.createElement('mwc-list-item');
-                listItem.setAttribute('value', JSON.stringify(value));
-                listItem.setAttribute('twoline', 'true');
-                const span1 = document.createElement('span');
-                span1.append(
-                  (ln.getAttribute('prefix') ?? '') +
-                    (ln.getAttribute('lnClass') ?? '') +
-                    (ln.getAttribute('inst') ?? '')
-                );
-                listItem.append(span1);
-                const span2 = document.createElement('span');
-                span2.setAttribute('slot', 'secondary');
-                span2.append(parentValue.iedName + '|' + parentValue.ldInst);
-                listItem.append(span2);
-                element?.appendChild(listItem);
-              });
-            }
-          });
-        }
-      });
-    });
-  }
+  render(html`${itemGroups}`, lnList);
 }
 
 function onIedFilter(evt: InputEvent): void {
@@ -198,19 +180,18 @@ function onLdFilter(evt: InputEvent): void {
 }
 
 function onLnFilter(evt: InputEvent): void {
-  (<List>(
-    (<TextField>evt.target).parentElement?.querySelector('#lnList')
-  )).items.map(item => {
+  Array.from(
+    (<List>(<TextField>evt.target).parentElement?.querySelector('#lnList'))
+      .children
+  ).forEach(item => {
     if (
       item
         .querySelector('span')
         ?.innerText.toUpperCase()
         .includes((<TextField>evt.target).value.toUpperCase())
     ) {
-      item.removeAttribute('disabled');
       item.removeAttribute('style');
     } else {
-      item.setAttribute('disabled', 'true');
       item.setAttribute('style', 'display:none;');
     }
   });
@@ -250,11 +231,12 @@ export function add(element: Element): Wizard {
             activatable
             multi
             id="iedList"
-            @selected="${(evt: SingleSelectedEvent) => onIedSelect(evt, doc)}"
+            @selected="${(evt: MultiSelectedEvent) => onIEDSelect(evt, doc)}"
             >${Array.from(doc.querySelectorAll('IED')).map(
               ied =>
-                html`<mwc-list-item value="${ied.getAttribute('name')}"
-                  >${ied.getAttribute('name')}</mwc-list-item
+                html`<mwc-check-list-item
+                  .value=${ied.getAttribute('name') ?? ''}
+                  >${ied.getAttribute('name')}</mwc-check-list-item
                 >`
             )}</mwc-list
           >`,
@@ -272,7 +254,7 @@ export function add(element: Element): Wizard {
             activatable
             multi
             id="ldList"
-            @selected="${(evt: SingleSelectedEvent) => onLdSelect(evt, doc)}"
+            @selected="${(evt: MultiSelectedEvent) => onLdSelect(evt, doc)}"
           ></mwc-list>`,
       ],
     },
@@ -315,7 +297,7 @@ export function remove(element: Element): Wizard {
               .filter(child => child.tagName === 'LNode')
               .map(
                 lNode =>
-                  html`<mwc-list-item twoline="true"
+                  html`<mwc-check-list-item twoline
                     ><span
                       >${(lNode.getAttribute('prefix') ?? '') +
                       (lNode.getAttribute('lnClass') ?? '') +
@@ -324,7 +306,7 @@ export function remove(element: Element): Wizard {
                       >${lNode.getAttribute('iedName') +
                       '|' +
                       lNode.getAttribute('ldInst')}</span
-                    ></mwc-list-item
+                    ></mwc-check-list-item
                   >`
               )}</mwc-list
           >`,
