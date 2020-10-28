@@ -23,6 +23,8 @@ import {
 
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
+import { iedIcon } from '../../icons.js';
+import { add } from './LNodeWizard.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
@@ -84,6 +86,10 @@ export class VoltageLevelEditor extends LitElement {
     this.dispatchEvent(event);
   }
 
+  openLNodeWizard(): void {
+    this.dispatchEvent(newWizardEvent(add(this.element)));
+  }
+
   removeAction(): void {
     if (this.element)
       this.dispatchEvent(
@@ -100,6 +106,9 @@ export class VoltageLevelEditor extends LitElement {
         ${this.voltage === null ? '' : html`(${this.voltage})`}
       </h2>
       <div id="header-icon">
+        <mwc-icon-button @click=${() => this.openLNodeWizard()}
+          >${iedIcon}</mwc-icon-button
+        >
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}

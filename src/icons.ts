@@ -1,10 +1,10 @@
 import { html } from 'lit-element';
 
 export const iedIcon = html`<svg
-  slot="icon"
-  width="25"
-  height="25"
-  style="margin-bottom:0;"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
 >
   <rect
     width="20"

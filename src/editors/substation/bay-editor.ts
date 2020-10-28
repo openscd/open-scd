@@ -21,6 +21,8 @@ import { get, translate } from 'lit-translate';
 
 import './conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
+import { add } from './LNodeWizard.js';
+import { iedIcon } from '../../icons.js';
 
 interface BayUpdateOptions {
   element: Element;
@@ -61,6 +63,10 @@ export class BayEditor extends LitElement {
     );
   }
 
+  openLNodeWizard(): void {
+    this.dispatchEvent(newWizardEvent(add(this.element)));
+  }
+
   openConductingEquipmentWizard(): void {
     if (!this.element) return;
     const event = newWizardEvent(
@@ -84,6 +90,9 @@ export class BayEditor extends LitElement {
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       </h3>
       <div id="header-icon">
+        <mwc-icon-button @click=${() => this.openLNodeWizard()}
+          >${iedIcon}</mwc-icon-button
+        >
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
