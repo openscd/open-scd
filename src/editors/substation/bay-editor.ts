@@ -21,8 +21,10 @@ import { get, translate } from 'lit-translate';
 
 import './conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
-import { add } from './LNodeWizard.js';
+import { add, remove } from './LNodeWizard.js';
 import { iedIcon } from '../../icons.js';
+import { Menu } from '@material/mwc-menu';
+import { IconButton } from '@material/mwc-icon-button';
 
 interface BayUpdateOptions {
   element: Element;
@@ -56,6 +58,8 @@ export class BayEditor extends LitElement {
   }
 
   @query('h3') header!: Element;
+  @query('#lNodeMenu') lNodeMenu!: Menu;
+  @query('#lNodeButton') lNodeButton!: IconButton;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -63,8 +67,12 @@ export class BayEditor extends LitElement {
     );
   }
 
-  openLNodeWizard(): void {
+  openLNodeAddWizard(): void {
     this.dispatchEvent(newWizardEvent(add(this.element)));
+  }
+
+  openLNodeRemoveWizard(): void {
+    this.dispatchEvent(newWizardEvent(remove(this.element)));
   }
 
   openConductingEquipmentWizard(): void {
@@ -90,9 +98,21 @@ export class BayEditor extends LitElement {
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       </h3>
       <div id="header-icon">
-        <mwc-icon-button @click=${() => this.openLNodeWizard()}
-          >${iedIcon}</mwc-icon-button
-        >
+        <div style="position: relative;">
+          <mwc-icon-button
+            id="lNodeButton"
+            @click="${() => this.lNodeMenu?.show()}"
+            >${iedIcon}</mwc-icon-button
+          >
+          <mwc-menu id="lNodeMenu" .anchor=${this.lNodeButton}>
+            <mwc-list-item @click=${() => this.openLNodeAddWizard()}
+              >Add Logical Node Connections</mwc-list-item
+            >
+            <mwc-list-item @click=${() => this.openLNodeRemoveWizard()}
+              >Remove Logical Node Connections</mwc-list-item
+            >
+          </mwc-menu>
+        </div>
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}

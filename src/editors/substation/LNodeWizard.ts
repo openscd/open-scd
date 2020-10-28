@@ -12,6 +12,7 @@ import { TextField } from '@material/mwc-textfield';
 import {
   SingleSelectedEvent,
   isEventMulti,
+  MWCListIndex,
 } from '@material/mwc-list/mwc-list-foundation';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -36,9 +37,33 @@ function createAction(parent: Element): WizardAction {
           reference: null,
         },
       };
-      console.log(action.new.element);
       actions.push(action);
     });
+    wizard.close();
+    return actions;
+  };
+}
+
+function removeAction(parent: Element): WizardAction {
+  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+    const actions: EditorAction[] = [];
+
+    Array.from(
+      <Set<number>>(<List>wizard.shadowRoot?.querySelector('#lNodeList')).index
+    ).map(index => {
+      const element = Array.from(parent.children).filter(
+        child => child.tagName === 'LNode'
+      )[index];
+      const action = {
+        old: {
+          parent: parent,
+          element: element,
+          reference: element.nextElementSibling ?? null,
+        },
+      };
+      actions.push(action);
+    });
+
     wizard.close();
     return actions;
   };
@@ -190,6 +215,25 @@ function onLnFilter(evt: InputEvent): void {
   });
 }
 
+function onLNodeFilter(evt: InputEvent): void {
+  (<List>(
+    (<TextField>evt.target).parentElement?.querySelector('#lNodeList')
+  )).items.map(item => {
+    if (
+      item
+        .querySelector('span')
+        ?.innerText.toUpperCase()
+        .includes((<TextField>evt.target).value.toUpperCase())
+    ) {
+      item.removeAttribute('disabled');
+      item.removeAttribute('style');
+    } else {
+      item.setAttribute('disabled', 'true');
+      item.setAttribute('style', 'display:none;');
+    }
+  });
+}
+
 export function add(element: Element): Wizard {
   const doc = element.ownerDocument;
   return [
@@ -235,7 +279,7 @@ export function add(element: Element): Wizard {
       title: 'Select Logical Nodes',
       primary: {
         icon: 'add',
-        label: 'Add Logical Nodes',
+        label: 'Add Logical Node Connections',
         action: createAction(element),
       },
       content: [
@@ -245,6 +289,44 @@ export function add(element: Element): Wizard {
             @input="${onLnFilter}"
           ></wizard-textfield>
           <mwc-list activatable multi id="lnList"></mwc-list>`,
+      ],
+    },
+  ];
+}
+
+export function remove(element: Element): Wizard {
+  return [
+    {
+      title: 'Select Logical Node Connections',
+      primary: {
+        icon: 'delete',
+        label: 'Remove Logical Node Connections',
+        action: removeAction(element),
+      },
+      content: [
+        html`<wizard-textfield
+            label="filter"
+            iconTrailing="search"
+            @input="${onLNodeFilter}"
+          ></wizard-textfield>
+          <mwc-list activatable multi id="lNodeList"
+            >${Array.from(element.children)
+              .filter(child => child.tagName === 'LNode')
+              .map(
+                lNode =>
+                  html`<mwc-list-item twoline="true"
+                    ><span
+                      >${(lNode.getAttribute('prefix') ?? '') +
+                      (lNode.getAttribute('lnClass') ?? '') +
+                      (lNode.getAttribute('lnInst') ?? '')}</span
+                    ><span slot="secondary"
+                      >${lNode.getAttribute('iedName') +
+                      '|' +
+                      lNode.getAttribute('ldInst')}</span
+                    ></mwc-list-item
+                  >`
+              )}</mwc-list
+          >`,
       ],
     },
   ];
