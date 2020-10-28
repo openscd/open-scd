@@ -13,4 +13,4 @@ deploy:
   target_branch: master
   local_dir: build
   on:
-    branch: test-travis-ci
+    branch: new-travis-ci
