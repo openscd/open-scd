@@ -204,7 +204,6 @@ export default class SubstationEditor extends LitElement {
 
     #container {
       background-color: var(--mdc-theme-surface);
-      margin: 10px;
     }
 
     h1 {
@@ -212,8 +211,7 @@ export default class SubstationEditor extends LitElement {
       font-weight: 300;
       color: var(--mdc-theme-on-surface);
       margin: 0px;
-      padding-top: 0.3em;
-      padding-bottom: 0.3em;
+      padding: 0.3em;
     }
 
     h1 > mwc-icon-button {
