@@ -106,10 +106,10 @@ export class BayEditor extends LitElement {
           >
           <mwc-menu id="lNodeMenu" .anchor=${this.lNodeButton}>
             <mwc-list-item @click=${() => this.openLNodeAddWizard()}
-              >Add Logical Node Connections</mwc-list-item
+              >${translate('add')}</mwc-list-item
             >
             <mwc-list-item @click=${() => this.openLNodeRemoveWizard()}
-              >Remove Logical Node Connections</mwc-list-item
+              >${translate('remove')}</mwc-list-item
             >
           </mwc-menu>
         </div>

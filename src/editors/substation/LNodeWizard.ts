@@ -17,6 +17,7 @@ import {
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { html } from 'lit-html';
+import { get, translate } from 'lit-translate';
 
 function createAction(parent: Element): WizardAction {
   return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
@@ -238,10 +239,10 @@ export function add(element: Element): Wizard {
   const doc = element.ownerDocument;
   return [
     {
-      title: 'Select IEDs',
+      title: get('lnode.wizard.title.selectIEDs'),
       content: [
         html`<wizard-textfield
-            label="filter"
+            label="${translate('filter')}"
             iconTrailing="search"
             @input="${onIedFilter}"
           ></wizard-textfield>
@@ -260,10 +261,10 @@ export function add(element: Element): Wizard {
       ],
     },
     {
-      title: 'Select Logical Devices',
+      title: get('lnode.wizard.title.selectLDs'),
       content: [
         html`<wizard-textfield
-            label="filter"
+            label="${translate('filter')}"
             iconTrailing="search"
             @input="${onLdFilter}"
           ></wizard-textfield>
@@ -276,15 +277,15 @@ export function add(element: Element): Wizard {
       ],
     },
     {
-      title: 'Select Logical Nodes',
+      title: get('lnode.wizard.title.selectLNs'),
       primary: {
         icon: 'add',
-        label: 'Add Logical Node Connections',
+        label: get('add'),
         action: createAction(element),
       },
       content: [
         html`<wizard-textfield
-            label="filter"
+            label="${translate('filter')}"
             iconTrailing="search"
             @input="${onLnFilter}"
           ></wizard-textfield>
@@ -297,15 +298,15 @@ export function add(element: Element): Wizard {
 export function remove(element: Element): Wizard {
   return [
     {
-      title: 'Select Logical Node Connections',
+      title: get('lnode.wizard.title.selectLNodes'),
       primary: {
         icon: 'delete',
-        label: 'Remove Logical Node Connections',
+        label: get('remove'),
         action: removeAction(element),
       },
       content: [
         html`<wizard-textfield
-            label="filter"
+            label="${translate('filter')}"
             iconTrailing="search"
             @input="${onLNodeFilter}"
           ></wizard-textfield>
