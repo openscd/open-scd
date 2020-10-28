@@ -13,4 +13,4 @@ deploy:
   target_branch: master
   local_dir: build
   on:
-    branch: new-travis-ci
+    branch: 15-add-lnode-wizard
