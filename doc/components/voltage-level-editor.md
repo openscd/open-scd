@@ -13,9 +13,10 @@
 
 ## Methods
 
-| Method           | Type                 |
-|------------------|----------------------|
-| `openBayWizard`  | `(): void`           |
-| `openEditWizard` | `(): void`           |
-| `removeAction`   | `(): void`           |
-| `renderHeader`   | `(): TemplateResult` |
+| Method            | Type                 |
+|-------------------|----------------------|
+| `openBayWizard`   | `(): void`           |
+| `openEditWizard`  | `(): void`           |
+| `openLNodeWizard` | `(): void`           |
+| `removeAction`    | `(): void`           |
+| `renderHeader`    | `(): TemplateResult` |
