@@ -17,6 +17,8 @@ import {
 
 import './substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
+import { iedIcon } from '../icons.js';
+import { add } from './substation/LNodeWizard.js';
 
 export default class SubstationEditor extends LitElement {
   @property()
@@ -121,6 +123,10 @@ export default class SubstationEditor extends LitElement {
     this.dispatchEvent(event);
   }
 
+  openLNodeWizard(): void {
+    if (this.element) this.dispatchEvent(newWizardEvent(add(this.element)));
+  }
+
   removeSubstation(): void {
     if (this.element)
       this.dispatchEvent(
@@ -162,6 +168,9 @@ export default class SubstationEditor extends LitElement {
           icon="edit"
           @click=${() => this.openSubstationWizard()}
         ></mwc-icon-button>
+        <mwc-icon-button @click=${() => this.openLNodeWizard()}
+          >${iedIcon}</mwc-icon-button
+        >
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       </h1>
     `;
@@ -195,7 +204,6 @@ export default class SubstationEditor extends LitElement {
 
     #container {
       background-color: var(--mdc-theme-surface);
-      margin: 10px;
     }
 
     h1 {
@@ -203,8 +211,7 @@ export default class SubstationEditor extends LitElement {
       font-weight: 300;
       color: var(--mdc-theme-on-surface);
       margin: 0px;
-      padding-top: 0.3em;
-      padding-bottom: 0.3em;
+      padding: 0.3em;
     }
 
     h1 > mwc-icon-button {

@@ -1,14 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { createDefaultConfig } = require('@open-wc/testing-karma');
 const merge = require('deepmerge');
-process.env.CHROME_BIN = require('puppeteer').executablePath();
-const overwriteMerge = (destinationArray, sourceArray, options) => sourceArray;
+// process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = config => {
   config.set(
     merge(
       createDefaultConfig(config),
       {
+        coverageReporter: {
+          dir: 'coverage',
+          subdir: '.'
+        },
         browserDisconnectTimeout: 20000,
         files: [
           'public/js/xmllint.js',
@@ -23,25 +26,10 @@ module.exports = config => {
           },
         ],
 
-        browsers: [], // ['ChromeHeadlessNoSandbox'], // commented for WSL
-        customLaunchers: {
-          ChromeHeadlessNoSandbox: {
-            base: 'ChromeHeadless',
-            flags: ['--no-sandbox'],
-          },
-        },
-
         esm: {
           nodeResolve: true,
         },
         // you can overwrite/extend the config further
-      },
-      {
-        customMerge: key => {
-          if (key === 'browsers') {
-            return overwriteMerge;
-          }
-        },
       }
     )
   );

@@ -93,6 +93,19 @@ export const de: Translations = {
       },
     },
   },
+  lnode: {
+    wizard: {
+      nameHelper: 'Conducting Equipment Name',
+      descHelper: 'Conducting Equipment Description',
+      typeHelper: 'Conducting Equipment Type',
+      title: {
+        selectIEDs: 'Auswahl IEDs',
+        selectLDs: 'Auswahl logische Geräte',
+        selectLNs: 'Auswahl logische Knoten',
+        selectLNodes: 'Verknüpfte logische Knoten',
+      },
+    },
+  },
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
   save: 'Speichern',
@@ -101,4 +114,6 @@ export const de: Translations = {
   close: 'Schließen',
   undo: 'Rückgängig',
   redo: 'Wiederholen',
+  remove: 'Entfernen',
+  filter: 'Filter',
 };
