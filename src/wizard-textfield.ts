@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { translate, get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-menu';
@@ -102,8 +102,10 @@ export class WizardTextField extends TextField {
     if (
       this.reservedValues &&
       this.reservedValues.some(array => array === this.value)
-    )
+    ) {
+      this.setCustomValidity(get('textfield.unique'));
       return false;
+    }
     return super.checkValidity();
   }
 

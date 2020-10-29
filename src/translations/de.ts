@@ -34,6 +34,7 @@ export const de: Translations = {
     required: 'Pflichtfeld',
     nonempty: 'Darf nicht leer sein',
     noMultiplier: 'keiner',
+    unique: 'Darf sich nicht wiederholen',
   },
   log: {
     name: 'Protokoll',

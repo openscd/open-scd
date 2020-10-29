@@ -32,6 +32,7 @@ export const en = {
     required: 'Required',
     nonempty: 'Must not be empty',
     noMultiplier: 'none',
+    unique: 'Must be unique',
   },
   log: {
     name: 'Log',

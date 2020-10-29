@@ -220,7 +220,9 @@ export class ConductingEquipmentEditor extends LitElement {
       : [
           Array.from(
             options.element.parentNode!.querySelectorAll('ConductingEquipment')
-          ).map(condEq => condEq.getAttribute('name')),
+          )
+            .map(condEq => condEq.getAttribute('name'))
+            .filter(name => name !== options.element.getAttribute('name')),
         ];
 
     return [
