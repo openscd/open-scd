@@ -13,4 +13,4 @@ deploy:
   target_branch: master
   local_dir: build
   on:
-    branch: 15-add-lnode-wizard
+    branch: 14-add-conducting-equipment-editor
