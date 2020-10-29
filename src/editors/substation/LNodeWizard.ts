@@ -101,7 +101,8 @@ function onIEDSelect(evt: MultiSelectedEvent, doc: Document): void {
   render(html`${itemGroups}`, ldList);
 }
 
-function onLdSelect(evt: MultiSelectedEvent, doc: Document): void {
+function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
+  const doc = element.ownerDocument;
   const lnList =
     (<Element>(
       evt.target
@@ -126,20 +127,47 @@ function onLdSelect(evt: MultiSelectedEvent, doc: Document): void {
           ...ldValue,
         };
       });
-      const nodeItems = values.map(
-        value =>
-          html`<mwc-check-list-item value="${JSON.stringify(value)}" twoline
+      const nodeItems = values.map(value => {
+        if (existLNode(value, element))
+          return html`<mwc-check-list-item
+            disabled
+            value="${JSON.stringify(value)}"
+            twoline
             ><span>${value.prefix}${value.lnClass}${value.inst}</span
             ><span slot="secondary"
               >${value.iedName} | ${value.ldInst}</span
             ></mwc-check-list-item
-          >`
-      );
+          >`;
+        else
+          return html`<mwc-check-list-item
+            value="${JSON.stringify(value)}"
+            twoline
+            ><span>${value.prefix}${value.lnClass}${value.inst}</span
+            ><span slot="secondary"
+              >${value.iedName} | ${value.ldInst}</span
+            ></mwc-check-list-item
+          >`;
+      });
       return html`${nodeItems}
         <li divider role="separator"></li>`;
     });
 
   render(html`${itemGroups}`, lnList);
+}
+
+function existLNode(value: any, element: Element): boolean {
+  return Array.from(element.children)
+    .filter(child => child.tagName === 'LNode')
+    .some(
+      lNode =>
+        lNode.getAttribute('iedName') === value.iedName &&
+        lNode.getAttribute('ldInst') === value.ldInst &&
+        lNode.getAttribute('prefix') === value.prefix &&
+        lNode.getAttribute('lnClass') === value.lnClass &&
+        (lNode.getAttribute('lnInst') // `inst` in `tAnyLN` is required but `lnInst` in `tLNode` is optional default ""
+          ? lNode.getAttribute('lnInst') === value.inst
+          : '' === value.inst)
+    );
 }
 
 function onIedFilter(evt: InputEvent): void {
@@ -254,7 +282,7 @@ export function add(element: Element): Wizard {
             activatable
             multi
             id="ldList"
-            @selected="${(evt: MultiSelectedEvent) => onLdSelect(evt, doc)}"
+            @selected="${(evt: MultiSelectedEvent) => onLdSelect(evt, element)}"
           ></mwc-list>`,
       ],
     },
