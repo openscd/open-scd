@@ -28,19 +28,19 @@ interface lnValue extends ldValue {
   inst: string;
 }
 
-function existLNode(value: lnValue, parent: Element): boolean {
-  return parent.querySelector(
-    `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${
-      value.ldInst
-    }"]${value.prefix ? `[prefix="${value.prefix}"]` : ``}[lnClass="${
-      value.lnClass
-    }"]${value.inst === '' ? `` : `[lnInst="${value.inst}"]`}`
-  )
-    ? true
-    : false;
+function hasLNode(parent: Element, value: lnValue): boolean {
+  return (
+    parent.querySelector(
+      `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${
+        value.ldInst
+      }"]${value.prefix ? `[prefix="${value.prefix}"]` : ``}${
+        value.inst ? `[lnInst="${value.inst}"]` : ''
+      }[lnClass="${value.lnClass}"]`
+    ) !== null
+  );
 }
 
-function creteAction(value: lnValue, parent: Element): EditorAction {
+function createAction(parent: Element, value: lnValue): EditorAction {
   return {
     new: {
       parent,
@@ -55,13 +55,13 @@ function creteAction(value: lnValue, parent: Element): EditorAction {
   };
 }
 
-function deleteAction(value: lnValue, parent: Element): EditorAction {
+function deleteAction(parent: Element, value: lnValue): EditorAction {
   const element = parent.querySelector(
     `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${
       value.ldInst
-    }"]${value.prefix ? `[prefix="${value.prefix}"]` : ``}[lnClass="${
+    }"]${value.prefix ? `[prefix="${value.prefix}"]` : ''}[lnClass="${
       value.lnClass
-    }"]${value.inst === '' ? `` : `[lnInst="${value.inst}"]`}`
+    }"]${value.inst ? `[lnInst="${value.inst}"]` : ''}`
   )!;
   return {
     old: {
@@ -74,22 +74,33 @@ function deleteAction(value: lnValue, parent: Element): EditorAction {
 
 function lNodeActions(parent: Element): WizardAction {
   return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
-    const actions: EditorAction[] = [];
-    (<ListItemBase[]>(
-      (<List>wizard.shadowRoot?.querySelector('#lnList')).items
-    )).forEach(item => {
-      const value: lnValue = JSON.parse(item.value);
+    const newLNodes = (<List>wizard.shadowRoot!.querySelector('#lnList')).items
+      .filter(item => item.selected)
+      .map(item => item.value);
+    const oldLNodes = Array.from(
+      parent.querySelectorAll(`${parent.tagName} > LNode`)
+    )
+      .map(node => {
+        return {
+          iedName: node.getAttribute('iedName') ?? '',
+          ldInst: node.getAttribute('ldInst') ?? '',
+          prefix: node.getAttribute('prefix'),
+          lnClass: node.getAttribute('lnClass') ?? '',
+          inst: node.getAttribute('lnInst') ?? '',
+          /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
+        };
+      })
+      .map(value => JSON.stringify(value));
 
-      if (item.selected && !existLNode(value, parent)) {
-        actions.push(creteAction(value, parent));
-      }
+    const deleteActions = oldLNodes
+      .filter(node => !newLNodes.includes(node))
+      .map(node => deleteAction(parent, JSON.parse(node)));
+    const createActions = newLNodes
+      .filter(node => !oldLNodes.includes(node))
+      .map(node => createAction(parent, JSON.parse(node)));
 
-      if (!item.selected && existLNode(value, parent)) {
-        actions.push(deleteAction(value, parent));
-      }
-    });
     wizard.close();
-    return actions;
+    return deleteActions.concat(createActions);
   };
 }
 
@@ -111,7 +122,8 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
         lDevice => {
           return {
             iedName: ied.getAttribute('name'),
-            ldInst: lDevice.getAttribute('inst')!,
+            ldInst: lDevice.getAttribute('inst') ?? '',
+            /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
           };
         }
       );
@@ -154,15 +166,16 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
         )
       ).map(ln => {
         return {
+          ...ldValue,
           prefix: ln.getAttribute('prefix'),
           lnClass: ln.getAttribute('lnClass') ?? '',
           inst: ln.getAttribute('inst') ?? '',
-          ...ldValue,
+          /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
         };
       });
       const nodeItems = values.map(value => {
         return html`<mwc-check-list-item
-          ?selected=${existLNode(value, element)}
+          ?selected=${hasLNode(element, value)}
           value="${JSON.stringify(value)}"
           twoline
           ><span>${value.prefix}${value.lnClass}${value.inst}</span
@@ -200,7 +213,6 @@ function renderIEDPage(element: Element): TemplateResult {
       @input="${(evt: InputEvent) => onFilter(evt, '#iedList')}"
     ></wizard-textfield>
     <mwc-list
-      activatable
       multi
       id="iedList"
       @selected="${(evt: MultiSelectedEvent) => onIEDSelect(evt, element)}"
@@ -226,7 +238,6 @@ function renderLdPage(element: Element): TemplateResult {
       @input="${(evt: InputEvent) => onFilter(evt, '#ldList')}"
     ></wizard-textfield>
     <mwc-list
-      activatable
       multi
       id="ldList"
       @selected="${(evt: MultiSelectedEvent) => onLdSelect(evt, element)}"
@@ -239,7 +250,7 @@ function renderLnPage(): TemplateResult {
       iconTrailing="search"
       @input="${(evt: InputEvent) => onFilter(evt, '#lnList')}"
     ></wizard-textfield>
-    <mwc-list activatable multi id="lnList"></mwc-list>`;
+    <mwc-list multi id="lnList"></mwc-list>`;
 }
 
 export function editlNode(element: Element): Wizard {
