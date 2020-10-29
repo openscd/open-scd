@@ -24,7 +24,7 @@ import {
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { iedIcon } from '../../icons.js';
-import { add } from './LNodeWizard.js';
+import { editlNode } from './lnodewizard.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
@@ -87,7 +87,7 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   openLNodeWizard(): void {
-    this.dispatchEvent(newWizardEvent(add(this.element)));
+    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
   removeAction(): void {

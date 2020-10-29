@@ -21,7 +21,7 @@ import { get, translate } from 'lit-translate';
 
 import './conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
-import { add, remove } from './LNodeWizard.js';
+import { editlNode } from './lnodewizard.js';
 import { iedIcon } from '../../icons.js';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
@@ -68,11 +68,7 @@ export class BayEditor extends LitElement {
   }
 
   openLNodeAddWizard(): void {
-    this.dispatchEvent(newWizardEvent(add(this.element)));
-  }
-
-  openLNodeRemoveWizard(): void {
-    this.dispatchEvent(newWizardEvent(remove(this.element)));
+    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
   openConductingEquipmentWizard(): void {
@@ -98,21 +94,11 @@ export class BayEditor extends LitElement {
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       </h3>
       <div id="header-icon">
-        <div style="position: relative;">
-          <mwc-icon-button
-            id="lNodeButton"
-            @click="${() => this.lNodeMenu?.show()}"
-            >${iedIcon}</mwc-icon-button
-          >
-          <mwc-menu id="lNodeMenu" .anchor=${this.lNodeButton}>
-            <mwc-list-item @click=${() => this.openLNodeAddWizard()}
-              >${translate('add')}</mwc-list-item
-            >
-            <mwc-list-item @click=${() => this.openLNodeRemoveWizard()}
-              >${translate('remove')}</mwc-list-item
-            >
-          </mwc-menu>
-        </div>
+        <mwc-icon-button
+          id="lNodeButton"
+          @click="${() => this.openLNodeAddWizard()}"
+          >${iedIcon}</mwc-icon-button
+        >
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
