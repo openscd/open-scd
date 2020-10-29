@@ -92,14 +92,10 @@ export const en = {
   },
   lnode: {
     wizard: {
-      nameHelper: 'Conducting Equipment Name',
-      descHelper: 'Conducting Equipment Description',
-      typeHelper: 'Conducting Equipment Type',
       title: {
         selectIEDs: 'Select IEDs',
         selectLDs: 'Select Logical Devices',
         selectLNs: 'Select Logical Nodes',
-        selectLNodes: 'Logical Node Connections',
       },
     },
   },
