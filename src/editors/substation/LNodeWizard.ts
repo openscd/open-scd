@@ -101,61 +101,18 @@ function onIEDSelect(evt: MultiSelectedEvent, doc: Document): void {
   render(html`${itemGroups}`, ldList);
 }
 
-function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
-  const doc = element.ownerDocument;
-  const lnList =
-    (<Element>(
-      evt.target
-    )).parentElement?.parentElement?.nextElementSibling?.querySelector(
-      '#lnList'
-    ) ?? null;
-  if (lnList === null) return;
-
-  const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
-    .map((item): { iedName: string; ldInst: string } => JSON.parse(item.value))
-    .map(ldValue => {
-      const values = Array.from(
-        doc.querySelectorAll(
-          `IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN
-          ,IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN0`
-        )
-      ).map(ln => {
-        return {
-          prefix: ln.getAttribute('prefix'),
-          lnClass: ln.getAttribute('lnClass'),
-          inst: ln.getAttribute('inst'),
-          ...ldValue,
-        };
-      });
-      const nodeItems = values.map(value => {
-        if (existLNode(value, element))
-          return html`<mwc-check-list-item
-            disabled
-            value="${JSON.stringify(value)}"
-            twoline
-            ><span>${value.prefix}${value.lnClass}${value.inst}</span
-            ><span slot="secondary"
-              >${value.iedName} | ${value.ldInst}</span
-            ></mwc-check-list-item
-          >`;
-        else
-          return html`<mwc-check-list-item
-            value="${JSON.stringify(value)}"
-            twoline
-            ><span>${value.prefix}${value.lnClass}${value.inst}</span
-            ><span slot="secondary"
-              >${value.iedName} | ${value.ldInst}</span
-            ></mwc-check-list-item
-          >`;
-      });
-      return html`${nodeItems}
-        <li divider role="separator"></li>`;
-    });
-
-  render(html`${itemGroups}`, lnList);
+interface ldValue {
+  iedName: string;
+  ldInst: string;
 }
 
-function existLNode(value: any, element: Element): boolean {
+interface lnValue extends ldValue {
+  prefix: string | null;
+  lnClass: string;
+  inst: string;
+}
+
+function existLNode(value: lnValue, element: Element): boolean {
   return Array.from(element.children)
     .filter(child => child.tagName === 'LNode')
     .some(
@@ -168,6 +125,50 @@ function existLNode(value: any, element: Element): boolean {
           ? lNode.getAttribute('lnInst') === value.inst
           : '' === value.inst)
     );
+}
+
+function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
+  const doc = element.ownerDocument;
+  const lnList =
+    (<Element>(
+      evt.target
+    )).parentElement?.parentElement?.nextElementSibling?.querySelector(
+      '#lnList'
+    ) ?? null;
+  if (lnList === null) return;
+
+  const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
+    .map((item): ldValue => JSON.parse(item.value))
+    .map(ldValue => {
+      const values = Array.from(
+        doc.querySelectorAll(
+          `IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN
+          ,IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN0`
+        )
+      ).map(ln => {
+        return {
+          prefix: ln.getAttribute('prefix'),
+          lnClass: ln.getAttribute('lnClass') ?? '',
+          inst: ln.getAttribute('inst') ?? '',
+          ...ldValue,
+        };
+      });
+      const nodeItems = values.map(value => {
+        return html`<mwc-check-list-item
+          ?disabled=${existLNode(value, element)}
+          value="${JSON.stringify(value)}"
+          twoline
+          ><span>${value.prefix}${value.lnClass}${value.inst}</span
+          ><span slot="secondary"
+            >${value.iedName} | ${value.ldInst}</span
+          ></mwc-check-list-item
+        >`;
+      });
+      return html`${nodeItems}
+        <li divider role="separator"></li>`;
+    });
+
+  render(html`${itemGroups}`, lnList);
 }
 
 function onIedFilter(evt: InputEvent): void {
