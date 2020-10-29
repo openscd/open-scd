@@ -242,7 +242,7 @@ export class BayEditor extends LitElement {
 
   static styles = css`
     #container {
-      width: 320px;
+      width: 370px;
       min-height: 320px;
       background-color: var(--mdc-theme-surface);
       margin: 10px;
