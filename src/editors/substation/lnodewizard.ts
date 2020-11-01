@@ -72,7 +72,7 @@ function deleteAction(parent: Element, value: lnValue): EditorAction {
   };
 }
 
-function lNodeActions(parent: Element): WizardAction {
+export function lNodeActions(parent: Element): WizardAction {
   return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
     const newLNodes = (<List>wizard.shadowRoot!.querySelector('#lnList')).items
       .filter(item => item.selected)
