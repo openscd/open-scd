@@ -1,41 +1,96 @@
 import { encodeNonASCII } from './xml-entities.js';
-import { InfoDetail, LogEntry } from './foundation.js';
-
-interface XMLParams {
-  xml: string;
-  schema: string;
-  arguments: Array<string>;
+import { InfoDetail, LogEntry, newLogEvent } from './foundation.js';
+import { LitElement } from 'lit-element';
+interface ValidationError {
+  code: number;
+  file: string;
+  line: number;
+  column: number;
+  level: 0 | 1 | 2 | 3;
+  message: string;
+  node: string;
+  part: string;
+  valid: undefined;
 }
-// FIXME: Replace `xml.js` with imported `WASM` module
-declare function validateXML(parameters: XMLParams): string;
+
+interface ValidationResult {
+  code: number;
+  file: string;
+  valid: boolean;
+}
+
+type Validator = (xml: string, xmlname: string) => Promise<ValidationResult>;
+
+const validators: Record<string, Validator> = {};
+
+async function validator(
+  xsd: string,
+  xsdname: string,
+  logger: LitElement
+): Promise<Validator> {
+  if (!window.Worker) throw new Error('Workers not supported!');
+  if (validators[xsdname]) return validators[xsdname];
+
+  const worker = new Worker('public/js/worker.js');
+  async function validate(
+    xml: string,
+    xmlname: string
+  ): Promise<ValidationResult> {
+    return new Promise(resolve => {
+      worker.addEventListener('message', e => {
+        if (e.data.file === xmlname && e.data.valid !== undefined)
+          resolve(e.data);
+      });
+      worker.postMessage({ content: xml, name: xmlname });
+    });
+  }
+
+  return new Promise(resolve => {
+    worker.postMessage({ content: xsd, name: xsdname });
+    worker.addEventListener('message', e => {
+      if (e.data.file === xsdname && e.data.loaded) resolve(validate);
+      else if (e.data.valid === undefined)
+        logger.dispatchEvent(
+          newLogEvent({
+            title:
+              e.data.file +
+              ':' +
+              e.data.line +
+              ' ' +
+              e.data.node +
+              ' ' +
+              e.data.part,
+            kind: e.data.level > 1 ? 'error' : 'warning',
+            message: e.data.message,
+          })
+        );
+      else
+        logger.dispatchEvent(
+          newLogEvent({
+            title:
+              e.data.file +
+              (e.data.valid ? ' validates.' : ' does not validate.'),
+            kind: e.data.valid ? 'info' : 'warning',
+          })
+        );
+    });
+  });
+}
 
 /** Validates `doc` against the `SCL 2007 B1` schema. */
 export async function validateSCL(
   doc: XMLDocument,
-  fileName = 'untitled.scd',
-  cause?: LogEntry
+  fileName = 'untitled.scd'
 ): Promise<Array<InfoDetail>> {
-  const result =
-    validateXML({
-      xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
-      schema: SCL2007B1_2014_07_18,
-      arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
-    })
-      .split('\n')
-      .filter((s: string) => s)
-      .slice(0, -1) ?? [];
-  return result
-    .map(e => e.split(': ').map(s => s.trim()))
-    .map(a => {
-      //if (a[4]) [a[0], a[4]] = [a[4], a[0]];
-      a.reverse();
-      return {
-        kind: 'error',
-        title: a[0],
-        message: a.slice(1).reverse().join(' | '),
-        cause,
-      };
-    });
+  const validatorB1 = await validator(
+    SCL2007B1_2014_07_18,
+    'SCL2007B1.xsd',
+    <LitElement>document.querySelector('open-scd')
+  );
+  const xmlString = new XMLSerializer().serializeToString(doc);
+  const xmlName = fileName;
+  const result = await validatorB1(xmlString, xmlName);
+  return [];
 }
 
 const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>

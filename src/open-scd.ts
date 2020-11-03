@@ -97,20 +97,8 @@ export class OpenSCD extends Setting(
             : newEmptySCD();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.dispatchEvent(
-            newLogEvent({
-              kind: 'info',
-              title: get('openSCD.loaded', { name: this.srcName }),
-            })
-          );
-          validateSCL(this.doc, this.srcName).then(errors => {
-            errors.map(id => {
-              this.dispatchEvent(newLogEvent(id));
-            });
-            if (errors.length == 0)
-              resolve(get('openSCD.validated', { name: this.srcName }));
-            else reject(get('openSCD.invalidated', { name: this.srcName }));
-          });
+          validateSCL(this.doc, this.srcName);
+          resolve(get('openSCD.loaded', { name: this.srcName }));
         });
         reader.addEventListener('error', () =>
           reject(get('openSCD.readError', { name: this.srcName }))
