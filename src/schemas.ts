@@ -1,8 +1,4 @@
-import { encodeNonASCII } from './xml-entities.js';
-import { InfoDetail, LogEntry, newLogEvent } from './foundation.js';
-import { LitElement } from 'lit-element';
-interface ValidationError {
-  code: number;
+export interface ValidationError {
   file: string;
   line: number;
   column: number;
@@ -10,90 +6,76 @@ interface ValidationError {
   message: string;
   node: string;
   part: string;
-  valid: undefined;
-}
-
-interface ValidationResult {
   code: number;
+  valid: undefined;
+  loaded: undefined;
+}
+
+export interface ValidationResult {
   file: string;
+  code: number;
   valid: boolean;
+  loaded: undefined;
 }
 
-type Validator = (xml: string, xmlname: string) => Promise<ValidationResult>;
-
-const validators: Record<string, Validator> = {};
-
-async function validator(
-  xsd: string,
-  xsdname: string,
-  logger: LitElement
-): Promise<Validator> {
-  if (!window.Worker) throw new Error('Workers not supported!');
-  if (validators[xsdname]) return validators[xsdname];
-
-  const worker = new Worker('public/js/worker.js');
-  async function validate(
-    xml: string,
-    xmlname: string
-  ): Promise<ValidationResult> {
-    return new Promise(resolve => {
-      worker.addEventListener('message', e => {
-        if (e.data.file === xmlname && e.data.valid !== undefined)
-          resolve(e.data);
-      });
-      worker.postMessage({ content: xml, name: xmlname });
-    });
-  }
-
-  return new Promise(resolve => {
-    worker.postMessage({ content: xsd, name: xsdname });
-    worker.addEventListener('message', e => {
-      if (e.data.file === xsdname && e.data.loaded) resolve(validate);
-      else if (e.data.valid === undefined)
-        logger.dispatchEvent(
-          newLogEvent({
-            title:
-              e.data.file +
-              ':' +
-              e.data.line +
-              ' ' +
-              e.data.node +
-              ' ' +
-              e.data.part,
-            kind: e.data.level > 1 ? 'error' : 'warning',
-            message: e.data.message,
-          })
-        );
-      else
-        logger.dispatchEvent(
-          newLogEvent({
-            title:
-              e.data.file +
-              (e.data.valid ? ' validates.' : ' does not validate.'),
-            kind: e.data.valid ? 'info' : 'warning',
-          })
-        );
-    });
-  });
+export interface LoadSchemaResult {
+  file: string;
+  valid: undefined;
+  loaded: boolean;
 }
 
-/** Validates `doc` against the `SCL 2007 B1` schema. */
-export async function validateSCL(
-  doc: XMLDocument,
-  fileName = 'untitled.scd'
-): Promise<Array<InfoDetail>> {
-  const validatorB1 = await validator(
-    SCL2007B1_2014_07_18,
-    'SCL2007B1.xsd',
-    <LitElement>document.querySelector('open-scd')
+export type WorkerMessage =
+  | ValidationError
+  | ValidationResult
+  | LoadSchemaResult
+  | string;
+
+export function isValidationError(msg: WorkerMessage): msg is ValidationError {
+  return (
+    typeof msg !== 'string' &&
+    msg.file !== undefined &&
+    msg.valid === undefined &&
+    msg.loaded === undefined
   );
-  const xmlString = new XMLSerializer().serializeToString(doc);
-  const xmlName = fileName;
-  const result = await validatorB1(xmlString, xmlName);
-  return [];
 }
 
-const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
+export function isValidationResult(
+  msg: WorkerMessage
+): msg is ValidationResult {
+  return (
+    typeof msg !== 'string' &&
+    msg.file !== undefined &&
+    msg.valid !== undefined &&
+    msg.loaded === undefined
+  );
+}
+
+export function isLoadSchemaResult(
+  msg: WorkerMessage
+): msg is LoadSchemaResult {
+  return (
+    typeof msg !== 'string' &&
+    msg.file !== undefined &&
+    msg.valid === undefined &&
+    msg.loaded !== undefined
+  );
+}
+
+export type Validator = (
+  xml: string,
+  xmlName: string
+) => Promise<ValidationResult>;
+
+export function getSchema(
+  version: string,
+  revision: string,
+  release: string
+): string {
+  return schemas[version + revision + release] ?? schemas['2007B1']!;
+}
+
+export const schemas: Partial<Record<string, string>> = {
+  '2007B1': `<?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:scl="http://www.iec.ch/61850/2003/SCL" xmlns="http://www.iec.ch/61850/2003/SCL" elementFormDefault="qualified" targetNamespace="http://www.iec.ch/61850/2003/SCL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation xml:lang="en">
@@ -3373,4 +3355,5 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:field xpath="@id" />
     </xs:key>
   </xs:element>
-</xs:schema>`;
+</xs:schema>`,
+};
