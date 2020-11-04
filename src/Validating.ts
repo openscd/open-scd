@@ -1,4 +1,5 @@
 import { property } from 'lit-element';
+import { get } from 'lit-translate';
 
 import { LitElementConstructor, Mixin, newLogEvent } from './foundation.js';
 import {
@@ -52,7 +53,7 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
       xsd: string,
       xsdName: string
     ): Promise<Validator> {
-      if (!window.Worker) throw new Error('Workers not supported!');
+      if (!window.Worker) throw new Error(get('validating.fatal'));
       if (validators[xsdName]) return validators[xsdName]!;
 
       const worker: Worker = window.__karma__
@@ -79,7 +80,7 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
         worker.addEventListener('message', (e: MessageEvent<WorkerMessage>) => {
           if (isLoadSchemaResult(e.data)) {
             if (e.data.loaded) resolve(validate);
-            else reject('Could not load schema ' + e.data.file);
+            else reject(get('validating.loadEror', { name: e.data.file }));
           } else if (isValidationError(e.data)) {
             const parts = e.data.message.split(': ', 2);
             const description = parts[1] ? parts[1] : parts[0];
@@ -102,15 +103,17 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
           } else if (isValidationResult(e.data)) {
             this.dispatchEvent(
               newLogEvent({
-                title:
-                  e.data.file + (e.data.valid ? ' is valid.' : ' is invalid.'),
+                title: get(
+                  e.data.valid ? 'validating.valid' : 'validating.invalid',
+                  { name: e.data.file }
+                ),
                 kind: e.data.valid ? 'info' : 'warning',
               })
             );
           } else {
             this.dispatchEvent(
               newLogEvent({
-                title: 'Fatal validation error',
+                title: get('validating.fatal'),
                 kind: 'error',
                 message: e.data,
               })

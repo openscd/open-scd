@@ -17,8 +17,6 @@ export const en = {
   openSCD: {
     loading: 'Loading project {{ name }}',
     loaded: '{{ name }} loaded',
-    validated: '{{ name }} validation succesful',
-    invalidated: '{{ name }} validation failed',
     readError: '{{ name }} read error',
     readAbort: '{{ name }} read aborted',
   },
@@ -27,6 +25,12 @@ export const en = {
     deleted: '{{ name }} removed',
     moved: '{{ name }} moved',
     updated: '{{ name }} edited',
+  },
+  validating: {
+    valid: '{{ name }} validation succesful',
+    invalid: '{{ name }} validation failed',
+    fatal: 'Fatal validation error',
+    loadError: 'Could not load schema {{ name }}',
   },
   textfield: {
     required: 'Required',
