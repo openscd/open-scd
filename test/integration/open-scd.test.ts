@@ -93,6 +93,7 @@ describe('open-scd', () => {
     );
     element.setAttribute('src', invalidBlobURL);
     await element.workDone;
+    await element.validated;
     expect(element).property('history').to.have.length(5);
     expect(element.doc.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
   });
@@ -105,6 +106,7 @@ describe('open-scd', () => {
     );
     element.setAttribute('src', validBlobURL);
     await element.workDone;
+    await element.validated;
     expect(element).property('history').to.have.length(3);
   });
 });

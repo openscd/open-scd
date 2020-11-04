@@ -7,20 +7,20 @@ export interface ValidationError {
   node: string;
   part: string;
   code: number;
-  valid: undefined;
-  loaded: undefined;
+  valid?: undefined;
+  loaded?: undefined;
 }
 
 export interface ValidationResult {
   file: string;
   code: number;
   valid: boolean;
-  loaded: undefined;
+  loaded?: undefined;
 }
 
 export interface LoadSchemaResult {
   file: string;
-  valid: undefined;
+  valid?: undefined;
   loaded: boolean;
 }
 

@@ -1,3 +1,5 @@
+import { property } from 'lit-element';
+
 import { LitElementConstructor, Mixin, newLogEvent } from './foundation.js';
 import {
   getSchema,
@@ -9,12 +11,25 @@ import {
   WorkerMessage,
 } from './schemas.js';
 
+declare global {
+  interface Window {
+    __karma__?: Record<string, unknown>;
+  } // FIXME: dirty hack to make tests pass, switch test framework to fix!
+}
+
 const validators: Partial<Record<string, Validator>> = {};
 
 export type ValidatingElement = Mixin<typeof Validating>;
 
 export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
   class ValidatingElement extends Base {
+    @property()
+    validated: Promise<ValidationResult> = Promise.resolve({
+      file: 'untitled.scd',
+      valid: true,
+      code: 0,
+    });
+
     async validate(
       doc: XMLDocument,
       {
@@ -24,12 +39,13 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
         xmlName = 'untitled.scd',
       } = {}
     ): Promise<ValidationResult> {
-      const validator = await this.getValidator(
+      this.validated = this.getValidator(
         getSchema(version, revision, release),
         'SCL' + version + revision + release + '.xsd'
+      ).then(validator =>
+        validator(new XMLSerializer().serializeToString(doc), xmlName)
       );
-      const xmlString = new XMLSerializer().serializeToString(doc);
-      return validator(xmlString, xmlName);
+      return this.validated;
     }
 
     private async getValidator(
@@ -39,7 +55,9 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
       if (!window.Worker) throw new Error('Workers not supported!');
       if (validators[xsdName]) return validators[xsdName]!;
 
-      const worker = new Worker('public/js/worker.js');
+      const worker: Worker = window.__karma__
+        ? new Worker('/base/public/js/worker.js') // FIXME: dirty hack!
+        : new Worker('public/js/worker.js');
 
       async function validate(
         xml: string,
