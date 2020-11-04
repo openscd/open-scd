@@ -36,14 +36,14 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
         version = '2007',
         revision = 'B',
         release = '1',
-        xmlName = 'untitled.scd',
+        fileName = 'untitled.scd',
       } = {}
     ): Promise<ValidationResult> {
       this.validated = this.getValidator(
         getSchema(version, revision, release),
         'SCL' + version + revision + release + '.xsd'
       ).then(validator =>
-        validator(new XMLSerializer().serializeToString(doc), xmlName)
+        validator(new XMLSerializer().serializeToString(doc), fileName)
       );
       return this.validated;
     }

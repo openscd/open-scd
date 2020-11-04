@@ -97,7 +97,7 @@ export class OpenSCD extends Setting(
             : newEmptySCD();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.validate(this.doc, { xmlName: this.srcName });
+          this.validate(this.doc, { fileName: this.srcName });
           resolve(get('openSCD.loaded', { name: this.srcName }));
         });
         reader.addEventListener('error', () =>
