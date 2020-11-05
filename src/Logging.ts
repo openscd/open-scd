@@ -88,6 +88,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
+    /** Resets the history to an empty state. */
     reset(): void {
       this.history = [];
       this.currentAction = -1;

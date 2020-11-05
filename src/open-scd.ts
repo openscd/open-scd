@@ -34,12 +34,6 @@ import { plugin } from './plugin.js';
 import { validateSCL } from './validate.js';
 import { zeroLineIcon } from './icons.js';
 
-interface Tab {
-  name: string;
-  id: string;
-  icon: string | TemplateResult;
-}
-
 interface MenuEntry {
   icon: string;
   name: string;
@@ -50,6 +44,8 @@ interface MenuEntry {
   disabled?: () => boolean;
 }
 
+/** The `<open-scd>` custom element is the main entry point of the
+ * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Setting(
   Wizarding(Waiting(Editing(Logging(LitElement))))
@@ -57,6 +53,7 @@ export class OpenSCD extends Setting(
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
+  /** The name of the first `Substation` in the current [[`doc`]]. */
   @property()
   get name(): string | null {
     return this.doc.querySelector('Substation')?.getAttribute('name') ?? null;
@@ -77,6 +74,7 @@ export class OpenSCD extends Setting(
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
 
+  /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
@@ -87,7 +85,14 @@ export class OpenSCD extends Setting(
             title: get('openSCD.loading', { name: this.srcName }),
           })
         );
+
         const reader: FileReader = new FileReader();
+        reader.addEventListener('error', () =>
+          reject(get('openSCD.readError', { name: this.srcName }))
+        );
+        reader.addEventListener('abort', () =>
+          reject(get('openSCD.readAbort', { name: this.srcName }))
+        );
         reader.addEventListener('load', () => {
           this.doc = reader.result
             ? new DOMParser().parseFromString(
@@ -112,12 +117,7 @@ export class OpenSCD extends Setting(
             else reject(get('openSCD.invalidated', { name: this.srcName }));
           });
         });
-        reader.addEventListener('error', () =>
-          reject(get('openSCD.readError', { name: this.srcName }))
-        );
-        reader.addEventListener('abort', () =>
-          reject(get('openSCD.readAbort', { name: this.srcName }))
-        );
+
         fetch(src ?? '').then(res =>
           res.blob().then(b => reader.readAsText(b))
         );
@@ -125,7 +125,7 @@ export class OpenSCD extends Setting(
     );
   }
 
-  /** Loads the file selected by input `event.target.files[0]`. */
+  /** Loads the file `event.target.files[0]` into [[`src`]]. */
   private loadFile(event: Event): void {
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
@@ -240,14 +240,22 @@ export class OpenSCD extends Setting(
     else return html``;
   }
 
-  renderEditorTab(editor: Tab): TemplateResult {
+  renderEditorTab({
+    name,
+    id,
+    icon,
+  }: {
+    name: string;
+    id: string;
+    icon: string | TemplateResult;
+  }): TemplateResult {
     return html`<mwc-tab
-      label=${translate(editor.name)}
-      icon=${editor.icon instanceof TemplateResult ? '' : editor.icon}
-      id=${editor.id}
+      label=${translate(name)}
+      icon=${icon instanceof TemplateResult ? '' : icon}
+      id=${id}
       hasimageicon
     >
-      ${editor.icon instanceof TemplateResult ? editor.icon : ''}
+      ${icon instanceof TemplateResult ? icon : ''}
     </mwc-tab>`;
   }
 

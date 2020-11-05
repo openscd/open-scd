@@ -16,6 +16,8 @@ import {
 
 import { LitElement, property } from 'lit-element';
 import { get } from 'lit-translate';
+
+/** Returns a new empty SCD document, i.e. one containing `<SCL></SCL>` */
 export function newEmptySCD(): XMLDocument {
   return document.implementation.createDocument(
     'http://www.iec.ch/61850/2003/SCL',
@@ -24,11 +26,15 @@ export function newEmptySCD(): XMLDocument {
   );
 }
 
+/** Mixin for editing an `XML` `doc` by dispatching [[`EditorActionEvent`]]s */
 export type EditingElement = Mixin<typeof Editing>;
 
+/** @typeParam TBase a type extending `LitElement`
+ * @returns `Base` with an `XMLDocument` property "`doc`" and an event listener
+ * applying [[`EditorActionEvent`]]s and dispatching [[`LogEvent`]]s. */
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
-    /** The `XMLDocument` being edited. */
+    /** The `XMLDocument` to be edited */
     @property()
     doc: XMLDocument = newEmptySCD();
 
