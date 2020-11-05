@@ -55,7 +55,7 @@
     "test:integration": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --grep out-tsc/**/test/integration/**/*.test.js\"",
     "start:tsc": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch\"",
     "tsc:watch": "tsc --watch",
-    "build": "snowpack build",
+    "build": "npm run test && npm run doc && snowpack build",
     "start": "snowpack dev"
   },
   "devDependencies": {
