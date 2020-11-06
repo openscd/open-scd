@@ -4,32 +4,31 @@ import { directive, Part } from 'lit-html';
 import { WizardTextField } from './wizard-textfield.js';
 import { Select } from '@material/mwc-select';
 
-/** Represents a change to some `Element`. */
+/** Represents an intended or committed change to some `Element`. */
 export type EditorAction = Create | Update | Delete | Move;
-/** Represents prepending `create.new.element` to `create.new.parent`. */
+/** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
   new: { parent: Element; element: Element; reference: Element | null };
   derived?: boolean;
 }
-/** Represents removal of `delete.old.element`. */
+/** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
   old: { parent: Element; element: Element; reference: Element | null };
   derived?: boolean;
 }
-/** Represents reparenting of `move.old.element` to `move.new.parent`. */
+/** Reparents of `old.element` to `new.parent` before `new.reference`. */
 export interface Move {
   old: { parent: Element; element: Element; reference: Element | null };
   new: { parent: Element; reference: Element | null };
   derived?: boolean;
 }
-/** Represents replacement of `update.old.element` by `update.new.element`. */
+/** Replaces `old.element` with `new.element`, keeping element children. */
 export interface Update {
   old: { element: Element };
   new: { element: Element };
   derived?: boolean;
 }
 
-// typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards
 export function isCreate(action: EditorAction): action is Create {
   return (
     (action as Update).old === undefined &&
@@ -65,7 +64,7 @@ export function isUpdate(action: EditorAction): action is Update {
   );
 }
 
-/** Returns the inverse of `action`, i.e. an `EditorAction` with opposite effect. */
+/** @returns an [[`EditorAction`]] with opposite effect of `action`. */
 export function invert(action: EditorAction): EditorAction {
   if (isCreate(action)) return { old: action.new, derived: action.derived };
   else if (isDelete(action))
@@ -84,7 +83,7 @@ export function invert(action: EditorAction): EditorAction {
   else return unreachable('Unknown EditorAction type in invert.');
 }
 
-/** Represents some modification of a `Document` being edited. */
+/** Represents some intended modification of a `Document` being edited. */
 export interface EditorActionDetail<T extends EditorAction> {
   action: T;
 }
@@ -103,21 +102,25 @@ export function newActionEvent<T extends EditorAction>(
   });
 }
 
+/** `HTMLElement` with a `close()` method. */
 export type CloseableElement = HTMLElement & { close: () => void };
 
 export const wizardInputSelector = 'wizard-textfield, mwc-select';
-
 export type WizardInput = WizardTextField | Select;
+
+/** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardAction = (
   inputs: WizardInput[],
   wizard: CloseableElement
 ) => EditorAction[];
 
+/** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInput): string | null {
   if (input instanceof WizardTextField) return input.maybeValue;
   else return input.value;
 }
 
+/** @returns the `multiplier` of `input` if available. */
 export function getMultiplier(input: WizardInput): string | null {
   if (input instanceof WizardTextField) return input.multiplier;
   else return null;
@@ -140,6 +143,7 @@ export interface WizardPage {
 }
 export type Wizard = WizardPage[];
 
+/** If `wizard === null`, close the current wizard, else queue `wizard`. */
 export interface WizardDetail {
   wizard: Wizard | null;
 }
@@ -157,14 +161,17 @@ export function newWizardEvent(
 }
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
+/** The basic information contained in each [[`LogEntry`]]. */
 interface LogDetailBase {
   title: string;
   message?: string;
 }
+/** The [[`LogEntry`]] for a committed [[`EditorAction`]]. */
 export interface CommitDetail extends LogDetailBase {
   kind: 'action';
   action: EditorAction;
 }
+/** A [[`LogEntry`]] for notifying the user. */
 export interface InfoDetail extends LogDetailBase {
   kind: InfoEntryKind;
   cause?: LogEntry;
@@ -184,6 +191,7 @@ export function newLogEvent(
   });
 }
 
+/** [[`LogEntry`]]s are timestamped upon being committed to the `history`. */
 interface Timestamped {
   time: Date;
 }
@@ -210,7 +218,7 @@ export function newPendingStateEvent(
   });
 }
 
-/** Useful `lit-html` directives */
+/** A directive rendering its argument `rendered` only if `rendered !== {}`. */
 export const ifImplemented = directive(rendered => (part: Part) => {
   if (Object.keys(rendered).length) part.setValue(rendered);
   else part.setValue('');

@@ -9,14 +9,17 @@ import {
 
 import './wizard-dialog.js';
 
+/** `LitElement` mixin that adds a `workflow` property which [[`Wizard`]]s are
+ * queued onto on incoming [[`WizardEvent`]]s, first come first displayed. */
 export type WizardingElement = Mixin<typeof Wizarding>;
 
 export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
   class WizardingElement extends Base {
+    /** FIFO queue of [[`Wizard`]]s to display. */
     @internalProperty()
     workflow: Wizard[] = [];
 
-    onWizard(we: WizardEvent) {
+    private onWizard(we: WizardEvent) {
       if (we.detail.wizard === null) this.workflow.shift();
       else this.workflow.push(we.detail.wizard);
       this.requestUpdate('workflow');

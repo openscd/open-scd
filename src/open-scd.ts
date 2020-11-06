@@ -125,7 +125,7 @@ export class OpenSCD extends Setting(
     );
   }
 
-  /** Loads the file `event.target.files[0]` into [[`src`]]. */
+  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
   private loadFile(event: Event): void {
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;

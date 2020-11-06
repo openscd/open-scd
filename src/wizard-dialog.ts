@@ -33,33 +33,39 @@ function dialogValid(dialog?: Dialog): boolean {
   return dialogInputs(dialog).every(wi => wi.checkValidity());
 }
 
+/** A wizard style dialog consisting of several pages commiting some
+ * [[`EditorAction`]] on completion and aborting on dismissal. */
 @customElement('wizard-dialog')
 export class WizardDialog extends LitElement {
+  /** The [[`Wizard`]] implemented by this dialog. */
   @property()
   wizard: Wizard = [];
+  /** Index of the currently active [[`WizardPage`]] */
   @internalProperty()
   pageIndex = 0;
+
   @queryAll('mwc-dialog')
   dialogs!: NodeListOf<Dialog>;
   @queryAll(wizardInputSelector)
   inputs!: NodeListOf<WizardInput>;
 
+  /** The `Dialog` showing the active [[`WizardPage`]]. */
   get dialog(): Dialog | undefined {
     return this.dialogs[this.pageIndex];
   }
 
-  checkValidity(): boolean {
+  /** Checks the inputs of all [[`WizardPage`]]s for validity. */
+  private checkValidity(): boolean {
     return Array.from(this.inputs).every(wi => wi.checkValidity());
   }
 
-  get firstInvalidPage(): number {
+  private get firstInvalidPage(): number {
     return Array.from(this.dialogs).findIndex(dialog => !dialogValid(dialog));
   }
 
   prev(): void {
     if (this.pageIndex > 0) this.pageIndex--;
   }
-
   async next(): Promise<void> {
     if (dialogValid(this.dialog)) {
       if (this.wizard.length > this.pageIndex + 1) this.pageIndex++;
@@ -70,10 +76,12 @@ export class WizardDialog extends LitElement {
     }
   }
 
+  /** Dismisses the entire wizard by dispatching an empty [[`WizardEvent`]]. */
   close(): void {
     this.dispatchEvent(newWizardEvent());
   }
 
+  /** Commits `action` if all inputs are valid, reports validity otherwise. */
   async act(action?: WizardAction): Promise<boolean> {
     if (action === undefined) return false;
     const inputArray = Array.from(this.inputs);
@@ -86,7 +94,7 @@ export class WizardDialog extends LitElement {
     return true;
   }
 
-  onClosed(ae: CustomEvent<{ action: string } | null>): void {
+  private onClosed(ae: CustomEvent<{ action: string } | null>): void {
     if (!(ae.target instanceof Dialog && ae.detail?.action)) return;
     if (ae.detail.action === 'close') this.close();
     else if (ae.detail.action === 'prev') this.prev();

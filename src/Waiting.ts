@@ -10,6 +10,8 @@ import {
   newLogEvent,
 } from './foundation.js';
 
+/** Mixin implementing
+ * [Pending State](https://github.com/justinfagnani/pending-state-protocol) */
 export type WaitingElement = Mixin<typeof Waiting>;
 
 export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
@@ -18,11 +20,11 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
     @property({ type: Boolean })
     waiting = false;
 
-    work: Set<Promise<string>> = new Set();
+    private work: Set<Promise<string>> = new Set();
     /** A promise which resolves once all currently pending work is done. */
     workDone = Promise.allSettled(this.work);
 
-    async onPendingState(e: CustomEvent<PendingStateDetail>) {
+    private async onPendingState(e: CustomEvent<PendingStateDetail>) {
       this.waiting = true;
       this.work.add(e.detail.promise);
       this.workDone = Promise.allSettled(this.work);
