@@ -39,19 +39,18 @@ function isBayCreateOptions(
   return (<BayCreateOptions>options).parent !== undefined;
 }
 
+/** [[`SubstationEditor`]] subeditor for editing `Bay` elements. */
 @customElement('bay-editor')
 export class BayEditor extends LitElement {
-  @property({ type: Element })
+  @property()
   element!: Element;
-
-  @property({ type: Element })
+  @property()
   parent!: Element;
 
   @property({ type: String })
   get name(): string {
     return this.element.getAttribute('name') ?? '';
   }
-
   @property({ type: String })
   get desc(): string | null {
     return this.element.getAttribute('desc') ?? null;
@@ -83,7 +82,11 @@ export class BayEditor extends LitElement {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.parent,
+            element: this.element,
+            reference: this.element.nextElementSibling,
+          },
         })
       );
   }
