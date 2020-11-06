@@ -14,28 +14,35 @@ import {
   WizardInput,
   getValue,
 } from '../foundation.js';
+import { iedIcon } from '../icons.js';
 
 import './substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
-import { iedIcon } from '../icons.js';
 import { editlNode } from './substation/lnodewizard.js';
 
+/** An editor [[`plugin`]] to facilitate editing the `Substation` section. */
 export default class SubstationEditor extends LitElement {
+  /** The document being edited, supplied to all plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  /** The edited `Element`, a property of all Substation subeditors. */
   @property()
   get element(): Element | null {
     return this.doc?.querySelector('Substation') ?? null;
   }
+  /** [[`element`]]'s `parent`, a property of all Substation subeditors. */
   @property()
   get parent(): Element {
     return this.doc.documentElement; // <SCL>
   }
 
+  /** [[element | `element.name`]] */
   @property({ type: String })
   get name(): string {
     return this.element?.getAttribute('name') ?? '';
   }
+  /** [[element | `element.desc`]] */
   @property({ type: String })
   get desc(): string | null {
     return this.element?.getAttribute('desc') ?? null;
@@ -91,6 +98,8 @@ export default class SubstationEditor extends LitElement {
     this.dispatchEvent(event);
   }
 
+  /** Opens a [[`WizardDialog`]] for editing [[`element`]] if it exists, or for
+   * creating a new `Substation` otherwise. */
   openSubstationWizard(): void {
     const [heading, actionName, actionIcon] = this.element
       ? [get('substation.wizard.title.edit'), get('edit'), 'edit']
