@@ -229,7 +229,7 @@ export function unreachable(message: string): never {
   throw new Error(message);
 }
 
-/** Constructor type for defining `HTMLElement` mixins. */
+/** Constructor type for defining `LitElement` mixins. */
 export type LitElementConstructor = new (...args: any[]) => LitElement;
 
 /** The type returned by `MyMixin(...)` is `Mixin<typeof MyMixin>`. */
