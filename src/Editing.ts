@@ -26,7 +26,7 @@ export function newEmptySCD(): XMLDocument {
   );
 }
 
-/** Mixin for editing an `XML` `doc` by dispatching [[`EditorActionEvent`]]s */
+/** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
 export type EditingElement = Mixin<typeof Editing>;
 
 /** @typeParam TBase a type extending `LitElement`
