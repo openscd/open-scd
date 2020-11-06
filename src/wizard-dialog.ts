@@ -55,7 +55,7 @@ export class WizardDialog extends LitElement {
   }
 
   /** Checks the inputs of all [[`WizardPage`]]s for validity. */
-  private checkValidity(): boolean {
+  checkValidity(): boolean {
     return Array.from(this.inputs).every(wi => wi.checkValidity());
   }
 
