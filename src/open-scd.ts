@@ -27,11 +27,11 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { Validating } from './Validating.js';
 import { getTheme } from './themes.js';
 import { Setting } from './Setting.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
-import { validateSCL } from './validate.js';
 import { zeroLineIcon } from './icons.js';
 
 interface MenuEntry {
@@ -48,7 +48,7 @@ interface MenuEntry {
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Setting(
-  Wizarding(Waiting(Editing(Logging(LitElement))))
+  Wizarding(Waiting(Validating(Editing(Logging(LitElement)))))
 ) {
   /** The currently active editor tab. */
   @property({ type: Number })
@@ -102,20 +102,8 @@ export class OpenSCD extends Setting(
             : newEmptySCD();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.dispatchEvent(
-            newLogEvent({
-              kind: 'info',
-              title: get('openSCD.loaded', { name: this.srcName }),
-            })
-          );
-          validateSCL(this.doc, this.srcName).then(errors => {
-            errors.map(id => {
-              this.dispatchEvent(newLogEvent(id));
-            });
-            if (errors.length == 0)
-              resolve(get('openSCD.validated', { name: this.srcName }));
-            else reject(get('openSCD.invalidated', { name: this.srcName }));
-          });
+          this.validate(this.doc, { fileName: this.srcName });
+          resolve(get('openSCD.loaded', { name: this.srcName }));
         });
 
         fetch(src ?? '').then(res =>

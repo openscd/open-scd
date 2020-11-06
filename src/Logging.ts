@@ -122,7 +122,13 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         this.currentAction = this.history.length;
       }
       this.history.push(entry);
-      if (le.detail.kind == 'error') this.messageUI.show();
+      if (le.detail.kind == 'error' && !this.logUI.open) this.messageUI.show();
+      this.requestUpdate();
+    }
+
+    async performUpdate() {
+      await new Promise(resolve => requestAnimationFrame(() => resolve()));
+      super.performUpdate();
     }
 
     constructor(...args: any[]) {

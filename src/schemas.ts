@@ -1,44 +1,81 @@
-import { encodeNonASCII } from './xml-entities.js';
-import { InfoDetail, LogEntry } from './foundation.js';
-
-interface XMLParams {
-  xml: string;
-  schema: string;
-  arguments: Array<string>;
-}
-// FIXME: Replace `xml.js` with imported `WASM` module
-declare function validateXML(parameters: XMLParams): string;
-
-/** Validates `doc` against the `SCL 2007 B1` schema. */
-export async function validateSCL(
-  doc: XMLDocument,
-  fileName = 'untitled.scd',
-  cause?: LogEntry
-): Promise<Array<InfoDetail>> {
-  const result =
-    validateXML({
-      xml: encodeNonASCII(new XMLSerializer().serializeToString(doc)),
-      schema: SCL2007B1_2014_07_18,
-      arguments: ['--noout', '--schema', 'SCL.xsd', fileName],
-    })
-      .split('\n')
-      .filter((s: string) => s)
-      .slice(0, -1) ?? [];
-  return result
-    .map(e => e.split(': ').map(s => s.trim()))
-    .map(a => {
-      //if (a[4]) [a[0], a[4]] = [a[4], a[0]];
-      a.reverse();
-      return {
-        kind: 'error',
-        title: a[0],
-        message: a.slice(1).reverse().join(' | '),
-        cause,
-      };
-    });
+export interface ValidationError {
+  file: string;
+  line: number;
+  column: number;
+  level: 0 | 1 | 2 | 3;
+  message: string;
+  node: string;
+  part: string;
+  code: number;
+  valid?: undefined;
+  loaded?: undefined;
 }
 
-const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
+export interface ValidationResult {
+  file: string;
+  code: number;
+  valid: boolean;
+  loaded?: undefined;
+}
+
+export interface LoadSchemaResult {
+  file: string;
+  valid?: undefined;
+  loaded: boolean;
+}
+
+export type WorkerMessage =
+  | ValidationError
+  | ValidationResult
+  | LoadSchemaResult
+  | string;
+
+export function isValidationError(msg: WorkerMessage): msg is ValidationError {
+  return (
+    typeof msg !== 'string' &&
+    msg.file !== undefined &&
+    msg.valid === undefined &&
+    msg.loaded === undefined
+  );
+}
+
+export function isValidationResult(
+  msg: WorkerMessage
+): msg is ValidationResult {
+  return (
+    typeof msg !== 'string' &&
+    msg.file !== undefined &&
+    msg.valid !== undefined &&
+    msg.loaded === undefined
+  );
+}
+
+export function isLoadSchemaResult(
+  msg: WorkerMessage
+): msg is LoadSchemaResult {
+  return (
+    typeof msg !== 'string' &&
+    msg.file !== undefined &&
+    msg.valid === undefined &&
+    msg.loaded !== undefined
+  );
+}
+
+export type Validator = (
+  xml: string,
+  xmlName: string
+) => Promise<ValidationResult>;
+
+export function getSchema(
+  version: string,
+  revision: string,
+  release: string
+): string {
+  return schemas[version + revision + release] ?? schemas['2007B1']!;
+}
+
+export const schemas: Partial<Record<string, string>> = {
+  '2007B1': `<?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:scl="http://www.iec.ch/61850/2003/SCL" xmlns="http://www.iec.ch/61850/2003/SCL" elementFormDefault="qualified" targetNamespace="http://www.iec.ch/61850/2003/SCL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation xml:lang="en">
@@ -3318,4 +3355,5 @@ const SCL2007B1_2014_07_18 = `<?xml version="1.0" encoding="utf-8" ?>
       <xs:field xpath="@id" />
     </xs:key>
   </xs:element>
-</xs:schema>`;
+</xs:schema>`,
+};

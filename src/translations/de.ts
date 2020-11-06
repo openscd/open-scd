@@ -19,8 +19,6 @@ export const de: Translations = {
   openSCD: {
     loading: 'Lade Project {{ name }}',
     loaded: '{{ name }} geladen',
-    validated: '{{ name }} erfolgreich validiert',
-    invalidated: '{{ name }} Validierung fehlgeschlagen',
     readError: '{{ name }} Lesefehler',
     readAbort: '{{ name }} Leseabbruch',
   },
@@ -29,6 +27,12 @@ export const de: Translations = {
     deleted: '{{ name }} entfernt',
     moved: '{{ name }} verschoben',
     updated: '{{ name }} bearbeitet',
+  },
+  validating: {
+    valid: '{{ name }} erfolgreich validiert',
+    invalid: '{{ name }} Validierung fehlgeschlagen',
+    fatal: 'Fataler Validierungsfehler',
+    loadError: 'Konnte Schema {{ name }} nicht laden',
   },
   textfield: {
     required: 'Pflichtfeld',

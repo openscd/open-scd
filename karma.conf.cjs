@@ -5,33 +5,29 @@ const merge = require('deepmerge');
 
 module.exports = config => {
   config.set(
-    merge(
-      createDefaultConfig(config),
-      {
-        coverageReporter: {
-          dir: 'coverage',
-          subdir: '.'
+    merge(createDefaultConfig(config), {
+      coverageReporter: {
+        dir: 'coverage',
+        subdir: '.',
+      },
+      browserDisconnectTimeout: 20000,
+      files: [
+        // runs all files ending with .test in the test folder,
+        // can be overwritten by passing a --grep flag. examples:
+        //
+        // npm run test -- --grep test/foo/bar.test.js
+        // npm run test -- --grep test/bar/*
+        {
+          pattern: config.grep ? config.grep : 'out-tsc/**/test/**/*.test.js',
+          type: 'module',
         },
-        browserDisconnectTimeout: 20000,
-        files: [
-          'public/js/xmllint.js',
-          // runs all files ending with .test in the test folder,
-          // can be overwritten by passing a --grep flag. examples:
-          //
-          // npm run test -- --grep test/foo/bar.test.js
-          // npm run test -- --grep test/bar/*
-          {
-            pattern: config.grep ? config.grep : 'out-tsc/**/test/**/*.test.js',
-            type: 'module',
-          },
-        ],
+      ],
 
-        esm: {
-          nodeResolve: true,
-        },
-        // you can overwrite/extend the config further
-      }
-    )
+      esm: {
+        nodeResolve: true,
+      },
+      // you can overwrite/extend the config further
+    })
   );
   return config;
 };
