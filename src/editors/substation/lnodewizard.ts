@@ -84,7 +84,7 @@ export function lNodeActions(parent: Element): WizardAction {
         return {
           iedName: node.getAttribute('iedName') ?? '',
           ldInst: node.getAttribute('ldInst') ?? '',
-          prefix: node.getAttribute('prefix'),
+          prefix: node.getAttribute('prefix') ?? '',
           lnClass: node.getAttribute('lnClass') ?? '',
           inst: node.getAttribute('lnInst') ?? '',
           /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
@@ -167,7 +167,7 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
       ).map(ln => {
         return {
           ...ldValue,
-          prefix: ln.getAttribute('prefix'),
+          prefix: ln.getAttribute('prefix') ?? '',
           lnClass: ln.getAttribute('lnClass') ?? '',
           inst: ln.getAttribute('inst') ?? '',
           /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
