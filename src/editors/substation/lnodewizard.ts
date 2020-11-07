@@ -28,7 +28,7 @@ interface lnValue extends ldValue {
   inst: string;
 }
 
-function hasLNode(parent: Element, value: lnValue): boolean {
+export function hasLNode(parent: Element, value: lnValue): boolean {
   return (
     parent.querySelector(
       `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${

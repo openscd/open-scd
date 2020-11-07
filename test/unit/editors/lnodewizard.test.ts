@@ -1,12 +1,49 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { isCreate, WizardInput, isDelete } from '../../../src/foundation.js';
-import { lNodeActions } from '../../../src/editors/substation/lnodewizard.js';
+import {
+  isCreate,
+  WizardInput,
+  isDelete,
+  Wizard,
+} from '../../../src/foundation.js';
+import {
+  lNodeActions,
+  hasLNode,
+  editlNode,
+} from '../../../src/editors/substation/lnodewizard.js';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
 import { List } from '@material/mwc-list';
+import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
+import { getDocument } from '../../data.js';
+import { TemplateResult } from 'lit-html';
 
 describe('lnodewizard', () => {
+  describe('creates wizard', () => {
+    let element: BayEditor;
+    const validSCL = getDocument();
+    beforeEach(async () => {
+      element = <BayEditor>(
+        await fixture(
+          html`<bay-editor
+            .element=${validSCL.querySelector('Bay')}
+            .parent=${validSCL.querySelector('VoltageLevel')}
+          ></bay-editor>`
+        )
+      );
+    });
+
+    it('creates three wiazrd pages', () => {
+      const wizard: Wizard = editlNode(element);
+      expect(wizard.length).to.equal(3);
+    });
+
+    it('renders the first page with a list of avaiable logical nodes', () => {
+      const wizard: TemplateResult = editlNode(element)[0].content!;
+      expect(wizard);
+    });
+  });
+
   const noOp = () => {
     return;
   };
@@ -91,6 +128,37 @@ describe('lnodewizard', () => {
     it('retruns a WizardAction with the third EditorAction being an isCreate', () => {
       const wizardAction = lNodeActions(parent);
       expect(wizardAction(inputs, newWizard())[2]).to.satisfy(isCreate);
+    });
+    it('has two existing lnNodes', () => {
+      expect(
+        hasLNode(parent, {
+          iedName: 'IED',
+          ldInst: 'ldInst',
+          prefix: 'prefix',
+          lnClass: 'USER',
+          inst: '1',
+        })
+      ).to.be.true;
+      expect(
+        hasLNode(parent, {
+          iedName: 'IED',
+          ldInst: 'ldInst',
+          prefix: null,
+          lnClass: 'LLN0',
+          inst: '',
+        })
+      ).to.be.true;
+    });
+    it('has a missing lnNode', () => {
+      expect(
+        hasLNode(parent, {
+          iedName: 'IED',
+          ldInst: 'ldInst',
+          prefix: 'prefix',
+          lnClass: 'LLN0',
+          inst: '10',
+        })
+      ).to.be.false;
     });
   });
 });
