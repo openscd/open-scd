@@ -1,10 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import {
-  isCreate,
-  WizardInput,
-  isDelete,
-  Wizard,
-} from '../../../src/foundation.js';
+import { isCreate, WizardInput, isDelete } from '../../../src/foundation.js';
 import {
   lNodeActions,
   hasLNode,
@@ -16,7 +11,6 @@ import '@material/mwc-list/mwc-list';
 import { List } from '@material/mwc-list';
 import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
 import { getDocument } from '../../data.js';
-import { TemplateResult } from 'lit-html';
 
 describe('lnodewizard', () => {
   describe('creates wizard', () => {
@@ -33,14 +27,8 @@ describe('lnodewizard', () => {
       );
     });
 
-    it('creates three wiazrd pages', () => {
-      const wizard: Wizard = editlNode(element);
-      expect(wizard.length).to.equal(3);
-    });
-
-    it('renders the first page with a list of avaiable logical nodes', () => {
-      const wizard: TemplateResult = editlNode(element)[0].content!;
-      expect(wizard);
+    it('containing three wizard pages', () => {
+      expect(editlNode(element).length).to.equal(3);
     });
   });
 
@@ -54,7 +42,7 @@ describe('lnodewizard', () => {
     const value1 = {
       iedName: 'IED',
       ldInst: 'ldInst',
-      prefix: null,
+      prefix: '',
       lnClass: 'LLN0',
       inst: '',
     };
