@@ -84,36 +84,29 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <div id="container" tabindex="0">
-      <input
-        type="checkbox"
-        href="#"
-        class="menu-open"
-        name="menu-open"
-        id="menu-open"
-      />
-      <label class="type-icon-button" for="menu-open">
+    return html`
+      <div id="container" tabindex="0">
         ${typeIcons[this.type] ?? generalConductingEquipmentIcon}
         <h4 id="header">${this.name}</h4>
-      </label>
-      <mwc-icon-button
-        class="menu-item edit"
-        icon="edit"
-        @click="${() => this.openEditWizard()}}"
-      ></mwc-icon-button
-      ><mwc-icon-button
-        class="menu-item delete"
-        id="delete"
-        icon="delete"
-        @click="${() => this.removeAction()}}"
-      ></mwc-icon-button>
-      <mwc-icon-button
-        class="menu-item connect"
-        id="lNodeButton"
-        @click="${() => this.openLNodeAddWizard()}"
-        >${iedIcon}</mwc-icon-button
-      >
-    </div>`;
+        <mwc-icon-button
+          class="menu-item edit"
+          icon="edit"
+          @click="${() => this.openEditWizard()}}"
+        ></mwc-icon-button
+        ><mwc-icon-button
+          class="menu-item delete"
+          id="delete"
+          icon="delete"
+          @click="${() => this.removeAction()}}"
+        ></mwc-icon-button>
+        <mwc-icon-button
+          class="menu-item connect"
+          id="lNodeButton"
+          @click="${() => this.openLNodeAddWizard()}"
+          >${iedIcon}</mwc-icon-button
+        >
+      </div>
+    `;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -296,97 +289,62 @@ export class ConductingEquipmentEditor extends LitElement {
   static styles = css`
     :host {
       display: inline-block;
+      margin: 20px;
+      position: relative;
     }
 
     #container {
-      width: 80px;
-      height: 100px;
-      margin: 20px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .type-icon-button {
-      display: inline-block;
-      background: var(--mdc-theme-surface);
       color: var(--mdc-theme-on-surface);
-      margin: 0px;
       width: 80px;
       height: 100px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .container:hover {
-      -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-      transform: scale(1.2, 1.2) translate3d(0, 0, 0);
     }
 
     #container:focus-within {
       outline: none;
     }
 
-    #container:focus-within > .type-icon-button {
+    #container > svg {
+      color: var(--mdc-theme-on-surface);
+      width: 80px;
+      height: 80px;
+      position: relative;
+      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #container:hover > svg {
+      transform: scale(1.1);
+    }
+
+    #container:focus-within > svg {
       background: var(--mdc-theme-on-primary);
-      outline: none;
-      -webkit-transition-timing-function: linear;
-      transition-timing-function: linear;
-      -webkit-transition-duration: 200ms;
-      transition-duration: 200ms;
-      -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-      transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+      transform: scale(0.8);
     }
 
-    .menu-open {
-      display: none;
-    }
-
-    .menu-item:nth-child(3) {
-      position: absolute;
-      top: 25px;
-      left: 15px;
+    .menu-item {
       color: var(--mdc-theme-on-surface);
-    }
-
-    .menu-item:nth-child(4) {
+      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
       position: absolute;
-      top: 25px;
+      top: 15px;
       left: 15px;
-      color: var(--mdc-theme-on-surface);
-    }
-
-    .menu-item:nth-child(5) {
-      position: absolute;
-      top: 25px;
-      left: 15px;
-      color: var(--mdc-theme-on-surface);
+      pointer-events: none;
+      opacity: 0;
     }
 
     #container:focus-within > .menu-item {
-      -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
-      transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+      pointer-events: auto;
+      opacity: 1;
     }
 
-    #container:focus-within > .menu-item:nth-child(3) {
-      transition-duration: 200ms;
-      -webkit-transition-duration: 200ms;
-      -webkit-transform: translate3d(0px, -65px, 0);
-      transform: translate3d(0px, -65px, 0);
+    #container:focus-within > .menu-item.edit {
+      transform: translate(0px, -55px);
     }
 
-    #container:focus-within > .menu-item:nth-child(4) {
-      transition-duration: 200ms;
-      -webkit-transition-duration: 200ms;
-      -webkit-transform: translate3d(0px, 65px, 0);
-      transform: translate3d(0px, 65px, 0);
+    #container:focus-within > .menu-item.delete {
+      transform: translate(0px, 57px);
     }
 
-    #container:focus-within > .menu-item:nth-child(5) {
-      transition-duration: 200ms;
-      -webkit-transition-duration: 200ms;
-      -webkit-transform: translate3d(55px, 0px, 0);
-      transform: translate3d(55px, 0px, 0);
+    #container:focus-within > .menu-item.connect {
+      transform: translate(57px, 0px);
     }
 
     #header {
@@ -395,15 +353,8 @@ export class ConductingEquipmentEditor extends LitElement {
       color: var(--mdc-theme-on-surface);
       margin: 0px;
       overflow: hidden;
-      white-space: nowrap;
       text-overflow: ellipsis;
-    }
-
-    .type-icon-button > svg {
-      color: var(--mdc-theme-on-surface);
-      width: 80px;
-      height: 80px;
-      position: relative;
+      white-space: nowrap;
     }
   `;
 }
