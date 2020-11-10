@@ -56,7 +56,7 @@ export class ConductingEquipmentEditor extends LitElement {
     return this.element.getAttribute('type') ?? 'missing';
   }
 
-  @query('h4') header!: Element;
+  @query('#header') header!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
