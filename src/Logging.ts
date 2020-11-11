@@ -123,7 +123,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       }
       this.history.push(entry);
       if (le.detail.kind == 'error' && !this.logUI.open) this.messageUI.show();
-      this.requestUpdate();
+      this.requestUpdate('history', []);
     }
 
     async performUpdate() {
