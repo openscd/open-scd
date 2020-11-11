@@ -87,11 +87,26 @@ export class ConductingEquipmentEditor extends LitElement {
   startMove(): void {
     this.container.classList.add('moving');
 
-    const moveToTarget = (e: MouseEvent) => {
+    const moveToTarget = (e: MouseEvent | KeyboardEvent) => {
+      console.warn(e);
+
+      if (
+        e instanceof KeyboardEvent &&
+        e.key !== 'Escape' &&
+        e.key !== ' ' &&
+        e.key !== 'Enter'
+      )
+        return;
+
       e.preventDefault();
       e.stopImmediatePropagation();
-
       this.container.classList.remove('moving');
+
+      window.removeEventListener('keydown', moveToTarget, true);
+      window.removeEventListener('click', moveToTarget, true);
+      console.log('removed', moveToTarget);
+
+      if (e instanceof KeyboardEvent && e.key === 'Escape') return;
 
       const targetEditor = e
         .composedPath()
@@ -122,10 +137,8 @@ export class ConductingEquipmentEditor extends LitElement {
         );
     };
 
-    window.addEventListener('click', moveToTarget, {
-      capture: true,
-      once: true,
-    });
+    window.addEventListener('click', moveToTarget, true);
+    window.addEventListener('keydown', moveToTarget, true);
   }
 
   render(): TemplateResult {
@@ -146,7 +159,7 @@ export class ConductingEquipmentEditor extends LitElement {
         <mwc-icon-button
           class="menu-item right"
           @click="${() => this.openLNodeAddWizard()}"
-          icon="ballot"
+          icon="device_hub"
         ></mwc-icon-button>
         <mwc-icon-button
           class="menu-item down"
