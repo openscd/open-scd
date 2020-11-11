@@ -323,6 +323,7 @@ export class OpenSCD extends Setting(
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
+      pointer-events: none;
     }
 
     tt {
