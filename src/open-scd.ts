@@ -9,6 +9,7 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
+import { cache } from 'lit-html/directives/cache.js';
 
 import '@material/mwc-button';
 import '@material/mwc-drawer';
@@ -278,9 +279,11 @@ export class OpenSCD extends Setting(
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
-      ${until(
-        this.plugins.editors[this.activeTab].getContent(),
-        html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+      ${cache(
+        until(
+          this.plugins.editors[this.activeTab].getContent(),
+          html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+        )
       )}
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
