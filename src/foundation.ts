@@ -77,6 +77,7 @@ export function invert(action: EditorAction): EditorAction {
         reference: action.new.reference,
       },
       new: { parent: action.old.parent, reference: action.old.reference },
+      derived: action.derived,
     };
   else if (isUpdate(action))
     return { new: action.old, old: action.new, derived: action.derived };
