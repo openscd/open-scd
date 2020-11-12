@@ -28,16 +28,35 @@ interface lnValue extends ldValue {
   inst: string;
 }
 
-export function hasLNode(parent: Element, value: lnValue): boolean {
+function valueToSelector(value: lnValue): string {
+  return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]${
+    value.prefix ? `[prefix="${value.prefix}"]` : ``
+  }${value.inst ? `[lnInst="${value.inst}"]` : ''}[lnClass="${value.lnClass}"]`;
+}
+
+function hasLNode(parent: Element, value: lnValue): boolean {
   return (
-    parent.querySelector(
-      `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${
-        value.ldInst
-      }"]${value.prefix ? `[prefix="${value.prefix}"]` : ``}${
-        value.inst ? `[lnInst="${value.inst}"]` : ''
-      }[lnClass="${value.lnClass}"]`
-    ) !== null
+    parent.querySelector(`${parent.tagName} > ${valueToSelector(value)}`) !==
+    null
   );
+}
+
+function existLNode(parent: Element, value: lnValue): boolean {
+  const doc = parent.ownerDocument;
+  return doc.querySelector(valueToSelector(value)) !== null;
+}
+
+function getConnectedEquipment(element: Element, value: lnValue): string {
+  const doc = element.ownerDocument;
+  const lNode = doc.querySelector(valueToSelector(value));
+
+  let path = 'Connected to: ';
+  let nextParent: Element | null | undefined = lNode?.parentElement;
+  while (nextParent?.getAttribute('name')) {
+    path = path + ' ' + nextParent.getAttribute('name');
+    nextParent = nextParent.parentElement;
+  }
+  return path;
 }
 
 function createAction(parent: Element, value: lnValue): EditorAction {
@@ -56,13 +75,7 @@ function createAction(parent: Element, value: lnValue): EditorAction {
 }
 
 function deleteAction(parent: Element, value: lnValue): EditorAction {
-  const element = parent.querySelector(
-    `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${
-      value.ldInst
-    }"]${value.prefix ? `[prefix="${value.prefix}"]` : ''}[lnClass="${
-      value.lnClass
-    }"]${value.inst ? `[lnInst="${value.inst}"]` : ''}`
-  )!;
+  const element = parent.querySelector(valueToSelector(value))!;
   return {
     old: {
       parent: parent,
@@ -176,11 +189,16 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
       const nodeItems = values.map(value => {
         return html`<mwc-check-list-item
           ?selected=${hasLNode(element, value)}
+          ?disabled=${!hasLNode(element, value) && existLNode(element, value)}
           value="${JSON.stringify(value)}"
           twoline
-          ><span>${value.prefix}${value.lnClass}${value.inst}</span
+          ><span
+            >${value.prefix}${value.lnClass}${value.inst}
+            ${!hasLNode(element, value) && existLNode(element, value)
+              ? ' (' + getConnectedEquipment(element, value) + ') '
+              : ''}</span
           ><span slot="secondary"
-            >${value.iedName} | ${value.ldInst}</span
+            >${value.iedName} | ${value.ldInst}}</span
           ></mwc-check-list-item
         >`;
       });
@@ -207,11 +225,11 @@ function onFilter(evt: InputEvent, selector: string): void {
 
 function renderIEDPage(element: Element): TemplateResult {
   const doc = element.ownerDocument;
-  return html`<wizard-textfield
+  return html`<mwc-textfield
       label="${translate('filter')}"
       iconTrailing="search"
       @input="${(evt: InputEvent) => onFilter(evt, '#iedList')}"
-    ></wizard-textfield>
+    ></mwc-textfield>
     <mwc-list
       multi
       id="iedList"
@@ -232,11 +250,11 @@ function renderIEDPage(element: Element): TemplateResult {
 }
 
 function renderLdPage(element: Element): TemplateResult {
-  return html`<wizard-textfield
+  return html`<mwc-textfield
       label="${translate('filter')}"
       iconTrailing="search"
       @input="${(evt: InputEvent) => onFilter(evt, '#ldList')}"
-    ></wizard-textfield>
+    ></mwc-textfield>
     <mwc-list
       multi
       id="ldList"
@@ -245,11 +263,11 @@ function renderLdPage(element: Element): TemplateResult {
 }
 
 function renderLnPage(): TemplateResult {
-  return html`<wizard-textfield
+  return html`<mwc-textfield
       label="${translate('filter')}"
       iconTrailing="search"
       @input="${(evt: InputEvent) => onFilter(evt, '#lnList')}"
-    ></wizard-textfield>
+    ></mwc-textfield>
     <mwc-list multi id="lnList"></mwc-list>`;
 }
 
