@@ -2,7 +2,6 @@ import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
-import '@material/mwc-fab';
 import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
 
@@ -14,7 +13,6 @@ import {
   WizardInput,
   getValue,
 } from '../foundation.js';
-import { iedIcon } from '../icons.js';
 
 import './substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
@@ -164,31 +162,37 @@ export default class SubstationEditor extends LitElement {
         ></mwc-icon-button>
       </h1>`;
     return html`
-      <h1>
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => this.openVoltageLevelWizard()}
-        ></mwc-icon-button>
-        <span style="position:relative; float:right;">&#124;</span>
-        <mwc-icon-button
-          icon="delete"
-          @click=${() => this.removeSubstation()}
-        ></mwc-icon-button>
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openSubstationWizard()}
-        ></mwc-icon-button>
-        <mwc-icon-button @click=${() => this.openLNodeWizard()}
-          >${iedIcon}</mwc-icon-button
-        >
+      <h1 class="extant">
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+        <nav>
+          <mwc-icon-button
+            icon="device_hub"
+            @click=${() => this.openLNodeWizard()}
+          ></mwc-icon-button>
+          <mwc-icon-button
+            icon="edit"
+            @click=${() => this.openSubstationWizard()}
+          ></mwc-icon-button>
+          <mwc-icon-button
+            icon="forward"
+            @click=${() => alert('move')}
+          ></mwc-icon-button>
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.removeSubstation()}
+          ></mwc-icon-button>
+          <mwc-icon-button
+            icon="playlist_add"
+            @click=${() => this.openVoltageLevelWizard()}
+          ></mwc-icon-button>
+        </nav>
       </h1>
     `;
   }
 
   render(): TemplateResult {
     return html`
-      <div id="container">
+      <main tabindex="0">
         ${this.renderHeader()}
         ${Array.from(this.element?.querySelectorAll('VoltageLevel') ?? []).map(
           voltageLevel =>
@@ -197,65 +201,50 @@ export default class SubstationEditor extends LitElement {
               .parent=${this.element}
             ></voltage-level-editor>`
         )}
-        <mwc-fab
-          @click=${this.openSubstationWizard}
-          icon="${this.element ? 'edit' : 'add'}"
-        >
-        </mwc-fab>
-      </div>
+      </main>
     `;
   }
 
   static styles = css`
     :host {
       width: calc(100vw);
-      overflow-x: hidden;
     }
 
-    #container {
+    main {
       background-color: var(--mdc-theme-surface);
+      transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 8px 12px 16px;
+      overflow: auto;
+    }
+
+    main:focus {
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    }
+
+    main:focus-within {
+      outline: 2px solid var(--mdc-theme-primary);
     }
 
     h1 {
+      color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      color: var(--mdc-theme-on-surface);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       margin: 0px;
-      padding: 0.3em;
+      line-height: 48px;
+      padding-left: 0.3em;
     }
 
-    h1 > mwc-icon-button {
-      position: relative;
+    main:focus-within > h1 {
+      color: var(--mdc-theme-surface);
+      background-color: var(--mdc-theme-primary);
+    }
+
+    h1 > nav {
       float: right;
-      top: -5px;
-    }
-
-    mwc-dialog {
-      display: flex;
-      flex-direction: column;
-    }
-
-    mwc-dialog > * {
-      display: block;
-      margin-top: 16px;
-    }
-
-    pre {
-      font-family: 'Roboto Mono', monospace;
-      font-weight: 100;
-    }
-
-    mwc-fab {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-    }
-
-    h1 > svg {
-      position: relative;
-      widht: 30px;
-      height: 30px;
-      padding: 6px;
     }
   `;
 }

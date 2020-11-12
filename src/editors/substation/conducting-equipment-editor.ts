@@ -88,8 +88,6 @@ export class ConductingEquipmentEditor extends LitElement {
     this.container.classList.add('moving');
 
     const moveToTarget = (e: MouseEvent | KeyboardEvent) => {
-      console.warn(e);
-
       if (
         e instanceof KeyboardEvent &&
         e.key !== 'Escape' &&
@@ -104,7 +102,6 @@ export class ConductingEquipmentEditor extends LitElement {
 
       window.removeEventListener('keydown', moveToTarget, true);
       window.removeEventListener('click', moveToTarget, true);
-      console.log('removed', moveToTarget);
 
       if (e instanceof KeyboardEvent && e.key === 'Escape') return;
 
@@ -148,8 +145,8 @@ export class ConductingEquipmentEditor extends LitElement {
         <h4 id="header">${this.name}</h4>
         <mwc-icon-button
           class="menu-item left"
-          @click="${() => this.startMove()}"
-          icon="forward"
+          @click="${() => this.openLNodeAddWizard()}"
+          icon="device_hub"
         ></mwc-icon-button>
         <mwc-icon-button
           class="menu-item up"
@@ -158,8 +155,8 @@ export class ConductingEquipmentEditor extends LitElement {
         ></mwc-icon-button>
         <mwc-icon-button
           class="menu-item right"
-          @click="${() => this.openLNodeAddWizard()}"
-          icon="device_hub"
+          @click="${() => this.startMove()}"
+          icon="forward"
         ></mwc-icon-button>
         <mwc-icon-button
           class="menu-item down"
@@ -350,7 +347,7 @@ export class ConductingEquipmentEditor extends LitElement {
   static styles = css`
     :host {
       display: inline-block;
-      margin: 20px;
+      margin: 12px;
       position: relative;
     }
 
@@ -367,7 +364,7 @@ export class ConductingEquipmentEditor extends LitElement {
       opacity: 0.3;
     }
 
-    #container:focus-within {
+    #container:focus {
       outline: none;
     }
 
@@ -376,7 +373,13 @@ export class ConductingEquipmentEditor extends LitElement {
       width: 80px;
       height: 80px;
       position: relative;
-      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #container:focus > svg {
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
 
     #container:hover > svg {
@@ -384,6 +387,7 @@ export class ConductingEquipmentEditor extends LitElement {
     }
 
     #container:focus-within > svg {
+      outline: 2px solid var(--mdc-theme-primary);
       background: var(--mdc-theme-on-primary);
       transform: scale(0.8);
     }

@@ -2,6 +2,7 @@ import { html, TemplateResult } from 'lit-element';
 import { Settings } from './Setting.js';
 
 export function getTheme(theme: Settings['theme']): TemplateResult {
+  document.body.style.cssText = bodyStyles[theme];
   return html`
     ${themes[theme]}
     <style>
@@ -37,6 +38,11 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
     </style>
   `;
 }
+
+const bodyStyles: Record<Settings['theme'], string> = {
+  dark: 'background: #002b36',
+  light: 'background: #fdf6e3',
+};
 
 const themes: Record<Settings['theme'], TemplateResult> = {
   light: html`
