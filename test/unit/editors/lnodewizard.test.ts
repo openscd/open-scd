@@ -2,151 +2,278 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { isCreate, WizardInput, isDelete } from '../../../src/foundation.js';
 import {
   lNodeActions,
-  hasLNode,
   editlNode,
 } from '../../../src/editors/substation/lnodewizard.js';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
+import '../mock-wizard.js';
 import { List } from '@material/mwc-list';
-import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
 import { getDocument } from '../../data.js';
+import { MockWizard } from '../mock-wizard.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('lnodewizard', () => {
-  describe('creates wizard', () => {
-    let element: BayEditor;
-    const validSCL = getDocument();
-    beforeEach(async () => {
-      element = <BayEditor>(
-        await fixture(
-          html`<bay-editor
-            .element=${validSCL.querySelector('Bay')}
-            .parent=${validSCL.querySelector('VoltageLevel')}
-          ></bay-editor>`
-        )
-      );
-    });
-
-    it('containing three wizard pages', () => {
-      expect(editlNode(element).length).to.equal(3);
-    });
-  });
-
-  const noOp = () => {
-    return;
-  };
-
-  let list: List;
-
+  let element: MockWizard;
+  const validSCL = getDocument();
   beforeEach(async () => {
-    const value1 = {
-      iedName: 'IED',
-      ldInst: 'ldInst',
-      prefix: '',
-      lnClass: 'LLN0',
-      inst: '',
-    };
-
-    const value2 = {
-      iedName: 'IED',
-      ldInst: 'ldInst',
-      prefix: 'prefix',
-      lnClass: 'USER',
-      inst: '10',
-    };
-
-    const value3 = {
-      iedName: 'IED',
-      ldInst: 'ldInst',
-      prefix: 'prefix',
-      lnClass: 'USER',
-      inst: '1',
-    };
-
-    list = await fixture(html`<mwc-list multi id="lnList">
-      <mwc-check-list-item selected value=${JSON.stringify(value1)}
-        >${value1.prefix}${value1.lnClass}${value1.inst}</mwc-check-list-item
-      ><mwc-check-list-item selected value=${JSON.stringify(value2)}
-        >${value2.prefix}${value2.lnClass}${value2.inst}</mwc-check-list-item
-      ><mwc-check-list-item value=${JSON.stringify(value3)}
-        >${value3.prefix}${value3.lnClass}${value3.inst}</mwc-check-list-item
-      >
-    </mwc-list>`);
+    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
+    element.workflow.push(editlNode(validSCL.querySelector('Bay')!));
+    await element.requestUpdate();
   });
 
-  const newWizard = (done = noOp) => {
-    const element = document.createElement('mwc-dialog');
-    element.attachShadow;
+  it('renders three wizard pages each in a mwc-dialog', async () => {
+    expect(
+      element.wizardUI.shadowRoot?.querySelectorAll('mwc-dialog').length
+    ).to.equal(3);
+  });
 
-    element.shadowRoot?.appendChild(list);
+  describe('on the first wizard page', () => {
+    it('render a list of available IEDs in a mwc-list with checked items', () => {
+      expect(
+        element.wizardUI.shadowRoot
+          ?.querySelector('mwc-dialog')
+          ?.querySelectorAll('mwc-check-list-item').length
+      ).to.equal(validSCL.querySelectorAll('IED').length);
+    });
 
-    element.close = done;
-    return element;
-  };
+    it('render one search field in a mwc-textfield', () => {
+      expect(
+        element.wizardUI.shadowRoot
+          ?.querySelector('mwc-dialog')
+          ?.querySelectorAll('mwc-textfield').length
+      ).to.equal(1);
+    });
 
-  let inputs: WizardInput[];
+    it('select the IEDs that are connected', () => {
+      expect(
+        (<ListItemBase[]>(
+          (<List>(
+            element.wizardUI
+              .shadowRoot!.querySelector('mwc-dialog')!
+              .querySelector('mwc-list')
+          )).selected
+        )).length
+      ).to.equal(1);
+    });
 
-  describe('has a lNodeActions that', () => {
-    let parent: Element;
-    beforeEach(() => {
-      parent = new DOMParser().parseFromString(
-        `<Bay><LNode iedName="IED" ldInst="ldInst" lnClass="LLN0"></LNode>
+    describe('on the second page', () => {
+      it('add logical devices on selecting IEDs on the first page', async () => {
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelector('mwc-check-list-item')
+        )).click();
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelectorAll('mwc-check-list-item')[1]
+        )).click();
+        await element.updateComplete;
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelectorAll('mwc-check-list-item').length
+        ).to.equal(
+          validSCL.querySelectorAll('IED[name="IED1"] LDevice').length
+        );
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelectorAll('mwc-check-list-item')[1]
+        )).click();
+        await element.requestUpdate();
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelectorAll('mwc-check-list-item').length
+        ).to.equal(validSCL.querySelectorAll('LDevice').length);
+      });
+
+      it('delete logical devices on de-selecting IEDs on the first page', async () => {
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelector('mwc-check-list-item')
+        )).click();
+        await element.requestUpdate();
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelectorAll('mwc-check-list-item').length
+        ).to.equal(validSCL.querySelectorAll('LDevice').length);
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelector('mwc-check-list-item')
+        )).click();
+        await element.requestUpdate();
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelectorAll('mwc-check-list-item').length
+        ).to.equal(
+          validSCL.querySelectorAll('IED[name="IED2"] LDevice').length
+        );
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelectorAll('mwc-check-list-item')[1]
+        )).click();
+        await element.requestUpdate();
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelectorAll('mwc-check-list-item').length
+        ).to.equal(0);
+      });
+
+      it('select logical devices when used in this Element already', async () => {
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelector('mwc-check-list-item')
+        )).click();
+        await element.requestUpdate();
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelectorAll('mwc-check-list-item')[1]
+        ).to.have.property('selected', true);
+      });
+    });
+
+    describe('on the third page', () => {
+      it('add logical nodes on selecting logical devices on the second page', async () => {
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelector('mwc-dialog')!
+            .querySelector('mwc-check-list-item')
+        )).click();
+        (<ListItemBase>(
+          element.wizardUI
+            .shadowRoot!.querySelectorAll('mwc-dialog')[1]
+            .querySelector('mwc-check-list-item')
+        )).click();
+        await element.requestUpdate();
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[2]
+            ?.querySelectorAll('mwc-check-list-item').length
+        ).to.equal(
+          validSCL.querySelectorAll(
+            'IED[name="IED1"] LDevice > LN0, IED[name="IED1"] LDevice > LN'
+          ).length
+        );
+      });
+
+      it('select logical nodes when used in this Element already', async () => {
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[2]
+            ?.querySelectorAll('mwc-check-list-item')[1]
+        ).to.have.property('selected', true);
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[2]
+            ?.querySelectorAll('mwc-check-list-item')[5]
+        ).to.have.property('selected', true);
+      });
+
+      it('disable logical nodes when used in the Substation already', async () => {
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelectorAll('mwc-dialog')[2]
+            ?.querySelectorAll('mwc-check-list-item')[4]
+        ).to.have.property('disabled', true);
+      });
+    });
+
+    const noOp = () => {
+      return;
+    };
+
+    let list: List;
+
+    beforeEach(async () => {
+      const value1 = {
+        iedName: 'IED',
+        ldInst: 'ldInst',
+        prefix: '',
+        lnClass: 'LLN0',
+        inst: '',
+      };
+
+      const value2 = {
+        iedName: 'IED',
+        ldInst: 'ldInst',
+        prefix: 'prefix',
+        lnClass: 'USER',
+        inst: '10',
+      };
+
+      const value3 = {
+        iedName: 'IED',
+        ldInst: 'ldInst',
+        prefix: 'prefix',
+        lnClass: 'USER',
+        inst: '1',
+      };
+
+      list = await fixture(html`<mwc-list multi id="lnList">
+        <mwc-check-list-item selected value=${JSON.stringify(value1)}
+          >${value1.prefix}${value1.lnClass}${value1.inst}</mwc-check-list-item
+        ><mwc-check-list-item selected value=${JSON.stringify(value2)}
+          >${value2.prefix}${value2.lnClass}${value2.inst}</mwc-check-list-item
+        ><mwc-check-list-item value=${JSON.stringify(value3)}
+          >${value3.prefix}${value3.lnClass}${value3.inst}</mwc-check-list-item
+        >
+      </mwc-list>`);
+    });
+
+    const newWizard = (done = noOp) => {
+      const element = document.createElement('mwc-dialog');
+      element.attachShadow;
+
+      element.shadowRoot?.appendChild(list);
+
+      element.close = done;
+      return element;
+    };
+
+    let inputs: WizardInput[];
+
+    describe('has a lNodeActions that', () => {
+      let parent: Element;
+      beforeEach(() => {
+        parent = new DOMParser().parseFromString(
+          `<Bay><LNode iedName="IED" ldInst="ldInst" lnClass="LLN0"></LNode>
         <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="1"></LNode>
         <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="2"></LNode>
             </Bay>`,
-        'application/xml'
-      ).documentElement;
-    });
+          'application/xml'
+        ).documentElement;
+      });
 
-    it('returns a WizardAction which returns 3 EditorActions', () => {
-      const wizardAction = lNodeActions(parent);
-      expect(wizardAction(inputs, newWizard()).length).to.equal(3);
-    });
+      it('returns a WizardAction which returns 3 EditorActions', () => {
+        const wizardAction = lNodeActions(parent);
+        expect(wizardAction(inputs, newWizard()).length).to.equal(3);
+      });
 
-    it('retruns a WizardAction with the first EditorAction being an isDelete', () => {
-      const wizardAction = lNodeActions(parent);
-      expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isDelete);
-    });
+      it('retruns a WizardAction with the first EditorAction being an isDelete', () => {
+        const wizardAction = lNodeActions(parent);
+        expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isDelete);
+      });
 
-    it('retruns a WizardAction with the second EditorAction being an isDelete', () => {
-      const wizardAction = lNodeActions(parent);
-      expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
-    });
+      it('retruns a WizardAction with the second EditorAction being an isDelete', () => {
+        const wizardAction = lNodeActions(parent);
+        expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
+      });
 
-    it('retruns a WizardAction with the third EditorAction being an isCreate', () => {
-      const wizardAction = lNodeActions(parent);
-      expect(wizardAction(inputs, newWizard())[2]).to.satisfy(isCreate);
-    });
-    it('has two existing lnNodes', () => {
-      expect(
-        hasLNode(parent, {
-          iedName: 'IED',
-          ldInst: 'ldInst',
-          prefix: 'prefix',
-          lnClass: 'USER',
-          inst: '1',
-        })
-      ).to.be.true;
-      expect(
-        hasLNode(parent, {
-          iedName: 'IED',
-          ldInst: 'ldInst',
-          prefix: null,
-          lnClass: 'LLN0',
-          inst: '',
-        })
-      ).to.be.true;
-    });
-    it('has a missing lnNode', () => {
-      expect(
-        hasLNode(parent, {
-          iedName: 'IED',
-          ldInst: 'ldInst',
-          prefix: 'prefix',
-          lnClass: 'LLN0',
-          inst: '10',
-        })
-      ).to.be.false;
+      it('retruns a WizardAction with the third EditorAction being an isCreate', () => {
+        const wizardAction = lNodeActions(parent);
+        expect(wizardAction(inputs, newWizard())[2]).to.satisfy(isCreate);
+      });
     });
   });
 });
