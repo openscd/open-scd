@@ -22,9 +22,6 @@ import { get, translate } from 'lit-translate';
 import './conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 import { editlNode } from './lnodewizard.js';
-import { iedIcon } from '../../icons.js';
-import { Menu } from '@material/mwc-menu';
-import { IconButton } from '@material/mwc-icon-button';
 
 interface BayUpdateOptions {
   element: Element;
@@ -57,8 +54,6 @@ export class BayEditor extends LitElement {
   }
 
   @query('h3') header!: Element;
-  @query('#lNodeMenu') lNodeMenu!: Menu;
-  @query('#lNodeButton') lNodeButton!: IconButton;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -92,35 +87,35 @@ export class BayEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<div id="header">
-      <h3>
-        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-      </h3>
-      <div id="header-icon">
+    return html`<h3>
+      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+      <nav>
         <mwc-icon-button
-          id="lNodeButton"
+          icon="device_hub"
           @click="${() => this.openLNodeAddWizard()}"
-          >${iedIcon}</mwc-icon-button
-        >
+        ></mwc-icon-button>
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
         <mwc-icon-button
+          icon="forward"
+          @click=${() => alert('move')}
+        ></mwc-icon-button>
+        <mwc-icon-button
           icon="delete"
           @click=${() => this.removeAction()}
         ></mwc-icon-button>
-        <span style="position:relative; float:right;">&#124;</span>
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => this.openConductingEquipmentWizard()}
         ></mwc-icon-button>
-      </div>
-    </div> `;
+      </nav>
+    </h3>`;
   }
 
   render(): TemplateResult {
-    return html`<div id="container">
+    return html`<section tabindex="0">
       ${this.renderHeader()}
       ${Array.from(
         this.element?.querySelectorAll('ConductingEquipment') ?? []
@@ -131,7 +126,7 @@ export class BayEditor extends LitElement {
             .parent=${this.element}
           ></conducting-equipment-editor>`
       )}
-    </div> `;
+    </section> `;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -244,37 +239,40 @@ export class BayEditor extends LitElement {
   }
 
   static styles = css`
-    #container {
-      width: 370px;
-      min-height: 320px;
+    section {
       background-color: var(--mdc-theme-surface);
-      margin: 10px;
+      transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: visible;
     }
 
-    #header {
-      display: flex;
-      color: var(--mdc-theme-on-surface);
+    section:focus {
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    }
+
+    section:focus-within {
+      outline: 2px solid var(--mdc-theme-primary);
     }
 
     h3 {
+      color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      flex: auto;
-      padding-left: 0.5em;
+      margin: 0px;
+      line-height: 48px;
+      padding-left: 0.3em;
     }
 
-    #header-icon {
-      display: flex;
-      align-items: center;
+    section:focus-within > h3 {
+      color: var(--mdc-theme-surface);
+      background-color: var(--mdc-theme-primary);
     }
 
-    #header > mwc-icon-button {
-      position: relative;
+    h3 > nav {
       float: right;
-      top: -5px;
     }
   `;
 }

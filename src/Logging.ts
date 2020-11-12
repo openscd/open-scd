@@ -199,7 +199,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
         <mwc-snackbar
           id="message"
-          timeoutMs="-1"
+          timeoutMs="10000"
           labelText="${this.history
             .slice()
             .reverse()

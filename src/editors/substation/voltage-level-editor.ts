@@ -100,36 +100,38 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<div id="header">
-      <h2>
-        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-        ${this.voltage === null ? '' : html`(${this.voltage})`}
-      </h2>
-      <div id="header-icon">
-        <mwc-icon-button @click=${() => this.openLNodeWizard()}
-          >${iedIcon}</mwc-icon-button
-        >
+    return html`<h2>
+      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+      ${this.voltage === null ? '' : html`(${this.voltage})`}
+      <nav>
+        <mwc-icon-button
+          icon="device_hub"
+          @click=${() => this.openLNodeWizard()}
+        ></mwc-icon-button>
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
         <mwc-icon-button
+          icon="forward"
+          @click=${() => alert('move')}
+        ></mwc-icon-button>
+        <mwc-icon-button
           icon="delete"
           @click=${() => this.removeAction()}
         ></mwc-icon-button>
-        <span style="position:relative;float:right;">&vert;</span>
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => this.openBayWizard()}
         ></mwc-icon-button>
-      </div>
-    </div>`;
+      </nav>
+    </h2>`;
   }
 
   render(): TemplateResult {
-    return html`<div id="conainer">
+    return html`<section tabindex="0">
       ${this.renderHeader()}
-      <div id="voltageLevelContainer">
+      <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll('Bay') ?? []).map(
           bay =>
             html`<bay-editor
@@ -138,7 +140,7 @@ export class VoltageLevelEditor extends LitElement {
             ></bay-editor>`
         )}
       </div>
-    </div>`;
+    </section>`;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -384,36 +386,61 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   static styles = css`
-    #conainer {
+    section {
       background-color: var(--mdc-theme-on-primary);
-      color: var(--mdc-theme-on-surface);
-      margin: 10px;
+      transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 8px 12px 16px;
+      overflow: auto;
     }
 
-    #header {
-      display: flex;
+    section:focus {
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
 
-    #header-icon {
-      display: flex;
-      align-items: center;
+    section:focus-within {
+      outline: 2px solid var(--mdc-theme-primary);
     }
 
     h2 {
+      color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      flex: auto;
-      padding-left: 0.5em;
+      margin: 0px;
+      line-height: 48px;
+      padding-left: 0.3em;
     }
 
-    #voltageLevelContainer {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      overflow-y: hidden;
+    section:focus-within > h2 {
+      color: var(--mdc-theme-surface);
+      background-color: var(--mdc-theme-primary);
+    }
+
+    h2 > nav {
+      float: right;
+    }
+
+    #bayContainer {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (max-width: 1200px) {
+      #bayContainer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #bayContainer {
+        grid-template-columns: 1fr;
+      }
     }
   `;
 }
