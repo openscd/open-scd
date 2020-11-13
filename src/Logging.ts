@@ -115,14 +115,19 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         time: new Date(),
         ...le.detail,
       };
+
       if (entry.kind == 'action') {
         if (entry.action.derived) return;
         entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
         this.currentAction = this.history.length;
       }
+
       this.history.push(entry);
-      if (le.detail.kind == 'error' && !this.logUI.open) this.messageUI.show();
+      if (le.detail.kind == 'error' && !this.logUI.open) {
+        this.messageUI.close(); // hack to reset timeout
+        this.messageUI.show();
+      }
       this.requestUpdate('history', []);
     }
 
