@@ -32,7 +32,7 @@ export const de: Translations = {
       update: 'Konnte {{ name }} nicht bearbeiten',
       move: 'Konnte {{ name }} nicht verschieben',
       nameClash:
-        'Element {{ parent }} enthält bereits ein Kind {{ child }} namens "{{ name }}"',
+        '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
     },
   },
   validating: {
