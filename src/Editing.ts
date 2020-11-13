@@ -112,7 +112,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: get('editing.error.create', {
+            title: get('editing.error.move', {
               name: move.old.element.tagName,
             }),
             message: get('editing.error.nameClash', {
@@ -160,7 +160,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: get('editing.error.create', {
+            title: get('editing.error.update', {
               name: update.new.element.tagName,
             }),
             message: get('editing.error.nameClash', {
