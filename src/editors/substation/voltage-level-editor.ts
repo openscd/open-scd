@@ -65,7 +65,7 @@ export class VoltageLevelEditor extends LitElement {
   }
   @property()
   get voltage(): string | null {
-    const V = this.element.querySelector('Voltage');
+    const V = this.element.querySelector('VoltageLevel > Voltage');
     if (V === null) return null;
     const v = V.textContent ?? '';
     const m = V.getAttribute('multiplier');
@@ -134,7 +134,9 @@ export class VoltageLevelEditor extends LitElement {
     return html`<section tabindex="0">
       ${this.renderHeader()}
       <div id="bayContainer">
-        ${Array.from(this.element?.querySelectorAll('Bay') ?? []).map(
+        ${Array.from(
+          this.element?.querySelectorAll('VoltageLevel > Bay') ?? []
+        ).map(
           bay =>
             html`<bay-editor
               .element=${bay}
@@ -225,13 +227,17 @@ export class VoltageLevelEditor extends LitElement {
 
       if (
         Voltage ===
-          (element.querySelector('Voltage')?.textContent?.trim() ?? null) &&
+          (element
+            .querySelector('VoltageLevel > Voltage')
+            ?.textContent?.trim() ?? null) &&
         multiplier ===
-          (element.querySelector('Voltage')?.getAttribute('multiplier') ?? null)
+          (element
+            .querySelector('VoltageLevel > Voltage')
+            ?.getAttribute('multiplier') ?? null)
       ) {
         voltageAction = null;
       } else {
-        const oldVoltage = element.querySelector('Voltage');
+        const oldVoltage = element.querySelector('VoltageLevel > Voltage');
 
         if (oldVoltage === null) {
           const newVoltage = new DOMParser().parseFromString(
@@ -318,9 +324,11 @@ export class VoltageLevelEditor extends LitElement {
           options.element.getAttribute('desc'),
           options.element.getAttribute('nomFreq'),
           options.element.getAttribute('numPhases'),
-          options.element.querySelector('Voltage')?.textContent?.trim() ?? null,
           options.element
-            .querySelector('Voltage')
+            .querySelector('VoltageLevel > Voltage')
+            ?.textContent?.trim() ?? null,
+          options.element
+            .querySelector('VoltageLevel > Voltage')
             ?.getAttribute('multiplier') ?? null,
         ];
     return [

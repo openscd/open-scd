@@ -216,12 +216,14 @@ export class ConductingEquipmentEditor extends LitElement {
     const [reservedValues] = isConductingEquipmentCreateOptions(options)
       ? [
           Array.from(
-            options.parent.querySelectorAll('ConductingEquipment')
+            options.parent.querySelectorAll('Bay > ConductingEquipment')
           ).map(condEq => condEq.getAttribute('name')),
         ]
       : [
           Array.from(
-            options.element.parentNode!.querySelectorAll('ConductingEquipment')
+            options.element.parentNode!.querySelectorAll(
+              'Bay > ConductingEquipment'
+            )
           )
             .map(condEq => condEq.getAttribute('name'))
             .filter(name => name !== options.element.getAttribute('name')),
