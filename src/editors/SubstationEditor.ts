@@ -214,6 +214,10 @@ export default class SubstationEditor extends LitElement {
   static styles = css`
     ${styles}
 
+    main {
+      overflow: auto;
+    }
+
     :host {
       width: calc(100vw);
     }

@@ -303,7 +303,7 @@ export class ConductingEquipmentEditor extends LitElement {
       margin: auto;
       position: relative;
       opacity: 1;
-      transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 200ms linear;
     }
 
     #container.moving {
@@ -318,8 +318,10 @@ export class ConductingEquipmentEditor extends LitElement {
       color: var(--mdc-theme-on-surface);
       width: 80px;
       height: 80px;
-      transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 150ms linear, box-shadow 200ms linear;
+      outline-color: var(--mdc-theme-primary);
+      outline-style: solid;
+      outline-width: 0px;
     }
 
     #container:focus > svg {
@@ -328,18 +330,21 @@ export class ConductingEquipmentEditor extends LitElement {
     }
 
     #container:hover > svg {
-      transform: scale(1.1);
+      outline: 2px dashed var(--mdc-theme-primary);
+      transition: transform 200ms linear, box-shadow 250ms linear;
     }
 
     #container:focus-within > svg {
       outline: 2px solid var(--mdc-theme-primary);
       background: var(--mdc-theme-on-primary);
       transform: scale(0.8);
+      transition: transform 200ms linear, box-shadow 250ms linear;
     }
 
     .menu-item {
       color: var(--mdc-theme-on-surface);
-      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 200ms linear;
       position: absolute;
       top: 15px;
       left: 15px;
@@ -348,6 +353,8 @@ export class ConductingEquipmentEditor extends LitElement {
     }
 
     #container:focus-within > .menu-item {
+      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 250ms linear;
       pointer-events: auto;
       opacity: 1;
     }

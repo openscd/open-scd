@@ -248,7 +248,6 @@ export class BayEditor extends LitElement {
 
     section {
       margin: 0px;
-      overflow: visible;
     }
 
     #ceContainer {
