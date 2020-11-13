@@ -122,7 +122,7 @@ export class BayEditor extends LitElement {
       ${this.renderHeader()}
       <div id="ceContainer">
         ${Array.from(
-          this.element?.querySelectorAll('ConductingEquipment') ?? []
+          this.element?.querySelectorAll('Bay > ConductingEquipment') ?? []
         ).map(
           voltageLevel =>
             html`<conducting-equipment-editor
