@@ -21,9 +21,9 @@ import {
   getMultiplier,
 } from '../../foundation.js';
 
+import { styles } from './foundation.js';
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
-import { iedIcon } from '../../icons.js';
 import { editlNode } from './lnodewizard.js';
 
 interface VoltageLevelUpdateOptions {
@@ -103,6 +103,10 @@ export class VoltageLevelEditor extends LitElement {
     return html`<h2>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.voltage === null ? '' : html`(${this.voltage})`}
+      <mwc-icon-button
+        icon="playlist_add"
+        @click=${() => this.openBayWizard()}
+      ></mwc-icon-button>
       <nav>
         <mwc-icon-button
           icon="device_hub"
@@ -119,10 +123,6 @@ export class VoltageLevelEditor extends LitElement {
         <mwc-icon-button
           icon="delete"
           @click=${() => this.removeAction()}
-        ></mwc-icon-button>
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => this.openBayWizard()}
         ></mwc-icon-button>
       </nav>
     </h2>`;
@@ -386,41 +386,10 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   static styles = css`
+    ${styles}
+
     section {
       background-color: var(--mdc-theme-on-primary);
-      transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
-      margin: 8px 12px 16px;
-      overflow: auto;
-    }
-
-    section:focus {
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    }
-
-    section:focus-within {
-      outline: 2px solid var(--mdc-theme-primary);
-    }
-
-    h2 {
-      color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 0px;
-      line-height: 48px;
-      padding-left: 0.3em;
-    }
-
-    section:focus-within > h2 {
-      color: var(--mdc-theme-surface);
-      background-color: var(--mdc-theme-primary);
-    }
-
-    h2 > nav {
-      float: right;
     }
 
     #bayContainer {
@@ -428,18 +397,18 @@ export class VoltageLevelEditor extends LitElement {
       grid-gap: 12px;
       padding: 8px 12px 16px;
       box-sizing: border-box;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, minmax(196px, auto));
     }
 
     @media (max-width: 1200px) {
       #bayContainer {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(196px, auto));
       }
     }
 
     @media (max-width: 600px) {
       #bayContainer {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(1, minmax(196px, auto));
       }
     }
   `;

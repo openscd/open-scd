@@ -40,8 +40,8 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
 }
 
 const bodyStyles: Record<Settings['theme'], string> = {
-  dark: 'background: #002b36',
-  light: 'background: #fdf6e3',
+  dark: 'background: #073642',
+  light: 'background: #eee8d5',
 };
 
 const themes: Record<Settings['theme'], TemplateResult> = {
