@@ -8,6 +8,7 @@ import {
   css,
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
+
 import {
   Wizard,
   WizardAction,
@@ -18,10 +19,13 @@ import {
   newActionEvent,
   getValue,
 } from '../../foundation.js';
-import { typeIcons, typeNames } from './conducting-equipment-types.js';
 import { generalConductingEquipmentIcon } from '../../icons.js';
+
+import { startMove } from './foundation.js';
+import { typeIcons, typeNames } from './conducting-equipment-types.js';
 import { editlNode } from './lnodewizard.js';
 import { BayEditor } from './bay-editor.js';
+
 interface ConductingEquipmentUpdateOptions {
   element: Element;
 }
@@ -84,60 +88,6 @@ export class ConductingEquipmentEditor extends LitElement {
       );
   }
 
-  startMove(): void {
-    this.container.classList.add('moving');
-
-    const moveToTarget = (e: MouseEvent | KeyboardEvent) => {
-      if (
-        e instanceof KeyboardEvent &&
-        e.key !== 'Escape' &&
-        e.key !== ' ' &&
-        e.key !== 'Enter'
-      )
-        return;
-
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      this.container.classList.remove('moving');
-
-      window.removeEventListener('keydown', moveToTarget, true);
-      window.removeEventListener('click', moveToTarget, true);
-
-      if (e instanceof KeyboardEvent && e.key === 'Escape') return;
-
-      const targetEditor = e
-        .composedPath()
-        .find(
-          e => e instanceof ConductingEquipmentEditor || e instanceof BayEditor
-        );
-
-      if (targetEditor === undefined || targetEditor === this) return;
-
-      const destination =
-        targetEditor instanceof ConductingEquipmentEditor
-          ? { parent: targetEditor.parent, reference: targetEditor.element }
-          : { parent: (<BayEditor>targetEditor).element, reference: null };
-
-      if (
-        this.parent !== destination.parent ||
-        this.element.nextElementSibling !== destination.reference
-      )
-        this.dispatchEvent(
-          newActionEvent({
-            old: {
-              element: this.element,
-              parent: this.parent,
-              reference: this.element.nextElementSibling,
-            },
-            new: destination,
-          })
-        );
-    };
-
-    window.addEventListener('click', moveToTarget, true);
-    window.addEventListener('keydown', moveToTarget, true);
-  }
-
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
@@ -155,7 +105,8 @@ export class ConductingEquipmentEditor extends LitElement {
         ></mwc-icon-button>
         <mwc-icon-button
           class="menu-item right"
-          @click="${() => this.startMove()}"
+          @click="${() =>
+            startMove(this, ConductingEquipmentEditor, BayEditor)}"
           icon="forward"
         ></mwc-icon-button>
         <mwc-icon-button

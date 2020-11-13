@@ -19,10 +19,11 @@ import {
 } from '../../foundation.js';
 import { get, translate } from 'lit-translate';
 
-import { styles } from './foundation.js';
+import { startMove, styles } from './foundation.js';
 import './conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 import { editlNode } from './lnodewizard.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
 
 interface BayUpdateOptions {
   element: Element;
@@ -54,6 +55,7 @@ export class BayEditor extends LitElement {
     return this.element.getAttribute('desc') ?? null;
   }
 
+  @query('section') container!: Element;
   @query('h3') header!: Element;
 
   openEditWizard(): void {
@@ -105,7 +107,7 @@ export class BayEditor extends LitElement {
         ></mwc-icon-button>
         <mwc-icon-button
           icon="forward"
-          @click=${() => alert('move')}
+          @click=${() => startMove(this, BayEditor, VoltageLevelEditor)}
         ></mwc-icon-button>
         <mwc-icon-button
           icon="delete"

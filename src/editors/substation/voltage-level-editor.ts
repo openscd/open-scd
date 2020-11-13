@@ -21,10 +21,11 @@ import {
   getMultiplier,
 } from '../../foundation.js';
 
-import { styles } from './foundation.js';
+import { startMove, styles } from './foundation.js';
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { editlNode } from './lnodewizard.js';
+import SubstationEditor from '../SubstationEditor.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
@@ -72,6 +73,7 @@ export class VoltageLevelEditor extends LitElement {
     return v ? v + u : null;
   }
 
+  @query('section') container!: Element;
   @query('h2') header!: Element;
 
   openEditWizard(): void {
@@ -118,7 +120,7 @@ export class VoltageLevelEditor extends LitElement {
         ></mwc-icon-button>
         <mwc-icon-button
           icon="forward"
-          @click=${() => alert('move')}
+          @click=${() => startMove(this, VoltageLevelEditor, SubstationEditor)}
         ></mwc-icon-button>
         <mwc-icon-button
           icon="delete"
