@@ -1,4 +1,11 @@
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import {
+  LitElement,
+  html,
+  TemplateResult,
+  property,
+  css,
+  query,
+} from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
@@ -46,6 +53,8 @@ export default class SubstationEditor extends LitElement {
   get desc(): string | null {
     return this.element?.getAttribute('desc') ?? null;
   }
+
+  @query('main') container!: Element;
 
   newUpdateAction(name: string, desc: string | null): EditorAction {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
@@ -177,10 +186,6 @@ export default class SubstationEditor extends LitElement {
           <mwc-icon-button
             icon="edit"
             @click=${() => this.openSubstationWizard()}
-          ></mwc-icon-button>
-          <mwc-icon-button
-            icon="forward"
-            @click=${() => alert('move')}
           ></mwc-icon-button>
           <mwc-icon-button
             icon="delete"
