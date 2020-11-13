@@ -19,6 +19,7 @@ import {
 } from '../../foundation.js';
 import { get, translate } from 'lit-translate';
 
+import { styles } from './foundation.js';
 import './conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 import { editlNode } from './lnodewizard.js';
@@ -89,6 +90,10 @@ export class BayEditor extends LitElement {
   renderHeader(): TemplateResult {
     return html`<h3>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+      <mwc-icon-button
+        icon="playlist_add"
+        @click=${() => this.openConductingEquipmentWizard()}
+      ></mwc-icon-button>
       <nav>
         <mwc-icon-button
           icon="device_hub"
@@ -106,10 +111,6 @@ export class BayEditor extends LitElement {
           icon="delete"
           @click=${() => this.removeAction()}
         ></mwc-icon-button>
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => this.openConductingEquipmentWizard()}
-        ></mwc-icon-button>
       </nav>
     </h3>`;
   }
@@ -117,15 +118,17 @@ export class BayEditor extends LitElement {
   render(): TemplateResult {
     return html`<section tabindex="0">
       ${this.renderHeader()}
-      ${Array.from(
-        this.element?.querySelectorAll('ConductingEquipment') ?? []
-      ).map(
-        voltageLevel =>
-          html`<conducting-equipment-editor
-            .element=${voltageLevel}
-            .parent=${this.element}
-          ></conducting-equipment-editor>`
-      )}
+      <div id="ceContainer">
+        ${Array.from(
+          this.element?.querySelectorAll('ConductingEquipment') ?? []
+        ).map(
+          voltageLevel =>
+            html`<conducting-equipment-editor
+              .element=${voltageLevel}
+              .parent=${this.element}
+            ></conducting-equipment-editor>`
+        )}
+      </div>
     </section> `;
   }
 
@@ -239,40 +242,19 @@ export class BayEditor extends LitElement {
   }
 
   static styles = css`
+    ${styles}
+
     section {
-      background-color: var(--mdc-theme-surface);
-      transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 0px;
       overflow: visible;
     }
 
-    section:focus {
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    }
-
-    section:focus-within {
-      outline: 2px solid var(--mdc-theme-primary);
-    }
-
-    h3 {
-      color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 0px;
-      line-height: 48px;
-      padding-left: 0.3em;
-    }
-
-    section:focus-within > h3 {
-      color: var(--mdc-theme-surface);
-      background-color: var(--mdc-theme-primary);
-    }
-
-    h3 > nav {
-      float: right;
+    #ceContainer {
+      display: grid;
+      grid-gap: 12px;
+      padding: 12px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(80px, auto));
     }
   `;
 }

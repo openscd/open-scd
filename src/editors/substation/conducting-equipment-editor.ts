@@ -56,7 +56,7 @@ export class ConductingEquipmentEditor extends LitElement {
     return this.element.getAttribute('type') ?? 'missing';
   }
 
-  @query('#header') header!: Element;
+  @query('h4') header!: Element;
   @query('#container') container!: Element;
 
   openEditWizard(): void {
@@ -142,7 +142,7 @@ export class ConductingEquipmentEditor extends LitElement {
     return html`
       <div id="container" tabindex="0">
         ${typeIcons[this.type] ?? generalConductingEquipmentIcon}
-        <h4 id="header">${this.name}</h4>
+        <h4>${this.name}</h4>
         <mwc-icon-button
           class="menu-item left"
           @click="${() => this.openLNodeAddWizard()}"
@@ -345,17 +345,12 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   static styles = css`
-    :host {
-      display: inline-block;
-      margin: 12px;
-      position: relative;
-    }
-
     #container {
-      background: var(--mdc-theme-surface);
       color: var(--mdc-theme-on-surface);
       width: 80px;
       height: 100px;
+      margin: auto;
+      position: relative;
       opacity: 1;
       transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -372,7 +367,6 @@ export class ConductingEquipmentEditor extends LitElement {
       color: var(--mdc-theme-on-surface);
       width: 80px;
       height: 80px;
-      position: relative;
       transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
         box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -423,14 +417,14 @@ export class ConductingEquipmentEditor extends LitElement {
       transform: translate(-55px, 0px);
     }
 
-    #header {
+    h4 {
+      color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      color: var(--mdc-theme-on-surface);
-      margin: 0px;
       overflow: hidden;
-      text-overflow: ellipsis;
       white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
     }
   `;
 }
