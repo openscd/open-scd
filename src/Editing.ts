@@ -29,7 +29,7 @@ export function newEmptySCD(): XMLDocument {
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
 export type EditingElement = Mixin<typeof Editing>;
 
-/** @typeParam TBase a type extending `LitElement`
+/** @typeParam TBase - a type extending `LitElement`
  * @returns `Base` with an `XMLDocument` property "`doc`" and an event listener
  * applying [[`EditorActionEvent`]]s and dispatching [[`LogEvent`]]s. */
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
@@ -51,10 +51,14 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: `Could not create ${create.new.element.tagName}`,
-            message: `Parent ${create.new.parent.tagName} already contains a ${
-              create.new.element.tagName
-            } named "${create.new.element.getAttribute('name')}"`,
+            title: get('editing.error.create', {
+              name: create.new.element.tagName,
+            }),
+            message: get('editing.error.nameClash', {
+              parent: create.new.parent.tagName,
+              child: create.new.element.tagName,
+              name: create.new.element.getAttribute('name')!,
+            }),
           })
         );
 
@@ -108,10 +112,14 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: `Could not move ${move.old.element.tagName}`,
-            message: `Target ${move.new.parent.tagName} already contains a ${
-              move.old.element.tagName
-            } named "${move.old.element.getAttribute('name')}"`,
+            title: get('editing.error.create', {
+              name: move.old.element.tagName,
+            }),
+            message: get('editing.error.nameClash', {
+              parent: move.new.parent.tagName,
+              child: move.old.element.tagName,
+              name: move.old.element.getAttribute('name')!,
+            }),
           })
         );
 
@@ -152,12 +160,14 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: `Could not update ${update.new.element.tagName}`,
-            message: `Parent ${
-              update.old.element.parentElement!.tagName
-            } already contains a ${
-              update.new.element.tagName
-            } named "${update.new.element.getAttribute('name')}"`,
+            title: get('editing.error.create', {
+              name: update.new.element.tagName,
+            }),
+            message: get('editing.error.nameClash', {
+              parent: update.old.element.parentElement!.tagName,
+              child: update.new.element.tagName,
+              name: update.new.element.getAttribute('name')!,
+            }),
           })
         );
 
