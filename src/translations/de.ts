@@ -27,6 +27,13 @@ export const de: Translations = {
     deleted: '{{ name }} entfernt',
     moved: '{{ name }} verschoben',
     updated: '{{ name }} bearbeitet',
+    error: {
+      create: 'Konnte {{ name }} nicht hinzufügen',
+      update: 'Konnte {{ name }} nicht bearbeiten',
+      move: 'Konnte {{ name }} nicht verschieben',
+      nameClash:
+        'Element {{ parent }} enthält bereits ein Kind {{ child }} namens "{{ name }}"',
+    },
   },
   validating: {
     valid: '{{ name }} erfolgreich validiert',

@@ -25,6 +25,13 @@ export const en = {
     deleted: '{{ name }} removed',
     moved: '{{ name }} moved',
     updated: '{{ name }} edited',
+    error: {
+      create: 'Could not add {{ name }}',
+      update: 'Could not edit {{ name }}',
+      move: 'Could not move {{ name }}',
+      nameClash:
+        'Parent {{ parent }} already contains a {{ child }} named "{{ name }}"',
+    },
   },
   validating: {
     valid: '{{ name }} validation succesful',
