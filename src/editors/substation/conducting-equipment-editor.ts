@@ -45,8 +45,6 @@ function isConductingEquipmentCreateOptions(
 export class ConductingEquipmentEditor extends LitElement {
   @property({ type: Element })
   element!: Element;
-  @property({ type: Element })
-  parent!: Element;
   @property({ type: String })
   get name(): string {
     return this.element.getAttribute('name') ?? '';
@@ -80,7 +78,7 @@ export class ConductingEquipmentEditor extends LitElement {
       this.dispatchEvent(
         newActionEvent({
           old: {
-            parent: this.parent,
+            parent: this.element.parentElement!,
             element: this.element,
             reference: this.element.nextElementSibling,
           },

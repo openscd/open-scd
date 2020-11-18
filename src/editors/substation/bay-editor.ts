@@ -43,8 +43,6 @@ function isBayCreateOptions(
 export class BayEditor extends LitElement {
   @property()
   element!: Element;
-  @property()
-  parent!: Element;
 
   @property({ type: String })
   get name(): string {
@@ -81,7 +79,7 @@ export class BayEditor extends LitElement {
       this.dispatchEvent(
         newActionEvent({
           old: {
-            parent: this.parent,
+            parent: this.element.parentElement!,
             element: this.element,
             reference: this.element.nextElementSibling,
           },
@@ -127,7 +125,6 @@ export class BayEditor extends LitElement {
           voltageLevel =>
             html`<conducting-equipment-editor
               .element=${voltageLevel}
-              .parent=${this.element}
             ></conducting-equipment-editor>`
         )}
       </div>

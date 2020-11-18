@@ -52,8 +52,6 @@ const initial = {
 @customElement('voltage-level-editor')
 export class VoltageLevelEditor extends LitElement {
   @property()
-  parent!: Element;
-  @property()
   element!: Element;
   @property()
   get name(): string {
@@ -96,7 +94,11 @@ export class VoltageLevelEditor extends LitElement {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.element.parentElement!,
+            element: this.element,
+            reference: null,
+          },
         })
       );
   }
@@ -136,13 +138,7 @@ export class VoltageLevelEditor extends LitElement {
       <div id="bayContainer">
         ${Array.from(
           this.element?.querySelectorAll('VoltageLevel > Bay') ?? []
-        ).map(
-          bay =>
-            html`<bay-editor
-              .element=${bay}
-              .parent=${this.element}
-            ></bay-editor>`
-        )}
+        ).map(bay => html`<bay-editor .element=${bay}></bay-editor>`)}
       </div>
     </section>`;
   }
