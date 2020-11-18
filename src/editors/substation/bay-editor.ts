@@ -255,7 +255,7 @@ export class BayEditor extends LitElement {
       grid-gap: 12px;
       padding: 12px;
       box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(80px, auto));
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
     }
   `;
 }
