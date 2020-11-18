@@ -4,15 +4,18 @@ import { newActionEvent } from '../../foundation.js';
 
 export type EditorElement = Element & {
   container: Element;
-  element: Element | null;
-  parent: Element;
+  element: Element;
 };
 
-export function startMove<E extends EditorElement, P extends EditorElement>(
-  editor: E,
-  Child: new () => E,
-  Parent: new () => P
-): void {
+export type EditorPluginElement = Element & {
+  container: Element;
+  element: Element | null;
+};
+
+export function startMove<
+  E extends EditorElement,
+  P extends EditorPluginElement
+>(editor: E, Child: new () => E, Parent: new () => P): void {
   if (!editor.element) return;
 
   editor.container.classList.add('moving');
@@ -43,21 +46,24 @@ export function startMove<E extends EditorElement, P extends EditorElement>(
 
     const destination =
       targetEditor instanceof Child
-        ? { parent: targetEditor.parent, reference: targetEditor.element }
+        ? {
+            parent: targetEditor.element.parentElement!,
+            reference: targetEditor.element,
+          }
         : { parent: (<P>targetEditor).element, reference: null };
 
     if (!destination.parent) return;
 
     if (
-      editor.parent !== destination.parent ||
-      editor.element!.nextElementSibling !== destination.reference
+      editor.element.parentElement !== destination.parent ||
+      editor.element.nextElementSibling !== destination.reference
     )
       editor.dispatchEvent(
         newActionEvent({
           old: {
-            element: editor.element!,
-            parent: editor.parent,
-            reference: editor.element!.nextElementSibling,
+            element: editor.element,
+            parent: editor.element.parentElement!,
+            reference: editor.element.nextElementSibling,
           },
           new: destination,
         })

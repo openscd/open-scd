@@ -25,9 +25,6 @@ describe('SubstationEditor', () => {
       /> `);
   });
 
-  it('has a non null parent property', () =>
-    expect(element).property('parent').to.not.be.null);
-
   describe('without a substation element loaded', () => {
     it('has a null element property', () =>
       expect(element).to.have.property('element', null));

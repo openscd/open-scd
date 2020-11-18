@@ -37,11 +37,6 @@ export default class SubstationEditor extends LitElement {
   get element(): Element | null {
     return this.doc?.querySelector('Substation') ?? null;
   }
-  /** [[`element`]]'s `parent`, a property of all Substation subeditors. */
-  @property()
-  get parent(): Element {
-    return this.doc.documentElement; // <SCL>
-  }
 
   /** [[element | `element.name`]] */
   @property({ type: String })
@@ -72,7 +67,7 @@ export default class SubstationEditor extends LitElement {
     if (this.element) throw new Error('Will not create a second Substation');
     return {
       new: {
-        parent: this.parent,
+        parent: this.doc.documentElement,
         element: new DOMParser().parseFromString(
           `<Substation name="${name}"${
             desc === null ? '' : ` desc="${desc}"`
@@ -149,7 +144,11 @@ export default class SubstationEditor extends LitElement {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.doc.documentElement,
+            element: this.element,
+            reference: null,
+          },
         })
       );
   }
@@ -206,7 +205,6 @@ export default class SubstationEditor extends LitElement {
           voltageLevel =>
             html`<voltage-level-editor
               .element=${voltageLevel}
-              .parent=${this.element}
             ></voltage-level-editor>`
         )}
       </main>
