@@ -39,6 +39,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     doc: XMLDocument = newEmptySCD();
 
     private checkCreateValidity(create: Create): boolean {
+      if (create.checkValidity !== undefined) return create.checkValidity();
+
       const invalid =
         create.new.element.hasAttribute('name') &&
         create.new.parent.querySelectorAll(
@@ -99,6 +101,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private checkMoveValidity(move: Move): boolean {
+      if (move.checkValidity !== undefined) return move.checkValidity();
+
       const invalid =
         move.old.element.hasAttribute('name') &&
         move.new.parent !== move.old.parent &&
@@ -146,6 +150,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private checkUpdateValidity(update: Update): boolean {
+      if (update.checkValidity !== undefined) return update.checkValidity();
+
       const invalid =
         update.new.element.hasAttribute('name') &&
         update.new.element.getAttribute('name') !==

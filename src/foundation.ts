@@ -10,23 +10,27 @@ export type EditorAction = Create | Update | Delete | Move;
 export interface Create {
   new: { parent: Element; element: Element; reference: Element | null };
   derived?: boolean;
+  checkValidity?: () => boolean;
 }
 /** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
   old: { parent: Element; element: Element; reference: Element | null };
   derived?: boolean;
+  checkValidity?: () => boolean;
 }
 /** Reparents of `old.element` to `new.parent` before `new.reference`. */
 export interface Move {
   old: { parent: Element; element: Element; reference: Element | null };
   new: { parent: Element; reference: Element | null };
   derived?: boolean;
+  checkValidity?: () => boolean;
 }
 /** Replaces `old.element` with `new.element`, keeping element children. */
 export interface Update {
   old: { element: Element };
   new: { element: Element };
   derived?: boolean;
+  checkValidity?: () => boolean;
 }
 
 export function isCreate(action: EditorAction): action is Create {
@@ -66,9 +70,12 @@ export function isUpdate(action: EditorAction): action is Update {
 
 /** @returns an [[`EditorAction`]] with opposite effect of `action`. */
 export function invert(action: EditorAction): EditorAction {
-  if (isCreate(action)) return { old: action.new, derived: action.derived };
-  else if (isDelete(action))
-    return { new: action.old, derived: action.derived };
+  const metaData = {
+    derived: action.derived,
+    checkValidity: action.checkValidity,
+  };
+  if (isCreate(action)) return { old: action.new, ...metaData };
+  else if (isDelete(action)) return { new: action.old, ...metaData };
   else if (isMove(action))
     return {
       old: {
@@ -77,10 +84,10 @@ export function invert(action: EditorAction): EditorAction {
         reference: action.new.reference,
       },
       new: { parent: action.old.parent, reference: action.old.reference },
-      derived: action.derived,
+      ...metaData,
     };
   else if (isUpdate(action))
-    return { new: action.old, old: action.new, derived: action.derived };
+    return { new: action.old, old: action.new, ...metaData };
   else return unreachable('Unknown EditorAction type in invert.');
 }
 
