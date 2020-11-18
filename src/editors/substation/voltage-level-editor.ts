@@ -407,7 +407,13 @@ export class VoltageLevelEditor extends LitElement {
       grid-gap: 12px;
       padding: 8px 12px 16px;
       box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(206px, auto));
+      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
+    }
+
+    @media (max-width: 387px) {
+      #bayContainer {
+        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
+      }
     }
   `;
 }
