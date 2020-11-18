@@ -300,8 +300,8 @@ export class ConductingEquipmentEditor extends LitElement {
   static styles = css`
     #container {
       color: var(--mdc-theme-on-surface);
-      width: 80px;
-      height: 100px;
+      width: 64px;
+      height: 84px;
       margin: auto;
       position: relative;
       opacity: 1;
@@ -318,8 +318,8 @@ export class ConductingEquipmentEditor extends LitElement {
 
     #container > svg {
       color: var(--mdc-theme-on-surface);
-      width: 80px;
-      height: 80px;
+      width: 64px;
+      height: 64px;
       transition: transform 150ms linear, box-shadow 200ms linear;
       outline-color: var(--mdc-theme-primary);
       outline-style: solid;
@@ -348,8 +348,8 @@ export class ConductingEquipmentEditor extends LitElement {
       transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 200ms linear;
       position: absolute;
-      top: 15px;
-      left: 15px;
+      top: 8px;
+      left: 8px;
       pointer-events: none;
       opacity: 0;
     }
@@ -362,19 +362,19 @@ export class ConductingEquipmentEditor extends LitElement {
     }
 
     #container:focus-within > .menu-item.up {
-      transform: translate(0px, -55px);
+      transform: translate(0px, -52px);
     }
 
     #container:focus-within > .menu-item.down {
-      transform: translate(0px, 57px);
+      transform: translate(0px, 52px);
     }
 
     #container:focus-within > .menu-item.right {
-      transform: translate(57px, 0px);
+      transform: translate(52px, 0px);
     }
 
     #container:focus-within > .menu-item.left {
-      transform: translate(-55px, 0px);
+      transform: translate(-52px, 0px);
     }
 
     h4 {
