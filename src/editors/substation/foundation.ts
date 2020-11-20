@@ -12,6 +12,14 @@ export type EditorPluginElement = Element & {
   element: Element | null;
 };
 
+/**
+ * Moves the element edited by `editor` to the place before the next `Child`
+ * editor selected or to the end of the next `Parent` editor selected by mouse
+ * click or keyboard (space or enter key).
+ *
+ * The move action can be aborted by clicking on something other than a `Child`
+ * or `Parent` editor or by hitting the escape key on the keyboard.
+ */
 export function startMove<
   E extends EditorElement,
   P extends EditorPluginElement
@@ -74,6 +82,7 @@ export function startMove<
   window.addEventListener('keydown', moveToTarget, true);
 }
 
+// Substation element hierarchy
 const substationPath = [
   ':root',
   'Substation',
@@ -89,6 +98,7 @@ export const selectors = <
   substationPath.map((e, i, a) => [e, a.slice(0, i + 1).join(' > ')])
 );
 
+/** Common `CSS` styles used by substation subeditors */
 export const styles = css`
   main,
   section {
