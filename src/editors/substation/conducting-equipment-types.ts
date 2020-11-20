@@ -1,4 +1,5 @@
 import { TemplateResult } from 'lit-html';
+
 import {
   disconnectorIcon,
   circuitBreakerIcon,

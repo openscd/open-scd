@@ -1,11 +1,11 @@
 import {
-  customElement,
   LitElement,
-  html,
   TemplateResult,
+  css,
+  customElement,
+  html,
   property,
   query,
-  css,
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
@@ -21,7 +21,7 @@ import {
 } from '../../foundation.js';
 import { generalConductingEquipmentIcon } from '../../icons.js';
 
-import { startMove } from './foundation.js';
+import { selectors, startMove } from './foundation.js';
 import { typeIcons, typeNames } from './conducting-equipment-types.js';
 import { editlNode } from './lnodewizard.js';
 import { BayEditor } from './bay-editor.js';
@@ -41,10 +41,12 @@ function isConductingEquipmentCreateOptions(
   return (<ConductingEquipmentCreateOptions>options).parent !== undefined;
 }
 
+/** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('conducting-equipment-editor')
 export class ConductingEquipmentEditor extends LitElement {
   @property({ type: Element })
   element!: Element;
+
   @property({ type: String })
   get name(): string {
     return this.element.getAttribute('name') ?? '';
@@ -52,10 +54,6 @@ export class ConductingEquipmentEditor extends LitElement {
   @property({ type: String })
   get desc(): string {
     return this.element.getAttribute('desc') ?? '';
-  }
-  @property({ type: String })
-  get type(): string {
-    return this.element.getAttribute('type') ?? 'missing';
   }
 
   @query('h4') header!: Element;
@@ -89,7 +87,8 @@ export class ConductingEquipmentEditor extends LitElement {
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
-        ${typeIcons[this.type] ?? generalConductingEquipmentIcon}
+        ${typeIcons[this.element.getAttribute('type') ?? ''] ??
+        generalConductingEquipmentIcon}
         <mwc-icon-button
           class="menu-item left"
           @click="${() => this.openLNodeAddWizard()}"
@@ -214,13 +213,13 @@ export class ConductingEquipmentEditor extends LitElement {
     const [reservedValues] = isConductingEquipmentCreateOptions(options)
       ? [
           Array.from(
-            options.parent.querySelectorAll('Bay > ConductingEquipment')
+            options.parent.querySelectorAll(selectors.ConductingEquipment)
           ).map(condEq => condEq.getAttribute('name')),
         ]
       : [
           Array.from(
             options.element.parentNode!.querySelectorAll(
-              'Bay > ConductingEquipment'
+              selectors.ConductingEquipment
             )
           )
             .map(condEq => condEq.getAttribute('name'))

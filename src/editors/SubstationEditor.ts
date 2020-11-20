@@ -21,21 +21,22 @@ import {
   getValue,
 } from '../foundation.js';
 
-import { styles } from './substation/foundation.js';
+import { selectors, styles } from './substation/foundation.js';
+
 import './substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
 import { editlNode } from './substation/lnodewizard.js';
 
-/** An editor [[`plugin`]] to facilitate editing the `Substation` section. */
+/** An editor [[`plugin`]] for editing the `Substation` section. */
 export default class SubstationEditor extends LitElement {
-  /** The document being edited, supplied to all plugins by [[`OpenSCD`]]. */
+  /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
 
-  /** The edited `Element`, a property of all Substation subeditors. */
+  /** The edited `Element`, a common property of all Substation subeditors. */
   @property()
   get element(): Element | null {
-    return this.doc?.querySelector('Substation') ?? null;
+    return this.doc?.querySelector(selectors.Substation) ?? null;
   }
 
   /** [[element | `element.name`]] */
@@ -49,6 +50,7 @@ export default class SubstationEditor extends LitElement {
     return this.element?.getAttribute('desc') ?? null;
   }
 
+  /** Subeditor container HTMLElement, a common property of Substation subeditors. */
   @query('main') container!: Element;
 
   newUpdateAction(name: string, desc: string | null): EditorAction {
@@ -200,7 +202,7 @@ export default class SubstationEditor extends LitElement {
       <main tabindex="0">
         ${this.renderHeader()}
         ${Array.from(
-          this.element?.querySelectorAll('Substation > VoltageLevel') ?? []
+          this.element?.querySelectorAll(selectors.VoltageLevel) ?? []
         ).map(
           voltageLevel =>
             html`<voltage-level-editor

@@ -34,7 +34,7 @@ import { Setting } from './Setting.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
-
+import { selectors } from './editors/substation/foundation.js';
 interface MenuEntry {
   icon: string;
   name: string;
@@ -57,7 +57,9 @@ export class OpenSCD extends Setting(
   /** The name of the first `Substation` in the current [[`doc`]]. */
   @property()
   get name(): string | null {
-    return this.doc.querySelector('Substation')?.getAttribute('name') ?? null;
+    return (
+      this.doc.querySelector(selectors.Substation)?.getAttribute('name') ?? null
+    );
   }
   /** The name of the current file. */
   @property({ type: String }) srcName = 'untitled.scd';
