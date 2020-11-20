@@ -74,6 +74,21 @@ export function startMove<
   window.addEventListener('keydown', moveToTarget, true);
 }
 
+const substationPath = [
+  ':root',
+  'Substation',
+  'VoltageLevel',
+  'Bay',
+  'ConductingEquipment',
+];
+
+/** `Private`-safeguarded selectors for `Substation` and its descendants */
+export const selectors = <
+  Record<'Substation' | 'VoltageLevel' | 'Bay' | 'ConductingEquipment', string>
+>Object.fromEntries(
+  substationPath.map((e, i, a) => [e, a.slice(0, i + 1).join(' > ')])
+);
+
 export const styles = css`
   main,
   section {

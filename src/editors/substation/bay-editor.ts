@@ -1,12 +1,14 @@
 import {
-  customElement,
   LitElement,
   TemplateResult,
+  css,
+  customElement,
   html,
   property,
-  css,
   query,
 } from 'lit-element';
+import { get, translate } from 'lit-translate';
+
 import {
   Wizard,
   WizardAction,
@@ -17,7 +19,6 @@ import {
   newActionEvent,
   getValue,
 } from '../../foundation.js';
-import { get, translate } from 'lit-translate';
 
 import { startMove, styles } from './foundation.js';
 import './conducting-equipment-editor.js';
@@ -38,7 +39,7 @@ function isBayCreateOptions(
   return (<BayCreateOptions>options).parent !== undefined;
 }
 
-/** [[`SubstationEditor`]] subeditor for editing `Bay` elements. */
+/** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
 export class BayEditor extends LitElement {
   @property()
@@ -53,8 +54,8 @@ export class BayEditor extends LitElement {
     return this.element.getAttribute('desc') ?? null;
   }
 
-  @query('section') container!: Element;
   @query('h3') header!: Element;
+  @query('section') container!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -120,7 +121,9 @@ export class BayEditor extends LitElement {
       ${this.renderHeader()}
       <div id="ceContainer">
         ${Array.from(
-          this.element?.querySelectorAll('Bay > ConductingEquipment') ?? []
+          this.element?.querySelectorAll(
+            ':root > Substation > VoltageLevel > Bay > ConductingEquipment'
+          ) ?? []
         ).map(
           voltageLevel =>
             html`<conducting-equipment-editor
