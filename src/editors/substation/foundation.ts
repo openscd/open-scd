@@ -91,11 +91,17 @@ const substationPath = [
   'ConductingEquipment',
 ];
 
+export type substationChild =
+  | 'Substation'
+  | 'VoltageLevel'
+  | 'Bay'
+  | 'ConductingEquipment';
+
 /** `Private`-safeguarded selectors for `Substation` and its descendants */
-export const selectors = <
-  Record<'Substation' | 'VoltageLevel' | 'Bay' | 'ConductingEquipment', string>
->Object.fromEntries(
-  substationPath.map((e, i, a) => [e, a.slice(0, i + 1).join(' > ')])
+export const selectors = <Record<substationChild, string>>(
+  Object.fromEntries(
+    substationPath.map((e, i, a) => [e, a.slice(0, i + 1).join(' > ')])
+  )
 );
 
 /** Common `CSS` styles used by substation subeditors */
