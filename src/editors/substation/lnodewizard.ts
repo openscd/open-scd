@@ -16,6 +16,7 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { TextField } from '@material/mwc-textfield';
+import { selectors, substationChild } from './foundation.js';
 
 interface ldValue {
   iedName: string;
@@ -31,11 +32,13 @@ interface lnValue extends ldValue {
 export function hasLNode(parent: Element, value: lnValue): boolean {
   return (
     parent.querySelector(
-      `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${
-        value.ldInst
-      }"]${value.prefix ? `[prefix="${value.prefix}"]` : ``}${
-        value.inst ? `[lnInst="${value.inst}"]` : ''
-      }[lnClass="${value.lnClass}"]`
+      `${selectors[<substationChild>parent.tagName]} > LNode[iedName="${
+        value.iedName
+      }"][ldInst="${value.ldInst}"]${
+        value.prefix ? `[prefix="${value.prefix}"]` : ``
+      }${value.inst ? `[lnInst="${value.inst}"]` : ''}[lnClass="${
+        value.lnClass
+      }"]`
     ) !== null
   );
 }
@@ -57,11 +60,13 @@ function createAction(parent: Element, value: lnValue): EditorAction {
 
 function deleteAction(parent: Element, value: lnValue): EditorAction {
   const element = parent.querySelector(
-    `${parent.tagName} > LNode[iedName="${value.iedName}"][ldInst="${
-      value.ldInst
-    }"]${value.prefix ? `[prefix="${value.prefix}"]` : ''}[lnClass="${
-      value.lnClass
-    }"]${value.inst ? `[lnInst="${value.inst}"]` : ''}`
+    `${selectors[<substationChild>parent.tagName]} > LNode[iedName="${
+      value.iedName
+    }"][ldInst="${value.ldInst}"]${
+      value.prefix ? `[prefix="${value.prefix}"]` : ''
+    }[lnClass="${value.lnClass}"]${
+      value.inst ? `[lnInst="${value.inst}"]` : ''
+    }`
   )!;
   return {
     old: {
@@ -78,7 +83,9 @@ export function lNodeActions(parent: Element): WizardAction {
       .filter(item => item.selected)
       .map(item => item.value);
     const oldLNodes = Array.from(
-      parent.querySelectorAll(`${parent.tagName} > LNode`)
+      parent.querySelectorAll(
+        `${selectors[<substationChild>parent.tagName]} > LNode`
+      )
     )
       .map(node => {
         return {
@@ -116,24 +123,26 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
   if (ldList === null) return;
 
   const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
-    .map(item => doc.querySelector(`IED[name="${item.value}"]`)!)
+    .map(item => doc.querySelector(`:root > IED[name="${item.value}"]`)!)
     .map(ied => {
-      const values = Array.from(ied.querySelectorAll('LDevice')).map(
-        lDevice => {
-          return {
-            iedName: ied.getAttribute('name'),
-            ldInst: lDevice.getAttribute('inst') ?? '',
-            /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
-          };
-        }
-      );
+      const values = Array.from(
+        ied.querySelectorAll(':root > IED > AccessPoint > Server > LDevice')
+      ).map(lDevice => {
+        return {
+          iedName: ied.getAttribute('name'),
+          ldInst: lDevice.getAttribute('inst') ?? '',
+          /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
+        };
+      });
       const deviceItems = values.map(
         value =>
           html`<mwc-check-list-item
             value="${JSON.stringify(value)}"
             twoline
             ?selected="${element.querySelector(
-              `${element.tagName} > LNode[ldInst="${value.ldInst}"]`
+              `${selectors[<substationChild>element.tagName]} > LNode[ldInst="${
+                value.ldInst
+              }"]`
             )}"
             ><span>${value.ldInst}</span
             ><span slot="secondary">${value.iedName}</span></mwc-check-list-item
@@ -161,8 +170,8 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
     .map(ldValue => {
       const values = Array.from(
         doc.querySelectorAll(
-          `IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN
-          ,IED[name="${ldValue.iedName}"] LDevice[inst="${ldValue.ldInst}"] LN0`
+          `:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN
+          ,:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN0`
         )
       ).map(ln => {
         return {
@@ -191,15 +200,13 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
   render(html`${itemGroups}`, lnList);
 }
 
-function filter(item: ListItemBase, searchfield: TextField): boolean {
-  return item.value.toUpperCase().includes(searchfield.value.toUpperCase());
-}
-
 function onFilter(evt: InputEvent, selector: string): void {
   (<List>(
     (<TextField>evt.target).parentElement?.querySelector(selector)
   )).items.forEach(item => {
-    filter(item, <TextField>evt.target)
+    item.value
+      .toUpperCase()
+      .includes((<TextField>evt.target).value.toUpperCase())
       ? item.removeAttribute('style')
       : item.setAttribute('style', 'display:none;');
   });
@@ -216,14 +223,16 @@ function renderIEDPage(element: Element): TemplateResult {
       multi
       id="iedList"
       @selected="${(evt: MultiSelectedEvent) => onIEDSelect(evt, element)}"
-      >${Array.from(doc.querySelectorAll('IED'))
+      >${Array.from(doc.querySelectorAll(':root > IED'))
         .map(ied => ied.getAttribute('name'))
         .map(
           iedName =>
             html`<mwc-check-list-item
               .value=${iedName ?? ''}
               ?selected="${element.querySelector(
-                `${element.tagName} > LNode[iedName="${iedName}"]`
+                `${
+                  selectors[<substationChild>element.tagName]
+                } > LNode[iedName="${iedName}"]`
               )}"
               >${iedName}</mwc-check-list-item
             >`
