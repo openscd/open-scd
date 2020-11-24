@@ -25,23 +25,36 @@ interface ldValue {
 interface lnValue extends ldValue {
   prefix: string | null;
   lnClass: string;
-  inst: string;
+  inst: string | null;
 }
 
 function valueToSelector(value: lnValue): string {
-  return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]${
-    value.prefix ? `[prefix="${value.prefix}"]` : ``
-  }${value.inst ? `[lnInst="${value.inst}"]` : ''}[lnClass="${value.lnClass}"]`;
+  if ((value.prefix === null || value.prefix === '') && value.inst)
+    return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]:not([prefix])[lnClass="${value.lnClass}"][lnInst="${value.inst}"], 
+            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix=""][lnClass="${value.lnClass}"][lnInst="${value.inst}"]`;
+  else if ((value.inst === null || value.inst === '') && value.prefix)
+    return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix="${value.prefix}"][lnClass="${value.lnClass}"]:not([lnInst]), 
+            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix="${value.prefix}"][lnClass="${value.lnClass}"][lnInst=""]`;
+  else if (
+    (value.prefix === null || value.prefix === '') &&
+    (value.inst === null || value.inst === '')
+  )
+    return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]:not([prefix])[lnClass="${value.lnClass}"]:not([lnInst]), 
+            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix=""][lnClass="${value.lnClass}"]:not([lnInst]),
+            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]:not([prefix])[lnClass="${value.lnClass}"][lnInst=""], 
+            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix=""][lnClass="${value.lnClass}"][lnInst=""]`;
+
+  return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix="${value.prefix}"][lnClass="${value.lnClass}"][lnInst="${value.inst}"]`;
 }
 
-function hasLNode(parent: Element, value: lnValue): boolean {
+export function hasLNode(parent: Element, value: lnValue): boolean {
   return (
     parent.querySelector(`${parent.tagName} > ${valueToSelector(value)}`) !==
     null
   );
 }
 
-function existLNode(parent: Element, value: lnValue): boolean {
+export function existLNode(parent: Element, value: lnValue): boolean {
   const doc = parent.ownerDocument;
   return doc.querySelector(valueToSelector(value)) !== null;
 }
