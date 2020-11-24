@@ -48,7 +48,7 @@ function valueToSelector(value: lnValue): string {
   return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix="${value.prefix}"][lnClass="${value.lnClass}"][lnInst="${value.inst}"]`;
 }
 
-function hasLNode(parent: Element, value: lnValue): boolean {
+export function hasLNode(parent: Element, value: lnValue): boolean {
   return (
     parent.querySelector(
       `${selectors[<substationChild>parent.tagName]} > ${valueToSelector(
