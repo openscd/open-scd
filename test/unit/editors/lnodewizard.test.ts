@@ -14,11 +14,11 @@ describe('lnodewizard', () => {
     // LNodeType shall be possible as well. Here iedName shall be "None" and lnClass musst be a non-empty string.
     // prefix, inst as well as ldInst can be null
 
-    let parent: Element;
+    let root: Element;
     beforeEach(() => {
-      parent = new DOMParser().parseFromString(
-        `<Bay>
-        </Bay>`,
+      root = new DOMParser().parseFromString(
+        `<SCL><Substation><VoltageLevel><Bay>
+        </Bay></VoltageLevel></Substation></SCL>`,
         'application/xml'
       ).documentElement;
     });
@@ -33,7 +33,7 @@ describe('lnodewizard', () => {
           regexString(restrictions.tLNInst, 0, 12),
           (iedName, ldInst, prefix, lnClass, lnInst) => {
             expect(
-              hasLNode(parent, {
+              hasLNode(root.querySelector('Bay')!, {
                 iedName: iedName,
                 ldInst: ldInst,
                 prefix: prefix,
@@ -61,9 +61,9 @@ describe('lnodewizard', () => {
               } lnClass="${lnClass}" lnInst="${lnInst}"></LNode>`,
               'application/xml'
             ).documentElement;
-            parent.appendChild(element);
+            root.querySelector('Bay')!.appendChild(element);
             expect(
-              hasLNode(parent, {
+              hasLNode(root.querySelector('Bay')!, {
                 iedName: iedName,
                 ldInst: ldInst,
                 prefix: prefix,
@@ -85,9 +85,9 @@ describe('lnodewizard', () => {
               `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="2"></LNode>`,
               'application/xml'
             ).documentElement;
-            parent.appendChild(element);
+            root.querySelector('Bay')!.appendChild(element);
             expect(
-              hasLNode(parent, {
+              hasLNode(root.querySelector('Bay')!, {
                 iedName: 'iedName',
                 ldInst: 'ldInst',
                 prefix: prefix,
@@ -105,9 +105,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" lnClass="CSWI" lnInst="2"></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
@@ -117,7 +117,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
@@ -132,9 +132,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" prefix="" lnClass="CSWI" lnInst="2"></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
@@ -144,7 +144,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
@@ -163,9 +163,9 @@ describe('lnodewizard', () => {
               `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="465364263183364"></LNode>`,
               'application/xml'
             ).documentElement;
-            parent.appendChild(element);
+            root.querySelector('Bay')!.appendChild(element);
             expect(
-              hasLNode(parent, {
+              hasLNode(root.querySelector('Bay')!, {
                 iedName: 'iedName',
                 ldInst: 'ldInst',
                 prefix: 'prefix',
@@ -183,9 +183,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="LLN0"></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
@@ -195,7 +195,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
@@ -210,9 +210,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="LLN0" lnInst=""></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
@@ -222,7 +222,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
@@ -237,9 +237,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" lnClass="LLN0" lnInst=""></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
@@ -249,7 +249,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
@@ -264,9 +264,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" prefix="" lnClass="LLN0"></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
@@ -276,7 +276,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
@@ -291,9 +291,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" prefix="" lnClass="LLN0" lnInst=""></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
@@ -303,7 +303,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
@@ -318,9 +318,9 @@ describe('lnodewizard', () => {
         `<LNode iedName="iedName" ldInst="ldInst" lnClass="LLN0"></LNode>`,
         'application/xml'
       ).documentElement;
-      parent.appendChild(element);
+      root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
@@ -330,7 +330,7 @@ describe('lnodewizard', () => {
       ).to.be.true;
 
       expect(
-        hasLNode(parent, {
+        hasLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
@@ -348,11 +348,11 @@ describe('lnodewizard', () => {
     // LNodeType shall be possible as well. Here iedName shall be "None" and lnClass musst be a non-empty string.
     // prefix, inst as well as ldInst can be null
 
-    let substation: Element;
+    let root: Element;
     beforeEach(() => {
-      substation = new DOMParser().parseFromString(
-        `<Substation><VoltageLevel><Bay>
-        </Bay><VoltageLevel></Substation>`,
+      root = new DOMParser().parseFromString(
+        `<SCL><Substation><VoltageLevel><Bay>
+        </Bay><VoltageLevel></Substation></SCL>`,
         'application/xml'
       ).documentElement;
     });
@@ -372,9 +372,9 @@ describe('lnodewizard', () => {
               } lnClass="${lnClass}" lnInst="${lnInst}"></LNode>`,
               'application/xml'
             ).documentElement;
-            substation.appendChild(element);
+            root.querySelector('Substation')!.appendChild(element);
             expect(
-              existLNode(substation.querySelector('Bay')!, {
+              existLNode(root.querySelector('Bay')!, {
                 iedName: iedName,
                 ldInst: ldInst,
                 prefix: prefix,

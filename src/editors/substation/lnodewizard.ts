@@ -53,7 +53,7 @@ export function hasLNode(parent: Element, value: lnValue): boolean {
     parent.querySelector(
       `${selectors[<substationChild>parent.tagName]} > ${valueToSelector(
         value
-      )}"]`
+      )}`
     ) !== null
   );
 }
