@@ -67,13 +67,13 @@ function getConnectedEquipment(element: Element, value: lnValue): string {
   const doc = element.ownerDocument;
   const lNode = doc.querySelector(valueToSelector(value));
 
-  let path = 'Connected to: ';
+  let path = '';
   let nextParent: Element | null | undefined = lNode?.parentElement;
   while (nextParent?.getAttribute('name')) {
-    path = path + ' ' + nextParent.getAttribute('name');
+    path = nextParent.getAttribute('name') + ' ' + path;
     nextParent = nextParent.parentElement;
   }
-  return path;
+  return 'Connected to: ' + path;
 }
 
 function createAction(parent: Element, value: lnValue): EditorAction {
