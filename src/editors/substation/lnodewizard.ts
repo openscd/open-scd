@@ -221,7 +221,7 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
               ? ' (' + getConnectedEquipment(element, value) + ') '
               : ''}</span
           ><span slot="secondary"
-            >${value.iedName} | ${value.ldInst}}</span
+            >${value.iedName} | ${value.ldInst}</span
           ></mwc-check-list-item
         >`;
       });
