@@ -1,279 +1,390 @@
-import { expect, fixture, html } from '@open-wc/testing';
-import { isCreate, WizardInput, isDelete } from '../../../src/foundation.js';
+import fc from 'fast-check';
 import {
-  lNodeActions,
-  editlNode,
+  hasLNode,
+  existLNode,
 } from '../../../src/editors/substation/lnodewizard.js';
-
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-list';
-import '../mock-wizard.js';
-import { List } from '@material/mwc-list';
-import { getDocument } from '../../data.js';
-import { MockWizard } from '../mock-wizard.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { restrictions, regexString } from '../../foundation.js';
+import { expect } from '@open-wc/testing';
 
 describe('lnodewizard', () => {
-  let element: MockWizard;
-  const validSCL = getDocument();
-  beforeEach(async () => {
-    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
-    element.workflow.push(editlNode(validSCL.querySelector('Bay')!));
-    await element.requestUpdate();
+  describe('defines a hasLNode function that', () => {
+    // value is the representation of the logical node in a IED. Therefore iedName, ldInst, lnClass and inst
+    // musst be non empty normalizedString
+    // FIXIT: for specification purpose value need to be refactored as connection to
+    // LNodeType shall be possible as well. Here iedName shall be "None" and lnClass musst be a non-empty string.
+    // prefix, inst as well as ldInst can be null
+
+    let parent: Element;
+    beforeEach(() => {
+      parent = new DOMParser().parseFromString(
+        `<Bay>
+        </Bay>`,
+        'application/xml'
+      ).documentElement;
+    });
+
+    it('gets a valid selector', () => {
+      fc.assert(
+        fc.property(
+          regexString(restrictions.tIEDName, 1, 64),
+          regexString(restrictions.tLDInst, 1, 64),
+          fc.option(regexString(restrictions.tPrefix, 0, 11)),
+          regexString(restrictions.tLNClass, 4, 4),
+          regexString(restrictions.tLNInst, 0, 12),
+          (iedName, ldInst, prefix, lnClass, lnInst) => {
+            expect(
+              hasLNode(parent, {
+                iedName: iedName,
+                ldInst: ldInst,
+                prefix: prefix,
+                lnClass: lnClass,
+                inst: lnInst,
+              })
+            ).to.not.throw;
+          }
+        )
+      );
+    });
+
+    it('returns true on existing LNode references in the parent element', () => {
+      fc.assert(
+        fc.property(
+          regexString(restrictions.tIEDName, 1, 64),
+          regexString(restrictions.tLDInst, 1, 64),
+          fc.option(regexString(restrictions.tPrefix, 0, 11)),
+          regexString(restrictions.tLNClass, 4, 4),
+          regexString(restrictions.tLNInst, 0, 12),
+          (iedName, ldInst, prefix, lnClass, lnInst) => {
+            const element: Element = new DOMParser().parseFromString(
+              `<LNode iedName="${iedName}" ldInst="${ldInst}" ${
+                prefix === null ? '' : `prefix="${prefix}"`
+              } lnClass="${lnClass}" lnInst="${lnInst}"></LNode>`,
+              'application/xml'
+            ).documentElement;
+            parent.appendChild(element);
+            expect(
+              hasLNode(parent, {
+                iedName: iedName,
+                ldInst: ldInst,
+                prefix: prefix,
+                lnClass: lnClass,
+                inst: lnInst,
+              })
+            ).to.be.true;
+          }
+        )
+      );
+    });
+
+    it('does not give false positive with missing or empty prefix in LN/LN0', () => {
+      fc.assert(
+        fc.property(
+          fc.option(regexString(restrictions.tPrefix, 0, 11)),
+          prefix => {
+            const element: Element = new DOMParser().parseFromString(
+              `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="2"></LNode>`,
+              'application/xml'
+            ).documentElement;
+            parent.appendChild(element);
+            expect(
+              hasLNode(parent, {
+                iedName: 'iedName',
+                ldInst: 'ldInst',
+                prefix: prefix,
+                lnClass: 'CSWI',
+                inst: '2',
+              })
+            ).to.be.false;
+          }
+        )
+      );
+    });
+
+    it('correctly connects LNode with missing prefix to LN/LN0 with empty or missing prefix', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" lnClass="CSWI" lnInst="2"></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: null,
+          lnClass: 'CSWI',
+          inst: '2',
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: '',
+          lnClass: 'CSWI',
+          inst: '2',
+        })
+      ).to.be.true;
+    });
+
+    it('correctly connects LNode with empty prefix to LN/LN0 with empty or missing prefix', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" prefix="" lnClass="CSWI" lnInst="2"></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: null,
+          lnClass: 'CSWI',
+          inst: '2',
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: '',
+          lnClass: 'CSWI',
+          inst: '2',
+        })
+      ).to.be.true;
+    });
+
+    it('does not give false positive with missing or empty inst in LN0', () => {
+      fc.assert(
+        fc.property(
+          fc.option(regexString(restrictions.tLNInst, 0, 11)),
+          lnInst => {
+            const element: Element = new DOMParser().parseFromString(
+              `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="465364263183364"></LNode>`,
+              'application/xml'
+            ).documentElement;
+            parent.appendChild(element);
+            expect(
+              hasLNode(parent, {
+                iedName: 'iedName',
+                ldInst: 'ldInst',
+                prefix: 'prefix',
+                lnClass: 'CSWI',
+                inst: lnInst,
+              })
+            ).to.be.false;
+          }
+        )
+      );
+    });
+
+    it('correctly connects LNode with missing lnInst to LN/LN0 with empty or missing inst', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="LLN0"></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: 'prefix',
+          lnClass: 'LLN0',
+          inst: null,
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: 'prefix',
+          lnClass: 'LLN0',
+          inst: '',
+        })
+      ).to.be.true;
+    });
+
+    it('correctly connects LNode with empty lnInst to LN/LN0 with empty or missing inst', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="LLN0" lnInst=""></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: 'prefix',
+          lnClass: 'LLN0',
+          inst: null,
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: 'prefix',
+          lnClass: 'LLN0',
+          inst: '',
+        })
+      ).to.be.true;
+    });
+
+    it('correctly connects LNode with empty lnInst and missing prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" lnClass="LLN0" lnInst=""></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: '',
+          lnClass: 'LLN0',
+          inst: null,
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: null,
+          lnClass: 'LLN0',
+          inst: '',
+        })
+      ).to.be.true;
+    });
+
+    it('correctly connects LNode with missing lnInst and empty prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" prefix="" lnClass="LLN0"></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: '',
+          lnClass: 'LLN0',
+          inst: null,
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: null,
+          lnClass: 'LLN0',
+          inst: '',
+        })
+      ).to.be.true;
+    });
+
+    it('correctly connects LNode with empty lnInst and empty prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" prefix="" lnClass="LLN0" lnInst=""></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: '',
+          lnClass: 'LLN0',
+          inst: null,
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: null,
+          lnClass: 'LLN0',
+          inst: '',
+        })
+      ).to.be.true;
+    });
+
+    it('correctly connects LNode with missing lnInst and missing prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
+      const element: Element = new DOMParser().parseFromString(
+        `<LNode iedName="iedName" ldInst="ldInst" lnClass="LLN0"></LNode>`,
+        'application/xml'
+      ).documentElement;
+      parent.appendChild(element);
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: '',
+          lnClass: 'LLN0',
+          inst: null,
+        })
+      ).to.be.true;
+
+      expect(
+        hasLNode(parent, {
+          iedName: 'iedName',
+          ldInst: 'ldInst',
+          prefix: null,
+          lnClass: 'LLN0',
+          inst: '',
+        })
+      ).to.be.true;
+    });
   });
 
-  it('renders three wizard pages each in a mwc-dialog', async () => {
-    expect(
-      element.wizardUI.shadowRoot?.querySelectorAll('mwc-dialog').length
-    ).to.equal(3);
-  });
+  describe('defines a existLNode function that', () => {
+    // value is the representation of the logical node in a IED. Therefore iedName, ldInst, lnClass and inst
+    // musst be non empty normalizedString
+    // FIXIT: for specification purpose value need to be refactored as connection to
+    // LNodeType shall be possible as well. Here iedName shall be "None" and lnClass musst be a non-empty string.
+    // prefix, inst as well as ldInst can be null
 
-  describe('on the first wizard page', () => {
-    it('render a list of available IEDs in a mwc-list with checked items', () => {
-      expect(
-        element.wizardUI.shadowRoot
-          ?.querySelector('mwc-dialog')
-          ?.querySelectorAll('mwc-check-list-item').length
-      ).to.equal(validSCL.querySelectorAll('IED').length);
+    let substation: Element;
+    beforeEach(() => {
+      substation = new DOMParser().parseFromString(
+        `<Substation><VoltageLevel><Bay>
+        </Bay><VoltageLevel></Substation>`,
+        'application/xml'
+      ).documentElement;
     });
 
-    it('render one search field in a mwc-textfield', () => {
-      expect(
-        element.wizardUI.shadowRoot
-          ?.querySelector('mwc-dialog')
-          ?.querySelectorAll('mwc-textfield').length
-      ).to.equal(1);
-    });
-
-    it('select the IEDs that are connected', () => {
-      expect(
-        (<ListItemBase[]>(
-          (<List>(
-            element.wizardUI
-              .shadowRoot!.querySelector('mwc-dialog')!
-              .querySelector('mwc-list')
-          )).selected
-        )).length
-      ).to.equal(1);
-    });
-
-    describe('on the second page', () => {
-      it('add logical devices on selecting IEDs on the first page', async () => {
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelectorAll('mwc-check-list-item')[1]
-        )).click();
-        await element.updateComplete;
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(
-          validSCL.querySelectorAll('IED[name="IED1"] LDevice').length
-        );
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelectorAll('mwc-check-list-item')[1]
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(validSCL.querySelectorAll('LDevice').length);
-      });
-
-      it('delete logical devices on de-selecting IEDs on the first page', async () => {
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(validSCL.querySelectorAll('LDevice').length);
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(
-          validSCL.querySelectorAll('IED[name="IED2"] LDevice').length
-        );
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelectorAll('mwc-check-list-item')[1]
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(0);
-      });
-
-      it('select logical devices when used in this Element already', async () => {
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item')[1]
-        ).to.have.property('selected', true);
-      });
-    });
-
-    describe('on the third page', () => {
-      it('add logical nodes on selecting logical devices on the second page', async () => {
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelectorAll('mwc-dialog')[1]
-            .querySelector('mwc-check-list-item')
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(
-          validSCL.querySelectorAll(
-            'IED[name="IED1"] LDevice > LN0, IED[name="IED1"] LDevice > LN'
-          ).length
-        );
-      });
-
-      it('select logical nodes when used in this Element already', async () => {
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
-            ?.querySelectorAll('mwc-check-list-item')[1]
-        ).to.have.property('selected', true);
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
-            ?.querySelectorAll('mwc-check-list-item')[5]
-        ).to.have.property('selected', true);
-      });
-
-      it('disable logical nodes when used in the Substation already', async () => {
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
-            ?.querySelectorAll('mwc-check-list-item')[4]
-        ).to.have.property('disabled', true);
-      });
-    });
-
-    const noOp = () => {
-      return;
-    };
-
-    let list: List;
-
-    beforeEach(async () => {
-      const value1 = {
-        iedName: 'IED',
-        ldInst: 'ldInst',
-        prefix: '',
-        lnClass: 'LLN0',
-        inst: '',
-      };
-
-      const value2 = {
-        iedName: 'IED',
-        ldInst: 'ldInst',
-        prefix: 'prefix',
-        lnClass: 'USER',
-        inst: '10',
-      };
-
-      const value3 = {
-        iedName: 'IED',
-        ldInst: 'ldInst',
-        prefix: 'prefix',
-        lnClass: 'USER',
-        inst: '1',
-      };
-
-      list = await fixture(html`<mwc-list multi id="lnList">
-        <mwc-check-list-item selected value=${JSON.stringify(value1)}
-          >${value1.prefix}${value1.lnClass}${value1.inst}</mwc-check-list-item
-        ><mwc-check-list-item selected value=${JSON.stringify(value2)}
-          >${value2.prefix}${value2.lnClass}${value2.inst}</mwc-check-list-item
-        ><mwc-check-list-item value=${JSON.stringify(value3)}
-          >${value3.prefix}${value3.lnClass}${value3.inst}</mwc-check-list-item
-        >
-      </mwc-list>`);
-    });
-
-    const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
-      element.attachShadow;
-
-      element.shadowRoot?.appendChild(list);
-
-      element.close = done;
-      return element;
-    };
-
-    let inputs: WizardInput[];
-
-    describe('has a lNodeActions that', () => {
-      let parent: Element;
-      beforeEach(() => {
-        parent = new DOMParser().parseFromString(
-          `<Bay><LNode iedName="IED" ldInst="ldInst" lnClass="LLN0"></LNode>
-        <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="1"></LNode>
-        <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="2"></LNode>
-            </Bay>`,
-          'application/xml'
-        ).documentElement;
-      });
-
-      it('returns a WizardAction which returns 3 EditorActions', () => {
-        const wizardAction = lNodeActions(parent);
-        expect(wizardAction(inputs, newWizard()).length).to.equal(3);
-      });
-
-      it('retruns a WizardAction with the first EditorAction being an isDelete', () => {
-        const wizardAction = lNodeActions(parent);
-        expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isDelete);
-      });
-
-      it('retruns a WizardAction with the second EditorAction being an isDelete', () => {
-        const wizardAction = lNodeActions(parent);
-        expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
-      });
-
-      it('retruns a WizardAction with the third EditorAction being an isCreate', () => {
-        const wizardAction = lNodeActions(parent);
-        expect(wizardAction(inputs, newWizard())[2]).to.satisfy(isCreate);
-      });
+    it('returns true on existing LNode references in the substation element', () => {
+      fc.assert(
+        fc.property(
+          regexString(restrictions.tIEDName, 1, 64),
+          regexString(restrictions.tLDInst, 1, 64),
+          fc.option(regexString(restrictions.tPrefix, 0, 11)),
+          regexString(restrictions.tLNClass, 4, 4),
+          regexString(restrictions.tLNInst, 0, 12),
+          (iedName, ldInst, prefix, lnClass, lnInst) => {
+            const element: Element = new DOMParser().parseFromString(
+              `<LNode iedName="${iedName}" ldInst="${ldInst}" ${
+                prefix === null ? '' : `prefix="${prefix}"`
+              } lnClass="${lnClass}" lnInst="${lnInst}"></LNode>`,
+              'application/xml'
+            ).documentElement;
+            substation.appendChild(element);
+            expect(
+              existLNode(substation.querySelector('Bay')!, {
+                iedName: iedName,
+                ldInst: ldInst,
+                prefix: prefix,
+                lnClass: lnClass,
+                inst: lnInst,
+              })
+            ).to.be.true;
+          }
+        )
+      );
     });
   });
 });
