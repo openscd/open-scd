@@ -16,7 +16,7 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { TextField } from '@material/mwc-textfield';
-import { selectors, substationChild } from './foundation.js';
+import { selectors, SubstationTag } from './foundation.js';
 
 interface ldValue {
   iedName: string;
@@ -29,31 +29,38 @@ interface lnValue extends ldValue {
   inst: string | null;
 }
 
-function valueToSelector(value: lnValue): string {
-  if ((value.prefix === null || value.prefix === '') && value.inst)
-    return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]:not([prefix])[lnClass="${value.lnClass}"][lnInst="${value.inst}"], 
-            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix=""][lnClass="${value.lnClass}"][lnInst="${value.inst}"]`;
-  else if ((value.inst === null || value.inst === '') && value.prefix)
-    return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix="${value.prefix}"][lnClass="${value.lnClass}"]:not([lnInst]), 
-            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix="${value.prefix}"][lnClass="${value.lnClass}"][lnInst=""]`;
-  else if (
-    (value.prefix === null || value.prefix === '') &&
-    (value.inst === null || value.inst === '')
-  )
-    return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]:not([prefix])[lnClass="${value.lnClass}"]:not([lnInst]), 
-            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix=""][lnClass="${value.lnClass}"]:not([lnInst]),
-            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"]:not([prefix])[lnClass="${value.lnClass}"][lnInst=""], 
-            LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix=""][lnClass="${value.lnClass}"][lnInst=""]`;
+function cross(...arrays: string[][]): string[][] {
+  return arrays.reduce<string[][]>(
+    (a, b): string[][] => a.flatMap(d => b.map(e => [d, e].flat())),
+    [[]]
+  );
+}
 
-  return `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][prefix="${value.prefix}"][lnClass="${value.lnClass}"][lnInst="${value.inst}"]`;
+function valueToSelector(value: lnValue, parent?: SubstationTag): string {
+  const selector = `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][lnClass="${value.lnClass}"]`;
+  const ancestries = parent
+    ? [selectors[parent]]
+    : (<SubstationTag[]>[
+        'Substation',
+        'VoltageLevel',
+        'Bay',
+        'ConductingEquipment',
+      ]).map(s => selectors[s]);
+  const prefix = value.prefix
+    ? [`[prefix="${value.prefix}"]`]
+    : [':not([prefix])', '[prefix=""]'];
+  const lnInst = value.inst
+    ? [`[lnInst="${value.inst}"]`]
+    : [':not([lnInst])', '[lnInst=""]'];
+  return cross(ancestries, [' > '], [selector], prefix, lnInst)
+    .map(a => a.join(''))
+    .join(',');
 }
 
 export function hasLNode(parent: Element, value: lnValue): boolean {
   return (
     parent.querySelector(
-      `${selectors[<substationChild>parent.tagName]} > ${valueToSelector(
-        value
-      )}`
+      valueToSelector(value, <SubstationTag>parent.tagName)
     ) !== null
   );
 }
@@ -93,7 +100,7 @@ function createAction(parent: Element, value: lnValue): EditorAction {
 
 function deleteAction(parent: Element, value: lnValue): EditorAction {
   const element = parent.querySelector(
-    `${selectors[<substationChild>parent.tagName]} > ${valueToSelector(value)}`
+    valueToSelector(value, <SubstationTag>parent.tagName)
   )!;
   return {
     old: {
@@ -111,7 +118,7 @@ export function lNodeActions(parent: Element): WizardAction {
       .map(item => item.value);
     const oldLNodes = Array.from(
       parent.querySelectorAll(
-        `${selectors[<substationChild>parent.tagName]} > LNode`
+        `${selectors[<SubstationTag>parent.tagName]} > LNode`
       )
     )
       .map(node => {
@@ -167,7 +174,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
             value="${JSON.stringify(value)}"
             twoline
             ?selected="${element.querySelector(
-              `${selectors[<substationChild>element.tagName]} > LNode[ldInst="${
+              `${selectors[<SubstationTag>element.tagName]} > LNode[ldInst="${
                 value.ldInst
               }"]`
             )}"
@@ -263,7 +270,7 @@ function renderIEDPage(element: Element): TemplateResult {
               .value=${iedName ?? ''}
               ?selected="${element.querySelector(
                 `${
-                  selectors[<substationChild>element.tagName]
+                  selectors[<SubstationTag>element.tagName]
                 } > LNode[iedName="${iedName}"]`
               )}"
               >${iedName}</mwc-check-list-item

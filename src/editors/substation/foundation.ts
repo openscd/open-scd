@@ -91,14 +91,14 @@ const substationPath = [
   'ConductingEquipment',
 ];
 
-export type substationChild =
+export type SubstationTag =
   | 'Substation'
   | 'VoltageLevel'
   | 'Bay'
   | 'ConductingEquipment';
 
 /** `Private`-safeguarded selectors for `Substation` and its descendants */
-export const selectors = <Record<substationChild, string>>(
+export const selectors = <Record<SubstationTag, string>>(
   Object.fromEntries(
     substationPath.map((e, i, a) => [e, a.slice(0, i + 1).join(' > ')])
   )
