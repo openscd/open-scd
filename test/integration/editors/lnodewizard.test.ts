@@ -7,7 +7,7 @@ import {
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
-import '../mock-wizard.js';
+import '../../mock-wizard.js';
 import { List } from '@material/mwc-list';
 import { getDocument } from '../../data.js';
 import { MockWizard } from '../../mock-wizard.js';
@@ -244,34 +244,35 @@ describe('lnodewizard', () => {
     let inputs: WizardInput[];
 
     describe('has a lNodeActions that', () => {
-      let parent: Element;
+      let root: Element;
       beforeEach(() => {
-        parent = new DOMParser().parseFromString(
-          `<Bay><LNode iedName="IED" ldInst="ldInst" lnClass="LLN0"></LNode>
-        <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="1"></LNode>
-        <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="2"></LNode>
-            </Bay>`,
+        root = new DOMParser().parseFromString(
+          `<SCL><Substation><VoltageLevel><Bay>
+            <LNode iedName="IED" ldInst="ldInst" lnClass="LLN0"></LNode>
+            <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="1"></LNode>
+            <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="2"></LNode>
+          </Bay><VoltageLevel><Substation><SCL>`,
           'application/xml'
         ).documentElement;
       });
 
       it('returns a WizardAction which returns 3 EditorActions', () => {
-        const wizardAction = lNodeActions(parent);
+        const wizardAction = lNodeActions(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard()).length).to.equal(3);
       });
 
       it('retruns a WizardAction with the first EditorAction being an isDelete', () => {
-        const wizardAction = lNodeActions(parent);
+        const wizardAction = lNodeActions(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isDelete);
       });
 
       it('retruns a WizardAction with the second EditorAction being an isDelete', () => {
-        const wizardAction = lNodeActions(parent);
+        const wizardAction = lNodeActions(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
       });
 
       it('retruns a WizardAction with the third EditorAction being an isCreate', () => {
-        const wizardAction = lNodeActions(parent);
+        const wizardAction = lNodeActions(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard())[2]).to.satisfy(isCreate);
       });
     });
