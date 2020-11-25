@@ -1,8 +1,5 @@
 import fc from 'fast-check';
-import {
-  hasLNode,
-  existLNode,
-} from '../../../src/editors/substation/lnodewizard.js';
+import { hasLNode } from '../../../src/editors/substation/lnodewizard.js';
 import { restrictions, regexString } from '../../foundation.js';
 import { expect } from '@open-wc/testing';
 
@@ -374,7 +371,7 @@ describe('lnodewizard', () => {
             ).documentElement;
             root.querySelector('Substation')!.appendChild(element);
             expect(
-              existLNode(root.querySelector('Bay')!, {
+              hasLNode(root.ownerDocument, {
                 iedName: iedName,
                 ldInst: ldInst,
                 prefix: prefix,

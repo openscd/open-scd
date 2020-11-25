@@ -2,11 +2,12 @@ import { html, render, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  CloseableElement,
+  EditorAction,
   Wizard,
   WizardAction,
   WizardInput,
-  CloseableElement,
-  EditorAction,
+  crossProduct,
 } from '../../foundation.js';
 
 import '@material/mwc-list/mwc-check-list-item';
@@ -29,17 +30,10 @@ interface lnValue extends ldValue {
   inst: string | null;
 }
 
-function cross(...arrays: string[][]): string[][] {
-  return arrays.reduce<string[][]>(
-    (a, b): string[][] => a.flatMap(d => b.map(e => [d, e].flat())),
-    [[]]
-  );
-}
-
-function valueToSelector(value: lnValue, parent?: SubstationTag): string {
-  const selector = `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][lnClass="${value.lnClass}"]`;
-  const ancestries = parent
-    ? [selectors[parent]]
+function valueToSelector(value: lnValue, parentTag?: SubstationTag): string {
+  const base = `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][lnClass="${value.lnClass}"]`;
+  const ancestries = parentTag
+    ? [selectors[parentTag]]
     : (<SubstationTag[]>[
         'Substation',
         'VoltageLevel',
@@ -52,22 +46,18 @@ function valueToSelector(value: lnValue, parent?: SubstationTag): string {
   const lnInst = value.inst
     ? [`[lnInst="${value.inst}"]`]
     : [':not([lnInst])', '[lnInst=""]'];
-  return cross(ancestries, [' > '], [selector], prefix, lnInst)
+  return crossProduct(ancestries, [' > '], [base], prefix, lnInst)
     .map(a => a.join(''))
     .join(',');
 }
 
-export function hasLNode(parent: Element, value: lnValue): boolean {
-  return (
-    parent.querySelector(
-      valueToSelector(value, <SubstationTag>parent.tagName)
-    ) !== null
-  );
-}
-
-export function existLNode(parent: Element, value: lnValue): boolean {
-  const doc = parent.ownerDocument;
-  return doc.querySelector(valueToSelector(value)) !== null;
+export function hasLNode(
+  parent: Element | XMLDocument,
+  value: lnValue
+): boolean {
+  const parentTag =
+    parent instanceof Element ? <SubstationTag>parent.tagName : undefined;
+  return parent.querySelector(valueToSelector(value, parentTag)) !== null;
 }
 
 function getConnectedEquipment(element: Element, value: lnValue): string {
@@ -219,12 +209,14 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
       const nodeItems = values.map(value => {
         return html`<mwc-check-list-item
           ?selected=${hasLNode(element, value)}
-          ?disabled=${!hasLNode(element, value) && existLNode(element, value)}
+          ?disabled=${!hasLNode(element, value) &&
+          hasLNode(element.ownerDocument, value)}
           value="${JSON.stringify(value)}"
           twoline
           ><span
             >${value.prefix}${value.lnClass}${value.inst}
-            ${!hasLNode(element, value) && existLNode(element, value)
+            ${!hasLNode(element, value) &&
+            hasLNode(element.ownerDocument, value)
               ? ' (' + getConnectedEquipment(element, value) + ') '
               : ''}</span
           ><span slot="secondary"

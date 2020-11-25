@@ -232,11 +232,6 @@ export const ifImplemented = directive(rendered => (part: Part) => {
   else part.setValue('');
 });
 
-/** Throws an error bearing `message`, never returning. */
-export function unreachable(message: string): never {
-  throw new Error(message);
-}
-
 /** Constructor type for defining `LitElement` mixins. */
 export type LitElementConstructor = new (...args: any[]) => LitElement;
 
@@ -244,6 +239,19 @@ export type LitElementConstructor = new (...args: any[]) => LitElement;
 export type Mixin<T extends (...args: any[]) => any> = InstanceType<
   ReturnType<T>
 >;
+
+/** Throws an error bearing `message`, never returning. */
+export function unreachable(message: string): never {
+  throw new Error(message);
+}
+
+/** @returns the cartesian product of `arrays` */
+export function crossProduct<T>(...arrays: T[][]): T[][] {
+  return arrays.reduce<T[][]>(
+    (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
+    [[]]
+  );
+}
 
 declare global {
   interface ElementEventMap {
