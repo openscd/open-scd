@@ -19,18 +19,20 @@ import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { TextField } from '@material/mwc-textfield';
 import { selectors, SubstationTag } from './foundation.js';
 
-interface ldValue {
+interface LDValue {
   iedName: string;
   ldInst: string;
 }
 
-interface lnValue extends ldValue {
+interface LNValue extends LDValue {
   prefix: string | null;
   lnClass: string;
   inst: string | null;
 }
 
-function valueToSelector(value: lnValue, parentTag?: SubstationTag): string {
+const APldInst = 'Client LN';
+
+function valueToSelector(value: LNValue, parentTag?: SubstationTag): string {
   const base = `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][lnClass="${value.lnClass}"]`;
   const ancestries = parentTag
     ? [selectors[parentTag]]
@@ -53,14 +55,14 @@ function valueToSelector(value: lnValue, parentTag?: SubstationTag): string {
 
 export function hasLNode(
   parent: Element | XMLDocument,
-  value: lnValue
+  value: LNValue
 ): boolean {
   const parentTag =
     parent instanceof Element ? <SubstationTag>parent.tagName : undefined;
   return parent.querySelector(valueToSelector(value, parentTag)) !== null;
 }
 
-function getConnectedEquipment(element: Element, value: lnValue): string {
+function getConnectedEquipment(element: Element, value: LNValue): string {
   const doc = element.ownerDocument;
   const lNode = doc.querySelector(valueToSelector(value));
 
@@ -73,7 +75,7 @@ function getConnectedEquipment(element: Element, value: lnValue): string {
   return 'Connected to: ' + path;
 }
 
-function createAction(parent: Element, value: lnValue): EditorAction {
+function createAction(parent: Element, value: LNValue): EditorAction {
   return {
     new: {
       parent,
@@ -88,7 +90,7 @@ function createAction(parent: Element, value: lnValue): EditorAction {
   };
 }
 
-function deleteAction(parent: Element, value: lnValue): EditorAction {
+function deleteAction(parent: Element, value: LNValue): EditorAction {
   const element = parent.querySelector(
     valueToSelector(value, <SubstationTag>parent.tagName)
   )!;
@@ -114,7 +116,10 @@ export function lNodeActions(parent: Element): WizardAction {
       .map(node => {
         return {
           iedName: node.getAttribute('iedName') ?? '',
-          ldInst: node.getAttribute('ldInst') ?? '',
+          ldInst:
+            node.getAttribute('ldInst') === APldInst
+              ? ''
+              : node.getAttribute('ldInst') ?? '',
           prefix: node.getAttribute('prefix') ?? '',
           lnClass: node.getAttribute('lnClass') ?? '',
           inst: node.getAttribute('lnInst') ?? '',
@@ -161,7 +166,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
       if (ied.querySelectorAll(':root > IED > AccessPoint > LN').length) {
         values.push({
           iedName: ied.getAttribute('name'),
-          ldInst: 'Client LN',
+          ldInst: APldInst,
         });
       }
       const deviceItems = values.map(
@@ -196,10 +201,10 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
   if (lnList === null) return;
 
   const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
-    .map((item): ldValue => JSON.parse(item.value))
+    .map((item): LDValue => JSON.parse(item.value))
     .map(ldValue => {
       const selector =
-        ldValue.ldInst === 'Client LN'
+        ldValue.ldInst === APldInst
           ? `:root > IED[name="${ldValue.iedName}"] > AccessPoint > LN`
           : `:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN` +
             `,:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN0`;
