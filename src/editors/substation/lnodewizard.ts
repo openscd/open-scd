@@ -151,43 +151,64 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
 
   if (ldList === null) return;
 
-  const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
-    .map(item => doc.querySelector(`:root > IED[name="${item.value}"]`)!)
-    .map(ied => {
-      const values = Array.from(
-        ied.querySelectorAll(':root > IED > AccessPoint > Server > LDevice')
-      ).map(lDevice => {
-        return {
-          iedName: ied.getAttribute('name'),
-          ldInst: lDevice.getAttribute('inst') ?? '',
-          /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
-        };
-      });
-      if (ied.querySelectorAll(':root > IED > AccessPoint > LN').length) {
-        values.push({
-          iedName: ied.getAttribute('name'),
-          ldInst: APldInst,
-        });
-      }
-      const deviceItems = values.map(
-        value =>
-          html`<mwc-check-list-item
-            value="${JSON.stringify(value)}"
-            twoline
-            ?selected="${element.querySelector(
-              `${selectors[<SubstationTag>element.tagName]} > LNode[ldInst="${
-                value.ldInst
-              }"]`
-            )}"
-            ><span>${value.ldInst}</span
-            ><span slot="secondary">${value.iedName}</span></mwc-check-list-item
-          >`
-      );
-      return html`${deviceItems}
-        <li divider role="separator"></li>`;
-    });
+  const selectedIEDItems = <ListItemBase[]>(<List>evt.target).selected;
 
-  render(html`${itemGroups}`, ldList);
+  const selectedIEDs = selectedIEDItems.map(
+    item => doc.querySelector(`:root > IED[name="${item.value}"]`)!
+  );
+
+  const LDList = selectedIEDs.flatMap(ied => {
+    const values = Array.from(
+      ied.querySelectorAll(':root > IED > AccessPoint > Server > LDevice')
+    ).map(lDevice => {
+      return {
+        iedName: ied.getAttribute('name'),
+        ldInst: lDevice.getAttribute('inst') ?? '',
+        /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
+      };
+    });
+    if (ied.querySelectorAll(':root > IED > AccessPoint > LN').length) {
+      values.push({
+        iedName: ied.getAttribute('name'),
+        ldInst: APldInst,
+      });
+    }
+    return values;
+  });
+
+  const deviceItems = LDList.map(value => {
+    return {
+      value,
+      selected:
+        element.querySelector(
+          `${selectors[<SubstationTag>element.tagName]} > LNode[ldInst="${
+            value.ldInst === APldInst ? '' : value.ldInst
+          }"]`
+        ) !== null,
+    };
+  })
+    .sort((a, b) => {
+      if (a.selected && !b.selected) return -1;
+      if (!a.selected && b.selected) return 1;
+
+      return a.value.iedName + a.value.ldInst < b.value.iedName + b.value.ldInst
+        ? -1
+        : 1;
+    })
+    .map(
+      item =>
+        html`<mwc-check-list-item
+          value="${JSON.stringify(item.value)}"
+          twoline
+          ?selected="${item.selected}"
+          ><span>${item.value.ldInst}</span
+          ><span slot="secondary"
+            >${item.value.iedName}</span
+          ></mwc-check-list-item
+        >`
+    );
+
+  render(html`${deviceItems}`, ldList);
 }
 
 function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
