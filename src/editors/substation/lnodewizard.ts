@@ -158,6 +158,12 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
           /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
         };
       });
+      if (ied.querySelectorAll(':root > IED > AccessPoint > LN').length) {
+        values.push({
+          iedName: ied.getAttribute('name'),
+          ldInst: 'Client LN',
+        });
+      }
       const deviceItems = values.map(
         value =>
           html`<mwc-check-list-item
@@ -179,7 +185,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
   render(html`${itemGroups}`, ldList);
 }
 
-function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
+function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
   const doc = element.ownerDocument;
   const lnList =
     (<Element>(
@@ -192,12 +198,12 @@ function onLdSelect(evt: MultiSelectedEvent, element: Element): void {
   const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
     .map((item): ldValue => JSON.parse(item.value))
     .map(ldValue => {
-      const values = Array.from(
-        doc.querySelectorAll(
-          `:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN
-          ,:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN0`
-        )
-      ).map(ln => {
+      const selector =
+        ldValue.ldInst === 'Client LN'
+          ? `:root > IED[name="${ldValue.iedName}"] > AccessPoint > LN`
+          : `:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN` +
+            `,:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN0`;
+      const values = Array.from(doc.querySelectorAll(selector)).map(ln => {
         return {
           ...ldValue,
           prefix: ln.getAttribute('prefix') ?? '',
@@ -280,7 +286,7 @@ function renderLdPage(element: Element): TemplateResult {
     <mwc-list
       multi
       id="ldList"
-      @selected="${(evt: MultiSelectedEvent) => onLdSelect(evt, element)}"
+      @selected="${(evt: MultiSelectedEvent) => onLDSelect(evt, element)}"
     ></mwc-list>`;
 }
 
