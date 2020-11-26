@@ -18,7 +18,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { TextField } from '@material/mwc-textfield';
 import { selectors, SubstationTag } from './foundation.js';
-
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 interface LDValue {
   iedName: string;
   ldInst: string;
@@ -200,46 +200,55 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
     ) ?? null;
   if (lnList === null) return;
 
-  const itemGroups = (<ListItemBase[]>(<List>evt.target).selected)
-    .map((item): LDValue => JSON.parse(item.value))
-    .map(ldValue => {
-      const selector =
-        ldValue.ldInst === APldInst
-          ? `:root > IED[name="${ldValue.iedName}"] > AccessPoint > LN`
-          : `:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN` +
-            `,:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN0`;
-      const values = Array.from(doc.querySelectorAll(selector)).map(ln => {
-        return {
-          ...ldValue,
-          prefix: ln.getAttribute('prefix') ?? '',
-          lnClass: ln.getAttribute('lnClass') ?? '',
-          inst: ln.getAttribute('inst') ?? '',
-          /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
-        };
-      });
-      const nodeItems = values.map(value => {
-        return html`<mwc-check-list-item
-          ?selected=${hasLNode(element, value)}
-          ?disabled=${!hasLNode(element, value) &&
-          hasLNode(element.ownerDocument, value)}
-          value="${JSON.stringify(value)}"
-          twoline
-          ><span
-            >${value.prefix}${value.lnClass}${value.inst}
-            ${!hasLNode(element, value) &&
-            hasLNode(element.ownerDocument, value)
-              ? ' (' + getConnectedEquipment(element, value) + ') '
-              : ''}</span
-          ><span slot="secondary"
-            >${value.iedName} | ${value.ldInst}</span
-          ></mwc-check-list-item
-        >`;
-      });
-      return html`${nodeItems}
-        <li divider role="separator"></li>`;
+  const selectedValues = (<ListItem[]>(<List>evt.target).selected).map(
+    (item): LDValue => JSON.parse(item.value)
+  );
+
+  const ldValues = selectedValues.flatMap(ldValue => {
+    const selector =
+      ldValue.ldInst === APldInst
+        ? `:root > IED[name="${ldValue.iedName}"] > AccessPoint > LN`
+        : `:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN` +
+          `,:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN0`;
+    const values = Array.from(doc.querySelectorAll(selector)).map(ln => {
+      return {
+        ...ldValue,
+        prefix: ln.getAttribute('prefix') ?? '',
+        lnClass: ln.getAttribute('lnClass') ?? '',
+        inst: ln.getAttribute('inst') ?? '',
+        /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
+      };
+    });
+    return values;
+  });
+  const nodeItems = ldValues
+    .map(value => {
+      return { value, selected: hasLNode(element, value) };
+    })
+    .map(item => {
+      return {
+        ...item,
+        disabled: !item.selected && hasLNode(element.ownerDocument, item.value),
+      };
+    })
+    .map(item => {
+      return html`<mwc-check-list-item
+        ?selected=${item.selected}
+        ?disabled=${item.disabled}
+        value="${JSON.stringify(item.value)}"
+        twoline
+        ><span
+          >${item.value.prefix}${item.value.lnClass}${item.value.inst}
+          ${item.disabled
+            ? ' (' + getConnectedEquipment(element, item.value) + ') '
+            : ''}</span
+        ><span slot="secondary"
+          >${item.value.iedName} | ${item.value.ldInst}</span
+        ></mwc-check-list-item
+      >`;
     });
 
-  render(html`${itemGroups}`, lnList);
+  render(html`${nodeItems}`, lnList);
 }
 
 function onFilter(evt: InputEvent, selector: string): void {
