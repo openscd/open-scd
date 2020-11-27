@@ -17,7 +17,15 @@ import {
   WizardAction,
   WizardInput,
   newActionEvent,
+  getValue,
+  getMultiplier,
 } from '../../foundation.js';
+
+import { selectors, startMove, styles } from './foundation.js';
+import './bay-editor.js';
+import { BayEditor } from './bay-editor.js';
+import { editlNode } from './lnodewizard.js';
+import SubstationEditor from '../SubstationEditor.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
@@ -44,8 +52,6 @@ const initial = {
 @customElement('voltage-level-editor')
 export class VoltageLevelEditor extends LitElement {
   @property()
-  parent!: Element;
-  @property()
   element!: Element;
   @property()
   get name(): string {
@@ -57,7 +63,7 @@ export class VoltageLevelEditor extends LitElement {
   }
   @property()
   get voltage(): string | null {
-    const V = this.element.querySelector('Voltage');
+    const V = this.element.querySelector(selectors.VoltageLevel + ' > Voltage');
     if (V === null) return null;
     const v = V.textContent ?? '';
     const m = V.getAttribute('multiplier');
@@ -65,7 +71,8 @@ export class VoltageLevelEditor extends LitElement {
     return v ? v + u : null;
   }
 
-  @query('h1') header!: Element;
+  @query('section') container!: Element;
+  @query('h2') header!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -73,34 +80,67 @@ export class VoltageLevelEditor extends LitElement {
     );
   }
 
+  openBayWizard(): void {
+    if (!this.element) return;
+    const event = newWizardEvent(BayEditor.wizard({ parent: this.element }));
+    this.dispatchEvent(event);
+  }
+
+  openLNodeWizard(): void {
+    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+  }
+
   removeAction(): void {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.element.parentElement!,
+            element: this.element,
+            reference: null,
+          },
         })
       );
   }
 
   renderHeader(): TemplateResult {
-    return html`<h1>
-      <mwc-icon-button icon="playlist_add"></mwc-icon-button>
-      &vert;
-      <mwc-icon-button
-        icon="delete"
-        @click=${() => this.removeAction()}
-      ></mwc-icon-button>
-      <mwc-icon-button
-        icon="edit"
-        @click=${() => this.openEditWizard()}
-      ></mwc-icon-button>
+    return html`<h2>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.voltage === null ? '' : html`(${this.voltage})`}
-    </h1>`;
+      <mwc-icon-button
+        icon="playlist_add"
+        @click=${() => this.openBayWizard()}
+      ></mwc-icon-button>
+      <nav>
+        <mwc-icon-button
+          icon="account_tree"
+          @click=${() => this.openLNodeWizard()}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="forward"
+          @click=${() => startMove(this, VoltageLevelEditor, SubstationEditor)}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.removeAction()}
+        ></mwc-icon-button>
+      </nav>
+    </h2>`;
   }
 
   render(): TemplateResult {
-    return html`${this.renderHeader()}`;
+    return html`<section tabindex="0">
+      ${this.renderHeader()}
+      <div id="bayContainer">
+        ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
+          bay => html`<bay-editor .element=${bay}></bay-editor>`
+        )}
+      </div>
+    </section>`;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -108,12 +148,14 @@ export class VoltageLevelEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.maybeValue;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
-      const nomFreq = inputs.find(i => i.label === 'nomFreq')!.maybeValue;
-      const numPhases = inputs.find(i => i.label === 'numPhases')!.maybeValue;
-      const Voltage = inputs.find(i => i.label === 'Voltage')!.maybeValue;
-      const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
+      const name = getValue(inputs.find(i => i.label === 'name')!);
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
+      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
+      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
+      const multiplier = getMultiplier(
+        inputs.find(i => i.label === 'Voltage')!
+      );
 
       const action = {
         new: {
@@ -149,15 +191,16 @@ export class VoltageLevelEditor extends LitElement {
       wizard: CloseableElement
     ): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
-      const nomFreq = inputs.find(i => i.label === 'nomFreq')!.maybeValue;
-      const numPhases = inputs.find(i => i.label === 'numPhases')!.maybeValue;
-      const Voltage = inputs.find(i => i.label === 'Voltage')!.maybeValue;
-      const multiplier = inputs.find(i => i.label === 'Voltage')!.multiplier;
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
+      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
+      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
+      const multiplier = getMultiplier(
+        inputs.find(i => i.label === 'Voltage')!
+      );
 
       let voltageLevelAction: EditorAction | null;
       let voltageAction: EditorAction | null;
-      console.warn(element.attributes);
 
       if (
         name === element.getAttribute('name') &&
@@ -180,13 +223,17 @@ export class VoltageLevelEditor extends LitElement {
 
       if (
         Voltage ===
-          (element.querySelector('Voltage')?.textContent?.trim() ?? null) &&
+          (element
+            .querySelector('VoltageLevel > Voltage')
+            ?.textContent?.trim() ?? null) &&
         multiplier ===
-          (element.querySelector('Voltage')?.getAttribute('multiplier') ?? null)
+          (element
+            .querySelector('VoltageLevel > Voltage')
+            ?.getAttribute('multiplier') ?? null)
       ) {
         voltageAction = null;
       } else {
-        const oldVoltage = element.querySelector('Voltage');
+        const oldVoltage = element.querySelector('VoltageLevel > Voltage');
 
         if (oldVoltage === null) {
           const newVoltage = new DOMParser().parseFromString(
@@ -273,9 +320,11 @@ export class VoltageLevelEditor extends LitElement {
           options.element.getAttribute('desc'),
           options.element.getAttribute('nomFreq'),
           options.element.getAttribute('numPhases'),
-          options.element.querySelector('Voltage')?.textContent?.trim() ?? null,
           options.element
-            .querySelector('Voltage')
+            .querySelector('VoltageLevel > Voltage')
+            ?.textContent?.trim() ?? null,
+          options.element
+            .querySelector('VoltageLevel > Voltage')
             ?.getAttribute('multiplier') ?? null,
         ];
     return [
@@ -343,21 +392,24 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   static styles = css`
-    h1 {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      background: var(--mdc-theme-primary);
-      color: var(--mdc-theme-surface);
-      margin: 0px;
-      margin-top: 5px;
-      margin-left: 5px;
-      padding-left: 0.15em;
-      padding-top: 0.3em;
+    ${styles}
+
+    section {
+      background-color: var(--mdc-theme-on-primary);
     }
 
-    h1 > mwc-icon-button {
-      position: relative;
-      top: -5px;
+    #bayContainer {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
+    }
+
+    @media (max-width: 387px) {
+      #bayContainer {
+        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
+      }
     }
   `;
 }

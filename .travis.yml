@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 14
+script:
+  npm run build
+
+deploy:
+  edge: true
+  provider: pages
+  token: $GITHUB_TOKEN
+  keep_history: true
+  repo: openscd/openscd.github.io
+  target_branch: master
+  local_dir: build
+  on:
+    branch: 12-add-voltage-level-editor

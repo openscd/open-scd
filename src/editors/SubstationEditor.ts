@@ -1,8 +1,14 @@
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import {
+  LitElement,
+  html,
+  TemplateResult,
+  property,
+  css,
+  query,
+} from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
-import '@material/mwc-fab';
 import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
 
@@ -12,31 +18,40 @@ import {
   newActionEvent,
   newWizardEvent,
   WizardInput,
+  getValue,
 } from '../foundation.js';
+
+import { selectors, styles } from './substation/foundation.js';
 
 import './substation/voltage-level-editor.js';
 import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
+import { editlNode } from './substation/lnodewizard.js';
 
+/** An editor [[`plugin`]] for editing the `Substation` section. */
 export default class SubstationEditor extends LitElement {
+  /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  /** The edited `Element`, a common property of all Substation subeditors. */
   @property()
   get element(): Element | null {
-    return this.doc?.querySelector('Substation') ?? null;
-  }
-  @property()
-  get parent(): Element {
-    return this.doc.documentElement; // <SCL>
+    return this.doc?.querySelector(selectors.Substation) ?? null;
   }
 
+  /** [[element | `element.name`]] */
   @property({ type: String })
   get name(): string {
     return this.element?.getAttribute('name') ?? '';
   }
+  /** [[element | `element.desc`]] */
   @property({ type: String })
   get desc(): string | null {
     return this.element?.getAttribute('desc') ?? null;
   }
+
+  /** Subeditor container HTMLElement, a common property of Substation subeditors. */
+  @query('main') container!: Element;
 
   newUpdateAction(name: string, desc: string | null): EditorAction {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
@@ -54,7 +69,7 @@ export default class SubstationEditor extends LitElement {
     if (this.element) throw new Error('Will not create a second Substation');
     return {
       new: {
-        parent: this.parent,
+        parent: this.doc.documentElement,
         element: new DOMParser().parseFromString(
           `<Substation name="${name}"${
             desc === null ? '' : ` desc="${desc}"`
@@ -71,7 +86,7 @@ export default class SubstationEditor extends LitElement {
     dialog: CloseableElement
   ): EditorAction[] {
     const name = inputs.find(i => i.label === 'name')!.value;
-    const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
     if (name === this.name && desc === this.desc) return [];
     const action = this.element
       ? this.newUpdateAction(name, desc)
@@ -88,6 +103,8 @@ export default class SubstationEditor extends LitElement {
     this.dispatchEvent(event);
   }
 
+  /** Opens a [[`WizardDialog`]] for editing [[`element`]] if it exists, or for
+   * creating a new `Substation` otherwise. */
   openSubstationWizard(): void {
     const [heading, actionName, actionIcon] = this.element
       ? [get('substation.wizard.title.edit'), get('edit'), 'edit']
@@ -120,11 +137,20 @@ export default class SubstationEditor extends LitElement {
     this.dispatchEvent(event);
   }
 
+  openLNodeWizard(): void {
+    if (this.element)
+      this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+  }
+
   removeSubstation(): void {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.doc.documentElement,
+            element: this.element,
+            reference: null,
+          },
         })
       );
   }
@@ -138,94 +164,64 @@ export default class SubstationEditor extends LitElement {
   renderHeader(): TemplateResult {
     if (!this.element)
       return html`<h1>
+        <span style="color: var(--base1)"
+          >${translate('substation.missing')}</span
+        >
         <mwc-icon-button
           icon="add"
           @click=${() => this.openSubstationWizard()}
         ></mwc-icon-button>
-        <span style="color: var(--base1)"
-          >${translate('substation.missing')}</span
-        >
       </h1>`;
     return html`
       <h1>
+        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => this.openVoltageLevelWizard()}
         ></mwc-icon-button>
-        &vert;
-        <mwc-icon-button
-          icon="delete"
-          @click=${() => this.removeSubstation()}
-        ></mwc-icon-button>
-        <mwc-icon-button
-          icon="edit"
-          @click=${() => this.openSubstationWizard()}
-        ></mwc-icon-button>
-        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+        <nav>
+          <mwc-icon-button
+            icon="account_tree"
+            @click=${() => this.openLNodeWizard()}
+          ></mwc-icon-button>
+          <mwc-icon-button
+            icon="edit"
+            @click=${() => this.openSubstationWizard()}
+          ></mwc-icon-button>
+          <mwc-icon-button
+            icon="delete"
+            @click=${() => this.removeSubstation()}
+          ></mwc-icon-button>
+        </nav>
       </h1>
     `;
   }
 
   render(): TemplateResult {
     return html`
-      ${this.renderHeader()}
-      ${Array.from(this.element?.querySelectorAll('VoltageLevel') ?? []).map(
-        voltageLevel =>
-          html`<voltage-level-editor
-            .element=${voltageLevel}
-            .parent=${this.element}
-          ></voltage-level-editor>`
-      )}
-      <mwc-fab
-        @click=${this.openSubstationWizard}
-        icon="${this.element ? 'edit' : 'add'}"
-      >
-      </mwc-fab>
+      <main tabindex="0">
+        ${this.renderHeader()}
+        ${Array.from(
+          this.element?.querySelectorAll(selectors.VoltageLevel) ?? []
+        ).map(
+          voltageLevel =>
+            html`<voltage-level-editor
+              .element=${voltageLevel}
+            ></voltage-level-editor>`
+        )}
+      </main>
     `;
   }
 
   static styles = css`
+    ${styles}
+
+    main {
+      overflow: auto;
+    }
+
     :host {
       width: calc(100vw);
-      overflow-x: hidden;
-      margin: 0px;
-      background: var(--mdc-theme-surface);
-    }
-
-    h1 {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      background: var(--mdc-theme-primary);
-      color: var(--mdc-theme-surface);
-      margin: 0px;
-      padding-left: 0.15em;
-      padding-top: 0.3em;
-    }
-
-    h1 > mwc-icon-button {
-      position: relative;
-      top: -5px;
-    }
-
-    mwc-dialog {
-      display: flex;
-      flex-direction: column;
-    }
-
-    mwc-dialog > * {
-      display: block;
-      margin-top: 16px;
-    }
-
-    pre {
-      font-family: 'Roboto Mono', monospace;
-      font-weight: 300;
-    }
-
-    mwc-fab {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
     }
   `;
 }

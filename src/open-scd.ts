@@ -9,6 +9,7 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
+import { cache } from 'lit-html/directives/cache.js';
 
 import '@material/mwc-button';
 import '@material/mwc-drawer';
@@ -27,19 +28,13 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { Validating } from './Validating.js';
 import { getTheme } from './themes.js';
 import { Setting } from './Setting.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
-import { validateSCL } from './validate.js';
 import { zeroLineIcon } from './icons.js';
-
-interface Tab {
-  name: string;
-  id: string;
-  icon: string | TemplateResult;
-}
-
+import { selectors } from './editors/substation/foundation.js';
 interface MenuEntry {
   icon: string;
   name: string;
@@ -50,16 +45,21 @@ interface MenuEntry {
   disabled?: () => boolean;
 }
 
+/** The `<open-scd>` custom element is the main entry point of the
+ * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Setting(
-  Wizarding(Waiting(Editing(Logging(LitElement))))
+  Wizarding(Waiting(Validating(Editing(Logging(LitElement)))))
 ) {
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
+  /** The name of the first `Substation` in the current [[`doc`]]. */
   @property()
   get name(): string | null {
-    return this.doc.querySelector('Substation')?.getAttribute('name') ?? null;
+    return (
+      this.doc.querySelector(selectors.Substation)?.getAttribute('name') ?? null
+    );
   }
   /** The name of the current file. */
   @property({ type: String }) srcName = 'untitled.scd';
@@ -77,6 +77,7 @@ export class OpenSCD extends Setting(
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
 
+  /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
@@ -87,7 +88,14 @@ export class OpenSCD extends Setting(
             title: get('openSCD.loading', { name: this.srcName }),
           })
         );
+
         const reader: FileReader = new FileReader();
+        reader.addEventListener('error', () =>
+          reject(get('openSCD.readError', { name: this.srcName }))
+        );
+        reader.addEventListener('abort', () =>
+          reject(get('openSCD.readAbort', { name: this.srcName }))
+        );
         reader.addEventListener('load', () => {
           this.doc = reader.result
             ? new DOMParser().parseFromString(
@@ -97,27 +105,10 @@ export class OpenSCD extends Setting(
             : newEmptySCD();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.dispatchEvent(
-            newLogEvent({
-              kind: 'info',
-              title: get('openSCD.loaded', { name: this.srcName }),
-            })
-          );
-          validateSCL(this.doc, this.srcName).then(errors => {
-            errors.map(id => {
-              this.dispatchEvent(newLogEvent(id));
-            });
-            if (errors.length == 0)
-              resolve(get('openSCD.validated', { name: this.srcName }));
-            else reject(get('openSCD.invalidated', { name: this.srcName }));
-          });
+          this.validate(this.doc, { fileName: this.srcName });
+          resolve(get('openSCD.loaded', { name: this.srcName }));
         });
-        reader.addEventListener('error', () =>
-          reject(get('openSCD.readError', { name: this.srcName }))
-        );
-        reader.addEventListener('abort', () =>
-          reject(get('openSCD.readAbort', { name: this.srcName }))
-        );
+
         fetch(src ?? '').then(res =>
           res.blob().then(b => reader.readAsText(b))
         );
@@ -125,7 +116,7 @@ export class OpenSCD extends Setting(
     );
   }
 
-  /** Loads the file selected by input `event.target.files[0]`. */
+  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
   private loadFile(event: Event): void {
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
@@ -240,14 +231,22 @@ export class OpenSCD extends Setting(
     else return html``;
   }
 
-  renderEditorTab(editor: Tab): TemplateResult {
+  renderEditorTab({
+    name,
+    id,
+    icon,
+  }: {
+    name: string;
+    id: string;
+    icon: string | TemplateResult;
+  }): TemplateResult {
     return html`<mwc-tab
-      label=${translate(editor.name)}
-      icon=${editor.icon instanceof TemplateResult ? '' : editor.icon}
-      id=${editor.id}
+      label=${translate(name)}
+      icon=${icon instanceof TemplateResult ? '' : icon}
+      id=${id}
       hasimageicon
     >
-      ${editor.icon instanceof TemplateResult ? editor.icon : ''}
+      ${icon instanceof TemplateResult ? icon : ''}
     </mwc-tab>`;
   }
 
@@ -282,9 +281,11 @@ export class OpenSCD extends Setting(
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
-      ${until(
-        this.plugins.editors[this.activeTab].getContent(),
-        html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+      ${cache(
+        until(
+          this.plugins.editors[this.activeTab].getContent(),
+          html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+        )
       )}
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
@@ -296,12 +297,11 @@ export class OpenSCD extends Setting(
   static styles = css`
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
-      --mdc-theme-primary: var(--mdc-theme-on-surface);
     } /* hack to fix disabled icon buttons rendering black */
 
     mwc-tab {
-      --mdc-theme-primary: var(--base3);
-      background-color: var(--mdc-theme-on-surface);
+      background-color: var(--blue);
+      --mdc-theme-primary: var(--mdc-theme-on-primary);
     }
 
     #file-input {
@@ -328,6 +328,7 @@ export class OpenSCD extends Setting(
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
+      pointer-events: none;
     }
 
     tt {
