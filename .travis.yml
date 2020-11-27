@@ -13,4 +13,4 @@ deploy:
   target_branch: master
   local_dir: build
   on:
-    branch: 8-add-substation-section-editor
+    branch: master
