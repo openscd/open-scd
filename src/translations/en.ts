@@ -101,6 +101,7 @@ export const en = {
         edit: 'Edit Conducting Equipment',
       },
     },
+    unknownType: 'Unknown type',
   },
   lnode: {
     wizard: {

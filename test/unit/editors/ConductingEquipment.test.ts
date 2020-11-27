@@ -27,7 +27,7 @@ describe('ConductingEquipmentEditor', () => {
     );
   });
 
-  describe('has a createAction that', () => {
+  describe('createAction', () => {
     let parent: Element;
     beforeEach(() => {
       parent = new DOMParser().parseFromString('<Bay></Bay>', 'application/xml')
@@ -45,7 +45,7 @@ describe('ConductingEquipmentEditor', () => {
     });
   });
 
-  describe('has an updateAction that', () => {
+  describe('updateAction', () => {
     let element: Element;
     beforeEach(() => {
       element = new DOMParser().parseFromString(

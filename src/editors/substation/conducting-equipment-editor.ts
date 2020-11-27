@@ -19,10 +19,9 @@ import {
   newActionEvent,
   getValue,
 } from '../../foundation.js';
-import { generalConductingEquipmentIcon } from '../../icons.js';
 
 import { selectors, startMove } from './foundation.js';
-import { typeIcons, typeNames } from './conducting-equipment-types.js';
+import { typeIcon, typeName, types } from './conducting-equipment-types.js';
 import { editlNode } from './lnodewizard.js';
 import { BayEditor } from './bay-editor.js';
 
@@ -67,7 +66,7 @@ export class ConductingEquipmentEditor extends LitElement {
     );
   }
 
-  openLNodeAddWizard(): void {
+  openAddLNodeWizard(): void {
     this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
@@ -87,11 +86,10 @@ export class ConductingEquipmentEditor extends LitElement {
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
-        ${typeIcons[this.element.getAttribute('type') ?? ''] ??
-        generalConductingEquipmentIcon}
+        ${typeIcon(this.element)}
         <mwc-icon-button
           class="menu-item left"
-          @click="${() => this.openLNodeAddWizard()}"
+          @click="${() => this.openAddLNodeWizard()}"
           icon="account_tree"
         ></mwc-icon-button>
         <mwc-icon-button
@@ -154,31 +152,27 @@ export class ConductingEquipmentEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.value;
+      const name = getValue(inputs.find(i => i.label === 'name')!)!;
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-      let condunctingEquipmentAction: EditorAction | null;
 
       if (
         name === element.getAttribute('name') &&
         desc === element.getAttribute('desc')
-      ) {
-        condunctingEquipmentAction = null;
-      } else {
-        const newElement = <Element>element.cloneNode(false);
-        newElement.setAttribute('name', name);
-        if (desc === null) newElement.removeAttribute('desc');
-        else newElement.setAttribute('desc', desc);
-        condunctingEquipmentAction = {
+      )
+        return [];
+
+      const newElement = <Element>element.cloneNode(false);
+      newElement.setAttribute('name', name);
+      if (desc === null) newElement.removeAttribute('desc');
+      else newElement.setAttribute('desc', desc);
+
+      wizard.close();
+      return [
+        {
           old: { element },
           new: { element: newElement },
-        };
-      }
-
-      if (condunctingEquipmentAction) wizard.close();
-      const actions: EditorAction[] = [];
-      if (condunctingEquipmentAction) actions.push(condunctingEquipmentAction);
-      return actions;
+        },
+      ];
     };
   }
 
@@ -188,35 +182,28 @@ export class ConductingEquipmentEditor extends LitElement {
       actionName,
       actionIcon,
       action,
+      name,
+      desc,
+      reservedNames,
     ] = isConductingEquipmentCreateOptions(options)
       ? [
           get('conductingequipment.wizard.title.add'),
           get('add'),
           'add',
           ConductingEquipmentEditor.createAction(options.parent),
+          '',
+          null,
+          Array.from(
+            options.parent.querySelectorAll(selectors.ConductingEquipment)
+          ).map(condEq => condEq.getAttribute('name')),
         ]
       : [
           get('conductingequipment.wizard.title.edit'),
           get('save'),
           'edit',
           ConductingEquipmentEditor.updateAction(options.element),
-        ];
-
-    const [name, desc] = isConductingEquipmentCreateOptions(options)
-      ? ['', null]
-      : [
           options.element.getAttribute('name'),
           options.element.getAttribute('desc'),
-          options.element.getAttribute('type'),
-        ];
-
-    const [reservedValues] = isConductingEquipmentCreateOptions(options)
-      ? [
-          Array.from(
-            options.parent.querySelectorAll(selectors.ConductingEquipment)
-          ).map(condEq => condEq.getAttribute('name')),
-        ]
-      : [
           Array.from(
             options.element.parentNode!.querySelectorAll(
               selectors.ConductingEquipment
@@ -243,7 +230,7 @@ export class ConductingEquipmentEditor extends LitElement {
             required
             validationMessage="${translate('textfield.required')}"
             dialogInitialFocus
-            .reservedValues="${reservedValues}"
+            .reservedValues="${reservedNames}"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="desc"
@@ -267,29 +254,19 @@ export class ConductingEquipmentEditor extends LitElement {
           label="type"
           helper="${translate('conductingequipment.wizard.typeHelper')}"
           validationMessage="${translate('textfield.required')}"
-          helperPersistant="true"
         >
-          ${Object.keys(typeNames).map(
-            v =>
-              html`<mwc-list-item value="${v}">${typeNames[v]}</mwc-list-item>`
+          ${Object.keys(types).map(
+            v => html`<mwc-list-item value="${v}">${types[v]}</mwc-list-item>`
           )}
         </mwc-select>`
       : html`<mwc-select
           label="type"
           helper="${translate('conductingequipment.wizard.typeHelper')}"
           validationMessage="${translate('textfield.required')}"
-          helperPersistant="true"
           disabled
         >
           <mwc-list-item selected value="0"
-            >${options.element.getAttribute('type') === 'DIS' &&
-            options.element
-              .querySelector('Terminal')
-              ?.getAttribute('cNodeName') === 'grounded'
-              ? 'Earth Switch'
-              : typeNames[
-                  options.element.getAttribute('type') ?? ''
-                ]}</mwc-list-item
+            >${typeName(options.element)}</mwc-list-item
           >
         </mwc-select>`;
   }

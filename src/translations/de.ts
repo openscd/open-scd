@@ -104,6 +104,7 @@ export const de: Translations = {
         edit: 'Primärelement bearbeiten',
       },
     },
+    unknownType: 'Unbekannter Typ',
   },
   lnode: {
     wizard: {
