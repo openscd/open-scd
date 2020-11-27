@@ -42,6 +42,7 @@ function isVoltageLevelCreateOptions(
   return (<VoltageLevelCreateOptions>options).parent !== undefined;
 }
 
+/** Initial attribute values suggested for `VoltageLevel` creation */
 const initial = {
   nomFreq: '50',
   numPhases: '3',
@@ -49,10 +50,51 @@ const initial = {
   multiplier: 'k',
 };
 
+function getVoltageAction(
+  oldVoltage: Element | null,
+  Voltage: string | null,
+  multiplier: string | null,
+  voltageLevel: Element
+): EditorAction {
+  if (oldVoltage === null)
+    return {
+      new: {
+        parent: voltageLevel,
+        element: new DOMParser().parseFromString(
+          `<Voltage unit="V"${
+            multiplier === null ? '' : `multiplier="${multiplier}"`
+          }>${Voltage === null ? '' : Voltage}</Voltage>`,
+          'application/xml'
+        ).documentElement,
+        reference: voltageLevel.firstElementChild,
+      },
+    };
+
+  if (Voltage === null)
+    return {
+      old: {
+        parent: voltageLevel,
+        element: oldVoltage,
+        reference: oldVoltage.nextElementSibling,
+      },
+    };
+
+  const newVoltage = <Element>oldVoltage.cloneNode(false);
+  newVoltage.textContent = Voltage;
+  if (multiplier === null) newVoltage.removeAttribute('multiplier');
+  else newVoltage.setAttribute('multiplier', multiplier);
+  return {
+    old: { element: oldVoltage },
+    new: { element: newVoltage },
+  };
+}
+
+/** [[`SubstationEditor`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
 export class VoltageLevelEditor extends LitElement {
   @property()
   element!: Element;
+
   @property()
   get name(): string {
     return this.element.getAttribute('name') ?? '';
@@ -71,8 +113,8 @@ export class VoltageLevelEditor extends LitElement {
     return v ? v + u : null;
   }
 
-  @query('section') container!: Element;
   @query('h2') header!: Element;
+  @query('section') container!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -90,7 +132,7 @@ export class VoltageLevelEditor extends LitElement {
     this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
-  removeAction(): void {
+  remove(): void {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
@@ -126,7 +168,7 @@ export class VoltageLevelEditor extends LitElement {
         ></mwc-icon-button>
         <mwc-icon-button
           icon="delete"
-          @click=${() => this.removeAction()}
+          @click=${() => this.remove()}
         ></mwc-icon-button>
       </nav>
     </h2>`;
@@ -233,43 +275,12 @@ export class VoltageLevelEditor extends LitElement {
       ) {
         voltageAction = null;
       } else {
-        const oldVoltage = element.querySelector('VoltageLevel > Voltage');
-
-        if (oldVoltage === null) {
-          const newVoltage = new DOMParser().parseFromString(
-            '<Voltage unit="V"></Voltage>',
-            'application/xml'
-          ).documentElement;
-          newVoltage.textContent = Voltage;
-          if (multiplier !== null)
-            newVoltage.setAttribute('multiplier', multiplier);
-          voltageAction = {
-            new: {
-              parent: voltageLevelAction?.new.element ?? element,
-              element: newVoltage,
-              reference: element.firstElementChild,
-            },
-          };
-        } else {
-          if (Voltage === null)
-            voltageAction = {
-              old: {
-                parent: voltageLevelAction?.new.element ?? element,
-                element: oldVoltage,
-                reference: oldVoltage.nextElementSibling,
-              },
-            };
-          else {
-            const newVoltage = <Element>oldVoltage.cloneNode(false);
-            newVoltage.textContent = Voltage;
-            if (multiplier === null) newVoltage.removeAttribute('multiplier');
-            else newVoltage.setAttribute('multiplier', multiplier);
-            voltageAction = {
-              old: { element: oldVoltage },
-              new: { element: newVoltage },
-            };
-          }
-        }
+        voltageAction = getVoltageAction(
+          element.querySelector('VoltageLevel > Voltage'),
+          Voltage,
+          multiplier,
+          voltageLevelAction?.new.element ?? element
+        );
       }
 
       if (voltageLevelAction || voltageAction) wizard.close();
@@ -327,6 +338,7 @@ export class VoltageLevelEditor extends LitElement {
             .querySelector('VoltageLevel > Voltage')
             ?.getAttribute('multiplier') ?? null,
         ];
+
     return [
       {
         title: heading,

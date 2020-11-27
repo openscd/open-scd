@@ -63,16 +63,16 @@ export class BayEditor extends LitElement {
     );
   }
 
-  openAddLNodeWizard(): void {
-    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
-  }
-
   openConductingEquipmentWizard(): void {
     if (!this.element) return;
     const event = newWizardEvent(
       ConductingEquipmentEditor.wizard({ parent: this.element })
     );
     this.dispatchEvent(event);
+  }
+
+  openLNodeWizard(): void {
+    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
   remove(): void {
@@ -98,7 +98,7 @@ export class BayEditor extends LitElement {
       <nav>
         <mwc-icon-button
           icon="account_tree"
-          @click="${() => this.openAddLNodeWizard()}"
+          @click="${() => this.openLNodeWizard()}"
         ></mwc-icon-button>
         <mwc-icon-button
           icon="edit"

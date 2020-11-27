@@ -66,7 +66,7 @@ export class ConductingEquipmentEditor extends LitElement {
     );
   }
 
-  openAddLNodeWizard(): void {
+  openLNodeWizard(): void {
     this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
@@ -89,7 +89,7 @@ export class ConductingEquipmentEditor extends LitElement {
         ${typeIcon(this.element)}
         <mwc-icon-button
           class="menu-item left"
-          @click="${() => this.openAddLNodeWizard()}"
+          @click="${() => this.openLNodeWizard()}"
           icon="account_tree"
         ></mwc-icon-button>
         <mwc-icon-button
