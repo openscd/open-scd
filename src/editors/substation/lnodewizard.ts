@@ -231,6 +231,11 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
         disabled: !item.selected && hasLNode(element.ownerDocument, item.value),
       };
     })
+    .sort((a, b) => {
+      if (a.selected !== b.selected) return a.selected ? -1 : 1;
+      if (a.disabled !== b.disabled) return b.disabled ? -1 : 1;
+      return 0;
+    })
     .map(item => {
       return html`<mwc-check-list-item
         ?selected=${item.selected}
