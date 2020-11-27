@@ -92,7 +92,7 @@ export class ConductingEquipmentEditor extends LitElement {
         <mwc-icon-button
           class="menu-item left"
           @click="${() => this.openLNodeAddWizard()}"
-          icon="device_hub"
+          icon="account_tree"
         ></mwc-icon-button>
         <mwc-icon-button
           class="menu-item up"

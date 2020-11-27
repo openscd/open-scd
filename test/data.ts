@@ -20,14 +20,15 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		</History>
 	</Header>
 	<Substation name="AA1" desc="Substation">
-		<Private type="ABBPCMInternalObjRef">0f6c4a8e-0904-4f41-9b01-03444ba9efc7</Private>
 		<VoltageLevel name="E1" desc="Voltage Level">
-			<Private type="ABBPCMInternalObjRef">b80686f1-a514-477b-a83b-78f1cbe8a582</Private>
 			<Voltage unit="V" multiplier="k">110</Voltage>
 			<Bay name="COUPLING_BAY" desc="Bay">
-				<Private type="ABBPCMInternalObjRef">a2ca0a84-9ad2-4803-b4bd-d3fd5ce0693d</Private>
+				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
+				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
 				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
-				<ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1"/>
+				<ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1">
+					<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
+				</ConductingEquipment>
 				<ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
 				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11"/>
 				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12"/>
