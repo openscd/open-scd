@@ -8,6 +8,7 @@ import {
   TemplateResult,
   html,
 } from 'lit-element';
+import { translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -21,43 +22,50 @@ import {
   WizardPage,
   newWizardEvent,
   WizardAction,
+  wizardInputSelector,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
-  return Array.from(dialog?.querySelectorAll('wizard-textfield') ?? []);
+  return Array.from(dialog?.querySelectorAll(wizardInputSelector) ?? []);
 }
 
 function dialogValid(dialog?: Dialog): boolean {
   return dialogInputs(dialog).every(wi => wi.checkValidity());
 }
 
+/** A wizard style dialog consisting of several pages commiting some
+ * [[`EditorAction`]] on completion and aborting on dismissal. */
 @customElement('wizard-dialog')
 export class WizardDialog extends LitElement {
+  /** The [[`Wizard`]] implemented by this dialog. */
   @property()
   wizard: Wizard = [];
+  /** Index of the currently active [[`WizardPage`]] */
   @internalProperty()
   pageIndex = 0;
+
   @queryAll('mwc-dialog')
   dialogs!: NodeListOf<Dialog>;
-  @queryAll('wizard-textfield')
+  @queryAll(wizardInputSelector)
   inputs!: NodeListOf<WizardInput>;
 
+  /** The `Dialog` showing the active [[`WizardPage`]]. */
   get dialog(): Dialog | undefined {
     return this.dialogs[this.pageIndex];
   }
 
+  /** Checks the inputs of all [[`WizardPage`]]s for validity. */
   checkValidity(): boolean {
     return Array.from(this.inputs).every(wi => wi.checkValidity());
   }
 
-  get firstInvalidPage(): number {
+  private get firstInvalidPage(): number {
     return Array.from(this.dialogs).findIndex(dialog => !dialogValid(dialog));
   }
 
   prev(): void {
     if (this.pageIndex > 0) this.pageIndex--;
   }
-
   async next(): Promise<void> {
     if (dialogValid(this.dialog)) {
       if (this.wizard.length > this.pageIndex + 1) this.pageIndex++;
@@ -68,10 +76,12 @@ export class WizardDialog extends LitElement {
     }
   }
 
+  /** Dismisses the entire wizard by dispatching an empty [[`WizardEvent`]]. */
   close(): void {
     this.dispatchEvent(newWizardEvent());
   }
 
+  /** Commits `action` if all inputs are valid, reports validity otherwise. */
   async act(action?: WizardAction): Promise<boolean> {
     if (action === undefined) return false;
     const inputArray = Array.from(this.inputs);
@@ -84,28 +94,19 @@ export class WizardDialog extends LitElement {
     return true;
   }
 
-  onClosed(ae: CustomEvent<{ action: string } | null>): void {
+  private onClosed(ae: CustomEvent<{ action: string } | null>): void {
     if (!(ae.target instanceof Dialog && ae.detail?.action)) return;
     if (ae.detail.action === 'close') this.close();
     else if (ae.detail.action === 'prev') this.prev();
     else if (ae.detail.action === 'next') this.next();
   }
 
-  static styles = css`
-    mwc-dialog {
-      --mdc-dialog-max-width: 92vw;
-    }
+  constructor() {
+    super();
 
-    #wizard-content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #wizard-content > * {
-      display: block;
-      margin-top: 16px;
-    }
-  `;
+    this.act = this.act.bind(this);
+    this.renderPage = this.renderPage.bind(this);
+  }
 
   renderPage(page: WizardPage, index: number): TemplateResult {
     return html`<mwc-dialog
@@ -134,8 +135,8 @@ export class WizardDialog extends LitElement {
         : html`<mwc-button
             slot="secondaryAction"
             dialogAction="close"
-            label="cancel"
-            style="--mdc-theme-primary: var(--mdc-theme-secondary)"
+            label="${translate('cancel')}"
+            style="--mdc-theme-primary: var(--mdc-theme-error)"
           ></mwc-button>`}
       ${page.primary
         ? html`<mwc-button
@@ -162,10 +163,19 @@ export class WizardDialog extends LitElement {
     return html`${this.wizard.map(this.renderPage)}`;
   }
 
-  constructor() {
-    super();
+  static styles = css`
+    mwc-dialog {
+      --mdc-dialog-max-width: 92vw;
+    }
 
-    this.act = this.act.bind(this);
-    this.renderPage = this.renderPage.bind(this);
-  }
+    #wizard-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #wizard-content > * {
+      display: block;
+      margin-top: 16px;
+    }
+  `;
 }

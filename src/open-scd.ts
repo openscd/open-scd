@@ -7,12 +7,15 @@ import {
   property,
   query,
 } from 'lit-element';
+import { translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
+import { cache } from 'lit-html/directives/cache.js';
 
 import '@material/mwc-button';
 import '@material/mwc-drawer';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
+import '@material/mwc-linear-progress';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-tab';
@@ -25,17 +28,13 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { Validating } from './Validating.js';
+import { getTheme } from './themes.js';
+import { Setting } from './Setting.js';
 import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
-import { validateSCL } from './validate.js';
 import { zeroLineIcon } from './icons.js';
-
-interface Tab {
-  label: string;
-  id: string;
-  icon: string | TemplateResult;
-}
-
+import { selectors } from './editors/substation/foundation.js';
 interface MenuEntry {
   icon: string;
   name: string;
@@ -46,14 +45,21 @@ interface MenuEntry {
   disabled?: () => boolean;
 }
 
+/** The `<open-scd>` custom element is the main entry point of the
+ * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
+export class OpenSCD extends Setting(
+  Wizarding(Waiting(Validating(Editing(Logging(LitElement)))))
+) {
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
+  /** The name of the first `Substation` in the current [[`doc`]]. */
   @property()
   get name(): string | null {
-    return this.doc.querySelector('Substation')?.getAttribute('name') ?? null;
+    return (
+      this.doc.querySelector(selectors.Substation)?.getAttribute('name') ?? null
+    );
   }
   /** The name of the current file. */
   @property({ type: String }) srcName = 'untitled.scd';
@@ -71,6 +77,7 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
 
+  /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private loadDoc(src: string): Promise<string> {
     return new Promise<string>(
       (resolve: (msg: string) => void, reject: (msg: string) => void) => {
@@ -78,10 +85,17 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'info',
-            title: `Loading project ${this.srcName}.`,
+            title: get('openSCD.loading', { name: this.srcName }),
           })
         );
+
         const reader: FileReader = new FileReader();
+        reader.addEventListener('error', () =>
+          reject(get('openSCD.readError', { name: this.srcName }))
+        );
+        reader.addEventListener('abort', () =>
+          reject(get('openSCD.readAbort', { name: this.srcName }))
+        );
         reader.addEventListener('load', () => {
           this.doc = reader.result
             ? new DOMParser().parseFromString(
@@ -91,33 +105,10 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
             : newEmptySCD();
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.dispatchEvent(
-            newLogEvent({
-              kind: 'info',
-              title: `${this.srcName} loaded.`,
-            })
-          );
-          validateSCL(this.doc, this.srcName).then(errors => {
-            errors.map(id => {
-              this.dispatchEvent(newLogEvent(id));
-            }) ??
-              this.dispatchEvent(
-                newLogEvent({
-                  kind: 'info',
-                  title: `${this.srcName} validated successfully.`,
-                })
-              );
-            if (errors.length == 0)
-              resolve(`${this.srcName} validation succesful.`);
-            else reject(`${this.srcName} validation failed.`);
-          });
+          this.validate(this.doc, { fileName: this.srcName });
+          resolve(get('openSCD.loaded', { name: this.srcName }));
         });
-        reader.addEventListener('error', () =>
-          reject(`${this.srcName} read error.`)
-        );
-        reader.addEventListener('abort', () =>
-          reject(`${this.srcName} read aborted.`)
-        );
+
         fetch(src ?? '').then(res =>
           res.blob().then(b => reader.readAsText(b))
         );
@@ -125,7 +116,7 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
     );
   }
 
-  /** Loads the file selected by input `event.target.files[0]`. */
+  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
   private loadFile(event: Event): void {
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
@@ -137,30 +128,32 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
 
   private handleKeyPress(e: KeyboardEvent): void {
     let handled = false;
-    if (e.keyCode == 89 /* y */ && e.ctrlKey && (handled = true)) this.redo();
-    if (e.keyCode == 90 /* z */ && e.ctrlKey && (handled = true)) this.undo();
-    if (e.keyCode == 76 /* l */ && e.ctrlKey && (handled = true))
-      this.logUI.open ? this.logUI.close() : this.logUI.show();
-    if (e.keyCode == 77 /* m */ && e.ctrlKey && (handled = true))
-      this.menuUI.open = !this.menuUI.open;
+    const ctrlAnd = (key: string) =>
+      e.key === key && e.ctrlKey && (handled = true);
+
+    if (ctrlAnd('y')) this.redo();
+    if (ctrlAnd('z')) this.undo();
+    if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
+    if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
+    if (ctrlAnd('o')) this.fileUI.click();
+
     if (handled) e.preventDefault();
   }
 
   menu: MenuEntry[] = [
     {
       icon: 'folder_open',
-      name: 'Open project',
+      name: 'menu.open',
       startsGroup: true,
       actionItem: true,
       action: (): void => this.fileUI.click(),
     },
-    { icon: 'create_new_folder', name: 'New project' },
-    { icon: 'snippet_folder', name: 'Import IED' },
-    { icon: 'save', name: 'Save project' },
+    { icon: 'create_new_folder', name: 'menu.new' },
+    { icon: 'snippet_folder', name: 'menu.importIED' },
+    { icon: 'save', name: 'save' },
     {
       icon: 'undo',
-      name: 'Undo',
-      hint: 'CTRL+Z',
+      name: 'undo',
       startsGroup: true,
       actionItem: true,
       action: this.undo,
@@ -168,26 +161,30 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
     },
     {
       icon: 'redo',
-      name: 'Redo',
-      hint: 'CTRL+Y',
+      name: 'redo',
       actionItem: true,
       action: this.redo,
       disabled: (): boolean => !this.canRedo,
     },
-    { icon: 'rule_folder', name: 'Validate project', startsGroup: true },
+    { icon: 'rule_folder', name: 'menu.validate', startsGroup: true },
     {
       icon: 'rule',
-      name: 'View log',
-      hint: 'CTRL+L',
+      name: 'menu.viewLog',
       actionItem: true,
       action: (): void => this.logUI.show(),
+    },
+    {
+      icon: 'settings',
+      name: 'settings.name',
+      startsGroup: true,
+      action: (): void => this.settingsUI.show(),
     },
   ];
 
   plugins = {
     editors: [
       {
-        label: 'Substation',
+        name: 'substation.name',
         id: 'substation',
         icon: zeroLineIcon,
         getContent: (): Promise<TemplateResult> =>
@@ -214,7 +211,7 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
         .disabled=${me.disabled?.() || (me.action ? false : true)}
         ?twoline=${me.hint}
         ><mwc-icon slot="graphic"> ${me.icon} </mwc-icon>
-        <span>${me.name}</span>
+        <span>${translate(me.name)}</span>
         ${me.hint
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
           : ''}
@@ -234,30 +231,37 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
     else return html``;
   }
 
-  renderEditorTab(editor: Tab): TemplateResult {
+  renderEditorTab({
+    name,
+    id,
+    icon,
+  }: {
+    name: string;
+    id: string;
+    icon: string | TemplateResult;
+  }): TemplateResult {
     return html`<mwc-tab
-      label=${editor.label}
-      icon=${editor.icon instanceof TemplateResult ? '' : editor.icon}
-      id=${editor.id}
+      label=${translate(name)}
+      icon=${icon instanceof TemplateResult ? '' : icon}
+      id=${id}
       hasimageicon
     >
-      ${editor.icon instanceof TemplateResult ? editor.icon : ''}
+      ${icon instanceof TemplateResult ? icon : ''}
     </mwc-tab>`;
   }
 
   render(): TemplateResult {
     return html`
-      <mwc-drawer hasheader type="modal" id="menu">
-        <span slot="title">${this.name ?? 'Menu'}</span>
-        <span slot="subtitle"
-          >${this.name ? this.srcName : html`<tt>CTRL+M</tt>`}</span
-        >
+      <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
+        <span slot="title">${
+          this.name ?? html`${translate('menu.name')}`
+        }</span>
+        ${this.name ? html`<span slot="subtitle">${this.srcName}</span>` : ''}
         <mwc-list
           wrapFocus
           @action=${(ae: CustomEvent<ActionDetail>) =>
             this.menu[ae.detail.index]?.action!()}
-        >
-          ${this.menu.map(this.renderMenuEntry)}
+        > ${this.menu.map(this.renderMenuEntry)}
         </mwc-list>
 
         <mwc-top-app-bar-fixed slot="appContent">
@@ -272,37 +276,32 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
           <mwc-tab-bar
             @MDCTabBar:activated=${(e: CustomEvent) =>
               (this.activeTab = e.detail.index)}
-          >
-            ${this.plugins.editors.map(this.renderEditorTab)}
+          > ${this.plugins.editors.map(this.renderEditorTab)}
           </mwc-tab-bar>
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
-      ${until(
-        this.plugins.editors[this.activeTab].getContent(),
-        html`<span>Loading...</span>`
+      ${cache(
+        until(
+          this.plugins.editors[this.activeTab].getContent(),
+          html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+        )
       )}
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
       ${super.render()}
+      ${getTheme(this.settings.theme)}
     `;
   }
 
   static styles = css`
-    * {
-      --mdc-theme-primary: #005496;
-      --mdc-theme-secondary: #d20a11;
-      --mdc-theme-background: #ffdd00;
-      --mdc-theme-on-secondary: #ffdd00;
-      --mdc-theme-on-background: #005496;
-    }
-
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
     } /* hack to fix disabled icon buttons rendering black */
 
-    mwc-snackbar * {
-      --mdc-theme-primary: #ffdd00;
+    mwc-tab {
+      background-color: var(--blue);
+      --mdc-theme-primary: var(--mdc-theme-on-primary);
     }
 
     #file-input {
@@ -313,16 +312,23 @@ export class OpenSCD extends Wizarding(Waiting(Editing(Logging(LitElement)))) {
       --mdc-dialog-max-width: 92vw;
     }
 
+    mwc-dialog > form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    mwc-dialog > form > * {
+      display: block;
+      margin-top: 16px;
+    }
+
     mwc-circular-progress-four-color {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
-      --mdc-circular-progress-bar-color-1: #005496;
-      --mdc-circular-progress-bar-color-2: #d20a11;
-      --mdc-circular-progress-bar-color-3: #005496;
-      --mdc-circular-progress-bar-color-4: #ffdd00;
+      pointer-events: none;
     }
 
     tt {

@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/Editing.js';
-import { invalidSCL, validSCL, serialize } from './data.js';
+import { invalidSCL, validSCL, serialize } from '../data.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -93,6 +93,7 @@ describe('open-scd', () => {
     );
     element.setAttribute('src', invalidBlobURL);
     await element.workDone;
+    await element.validated;
     expect(element).property('history').to.have.length(5);
     expect(element.doc.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
   });
@@ -105,6 +106,7 @@ describe('open-scd', () => {
     );
     element.setAttribute('src', validBlobURL);
     await element.workDone;
+    await element.validated;
     expect(element).property('history').to.have.length(3);
   });
 });
