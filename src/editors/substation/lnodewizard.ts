@@ -281,16 +281,27 @@ function renderIEDPage(element: Element): TemplateResult {
       @selected="${(evt: MultiSelectedEvent) => onIEDSelect(evt, element)}"
       >${Array.from(doc.querySelectorAll(':root > IED'))
         .map(ied => ied.getAttribute('name'))
-        .map(
-          iedName =>
-            html`<mwc-check-list-item
-              .value=${iedName ?? ''}
-              ?selected="${element.querySelector(
+        .map(iedName => {
+          return {
+            selected:
+              element.querySelector(
                 `${
                   selectors[<SubstationTag>element.tagName]
                 } > LNode[iedName="${iedName}"]`
-              )}"
-              >${iedName}</mwc-check-list-item
+              ) !== null,
+            name: iedName,
+          };
+        })
+        .sort((a, b) => {
+          if (a.selected !== b.selected) return a.selected ? -1 : 1;
+          return 0;
+        })
+        .map(
+          item =>
+            html`<mwc-check-list-item
+              .value=${item.name ?? ''}
+              ?selected="${item.selected}"
+              >${item.name}</mwc-check-list-item
             >`
         )}</mwc-list
     >`;
