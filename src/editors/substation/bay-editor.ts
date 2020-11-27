@@ -63,7 +63,7 @@ export class BayEditor extends LitElement {
     );
   }
 
-  openLNodeAddWizard(): void {
+  openAddLNodeWizard(): void {
     this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
@@ -75,7 +75,7 @@ export class BayEditor extends LitElement {
     this.dispatchEvent(event);
   }
 
-  removeAction(): void {
+  remove(): void {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
@@ -98,7 +98,7 @@ export class BayEditor extends LitElement {
       <nav>
         <mwc-icon-button
           icon="account_tree"
-          @click="${() => this.openLNodeAddWizard()}"
+          @click="${() => this.openAddLNodeWizard()}"
         ></mwc-icon-button>
         <mwc-icon-button
           icon="edit"
@@ -110,7 +110,7 @@ export class BayEditor extends LitElement {
         ></mwc-icon-button>
         <mwc-icon-button
           icon="delete"
-          @click=${() => this.removeAction()}
+          @click=${() => this.remove()}
         ></mwc-icon-button>
       </nav>
     </h3>`;
@@ -166,53 +166,51 @@ export class BayEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.value;
+      const name = getValue(inputs.find(i => i.label === 'name')!)!;
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-      let bayAction: EditorAction | null;
 
       if (
         name === element.getAttribute('name') &&
         desc === element.getAttribute('desc')
-      ) {
-        bayAction = null;
-      } else {
-        const newElement = <Element>element.cloneNode(false);
-        newElement.setAttribute('name', name);
-        if (desc === null) newElement.removeAttribute('desc');
-        else newElement.setAttribute('desc', desc);
-        bayAction = { old: { element }, new: { element: newElement } };
-      }
+      )
+        return [];
 
-      if (bayAction) wizard.close();
-      const actions: EditorAction[] = [];
-      if (bayAction) actions.push(bayAction);
-      return actions;
+      const newElement = <Element>element.cloneNode(false);
+      newElement.setAttribute('name', name);
+      if (desc === null) newElement.removeAttribute('desc');
+      else newElement.setAttribute('desc', desc);
+      wizard.close();
+
+      return [{ old: { element }, new: { element: newElement } }];
     };
   }
 
   static wizard(options: BayWizardOptions): Wizard {
-    const [heading, actionName, actionIcon, action] = isBayCreateOptions(
-      options
-    )
+    const [
+      heading,
+      actionName,
+      actionIcon,
+      action,
+      name,
+      desc,
+    ] = isBayCreateOptions(options)
       ? [
           get('bay.wizard.title.add'),
           get('add'),
           'add',
           BayEditor.createAction(options.parent),
+          '',
+          null,
         ]
       : [
           get('bay.wizard.title.edit'),
           get('save'),
           'edit',
           BayEditor.updateAction(options.element),
-        ];
-    const [name, desc] = isBayCreateOptions(options)
-      ? ['', null]
-      : [
           options.element.getAttribute('name'),
           options.element.getAttribute('desc'),
         ];
+
     return [
       {
         title: heading,
