@@ -16,11 +16,10 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-textfield';
 import '@material/mwc-icon';
 import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { TextField } from '@material/mwc-textfield';
 import { selectors, SubstationTag } from './foundation.js';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 /** Data needed to uniquely identify an `LDevice` */
 interface LDValue {
@@ -163,7 +162,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
 
   const doc = element.ownerDocument;
 
-  const selectedIEDItems = <ListItemBase[]>evt.target.selected;
+  const selectedIEDItems = <ListItem[]>evt.target.selected;
   const selectedIEDs = selectedIEDItems.map(
     item => doc.querySelector(`:root > IED[name="${item.value}"]`)!
   );
