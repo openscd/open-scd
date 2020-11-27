@@ -1,7 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import { isCreate, WizardInput, isDelete } from '../../../src/foundation.js';
 import {
-  lNodeActions,
+  lNodeWizardAction,
   editlNode,
 } from '../../../src/editors/substation/lnodewizard.js';
 
@@ -212,22 +212,22 @@ describe('lnodewizard', () => {
       });
 
       it('returns a WizardAction which returns 3 EditorActions', () => {
-        const wizardAction = lNodeActions(root.querySelector('Bay')!);
+        const wizardAction = lNodeWizardAction(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard()).length).to.equal(3);
       });
 
       it('retruns a WizardAction with the first EditorAction being an isDelete', () => {
-        const wizardAction = lNodeActions(root.querySelector('Bay')!);
+        const wizardAction = lNodeWizardAction(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isDelete);
       });
 
       it('retruns a WizardAction with the second EditorAction being an isDelete', () => {
-        const wizardAction = lNodeActions(root.querySelector('Bay')!);
+        const wizardAction = lNodeWizardAction(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
       });
 
       it('retruns a WizardAction with the third EditorAction being an isCreate', () => {
-        const wizardAction = lNodeActions(root.querySelector('Bay')!);
+        const wizardAction = lNodeWizardAction(root.querySelector('Bay')!);
         expect(wizardAction(inputs, newWizard())[2]).to.satisfy(isCreate);
       });
     });
