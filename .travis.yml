@@ -13,4 +13,4 @@ deploy:
   target_branch: master
   local_dir: build
   on:
-    branch: 13-add-bay-editor
+    branch: 12-add-voltage-level-editor
