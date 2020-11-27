@@ -226,6 +226,17 @@ export function newPendingStateEvent(
   });
 }
 
+/** @returns a reference to `element` with segments delimited by '/'. */
+export function referencePath(element: Element): string {
+  let path = '';
+  let nextParent: Element | null = element.parentElement;
+  while (nextParent?.getAttribute('name')) {
+    path = '/' + nextParent.getAttribute('name') + path;
+    nextParent = nextParent.parentElement;
+  }
+  return path;
+}
+
 /** A directive rendering its argument `rendered` only if `rendered !== {}`. */
 export const ifImplemented = directive(rendered => (part: Part) => {
   if (Object.keys(rendered).length) part.setValue(rendered);

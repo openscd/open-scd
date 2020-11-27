@@ -8,6 +8,7 @@ import {
   WizardAction,
   WizardInput,
   crossProduct,
+  referencePath,
 } from '../../foundation.js';
 
 import '@material/mwc-list/mwc-check-list-item';
@@ -21,32 +22,43 @@ import { TextField } from '@material/mwc-textfield';
 import { selectors, SubstationTag } from './foundation.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
+/** Data needed to uniquely identify an `LDevice` */
 interface LDValue {
   iedName: string;
   ldInst: string;
 }
 
+/** Data needed to uniquely identify an `LN` or `LN0` */
 interface LNValue extends LDValue {
   prefix: string | null;
   lnClass: string;
   inst: string | null;
 }
 
-const APldInst = 'Client LN';
-
-type itemDescription = {
+/** Description of a `ListItem` representing an `IED`, `LDevice`, or `LN[0]` */
+interface itemDescription {
   value: LNValue | LDValue | string;
   selected: boolean;
   disabled?: boolean;
-};
+}
 
+/** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
 function compareDescription(a: itemDescription, b: itemDescription): number {
   if (a.selected !== b.selected) return a.selected ? -1 : 1;
   if (a.disabled !== b.disabled) return b.disabled ? -1 : 1;
   return 0;
 }
 
-function valueToSelector(value: LNValue, parentTag?: SubstationTag): string {
+const APldInst = 'Client LN';
+
+/** Queries `parent` for an `LNode` described by `value`. */
+export function getLNode(
+  parent: Element | XMLDocument,
+  value: LNValue
+): Element | null {
+  const parentTag =
+    parent instanceof Element ? <SubstationTag>parent.tagName : undefined;
+
   const base = `LNode[iedName="${value.iedName}"][ldInst="${value.ldInst}"][lnClass="${value.lnClass}"]`;
   const ancestries = parentTag
     ? [selectors[parentTag]]
@@ -62,28 +74,11 @@ function valueToSelector(value: LNValue, parentTag?: SubstationTag): string {
   const lnInst = value.inst
     ? [`[lnInst="${value.inst}"]`]
     : [':not([lnInst])', '[lnInst=""]'];
-  return crossProduct(ancestries, [' > '], [base], prefix, lnInst)
+  const selector = crossProduct(ancestries, [' > '], [base], prefix, lnInst)
     .map(a => a.join(''))
     .join(',');
-}
 
-export function getLNode(
-  parent: Element | XMLDocument,
-  value: LNValue
-): Element | null {
-  const parentTag =
-    parent instanceof Element ? <SubstationTag>parent.tagName : undefined;
-  return parent.querySelector(valueToSelector(value, parentTag));
-}
-
-function connectedEquipmentPath(lNode: Element): string {
-  let path = '';
-  let nextParent: Element | null | undefined = lNode?.parentElement;
-  while (nextParent?.getAttribute('name')) {
-    path = '/' + nextParent.getAttribute('name') + path;
-    nextParent = nextParent.parentElement;
-  }
-  return path;
+  return parent.querySelector(selector);
 }
 
 function createAction(parent: Element, value: LNValue): EditorAction {
@@ -102,9 +97,7 @@ function createAction(parent: Element, value: LNValue): EditorAction {
 }
 
 function deleteAction(parent: Element, value: LNValue): EditorAction {
-  const element = parent.querySelector(
-    valueToSelector(value, <SubstationTag>parent.tagName)
-  )!;
+  const element = getLNode(parent, value)!;
   return {
     old: {
       parent: parent,
@@ -114,6 +107,10 @@ function deleteAction(parent: Element, value: LNValue): EditorAction {
   };
 }
 
+/**
+ * @returns a `WizardAction` updating `parent`'s `LNodes`
+ * to the entries selected in `wizard`'s `#lnList`.
+ */
 export function lNodeWizardAction(parent: Element): WizardAction {
   return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
     const newLNodes = (<List>wizard.shadowRoot!.querySelector('#lnList')).items
@@ -151,7 +148,7 @@ export function lNodeWizardAction(parent: Element): WizardAction {
   };
 }
 
-function getContainer(target: Element, id: string): Element | null {
+function getListContainer(target: Element, id: string): Element | null {
   return (
     target.parentElement?.parentElement?.nextElementSibling?.querySelector(
       id
@@ -161,7 +158,7 @@ function getContainer(target: Element, id: string): Element | null {
 
 function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
   if (!(evt.target instanceof List)) return;
-  const ldList = getContainer(evt.target, '#ldList');
+  const ldList = getListContainer(evt.target, '#ldList');
   if (ldList === null) return;
 
   const doc = element.ownerDocument;
@@ -223,7 +220,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
 
 function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
   if (!(evt.target instanceof List)) return;
-  const lnList = getContainer(evt.target, '#lnList');
+  const lnList = getListContainer(evt.target, '#lnList');
   if (lnList === null) return;
 
   const doc = element.ownerDocument;
@@ -279,7 +276,7 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
           ? html` <mwc-icon style="--mdc-icon-size: 1em;"
                 >account_tree</mwc-icon
               >
-              ${connectedEquipmentPath(item.lNode!)}`
+              ${referencePath(item.lNode!)}`
           : ''}</span
       ><span slot="secondary"
         >${item.value.iedName} | ${item.value.ldInst}</span
@@ -360,6 +357,7 @@ function renderLnPage(): TemplateResult {
     <mwc-list multi id="lnList"></mwc-list>`;
 }
 
+/** @returns a Wizard for editing `element`'s `LNode`s. */
 export function editlNode(element: Element): Wizard {
   return [
     {
