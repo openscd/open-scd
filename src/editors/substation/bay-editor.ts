@@ -1,12 +1,14 @@
 import {
-  customElement,
   LitElement,
   TemplateResult,
+  css,
+  customElement,
   html,
   property,
-  css,
   query,
 } from 'lit-element';
+import { get, translate } from 'lit-translate';
+
 import {
   Wizard,
   WizardAction,
@@ -15,9 +17,14 @@ import {
   EditorAction,
   newWizardEvent,
   newActionEvent,
+  getValue,
 } from '../../foundation.js';
-import { get, translate } from 'lit-translate';
-import { bayIcon } from '../../icons.js';
+
+import { startMove, styles } from './foundation.js';
+import './conducting-equipment-editor.js';
+import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
+import { editlNode } from './lnodewizard.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
 
 interface BayUpdateOptions {
   element: Element;
@@ -32,25 +39,23 @@ function isBayCreateOptions(
   return (<BayCreateOptions>options).parent !== undefined;
 }
 
+/** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
 export class BayEditor extends LitElement {
-  @property({ type: Element })
+  @property()
   element!: Element;
-
-  @property({ type: Element })
-  parent!: Element;
 
   @property({ type: String })
   get name(): string {
     return this.element.getAttribute('name') ?? '';
   }
-
   @property({ type: String })
-  get desc(): string {
-    return this.element.getAttribute('desc') ?? '';
+  get desc(): string | null {
+    return this.element.getAttribute('desc') ?? null;
   }
 
-  @query('h1') header!: Element;
+  @query('h3') header!: Element;
+  @query('section') container!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -58,33 +63,75 @@ export class BayEditor extends LitElement {
     );
   }
 
+  openLNodeAddWizard(): void {
+    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+  }
+
+  openConductingEquipmentWizard(): void {
+    if (!this.element) return;
+    const event = newWizardEvent(
+      ConductingEquipmentEditor.wizard({ parent: this.element })
+    );
+    this.dispatchEvent(event);
+  }
+
   removeAction(): void {
     if (this.element)
       this.dispatchEvent(
         newActionEvent({
-          old: { parent: this.parent, element: this.element, reference: null },
+          old: {
+            parent: this.element.parentElement!,
+            element: this.element,
+            reference: this.element.nextElementSibling,
+          },
         })
       );
   }
 
   renderHeader(): TemplateResult {
-    return html`<h1>
-      ${bayIcon} &vert;
-      <mwc-icon-button icon="playlist_add"></mwc-icon-button>
-      <mwc-icon-button
-        icon="delete"
-        @click=${() => this.removeAction()}
-      ></mwc-icon-button>
-      <mwc-icon-button
-        icon="edit"
-        @click=${() => this.openEditWizard()}
-      ></mwc-icon-button>
+    return html`<h3>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-    </h1> `;
+      <mwc-icon-button
+        icon="playlist_add"
+        @click=${() => this.openConductingEquipmentWizard()}
+      ></mwc-icon-button>
+      <nav>
+        <mwc-icon-button
+          icon="account_tree"
+          @click="${() => this.openLNodeAddWizard()}"
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="forward"
+          @click=${() => startMove(this, BayEditor, VoltageLevelEditor)}
+        ></mwc-icon-button>
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.removeAction()}
+        ></mwc-icon-button>
+      </nav>
+    </h3>`;
   }
 
   render(): TemplateResult {
-    return html`${this.renderHeader()}`;
+    return html`<section tabindex="0">
+      ${this.renderHeader()}
+      <div id="ceContainer">
+        ${Array.from(
+          this.element?.querySelectorAll(
+            ':root > Substation > VoltageLevel > Bay > ConductingEquipment'
+          ) ?? []
+        ).map(
+          voltageLevel =>
+            html`<conducting-equipment-editor
+              .element=${voltageLevel}
+            ></conducting-equipment-editor>`
+        )}
+      </div>
+    </section> `;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -92,8 +139,8 @@ export class BayEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.maybeValue;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
+      const name = getValue(inputs.find(i => i.label === 'name')!);
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
       const action = {
         new: {
@@ -120,10 +167,9 @@ export class BayEditor extends LitElement {
       wizard: CloseableElement
     ): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
-      const desc = inputs.find(i => i.label === 'desc')!.maybeValue;
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
       let bayAction: EditorAction | null;
-      console.warn(element.attributes);
 
       if (
         name === element.getAttribute('name') &&
@@ -198,29 +244,18 @@ export class BayEditor extends LitElement {
   }
 
   static styles = css`
-    h1 {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      background: var(--mdc-theme-primary);
-      color: var(--mdc-theme-surface);
-      margin-top: 5px;
-      margin-left: 10px;
-      min-width: 200px;
-      padding-left: 0.15em;
-      padding-top: 0.3em;
+    ${styles}
+
+    section {
+      margin: 0px;
     }
 
-    h1 > mwc-icon-button {
-      position: relative;
-      top: -5px;
-    }
-
-    h1 > svg {
-      width: 25px;
-      height: 25px;
-      position: relative;
-      top: 3px;
-      left: 3px;
+    #ceContainer {
+      display: grid;
+      grid-gap: 12px;
+      padding: 12px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
     }
   `;
 }

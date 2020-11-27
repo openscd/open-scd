@@ -2,12 +2,13 @@ import { html, TemplateResult } from 'lit-element';
 import { Settings } from './Setting.js';
 
 export function getTheme(theme: Settings['theme']): TemplateResult {
+  document.body.style.cssText = bodyStyles[theme];
   return html`
     ${themes[theme]}
     <style>
       * {
-        --mdc-theme-primary: var(--violet);
-        --mdc-theme-secondary: var(--orange);
+        --mdc-theme-primary: var(--blue);
+        --mdc-theme-secondary: var(--cyan);
         --mdc-theme-background: var(--base3);
         --mdc-theme-surface: var(--base3);
         --mdc-theme-on-primary: var(--base2);
@@ -37,6 +38,11 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
     </style>
   `;
 }
+
+const bodyStyles: Record<Settings['theme'], string> = {
+  dark: 'background: #073642',
+  light: 'background: #eee8d5',
+};
 
 const themes: Record<Settings['theme'], TemplateResult> = {
   light: html`

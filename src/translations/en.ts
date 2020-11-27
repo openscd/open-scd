@@ -17,8 +17,6 @@ export const en = {
   openSCD: {
     loading: 'Loading project {{ name }}',
     loaded: '{{ name }} loaded',
-    validated: '{{ name }} validation succesful',
-    invalidated: '{{ name }} validation failed',
     readError: '{{ name }} read error',
     readAbort: '{{ name }} read aborted',
   },
@@ -27,11 +25,25 @@ export const en = {
     deleted: '{{ name }} removed',
     moved: '{{ name }} moved',
     updated: '{{ name }} edited',
+    error: {
+      create: 'Could not add {{ name }}',
+      update: 'Could not edit {{ name }}',
+      move: 'Could not move {{ name }}',
+      nameClash:
+        'Parent {{ parent }} already contains a {{ child }} named "{{ name }}"',
+    },
+  },
+  validating: {
+    valid: '{{ name }} validation succesful',
+    invalid: '{{ name }} validation failed',
+    fatal: 'Fatal validation error',
+    loadError: 'Could not load schema {{ name }}',
   },
   textfield: {
     required: 'Required',
     nonempty: 'Must not be empty',
     noMultiplier: 'none',
+    unique: 'Must be unique',
   },
   log: {
     name: 'Log',
@@ -79,6 +91,27 @@ export const en = {
       },
     },
   },
+  conductingequipment: {
+    wizard: {
+      nameHelper: 'Conducting Equipment Name',
+      descHelper: 'Conducting Equipment Description',
+      typeHelper: 'Conducting Equipment Type',
+      title: {
+        add: 'Add Conducting Equipment',
+        edit: 'Edit Conducting Equipment',
+      },
+    },
+    unknownType: 'Unknown type',
+  },
+  lnode: {
+    wizard: {
+      title: {
+        selectIEDs: 'Select IEDs',
+        selectLDs: 'Select Logical Devices',
+        selectLNs: 'Select Logical Nodes',
+      },
+    },
+  },
   add: 'Add',
   edit: 'Edit',
   save: 'Save',
@@ -87,4 +120,6 @@ export const en = {
   close: 'Close',
   undo: 'Undo',
   redo: 'Redo',
+  remove: 'Remove',
+  filter: 'filter',
 };

@@ -19,10 +19,13 @@ export type Settings = {
 };
 export const defaults: Settings = { language: 'en', theme: 'light' };
 
+/** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
+ * `settings` property, setting them through `setSetting(setting, value)`. */
 export type SettingElement = Mixin<typeof Setting>;
 
 export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
   class SettingElement extends Base {
+    /** Current [[`Settings`]] in `localStorage`, default to [[`defaults`]]. */
     @property()
     get settings(): Settings {
       return {
@@ -30,6 +33,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         theme: this.getSetting('theme'),
       };
     }
+
     @query('#settings')
     settingsUI!: Dialog;
     @query('#language')
@@ -42,12 +46,13 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         <Settings[T] | null>localStorage.getItem(setting) ?? defaults[setting]
       );
     }
+    /** Update the `value` of `setting`, storing to `localStorage`. */
     setSetting<T extends keyof Settings>(setting: T, value: Settings[T]): void {
       localStorage.setItem(setting, <string>(<unknown>value));
       this.requestUpdate();
     }
 
-    onClosing(ae: CustomEvent<{ action: string } | null>): void {
+    private onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
         localStorage.clear();
         this.requestUpdate('settings');

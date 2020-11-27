@@ -105,7 +105,7 @@ describe('wizard-dialog', () => {
       beforeEach(async () => {
         element.dialogs[1].querySelector<WizardInput>(
           'wizard-textfield'
-        )!.maybeValue = 'Peter';
+        )!.value = 'Peter';
         await element.updateComplete;
       });
 

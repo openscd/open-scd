@@ -12,7 +12,10 @@
 ## testing
 /coverage/
 
+## docs
+/doc/
+
 # build
 /_site/
-/dist/
+/build/
 /out-tsc/

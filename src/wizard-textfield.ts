@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { translate } from 'lit-translate';
+import { translate, get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-menu';
@@ -18,10 +18,16 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
+/** A potentially `nullable` `TextField` that allows for selection of an SI
+ * `multiplier` if an SI `unit` is given.
+ *
+ * NB: Use `maybeValue: string | null` instead of `value` if `nullable`!*/
 @customElement('wizard-textfield')
 export class WizardTextField extends TextField {
+  /** Whether [[`maybeValue`]] may be `null` */
   @property({ type: Boolean })
   nullable = false;
+  /** Selectable SI multipliers for a non-empty [[`unit`]]. */
   @property({ type: Array })
   multipliers = [null, ''];
   private multiplierIndex = 0;
@@ -37,6 +43,8 @@ export class WizardTextField extends TextField {
     if (index >= 0) this.multiplierIndex = index;
     this.suffix = (this.multiplier ?? '') + this.unit;
   }
+  /** SI Unit, must be non-empty to allow for selecting a [[`multiplier`]].
+   * Overrides `suffix`. */
   @property({ type: String })
   unit = '';
   private isNull = false;
@@ -50,6 +58,7 @@ export class WizardTextField extends TextField {
     if (this.null) this.disable();
     else this.enable();
   }
+  /** Replacement for `value`, can only be `null` if [[`nullable`]]. */
   @property({ type: String })
   get maybeValue(): string | null {
     return this.null ? null : this.value;
@@ -61,8 +70,12 @@ export class WizardTextField extends TextField {
       this.value = value;
     }
   }
+  /** The default `value` displayed if [[`maybeValue`]] is `null`. */
   @property({ type: String })
   defaultValue = '';
+  /** Additional values that cause validation to fail. */
+  @property({ type: Array })
+  reservedValues: string[] = [];
 
   @query('mwc-switch') nullSwitch?: Switch;
   @query('mwc-menu') multiplierMenu?: Menu;
@@ -94,6 +107,17 @@ export class WizardTextField extends TextField {
     await super.firstUpdated();
     if (this.multiplierMenu)
       this.multiplierMenu.anchor = this.multiplierButton ?? null;
+  }
+
+  checkValidity(): boolean {
+    if (
+      this.reservedValues &&
+      this.reservedValues.some(array => array === this.value)
+    ) {
+      this.setCustomValidity(get('textfield.unique'));
+      return false;
+    }
+    return super.checkValidity();
   }
 
   renderUnitSelector(): TemplateResult {

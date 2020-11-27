@@ -36,16 +36,32 @@ const colors = {
   action: undefined,
 };
 
+/**
+ * A mixin adding a `history` property to any `LitElement`, in which
+ * incoming [[`LogEvent`]]s are logged.
+ *
+ * For [[`EditorAction`]] entries, also sets `currentAction` to the index of
+ * the committed action, allowing the user to go to `previousAction` with
+ * `undo()` if `canUndo` and to go to `nextAction` with `redo()` if `canRedo`.
+ *
+ * Also provides a `reset()` method resetting the history and `currentAction`.
+ *
+ * Renders the `history` to `logUI` and the latest `'error'` [[`LogEntry`]] to
+ * `messageUI`.
+ */
 export type LoggingElement = Mixin<typeof Logging>;
 
 export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
   class LoggingElement extends Base {
+    /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
     @property()
     history: LogEntry[] = [];
+    /** Index of the last [[`EditorAction`]] applied. */
+    @property({ type: Number })
+    currentAction = -1;
+
     @query('#log') logUI!: Dialog;
     @query('#message') messageUI!: Snackbar;
-
-    currentAction = -1;
 
     get canUndo(): boolean {
       return this.currentAction >= 0;
@@ -53,6 +69,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     get canRedo(): boolean {
       return this.nextAction >= 0;
     }
+
     get previousAction(): number {
       if (!this.canUndo) return -1;
       return this.history
@@ -78,7 +95,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       this.currentAction = this.previousAction;
       return true;
     }
-
     redo(): boolean {
       if (!this.canRedo) return false;
       this.dispatchEvent(
@@ -88,24 +104,36 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
+    /** Resets the history to an empty state. */
     reset(): void {
       this.history = [];
       this.currentAction = -1;
     }
 
-    onLog(le: LogEvent): void {
+    private onLog(le: LogEvent): void {
       const entry: LogEntry = {
         time: new Date(),
         ...le.detail,
       };
+
       if (entry.kind == 'action') {
         if (entry.action.derived) return;
         entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
         this.currentAction = this.history.length;
       }
+
       this.history.push(entry);
-      if (le.detail.kind == 'error') this.messageUI.show();
+      if (le.detail.kind == 'error' && !this.logUI.open) {
+        this.messageUI.close(); // hack to reset timeout
+        this.messageUI.show();
+      }
+      this.requestUpdate('history', []);
+    }
+
+    async performUpdate() {
+      await new Promise(resolve => requestAnimationFrame(() => resolve()));
+      super.performUpdate();
     }
 
     constructor(...args: any[]) {
@@ -176,7 +204,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
         <mwc-snackbar
           id="message"
-          timeoutMs="-1"
+          timeoutMs="10000"
           labelText="${this.history
             .slice()
             .reverse()

@@ -19,8 +19,6 @@ export const de: Translations = {
   openSCD: {
     loading: 'Lade Project {{ name }}',
     loaded: '{{ name }} geladen',
-    validated: '{{ name }} erfolgreich validiert',
-    invalidated: '{{ name }} Validierung fehlgeschlagen',
     readError: '{{ name }} Lesefehler',
     readAbort: '{{ name }} Leseabbruch',
   },
@@ -29,11 +27,25 @@ export const de: Translations = {
     deleted: '{{ name }} entfernt',
     moved: '{{ name }} verschoben',
     updated: '{{ name }} bearbeitet',
+    error: {
+      create: 'Konnte {{ name }} nicht hinzufügen',
+      update: 'Konnte {{ name }} nicht bearbeiten',
+      move: 'Konnte {{ name }} nicht verschieben',
+      nameClash:
+        '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
+    },
+  },
+  validating: {
+    valid: '{{ name }} erfolgreich validiert',
+    invalid: '{{ name }} Validierung fehlgeschlagen',
+    fatal: 'Fataler Validierungsfehler',
+    loadError: 'Konnte Schema {{ name }} nicht laden',
   },
   textfield: {
     required: 'Pflichtfeld',
     nonempty: 'Darf nicht leer sein',
     noMultiplier: 'keiner',
+    unique: 'Darf sich nicht wiederholen',
   },
   log: {
     name: 'Protokoll',
@@ -82,6 +94,27 @@ export const de: Translations = {
       },
     },
   },
+  conductingequipment: {
+    wizard: {
+      nameHelper: 'Name des Primärelements',
+      descHelper: 'Beschreibung des Primärelements',
+      typeHelper: 'Type des Primärelements',
+      title: {
+        add: 'Primärelement hinzufügen',
+        edit: 'Primärelement bearbeiten',
+      },
+    },
+    unknownType: 'Unbekannter Typ',
+  },
+  lnode: {
+    wizard: {
+      title: {
+        selectIEDs: 'Auswahl IEDs',
+        selectLDs: 'Auswahl logische Geräte',
+        selectLNs: 'Auswahl logische Knoten',
+      },
+    },
+  },
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
   save: 'Speichern',
@@ -90,4 +123,6 @@ export const de: Translations = {
   close: 'Schließen',
   undo: 'Rückgängig',
   redo: 'Wiederholen',
+  remove: 'Entfernen',
+  filter: 'Filter',
 };
