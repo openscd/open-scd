@@ -53,6 +53,69 @@ export default class SubstationEditor extends LitElement {
   /** Subeditor container HTMLElement, a common property of Substation subeditors. */
   @query('main') container!: Element;
 
+  /** Opens a [[`WizardDialog`]] for editing [[`element`]] if it exists, or for
+   * creating a new `Substation` otherwise. */
+  openSubstationWizard(): void {
+    const [heading, actionName, actionIcon] = this.element
+      ? [get('substation.wizard.title.edit'), get('edit'), 'edit']
+      : [get('substation.wizard.title.add'), get('add'), 'add'];
+    const event = newWizardEvent([
+      {
+        title: heading,
+        primary: {
+          icon: actionIcon,
+          action: this.substationWizardAction,
+          label: actionName,
+        },
+        content: [
+          html`<wizard-textfield
+            .maybeValue=${this.name}
+            helper="${translate('substation.wizard.nameHelper')}"
+            label="name"
+            required
+            dialogInitialFocus
+          ></wizard-textfield>`,
+          html`<wizard-textfield
+            .maybeValue=${this.desc}
+            helper="${translate('substation.wizard.descHelper')}"
+            label="desc"
+            nullable
+          ></wizard-textfield>`,
+        ],
+      },
+    ]);
+    this.dispatchEvent(event);
+  }
+
+  /** Opens a [[`WizardDialog`]] for adding a new `VoltageLevel`. */
+  openVoltageLevelWizard(): void {
+    if (!this.element) return;
+    const event = newWizardEvent(
+      VoltageLevelEditor.wizard({ parent: this.element })
+    );
+    this.dispatchEvent(event);
+  }
+
+  /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
+  openLNodeWizard(): void {
+    if (this.element)
+      this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+  }
+
+  /** Deletes [[`element`]]. */
+  remove(): void {
+    if (this.element)
+      this.dispatchEvent(
+        newActionEvent({
+          old: {
+            parent: this.doc.documentElement,
+            element: this.element,
+            reference: this.element.nextElementSibling,
+          },
+        })
+      );
+  }
+
   newUpdateAction(name: string, desc: string | null): EditorAction {
     if (!this.element) throw new Error('Cannot edit a missing Substation');
     const newElement = <Element>this.element.cloneNode(false);
@@ -81,7 +144,7 @@ export default class SubstationEditor extends LitElement {
     };
   }
 
-  substationEditAction(
+  substationWizardAction(
     inputs: WizardInput[],
     dialog: CloseableElement
   ): EditorAction[] {
@@ -95,70 +158,10 @@ export default class SubstationEditor extends LitElement {
     return [action];
   }
 
-  openVoltageLevelWizard(): void {
-    if (!this.element) return;
-    const event = newWizardEvent(
-      VoltageLevelEditor.wizard({ parent: this.element })
-    );
-    this.dispatchEvent(event);
-  }
-
-  /** Opens a [[`WizardDialog`]] for editing [[`element`]] if it exists, or for
-   * creating a new `Substation` otherwise. */
-  openSubstationWizard(): void {
-    const [heading, actionName, actionIcon] = this.element
-      ? [get('substation.wizard.title.edit'), get('edit'), 'edit']
-      : [get('substation.wizard.title.add'), get('add'), 'add'];
-    const event = newWizardEvent([
-      {
-        title: heading,
-        primary: {
-          icon: actionIcon,
-          action: this.substationEditAction,
-          label: actionName,
-        },
-        content: [
-          html`<wizard-textfield
-            .maybeValue=${this.name}
-            helper="${translate('substation.wizard.nameHelper')}"
-            label="name"
-            required
-            dialogInitialFocus
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            .maybeValue=${this.desc}
-            helper="${translate('substation.wizard.descHelper')}"
-            label="desc"
-            nullable
-          ></wizard-textfield>`,
-        ],
-      },
-    ]);
-    this.dispatchEvent(event);
-  }
-
-  openLNodeWizard(): void {
-    if (this.element)
-      this.dispatchEvent(newWizardEvent(editlNode(this.element)));
-  }
-
-  removeSubstation(): void {
-    if (this.element)
-      this.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: this.doc.documentElement,
-            element: this.element,
-            reference: null,
-          },
-        })
-      );
-  }
-
   constructor() {
     super();
 
-    this.substationEditAction = this.substationEditAction.bind(this);
+    this.substationWizardAction = this.substationWizardAction.bind(this);
   }
 
   renderHeader(): TemplateResult {
@@ -190,7 +193,7 @@ export default class SubstationEditor extends LitElement {
           ></mwc-icon-button>
           <mwc-icon-button
             icon="delete"
-            @click=${() => this.removeSubstation()}
+            @click=${() => this.remove()}
           ></mwc-icon-button>
         </nav>
       </h1>
@@ -221,7 +224,7 @@ export default class SubstationEditor extends LitElement {
     }
 
     :host {
-      width: calc(100vw);
+      width: 100vw;
     }
   `;
 }
