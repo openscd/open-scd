@@ -1,10 +1,10 @@
 import fc from 'fast-check';
-import { hasLNode } from '../../../src/editors/substation/lnodewizard.js';
+import { getLNode } from '../../../src/editors/substation/lnodewizard.js';
 import { restrictions, regexString } from '../../foundation.js';
 import { expect } from '@open-wc/testing';
 
 describe('lnodewizard', () => {
-  describe('defines a hasLNode function that', () => {
+  describe('defines a getLNode function that', () => {
     // value is the representation of the logical node in a IED. Therefore iedName, ldInst, lnClass and inst
     // musst be non empty normalizedString
     // FIXIT: for specification purpose value need to be refactored as connection to
@@ -30,7 +30,7 @@ describe('lnodewizard', () => {
           regexString(restrictions.tLNInst, 0, 12),
           (iedName, ldInst, prefix, lnClass, lnInst) => {
             expect(
-              hasLNode(root.querySelector('Bay')!, {
+              getLNode(root.querySelector('Bay')!, {
                 iedName: iedName,
                 ldInst: ldInst,
                 prefix: prefix,
@@ -60,14 +60,14 @@ describe('lnodewizard', () => {
             ).documentElement;
             root.querySelector('Bay')!.appendChild(element);
             expect(
-              hasLNode(root.querySelector('Bay')!, {
+              getLNode(root.querySelector('Bay')!, {
                 iedName: iedName,
                 ldInst: ldInst,
                 prefix: prefix,
                 lnClass: lnClass,
                 inst: lnInst,
               })
-            ).to.be.true;
+            ).to.not.be.null;
           }
         )
       );
@@ -84,14 +84,14 @@ describe('lnodewizard', () => {
             ).documentElement;
             root.querySelector('Bay')!.appendChild(element);
             expect(
-              hasLNode(root.querySelector('Bay')!, {
+              getLNode(root.querySelector('Bay')!, {
                 iedName: 'iedName',
                 ldInst: 'ldInst',
                 prefix: prefix,
                 lnClass: 'CSWI',
                 inst: '2',
               })
-            ).to.be.false;
+            ).to.be.null;
           }
         )
       );
@@ -104,24 +104,24 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
           lnClass: 'CSWI',
           inst: '2',
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
           lnClass: 'CSWI',
           inst: '2',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
 
     it('correctly connects LNode with empty prefix to LN/LN0 with empty or missing prefix', () => {
@@ -131,24 +131,24 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
           lnClass: 'CSWI',
           inst: '2',
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
           lnClass: 'CSWI',
           inst: '2',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
 
     it('does not give false positive with missing or empty inst in LN0', () => {
@@ -162,14 +162,14 @@ describe('lnodewizard', () => {
             ).documentElement;
             root.querySelector('Bay')!.appendChild(element);
             expect(
-              hasLNode(root.querySelector('Bay')!, {
+              getLNode(root.querySelector('Bay')!, {
                 iedName: 'iedName',
                 ldInst: 'ldInst',
                 prefix: 'prefix',
                 lnClass: 'CSWI',
                 inst: lnInst,
               })
-            ).to.be.false;
+            ).to.be.null;
           }
         )
       );
@@ -182,24 +182,24 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
           lnClass: 'LLN0',
           inst: null,
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
           lnClass: 'LLN0',
           inst: '',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
 
     it('correctly connects LNode with empty lnInst to LN/LN0 with empty or missing inst', () => {
@@ -209,24 +209,24 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
           lnClass: 'LLN0',
           inst: null,
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: 'prefix',
           lnClass: 'LLN0',
           inst: '',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
 
     it('correctly connects LNode with empty lnInst and missing prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
@@ -236,24 +236,24 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
           lnClass: 'LLN0',
           inst: null,
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
           lnClass: 'LLN0',
           inst: '',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
 
     it('correctly connects LNode with missing lnInst and empty prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
@@ -263,24 +263,24 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
           lnClass: 'LLN0',
           inst: null,
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
           lnClass: 'LLN0',
           inst: '',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
 
     it('correctly connects LNode with empty lnInst and empty prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
@@ -290,24 +290,24 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
           lnClass: 'LLN0',
           inst: null,
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
           lnClass: 'LLN0',
           inst: '',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
 
     it('correctly connects LNode with missing lnInst and missing prefix to LN/LN0 with empty or missing inst and empty or missing prefix', () => {
@@ -317,34 +317,28 @@ describe('lnodewizard', () => {
       ).documentElement;
       root.querySelector('Bay')!.appendChild(element);
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: '',
           lnClass: 'LLN0',
           inst: null,
         })
-      ).to.be.true;
+      ).to.not.be.null;
 
       expect(
-        hasLNode(root.querySelector('Bay')!, {
+        getLNode(root.querySelector('Bay')!, {
           iedName: 'iedName',
           ldInst: 'ldInst',
           prefix: null,
           lnClass: 'LLN0',
           inst: '',
         })
-      ).to.be.true;
+      ).to.not.be.null;
     });
   });
 
   describe('defines a existLNode function that', () => {
-    // value is the representation of the logical node in a IED. Therefore iedName, ldInst, lnClass and inst
-    // musst be non empty normalizedString
-    // FIXIT: for specification purpose value need to be refactored as connection to
-    // LNodeType shall be possible as well. Here iedName shall be "None" and lnClass musst be a non-empty string.
-    // prefix, inst as well as ldInst can be null
-
     let root: Element;
     beforeEach(() => {
       root = new DOMParser().parseFromString(
@@ -371,14 +365,14 @@ describe('lnodewizard', () => {
             ).documentElement;
             root.querySelector('Substation')!.appendChild(element);
             expect(
-              hasLNode(root.ownerDocument, {
+              getLNode(root.ownerDocument, {
                 iedName: iedName,
                 ldInst: ldInst,
                 prefix: prefix,
                 lnClass: lnClass,
                 inst: lnInst,
               })
-            ).to.be.true;
+            ).to.not.be.null;
           }
         )
       );

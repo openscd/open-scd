@@ -59,58 +59,9 @@ describe('lnodewizard', () => {
 
     describe('on the second page', () => {
       it('add logical devices on selecting IEDs on the first page', async () => {
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelectorAll('mwc-check-list-item')[1]
-        )).click();
-        await element.updateComplete;
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(
-          validSCL.querySelectorAll('IED[name="IED1"] LDevice').length
-        );
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelectorAll('mwc-check-list-item')[1]
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(validSCL.querySelectorAll('LDevice').length);
-      });
-
-      it('delete logical devices on de-selecting IEDs on the first page', async () => {
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(validSCL.querySelectorAll('LDevice').length);
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        await element.requestUpdate();
-        expect(
-          element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item').length
         ).to.equal(
           validSCL.querySelectorAll('IED[name="IED2"] LDevice').length
@@ -118,51 +69,55 @@ describe('lnodewizard', () => {
         (<ListItemBase>(
           element.wizardUI
             .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelectorAll('mwc-check-list-item')[1]
+            .querySelector('mwc-check-list-item[value="IED1"]')
         )).click();
         await element.requestUpdate();
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
+            ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(0);
+        ).to.equal(validSCL.querySelectorAll('LDevice').length);
       });
 
-      it('select logical devices when used in this Element already', async () => {
+      it('delete logical devices on de-selecting IEDs on the first page', async () => {
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelectorAll('mwc-check-list-item')
+        ).to.not.be.empty;
         (<ListItemBase>(
           element.wizardUI
             .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
+            .querySelector('mwc-check-list-item[value="IED2"]')
         )).click();
         await element.requestUpdate();
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[1]
-            ?.querySelectorAll('mwc-check-list-item')[1]
+            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelectorAll('mwc-check-list-item')
+        ).to.be.empty;
+      });
+
+      it('select logical devices when used in this Element already', async () => {
+        expect(
+          element.wizardUI.shadowRoot
+            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector(
+              'mwc-check-list-item[value="{\\"iedName\\":\\"IED2\\",\\"ldInst\\":\\"CBSW\\"}"]'
+            )
         ).to.have.property('selected', true);
       });
     });
 
     describe('on the third page', () => {
       it('add logical nodes on selecting logical devices on the second page', async () => {
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelector('mwc-dialog')!
-            .querySelector('mwc-check-list-item')
-        )).click();
-        (<ListItemBase>(
-          element.wizardUI
-            .shadowRoot!.querySelectorAll('mwc-dialog')[1]
-            .querySelector('mwc-check-list-item')
-        )).click();
-        await element.requestUpdate();
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
+            ?.querySelector('mwc-dialog:nth-child(3)')
             ?.querySelectorAll('mwc-check-list-item').length
         ).to.equal(
           validSCL.querySelectorAll(
-            'IED[name="IED1"] LDevice > LN0, IED[name="IED1"] LDevice > LN'
+            'IED[name="IED2"] LDevice > LN0, IED[name="IED2"] LDevice > LN'
           ).length
         );
       });
@@ -170,21 +125,21 @@ describe('lnodewizard', () => {
       it('select logical nodes when used in this Element already', async () => {
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
-            ?.querySelectorAll('mwc-check-list-item')[1]
+            ?.querySelector('mwc-dialog:nth-child(3)')
+            ?.querySelector('mwc-check-list-item[value*="inst\\":\\"1"]')
         ).to.have.property('selected', true);
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
-            ?.querySelectorAll('mwc-check-list-item')[5]
+            ?.querySelector('mwc-dialog:nth-child(3)')
+            ?.querySelector('mwc-check-list-item[value*="inst\\":\\"3"]')
         ).to.have.property('selected', true);
       });
 
       it('disable logical nodes when used in the Substation already', async () => {
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelectorAll('mwc-dialog')[2]
-            ?.querySelectorAll('mwc-check-list-item')[4]
+            ?.querySelector('mwc-dialog:nth-child(3)')
+            ?.querySelector('mwc-check-list-item[value*="inst\\":\\"2"]')
         ).to.have.property('disabled', true);
       });
     });

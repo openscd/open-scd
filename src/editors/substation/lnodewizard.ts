@@ -13,6 +13,7 @@ import {
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-textfield';
+import '@material/mwc-icon';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -53,26 +54,23 @@ function valueToSelector(value: LNValue, parentTag?: SubstationTag): string {
     .join(',');
 }
 
-export function hasLNode(
+export function getLNode(
   parent: Element | XMLDocument,
   value: LNValue
-): boolean {
+): Element | null {
   const parentTag =
     parent instanceof Element ? <SubstationTag>parent.tagName : undefined;
-  return parent.querySelector(valueToSelector(value, parentTag)) !== null;
+  return parent.querySelector(valueToSelector(value, parentTag));
 }
 
-function getConnectedEquipment(element: Element, value: LNValue): string {
-  const doc = element.ownerDocument;
-  const lNode = doc.querySelector(valueToSelector(value));
-
+function connectedEquipmentPath(lNode: Element): string {
   let path = '';
   let nextParent: Element | null | undefined = lNode?.parentElement;
   while (nextParent?.getAttribute('name')) {
-    path = nextParent.getAttribute('name') + ' ' + path;
+    path = '/' + nextParent.getAttribute('name') + path;
     nextParent = nextParent.parentElement;
   }
-  return 'Connected to: ' + path;
+  return path;
 }
 
 function createAction(parent: Element, value: LNValue): EditorAction {
@@ -171,6 +169,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
       values.push({
         iedName: ied.getAttribute('name'),
         ldInst: APldInst,
+        /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
       });
     }
     return values;
@@ -188,12 +187,8 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
     };
   })
     .sort((a, b) => {
-      if (a.selected && !b.selected) return -1;
-      if (!a.selected && b.selected) return 1;
-
-      return a.value.iedName + a.value.ldInst < b.value.iedName + b.value.ldInst
-        ? -1
-        : 1;
+      if (a.selected !== b.selected) return a.selected ? -1 : 1;
+      return 0;
     })
     .map(
       item =>
@@ -244,12 +239,16 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
   });
   const nodeItems = ldValues
     .map(value => {
-      return { value, selected: hasLNode(element, value) };
+      return {
+        value,
+        selected: getLNode(element, value) !== null,
+        lNode: getLNode(element.ownerDocument, value),
+      };
     })
     .map(item => {
       return {
         ...item,
-        disabled: !item.selected && hasLNode(element.ownerDocument, item.value),
+        disabled: !item.selected && item.lNode !== null,
       };
     })
     .sort((a, b) => {
@@ -266,7 +265,10 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
         ><span
           >${item.value.prefix}${item.value.lnClass}${item.value.inst}
           ${item.disabled
-            ? ' (' + getConnectedEquipment(element, item.value) + ') '
+            ? html` <mwc-icon style="--mdc-icon-size: 1em;"
+                  >account_tree</mwc-icon
+                >
+                ${connectedEquipmentPath(item.lNode!)}`
             : ''}</span
         ><span slot="secondary"
           >${item.value.iedName} | ${item.value.ldInst}</span
@@ -320,8 +322,8 @@ function renderIEDPage(element: Element): TemplateResult {
         .map(
           item =>
             html`<mwc-check-list-item
-              .value=${item.name ?? ''}
-              ?selected="${item.selected}"
+              value="${item.name ?? ''}"
+              ?selected=${item.selected}
               >${item.name}</mwc-check-list-item
             >`
         )}</mwc-list
