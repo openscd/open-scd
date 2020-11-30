@@ -1,10 +1,11 @@
 import {
-  LitElement,
-  html,
-  TemplateResult,
-  property,
   css,
+  customElement,
+  html,
+  LitElement,
+  property,
   query,
+  TemplateResult,
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
@@ -19,53 +20,44 @@ import {
   newWizardEvent,
   WizardInput,
   getValue,
-} from '../foundation.js';
+} from '../../foundation.js';
 
-import { selectors, styles } from './substation/foundation.js';
+import { selectors, styles } from './foundation.js';
 
-import './substation/voltage-level-editor.js';
-import { VoltageLevelEditor } from './substation/voltage-level-editor.js';
-import { editlNode } from './substation/lnodewizard.js';
+import './voltage-level-editor.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
+import { editlNode } from './lnodewizard.js';
 
-/** An editor [[`plugin`]] for editing the `Substation` section. */
-export default class SubstationEditor extends LitElement {
-  /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
-  @property()
-  doc!: XMLDocument;
-
+/** An editor for editing the `Substation` section. */
+@customElement('substation-editor')
+export class SubstationEditor extends LitElement {
   /** The edited `Element`, a common property of all Substation subeditors. */
   @property()
-  get element(): Element | null {
-    return this.doc?.querySelector(selectors.Substation) ?? null;
-  }
+  element!: Element;
 
   /** [[element | `element.name`]] */
   @property({ type: String })
   get name(): string {
-    return this.element?.getAttribute('name') ?? '';
+    return this.element.getAttribute('name') ?? '';
   }
   /** [[element | `element.desc`]] */
   @property({ type: String })
   get desc(): string | null {
-    return this.element?.getAttribute('desc') ?? null;
+    return this.element.getAttribute('desc');
   }
 
   /** Subeditor container HTMLElement, a common property of Substation subeditors. */
-  @query('main') container!: Element;
+  @query('section') container!: Element;
 
-  /** Opens a [[`WizardDialog`]] for editing [[`element`]] if it exists, or for
-   * creating a new `Substation` otherwise. */
-  openSubstationWizard(): void {
-    const [heading, actionName, actionIcon] = this.element
-      ? [get('substation.wizard.title.edit'), get('edit'), 'edit']
-      : [get('substation.wizard.title.add'), get('add'), 'add'];
+  /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
+  openEditWizard(): void {
     const event = newWizardEvent([
       {
-        title: heading,
+        title: get('substation.wizard.title.add'),
         primary: {
-          icon: actionIcon,
+          icon: 'add',
           action: this.substationWizardAction,
-          label: actionName,
+          label: get('add'),
         },
         content: [
           html`<wizard-textfield
@@ -89,35 +81,30 @@ export default class SubstationEditor extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for adding a new `VoltageLevel`. */
   openVoltageLevelWizard(): void {
-    if (!this.element) return;
-    const event = newWizardEvent(
-      VoltageLevelEditor.wizard({ parent: this.element })
+    this.dispatchEvent(
+      newWizardEvent(VoltageLevelEditor.wizard({ parent: this.element }))
     );
-    this.dispatchEvent(event);
   }
 
   /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    if (this.element)
-      this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
   }
 
   /** Deletes [[`element`]]. */
   remove(): void {
-    if (this.element)
-      this.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: this.doc.documentElement,
-            element: this.element,
-            reference: this.element.nextElementSibling,
-          },
-        })
-      );
+    this.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent: this.element.parentElement!,
+          element: this.element,
+          reference: this.element.nextElementSibling,
+        },
+      })
+    );
   }
 
   newUpdateAction(name: string, desc: string | null): EditorAction {
-    if (!this.element) throw new Error('Cannot edit a missing Substation');
     const newElement = <Element>this.element.cloneNode(false);
     newElement.setAttribute('name', name);
     if (desc === null) newElement.removeAttribute('desc');
@@ -128,22 +115,6 @@ export default class SubstationEditor extends LitElement {
     };
   }
 
-  newCreateAction(name: string, desc: string | null): EditorAction {
-    if (this.element) throw new Error('Will not create a second Substation');
-    return {
-      new: {
-        parent: this.doc.documentElement,
-        element: new DOMParser().parseFromString(
-          `<Substation name="${name}"${
-            desc === null ? '' : ` desc="${desc}"`
-          }></Substation>`,
-          'application/xml'
-        ).documentElement,
-        reference: null,
-      },
-    };
-  }
-
   substationWizardAction(
     inputs: WizardInput[],
     dialog: CloseableElement
@@ -151,9 +122,7 @@ export default class SubstationEditor extends LitElement {
     const name = inputs.find(i => i.label === 'name')!.value;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     if (name === this.name && desc === this.desc) return [];
-    const action = this.element
-      ? this.newUpdateAction(name, desc)
-      : this.newCreateAction(name, desc);
+    const action = this.newUpdateAction(name, desc);
     dialog.close();
     return [action];
   }
@@ -165,16 +134,6 @@ export default class SubstationEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    if (!this.element)
-      return html`<h1>
-        <span style="color: var(--base1)"
-          >${translate('substation.missing')}</span
-        >
-        <mwc-icon-button
-          icon="add"
-          @click=${() => this.openSubstationWizard()}
-        ></mwc-icon-button>
-      </h1>`;
     return html`
       <h1>
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
@@ -189,7 +148,7 @@ export default class SubstationEditor extends LitElement {
           ></mwc-icon-button>
           <mwc-icon-button
             icon="edit"
-            @click=${() => this.openSubstationWizard()}
+            @click=${() => this.openEditWizard()}
           ></mwc-icon-button>
           <mwc-icon-button
             icon="delete"
@@ -202,24 +161,22 @@ export default class SubstationEditor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <main tabindex="0">
+      <section tabindex="0">
         ${this.renderHeader()}
-        ${Array.from(
-          this.element?.querySelectorAll(selectors.VoltageLevel) ?? []
-        ).map(
+        ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
           voltageLevel =>
             html`<voltage-level-editor
               .element=${voltageLevel}
             ></voltage-level-editor>`
         )}
-      </main>
+      </section>
     `;
   }
 
   static styles = css`
     ${styles}
 
-    main {
+    section {
       overflow: auto;
     }
 

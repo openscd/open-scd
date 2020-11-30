@@ -7,8 +7,10 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
     ${themes[theme]}
     <style>
       * {
-        --mdc-theme-primary: var(--blue);
-        --mdc-theme-secondary: var(--cyan);
+        --primary: var(--cyan);
+        --secondary: var(--violet);
+        --mdc-theme-primary: var(--primary);
+        --mdc-theme-secondary: var(--secondary);
         --mdc-theme-background: var(--base3);
         --mdc-theme-surface: var(--base3);
         --mdc-theme-on-primary: var(--base2);
@@ -31,8 +33,8 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
         --mdc-dialog-heading-ink-color: var(--base00);
 
         --mdc-circular-progress-bar-color-1: var(--mdc-theme-primary);
-        --mdc-circular-progress-bar-color-2: var(--mdc-theme-secondary);
-        --mdc-circular-progress-bar-color-3: var(--mdc-theme-primary);
+        --mdc-circular-progress-bar-color-2: var(--mdc-theme-on-background);
+        --mdc-circular-progress-bar-color-3: var(--mdc-theme-secondary);
         --mdc-circular-progress-bar-color-4: var(--mdc-theme-on-background);
       }
     </style>

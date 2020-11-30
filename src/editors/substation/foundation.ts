@@ -106,7 +106,6 @@ export const selectors = <Record<SubstationTag, string>>(
 
 /** Common `CSS` styles used by substation subeditors */
 export const styles = css`
-  main,
   section {
     background-color: var(--mdc-theme-surface);
     transition: all 200ms linear;
@@ -117,18 +116,15 @@ export const styles = css`
     opacity: 1;
   }
 
-  main.moving,
   section.moving {
     opacity: 0.3;
   }
 
-  main:focus,
   section:focus {
     box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
       0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
   }
 
-  main:focus-within,
   section:focus-within {
     outline-width: 2px;
     transition: all 250ms linear;
@@ -149,7 +145,7 @@ export const styles = css`
     transition: background-color 150ms linear;
   }
 
-  main:focus-within > h1,
+  section:focus-within > h1,
   section:focus-within > h2,
   section:focus-within > h3 {
     color: var(--mdc-theme-surface);

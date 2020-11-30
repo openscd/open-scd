@@ -25,7 +25,7 @@ import { selectors, startMove, styles } from './foundation.js';
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { editlNode } from './lnodewizard.js';
-import SubstationEditor from '../SubstationEditor.js';
+import { SubstationEditor } from './substation-editor.js';
 
 interface VoltageLevelUpdateOptions {
   element: Element;
