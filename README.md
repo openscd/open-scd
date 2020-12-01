@@ -1,6 +1,7 @@
 # `OpenSCD`
 
 [![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_shield)
 
 Open Substation Communication Designer is a bottom-up system configuration tool
 for projects described using `IEC 61850-6` Edition 2 or greater.
@@ -31,3 +32,6 @@ distributed under their [end user license agreement](CC-EULA.pdf).
 This project is licensed under the [Apache License 2.0](LICENSE).
 
 &copy; 2020 OMICRON electronics GmbH
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_large)
