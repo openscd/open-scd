@@ -55,9 +55,6 @@ export class ConductingEquipmentEditor extends LitElement {
     return this.element.getAttribute('desc') ?? '';
   }
 
-  @query('h4') header!: Element;
-  @query('#container') container!: Element;
-
   openEditWizard(): void {
     this.dispatchEvent(
       newWizardEvent(
@@ -278,7 +275,6 @@ export class ConductingEquipmentEditor extends LitElement {
       height: 64px;
       margin: auto;
       position: relative;
-      opacity: 1;
       transition: all 200ms linear;
     }
 
@@ -360,8 +356,8 @@ export class ConductingEquipmentEditor extends LitElement {
       transition: opacity 200ms linear;
     }
 
-    #container.moving,
-    #container.moving + h4 {
+    :host(.moving) #container,
+    :host(.moving) h4 {
       opacity: 0.3;
     }
   `;

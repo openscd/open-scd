@@ -4,7 +4,6 @@ import {
   customElement,
   html,
   property,
-  query,
   css,
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
@@ -89,7 +88,7 @@ function getVoltageAction(
   };
 }
 
-/** [[`SubstationEditor`]] subeditor for a `VoltageLevel` element. */
+/** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
 export class VoltageLevelEditor extends LitElement {
   @property()
@@ -113,9 +112,6 @@ export class VoltageLevelEditor extends LitElement {
     return v ? v + u : null;
   }
 
-  @query('h2') header!: Element;
-  @query('section') container!: Element;
-
   openEditWizard(): void {
     this.dispatchEvent(
       newWizardEvent(VoltageLevelEditor.wizard({ element: this.element }))
@@ -123,9 +119,9 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   openBayWizard(): void {
-    if (!this.element) return;
-    const event = newWizardEvent(BayEditor.wizard({ parent: this.element }));
-    this.dispatchEvent(event);
+    this.dispatchEvent(
+      newWizardEvent(BayEditor.wizard({ parent: this.element }))
+    );
   }
 
   openLNodeWizard(): void {
@@ -297,20 +293,6 @@ export class VoltageLevelEditor extends LitElement {
       actionName,
       actionIcon,
       action,
-    ] = isVoltageLevelCreateOptions(options)
-      ? [
-          get('voltagelevel.wizard.title.add'),
-          get('add'),
-          'add',
-          VoltageLevelEditor.createAction(options.parent),
-        ]
-      : [
-          get('voltagelevel.wizard.title.edit'),
-          get('save'),
-          'edit',
-          VoltageLevelEditor.updateAction(options.element),
-        ];
-    const [
       name,
       desc,
       nomFreq,
@@ -319,6 +301,10 @@ export class VoltageLevelEditor extends LitElement {
       multiplier,
     ] = isVoltageLevelCreateOptions(options)
       ? [
+          get('voltagelevel.wizard.title.add'),
+          get('add'),
+          'add',
+          VoltageLevelEditor.createAction(options.parent),
           '',
           null,
           initial.nomFreq,
@@ -327,6 +313,10 @@ export class VoltageLevelEditor extends LitElement {
           initial.multiplier,
         ]
       : [
+          get('voltagelevel.wizard.title.edit'),
+          get('save'),
+          'edit',
+          VoltageLevelEditor.updateAction(options.element),
           options.element.getAttribute('name'),
           options.element.getAttribute('desc'),
           options.element.getAttribute('nomFreq'),

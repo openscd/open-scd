@@ -5,7 +5,6 @@ import {
   customElement,
   html,
   property,
-  query,
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
@@ -53,9 +52,6 @@ export class BayEditor extends LitElement {
   get desc(): string | null {
     return this.element.getAttribute('desc') ?? null;
   }
-
-  @query('h3') header!: Element;
-  @query('section') container!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(

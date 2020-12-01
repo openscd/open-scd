@@ -2,14 +2,8 @@ import { css } from 'lit-element';
 
 import { newActionEvent } from '../../foundation.js';
 
-export type EditorElement = Element & {
-  container: Element;
+export type ElementEditor = Element & {
   element: Element;
-};
-
-export type EditorPluginElement = Element & {
-  container: Element;
-  element: Element | null;
 };
 
 /**
@@ -20,13 +14,14 @@ export type EditorPluginElement = Element & {
  * The move action can be aborted by clicking on something other than a `Child`
  * or `Parent` editor or by hitting the escape key on the keyboard.
  */
-export function startMove<
-  E extends EditorElement,
-  P extends EditorPluginElement
->(editor: E, Child: new () => E, Parent: new () => P): void {
+export function startMove<E extends ElementEditor, P extends ElementEditor>(
+  editor: E,
+  Child: new () => E,
+  Parent: new () => P
+): void {
   if (!editor.element) return;
 
-  editor.container.classList.add('moving');
+  editor.classList.add('moving');
 
   const moveToTarget = (e: MouseEvent | KeyboardEvent) => {
     if (
@@ -39,7 +34,7 @@ export function startMove<
 
     e.preventDefault();
     e.stopImmediatePropagation();
-    editor.container.classList.remove('moving');
+    editor.classList.remove('moving');
 
     window.removeEventListener('keydown', moveToTarget, true);
     window.removeEventListener('click', moveToTarget, true);
@@ -106,6 +101,10 @@ export const selectors = <Record<SubstationTag, string>>(
 
 /** Common `CSS` styles used by substation subeditors */
 export const styles = css`
+  :host(.moving) section {
+    opacity: 0.3;
+  }
+
   section {
     background-color: var(--mdc-theme-surface);
     transition: all 200ms linear;
@@ -114,10 +113,6 @@ export const styles = css`
     outline-width: 0px;
     margin: 8px 12px 16px;
     opacity: 1;
-  }
-
-  section.moving {
-    opacity: 0.3;
   }
 
   section:focus {

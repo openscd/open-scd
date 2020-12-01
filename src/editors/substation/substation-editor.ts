@@ -4,7 +4,6 @@ import {
   html,
   LitElement,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
@@ -28,7 +27,7 @@ import './voltage-level-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { editlNode } from './lnodewizard.js';
 
-/** An editor for editing the `Substation` section. */
+/** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
 export class SubstationEditor extends LitElement {
   /** The edited `Element`, a common property of all Substation subeditors. */
@@ -45,9 +44,6 @@ export class SubstationEditor extends LitElement {
   get desc(): string | null {
     return this.element.getAttribute('desc');
   }
-
-  /** Subeditor container HTMLElement, a common property of Substation subeditors. */
-  @query('section') container!: Element;
 
   /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
   openEditWizard(): void {
