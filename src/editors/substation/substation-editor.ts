@@ -15,10 +15,12 @@ import '@material/mwc-list/mwc-list-item';
 import {
   CloseableElement,
   EditorAction,
+  getValue,
   newActionEvent,
   newWizardEvent,
+  Wizard,
+  WizardAction,
   WizardInput,
-  getValue,
 } from '../../foundation.js';
 
 import { selectors, styles } from './foundation.js';
@@ -26,6 +28,21 @@ import { selectors, styles } from './foundation.js';
 import './voltage-level-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { editlNode } from './lnodewizard.js';
+
+interface SubstationUpdateOptions {
+  element: Element;
+}
+interface SubstationCreateOptions {
+  parent: Element;
+}
+type SubstationWizardOptions =
+  | SubstationUpdateOptions
+  | SubstationCreateOptions;
+function isSubstationCreateOptions(
+  options: SubstationWizardOptions
+): options is SubstationCreateOptions {
+  return (<SubstationCreateOptions>options).parent !== undefined;
+}
 
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
@@ -47,32 +64,9 @@ export class SubstationEditor extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
   openEditWizard(): void {
-    const event = newWizardEvent([
-      {
-        title: get('substation.wizard.title.add'),
-        primary: {
-          icon: 'add',
-          action: this.substationWizardAction,
-          label: get('add'),
-        },
-        content: [
-          html`<wizard-textfield
-            .maybeValue=${this.name}
-            helper="${translate('substation.wizard.nameHelper')}"
-            label="name"
-            required
-            dialogInitialFocus
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            .maybeValue=${this.desc}
-            helper="${translate('substation.wizard.descHelper')}"
-            label="desc"
-            nullable
-          ></wizard-textfield>`,
-        ],
-      },
-    ]);
-    this.dispatchEvent(event);
+    this.dispatchEvent(
+      newWizardEvent(SubstationEditor.wizard({ element: this.element }))
+    );
   }
 
   /** Opens a [[`WizardDialog`]] for adding a new `VoltageLevel`. */
@@ -155,6 +149,57 @@ export class SubstationEditor extends LitElement {
     `;
   }
 
+  static createAction(parent: Element): WizardAction {
+    return (
+      inputs: WizardInput[],
+      wizard: CloseableElement
+    ): EditorAction[] => {
+      const name = getValue(inputs.find(i => i.label === 'name')!);
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+      const action = {
+        new: {
+          parent,
+          element: new DOMParser().parseFromString(
+            `<Substation
+              name="${name}"
+              ${desc === null ? '' : `desc="${desc}"`}
+            ></Substation>`,
+            'application/xml'
+          ).documentElement,
+          reference: null,
+        },
+      };
+
+      wizard.close();
+      return [action];
+    };
+  }
+
+  static updateAction(element: Element): WizardAction {
+    return (
+      inputs: WizardInput[],
+      wizard: CloseableElement
+    ): EditorAction[] => {
+      const name = getValue(inputs.find(i => i.label === 'name')!)!;
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+      if (
+        name === element.getAttribute('name') &&
+        desc === element.getAttribute('desc')
+      )
+        return [];
+
+      const newElement = <Element>element.cloneNode(false);
+      newElement.setAttribute('name', name);
+      if (desc === null) newElement.removeAttribute('desc');
+      else newElement.setAttribute('desc', desc);
+      wizard.close();
+
+      return [{ old: { element }, new: { element: newElement } }];
+    };
+  }
+
   render(): TemplateResult {
     return html`
       <section tabindex="0">
@@ -167,6 +212,62 @@ export class SubstationEditor extends LitElement {
         )}
       </section>
     `;
+  }
+
+  static wizard(options: SubstationWizardOptions): Wizard {
+    const [
+      heading,
+      actionName,
+      actionIcon,
+      action,
+      name,
+      desc,
+    ] = isSubstationCreateOptions(options)
+      ? [
+          get('substation.wizard.title.add'),
+          get('add'),
+          'add',
+          SubstationEditor.createAction(options.parent),
+          '',
+          null,
+        ]
+      : [
+          get('substation.wizard.title.edit'),
+          get('save'),
+          'edit',
+          SubstationEditor.updateAction(options.element),
+          options.element.getAttribute('name'),
+          options.element.getAttribute('desc'),
+        ];
+
+    return [
+      {
+        title: heading,
+        primary: {
+          icon: actionIcon,
+          label: actionName,
+          action: action,
+        },
+        content: [
+          html`<wizard-textfield
+            label="name"
+            .maybeValue=${name}
+            helper="${translate('substation.wizard.nameHelper')}"
+            iconTrailing="title"
+            required
+            validationMessage="${translate('textfield.required')}"
+            dialogInitialFocus
+          ></wizard-textfield>`,
+          html`<wizard-textfield
+            label="desc"
+            .maybeValue=${desc}
+            nullable="true"
+            helper="${translate('substation.wizard.descHelper')}"
+            iconTrailing="description"
+          ></wizard-textfield>`,
+        ],
+      },
+    ];
   }
 
   static styles = css`
