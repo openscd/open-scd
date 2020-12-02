@@ -11,7 +11,6 @@ describe('conducting-equipment-editor', () => {
       await fixture(
         html`<conducting-equipment-editor
           .element=${validSCL.querySelector('ConductingEquipment')}
-          .parent=${validSCL.querySelector('Bay')}
         ></conducting-equipment-editor>`
       )
     );
@@ -23,7 +22,7 @@ describe('conducting-equipment-editor', () => {
   it('has a desc property', () =>
     expect(element).to.have.property('desc', 'coupling field ciscuit breaker'));
 
-  it('renders header with name visible', () => {
-    expect(element).property('header').to.contain.text('QA1');
+  it('looks like the latest snapshot', () => {
+    expect(element).shadowDom.to.equalSnapshot();
   });
 });
