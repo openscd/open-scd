@@ -24,7 +24,7 @@ describe('ValidatingElement', () => {
   });
 
   it('does not validate an invalid SCL document', async () => {
-    element.validate(getDocument(false), { fileName: 'valid.scd' });
+    element.validate(getDocument(false), { fileName: 'invalid.scd' });
     expect(await element.validated).to.have.property('valid', false);
   });
 });
