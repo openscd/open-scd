@@ -1,10 +1,52 @@
 import { css } from 'lit-element';
 
-import { newActionEvent } from '../../foundation.js';
+import {
+  CloseableElement,
+  EditorAction,
+  getValue,
+  newActionEvent,
+  WizardAction,
+  WizardInput,
+} from '../../foundation.js';
 
 export type ElementEditor = Element & {
   element: Element;
 };
+
+interface UpdateOptions {
+  element: Element;
+}
+interface CreateOptions {
+  parent: Element;
+}
+export type WizardOptions = UpdateOptions | CreateOptions;
+
+export function isCreateOptions(
+  options: WizardOptions
+): options is CreateOptions {
+  return (<CreateOptions>options).parent !== undefined;
+}
+
+export function updateNamingAction(element: Element): WizardAction {
+  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+    const name = getValue(inputs.find(i => i.label === 'name')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+    if (
+      name === element.getAttribute('name') &&
+      desc === element.getAttribute('desc')
+    )
+      return [];
+
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('name', name);
+    if (desc === null) newElement.removeAttribute('desc');
+    else newElement.setAttribute('desc', desc);
+    wizard.close();
+
+    return [{ old: { element }, new: { element: newElement } }];
+  };
+}
 
 /**
  * Moves the element edited by `editor` to the place before the next `Child`

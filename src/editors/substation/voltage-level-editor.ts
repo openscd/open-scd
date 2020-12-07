@@ -20,26 +20,17 @@ import {
   getMultiplier,
 } from '../../foundation.js';
 
-import { selectors, startMove, styles } from './foundation.js';
+import {
+  isCreateOptions,
+  selectors,
+  startMove,
+  styles,
+  WizardOptions,
+} from './foundation.js';
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { editlNode } from './lnodewizard.js';
 import { SubstationEditor } from './substation-editor.js';
-
-interface VoltageLevelUpdateOptions {
-  element: Element;
-}
-interface VoltageLevelCreateOptions {
-  parent: Element;
-}
-type VoltageLevelWizardOptions =
-  | VoltageLevelUpdateOptions
-  | VoltageLevelCreateOptions;
-function isVoltageLevelCreateOptions(
-  options: VoltageLevelWizardOptions
-): options is VoltageLevelCreateOptions {
-  return (<VoltageLevelCreateOptions>options).parent !== undefined;
-}
 
 /** Initial attribute values suggested for `VoltageLevel` creation */
 const initial = {
@@ -287,7 +278,7 @@ export class VoltageLevelEditor extends LitElement {
     };
   }
 
-  static wizard(options: VoltageLevelWizardOptions): Wizard {
+  static wizard(options: WizardOptions): Wizard {
     const [
       heading,
       actionName,
@@ -299,7 +290,7 @@ export class VoltageLevelEditor extends LitElement {
       numPhases,
       Voltage,
       multiplier,
-    ] = isVoltageLevelCreateOptions(options)
+    ] = isCreateOptions(options)
       ? [
           get('voltagelevel.wizard.title.add'),
           get('add'),

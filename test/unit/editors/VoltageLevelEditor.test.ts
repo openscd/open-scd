@@ -6,7 +6,7 @@ import {
   isDelete,
 } from '../../../src/foundation.js';
 import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
-
+import { updateNamingAction } from '../../../src/editors/substation/foundation.js';
 describe('VoltageLevelEditor', () => {
   describe('with no nulled properties', () => {
     const noOp = () => {
@@ -76,17 +76,17 @@ describe('VoltageLevelEditor', () => {
         });
 
         it('returns a WizardAction which retruns two EditorActions', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Create', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isCreate);
         });
       });
@@ -103,17 +103,17 @@ describe('VoltageLevelEditor', () => {
         });
 
         it('returns a WizardAction which returns two EditorActions', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Update', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isUpdate);
         });
       });
@@ -130,12 +130,12 @@ describe('VoltageLevelEditor', () => {
         });
 
         it('returns a WizardAction which returns one EditorActions', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(1);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
       });
@@ -150,7 +150,7 @@ describe('VoltageLevelEditor', () => {
         });
 
         it('returns a WizardAction with an empty EditorActions array', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(0);
         });
       });
@@ -203,17 +203,17 @@ describe('VoltageLevelEditor', () => {
         });
 
         it('returns a WizardAction which returns two EditorActions', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Delete', () => {
-          const wizardAction = VoltageLevelEditor.updateAction(element);
+          const wizardAction = updateNamingAction(element);
           expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
         });
       });

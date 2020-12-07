@@ -1,7 +1,7 @@
 import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
 import { fixture, html, expect } from '@open-wc/testing';
 import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
-
+import { updateNamingAction } from '../../../src/editors/substation/foundation.js';
 describe('BayEditor', () => {
   const noOp = () => {
     return;
@@ -59,12 +59,12 @@ describe('BayEditor', () => {
     });
 
     it('returns a WizardAction which retruns one EditorAction', () => {
-      const wizardAction = BayEditor.updateAction(element);
+      const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard()).length).to.equal(1);
     });
 
     it('returns a WizardAction which returns an Update EditorAction', () => {
-      const wizardAction = BayEditor.updateAction(element);
+      const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
     });
 
@@ -79,7 +79,7 @@ describe('BayEditor', () => {
       });
 
       it('returns a WizardAction which returns empty EditorAction array', () => {
-        const wizardAction = BayEditor.updateAction(element);
+        const wizardAction = updateNamingAction(element);
         expect(wizardAction(inputs, newWizard()).length).to.equal(0);
       });
     });

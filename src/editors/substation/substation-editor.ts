@@ -23,26 +23,17 @@ import {
   WizardInput,
 } from '../../foundation.js';
 
-import { selectors, styles } from './foundation.js';
+import {
+  isCreateOptions,
+  selectors,
+  styles,
+  updateNamingAction,
+  WizardOptions,
+} from './foundation.js';
 
 import './voltage-level-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { editlNode } from './lnodewizard.js';
-
-interface SubstationUpdateOptions {
-  element: Element;
-}
-interface SubstationCreateOptions {
-  parent: Element;
-}
-type SubstationWizardOptions =
-  | SubstationUpdateOptions
-  | SubstationCreateOptions;
-function isSubstationCreateOptions(
-  options: SubstationWizardOptions
-): options is SubstationCreateOptions {
-  return (<SubstationCreateOptions>options).parent !== undefined;
-}
 
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
@@ -176,30 +167,6 @@ export class SubstationEditor extends LitElement {
     };
   }
 
-  static updateAction(element: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
-      const name = getValue(inputs.find(i => i.label === 'name')!)!;
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-      if (
-        name === element.getAttribute('name') &&
-        desc === element.getAttribute('desc')
-      )
-        return [];
-
-      const newElement = <Element>element.cloneNode(false);
-      newElement.setAttribute('name', name);
-      if (desc === null) newElement.removeAttribute('desc');
-      else newElement.setAttribute('desc', desc);
-      wizard.close();
-
-      return [{ old: { element }, new: { element: newElement } }];
-    };
-  }
-
   render(): TemplateResult {
     return html`
       <section tabindex="0">
@@ -214,7 +181,7 @@ export class SubstationEditor extends LitElement {
     `;
   }
 
-  static wizard(options: SubstationWizardOptions): Wizard {
+  static wizard(options: WizardOptions): Wizard {
     const [
       heading,
       actionName,
@@ -222,7 +189,7 @@ export class SubstationEditor extends LitElement {
       action,
       name,
       desc,
-    ] = isSubstationCreateOptions(options)
+    ] = isCreateOptions(options)
       ? [
           get('substation.wizard.title.add'),
           get('add'),
@@ -235,7 +202,7 @@ export class SubstationEditor extends LitElement {
           get('substation.wizard.title.edit'),
           get('save'),
           'edit',
-          SubstationEditor.updateAction(options.element),
+          updateNamingAction(options.element),
           options.element.getAttribute('name'),
           options.element.getAttribute('desc'),
         ];

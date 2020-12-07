@@ -2,7 +2,7 @@ import { fixture, html, expect } from '@open-wc/testing';
 
 import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
 import { SubstationEditor } from '../../../src/editors/substation/substation-editor.js';
-
+import { updateNamingAction } from '../../../src/editors/substation/foundation.js';
 describe('SubstationEditor', () => {
   const noOp = () => {
     return;
@@ -58,12 +58,12 @@ describe('SubstationEditor', () => {
     });
 
     it('returns a WizardAction which retruns one EditorAction', () => {
-      const wizardAction = SubstationEditor.updateAction(element);
+      const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard()).length).to.equal(1);
     });
 
     it('returns a WizardAction which returns an Update EditorAction', () => {
-      const wizardAction = SubstationEditor.updateAction(element);
+      const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
     });
 
@@ -78,7 +78,7 @@ describe('SubstationEditor', () => {
       });
 
       it('returns a WizardAction which returns empty EditorAction array', () => {
-        const wizardAction = SubstationEditor.updateAction(element);
+        const wizardAction = updateNamingAction(element);
         expect(wizardAction(inputs, newWizard()).length).to.equal(0);
       });
     });
