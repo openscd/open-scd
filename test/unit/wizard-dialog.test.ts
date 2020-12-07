@@ -54,9 +54,6 @@ describe('wizard-dialog', () => {
     it('shows the first dialog', () => {
       expect(element).property('dialog').to.have.property('open', true);
       expect(element.dialog).to.have.property('heading', 'Page 1');
-      (<HTMLElement>(
-        element.dialog!.querySelector('mwc-button[slot="secondaryAction"]')
-      )).click(); // FIXME(c-dinkel): Dirty hack, our first click does nothing!
     });
 
     it('advances to the second page on next button click', async () => {

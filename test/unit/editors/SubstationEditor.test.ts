@@ -28,10 +28,8 @@ describe('SubstationEditor', () => {
   describe('createAction', () => {
     let parent: Element;
     beforeEach(() => {
-      parent = new DOMParser().parseFromString(
-        '<Voltage Level></Voltage Level>',
-        'application/xml'
-      ).documentElement;
+      parent = new DOMParser().parseFromString('<SCL></SCL>', 'application/xml')
+        .documentElement;
     });
 
     it('returns a WizardAction which returns a Create EditorAction', () => {
