@@ -127,7 +127,7 @@ export class VoltageLevelEditor extends LitElement {
           old: {
             parent: this.element.parentElement!,
             element: this.element,
-            reference: null,
+            reference: this.element.nextElementSibling,
           },
         })
       );
