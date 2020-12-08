@@ -206,7 +206,7 @@ describe('lnodewizard', () => {
             <LNode iedName="IED" ldInst="ldInst" lnClass="LLN0"></LNode>
             <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="1"></LNode>
             <LNode iedName="IED" ldInst="ldInst" prefix="prefix" lnClass="USER" lnInst="2"></LNode>
-          </Bay><VoltageLevel><Substation><SCL>`,
+          </Bay></VoltageLevel></Substation></SCL>`,
           'application/xml'
         ).documentElement;
       });
