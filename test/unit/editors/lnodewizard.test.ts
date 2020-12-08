@@ -1,6 +1,6 @@
 import fc from 'fast-check';
 import { getLNode } from '../../../src/editors/substation/lnodewizard.js';
-import { restrictions, regexString } from '../../foundation.js';
+import { regExp, regexString } from '../../foundation.js';
 import { expect } from '@open-wc/testing';
 
 describe('lnodewizard', () => {
@@ -23,11 +23,11 @@ describe('lnodewizard', () => {
     it('gets a valid selector', () => {
       fc.assert(
         fc.property(
-          regexString(restrictions.tIEDName, 1, 64),
-          regexString(restrictions.tLDInst, 1, 64),
-          fc.option(regexString(restrictions.tPrefix, 0, 11)),
-          regexString(restrictions.tLNClass, 4, 4),
-          regexString(restrictions.tLNInst, 0, 12),
+          regexString(regExp.tIEDName, 1, 64),
+          regexString(regExp.tLDInst, 1, 64),
+          fc.option(regexString(regExp.tPrefix, 0, 11)),
+          regexString(regExp.tLNClass, 4, 4),
+          regexString(regExp.tLNInst, 0, 12),
           (iedName, ldInst, prefix, lnClass, lnInst) => {
             expect(
               getLNode(root.querySelector('Bay')!, {
@@ -46,11 +46,11 @@ describe('lnodewizard', () => {
     it('returns true on existing LNode references in the parent element', () => {
       fc.assert(
         fc.property(
-          regexString(restrictions.tIEDName, 1, 64),
-          regexString(restrictions.tLDInst, 1, 64),
-          fc.option(regexString(restrictions.tPrefix, 0, 11)),
-          regexString(restrictions.tLNClass, 4, 4),
-          regexString(restrictions.tLNInst, 0, 12),
+          regexString(regExp.tIEDName, 1, 64),
+          regexString(regExp.tLDInst, 1, 64),
+          fc.option(regexString(regExp.tPrefix, 0, 11)),
+          regexString(regExp.tLNClass, 4, 4),
+          regexString(regExp.tLNInst, 0, 12),
           (iedName, ldInst, prefix, lnClass, lnInst) => {
             const element: Element = new DOMParser().parseFromString(
               `<LNode iedName="${iedName}" ldInst="${ldInst}" ${
@@ -75,25 +75,22 @@ describe('lnodewizard', () => {
 
     it('does not give false positive with missing or empty prefix in LN/LN0', () => {
       fc.assert(
-        fc.property(
-          fc.option(regexString(restrictions.tPrefix, 0, 11)),
-          prefix => {
-            const element: Element = new DOMParser().parseFromString(
-              `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="2"></LNode>`,
-              'application/xml'
-            ).documentElement;
-            root.querySelector('Bay')!.appendChild(element);
-            expect(
-              getLNode(root.querySelector('Bay')!, {
-                iedName: 'iedName',
-                ldInst: 'ldInst',
-                prefix: prefix,
-                lnClass: 'CSWI',
-                inst: '2',
-              })
-            ).to.be.null;
-          }
-        )
+        fc.property(fc.option(regexString(regExp.tPrefix, 0, 11)), prefix => {
+          const element: Element = new DOMParser().parseFromString(
+            `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="2"></LNode>`,
+            'application/xml'
+          ).documentElement;
+          root.querySelector('Bay')!.appendChild(element);
+          expect(
+            getLNode(root.querySelector('Bay')!, {
+              iedName: 'iedName',
+              ldInst: 'ldInst',
+              prefix: prefix,
+              lnClass: 'CSWI',
+              inst: '2',
+            })
+          ).to.be.null;
+        })
       );
     });
 
@@ -153,25 +150,22 @@ describe('lnodewizard', () => {
 
     it('does not give false positive with missing or empty inst in LN0', () => {
       fc.assert(
-        fc.property(
-          fc.option(regexString(restrictions.tLNInst, 0, 11)),
-          lnInst => {
-            const element: Element = new DOMParser().parseFromString(
-              `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="465364263183364"></LNode>`,
-              'application/xml'
-            ).documentElement;
-            root.querySelector('Bay')!.appendChild(element);
-            expect(
-              getLNode(root.querySelector('Bay')!, {
-                iedName: 'iedName',
-                ldInst: 'ldInst',
-                prefix: 'prefix',
-                lnClass: 'CSWI',
-                inst: lnInst,
-              })
-            ).to.be.null;
-          }
-        )
+        fc.property(fc.option(regexString(regExp.tLNInst, 0, 11)), lnInst => {
+          const element: Element = new DOMParser().parseFromString(
+            `<LNode iedName="iedName" ldInst="ldInst" prefix="prefix" lnClass="CSWI" lnInst="465364263183364"></LNode>`,
+            'application/xml'
+          ).documentElement;
+          root.querySelector('Bay')!.appendChild(element);
+          expect(
+            getLNode(root.querySelector('Bay')!, {
+              iedName: 'iedName',
+              ldInst: 'ldInst',
+              prefix: 'prefix',
+              lnClass: 'CSWI',
+              inst: lnInst,
+            })
+          ).to.be.null;
+        })
       );
     });
 
@@ -351,11 +345,11 @@ describe('lnodewizard', () => {
     it('returns true on existing LNode references in the substation element', () => {
       fc.assert(
         fc.property(
-          regexString(restrictions.tIEDName, 1, 64),
-          regexString(restrictions.tLDInst, 1, 64),
-          fc.option(regexString(restrictions.tPrefix, 0, 11)),
-          regexString(restrictions.tLNClass, 4, 4),
-          regexString(restrictions.tLNInst, 0, 12),
+          regexString(regExp.tIEDName, 1, 64),
+          regexString(regExp.tLDInst, 1, 64),
+          fc.option(regexString(regExp.tPrefix, 0, 11)),
+          regexString(regExp.tLNClass, 4, 4),
+          regexString(regExp.tLNInst, 0, 12),
           (iedName, ldInst, prefix, lnClass, lnInst) => {
             const element: Element = new DOMParser().parseFromString(
               `<LNode iedName="${iedName}" ldInst="${ldInst}" ${
