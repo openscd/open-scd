@@ -172,48 +172,6 @@ export class VoltageLevelEditor extends LitElement {
     </section>`;
   }
 
-  static createAction(parent: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
-      const name = getValue(inputs.find(i => i.label === 'name')!);
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
-      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
-      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
-      const multiplier = getMultiplier(
-        inputs.find(i => i.label === 'Voltage')!
-      );
-
-      const action = {
-        new: {
-          parent,
-          element: new DOMParser().parseFromString(
-            `<VoltageLevel
-              name="${name}"
-              ${desc === null ? '' : `desc="${desc}"`}
-              ${nomFreq === null ? '' : `nomFreq="${nomFreq}"`}
-              ${numPhases === null ? '' : `numPhases="${numPhases}"`}
-            >${
-              Voltage === null
-                ? ''
-                : `<Voltage unit="V" ${
-                    multiplier === null ? '' : `multiplier="${multiplier}"`
-                  }
-            >${Voltage}</Voltage>`
-            }</VoltageLevel>`,
-            'application/xml'
-          ).documentElement,
-          reference: null,
-        },
-      };
-
-      wizard.close();
-      return [action];
-    };
-  }
-
   static updateAction(element: Element): WizardAction {
     return (
       inputs: WizardInput[],
@@ -275,6 +233,48 @@ export class VoltageLevelEditor extends LitElement {
       if (voltageLevelAction) actions.push(voltageLevelAction);
       if (voltageAction) actions.push(voltageAction);
       return actions;
+    };
+  }
+
+  static createAction(parent: Element): WizardAction {
+    return (
+      inputs: WizardInput[],
+      wizard: CloseableElement
+    ): EditorAction[] => {
+      const name = getValue(inputs.find(i => i.label === 'name')!);
+      const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
+      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
+      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
+      const multiplier = getMultiplier(
+        inputs.find(i => i.label === 'Voltage')!
+      );
+
+      const action = {
+        new: {
+          parent,
+          element: new DOMParser().parseFromString(
+            `<VoltageLevel
+              name="${name}"
+              ${desc === null ? '' : `desc="${desc}"`}
+              ${nomFreq === null ? '' : `nomFreq="${nomFreq}"`}
+              ${numPhases === null ? '' : `numPhases="${numPhases}"`}
+            >${
+              Voltage === null
+                ? ''
+                : `<Voltage unit="V" ${
+                    multiplier === null ? '' : `multiplier="${multiplier}"`
+                  }
+            >${Voltage}</Voltage>`
+            }</VoltageLevel>`,
+            'application/xml'
+          ).documentElement,
+          reference: null,
+        },
+      };
+
+      wizard.close();
+      return [action];
     };
   }
 
