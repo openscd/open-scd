@@ -7,26 +7,24 @@ import '../../mock-wizard-editor.js';
 import { getDocument } from '../../data.js';
 import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('voltage-level-editor wizardging editing integration', () => {
-  const doc = getDocument();
-
-  let parent: WizardingElement & EditingElement;
-  let element: VoltageLevelEditor | null;
-  beforeEach(async () => {
-    parent = <WizardingElement & EditingElement>(
-      await fixture(
-        html`<mock-wizard-editor
-          ><voltage-level-editor
-            .element=${doc.querySelector('VoltageLevel')}
-          ></voltage-level-editor
-        ></mock-wizard-editor>`
-      )
-    );
-  });
-
   describe('edit wizard', () => {
+    const doc = getDocument();
+
+    let parent: WizardingElement & EditingElement;
+    let element: VoltageLevelEditor | null;
     beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><voltage-level-editor
+              .element=${doc.querySelector('VoltageLevel')}
+            ></voltage-level-editor
+          ></mock-wizard-editor>`
+        )
+      );
       element = parent.querySelector('voltage-level-editor');
       await (<HTMLElement>(
         element?.header.querySelector('mwc-icon-button[icon="edit"]')
@@ -106,7 +104,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
           doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')
         ).to.equal('30');
       });
-      it('deletes nomFreq attribute if wizard-textfield is deactivated', async () => {
+      it('deletes numPhases attribute if wizard-textfield is deactivated', async () => {
         await (<HTMLElement>(
           parent.wizardUI.inputs[2].shadowRoot?.querySelector('mwc-switch')
         )).click();
@@ -193,6 +191,155 @@ describe('voltage-level-editor wizardging editing integration', () => {
         expect(doc.querySelector('VoltageLevel')?.querySelector('Voltage')).to
           .be.null;
       });
+    });
+  });
+  describe('open add bay wizard', () => {
+    const doc = getDocument();
+    let parent: WizardingElement & EditingElement;
+    let element: VoltageLevelEditor | null;
+    beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><voltage-level-editor
+              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
+            ></voltage-level-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('voltage-level-editor');
+
+      (<HTMLElement>(
+        element?.header.querySelector('mwc-icon-button[icon="playlist_add"]')
+      )).click();
+      await parent.updateComplete;
+    });
+    it('opens bay wizard ', async () => {
+      expect(parent.wizardUI).to.exist;
+    });
+    it('has two wizard-textfield', async () => {
+      expect(parent.wizardUI.inputs.length).to.equal(2);
+    });
+    it('does not add bay if name attribute is not unique', async () => {
+      parent.wizardUI.inputs[0].value = 'COUPLING_BAY';
+      await parent.updateComplete;
+      await (<HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      expect(
+        doc.querySelectorAll('VoltageLevel[name="E1"] > Bay').length
+      ).to.equal(1);
+    });
+    it('does not add bay if name attribute unique', async () => {
+      parent.wizardUI.inputs[0].value = 'SecondBay';
+      const name = parent.wizardUI.inputs[0].value;
+      await parent.updateComplete;
+      await (<HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      expect(
+        doc.querySelector('VoltageLevel[name="E1"] > Bay[name="SecondBay"]')
+      ).to.exist;
+      expect(
+        doc
+          .querySelector('VoltageLevel[name="E1"] > Bay[name="SecondBay"]')
+          ?.getAttribute('name')
+      ).to.equal(name);
+    });
+  });
+  describe('open lnode wizard', () => {
+    const doc = getDocument();
+    let parent: WizardingElement & EditingElement;
+    let element: VoltageLevelEditor | null;
+    beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><voltage-level-editor
+              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
+            ></voltage-level-editor
+          ></mock-wizard-editor>`
+        )
+      );
+
+      element = parent.querySelector('voltage-level-editor');
+
+      (<HTMLElement>(
+        element?.header.querySelector('mwc-icon-button[icon="account_tree"]')
+      )).click();
+      await parent.updateComplete;
+    });
+    it('opens lnode wizard ', async () => {
+      expect(parent.wizardUI).to.exist;
+    });
+    it('has three wizard pages', async () => {
+      expect(parent.wizardUI.dialogs.length).to.equal(3);
+    });
+    it('adds a LNode element when selecting a logical node', async () => {
+      expect(
+        doc.querySelector(
+          'VoltageLevel[name="E1"] > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
+        )
+      ).to.not.exist;
+      (<ListItemBase>(
+        parent.wizardUI
+          .shadowRoot!.querySelector('mwc-dialog:nth-child(1)')!
+          .querySelector('mwc-check-list-item[value="IED1"]')
+      )).click();
+      await parent.requestUpdate();
+      (<ListItemBase>(
+        parent.wizardUI
+          .shadowRoot!.querySelector('mwc-dialog:nth-child(2)')!
+          .querySelector('mwc-check-list-item')
+      )).click();
+      await parent.requestUpdate();
+      (<ListItemBase>(
+        parent.wizardUI
+          .shadowRoot!.querySelector('mwc-dialog:nth-child(3)')!
+          .querySelector('mwc-check-list-item')
+      )).click();
+      await parent.requestUpdate();
+      (<HTMLElement>(
+        parent.wizardUI
+          .shadowRoot!.querySelector('mwc-dialog:nth-child(3)')!
+          .querySelector('mwc-button[slot="primaryAction"]')
+      )).click();
+      await parent.requestUpdate();
+      expect(
+        doc.querySelector(
+          'VoltageLevel[name="E1"] > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
+        )
+      ).to.exist;
+    });
+  });
+  describe('remove action', () => {
+    const doc = getDocument();
+    let parent: WizardingElement & EditingElement;
+    let element: VoltageLevelEditor | null;
+    beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><voltage-level-editor
+              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
+            ></voltage-level-editor
+          ></mock-wizard-editor>`
+        )
+      );
+      element = parent.querySelector('voltage-level-editor');
+    });
+    it('removes VoltageLevel on clicking delete button', async () => {
+      expect(doc.querySelector('VoltageLevel[name="E1"]')).to.exist;
+      (<HTMLElement>(
+        element?.header.querySelector('mwc-icon-button[icon="delete"]')
+      )).click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel[name="E1"]')).to.not.exist;
     });
   });
 });
