@@ -36,6 +36,8 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		</VoltageLevel>
 		<VoltageLevel name="J1" desc="Voltage Level">
 			<Voltage unit="V" multiplier="k">20</Voltage>
+			<Bay name="Bay1" desc="Bay1">
+			</Bay>
 		</VoltageLevel>
 	</Substation>
 	<IED name="IED1" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
