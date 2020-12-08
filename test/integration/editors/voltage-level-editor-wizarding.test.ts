@@ -4,7 +4,7 @@ import { WizardingElement } from '../../../src/Wizarding.js';
 import '../../mock-wizard.js';
 import { getDocument } from '../../data.js';
 import fc from 'fast-check';
-import { regexString, regExp, negativeRegExp } from '../../foundation.js';
+import { regexString, regExp, inverseRegExp } from '../../foundation.js';
 
 describe('voltage-level-editor wizarding integration', () => {
   const doc = getDocument();
@@ -110,7 +110,7 @@ describe('voltage-level-editor wizarding integration', () => {
     it('rejects edition for invalid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(
-          regexString(negativeRegExp.min0decimal, 1),
+          regexString(inverseRegExp.min0decimal, 1),
           async nomFreq => {
             parent.wizardUI.inputs[2].value = nomFreq;
             await parent.updateComplete;
@@ -147,7 +147,7 @@ describe('voltage-level-editor wizarding integration', () => {
     it('rejects edition for invalid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(
-          regexString(negativeRegExp.integer, 1),
+          regexString(inverseRegExp.integer, 1),
           async nomFreq => {
             parent.wizardUI.inputs[3].value = nomFreq;
             await parent.updateComplete;
@@ -173,7 +173,7 @@ describe('voltage-level-editor wizarding integration', () => {
     it('rejects edition for invalid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(
-          regexString(negativeRegExp.decimal, 1),
+          regexString(inverseRegExp.decimal, 1),
           async voltage => {
             parent.wizardUI.inputs[4].value = voltage;
             await parent.updateComplete;

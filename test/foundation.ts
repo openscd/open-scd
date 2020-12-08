@@ -25,8 +25,8 @@ export const regExp = {
   desc: new RegExp(`^${restrictions.normalizedString}$`),
 };
 
-export const negativeRegExp = {
-  min0decimal: /^(?!.*[-+0-9.]).*$/,
-  decimal: /^(?!.*[0-9.]).*$/,
-  integer: /^(?!.*[0-9]).*$/,
+export const inverseRegExp = {
+  min0decimal: /[^0-9.+]|.[^0-9.]/,
+  decimal: /[^0-9.+-]|.[^0-9.]/,
+  integer: /[^0-9+-]/,
 };
