@@ -16,11 +16,11 @@ describe('voltage-level-editor wizardging editing integration', () => {
   beforeEach(async () => {
     parent = <WizardingElement & EditingElement>(
       await fixture(
-        html`<mock-parent
+        html`<mock-wizard-editor
           ><voltage-level-editor
             .element=${doc.querySelector('VoltageLevel')}
           ></voltage-level-editor
-        ></mock-parent>`
+        ></mock-wizard-editor>`
       )
     );
   });
