@@ -12,7 +12,6 @@ describe('voltage-level-editor', () => {
       await fixture(
         html`<voltage-level-editor
           .element=${validSCL.querySelector('VoltageLevel')}
-          .parent=${validSCL.querySelector('Substation')}
         ></voltage-level-editor>`
       )
     );
