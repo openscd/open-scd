@@ -64,7 +64,7 @@ describe('voltage-level-editor wizarding integration', () => {
         fc.asyncProperty(regexString(regExp.tName, 1), async name => {
           parent.wizardUI.inputs[0].value = name;
           await parent.updateComplete;
-          expect(parent.wizardUI.checkValidity()).to.be.true;
+          expect(parent.wizardUI.inputs[0].checkValidity()).to.be.true;
         })
       );
     });
@@ -78,7 +78,7 @@ describe('voltage-level-editor wizarding integration', () => {
         fc.asyncProperty(regexString(regExp.desc), async desc => {
           parent.wizardUI.inputs[1].value = desc;
           await parent.updateComplete;
-          expect(parent.wizardUI.checkValidity()).to.be.true;
+          expect(parent.wizardUI.inputs[1].checkValidity()).to.be.true;
         })
       );
     });
@@ -92,20 +92,20 @@ describe('voltage-level-editor wizarding integration', () => {
         fc.asyncProperty(regexString(regExp.unsigned, 1), async nomFreq => {
           parent.wizardUI.inputs[2].value = nomFreq;
           await parent.updateComplete;
-          expect(parent.wizardUI.checkValidity()).to.be.true;
+          expect(parent.wizardUI.inputs[2].checkValidity()).to.be.true;
         })
       );
     });
     it('requires a nonnegative value', async () => {
       parent.wizardUI.inputs[2].value = '';
       await parent.updateComplete;
-      expect(parent.wizardUI.checkValidity()).to.be.false;
+      expect(parent.wizardUI.inputs[2].checkValidity()).to.be.false;
       parent.wizardUI.inputs[2].value = '-50.';
       await parent.updateComplete;
-      expect(parent.wizardUI.checkValidity()).to.be.false;
+      expect(parent.wizardUI.inputs[2].checkValidity()).to.be.false;
       parent.wizardUI.inputs[2].value = '+50.';
       await parent.updateComplete;
-      expect(parent.wizardUI.checkValidity()).to.be.true;
+      expect(parent.wizardUI.inputs[2].checkValidity()).to.be.true;
     });
     it('rejects action for invalid inputs', async () => {
       await fc.assert(
@@ -114,7 +114,7 @@ describe('voltage-level-editor wizarding integration', () => {
           async nomFreq => {
             parent.wizardUI.inputs[2].value = nomFreq;
             await parent.updateComplete;
-            expect(parent.wizardUI.checkValidity()).to.be.false;
+            expect(parent.wizardUI.inputs[2].checkValidity()).to.be.false;
           }
         )
       );
@@ -129,20 +129,20 @@ describe('voltage-level-editor wizarding integration', () => {
         fc.asyncProperty(fc.integer(1, 255), async numPhases => {
           parent.wizardUI.inputs[3].value = String(numPhases);
           await parent.updateComplete;
-          expect(parent.wizardUI.checkValidity()).to.be.true;
+          expect(parent.wizardUI.inputs[3].checkValidity()).to.be.true;
         })
       );
     });
     it('is of the type unsingedByte', async () => {
       parent.wizardUI.inputs[3].value = '0';
       await parent.updateComplete;
-      expect(parent.wizardUI.checkValidity()).to.be.false;
+      expect(parent.wizardUI.inputs[3].checkValidity()).to.be.false;
       parent.wizardUI.inputs[3].value = '256';
       await parent.updateComplete;
-      expect(parent.wizardUI.checkValidity()).to.be.false;
+      expect(parent.wizardUI.inputs[3].checkValidity()).to.be.false;
       parent.wizardUI.inputs[3].value = '-65';
       await parent.updateComplete;
-      expect(parent.wizardUI.checkValidity()).to.be.false;
+      expect(parent.wizardUI.inputs[3].checkValidity()).to.be.false;
     });
     it('rejects edition for invalid inputs', async () => {
       await fc.assert(
@@ -151,7 +151,7 @@ describe('voltage-level-editor wizarding integration', () => {
           async nomFreq => {
             parent.wizardUI.inputs[3].value = nomFreq;
             await parent.updateComplete;
-            expect(parent.wizardUI.checkValidity()).to.be.false;
+            expect(parent.wizardUI.inputs[3].checkValidity()).to.be.false;
           }
         )
       );
@@ -166,7 +166,7 @@ describe('voltage-level-editor wizarding integration', () => {
         fc.asyncProperty(regexString(regExp.decimal), async nomFreq => {
           parent.wizardUI.inputs[4].value = nomFreq;
           await parent.updateComplete;
-          expect(parent.wizardUI.checkValidity()).to.be.true;
+          expect(parent.wizardUI.inputs[4].checkValidity()).to.be.true;
         })
       );
     });
@@ -177,7 +177,7 @@ describe('voltage-level-editor wizarding integration', () => {
           async voltage => {
             parent.wizardUI.inputs[4].value = voltage;
             await parent.updateComplete;
-            expect(parent.wizardUI.checkValidity()).to.be.false;
+            expect(parent.wizardUI.inputs[4].checkValidity()).to.be.false;
           }
         )
       );
