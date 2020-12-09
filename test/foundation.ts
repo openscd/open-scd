@@ -20,13 +20,13 @@ export const regExp = {
   tLNClass: /^[A-Z]{1,4}$/,
   tLNInst: /^[0-9]{0,12}$/,
   decimal: new RegExp(`^${restrictions.decimal}$`),
-  min0decimal: new RegExp(`^${restrictions.min0decimal}$`),
+  unsigned: new RegExp(`^${restrictions.unsigned}$`),
   tName: new RegExp(`^${restrictions.normalizedString}$`),
   desc: new RegExp(`^${restrictions.normalizedString}$`),
 };
 
 export const inverseRegExp = {
-  min0decimal: /[^0-9.+]|.[^0-9.]/,
+  unsigned: /[^0-9.+]|.[^0-9.]/,
   decimal: /[^0-9.+-]|.[^0-9.]/,
   integer: /[^0-9+-]/,
 };

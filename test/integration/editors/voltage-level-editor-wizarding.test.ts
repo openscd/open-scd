@@ -89,14 +89,14 @@ describe('voltage-level-editor wizarding integration', () => {
     });
     it('edits only for valid inputs', async () => {
       await fc.assert(
-        fc.asyncProperty(regexString(regExp.min0decimal, 1), async nomFreq => {
+        fc.asyncProperty(regexString(regExp.unsigned, 1), async nomFreq => {
           parent.wizardUI.inputs[2].value = nomFreq;
           await parent.updateComplete;
           expect(parent.wizardUI.checkValidity()).to.be.true;
         })
       );
     });
-    it('has a minInclusive value of zero', async () => {
+    it('requires a nonnegative value', async () => {
       parent.wizardUI.inputs[2].value = '';
       await parent.updateComplete;
       expect(parent.wizardUI.checkValidity()).to.be.false;
@@ -105,12 +105,12 @@ describe('voltage-level-editor wizarding integration', () => {
       expect(parent.wizardUI.checkValidity()).to.be.false;
       parent.wizardUI.inputs[2].value = '+50.';
       await parent.updateComplete;
-      expect(parent.wizardUI.checkValidity()).to.be.false;
+      expect(parent.wizardUI.checkValidity()).to.be.true;
     });
-    it('rejects edition for invalid inputs', async () => {
+    it('rejects action for invalid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(
-          regexString(inverseRegExp.min0decimal, 1),
+          regexString(inverseRegExp.unsigned, 1),
           async nomFreq => {
             parent.wizardUI.inputs[2].value = nomFreq;
             await parent.updateComplete;

@@ -354,7 +354,7 @@ export class VoltageLevelEditor extends LitElement {
             suffix="Hz"
             required
             validationMessage="${translate('textfield.nonempty')}"
-            pattern="${restrictions.min0decimal}"
+            pattern="${restrictions.unsigned}"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="numPhases"
