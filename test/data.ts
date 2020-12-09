@@ -20,8 +20,8 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		</History>
 	</Header>
 	<Substation name="AA1" desc="Substation">
-		<VoltageLevel name="E1" desc="Voltage Level">
-			<Voltage unit="V" multiplier="k">110</Voltage>
+		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
+			<Voltage unit="V" multiplier="k">110.0</Voltage>
 			<Bay name="COUPLING_BAY" desc="Bay">
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
@@ -32,6 +32,11 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				<ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
 				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11"/>
 				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12"/>
+			</Bay>
+		</VoltageLevel>
+		<VoltageLevel name="J1" desc="Voltage Level">
+			<Voltage unit="V" multiplier="k">20</Voltage>
+			<Bay name="Bay1" desc="Bay1">
 			</Bay>
 		</VoltageLevel>
 	</Substation>

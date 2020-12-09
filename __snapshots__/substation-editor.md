@@ -19,6 +19,8 @@
   </h1>
   <voltage-level-editor>
   </voltage-level-editor>
+  <voltage-level-editor>
+  </voltage-level-editor>
 </section>
 
 ```

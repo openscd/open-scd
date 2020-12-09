@@ -18,6 +18,7 @@ import {
   newActionEvent,
   getValue,
   getMultiplier,
+  restrictions,
 } from '../../foundation.js';
 
 import {
@@ -126,7 +127,7 @@ export class VoltageLevelEditor extends LitElement {
           old: {
             parent: this.element.parentElement!,
             element: this.element,
-            reference: null,
+            reference: this.element.nextElementSibling,
           },
         })
       );
@@ -353,7 +354,7 @@ export class VoltageLevelEditor extends LitElement {
             suffix="Hz"
             required
             validationMessage="${translate('textfield.nonempty')}"
-            pattern="[0-9]*[.]?[0-9]+"
+            pattern="${restrictions.unsigned}"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="numPhases"
@@ -377,7 +378,7 @@ export class VoltageLevelEditor extends LitElement {
             helper="${translate('voltagelevel.wizard.voltageHelper')}"
             required
             validationMessage="${translate('textfield.nonempty')}"
-            pattern="[0-9]*[.]?[0-9]+"
+            pattern="${restrictions.decimal}"
           ></wizard-textfield>`,
         ],
       },
