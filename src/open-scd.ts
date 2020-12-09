@@ -163,6 +163,8 @@ export class OpenSCD extends Setting(
     if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
     if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
     if (ctrlAnd('o')) this.fileUI.click();
+    if (ctrlAnd('s')) this.save();
+    if (ctrlAnd('S')) this.saveUI.show();
 
     if (handled) e.preventDefault();
   }
