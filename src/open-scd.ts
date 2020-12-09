@@ -126,6 +126,24 @@ export class OpenSCD extends Setting(
     }
   }
 
+  private save(): void {
+    const blob = new Blob([new XMLSerializer().serializeToString(this.doc)], {
+      type: 'application/xml',
+    });
+
+    const a = document.createElement('a');
+    a.download = this.srcName;
+    a.href = URL.createObjectURL(blob);
+    a.dataset.downloadurl = ['application/xml', a.download, a.href].join(':');
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(a.href);
+    }, 1500);
+  }
+
   private handleKeyPress(e: KeyboardEvent): void {
     let handled = false;
     const ctrlAnd = (key: string) =>
@@ -150,7 +168,7 @@ export class OpenSCD extends Setting(
     },
     { icon: 'create_new_folder', name: 'menu.new' },
     { icon: 'snippet_folder', name: 'menu.importIED' },
-    { icon: 'save', name: 'save' },
+    { icon: 'save', name: 'save', action: (): void => this.save() },
     {
       icon: 'undo',
       name: 'undo',
