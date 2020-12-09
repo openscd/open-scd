@@ -9,9 +9,9 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
-import { cache } from 'lit-html/directives/cache.js';
 
 import '@material/mwc-button';
+import '@material/mwc-dialog';
 import '@material/mwc-drawer';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
@@ -20,6 +20,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-tab';
 import '@material/mwc-tab-bar';
+import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Drawer } from '@material/mwc-drawer';
@@ -35,6 +36,7 @@ import { newLogEvent, newPendingStateEvent } from './foundation.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
 import { selectors } from './editors/substation/foundation.js';
+import { Dialog } from '@material/mwc-dialog';
 interface MenuEntry {
   icon: string;
   name: string;
@@ -76,6 +78,7 @@ export class OpenSCD extends Setting(
 
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
+  @query('#saveas') saveUI!: Dialog;
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private loadDoc(src: string): Promise<string> {
@@ -126,6 +129,12 @@ export class OpenSCD extends Setting(
     }
   }
 
+  private saveAs(): void {
+    this.srcName =
+      this.saveUI.querySelector('mwc-textfield')?.value || this.srcName;
+    this.save();
+  }
+
   private save(): void {
     const blob = new Blob([new XMLSerializer().serializeToString(this.doc)], {
       type: 'application/xml',
@@ -168,7 +177,8 @@ export class OpenSCD extends Setting(
     },
     { icon: 'create_new_folder', name: 'menu.new' },
     { icon: 'snippet_folder', name: 'menu.importIED' },
-    { icon: 'save', name: 'save', action: (): void => this.save() },
+    { icon: 'save_alt', name: 'save', action: (): void => this.save() },
+    { icon: 'save', name: 'saveAs', action: (): void => this.saveUI.show() },
     {
       icon: 'undo',
       name: 'undo',
@@ -215,6 +225,9 @@ export class OpenSCD extends Setting(
 
   constructor() {
     super();
+
+    if ('serviceWorker' in navigator)
+      navigator.serviceWorker.register('/sw.js');
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;
@@ -299,11 +312,28 @@ export class OpenSCD extends Setting(
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
-      ${cache(
-        until(
-          this.plugins.editors[this.activeTab].getContent(),
-          html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-        )
+      <mwc-dialog heading="${translate('saveAs')}" id="saveas">
+        <mwc-textfield dialogInitialFocus label="${translate(
+          'filename'
+        )}" value="${this.srcName}">
+        </mwc-textfield>
+        <mwc-button
+          @click=${() => this.saveAs()}
+          icon="save"
+          slot="primaryAction">
+          ${translate('save')}
+        </mwc-button>
+        <mwc-button
+          dialogAction="cancel"
+          style="--mdc-theme-primary: var(--mdc-theme-error)"
+          slot="secondaryAction">
+          ${translate('cancel')}
+        </mwc-button>
+      </mwc-dialog>
+
+      ${until(
+        this.plugins.editors[this.activeTab].getContent(),
+        html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
       )}
 
       <input id="file-input" type="file" @change="${this.loadFile}"></input>
