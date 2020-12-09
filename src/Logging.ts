@@ -132,7 +132,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     async performUpdate() {
-      await new Promise(resolve => requestAnimationFrame(() => resolve()));
+      await new Promise<void>(resolve =>
+        requestAnimationFrame(() => resolve())
+      );
       super.performUpdate();
     }
 
