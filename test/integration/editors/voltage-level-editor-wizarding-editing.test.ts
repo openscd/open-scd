@@ -317,6 +317,43 @@ describe('voltage-level-editor wizardging editing integration', () => {
       ).to.exist;
     });
   });
+  describe('move action', () => {
+    const doc = getDocument();
+    let parent: WizardingElement & EditingElement;
+    let element: VoltageLevelEditor | null;
+    let element2: VoltageLevelEditor | null;
+    beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            >${Array.from(doc?.querySelectorAll('VoltageLevel') ?? []).map(
+              vLevel =>
+                html`<voltage-level-editor
+                  .element=${vLevel}
+                ></voltage-level-editor>`
+            )}
+            ></mock-wizard-editor
+          >`
+        )
+      );
+      element = parent.querySelector('voltage-level-editor:nth-child(1)');
+      element2 = parent.querySelector('voltage-level-editor:nth-child(2)');
+    });
+    it('moves VoltageLevel within Substation', async () => {
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
+        'E1'
+      );
+      (<HTMLElement>(
+        element2?.header.querySelector('mwc-icon-button[icon="forward"]')
+      )).click();
+      await parent.updateComplete;
+      (<HTMLElement>element).click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
+        'J1'
+      );
+    });
+  });
   describe('remove action', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
