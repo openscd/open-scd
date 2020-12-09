@@ -27,7 +27,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
       );
       element = parent.querySelector('voltage-level-editor');
       await (<HTMLElement>(
-        element?.header.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
     });
@@ -148,7 +148,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
     describe('edit Voltage', () => {
       beforeEach(async () => {
         await (<HTMLElement>(
-          element?.header.querySelector('mwc-icon-button[icon="edit"]')
+          element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
         )).click();
         await parent.updateComplete;
       });
@@ -211,7 +211,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
       element = parent.querySelector('voltage-level-editor');
 
       (<HTMLElement>(
-        element?.header.querySelector('mwc-icon-button[icon="playlist_add"]')
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="playlist_add"]')
       )).click();
       await parent.updateComplete;
     });
@@ -270,7 +270,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
       element = parent.querySelector('voltage-level-editor');
 
       (<HTMLElement>(
-        element?.header.querySelector('mwc-icon-button[icon="account_tree"]')
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="account_tree"]')
       )).click();
       await parent.updateComplete;
     });
@@ -336,7 +336,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
     it('removes VoltageLevel on clicking delete button', async () => {
       expect(doc.querySelector('VoltageLevel[name="E1"]')).to.exist;
       (<HTMLElement>(
-        element?.header.querySelector('mwc-icon-button[icon="delete"]')
+        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('VoltageLevel[name="E1"]')).to.not.exist;

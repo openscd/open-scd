@@ -6,7 +6,7 @@
 <section tabindex="0">
   <h2>
     E1 — Voltage Level
-      (110 kV)
+      (110.0 kV)
     <mwc-icon-button icon="playlist_add">
     </mwc-icon-button>
     <nav>
