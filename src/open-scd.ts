@@ -133,6 +133,7 @@ export class OpenSCD extends Setting(
     this.srcName =
       this.saveUI.querySelector('mwc-textfield')?.value || this.srcName;
     this.save();
+    this.saveUI.close();
   }
 
   private save(): void {
