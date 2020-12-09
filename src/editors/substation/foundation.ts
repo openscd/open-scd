@@ -1,16 +1,52 @@
 import { css } from 'lit-element';
 
-import { newActionEvent } from '../../foundation.js';
+import {
+  CloseableElement,
+  EditorAction,
+  getValue,
+  newActionEvent,
+  WizardAction,
+  WizardInput,
+} from '../../foundation.js';
 
-export type EditorElement = Element & {
-  container: Element;
+export type ElementEditor = Element & {
   element: Element;
 };
 
-export type EditorPluginElement = Element & {
-  container: Element;
-  element: Element | null;
-};
+interface UpdateOptions {
+  element: Element;
+}
+interface CreateOptions {
+  parent: Element;
+}
+export type WizardOptions = UpdateOptions | CreateOptions;
+
+export function isCreateOptions(
+  options: WizardOptions
+): options is CreateOptions {
+  return (<CreateOptions>options).parent !== undefined;
+}
+
+export function updateNamingAction(element: Element): WizardAction {
+  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+    const name = getValue(inputs.find(i => i.label === 'name')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+    if (
+      name === element.getAttribute('name') &&
+      desc === element.getAttribute('desc')
+    )
+      return [];
+
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('name', name);
+    if (desc === null) newElement.removeAttribute('desc');
+    else newElement.setAttribute('desc', desc);
+    wizard.close();
+
+    return [{ old: { element }, new: { element: newElement } }];
+  };
+}
 
 /**
  * Moves the element edited by `editor` to the place before the next `Child`
@@ -20,13 +56,14 @@ export type EditorPluginElement = Element & {
  * The move action can be aborted by clicking on something other than a `Child`
  * or `Parent` editor or by hitting the escape key on the keyboard.
  */
-export function startMove<
-  E extends EditorElement,
-  P extends EditorPluginElement
->(editor: E, Child: new () => E, Parent: new () => P): void {
+export function startMove<E extends ElementEditor, P extends ElementEditor>(
+  editor: E,
+  Child: new () => E,
+  Parent: new () => P
+): void {
   if (!editor.element) return;
 
-  editor.container.classList.add('moving');
+  editor.classList.add('moving');
 
   const moveToTarget = (e: MouseEvent | KeyboardEvent) => {
     if (
@@ -39,7 +76,7 @@ export function startMove<
 
     e.preventDefault();
     e.stopImmediatePropagation();
-    editor.container.classList.remove('moving');
+    editor.classList.remove('moving');
 
     window.removeEventListener('keydown', moveToTarget, true);
     window.removeEventListener('click', moveToTarget, true);
@@ -106,7 +143,10 @@ export const selectors = <Record<SubstationTag, string>>(
 
 /** Common `CSS` styles used by substation subeditors */
 export const styles = css`
-  main,
+  :host(.moving) section {
+    opacity: 0.3;
+  }
+
   section {
     background-color: var(--mdc-theme-surface);
     transition: all 200ms linear;
@@ -117,18 +157,11 @@ export const styles = css`
     opacity: 1;
   }
 
-  main.moving,
-  section.moving {
-    opacity: 0.3;
-  }
-
-  main:focus,
   section:focus {
     box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
       0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
   }
 
-  main:focus-within,
   section:focus-within {
     outline-width: 2px;
     transition: all 250ms linear;
@@ -149,7 +182,7 @@ export const styles = css`
     transition: background-color 150ms linear;
   }
 
-  main:focus-within > h1,
+  section:focus-within > h1,
   section:focus-within > h2,
   section:focus-within > h3 {
     color: var(--mdc-theme-surface);

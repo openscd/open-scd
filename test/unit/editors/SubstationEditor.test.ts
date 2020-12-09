@@ -1,8 +1,9 @@
-import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
 import { fixture, html, expect } from '@open-wc/testing';
-import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
+
+import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { SubstationEditor } from '../../../src/editors/substation/substation-editor.js';
 import { updateNamingAction } from '../../../src/editors/substation/foundation.js';
-describe('BayEditor', () => {
+describe('SubstationEditor', () => {
   const noOp = () => {
     return;
   };
@@ -27,19 +28,17 @@ describe('BayEditor', () => {
   describe('createAction', () => {
     let parent: Element;
     beforeEach(() => {
-      parent = new DOMParser().parseFromString(
-        '<Voltage Level></Voltage Level>',
-        'application/xml'
-      ).documentElement;
+      parent = new DOMParser().parseFromString('<SCL></SCL>', 'application/xml')
+        .documentElement;
     });
 
     it('returns a WizardAction which returns a Create EditorAction', () => {
-      const wizardAction = BayEditor.createAction(parent);
+      const wizardAction = SubstationEditor.createAction(parent);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
     });
 
     it('closes the wizard before returning', done => {
-      const wizardAction = BayEditor.createAction(parent);
+      const wizardAction = SubstationEditor.createAction(parent);
       wizardAction(inputs, newWizard(done));
     });
   });
@@ -48,13 +47,13 @@ describe('BayEditor', () => {
     let element: Element;
     beforeEach(() => {
       element = new DOMParser().parseFromString(
-        '<Bay></Bay>',
+        '<Substation></Substation>',
         'application/xml'
       ).documentElement;
     });
 
     it('closes the wizard before returning', done => {
-      const wizardAction = BayEditor.createAction(element);
+      const wizardAction = SubstationEditor.createAction(element);
       wizardAction(inputs, newWizard(done));
     });
 
@@ -68,12 +67,12 @@ describe('BayEditor', () => {
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
     });
 
-    describe('with no change in element Bay', () => {
+    describe('with no change in element Substation', () => {
       let element: Element;
       beforeEach(() => {
         element = new DOMParser().parseFromString(
-          `<Bay name="" desc="">
-              </Bay>`,
+          `<Substation name="" desc="">
+              </Substation>`,
           'application/xml'
         ).documentElement;
       });

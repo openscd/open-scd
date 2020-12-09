@@ -188,7 +188,7 @@ export class OpenSCD extends Setting(
         id: 'substation',
         icon: zeroLineIcon,
         getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/SubstationEditor.js', 'editor-0').then(
+          plugin('./editors/Substation.js', 'editor-0').then(
             () => html`<editor-0 .doc=${this.doc}></editor-0>`
           ),
       },
@@ -300,7 +300,7 @@ export class OpenSCD extends Setting(
     } /* hack to fix disabled icon buttons rendering black */
 
     mwc-tab {
-      background-color: var(--blue);
+      background-color: var(--primary);
       --mdc-theme-primary: var(--mdc-theme-on-primary);
     }
 

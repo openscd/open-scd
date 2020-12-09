@@ -12,7 +12,6 @@ describe('voltage-level-editor', () => {
       await fixture(
         html`<voltage-level-editor
           .element=${validSCL.querySelector('VoltageLevel')}
-          .parent=${validSCL.querySelector('Substation')}
         ></voltage-level-editor>`
       )
     );
@@ -24,8 +23,7 @@ describe('voltage-level-editor', () => {
   it('has a desc property', () =>
     expect(element).to.have.property('desc', 'Voltage Level'));
 
-  it('renders header with name and desc visible', () => {
-    expect(element).property('header').to.contain.text('E1');
-    expect(element).property('header').to.contain.text('Voltage Level');
+  it('looks like the latest snapshot', () => {
+    expect(element).shadowDom.to.equalSnapshot();
   });
 });

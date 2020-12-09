@@ -11,7 +11,6 @@ describe('bay-editor', () => {
     element = <BayEditor>await fixture(
       html`<bay-editor
           .element=${validSCL.querySelector('Bay')}
-          .parent=${validSCL.querySelector('Voltage Level')}
         ></voltage-level-editor>`
     );
   });
@@ -22,8 +21,7 @@ describe('bay-editor', () => {
   it('has a desc property', () =>
     expect(element).to.have.property('desc', 'Bay'));
 
-  it('renders header with name and desc visible', () => {
-    expect(element).property('header').to.contain.text('COUPLING_BAY');
-    expect(element).property('header').to.contain.text('Bay');
+  it('looks like the latest snapshot', () => {
+    expect(element).shadowDom.to.equalSnapshot();
   });
 });

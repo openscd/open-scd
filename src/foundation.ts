@@ -271,9 +271,4 @@ declare global {
     ['wizard']: WizardEvent;
     ['log']: LogEvent;
   }
-  interface HTMLElement {
-    // Extended for other mixins to be able to use `Logging` mixin.
-    info?(message: string, ...data: any[]): void;
-    warn?(message: string, ...data: any[]): void;
-  }
 }

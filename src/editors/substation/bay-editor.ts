@@ -1,43 +1,35 @@
 import {
-  LitElement,
-  TemplateResult,
   css,
   customElement,
   html,
+  LitElement,
   property,
-  query,
+  TemplateResult,
 } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import { translate, get } from 'lit-translate';
 
 import {
+  CloseableElement,
+  EditorAction,
+  getValue,
+  newActionEvent,
+  newWizardEvent,
   Wizard,
   WizardAction,
   WizardInput,
-  CloseableElement,
-  EditorAction,
-  newWizardEvent,
-  newActionEvent,
-  getValue,
 } from '../../foundation.js';
 
-import { startMove, styles } from './foundation.js';
+import {
+  isCreateOptions,
+  startMove,
+  styles,
+  updateNamingAction,
+  WizardOptions,
+} from './foundation.js';
 import './conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 import { editlNode } from './lnodewizard.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
-
-interface BayUpdateOptions {
-  element: Element;
-}
-interface BayCreateOptions {
-  parent: Element;
-}
-type BayWizardOptions = BayUpdateOptions | BayCreateOptions;
-function isBayCreateOptions(
-  options: BayWizardOptions
-): options is BayCreateOptions {
-  return (<BayCreateOptions>options).parent !== undefined;
-}
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
@@ -53,9 +45,6 @@ export class BayEditor extends LitElement {
   get desc(): string | null {
     return this.element.getAttribute('desc') ?? null;
   }
-
-  @query('h3') header!: Element;
-  @query('section') container!: Element;
 
   openEditWizard(): void {
     this.dispatchEvent(
@@ -161,31 +150,7 @@ export class BayEditor extends LitElement {
     };
   }
 
-  static updateAction(element: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
-      const name = getValue(inputs.find(i => i.label === 'name')!)!;
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-      if (
-        name === element.getAttribute('name') &&
-        desc === element.getAttribute('desc')
-      )
-        return [];
-
-      const newElement = <Element>element.cloneNode(false);
-      newElement.setAttribute('name', name);
-      if (desc === null) newElement.removeAttribute('desc');
-      else newElement.setAttribute('desc', desc);
-      wizard.close();
-
-      return [{ old: { element }, new: { element: newElement } }];
-    };
-  }
-
-  static wizard(options: BayWizardOptions): Wizard {
+  static wizard(options: WizardOptions): Wizard {
     const [
       heading,
       actionName,
@@ -193,7 +158,7 @@ export class BayEditor extends LitElement {
       action,
       name,
       desc,
-    ] = isBayCreateOptions(options)
+    ] = isCreateOptions(options)
       ? [
           get('bay.wizard.title.add'),
           get('add'),
@@ -206,7 +171,7 @@ export class BayEditor extends LitElement {
           get('bay.wizard.title.edit'),
           get('save'),
           'edit',
-          BayEditor.updateAction(options.element),
+          updateNamingAction(options.element),
           options.element.getAttribute('name'),
           options.element.getAttribute('desc'),
         ];

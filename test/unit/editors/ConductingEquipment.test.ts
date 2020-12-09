@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
 import { ConductingEquipmentEditor } from '../../../src/editors/substation/conducting-equipment-editor.js';
-
+import { updateNamingAction } from '../../../src/editors/substation/foundation.js';
 describe('ConductingEquipmentEditor', () => {
   const noOp = () => {
     return;
@@ -60,12 +60,12 @@ describe('ConductingEquipmentEditor', () => {
     });
 
     it('returns a WizardAction which retruns one EditorActions', () => {
-      const wizardAction = ConductingEquipmentEditor.updateAction(element);
+      const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard()).length).to.equal(1);
     });
 
     it('returns a WizardAction with returned EditorAction beeing an Update', () => {
-      const wizardAction = ConductingEquipmentEditor.updateAction(element);
+      const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
     });
 
@@ -79,7 +79,7 @@ describe('ConductingEquipmentEditor', () => {
       });
 
       it('returns a WizardAction with an empty EditorActions array', () => {
-        const wizardAction = ConductingEquipmentEditor.updateAction(element);
+        const wizardAction = updateNamingAction(element);
         expect(wizardAction(inputs, newWizard()).length).to.equal(0);
       });
     });
