@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { createDefaultConfig } = require('@open-wc/testing-karma');
 const merge = require('deepmerge');
-// process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = config => {
   config.set(
