@@ -196,7 +196,7 @@ export class SubstationEditor extends LitElement {
           'add',
           SubstationEditor.createAction(options.parent),
           '',
-          null,
+          '',
         ]
       : [
           get('substation.wizard.title.edit'),
