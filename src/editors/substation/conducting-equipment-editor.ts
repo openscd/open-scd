@@ -313,6 +313,7 @@ export class ConductingEquipmentEditor extends LitElement {
       margin: 0px;
       opacity: 1;
       transition: opacity 200ms linear;
+      text-align: center;
     }
 
     :host(.moving) #container,
