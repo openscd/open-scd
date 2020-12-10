@@ -1,7 +1,7 @@
 {
   "short_name": "OpenSCD",
   "name": "OpenSCD",
-  "description": "A substation configuration description editor using SCL IEC 61850-6",
+  "description": "An editor for XML files as described by IEC 61850-6",
   "categories": ["productivity", "utilities", "engineering"],
   "start_url": ".",
   "display": "standalone",
