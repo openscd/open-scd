@@ -118,6 +118,7 @@ export const en = {
   add: 'Add',
   edit: 'Edit',
   save: 'Save',
+  saveAs: 'Save as',
   reset: 'Reset',
   cancel: 'Cancel',
   close: 'Close',

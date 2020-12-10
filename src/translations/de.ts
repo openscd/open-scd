@@ -121,6 +121,7 @@ export const de: Translations = {
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
   save: 'Speichern',
+  saveAs: 'Speichern unter',
   reset: 'Zurücksetzen',
   cancel: 'Abbrechen',
   close: 'Schließen',
