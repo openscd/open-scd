@@ -184,7 +184,6 @@ export class ConductingEquipmentEditor extends LitElement {
             label="name"
             .maybeValue=${name}
             helper="${translate('conductingequipment.wizard.nameHelper')}"
-            iconTrailing="title"
             required
             validationMessage="${translate('textfield.required')}"
             dialogInitialFocus
@@ -195,7 +194,6 @@ export class ConductingEquipmentEditor extends LitElement {
             .maybeValue=${desc}
             nullable="true"
             helper="${translate('conductingequipment.wizard.descHelper')}"
-            iconTrailing="description"
           ></wizard-textfield>`,
           ConductingEquipmentEditor.renderTypeSelector(options),
         ],
