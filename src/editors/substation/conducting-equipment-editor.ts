@@ -150,7 +150,7 @@ export class ConductingEquipmentEditor extends LitElement {
           'add',
           ConductingEquipmentEditor.createAction(options.parent),
           '',
-          null,
+          '',
           Array.from(
             options.parent.querySelectorAll(selectors.ConductingEquipment)
           ).map(condEq => condEq.getAttribute('name')),
