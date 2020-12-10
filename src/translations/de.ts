@@ -72,6 +72,7 @@ export const de: Translations = {
     },
   },
   voltagelevel: {
+    name: 'Spannungsebene',
     wizard: {
       nameHelper: 'Name der Spannungsebene',
       descHelper: 'Beschreibung der Spannungsebene',
@@ -85,6 +86,7 @@ export const de: Translations = {
     },
   },
   bay: {
+    name: 'Feld',
     wizard: {
       nameHelper: 'Feldname',
       descHelper: 'Beschreibung des Feldes',
@@ -95,6 +97,7 @@ export const de: Translations = {
     },
   },
   conductingequipment: {
+    name: 'Primärelement',
     wizard: {
       nameHelper: 'Name des Primärelements',
       descHelper: 'Beschreibung des Primärelements',
@@ -116,6 +119,15 @@ export const de: Translations = {
       placeholder:
         'Keine IEDs geladen. ' +
         'Bitte laden Sie eine SCL Datei, die IED Elemente enthält.',
+    },
+  },
+  tooltip: {
+    iconbutton: {
+      add: '{{childTag}} hinzufügen',
+      lnodewizard: 'Logische Knoten mit {{tagName}} verbinden',
+      edit: 'Attribute bearbeiten',
+      forward: 'In {{parentTag}} verschieben',
+      delete: '{{tagName}} löschen',
     },
   },
   add: 'Hinzufügen',

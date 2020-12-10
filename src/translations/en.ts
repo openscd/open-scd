@@ -69,6 +69,7 @@ export const en = {
     },
   },
   voltagelevel: {
+    name: 'Voltage Level',
     wizard: {
       nameHelper: 'Voltage Level Name',
       descHelper: 'Voltage Level Description',
@@ -82,6 +83,7 @@ export const en = {
     },
   },
   bay: {
+    name: 'Bay',
     wizard: {
       nameHelper: 'Bay Name',
       descHelper: 'Bay Description',
@@ -92,6 +94,7 @@ export const en = {
     },
   },
   conductingequipment: {
+    name: 'Conducting Equipment',
     wizard: {
       nameHelper: 'Conducting Equipment Name',
       descHelper: 'Conducting Equipment Description',
@@ -113,6 +116,15 @@ export const en = {
       placeholder:
         'No IEDs loaded yet. ' +
         'Please load a SCL file that contains IED elements first.',
+    },
+  },
+  tooltip: {
+    iconbutton: {
+      add: 'Add {{childTag}}',
+      lnodewizard: 'Connect logical nodes to {{tagName}}',
+      edit: 'Edit {{tagName}} attributes',
+      forward: 'Move to another {{parentTag}} or within the same {{parentTag}}',
+      delete: 'Delete {{tagName}}',
     },
   },
   add: 'Add',
