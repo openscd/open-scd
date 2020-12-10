@@ -45,7 +45,8 @@
     "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
-    "test": "tsc && karma start karma.conf.cjs --coverage",
+    "test": "tsc",
+    "test:original": "tsc && karma start karma.conf.cjs --coverage",
     "doc:clean": "npx rimraf doc",
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
@@ -55,7 +56,7 @@
     "test:integration": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --grep out-tsc/**/test/integration/**/*.test.js\"",
     "start:tsc": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch\"",
     "tsc:watch": "tsc --watch",
-    "build": "npm run test && npm run doc && snowpack build",
+    "build": "npm run test && npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
     "start": "snowpack dev"
   },
   "devDependencies": {
@@ -85,7 +86,8 @@
     "typedoc": "^0.19.2",
     "typedoc-plugin-markdown": "^3.1.0",
     "typescript": "^4.1.2",
-    "web-component-analyzer": "^1.1.6"
+    "web-component-analyzer": "^1.1.6",
+    "workbox-cli": "^6.0.2"
   },
   "eslintConfig": {
     "extends": [
