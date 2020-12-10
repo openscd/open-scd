@@ -113,6 +113,9 @@ export const de: Translations = {
         selectLDs: 'Auswahl logische Geräte',
         selectLNs: 'Auswahl logische Knoten',
       },
+      placeholder:
+        'Keine IEDs geladen. ' +
+        'Bitte laden Sie eine SCL Datei, die IED Elemente enthält.',
     },
   },
   add: 'Hinzufügen',
