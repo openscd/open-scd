@@ -37,6 +37,7 @@ import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
 import { selectors } from './editors/substation/foundation.js';
 import { Dialog } from '@material/mwc-dialog';
+
 interface MenuEntry {
   icon: string;
   name: string;
@@ -45,6 +46,52 @@ interface MenuEntry {
   actionItem?: boolean;
   action?: () => void;
   disabled?: () => boolean;
+}
+
+async function* tagIterator(fileURL: string) {
+  const none = {
+    value: undefined,
+    done: true,
+  };
+  const utf8Decoder = new TextDecoder('utf-8');
+  const response = await fetch(fileURL);
+  const reader = response.body?.getReader();
+  let { value, done } = (await reader?.read()) ?? none;
+  let content = value ? utf8Decoder.decode(value) : '';
+  let sclOpen = '<SCL>';
+  const sclClose = '</SCL>';
+
+  const re = /<(SCL|Header|IED|Substation|Line|Process|Communication|DataTypeTemplates)\b[^>]*>/gm;
+  let startIndex = 0;
+  let result;
+  let tag = '';
+
+  for (;;) {
+    result = re.exec(content);
+    if (!result) {
+      if (done) {
+        break;
+      }
+      const remainder = content.substr(startIndex);
+      ({ value, done } = (await reader?.read()) ?? none);
+      content = remainder + (value ? utf8Decoder.decode(value) : '');
+      startIndex = re.lastIndex = 0;
+      continue;
+    }
+    if (result[1] === 'SCL') sclOpen = result[0];
+    else {
+      yield sclOpen +
+        tag +
+        content.substring(startIndex, result.index) +
+        sclClose;
+      tag = result[0];
+    }
+    startIndex = re.lastIndex;
+  }
+  if (startIndex < content.length) {
+    // last tag ends in sclClose
+    yield sclOpen + tag + content.substr(startIndex);
+  }
 }
 
 /** The `<open-scd>` custom element is the main entry point of the
@@ -81,51 +128,52 @@ export class OpenSCD extends Setting(
   @query('#saveas') saveUI!: Dialog;
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
-  private loadDoc(src: string): Promise<string> {
-    return new Promise<string>(
-      (resolve: (msg: string) => void, reject: (msg: string) => void) => {
-        this.reset();
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: get('openSCD.loading', { name: this.srcName }),
-          })
-        );
+  private async loadDoc(src: string): Promise<string> {
+    let doc: Document | null = null;
+    const parts: string[] = [];
+    this.reset();
 
-        const reader: FileReader = new FileReader();
-        reader.addEventListener('error', () =>
-          reject(get('openSCD.readError', { name: this.srcName }))
-        );
-        reader.addEventListener('abort', () =>
-          reject(get('openSCD.readAbort', { name: this.srcName }))
-        );
-        reader.addEventListener('load', () => {
-          this.doc = reader.result
-            ? new DOMParser().parseFromString(
-                <string>reader.result,
-                'application/xml'
-              )
-            : newEmptySCD();
-          // free blob memory after parsing
-          if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.validate(this.doc, { fileName: this.srcName });
-          resolve(get('openSCD.loaded', { name: this.srcName }));
-        });
-
-        fetch(src ?? '').then(res =>
-          res.blob().then(b => reader.readAsText(b))
-        );
-      }
+    this.dispatchEvent(
+      newLogEvent({
+        kind: 'info',
+        title: get('openSCD.loading', { name: this.srcName }),
+      })
     );
+
+    for await (const tag of tagIterator(src)) {
+      if (doc === null)
+        doc = new DOMParser().parseFromString(tag, 'application/xml');
+      else
+        Array.from(
+          new DOMParser().parseFromString(tag, 'application/xml')
+            .documentElement.children
+        ).forEach(node => {
+          doc?.documentElement.append(node);
+        });
+      if (tag.length < 1) console.error('empty tag!');
+      parts.push(tag);
+    }
+
+    this.doc = doc!;
+
+    if (src.startsWith('blob:')) URL.revokeObjectURL(src);
+
+    return get('openSCD.loaded', { name: this.srcName });
   }
 
   /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
-  private loadFile(event: Event): void {
+  private async loadFile(event: Event): Promise<void> {
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
     if (file) {
       this.srcName = file.name;
-      this.setAttribute('src', URL.createObjectURL(file));
+      // this.setAttribute('src', URL.createObjectURL(file));
+      const loaded = this.loadDoc(URL.createObjectURL(file));
+      this.dispatchEvent(newPendingStateEvent(loaded));
+      await loaded;
+      // TODO(ch): enable validation of large files
+      if (file.size < 500000000) this.validate(this.doc);
+      else console.warn('skipping validation due to size');
     }
   }
 
