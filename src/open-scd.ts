@@ -127,6 +127,19 @@ export class OpenSCD extends Setting(
   @query('#file-input') fileUI!: HTMLInputElement;
   @query('#saveas') saveUI!: Dialog;
 
+  private saveDoc(): Blob {
+    const xmlSerilalizer = new XMLSerializer();
+    const parts: string[] = [];
+    const root = (<Element>(
+      this.doc.documentElement.cloneNode(false)
+    )).outerHTML.replace('</SCL>', '');
+    parts.push(root);
+    for (const child of Array.from(this.doc.documentElement.children))
+      parts.push(xmlSerilalizer.serializeToString(child));
+    parts.push('</SCL>');
+    return new Blob(parts, { type: 'application/xml' });
+  }
+
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<string> {
     let doc: Document | null = null;
@@ -148,7 +161,7 @@ export class OpenSCD extends Setting(
           new DOMParser().parseFromString(tag, 'application/xml')
             .documentElement.children
         ).forEach(node => {
-          doc?.documentElement.append(node);
+          doc!.documentElement.append(node);
         });
       if (tag.length < 1) console.error('empty tag!');
       parts.push(tag);
@@ -185,10 +198,7 @@ export class OpenSCD extends Setting(
   }
 
   private save(): void {
-    const blob = new Blob([new XMLSerializer().serializeToString(this.doc)], {
-      type: 'application/xml',
-    });
-
+    const blob = this.saveDoc();
     const a = document.createElement('a');
     a.download = this.srcName;
     a.href = URL.createObjectURL(blob);
