@@ -10,14 +10,14 @@ export const de: Translations = {
   menu: {
     name: 'Menü',
     open: 'Projekt öffnen',
-    new: 'Neues Project',
-    importIED: 'IED Importieren',
+    new: 'Neues Projekt',
+    importIED: 'IED importieren',
     save: 'Projekt speichern',
     validate: 'Projekt validieren',
     viewLog: 'Protokoll anzeigen',
   },
   openSCD: {
-    loading: 'Lade Project {{ name }}',
+    loading: 'Lade Projekt {{ name }}',
     loaded: '{{ name }} geladen',
     readError: '{{ name }} Lesefehler',
     readAbort: '{{ name }} Leseabbruch',
@@ -116,19 +116,9 @@ export const de: Translations = {
         selectLDs: 'Auswahl logische Geräte',
         selectLNs: 'Auswahl logische Knoten',
       },
-      placeholder:
-        'Keine IEDs geladen. ' +
-        'Bitte laden Sie eine SCL Datei, die IED Elemente enthält.',
+      placeholder: 'Bitte laden Sie eine SCL-Datei, die IED-Elemente enthält.',
     },
-  },
-  tooltip: {
-    iconbutton: {
-      add: '{{childTag}} hinzufügen',
-      lnodewizard: 'Logische Knoten mit {{tagName}} verbinden',
-      edit: 'Attribute bearbeiten',
-      forward: 'In {{parentTag}} verschieben',
-      delete: '{{tagName}} löschen',
-    },
+    tooltip: 'Referenz zi logischen Knoten erstellen',
   },
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
@@ -140,4 +130,5 @@ export const de: Translations = {
   redo: 'Wiederholen',
   remove: 'Entfernen',
   filter: 'Filter',
+  move: 'Verschieben',
 };

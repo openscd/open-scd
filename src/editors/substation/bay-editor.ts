@@ -80,53 +80,32 @@ export class BayEditor extends LitElement {
   renderHeader(): TemplateResult {
     return html`<h3>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-      <abbr
-        title="${get('tooltip.iconbutton.add', {
-          childTag: get('conductingequipment.name'),
-        })}"
-      >
+      <abbr title="${translate('add')}">
         <mwc-icon-button
           icon="playlist_add"
           @click=${() => this.openConductingEquipmentWizard()}
         ></mwc-icon-button>
       </abbr>
       <nav>
-        <abbr
-          title="${get('tooltip.iconbutton.lnodewizard', {
-            tagName: get('bay.name'),
-          })}"
-        >
+        <abbr title="${translate('lnode.tooltip')}">
           <mwc-icon-button
             icon="account_tree"
             @click="${() => this.openLNodeWizard()}"
           ></mwc-icon-button>
         </abbr>
-        <abbr
-          title="${get('tooltip.iconbutton.edit', {
-            tagName: get('bay.name'),
-          })}"
-        >
+        <abbr title="${translate('edit')}">
           <mwc-icon-button
             icon="edit"
             @click=${() => this.openEditWizard()}
           ></mwc-icon-button>
         </abbr>
-        <abbr
-          title="${get('tooltip.iconbutton.forward', {
-            parentTag: get('voltagelevel.name'),
-            name: this.name,
-          })}"
-        >
+        <abbr title="${translate('move')}">
           <mwc-icon-button
             icon="forward"
             @click=${() => startMove(this, BayEditor, VoltageLevelEditor)}
           ></mwc-icon-button>
         </abbr>
-        <abbr
-          title="${get('tooltip.iconbutton.delete', {
-            tagName: get('bay.name'),
-          })}"
-        >
+        <abbr title="${translate('remove')}">
           <mwc-icon-button
             icon="delete"
             @click=${() => this.remove()}
