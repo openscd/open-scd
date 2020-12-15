@@ -6,20 +6,20 @@
 <section tabindex="0">
   <h1>
     AA1 — Substation
-    <abbr title="[tooltip.iconbutton.add]">
+    <abbr title="[add]">
       <mwc-icon-button icon="playlist_add">
       </mwc-icon-button>
     </abbr>
     <nav>
-      <abbr title="[tooltip.iconbutton.lnodewizard]">
+      <abbr title="[lnode.tooltip]">
         <mwc-icon-button icon="account_tree">
         </mwc-icon-button>
       </abbr>
-      <abbr title="[tooltip.iconbutton.edit]">
+      <abbr title="[edit]">
         <mwc-icon-button icon="edit">
         </mwc-icon-button>
       </abbr>
-      <abbr title="[tooltip.iconbutton.delete]">
+      <abbr title="[remove]">
         <mwc-icon-button icon="delete">
         </mwc-icon-button>
       </abbr>
