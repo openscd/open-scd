@@ -21,15 +21,14 @@ describe('open-scd', () => {
     `);
   });
 
-  it('loads with open landing page', () => {
-    expect(element.landingDialog).to.have.property('open');
-    expect(element.landingDialog).to.have.property('scrimClickAction');
+  it('looks like its snapshot', () => {
+    expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('open new project wizard on new project icon click', async () => {
     expect(element.wizardUI).to.not.exist;
     (<HTMLElement>(
-      element.landingDialog.querySelector('mwc-icon-button:nth-child(1)')
+      element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
     )).click();
     await element.updateComplete;
     expect(element.wizardUI).to.exist;
@@ -37,7 +36,7 @@ describe('open-scd', () => {
 
   it('creates empty SCL new project wizard primary icon button click', async () => {
     (<HTMLElement>(
-      element.landingDialog.querySelector('mwc-icon-button:nth-child(1)')
+      element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
     )).click();
     await element.updateComplete;
     (<HTMLElement>(
