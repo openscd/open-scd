@@ -86,7 +86,6 @@ export class OpenSCD extends Setting(
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
   @query('#saveas') saveUI!: Dialog;
-  @query('#landing-dialog') landingDialog!: Dialog;
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private loadDoc(src: string): Promise<string> {
@@ -108,7 +107,6 @@ export class OpenSCD extends Setting(
           reject(get('openSCD.readAbort', { name: this.srcName }))
         );
         reader.addEventListener('load', () => {
-          if (reader.result) this.landingDialog.close();
           this.doc = reader.result
             ? new DOMParser().parseFromString(
                 <string>reader.result,
@@ -200,7 +198,6 @@ export class OpenSCD extends Setting(
         schema.release
       );
 
-      this.landingDialog.close();
       wizard.close();
 
       return [];
@@ -431,9 +428,14 @@ export class OpenSCD extends Setting(
           ${translate('cancel')}
         </mwc-button>
       </mwc-dialog>
-
-      <mwc-dialog open id="landing-dialog" hideActions scrimClickAction="">
-        <div style="display:flex; flex-direction: row">
+        
+      ${
+        this.doc
+          ? until(
+              this.plugins.editors[this.activeTab].getContent(),
+              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+            )
+          : html`<div style="display:flex; flex-direction: row; justify-content: center; margin-top: 64px">
           <mwc-icon-button 
             class="landing_page_icon"
             icon="create_new_folder"
@@ -446,16 +448,7 @@ export class OpenSCD extends Setting(
             @click=${() => this.fileUI.click()}>
             <div class="label">${translate('menu.open')}</div>
           </mwc-button>
-        </div>
-      </mwc-dialog>
-        
-      ${
-        this.doc
-          ? until(
-              this.plugins.editors[this.activeTab].getContent(),
-              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-            )
-          : ``
+        </div>`
       }
 
       <input id="file-input" type="file" accept=".scd,.ssd" @change="${
@@ -525,6 +518,7 @@ export class OpenSCD extends Setting(
       height: 50px;
       margin-top: 100px;
       margin-left: -20px;
+      font-family: 'Roboto', sans-serif;
     }
   `;
 }
