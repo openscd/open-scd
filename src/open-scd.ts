@@ -435,7 +435,7 @@ export class OpenSCD extends Setting(
               this.plugins.editors[this.activeTab].getContent(),
               html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
             )
-          : html`<div style="display:flex; flex-direction: row; justify-content: center; margin-top: 64px">
+          : html`<div class="landing">
           <mwc-icon-button 
             class="landing_page_icon"
             icon="create_new_folder"
@@ -503,6 +503,15 @@ export class OpenSCD extends Setting(
       font-weight: 300;
     }
 
+    .landing {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: absolute;
+      top: calc(50vh - 80px);
+      left: calc(50vw - 150px);
+    }
+
     .landing_page_icon {
       width: 150px;
       height: 160px;
@@ -511,6 +520,7 @@ export class OpenSCD extends Setting(
       --mdc-icon-button-size: 100px;
       --mdc-icon-size: 100px;
       --mdc-button-horizontal-padding: 40px;
+      --mdc-theme-primary: var(--mdc-theme-secondary);
     }
 
     .label {
