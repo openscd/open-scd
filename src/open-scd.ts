@@ -86,7 +86,6 @@ export class OpenSCD extends Setting(
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
   @query('#saveas') saveUI!: Dialog;
-  @query('#landing-dialog') landingDialog!: Dialog;
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private loadDoc(src: string): Promise<string> {
@@ -108,7 +107,6 @@ export class OpenSCD extends Setting(
           reject(get('openSCD.readAbort', { name: this.srcName }))
         );
         reader.addEventListener('load', () => {
-          if (reader.result) this.landingDialog.close();
           this.doc = reader.result
             ? new DOMParser().parseFromString(
                 <string>reader.result,
@@ -200,7 +198,6 @@ export class OpenSCD extends Setting(
         schema.release
       );
 
-      this.landingDialog.close();
       wizard.close();
 
       return [];
@@ -212,8 +209,8 @@ export class OpenSCD extends Setting(
       {
         title: get('menu.new'),
         primary: {
-          icon: 'save',
-          label: get('save'),
+          icon: 'add',
+          label: get('add'),
           action: this.createNewProject(),
         },
         content: [
@@ -228,11 +225,11 @@ export class OpenSCD extends Setting(
             <mwc-list activatable>
               <mwc-radio-list-item
                 value="${JSON.stringify(versionSupport.edition1)}"
-                >Edition1 (Schema 1.7)</mwc-radio-list-item
+                >Edition 1 (Schema 1.7)</mwc-radio-list-item
               >
               <mwc-radio-list-item
                 value="${JSON.stringify(versionSupport.edition2)}"
-                >Edition 2(2007A)</mwc-radio-list-item
+                >Edition 2 (2007A)</mwc-radio-list-item
               >
               <mwc-radio-list-item
                 selected
@@ -431,23 +428,6 @@ export class OpenSCD extends Setting(
           ${translate('cancel')}
         </mwc-button>
       </mwc-dialog>
-
-      <mwc-dialog open id="landing-dialog" hideActions scrimClickAction="">
-        <div style="display:flex; flex-direction: row">
-          <mwc-icon-button 
-            class="landing_page_icon"
-            icon="create_new_folder"
-            @click=${() => this.openNewProjectWizard()}>
-          <div class="label">${translate('menu.new')}</div>
-          </mwc-icon-button>
-          <mwc-icon-button 
-            class="landing_page_icon"
-            icon="folder_open" 
-            @click=${() => this.fileUI.click()}>
-            <div class="label">${translate('menu.open')}</div>
-          </mwc-button>
-        </div>
-      </mwc-dialog>
         
       ${
         this.doc
@@ -455,7 +435,20 @@ export class OpenSCD extends Setting(
               this.plugins.editors[this.activeTab].getContent(),
               html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
             )
-          : ``
+          : html`<div class="landing">
+          <mwc-icon-button 
+            class="landing_icon"
+            icon="create_new_folder"
+            @click=${() => this.openNewProjectWizard()}>
+          <div class="landing_label">${translate('menu.new')}</div>
+          </mwc-icon-button>
+          <mwc-icon-button 
+            class="landing_icon"
+            icon="folder_open" 
+            @click=${() => this.fileUI.click()}>
+            <div class="landing_label">${translate('menu.open')}</div>
+          </mwc-button>
+        </div>`
       }
 
       <input id="file-input" type="file" accept=".scd,.ssd" @change="${
@@ -510,21 +503,34 @@ export class OpenSCD extends Setting(
       font-weight: 300;
     }
 
-    .landing_page_icon {
-      width: 150px;
-      height: 160px;
+    .landing {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: absolute;
+      top: calc(50vh - 80px);
+      left: calc(50vw - 180px);
+    }
+
+    .landing_icon {
+      margin: 10px;
+      border-style: solid;
+      border-radius: 10px;
+      width: 160px;
+      height: 150px;
       text-align: center;
       color: var(--mdc-theme-primary);
       --mdc-icon-button-size: 100px;
       --mdc-icon-size: 100px;
-      --mdc-button-horizontal-padding: 40px;
+      --mdc-theme-primary: var(--mdc-theme-secondary);
     }
 
-    .label {
-      width: 140px;
+    .landing_label {
+      width: 160px;
       height: 50px;
       margin-top: 100px;
-      margin-left: -20px;
+      margin-left: -30px;
+      font-family: 'Roboto', sans-serif;
     }
   `;
 }
