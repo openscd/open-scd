@@ -224,14 +224,17 @@ export class OpenSCD extends Setting(
             ></wizard-textfield>
             <mwc-list activatable>
               <mwc-radio-list-item
+                left
                 value="${JSON.stringify(versionSupport.edition1)}"
                 >Edition 1 (Schema 1.7)</mwc-radio-list-item
               >
               <mwc-radio-list-item
+                left
                 value="${JSON.stringify(versionSupport.edition2)}"
                 >Edition 2 (2007A)</mwc-radio-list-item
               >
               <mwc-radio-list-item
+                left
                 selected
                 value="${JSON.stringify(versionSupport.edition21)}"
                 >Edition 2.1 (2007B4)</mwc-radio-list-item
@@ -522,8 +525,8 @@ export class OpenSCD extends Setting(
       width: 160px;
       height: 140px;
       text-align: center;
-      color: var(--mdc-theme-on-primary);
-      background: var(--primary);
+      color: var(--mdc-theme-on-secondary);
+      background: var(--secondary);
       --mdc-icon-button-size: 100px;
       --mdc-icon-size: 100px;
       --mdc-ripple-color: rgba(0, 0, 0, 0);
