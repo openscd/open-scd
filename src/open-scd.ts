@@ -251,7 +251,6 @@ export class OpenSCD extends Setting(
       icon: 'folder_open',
       name: 'menu.open',
       startsGroup: true,
-      actionItem: true,
       action: (): void => this.fileUI.click(),
     },
     {
