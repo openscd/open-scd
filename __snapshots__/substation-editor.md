@@ -6,15 +6,23 @@
 <section tabindex="0">
   <h1>
     AA1 — Substation
-    <mwc-icon-button icon="playlist_add">
-    </mwc-icon-button>
+    <abbr title="[add]">
+      <mwc-icon-button icon="playlist_add">
+      </mwc-icon-button>
+    </abbr>
     <nav>
-      <mwc-icon-button icon="account_tree">
-      </mwc-icon-button>
-      <mwc-icon-button icon="edit">
-      </mwc-icon-button>
-      <mwc-icon-button icon="delete">
-      </mwc-icon-button>
+      <abbr title="[lnode.tooltip]">
+        <mwc-icon-button icon="account_tree">
+        </mwc-icon-button>
+      </abbr>
+      <abbr title="[edit]">
+        <mwc-icon-button icon="edit">
+        </mwc-icon-button>
+      </abbr>
+      <abbr title="[remove]">
+        <mwc-icon-button icon="delete">
+        </mwc-icon-button>
+      </abbr>
     </nav>
   </h1>
   <voltage-level-editor>

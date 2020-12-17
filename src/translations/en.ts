@@ -17,14 +17,14 @@ export const en = {
   openSCD: {
     loading: 'Loading project {{ name }}',
     loaded: '{{ name }} loaded',
-    readError: '{{ name }} read error',
-    readAbort: '{{ name }} read aborted',
+    readError: 'Error reading {{ name }}',
+    readAbort: 'Aborted reading {{ name }}',
   },
   editing: {
-    created: '{{ name }} added',
-    deleted: '{{ name }} removed',
-    moved: '{{ name }} moved',
-    updated: '{{ name }} edited',
+    created: 'Added {{ name }}',
+    deleted: 'Removed {{ name }}',
+    moved: 'Moved {{ name }}',
+    updated: 'Edited {{ name }}',
     error: {
       create: 'Could not add {{ name }}',
       update: 'Could not edit {{ name }}',
@@ -55,50 +55,53 @@ export const en = {
   },
   substation: {
     name: 'Substation',
-    missing: 'No Substation',
+    missing: 'No substation',
     wizard: {
-      nameHelper: 'Substation Name',
-      descHelper: 'Substation Description',
+      nameHelper: 'Substation name',
+      descHelper: 'Substation sescription',
       title: {
-        add: 'Add Substation',
-        edit: 'Edit Substation',
+        add: 'Add substation',
+        edit: 'Edit substation',
       },
     },
     action: {
-      addvoltagelevel: 'Add Voltage Level',
+      addvoltagelevel: 'Add voltage level',
     },
   },
   voltagelevel: {
+    name: 'Voltage level',
     wizard: {
-      nameHelper: 'Voltage Level Name',
-      descHelper: 'Voltage Level Description',
-      nomFreqHelper: 'Nominal Frequency',
-      numPhaseHelper: 'Number of Phases',
-      voltageHelper: 'Nominal Voltage',
+      nameHelper: 'Voltage level name',
+      descHelper: 'Voltage level description',
+      nomFreqHelper: 'Nominal frequency',
+      numPhaseHelper: 'Number of phases',
+      voltageHelper: 'Nominal voltage',
       title: {
-        add: 'Add Voltage Level',
-        edit: 'Edit Voltage Level',
+        add: 'Add voltage level',
+        edit: 'Edit voltage level',
       },
     },
   },
   bay: {
+    name: 'Bay',
     wizard: {
-      nameHelper: 'Bay Name',
-      descHelper: 'Bay Description',
+      nameHelper: 'Bay name',
+      descHelper: 'Bay description',
       title: {
-        add: 'Add Bay',
-        edit: 'Edit Bay',
+        add: 'Add bay',
+        edit: 'Edit bay',
       },
     },
   },
   conductingequipment: {
+    name: 'Conducting Equipment',
     wizard: {
-      nameHelper: 'Conducting Equipment Name',
-      descHelper: 'Conducting Equipment Description',
-      typeHelper: 'Conducting Equipment Type',
+      nameHelper: 'Conducting equipment name',
+      descHelper: 'Conducting equipment description',
+      typeHelper: 'Conducting equipment type',
       title: {
-        add: 'Add Conducting Equipment',
-        edit: 'Edit Conducting Equipment',
+        add: 'Add conducting equipment',
+        edit: 'Edit conducting equipment',
       },
     },
     unknownType: 'Unknown type',
@@ -107,13 +110,12 @@ export const en = {
     wizard: {
       title: {
         selectIEDs: 'Select IEDs',
-        selectLDs: 'Select Logical Devices',
-        selectLNs: 'Select Logical Nodes',
+        selectLDs: 'Select logical devices',
+        selectLNs: 'Select logical nodes',
       },
-      placeholder:
-        'No IEDs loaded yet. ' +
-        'Please load a SCL file that contains IED elements first.',
+      placeholder: 'Please load an SCL file that contains IED elements.',
     },
+    tooltip: 'Create logical nodes reference',
   },
   add: 'Add',
   edit: 'Edit',
@@ -125,5 +127,6 @@ export const en = {
   undo: 'Undo',
   redo: 'Redo',
   remove: 'Remove',
-  filter: 'filter',
+  filter: 'Filter',
+  move: 'Move',
 };

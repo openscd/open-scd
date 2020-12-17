@@ -193,9 +193,15 @@ export const styles = css`
   h1 > nav,
   h2 > nav,
   h3 > nav,
-  h1 > mwc-icon-button,
-  h2 > mwc-icon-button,
-  h3 > mwc-icon-button {
+  h1 > abbr > mwc-icon-button,
+  h2 > abbr > mwc-icon-button,
+  h3 > abbr > mwc-icon-button {
     float: right;
+  }
+
+  abbr[title] {
+    border-bottom: none !important;
+    cursor: inherit !important;
+    text-decoration: none !important;
   }
 `;

@@ -118,23 +118,31 @@ export class SubstationEditor extends LitElement {
     return html`
       <h1>
         ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-        <mwc-icon-button
-          icon="playlist_add"
-          @click=${() => this.openVoltageLevelWizard()}
-        ></mwc-icon-button>
+        <abbr title="${translate('add')}">
+          <mwc-icon-button
+            icon="playlist_add"
+            @click=${() => this.openVoltageLevelWizard()}
+          ></mwc-icon-button>
+        </abbr>
         <nav>
-          <mwc-icon-button
-            icon="account_tree"
-            @click=${() => this.openLNodeWizard()}
-          ></mwc-icon-button>
-          <mwc-icon-button
-            icon="edit"
-            @click=${() => this.openEditWizard()}
-          ></mwc-icon-button>
-          <mwc-icon-button
-            icon="delete"
-            @click=${() => this.remove()}
-          ></mwc-icon-button>
+          <abbr title="${translate('lnode.tooltip')}">
+            <mwc-icon-button
+              icon="account_tree"
+              @click=${() => this.openLNodeWizard()}
+            ></mwc-icon-button>
+          </abbr>
+          <abbr title="${translate('edit')}">
+            <mwc-icon-button
+              icon="edit"
+              @click=${() => this.openEditWizard()}
+            ></mwc-icon-button>
+          </abbr>
+          <abbr title="${translate('remove')}">
+            <mwc-icon-button
+              icon="delete"
+              @click=${() => this.remove()}
+            ></mwc-icon-button>
+          </abbr>
         </nav>
       </h1>
     `;

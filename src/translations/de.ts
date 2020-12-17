@@ -10,14 +10,14 @@ export const de: Translations = {
   menu: {
     name: 'Menü',
     open: 'Projekt öffnen',
-    new: 'Neues Project',
-    importIED: 'IED Importieren',
+    new: 'Neues Projekt',
+    importIED: 'IED importieren',
     save: 'Projekt speichern',
     validate: 'Projekt validieren',
     viewLog: 'Protokoll anzeigen',
   },
   openSCD: {
-    loading: 'Lade Project {{ name }}',
+    loading: 'Lade Projekt {{ name }}',
     loaded: '{{ name }} geladen',
     readError: '{{ name }} Lesefehler',
     readAbort: '{{ name }} Leseabbruch',
@@ -72,6 +72,7 @@ export const de: Translations = {
     },
   },
   voltagelevel: {
+    name: 'Spannungsebene',
     wizard: {
       nameHelper: 'Name der Spannungsebene',
       descHelper: 'Beschreibung der Spannungsebene',
@@ -85,6 +86,7 @@ export const de: Translations = {
     },
   },
   bay: {
+    name: 'Feld',
     wizard: {
       nameHelper: 'Feldname',
       descHelper: 'Beschreibung des Feldes',
@@ -95,6 +97,7 @@ export const de: Translations = {
     },
   },
   conductingequipment: {
+    name: 'Primärelement',
     wizard: {
       nameHelper: 'Name des Primärelements',
       descHelper: 'Beschreibung des Primärelements',
@@ -113,10 +116,9 @@ export const de: Translations = {
         selectLDs: 'Auswahl logische Geräte',
         selectLNs: 'Auswahl logische Knoten',
       },
-      placeholder:
-        'Keine IEDs geladen. ' +
-        'Bitte laden Sie eine SCL Datei, die IED Elemente enthält.',
+      placeholder: 'Bitte laden Sie eine SCL-Datei, die IED-Elemente enthält.',
     },
+    tooltip: 'Referenz zi logischen Knoten erstellen',
   },
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
@@ -129,4 +131,5 @@ export const de: Translations = {
   redo: 'Wiederholen',
   remove: 'Entfernen',
   filter: 'Filter',
+  move: 'Verschieben',
 };
