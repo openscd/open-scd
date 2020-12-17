@@ -78,7 +78,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
           doc.querySelector('VoltageLevel')?.getAttribute('desc')
         ).to.equal('newDesc');
       });
-      it('deletes nomFreq attribute if wizard-textfield is deactivated', async () => {
+      it('deletes desc attribute if wizard-textfield is deactivated', async () => {
         await (<HTMLElement>(
           parent.wizardUI.inputs[1].shadowRoot?.querySelector('mwc-switch')
         )).click();
@@ -104,7 +104,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
           doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')
         ).to.equal('30');
       });
-      it('deletes numPhases attribute if wizard-textfield is deactivated', async () => {
+      it('deletes nomFreq attribute if wizard-textfield is deactivated', async () => {
         await (<HTMLElement>(
           parent.wizardUI.inputs[2].shadowRoot?.querySelector('mwc-switch')
         )).click();
@@ -233,11 +233,10 @@ describe('voltage-level-editor wizardging editing integration', () => {
       )).click();
       expect(
         doc.querySelectorAll('VoltageLevel[name="E1"] > Bay').length
-      ).to.equal(1);
+      ).to.equal(2);
     });
-    it('does not add bay if name attribute unique', async () => {
+    it('does add bay if name attribute is unique', async () => {
       parent.wizardUI.inputs[0].value = 'SecondBay';
-      const name = parent.wizardUI.inputs[0].value;
       await parent.updateComplete;
       await (<HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -247,11 +246,6 @@ describe('voltage-level-editor wizardging editing integration', () => {
       expect(
         doc.querySelector('VoltageLevel[name="E1"] > Bay[name="SecondBay"]')
       ).to.exist;
-      expect(
-        doc
-          .querySelector('VoltageLevel[name="E1"] > Bay[name="SecondBay"]')
-          ?.getAttribute('name')
-      ).to.equal(name);
     });
   });
   describe('open lnode wizard', () => {
