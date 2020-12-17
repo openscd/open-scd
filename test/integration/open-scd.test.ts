@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/Editing.js';
-import { invalidSCL, validSCL, serialize } from '../data.js';
+import { invalidSCL, validSCL } from '../data.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -19,6 +19,47 @@ describe('open-scd', () => {
         rel="stylesheet"
       />
     `);
+  });
+
+  it('looks like its snapshot', () => {
+    expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('open new project wizard on new project icon click', async () => {
+    expect(element.wizardUI).to.not.exist;
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
+    )).click();
+    await element.updateComplete;
+    expect(element.wizardUI).to.exist;
+  });
+
+  it('creates empty SCL new project wizard primary icon button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
+    )).click();
+    await element.updateComplete;
+    (<HTMLElement>(
+      element.wizardUI.shadowRoot!.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      )
+    )).click();
+    expect(element.doc?.querySelector('Header')).to.exist;
+    expect(element.doc?.querySelector('Header')?.getAttribute('id')).to.equal(
+      element.srcName
+    );
+    expect(element.doc?.querySelector('SCL')?.getAttribute('xmlns')).to.equal(
+      'http://www.iec.ch/61850/2003/SCL'
+    );
+    expect(element.doc?.querySelector('SCL')?.getAttribute('version')).to.equal(
+      '2007'
+    );
+    expect(
+      element.doc?.querySelector('SCL')?.getAttribute('revision')
+    ).to.equal('B');
+    expect(element.doc?.querySelector('SCL')?.getAttribute('release')).to.equal(
+      '4'
+    );
   });
 
   it('opens the menu on navigation icon click', async () => {
@@ -67,16 +108,18 @@ describe('open-scd', () => {
     expect(progressBar).property('closed').to.be.true;
   });
 
-  it('initially edits an empty SCD document', () => {
-    expect(serialize(element.doc)).to.equal(serialize(newEmptySCD()));
-    expect(element).property('srcName').to.equal('untitled.scd');
-  });
-
   it('revokes `src="blob:..."` URLs after parsing', async () => {
     const emptyBlobURL = URL.createObjectURL(
-      new Blob([new XMLSerializer().serializeToString(newEmptySCD())], {
-        type: 'application/xml',
-      })
+      new Blob(
+        [
+          new XMLSerializer().serializeToString(
+            newEmptySCD('id', 'version', 'revision', 'release')
+          ),
+        ],
+        {
+          type: 'application/xml',
+        }
+      )
     );
     expect(await fetch(emptyBlobURL)).to.be.ok;
     element.setAttribute('src', emptyBlobURL);
@@ -95,7 +138,7 @@ describe('open-scd', () => {
     await element.workDone;
     await element.validated;
     expect(element).property('history').to.have.length(5);
-    expect(element.doc.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
+    expect(element.doc?.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
   });
 
   it('generates no error messages for valid SCL file', async () => {

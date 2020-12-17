@@ -26,7 +26,7 @@ export default class SubstationPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    if (!this.doc.querySelector(selectors.Substation))
+    if (!this.doc?.querySelector(selectors.Substation))
       return html`<h1>
         <span style="color: var(--base1)"
           >${translate('substation.missing')}</span

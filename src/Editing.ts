@@ -18,12 +18,21 @@ import {
 } from './foundation.js';
 
 /** Returns a new empty SCD document, i.e. one containing `<SCL></SCL>` */
-export function newEmptySCD(): XMLDocument {
-  return document.implementation.createDocument(
-    'http://www.iec.ch/61850/2003/SCL',
-    'SCL',
-    null
-  );
+export function newEmptySCD(
+  id: string,
+  version: string | null,
+  revision: string | null,
+  release: string | null
+): XMLDocument {
+  const markup = `<?xml version="1.0" encoding="UTF-8"?>
+    <SCL xmlns="http://www.iec.ch/61850/2003/SCL" ${
+      version ? `version="${version}"` : ``
+    } ${revision ? `revision="${revision}"` : ``} ${
+    release ? `release="${release}"` : ``
+  }>
+      <Header id="${id}"/>
+    </SCL>`;
+  return new DOMParser().parseFromString(markup, 'application/xml');
 }
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
@@ -36,7 +45,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
     /** The `XMLDocument` to be edited */
     @property()
-    doc: XMLDocument = newEmptySCD();
+    doc: XMLDocument | null = null;
 
     private checkCreateValidity(create: Create): boolean {
       if (create.checkValidity !== undefined) return create.checkValidity();
@@ -57,7 +66,10 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
               name: create.new.element.tagName,
             }),
             message: get('editing.error.nameClash', {
-              parent: create.new.parent.tagName,
+              parent:
+                create.new.parent instanceof HTMLElement
+                  ? create.new.parent.tagName
+                  : 'Document',
               child: create.new.element.tagName,
               name: create.new.element.getAttribute('name')!,
             }),

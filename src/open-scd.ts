@@ -18,6 +18,7 @@ import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-radio-list-item';
 import '@material/mwc-tab';
 import '@material/mwc-tab-bar';
 import '@material/mwc-textfield';
@@ -32,11 +33,24 @@ import { Wizarding } from './Wizarding.js';
 import { Validating } from './Validating.js';
 import { getTheme } from './themes.js';
 import { Setting } from './Setting.js';
-import { newLogEvent, newPendingStateEvent } from './foundation.js';
+import {
+  newLogEvent,
+  newPendingStateEvent,
+  versionSupport,
+  newWizardEvent,
+  Wizard,
+  EditorAction,
+  WizardAction,
+  WizardInput,
+  CloseableElement,
+  SchemaVersion,
+} from './foundation.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
-import { selectors } from './editors/substation/foundation.js';
+import { styles } from './editors/substation/foundation.js';
 import { Dialog } from '@material/mwc-dialog';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 interface MenuEntry {
   icon: string;
   name: string;
@@ -56,15 +70,8 @@ export class OpenSCD extends Setting(
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
-  /** The name of the first `Substation` in the current [[`doc`]]. */
-  @property()
-  get name(): string | null {
-    return (
-      this.doc.querySelector(selectors.Substation)?.getAttribute('name') ?? null
-    );
-  }
   /** The name of the current file. */
-  @property({ type: String }) srcName = 'untitled.scd';
+  @property({ type: String }) srcName = '';
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -105,10 +112,10 @@ export class OpenSCD extends Setting(
                 <string>reader.result,
                 'application/xml'
               )
-            : newEmptySCD();
+            : null;
           // free blob memory after parsing
           if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          this.validate(this.doc, { fileName: this.srcName });
+          if (this.doc) this.validate(this.doc, { fileName: this.srcName });
           resolve(get('openSCD.loaded', { name: this.srcName }));
         });
 
@@ -137,21 +144,23 @@ export class OpenSCD extends Setting(
   }
 
   private save(): void {
-    const blob = new Blob([new XMLSerializer().serializeToString(this.doc)], {
-      type: 'application/xml',
-    });
+    if (this.doc) {
+      const blob = new Blob([new XMLSerializer().serializeToString(this.doc)], {
+        type: 'application/xml',
+      });
 
-    const a = document.createElement('a');
-    a.download = this.srcName;
-    a.href = URL.createObjectURL(blob);
-    a.dataset.downloadurl = ['application/xml', a.download, a.href].join(':');
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(function () {
-      URL.revokeObjectURL(a.href);
-    }, 1500);
+      const a = document.createElement('a');
+      a.download = this.srcName + '.scd';
+      a.href = URL.createObjectURL(blob);
+      a.dataset.downloadurl = ['application/xml', a.download, a.href].join(':');
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () {
+        URL.revokeObjectURL(a.href);
+      }, 1500);
+    }
   }
 
   private handleKeyPress(e: KeyboardEvent): void {
@@ -170,18 +179,98 @@ export class OpenSCD extends Setting(
     if (handled) e.preventDefault();
   }
 
+  private createNewProject(): WizardAction {
+    return (
+      inputs: WizardInput[],
+      wizard: CloseableElement
+    ): EditorAction[] => {
+      this.srcName = inputs[0].value;
+      const schema: SchemaVersion = JSON.parse(
+        (<ListItemBase>(
+          (<List>wizard.shadowRoot!.querySelector('mwc-list')).selected
+        )).value
+      );
+
+      this.doc = newEmptySCD(
+        this.srcName,
+        schema.version,
+        schema.revision,
+        schema.release
+      );
+
+      wizard.close();
+
+      return [];
+    };
+  }
+
+  private newProjectWizard(): Wizard {
+    return [
+      {
+        title: get('menu.new'),
+        primary: {
+          icon: 'add',
+          label: get('add'),
+          action: this.createNewProject(),
+        },
+        content: [
+          html`<wizard-textfield
+              id="srcName"
+              label="name"
+              maybeValue="NewProject"
+              required
+              validationMessage="${translate('textfield.required')}"
+              dialogInitialFocus
+            ></wizard-textfield>
+            <mwc-list activatable>
+              <mwc-radio-list-item
+                value="${JSON.stringify(versionSupport.edition1)}"
+                >Edition 1 (Schema 1.7)</mwc-radio-list-item
+              >
+              <mwc-radio-list-item
+                value="${JSON.stringify(versionSupport.edition2)}"
+                >Edition 2 (2007A)</mwc-radio-list-item
+              >
+              <mwc-radio-list-item
+                selected
+                value="${JSON.stringify(versionSupport.edition21)}"
+                >Edition 2.1 (2007B4)</mwc-radio-list-item
+              >
+            </mwc-list>`,
+        ],
+      },
+    ];
+  }
+
+  private openNewProjectWizard() {
+    this.dispatchEvent(newWizardEvent(this.newProjectWizard()));
+  }
+
   menu: MenuEntry[] = [
     {
       icon: 'folder_open',
       name: 'menu.open',
       startsGroup: true,
-      actionItem: true,
       action: (): void => this.fileUI.click(),
     },
-    { icon: 'create_new_folder', name: 'menu.new' },
+    {
+      icon: 'create_new_folder',
+      name: 'menu.new',
+      action: (): void => this.openNewProjectWizard(),
+    },
     { icon: 'snippet_folder', name: 'menu.importIED' },
-    { icon: 'save_alt', name: 'save', action: (): void => this.save() },
-    { icon: 'save', name: 'saveAs', action: (): void => this.saveUI.show() },
+    {
+      icon: 'save_alt',
+      name: 'save',
+      action: (): void => this.save(),
+      disabled: (): boolean => this.doc === null,
+    },
+    {
+      icon: 'save',
+      name: 'saveAs',
+      action: (): void => this.saveUI.show(),
+      disabled: (): boolean => this.doc === null,
+    },
     {
       icon: 'undo',
       name: 'undo',
@@ -287,10 +376,10 @@ export class OpenSCD extends Setting(
   render(): TemplateResult {
     return html`
       <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
-        <span slot="title">${
-          this.name ?? html`${translate('menu.name')}`
-        }</span>
-        ${this.name ? html`<span slot="subtitle">${this.srcName}</span>` : ''}
+        <span slot="title">${translate('menu.name')}</span>
+        ${
+          this.srcName ? html`<span slot="subtitle">${this.srcName}</span>` : ''
+        }
         <mwc-list
           wrapFocus
           @action=${(ae: CustomEvent<ActionDetail>) =>
@@ -305,13 +394,18 @@ export class OpenSCD extends Setting(
             slot="navigationIcon"
             @click=${() => (this.menuUI.open = true)}
           ></mwc-icon-button>
-          <div slot="title" id="title">${this.name ?? this.srcName}</div>
+          <div slot="title" id="title">${this.srcName}</div>
           ${this.menu.map(this.renderActionItem)}
-          <mwc-tab-bar
-            @MDCTabBar:activated=${(e: CustomEvent) =>
-              (this.activeTab = e.detail.index)}
-          > ${this.plugins.editors.map(this.renderEditorTab)}
-          </mwc-tab-bar>
+          ${
+            this.doc
+              ? html`<mwc-tab-bar
+                  @MDCTabBar:activated=${(e: CustomEvent) =>
+                    (this.activeTab = e.detail.index)}
+                >
+                  ${this.plugins.editors.map(this.renderEditorTab)}
+                </mwc-tab-bar>`
+              : ``
+          }
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
@@ -333,19 +427,40 @@ export class OpenSCD extends Setting(
           ${translate('cancel')}
         </mwc-button>
       </mwc-dialog>
+        
+      ${
+        this.doc
+          ? until(
+              this.plugins.editors[this.activeTab].getContent(),
+              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+            )
+          : html`<div class="landing">
+          <mwc-icon-button 
+            class="landing_icon"
+            icon="create_new_folder"
+            @click=${() => this.openNewProjectWizard()}>
+          <div class="landing_label">${translate('menu.new')}</div>
+          </mwc-icon-button>
+          <mwc-icon-button 
+            class="landing_icon"
+            icon="folder_open" 
+            @click=${() => this.fileUI.click()}>
+            <div class="landing_label">${translate('menu.open')}</div>
+          </mwc-button>
+        </div>`
+      }
 
-      ${until(
-        this.plugins.editors[this.activeTab].getContent(),
-        html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-      )}
-
-      <input id="file-input" type="file" @change="${this.loadFile}"></input>
+      <input id="file-input" type="file" accept=".scd,.ssd" @change="${
+        this.loadFile
+      }"></input>
       ${super.render()}
       ${getTheme(this.settings.theme)}
     `;
   }
 
   static styles = css`
+    ${styles}
+
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
     } /* hack to fix disabled icon buttons rendering black */
@@ -385,6 +500,36 @@ export class OpenSCD extends Setting(
     tt {
       font-family: 'Roboto Mono', monospace;
       font-weight: 300;
+    }
+
+    .landing {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: absolute;
+      top: calc(50vh - 80px);
+      left: calc(50vw - 180px);
+    }
+
+    .landing_icon {
+      margin: 10px;
+      border-style: solid;
+      border-radius: 10px;
+      width: 160px;
+      height: 150px;
+      text-align: center;
+      color: var(--mdc-theme-primary);
+      --mdc-icon-button-size: 100px;
+      --mdc-icon-size: 100px;
+      --mdc-theme-primary: var(--mdc-theme-secondary);
+    }
+
+    .landing_label {
+      width: 160px;
+      height: 50px;
+      margin-top: 100px;
+      margin-left: -30px;
+      font-family: 'Roboto', sans-serif;
     }
   `;
 }

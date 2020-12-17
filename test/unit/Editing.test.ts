@@ -17,7 +17,7 @@ describe('EditingElement', () => {
       await fixture(html`<mock-editor .doc=${doc}></mock-editor>`)
     );
 
-    parent = elm.doc.querySelector('parent1')!;
+    parent = elm.doc!.querySelector('parent1')!;
     element = parent.querySelector('child1')!;
     reference = element?.nextElementSibling;
   });
@@ -27,12 +27,12 @@ describe('EditingElement', () => {
       newActionEvent({
         new: {
           parent,
-          element: elm.doc.createElement('child3'),
+          element: elm.doc!.createElement('child3'),
           reference: null,
         },
       })
     );
-    expect(elm.doc.querySelector('child3')).to.not.be.null;
+    expect(elm.doc!.querySelector('child3')).to.not.be.null;
   });
 
   /*
@@ -65,7 +65,7 @@ describe('EditingElement', () => {
         },
       })
     );
-    expect(elm.doc.querySelector('parent1 > child1')).to.be.null;
+    expect(elm.doc!.querySelector('parent1 > child1')).to.be.null;
   });
 
   /*
@@ -95,7 +95,7 @@ describe('EditingElement', () => {
           element,
         },
         new: {
-          element: elm.doc.createElement('child3'),
+          element: elm.doc!.createElement('child3'),
         },
       })
     );
@@ -137,13 +137,13 @@ describe('EditingElement', () => {
           reference,
         },
         new: {
-          parent: elm.doc.querySelector('parent2')!,
+          parent: elm.doc!.querySelector('parent2')!,
           reference: null,
         },
       })
     );
     expect(parent.querySelector('child1')).to.be.null;
-    expect(elm.doc.querySelector('parent2 > child1')).to.not.be.null;
+    expect(elm.doc!.querySelector('parent2 > child1')).to.not.be.null;
   });
 
   /*
