@@ -507,21 +507,29 @@ export class OpenSCD extends Setting(
       flex-direction: row;
       justify-content: center;
       position: absolute;
-      top: calc(50vh - 80px);
-      left: calc(50vw - 180px);
+      top: calc(50vh - 82px);
+      left: calc(50vw - 184px);
+    }
+
+    .landing_icon:hover {
+      box-shadow: 0 12px 17px 2px rgba(0, 0, 0, 0.14),
+        0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 7px 8px -4px rgba(0, 0, 0, 0.2);
     }
 
     .landing_icon {
-      margin: 10px;
-      border-style: solid;
-      border-radius: 10px;
+      margin: 12px;
+      border-radius: 16px;
       width: 160px;
-      height: 150px;
+      height: 140px;
       text-align: center;
-      color: var(--mdc-theme-primary);
+      color: var(--mdc-theme-on-primary);
+      background: var(--primary);
       --mdc-icon-button-size: 100px;
       --mdc-icon-size: 100px;
-      --mdc-theme-primary: var(--mdc-theme-secondary);
+      --mdc-ripple-color: rgba(0, 0, 0, 0);
+      box-shadow: rgb(0 0 0 / 14%) 0px 6px 10px 0px,
+        rgb(0 0 0 / 12%) 0px 1px 18px 0px, rgb(0 0 0 / 20%) 0px 3px 5px -1px;
+      transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .landing_label {
