@@ -1,15 +1,16 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
+import '../../mock-wizard-editor.js';
 import { EditingElement } from '../../../src/Editing.js';
 import { WizardingElement } from '../../../src/Wizarding.js';
-
-import '../../mock-wizard-editor.js';
-import { getDocument } from '../../data.js';
 import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
+
+import { getDocument } from '../../data.js';
+
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-describe('voltage-level-editor wizardging editing integration', () => {
+describe('voltage-level-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     const doc = getDocument();
 
@@ -40,7 +41,7 @@ describe('voltage-level-editor wizardging editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI).to.not.exist;
     });
-    describe('edit the attributes within VoltageLevel', () => {
+    describe('edit attributes within VoltageLevel', () => {
       it('does not change name attribute if not unique within parent element', async () => {
         const oldName = parent.wizardUI.inputs[0].value;
         parent.wizardUI.inputs[0].value = 'J1';

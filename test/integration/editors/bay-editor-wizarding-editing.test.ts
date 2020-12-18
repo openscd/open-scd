@@ -1,21 +1,22 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
+import '../../mock-wizard-editor.js';
+import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
 import { EditingElement } from '../../../src/Editing.js';
 import { WizardingElement } from '../../../src/Wizarding.js';
 
-import '../../mock-wizard-editor.js';
 import { getDocument } from '../../data.js';
-import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
+
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { Select } from '@material/mwc-select';
 
-describe('bay-editor wizardging editing integration', () => {
+describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     const doc = getDocument();
 
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
     beforeEach(async () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
@@ -39,7 +40,7 @@ describe('bay-editor wizardging editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI).to.not.exist;
     });
-    describe('edit the attributes within Bay', () => {
+    describe('edit attributes within a Bay', () => {
       it('does not change name attribute if not unique within parent element', async () => {
         const oldName = parent.wizardUI.inputs[0].value;
         parent.wizardUI.inputs[0].value = 'Bay2';
@@ -95,7 +96,7 @@ describe('bay-editor wizardging editing integration', () => {
   describe('open add conducting equipment wizard', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
     beforeEach(async () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
@@ -146,7 +147,7 @@ describe('bay-editor wizardging editing integration', () => {
         ).length
       ).to.equal(1);
     });
-    it('does conducting equipment if name attribute is unique', async () => {
+    it('does add conducting equipment if name attribute is unique', async () => {
       (<Select>parent.wizardUI.inputs[0]).value = 'CBR';
       parent.wizardUI.inputs[1].value = 'QA2';
       await parent.updateComplete;
@@ -165,7 +166,7 @@ describe('bay-editor wizardging editing integration', () => {
   describe('open lnode wizard', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
     beforeEach(async () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
@@ -193,7 +194,7 @@ describe('bay-editor wizardging editing integration', () => {
     it('adds a LNode element when selecting a logical node', async () => {
       expect(
         doc.querySelector(
-          'VoltageLevel[name="E1"] > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
+          'Bay[name="COUPLING_BAY"] > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
         )
       ).to.not.exist;
       (<ListItemBase>(
@@ -230,8 +231,8 @@ describe('bay-editor wizardging editing integration', () => {
   describe('move action', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
-    let element2: VoltageLevelEditor | null;
+    let element: BayEditor | null;
+    let element2: BayEditor | null;
     beforeEach(async () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
@@ -262,7 +263,7 @@ describe('bay-editor wizardging editing integration', () => {
   describe('remove action', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
     beforeEach(async () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(

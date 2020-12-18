@@ -1,9 +1,10 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import { WizardingElement } from '../../../src/Wizarding.js';
+import fc from 'fast-check';
 
 import '../../mock-wizard.js';
+import { WizardingElement } from '../../../src/Wizarding.js';
+
 import { getDocument } from '../../data.js';
-import fc from 'fast-check';
 import { regexString, regExp } from '../../foundation.js';
 
 describe('bay-editor wizarding integration', () => {
@@ -50,7 +51,7 @@ describe('bay-editor wizarding integration', () => {
       ).to.exist;
     });
   });
-  it('include 5 wizard inputs', async () => {
+  it('include 2 wizard inputs', async () => {
     expect(parent.wizardUI.inputs.length).to.equal(2);
   });
   describe('the first input element', () => {
