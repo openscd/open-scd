@@ -289,7 +289,13 @@ export class OpenSCD extends Setting(
       action: this.redo,
       disabled: (): boolean => !this.canRedo,
     },
-    { icon: 'rule_folder', name: 'menu.validate', startsGroup: true },
+    {
+      icon: 'rule_folder',
+      name: 'menu.validate',
+      startsGroup: true,
+      action: () =>
+        this.doc ? this.validate(this.doc, { fileName: this.srcName }) : null,
+    },
     {
       icon: 'rule',
       name: 'menu.viewLog',
