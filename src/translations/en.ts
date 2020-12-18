@@ -58,7 +58,7 @@ export const en = {
     missing: 'No substation',
     wizard: {
       nameHelper: 'Substation name',
-      descHelper: 'Substation sescription',
+      descHelper: 'Substation description',
       title: {
         add: 'Add substation',
         edit: 'Edit substation',
