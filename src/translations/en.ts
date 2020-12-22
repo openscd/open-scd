@@ -13,6 +13,7 @@ export const en = {
     save: 'Save project',
     validate: 'Validate project',
     viewLog: 'View log',
+    guess: 'Guess substation',
   },
   openSCD: {
     loading: 'Loading project {{ name }}',
@@ -117,6 +118,13 @@ export const en = {
     },
     tooltip: 'Create logical nodes reference',
   },
+  guess: {
+    wizard: {
+      title: {
+        switchgear: 'Select control model',
+      },
+    },
+  },
   add: 'Add',
   edit: 'Edit',
   save: 'Save',
@@ -129,4 +137,5 @@ export const en = {
   remove: 'Remove',
   filter: 'Filter',
   move: 'Move',
+  start: 'Start',
 };

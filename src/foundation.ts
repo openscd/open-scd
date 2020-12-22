@@ -308,3 +308,8 @@ export const versionSupport = {
   edition2: { version: '2007', revision: 'A', release: null },
   edition21: { version: '2007', revision: 'B', release: '4' },
 };
+
+/** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
+export function sortElementBayNameAttribute(a: Element, b: Element): number {
+  return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
+}

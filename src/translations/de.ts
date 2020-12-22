@@ -15,6 +15,7 @@ export const de: Translations = {
     save: 'Projekt speichern',
     validate: 'Projekt validieren',
     viewLog: 'Protokoll anzeigen',
+    guess: 'Schaltanlage raten',
   },
   openSCD: {
     loading: 'Lade Projekt {{ name }}',
@@ -120,6 +121,13 @@ export const de: Translations = {
     },
     tooltip: 'Referenz zi logischen Knoten erstellen',
   },
+  guess: {
+    wizard: {
+      title: {
+        switchgear: 'Auswahl Steuerungsmodel(ctlModel)',
+      },
+    },
+  },
   add: 'Hinzufügen',
   edit: 'Bearbeiten',
   save: 'Speichern',
@@ -132,4 +140,5 @@ export const de: Translations = {
   remove: 'Entfernen',
   filter: 'Filter',
   move: 'Verschieben',
+  start: 'Start',
 };

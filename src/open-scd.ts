@@ -51,6 +51,7 @@ import { styles } from './editors/substation/foundation.js';
 import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { guessSubstation } from './editors/substation/guess-wizard.js';
 interface MenuEntry {
   icon: string;
   name: string;
@@ -249,6 +250,10 @@ export class OpenSCD extends Setting(
     this.dispatchEvent(newWizardEvent(this.newProjectWizard()));
   }
 
+  private openGuessWizard(): void {
+    if (this.doc) this.dispatchEvent(newWizardEvent(guessSubstation(this.doc)));
+  }
+
   menu: MenuEntry[] = [
     {
       icon: 'folder_open',
@@ -301,6 +306,13 @@ export class OpenSCD extends Setting(
       name: 'menu.viewLog',
       actionItem: true,
       action: (): void => this.logUI.show(),
+    },
+    {
+      icon: 'library_add',
+      name: get('menu.guess'),
+      startsGroup: true,
+      disabled: (): boolean => this.doc === null,
+      action: (): void => this.openGuessWizard(),
     },
     {
       icon: 'settings',
