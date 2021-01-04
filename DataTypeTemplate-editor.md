@@ -18,3 +18,6 @@
 * choose possible values for your "ENS" health `Health` enumeration (default all, i.e. 1. `ok`, 2. `warning`, 3. `alarm`)
   * choose data attributes for optional substitution services (`subEna`, `subVal`, `subQ`, `subID`, `blkEna`)
   * choose additional optional data attributes (default none of `d`, `dU`, `cdcName="ENS"`*) *fixed value if selected
+* add a "DPC" position (`ctlModel`, `origin`, `ctlNum`, `stSeld`, `opRcvd`, `opOk`, `tOpOk`, `sboTimeout`, `sboClass`, `operTimeout`, `pulseConfig`)
+  * choose data attributes for optional substitution services (`subEna`, `subVal`, `subQ`, `subID`, `blkEna`)
+  * choose additional optional data attributes (default none of `d`, `dU`, `cdcName="DPC"`*) *fixed value if selected
