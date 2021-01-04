@@ -33,6 +33,8 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11"/>
 				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12"/>
 			</Bay>
+			<Bay name="Bay2" desc="Bay2">
+			</Bay>
 		</VoltageLevel>
 		<VoltageLevel name="J1" desc="Voltage Level">
 			<Voltage unit="V" multiplier="k">20</Voltage>

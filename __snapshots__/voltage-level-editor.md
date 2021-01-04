@@ -33,6 +33,8 @@
   <div id="bayContainer">
     <bay-editor>
     </bay-editor>
+    <bay-editor>
+    </bay-editor>
   </div>
 </section>
 
