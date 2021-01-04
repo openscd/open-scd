@@ -310,6 +310,6 @@ export const versionSupport = {
 };
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
-export function sortElementBayNameAttribute(a: Element, b: Element): number {
+export function sortElementByNameAttribute(a: Element, b: Element): number {
   return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
 }

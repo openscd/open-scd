@@ -4,7 +4,7 @@ import {
   WizardInput,
   CloseableElement,
   EditorAction,
-  sortElementBayNameAttribute,
+  sortElementByNameAttribute,
 } from '../../foundation.js';
 import { html } from 'lit-html';
 
@@ -231,7 +231,7 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
     substation.appendChild(voltageLevel);
 
     Array.from(doc.querySelectorAll(':root > IED'))
-      .sort(sortElementBayNameAttribute)
+      .sort(sortElementByNameAttribute)
       .map(ied => createBayElement(ied, ctlModelList))
       .forEach(bay => {
         if (bay) voltageLevel.appendChild(bay);
