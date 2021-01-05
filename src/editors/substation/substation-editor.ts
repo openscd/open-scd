@@ -155,17 +155,19 @@ export class SubstationEditor extends LitElement {
     ): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      parent.ownerDocument.createElement('Substation');
+      const element = new DOMParser().parseFromString(
+        `<Substation xmlns="http://www.iec.ch/61850/2003/SCL"
+              name="${name}"
+              ${desc === null ? '' : `desc="${desc}"`}
+            ></Substation>`,
+        'application/xml'
+      ).documentElement;
 
       const action = {
         new: {
           parent,
-          element: new DOMParser().parseFromString(
-            `<Substation
-              name="${name}"
-              ${desc === null ? '' : `desc="${desc}"`}
-            ></Substation>`,
-            'application/xml'
-          ).documentElement,
+          element,
           reference: null,
         },
       };
