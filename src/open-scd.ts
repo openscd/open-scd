@@ -44,6 +44,7 @@ import {
   WizardInput,
   CloseableElement,
   SchemaVersion,
+  newActionEvent,
 } from './foundation.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
@@ -85,7 +86,195 @@ export class OpenSCD extends Setting(
 
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
+  @query('#ied-import') iedImport!: HTMLInputElement;
   @query('#saveas') saveUI!: Dialog;
+
+  private isValidIED(ied: Element | null): boolean {
+    if (!ied) return false;
+
+    if (
+      Array.from(this.doc!.querySelectorAll(':root > IED'))
+        .map(ied => ied.getAttribute('name'))
+        .filter(iedName => iedName === ied.getAttribute('name')).length
+    ) {
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'error',
+          title: `There is already an IED with this name in the project. ${ied.getAttribute(
+            'name'
+          )} could not be loaded!`,
+        })
+      );
+      return false; //IED name must be unique
+    }
+
+    return true;
+  }
+
+  private addLNodeType(lNodeType: Element) {
+    if (
+      this.doc!.querySelectorAll(
+        `:root > DataTypeTemplates > LNodeType[id="${lNodeType.getAttribute(
+          'id'
+        )}"]`
+      ) !== null
+    ) {
+      this.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: this.doc!.querySelector(':root > DataTypeTemplates')!,
+            element: lNodeType,
+            reference: this.doc!.querySelector(
+              ':root > DataTypeTemplates > DOType'
+            ),
+          },
+        })
+      );
+    }
+  }
+
+  private addDOType(doType: Element) {
+    if (
+      this.doc!.querySelectorAll(
+        `:root > DataTypeTemplates > DOtype[id="${doType.getAttribute('id')}"]`
+      ) !== null
+    ) {
+      this.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: this.doc!.querySelector(':root > DataTypeTemplates')!,
+            element: doType,
+            reference: this.doc!.querySelector(
+              ':root > DataTypeTemplates > DAType'
+            ),
+          },
+        })
+      );
+    }
+  }
+
+  private addDAType(daType: Element) {
+    if (
+      this.doc!.querySelectorAll(
+        `:root > DataTypeTemplates > DAType[id="${daType.getAttribute('id')}"]`
+      ) !== null
+    ) {
+      this.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: this.doc!.querySelector(':root > DataTypeTemplates')!,
+            element: daType,
+            reference: this.doc!.querySelector(
+              ':root > DataTypeTemplates > EnumType'
+            ),
+          },
+        })
+      );
+    }
+  }
+
+  private addEnumType(enumType: Element) {
+    if (
+      this.doc!.querySelectorAll(
+        `:root > DataTypeTemplates > EnumType[id="${enumType.getAttribute(
+          'id'
+        )}"]`
+      ) !== null
+    ) {
+      this.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: this.doc!.querySelector(':root > DataTypeTemplates')!,
+            element: enumType,
+            reference: null,
+          },
+        })
+      );
+    }
+  }
+
+  private addIED(ied: Element, data: Element | null): void {
+    if (data && this.doc) {
+      Array.from(
+        data?.querySelectorAll(':root > DataTypeTemplates > LNodeType')
+      ).forEach(lNodeType => this.addLNodeType(lNodeType));
+
+      Array.from(
+        data?.querySelectorAll(':root > DataTypeTemplates > DOType')
+      ).forEach(doType => this.addDOType(doType));
+
+      Array.from(
+        data?.querySelectorAll(':root > DataTypeTemplates > DAType')
+      ).forEach(daType => this.addDAType(daType));
+
+      Array.from(
+        data?.querySelectorAll(':root > DataTypeTemplates > EnumType')
+      ).forEach(enumType => this.addEnumType(enumType));
+    }
+
+    if (ied && this.doc) {
+      this.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: this.doc!.querySelector(':root')!,
+            element: ied,
+            reference: this.doc!.querySelector(':root > DataTypeTemplates')!,
+          },
+        })
+      );
+    }
+  }
+
+  /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
+  private async importIED(src: string): Promise<string> {
+    let iedDoc: Document | null = null;
+
+    const response = await fetch(src);
+    const text = await response.text();
+
+    this.doc
+      ?.querySelector(':root')
+      ?.appendChild(
+        new DOMParser().parseFromString(
+          `<DataTypeTemplates></DataTypeTemplates>`,
+          'application/xml'
+        ).documentElement
+      );
+
+    iedDoc = new DOMParser().parseFromString(text, 'application/xml');
+    const msg: string =
+      'IED ' +
+      iedDoc.querySelector(':root > IED')?.getAttribute('name') +
+      ' loaded';
+
+    if (
+      this.isValidIED(
+        iedDoc.querySelector(':root > IED'),
+        iedDoc.querySelector(':root > DataTypeTemplates')
+      )
+    ) {
+      this.addIED(
+        iedDoc.querySelector(':root > IED')!,
+        iedDoc.querySelector(':root > DataTypeTemplates')
+      );
+    }
+
+    if (src.startsWith('blob:')) URL.revokeObjectURL(src);
+
+    return msg;
+  }
+
+  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
+  private async loadIEDFile(event: Event): Promise<void> {
+    const file =
+      (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
+    if (file) {
+      //this.srcName = file.name;
+      const loaded = this.importIED(URL.createObjectURL(file));
+      this.dispatchEvent(newPendingStateEvent(loaded));
+      await loaded;
+    }
+  }
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private loadDoc(src: string): Promise<string> {
@@ -261,7 +450,11 @@ export class OpenSCD extends Setting(
       name: 'menu.new',
       action: (): void => this.openNewProjectWizard(),
     },
-    { icon: 'snippet_folder', name: 'menu.importIED' },
+    {
+      icon: 'snippet_folder',
+      name: 'menu.importIED',
+      action: (): void => this.iedImport.click(),
+    },
     {
       icon: 'save_alt',
       name: 'save',
@@ -462,6 +655,9 @@ export class OpenSCD extends Setting(
       <input id="file-input" type="file" accept=".scd,.ssd" @change="${
         this.loadFile
       }"></input>
+      <input id="ied-import" type="file" accept=".icd,.iid,.cid" @change="${
+        this.loadIEDFile
+      }"></input>
       ${super.render()}
       ${getTheme(this.settings.theme)}
     `;
@@ -480,6 +676,10 @@ export class OpenSCD extends Setting(
     }
 
     #file-input {
+      display: none;
+    }
+
+    #ied-import {
       display: none;
     }
 
