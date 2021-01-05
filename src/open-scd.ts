@@ -247,12 +247,7 @@ export class OpenSCD extends Setting(
       iedDoc.querySelector(':root > IED')?.getAttribute('name') +
       ' loaded';
 
-    if (
-      this.isValidIED(
-        iedDoc.querySelector(':root > IED'),
-        iedDoc.querySelector(':root > DataTypeTemplates')
-      )
-    ) {
+    if (this.isValidIED(iedDoc.querySelector(':root > IED'))) {
       this.addIED(
         iedDoc.querySelector(':root > IED')!,
         iedDoc.querySelector(':root > DataTypeTemplates')
