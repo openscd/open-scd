@@ -389,6 +389,15 @@ export class OpenSCD extends Setting(
             () => html`<editor-1 .doc=${this.doc}></editor-1>`
           ),
       },
+      {
+        name: 'templates.name',
+        id: 'templates',
+        icon: 'code',
+        getContent: (): Promise<TemplateResult> =>
+          plugin('./editors/Templates.js', 'editor-2').then(
+            () => html`<editor-2 .doc=${this.doc}></editor-2>`
+          ),
+      },
     ],
   };
 
