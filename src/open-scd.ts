@@ -38,6 +38,7 @@ import {
   newWizardEvent,
   Wizard,
   WizardInput,
+  newActionEvent,
 } from './foundation.js';
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
