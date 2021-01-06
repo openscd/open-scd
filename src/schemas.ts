@@ -71,9 +71,12 @@ export function getSchema(
   revision: string,
   release: string
 ): string {
+  console.warn('Using schema ' + version + revision + release);
   return schemas[version + revision + release] ?? schemas['2007B1']!;
 }
 
+// FIXME(c-dinkel): fix 2003 und 2007B4 memory out of bounds error
+// TODO(JakobVogelsang): add remaining schema versions 2007A, 2007B2 etc.
 export const schemas: Partial<Record<string, string>> = {
   '2003': `<?xml version="1.0" encoding="UTF-8"?>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
@@ -5598,7 +5601,8 @@ export const schemas: Partial<Record<string, string>> = {
       <xs:field xpath="@id" />
     </xs:key>
   </xs:element>
-</xs:schema>`,
+  </xs:schema>
+  `,
   '2007B4': `<?xml version="1.0" encoding="UTF-8"?>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
       finalDefault="extension" targetNamespace="http://www.iec.ch/61850/2003/SCL" version="2007B4"

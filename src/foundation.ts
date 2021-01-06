@@ -297,6 +297,7 @@ export const restrictions = {
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
 };
 
+// FIXME(c-dinkel): make type hierarchy stringent
 export type SchemaVersion = {
   version: string | null;
   revision: string | null;

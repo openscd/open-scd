@@ -7,8 +7,8 @@ import {
   property,
   query,
 } from 'lit-element';
-import { translate, get } from 'lit-translate';
 import { until } from 'lit-html/directives/until.js';
+import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -24,15 +24,11 @@ import '@material/mwc-tab-bar';
 import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { Dialog } from '@material/mwc-dialog';
 import { Drawer } from '@material/mwc-drawer';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { Editing, newEmptySCD } from './Editing.js';
-import { Logging } from './Logging.js';
-import { Waiting } from './Waiting.js';
-import { Wizarding } from './Wizarding.js';
-import { Validating } from './Validating.js';
-import { getTheme } from './themes.js';
-import { Setting } from './Setting.js';
 import {
   newLogEvent,
   newPendingStateEvent,
@@ -45,12 +41,18 @@ import {
   CloseableElement,
   SchemaVersion,
 } from './foundation.js';
+import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
 import { styles } from './editors/substation/foundation.js';
-import { Dialog } from '@material/mwc-dialog';
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import { Editing, newEmptySCD } from './Editing.js';
+import { Logging } from './Logging.js';
+import { Setting } from './Setting.js';
+import { Validating } from './Validating.js';
+import { Waiting } from './Waiting.js';
+import { Wizarding } from './Wizarding.js';
+
 interface MenuEntry {
   icon: string;
   name: string;
@@ -88,42 +90,25 @@ export class OpenSCD extends Setting(
   @query('#saveas') saveUI!: Dialog;
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
-  private loadDoc(src: string): Promise<string> {
-    return new Promise<string>(
-      (resolve: (msg: string) => void, reject: (msg: string) => void) => {
-        this.reset();
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: get('openSCD.loading', { name: this.srcName }),
-          })
-        );
+  private async loadDoc(src: string): Promise<string> {
+    this.reset();
 
-        const reader: FileReader = new FileReader();
-        reader.addEventListener('error', () =>
-          reject(get('openSCD.readError', { name: this.srcName }))
-        );
-        reader.addEventListener('abort', () =>
-          reject(get('openSCD.readAbort', { name: this.srcName }))
-        );
-        reader.addEventListener('load', () => {
-          this.doc = reader.result
-            ? new DOMParser().parseFromString(
-                <string>reader.result,
-                'application/xml'
-              )
-            : null;
-          // free blob memory after parsing
-          if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-          if (this.doc) this.validate(this.doc, { fileName: this.srcName });
-          resolve(get('openSCD.loaded', { name: this.srcName }));
-        });
-
-        fetch(src ?? '').then(res =>
-          res.blob().then(b => reader.readAsText(b))
-        );
-      }
+    this.dispatchEvent(
+      newLogEvent({
+        kind: 'info',
+        title: get('openSCD.loading', { name: this.srcName }),
+      })
     );
+
+    const response = await fetch(src);
+    const text = await response.text();
+    this.doc = new DOMParser().parseFromString(text, 'application/xml');
+
+    if (src.startsWith('blob:')) URL.revokeObjectURL(src);
+
+    if (this.doc) await this.validate(this.doc, { fileName: this.srcName });
+
+    return get('openSCD.loaded', { name: this.srcName });
   }
 
   /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
@@ -150,7 +135,7 @@ export class OpenSCD extends Setting(
       });
 
       const a = document.createElement('a');
-      a.download = this.srcName + '.scd';
+      a.download = this.srcName;
       a.href = URL.createObjectURL(blob);
       a.dataset.downloadurl = ['application/xml', a.download, a.href].join(':');
       a.style.display = 'none';
@@ -179,12 +164,15 @@ export class OpenSCD extends Setting(
     if (handled) e.preventDefault();
   }
 
+  // FIXME(c-dinkel): turn into simple function
   private createNewProject(): WizardAction {
     return (
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      this.srcName = inputs[0].value;
+      this.srcName = inputs[0].value.match(/\.s[sc]d$/i)
+        ? inputs[0].value
+        : inputs[0].value + '.scd';
       const schema: SchemaVersion = JSON.parse(
         (<ListItemBase>(
           (<List>wizard.shadowRoot!.querySelector('mwc-list')).selected
@@ -204,6 +192,7 @@ export class OpenSCD extends Setting(
     };
   }
 
+  // FIXME(c-dinkel): turn into either simple dialog or pure wizard
   private newProjectWizard(): Wizard {
     return [
       {
@@ -217,7 +206,7 @@ export class OpenSCD extends Setting(
           html`<wizard-textfield
               id="srcName"
               label="name"
-              maybeValue="NewProject"
+              value="project.scd"
               required
               validationMessage="${translate('textfield.required')}"
               dialogInitialFocus
@@ -294,7 +283,13 @@ export class OpenSCD extends Setting(
       name: 'menu.validate',
       startsGroup: true,
       action: () =>
-        this.doc ? this.validate(this.doc, { fileName: this.srcName }) : null,
+        this.doc
+          ? this.dispatchEvent(
+              newPendingStateEvent(
+                this.validate(this.doc, { fileName: this.srcName })
+              )
+            )
+          : null,
     },
     {
       icon: 'rule',
