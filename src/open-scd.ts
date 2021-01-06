@@ -179,6 +179,8 @@ export class OpenSCD extends Setting(
         )).value
       );
 
+      this.reset();
+
       this.doc = newEmptySCD(
         this.srcName,
         schema.version,
