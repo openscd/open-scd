@@ -106,7 +106,11 @@ export class OpenSCD extends Setting(
 
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
 
-    if (this.doc) await this.validate(this.doc, { fileName: this.srcName });
+    const validated = this.validate(this.doc, { fileName: this.srcName });
+
+    if (this.doc) this.dispatchEvent(newPendingStateEvent(validated));
+
+    await validated;
 
     return get('openSCD.loaded', { name: this.srcName });
   }
