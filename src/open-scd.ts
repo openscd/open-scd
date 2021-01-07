@@ -52,6 +52,7 @@ import { Setting } from './Setting.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { Importing } from './Importing.js';
 
 interface MenuEntry {
   icon: string;

@@ -159,7 +159,7 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.dispatchEvent(
         newActionEvent({
-          message: 'Import IED ' + ied.getAttribute('name'),
+          title: 'Import IED ' + ied.getAttribute('name'),
           actions: <SimpleAction[]>(
             actions.filter(action => action !== undefined)
           ),
