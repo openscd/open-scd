@@ -3,7 +3,13 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/Editing.js';
-import { invalidSCL, validSCL } from '../data.js';
+import {
+  invalidSCL,
+  validSCL,
+  importIID,
+  invalidIID,
+  dublicateIEDName,
+} from '../data.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -150,6 +156,109 @@ describe('open-scd', () => {
     element.setAttribute('src', validBlobURL);
     await element.workDone;
     await element.validated;
-    expect(element).property('history').to.have.length(3);
+  });
+  describe('importing valid ied elements', () => {
+    beforeEach(async () => {
+      const validBlobURL = URL.createObjectURL(
+        new Blob([validSCL], {
+          type: 'application/xml',
+        })
+      );
+      element.setAttribute('src', validBlobURL);
+      await element.workDone;
+      await element.validated;
+      const testIID = URL.createObjectURL(
+        new Blob([importIID], {
+          type: 'application/xml',
+        })
+      );
+      element.setAttribute('srcIED', testIID);
+      await element.workDone;
+      await element.validated;
+    });
+    it('loads ied element to the project', () => {
+      expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
+        .exist;
+    });
+    it('loads unique lnodetyes to the project', () => {
+      expect(
+        element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
+          .length
+      ).to.equal(9);
+    });
+    it('loads unique dotypes to the project', () => {
+      expect(
+        element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
+          .length
+      ).to.equal(21);
+    });
+    it('loads unique datypes to the project', () => {
+      expect(
+        element.doc?.querySelectorAll(':root > DataTypeTemplates >  DAType')
+          .length
+      ).to.equal(9);
+    });
+    it('loads unique enumtypes to the project', () => {
+      expect(
+        element.doc?.querySelectorAll(':root > DataTypeTemplates >  EnumType')
+          .length
+      ).to.equal(9);
+    });
+    it('indicates duplicated data type template id with a warning', async () => {
+      expect(element.history[4].kind).to.equal('warning');
+      expect(element.history[4].title).to.equal(
+        "There are LNodeType elements with the same id but different structure. OpenSCD does not have a procedure to unifiy DataTypeTempate id's, yet."
+      );
+    });
+  });
+  describe('importing invalid ieds', () => {
+    beforeEach(async () => {
+      const validBlobURL = URL.createObjectURL(
+        new Blob([validSCL], {
+          type: 'application/xml',
+        })
+      );
+      element.setAttribute('src', validBlobURL);
+      await element.workDone;
+      await element.validated;
+    });
+    it('throws missing ied elements error', async () => {
+      const testIID = URL.createObjectURL(
+        new Blob([invalidIID], {
+          type: 'application/xml',
+        })
+      );
+      element.setAttribute('srcIED', testIID);
+      await element.workDone;
+      await element.validated;
+      expect(element.history[element.history.length - 1].title).to.equal(
+        'Import IED unsucessful'
+      );
+      expect(element.history[element.history.length - 2].kind).to.equal(
+        'error'
+      );
+      expect(element.history[element.history.length - 2].title).to.equal(
+        'There is no IED in the file'
+      );
+    });
+    it('throws doblicate ied name error', async () => {
+      const testIID = URL.createObjectURL(
+        new Blob([dublicateIEDName], {
+          type: 'application/xml',
+        })
+      );
+      element.setAttribute('srcIED', testIID);
+      await element.workDone;
+      await element.validated;
+      expect(element.history[element.history.length - 1].title).to.equal(
+        'Import IED unsucessful'
+      );
+      expect(element.history[element.history.length - 2].kind).to.equal(
+        'error'
+      );
+      expect(element.history[element.history.length - 2].title).to.equal(
+        'There is already an IED with this name in the project. IED2 could not be loaded!'
+      );
+    });
   });
 });
