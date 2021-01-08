@@ -80,7 +80,7 @@ export function getSchema(
 export const schemas: Partial<Record<string, string>> = {
   '2003': `<?xml version="1.0" encoding="UTF-8"?>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-      finalDefault="extension" targetNamespace="http://www.iec.ch/61850/2003/SCL" version="1.7"
+      targetNamespace="http://www.iec.ch/61850/2003/SCL" version="1.7"
       xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:scl="http://www.iec.ch/61850/2003/SCL"
       xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:annotation>
@@ -5605,7 +5605,7 @@ export const schemas: Partial<Record<string, string>> = {
   `,
   '2007B4': `<?xml version="1.0" encoding="UTF-8"?>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-      finalDefault="extension" targetNamespace="http://www.iec.ch/61850/2003/SCL" version="2007B4"
+      targetNamespace="http://www.iec.ch/61850/2003/SCL" version="2007B4"
       xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:scl="http://www.iec.ch/61850/2003/SCL"
       xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:annotation>
