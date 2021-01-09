@@ -13,7 +13,6 @@ export const en = {
     save: 'Save project',
     validate: 'Validate project',
     viewLog: 'View log',
-    guess: 'Guess substation',
   },
   openSCD: {
     loading: 'Loading project {{ name }}',
@@ -57,6 +56,10 @@ export const en = {
   substation: {
     name: 'Substation',
     missing: 'No substation',
+    startdialog: {
+      add: 'create manually',
+      guess: 'create automatically (guess)',
+    },
     wizard: {
       nameHelper: 'Substation name',
       descHelper: 'Substation description',
@@ -138,4 +141,6 @@ export const en = {
   filter: 'Filter',
   move: 'Move',
   start: 'Start',
+  proceed: 'Proceed',
+  select: 'Select',
 };

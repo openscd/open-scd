@@ -15,7 +15,6 @@ export const de: Translations = {
     save: 'Projekt speichern',
     validate: 'Projekt validieren',
     viewLog: 'Protokoll anzeigen',
-    guess: 'Schaltanlage raten',
   },
   openSCD: {
     loading: 'Lade Projekt {{ name }}',
@@ -60,6 +59,10 @@ export const de: Translations = {
   substation: {
     name: 'Schaltanlage',
     missing: 'Keine Schaltanlage',
+    startdialog: {
+      add: 'selbst erstellen',
+      guess: 'generieren lassen (Schätzung)',
+    },
     wizard: {
       nameHelper: 'Name der Schaltanlage',
       descHelper: 'Beschreibung der Schaltanlage',
@@ -141,4 +144,6 @@ export const de: Translations = {
   filter: 'Filter',
   move: 'Verschieben',
   start: 'Start',
+  proceed: 'Weiter',
+  select: 'Auswählen',
 };
