@@ -13,6 +13,7 @@ import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-textfield';
 import { List } from '@material/mwc-list';
 import { get } from 'lit-translate';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 let bayNum = 1;
 let cbNum = 1;
@@ -192,11 +193,9 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
   return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
     const actions: EditorAction[] = [];
 
-    const ctlModelList = (<List>(
-      wizard.shadowRoot!.querySelector('#ctlModelList')
-    )).items
-      .filter(item => item.selected)
-      .map(item => item.value);
+    const ctlModelList = (<ListItemBase[]>(
+      (<List>wizard.shadowRoot!.querySelector('#ctlModelList')).selected
+    )).map(item => item.value);
 
     const root = doc.querySelector('SCL');
 
@@ -216,13 +215,13 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
 
     const substation: Element = new DOMParser().parseFromString(
       `<Substation
-          name="AA1" desc="substation guessed by OpenSCD"> 
+          name="AA1" desc="Substation guessed by OpenSCD"> 
         </Substation>`,
       'application/xml'
     ).documentElement;
 
     const voltageLevel: Element = new DOMParser().parseFromString(
-      `<VoltageLevel name="E1" desc="voltage level guessed by OpenSCD" nomFreq="50.0" numPhases="3">
+      `<VoltageLevel name="E1" desc="Voltage level guessed by OpenSCD" nomFreq="50.0" numPhases="3">
         <Voltage unit="V" multiplier="k">110.00</Voltage>
       </VoltageLevel>`,
       'application/xml'
