@@ -308,13 +308,6 @@ export class OpenSCD extends Setting(
       action: (): void => this.logUI.show(),
     },
     {
-      icon: 'library_add',
-      name: get('menu.guess'),
-      startsGroup: true,
-      disabled: (): boolean => this.doc === null,
-      action: (): void => this.openGuessWizard(),
-    },
-    {
       icon: 'settings',
       name: 'settings.name',
       startsGroup: true,
