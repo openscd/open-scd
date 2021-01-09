@@ -167,7 +167,7 @@ describe('substation-editor wizarding editing integration', () => {
     it('adds a LNode element when selecting a logical node', async () => {
       expect(
         doc.querySelector(
-          'Substation > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
+          'Substation > LNode[iedName=IED1][ldInst="CircuitBreaker_CB1"][lnClass="LLN0"][lnInst=""]'
         )
       ).to.not.exist;
       (<ListItemBase>(
@@ -196,7 +196,7 @@ describe('substation-editor wizarding editing integration', () => {
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          'Substation > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
+          'Substation > LNode[iedName=IED1][ldInst="CircuitBreaker_CB1"][lnClass="LLN0"][lnInst=""]'
         )
       ).to.exist;
     });
