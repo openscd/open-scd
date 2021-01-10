@@ -8,6 +8,10 @@ import {
   WizardAction,
   WizardInput,
 } from '../../foundation.js';
+import { clone, mapToConstant } from 'fast-check';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
+import { elementUpdated } from '@open-wc/testing';
+import { BayEditor } from './bay-editor.js';
 
 export type ElementEditor = Element & {
   element: Element;
@@ -46,6 +50,48 @@ export function updateNamingAction(element: Element): WizardAction {
 
     return [{ old: { element }, new: { element: newElement } }];
   };
+}
+
+export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
+  const element: Element | null = editor.element;
+  const parent: Element | null = element.parentElement;
+
+  if (!element || !parent) return;
+
+  const cloneElement: Element = <Element>element.cloneNode(true);
+  const lNodeArray = cloneElement.querySelectorAll('LNode');
+  for (let i = 0; i < lNodeArray.length; i++) {
+    if (lNodeArray[i] && lNodeArray[i].parentElement)
+      lNodeArray[i].parentElement?.removeChild(lNodeArray[i]);
+  } //lNode element must be unique within substation -> must be removed
+
+  const terminalArray = cloneElement.querySelectorAll(
+    'Terminal:not([cNodeName="grounded"])'
+  );
+  for (let i = 0; i < terminalArray.length; i++) {
+    if (terminalArray[i] && terminalArray[i].parentElement)
+      terminalArray[i].parentElement?.removeChild(terminalArray[i]);
+  } //FIXME: for the moment beeing terminal remove as well. For later terminal keep might be the better choice
+
+  const connNodeArray = cloneElement.querySelectorAll('ConnectivityNode');
+  for (let i = 0; i < connNodeArray.length; i++) {
+    if (connNodeArray[i] && connNodeArray[i].parentElement)
+      connNodeArray[i].parentElement?.removeChild(connNodeArray[i]);
+  } //FIXME: for the moment beeing connectivity node remove as well.
+  // For later connectivity keep might be the better choice to preserve substation structure
+
+  cloneElement.setAttribute('name', element.getAttribute('name')! + ' - copy');
+
+  if (cloneElement)
+    editor.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent: parent,
+          element: cloneElement,
+          reference: element.nextElementSibling,
+        },
+      })
+    );
 }
 
 /**

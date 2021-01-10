@@ -132,4 +132,5 @@ export const de: Translations = {
   remove: 'Entfernen',
   filter: 'Filter',
   move: 'Verschieben',
+  duplicate: 'Kopie erstellen',
 };

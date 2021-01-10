@@ -27,6 +27,7 @@ import {
   startMove,
   styles,
   WizardOptions,
+  cloneElement,
 } from './foundation.js';
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
@@ -148,6 +149,12 @@ export class VoltageLevelEditor extends LitElement {
           <mwc-icon-button
             icon="account_tree"
             @click=${() => this.openLNodeWizard()}
+          ></mwc-icon-button>
+        </abbr>
+        <abbr title="${translate('duplicate')}">
+          <mwc-icon-button
+            icon="content_copy"
+            @click=${() => cloneElement(this)}
           ></mwc-icon-button>
         </abbr>
         <abbr title="${translate('edit')}">

@@ -129,4 +129,5 @@ export const en = {
   remove: 'Remove',
   filter: 'Filter',
   move: 'Move',
+  duplicate: 'Create copie',
 };

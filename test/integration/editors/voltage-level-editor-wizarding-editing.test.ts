@@ -378,4 +378,115 @@ describe('voltage-level-editor wizarding editing integration', () => {
       expect(doc.querySelector('VoltageLevel[name="E1"]')).to.not.exist;
     });
   });
+  describe('dublicate action', () => {
+    const doc = getDocument();
+    let parent: WizardingElement & EditingElement;
+    let element: VoltageLevelEditor | null;
+    beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><voltage-level-editor
+              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
+            ></voltage-level-editor
+          ></mock-wizard-editor>`
+        )
+      );
+      element = parent.querySelector('voltage-level-editor');
+    });
+    it('duplicates VoltageLevel on clicking duplicate button', async () => {
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel[name="E1 - copy"]')).to.exist;
+    });
+    it('removes all LNode elements in the copy', async () => {
+      expect(
+        doc.querySelector('VoltageLevel[name="E1"]')?.querySelector('LNode')
+      ).to.exist;
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('VoltageLevel[name="E1 - copy"]')
+          ?.querySelector('LNode')
+      ).to.not.exist;
+    });
+    it('removes all Terminal elements except the grounding in the copy', async () => {
+      expect(
+        doc
+          .querySelector('VoltageLevel[name="E1"]')
+          ?.querySelector('Terminal:not([cNodeName="grounded"])')
+      ).to.exist;
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('VoltageLevel[name="E1 - copy"]')
+          ?.querySelector('Terminal:not([cNodeName="grounded"])')
+      ).to.not.exist;
+    });
+    it('removes all ConnectivityNode elements in the copy', async () => {
+      expect(
+        doc
+          .querySelector('VoltageLevel[name="E1"]')
+          ?.querySelector('ConnectivityNode')
+      ).to.exist;
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('VoltageLevel[name="E1 - copy"]')
+          ?.querySelector('ConnectivityNode')
+      ).to.not.exist;
+    });
+    it('keeps all Bay elements in the copy', async () => {
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc.querySelector('VoltageLevel[name="E1"]')?.querySelectorAll('Bay')
+          .length
+      ).to.equal(
+        doc
+          .querySelector('VoltageLevel[name="E1 - copy"]')
+          ?.querySelectorAll('Bay').length
+      );
+    });
+    it('keeps all ConductingEquipment elements in the copy', async () => {
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('VoltageLevel[name="E1"]')
+          ?.querySelectorAll('ConductingEquipment').length
+      ).to.equal(
+        doc
+          .querySelector('VoltageLevel[name="E1 - copy"]')
+          ?.querySelectorAll('ConductingEquipment').length
+      );
+    });
+  });
 });
