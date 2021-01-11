@@ -26,7 +26,6 @@ import '@material/mwc-top-app-bar-fixed';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Dialog } from '@material/mwc-dialog';
 import { Drawer } from '@material/mwc-drawer';
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
@@ -35,14 +34,13 @@ import {
   newWizardEvent,
   Wizard,
   EditorAction,
-  WizardAction,
   WizardInput,
   CloseableElement,
 } from './foundation.js';
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
-import { styles } from './editors/substation/foundation.js';
+import { SupportedVersion } from './schemas.js';
 
 import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
@@ -50,7 +48,6 @@ import { Setting } from './Setting.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
-import { SchemaAttributes, SupportedVersion } from './schemas.js';
 
 interface MenuEntry {
   icon: string;
@@ -188,7 +185,6 @@ export class OpenSCD extends Setting(
     return [];
   }
 
-  // FIXME(c-dinkel): turn into either simple dialog or pure wizard
   private newProjectWizard(): Wizard {
     return [
       {
@@ -451,8 +447,6 @@ export class OpenSCD extends Setting(
   }
 
   static styles = css`
-    ${styles}
-
     mwc-top-app-bar-fixed {
       --mdc-theme-text-disabled-on-light: rgba(255, 255, 255, 0.38);
     } /* hack to fix disabled icon buttons rendering black */

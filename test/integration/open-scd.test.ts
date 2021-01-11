@@ -25,7 +25,7 @@ describe('open-scd', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('open new project wizard on new project icon click', async () => {
+  it('opens the New Project Wizard on new project icon click', async () => {
     expect(element.wizardUI).to.not.exist;
     (<HTMLElement>(
       element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
@@ -34,7 +34,7 @@ describe('open-scd', () => {
     expect(element.wizardUI).to.exist;
   });
 
-  it('creates empty SCL new project wizard primary icon button click', async () => {
+  it('creates an empty project on wizard primary button click', async () => {
     (<HTMLElement>(
       element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
     )).click();
