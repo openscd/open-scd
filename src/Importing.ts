@@ -1,8 +1,9 @@
 import {
+  LitElementConstructor,
+  Mixin,
   newLogEvent,
   newActionEvent,
-  Mixin,
-  LitElementConstructor,
+  SimpleAction,
 } from './foundation.js';
 import { rejects } from 'assert';
 import { constant } from 'fast-check';
@@ -14,7 +15,10 @@ export type ImportingElement = Mixin<typeof Importing>;
  * @returns `Base` dispatching [[`LogEvent`]]s and [[`EditorActionEvent`]]s. */
 export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
   class ImportingElement extends Base {
-    private addLNodeType(lNodeType: Element, doc: Document): void {
+    private addLNodeType(
+      lNodeType: Element,
+      doc: Document
+    ): SimpleAction | undefined {
       const existLNodeType = doc.querySelector(
         `:root > DataTypeTemplates > LNodeType[id="${lNodeType.getAttribute(
           'id'
@@ -33,18 +37,19 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
 
       if (existLNodeType) return;
 
-      this.dispatchEvent(
-        newActionEvent({
-          new: {
-            parent: doc.querySelector(':root > DataTypeTemplates')!,
-            element: lNodeType,
-            reference: doc.querySelector(':root > DataTypeTemplates > DOType'),
-          },
-        })
-      );
+      return {
+        new: {
+          parent: doc.querySelector(':root > DataTypeTemplates')!,
+          element: lNodeType,
+          reference: doc.querySelector(':root > DataTypeTemplates > DOType'),
+        },
+      };
     }
 
-    private addDOType(doType: Element, doc: Document) {
+    private addDOType(
+      doType: Element,
+      doc: Document
+    ): SimpleAction | undefined {
       const existDOType = doc.querySelector(
         `:root > DataTypeTemplates > DOtype[id="${doType.getAttribute('id')}"]`
       );
@@ -61,18 +66,19 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
 
       if (existDOType) return;
 
-      this.dispatchEvent(
-        newActionEvent({
-          new: {
-            parent: doc.querySelector(':root > DataTypeTemplates')!,
-            element: doType,
-            reference: doc.querySelector(':root > DataTypeTemplates > DAType'),
-          },
-        })
-      );
+      return {
+        new: {
+          parent: doc.querySelector(':root > DataTypeTemplates')!,
+          element: doType,
+          reference: doc.querySelector(':root > DataTypeTemplates > DAType'),
+        },
+      };
     }
 
-    private addDAType(daType: Element, doc: Document) {
+    private addDAType(
+      daType: Element,
+      doc: Document
+    ): SimpleAction | undefined {
       const existDAType = doc.querySelector(
         `:root > DataTypeTemplates > DAType[id="${daType.getAttribute('id')}"]`
       );
@@ -88,17 +94,13 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
 
       if (existDAType) return;
 
-      this.dispatchEvent(
-        newActionEvent({
-          new: {
-            parent: doc.querySelector(':root > DataTypeTemplates')!,
-            element: daType,
-            reference: doc.querySelector(
-              ':root > DataTypeTemplates > EnumType'
-            ),
-          },
-        })
-      );
+      return {
+        new: {
+          parent: doc.querySelector(':root > DataTypeTemplates')!,
+          element: daType,
+          reference: doc.querySelector(':root > DataTypeTemplates > EnumType'),
+        },
+      };
     }
 
     private addEnumType(enumType: Element, doc: Document) {
@@ -119,47 +121,50 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
 
       if (existEnumType) return;
 
-      this.dispatchEvent(
-        newActionEvent({
-          new: {
-            parent: doc.querySelector(':root > DataTypeTemplates')!,
-            element: enumType,
-            reference: null,
-          },
-        })
-      );
+      return {
+        new: {
+          parent: doc.querySelector(':root > DataTypeTemplates')!,
+          element: enumType,
+          reference: null,
+        },
+      };
     }
 
-    private addIED(ied: Element, data: Element | null, doc: Document): void {
-      if (data && doc) {
-        Array.from(
-          data?.querySelectorAll(':root > DataTypeTemplates > LNodeType')
-        ).forEach(lNodeType => this.addLNodeType(lNodeType, doc));
+    private addIED(ied: Element, templates: Element, doc: Document): void {
+      const actions: (SimpleAction | undefined)[] = [];
 
-        Array.from(
-          data?.querySelectorAll(':root > DataTypeTemplates > DOType')
-        ).forEach(doType => this.addDOType(doType, doc));
+      templates
+        .querySelectorAll(':root > DataTypeTemplates > LNodeType')
+        .forEach(lNodeType => actions.push(this.addLNodeType(lNodeType, doc)));
 
-        Array.from(
-          data?.querySelectorAll(':root > DataTypeTemplates > DAType')
-        ).forEach(daType => this.addDAType(daType, doc));
+      templates
+        .querySelectorAll(':root > DataTypeTemplates > DOType')
+        .forEach(doType => actions.push(this.addDOType(doType, doc)));
 
-        Array.from(
-          data?.querySelectorAll(':root > DataTypeTemplates > EnumType')
-        ).forEach(enumType => this.addEnumType(enumType, doc));
-      }
+      templates
+        .querySelectorAll(':root > DataTypeTemplates > DAType')
+        .forEach(daType => actions.push(this.addDAType(daType, doc)));
 
-      if (ied && doc) {
-        this.dispatchEvent(
-          newActionEvent({
-            new: {
-              parent: doc!.querySelector(':root')!,
-              element: ied,
-              reference: doc!.querySelector(':root > DataTypeTemplates')!,
-            },
-          })
-        );
-      }
+      templates
+        .querySelectorAll(':root > DataTypeTemplates > EnumType')
+        .forEach(enumType => actions.push(this.addEnumType(enumType, doc)));
+
+      actions.push({
+        new: {
+          parent: doc!.querySelector(':root')!,
+          element: ied,
+          reference: doc!.querySelector(':root > DataTypeTemplates')!,
+        },
+      });
+
+      this.dispatchEvent(
+        newActionEvent({
+          message: 'Import IED ' + ied.getAttribute('name'),
+          actions: <SimpleAction[]>(
+            actions.filter(action => action !== undefined)
+          ),
+        })
+      );
     }
 
     private isValidIED(ied: Element | null, doc: Document): boolean {
@@ -205,14 +210,18 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
       if (!iedDoc) return 'Parsing error with while opening the file.';
 
       if (!doc.querySelector(':root > DataTypeTemplates'))
-        doc
-          ?.querySelector(':root')
-          ?.appendChild(
-            new DOMParser().parseFromString(
-              `<DataTypeTemplates></DataTypeTemplates>`,
-              'application/xml'
-            ).documentElement
-          );
+        this.dispatchEvent(
+          newActionEvent({
+            new: {
+              element: new DOMParser().parseFromString(
+                `<DataTypeTemplates></DataTypeTemplates>`,
+                'application/xml'
+              ).documentElement,
+              parent: doc.documentElement,
+              reference: null,
+            },
+          })
+        );
 
       const msg: string =
         'IED ' +
@@ -226,7 +235,7 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
       if (isSuccessful) {
         this.addIED(
           iedDoc.querySelector(':root > IED')!,
-          iedDoc.querySelector(':root > DataTypeTemplates'),
+          iedDoc.querySelector(':root > DataTypeTemplates')!,
           doc
         );
       }
