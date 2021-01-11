@@ -6,15 +6,15 @@ import {
   Delete,
   EditorAction,
   EditorActionEvent,
-  LitElementConstructor,
-  Mixin,
-  Move,
-  Update,
   isCreate,
   isDelete,
   isMove,
   isUpdate,
+  LitElementConstructor,
+  Mixin,
+  Move,
   newLogEvent,
+  Update,
 } from './foundation.js';
 
 import { supportedAttributes, SupportedVersion } from './schemas.js';

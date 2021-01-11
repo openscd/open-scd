@@ -1,11 +1,11 @@
 import {
-  LitElement,
-  TemplateResult,
   css,
   customElement,
   html,
+  LitElement,
   property,
   query,
+  TemplateResult,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until.js';
 import { translate, get } from 'lit-translate';
@@ -29,13 +29,13 @@ import { Drawer } from '@material/mwc-drawer';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
+  CloseableElement,
+  EditorAction,
   newLogEvent,
   newPendingStateEvent,
   newWizardEvent,
   Wizard,
-  EditorAction,
   WizardInput,
-  CloseableElement,
 } from './foundation.js';
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
