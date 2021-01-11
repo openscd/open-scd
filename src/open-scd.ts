@@ -192,7 +192,7 @@ export class OpenSCD extends Setting(
         primary: {
           icon: 'create_new_folder',
           label: get('create'),
-          action: this.createNewProject,
+          action: (inputs, wizard) => this.createNewProject(inputs, wizard),
         },
         content: [
           html`<wizard-textfield
