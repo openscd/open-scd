@@ -238,7 +238,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'action',
-            title: event.detail.action.message,
+            title: event.detail.action.title,
             action: event.detail.action,
           })
         );

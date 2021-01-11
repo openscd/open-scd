@@ -7,7 +7,7 @@ import { Select } from '@material/mwc-select';
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];
-  message: string;
+  title: string;
   derived?: boolean;
 };
 /** Represents an intended or committed change to some `Element`. */
@@ -81,7 +81,7 @@ export function isSimple(action: EditorAction): action is SimpleAction {
 export function invert(action: EditorAction): EditorAction {
   if (!isSimple(action)) {
     const inverse: ComplexAction = {
-      message: action.message,
+      title: action.title,
       derived: action.derived,
       actions: [],
     };
