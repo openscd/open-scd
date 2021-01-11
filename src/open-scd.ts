@@ -32,14 +32,12 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import {
   newLogEvent,
   newPendingStateEvent,
-  versionSupport,
   newWizardEvent,
   Wizard,
   EditorAction,
   WizardAction,
   WizardInput,
   CloseableElement,
-  SchemaVersion,
 } from './foundation.js';
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
@@ -52,6 +50,7 @@ import { Setting } from './Setting.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { SchemaAttributes, SupportedVersion } from './schemas.js';
 
 interface MenuEntry {
   icon: string;
@@ -168,34 +167,25 @@ export class OpenSCD extends Setting(
     if (handled) e.preventDefault();
   }
 
-  // FIXME(c-dinkel): turn into simple function
-  private createNewProject(): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
-      this.srcName = inputs[0].value.match(/\.s[sc]d$/i)
-        ? inputs[0].value
-        : inputs[0].value + '.scd';
-      const schema: SchemaVersion = JSON.parse(
-        (<ListItemBase>(
-          (<List>wizard.shadowRoot!.querySelector('mwc-list')).selected
-        )).value
-      );
+  private createNewProject(
+    inputs: WizardInput[],
+    wizard: CloseableElement
+  ): EditorAction[] {
+    this.srcName = inputs[0].value.match(/\.s[sc]d$/i)
+      ? inputs[0].value
+      : inputs[0].value + '.scd';
+    const version = <SupportedVersion>(
+      (<ListItemBase>wizard.shadowRoot!.querySelector('mwc-list')!.selected)
+        .value
+    );
 
-      this.reset();
+    this.reset();
 
-      this.doc = newEmptySCD(
-        this.srcName,
-        schema.version,
-        schema.revision,
-        schema.release
-      );
+    this.doc = newEmptySCD(this.srcName.slice(0, -4), version);
 
-      wizard.close();
+    wizard.close();
 
-      return [];
-    };
+    return [];
   }
 
   // FIXME(c-dinkel): turn into either simple dialog or pure wizard
@@ -204,9 +194,9 @@ export class OpenSCD extends Setting(
       {
         title: get('menu.new'),
         primary: {
-          icon: 'add',
-          label: get('add'),
-          action: this.createNewProject(),
+          icon: 'create_new_folder',
+          label: get('create'),
+          action: this.createNewProject,
         },
         content: [
           html`<wizard-textfield
@@ -214,25 +204,17 @@ export class OpenSCD extends Setting(
               label="name"
               value="project.scd"
               required
-              validationMessage="${translate('textfield.required')}"
               dialogInitialFocus
             ></wizard-textfield>
             <mwc-list activatable>
-              <mwc-radio-list-item
-                left
-                value="${JSON.stringify(versionSupport.edition1)}"
+              <mwc-radio-list-item left value="2003"
                 >Edition 1 (Schema 1.7)</mwc-radio-list-item
               >
-              <mwc-radio-list-item
-                left
-                value="${JSON.stringify(versionSupport.edition2)}"
-                >Edition 2 (2007A)</mwc-radio-list-item
+              <mwc-radio-list-item left value="2007B1"
+                >Edition 2.1 release 1 (2007B1)</mwc-radio-list-item
               >
-              <mwc-radio-list-item
-                left
-                selected
-                value="${JSON.stringify(versionSupport.edition21)}"
-                >Edition 2.1 (2007B4)</mwc-radio-list-item
+              <mwc-radio-list-item left selected value="2007B4"
+                >Edition 2.1 current (2007B4)</mwc-radio-list-item
               >
             </mwc-list>`,
         ],

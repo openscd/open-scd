@@ -17,18 +17,19 @@ import {
   newLogEvent,
 } from './foundation.js';
 
-/** Returns a new empty SCD document, i.e. one containing `<SCL></SCL>` */
+import { supportedAttributes, SupportedVersion } from './schemas.js';
+
+/** Returns a new empty SCD document. */
 export function newEmptySCD(
   id: string,
-  version: string | null,
-  revision: string | null,
-  release: string | null
+  versionId: SupportedVersion
 ): XMLDocument {
+  const { version, revision, release } = supportedAttributes[versionId];
   const markup = `<?xml version="1.0" encoding="UTF-8"?>
     <SCL xmlns="http://www.iec.ch/61850/2003/SCL" ${
-      version ? `version="${version}"` : ``
-    } ${revision ? `revision="${revision}"` : ``} ${
-    release ? `release="${release}"` : ``
+      version ? `version="${version}"` : ''
+    } ${revision ? `revision="${revision}"` : ''} ${
+    release ? `release="${release}"` : ''
   }>
       <Header id="${id}"/>
     </SCL>`;
