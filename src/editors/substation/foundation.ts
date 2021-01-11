@@ -51,41 +51,34 @@ export function updateNamingAction(element: Element): WizardAction {
 }
 
 export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
-  const element: Element | null = editor.element;
-  const parent: Element | null = element.parentElement;
+  const element: Element = editor.element;
+  const parent: Element = element.parentElement!;
 
-  if (!element || !parent) return;
+  const clone: Element = <Element>element.cloneNode(true);
+  clone
+    .querySelectorAll('LNode')
+    .forEach(lNode => lNode.parentElement?.removeChild(lNode));
+  //lNode element must be unique within substation -> must be removed
 
-  const cloneElement: Element = <Element>element.cloneNode(true);
-  const lNodeArray = cloneElement.querySelectorAll('LNode');
-  for (let i = 0; i < lNodeArray.length; i++) {
-    if (lNodeArray[i] && lNodeArray[i].parentElement)
-      lNodeArray[i].parentElement?.removeChild(lNodeArray[i]);
-  } //lNode element must be unique within substation -> must be removed
+  clone
+    .querySelectorAll('Terminal:not([cNodeName="grounded"])')
+    .forEach(terminal => terminal.parentElement?.removeChild(terminal));
+  //FIXME: for the moment beeing terminal remove as well. For later terminal keep might be the better choice
 
-  const terminalArray = cloneElement.querySelectorAll(
-    'Terminal:not([cNodeName="grounded"])'
-  );
-  for (let i = 0; i < terminalArray.length; i++) {
-    if (terminalArray[i] && terminalArray[i].parentElement)
-      terminalArray[i].parentElement?.removeChild(terminalArray[i]);
-  } //FIXME: for the moment beeing terminal remove as well. For later terminal keep might be the better choice
-
-  const connNodeArray = cloneElement.querySelectorAll('ConnectivityNode');
-  for (let i = 0; i < connNodeArray.length; i++) {
-    if (connNodeArray[i] && connNodeArray[i].parentElement)
-      connNodeArray[i].parentElement?.removeChild(connNodeArray[i]);
-  } //FIXME: for the moment beeing connectivity node remove as well.
+  clone
+    .querySelectorAll('ConnectivityNode')
+    .forEach(condNode => condNode.parentElement?.removeChild(condNode));
+  //FIXME: for the moment beeing connectivity node remove as well.
   // For later connectivity keep might be the better choice to preserve substation structure
 
-  cloneElement.setAttribute('name', element.getAttribute('name')! + ' - copy');
+  clone.setAttribute('name', element.getAttribute('name')! + ' - copy');
 
-  if (cloneElement)
+  if (clone)
     editor.dispatchEvent(
       newActionEvent({
         new: {
           parent: parent,
-          element: cloneElement,
+          element: clone,
           reference: element.nextElementSibling,
         },
       })
