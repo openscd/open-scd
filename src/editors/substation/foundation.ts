@@ -8,9 +8,7 @@ import {
   WizardAction,
   WizardInput,
 } from '../../foundation.js';
-import { clone, mapToConstant } from 'fast-check';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
-import { elementUpdated } from '@open-wc/testing';
 import { BayEditor } from './bay-editor.js';
 
 export type ElementEditor = Element & {
