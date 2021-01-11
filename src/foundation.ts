@@ -74,7 +74,7 @@ export function isUpdate(action: EditorAction): action is Update {
   );
 }
 export function isSimple(action: EditorAction): action is SimpleAction {
-  return !(action instanceof Array);
+  return !((<ComplexAction>action).actions instanceof Array);
 }
 
 /** @returns an [[`EditorAction`]] with opposite effect of `action`. */
