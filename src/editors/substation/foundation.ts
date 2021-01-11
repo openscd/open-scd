@@ -7,9 +7,11 @@ import {
   newActionEvent,
   WizardAction,
   WizardInput,
+  newLogEvent,
 } from '../../foundation.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { BayEditor } from './bay-editor.js';
+import { get } from 'lit-translate';
 
 export type ElementEditor = Element & {
   element: Element;
@@ -81,6 +83,15 @@ export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
           element: clone,
           reference: element.nextElementSibling,
         },
+      })
+    );
+  else
+    element.dispatchEvent(
+      newLogEvent({
+        kind: 'error',
+        title: get('editing.error.duplicate', {
+          name: element.tagName,
+        }),
       })
     );
 }

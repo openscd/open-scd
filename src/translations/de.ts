@@ -31,6 +31,7 @@ export const de: Translations = {
       create: 'Konnte {{ name }} nicht hinzufügen',
       update: 'Konnte {{ name }} nicht bearbeiten',
       move: 'Konnte {{ name }} nicht verschieben',
+      duplicate: 'Konnte {{name}} nicht kopieren',
       nameClash:
         '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
     },
