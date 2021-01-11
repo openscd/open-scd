@@ -15,7 +15,6 @@ import {
   CommitEntry,
   ifImplemented,
   invert,
-  isDerived,
   isSimple,
   LitElementConstructor,
   LogEntry,
@@ -119,9 +118,8 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       };
 
       if (entry.kind == 'action') {
-        if (isDerived(entry.action)) return;
-        if (isSimple(entry.action)) entry.action.derived = true;
-        else entry.action.forEach(element => (element.derived = true));
+        if (entry.action.derived) return;
+        entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
         this.currentAction = this.history.length;
       }

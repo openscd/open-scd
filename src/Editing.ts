@@ -231,13 +231,14 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       if (isSimple(event.detail.action)) {
         this.onSimpleAction(event.detail.action);
         this.logSimpleAction(event.detail.action);
-      } else if (event.detail.action !== []) {
-        event.detail.action.forEach(element => this.onSimpleAction(element));
+      } else if (event.detail.action.actions !== []) {
+        event.detail.action.actions.forEach(element =>
+          this.onSimpleAction(element)
+        );
         this.dispatchEvent(
           newLogEvent({
             kind: 'action',
-            title: 'TODO: implement complex action log messages',
-            //FIXME(c-dinkel): write sensible complex action log messages
+            title: event.detail.action.message,
             action: event.detail.action,
           })
         );

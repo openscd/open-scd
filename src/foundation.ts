@@ -5,7 +5,11 @@ import { WizardTextField } from './wizard-textfield.js';
 import { Select } from '@material/mwc-select';
 
 export type SimpleAction = Create | Update | Delete | Move;
-export type ComplexAction = SimpleAction[];
+export type ComplexAction = {
+  actions: SimpleAction[];
+  message: string;
+  derived?: boolean;
+};
 /** Represents an intended or committed change to some `Element`. */
 export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
@@ -73,17 +77,17 @@ export function isSimple(action: EditorAction): action is SimpleAction {
   return !(action instanceof Array);
 }
 
-export function isDerived(action: EditorAction): boolean {
-  if (isSimple(action)) return action.derived ?? false;
-  if (action === []) return true;
-  return action[0].derived ?? false;
-}
-
 /** @returns an [[`EditorAction`]] with opposite effect of `action`. */
 export function invert(action: EditorAction): EditorAction {
   if (!isSimple(action)) {
-    const inverse: ComplexAction = [];
-    action.forEach(element => inverse.unshift(<SimpleAction>invert(element)));
+    const inverse: ComplexAction = {
+      message: action.message,
+      derived: action.derived,
+      actions: [],
+    };
+    action.actions.forEach(element =>
+      inverse.actions.unshift(<SimpleAction>invert(element))
+    );
     return inverse;
   }
 
