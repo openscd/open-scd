@@ -1,16 +1,7 @@
-import {
-  LitElement,
-  html,
-  TemplateResult,
-  property,
-  css,
-  query,
-} from 'lit-element';
+import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-fab';
-import '@material/mwc-checkbox';
-import '@material/mwc-formfield';
 
 import { newWizardEvent } from '../foundation.js';
 
