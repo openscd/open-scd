@@ -304,6 +304,7 @@ function renderIEDPage(element: Element): TemplateResult {
     return html`<mwc-textfield
         label="${translate('filter')}"
         iconTrailing="search"
+        outlined
         @input=${onFilterInput}
       ></mwc-textfield>
       <mwc-list
@@ -344,6 +345,7 @@ function renderLdPage(element: Element): TemplateResult {
   return html`<mwc-textfield
       label="${translate('filter')}"
       iconTrailing="search"
+      outlined
       @input=${onFilterInput}
     ></mwc-textfield>
     <mwc-list
@@ -357,6 +359,7 @@ function renderLnPage(): TemplateResult {
   return html`<mwc-textfield
       label="${translate('filter')}"
       iconTrailing="search"
+      outlined
       @input=${onFilterInput}
     ></mwc-textfield>
     <mwc-list multi id="lnList"></mwc-list>`;

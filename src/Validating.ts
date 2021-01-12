@@ -39,14 +39,22 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
         release = '1',
         fileName = 'untitled.scd',
       } = {}
-    ): Promise<ValidationResult> {
+    ): Promise<string> {
+      if (doc.documentElement)
+        [version, revision, release] = [
+          doc.documentElement.getAttribute('version') ?? '2003',
+          doc.documentElement.getAttribute('revision') ?? '',
+          doc.documentElement.getAttribute('release') ?? '',
+        ];
       this.validated = this.getValidator(
         getSchema(version, revision, release),
         'SCL' + version + revision + release + '.xsd'
       ).then(validator =>
         validator(new XMLSerializer().serializeToString(doc), fileName)
       );
-      return this.validated;
+      if (!(await this.validated).valid)
+        throw get('validating.invalid', { name: fileName });
+      return get('validating.valid', { name: fileName });
     }
 
     private async getValidator(
@@ -100,17 +108,7 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
                   qualifiedTag,
               })
             );
-          } else if (isValidationResult(e.data)) {
-            this.dispatchEvent(
-              newLogEvent({
-                title: get(
-                  e.data.valid ? 'validating.valid' : 'validating.invalid',
-                  { name: e.data.file }
-                ),
-                kind: e.data.valid ? 'info' : 'warning',
-              })
-            );
-          } else {
+          } else if (!isValidationResult(e.data)) {
             this.dispatchEvent(
               newLogEvent({
                 title: get('validating.fatal'),

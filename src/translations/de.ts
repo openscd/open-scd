@@ -118,7 +118,7 @@ export const de: Translations = {
       },
       placeholder: 'Bitte laden Sie eine SCL-Datei, die IED-Elemente enthält.',
     },
-    tooltip: 'Referenz zi logischen Knoten erstellen',
+    tooltip: 'Referenz zu logischen Knoten erstellen',
   },
   guess: {
     wizard: {
@@ -127,16 +127,17 @@ export const de: Translations = {
     },
   },
   add: 'Hinzufügen',
+  remove: 'Entfernen',
   edit: 'Bearbeiten',
+  move: 'Verschieben',
+  create: 'Erstellen',
   save: 'Speichern',
   saveAs: 'Speichern unter',
   reset: 'Zurücksetzen',
   cancel: 'Abbrechen',
   close: 'Schließen',
+  filter: 'Filter',
   undo: 'Rückgängig',
   redo: 'Wiederholen',
-  remove: 'Entfernen',
-  filter: 'Filter',
-  move: 'Verschieben',
-  select: 'Auswählen',
+
 };
