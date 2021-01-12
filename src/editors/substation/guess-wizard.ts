@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { get } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';
@@ -242,11 +242,7 @@ export function guessVoltageLevel(doc: XMLDocument): Wizard {
         action: guessBasedOnCSWI(doc),
       },
       content: [
-        html`<h2>Can we supply an explanation?</h2>
-          <p>
-            This wizard page may benefit from some translated text explaining
-            what has to be chosen and why.
-          </p>`,
+        html`<p>${translate('guess.wizard.description')}</p>`,
         html`<mwc-list multi id="ctlModelList"
           ><mwc-check-list-item value="status-only"
             >status-only</mwc-check-list-item

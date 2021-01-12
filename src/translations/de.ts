@@ -124,6 +124,7 @@ export const de: Translations = {
     wizard: {
       primary: 'Inhalt erraten',
       title: 'Auswahl Steuerungsmodel(ctlModel)',
+      description: `Schaltgeräten im Feld können oftmals bestimmten Steuerungsmodellen zugeordnet werden. \n Damit wird die Abschätzung oftmals genauer.`,
     },
   },
   add: 'Hinzufügen',
@@ -139,5 +140,4 @@ export const de: Translations = {
   filter: 'Filter',
   undo: 'Rückgängig',
   redo: 'Wiederholen',
-
 };

@@ -222,7 +222,7 @@ export class SubstationEditor extends LitElement {
           ></wizard-textfield>`,
           guessable
             ? html`<mwc-formfield label="${translate('guess.wizard.primary')}">
-                <mwc-checkbox checked></mwc-checkbox>
+                <mwc-checkbox></mwc-checkbox>
               </mwc-formfield>`
             : html``,
         ],
