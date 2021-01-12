@@ -1,12 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import {
+  ComplexAction,
   EditorAction,
   ifImplemented,
   invert,
   isCreate,
   isDelete,
   isMove,
+  isSimple,
   isUpdate,
   newActionEvent,
   newPendingStateEvent,
@@ -16,12 +18,17 @@ import {
 import { MockAction } from './mock-actions.js';
 
 describe('foundation', () => {
-  describe('Action', () => {
-    it('consists of four disjunct types', () => {
+  describe('EditorAction', () => {
+    it('consists of four disjunct simple types', () => {
       expect(MockAction.cre).to.satisfy(isCreate);
       expect(MockAction.del).to.satisfy(isDelete);
       expect(MockAction.mov).to.satisfy(isMove);
       expect(MockAction.upd).to.satisfy(isUpdate);
+
+      expect(MockAction.cre).to.satisfy(isSimple);
+      expect(MockAction.del).to.satisfy(isSimple);
+      expect(MockAction.mov).to.satisfy(isSimple);
+      expect(MockAction.upd).to.satisfy(isSimple);
 
       expect(MockAction.cre).to.not.satisfy(isDelete);
       expect(MockAction.cre).to.not.satisfy(isMove);
@@ -40,6 +47,15 @@ describe('foundation', () => {
       expect(MockAction.upd).to.not.satisfy(isMove);
     });
 
+    it('consists of one complex type', () => {
+      expect(MockAction.complex).to.not.satisfy(isSimple);
+
+      expect(MockAction.complex).to.not.satisfy(isCreate);
+      expect(MockAction.complex).to.not.satisfy(isDelete);
+      expect(MockAction.complex).to.not.satisfy(isMove);
+      expect(MockAction.complex).to.not.satisfy(isUpdate);
+    });
+
     describe('invert', () => {
       it('turns Create into Delete and vice versa', () => {
         expect(invert(MockAction.cre)).to.satisfy(isDelete);
@@ -54,6 +70,17 @@ describe('foundation', () => {
         expect(invert(MockAction.upd)).to.satisfy(isUpdate);
       });
 
+      it('inverts components of complex actions in reverse order', () => {
+        const action = MockAction.complex;
+        const inverse = <ComplexAction>invert(action);
+
+        action.actions.forEach((element, index) =>
+          expect(
+            inverse.actions[inverse.actions.length - index - 1]
+          ).to.deep.equal(invert(action.actions[index]))
+        );
+      });
+
       it('throws on unknown Action type', () => {
         const invalid = <EditorAction>(<unknown>'Not an action!');
         expect(() => invert(invalid)).to.throw();
@@ -61,7 +88,7 @@ describe('foundation', () => {
     });
 
     describe('ActionEvent', () => {
-      it('bears an Action in its detail', () => {
+      it('bears an EditorAction in its detail', () => {
         expect(newActionEvent(MockAction.mov))
           .property('detail')
           .property('action')

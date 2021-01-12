@@ -4,8 +4,14 @@ import { directive, Part } from 'lit-html';
 import { WizardTextField } from './wizard-textfield.js';
 import { Select } from '@material/mwc-select';
 
+export type SimpleAction = Create | Update | Delete | Move;
+export type ComplexAction = {
+  actions: SimpleAction[];
+  title: string;
+  derived?: boolean;
+};
 /** Represents an intended or committed change to some `Element`. */
-export type EditorAction = Create | Update | Delete | Move;
+export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
   new: { parent: Element; element: Element; reference: Element | null };
@@ -67,9 +73,24 @@ export function isUpdate(action: EditorAction): action is Update {
     (action as Update).new?.element !== undefined
   );
 }
+export function isSimple(action: EditorAction): action is SimpleAction {
+  return !((<ComplexAction>action).actions instanceof Array);
+}
 
 /** @returns an [[`EditorAction`]] with opposite effect of `action`. */
 export function invert(action: EditorAction): EditorAction {
+  if (!isSimple(action)) {
+    const inverse: ComplexAction = {
+      title: action.title,
+      derived: action.derived,
+      actions: [],
+    };
+    action.actions.forEach(element =>
+      inverse.actions.unshift(<SimpleAction>invert(element))
+    );
+    return inverse;
+  }
+
   const metaData = {
     derived: action.derived,
     checkValidity: action.checkValidity,

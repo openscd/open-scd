@@ -15,6 +15,8 @@ import {
   isMove,
   isUpdate,
   newLogEvent,
+  SimpleAction,
+  isSimple,
 } from './foundation.js';
 
 /** Returns a new empty SCD document, i.e. one containing `<SCL></SCL>` */
@@ -79,35 +81,36 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       return !invalid;
     }
 
-    private onCreate(event: EditorActionEvent<Create>) {
-      if (!this.checkCreateValidity(event.detail.action)) return;
+    private onCreate(action: Create) {
+      if (!this.checkCreateValidity(action)) return;
 
-      event.detail.action.new.parent.insertBefore(
-        event.detail.action.new.element,
-        event.detail.action.new.reference
-      );
+      action.new.parent.insertBefore(action.new.element, action.new.reference);
+    }
 
+    private logCreate(action: Create) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: get('editing.created', {
-            name: event.detail.action.new.element.tagName,
+            name: action.new.element.tagName,
           }),
-          action: event.detail.action,
+          action: action,
         })
       );
     }
 
-    private onDelete(event: EditorActionEvent<Delete>) {
-      event.detail.action.old.element.remove();
+    private onDelete(action: Delete) {
+      action.old.element.remove();
+    }
 
+    private logDelete(action: Delete) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: get('editing.deleted', {
-            name: event.detail.action.old.element.tagName,
+            name: action.old.element.tagName,
           }),
-          action: event.detail.action,
+          action: action,
         })
       );
     }
@@ -142,21 +145,20 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       return !invalid;
     }
 
-    private onMove(event: EditorActionEvent<Move>) {
-      if (!this.checkMoveValidity(event.detail.action)) return;
+    private onMove(action: Move) {
+      if (!this.checkMoveValidity(action)) return;
 
-      event.detail.action.new.parent.insertBefore(
-        event.detail.action.old.element,
-        event.detail.action.new.reference
-      );
+      action.new.parent.insertBefore(action.old.element, action.new.reference);
+    }
 
+    private logMove(action: Move) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: get('editing.moved', {
-            name: event.detail.action.old.element.tagName,
+            name: action.old.element.tagName,
           }),
-          action: event.detail.action,
+          action: action,
         })
       );
     }
@@ -192,36 +194,55 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       return !invalid;
     }
 
-    private onUpdate(event: EditorActionEvent<Update>) {
-      if (!this.checkUpdateValidity(event.detail.action)) return;
+    private onUpdate(action: Update) {
+      if (!this.checkUpdateValidity(action)) return;
 
-      event.detail.action.new.element.append(
-        ...Array.from(event.detail.action.old.element.children)
-      );
-      event.detail.action.old.element.replaceWith(
-        event.detail.action.new.element
-      );
+      action.new.element.append(...Array.from(action.old.element.children));
+      action.old.element.replaceWith(action.new.element);
+    }
 
+    private logUpdate(action: Update) {
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
           title: get('editing.updated', {
-            name: event.detail.action.new.element.tagName,
+            name: action.new.element.tagName,
           }),
-          action: event.detail.action,
+          action: action,
         })
       );
     }
 
+    private onSimpleAction(action: SimpleAction) {
+      if (isMove(action)) this.onMove(action as Move);
+      else if (isCreate(action)) this.onCreate(action as Create);
+      else if (isDelete(action)) this.onDelete(action as Delete);
+      else if (isUpdate(action)) this.onUpdate(action as Update);
+    }
+
+    private logSimpleAction(action: SimpleAction) {
+      if (isMove(action)) this.logMove(action as Move);
+      else if (isCreate(action)) this.logCreate(action as Create);
+      else if (isDelete(action)) this.logDelete(action as Delete);
+      else if (isUpdate(action)) this.logUpdate(action as Update);
+    }
+
     private onAction(event: EditorActionEvent<EditorAction>) {
-      if (isMove(event.detail.action))
-        this.onMove(event as EditorActionEvent<Move>);
-      else if (isCreate(event.detail.action))
-        this.onCreate(event as EditorActionEvent<Create>);
-      else if (isDelete(event.detail.action))
-        this.onDelete(event as EditorActionEvent<Delete>);
-      else if (isUpdate(event.detail.action))
-        this.onUpdate(event as EditorActionEvent<Update>);
+      if (isSimple(event.detail.action)) {
+        this.onSimpleAction(event.detail.action);
+        this.logSimpleAction(event.detail.action);
+      } else if (event.detail.action.actions !== []) {
+        event.detail.action.actions.forEach(element =>
+          this.onSimpleAction(element)
+        );
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'action',
+            title: event.detail.action.title,
+            action: event.detail.action,
+          })
+        );
+      }
 
       for (const element of event.composedPath())
         if (element instanceof LitElement) element.requestUpdate();
