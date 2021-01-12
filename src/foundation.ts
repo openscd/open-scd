@@ -317,15 +317,3 @@ export const restrictions = {
   decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
 };
-
-export type SchemaVersion = {
-  version: string | null;
-  revision: string | null;
-  release: string | null;
-};
-
-export const versionSupport = {
-  edition1: { version: null, revision: null, release: null },
-  edition2: { version: '2007', revision: 'A', release: null },
-  edition21: { version: '2007', revision: 'B', release: '4' },
-};
