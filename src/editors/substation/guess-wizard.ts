@@ -13,14 +13,14 @@ import {
   WizardInput,
   CloseableElement,
   EditorAction,
-  sortElementByNameAttribute,
+  compareNames,
 } from '../../foundation.js';
 
 let bayNum = 1;
 let cbNum = 1;
 let dsNum = 1;
 
-function addLNode(condEq: Element, cswi: Element): void {
+function addLNode(condEq: Element, cswi: Element): Element {
   // switchgear ideally is a composition of lnClass CILO,CSWI,XSWI
   cswi.parentElement
     ?.querySelectorAll(
@@ -65,36 +65,22 @@ function addLNode(condEq: Element, cswi: Element): void {
         ).documentElement
       )
     );
+
+  return condEq;
 }
 
 function getSwitchGearType(cswi: Element): string {
-  if (
-    cswi.parentElement?.querySelector(
-      `LN[lnClass="XCBR"]${
-        cswi.getAttribute('prefix')
-          ? `[prefix="${cswi.getAttribute('prefix')}"]`
-          : ``
-      }${
-        cswi.getAttribute('inst') ? `[inst="${cswi.getAttribute('inst')}"]` : ``
-      }`
-    )
+  return cswi.parentElement?.querySelector(
+    `LN[lnClass="XCBR"]${
+      cswi.getAttribute('prefix')
+        ? `[prefix="${cswi.getAttribute('prefix')}"]`
+        : ``
+    }${
+      cswi.getAttribute('inst') ? `[inst="${cswi.getAttribute('inst')}"]` : ``
+    }`
   )
-    return 'CBR';
-
-  if (
-    cswi.parentElement?.querySelector(
-      `LN[lnClass="XSWI"]${
-        cswi.getAttribute('prefix')
-          ? `[prefix="${cswi.getAttribute('prefix')}"]`
-          : ``
-      }${
-        cswi.getAttribute('inst') ? `[inst="${cswi.getAttribute('inst')}"]` : ``
-      }`
-    )
-  )
-    return 'DIS';
-
-  return 'DIS';
+    ? 'CBR'
+    : 'DIS';
 }
 
 function getSwitchGearName(ln: Element): string {
@@ -108,8 +94,6 @@ function getSwitchGearName(ln: Element): string {
 }
 
 function isSwitchGear(ln: Element, selectedCtlModel: string[]): boolean {
-  if (!ln || !ln.ownerDocument) return false;
-
   // ctlModel can be configured in IED section.
   if (
     Array.from(
@@ -120,7 +104,7 @@ function isSwitchGear(ln: Element, selectedCtlModel: string[]): boolean {
 
   // ctlModel can be configured as type in DataTypeTemplate section
   const doc = ln.ownerDocument;
-  if (
+  return (
     Array.from(
       doc.querySelectorAll(
         `DataTypeTemplates > LNodeType[id="${ln.getAttribute(
@@ -137,11 +121,8 @@ function isSwitchGear(ln: Element, selectedCtlModel: string[]): boolean {
         )
       )
       .filter(val => selectedCtlModel.includes((<Element>val).innerHTML.trim()))
-      .length
-  )
-    return true;
-
-  return false;
+      .length > 0
+  );
 }
 
 function getCSWI(ied: Element): Element[] {
@@ -151,7 +132,7 @@ function getCSWI(ied: Element): Element[] {
 }
 
 function getValidCSWI(ied: Element, selectedCtlModel: string[]): Element[] {
-  if (!ied || !ied.parentElement) return [];
+  if (!ied.parentElement) return [];
 
   return getCSWI(ied).filter(cswi => isSwitchGear(cswi, selectedCtlModel));
 }
@@ -173,14 +154,15 @@ function createBayElement(
     ).documentElement;
 
     const condEq = switchGear.map(cswi => {
-      const condEq = new DOMParser().parseFromString(
-        `<ConductingEquipment name="${getSwitchGearName(
-          cswi
-        )}" type="${getSwitchGearType(cswi)}"></ConductingEquipment>`,
-        'application/xml'
-      ).documentElement;
-      addLNode(condEq, cswi);
-      return condEq;
+      return addLNode(
+        new DOMParser().parseFromString(
+          `<ConductingEquipment name="${getSwitchGearName(
+            cswi
+          )}" type="${getSwitchGearType(cswi)}"></ConductingEquipment>`,
+          'application/xml'
+        ).documentElement,
+        cswi
+      );
     });
 
     condEq.forEach(condEq => bayElement.appendChild(condEq));
@@ -211,7 +193,7 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
     ).documentElement;
 
     Array.from(doc.querySelectorAll(':root > IED'))
-      .sort(sortElementByNameAttribute)
+      .sort(compareNames)
       .map(ied => createBayElement(ied, ctlModelList))
       .forEach(bay => {
         if (bay) voltageLevel.appendChild(bay);

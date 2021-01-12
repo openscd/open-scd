@@ -31,35 +31,35 @@ describe('guess-wizard-integration', () => {
         ).length
       ).to.equal(5);
     });
-    it('the first one beeing status-only', async () => {
+    it('the first one being status-only', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
           '#ctlModelList > mwc-check-list-item:nth-child(1)'
         )?.innerHTML
       ).to.equal('status-only');
     });
-    it('the second one beeing direct-with-normal-security', async () => {
+    it('the second one being direct-with-normal-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
           '#ctlModelList > mwc-check-list-item:nth-child(2)'
         )?.innerHTML
       ).to.equal('direct-with-normal-security');
     });
-    it('the second one beeing direct-with-enhanced-security', async () => {
+    it('the second one being direct-with-enhanced-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
           '#ctlModelList > mwc-check-list-item:nth-child(3)'
         )?.innerHTML
       ).to.equal('direct-with-enhanced-security');
     });
-    it('the second one beeing sbo-with-normal-security', async () => {
+    it('the second one being sbo-with-normal-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
           '#ctlModelList > mwc-check-list-item:nth-child(4)'
         )?.innerHTML
       ).to.equal('sbo-with-normal-security');
     });
-    it('the second one beeing sbo-with-enhanced-security', async () => {
+    it('the second one being sbo-with-enhanced-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
           '#ctlModelList > mwc-check-list-item:nth-child(5)'
@@ -131,7 +131,7 @@ describe('guess-wizarding-editing-integration', () => {
     const nameSet = new Set(nameArray);
     expect(nameArray.length).to.equal(nameSet.size);
   });
-  it('creates unique conducting equipment name, if not prefix is there', () => {
+  it('creates unique conducting equipment name, if no prefix is there', () => {
     expect(
       validSCL
         .querySelector(

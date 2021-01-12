@@ -320,6 +320,6 @@ export const restrictions = {
 };
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
-export function sortElementByNameAttribute(a: Element, b: Element): number {
+export function compareNames(a: Element, b: Element): number {
   return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
 }
