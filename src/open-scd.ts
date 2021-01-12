@@ -24,7 +24,10 @@ import '@material/mwc-tab-bar';
 import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
+import { Dialog } from '@material/mwc-dialog';
 import { Drawer } from '@material/mwc-drawer';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
@@ -34,24 +37,21 @@ import { Validating } from './Validating.js';
 import { getTheme } from './themes.js';
 import { Setting } from './Setting.js';
 import {
+  CloseableElement,
+  EditorAction,
   newLogEvent,
   newPendingStateEvent,
-  versionSupport,
   newWizardEvent,
+  SchemaVersion,
+  versionSupport,
   Wizard,
-  EditorAction,
   WizardAction,
   WizardInput,
-  CloseableElement,
-  SchemaVersion,
 } from './foundation.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
 import { styles } from './editors/substation/foundation.js';
-import { Dialog } from '@material/mwc-dialog';
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { guessSubstation } from './editors/substation/guess-wizard.js';
+
 interface MenuEntry {
   icon: string;
   name: string;
@@ -248,10 +248,6 @@ export class OpenSCD extends Setting(
 
   private openNewProjectWizard() {
     this.dispatchEvent(newWizardEvent(this.newProjectWizard()));
-  }
-
-  private openGuessWizard(): void {
-    if (this.doc) this.dispatchEvent(newWizardEvent(guessSubstation(this.doc)));
   }
 
   menu: MenuEntry[] = [

@@ -56,10 +56,6 @@ export const en = {
   substation: {
     name: 'Substation',
     missing: 'No substation',
-    startdialog: {
-      add: 'create manually',
-      guess: 'create automatically (guess)',
-    },
     wizard: {
       nameHelper: 'Substation name',
       descHelper: 'Substation description',
@@ -123,9 +119,8 @@ export const en = {
   },
   guess: {
     wizard: {
-      title: {
-        switchgear: 'Select control model',
-      },
+      primary: 'Guess content',
+      title: 'Select control model (ctlModel)',
     },
   },
   add: 'Add',
@@ -140,7 +135,5 @@ export const en = {
   remove: 'Remove',
   filter: 'Filter',
   move: 'Move',
-  start: 'Start',
-  proceed: 'Proceed',
   select: 'Select',
 };

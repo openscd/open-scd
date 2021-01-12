@@ -1,3 +1,12 @@
+import { html } from 'lit-html';
+import { get } from 'lit-translate';
+
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-textfield';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
 import {
   Wizard,
   WizardAction,
@@ -6,14 +15,6 @@ import {
   EditorAction,
   sortElementByNameAttribute,
 } from '../../foundation.js';
-import { html } from 'lit-html';
-
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-textfield';
-import { List } from '@material/mwc-list';
-import { get } from 'lit-translate';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 let bayNum = 1;
 let cbNum = 1;
@@ -197,37 +198,17 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
       (<List>wizard.shadowRoot!.querySelector('#ctlModelList')).selected
     )).map(item => item.value);
 
-    const root = doc.querySelector('SCL');
+    const root = doc.documentElement;
 
-    if (root && doc.querySelectorAll(':root > Substation')) {
-      Array.from(doc.querySelectorAll(':root > Substation')).forEach(
-        substation => {
-          actions.push({
-            old: {
-              parent: root,
-              element: substation,
-              reference: substation.nextElementSibling,
-            },
-          });
-        }
-      );
-    }
-
-    const substation: Element = new DOMParser().parseFromString(
-      `<Substation
-          name="AA1" desc="Substation guessed by OpenSCD"> 
-        </Substation>`,
-      'application/xml'
-    ).documentElement;
+    const substation = root.querySelector(':root > Substation')!;
 
     const voltageLevel: Element = new DOMParser().parseFromString(
-      `<VoltageLevel name="E1" desc="Voltage level guessed by OpenSCD" nomFreq="50.0" numPhases="3">
+      `<VoltageLevel name="E1" desc="guessed by OpenSCD"
+                     nomFreq="50.0" numPhases="3">
         <Voltage unit="V" multiplier="k">110.00</Voltage>
       </VoltageLevel>`,
       'application/xml'
     ).documentElement;
-
-    substation.appendChild(voltageLevel);
 
     Array.from(doc.querySelectorAll(':root > IED'))
       .sort(sortElementByNameAttribute)
@@ -238,12 +219,9 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
 
     actions.push({
       new: {
-        parent: root!,
-        element: substation,
-        reference:
-          root!.querySelector(':root > Communication') ||
-          root!.querySelector(':root > IED') ||
-          root!.querySelector(':root > DataTypeTemplates'),
+        parent: substation,
+        element: voltageLevel,
+        reference: null,
       },
     });
 
@@ -252,17 +230,23 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
   };
 }
 
-/** @returns a Wizard for guessing `Substation` stucture based on `lnClass` beeing a bay controller */
-export function guessSubstation(doc: XMLDocument): Wizard {
+/** @returns a Wizard for guessing `VoltageLevel` stucture assuming each
+ * `LN[lnClass="CSWI"]` represents a bay controller */
+export function guessVoltageLevel(doc: XMLDocument): Wizard {
   return [
     {
-      title: get('guess.wizard.title.switchgear'),
+      title: get('guess.wizard.title'),
       primary: {
         icon: 'play_arrow',
-        label: get('start'),
+        label: get('guess.wizard.primary'),
         action: guessBasedOnCSWI(doc),
       },
       content: [
+        html`<h2>Can we supply an explanation?</h2>
+          <p>
+            This wizard page may benefit from some translated text explaining
+            what has to be chosen and why.
+          </p>`,
         html`<mwc-list multi id="ctlModelList"
           ><mwc-check-list-item value="status-only"
             >status-only</mwc-check-list-item

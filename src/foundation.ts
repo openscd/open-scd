@@ -1,8 +1,9 @@
 import { LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
 
-import { WizardTextField } from './wizard-textfield.js';
 import { Select } from '@material/mwc-select';
+
+import { WizardTextField } from './wizard-textfield.js';
 
 /** Represents an intended or committed change to some `Element`. */
 export type EditorAction = Create | Update | Delete | Move;

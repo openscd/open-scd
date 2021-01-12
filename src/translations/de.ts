@@ -59,10 +59,6 @@ export const de: Translations = {
   substation: {
     name: 'Schaltanlage',
     missing: 'Keine Schaltanlage',
-    startdialog: {
-      add: 'selbst erstellen',
-      guess: 'generieren lassen (Schätzung)',
-    },
     wizard: {
       nameHelper: 'Name der Schaltanlage',
       descHelper: 'Beschreibung der Schaltanlage',
@@ -126,9 +122,8 @@ export const de: Translations = {
   },
   guess: {
     wizard: {
-      title: {
-        switchgear: 'Auswahl Steuerungsmodel(ctlModel)',
-      },
+      primary: 'Inhalt erraten',
+      title: 'Auswahl Steuerungsmodel(ctlModel)',
     },
   },
   add: 'Hinzufügen',
@@ -143,7 +138,5 @@ export const de: Translations = {
   remove: 'Entfernen',
   filter: 'Filter',
   move: 'Verschieben',
-  start: 'Start',
-  proceed: 'Weiter',
   select: 'Auswählen',
 };
