@@ -13,7 +13,6 @@ export const en = {
     save: 'Save project',
     validate: 'Validate project',
     viewLog: 'View log',
-    guess: 'Guess substation',
   },
   openSCD: {
     loading: 'Loading project {{ name }}',
@@ -120,22 +119,22 @@ export const en = {
   },
   guess: {
     wizard: {
-      title: {
-        switchgear: 'Select control model',
-      },
+      primary: 'Guess content',
+      title: 'Select control model (ctlModel)',
+      description: `IEDs often contain more controlable logical nodes than switch gear in the field. \n You can select the control model(s) used specific for switch gear.`,
     },
   },
   add: 'Add',
+  remove: 'Remove',
   edit: 'Edit',
+  move: 'Move',
+  create: 'Create',
   save: 'Save',
   saveAs: 'Save as',
   reset: 'Reset',
   cancel: 'Cancel',
   close: 'Close',
+  filter: 'Filter',
   undo: 'Undo',
   redo: 'Redo',
-  remove: 'Remove',
-  filter: 'Filter',
-  move: 'Move',
-  start: 'Start',
 };

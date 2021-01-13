@@ -33,6 +33,8 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11"/>
 				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12"/>
 			</Bay>
+			<Bay name="Bay2" desc="Bay2">
+			</Bay>
 		</VoltageLevel>
 		<VoltageLevel name="J1" desc="Voltage Level">
 			<Voltage unit="V" multiplier="k">20</Voltage>
@@ -62,470 +64,68 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		<AccessPoint name="P1">
 			<Server>
 				<Authentication none="true" />
-				<LDevice inst="CBSW">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
-						<DataSet name="GooseDataSet1">
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" daName="q" fc="ST" />
-						</DataSet>
-						<DataSet name="ReportDataSet1">
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" fc="ST" />
-						</DataSet>
-						<DataSet name="ReportDataSet2">
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind1" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind2" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind3" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind4" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind5" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind6" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind7" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind8" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO1" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO2" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO3" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO4" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO5" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO6" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO7" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO8" fc="ST" />
-						</DataSet>
-						<ReportControl confRev="1" buffered="false" bufTime="100" intgPd="0" name="urcb" datSet="ReportDataSet1">
-							<TrgOps dchg="true" qchg="true" dupd="true" period="true" gi="true" />
-							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="true" configRef="true" />
-							<RptEnabled max="5" />
-						</ReportControl>
-						<ReportControl confRev="1" buffered="true" bufTime="100" intgPd="0" name="brcb">
-							<TrgOps dchg="true" qchg="true" dupd="true" period="true" gi="true" />
-							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="true" configRef="true" />
-							<RptEnabled max="5" />
-						</ReportControl>
-						<DOI name="Mod">
+				<LDevice inst="CircuitBreaker_CB1">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">						
+						<DOI name="Pos">
+							<DAI name="ctlModel">
+								<Val>status-only</Val>
+							</DAI>
+						</DOI>
+					</LN>
+					<LN lnClass="CSWI" inst="1" lnType="Dummy.CSWIwithoutCtlModel">
+						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>sbo-with-enhanced-security</Val>
 							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
+						</DOI>
+					</LN>
+					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
+						<DOI name="Pos">
+							<DAI name="ctlModel">
+								<Val>status-only</Val>
 							</DAI>
 						</DOI>
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>ISIO 200 circuit breaker and disconnector interface</Val>
-							</DAI>
-							<DAI name="configRev">
-								<Val>1</Val>
-							</DAI>
-							<DAI name="ldNs">
-								<Val>IEC 61850-7-4:2007A</Val>
-							</DAI>
-						</DOI>
-						<GSEControl type="GOOSE" appID="IED1" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1" />
-					</LN0>
-					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1">
-						<DOI name="PhyNam">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="hwRev">
-								<Val>OMICRON PRISCILLA Type G Rev: 0002</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="serNum">
-								<Val>DB495L</Val>
-							</DAI>
-							<DAI name="model">
-								<Val>ISIO 200</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Proxy">
-							<DAI name="d">
-								<Val>not a proxy</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Sim">
+					</LN>
+					<LN prefix="CB" lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
+						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>sbo-with-enhanced-security</Val>
 							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Circuit breaker 1</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
+				</LDevice>
+				<LDevice inst="Disconnectors">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN prefix="DC" lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
 						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input1, inverted=false, bitIndex=0}, {product=ISIO, signal=input2, inverted=false, bitIndex=1}" />
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of circuit breaker 1, mapped to ISIO input 1 and 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
 							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Disconnector 1</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input3, inverted=false, bitIndex=0}, {product=ISIO, signal=input4, inverted=false, bitIndex=1}" />
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of disconnector 1, mapped to ISIO inputs 3 and 4</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Disconnector 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input5, inverted=false, bitIndex=0}, {product=ISIO, signal=input6, inverted=false, bitIndex=1}" />
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of disconnector 2, mapped to ISIO inputs 5 and 6</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-					</LN>
+					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI"/>
+					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
 					<LN lnClass="XSWI" inst="3" lnType="Dummy.XSWI1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Disconnector 3</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
 						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input7, inverted=false, bitIndex=0}, {product=ISIO, signal=input8, inverted=false, bitIndex=1}" />
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of disconnector 3, mapped to ISIO inputs 7 and 8</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
 							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="GGIO" inst="1" lnType="Dummy.GGIO1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary I/Os</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind1">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input1, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 1</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind2">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input2, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind3">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input3, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 3</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind4">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input4, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 4</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind5">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input5, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 5</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind6">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input6, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 6</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind7">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input7, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 7</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind8">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input8, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 8</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO1">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output1, inverted=false}" />
+					<LN lnClass="CSWI" inst="3" lnType="Dummy.CSWI"/>
+					<LN lnClass="CILO" inst="3" lnType="Dummy.CILO"/>
+					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
+						<DOI name="Pos">
 							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 1</Val>
+								<Val>direct-with-normal-security</Val>
 							</DAI>
 						</DOI>
-						<DOI name="SPCSO2">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output2, inverted=false}" />
+					</LN>
+					<LN lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
+						<DOI name="Pos">
 							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO3">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output3, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 3</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO4">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output4, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 4</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO5">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output5, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 5</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO6">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output6, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 6</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO7">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output7, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 7</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO8">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output8, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 8</Val>
+								<Val>sbo-with-normal-security</Val>
 							</DAI>
 						</DOI>
 					</LN>
@@ -556,469 +156,51 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<Server>
 				<Authentication />
 				<LDevice inst="CBSW">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
-						<DataSet name="GooseDataSet1">
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" daName="stVal" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" daName="q" fc="ST" />
-						</DataSet>
-						<DataSet name="ReportDataSet1">
-							<FCDA ldInst="CBSW" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="1" doName="Pos" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="3" doName="Pos" fc="ST" />
-						</DataSet>
-						<DataSet name="ReportDataSet2">
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind1" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind2" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind3" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind4" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind5" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind6" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind7" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="Ind8" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO1" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO2" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO3" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO4" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO5" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO6" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO7" fc="ST" />
-							<FCDA ldInst="CBSW" prefix="" lnClass="GGIO" lnInst="1" doName="SPCSO8" fc="ST" />
-						</DataSet>
-						<ReportControl confRev="1" bufTime="100" name="urcb" datSet="ReportDataSet1">
-							<TrgOps dchg="true" qchg="true" dupd="true" period="true" />
-							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" entryID="true" configRef="true" />
-							<RptEnabled max="5" />
-						</ReportControl>
-						<ReportControl confRev="1" buffered="true" bufTime="100" name="brcb">
-							<TrgOps dchg="true" qchg="true" dupd="true" period="true" />
-							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" entryID="true" configRef="true" />
-							<RptEnabled max="5" />
-						</ReportControl>
-						<DOI name="Mod">
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-						</DOI>
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>ISIO 200 circuit breaker and disconnector interface</Val>
-							</DAI>
-							<DAI name="configRev">
-								<Val>1</Val>
-							</DAI>
-							<DAI name="ldNs">
-								<Val>IEC 61850-7-4:2007A</Val>
-							</DAI>
-						</DOI>
-						<GSEControl appID="IED2" confRev="1" name="GCB" datSet="GooseDataSet1" />
-					</LN0>
-					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1">
-						<DOI name="PhyNam">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="hwRev">
-								<Val>OMICRON PRISCILLA Type G Rev: 0002</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="serNum">
-								<Val>AM156K</Val>
-							</DAI>
-							<DAI name="model">
-								<Val>ISIO 200</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Proxy">
-							<DAI name="d">
-								<Val>not a proxy</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Sim">
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-					</LN>
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Circuit breaker 1</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
 						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input1, inverted=false, bitIndex=0}, {product=ISIO, signal=input2, inverted=false, bitIndex=1}" />
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of circuit breaker 1, mapped to ISIO input 1 and 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
 							</DAI>
 						</DOI>
 					</LN>
 					<LN lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Disconnector 1</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
 						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input3, inverted=false, bitIndex=0}, {product=ISIO, signal=input4, inverted=false, bitIndex=1}" />
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of disconnector 1, mapped to ISIO inputs 3 and 4</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
 							</DAI>
 						</DOI>
 					</LN>
 					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Disconnector 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
 						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input5, inverted=false, bitIndex=0}, {product=ISIO, signal=input6, inverted=false, bitIndex=1}" />
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of disconnector 2, mapped to ISIO inputs 5 and 6</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
 							</DAI>
 						</DOI>
 					</LN>
 					<LN lnClass="XSWI" inst="3" lnType="Dummy.XSWI1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Disconnector 3</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Loc">
-							<DAI name="d">
-								<Val>Local control behavior regarding switching authority</Val>
-							</DAI>
-						</DOI>
 						<DOI name="Pos">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input7, inverted=false, bitIndex=0}, {product=ISIO, signal=input8, inverted=false, bitIndex=1}" />
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Position of disconnector 3, mapped to ISIO inputs 7 and 8</Val>
-							</DAI>
-						</DOI>
-						<DOI name="BlkOpn">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
-							</DAI>
-						</DOI>
-						<DOI name="BlkCls">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-							<DAI name="d">
-								<Val />
 							</DAI>
 						</DOI>
 					</LN>
-					<LN lnClass="GGIO" inst="1" lnType="Dummy.GGIO1">
-						<DOI name="NamPlt">
-							<DAI name="vendor">
-								<Val>OMICRON electronics</Val>
-							</DAI>
-							<DAI name="swRev">
-								<Val>2.11.0014</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary I/Os</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind1">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input1, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 1</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind2">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input2, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind3">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input3, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 3</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind4">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input4, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 4</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind5">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input5, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 5</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind6">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input6, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 6</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind7">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input7, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 7</Val>
-							</DAI>
-						</DOI>
-						<DOI name="Ind8">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=input8, inverted=false}" />
-							<DAI name="d">
-								<Val>Status of binary input 8</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO1">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output1, inverted=false}" />
+					<LN lnClass="GGIO" inst="1" lnType="Dummy.GGIO1"/>
+				</LDevice>
+				<LDevice inst="CircuitBreaker_CB1">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
+						<DOI name="Pos">
 							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 1</Val>
+								<Val>status-only</Val>
 							</DAI>
 						</DOI>
-						<DOI name="SPCSO2">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output2, inverted=false}" />
+					</LN>
+					<LN lnClass="CSWI" inst="1" lnType="Dummy.CSWIwithoutCtlModel">
+						<DOI name="Pos">
 							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 2</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO3">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output3, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 3</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO4">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output4, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 4</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO5">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output5, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 5</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO6">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output6, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 6</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO7">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output7, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 7</Val>
-							</DAI>
-						</DOI>
-						<DOI name="SPCSO8">
-							<DAI name="stVal" sAddr="{product=ISIO, signal=output8, inverted=false}" />
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-							<DAI name="sboTimeout">
-								<Val>30000</Val>
-							</DAI>
-							<DAI name="operTimeout">
-								<Val>10000</Val>
-							</DAI>
-							<DAI name="d">
-								<Val>Binary output 8</Val>
+								<Val>direct-with-enhanced-security</Val>
 							</DAI>
 						</DOI>
 					</LN>
@@ -1036,22 +218,42 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		<LNodeType lnClass="LPHD" id="Dummy.LPHD1">
 			<DO name="PhyNam" type="Dummy.LPHD1.PhyNam" />
 			<DO name="PhyHealth" type="Dummy.LLN0.Health" />
-			<DO name="Proxy" type="Dummy.LPHD1.Proxy" />
+			<DO name="Proxy" type="Dummy.SPS" />
 			<DO name="Sim" type="Dummy.LPHD1.Sim" />
 		</LNodeType>
 		<LNodeType lnClass="XCBR" id="Dummy.XCBR1">
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Loc" type="Dummy.LPHD1.Proxy" />
+			<DO name="Loc" type="Dummy.SPS" />
 			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
 			<DO name="Pos" type="Dummy.XCBR1.Pos" />
 			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn" />
 			<DO name="BlkCls" type="Dummy.XCBR1.BlkOpn" />
 		</LNodeType>
+		<LNodeType lnClass="CSWI" id="Dummy.CSWI">
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
+			<DO name="Loc" type="Dummy.SPS" />
+			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
+			<DO name="Pos" type="Dummy.CSWI.Pos1" />
+		</LNodeType>
+		<LNodeType lnClass="CILO" id="Dummy.CILO">
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
+			<DO name="EnaOpn" type="Dummy.SPS"/>
+            <DO name="EnaCls" type="Dummy.SPS"/>
+		</LNodeType>
+		<LNodeType lnClass="CSWI" id="Dummy.CSWIwithoutCtlModel">
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
+			<DO name="Loc" type="Dummy.SPS" />
+			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
+			<DO name="Pos" type="Dummy.CSWI.Pos2" />
+		</LNodeType>
 		<LNodeType lnClass="XSWI" id="Dummy.XSWI1">
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Loc" type="Dummy.LPHD1.Proxy" />
+			<DO name="Loc" type="Dummy.SPS" />
 			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
 			<DO name="Pos" type="Dummy.XCBR1.Pos" />
 			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn" />
@@ -1060,22 +262,8 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		<LNodeType lnClass="GGIO" id="Dummy.GGIO1">
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
-			<DO name="Ind1" type="Dummy.LPHD1.Proxy" />
-			<DO name="Ind2" type="Dummy.LPHD1.Proxy" />
-			<DO name="Ind3" type="Dummy.LPHD1.Proxy" />
-			<DO name="Ind4" type="Dummy.LPHD1.Proxy" />
-			<DO name="Ind5" type="Dummy.LPHD1.Proxy" />
-			<DO name="Ind6" type="Dummy.LPHD1.Proxy" />
-			<DO name="Ind7" type="Dummy.LPHD1.Proxy" />
-			<DO name="Ind8" type="Dummy.LPHD1.Proxy" />
+			<DO name="Ind1" type="Dummy.SPS" />
 			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
-			<DO name="SPCSO2" type="Dummy.LPHD1.Sim" />
-			<DO name="SPCSO3" type="Dummy.LPHD1.Sim" />
-			<DO name="SPCSO4" type="Dummy.LPHD1.Sim" />
-			<DO name="SPCSO5" type="Dummy.LPHD1.Sim" />
-			<DO name="SPCSO6" type="Dummy.LPHD1.Sim" />
-			<DO name="SPCSO7" type="Dummy.LPHD1.Sim" />
-			<DO name="SPCSO8" type="Dummy.LPHD1.Sim" />
 		</LNodeType>
 		<DOType cdc="ENC" id="Dummy.LLN0.Mod">
 			<DA fc="ST" name="stVal" bType="Enum" type="Beh" />
@@ -1099,7 +287,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DA fc="ST" name="t" bType="Timestamp" />
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Health">
-			<DA fc="ST" name="stVal" bType="Enum" type="SIPROTEC5_Textlist_Health_V07.80.17_V02.00.00" />
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 		</DOType>
@@ -1134,17 +322,27 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
 			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
 		</DOType>
-		<DOType cdc="SPS" id="Dummy.LPHD1.Proxy">
-			<DA fc="ST" name="stVal" bType="BOOLEAN" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="DC" name="d" bType="VisString255" />
-		</DOType>
 		<DOType cdc="DPC" id="Dummy.XCBR1.Pos">
 			<DA fc="ST" name="stVal" bType="Dbpos" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="DC" name="d" bType="VisString255" />
+		</DOType>
+		<DOType cdc="DPC" id="Dummy.CSWI.Pos1">
+			<DA fc="ST" name="stVal" bType="Dbpos" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>sbo-with-enhanced-security</Val>
+			</DA>
+			<DA fc="DC" name="d" bType="VisString255" />
+		</DOType>
+		<DOType cdc="DPC" id="Dummy.CSWI.Pos2">
+			<DA fc="ST" name="stVal" bType="Dbpos" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="INS" id="Dummy.XCBR1.OpCnt">
@@ -1164,6 +362,11 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
+		<DOType cdc="SPS" id="Dummy.SPS">
+            <DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
+            <DA fc="ST" qchg="true" name="q" bType="Quality"/>
+            <DA fc="ST" name="t" bType="Timestamp"/>
+        </DOType>
 		<DAType id="Dummy_origin">
 			<BDA name="orCat" bType="Enum" type="Dummy_orCategory" />
 			<BDA name="orIdent" bType="Octet64" />

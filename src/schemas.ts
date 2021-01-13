@@ -71,13 +71,31 @@ export function getSchema(
   revision: string,
   release: string
 ): string {
-  return schemas[version + revision + release] ?? schemas['2007B1']!;
+  const schemaVersion = version + revision + release;
+  if (isSupported(schemaVersion)) return schemas[schemaVersion];
+  return schemas['2007B1'];
 }
 
-export const schemas: Partial<Record<string, string>> = {
+export type SupportedVersion = keyof typeof schemas;
+export function isSupported(version: string): version is SupportedVersion {
+  return Object.keys(schemas).includes(version);
+}
+
+export type SchemaAttributes =
+  | { version: '2003'; revision: ''; release: '' }
+  | { version: '2007'; revision: 'A'; release: '' }
+  | { version: '2007'; revision: 'B'; release: '1' | '2' | '3' | '4' };
+export const supportedAttributes: Record<SupportedVersion, SchemaAttributes> = {
+  '2003': { version: '2003', revision: '', release: '' },
+  '2007B1': { version: '2007', revision: 'B', release: '1' },
+  '2007B4': { version: '2007', revision: 'B', release: '4' },
+};
+
+// TODO(JakobVogelsang): add remaining schema versions 2007A, 2007B2 etc.
+export const schemas = {
   '2003': `<?xml version="1.0" encoding="UTF-8"?>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-      finalDefault="extension" targetNamespace="http://www.iec.ch/61850/2003/SCL" version="1.7"
+      targetNamespace="http://www.iec.ch/61850/2003/SCL" version="1.7"
       xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:scl="http://www.iec.ch/61850/2003/SCL"
       xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:annotation>
@@ -5598,10 +5616,11 @@ export const schemas: Partial<Record<string, string>> = {
       <xs:field xpath="@id" />
     </xs:key>
   </xs:element>
-</xs:schema>`,
+  </xs:schema>
+  `,
   '2007B4': `<?xml version="1.0" encoding="UTF-8"?>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-      finalDefault="extension" targetNamespace="http://www.iec.ch/61850/2003/SCL" version="2007B4"
+      targetNamespace="http://www.iec.ch/61850/2003/SCL" version="2007B4"
       xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:scl="http://www.iec.ch/61850/2003/SCL"
       xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:annotation>

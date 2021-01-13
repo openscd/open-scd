@@ -19,7 +19,7 @@ describe('EditingElement', () => {
 
     parent = elm.doc!.querySelector('parent1')!;
     element = parent.querySelector('child1')!;
-    reference = element?.nextElementSibling;
+    reference = element.nextElementSibling;
   });
 
   it('creates an element on receiving a Create Action', () => {
@@ -35,27 +35,7 @@ describe('EditingElement', () => {
     expect(elm.doc!.querySelector('child3')).to.not.be.null;
   });
 
-  /*
-  //FIXME: Move to Logging integration test
-  it('restores the initial document after undoing a single Create', () => {
-    const initialDoc = serialize(elm.doc);
-    elm.dispatchEvent(
-      newActionEvent({
-        new: {
-          parent,
-          element: elm.doc.createElement('child3'),
-          reference: null,
-        },
-      })
-    );
-    expect(serialize(elm.doc)).to.not.equal(initialDoc);
-    elm.undo();
-    expect(elm.doc.querySelector('child3')).to.be.null;
-    expect(serialize(elm.doc)).to.equal(initialDoc);
-  });
-   */
-
-  it('deletes an element on receiving a delete action', () => {
+  it('deletes an element on receiving a Delete action', () => {
     elm.dispatchEvent(
       newActionEvent({
         old: {
@@ -67,26 +47,6 @@ describe('EditingElement', () => {
     );
     expect(elm.doc!.querySelector('parent1 > child1')).to.be.null;
   });
-
-  /*
-  //FIXME: Move to Logging integration test
-  it('restores the initial document after undoing a single Delete', () => {
-    const initialDoc = serialize(elm.doc);
-    elm.dispatchEvent(
-      newActionEvent({
-        old: {
-          parent,
-          element,
-          reference,
-        },
-      })
-    );
-    expect(serialize(elm.doc)).to.not.equal(initialDoc);
-    elm.undo();
-    expect(elm.doc.querySelector('parent1 > child1')).to.not.be.null;
-    expect(serialize(elm.doc)).to.equal(initialDoc);
-  });
-   */
 
   it('updates an element on receiving an Update action', () => {
     elm.dispatchEvent(
@@ -106,29 +66,7 @@ describe('EditingElement', () => {
     );
   });
 
-  /*
-  //FIXME: Move to Logging integration test
-  it('restores the initial document after undoing a single Update', () => {
-    const initialDoc = serialize(elm.doc);
-    elm.dispatchEvent(
-      newActionEvent({
-        old: {
-          element,
-        },
-        new: {
-          element: elm.doc.createElement('child3'),
-        },
-      })
-    );
-    expect(serialize(elm.doc)).to.not.equal(initialDoc);
-    elm.undo();
-    expect(parent.querySelector('child1')).to.not.be.null;
-    expect(parent.querySelector('child3')).to.be.null;
-    expect(serialize(elm.doc)).to.equal(initialDoc);
-  });
-   */
-
-  it('moves element on receiving a Move action', () => {
+  it('moves an element on receiving a Move action', () => {
     elm.dispatchEvent(
       newActionEvent({
         old: {
@@ -146,28 +84,31 @@ describe('EditingElement', () => {
     expect(elm.doc!.querySelector('parent2 > child1')).to.not.be.null;
   });
 
-  /*
-  //FIXME: Move to Logging integration test
-  it('restores the initial document after undoing a single Move', () => {
-    const initialDoc = serialize(elm.doc);
+  it('carries out subactions sequentially on receiving a ComplexAction', () => {
+    const child3 = elm.doc!.createElement('child3');
     elm.dispatchEvent(
       newActionEvent({
-        old: {
-          parent,
-          element,
-          reference,
-        },
-        new: {
-          parent: elm.doc.querySelector('parent2')!,
-          reference: null,
-        },
+        title: 'Test complex action',
+        actions: [
+          {
+            old: { element },
+            new: { element: child3 },
+          },
+          {
+            old: {
+              parent,
+              element: child3,
+              reference,
+            },
+            new: {
+              parent: elm.doc!.querySelector('parent2')!,
+              reference: null,
+            },
+          },
+        ],
       })
     );
-    expect(serialize(elm.doc)).to.not.equal(initialDoc);
-    elm.undo();
-    expect(parent.querySelector('child1')).to.not.be.null;
-    expect(elm.doc.querySelector('parent2 > child1')).to.be.null;
-    expect(serialize(elm.doc)).to.equal(initialDoc);
+    expect(parent.querySelector('child1')).to.be.null;
+    expect(elm.doc!.querySelector('parent2 > child3')).to.not.be.null;
   });
-   */
 });

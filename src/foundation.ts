@@ -1,11 +1,18 @@
 import { LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
 
-import { WizardTextField } from './wizard-textfield.js';
 import { Select } from '@material/mwc-select';
 
+import { WizardTextField } from './wizard-textfield.js';
+
+export type SimpleAction = Create | Update | Delete | Move;
+export type ComplexAction = {
+  actions: SimpleAction[];
+  title: string;
+  derived?: boolean;
+};
 /** Represents an intended or committed change to some `Element`. */
-export type EditorAction = Create | Update | Delete | Move;
+export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
   new: { parent: Element; element: Element; reference: Element | null };
@@ -67,9 +74,24 @@ export function isUpdate(action: EditorAction): action is Update {
     (action as Update).new?.element !== undefined
   );
 }
+export function isSimple(action: EditorAction): action is SimpleAction {
+  return !((<ComplexAction>action).actions instanceof Array);
+}
 
 /** @returns an [[`EditorAction`]] with opposite effect of `action`. */
 export function invert(action: EditorAction): EditorAction {
+  if (!isSimple(action)) {
+    const inverse: ComplexAction = {
+      title: action.title,
+      derived: action.derived,
+      actions: [],
+    };
+    action.actions.forEach(element =>
+      inverse.actions.unshift(<SimpleAction>invert(element))
+    );
+    return inverse;
+  }
+
   const metaData = {
     derived: action.derived,
     checkValidity: action.checkValidity,
@@ -297,19 +319,7 @@ export const restrictions = {
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
 };
 
-export type SchemaVersion = {
-  version: string | null;
-  revision: string | null;
-  release: string | null;
-};
-
-export const versionSupport = {
-  edition1: { version: null, revision: null, release: null },
-  edition2: { version: '2007', revision: 'A', release: null },
-  edition21: { version: '2007', revision: 'B', release: '4' },
-};
-
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
-export function sortElementBayNameAttribute(a: Element, b: Element): number {
+export function compareNames(a: Element, b: Element): number {
   return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
 }

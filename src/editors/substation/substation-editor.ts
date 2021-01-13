@@ -34,7 +34,7 @@ import {
 import './voltage-level-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { editlNode } from './lnodewizard.js';
-
+import { guessVoltageLevel } from './guess-wizard.js';
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
 export class SubstationEditor extends LitElement {
@@ -85,35 +85,6 @@ export class SubstationEditor extends LitElement {
     );
   }
 
-  newUpdateAction(name: string, desc: string | null): EditorAction {
-    const newElement = <Element>this.element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    return {
-      old: { element: this.element },
-      new: { element: newElement },
-    };
-  }
-
-  substationWizardAction(
-    inputs: WizardInput[],
-    dialog: CloseableElement
-  ): EditorAction[] {
-    const name = inputs.find(i => i.label === 'name')!.value;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-    if (name === this.name && desc === this.desc) return [];
-    const action = this.newUpdateAction(name, desc);
-    dialog.close();
-    return [action];
-  }
-
-  constructor() {
-    super();
-
-    this.substationWizardAction = this.substationWizardAction.bind(this);
-  }
-
   renderHeader(): TemplateResult {
     return html`
       <h1>
@@ -155,20 +126,28 @@ export class SubstationEditor extends LitElement {
     ): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const guess = wizard.shadowRoot?.querySelector('mwc-checkbox')?.checked;
+      parent.ownerDocument.createElement('Substation');
+      const element = new DOMParser().parseFromString(
+        `<Substation xmlns="http://www.iec.ch/61850/2003/SCL"
+              name="${name}"
+              ${desc === null ? '' : `desc="${desc}"`}
+            ></Substation>`,
+        'application/xml'
+      ).documentElement;
 
       const action = {
         new: {
           parent,
-          element: new DOMParser().parseFromString(
-            `<Substation
-              name="${name}"
-              ${desc === null ? '' : `desc="${desc}"`}
-            ></Substation>`,
-            'application/xml'
-          ).documentElement,
+          element,
           reference: null,
         },
       };
+
+      if (guess)
+        wizard.dispatchEvent(
+          newWizardEvent(guessVoltageLevel(parent.ownerDocument))
+        );
 
       wizard.close();
       return [action];
@@ -197,6 +176,7 @@ export class SubstationEditor extends LitElement {
       action,
       name,
       desc,
+      guessable,
     ] = isCreateOptions(options)
       ? [
           get('substation.wizard.title.add'),
@@ -205,6 +185,7 @@ export class SubstationEditor extends LitElement {
           SubstationEditor.createAction(options.parent),
           '',
           '',
+          options.parent.querySelector(':root > IED'),
         ]
       : [
           get('substation.wizard.title.edit'),
@@ -213,6 +194,7 @@ export class SubstationEditor extends LitElement {
           updateNamingAction(options.element),
           options.element.getAttribute('name'),
           options.element.getAttribute('desc'),
+          false,
         ];
 
     return [
@@ -238,6 +220,11 @@ export class SubstationEditor extends LitElement {
             nullable="true"
             helper="${translate('substation.wizard.descHelper')}"
           ></wizard-textfield>`,
+          guessable
+            ? html`<mwc-formfield label="${translate('guess.wizard.primary')}">
+                <mwc-checkbox></mwc-checkbox>
+              </mwc-formfield>`
+            : html``,
         ],
       },
     ];
