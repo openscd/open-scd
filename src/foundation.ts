@@ -1,8 +1,9 @@
 import { LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
 
-import { WizardTextField } from './wizard-textfield.js';
 import { Select } from '@material/mwc-select';
+
+import { WizardTextField } from './wizard-textfield.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
@@ -317,3 +318,8 @@ export const restrictions = {
   decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
 };
+
+/** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
+export function compareNames(a: Element, b: Element): number {
+  return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
+}
