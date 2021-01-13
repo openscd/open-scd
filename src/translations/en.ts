@@ -117,6 +117,13 @@ export const en = {
     },
     tooltip: 'Create logical nodes reference',
   },
+  guess: {
+    wizard: {
+      primary: 'Guess content',
+      title: 'Select control model (ctlModel)',
+      description: `IEDs often contain more controlable logical nodes than switch gear in the field. \n You can select the control model(s) used specific for switch gear.`,
+    },
+  },
   add: 'Add',
   remove: 'Remove',
   edit: 'Edit',

@@ -11,8 +11,10 @@ import { until } from 'lit-html/directives/until.js';
 import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
+import '@material/mwc-checkbox';
 import '@material/mwc-dialog';
 import '@material/mwc-drawer';
+import '@material/mwc-formfield';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';

@@ -120,6 +120,13 @@ export const de: Translations = {
     },
     tooltip: 'Referenz zu logischen Knoten erstellen',
   },
+  guess: {
+    wizard: {
+      primary: 'Inhalt erraten',
+      title: 'Auswahl Steuerungsmodel(ctlModel)',
+      description: `Schaltgeräten im Feld können oftmals bestimmten Steuerungsmodellen zugeordnet werden. \n Damit wird die Abschätzung oftmals genauer.`,
+    },
+  },
   add: 'Hinzufügen',
   remove: 'Entfernen',
   edit: 'Bearbeiten',

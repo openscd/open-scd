@@ -117,7 +117,7 @@ describe('lnodewizard', () => {
             ?.querySelectorAll('mwc-check-list-item').length
         ).to.equal(
           validSCL.querySelectorAll(
-            'IED[name="IED2"] LDevice > LN0, IED[name="IED2"] LDevice > LN'
+            'IED[name="IED2"] LDevice[inst="CBSW"] > LN0, IED[name="IED2"] LDevice[inst="CBSW"] > LN'
           ).length
         );
       });
