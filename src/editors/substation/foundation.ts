@@ -144,6 +144,95 @@ export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
     );
 }
 
+function addIEDName(extRef: Element, gseControl: Element): void {
+  if (!extRef.parentElement?.parentElement?.getAttribute('lnClass')) return;
+  const ln = extRef.parentElement?.parentElement;
+
+  if (!ln.parentElement?.getAttribute('inst')) return;
+  const lDevice = ln.parentElement;
+
+  if (!lDevice.parentElement?.parentElement?.getAttribute('name')) return;
+  const accessPoint = lDevice.parentElement?.parentElement;
+
+  if (!accessPoint.parentElement?.getAttribute('name')) return;
+  const ied = accessPoint.parentElement;
+
+  if (
+    Array.from(gseControl.querySelectorAll('IEDName')).filter(
+      iedName =>
+        iedName.getAttribute('apRef') === accessPoint.getAttribute('name') &&
+        iedName.getAttribute('ldInst') === lDevice.getAttribute('inst') &&
+        iedName.getAttribute('lnClass') === ln.getAttribute('lnClass') &&
+        iedName.innerHTML === ied.getAttribute('name')
+    ).length === 0
+  )
+    return;
+
+  const iedName: Element = new DOMParser().parseFromString(
+    `<IEDName apRef="${accessPoint.getAttribute(
+      'name'
+    )}" ldInst="${lDevice.getAttribute('inst')}" lnClass="${ln.getAttribute(
+      'lnClass'
+    )}">${ied.getAttribute('name')}
+    </IEDName>`,
+    'application/xml'
+  ).documentElement;
+}
+
+function getDestination(data: Element, doc: Document): Element[] {
+  if (
+    !data.parentElement?.parentElement?.parentElement?.parentElement
+      ?.parentElement?.parentElement
+  )
+    return [];
+
+  const sendIED: Element =
+    data.parentElement?.parentElement?.parentElement?.parentElement
+      ?.parentElement?.parentElement;
+
+  if (!sendIED.getAttribute('name')) return [];
+
+  return Array.from(
+    doc.querySelectorAll(
+      `:root > IED > AccessPoint > LDevice > LN0 > Inputs > ExtRef[iedName="${sendIED.getAttribute(
+        'name'
+      )}"][ldInst="${data.getAttribute('ldInst')}"][prefix="${data.getAttribute(
+        'prefix'
+      )}"][lnClass="${data.getAttribute(
+        'lnClass'
+      )}"][lnInst="${data.getAttribute('lnInst')}"][doName="${data.getAttribute(
+        'doName'
+      )}"]`
+    )
+  );
+}
+
+export function updateIEDNameElement(doc: Document): void {
+  // Get all extRef variables
+  const gseControlList = Array.from(
+    doc.querySelectorAll(
+      ':root > IED > AccessPoint > Server > LDevice > LN0 > GSEControl'
+    )
+  );
+
+  gseControlList.forEach(gseControl => {
+    if (!gseControl.getAttribute('dataSet') || !gseControl.parentElement)
+      return;
+
+    const ln0: Element = gseControl.parentElement;
+
+    const dataList: Element[] = Array.from(
+      gseControl.querySelectorAll(
+        `:root > ${ln0.getAttribute('dataSet')} > FCDA`
+      )
+    );
+
+    dataList.forEach(data =>
+      getDestination(data, doc).forEach(dest => addIEDName(dest, gseControl))
+    );
+  });
+}
+
 /**
  * Moves the element edited by `editor` to the place before the next `Child`
  * editor selected or to the end of the next `Parent` editor selected by mouse
