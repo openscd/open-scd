@@ -342,6 +342,15 @@ export class OpenSCD extends Setting(
             () => html`<editor-0 .doc=${this.doc}></editor-0>`
           ),
       },
+      {
+        name: 'substation.name',
+        id: 'substation',
+        icon: zeroLineIcon,
+        getContent: (): Promise<TemplateResult> =>
+          plugin('./editors/Network.js', 'editor-1').then(
+            () => html`<editor-1 .doc=${this.doc}></editor-1>`
+          ),
+      },
     ],
   };
 
@@ -362,7 +371,6 @@ export class OpenSCD extends Setting(
         iconid="${me.icon}"
         graphic="icon"
         .disabled=${me.disabled?.() || (me.action ? false : true)}
-        ?twoline=${me.hint}
         ><mwc-icon slot="graphic"> ${me.icon} </mwc-icon>
         <span>${translate(me.name)}</span>
         ${me.hint
