@@ -140,9 +140,7 @@ export class OpenSCD extends Setting(
       formatted += indent + '<' + node + '>\r\n';
       if (node.match(/^<?\w[^>]*[^/]$/)) indent += tab;
     });
-    return formatted
-      .substring(1, formatted.length - 3)
-      .replace('<Substation xmlns=""', '<Substation '); //FIXME: dirty hack XMLSerializer exports namespaceURI
+    return formatted.substring(1, formatted.length - 3);
   }
 
   private save(): void {
