@@ -1,10 +1,10 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import Substation from '../../../src/editors/Substation.js';
-import { Editing } from '../../../src/Editing.js';
-import { Wizarding } from '../../../src/Wizarding.js';
+import Substation from '../../../../src/editors/Substation.js';
+import { Editing } from '../../../../src/Editing.js';
+import { Wizarding } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../data.js';
+import { getDocument } from '../../../data.js';
 
 describe('Substation Plugin', () => {
   customElements.define('substation-plugin', Wizarding(Editing(Substation)));

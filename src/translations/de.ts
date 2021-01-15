@@ -135,6 +135,19 @@ export const de: Translations = {
       importerror: 'IED Element kann nicht importiert werden',
       missingied: 'Kein IED Element in der Datei',
       nouniqueied: 'IED Element {{ name }} bereits geladen',
+  communication: {
+    name: 'Netzwerkkonfiguration',
+    missing: 'Kein Subnetzwerk',
+    wizard: {
+      nameHelper: 'Substation name',
+      descHelper: 'Substation description',
+      title: {
+        add: 'Subnetzwerk hinzufügen',
+        edit: 'Edit substation',
+      },
+    },
+    action: {
+      addvoltagelevel: 'Add voltage level',
     },
   },
   add: 'Hinzufügen',

@@ -1,13 +1,13 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../mock-wizard.js';
-import { WizardingElement } from '../../../src/Wizarding.js';
+import '../../../mock-wizard.js';
+import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../data.js';
-import { regexString, regExp } from '../../foundation.js';
+import { getDocument } from '../../../data.js';
+import { regexString, regExp } from '../../../foundation.js';
 
-describe('bay-editor wizarding integration', () => {
+describe('substation-editor wizarding integration', () => {
   const doc = getDocument();
   let parent: WizardingElement;
 
@@ -15,14 +15,16 @@ describe('bay-editor wizarding integration', () => {
     parent = <WizardingElement>(
       await fixture(
         html`<mock-wizard
-          ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
+          ><substation-editor
+            .element=${doc.querySelector('Substation')}
+          ></substation-editor
         ></mock-wizard>`
       )
     );
 
     (<HTMLElement>(
       parent
-        ?.querySelector('bay-editor')
+        ?.querySelector('substation-editor')
         ?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
     )).click();
     await parent.updateComplete;

@@ -132,6 +132,19 @@ export const en = {
       importerror: 'Could not import IED',
       missingied: 'No IED element in the file',
       nouniqueied: 'IED element {{ name }} already in the file',
+  communication: {
+    name: 'Network Configuration',
+    missing: 'No subnetwork',
+    wizard: {
+      nameHelper: 'Substation name',
+      descHelper: 'Substation description',
+      title: {
+        add: 'Add subnetwork',
+        edit: 'Edit substation',
+      },
+    },
+    action: {
+      addvoltagelevel: 'Add voltage level',
     },
   },
   add: 'Add',

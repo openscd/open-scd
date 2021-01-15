@@ -343,11 +343,11 @@ export class OpenSCD extends Setting(
           ),
       },
       {
-        name: 'substation.name',
-        id: 'substation',
-        icon: zeroLineIcon,
+        name: 'communication.name',
+        id: 'communication',
+        icon: 'settings_ethernet',
         getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/Network.js', 'editor-1').then(
+          plugin('./editors/Communication.js', 'editor-1').then(
             () => html`<editor-1 .doc=${this.doc}></editor-1>`
           ),
       },

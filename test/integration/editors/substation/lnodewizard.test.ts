@@ -1,16 +1,16 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { isCreate, WizardInput, isDelete } from '../../../src/foundation.js';
+import { isCreate, WizardInput, isDelete } from '../../../../src/foundation.js';
 import {
   lNodeWizardAction,
   editlNode,
-} from '../../../src/editors/substation/lnodewizard.js';
+} from '../../../../src/editors/substation/lnodewizard.js';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
-import '../../mock-wizard.js';
+import '../../../mock-wizard.js';
 import { List } from '@material/mwc-list';
-import { getDocument } from '../../data.js';
-import { MockWizard } from '../../mock-wizard.js';
+import { getDocument } from '../../../data.js';
+import { MockWizard } from '../../../mock-wizard.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('lnodewizard', () => {
