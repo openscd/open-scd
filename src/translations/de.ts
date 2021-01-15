@@ -150,6 +150,19 @@ export const de: Translations = {
       addvoltagelevel: 'Add voltage level',
     },
   },
+  subnetwork: {
+    name: 'Subnetzwerk',
+    wizard: {
+      nameHelper: 'Name des Subnetzwerkes',
+      descHelper: 'Beschreibung des Subnetzwerkes',
+      typeHelper: 'Netzwerktyp (Bsp. 8-MMS)',
+      bitrateHelper: 'Übertragungsrate',
+      title: {
+        add: 'Subnetzwerk hinzufügen',
+        edit: 'Subnetzwerk bearbeiten',
+      },
+    },
+  },
   add: 'Hinzufügen',
   remove: 'Entfernen',
   edit: 'Bearbeiten',

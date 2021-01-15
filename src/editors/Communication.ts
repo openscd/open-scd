@@ -1,37 +1,72 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
-import { translate } from 'lit-translate';
+import { translate, get } from 'lit-translate';
 
 import '@material/mwc-fab';
+
 import { selectors, styles } from './communication/foundation.js';
 
-//import { newWizardEvent } from '../foundation.js';
+import { newWizardEvent, newActionEvent } from '../foundation.js';
 
-/* import './substation/substation-editor.js';
-import { SubstationEditor } from './substation/substation-editor.js'; */
+import './communication/subnetwork-editor.js';
+import { SubNetworkEditor } from './communication/subnetwork-editor.js';
 
-/** An editor [[`plugin`]] for editing the `Cpommunication` section. */
+/** An editor [[`plugin`]] for editing the `Communication` section. */
 export default class CommunicationPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
-  /* openCreateSubNetworkWizard(): void {
+  openCreateSubNetworkWizard(): void {
+    if (!this.doc.querySelector(selectors.Communication))
+      this.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: this.doc.documentElement,
+            element: new DOMParser().parseFromString(
+              `<Communication></Communication>`,
+              'application/xml'
+            ).documentElement,
+            reference:
+              this.doc.querySelector(':root > IED') ||
+              this.doc.querySelector(':root > DataTypeTemplate') ||
+              null,
+          },
+        })
+      );
     this.dispatchEvent(
       newWizardEvent(
-        SubstationEditor.wizard({ parent: this.doc.documentElement })
+        SubNetworkEditor.wizard({
+          parent: this.doc.documentElement.querySelector(
+            selectors.Communication
+          )!,
+        })
       )
     );
-  } */
+  }
 
   render(): TemplateResult {
     if (!this.doc?.querySelector(selectors.SubNetwork))
       return html`<h1>
         <span style="color: var(--base1)"
           >${translate('communication.missing')}</span
-        >
+        ><mwc-fab
+          extended
+          icon="add"
+          label="${get('subnetwork.wizard.title.add')}"
+          @click=${() => this.openCreateSubNetworkWizard()}
+        ></mwc-fab>
       </h1>`;
-    return html``;
+    return html`<mwc-fab
+        extended
+        icon="add"
+        label="${get('subnetwork.wizard.title.add')}"
+        @click=${() => this.openCreateSubNetworkWizard()}
+      ></mwc-fab
+      >${Array.from(this.doc.querySelectorAll(selectors.SubNetwork) ?? []).map(
+        subnetwork =>
+          html`<subnetwork-editor .element=${subnetwork}></subnetwork-editor>`
+      )}`;
   }
 
   static styles = css`

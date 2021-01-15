@@ -147,6 +147,19 @@ export const en = {
       addvoltagelevel: 'Add voltage level',
     },
   },
+  subnetwork: {
+    name: 'Subnetwerk',
+    wizard: {
+      nameHelper: 'Subnetwork name',
+      descHelper: 'Subnetwork description',
+      typeHelper: 'Network type (e.g. 8-MMS)',
+      bitrateHelper: 'Bit rate',
+      title: {
+        add: 'Add subnetwork',
+        edit: 'Edit subnetwork',
+      },
+    },
+  },
   add: 'Add',
   remove: 'Remove',
   edit: 'Edit',
