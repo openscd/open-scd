@@ -4,7 +4,7 @@ import '../../../mock-wizard-editor.js';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
-import '../../mock-wizard.js';
+import '../../../mock-wizard.js';
 import { getDocument } from '../../../data.js';
 import { MockWizard } from '../../../mock-wizard.js';
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
