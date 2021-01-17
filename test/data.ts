@@ -48,6 +48,37 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			</Bay>
 		</VoltageLevel>
 	</Substation>
+	<Communication>
+		<SubNetwork name="StationBus" desc="desc" type="8-MMS">
+			<BitRate unit="b/s">100.0</BitRate>
+			<ConnectedAP iedName="IED1" apName="P1">
+				<Address>
+					<P type="IP">192.168.210.111</P>
+					<P type="IP-SUBNET">255.255.255.0</P>
+					<P type="IP-GATEWAY">192.168.210.1</P>
+					<P type="OSI-AP-Title">1,3,9999,23</P>
+					<P type="OSI-AE-Qualifier">23</P>
+					<P type="OSI-PSEL">00000001</P>
+					<P type="OSI-SSEL">0001</P>
+					<P type="OSI-TSEL">0001</P>
+				</Address>
+			</ConnectedAP>
+		</SubNetwork>
+		<SubNetwork name="ProcessBus" type="8-MMS">
+			<ConnectedAP iedName="IED2" apName="P1">
+				<Address>
+					<P type="IP">192.168.0.111</P>
+					<P type="IP-SUBNET">255.255.255.0</P>
+					<P type="IP-GATEWAY">192.168.210.1</P>
+					<P type="OSI-AP-Title">1,3,9999,23</P>
+					<P type="OSI-AE-Qualifier">23</P>
+					<P type="OSI-PSEL">00000001</P>
+					<P type="OSI-SSEL">0001</P>
+					<P type="OSI-TSEL">0001</P>
+				</Address>
+			</ConnectedAP>
+		</SubNetwork>
+	</Communication>
 	<IED name="IED1" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
 			<DynAssociation />
