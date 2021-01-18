@@ -4,7 +4,7 @@
 
 ```html
 <section tabindex="0">
-  <h2>
+  <h1>
     StationBus — desc
       (8-MMS
     —
@@ -23,7 +23,18 @@
         </mwc-icon-button>
       </abbr>
     </nav>
-  </h2>
+  </h1>
+  <div id="connAPContainer">
+    <section id="iedSection">
+      <h3>
+        IED1
+      </h3>
+      <div id="ceContainer">
+        <connectedap-editor>
+        </connectedap-editor>
+      </div>
+    </section>
+  </div>
 </section>
 
 ```
