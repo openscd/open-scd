@@ -19,6 +19,7 @@ import {
   getValue,
   getMultiplier,
   restrictions,
+  compareNames,
 } from '../../foundation.js';
 
 import {
@@ -27,6 +28,10 @@ import {
   WizardOptions,
   isCreateOptions,
 } from './foundation.js';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { List } from '@material/mwc-list';
+import { TextField } from '@material/mwc-textfield';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {
@@ -35,48 +40,27 @@ const initial = {
   multiplier: 'M',
 };
 
-function getBitRateAction(
-  oldBitRate: Element | null,
-  BitRate: string | null,
-  multiplier: string | null,
-  SubNetwork: Element
-): EditorAction {
-  if (oldBitRate === null)
-    return {
-      new: {
-        parent: SubNetwork,
-        element: new DOMParser().parseFromString(
-          `<BitRate unit="b/s" ${
-            multiplier === null ? '' : `multiplier="${multiplier}"`
-          }>${BitRate === null ? '' : BitRate}</BitRate>`,
-          'application/xml'
-        ).documentElement,
-        reference: SubNetwork.firstElementChild,
-      },
-    };
+/** Data needed to uniquely identify an `AccessPoint` */
+interface apAttributes {
+  iedName: string;
+  apName: string;
+}
 
-  if (BitRate === null)
-    return {
-      old: {
-        parent: SubNetwork,
-        element: oldBitRate,
-        reference: oldBitRate.nextElementSibling,
-      },
-    };
+/** Description of a `ListItem` representing an `IED` and `AccessPoint` */
+interface itemDescription {
+  value: apAttributes;
+  connected?: boolean;
+}
 
-  const newBitRate = <Element>oldBitRate.cloneNode(false);
-  newBitRate.textContent = BitRate;
-  if (multiplier === null) newBitRate.removeAttribute('multiplier');
-  else newBitRate.setAttribute('multiplier', multiplier);
-  return {
-    old: { element: oldBitRate },
-    new: { element: newBitRate },
-  };
+/** Sorts disabled `ListItem`s to the bottom. */
+function compare(a: itemDescription, b: itemDescription): number {
+  if (a.connected !== b.connected) return b.connected ? -1 : 1;
+  return 0;
 }
 
 /** [[`Communication`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-editor')
-export class ConnectedAP extends LitElement {
+export class ConnectedAPEditor extends LitElement {
   @property()
   element!: Element;
 
@@ -93,236 +77,141 @@ export class ConnectedAP extends LitElement {
     return this.element.getAttribute('redProt') ?? null;
   }
 
-  /* openEditWizard(): void {
+  openEditWizard(): void {
+    this.dispatchEvent(
+      newWizardEvent(ConnectedAPEditor.createConnectedAP(this.element))
+    );
+  }
+
+  remove(): void {
+    if (this.element)
       this.dispatchEvent(
-        newWizardEvent(SubNetworkEditor.wizard({ element: this.element }))
+        newActionEvent({
+          old: {
+            parent: this.element.parentElement!,
+            element: this.element,
+            reference: this.element.nextElementSibling,
+          },
+        })
       );
-    } */
-
-  /* remove(): void {
-      if (this.element)
-        this.dispatchEvent(
-          newActionEvent({
-            old: {
-              parent: this.element.parentElement!,
-              element: this.element,
-              reference: this.element.nextElementSibling,
-            },
-          })
-        );
-    } */
-
-  /* renderSubNetworkSpecs(): TemplateResult {
-      if (!this.type && !this.bitrate) return html``;
-  
-      return html`(${this.type}${this.type && this.bitrate
-        ? html`&mdash;`
-        : html``}${this.bitrate})`;
-    } */
+  }
 
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
         <mwc-icon class="fancy">settings_input_hdmi</mwc-icon>
-        <mwc-icon-button
-          class="menu-item left"
-          icon="account_tree"
-        ></mwc-icon-button>
-        <mwc-icon-button class="menu-item up" icon="edit"></mwc-icon-button>
+        <mwc-icon-button class="menu-item left" icon="edit"></mwc-icon-button>
         <mwc-icon-button
           class="menu-item right"
-          icon="forward"
+          icon="delete"
+          @click="${() => this.remove()}}"
         ></mwc-icon-button>
-        <mwc-icon-button class="menu-item down" icon="delete"></mwc-icon-button>
       </div>
       <h4>${this.apName}</h4>
     `;
   }
 
-  /* static updateAction(element: Element): WizardAction {
-      return (
-        inputs: WizardInput[],
-        wizard: CloseableElement
-      ): EditorAction[] => {
-        const name = inputs.find(i => i.label === 'name')!.value;
-        const desc = getValue(inputs.find(i => i.label === 'desc')!);
-        const type = getValue(inputs.find(i => i.label === 'type')!);
-        const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
-        const multiplier = getMultiplier(
-          inputs.find(i => i.label === 'BitRate')!
-        );
-  
-        let SubNetworkAction: EditorAction | null;
-        let BitRateAction: EditorAction | null;
-  
-        if (
-          name === element.getAttribute('name') &&
-          desc === element.getAttribute('desc') &&
-          type === element.getAttribute('type')
-        ) {
-          SubNetworkAction = null;
-        } else {
-          const newElement = <Element>element.cloneNode(false);
-          newElement.setAttribute('name', name);
-          if (desc === null) newElement.removeAttribute('desc');
-          else newElement.setAttribute('desc', desc);
-          if (type === null) newElement.removeAttribute('type');
-          else newElement.setAttribute('type', type);
-          SubNetworkAction = { old: { element }, new: { element: newElement } };
-        }
-  
-        if (
-          BitRate ===
-            (element.querySelector('SubNetwork > BitRate')?.textContent?.trim() ??
-              null) &&
-          multiplier ===
-            (element
-              .querySelector('SubNetwork > BitRate')
-              ?.getAttribute('multiplier') ?? null)
-        ) {
-          BitRateAction = null;
-        } else {
-          BitRateAction = getBitRateAction(
-            element.querySelector('SubNetwork > BitRate'),
-            BitRate,
-            multiplier,
-            SubNetworkAction?.new.element ?? element
-          );
-        }
-  
-        if (SubNetworkAction || BitRateAction) wizard.close();
-        const actions: EditorAction[] = [];
-        if (SubNetworkAction) actions.push(SubNetworkAction);
-        if (BitRateAction) actions.push(BitRateAction);
-        return actions;
-      };
-    } */
+  static lNodeWizardAction(parent: Element): WizardAction {
+    return (
+      inputs: WizardInput[],
+      wizard: CloseableElement
+    ): EditorAction[] => {
+      const apItem: apAttributes = JSON.parse(
+        (<ListItemBase>(
+          (<List>wizard.shadowRoot!.querySelector('#apList')).selected
+        )).value
+      );
 
-  /* static createAction(parent: Element): WizardAction {
-      return (
-        inputs: WizardInput[],
-        wizard: CloseableElement
-      ): EditorAction[] => {
-        const name = getValue(inputs.find(i => i.label === 'name')!);
-        const desc = getValue(inputs.find(i => i.label === 'desc')!);
-        const type = getValue(inputs.find(i => i.label === 'type')!);
-        const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
-        const multiplier = getMultiplier(
-          inputs.find(i => i.label === 'BitRate')!
-        );
-  
-        const action = {
+      wizard.close();
+      return [
+        {
           new: {
             parent,
             element: new DOMParser().parseFromString(
-              `<SubNetwork
-                name="${name}"
-                ${desc === null ? '' : `desc="${desc}"`}
-                ${type === null ? '' : `type="${type}"`}
-              >${
-                BitRate === null
-                  ? ''
-                  : `<BitRate unit="b/s" ${
-                      multiplier === null ? '' : `multiplier="${multiplier}"`
-                    }
-              >${BitRate}</BitRate>`
-              }</SubNetwork>`,
+              `<ConnectedAP iedName="${apItem.iedName}" apName="${apItem.apName}" ></ConnectedAP>`,
               'application/xml'
             ).documentElement,
             reference: null,
           },
-        };
-  
-        wizard.close();
-        return [action];
-      };
-    } */
-
-  /* static wizard(options: WizardOptions): Wizard {
-      const [
-        heading,
-        actionName,
-        actionIcon,
-        action,
-        name,
-        desc,
-        type,
-        BitRate,
-        multiplier,
-      ] = isCreateOptions(options)
-        ? [
-            get('subnetwork.wizard.title.add'),
-            get('add'),
-            'add',
-            SubNetworkEditor.createAction(options.parent),
-            '',
-            '',
-            initial.type,
-            initial.bitrate,
-            initial.multiplier,
-          ]
-        : [
-            get('subnetwork.wizard.title.edit'),
-            get('save'),
-            'edit',
-            SubNetworkEditor.updateAction(options.element),
-            options.element.getAttribute('name'),
-            options.element.getAttribute('desc'),
-            options.element.getAttribute('type'),
-            options.element
-              .querySelector('SubNetwork > BitRate')
-              ?.textContent?.trim() ?? null,
-            options.element
-              .querySelector('SubNetwork > BitRate')
-              ?.getAttribute('multiplier') ?? null,
-          ];
-  
-      return [
-        {
-          title: heading,
-          primary: {
-            icon: actionIcon,
-            label: actionName,
-            action: action,
-          },
-          content: [
-            html`<wizard-textfield
-              label="name"
-              .maybeValue=${name}
-              helper="${translate('subnetwork.wizard.nameHelper')}"
-              required
-              validationMessage="${translate('textfield.required')}"
-              dialogInitialFocus
-            ></wizard-textfield>`,
-            html`<wizard-textfield
-              label="desc"
-              .maybeValue=${desc}
-              nullable="true"
-              helper="${translate('subnetwork.wizard.descHelper')}"
-            ></wizard-textfield>`,
-            html`<wizard-textfield
-              label="type"
-              .maybeValue=${type}
-              nullable="true"
-              helper="${translate('subnetwork.wizard.typeHelper')}"
-              pattern="${restrictions.normalizedString}"
-            ></wizard-textfield>`,
-            html`<wizard-textfield
-              label="BitRate"
-              .maybeValue=${BitRate}
-              nullable
-              unit="b/s"
-              .multipliers=${[null, 'M']}
-              .multiplier=${multiplier}
-              helper="${translate('subnetwork.wizard.bitrateHelper')}"
-              required
-              validationMessage="${translate('textfield.nonempty')}"
-              pattern="${restrictions.decimal}"
-            ></wizard-textfield>`,
-          ],
         },
       ];
-    } */
+    };
+  }
+
+  static onFilterInput(evt: InputEvent): void {
+    (<List>(
+      (<TextField>evt.target).parentElement?.querySelector('mwc-list')
+    )).items.forEach(item => {
+      item.value
+        .toUpperCase()
+        .includes((<TextField>evt.target).value.toUpperCase())
+        ? item.removeAttribute('style')
+        : item.setAttribute('style', 'display:none;');
+    });
+  }
+
+  static renderWizardPage(element: Element): TemplateResult {
+    const doc = element.ownerDocument;
+
+    const accPoints = Array.from(doc.querySelectorAll(':root > IED'))
+      .sort(compareNames)
+      .flatMap(ied =>
+        Array.from(ied.querySelectorAll(':root > IED > AccessPoint'))
+      )
+      .map(accP => {
+        return {
+          iedName: accP.parentElement!.getAttribute('name')!,
+          apName: accP.getAttribute('name')!,
+        };
+      });
+
+    const accPointDescription = accPoints
+      .map(value => {
+        return {
+          value,
+          connected:
+            doc?.querySelector(
+              `:root > Communication > SubNetwork > ConnectedAP[iedName="${value.iedName}"][apName="${value.apName}"]`
+            ) !== null,
+        };
+      })
+      .sort(compare);
+
+    return html`<mwc-textfield
+        label="${translate('filter')}"
+        iconTrailing="search"
+        outlined
+        @input=${ConnectedAPEditor.onFilterInput}
+      ></mwc-textfield>
+      <mwc-list id="apList"
+        >${accPointDescription.map(
+          item => html`<mwc-check-list-item
+            value="${JSON.stringify(item.value)}"
+            twoline
+            ?disabled=${item.connected}
+            ><span>${item.value.apName}</span
+            ><span slot="secondary"
+              >${item.value.iedName}</span
+            ></mwc-check-list-item
+          >`
+        )}
+      </mwc-list>`;
+  }
+
+  /** @returns a Wizard for creating `element` `ConnectedAP`. */
+  static createConnectedAP(element: Element): Wizard {
+    return [
+      {
+        title: get('lnode.wizard.title.selectLNs'),
+        primary: {
+          icon: 'save',
+          label: get('save'),
+          action: ConnectedAPEditor.lNodeWizardAction(element),
+        },
+        content: [ConnectedAPEditor.renderWizardPage(element)],
+      },
+    ];
+  }
 
   static styles = css`
     #container {

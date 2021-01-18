@@ -31,6 +31,7 @@ import {
 } from './foundation.js';
 
 import './connectedap-editor.js';
+import { ConnectedAPEditor } from './connectedap-editor.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {
@@ -106,6 +107,12 @@ export class SubNetworkEditor extends LitElement {
     return v ? v + u : null;
   }
 
+  openConnectedAPwizard(): void {
+    this.dispatchEvent(
+      newWizardEvent(ConnectedAPEditor.createConnectedAP(this.element))
+    );
+  }
+
   openEditWizard(): void {
     this.dispatchEvent(
       newWizardEvent(SubNetworkEditor.wizard({ element: this.element }))
@@ -138,7 +145,10 @@ export class SubNetworkEditor extends LitElement {
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.renderSubNetworkSpecs()}
       <abbr title="${translate('add')}">
-        <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+        <mwc-icon-button
+          icon="playlist_add"
+          @click="${() => this.openConnectedAPwizard()}"
+        ></mwc-icon-button>
       </abbr>
       <nav>
         <abbr title="${translate('edit')}">
