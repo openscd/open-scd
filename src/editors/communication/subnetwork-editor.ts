@@ -19,6 +19,8 @@ import {
   getValue,
   getMultiplier,
   restrictions,
+  unique,
+  compareNames,
 } from '../../foundation.js';
 
 import {
@@ -27,6 +29,8 @@ import {
   WizardOptions,
   isCreateOptions,
 } from './foundation.js';
+
+import './connectedap-editor.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {
@@ -130,7 +134,7 @@ export class SubNetworkEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<h2>
+    return html`<h1>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.renderSubNetworkSpecs()}
       <abbr title="${translate('add')}">
@@ -150,11 +154,40 @@ export class SubNetworkEditor extends LitElement {
           ></mwc-icon-button>
         </abbr>
       </nav>
-    </h2>`;
+    </h1>`;
+  }
+
+  renderBla(): TemplateResult[] {
+    return Array.from(
+      this.element?.querySelectorAll(selectors.ConnectedAP) ?? []
+    )
+      .map(connAP => connAP.getAttribute('iedName')!)
+      .filter(unique)
+      .sort(compareNames)
+      .map(
+        iedName => html` <section id="iedSection">
+          <h3>${iedName}</h3>
+          <div id="ceContainer">
+            ${Array.from(
+              this.element.querySelectorAll(
+                `:root > Communication > SubNetwork > ConnectedAP[iedName="${iedName}"]`
+              )
+            ).map(
+              connAP =>
+                html`<connectedap-editor
+                  .element=${connAP}
+                ></connectedap-editor>`
+            )}
+          </div>
+        </section>`
+      );
   }
 
   render(): TemplateResult {
-    return html`<section tabindex="0">${this.renderHeader()}</section>`;
+    return html`<section tabindex="0">
+      ${this.renderHeader()}
+      <div id="connAPContainer">${this.renderBla()}</div>
+    </section>`;
   }
 
   static updateAction(element: Element): WizardAction {
@@ -345,7 +378,11 @@ export class SubNetworkEditor extends LitElement {
   static styles = css`
     ${styles}
 
-    #bayContainer {
+    #iedSection {
+      background-color: var(--mdc-theme-on-primary);
+    }
+
+    #connAPContainer {
       display: grid;
       grid-gap: 12px;
       padding: 8px 12px 16px;
@@ -354,9 +391,17 @@ export class SubNetworkEditor extends LitElement {
     }
 
     @media (max-width: 387px) {
-      #bayContainer {
+      #connAPContainer {
         grid-template-columns: repeat(auto-fit, minmax(196px, auto));
       }
+    }
+
+    #ceContainer {
+      display: grid;
+      grid-gap: 12px;
+      padding: 12px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
     }
   `;
 }
