@@ -10,6 +10,7 @@ import { translate, get } from 'lit-translate';
 
 import {
   CloseableElement,
+  createElement,
   EditorAction,
   getValue,
   newActionEvent,
@@ -140,17 +141,15 @@ export class BayEditor extends LitElement {
     ): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
+      const element = createElement(parent.ownerDocument, 'Bay', {
+        name,
+        desc,
+      });
 
       const action = {
         new: {
           parent,
-          element: new DOMParser().parseFromString(
-            `<Bay
-              name="${name}"
-              ${desc === null ? '' : `desc="${desc}"`}
-            ></Bay>`,
-            'application/xml'
-          ).documentElement,
+          element,
           reference: null,
         },
       };

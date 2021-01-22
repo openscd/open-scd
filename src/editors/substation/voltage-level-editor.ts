@@ -10,15 +10,16 @@ import { translate, get } from 'lit-translate';
 
 import {
   CloseableElement,
+  createElement,
   EditorAction,
+  getMultiplier,
+  getValue,
+  newActionEvent,
   newWizardEvent,
+  restrictions,
   Wizard,
   WizardAction,
   WizardInput,
-  newActionEvent,
-  getValue,
-  getMultiplier,
-  restrictions,
 } from '../../foundation.js';
 
 import {
@@ -47,19 +48,20 @@ function getVoltageAction(
   multiplier: string | null,
   voltageLevel: Element
 ): EditorAction {
-  if (oldVoltage === null)
+  if (oldVoltage === null) {
+    const element = createElement(voltageLevel.ownerDocument, 'Voltage', {
+      unit: 'V',
+      multiplier,
+    });
+    element.textContent = Voltage;
     return {
       new: {
         parent: voltageLevel,
-        element: new DOMParser().parseFromString(
-          `<Voltage unit="V"${
-            multiplier === null ? '' : `multiplier="${multiplier}"`
-          }>${Voltage === null ? '' : Voltage}</Voltage>`,
-          'application/xml'
-        ).documentElement,
+        element,
         reference: voltageLevel.firstElementChild,
       },
     };
+  }
 
   if (Voltage === null)
     return {
@@ -262,31 +264,33 @@ export class VoltageLevelEditor extends LitElement {
         inputs.find(i => i.label === 'Voltage')!
       );
 
-      const action = {
-        new: {
-          parent,
-          element: new DOMParser().parseFromString(
-            `<VoltageLevel
-              name="${name}"
-              ${desc === null ? '' : `desc="${desc}"`}
-              ${nomFreq === null ? '' : `nomFreq="${nomFreq}"`}
-              ${numPhases === null ? '' : `numPhases="${numPhases}"`}
-            >${
-              Voltage === null
-                ? ''
-                : `<Voltage unit="V" ${
-                    multiplier === null ? '' : `multiplier="${multiplier}"`
-                  }
-            >${Voltage}</Voltage>`
-            }</VoltageLevel>`,
-            'application/xml'
-          ).documentElement,
-          reference: null,
-        },
-      };
+      const element = createElement(parent.ownerDocument, 'VoltageLevel', {
+        name,
+        desc,
+        nomFreq,
+        numPhases,
+      });
+
+      if (Voltage !== null) {
+        const voltageElement = createElement(parent.ownerDocument, 'Voltage', {
+          unit: 'V',
+          multiplier,
+        });
+        voltageElement.textContent = Voltage;
+        element.appendChild(voltageElement);
+      }
 
       wizard.close();
-      return [action];
+
+      return [
+        {
+          new: {
+            parent,
+            element,
+            reference: null,
+          },
+        },
+      ];
     };
   }
 

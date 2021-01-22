@@ -259,6 +259,18 @@ export function referencePath(element: Element): string {
   return path;
 }
 
+export function createElement(
+  doc: Document,
+  tag: string,
+  attrs: Record<string, string | null>
+): Element {
+  const element = doc.createElement(tag);
+  Object.entries(attrs)
+    .filter(([_, value]) => value !== null)
+    .forEach(([name, value]) => element.setAttribute(name, value!));
+  return element;
+}
+
 /** A directive rendering its argument `rendered` only if `rendered !== {}`. */
 export const ifImplemented = directive(rendered => (part: Part) => {
   if (Object.keys(rendered).length) part.setValue(rendered);
@@ -272,28 +284,6 @@ export type LitElementConstructor = new (...args: any[]) => LitElement;
 export type Mixin<T extends (...args: any[]) => any> = InstanceType<
   ReturnType<T>
 >;
-
-/** Throws an error bearing `message`, never returning. */
-export function unreachable(message: string): never {
-  throw new Error(message);
-}
-
-/** @returns the cartesian product of `arrays` */
-export function crossProduct<T>(...arrays: T[][]): T[][] {
-  return arrays.reduce<T[][]>(
-    (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
-    [[]]
-  );
-}
-
-declare global {
-  interface ElementEventMap {
-    ['pending-state']: PendingStateEvent;
-    ['editor-action']: EditorActionEvent<EditorAction>;
-    ['wizard']: WizardEvent;
-    ['log']: LogEvent;
-  }
-}
 
 const nameStartChar =
   '[:_A-Za-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|[\u0370-\u037D]' +
@@ -319,7 +309,29 @@ export const restrictions = {
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
 };
 
-/** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
+/** Compares `Element`s lexically by their `name` attributes. */
 export function compareNames(a: Element, b: Element): number {
   return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
+}
+
+/** Throws an error bearing `message`, never returning. */
+export function unreachable(message: string): never {
+  throw new Error(message);
+}
+
+/** @returns the cartesian product of `arrays` */
+export function crossProduct<T>(...arrays: T[][]): T[][] {
+  return arrays.reduce<T[][]>(
+    (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
+    [[]]
+  );
+}
+
+declare global {
+  interface ElementEventMap {
+    ['pending-state']: PendingStateEvent;
+    ['editor-action']: EditorActionEvent<EditorAction>;
+    ['wizard']: WizardEvent;
+    ['log']: LogEvent;
+  }
 }

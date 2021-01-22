@@ -130,11 +130,27 @@ export class OpenSCD extends Setting(
     this.saveUI.close();
   }
 
+  private formatXml(xml: string, tab?: string) {
+    let formatted = '',
+      indent = '';
+
+    if (!tab) tab = '\t';
+    xml.split(/>\s*</).forEach(function (node) {
+      if (node.match(/^\/\w/)) indent = indent.substring(tab!.length);
+      formatted += indent + '<' + node + '>\r\n';
+      if (node.match(/^<?\w[^>]*[^/]$/)) indent += tab;
+    });
+    return formatted.substring(1, formatted.length - 3);
+  }
+
   private save(): void {
     if (this.doc) {
-      const blob = new Blob([new XMLSerializer().serializeToString(this.doc)], {
-        type: 'application/xml',
-      });
+      const blob = new Blob(
+        [this.formatXml(new XMLSerializer().serializeToString(this.doc))],
+        {
+          type: 'application/xml',
+        }
+      );
 
       const a = document.createElement('a');
       a.download = this.srcName;
