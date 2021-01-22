@@ -8,19 +8,20 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
+  CloseableElement,
+  compareNames,
+  createElement,
+  EditorAction,
   Wizard,
   WizardAction,
   WizardInput,
-  CloseableElement,
-  EditorAction,
-  compareNames,
 } from '../../foundation.js';
 
 let bayNum = 1;
 let cbNum = 1;
 let dsNum = 1;
 
-function addLNode(condEq: Element, cswi: Element): Element {
+function addLNodes(condEq: Element, cswi: Element): Element {
   // switchgear ideally is a composition of lnClass CILO,CSWI,XSWI
   cswi.parentElement
     ?.querySelectorAll(
@@ -50,21 +51,20 @@ function addLNode(condEq: Element, cswi: Element): Element {
         cswi.getAttribute('inst') ? `[inst="${cswi.getAttribute('inst')}"]` : ``
       }`
     )
-    .forEach(ln =>
+    .forEach(ln => {
       condEq.appendChild(
-        new DOMParser().parseFromString(
-          `<LNode iedName="${ln.parentElement?.parentElement?.parentElement?.parentElement?.getAttribute(
-            'name'
-          )}" ldInst="${cswi.parentElement?.getAttribute('inst')}" prefix="${
-            ln.getAttribute('prefix') ? ln.getAttribute('prefix') : ''
-          }" lnClass="${ln.getAttribute('lnClass')}" lnInst="${
-            ln.getAttribute('inst') ? ln.getAttribute('inst') : ''
-          }"></LNode>
-          `,
-          'application/xml'
-        ).documentElement
-      )
-    );
+        createElement(cswi.ownerDocument, 'LNode', {
+          iedName:
+            ln.parentElement?.parentElement?.parentElement?.parentElement?.getAttribute(
+              'name'
+            ) ?? null,
+          ldInst: cswi.parentElement?.getAttribute('inst') ?? null,
+          prefix: ln.getAttribute('prefix'),
+          lnClass: ln.getAttribute('lnClass'),
+          lnInst: ln.getAttribute('inst'),
+        })
+      );
+    });
 
   return condEq;
 }
@@ -146,28 +146,24 @@ function createBayElement(
   dsNum = 1;
 
   if (switchGear.length) {
-    const bayElement = new DOMParser().parseFromString(
-      `<Bay name="Q${bayNum++}" desc="Bay for controller ${
-        ied.getAttribute('name') ?? ''
-      }"></Bay>`,
-      'application/xml'
-    ).documentElement;
+    const bay = createElement(ied.ownerDocument, 'Bay', {
+      name: 'Q' + bayNum++,
+      desc: 'Bay for controller ' + ied.getAttribute('name'),
+    });
 
     const condEq = switchGear.map(cswi => {
-      return addLNode(
-        new DOMParser().parseFromString(
-          `<ConductingEquipment name="${getSwitchGearName(
-            cswi
-          )}" type="${getSwitchGearType(cswi)}"></ConductingEquipment>`,
-          'application/xml'
-        ).documentElement,
+      return addLNodes(
+        createElement(ied.ownerDocument, 'ConductingEquipment', {
+          name: getSwitchGearName(cswi),
+          type: getSwitchGearType(cswi),
+        }),
         cswi
       );
     });
 
-    condEq.forEach(condEq => bayElement.appendChild(condEq));
+    condEq.forEach(condEq => bay.appendChild(condEq));
 
-    return bayElement;
+    return bay;
   }
   return null;
 }
@@ -184,13 +180,18 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
 
     const substation = root.querySelector(':root > Substation')!;
 
-    const voltageLevel: Element = new DOMParser().parseFromString(
-      `<VoltageLevel name="E1" desc="guessed by OpenSCD"
-                     nomFreq="50.0" numPhases="3">
-        <Voltage unit="V" multiplier="k">110.00</Voltage>
-      </VoltageLevel>`,
-      'application/xml'
-    ).documentElement;
+    const voltageLevel = createElement(doc, 'VoltageLevel', {
+      name: 'E1',
+      desc: 'guessed by OpenSCD',
+      nomFreq: '50.0',
+      numPhases: '3',
+    });
+    const voltage = createElement(doc, 'Voltage', {
+      unit: 'V',
+      multiplier: 'k',
+    });
+    voltage.textContent = '110.00';
+    voltageLevel.appendChild(voltage);
 
     Array.from(doc.querySelectorAll(':root > IED'))
       .sort(compareNames)

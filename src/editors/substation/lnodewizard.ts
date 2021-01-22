@@ -3,12 +3,13 @@ import { get, translate } from 'lit-translate';
 
 import {
   CloseableElement,
+  createElement,
+  crossProduct,
   EditorAction,
+  referencePath,
   Wizard,
   WizardAction,
   WizardInput,
-  crossProduct,
-  referencePath,
 } from '../../foundation.js';
 
 import '@material/mwc-list/mwc-check-list-item';
@@ -80,16 +81,22 @@ export function getLNode(
   return parent.querySelector(selector);
 }
 
-function createAction(parent: Element, value: LNValue): EditorAction {
+function createAction(
+  parent: Element,
+  { iedName, ldInst, prefix, lnClass, inst: lnInst }: LNValue
+): EditorAction {
+  const element = createElement(parent.ownerDocument, 'LNode', {
+    iedName,
+    ldInst,
+    prefix,
+    lnClass,
+    lnInst,
+  });
+
   return {
     new: {
       parent,
-      element: new DOMParser().parseFromString(
-        `<LNode iedName="${value.iedName}" ldInst="${value.ldInst}" ${
-          value.prefix ? `prefix="${value.prefix}"` : ''
-        } lnClass="${value.lnClass}" lnInst="${value.inst}"></LNode>`,
-        'application/xml'
-      ).documentElement,
+      element,
       reference: null,
     },
   };
