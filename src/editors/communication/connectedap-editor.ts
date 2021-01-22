@@ -116,25 +116,26 @@ export class ConnectedAPEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const apItem: apAttributes = JSON.parse(
-        (<ListItemBase>(
-          (<List>wizard.shadowRoot!.querySelector('#apList')).selected
-        )).value
+      const apValue = (<ListItemBase[]>(
+        (<List>wizard.shadowRoot!.querySelector('#apList')).selected
+      )).map(item => <apAttributes>JSON.parse(item.value));
+
+      const actions = apValue.map(
+        value =>
+          <EditorAction>{
+            new: {
+              parent,
+              element: new DOMParser().parseFromString(
+                `<ConnectedAP iedName="${value.iedName}" apName="${value.apName}" ></ConnectedAP>`,
+                'application/xml'
+              ).documentElement,
+              reference: null,
+            },
+          }
       );
 
       wizard.close();
-      return [
-        {
-          new: {
-            parent,
-            element: new DOMParser().parseFromString(
-              `<ConnectedAP iedName="${apItem.iedName}" apName="${apItem.apName}" ></ConnectedAP>`,
-              'application/xml'
-            ).documentElement,
-            reference: null,
-          },
-        },
-      ];
+      return actions;
     };
   }
 
