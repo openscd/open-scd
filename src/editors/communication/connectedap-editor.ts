@@ -16,29 +16,18 @@ import {
   WizardAction,
   WizardInput,
   newActionEvent,
-  getValue,
-  getMultiplier,
-  restrictions,
   compareNames,
 } from '../../foundation.js';
 
-import {
-  selectors,
-  styles,
-  WizardOptions,
-  isCreateOptions,
-} from './foundation.js';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { List } from '@material/mwc-list';
 import { TextField } from '@material/mwc-textfield';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-
-/** Initial attribute values suggested for `SubNetwork` creation */
-const initial = {
-  type: '8-MMS',
-  bitrate: '100',
-  multiplier: 'M',
-};
+import {
+  getTypes,
+  typePattern,
+  typeNullable,
+  typeMaxLength,
+} from './p-types.js';
 
 /** Data needed to uniquely identify an `AccessPoint` */
 interface apAttributes {
@@ -79,7 +68,7 @@ export class ConnectedAPEditor extends LitElement {
 
   openEditWizard(): void {
     this.dispatchEvent(
-      newWizardEvent(ConnectedAPEditor.createConnectedAP(this.element))
+      newWizardEvent(ConnectedAPEditor.editWizard(this.element))
     );
   }
 
@@ -100,7 +89,11 @@ export class ConnectedAPEditor extends LitElement {
     return html`
       <div id="container" tabindex="0">
         <mwc-icon class="fancy">settings_input_hdmi</mwc-icon>
-        <mwc-icon-button class="menu-item left" icon="edit"></mwc-icon-button>
+        <mwc-icon-button
+          class="menu-item left"
+          icon="edit"
+          @click="${() => this.openEditWizard()}"
+        ></mwc-icon-button>
         <mwc-icon-button
           class="menu-item right"
           icon="delete"
@@ -178,25 +171,31 @@ export class ConnectedAPEditor extends LitElement {
       })
       .sort(compare);
 
-    return html`<mwc-textfield
-        label="${translate('filter')}"
-        iconTrailing="search"
-        outlined
-        @input=${ConnectedAPEditor.onFilterInput}
-      ></mwc-textfield>
-      <mwc-list id="apList"
-        >${accPointDescription.map(
-          item => html`<mwc-check-list-item
-            value="${JSON.stringify(item.value)}"
-            twoline
-            ?disabled=${item.connected}
-            ><span>${item.value.apName}</span
-            ><span slot="secondary"
-              >${item.value.iedName}</span
-            ></mwc-check-list-item
-          >`
-        )}
-      </mwc-list>`;
+    if (accPointDescription.length)
+      return html`<mwc-textfield
+          label="${translate('filter')}"
+          iconTrailing="search"
+          outlined
+          @input=${ConnectedAPEditor.onFilterInput}
+        ></mwc-textfield>
+        <mwc-list id="apList" multi
+          >${accPointDescription.map(
+            item => html`<mwc-check-list-item
+              value="${JSON.stringify(item.value)}"
+              twoline
+              ?disabled=${item.connected}
+              ><span>${item.value.apName}</span
+              ><span slot="secondary"
+                >${item.value.iedName}</span
+              ></mwc-check-list-item
+            >`
+          )}
+        </mwc-list>`;
+
+    return html`<mwc-list-item disabled graphic="icon">
+      <span>${translate('lnode.wizard.placeholder')}</span>
+      <mwc-icon slot="graphic">info</mwc-icon>
+    </mwc-list-item>`;
   }
 
   /** @returns a Wizard for creating `element` `ConnectedAP`. */
@@ -210,6 +209,33 @@ export class ConnectedAPEditor extends LitElement {
           action: ConnectedAPEditor.lNodeWizardAction(element),
         },
         content: [ConnectedAPEditor.renderWizardPage(element)],
+      },
+    ];
+  }
+
+  static editWizard(element: Element): Wizard {
+    return [
+      {
+        title: get('lnode.wizard.title.selectLNs'),
+        primary: {
+          icon: 'save',
+          label: get('save'),
+          action: ConnectedAPEditor.lNodeWizardAction(element),
+        },
+        content: [
+          html`${getTypes(element).map(
+            ptype =>
+              html`<wizard-textfield
+                label="${ptype}"
+                pattern="${typePattern[ptype]}"
+                nullable=${typeNullable[ptype]}
+                .maybeValue=${element.querySelector(
+                  `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
+                )?.innerHTML ?? null}
+                maxLength="${typeMaxLength[ptype] ?? ''}"
+              ></wizard-textfield>`
+          )}`,
+        ],
       },
     ];
   }

@@ -3,6 +3,99 @@
 // is not always using the pattern defined in the standard but the one using the user the best.
 // e.g the definition of the pattern for IP adresses does allow 300.300.300.300 which is clearly not
 //     a valid IP adress
+export function getTypes(element: Element): string[] {
+  if (!element.ownerDocument) return [];
+
+  const scl: Element = element.ownerDocument.querySelector(':root')!;
+
+  const type =
+    (scl.getAttribute('version') ?? '2003') +
+    (scl.getAttribute('revision') ?? '') +
+    (scl.getAttribute('release') ?? '');
+
+  if (type === '2003') return pTypes2003;
+
+  if (type === '2007B') return pTypes2007B;
+
+  return pTypes2007B3;
+}
+
+const pTypes2003: string[] = [
+  'IP',
+  'IP-SUBNET',
+  'IP-GATEWAY',
+  'OSI-TSEL',
+  'OSI-SSEL',
+  'OSI-PSEL',
+  'OSI-AP-Title',
+  'OSI-AP-Invoke',
+  'OSI-AE-Qualifier',
+  'OSI-AE-Invoke',
+  'OSI-NSAP',
+  'VLAN-ID',
+  'VLAN-PRIORITY',
+];
+
+const pTypes2007B: string[] = [
+  ...pTypes2003,
+  'SNTP-Port',
+  'MMS-Port',
+  'DNSName',
+  'UDP-Port',
+  'TCP-Port',
+  'C37-118-IP-Port',
+];
+
+const pTypes2007B3: string[] = [
+  ...pTypes2007B,
+  'IPv6',
+  'IPv6-SUBNET',
+  'IPv6-GATEWAY',
+  'IPv6FlowLabel',
+  'IPv6ClassOfTraffic',
+  'IPv6-IGMPv3Src',
+  'IP-IGMPv3Sr',
+  'IP-ClassOfTraffic',
+];
+
+const pTypesGSESMV: string[] = [
+  'MAC-Address',
+  'APPID',
+  'VLAN-ID',
+  'VLAN-PRIORITY',
+];
+
+export const typeNullable: Partial<Record<string, boolean>> = {
+  IP: false,
+  'IP-SUBNET': false,
+  'IP-GATEWAY': false,
+  'OSI-TSEL': false,
+  'OSI-SSEL': false,
+  'OSI-PSEL': false,
+  'OSI-AP-Title': true,
+  'OSI-AP-Invoke': true,
+  'OSI-AE-Qualifier': true,
+  'OSI-AE-Invoke': true,
+  'OSI-NSAP': true,
+  'MAC-Address': false,
+  APPID: false,
+  'VLAN-ID': true,
+  'VLAN-PRIORITY': true,
+  'SNTP-Port': true,
+  'MMS-Port': true,
+  DNSName: true,
+  'UDP-Port': true,
+  'TCP-Port': true,
+  'C37-118-IP-Port': true,
+  IPv6: true,
+  'IPv6-SUBNET': true,
+  'IPv6-GATEWAY': true,
+  IPv6FlowLabel: true,
+  IPv6ClassOfTraffic: true,
+  'IPv6-IGMPv3Src': true,
+  'IP-IGMPv3Sr': true,
+  'IP-ClassOfTraffic': true,
+};
 
 const typeBase = {
   IP:
@@ -21,11 +114,10 @@ const typeBase = {
   IPv6sub: '/[1-9]|/[1-9][0-9]|/1[0-1][0-9]|/12[0-7]',
 };
 
-const typePattern2003: Partial<Record<string, string>> = {
+export const typePattern: Partial<Record<string, string>> = {
   IP: typeBase.IP,
   'IP-SUBNET': typeBase.IP,
   'IP-GATEWAY': typeBase.IP,
-  'OSI-NSAP': typeBase.OSI,
   'OSI-TSEL': typeBase.OSI,
   'OSI-SSEL': typeBase.OSI,
   'OSI-PSEL': typeBase.OSI,
@@ -37,25 +129,14 @@ const typePattern2003: Partial<Record<string, string>> = {
   APPID: typeBase.APPID,
   'VLAN-ID': typeBase.VLANid,
   'VLAN-PRIORITY': typeBase.VLANp,
-};
-
-const typePattern2007A: Partial<Record<string, string>> = {
-  ...typePattern2003,
+  'OSI-NSAP': typeBase.OSI,
   'SNTP-Port': typeBase.port,
   'MMS-Port': typeBase.port,
-};
-
-const typePattern2007B: Partial<Record<string, string>> = {
-  ...typePattern2007A,
   DNSName: '\\S*',
   'UDP-Port': typeBase.port,
   'TCP-Port': typeBase.port,
   'C37-118-IP-Port':
     '102[5-9]|10[3-9][0-9]|1[1-9][0-9][0-9]|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]',
-};
-
-const typePattern2007B3: Partial<Record<string, string>> = {
-  ...typePattern2007B,
   IPv6: typeBase.IPv6,
   'IPv6-SUBNET': typeBase.IPv6sub,
   'IPv6-GATEWAY': typeBase.IPv6,
@@ -64,4 +145,15 @@ const typePattern2007B3: Partial<Record<string, string>> = {
   'IPv6-IGMPv3Src': typeBase.IPv6,
   'IP-IGMPv3Sr': typeBase.IP,
   'IP-ClassOfTraffic': typeBase.OSI,
+};
+
+export const typeMaxLength: Partial<Record<string, number>> = {
+  'OSI-TSEL': 8,
+  'OSI-SSEL': 16,
+  'OSI-PSEL': 16,
+  'OSI-AP-Invoke': 5,
+  'OSI-AE-Qualifier': 5,
+  'OSI-AE-Invoke': 5,
+  'OSI-NSAP': 40,
+  'IP-ClassOfTraffic': 2,
 };
