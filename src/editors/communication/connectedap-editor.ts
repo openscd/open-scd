@@ -104,7 +104,7 @@ export class ConnectedAPEditor extends LitElement {
     `;
   }
 
-  static lNodeWizardAction(parent: Element): WizardAction {
+  static creatAction(parent: Element): WizardAction {
     return (
       inputs: WizardInput[],
       wizard: CloseableElement
@@ -206,11 +206,21 @@ export class ConnectedAPEditor extends LitElement {
         primary: {
           icon: 'save',
           label: get('save'),
-          action: ConnectedAPEditor.lNodeWizardAction(element),
+          action: ConnectedAPEditor.creatAction(element),
         },
         content: [ConnectedAPEditor.renderWizardPage(element)],
       },
     ];
+  }
+
+  static editAction(parent: Element): WizardAction {
+    return (
+      inputs: WizardInput[],
+      wizard: CloseableElement
+    ): EditorAction[] => {
+      wizard.close();
+      return [];
+    };
   }
 
   static editWizard(element: Element): Wizard {
@@ -220,7 +230,7 @@ export class ConnectedAPEditor extends LitElement {
         primary: {
           icon: 'save',
           label: get('save'),
-          action: ConnectedAPEditor.lNodeWizardAction(element),
+          action: ConnectedAPEditor.editAction(element),
         },
         content: [
           html`${getTypes(element).map(
