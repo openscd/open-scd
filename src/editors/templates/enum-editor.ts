@@ -41,7 +41,6 @@ const templates = fetch('public/default/templates.scd')
 /** [[`Templates`]] plugin subeditor for editing `EnumType` sections. */
 @customElement('enum-editor')
 export class EnumEditor extends LitElement {
-  /** The edited `Element`, a common property of all Substation subeditors. */
   @property()
   element!: Element;
 
@@ -162,7 +161,7 @@ export class EnumEditor extends LitElement {
         new: {
           parent,
           element,
-          reference: null,
+          reference: parent.firstElementChild,
         },
       };
 
@@ -202,16 +201,11 @@ export class EnumEditor extends LitElement {
 
   static async wizard(options: WizardOptions): Promise<Wizard> {
     const temp = await templates;
-    const [
-      heading,
-      actionName,
-      actionIcon,
-      action,
-      name,
-      desc,
-    ] = isCreateOptions(options)
+    const [heading, actionName, actionIcon, action, id, desc] = isCreateOptions(
+      options
+    )
       ? [
-          get('substation.wizard.title.add'),
+          get('enum.wizard.title.add'),
           get('add'),
           'add',
           await EnumEditor.createAction(options.parent),
@@ -219,7 +213,7 @@ export class EnumEditor extends LitElement {
           '',
         ]
       : [
-          get('substation.wizard.title.edit'),
+          get('enum.wizard.title.edit'),
           get('save'),
           'edit',
           updateNamingAction(options.element),
@@ -275,17 +269,14 @@ export class EnumEditor extends LitElement {
               </mwc-list>`,
           html`<wizard-textfield
             label="id"
-            .maybeValue=${name}
-            helper="${translate('substation.wizard.nameHelper')}"
+            .maybeValue=${id}
             required
-            validationMessage="${translate('textfield.required')}"
             dialogInitialFocus
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="desc"
             .maybeValue=${desc}
             nullable="true"
-            helper="${translate('substation.wizard.descHelper')}"
           ></wizard-textfield>`,
         ],
       },
