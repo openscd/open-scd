@@ -273,4 +273,99 @@ describe('bay-editor wizarding editing integration', () => {
       expect(doc.querySelector('Bay[name="COUPLING_BAY"]')).to.not.exist;
     });
   });
+  describe('dublicate action', () => {
+    const doc = getDocument();
+    let parent: WizardingElement & EditingElement;
+    let element: BayEditor | null;
+    beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><bay-editor
+              .element=${doc.querySelector('Bay[name="COUPLING_BAY"]')}
+            ></bay-editor
+          ></mock-wizard-editor>`
+        )
+      );
+      element = parent.querySelector('bay-editor');
+    });
+    it('duplicates Bay on clicking duplicate button', async () => {
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Bay[name="COUPLING_BAY - copy"]')).to.exist;
+    });
+    it('removes all LNode elements in the copy', async () => {
+      expect(
+        doc.querySelector('Bay[name="COUPLING_BAY"]')?.querySelector('LNode')
+      ).to.exist;
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('Bay[name="COUPLING_BAY - copy"]')
+          ?.querySelector('LNode')
+      ).to.not.exist;
+    });
+    it('removes all Terminal elements exepct the grounding in the copy', async () => {
+      expect(
+        doc
+          .querySelector('Bay[name="COUPLING_BAY"]')
+          ?.querySelector('Terminal:not([cNodeName="grounded"])')
+      ).to.exist;
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('Bay[name="COUPLING_BAY - copy"]')
+          ?.querySelector('Terminal:not([cNodeName="grounded"])')
+      ).to.not.exist;
+    });
+    it('removes all ConnectivityNode elements in the copy', async () => {
+      expect(
+        doc
+          .querySelector('Bay[name="COUPLING_BAY"]')
+          ?.querySelector('ConnectivityNode')
+      ).to.exist;
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('Bay[name="COUPLING_BAY - copy"]')
+          ?.querySelector('ConnectivityNode')
+      ).to.not.exist;
+    });
+    it('keeps all ConductingEquipment elements in the copy', async () => {
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="content_copy"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc
+          .querySelector('Bay[name="COUPLING_BAY - copy"]')
+          ?.querySelectorAll('ConductingEquipment').length
+      ).to.equal(
+        doc
+          .querySelector('Bay[name="COUPLING_BAY"]')
+          ?.querySelectorAll('ConductingEquipment').length
+      );
+    });
+  });
 });

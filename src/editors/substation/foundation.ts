@@ -7,7 +7,11 @@ import {
   newActionEvent,
   WizardAction,
   WizardInput,
+  newLogEvent,
 } from '../../foundation.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
+import { BayEditor } from './bay-editor.js';
+import { get } from 'lit-translate';
 
 export type ElementEditor = Element & {
   element: Element;
@@ -46,6 +50,50 @@ export function updateNamingAction(element: Element): WizardAction {
 
     return [{ old: { element }, new: { element: newElement } }];
   };
+}
+
+export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
+  const element: Element = editor.element;
+  const parent: Element = element.parentElement!;
+
+  const clone: Element = <Element>element.cloneNode(true);
+  clone
+    .querySelectorAll('LNode')
+    .forEach(lNode => lNode.parentElement?.removeChild(lNode));
+  //lNode element must be unique within substation -> must be removed
+
+  clone
+    .querySelectorAll('Terminal:not([cNodeName="grounded"])')
+    .forEach(terminal => terminal.parentElement?.removeChild(terminal));
+  //FIXME: for the moment beeing terminal remove as well. For later terminal keep might be the better choice
+
+  clone
+    .querySelectorAll('ConnectivityNode')
+    .forEach(condNode => condNode.parentElement?.removeChild(condNode));
+  //FIXME: for the moment beeing connectivity node remove as well.
+  // For later connectivity keep might be the better choice to preserve substation structure
+
+  clone.setAttribute('name', element.getAttribute('name')! + ' - copy');
+
+  if (clone)
+    editor.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent: parent,
+          element: clone,
+          reference: element.nextElementSibling,
+        },
+      })
+    );
+  else
+    element.dispatchEvent(
+      newLogEvent({
+        kind: 'error',
+        title: get('editing.error.duplicate', {
+          name: element.tagName,
+        }),
+      })
+    );
 }
 
 /**

@@ -30,8 +30,14 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 					<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
 				</ConductingEquipment>
 				<ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
-				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11"/>
-				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12"/>
+				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11">
+					<Terminal name="T1" connectivityNode="AA1/E1/COUPLING_BAY/L2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="L2"/>
+					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
+				</ConductingEquipment>
+				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12">
+					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T1" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
+				</ConductingEquipment>
+                <ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
 			</Bay>
 			<Bay name="Bay2" desc="Bay2">
 			</Bay>
