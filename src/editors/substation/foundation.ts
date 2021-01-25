@@ -55,6 +55,9 @@ export function updateNamingAction(element: Element): WizardAction {
 export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
   const element: Element = editor.element;
   const parent: Element = element.parentElement!;
+  const num = parent.querySelectorAll(
+    `${element.tagName}[name^="${element.getAttribute('name') ?? ''}"]`
+  ).length;
 
   const clone: Element = <Element>element.cloneNode(true);
   clone
@@ -73,7 +76,7 @@ export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
   //FIXME(JakobVogelsang): for the moment beeing connectivity node remove as well.
   // For later connectivity keep might be the better choice to preserve substation structure
 
-  clone.setAttribute('name', element.getAttribute('name')! + ' - copy');
+  clone.setAttribute('name', element.getAttribute('name')! + num);
 
   if (clone)
     editor.dispatchEvent(
