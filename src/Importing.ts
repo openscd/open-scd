@@ -5,8 +5,6 @@ import {
   newActionEvent,
   SimpleAction,
 } from './foundation.js';
-import { rejects } from 'assert';
-import { constant } from 'fast-check';
 
 /** Mixin that handles IED import*/
 export type ImportingElement = Mixin<typeof Importing>;
