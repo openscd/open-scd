@@ -83,9 +83,10 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onCreate(action: Create) {
-      if (!this.checkCreateValidity(action)) return;
+      if (!this.checkCreateValidity(action)) return false;
 
       action.new.parent.insertBefore(action.new.element, action.new.reference);
+      return true;
     }
 
     private logCreate(action: Create) {
@@ -102,6 +103,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onDelete(action: Delete) {
       action.old.element.remove();
+      return true;
     }
 
     private logDelete(action: Delete) {
@@ -147,9 +149,10 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onMove(action: Move) {
-      if (!this.checkMoveValidity(action)) return;
+      if (!this.checkMoveValidity(action)) return false;
 
       action.new.parent.insertBefore(action.old.element, action.new.reference);
+      return true;
     }
 
     private logMove(action: Move) {
@@ -196,10 +199,11 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onUpdate(action: Update) {
-      if (!this.checkUpdateValidity(action)) return;
+      if (!this.checkUpdateValidity(action)) return false;
 
       action.new.element.append(...Array.from(action.old.element.children));
       action.old.element.replaceWith(action.new.element);
+      return true;
     }
 
     private logUpdate(action: Update) {
@@ -215,10 +219,10 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onSimpleAction(action: SimpleAction) {
-      if (isMove(action)) this.onMove(action as Move);
-      else if (isCreate(action)) this.onCreate(action as Create);
-      else if (isDelete(action)) this.onDelete(action as Delete);
-      else if (isUpdate(action)) this.onUpdate(action as Update);
+      if (isMove(action)) return this.onMove(action as Move);
+      else if (isCreate(action)) return this.onCreate(action as Create);
+      else if (isDelete(action)) return this.onDelete(action as Delete);
+      else if (isUpdate(action)) return this.onUpdate(action as Update);
     }
 
     private logSimpleAction(action: SimpleAction) {
@@ -230,8 +234,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onAction(event: EditorActionEvent<EditorAction>) {
       if (isSimple(event.detail.action)) {
-        this.onSimpleAction(event.detail.action);
-        this.logSimpleAction(event.detail.action);
+        if (this.onSimpleAction(event.detail.action))
+          this.logSimpleAction(event.detail.action);
       } else if (event.detail.action.actions !== []) {
         event.detail.action.actions.forEach(element =>
           this.onSimpleAction(element)
