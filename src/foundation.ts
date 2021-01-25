@@ -1,11 +1,18 @@
 import { LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
 
-import { WizardTextField } from './wizard-textfield.js';
 import { Select } from '@material/mwc-select';
 
+import { WizardTextField } from './wizard-textfield.js';
+
+export type SimpleAction = Create | Update | Delete | Move;
+export type ComplexAction = {
+  actions: SimpleAction[];
+  title: string;
+  derived?: boolean;
+};
 /** Represents an intended or committed change to some `Element`. */
-export type EditorAction = Create | Update | Delete | Move;
+export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
   new: { parent: Element; element: Element; reference: Element | null };
@@ -67,9 +74,24 @@ export function isUpdate(action: EditorAction): action is Update {
     (action as Update).new?.element !== undefined
   );
 }
+export function isSimple(action: EditorAction): action is SimpleAction {
+  return !((<ComplexAction>action).actions instanceof Array);
+}
 
 /** @returns an [[`EditorAction`]] with opposite effect of `action`. */
 export function invert(action: EditorAction): EditorAction {
+  if (!isSimple(action)) {
+    const inverse: ComplexAction = {
+      title: action.title,
+      derived: action.derived,
+      actions: [],
+    };
+    action.actions.forEach(element =>
+      inverse.actions.unshift(<SimpleAction>invert(element))
+    );
+    return inverse;
+  }
+
   const metaData = {
     derived: action.derived,
     checkValidity: action.checkValidity,
@@ -237,6 +259,18 @@ export function referencePath(element: Element): string {
   return path;
 }
 
+export function createElement(
+  doc: Document,
+  tag: string,
+  attrs: Record<string, string | null>
+): Element {
+  const element = doc.createElement(tag);
+  Object.entries(attrs)
+    .filter(([_, value]) => value !== null)
+    .forEach(([name, value]) => element.setAttribute(name, value!));
+  return element;
+}
+
 /** A directive rendering its argument `rendered` only if `rendered !== {}`. */
 export const ifImplemented = directive(rendered => (part: Part) => {
   if (Object.keys(rendered).length) part.setValue(rendered);
@@ -250,28 +284,6 @@ export type LitElementConstructor = new (...args: any[]) => LitElement;
 export type Mixin<T extends (...args: any[]) => any> = InstanceType<
   ReturnType<T>
 >;
-
-/** Throws an error bearing `message`, never returning. */
-export function unreachable(message: string): never {
-  throw new Error(message);
-}
-
-/** @returns the cartesian product of `arrays` */
-export function crossProduct<T>(...arrays: T[][]): T[][] {
-  return arrays.reduce<T[][]>(
-    (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
-    [[]]
-  );
-}
-
-declare global {
-  interface ElementEventMap {
-    ['pending-state']: PendingStateEvent;
-    ['editor-action']: EditorActionEvent<EditorAction>;
-    ['wizard']: WizardEvent;
-    ['log']: LogEvent;
-  }
-}
 
 const nameStartChar =
   '[:_A-Za-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|[\u0370-\u037D]' +
@@ -297,14 +309,29 @@ export const restrictions = {
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
 };
 
-export type SchemaVersion = {
-  version: string | null;
-  revision: string | null;
-  release: string | null;
-};
+/** Compares `Element`s lexically by their `name` attributes. */
+export function compareNames(a: Element, b: Element): number {
+  return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
+}
 
-export const versionSupport = {
-  edition1: { version: null, revision: null, release: null },
-  edition2: { version: '2007', revision: 'A', release: null },
-  edition21: { version: '2007', revision: 'B', release: '4' },
-};
+/** Throws an error bearing `message`, never returning. */
+export function unreachable(message: string): never {
+  throw new Error(message);
+}
+
+/** @returns the cartesian product of `arrays` */
+export function crossProduct<T>(...arrays: T[][]): T[][] {
+  return arrays.reduce<T[][]>(
+    (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
+    [[]]
+  );
+}
+
+declare global {
+  interface ElementEventMap {
+    ['pending-state']: PendingStateEvent;
+    ['editor-action']: EditorActionEvent<EditorAction>;
+    ['wizard']: WizardEvent;
+    ['log']: LogEvent;
+  }
+}

@@ -10,6 +10,7 @@ import { translate, get } from 'lit-translate';
 
 import {
   CloseableElement,
+  createElement,
   EditorAction,
   getValue,
   newActionEvent,
@@ -107,24 +108,27 @@ export class ConductingEquipmentEditor extends LitElement {
     ): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
-      const type = getValue(inputs.find(i => i.label === 'type')!);
+      const proxyType = getValue(inputs.find(i => i.label === 'type')!);
+      const type = proxyType === 'ERS' ? 'DIS' : proxyType;
+
+      const element = createElement(
+        parent.ownerDocument,
+        'ConductingEquipment',
+        { name, type, desc }
+      );
+
+      if (proxyType === 'ERS')
+        element.appendChild(
+          createElement(parent.ownerDocument, 'Terminal', {
+            name: 'T1',
+            cNodeName: 'grounded',
+          })
+        );
 
       const action = {
         new: {
           parent,
-          element: new DOMParser().parseFromString(
-            `<ConductingEquipment
-              name="${name}"
-              ${type === null ? '' : `type="${type === 'ERS' ? 'DIS' : type}"`}
-              ${desc === null ? '' : `desc="${desc}"`}
-            > ${
-              type === 'ERS'
-                ? `<Terminal name="T1" cNodeName="grounded"></Terminal>`
-                : ''
-            }
-            </ConductingEquipment>`,
-            'application/xml'
-          ).documentElement,
+          element,
           reference: null,
         },
       };

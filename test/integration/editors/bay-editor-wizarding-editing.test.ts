@@ -194,25 +194,13 @@ describe('bay-editor wizarding editing integration', () => {
     it('adds a LNode element when selecting a logical node', async () => {
       expect(
         doc.querySelector(
-          'Bay[name="COUPLING_BAY"] > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
+          'Bay[name="COUPLING_BAY"] > LNode[iedName=IED2][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
         )
       ).to.not.exist;
       (<ListItemBase>(
         parent.wizardUI
-          .shadowRoot!.querySelector('mwc-dialog:nth-child(1)')!
-          .querySelector('mwc-check-list-item[value="IED1"]')
-      )).click();
-      await parent.requestUpdate();
-      (<ListItemBase>(
-        parent.wizardUI
-          .shadowRoot!.querySelector('mwc-dialog:nth-child(2)')!
-          .querySelector('mwc-check-list-item')
-      )).click();
-      await parent.requestUpdate();
-      (<ListItemBase>(
-        parent.wizardUI
           .shadowRoot!.querySelector('mwc-dialog:nth-child(3)')!
-          .querySelector('mwc-check-list-item')
+          .querySelector('mwc-check-list-item:nth-child(3)')
       )).click();
       await parent.requestUpdate();
       (<HTMLElement>(
@@ -223,7 +211,7 @@ describe('bay-editor wizarding editing integration', () => {
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          'Bay[name="COUPLING_BAY"] > LNode[iedName=IED1][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
+          'Bay[name="COUPLING_BAY"] > LNode[iedName=IED2][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
         )
       ).to.exist;
     });
