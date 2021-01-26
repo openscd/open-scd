@@ -87,7 +87,7 @@ export class OpenSCD extends Setting(
   }
   @property({ type: String })
   set srcIED(value: string) {
-    this.dispatchEvent(newPendingStateEvent(this.importIED(value, this.doc)));
+    this.dispatchEvent(newPendingStateEvent(this.importIED(value, this.doc!)));
   }
 
   @query('#menu') menuUI!: Drawer;
@@ -101,7 +101,7 @@ export class OpenSCD extends Setting(
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
     if (file) {
       //this.srcName = file.name;
-      const loaded = this.importIED(URL.createObjectURL(file), this.doc);
+      const loaded = this.importIED(URL.createObjectURL(file), this.doc!);
       this.dispatchEvent(newPendingStateEvent(loaded));
       await loaded;
     }

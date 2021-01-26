@@ -1,9 +1,12 @@
+import { get } from 'lit-translate';
+
 import {
   LitElementConstructor,
   Mixin,
   newLogEvent,
   newActionEvent,
   SimpleAction,
+  createElement,
 } from './foundation.js';
 
 /** Mixin that handles IED import*/
@@ -23,17 +26,25 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         )}"]`
       );
 
-      if (existLNodeType && !lNodeType.isEqualNode(existLNodeType)) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'warning',
-            title: `There are LNodeType elements with the same id but different structure. OpenSCD does not have a procedure to unifiy DataTypeTempate id's, yet.`,
-          })
-        );
-        return;
-      }
+      if (existLNodeType && lNodeType.isEqualNode(existLNodeType)) return;
 
-      if (existLNodeType) return;
+      if (existLNodeType) {
+        //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
+        //Rename the id by adding IED name at the beginning
+        const ied: Element = lNodeType.parentElement!.parentElement!.querySelector(
+          ':root > IED'
+        )!;
+
+        const idOld = lNodeType.getAttribute('id')!;
+        const idNew = ied.getAttribute('name')!.concat(idOld);
+
+        lNodeType.setAttribute('id', idNew);
+        ied
+          .querySelectorAll(
+            `AccessPoint > Server > LDevice > LN0[lnType="${idOld}"], AccessPoint > Server > LDevice > LN[lnType="${idOld}"]`
+          )
+          .forEach(ln => ln.setAttribute('lnType', idNew));
+      }
 
       return {
         new: {
@@ -49,20 +60,28 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
       doc: Document
     ): SimpleAction | undefined {
       const existDOType = doc.querySelector(
-        `:root > DataTypeTemplates > DOtype[id="${doType.getAttribute('id')}"]`
+        `:root > DataTypeTemplates > DOType[id="${doType.getAttribute('id')}"]`
       );
 
-      if (existDOType && !doType.isEqualNode(existDOType)) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'warning',
-            title: `There are DOType elements with the same id but different structure. OpenSCD does not have a procedure to unifiy DataTypeTempate id's, yet.`,
-          })
-        );
-        return;
-      }
+      if (existDOType && doType.isEqualNode(existDOType)) return;
 
-      if (existDOType) return;
+      if (existDOType) {
+        //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
+        //Rename the id by adding IED name at the beginning
+        const ied: Element = doType.parentElement!.parentElement!.querySelector(
+          ':root > IED'
+        )!;
+        const data: Element = doType.parentElement!;
+
+        const idOld = doType.getAttribute('id');
+        const idNew = ied.getAttribute('name')! + idOld;
+        doType.setAttribute('id', idNew);
+        data
+          .querySelectorAll(
+            `LNodeType > DO[type="${idOld}"], DOType > SDO[type="${idOld}"]`
+          )
+          .forEach(type => type.setAttribute('type', idNew));
+      }
 
       return {
         new: {
@@ -81,16 +100,26 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         `:root > DataTypeTemplates > DAType[id="${daType.getAttribute('id')}"]`
       );
 
-      if (existDAType && !daType.isEqualNode(existDAType)) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'warning',
-            title: `There are DAType elements with the same id but different structure. OpenSCD does not have a procedure to unifiy DataTypeTempate id's, yet.`,
-          })
-        );
-      }
+      if (existDAType && daType.isEqualNode(existDAType)) return;
 
-      if (existDAType) return;
+      if (existDAType) {
+        //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
+        //Rename the id by adding IED name at the beginning
+        const ied: Element = daType.parentElement!.parentElement!.querySelector(
+          ':root > IED'
+        )!;
+        const data: Element | null = daType.parentElement!;
+
+        const idOld = daType.getAttribute('id');
+        const idNew = ied.getAttribute('name')! + idOld;
+
+        daType.setAttribute('id', idNew);
+        data
+          .querySelectorAll(
+            `DOType > DA[type="${idOld}"],DAType > BDA[type="${idOld}"]`
+          )
+          .forEach(type => type.setAttribute('type', idNew));
+      }
 
       return {
         new: {
@@ -108,16 +137,26 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         )}"]`
       );
 
-      if (existEnumType && !enumType.isEqualNode(existEnumType)) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'warning',
-            title: `There are EnumType elements with the same id but different structure. OpenSCD does not have a procedure to unifiy DataTypeTempate id's, yet.`,
-          })
-        );
-      }
+      if (existEnumType && enumType.isEqualNode(existEnumType)) return;
 
-      if (existEnumType) return;
+      if (existEnumType) {
+        //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
+        //Rename the id by adding IED name at the beginning
+        const ied: Element = enumType.parentElement!.parentElement!.querySelector(
+          ':root > IED'
+        )!;
+        const data: Element = enumType.parentElement!;
+
+        const idOld = enumType.getAttribute('id');
+        const idNew = ied.getAttribute('name')! + idOld;
+
+        enumType.setAttribute('id', idNew);
+        data
+          .querySelectorAll(
+            `DOType > DA[type="${idOld}"],DAType > BDA[type="${idOld}"]`
+          )
+          .forEach(type => type.setAttribute('type', idNew));
+      }
 
       return {
         new: {
@@ -194,32 +233,36 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
-    /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
-    async importIED(src: string, doc: Document | null): Promise<string> {
-      if (!doc)
-        return 'Cannot load IED without a valid project. Please open or create a new project first';
-
+    /** Loads and parses an `XMLDocument` after [[`srcIED`]] has changed. */
+    async importIED(src: string, doc: Document): Promise<string> {
       let iedDoc: Document | null = null;
 
       const response = await fetch(src);
       const text = await response.text();
       iedDoc = new DOMParser().parseFromString(text, 'application/xml');
 
-      if (!iedDoc) return 'Parsing error with while opening the file.';
+      if (!iedDoc || iedDoc.querySelector('parsererror')) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('import.log.parsererror'),
+          })
+        );
+        throw new Error(get('import.log.loaderror'));
+      }
 
-      if (!doc.querySelector(':root > DataTypeTemplates'))
+      if (!doc.querySelector(':root > DataTypeTemplates')) {
+        const element = createElement(doc, 'DataTypeTemplates', {});
         this.dispatchEvent(
           newActionEvent({
             new: {
-              element: new DOMParser().parseFromString(
-                `<DataTypeTemplates></DataTypeTemplates>`,
-                'application/xml'
-              ).documentElement,
               parent: doc.documentElement,
+              element,
               reference: null,
             },
           })
         );
+      }
 
       const msg: string =
         'IED ' +
@@ -239,11 +282,10 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
       }
 
       if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-      return new Promise((resolve, reject) => {
-        if (!isSuccessful) reject('Import IED unsucessful');
 
-        resolve(msg);
-      });
+      if (isSuccessful) return msg;
+
+      throw new Error(get('import.log.importerror'));
     }
   }
 
