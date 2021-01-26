@@ -209,7 +209,7 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: 'There is no IED in the file',
+            title: get('import.log.missingied'),
           })
         );
         return false;
@@ -222,9 +222,9 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: `There is already an IED with this name in the project. ${ied.getAttribute(
-              'name'
-            )} could not be loaded!`,
+            title: get('import.log.nouniqueied', {
+              name: ied.getAttribute('name')!,
+            }),
           })
         );
         return false; //IED name must be unique
