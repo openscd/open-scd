@@ -264,6 +264,11 @@
   id="file-input"
   type="file"
 >
+<input
+  accept=".icd,.iid,.cid"
+  id="ied-import"
+  type="file"
+>
 <mwc-dialog
   heading="Log"
   id="log"

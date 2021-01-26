@@ -640,7 +640,13 @@ export const importIID = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?
             <DO name="Beh" type="TestDOTypeBeh"/>
             <DO name="Health" type="TestDOTypeHealth"/>
             <DO name="NamPlt" type="TestDOTypeNamePlt"/>
-        </LNodeType>
+		</LNodeType>
+		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
+			<DO name="Mod" type="Dummy.LLN0.Mod" />
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="Health" type="Dummy.LLN0.Health" />
+			<DO name="NamPlt" type="Dummy.LLN0.NamPlt" />
+		</LNodeType>
 		<LNodeType lnClass="LPHD" id="Dummy.LPHD1">
 			<DO name="PhyNam" type="TestDOTypeDPL" />
 			<DO name="PhyHealth" type="TestDOTypeHealth" />
@@ -664,7 +670,7 @@ export const importIID = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?
             <DO name="NamPlt" type="TestDOTypeNamePlt"/>
             <DO name="Loc" type="TestDOTypeSPS"/>
             <DO name="Pos" type="TestDOTypeDPC"/>
-        </LNodeType>
+		</LNodeType>
         <LNodeType lnClass="CILO" id="TestLNodeTypeCILO">
             <DO name="Mod" type="TestDOTypeMod"/>
             <DO name="Beh" type="TestDOTypeBeh"/>
@@ -672,7 +678,16 @@ export const importIID = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?
             <DO name="NamPlt" type="TestDOTypeNamePlt"/>
             <DO name="EnaOpn" type="TestDOTypeSPS"/>
             <DO name="EnaCls" type="TestDOTypeSPS"/>
-        </LNodeType>
+		</LNodeType>
+		<LNodeType lnClass="XCBR" id="Dummy.XCBR1">
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
+			<DO name="Loc" type="Dummy.SPS" />
+			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
+			<DO name="Pos" type="Dummy.XCBR1.Pos" />
+			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn" />
+			<DO name="BlkCls" type="Dummy.XCBR1.BlkOpn" />
+		</LNodeType>
         <DOType cdc="LPL" id="TestDOTypeNamePlt">
             <DA fc="DC" name="vendor" bType="VisString255" valKind="RO">
                 <Val>TestVendor</Val>
@@ -681,7 +696,18 @@ export const importIID = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?
             <DA fc="DC" name="d" bType="VisString255" valKind="RO"/>
             <DA fc="DC" name="configRev" bType="VisString255" valKind="RO"/>
             <DA fc="EX" name="ldNs" bType="VisString255" valKind="RO"/>
-        </DOType>
+		</DOType>
+		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
+			<DA fc="ST" name="stVal" bType="Enum" type="Beh" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+		</DOType>
+		<DOType cdc="DPC" id="Dummy.XCBR1.Pos">
+			<DA fc="ST" name="stVal" bType="Dbpos" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+		</DOType>
         <DOType cdc="ENS" id="TestDOTypeHealth">
             <DA fc="ST" dchg="true" name="stVal" bType="Enum" type="HealthKind"/>
             <DA fc="ST" qchg="true" name="q" bType="Quality"/>
@@ -767,6 +793,23 @@ export const importIID = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?
 			<DA fc="DC" name="serNum" bType="VisString255" />
 			<DA fc="DC" name="model" bType="VisString255" />
 		</DOType>
+		<DOType cdc="SPC" id="Dummy.LPHD1.Sim">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="SBO" bType="ObjRef" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+		</DOType>
         <DAType id="Originator">
             <BDA name="orCat" bType="Enum" type="orCategory"/>
             <BDA name="orIdent" bType="Octet64"/>
@@ -793,7 +836,25 @@ export const importIID = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?
             <BDA name="onDur" bType="INT32U" valKind="RO"/>
             <BDA name="offDur" bType="INT32U" valKind="RO"/>
             <BDA name="numPls" bType="INT32U" valKind="RO"/>
-        </DAType>
+		</DAType>
+		<DAType id="Dummy.LLN0.Mod.Cancel">
+			<BDA name="ctlVal" bType="Enum" type="Beh" />
+			<BDA name="origin" bType="Struct" type="Dummy_origin" />
+			<BDA name="ctlNum" bType="INT8U" />
+			<BDA name="T" bType="Timestamp" />
+			<BDA name="Test" bType="BOOLEAN" />
+		</DAType>
+		<DAType id="Dummy.LPHD1.Sim.SBOw">
+			<BDA name="ctlVal" bType="BOOLEAN" />
+			<BDA name="origin" bType="Struct" type="Dummy_origin" />
+			<BDA name="ctlNum" bType="INT8U" />
+			<BDA name="Test" bType="BOOLEAN" />
+			<BDA name="Check" bType="Check" />
+		</DAType>
+		<DAType id="Dummy_origin">
+			<BDA name="orCat" bType="Enum" type="Dummy_orCategory" />
+			<BDA name="orIdent" bType="Octet64" />
+		</DAType>
         <EnumType id="HealthKind">
             <EnumVal ord="1">Ok</EnumVal>
             <EnumVal ord="2">Warning</EnumVal>
@@ -828,7 +889,22 @@ export const importIID = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?
         <EnumType id="PulseKind">
             <EnumVal ord="0">pulse</EnumVal>
             <EnumVal ord="1">persistent</EnumVal>
-        </EnumType>
+		</EnumType>
+		<EnumType id="Dummy_Health">
+			<EnumVal ord="1">Ok</EnumVal>
+			<EnumVal ord="2">Warning</EnumVal>
+			<EnumVal ord="3">Alarm</EnumVal>
+		</EnumType>
+		<EnumType id="Dummy_orCategory">
+			<EnumVal ord="0">not-supported</EnumVal>
+			<EnumVal ord="1">bay-control</EnumVal>
+			<EnumVal ord="2">station-control</EnumVal>
+			<EnumVal ord="3">remote-control</EnumVal>
+			<EnumVal ord="4">automatic-bay</EnumVal>
+			<EnumVal ord="5">automatic-station</EnumVal>
+			<EnumVal ord="6">automatic-remote</EnumVal>
+			<EnumVal ord="7">maintenance</EnumVal>
+		</EnumType>
     </DataTypeTemplates>
 </SCL>
 `;
@@ -871,3 +947,5 @@ export const dublicateIEDName = `<?xml version="1.0" encoding="UTF-8" standalone
 		</AccessPoint>
 	</IED>
 </SCL>`;
+
+export const parsererror = `SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4"`;

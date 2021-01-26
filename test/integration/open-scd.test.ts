@@ -9,6 +9,7 @@ import {
   importIID,
   invalidIID,
   dublicateIEDName,
+  parsererror,
 } from '../data.js';
 
 describe('open-scd', () => {
@@ -180,31 +181,47 @@ describe('open-scd', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
           .length
-      ).to.equal(9);
+      ).to.equal(13);
     });
     it('loads unique dotypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
-      ).to.equal(21);
+      ).to.equal(24);
     });
     it('loads unique datypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DAType')
           .length
-      ).to.equal(9);
+      ).to.equal(10);
     });
     it('loads unique enumtypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  EnumType')
           .length
-      ).to.equal(9);
+      ).to.equal(10);
     });
-    it('indicates duplicated data type template id with a warning', async () => {
-      expect(element.history[4].kind).to.equal('warning');
-      expect(element.history[4].title).to.equal(
-        "There are LNodeType elements with the same id but different structure. OpenSCD does not have a procedure to unifiy DataTypeTempate id's, yet."
+    it('create DataTypeTemplate before adding IED', async () => {
+      const validBlobURL = URL.createObjectURL(
+        new Blob([invalidIID], {
+          type: 'application/xml',
+        })
       );
+      element.setAttribute('src', validBlobURL);
+      await element.workDone;
+      await element.validated;
+      expect(element.doc?.querySelector(':root > DataTypeTemplates')).to.not
+        .exist;
+
+      const testIID = URL.createObjectURL(
+        new Blob([importIID], {
+          type: 'application/xml',
+        })
+      );
+      element.setAttribute('srcIED', testIID);
+      await element.workDone;
+      await element.validated;
+      expect(element.doc?.querySelector(':root > DataTypeTemplates')).to.exist;
     });
   });
   describe('importing invalid ieds', () => {
@@ -227,14 +244,11 @@ describe('open-scd', () => {
       element.setAttribute('srcIED', testIID);
       await element.workDone;
       await element.validated;
-      expect(element.history[element.history.length - 1].title).to.equal(
-        'Import IED unsucessful'
-      );
       expect(element.history[element.history.length - 2].kind).to.equal(
         'error'
       );
       expect(element.history[element.history.length - 2].title).to.equal(
-        'There is no IED in the file'
+        'No IED element in the file'
       );
     });
     it('throws doblicate ied name error', async () => {
@@ -246,14 +260,27 @@ describe('open-scd', () => {
       element.setAttribute('srcIED', testIID);
       await element.workDone;
       await element.validated;
-      expect(element.history[element.history.length - 1].title).to.equal(
-        'Import IED unsucessful'
-      );
       expect(element.history[element.history.length - 2].kind).to.equal(
         'error'
       );
       expect(element.history[element.history.length - 2].title).to.equal(
-        'There is already an IED with this name in the project. IED2 could not be loaded!'
+        'IED element IED2 already in the file'
+      );
+    });
+    it('throws parser error', async () => {
+      const testIID = URL.createObjectURL(
+        new Blob([parsererror], {
+          type: 'application/xml',
+        })
+      );
+      element.setAttribute('srcIED', testIID);
+      await element.workDone;
+      await element.validated;
+      expect(element.history[element.history.length - 2].kind).to.equal(
+        'error'
+      );
+      expect(element.history[element.history.length - 2].title).to.equal(
+        'Parser error'
       );
     });
   });
