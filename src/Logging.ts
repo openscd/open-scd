@@ -15,6 +15,7 @@ import {
   CommitEntry,
   ifImplemented,
   invert,
+  isSimple,
   LitElementConstructor,
   LogEntry,
   LogEvent,

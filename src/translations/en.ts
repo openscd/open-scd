@@ -125,6 +125,15 @@ export const en = {
       description: `IEDs often contain more controlable logical nodes than switch gear in the field. \n You can select the control model(s) used specific for switch gear.`,
     },
   },
+  import: {
+    log: {
+      parsererror: 'Parser error',
+      loaderror: 'Could not load file',
+      importerror: 'Could not import IED',
+      missingied: 'No IED element in the file',
+      nouniqueied: 'IED element {{ name }} already in the file',
+    },
+  },
   add: 'Add',
   remove: 'Remove',
   edit: 'Edit',

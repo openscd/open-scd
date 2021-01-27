@@ -128,6 +128,15 @@ export const de: Translations = {
       description: `Schaltgeräten im Feld können oftmals bestimmten Steuerungsmodellen zugeordnet werden. \n Damit wird die Abschätzung oftmals genauer.`,
     },
   },
+  import: {
+    log: {
+      parsererror: 'Parser Fehler',
+      loaderror: 'Datei kann nicht geladen werden',
+      importerror: 'IED Element kann nicht importiert werden',
+      missingied: 'Kein IED Element in der Datei',
+      nouniqueied: 'IED Element {{ name }} bereits geladen',
+    },
+  },
   add: 'Hinzufügen',
   remove: 'Entfernen',
   edit: 'Bearbeiten',

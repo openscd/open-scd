@@ -38,6 +38,7 @@ import {
   newWizardEvent,
   Wizard,
   WizardInput,
+  newActionEvent,
 } from './foundation.js';
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
@@ -50,6 +51,7 @@ import { Setting } from './Setting.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+import { Importing } from './Importing.js';
 
 interface MenuEntry {
   icon: string;
@@ -65,7 +67,7 @@ interface MenuEntry {
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Setting(
-  Wizarding(Waiting(Validating(Editing(Logging(LitElement)))))
+  Importing(Wizarding(Waiting(Validating(Editing(Logging(LitElement))))))
 ) {
   /** The currently active editor tab. */
   @property({ type: Number })
@@ -82,10 +84,27 @@ export class OpenSCD extends Setting(
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
   }
+  @property({ type: String })
+  set srcIED(value: string) {
+    this.dispatchEvent(newPendingStateEvent(this.importIED(value, this.doc!)));
+  }
 
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
+  @query('#ied-import') iedImport!: HTMLInputElement;
   @query('#saveas') saveUI!: Dialog;
+
+  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
+  private async loadIEDFile(event: Event): Promise<void> {
+    const file =
+      (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
+    if (file) {
+      //this.srcName = file.name;
+      const loaded = this.importIED(URL.createObjectURL(file), this.doc!);
+      this.dispatchEvent(newPendingStateEvent(loaded));
+      await loaded;
+    }
+  }
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<string> {
@@ -252,7 +271,12 @@ export class OpenSCD extends Setting(
       name: 'menu.new',
       action: (): void => this.openNewProjectWizard(),
     },
-    { icon: 'snippet_folder', name: 'menu.importIED' },
+    {
+      icon: 'snippet_folder',
+      name: 'menu.importIED',
+      action: (): void => this.iedImport.click(),
+      disabled: (): boolean => this.doc === null,
+    },
     {
       icon: 'save_alt',
       name: 'save',
@@ -459,6 +483,9 @@ export class OpenSCD extends Setting(
       <input id="file-input" type="file" accept=".scd,.ssd" @change="${
         this.loadFile
       }"></input>
+      <input id="ied-import" type="file" accept=".icd,.iid,.cid" @change="${
+        this.loadIEDFile
+      }"></input>
       ${super.render()}
       ${getTheme(this.settings.theme)}
     `;
@@ -475,6 +502,10 @@ export class OpenSCD extends Setting(
     }
 
     #file-input {
+      display: none;
+    }
+
+    #ied-import {
       display: none;
     }
 
