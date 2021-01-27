@@ -273,7 +273,7 @@ describe('bay-editor wizarding editing integration', () => {
       expect(doc.querySelector('Bay[name="COUPLING_BAY"]')).to.not.exist;
     });
   });
-  describe('dublicate action', () => {
+  describe('clone action', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
@@ -296,7 +296,7 @@ describe('bay-editor wizarding editing integration', () => {
         )
       )).click();
       await parent.updateComplete;
-      expect(doc.querySelector('Bay[name="COUPLING_BAY - copy"]')).to.exist;
+      expect(doc.querySelector('Bay[name="COUPLING_BAY1')).to.exist;
     });
     it('removes all LNode elements in the copy', async () => {
       expect(
@@ -359,7 +359,7 @@ describe('bay-editor wizarding editing integration', () => {
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('Bay[name="COUPLING_BAY - copy"]')
+          .querySelector('Bay[name="COUPLING_BAY1"]')
           ?.querySelectorAll('ConductingEquipment').length
       ).to.equal(
         doc
