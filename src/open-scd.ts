@@ -43,7 +43,6 @@ import {
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
 import { zeroLineIcon } from './icons.js';
-import { Importing } from './Importing.js';
 import { SupportedVersion } from './schemas.js';
 
 import { Editing, newEmptySCD } from './Editing.js';
