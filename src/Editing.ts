@@ -236,7 +236,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       if (isSimple(event.detail.action)) {
         if (this.onSimpleAction(event.detail.action))
           this.logSimpleAction(event.detail.action);
-      } else if (event.detail.action.actions !== []) {
+      } else if (event.detail.action.actions.length > 0) {
         event.detail.action.actions.forEach(element =>
           this.onSimpleAction(element)
         );
