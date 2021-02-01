@@ -1,13 +1,5 @@
 import { css } from 'lit-element';
 
-import {
-  CloseableElement,
-  EditorAction,
-  getValue,
-  WizardAction,
-  WizardInput,
-} from '../../foundation.js';
-
 export type ElementEditor = Element & {
   element: Element;
 };
@@ -27,9 +19,19 @@ export function isCreateOptions(
 }
 
 // Communication element hierarchy
-const substationPath = [':root', 'Communication', 'SubNetwork', 'ConnectedAP'];
+const substationPath = [
+  ':root',
+  'Communication',
+  'SubNetwork',
+  'ConnectedAP',
+  'Address',
+];
 
-export type CommunicationTag = 'Communication' | 'SubNetwork' | 'ConnectedAP';
+export type CommunicationTag =
+  | 'Communication'
+  | 'SubNetwork'
+  | 'ConnectedAP'
+  | 'Address';
 
 /** `Private`-safeguarded selectors for `Substation` and its descendants */
 export const selectors = <Record<CommunicationTag, string>>(

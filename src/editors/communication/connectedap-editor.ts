@@ -17,8 +17,12 @@ import {
   WizardInput,
   newActionEvent,
   compareNames,
+  getValue,
+  createElement,
+  ComplexAction,
 } from '../../foundation.js';
 
+import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { TextField } from '@material/mwc-textfield';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -28,6 +32,7 @@ import {
   typeNullable,
   typeMaxLength,
 } from './p-types.js';
+import { selectors } from './foundation.js';
 
 /** Data needed to uniquely identify an `AccessPoint` */
 interface apAttributes {
@@ -118,10 +123,10 @@ export class ConnectedAPEditor extends LitElement {
           <EditorAction>{
             new: {
               parent,
-              element: new DOMParser().parseFromString(
-                `<ConnectedAP iedName="${value.iedName}" apName="${value.apName}" ></ConnectedAP>`,
-                'application/xml'
-              ).documentElement,
+              element: createElement(parent.ownerDocument, 'ConnectedAP', {
+                iedName: value.iedName,
+                apName: value.apName,
+              }),
               reference: null,
             },
           }
@@ -202,7 +207,7 @@ export class ConnectedAPEditor extends LitElement {
   static createConnectedAP(element: Element): Wizard {
     return [
       {
-        title: get('lnode.wizard.title.selectLNs'),
+        title: get('connectedap.wizard.title.connect'),
         primary: {
           icon: 'save',
           label: get('save'),
@@ -213,38 +218,113 @@ export class ConnectedAPEditor extends LitElement {
     ];
   }
 
+  static isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
+    return (
+      Array.from(oldAddr.querySelectorAll(selectors.Address + ' > P')).filter(
+        pType =>
+          !newAdddr
+            .querySelector(`Address > P[type="${pType.getAttribute('type')}"]`)
+            ?.isEqualNode(pType)
+      ).length === 0
+    );
+  }
+
   static editAction(parent: Element): WizardAction {
     return (
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      wizard.close();
-      return [];
+      const instType: boolean = (<Checkbox>(
+        wizard.shadowRoot?.querySelector('#instType')
+      )).checked;
+
+      const element = createElement(parent.ownerDocument, 'Address', {});
+
+      inputs
+        .filter(input => getValue(input) !== null)
+        .forEach(validInput => {
+          const type = validInput.label;
+          const child = createElement(parent.ownerDocument, 'P', { type });
+          if (instType)
+            child.setAttributeNS(
+              'http://www.w3.org/2001/XMLSchema-instance',
+              'xsi:type',
+              'tP_' + type
+            );
+          child.textContent = getValue(validInput);
+          element.appendChild(child);
+        });
+
+      const complexAction: ComplexAction = {
+        actions: [],
+        title: `Edit Address (${parent.getAttribute('iedName')})`,
+      };
+
+      const oldAddress = parent.querySelector(selectors.Address);
+
+      if (
+        oldAddress !== null &&
+        !ConnectedAPEditor.isEqualAddress(oldAddress, element)
+      ) {
+        complexAction.actions.push({
+          old: {
+            parent,
+            element: oldAddress,
+            reference: oldAddress.nextElementSibling,
+          },
+        });
+        complexAction.actions.push({
+          new: {
+            parent,
+            element: element,
+            reference: parent.firstElementChild?.nextElementSibling ?? null,
+          },
+        });
+      } else if (oldAddress === null)
+        complexAction.actions.push({
+          new: {
+            parent: parent,
+            element: element,
+            reference: parent.firstElementChild,
+          },
+        });
+
+      if (complexAction.actions.length) wizard.close();
+      return [complexAction];
     };
   }
 
   static editWizard(element: Element): Wizard {
     return [
       {
-        title: get('lnode.wizard.title.selectLNs'),
+        title: get('connectedap.wizard.title.edit'),
         primary: {
           icon: 'save',
           label: get('save'),
           action: ConnectedAPEditor.editAction(element),
         },
         content: [
-          html`${getTypes(element).map(
-            ptype =>
-              html`<wizard-textfield
-                label="${ptype}"
-                pattern="${typePattern[ptype]}"
-                nullable=${typeNullable[ptype]}
-                .maybeValue=${element.querySelector(
-                  `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
-                )?.innerHTML ?? null}
-                maxLength="${typeMaxLength[ptype] ?? ''}"
-              ></wizard-textfield>`
-          )}`,
+          html`<mwc-formfield
+              label="${translate('connectedap.wizard.addschemainsttype')}"
+            >
+              <mwc-checkbox
+                id="instType"
+                ?checked="${Array.from(
+                  element.querySelectorAll(selectors.Address + ' > P')
+                ).filter(pType => pType.getAttribute('xsi:type')).length > 0}"
+              ></mwc-checkbox> </mwc-formfield
+            >${getTypes(element).map(
+              ptype =>
+                html`<wizard-textfield
+                  label="${ptype}"
+                  pattern="${typePattern[ptype]}"
+                  nullable=${typeNullable[ptype]}
+                  .maybeValue=${element.querySelector(
+                    `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
+                  )?.innerHTML ?? null}
+                  maxLength="${typeMaxLength[ptype] ?? null}"
+                ></wizard-textfield>`
+            )}`,
         ],
       },
     ];

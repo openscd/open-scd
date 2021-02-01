@@ -135,6 +135,8 @@ export const de: Translations = {
       importerror: 'IED Element kann nicht importiert werden',
       missingied: 'Kein IED Element in der Datei',
       nouniqueied: 'IED Element {{ name }} bereits geladen',
+    },
+  },
   communication: {
     name: 'Netzwerkkonfiguration',
     missing: 'Kein Subnetzwerk',
@@ -160,6 +162,16 @@ export const de: Translations = {
       title: {
         add: 'Subnetzwerk hinzufügen',
         edit: 'Subnetzwerk bearbeiten',
+      },
+    },
+  },
+  connectedap: {
+    name: 'Schnittstelle',
+    wizard: {
+      addschemainsttype: 'XMLSchema-instance type hinzufügen',
+      title: {
+        connect: 'Schnittstelle verbinden',
+        edit: 'Schnittstelle bearbeiten',
       },
     },
   },

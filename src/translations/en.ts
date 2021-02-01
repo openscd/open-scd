@@ -132,6 +132,8 @@ export const en = {
       importerror: 'Could not import IED',
       missingied: 'No IED element in the file',
       nouniqueied: 'IED element {{ name }} already in the file',
+    },
+  },
   communication: {
     name: 'Network Configuration',
     missing: 'No subnetwork',
@@ -148,7 +150,7 @@ export const en = {
     },
   },
   subnetwork: {
-    name: 'Subnetwerk',
+    name: 'Subnetwork',
     wizard: {
       nameHelper: 'Subnetwork name',
       descHelper: 'Subnetwork description',
@@ -157,6 +159,16 @@ export const en = {
       title: {
         add: 'Add subnetwork',
         edit: 'Edit subnetwork',
+      },
+    },
+  },
+  connectedap: {
+    name: 'Connected access point',
+    wizard: {
+      addschemainsttype: 'Add XMLSchema-instance type',
+      title: {
+        connect: 'Connect access point',
+        edit: 'Edit access point',
       },
     },
   },
