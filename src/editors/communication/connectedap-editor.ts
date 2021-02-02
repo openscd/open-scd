@@ -59,16 +59,8 @@ export class ConnectedAPEditor extends LitElement {
   element!: Element;
 
   @property()
-  get iedName(): string {
-    return this.element.getAttribute('iedName') ?? '';
-  }
-  @property()
   get apName(): string | null {
     return this.element.getAttribute('apName') ?? null;
-  }
-  @property()
-  get redProt(): string | null {
-    return this.element.getAttribute('redProt') ?? null;
   }
 
   openEditWizard(): void {
