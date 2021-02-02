@@ -1,6 +1,6 @@
 import fc from 'fast-check';
-import { getLNode } from '../../../src/editors/substation/lnodewizard.js';
-import { regExp, regexString } from '../../foundation.js';
+import { getLNode } from '../../../../src/editors/substation/lnodewizard.js';
+import { regExp, regexString } from '../../../foundation.js';
 import { expect } from '@open-wc/testing';
 
 describe('lnodewizard', () => {

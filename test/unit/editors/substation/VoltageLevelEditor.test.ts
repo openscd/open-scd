@@ -4,8 +4,8 @@ import {
   isCreate,
   isUpdate,
   isDelete,
-} from '../../../src/foundation.js';
-import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
+} from '../../../../src/foundation.js';
+import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
 
 describe('VoltageLevelEditor', () => {
   describe('with no nulled properties', () => {
@@ -194,11 +194,11 @@ describe('VoltageLevelEditor', () => {
 
           inputs[4] = await fixture(html`<wizard-textfield
             label="Voltage"
-            nullable="true"
+            nullable
             .maybeValue="${null}"
             unit="V"
             .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
-            .multiplier="k"
+            multiplier="k"
           ></wizard-textfield>`);
         });
 
