@@ -42,7 +42,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI).to.not.exist;
     });
-    describe('edit attributes within SubNEtwork', () => {
+    describe('edit attributes within SubNetwork', () => {
       it('does not change name attribute if not unique within parent element', async () => {
         const oldName = parent.wizardUI.inputs[0].value;
         parent.wizardUI.inputs[0].value = 'ProcessBus';
@@ -192,6 +192,53 @@ describe('subnetwork-editor wizarding editing integration', () => {
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork[name="StationBus"]')).to.not.exist;
+    });
+  });
+  describe('add ConnectedAP action', () => {
+    const doc = getDocument();
+    let parent: WizardingElement & EditingElement;
+    let element: SubNetworkEditor | null;
+    beforeEach(async () => {
+      parent = <WizardingElement & EditingElement>(
+        await fixture(
+          html`<mock-wizard-editor
+            ><subnetwork-editor
+              .element=${doc.querySelector('SubNetwork[name="StationBus"]')}
+            ></subnetwork-editor
+          ></mock-wizard-editor>`
+        )
+      );
+      element = parent.querySelector('subnetwork-editor');
+
+      (<HTMLElement>(
+        element?.shadowRoot?.querySelector(
+          'mwc-icon-button[icon="playlist_add"]'
+        )
+      )).click();
+      await parent.updateComplete;
+    });
+    it('add ConnectedAP on primary action', async () => {
+      expect(
+        doc.querySelector(
+          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P1"]'
+        )
+      ).to.not.exist;
+      (<ListItemBase>(
+        parent.wizardUI.dialog!.querySelector(
+          'mwc-check-list-item:nth-child(1)'
+        )
+      )).click();
+      await parent.updateComplete;
+      await (<HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      expect(
+        doc.querySelector(
+          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P1"]'
+        )
+      ).to.exist;
     });
   });
 });

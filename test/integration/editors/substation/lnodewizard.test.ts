@@ -64,7 +64,9 @@ describe('lnodewizard', () => {
             ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item').length
         ).to.equal(
-          validSCL.querySelectorAll('IED[name="IED2"] LDevice').length
+          validSCL.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice'
+          ).length
         );
         (<ListItemBase>(
           element.wizardUI
@@ -76,7 +78,11 @@ describe('lnodewizard', () => {
           element.wizardUI.shadowRoot
             ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(validSCL.querySelectorAll('LDevice').length);
+        ).to.equal(
+          validSCL.querySelectorAll(
+            'IED[name="IED1"] > AccessPoint > Server > LDevice,IED[name="IED2"] > AccessPoint > Server > LDevice'
+          ).length
+        );
       });
 
       it('delete logical devices on de-selecting IEDs on the first page', async () => {
