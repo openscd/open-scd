@@ -12,6 +12,7 @@ import '@material/mwc-button';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
 
 import {
   CloseableElement,
@@ -26,10 +27,9 @@ import {
 import {
   isCreateOptions,
   styles,
-  updateNamingAction,
+  updateIDNamingAction,
   WizardOptions,
 } from '../substation/foundation.js';
-import { Select } from '@material/mwc-select';
 
 const templates = await fetch('public/default/templates.scd')
   .then(response => response.text())
@@ -198,7 +198,7 @@ export class EnumEditor extends LitElement {
           get('enum.wizard.title.edit'),
           get('save'),
           'edit',
-          updateNamingAction(options.element),
+          updateIDNamingAction(options.element),
           options.element.getAttribute('id'),
           options.element.getAttribute('desc'),
         ];
