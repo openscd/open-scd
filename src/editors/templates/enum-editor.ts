@@ -30,11 +30,11 @@ import {
   WizardOptions,
 } from '../substation/foundation.js';
 import { Select } from '@material/mwc-select';
-const templates = fetch('public/default/templates.scd')
+
+const templates = await fetch('public/default/templates.scd')
   .then(response => response.text())
   .then(str => {
     const doc = new DOMParser().parseFromString(str, 'text/xml');
-    console.warn(doc);
     return doc;
   });
 
@@ -60,9 +60,9 @@ export class EnumEditor extends LitElement {
   }
 
   /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
-  async openEditWizard(): Promise<void> {
+  openEditWizard(): void {
     this.dispatchEvent(
-      newWizardEvent(await EnumEditor.wizard({ element: this.element }))
+      newWizardEvent(EnumEditor.wizard({ element: this.element }))
     );
   }
 
@@ -116,8 +116,8 @@ export class EnumEditor extends LitElement {
     `;
   }
 
-  static async createAction(parent: Element): Promise<WizardAction> {
-    const tmp = await templates;
+  static createAction(parent: Element): WizardAction {
+    const tmp = templates;
     return (
       inputs: WizardInput[],
       wizard: CloseableElement
@@ -181,8 +181,8 @@ export class EnumEditor extends LitElement {
     `;
   }
 
-  static async wizard(options: WizardOptions): Promise<Wizard> {
-    const temp = await templates;
+  static wizard(options: WizardOptions): Wizard {
+    const temp = templates;
     const [heading, actionName, actionIcon, action, id, desc] = isCreateOptions(
       options
     )
@@ -190,7 +190,7 @@ export class EnumEditor extends LitElement {
           get('enum.wizard.title.add'),
           get('add'),
           'add',
-          await EnumEditor.createAction(options.parent),
+          EnumEditor.createAction(options.parent),
           '',
           '',
         ]
