@@ -7,10 +7,10 @@ import { Wizarding } from '../../../../src/Wizarding.js';
 import { getDocument } from '../../../data.js';
 
 describe('Templates Plugin', () => {
-  customElements.define('substation-plugin', Wizarding(Editing(Templates)));
+  customElements.define('templates-plugin', Wizarding(Editing(Templates)));
   let element: Templates;
   beforeEach(async () => {
-    element = await fixture(html`<substation-plugin></substation-plugin>`);
+    element = await fixture(html`<templates-plugin></templates-plugin>`);
   });
 
   describe('without a doc loaded', () => {
