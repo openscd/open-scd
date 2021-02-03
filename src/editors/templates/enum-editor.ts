@@ -90,24 +90,6 @@ export class EnumEditor extends LitElement {
     };
   }
 
-  substationWizardAction(
-    inputs: WizardInput[],
-    dialog: CloseableElement
-  ): EditorAction[] {
-    const id = inputs.find(i => i.label === 'id')!.value;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-    if (id === this.id && desc === this.desc) return [];
-    const action = this.newUpdateAction(id, desc);
-    dialog.close();
-    return [action];
-  }
-
-  constructor() {
-    super();
-
-    this.substationWizardAction = this.substationWizardAction.bind(this);
-  }
-
   renderHeader(): TemplateResult {
     return html`
       <h1>

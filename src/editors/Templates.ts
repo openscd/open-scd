@@ -6,6 +6,7 @@ import { newActionEvent, newWizardEvent } from '../foundation.js';
 import './templates/enum-editor.js';
 import { EnumEditor } from './templates/enum-editor.js';
 import { styles } from './substation/foundation.js';
+
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
 export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
