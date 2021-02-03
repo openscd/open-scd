@@ -21,6 +21,9 @@ module.exports = config => {
           type: 'module',
         },
       ],
+      proxies: {
+        '/public/': '/base/public/',
+      },
 
       esm: {
         nodeResolve: true,

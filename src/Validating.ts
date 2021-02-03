@@ -12,12 +12,6 @@ import {
   WorkerMessage,
 } from './schemas.js';
 
-declare global {
-  interface Window {
-    __karma__?: Record<string, unknown>;
-  } // FIXME: dirty hack to make tests pass, switch test framework to fix!
-}
-
 const validators: Partial<Record<string, Validator>> = {};
 
 export type ValidatingElement = Mixin<typeof Validating>;
@@ -64,9 +58,7 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
       if (!window.Worker) throw new Error(get('validating.fatal'));
       if (validators[xsdName]) return validators[xsdName]!;
 
-      const worker: Worker = window.__karma__
-        ? new Worker('/base/public/js/worker.js') // FIXME: dirty hack!
-        : new Worker('public/js/worker.js');
+      const worker: Worker = new Worker('public/js/worker.js');
 
       async function validate(
         xml: string,
