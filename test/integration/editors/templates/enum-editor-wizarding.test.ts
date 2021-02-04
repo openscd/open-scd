@@ -35,10 +35,10 @@ describe('enum-editor editing wizard', () => {
   it('consists in a single dialog', () =>
     expect(parent.wizardUI.dialogs.length).to.equal(1));
 
-  it('has exactly two buttons', () =>
+  it('has exactly three buttons', () =>
     expect(
       parent.wizardUI.dialog?.querySelectorAll('mwc-button').length
-    ).to.equal(2));
+    ).to.equal(3));
 
   it('has a secondary action button', () =>
     expect(

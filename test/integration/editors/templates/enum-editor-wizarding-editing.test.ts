@@ -41,7 +41,7 @@ describe('enum-editor wizarding editing integration', () => {
       expect(parent.wizardUI).to.not.exist;
     });
 
-    describe('edit attributes within EnumType', () => {
+    describe('edits attributes within EnumType', () => {
       it('changes the "id" attribute on primary action', async () => {
         parent.wizardUI.inputs[0].value = 'newID';
         await parent.updateComplete;
@@ -84,6 +84,15 @@ describe('enum-editor wizarding editing integration', () => {
         expect(doc.querySelector('EnumType')?.getAttribute('desc')).to.be.null;
       });
     });
+
+    it('removes EnumType on delete button click', async () => {
+      expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.exist;
+      (<HTMLElement>(
+        parent.wizardUI.dialog!.querySelector('mwc-button[icon="delete"]')
+      )).click();
+      await parent.updateComplete;
+      expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.not.exist;
+    });
   });
 
   describe('remove action', () => {
@@ -102,15 +111,6 @@ describe('enum-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('enum-editor');
-    });
-
-    it('removes EnumType on clicking delete button', async () => {
-      expect(doc.querySelector('EnumType')).to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
-      )).click();
-      await parent.updateComplete;
-      expect(doc.querySelector('EnumType')).to.not.exist;
     });
   });
 });
