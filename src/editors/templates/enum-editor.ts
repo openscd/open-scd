@@ -66,19 +66,6 @@ export class EnumEditor extends LitElement {
     );
   }
 
-  /** Deletes [[`element`]]. */
-  remove(): void {
-    this.dispatchEvent(
-      newActionEvent({
-        old: {
-          parent: this.element.parentElement!,
-          element: this.element,
-          reference: this.element.nextElementSibling,
-        },
-      })
-    );
-  }
-
   newUpdateAction(name: string, desc: string | null): EditorAction {
     const newElement = <Element>this.element.cloneNode(false);
     newElement.setAttribute('name', name);
@@ -88,32 +75,6 @@ export class EnumEditor extends LitElement {
       old: { element: this.element },
       new: { element: newElement },
     };
-  }
-
-  renderHeader(): TemplateResult {
-    return html`
-      <h1>
-        ${this.id} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-        (${this.size})
-        <nav>
-          <abbr title="${translate('lnode.tooltip')}">
-            <mwc-icon-button icon="account_tree"></mwc-icon-button>
-          </abbr>
-          <abbr title="${translate('edit')}">
-            <mwc-icon-button
-              icon="edit"
-              @click=${() => this.openEditWizard()}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr title="${translate('remove')}">
-            <mwc-icon-button
-              icon="delete"
-              @click=${() => this.remove()}
-            ></mwc-icon-button>
-          </abbr>
-        </nav>
-      </h1>
-    `;
   }
 
   static createAction(parent: Element): WizardAction {
@@ -162,23 +123,6 @@ export class EnumEditor extends LitElement {
       <mwc-icon slot="meta">edit</mwc-icon>
       <span slot="graphic">${this.size}</span>
     </mwc-list-item>`;
-    return html`
-      ${this.renderHeader()}
-      <mwc-list>
-        ${Array.from(
-          this.element.querySelectorAll(
-            ':root > DataTypeTemplates > EnumType > EnumVal'
-          )
-        ).map(
-          value =>
-            html`<mwc-list-item graphic="icon">
-              <span>${value.textContent}</span>
-              <mwc-icon slot="meta">delete</mwc-icon>
-              <span slot="graphic">${value.getAttribute('ord')}</span>
-            </mwc-list-item>`
-        )}
-      </mwc-list>
-    `;
   }
 
   static wizard(options: WizardOptions): Wizard {
@@ -260,11 +204,25 @@ export class EnumEditor extends LitElement {
             .maybeValue=${desc}
             nullable="true"
           ></wizard-textfield>`,
-          html`<mwc-button
-            icon="delete"
-            label=${translate('delete')}
-            fullwidth
-          ></mwc-button>`,
+          isCreateOptions(options)
+            ? html``
+            : html`<mwc-button
+                icon="delete"
+                label=${translate('delete')}
+                @click=${(e: MouseEvent) => {
+                  e.target!.dispatchEvent(newWizardEvent());
+                  e.target!.dispatchEvent(
+                    newActionEvent({
+                      old: {
+                        parent: options.element.parentElement!,
+                        element: options.element,
+                        reference: options.element.nextElementSibling,
+                      },
+                    })
+                  );
+                }}
+                fullwidth
+              ></mwc-button>`,
         ],
       },
     ];
