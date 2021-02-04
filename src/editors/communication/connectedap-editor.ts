@@ -8,6 +8,19 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
+import '@material/mwc-checkbox';
+import '@material/mwc-formfield';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+import '@material/mwc-list';
+import '@material/mwc-list-item-base';
+import '@material/mwc-textfield';
+
+import { Checkbox } from '@material/mwc-checkbox';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { TextField } from '@material/mwc-textfield';
+
 import {
   CloseableElement,
   EditorAction,
@@ -22,10 +35,6 @@ import {
   ComplexAction,
 } from '../../foundation.js';
 
-import { Checkbox } from '@material/mwc-checkbox';
-import { List } from '@material/mwc-list';
-import { TextField } from '@material/mwc-textfield';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import {
   getTypes,
   typePattern,
@@ -47,7 +56,10 @@ interface itemDescription {
 }
 
 /** Sorts disabled `ListItem`s to the bottom. */
-function compare(a: itemDescription, b: itemDescription): number {
+function compareListItemConnection(
+  a: itemDescription,
+  b: itemDescription
+): number {
   if (a.connected !== b.connected) return b.connected ? -1 : 1;
   return 0;
 }
@@ -101,7 +113,7 @@ export class ConnectedAPEditor extends LitElement {
     `;
   }
 
-  static creatAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardAction {
     return (
       inputs: WizardInput[],
       wizard: CloseableElement
@@ -166,7 +178,7 @@ export class ConnectedAPEditor extends LitElement {
             ) !== null,
         };
       })
-      .sort(compare);
+      .sort(compareListItemConnection);
 
     if (accPointDescription.length)
       return html`<mwc-textfield
@@ -203,7 +215,7 @@ export class ConnectedAPEditor extends LitElement {
         primary: {
           icon: 'save',
           label: get('save'),
-          action: ConnectedAPEditor.creatAction(element),
+          action: ConnectedAPEditor.createAction(element),
         },
         content: [ConnectedAPEditor.renderWizardPage(element)],
       },
@@ -221,6 +233,31 @@ export class ConnectedAPEditor extends LitElement {
     );
   }
 
+  static createAddressElement(
+    inputs: WizardInput[],
+    parent: Element,
+    instType: boolean
+  ): Element {
+    const element = createElement(parent.ownerDocument, 'Address', {});
+
+    inputs
+      .filter(input => getValue(input) !== null)
+      .forEach(validInput => {
+        const type = validInput.label;
+        const child = createElement(parent.ownerDocument, 'P', { type });
+        if (instType)
+          child.setAttributeNS(
+            'http://www.w3.org/2001/XMLSchema-instance',
+            'xsi:type',
+            'tP_' + type
+          );
+        child.textContent = getValue(validInput);
+        element.appendChild(child);
+      });
+
+    return element;
+  }
+
   static editAction(parent: Element): WizardAction {
     return (
       inputs: WizardInput[],
@@ -230,22 +267,7 @@ export class ConnectedAPEditor extends LitElement {
         wizard.shadowRoot?.querySelector('#instType')
       )).checked;
 
-      const element = createElement(parent.ownerDocument, 'Address', {});
-
-      inputs
-        .filter(input => getValue(input) !== null)
-        .forEach(validInput => {
-          const type = validInput.label;
-          const child = createElement(parent.ownerDocument, 'P', { type });
-          if (instType)
-            child.setAttributeNS(
-              'http://www.w3.org/2001/XMLSchema-instance',
-              'xsi:type',
-              'tP_' + type
-            );
-          child.textContent = getValue(validInput);
-          element.appendChild(child);
-        });
+      const newAddress = this.createAddressElement(inputs, parent, instType);
 
       const complexAction: ComplexAction = {
         actions: [],
@@ -254,10 +276,9 @@ export class ConnectedAPEditor extends LitElement {
 
       const oldAddress = parent.querySelector(selectors.Address);
 
-      if (
-        oldAddress !== null &&
-        !ConnectedAPEditor.isEqualAddress(oldAddress, element)
-      ) {
+      if (oldAddress !== null && !this.isEqualAddress(oldAddress, newAddress)) {
+        // INFO: We cannot use updateAction on address as bot address
+        //       child elements P are changed
         complexAction.actions.push({
           old: {
             parent,
@@ -268,7 +289,7 @@ export class ConnectedAPEditor extends LitElement {
         complexAction.actions.push({
           new: {
             parent,
-            element: element,
+            element: newAddress,
             reference: parent.firstElementChild?.nextElementSibling ?? null,
           },
         });
@@ -276,7 +297,7 @@ export class ConnectedAPEditor extends LitElement {
         complexAction.actions.push({
           new: {
             parent: parent,
-            element: element,
+            element: newAddress,
             reference: parent.firstElementChild,
           },
         });
