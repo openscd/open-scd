@@ -5,7 +5,11 @@ import '@material/mwc-fab';
 
 import { selectors, styles } from './communication/foundation.js';
 
-import { newWizardEvent, newActionEvent } from '../foundation.js';
+import {
+  newWizardEvent,
+  newActionEvent,
+  createElement,
+} from '../foundation.js';
 
 import './communication/subnetwork-editor.js';
 import { SubNetworkEditor } from './communication/subnetwork-editor.js';
@@ -23,10 +27,7 @@ export default class CommunicationPlugin extends LitElement {
         newActionEvent({
           new: {
             parent: this.doc.documentElement,
-            element: new DOMParser().parseFromString(
-              `<Communication></Communication>`,
-              'application/xml'
-            ).documentElement,
+            element: createElement(this.doc, 'Communication', {}),
             reference:
               this.doc.querySelector(':root > IED') ||
               this.doc.querySelector(':root > DataTypeTemplate') ||
