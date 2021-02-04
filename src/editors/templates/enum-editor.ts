@@ -260,6 +260,11 @@ export class EnumEditor extends LitElement {
             .maybeValue=${desc}
             nullable="true"
           ></wizard-textfield>`,
+          html`<mwc-button
+            icon="delete"
+            label=${translate('delete')}
+            fullwidth
+          ></mwc-button>`,
         ],
       },
     ];
