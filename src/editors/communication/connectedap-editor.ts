@@ -49,15 +49,15 @@ interface apAttributes {
 }
 
 /** Description of a `ListItem` representing an `IED` and `AccessPoint` */
-interface itemDescription {
+interface ItemDescription {
   value: apAttributes;
   connected?: boolean;
 }
 
 /** Sorts disabled `ListItem`s to the bottom. */
 function compareListItemConnection(
-  a: itemDescription,
-  b: itemDescription
+  a: ItemDescription,
+  b: ItemDescription
 ): number {
   if (a.connected !== b.connected) return b.connected ? -1 : 1;
   return 0;
