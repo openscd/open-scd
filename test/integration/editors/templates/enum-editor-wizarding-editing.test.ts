@@ -6,8 +6,10 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 
 import { getDocument } from '../../../data.js';
 
+import '../../../../src/editors/templates/enum-editor.js';
 import { EnumEditor } from '../../../../src/editors/templates/enum-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+
 describe('enum-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     const doc = getDocument();
@@ -92,25 +94,6 @@ describe('enum-editor wizarding editing integration', () => {
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.not.exist;
-    });
-  });
-
-  describe('remove action', () => {
-    const doc = getDocument();
-    let parent: WizardingElement & EditingElement;
-    let element: EnumEditor | null;
-
-    beforeEach(async () => {
-      parent = <WizardingElement & EditingElement>(
-        await fixture(
-          html`<mock-wizard-editor
-            ><enum-editor
-              .element=${doc.querySelector('EnumType')}
-            ></enum-editor
-          ></mock-wizard-editor>`
-        )
-      );
-      element = parent.querySelector('enum-editor');
     });
   });
 });
