@@ -173,7 +173,7 @@ export class SubNetworkEditor extends LitElement {
       this.element?.querySelectorAll(selectors.ConnectedAP) ?? []
     )
       .map(connAP => connAP.getAttribute('iedName')!)
-      .filter(unique)
+      .filter((v, i, a) => a.indexOf(v) === i)
       .sort(compareNames)
       .map(
         iedName => html` <section id="iedSection">

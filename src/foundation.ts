@@ -347,10 +347,3 @@ declare global {
     ['log']: LogEvent;
   }
 }
-export const unique = (
-  value: string,
-  index: number,
-  self: string[]
-): boolean => {
-  return self.indexOf(value) === index;
-};
