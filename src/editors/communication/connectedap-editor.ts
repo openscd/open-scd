@@ -262,9 +262,9 @@ export class ConnectedAPEditor extends LitElement {
       inputs: WizardInput[],
       wizard: CloseableElement
     ): EditorAction[] => {
-      const instType: boolean = (<Checkbox>(
-        wizard.shadowRoot?.querySelector('#instType')
-      )).checked;
+      const instType: boolean =
+        (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
+        false;
 
       const newAddress = this.createAddressElement(inputs, parent, instType);
 
