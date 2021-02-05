@@ -22,13 +22,9 @@ describe('enum-editor editing wizard', () => {
       )
     );
 
-    await (<EnumEditor | undefined>parent?.querySelector('enum-editor'))
-      ?.updateComplete;
-    (<HTMLElement>(
-      parent
-        ?.querySelector('enum-editor')
-        ?.shadowRoot?.querySelector('mwc-list-item')
-    )).click();
+    await (<EnumEditor | undefined>(
+      parent?.querySelector('enum-editor')
+    ))?.openEditWizard();
     await parent.updateComplete;
   });
 

@@ -13,8 +13,8 @@ describe('enum-editor', () => {
     ></enum-editor>`);
   });
 
-  it('has a name property', () =>
-    expect(element).to.have.property('id', 'Dummy_ctlModel'));
+  it('has an element id property', () =>
+    expect(element).to.have.property('eID', 'Dummy_ctlModel'));
 
   it('has a desc property', () =>
     expect(element).to.have.property('desc', null));

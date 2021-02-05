@@ -14,7 +14,6 @@ describe('enum-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
-    let element: EnumEditor | null;
 
     beforeEach(async () => {
       parent = <WizardingElement & EditingElement>(
@@ -26,15 +25,14 @@ describe('enum-editor wizarding editing integration', () => {
           ></mock-wizard-editor>`
         )
       );
-      element = parent.querySelector('enum-editor');
-      await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-list-item')
-      )).click();
+      await (<EnumEditor | undefined>(
+        parent?.querySelector('enum-editor')
+      ))?.openEditWizard();
       await parent.updateComplete;
     });
 
     it('closes on secondary action', async () => {
-      await (<HTMLElement>(
+      (<HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'
         )
@@ -47,7 +45,7 @@ describe('enum-editor wizarding editing integration', () => {
       it('changes the "id" attribute on primary action', async () => {
         parent.wizardUI.inputs[0].value = 'newID';
         await parent.updateComplete;
-        await (<HTMLElement>(
+        (<HTMLElement>(
           parent.wizardUI.dialog?.querySelector(
             'mwc-button[slot="primaryAction"]'
           )
@@ -60,7 +58,7 @@ describe('enum-editor wizarding editing integration', () => {
       it('changes the "desc" attribute on primary action', async () => {
         (<WizardTextField>parent.wizardUI.inputs[1]).maybeValue = 'newDesc';
         await parent.updateComplete;
-        await (<HTMLElement>(
+        (<HTMLElement>(
           parent.wizardUI.dialog?.querySelector(
             'mwc-button[slot="primaryAction"]'
           )
@@ -73,11 +71,11 @@ describe('enum-editor wizarding editing integration', () => {
       it('nulls the "desc" attribute if the input is deactivated', async () => {
         (<WizardTextField>parent.wizardUI.inputs[1]).maybeValue = 'newDesc';
         await parent.updateComplete;
-        await (<HTMLElement>(
+        (<HTMLElement>(
           parent.wizardUI.inputs[1].shadowRoot?.querySelector('mwc-switch')
         )).click();
         await parent.updateComplete;
-        await (<HTMLElement>(
+        (<HTMLElement>(
           parent.wizardUI.dialog?.querySelector(
             'mwc-button[slot="primaryAction"]'
           )
