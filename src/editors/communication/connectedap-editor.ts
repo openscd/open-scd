@@ -63,6 +63,42 @@ function compareListItemConnection(
   return 0;
 }
 
+function isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
+  return (
+    Array.from(oldAddr.querySelectorAll(selectors.Address + ' > P')).filter(
+      pType =>
+        !newAdddr
+          .querySelector(`Address > P[type="${pType.getAttribute('type')}"]`)
+          ?.isEqualNode(pType)
+    ).length === 0
+  );
+}
+
+function createAddressElement(
+  inputs: WizardInput[],
+  parent: Element,
+  instType: boolean
+): Element {
+  const element = createElement(parent.ownerDocument, 'Address', {});
+
+  inputs
+    .filter(input => getValue(input) !== null)
+    .forEach(validInput => {
+      const type = validInput.label;
+      const child = createElement(parent.ownerDocument, 'P', { type });
+      if (instType)
+        child.setAttributeNS(
+          'http://www.w3.org/2001/XMLSchema-instance',
+          'xsi:type',
+          'tP_' + type
+        );
+      child.textContent = getValue(validInput);
+      element.appendChild(child);
+    });
+
+  return element;
+}
+
 /** [[`Communication`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-editor')
 export class ConnectedAPEditor extends LitElement {
@@ -221,42 +257,6 @@ export class ConnectedAPEditor extends LitElement {
     ];
   }
 
-  static isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
-    return (
-      Array.from(oldAddr.querySelectorAll(selectors.Address + ' > P')).filter(
-        pType =>
-          !newAdddr
-            .querySelector(`Address > P[type="${pType.getAttribute('type')}"]`)
-            ?.isEqualNode(pType)
-      ).length === 0
-    );
-  }
-
-  static createAddressElement(
-    inputs: WizardInput[],
-    parent: Element,
-    instType: boolean
-  ): Element {
-    const element = createElement(parent.ownerDocument, 'Address', {});
-
-    inputs
-      .filter(input => getValue(input) !== null)
-      .forEach(validInput => {
-        const type = validInput.label;
-        const child = createElement(parent.ownerDocument, 'P', { type });
-        if (instType)
-          child.setAttributeNS(
-            'http://www.w3.org/2001/XMLSchema-instance',
-            'xsi:type',
-            'tP_' + type
-          );
-        child.textContent = getValue(validInput);
-        element.appendChild(child);
-      });
-
-    return element;
-  }
-
   static editAction(parent: Element): WizardAction {
     return (
       inputs: WizardInput[],
@@ -266,7 +266,7 @@ export class ConnectedAPEditor extends LitElement {
         (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
         false;
 
-      const newAddress = this.createAddressElement(inputs, parent, instType);
+      const newAddress = createAddressElement(inputs, parent, instType);
 
       const complexAction: ComplexAction = {
         actions: [],
@@ -275,7 +275,7 @@ export class ConnectedAPEditor extends LitElement {
 
       const oldAddress = parent.querySelector(selectors.Address);
 
-      if (oldAddress !== null && !this.isEqualAddress(oldAddress, newAddress)) {
+      if (oldAddress !== null && isEqualAddress(oldAddress, newAddress)) {
         // INFO: We cannot use updateAction on address as bot address
         //       child elements P are changed
         complexAction.actions.push({
