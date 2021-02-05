@@ -21,6 +21,7 @@ import {
   restrictions,
   unique,
   compareNames,
+  createElement,
 } from '../../foundation.js';
 
 import {
@@ -272,24 +273,25 @@ export class SubNetworkEditor extends LitElement {
         inputs.find(i => i.label === 'BitRate')!
       );
 
+      const element = createElement(parent.ownerDocument, 'SubNetwork', {
+        name,
+        desc,
+        type,
+      });
+
+      if (BitRate !== null) {
+        const bitRateElement = createElement(parent.ownerDocument, 'BitRate', {
+          unit: 'b/s',
+          multiplier,
+        });
+        bitRateElement.textContent = BitRate;
+        element.appendChild(bitRateElement);
+      }
+
       const action = {
         new: {
           parent,
-          element: new DOMParser().parseFromString(
-            `<SubNetwork
-              name="${name}"
-              ${desc === null ? '' : `desc="${desc}"`}
-              ${type === null ? '' : `type="${type}"`}
-            >${
-              BitRate === null
-                ? ''
-                : `<BitRate unit="b/s" ${
-                    multiplier === null ? '' : `multiplier="${multiplier}"`
-                  }
-            >${BitRate}</BitRate>`
-            }</SubNetwork>`,
-            'application/xml'
-          ).documentElement,
+          element,
           reference: null,
         },
       };
