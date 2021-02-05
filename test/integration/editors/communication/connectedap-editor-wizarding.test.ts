@@ -1,12 +1,13 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import fc, { hexaString, integer, ipV4, nat } from 'fast-check';
+import fc, { integer, ipV4, nat } from 'fast-check';
+
+import { regexString, regExp, ipV6, ipV6SubNet } from '../../../foundation.js';
 
 import '../../../mock-wizard.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
 import { getDocument } from '../../../data.js';
-import { regexString, regExp, ipV6, ipV6SubNet } from '../../../foundation.js';
-import { kMaxLength } from 'buffer';
+import '../../../../src/editors/communication/connectedap-editor.js';
 
 describe('conductingap-editor wizarding integration', () => {
   describe('for schema 2003 (Edition1) projects', () => {

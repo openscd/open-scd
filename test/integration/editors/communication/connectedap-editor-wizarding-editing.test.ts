@@ -1,14 +1,13 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
+import '../../../../src/editors/communication/connectedap-editor.js';
+
 import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
 
 import { getDocument } from '../../../data.js';
-
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('connectedap-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

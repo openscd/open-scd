@@ -337,7 +337,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
 		</LNodeType>
 		<DOType cdc="ENC" id="Dummy.LLN0.Mod">
-			<DA fc="ST" name="stVal" bType="Enum" type="Beh" />
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
@@ -353,7 +353,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel" />
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
-			<DA fc="ST" name="stVal" bType="Enum" type="Beh" />
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 		</DOType>
@@ -443,7 +443,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<BDA name="orIdent" bType="Octet64" />
 		</DAType>
 		<DAType id="Dummy.LLN0.Mod.SBOw">
-			<BDA name="ctlVal" bType="Enum" type="Beh" />
+			<BDA name="ctlVal" bType="Enum" type="Dummy_Beh" />
 			<BDA name="origin" bType="Struct" type="Dummy_origin" />
 			<BDA name="ctlNum" bType="INT8U" />
 			<BDA name="T" bType="Timestamp" />
@@ -451,7 +451,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<BDA name="Check" bType="Check" />
 		</DAType>
 		<DAType id="Dummy.LLN0.Mod.Cancel">
-			<BDA name="ctlVal" bType="Enum" type="Beh" />
+			<BDA name="ctlVal" bType="Enum" type="Dummy_Beh" />
 			<BDA name="origin" bType="Struct" type="Dummy_origin" />
 			<BDA name="ctlNum" bType="INT8U" />
 			<BDA name="T" bType="Timestamp" />
@@ -479,6 +479,13 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<EnumVal ord="3">direct-with-enhanced-security</EnumVal>
 			<EnumVal ord="4">sbo-with-enhanced-security</EnumVal>
 		</EnumType>
+		<EnumType id="Dummy_Beh">
+            <EnumVal ord="1">on</EnumVal>
+            <EnumVal ord="2">blocked</EnumVal>
+            <EnumVal ord="3">test</EnumVal>
+            <EnumVal ord="4">test/blocked</EnumVal>
+            <EnumVal ord="5">off</EnumVal>
+        </EnumType>
 		<EnumType id="Dummy_Health">
 			<EnumVal ord="1">Ok</EnumVal>
 			<EnumVal ord="2">Warning</EnumVal>

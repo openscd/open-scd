@@ -13,7 +13,6 @@ import '@material/mwc-formfield';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-list';
-import '@material/mwc-list-item-base';
 import '@material/mwc-textfield';
 
 import { Checkbox } from '@material/mwc-checkbox';
