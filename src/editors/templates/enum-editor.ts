@@ -44,9 +44,9 @@ export class EnumEditor extends LitElement {
   @property()
   element!: Element;
 
-  /** [[element | `element.name`]] */
+  /** [[element | `element.id`]] */
   @property({ type: String })
-  get id(): string {
+  get eID(): string {
     return this.element.getAttribute('id') ?? '';
   }
   /** [[element | `element.desc`]] */
@@ -119,13 +119,14 @@ export class EnumEditor extends LitElement {
       graphic="icon"
       hasMeta
     >
-      <span>${this.id}</span>
+      <span>${this.eID}</span>
       <mwc-icon slot="meta">edit</mwc-icon>
       <span slot="graphic">${this.size}</span>
     </mwc-list-item>`;
   }
 
   static wizard(options: WizardOptions): Wizard {
+    // FIXME: translate helpers
     const temp = templates;
     const [heading, actionName, actionIcon, action, id, desc] = isCreateOptions(
       options
@@ -177,52 +178,55 @@ export class EnumEditor extends LitElement {
                     </mwc-list-item>`
                 )}
               </mwc-select>`
-            : html`<mwc-list>
-                ${Array.from(
-                  options.element.querySelectorAll(
-                    ':root > DataTypeTemplates > EnumType > EnumVal'
-                  )
-                ).map(
-                  val =>
-                    html`<mwc-list-item
-                      graphic="icon"
-                      value=${val.getAttribute('ord')}
-                    >
-                      <span>${val.textContent}</span>
-                      <span slot="graphic">${val.getAttribute('ord')}</span>
-                    </mwc-list-item>`
-                )}
-              </mwc-list>`,
+            : html``,
           html`<wizard-textfield
             label="id"
+            helper="ID"
             .maybeValue=${id}
             required
             dialogInitialFocus
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="desc"
+            helper="DESCRIPTION"
             .maybeValue=${desc}
             nullable="true"
           ></wizard-textfield>`,
           isCreateOptions(options)
             ? html``
             : html`<mwc-button
-                icon="delete"
-                label=${translate('delete')}
-                @click=${(e: MouseEvent) => {
-                  e.target!.dispatchEvent(newWizardEvent());
-                  e.target!.dispatchEvent(
-                    newActionEvent({
-                      old: {
-                        parent: options.element.parentElement!,
-                        element: options.element,
-                        reference: options.element.nextElementSibling,
-                      },
-                    })
-                  );
-                }}
-                fullwidth
-              ></mwc-button>`,
+                  icon="delete"
+                  label=${translate('delete')}
+                  @click=${(e: MouseEvent) => {
+                    e.target!.dispatchEvent(newWizardEvent());
+                    e.target!.dispatchEvent(
+                      newActionEvent({
+                        old: {
+                          parent: options.element.parentElement!,
+                          element: options.element,
+                          reference: options.element.nextElementSibling,
+                        },
+                      })
+                    );
+                  }}
+                  fullwidth
+                ></mwc-button>
+                <mwc-list>
+                  ${Array.from(
+                    options.element.querySelectorAll(
+                      ':root > DataTypeTemplates > EnumType > EnumVal'
+                    )
+                  ).map(
+                    val =>
+                      html`<mwc-list-item
+                        graphic="icon"
+                        value=${val.getAttribute('ord')}
+                      >
+                        <span>${val.textContent}</span>
+                        <span slot="graphic">${val.getAttribute('ord')}</span>
+                      </mwc-list-item>`
+                  )}
+                </mwc-list>`,
         ],
       },
     ];
