@@ -50,7 +50,7 @@
     "doc:typedoc": "typedoc --plugin none --out doc src",
     "doc:wca": "wca src --outDir doc/components",
     "doc": "npm run doc:clean && npm run doc:typedoc && npm run doc:wca",
-    "test:watch": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false\"",
+    "test:watch": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --coverage\"",
     "test:unit": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --coverage --grep out-tsc/**/test/unit/**/*.test.js\"",
     "test:integration": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --grep out-tsc/**/test/integration/**/*.test.js\"",
     "start:tsc": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch\"",
