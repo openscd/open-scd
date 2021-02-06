@@ -39,6 +39,7 @@ import {
   Wizard,
   WizardInput,
   newActionEvent,
+  SimpleAction,
 } from './foundation.js';
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
@@ -52,6 +53,7 @@ import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
 import { Importing } from './Importing.js';
+import { createMissingIEDNameSubscriberInfo } from './transform/SubscriberInfo.js';
 
 interface MenuEntry {
   icon: string;
@@ -259,6 +261,35 @@ export class OpenSCD extends Setting(
     this.dispatchEvent(newWizardEvent(this.newProjectWizard()));
   }
 
+  private updateSubscriberInfo() {
+    const actions: SimpleAction[] = createMissingIEDNameSubscriberInfo(
+      this.doc!
+    );
+
+    if (!actions.length) {
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'info',
+          title:
+            get('transform.subscriber.description') +
+            get('transform.subscriber.nonewitems'),
+        })
+      );
+      return;
+    }
+
+    this.dispatchEvent(
+      newActionEvent({
+        title:
+          get('transform.subscriber.description') +
+          get('transform.subscriber.message', {
+            updatenumber: actions.length,
+          }),
+        actions: actions,
+      })
+    );
+  }
+
   menu: MenuEntry[] = [
     {
       icon: 'folder_open',
@@ -322,6 +353,13 @@ export class OpenSCD extends Setting(
       name: 'menu.viewLog',
       actionItem: true,
       action: (): void => this.logUI.show(),
+    },
+    {
+      icon: 'extension',
+      name: 'Update subscriber info',
+      startsGroup: true,
+      action: (): void => this.updateSubscriberInfo(),
+      disabled: (): boolean => this.doc === null,
     },
     {
       icon: 'settings',
