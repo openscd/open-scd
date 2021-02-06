@@ -33,7 +33,7 @@ function addIEDName(extRef: Element, gseControl: Element): Element | null {
 
   const iedName: Element = createElement(gseControl.ownerDocument, 'IEDName', {
     apRef: accessPoint.getAttribute('name'),
-    lnInst: lDevice.getAttribute('inst'),
+    ldInst: lDevice.getAttribute('inst'),
     lnClass: ln.getAttribute('lnClass'),
   });
 
