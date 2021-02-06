@@ -170,8 +170,8 @@ export const de: Translations = {
   transform: {
     subscriber: {
       description: 'GOOSE Ziele aktualisieren: ',
-      nonewitems: 'keine neuen IEDName elemente',
-      message: '{{updatenumber}} IEDName elemente hinzugefügt',
+      nonewitems: 'keine neuen IEDName Elemente notwendig',
+      message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
     },
   },
   add: 'Hinzufügen',
