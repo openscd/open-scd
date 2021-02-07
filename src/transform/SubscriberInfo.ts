@@ -55,17 +55,22 @@ function getDestination(data: Element, doc: Document): Element[] {
 
   if (!sendIED.getAttribute('name')) return [];
 
+  const base = `ExtRef[iedName="${sendIED.getAttribute(
+    'name'
+  )}"][ldInst="${data.getAttribute('ldInst')}"][lnClass="${data.getAttribute(
+    'lnClass'
+  )}"][lnInst="${data.getAttribute('lnInst')}"][doName="${data.getAttribute(
+    'doName'
+  )}"]`;
+
+  const prefix = data.getAttribute('prefix')
+    ? `[prefix="${data.getAttribute('prefix')}"]`
+    : '';
+
   return Array.from(
     doc.querySelectorAll(
-      `:root > IED > AccessPoint > Server > LDevice > LN0 > Inputs > ExtRef[iedName="${sendIED.getAttribute(
-        'name'
-      )}"][ldInst="${data.getAttribute('ldInst')}"][prefix="${data.getAttribute(
-        'prefix'
-      )}"][lnClass="${data.getAttribute(
-        'lnClass'
-      )}"][lnInst="${data.getAttribute('lnInst')}"][doName="${data.getAttribute(
-        'doName'
-      )}"]`
+      `:root > IED > AccessPoint > Server > LDevice > LN0 > Inputs > ${base}${prefix}, 
+       :root > IED > AccessPoint > Server > LDevice > LN > Inputs > ${base}${prefix}`
     )
   );
 }
