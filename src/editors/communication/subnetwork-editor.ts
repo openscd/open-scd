@@ -19,7 +19,6 @@ import {
   getValue,
   getMultiplier,
   restrictions,
-  unique,
   compareNames,
   createElement,
 } from '../../foundation.js';
