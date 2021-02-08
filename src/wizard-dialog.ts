@@ -123,7 +123,6 @@ export class WizardDialog extends LitElement {
             dialogAction="prev"
             icon="navigate_before"
             label=${this.wizard?.[index - 1].title}
-            outlined
           ></mwc-button>`
         : html``}
       ${page.secondary
@@ -132,13 +131,11 @@ export class WizardDialog extends LitElement {
             @click=${() => this.act(page.secondary?.action)}
             icon="${page.secondary.icon}"
             label="${page.secondary.label}"
-            outlined
           ></mwc-button>`
         : html`<mwc-button
             slot="secondaryAction"
             dialogAction="close"
             label="${translate('cancel')}"
-            outlined
             style="--mdc-theme-primary: var(--mdc-theme-error)"
           ></mwc-button>`}
       ${page.primary
@@ -148,7 +145,6 @@ export class WizardDialog extends LitElement {
             icon="${page.primary.icon}"
             label="${page.primary.label}"
             trailingIcon
-            unelevated
           ></mwc-button>`
         : index + 1 < (this.wizard?.length ?? 0)
         ? html`<mwc-button
@@ -156,7 +152,6 @@ export class WizardDialog extends LitElement {
             dialogAction="next"
             icon="navigate_next"
             label=${this.wizard?.[index + 1].title}
-            outlined
             trailingicon
           ></mwc-button>`
         : html``}
@@ -182,7 +177,7 @@ export class WizardDialog extends LitElement {
       margin-top: 16px;
     }
 
-    *[iconTrailing='search'][outlined] {
+    *[iconTrailing='search'] {
       --mdc-shape-small: 28px;
     }
   `;
