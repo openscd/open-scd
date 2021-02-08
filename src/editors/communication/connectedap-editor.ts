@@ -276,8 +276,7 @@ export class ConnectedAPEditor extends LitElement {
       const oldAddress = parent.querySelector(selectors.Address);
 
       if (oldAddress !== null && isEqualAddress(oldAddress, newAddress)) {
-        // INFO: We cannot use updateAction on address as bot address
-        //       child elements P are changed
+        // We cannot use updateAction on address as bot address child elements P are changed
         complexAction.actions.push({
           old: {
             parent,
