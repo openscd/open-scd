@@ -6,11 +6,11 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 
 import { getDocument } from '../../../data.js';
 
-import '../../../../src/editors/templates/enum-editor.js';
-import { EnumEditor } from '../../../../src/editors/templates/enum-editor.js';
+import '../../../../src/editors/templates/enum-type-editor.js';
+import { EnumEditor } from '../../../../src/editors/templates/enum-type-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
-describe('enum-editor wizarding editing integration', () => {
+describe('enum-type-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
@@ -19,14 +19,14 @@ describe('enum-editor wizarding editing integration', () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
-            ><enum-editor
+            ><enum-type-editor
               .element=${doc.querySelector('EnumType')}
-            ></enum-editor
+            ></enum-type-editor
           ></mock-wizard-editor>`
         )
       );
       await (<EnumEditor | undefined>(
-        parent?.querySelector('enum-editor')
+        parent?.querySelector('enum-type-editor')
       ))?.openEditWizard();
       await parent.updateComplete;
     });

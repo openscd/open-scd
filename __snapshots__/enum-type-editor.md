@@ -1,4 +1,4 @@
-# `enum-editor`
+# `enum-type-editor`
 
 #### `looks like the latest snapshot`
 

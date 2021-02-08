@@ -3,8 +3,8 @@ import { translate, get } from 'lit-translate';
 
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 
-import './templates/enum-editor.js';
-import { EnumEditor } from './templates/enum-editor.js';
+import './templates/enum-type-editor.js';
+import { EnumEditor } from './templates/enum-type-editor.js';
 import { styles } from './substation/foundation.js';
 
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
@@ -66,7 +66,7 @@ export default class TemplatesPlugin extends LitElement {
             this.doc.querySelectorAll(':root > DataTypeTemplates > EnumType') ??
               []
           ).map(
-            enumType => html`<enum-editor .element=${enumType}></enum-editor>`
+            enumType => html`<enum-type-editor .element=${enumType}></enum-type-editor>`
           )}
         </mwc-list>
       </section>

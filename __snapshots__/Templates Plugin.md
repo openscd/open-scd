@@ -37,12 +37,12 @@
     </nav>
   </h1>
   <mwc-list>
-    <enum-editor>
-    </enum-editor>
-    <enum-editor>
-    </enum-editor>
-    <enum-editor>
-    </enum-editor>
+    <enum-type-editor>
+    </enum-type-editor>
+    <enum-type-editor>
+    </enum-type-editor>
+    <enum-type-editor>
+    </enum-type-editor>
   </mwc-list>
 </section>
 <wizard-dialog>

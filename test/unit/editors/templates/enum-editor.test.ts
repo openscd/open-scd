@@ -1,16 +1,16 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/templates/enum-editor.js';
-import { EnumEditor } from '../../../../src/editors/templates/enum-editor.js';
+import '../../../../src/editors/templates/enum-type-editor.js';
+import { EnumEditor } from '../../../../src/editors/templates/enum-type-editor.js';
 import { getDocument } from '../../../data.js';
 
-describe('enum-editor', () => {
+describe('enum-type-editor', () => {
   let element: EnumEditor;
   const validSCL = getDocument();
   beforeEach(async () => {
-    element = await fixture(html`<enum-editor
+    element = await fixture(html`<enum-type-editor
       .element=${validSCL.querySelector('EnumType')}
-    ></enum-editor>`);
+    ></enum-type-editor>`);
   });
 
   it('has an element id property', () =>
@@ -22,6 +22,7 @@ describe('enum-editor', () => {
   it('has a size property', () => expect(element).to.have.property('size', 5));
 
   it('looks like the latest snapshot', () => {
+    console.log('sth');
     expect(element).shadowDom.to.equalSnapshot();
   });
 });

@@ -2,14 +2,14 @@ import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
 import '../../../mock-wizard.js';
-import '../../../../src/editors/templates/enum-editor.js';
-import { EnumEditor } from '../../../../src/editors/templates/enum-editor.js';
+import '../../../../src/editors/templates/enum-type-editor.js';
+import { EnumEditor } from '../../../../src/editors/templates/enum-type-editor.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
 import { getDocument } from '../../../data.js';
 import { regexString, regExp } from '../../../foundation.js';
 
-describe('enum-editor wizard', () => {
+describe('enum-type-editor wizard', () => {
   const doc = getDocument();
   let parent: WizardingElement;
 
@@ -17,13 +17,13 @@ describe('enum-editor wizard', () => {
     parent = <WizardingElement>(
       await fixture(
         html`<mock-wizard
-          ><enum-editor .element=${doc.querySelector('EnumType')}></enum-editor
+          ><enum-type-editor .element=${doc.querySelector('EnumType')}></enum-type-editor
         ></mock-wizard>`
       )
     );
 
     await (<EnumEditor | undefined>(
-      parent?.querySelector('enum-editor')
+      parent?.querySelector('enum-type-editor')
     ))?.openEditWizard();
     await parent.updateComplete;
   });
@@ -50,7 +50,7 @@ describe('enum-editor wizard', () => {
 
   it('contains a list of five EnumVals', () =>
     expect(
-      parent.wizardUI.shadowRoot?.querySelectorAll('mwc-list > enumval-editor')
+      parent.wizardUI.shadowRoot?.querySelectorAll('mwc-list > enum-val-editor')
     ).to.have.lengthOf(5));
 
   it('contains two wizard inputs', () =>

@@ -39,7 +39,7 @@ function nextOrd(parent: Element): string {
 }
 
 /** [[`Templates`]] plugin subeditor for editing `EnumVal`s. */
-@customElement('enumval-editor')
+@customElement('enum-val-editor')
 export class EnumValEditor extends LitElement {
   @property()
   element!: Element;
@@ -145,7 +145,7 @@ export class EnumValEditor extends LitElement {
       value,
     ] = isCreateOptions(options)
       ? [
-          get('enumval.wizard.title.add'),
+          get('enum-val.wizard.title.add'),
           get('add'),
           'add',
           EnumValEditor.createAction(options.parent),
@@ -154,7 +154,7 @@ export class EnumValEditor extends LitElement {
           '',
         ]
       : [
-          get('enumval.wizard.title.edit'),
+          get('enum-val.wizard.title.edit'),
           get('save'),
           'edit',
           EnumValEditor.updateAction(options.element),

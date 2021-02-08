@@ -15,7 +15,7 @@ import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 
-import './enumval-editor.js';
+import './enum-val-editor.js';
 import {
   EditorAction,
   getValue,
@@ -31,13 +31,13 @@ import {
   updateIDNamingAction,
   WizardOptions,
 } from '../substation/foundation.js';
-import { EnumValEditor } from './enumval-editor.js';
+import { EnumValEditor } from './enum-val-editor.js';
 export const templates = fetch('public/default/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'text/xml'));
 
 /** [[`Templates`]] plugin subeditor for editing `EnumType` sections. */
-@customElement('enum-editor')
+@customElement('enum-type-editor')
 export class EnumEditor extends LitElement {
   @property()
   element!: Element;
@@ -145,7 +145,7 @@ export class EnumEditor extends LitElement {
             ? html`<mwc-select
                 style="--mdc-menu-max-height: 196px;"
                 outlined
-                icon="library_add"
+                icon="playlist_add_check"
                 label="values"
                 helper="Default enumerations"
               >
@@ -216,9 +216,9 @@ export class EnumEditor extends LitElement {
                     <Iterable<ChildNode>>(<unknown>options.element.childNodes),
                     child =>
                       child instanceof Element
-                        ? html`<enumval-editor
+                        ? html`<enum-val-editor
                             .element=${child}
-                          ></enumval-editor>`
+                          ></enum-val-editor>`
                         : html``
                   )}
                 </mwc-list> `,
