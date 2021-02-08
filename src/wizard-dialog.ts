@@ -108,6 +108,10 @@ export class WizardDialog extends LitElement {
     this.renderPage = this.renderPage.bind(this);
   }
 
+  updated(changedProperties: Map<string | number | symbol, unknown>): void {
+    if (changedProperties.has('wizard')) this.dialog?.show();
+  }
+
   renderPage(page: WizardPage, index: number): TemplateResult {
     return html`<mwc-dialog
       defaultAction="close"

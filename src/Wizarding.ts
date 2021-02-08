@@ -1,10 +1,4 @@
-import {
-  html,
-  internalProperty,
-  property,
-  TemplateResult,
-  query,
-} from 'lit-element';
+import { html, internalProperty, TemplateResult, query } from 'lit-element';
 import {
   ifImplemented,
   LitElementConstructor,
