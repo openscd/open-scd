@@ -122,13 +122,13 @@ export type EditorActionEvent<T extends EditorAction> = CustomEvent<
 >;
 export function newActionEvent<T extends EditorAction>(
   action: T,
-  eventInitDict?: CustomEventInit<EditorActionDetail<T>>
+  eventInitDict?: CustomEventInit<Partial<EditorActionDetail<T>>>
 ): EditorActionEvent<T> {
   return new CustomEvent<EditorActionDetail<T>>('editor-action', {
     bubbles: true,
     composed: true,
-    detail: { action },
     ...eventInitDict,
+    detail: { action, ...eventInitDict?.detail },
   });
 }
 
@@ -177,13 +177,13 @@ export interface WizardDetail {
 export type WizardEvent = CustomEvent<WizardDetail>;
 export function newWizardEvent(
   wizard: Wizard | null = null,
-  eventInitDict?: CustomEventInit<WizardDetail>
+  eventInitDict?: CustomEventInit<Partial<WizardDetail>>
 ): WizardEvent {
   return new CustomEvent<WizardDetail>('wizard', {
     bubbles: true,
     composed: true,
-    detail: { wizard },
     ...eventInitDict,
+    detail: { wizard, ...eventInitDict?.detail },
   });
 }
 
@@ -213,8 +213,8 @@ export function newLogEvent(
   return new CustomEvent<LogDetail>('log', {
     bubbles: true,
     composed: true,
-    detail: detail,
     ...eventInitDict,
+    detail: { ...detail, ...eventInitDict?.detail },
   });
 }
 
@@ -235,13 +235,13 @@ export interface PendingStateDetail {
 export type PendingStateEvent = CustomEvent<PendingStateDetail>;
 export function newPendingStateEvent(
   promise: Promise<string>,
-  eventInitDict?: CustomEventInit<PendingStateDetail>
+  eventInitDict?: CustomEventInit<Partial<PendingStateDetail>>
 ): PendingStateEvent {
   return new CustomEvent<PendingStateDetail>('pending-state', {
     bubbles: true,
     composed: true,
-    detail: { promise },
     ...eventInitDict,
+    detail: { promise, ...eventInitDict?.detail },
   });
 }
 
