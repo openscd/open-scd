@@ -8,7 +8,7 @@
   graphic="icon"
   hasmeta=""
   mwc-list-item=""
-  tabindex="-1"
+  tabindex="0"
 >
   <span>
     Dummy_ctlModel

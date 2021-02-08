@@ -38,7 +38,7 @@ describe('enum-editor wizarding editing integration', () => {
         )
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      expect(parent.wizardUI).to.not.exist;
+      expect(parent.wizardUI.dialog).to.not.exist;
     });
 
     describe('edits attributes within EnumType', () => {

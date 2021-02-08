@@ -33,12 +33,12 @@ describe('open-scd', () => {
   });
 
   it('opens the New Project Wizard on new project icon click', async () => {
-    expect(element.wizardUI).to.not.exist;
+    expect(element.wizardUI.dialog).to.not.exist;
     (<HTMLElement>(
       element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
     )).click();
     await element.updateComplete;
-    expect(element.wizardUI).to.exist;
+    expect(element.wizardUI.dialog).to.exist;
   });
 
   it('creates an empty project on wizard primary button click', async () => {

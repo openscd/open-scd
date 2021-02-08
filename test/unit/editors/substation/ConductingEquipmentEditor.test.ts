@@ -38,11 +38,6 @@ describe('ConductingEquipmentEditor', () => {
       const wizardAction = ConductingEquipmentEditor.createAction(parent);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
     });
-
-    it('closes the wizard before returning', done => {
-      const wizardAction = ConductingEquipmentEditor.createAction(parent);
-      wizardAction(inputs, newWizard(done));
-    });
   });
 
   describe('updateAction', () => {
@@ -52,11 +47,6 @@ describe('ConductingEquipmentEditor', () => {
         '<ConductingEquipment></ConductingEquipment>',
         'application/xml'
       ).documentElement;
-    });
-
-    it('closes the wizard before returning', done => {
-      const wizardAction = ConductingEquipmentEditor.createAction(element);
-      wizardAction(inputs, newWizard(done));
     });
 
     it('returns a WizardAction which retruns one EditorActions', () => {

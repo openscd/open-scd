@@ -45,11 +45,6 @@ describe('VoltageLevelEditor', () => {
         const wizardAction = VoltageLevelEditor.createAction(parent);
         expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
       });
-
-      it('closes the wizard before returning', done => {
-        const wizardAction = VoltageLevelEditor.createAction(parent);
-        wizardAction(inputs, newWizard(done));
-      });
     });
 
     describe('has an updateAction that', () => {
@@ -59,11 +54,6 @@ describe('VoltageLevelEditor', () => {
           '<VoltageLevel></VoltageLevel>',
           'application/xml'
         ).documentElement;
-      });
-
-      it('closes the wizard before returning', done => {
-        const wizardAction = VoltageLevelEditor.createAction(element);
-        wizardAction(inputs, newWizard(done));
       });
 
       describe('with missing child element Voltage', () => {

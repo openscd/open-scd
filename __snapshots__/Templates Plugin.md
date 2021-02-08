@@ -12,10 +12,12 @@
   <mwc-fab
     extended=""
     icon="add"
-    label="[substation.wizard.title.add]"
+    label="[templates.add]"
   >
   </mwc-fab>
 </h1>
+<wizard-dialog>
+</wizard-dialog>
 
 ```
 
@@ -26,10 +28,10 @@
 ```html
 <section tabindex="0">
   <h1>
-    EnumTypes
+    [scl.EnumType]
     <nav>
       <abbr title="[add]">
-        <mwc-icon-button icon="add">
+        <mwc-icon-button icon="playlist_add">
         </mwc-icon-button>
       </abbr>
     </nav>
@@ -43,6 +45,8 @@
     </enum-editor>
   </mwc-list>
 </section>
+<wizard-dialog>
+</wizard-dialog>
 
 ```
 

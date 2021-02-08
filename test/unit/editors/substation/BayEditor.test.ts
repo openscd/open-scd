@@ -37,11 +37,6 @@ describe('BayEditor', () => {
       const wizardAction = BayEditor.createAction(parent);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
     });
-
-    it('closes the wizard before returning', done => {
-      const wizardAction = BayEditor.createAction(parent);
-      wizardAction(inputs, newWizard(done));
-    });
   });
 
   describe('updateAction', () => {
@@ -51,11 +46,6 @@ describe('BayEditor', () => {
         '<Bay></Bay>',
         'application/xml'
       ).documentElement;
-    });
-
-    it('closes the wizard before returning', done => {
-      const wizardAction = BayEditor.createAction(element);
-      wizardAction(inputs, newWizard(done));
     });
 
     it('returns a WizardAction which retruns one EditorAction', () => {

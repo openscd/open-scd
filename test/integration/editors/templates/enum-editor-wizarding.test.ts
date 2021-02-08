@@ -9,7 +9,7 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 import { getDocument } from '../../../data.js';
 import { regexString, regExp } from '../../../foundation.js';
 
-describe('enum-editor editing wizard', () => {
+describe('enum-editor wizard', () => {
   const doc = getDocument();
   let parent: WizardingElement;
 
@@ -31,10 +31,10 @@ describe('enum-editor editing wizard', () => {
   it('consists in a single dialog', () =>
     expect(parent.wizardUI.dialogs.length).to.equal(1));
 
-  it('has exactly three buttons', () =>
+  it('has exactly four buttons', () =>
     expect(
       parent.wizardUI.dialog?.querySelectorAll('mwc-button').length
-    ).to.equal(3));
+    ).to.equal(4));
 
   it('has a secondary action button', () =>
     expect(
@@ -50,7 +50,7 @@ describe('enum-editor editing wizard', () => {
 
   it('contains a list of five EnumVals', () =>
     expect(
-      parent.wizardUI.shadowRoot?.querySelectorAll('mwc-list > mwc-list-item')
+      parent.wizardUI.shadowRoot?.querySelectorAll('mwc-list > enumval-editor')
     ).to.have.lengthOf(5));
 
   it('contains two wizard inputs', () =>
