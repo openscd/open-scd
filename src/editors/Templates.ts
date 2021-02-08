@@ -44,18 +44,18 @@ export default class TemplatesPlugin extends LitElement {
         <mwc-fab
           extended
           icon="add"
-          label="${get('substation.wizard.title.add')}"
+          label="${get('templates.add')}"
           @click=${() => alert('yay')}
         ></mwc-fab>
       </h1>`;
     return html`
       <section tabindex="0">
         <h1>
-          EnumTypes
+          ${translate('scl.EnumType')}
           <nav>
             <abbr title="${translate('add')}">
               <mwc-icon-button
-                icon="add"
+                icon="playlist_add"
                 @click=${() => this.openCreateEnumWizard()}
               ></mwc-icon-button>
             </abbr>

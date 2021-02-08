@@ -24,8 +24,16 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onWizard(we: WizardEvent) {
       if (we.detail.wizard === null) this.workflow.shift();
+      else if (we.detail.subwizard) this.workflow.unshift(we.detail.wizard);
       else this.workflow.push(we.detail.wizard);
       this.requestUpdate('workflow');
+      this.updateComplete.then(() =>
+        this.wizardUI.updateComplete.then(() =>
+          this.wizardUI.dialog?.updateComplete.then(() =>
+            this.wizardUI.dialog?.focus()
+          )
+        )
+      );
     }
 
     constructor(...args: any[]) {
@@ -36,9 +44,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
-      ${this.workflow.length
-        ? html`<wizard-dialog .wizard=${this.workflow[0]}></wizard-dialog>`
-        : ''}`;
+        <wizard-dialog .wizard=${this.workflow[0] ?? []}></wizard-dialog>`;
     }
   }
 

@@ -173,6 +173,7 @@ export type Wizard = WizardPage[];
 /** If `wizard === null`, close the current wizard, else queue `wizard`. */
 export interface WizardDetail {
   wizard: Wizard | null;
+  subwizard?: boolean;
 }
 export type WizardEvent = CustomEvent<WizardDetail>;
 export function newWizardEvent(
