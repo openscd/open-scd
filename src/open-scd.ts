@@ -31,7 +31,6 @@ import { Drawer } from '@material/mwc-drawer';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
-  CloseableElement,
   EditorAction,
   newActionEvent,
   newLogEvent,
@@ -205,7 +204,7 @@ export class OpenSCD extends Setting(
 
   private createNewProject(
     inputs: WizardInput[],
-    wizard: CloseableElement
+    wizard: Element
   ): EditorAction[] {
     this.srcName = inputs[0].value.match(/\.s[sc]d$/i)
       ? inputs[0].value
@@ -219,9 +218,7 @@ export class OpenSCD extends Setting(
 
     this.doc = newEmptySCD(this.srcName.slice(0, -4), version);
 
-    wizard.close();
-
-    return [];
+    return [{ actions: [], title: get('menu.new'), derived: true }];
   }
 
   private newProjectWizard(): Wizard {

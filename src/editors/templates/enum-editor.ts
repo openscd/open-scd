@@ -15,7 +15,6 @@ import '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 
 import {
-  CloseableElement,
   EditorAction,
   getValue,
   newActionEvent,
@@ -63,23 +62,9 @@ export class EnumEditor extends LitElement {
     );
   }
 
-  newUpdateAction(name: string, desc: string | null): EditorAction {
-    const newElement = <Element>this.element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    return {
-      old: { element: this.element },
-      new: { element: newElement },
-    };
-  }
-
   static async createAction(parent: Element): Promise<WizardAction> {
     const tpl = await templates;
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[]): EditorAction[] => {
       const id = getValue(inputs.find(i => i.label === 'id')!);
 
       if (id === null) return [];
@@ -105,7 +90,6 @@ export class EnumEditor extends LitElement {
         },
       };
 
-      wizard.close();
       return [action];
     };
   }
@@ -123,7 +107,6 @@ export class EnumEditor extends LitElement {
   }
 
   static async wizard(options: WizardOptions): Promise<Wizard> {
-    // FIXME: translate helpers
     const tpl = await templates;
     const [heading, actionName, actionIcon, action, id, desc] = isCreateOptions(
       options

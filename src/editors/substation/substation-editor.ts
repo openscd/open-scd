@@ -13,7 +13,6 @@ import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
 
 import {
-  CloseableElement,
   createElement,
   EditorAction,
   getValue,
@@ -121,10 +120,7 @@ export class SubstationEditor extends LitElement {
   }
 
   static createAction(parent: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const guess = wizard.shadowRoot?.querySelector('mwc-checkbox')?.checked;
@@ -147,7 +143,6 @@ export class SubstationEditor extends LitElement {
           newWizardEvent(guessVoltageLevel(parent.ownerDocument))
         );
 
-      wizard.close();
       return [action];
     };
   }

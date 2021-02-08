@@ -76,11 +76,6 @@ export class WizardDialog extends LitElement {
     }
   }
 
-  /** Dismisses the entire wizard by dispatching an empty [[`WizardEvent`]]. */
-  close(): void {
-    this.dispatchEvent(newWizardEvent());
-  }
-
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
   async act(action?: WizardAction): Promise<boolean> {
     if (action === undefined) return false;
@@ -90,13 +85,15 @@ export class WizardDialog extends LitElement {
       inputArray.map(wi => wi.reportValidity());
       return false;
     }
-    action(inputArray, this).map(ea => this.dispatchEvent(newActionEvent(ea)));
+    const editorActions = action(inputArray, this);
+    editorActions.forEach(ea => this.dispatchEvent(newActionEvent(ea)));
+    if (editorActions.length > 0) this.dispatchEvent(newWizardEvent());
     return true;
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {
     if (!(ae.target instanceof Dialog && ae.detail?.action)) return;
-    if (ae.detail.action === 'close') this.close();
+    if (ae.detail.action === 'close') this.dispatchEvent(newWizardEvent());
     else if (ae.detail.action === 'prev') this.prev();
     else if (ae.detail.action === 'next') this.next();
   }

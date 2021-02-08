@@ -1,7 +1,6 @@
 import { css } from 'lit-element';
 
 import {
-  CloseableElement,
   EditorAction,
   getValue,
   newActionEvent,
@@ -30,7 +29,7 @@ export function isCreateOptions(
 }
 
 export function updateNamingAction(element: Element): WizardAction {
-  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+  return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
@@ -44,14 +43,13 @@ export function updateNamingAction(element: Element): WizardAction {
     newElement.setAttribute('name', name);
     if (desc === null) newElement.removeAttribute('desc');
     else newElement.setAttribute('desc', desc);
-    wizard.close();
 
     return [{ old: { element }, new: { element: newElement } }];
   };
 }
 
 export function updateIDNamingAction(element: Element): WizardAction {
-  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+  return (inputs: WizardInput[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
@@ -65,7 +63,6 @@ export function updateIDNamingAction(element: Element): WizardAction {
     newElement.setAttribute('id', id);
     if (desc === null) newElement.removeAttribute('desc');
     else newElement.setAttribute('desc', desc);
-    wizard.close();
 
     return [{ old: { element }, new: { element: newElement } }];
   };

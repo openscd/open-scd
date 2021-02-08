@@ -132,16 +132,13 @@ export function newActionEvent<T extends EditorAction>(
   });
 }
 
-/** `HTMLElement` with a `close()` method. */
-export type CloseableElement = HTMLElement & { close: () => void };
-
 export const wizardInputSelector = 'wizard-textfield, mwc-select';
 export type WizardInput = WizardTextField | Select;
 
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardAction = (
   inputs: WizardInput[],
-  wizard: CloseableElement
+  wizard: Element
 ) => EditorAction[];
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */

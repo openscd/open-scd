@@ -8,7 +8,6 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
-  CloseableElement,
   compareNames,
   createElement,
   EditorAction,
@@ -169,7 +168,7 @@ function createBayElement(
 }
 
 function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
-  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const actions: EditorAction[] = [];
 
     const ctlModelList = (<ListItemBase[]>(
@@ -208,7 +207,6 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
       },
     });
 
-    wizard.close();
     return actions;
   };
 }
