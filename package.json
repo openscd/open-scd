@@ -47,7 +47,7 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "test": "tsc && karma start karma.conf.cjs --coverage",
     "test:manual": "tsc && karma start karma.conf.cjs --coverage --no-browsers",
-    "test:watch": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --coverage\"",
+    "test:watch": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --no-browsers --coverage\"",
     "test:unit": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --coverage --grep out-tsc/**/test/unit/**/*.test.js\"",
     "test:integration": "npx rimraf out-tsc/test && tsc && concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start karma.conf.cjs --auto-watch=true --single-run=false --grep out-tsc/**/test/integration/**/*.test.js\"",
     "doc:clean": "npx rimraf doc",
