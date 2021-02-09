@@ -22,26 +22,6 @@ export function isCreateOptions(
   return (<CreateOptions>options).parent !== undefined;
 }
 
-export function updateNamingAction(element: Element): WizardAction {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const name = getValue(inputs.find(i => i.label === 'name')!)!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-    if (
-      name === element.getAttribute('name') &&
-      desc === element.getAttribute('desc')
-    )
-      return [];
-
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-
-    return [{ old: { element }, new: { element: newElement } }];
-  };
-}
-
 export function updateIDNamingAction(element: Element): WizardAction {
   return (inputs: WizardInput[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
