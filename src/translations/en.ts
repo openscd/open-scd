@@ -137,17 +137,6 @@ export const en = {
   communication: {
     name: 'Network Configuration',
     missing: 'No subnetwork',
-    wizard: {
-      nameHelper: 'Substation name',
-      descHelper: 'Substation description',
-      title: {
-        add: 'Add subnetwork',
-        edit: 'Edit substation',
-      },
-    },
-    action: {
-      addvoltagelevel: 'Add voltage level',
-    },
   },
   subnetwork: {
     name: 'Subnetwork',
@@ -170,6 +159,9 @@ export const en = {
         connect: 'Connect access point',
         edit: 'Edit access point',
       },
+    },
+    action: {
+      addaddress: 'Edit Address ({{iedName}} - {{apName}})',
     },
   },
   add: 'Add',

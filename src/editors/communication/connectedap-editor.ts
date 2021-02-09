@@ -270,7 +270,10 @@ export class ConnectedAPEditor extends LitElement {
 
       const complexAction: ComplexAction = {
         actions: [],
-        title: `Edit Address (${parent.getAttribute('iedName')})`,
+        title: get('connectedap.action.addaddress', {
+          iedName: parent.getAttribute('iedName') ?? '',
+          apName: parent.getAttribute('apName') ?? '',
+        }),
       };
 
       const oldAddress = parent.querySelector(selectors.Address);

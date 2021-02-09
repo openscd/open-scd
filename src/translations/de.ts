@@ -140,17 +140,6 @@ export const de: Translations = {
   communication: {
     name: 'Netzwerkkonfiguration',
     missing: 'Kein Subnetzwerk',
-    wizard: {
-      nameHelper: 'Substation name',
-      descHelper: 'Substation description',
-      title: {
-        add: 'Subnetzwerk hinzufügen',
-        edit: 'Edit substation',
-      },
-    },
-    action: {
-      addvoltagelevel: 'Add voltage level',
-    },
   },
   subnetwork: {
     name: 'Subnetzwerk',
@@ -173,6 +162,9 @@ export const de: Translations = {
         connect: 'Schnittstelle verbinden',
         edit: 'Schnittstelle bearbeiten',
       },
+    },
+    action: {
+      addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
     },
   },
   add: 'Hinzufügen',
