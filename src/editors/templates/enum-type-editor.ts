@@ -62,7 +62,20 @@ export class EnumTypeEditor extends LitElement {
     );
   }
 
-  static createAction(parent: Element, tpl: XMLDocument): WizardAction {
+  render(): TemplateResult {
+    return html`<mwc-list-item
+      @click=${() => this.openEditWizard()}
+      graphic="icon"
+      hasMeta
+      tabindex="0"
+    >
+      <span>${this.eID}</span>
+      <mwc-icon slot="meta">edit</mwc-icon>
+      <span slot="graphic">${this.size}</span>
+    </mwc-list-item>`;
+  }
+
+  static createAction(parent: Element, templates: XMLDocument): WizardAction {
     return (inputs: WizardInput[]): EditorAction[] => {
       const id = getValue(inputs.find(i => i.label === 'id')!);
 
@@ -72,7 +85,7 @@ export class EnumTypeEditor extends LitElement {
       const values = <Select>inputs.find(i => i.label === 'values');
       const element = values.selected
         ? <Element>(
-            tpl
+            templates
               .querySelector(`EnumType[id="${values.selected.value}"]`)!
               .cloneNode(true)
           )
@@ -91,19 +104,6 @@ export class EnumTypeEditor extends LitElement {
 
       return [action];
     };
-  }
-
-  render(): TemplateResult {
-    return html`<mwc-list-item
-      @click=${() => this.openEditWizard()}
-      graphic="icon"
-      hasMeta
-      tabindex="0"
-    >
-      <span>${this.eID}</span>
-      <mwc-icon slot="meta">edit</mwc-icon>
-      <span slot="graphic">${this.size}</span>
-    </mwc-list-item>`;
   }
 
   static wizard(options: WizardOptions): Wizard {
