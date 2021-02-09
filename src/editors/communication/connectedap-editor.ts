@@ -289,7 +289,7 @@ export class ConnectedAPEditor extends LitElement {
           new: {
             parent,
             element: newAddress,
-            reference: parent.firstElementChild?.nextElementSibling ?? null,
+            reference: oldAddress.nextElementSibling,
           },
         });
       } else if (oldAddress === null)
