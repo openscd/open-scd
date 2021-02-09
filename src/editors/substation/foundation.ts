@@ -48,26 +48,6 @@ export function updateNamingAction(element: Element): WizardAction {
   };
 }
 
-export function updateIDNamingAction(element: Element): WizardAction {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const id = getValue(inputs.find(i => i.label === 'id')!)!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-    if (
-      id === element.getAttribute('id') &&
-      desc === element.getAttribute('desc')
-    )
-      return [];
-
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('id', id);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-
-    return [{ old: { element }, new: { element: newElement } }];
-  };
-}
-
 export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
   const element: Element = editor.element;
   const parent: Element = element.parentElement!;
