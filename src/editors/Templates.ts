@@ -7,7 +7,7 @@ import { styles } from './templates/foundation.js';
 import './templates/enum-type-editor.js';
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
 
-const templates = fetch('public/default/templates.scd')
+const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
