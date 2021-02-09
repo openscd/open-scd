@@ -1,7 +1,10 @@
 import { WizardInput, isCreate, isUpdate } from '../../../../src/foundation.js';
 import { fixture, html, expect } from '@open-wc/testing';
+
+import '../../../../src/wizard-textfield.js';
 import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
 import { updateNamingAction } from '../../../../src/editors/substation/foundation.js';
+
 describe('BayEditor', () => {
   const noOp = () => {
     return;
