@@ -88,7 +88,7 @@ export class EnumValEditor extends LitElement {
       // TODO(c-dinkel): Find out what IEC61850 calls EnumVal's textContent.
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const ord =
-        getValue(inputs.find(i => i.label === 'ord')!) ?? nextOrd(parent);
+        getValue(inputs.find(i => i.label === 'ord')!) || nextOrd(parent);
 
       const element = createElement(parent.ownerDocument, 'EnumVal', {
         ord,
@@ -111,10 +111,11 @@ export class EnumValEditor extends LitElement {
 
   static updateAction(element: Element): WizardAction {
     return (inputs: WizardInput[]): EditorAction[] => {
-      const value = getValue(inputs.find(i => i.label === 'value')!);
+      const value = getValue(inputs.find(i => i.label === 'value')!) ?? '';
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const ord =
-        getValue(inputs.find(i => i.label === 'ord')!) ??
+        getValue(inputs.find(i => i.label === 'ord')!) ||
+        element.getAttribute('ord') ||
         nextOrd(element.parentElement!);
 
       if (
