@@ -2,7 +2,12 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/wizard-textfield.js';
 import { EnumTypeEditor } from '../../../../src/editors/templates/enum-type-editor.js';
-import { isCreate, isUpdate, WizardInput } from '../../../../src/foundation.js';
+import {
+  Create,
+  isCreate,
+  isUpdate,
+  WizardInput,
+} from '../../../../src/foundation.js';
 
 import { templates } from '../../../data.js';
 import { updateIDNamingAction } from '../../../../src/editors/templates/foundation.js';
@@ -34,9 +39,23 @@ describe('EnumTypeEditor', () => {
         'application/xml'
       ).documentElement;
       (<WizardTextField>inputs[0]).maybeValue = 'testID';
+      (<WizardTextField>inputs[1]).maybeValue = 'testDesc';
       inputs.push(
-        await fixture(html`<mwc-select label="values"></mwc-select>`)
+        await fixture(
+          html`<mwc-select label="values"
+            ><mwc-list-item selected value="BehaviourModeKind"
+              >BehaviourModeKind</mwc-list-item
+            ></mwc-select
+          >`
+        )
       );
+    });
+
+    it('generates no EditorActions given an empty id', () => {
+      inputs[0].value = '';
+      expect(
+        EnumTypeEditor.createAction(parent, templates)(inputs, parent)
+      ).to.have.lengthOf(0);
     });
 
     it('returns a WizardAction generating a single EditorAction', () =>
@@ -48,6 +67,27 @@ describe('EnumTypeEditor', () => {
       expect(
         EnumTypeEditor.createAction(parent, templates)(inputs, parent)[0]
       ).to.satisfy(isCreate));
+
+    it('sets the chosen id and desc on the new element', () => {
+      const create = <Create>(
+        EnumTypeEditor.createAction(parent, templates)(inputs, parent)[0]
+      );
+      expect(create)
+        .property('new')
+        .property('element')
+        .to.have.attribute('id', 'testID');
+      expect(create)
+        .property('new')
+        .property('element')
+        .to.have.attribute('desc', 'testDesc');
+    });
+
+    it('appends EnumVal children from the chosen template', () =>
+      expect(EnumTypeEditor.createAction(parent, templates)(inputs, parent)[0])
+        .property('new')
+        .property('element')
+        .property('children')
+        .to.have.lengthOf(5));
   });
 
   describe('updateIDNamingAction', () => {

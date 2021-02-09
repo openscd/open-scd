@@ -79,10 +79,12 @@ export class EnumTypeEditor extends LitElement {
     return (inputs: WizardInput[]): EditorAction[] => {
       const id = getValue(inputs.find(i => i.label === 'id')!);
 
-      if (id === null) return [];
+      if (!id) return [];
 
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const values = <Select>inputs.find(i => i.label === 'values');
+      console.warn(templates.querySelector(`EnumType`));
+      console.warn(values.selected);
       const element = values.selected
         ? <Element>(
             templates
@@ -151,7 +153,7 @@ export class EnumTypeEditor extends LitElement {
                     html`<mwc-list-item
                       graphic="icon"
                       hasMeta
-                      .value=${e.getAttribute('id')}
+                      value="${e.getAttribute('id') ?? ''}"
                       ><span>${e.getAttribute('id')}</span>
                       <span slot="meta"
                         >${e.querySelectorAll('EnumVal').length}</span
