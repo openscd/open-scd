@@ -1,5 +1,4 @@
 import {
-  css,
   customElement,
   html,
   LitElement,
@@ -15,7 +14,6 @@ import '@material/mwc-icon-button';
 import '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 
-import './enum-val-editor.js';
 import {
   EditorAction,
   getValue,
@@ -25,16 +23,15 @@ import {
   WizardAction,
   WizardInput,
 } from '../../foundation.js';
+
 import {
   isCreateOptions,
   styles,
   updateIDNamingAction,
   WizardOptions,
-} from '../substation/foundation.js';
+} from './foundation.js';
+import './enum-val-editor.js';
 import { EnumValEditor } from './enum-val-editor.js';
-export const templates = fetch('public/default/templates.scd')
-  .then(response => response.text())
-  .then(str => new DOMParser().parseFromString(str, 'text/xml'));
 
 /** [[`Templates`]] plugin subeditor for editing `EnumType` sections. */
 @customElement('enum-type-editor')
@@ -59,14 +56,13 @@ export class EnumTypeEditor extends LitElement {
   }
 
   /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
-  async openEditWizard(): Promise<void> {
+  openEditWizard(): void {
     this.dispatchEvent(
-      newWizardEvent(await EnumTypeEditor.wizard({ element: this.element }))
+      newWizardEvent(EnumTypeEditor.wizard({ element: this.element }))
     );
   }
 
-  static async createAction(parent: Element): Promise<WizardAction> {
-    const tpl = await templates;
+  static createAction(parent: Element, tpl: XMLDocument): WizardAction {
     return (inputs: WizardInput[]): EditorAction[] => {
       const id = getValue(inputs.find(i => i.label === 'id')!);
 
@@ -110,8 +106,7 @@ export class EnumTypeEditor extends LitElement {
     </mwc-list-item>`;
   }
 
-  static async wizard(options: WizardOptions): Promise<Wizard> {
-    const tpl = await templates;
+  static wizard(options: WizardOptions): Wizard {
     const [heading, actionName, actionIcon, action, id, desc] = isCreateOptions(
       options
     )
@@ -119,7 +114,7 @@ export class EnumTypeEditor extends LitElement {
           get('enum.wizard.title.add'),
           get('add'),
           'add',
-          await EnumTypeEditor.createAction(options.parent),
+          EnumTypeEditor.createAction(options.parent, options.templates),
           '',
           null,
         ]
@@ -149,7 +144,9 @@ export class EnumTypeEditor extends LitElement {
                 label="values"
                 helper="Default enumerations"
               >
-                ${Array.from(tpl.querySelectorAll('EnumType')).map(
+                ${Array.from(
+                  options.templates.querySelectorAll('EnumType')
+                ).map(
                   e =>
                     html`<mwc-list-item
                       graphic="icon"
@@ -227,15 +224,5 @@ export class EnumTypeEditor extends LitElement {
     ];
   }
 
-  static styles = css`
-    ${styles}
-
-    section {
-      overflow: auto;
-    }
-
-    :host {
-      width: 100vw;
-    }
-  `;
+  static styles = styles;
 }

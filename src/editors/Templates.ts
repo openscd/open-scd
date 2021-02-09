@@ -3,9 +3,13 @@ import { translate, get } from 'lit-translate';
 
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 
+import { styles } from './templates/foundation.js';
 import './templates/enum-type-editor.js';
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
-import { styles } from './substation/foundation.js';
+
+const templates = fetch('public/default/templates.scd')
+  .then(response => response.text())
+  .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
 export default class TemplatesPlugin extends LitElement {
@@ -28,8 +32,9 @@ export default class TemplatesPlugin extends LitElement {
 
     this.dispatchEvent(
       newWizardEvent(
-        await EnumTypeEditor.wizard({
+        EnumTypeEditor.wizard({
           parent: this.doc.querySelector(':root > DataTypeTemplates')!,
+          templates: await templates,
         })
       )
     );
@@ -66,7 +71,8 @@ export default class TemplatesPlugin extends LitElement {
             this.doc.querySelectorAll(':root > DataTypeTemplates > EnumType') ??
               []
           ).map(
-            enumType => html`<enum-type-editor .element=${enumType}></enum-type-editor>`
+            enumType =>
+              html`<enum-type-editor .element=${enumType}></enum-type-editor>`
           )}
         </mwc-list>
       </section>

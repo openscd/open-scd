@@ -22,7 +22,6 @@ describe('enum-type-editor', () => {
   it('has a size property', () => expect(element).to.have.property('size', 5));
 
   it('looks like the latest snapshot', () => {
-    console.log('sth');
     expect(element).shadowDom.to.equalSnapshot();
   });
 });
