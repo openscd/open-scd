@@ -48,14 +48,6 @@ describe('VoltageLevelEditor', () => {
     });
 
     describe('has an updateAction that', () => {
-      let element: Element;
-      beforeEach(() => {
-        element = new DOMParser().parseFromString(
-          '<VoltageLevel></VoltageLevel>',
-          'application/xml'
-        ).documentElement;
-      });
-
       describe('with missing child element Voltage', () => {
         let element: Element;
         beforeEach(() => {
