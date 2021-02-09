@@ -83,8 +83,6 @@ export class EnumTypeEditor extends LitElement {
 
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const values = <Select>inputs.find(i => i.label === 'values');
-      console.warn(templates.querySelector(`EnumType`));
-      console.warn(values.selected);
       const element = values.selected
         ? <Element>(
             templates
