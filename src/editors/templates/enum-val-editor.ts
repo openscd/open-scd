@@ -198,6 +198,7 @@ export class EnumValEditor extends LitElement {
             helper="${translate('scl.ord')}"
             .maybeValue=${ord}
             required
+            type="number"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="value"

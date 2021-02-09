@@ -14,6 +14,7 @@ describe('enum-type-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     const doc = getDocument();
     let parent: WizardingElement & EditingElement;
+    let editor: EnumTypeEditor;
 
     beforeEach(async () => {
       parent = <WizardingElement & EditingElement>(
@@ -25,9 +26,9 @@ describe('enum-type-editor wizarding editing integration', () => {
           ></mock-wizard-editor>`
         )
       );
-      await (<EnumTypeEditor | undefined>(
-        parent?.querySelector('enum-type-editor')
-      ))?.openEditWizard();
+      editor = <EnumTypeEditor>parent.querySelector('enum-type-editor');
+
+      editor.shadowRoot!.querySelector('mwc-list-item')?.click();
       await parent.updateComplete;
     });
 
