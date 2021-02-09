@@ -1,11 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/templates/enum-type-editor.js';
-import { EnumEditor } from '../../../../src/editors/templates/enum-type-editor.js';
+import { EnumTypeEditor } from '../../../../src/editors/templates/enum-type-editor.js';
 import { getDocument } from '../../../data.js';
 
 describe('enum-type-editor', () => {
-  let element: EnumEditor;
+  let element: EnumTypeEditor;
   const validSCL = getDocument();
   beforeEach(async () => {
     element = await fixture(html`<enum-type-editor

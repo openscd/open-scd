@@ -4,7 +4,7 @@ import { translate, get } from 'lit-translate';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 
 import './templates/enum-type-editor.js';
-import { EnumEditor } from './templates/enum-type-editor.js';
+import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { styles } from './substation/foundation.js';
 
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
@@ -28,7 +28,7 @@ export default class TemplatesPlugin extends LitElement {
 
     this.dispatchEvent(
       newWizardEvent(
-        await EnumEditor.wizard({
+        await EnumTypeEditor.wizard({
           parent: this.doc.querySelector(':root > DataTypeTemplates')!,
         })
       )

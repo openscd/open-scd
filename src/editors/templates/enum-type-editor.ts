@@ -38,7 +38,7 @@ export const templates = fetch('public/default/templates.scd')
 
 /** [[`Templates`]] plugin subeditor for editing `EnumType` sections. */
 @customElement('enum-type-editor')
-export class EnumEditor extends LitElement {
+export class EnumTypeEditor extends LitElement {
   @property()
   element!: Element;
 
@@ -61,7 +61,7 @@ export class EnumEditor extends LitElement {
   /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
   async openEditWizard(): Promise<void> {
     this.dispatchEvent(
-      newWizardEvent(await EnumEditor.wizard({ element: this.element }))
+      newWizardEvent(await EnumTypeEditor.wizard({ element: this.element }))
     );
   }
 
@@ -119,7 +119,7 @@ export class EnumEditor extends LitElement {
           get('enum.wizard.title.add'),
           get('add'),
           'add',
-          await EnumEditor.createAction(options.parent),
+          await EnumTypeEditor.createAction(options.parent),
           '',
           null,
         ]

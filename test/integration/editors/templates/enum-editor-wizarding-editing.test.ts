@@ -7,7 +7,7 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 import { getDocument } from '../../../data.js';
 
 import '../../../../src/editors/templates/enum-type-editor.js';
-import { EnumEditor } from '../../../../src/editors/templates/enum-type-editor.js';
+import { EnumTypeEditor } from '../../../../src/editors/templates/enum-type-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('enum-type-editor wizarding editing integration', () => {
@@ -25,7 +25,7 @@ describe('enum-type-editor wizarding editing integration', () => {
           ></mock-wizard-editor>`
         )
       );
-      await (<EnumEditor | undefined>(
+      await (<EnumTypeEditor | undefined>(
         parent?.querySelector('enum-type-editor')
       ))?.openEditWizard();
       await parent.updateComplete;

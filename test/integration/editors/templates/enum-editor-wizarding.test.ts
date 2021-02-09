@@ -3,7 +3,7 @@ import fc from 'fast-check';
 
 import '../../../mock-wizard.js';
 import '../../../../src/editors/templates/enum-type-editor.js';
-import { EnumEditor } from '../../../../src/editors/templates/enum-type-editor.js';
+import { EnumTypeEditor } from '../../../../src/editors/templates/enum-type-editor.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
 import { getDocument } from '../../../data.js';
@@ -22,7 +22,7 @@ describe('enum-type-editor wizard', () => {
       )
     );
 
-    await (<EnumEditor | undefined>(
+    await (<EnumTypeEditor | undefined>(
       parent?.querySelector('enum-type-editor')
     ))?.openEditWizard();
     await parent.updateComplete;
