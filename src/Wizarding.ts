@@ -40,6 +40,9 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
       super(...args);
 
       this.addEventListener('wizard', this.onWizard);
+      this.addEventListener('editor-action', () =>
+        this.wizardUI.requestUpdate()
+      );
     }
 
     render(): TemplateResult {
