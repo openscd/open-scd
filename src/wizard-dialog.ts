@@ -106,7 +106,10 @@ export class WizardDialog extends LitElement {
   }
 
   updated(changedProperties: Map<string | number | symbol, unknown>): void {
-    if (changedProperties.has('wizard')) this.dialog?.show();
+    if (changedProperties.has('wizard')) {
+      this.dialog?.show();
+      this.pageIndex = 0; // FIXME(c-dinkel): add `reset` method
+    }
   }
 
   renderPage(page: WizardPage, index: number): TemplateResult {
