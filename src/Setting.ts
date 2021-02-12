@@ -116,7 +116,12 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           >
             ${translate('reset')}
           </mwc-button>
-          <mwc-button slot="primaryAction" dialogAction="save">
+          <mwc-button
+            icon="save"
+            trailingIcon
+            slot="primaryAction"
+            dialogAction="save"
+          >
             ${translate('save')}
           </mwc-button>
         </mwc-dialog>`;
