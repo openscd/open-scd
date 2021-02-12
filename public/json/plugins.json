@@ -3,15 +3,15 @@
   {"src": "//openscd.github.io/src/editors/Substation.js",
   "icon": "coronavirus",
   "default": true,
-  "type": "editor"},
+  "kind": "editor"},
 "Communication":
   {"src": "//openscd.github.io/src/editors/Communication.js",
   "icon": "social_distance",
   "default": true,
-  "type": "editor"},
+  "kind": "editor"},
 "Vendor ACME-1B":
   {"src": "//vendor.de/geraet/acme-1b.plugin.js",
   "icon": "surfing",
   "default": false,
-  "type": "export"}
+  "kind": "export"}
 }
