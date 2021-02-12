@@ -134,6 +134,36 @@ export const en = {
       nouniqueied: 'IED element {{ name }} already in the file',
     },
   },
+  communication: {
+    name: 'Network Configuration',
+    missing: 'No subnetwork',
+  },
+  subnetwork: {
+    name: 'Subnetwork',
+    wizard: {
+      nameHelper: 'Subnetwork name',
+      descHelper: 'Subnetwork description',
+      typeHelper: 'Network type (e.g. 8-MMS)',
+      bitrateHelper: 'Bit rate',
+      title: {
+        add: 'Add subnetwork',
+        edit: 'Edit subnetwork',
+      },
+    },
+  },
+  connectedap: {
+    name: 'Connected access point',
+    wizard: {
+      addschemainsttype: 'Add XMLSchema-instance type',
+      title: {
+        connect: 'Connect access point',
+        edit: 'Edit access point',
+      },
+    },
+    action: {
+      addaddress: 'Edit Address ({{iedName}} - {{apName}})',
+    },
+  },
   add: 'Add',
   remove: 'Remove',
   edit: 'Edit',

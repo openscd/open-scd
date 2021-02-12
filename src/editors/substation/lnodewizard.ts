@@ -36,14 +36,14 @@ interface LNValue extends LDValue {
 }
 
 /** Description of a `ListItem` representing an `IED`, `LDevice`, or `LN[0]` */
-interface itemDescription {
+interface ItemDescription {
   value: LNValue | LDValue | string;
   selected: boolean;
   disabled?: boolean;
 }
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
-function compareDescription(a: itemDescription, b: itemDescription): number {
+function compareDescription(a: ItemDescription, b: ItemDescription): number {
   if (a.selected !== b.selected) return a.selected ? -1 : 1;
   if (a.disabled !== b.disabled) return b.disabled ? -1 : 1;
   return 0;

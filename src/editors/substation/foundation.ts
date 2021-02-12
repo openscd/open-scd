@@ -250,10 +250,4 @@ export const styles = css`
   h3 > abbr > mwc-icon-button {
     float: right;
   }
-
-  abbr[title] {
-    border-bottom: none !important;
-    cursor: inherit !important;
-    text-decoration: none !important;
-  }
 `;

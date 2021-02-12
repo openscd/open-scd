@@ -1,13 +1,13 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../mock-wizard-editor.js';
-import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
-import { EditingElement } from '../../../src/Editing.js';
-import { WizardingElement } from '../../../src/Wizarding.js';
+import '../../../mock-wizard-editor.js';
+import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
+import { EditingElement } from '../../../../src/Editing.js';
+import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../data.js';
+import { getDocument } from '../../../data.js';
 
-import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { Select } from '@material/mwc-select';
 

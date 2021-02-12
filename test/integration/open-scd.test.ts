@@ -187,19 +187,19 @@ describe('open-scd', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
-      ).to.equal(24);
+      ).to.equal(25);
     });
     it('loads unique datypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DAType')
           .length
-      ).to.equal(10);
+      ).to.equal(11);
     });
     it('loads unique enumtypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  EnumType')
           .length
-      ).to.equal(10);
+      ).to.equal(11);
     });
     it('create DataTypeTemplate before adding IED', async () => {
       const validBlobURL = URL.createObjectURL(

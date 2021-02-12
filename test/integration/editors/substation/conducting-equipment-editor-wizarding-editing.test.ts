@@ -1,11 +1,11 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../mock-wizard-editor.js';
-import { ConductingEquipmentEditor } from '../../../src/editors/substation/conducting-equipment-editor.js';
-import { EditingElement } from '../../../src/Editing.js';
-import { WizardingElement } from '../../../src/Wizarding.js';
+import '../../../mock-wizard-editor.js';
+import { ConductingEquipmentEditor } from '../../../../src/editors/substation/conducting-equipment-editor.js';
+import { EditingElement } from '../../../../src/Editing.js';
+import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../data.js';
+import { getDocument } from '../../../data.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 

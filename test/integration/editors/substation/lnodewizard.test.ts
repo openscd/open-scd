@@ -1,16 +1,16 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { isCreate, WizardInput, isDelete } from '../../../src/foundation.js';
+import { isCreate, WizardInput, isDelete } from '../../../../src/foundation.js';
 import {
   lNodeWizardAction,
   editlNode,
-} from '../../../src/editors/substation/lnodewizard.js';
+} from '../../../../src/editors/substation/lnodewizard.js';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
-import '../../mock-wizard.js';
+import '../../../mock-wizard.js';
 import { List } from '@material/mwc-list';
-import { getDocument } from '../../data.js';
-import { MockWizard } from '../../mock-wizard.js';
+import { getDocument } from '../../../data.js';
+import { MockWizard } from '../../../mock-wizard.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('lnodewizard', () => {
@@ -64,7 +64,9 @@ describe('lnodewizard', () => {
             ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item').length
         ).to.equal(
-          validSCL.querySelectorAll('IED[name="IED2"] LDevice').length
+          validSCL.querySelectorAll(
+            'IED[name="IED2"] > AccessPoint > Server > LDevice'
+          ).length
         );
         (<ListItemBase>(
           element.wizardUI
@@ -76,7 +78,11 @@ describe('lnodewizard', () => {
           element.wizardUI.shadowRoot
             ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item').length
-        ).to.equal(validSCL.querySelectorAll('LDevice').length);
+        ).to.equal(
+          validSCL.querySelectorAll(
+            'IED[name="IED1"] > AccessPoint > Server > LDevice,IED[name="IED2"] > AccessPoint > Server > LDevice'
+          ).length
+        );
       });
 
       it('delete logical devices on de-selecting IEDs on the first page', async () => {

@@ -1,13 +1,13 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../mock-wizard-editor.js';
-import { EditingElement } from '../../../src/Editing.js';
-import { WizardingElement } from '../../../src/Wizarding.js';
-import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
+import '../../../mock-wizard-editor.js';
+import { EditingElement } from '../../../../src/Editing.js';
+import { WizardingElement } from '../../../../src/Wizarding.js';
+import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
 
-import { getDocument } from '../../data.js';
+import { getDocument } from '../../../data.js';
 
-import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('voltage-level-editor wizarding editing integration', () => {
