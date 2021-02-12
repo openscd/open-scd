@@ -17,7 +17,12 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
         --mdc-theme-on-secondary: var(--base2);
         --mdc-theme-on-background: var(--base00);
         --mdc-theme-on-surface: var(--base00);
+        --mdc-theme-text-primary-on-background: var(--base01);
+        --mdc-theme-text-secondary-on-background: var(--base00);
+        --mdc-theme-text-icon-on-background: var(--base00);
         --mdc-theme-error: var(--red);
+
+        --mdc-button-disabled-ink-color: var(--base1);
 
         --mdc-drawer-heading-ink-color: var(--base00);
 
@@ -36,6 +41,10 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
         --mdc-circular-progress-bar-color-2: var(--mdc-theme-on-background);
         --mdc-circular-progress-bar-color-3: var(--mdc-theme-secondary);
         --mdc-circular-progress-bar-color-4: var(--mdc-theme-on-background);
+      }
+
+      .mdc-drawer span.mdc-drawer__title {
+        color: var(--mdc-theme-text-primary-on-background) !important;
       }
 
       abbr {
