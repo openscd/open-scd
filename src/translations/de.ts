@@ -174,6 +174,36 @@ export const de: Translations = {
       message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
     },
   },
+  communication: {
+    name: 'Netzwerkkonfiguration',
+    missing: 'Kein Subnetzwerk',
+  },
+  subnetwork: {
+    name: 'Subnetzwerk',
+    wizard: {
+      nameHelper: 'Name des Subnetzwerkes',
+      descHelper: 'Beschreibung des Subnetzwerkes',
+      typeHelper: 'Netzwerktyp (Bsp. 8-MMS)',
+      bitrateHelper: 'Übertragungsrate',
+      title: {
+        add: 'Subnetzwerk hinzufügen',
+        edit: 'Subnetzwerk bearbeiten',
+      },
+    },
+  },
+  connectedap: {
+    name: 'Schnittstelle',
+    wizard: {
+      addschemainsttype: 'XMLSchema-instance type hinzufügen',
+      title: {
+        connect: 'Schnittstelle verbinden',
+        edit: 'Schnittstelle bearbeiten',
+      },
+    },
+    action: {
+      addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
+    },
+  },
   add: 'Hinzufügen',
   remove: 'Entfernen',
   edit: 'Bearbeiten',
