@@ -201,13 +201,6 @@ export const en = {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',
     },
   },
-  transform: {
-    subscriber: {
-      description: 'Subscriber update: ',
-      nonewitems: 'no new IEDName elements to add',
-      message: '{{updatenumber}} IEDName elements added to the project',
-    },
-  },
   add: 'Add',
   remove: 'Remove',
   edit: 'Edit',
