@@ -356,7 +356,7 @@ export class OpenSCD extends Setting(
     },
     {
       icon: 'extension',
-      name: 'Update subscriber info',
+      name: get('menu.subscriberinfo'),
       startsGroup: true,
       action: (): void => this.updateSubscriberInfo(),
       disabled: (): boolean => this.doc === null,

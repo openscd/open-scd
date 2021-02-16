@@ -11,6 +11,7 @@ export const en = {
     new: 'New project',
     importIED: 'Import IED',
     save: 'Save project',
+    subscriberinfo: 'Update subscriber info',
     validate: 'Validate project',
     viewLog: 'View log',
   },

@@ -13,6 +13,7 @@ export const de: Translations = {
     new: 'Neues Projekt',
     importIED: 'IED importieren',
     save: 'Projekt speichern',
+    subscriberinfo: 'Empfänger aktualisieren',
     validate: 'Projekt validieren',
     viewLog: 'Protokoll anzeigen',
   },
