@@ -33,7 +33,7 @@ function addIEDName(extRef: Element, gseControl: Element): Element | null {
 
   const iedName: Element = createElement(gseControl.ownerDocument, 'IEDName', {
     apRef: accessPoint.getAttribute('name'),
-    lnInst: lDevice.getAttribute('inst'),
+    ldInst: lDevice.getAttribute('inst'),
     lnClass: ln.getAttribute('lnClass'),
   });
 
@@ -78,7 +78,6 @@ function getDestination(data: Element, doc: Document): Element[] {
 export function createMissingIEDNameSubscriberInfo(
   doc: Document
 ): SimpleAction[] {
-  // Get all extRef variables
   const gseControlList = Array.from(
     doc.querySelectorAll(
       ':root > IED > AccessPoint > Server > LDevice > LN0 > GSEControl'
@@ -86,13 +85,11 @@ export function createMissingIEDNameSubscriberInfo(
   );
 
   const simpleAction: SimpleAction[] = [];
-
   gseControlList.forEach(gseControl => {
     if (!gseControl.getAttribute('datSet') || !gseControl.parentElement)
       return simpleAction;
 
     const ln0: Element = gseControl.parentElement;
-
     const dataList: Element[] = Array.from(
       ln0.querySelectorAll(
         `:root >  IED > AccessPoint > Server > LDevice > LN0 > DataSet[name="${gseControl.getAttribute(
