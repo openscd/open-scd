@@ -251,7 +251,7 @@ describe('open-scd', () => {
         'No IED element in the file'
       );
     });
-    it('throws doblicate ied name error', async () => {
+    it('throws dublicate ied name error', async () => {
       const testIID = URL.createObjectURL(
         new Blob([dublicateIEDName], {
           type: 'application/xml',
