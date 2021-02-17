@@ -21,7 +21,6 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { TextField } from '@material/mwc-textfield';
 
 import {
-  CloseableElement,
   EditorAction,
   newWizardEvent,
   Wizard,
@@ -149,10 +148,7 @@ export class ConnectedAPEditor extends LitElement {
   }
 
   static createAction(parent: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const apValue = (<ListItemBase[]>(
         (<List>wizard.shadowRoot!.querySelector('#apList')).selected
       )).map(item => <apAttributes>JSON.parse(item.value));
@@ -171,7 +167,6 @@ export class ConnectedAPEditor extends LitElement {
           }
       );
 
-      wizard.close();
       return actions;
     };
   }
@@ -258,10 +253,7 @@ export class ConnectedAPEditor extends LitElement {
   }
 
   static editAction(parent: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const instType: boolean =
         (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
         false;
@@ -303,7 +295,6 @@ export class ConnectedAPEditor extends LitElement {
           },
         });
 
-      if (complexAction.actions.length) wizard.close();
       return [complexAction];
     };
   }
