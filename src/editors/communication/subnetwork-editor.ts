@@ -9,7 +9,6 @@ import {
 import { translate, get } from 'lit-translate';
 
 import {
-  CloseableElement,
   EditorAction,
   newWizardEvent,
   Wizard,
@@ -201,10 +200,7 @@ export class SubNetworkEditor extends LitElement {
   }
 
   static updateAction(element: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const type = getValue(inputs.find(i => i.label === 'type')!);
@@ -251,7 +247,6 @@ export class SubNetworkEditor extends LitElement {
         );
       }
 
-      if (SubNetworkAction || BitRateAction) wizard.close();
       const actions: EditorAction[] = [];
       if (SubNetworkAction) actions.push(SubNetworkAction);
       if (BitRateAction) actions.push(BitRateAction);
@@ -260,10 +255,7 @@ export class SubNetworkEditor extends LitElement {
   }
 
   static createAction(parent: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const type = getValue(inputs.find(i => i.label === 'type')!);
@@ -295,7 +287,6 @@ export class SubNetworkEditor extends LitElement {
         },
       };
 
-      wizard.close();
       return [action];
     };
   }
