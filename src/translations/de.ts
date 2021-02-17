@@ -28,6 +28,7 @@ export const de: Translations = {
     deleted: '{{ name }} entfernt',
     moved: '{{ name }} verschoben',
     updated: '{{ name }} bearbeitet',
+    import: '{{name}} importiert',
     error: {
       create: 'Konnte {{ name }} nicht hinzufügen',
       update: 'Konnte {{ name }} nicht bearbeiten',
@@ -131,6 +132,7 @@ export const de: Translations = {
   },
   import: {
     log: {
+      successful: 'IED {{name}} geladen',
       parsererror: 'Parser Fehler',
       loaderror: 'Datei kann nicht geladen werden',
       importerror: 'IED Element kann nicht importiert werden',
@@ -173,36 +175,6 @@ export const de: Translations = {
       description: 'GOOSE Ziele aktualisieren: ',
       nonewitems: 'keine neuen IEDName Elemente notwendig',
       message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
-    },
-  },
-  communication: {
-    name: 'Netzwerkkonfiguration',
-    missing: 'Kein Subnetzwerk',
-  },
-  subnetwork: {
-    name: 'Subnetzwerk',
-    wizard: {
-      nameHelper: 'Name des Subnetzwerkes',
-      descHelper: 'Beschreibung des Subnetzwerkes',
-      typeHelper: 'Netzwerktyp (Bsp. 8-MMS)',
-      bitrateHelper: 'Übertragungsrate',
-      title: {
-        add: 'Subnetzwerk hinzufügen',
-        edit: 'Subnetzwerk bearbeiten',
-      },
-    },
-  },
-  connectedap: {
-    name: 'Schnittstelle',
-    wizard: {
-      addschemainsttype: 'XMLSchema-instance type hinzufügen',
-      title: {
-        connect: 'Schnittstelle verbinden',
-        edit: 'Schnittstelle bearbeiten',
-      },
-    },
-    action: {
-      addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
     },
   },
   add: 'Hinzufügen',
