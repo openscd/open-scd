@@ -41,7 +41,7 @@ describe('connectedap-editor wizarding editing integration', () => {
         )
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      expect(parent.wizardUI).to.not.exist;
+      expect(parent.wizardUI).to.have.property('dialog', undefined);
     });
     describe('edit attributes within SubNetwork', () => {
       it('does not change Address if no changes have been made', async () => {

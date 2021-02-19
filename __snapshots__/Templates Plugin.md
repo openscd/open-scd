@@ -43,6 +43,8 @@
     </enum-type-editor>
     <enum-type-editor>
     </enum-type-editor>
+    <enum-type-editor>
+    </enum-type-editor>
   </mwc-list>
 </section>
 <wizard-dialog>
