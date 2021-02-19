@@ -187,7 +187,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
     if (ied.querySelectorAll(':root > IED > AccessPoint > LN').length) {
       values.push({
         iedName: ied.getAttribute('name')!,
-        ldInst: APldInst,
+        ldInst: '',
         /* ORDER IS IMPORTANT HERE, since we stringify to compare! */
       });
     }
@@ -214,7 +214,7 @@ function onIEDSelect(evt: MultiSelectedEvent, element: Element): void {
         value="${JSON.stringify(item.value)}"
         twoline
         ?selected="${item.selected}"
-        ><span>${item.value.ldInst}</span
+        ><span>${item.value.ldInst ? item.value.ldInst : APldInst}</span
         ><span slot="secondary"
           >${item.value.iedName}</span
         ></mwc-check-list-item
@@ -238,7 +238,7 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
 
   const lnValues = ldValues.flatMap(ldValue => {
     const selector =
-      ldValue.ldInst === APldInst
+      ldValue.ldInst === ''
         ? `:root > IED[name="${ldValue.iedName}"] > AccessPoint > LN`
         : `:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN` +
           `,:root > IED[name="${ldValue.iedName}"] > AccessPoint > Server > LDevice[inst="${ldValue.ldInst}"] > LN0`;
@@ -285,7 +285,8 @@ function onLDSelect(evt: MultiSelectedEvent, element: Element): void {
               ${referencePath(item.lNode!)}`
           : ''}</span
       ><span slot="secondary"
-        >${item.value.iedName} | ${item.value.ldInst}</span
+        >${item.value.iedName} |
+        ${item.value.ldInst ? item.value.ldInst : APldInst}</span
       ></mwc-check-list-item
     >`;
   });
