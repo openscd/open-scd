@@ -1,6 +1,6 @@
 {
   "name": "open-scd",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": "https://github.com/openscd/open-scd.git",
   "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
   "keywords": [
@@ -138,16 +138,40 @@
       "@snowpack/plugin-typescript"
     ]
   },
-  "standard-version":{
+  "standard-version": {
     "types": [
-      {"type": "feat", "section": "Features"},
-      {"type": "fix", "section": "Bug Fixes"},
-      {"type": "chore", "hidden": true},
-      {"type": "docs", "hidden": true},
-      {"type": "style", "hidden": true},
-      {"type": "refactor", "hidden": true},
-      {"type": "perf", "hidden": true},
-      {"type": "test", "hidden": true}
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "chore",
+        "hidden": true
+      },
+      {
+        "type": "docs",
+        "hidden": true
+      },
+      {
+        "type": "style",
+        "hidden": true
+      },
+      {
+        "type": "refactor",
+        "hidden": true
+      },
+      {
+        "type": "perf",
+        "hidden": true
+      },
+      {
+        "type": "test",
+        "hidden": true
+      }
     ],
     "commitUrlFormat": "https://github.com/openscd/open-scd/commits/{{hash}}"
   }
