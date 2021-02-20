@@ -19,6 +19,7 @@ import {
   getValue,
   newActionEvent,
   newWizardEvent,
+  restrictions,
   Wizard,
   WizardAction,
   WizardInput,
@@ -182,6 +183,9 @@ export class EnumTypeEditor extends LitElement {
             helper="${translate('scl.id')}"
             .maybeValue=${id}
             required
+            maxlength="127"
+            minlength="1"
+            pattern="${restrictions.nmToken}"
             dialogInitialFocus
           ></wizard-textfield>`,
           html`<wizard-textfield
@@ -189,6 +193,7 @@ export class EnumTypeEditor extends LitElement {
             helper="${translate('scl.desc')}"
             .maybeValue=${desc}
             nullable
+            pattern="${restrictions.normalizedString}"
           ></wizard-textfield>`,
           isCreateOptions(options)
             ? html``

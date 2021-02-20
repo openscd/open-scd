@@ -1,5 +1,5 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
-import { translate, get } from 'lit-translate';
+import { translate } from 'lit-translate';
 
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 
@@ -44,13 +44,24 @@ export default class TemplatesPlugin extends LitElement {
     if (!this.doc?.querySelector(':root > DataTypeTemplates'))
       return html`<h1>
         <span style="color: var(--base1)"
-          >${translate('substation.missing')}</span
+          >${translate('templates.missing')}</span
         >
         <mwc-fab
           extended
           icon="add"
-          label="${get('templates.add')}"
-          @click=${() => alert('yay')}
+          label="${translate('templates.add')}"
+          @click=${() => {
+            if (!this.doc.querySelector(':root > DataTypeTemplates'))
+              this.dispatchEvent(
+                newActionEvent({
+                  new: {
+                    parent: this.doc.documentElement,
+                    element: this.doc.createElement('DataTypeTemplates'),
+                    reference: null,
+                  },
+                })
+              );
+          }}
         ></mwc-fab>
       </h1>`;
     return html`

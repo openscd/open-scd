@@ -118,6 +118,11 @@ export const en = {
     },
     unknownType: 'Unknown type',
   },
+  templates: {
+    name: 'Data Type Templates',
+    missing: 'DataTypeTemplates missing',
+    add: 'Add DataTypeTemplates',
+  },
   'enum-val': {
     wizard: {
       title: {

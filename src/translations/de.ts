@@ -121,6 +121,11 @@ export const de: Translations = {
     },
     unknownType: 'Unbekannter Typ',
   },
+  templates: {
+    name: 'Data Type Templates',
+    missing: 'DataTypeTemplates fehlen',
+    add: 'DataTypeTemplates hinzufügen',
+  },
   'enum-val': {
     wizard: {
       title: {
