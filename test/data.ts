@@ -108,7 +108,18 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<Server>
 				<Authentication none="true" />
 				<LDevice inst="CircuitBreaker_CB1">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<DataSet name="GooseDataSet1">
+                            <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+                            <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+                            <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+                            <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+                        </DataSet>
+						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
+							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI">IED2</IEDName>
+						</GSEControl>
+						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
+					</LN0>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">						
 						<DOI name="Pos">
 							<DAI name="ctlModel">
@@ -147,7 +158,12 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 							</DAI>
 						</DOI>
 					</LN>
-					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI"/>
+					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
+						<Inputs>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q"/>
+						</Inputs>
+					</LN>
 					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
 					<LN lnClass="XSWI" inst="3" lnType="Dummy.XSWI1">
 						<DOI name="Pos">
@@ -199,7 +215,14 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<Server>
 				<Authentication />
 				<LDevice inst="CBSW">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<DataSet name="GooseDataSet1">
+							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
+							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST"/>
+						</DataSet>
+						<GSEControl type="GOOSE" appID="0002" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
+						</GSEControl>
+					</LN0>
 					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
@@ -214,6 +237,10 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 								<Val>status-only</Val>
 							</DAI>
 						</DOI>
+						<Inputs>
+							<ExtRef iedName="IED1" ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal"/>
+							<ExtRef iedName="IED1" ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q"/>
+						</Inputs>
 					</LN>
 					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
 						<DOI name="Pos">
@@ -246,6 +273,10 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 								<Val>direct-with-enhanced-security</Val>
 							</DAI>
 						</DOI>
+						<Inputs>
+							<ExtRef iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal"/>
+							<ExtRef iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q"/>
+						</Inputs>
 					</LN>
 				</LDevice>
 			</Server>

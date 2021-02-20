@@ -13,6 +13,7 @@ export const de: Translations = {
     new: 'Neues Projekt',
     importIED: 'IED importieren',
     save: 'Projekt speichern',
+    subscriberinfo: 'Empfänger aktualisieren',
     validate: 'Projekt validieren',
     viewLog: 'Protokoll anzeigen',
   },
@@ -27,6 +28,7 @@ export const de: Translations = {
     deleted: '{{ name }} entfernt',
     moved: '{{ name }} verschoben',
     updated: '{{ name }} bearbeitet',
+    import: '{{name}} importiert',
     error: {
       create: 'Konnte {{ name }} nicht hinzufügen',
       update: 'Konnte {{ name }} nicht bearbeiten',
@@ -130,6 +132,7 @@ export const de: Translations = {
   },
   import: {
     log: {
+      successful: 'IED {{name}} geladen',
       parsererror: 'Parser Fehler',
       loaderror: 'Datei kann nicht geladen werden',
       importerror: 'IED Element kann nicht importiert werden',
@@ -165,6 +168,13 @@ export const de: Translations = {
     },
     action: {
       addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
+    },
+  },
+  transform: {
+    subscriber: {
+      description: 'GOOSE Ziele aktualisieren: ',
+      nonewitems: 'keine neuen IEDName Elemente notwendig',
+      message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
     },
   },
   add: 'Hinzufügen',

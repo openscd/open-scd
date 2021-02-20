@@ -11,6 +11,7 @@ export const en = {
     new: 'New project',
     importIED: 'Import IED',
     save: 'Save project',
+    subscriberinfo: 'Update subscriber info',
     validate: 'Validate project',
     viewLog: 'View log',
   },
@@ -25,6 +26,7 @@ export const en = {
     deleted: 'Removed {{ name }}',
     moved: 'Moved {{ name }}',
     updated: 'Edited {{ name }}',
+    import: 'Imported {{name}}',
     error: {
       create: 'Could not add {{ name }}',
       update: 'Could not edit {{ name }}',
@@ -127,6 +129,7 @@ export const en = {
   },
   import: {
     log: {
+      successful: 'IED {{name}} loaded',
       parsererror: 'Parser error',
       loaderror: 'Could not load file',
       importerror: 'Could not import IED',
@@ -162,6 +165,13 @@ export const en = {
     },
     action: {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',
+    },
+  },
+  transform: {
+    subscriber: {
+      description: 'Subscriber update: ',
+      nonewitems: 'no new IEDName elements to add',
+      message: '{{updatenumber}} IEDName elements added to the project',
     },
   },
   add: 'Add',

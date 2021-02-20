@@ -169,6 +169,27 @@
     >
     </li>
     <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="extension"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        extension
+      </mwc-icon>
+      <span>
+        Update subscriber info
+      </span>
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
       aria-disabled="false"
       graphic="icon"
       iconid="settings"

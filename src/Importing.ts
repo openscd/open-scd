@@ -196,7 +196,7 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.dispatchEvent(
         newActionEvent({
-          title: 'Import IED ' + ied.getAttribute('name'),
+          title: get('editing.import', { name: ied.getAttribute('name')! }),
           actions: <SimpleAction[]>(
             actions.filter(action => action !== undefined)
           ),
@@ -264,10 +264,9 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         );
       }
 
-      const msg: string =
-        'IED ' +
-        iedDoc.querySelector(':root > IED')?.getAttribute('name') +
-        ' loaded';
+      const msg: string = get('import.log.successful', {
+        name: iedDoc.querySelector(':root > IED')?.getAttribute('name') ?? '',
+      });
 
       const isSuccessful = this.isValidIED(
         iedDoc.querySelector(':root > IED'),
