@@ -9,7 +9,7 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 import { getDocument } from '../../../data.js';
 import { regexString, regExp } from '../../../foundation.js';
 
-describe('enum-type-editor wizard', () => {
+describe('enum-type-editor wizarding integration', () => {
   const doc = getDocument();
   let parent: WizardingElement;
   let editor: EnumTypeEditor;
@@ -64,7 +64,7 @@ describe('enum-type-editor wizard', () => {
 
     it('checks attribute validity', async () => {
       await fc.assert(
-        fc.asyncProperty(regexString(regExp.tName, 1), async name => {
+        fc.asyncProperty(regexString(regExp.token, 1, 127), async name => {
           parent.wizardUI.inputs[0].value = name;
           await parent.updateComplete;
           expect(parent.wizardUI.inputs[0].checkValidity()).to.be.true;

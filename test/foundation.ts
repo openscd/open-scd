@@ -1,16 +1,6 @@
 /* eslint-disable no-control-regex */
 
-import fc, {
-  Arbitrary,
-  array,
-  hexaString,
-  integer,
-  ipV4,
-  nat,
-  oneof,
-  tuple,
-} from 'fast-check';
-import { typePattern } from '../src/editors/communication/p-types.js';
+import fc, { Arbitrary, array, hexaString, integer, tuple } from 'fast-check';
 import { restrictions } from '../src/foundation.js';
 
 export function regexString(
@@ -49,6 +39,7 @@ export const regExp = {
   OSI: /^[0-9A-F]+$/,
   OSIAPi: /^[0-9\u002C]+$/,
   OSIid: /^[0-9]+$/,
+  token: new RegExp('^' + restrictions.nmToken + '$'),
 };
 
 export const inverseRegExp = {
