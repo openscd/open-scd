@@ -11,10 +11,6 @@ import {
   WizardInput,
 } from '../../foundation.js';
 
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-textfield';
-import '@material/mwc-icon';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';

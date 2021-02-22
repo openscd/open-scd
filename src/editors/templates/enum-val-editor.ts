@@ -8,11 +8,6 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
-import '@material/mwc-button';
-import '@material/mwc-icon';
-import '@material/mwc-icon-button';
-import '@material/mwc-list/mwc-list-item';
-
 import {
   createElement,
   EditorAction,
