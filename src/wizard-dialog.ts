@@ -10,8 +10,6 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import '@material/mwc-button';
-import '@material/mwc-dialog';
 import { Dialog } from '@material/mwc-dialog';
 
 import './wizard-textfield.js';

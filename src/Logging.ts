@@ -1,13 +1,6 @@
 import { css, html, property, query, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
-import '@material/mwc-button';
-import '@material/mwc-dialog';
-import '@material/mwc-icon';
-import '@material/mwc-icon-button';
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 

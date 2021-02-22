@@ -1,11 +1,6 @@
 import { html, property, query, TemplateResult } from 'lit-element';
 import { registerTranslateConfig, translate, use } from 'lit-translate';
 
-import '@material/mwc-dialog';
-import '@material/mwc-formfield';
-import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-select';
-import '@material/mwc-switch';
 import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
