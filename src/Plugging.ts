@@ -83,6 +83,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       super(...args);
 
       if (localStorage.getItem('plugins') === null) storeDefaultPlugins();
+      this.addContent = this.addContent.bind(this);
     }
 
     render(): TemplateResult {
