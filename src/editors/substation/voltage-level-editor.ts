@@ -9,7 +9,6 @@ import {
 import { translate, get } from 'lit-translate';
 
 import {
-  CloseableElement,
   createElement,
   EditorAction,
   getMultiplier,
@@ -194,10 +193,7 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   static updateAction(element: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[]): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
@@ -249,7 +245,6 @@ export class VoltageLevelEditor extends LitElement {
         );
       }
 
-      if (voltageLevelAction || voltageAction) wizard.close();
       const actions: EditorAction[] = [];
       if (voltageLevelAction) actions.push(voltageLevelAction);
       if (voltageAction) actions.push(voltageAction);
@@ -258,10 +253,7 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   static createAction(parent: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[]): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
@@ -286,8 +278,6 @@ export class VoltageLevelEditor extends LitElement {
         voltageElement.textContent = Voltage;
         element.appendChild(voltageElement);
       }
-
-      wizard.close();
 
       return [
         {

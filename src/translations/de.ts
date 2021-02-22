@@ -1,6 +1,15 @@
 import { Translations } from './loader.js';
 
 export const de: Translations = {
+  scl: {
+    id: 'ID',
+    name: 'Name',
+    desc: 'Beschreibung',
+    ord: 'Rang',
+    value: 'Wert',
+    EnumVal: 'Enum Wert',
+    EnumType: 'Enum Typ',
+  },
   settings: {
     name: 'Einstellungen',
     language: 'Sprache',
@@ -111,6 +120,27 @@ export const de: Translations = {
       },
     },
     unknownType: 'Unbekannter Typ',
+  },
+  templates: {
+    name: 'Data Type Templates',
+    missing: 'DataTypeTemplates fehlen',
+    add: 'DataTypeTemplates hinzufügen',
+  },
+  'enum-val': {
+    wizard: {
+      title: {
+        add: 'EnumVal hinzufügen',
+        edit: 'EnumVal bearbeiten',
+      },
+    },
+  },
+  enum: {
+    wizard: {
+      title: {
+        add: 'EnumType hinzufügen',
+        edit: 'EnumType bearbeiten',
+      },
+    },
   },
   lnode: {
     wizard: {

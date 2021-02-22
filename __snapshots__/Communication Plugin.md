@@ -16,6 +16,8 @@
   >
   </mwc-fab>
 </h1>
+<wizard-dialog>
+</wizard-dialog>
 
 ```
 

@@ -1,8 +1,8 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../src/editors/substation/conducting-equipment-editor.js';
-import { ConductingEquipmentEditor } from '../../../src/editors/substation/conducting-equipment-editor.js';
-import { getDocument } from '../../data.js';
+import '../../../../src/editors/substation/conducting-equipment-editor.js';
+import { ConductingEquipmentEditor } from '../../../../src/editors/substation/conducting-equipment-editor.js';
+import { getDocument } from '../../../data.js';
 
 describe('conducting-equipment-editor', () => {
   let element: ConductingEquipmentEditor;

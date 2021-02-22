@@ -4,8 +4,8 @@ import {
   isCreate,
   isUpdate,
   isDelete,
-} from '../../../src/foundation.js';
-import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
+} from '../../../../src/foundation.js';
+import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
 
 describe('VoltageLevelEditor', () => {
   describe('with no nulled properties', () => {
@@ -45,27 +45,9 @@ describe('VoltageLevelEditor', () => {
         const wizardAction = VoltageLevelEditor.createAction(parent);
         expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
       });
-
-      it('closes the wizard before returning', done => {
-        const wizardAction = VoltageLevelEditor.createAction(parent);
-        wizardAction(inputs, newWizard(done));
-      });
     });
 
     describe('has an updateAction that', () => {
-      let element: Element;
-      beforeEach(() => {
-        element = new DOMParser().parseFromString(
-          '<VoltageLevel></VoltageLevel>',
-          'application/xml'
-        ).documentElement;
-      });
-
-      it('closes the wizard before returning', done => {
-        const wizardAction = VoltageLevelEditor.createAction(element);
-        wizardAction(inputs, newWizard(done));
-      });
-
       describe('with missing child element Voltage', () => {
         let element: Element;
         beforeEach(() => {
@@ -194,11 +176,11 @@ describe('VoltageLevelEditor', () => {
 
           inputs[4] = await fixture(html`<wizard-textfield
             label="Voltage"
-            nullable="true"
+            nullable
             .maybeValue="${null}"
             unit="V"
             .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
-            .multiplier="k"
+            multiplier="k"
           ></wizard-textfield>`);
         });
 

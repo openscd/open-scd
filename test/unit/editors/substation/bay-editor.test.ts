@@ -1,17 +1,19 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../src/editors/substation/bay-editor.js';
-import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
-import { getDocument } from '../../data.js';
+import '../../../../src/editors/substation/bay-editor.js';
+import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
+import { getDocument } from '../../../data.js';
 
 describe('bay-editor', () => {
   let element: BayEditor;
   const validSCL = getDocument();
   beforeEach(async () => {
-    element = <BayEditor>await fixture(
-      html`<bay-editor
+    element = <BayEditor>(
+      await fixture(
+        html`<bay-editor
           .element=${validSCL.querySelector('Bay')}
-        ></voltage-level-editor>`
+        ></bay-editor>`
+      )
     );
   });
 

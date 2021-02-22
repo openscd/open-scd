@@ -1,8 +1,8 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../src/editors/substation/voltage-level-editor.js';
-import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
-import { getDocument } from '../../data.js';
+import '../../../../src/editors/substation/voltage-level-editor.js';
+import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
+import { getDocument } from '../../../data.js';
 
 describe('voltage-level-editor', () => {
   let element: VoltageLevelEditor;

@@ -76,11 +76,6 @@ export class WizardDialog extends LitElement {
     }
   }
 
-  /** Dismisses the entire wizard by dispatching an empty [[`WizardEvent`]]. */
-  close(): void {
-    this.dispatchEvent(newWizardEvent());
-  }
-
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
   async act(action?: WizardAction): Promise<boolean> {
     if (action === undefined) return false;
@@ -90,13 +85,15 @@ export class WizardDialog extends LitElement {
       inputArray.map(wi => wi.reportValidity());
       return false;
     }
-    action(inputArray, this).map(ea => this.dispatchEvent(newActionEvent(ea)));
+    const editorActions = action(inputArray, this);
+    editorActions.forEach(ea => this.dispatchEvent(newActionEvent(ea)));
+    if (editorActions.length > 0) this.dispatchEvent(newWizardEvent());
     return true;
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {
     if (!(ae.target instanceof Dialog && ae.detail?.action)) return;
-    if (ae.detail.action === 'close') this.close();
+    if (ae.detail.action === 'close') this.dispatchEvent(newWizardEvent());
     else if (ae.detail.action === 'prev') this.prev();
     else if (ae.detail.action === 'next') this.next();
   }
@@ -106,6 +103,13 @@ export class WizardDialog extends LitElement {
 
     this.act = this.act.bind(this);
     this.renderPage = this.renderPage.bind(this);
+  }
+
+  updated(changedProperties: Map<string | number | symbol, unknown>): void {
+    if (changedProperties.has('wizard')) {
+      this.dialog?.show();
+      this.pageIndex = 0; // FIXME(c-dinkel): add `reset` method
+    }
   }
 
   renderPage(page: WizardPage, index: number): TemplateResult {
@@ -122,7 +126,6 @@ export class WizardDialog extends LitElement {
             dialogAction="prev"
             icon="navigate_before"
             label=${this.wizard?.[index - 1].title}
-            outlined
           ></mwc-button>`
         : html``}
       ${page.secondary
@@ -131,13 +134,11 @@ export class WizardDialog extends LitElement {
             @click=${() => this.act(page.secondary?.action)}
             icon="${page.secondary.icon}"
             label="${page.secondary.label}"
-            outlined
           ></mwc-button>`
         : html`<mwc-button
             slot="secondaryAction"
             dialogAction="close"
             label="${translate('cancel')}"
-            outlined
             style="--mdc-theme-primary: var(--mdc-theme-error)"
           ></mwc-button>`}
       ${page.primary
@@ -147,7 +148,6 @@ export class WizardDialog extends LitElement {
             icon="${page.primary.icon}"
             label="${page.primary.label}"
             trailingIcon
-            unelevated
           ></mwc-button>`
         : index + 1 < (this.wizard?.length ?? 0)
         ? html`<mwc-button
@@ -155,7 +155,6 @@ export class WizardDialog extends LitElement {
             dialogAction="next"
             icon="navigate_next"
             label=${this.wizard?.[index + 1].title}
-            outlined
             trailingicon
           ></mwc-button>`
         : html``}
@@ -181,7 +180,7 @@ export class WizardDialog extends LitElement {
       margin-top: 16px;
     }
 
-    *[iconTrailing='search'][outlined] {
+    *[iconTrailing='search'] {
       --mdc-shape-small: 28px;
     }
   `;

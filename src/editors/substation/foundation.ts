@@ -1,17 +1,14 @@
 import { css } from 'lit-element';
 
 import {
-  CloseableElement,
   EditorAction,
   getValue,
   newActionEvent,
   WizardAction,
   WizardInput,
-  newLogEvent,
 } from '../../foundation.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { BayEditor } from './bay-editor.js';
-import { get } from 'lit-translate';
 
 export type ElementEditor = Element & {
   element: Element;
@@ -32,7 +29,7 @@ export function isCreateOptions(
 }
 
 export function updateNamingAction(element: Element): WizardAction {
-  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+  return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
@@ -46,7 +43,6 @@ export function updateNamingAction(element: Element): WizardAction {
     newElement.setAttribute('name', name);
     if (desc === null) newElement.removeAttribute('desc');
     else newElement.setAttribute('desc', desc);
-    wizard.close();
 
     return [{ old: { element }, new: { element: newElement } }];
   };
@@ -79,25 +75,15 @@ export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
 
   clone.setAttribute('name', element.getAttribute('name')! + num);
 
-  if (clone)
-    editor.dispatchEvent(
-      newActionEvent({
-        new: {
-          parent: parent,
-          element: clone,
-          reference: element.nextElementSibling,
-        },
-      })
-    );
-  else
-    element.dispatchEvent(
-      newLogEvent({
-        kind: 'error',
-        title: get('editing.error.duplicate', {
-          name: element.tagName,
-        }),
-      })
-    );
+  editor.dispatchEvent(
+    newActionEvent({
+      new: {
+        parent: parent,
+        element: clone,
+        reference: element.nextElementSibling,
+      },
+    })
+  );
 }
 
 /**

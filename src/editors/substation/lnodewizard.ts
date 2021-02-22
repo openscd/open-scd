@@ -2,7 +2,6 @@ import { html, render, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
-  CloseableElement,
   createElement,
   crossProduct,
   EditorAction,
@@ -118,7 +117,7 @@ function deleteAction(parent: Element, value: LNValue): EditorAction {
  * to the entries selected in `wizard`'s `#lnList`.
  */
 export function lNodeWizardAction(parent: Element): WizardAction {
-  return (inputs: WizardInput[], wizard: CloseableElement): EditorAction[] => {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const newLNodes = (<List>wizard.shadowRoot!.querySelector('#lnList')).items
       .filter(item => item.selected)
       .map(item => item.value);
@@ -149,7 +148,6 @@ export function lNodeWizardAction(parent: Element): WizardAction {
       .filter(node => !oldLNodes.includes(node))
       .map(node => createAction(parent, JSON.parse(node)));
 
-    wizard.close();
     return deleteActions.concat(createActions);
   };
 }

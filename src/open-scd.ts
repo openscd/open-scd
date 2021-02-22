@@ -31,15 +31,14 @@ import { Drawer } from '@material/mwc-drawer';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
-  CloseableElement,
   EditorAction,
+  newActionEvent,
   newLogEvent,
   newPendingStateEvent,
   newWizardEvent,
+  SimpleAction,
   Wizard,
   WizardInput,
-  newActionEvent,
-  SimpleAction,
 } from './foundation.js';
 import { getTheme } from './themes.js';
 import { plugin } from './plugin.js';
@@ -205,7 +204,7 @@ export class OpenSCD extends Setting(
 
   private createNewProject(
     inputs: WizardInput[],
-    wizard: CloseableElement
+    wizard: Element
   ): EditorAction[] {
     this.srcName = inputs[0].value.match(/\.s[sc]d$/i)
       ? inputs[0].value
@@ -219,9 +218,7 @@ export class OpenSCD extends Setting(
 
     this.doc = newEmptySCD(this.srcName.slice(0, -4), version);
 
-    wizard.close();
-
-    return [];
+    return [{ actions: [], title: get('menu.new'), derived: true }];
   }
 
   private newProjectWizard(): Wizard {
@@ -389,14 +386,20 @@ export class OpenSCD extends Setting(
             () => html`<editor-1 .doc=${this.doc}></editor-1>`
           ),
       },
+      {
+        name: 'templates.name',
+        id: 'templates',
+        icon: 'code',
+        getContent: (): Promise<TemplateResult> =>
+          plugin('./editors/Templates.js', 'editor-2').then(
+            () => html`<editor-2 .doc=${this.doc}></editor-2>`
+          ),
+      },
     ],
   };
 
   constructor() {
     super();
-
-    if ('serviceWorker' in navigator)
-      navigator.serviceWorker.register('/sw.js');
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     document.onkeydown = this.handleKeyPress;

@@ -1,8 +1,8 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
-import { SubstationEditor } from '../../../src/editors/substation/substation-editor.js';
-import { updateNamingAction } from '../../../src/editors/substation/foundation.js';
+import { WizardInput, isCreate, isUpdate } from '../../../../src/foundation.js';
+import { SubstationEditor } from '../../../../src/editors/substation/substation-editor.js';
+import { updateNamingAction } from '../../../../src/editors/substation/foundation.js';
 describe('SubstationEditor', () => {
   const noOp = () => {
     return;
@@ -36,11 +36,6 @@ describe('SubstationEditor', () => {
       const wizardAction = SubstationEditor.createAction(parent);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
     });
-
-    it('closes the wizard before returning', done => {
-      const wizardAction = SubstationEditor.createAction(parent);
-      wizardAction(inputs, newWizard(done));
-    });
   });
 
   describe('updateAction', () => {
@@ -50,11 +45,6 @@ describe('SubstationEditor', () => {
         '<Substation></Substation>',
         'application/xml'
       ).documentElement;
-    });
-
-    it('closes the wizard before returning', done => {
-      const wizardAction = SubstationEditor.createAction(element);
-      wizardAction(inputs, newWizard(done));
     });
 
     it('returns a WizardAction which retruns one EditorAction', () => {

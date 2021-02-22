@@ -9,7 +9,6 @@ import {
 import { translate, get } from 'lit-translate';
 
 import {
-  CloseableElement,
   createElement,
   EditorAction,
   getValue,
@@ -102,10 +101,7 @@ export class ConductingEquipmentEditor extends LitElement {
   }
 
   static createAction(parent: Element): WizardAction {
-    return (
-      inputs: WizardInput[],
-      wizard: CloseableElement
-    ): EditorAction[] => {
+    return (inputs: WizardInput[]): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const proxyType = getValue(inputs.find(i => i.label === 'type')!);
@@ -133,7 +129,6 @@ export class ConductingEquipmentEditor extends LitElement {
         },
       };
 
-      wizard.close();
       return [action];
     };
   }

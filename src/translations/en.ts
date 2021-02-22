@@ -1,4 +1,13 @@
 export const en = {
+  scl: {
+    id: 'ID',
+    name: 'Name',
+    desc: 'Description',
+    ord: 'Ordinal',
+    value: 'Value',
+    EnumVal: 'Enum Value',
+    EnumType: 'Enum Type',
+  },
   settings: {
     name: 'Settings',
     language: 'Language',
@@ -108,6 +117,27 @@ export const en = {
       },
     },
     unknownType: 'Unknown type',
+  },
+  templates: {
+    name: 'Data Type Templates',
+    missing: 'DataTypeTemplates missing',
+    add: 'Add DataTypeTemplates',
+  },
+  'enum-val': {
+    wizard: {
+      title: {
+        add: 'Add EnumVal',
+        edit: 'Edit EnumVal',
+      },
+    },
+  },
+  enum: {
+    wizard: {
+      title: {
+        add: 'Add EnumType',
+        edit: 'Edit EnumType',
+      },
+    },
   },
   lnode: {
     wizard: {

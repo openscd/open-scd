@@ -122,18 +122,15 @@ export type EditorActionEvent<T extends EditorAction> = CustomEvent<
 >;
 export function newActionEvent<T extends EditorAction>(
   action: T,
-  eventInitDict?: CustomEventInit<EditorActionDetail<T>>
+  eventInitDict?: CustomEventInit<Partial<EditorActionDetail<T>>>
 ): EditorActionEvent<T> {
   return new CustomEvent<EditorActionDetail<T>>('editor-action', {
     bubbles: true,
     composed: true,
-    detail: { action },
     ...eventInitDict,
+    detail: { action, ...eventInitDict?.detail },
   });
 }
-
-/** `HTMLElement` with a `close()` method. */
-export type CloseableElement = HTMLElement & { close: () => void };
 
 export const wizardInputSelector = 'wizard-textfield, mwc-select';
 export type WizardInput = WizardTextField | Select;
@@ -141,7 +138,7 @@ export type WizardInput = WizardTextField | Select;
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardAction = (
   inputs: WizardInput[],
-  wizard: CloseableElement
+  wizard: Element
 ) => EditorAction[];
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
@@ -176,17 +173,18 @@ export type Wizard = WizardPage[];
 /** If `wizard === null`, close the current wizard, else queue `wizard`. */
 export interface WizardDetail {
   wizard: Wizard | null;
+  subwizard?: boolean;
 }
 export type WizardEvent = CustomEvent<WizardDetail>;
 export function newWizardEvent(
   wizard: Wizard | null = null,
-  eventInitDict?: CustomEventInit<WizardDetail>
+  eventInitDict?: CustomEventInit<Partial<WizardDetail>>
 ): WizardEvent {
   return new CustomEvent<WizardDetail>('wizard', {
     bubbles: true,
     composed: true,
-    detail: { wizard },
     ...eventInitDict,
+    detail: { wizard, ...eventInitDict?.detail },
   });
 }
 
@@ -216,8 +214,8 @@ export function newLogEvent(
   return new CustomEvent<LogDetail>('log', {
     bubbles: true,
     composed: true,
-    detail: detail,
     ...eventInitDict,
+    detail: { ...detail, ...eventInitDict?.detail },
   });
 }
 
@@ -238,13 +236,13 @@ export interface PendingStateDetail {
 export type PendingStateEvent = CustomEvent<PendingStateDetail>;
 export function newPendingStateEvent(
   promise: Promise<string>,
-  eventInitDict?: CustomEventInit<PendingStateDetail>
+  eventInitDict?: CustomEventInit<Partial<PendingStateDetail>>
 ): PendingStateEvent {
   return new CustomEvent<PendingStateDetail>('pending-state', {
     bubbles: true,
     composed: true,
-    detail: { promise },
     ...eventInitDict,
+    detail: { promise, ...eventInitDict?.detail },
   });
 }
 
