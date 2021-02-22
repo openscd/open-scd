@@ -86,7 +86,6 @@ export class EnumValEditor extends LitElement {
   static createAction(parent: Element): WizardAction {
     return (inputs: WizardInput[]): EditorAction[] => {
       const value = getValue(inputs.find(i => i.label === 'value')!);
-      // TODO(c-dinkel): Find out what IEC61850 calls EnumVal's textContent.
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const ord =
         getValue(inputs.find(i => i.label === 'ord')!) || nextOrd(parent);
