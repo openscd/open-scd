@@ -118,7 +118,7 @@ describe('open-scd', () => {
   it('revokes `src="blob:..."` URLs after parsing', async () => {
     const emptyBlobURL = URL.createObjectURL(
       new Blob(
-        [new XMLSerializer().serializeToString(newEmptySCD('id', '2007B1'))],
+        [new XMLSerializer().serializeToString(newEmptySCD('id', '2007B'))],
         {
           type: 'application/xml',
         }
