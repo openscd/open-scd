@@ -45,7 +45,7 @@ import {
   WizardInput,
 } from './foundation.js';
 import { getTheme } from './themes.js';
-import { plugin } from './Plugin.js';
+import { Plugging, plugin } from './Plugin.js';
 import { zeroLineIcon } from './icons.js';
 import { SupportedVersion } from './schemas.js';
 
@@ -72,7 +72,9 @@ interface MenuEntry {
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Setting(
-  Importing(Wizarding(Waiting(Validating(Editing(Logging(LitElement))))))
+  Importing(
+    Wizarding(Waiting(Validating(Plugging(Editing(Logging(LitElement))))))
+  )
 ) {
   /** The currently active editor tab. */
   @property({ type: Number })
@@ -376,38 +378,6 @@ export class OpenSCD extends Setting(
     },
   ];
 
-  plugins = {
-    editors: [
-      {
-        name: 'substation.name',
-        id: 'substation',
-        icon: zeroLineIcon,
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/Substation.js', 'editor-0').then(
-            () => html`<editor-0 .doc=${this.doc}></editor-0>`
-          ),
-      },
-      {
-        name: 'communication.name',
-        id: 'communication',
-        icon: 'settings_ethernet',
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/Communication.js', 'editor-1').then(
-            () => html`<editor-1 .doc=${this.doc}></editor-1>`
-          ),
-      },
-      {
-        name: 'templates.name',
-        id: 'templates',
-        icon: 'code',
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/Templates.js', 'editor-2').then(
-            () => html`<editor-2 .doc=${this.doc}></editor-2>`
-          ),
-      },
-    ],
-  };
-
   constructor() {
     super();
 
@@ -488,7 +458,7 @@ export class OpenSCD extends Setting(
                   @MDCTabBar:activated=${(e: CustomEvent) =>
                     (this.activeTab = e.detail.index)}
                 >
-                  ${this.plugins.editors.map(this.renderEditorTab)}
+                  ${this.editors.map(this.renderEditorTab)}
                 </mwc-tab-bar>`
               : ``
           }
@@ -517,7 +487,7 @@ export class OpenSCD extends Setting(
       ${
         this.doc
           ? until(
-              this.plugins.editors[this.activeTab].getContent(),
+              this.editors[this.activeTab].getContent(),
               html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
             )
           : html`<div class="landing">
