@@ -441,17 +441,14 @@ export class OpenSCD extends Setting(
 
   renderEditorTab({
     name,
-    id,
     icon,
   }: {
     name: string;
-    id: string;
     icon: string | TemplateResult;
   }): TemplateResult {
     return html`<mwc-tab
       label=${translate(name)}
       icon=${icon instanceof TemplateResult ? '' : icon}
-      id=${id}
       hasimageicon
     >
       ${icon instanceof TemplateResult ? icon : ''}
