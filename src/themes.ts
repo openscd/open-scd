@@ -51,6 +51,10 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
         text-decoration: none;
         border-bottom: none;
       }
+
+      mwc-textfield[iconTrailing='search'] {
+        --mdc-shape-small: 28px;
+      }
     </style>
   `;
 }

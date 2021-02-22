@@ -1,5 +1,5 @@
 import { html as litHtml, query, TemplateResult } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 import wrapHtml from 'carehtml';
 const html = wrapHtml(litHtml);
 
@@ -7,17 +7,18 @@ import { Dialog } from '@material/mwc-dialog';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 export type Plugin = {
   name: string;
   src: string;
   icon: string;
-  default: boolean;
   kind: 'editor' | 'import' | 'export' | 'transform';
   getContent: () => Promise<TemplateResult>;
 };
 
-const defaultPlugins: Promise<Plugin[]> = fetch(
+const defaultPlugins: Promise<(Plugin & { default: boolean })[]> = fetch(
   '/public/json/plugins.json'
 ).then(res => res.json());
 
@@ -85,6 +86,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
 
     @query('#pluginmanager')
     pluginUI!: Dialog;
+    @query('#pluginlist')
+    pluginList!: List;
 
     constructor(...args: any[]) {
       super(...args);
@@ -93,18 +96,45 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       this.addContent = this.addContent.bind(this);
     }
 
+    addPlugin(plugin: Plugin): void {
+      if (this.plugins.some(p => p.src === plugin.src)) return;
+
+      const newPlugins = this.plugins;
+      newPlugins.push(plugin);
+    }
+
+    removePlugin(scr: string): void {
+      const newPlugins = this.plugins.filter(plugin => plugin.src !== scr);
+      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+    }
+
     render(): TemplateResult {
-      return html`${ifImplemented(super.render())}
-        <mwc-dialog id="pluginmanager">
-          <mwc-textfield
-            label="${translate('filter')}"
-            iconTrailing="search"
-            outlined
-            ></mwc-textfield>
-          <mwc-list>${this.editors.map(
-            editor => html`<mwc-list-item>${editor.name}</mwc-list-item>`
-          )}</mwc-list>
-          </mwc-dailog>`;
+      return html`${ifImplemented(
+        super.render()
+      )} <mwc-dialog id="pluginmanager">
+      <mwc-textfield
+      label="${translate('filter')}"
+      iconTrailing="search"
+      outlined
+    ></mwc-textfield>
+    <mwc-list id="pluginlist">
+      </mwc-list-item>
+      <li divider role="separator"></li>
+      ${
+        this.editors.length > 0
+          ? this.editors.map(
+              editor =>
+                html`<mwc-list-item value="${editor.src}"
+                  >${editor.name}</mwc-list-item
+                >`
+            )
+          : html``
+      }</mwc-list>
+        <mwc-button icon="delete" @click="${() =>
+          this.removePlugin((<ListItem>this.pluginList.selected).value)}">${get(
+        'delete'
+      )}</mwc-button>
+      </mwc-dailog>`;
     }
   }
 
