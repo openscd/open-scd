@@ -246,7 +246,7 @@ export class OpenSCD extends Setting(
                 >Edition 1 (Schema 1.7)</mwc-radio-list-item
               >
               <mwc-radio-list-item left value="2007B1"
-                >Edition 2.1 release 1 (2007B1)</mwc-radio-list-item
+                >Edition 2 (Schema 3.1)</mwc-radio-list-item
               >
               <mwc-radio-list-item left selected value="2007B4"
                 >Edition 2.1 current (2007B4)</mwc-radio-list-item

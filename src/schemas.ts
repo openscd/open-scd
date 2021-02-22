@@ -71,10 +71,20 @@ export function getSchema(
   revision: string,
   release: string
 ): string {
-  const schemaVersion = version + revision + release;
-  if (isSupported(schemaVersion)) return schemas[schemaVersion];
-  return schemas['2007B1'];
+  const schemaVersion = versionToSchema[version + revision + release];
+  return schemas[schemaVersion ?? '2007B'];
 }
+
+const versionToSchema: Partial<Record<string, SupportedVersion>> = {
+  '': '2003',
+  '2007': '2007B',
+  '2007A': '2007B',
+  '2007B': '2007B',
+  '2007B1': '2007B',
+  '2007B2': '2007B4',
+  '2007B3': '2007B4',
+  '2007B4': '2007B4',
+};
 
 export type SupportedVersion = keyof typeof schemas;
 export function isSupported(version: string): version is SupportedVersion {
@@ -82,16 +92,15 @@ export function isSupported(version: string): version is SupportedVersion {
 }
 
 export type SchemaAttributes =
-  | { version: '2003'; revision: ''; release: '' }
-  | { version: '2007'; revision: 'A'; release: '' }
-  | { version: '2007'; revision: 'B'; release: '1' | '2' | '3' | '4' };
+  | { version: ''; revision: ''; release: '' }
+  | { version: '2007'; revision: 'B'; release: '' }
+  | { version: '2007'; revision: 'B'; release: '4' };
 export const supportedAttributes: Record<SupportedVersion, SchemaAttributes> = {
-  '2003': { version: '2003', revision: '', release: '' },
-  '2007B1': { version: '2007', revision: 'B', release: '1' },
+  '2003': { version: '', revision: '', release: '' },
+  '2007B': { version: '2007', revision: 'B', release: '' },
   '2007B4': { version: '2007', revision: 'B', release: '4' },
 };
 
-// TODO(JakobVogelsang): add remaining schema versions 2007A, 2007B2 etc.
 export const schemas = {
   '2003': `<?xml version="1.0" encoding="UTF-8"?>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
@@ -2336,7 +2345,7 @@ export const schemas = {
       </xs:element>
   </xs:schema>
   `,
-  '2007B1': `<?xml version="1.0" encoding="utf-8" ?>
+  '2007B': `<?xml version="1.0" encoding="utf-8" ?>
 <xs:schema xmlns:scl="http://www.iec.ch/61850/2003/SCL" xmlns="http://www.iec.ch/61850/2003/SCL" elementFormDefault="qualified" targetNamespace="http://www.iec.ch/61850/2003/SCL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation xml:lang="en">
