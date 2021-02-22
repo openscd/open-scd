@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { plugin } from '../../src/plugin.js';
+import { plugin } from '../../src/Plugin.js';
 
 // data URL for: export default class extends HTMLElement {test = 1}
 const testOne =

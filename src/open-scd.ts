@@ -41,7 +41,7 @@ import {
   WizardInput,
 } from './foundation.js';
 import { getTheme } from './themes.js';
-import { plugin } from './plugin.js';
+import { plugin } from './Plugin.js';
 import { zeroLineIcon } from './icons.js';
 import { SupportedVersion } from './schemas.js';
 
