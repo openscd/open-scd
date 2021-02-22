@@ -1,21 +1,21 @@
 [
   {
     "name": "Substation",
-    "src": "//openscd.github.io/src/editors/Substation.js",
+    "src": "/src/editors/Substation.js",
     "icon": "coronavirus",
     "default": true,
     "kind": "editor"
   },
   {
     "name": "Communication",
-    "src": "//openscd.github.io/src/editors/Communication.js",
+    "src": "/src/editors/Communication.js",
     "icon": "social_distance",
     "default": true,
     "kind": "editor"
   },
   {
     "name": "Templates",
-    "src": "//openscd.github.io/src/editors/Templates.js",
+    "src": "/src/editors/Templates.js",
     "icon": "surfing",
     "default": false,
     "kind": "editor"
