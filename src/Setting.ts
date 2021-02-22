@@ -54,7 +54,9 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
-        localStorage.clear();
+        Object.keys(this.settings).forEach(item =>
+          localStorage.removeItem(item)
+        );
         this.requestUpdate('settings');
       } else if (ae.detail?.action === 'save') {
         this.setSetting('language', <Language>this.languageUI.value);
