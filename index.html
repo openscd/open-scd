@@ -21,11 +21,21 @@
 <body>
   <open-scd></open-scd>
 
+  <script>
+    const _customElementsDefine = window.customElements.define;
+    window.customElements.define = (name, cl, conf) => {
+      if (!customElements.get(name)) {
+        _customElementsDefine.call(window.customElements, name, cl, conf);
+      } else {
+        console.warn(`${name} has been defined twice`);
+      }
+    };
+  </script>
   <script type="module" src="./src/open-scd.js"></script>
-    <script>
+  <script>
     if ('serviceWorker' in navigator)
       navigator.serviceWorker.register('/sw.js');
-    </script>
+  </script>
 </body>
 
 </html>
