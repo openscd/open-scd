@@ -107,81 +107,40 @@ export class EnumTypeEditor extends LitElement {
     };
   }
 
-  static wizard(options: WizardOptions): Wizard {
-    const [heading, actionName, actionIcon, action, id, desc] = isCreateOptions(
-      options
-    )
-      ? [
-          get('enum.wizard.title.add'),
-          get('add'),
-          'add',
-          EnumTypeEditor.createAction(options.parent, options.templates),
-          '',
-          null,
-        ]
-      : [
-          get('enum.wizard.title.edit'),
-          get('save'),
-          'edit',
-          updateIDNamingAction(options.element),
-          options.element.getAttribute('id'),
-          options.element.getAttribute('desc'),
-        ];
-
+  private static createWizard(parent: Element, templates: Document): Wizard {
     return [
       {
-        title: heading,
+        title: get('enum.wizard.title.add'),
         primary: {
-          icon: actionIcon,
-          label: actionName,
-          action: action,
+          icon: 'add',
+          label: get('add'),
+          action: EnumTypeEditor.createAction(parent, templates),
         },
         content: [
-          isCreateOptions(options)
-            ? html`<mwc-select
-                style="--mdc-menu-max-height: 196px;"
-                outlined
-                icon="playlist_add_check"
-                label="values"
-                helper="Default enumerations"
-              >
-                ${Array.from(
-                  options.templates.querySelectorAll('EnumType')
-                ).map(
-                  e =>
-                    html`<mwc-list-item
-                      graphic="icon"
-                      hasMeta
-                      value="${e.getAttribute('id') ?? ''}"
-                      ><span>${e.getAttribute('id')}</span>
-                      <span slot="meta"
-                        >${e.querySelectorAll('EnumVal').length}</span
-                      >
-                    </mwc-list-item>`
-                )}
-              </mwc-select>`
-            : html`<mwc-button
-                icon="delete"
-                trailingIcon
-                label="${translate('delete')}"
-                @click=${(e: MouseEvent) => {
-                  e.target!.dispatchEvent(newWizardEvent());
-                  e.target!.dispatchEvent(
-                    newActionEvent({
-                      old: {
-                        parent: options.element.parentElement!,
-                        element: options.element,
-                        reference: options.element.nextElementSibling,
-                      },
-                    })
-                  );
-                }}
-                fullwidth
-              ></mwc-button> `,
+          html`<mwc-select
+            style="--mdc-menu-max-height: 196px;"
+            outlined
+            icon="playlist_add_check"
+            label="values"
+            helper="Default enumerations"
+          >
+            ${Array.from(templates.querySelectorAll('EnumType')).map(
+              e =>
+                html`<mwc-list-item
+                  graphic="icon"
+                  hasMeta
+                  value="${e.getAttribute('id') ?? ''}"
+                  ><span>${e.getAttribute('id')}</span>
+                  <span slot="meta"
+                    >${e.querySelectorAll('EnumVal').length}</span
+                  >
+                </mwc-list-item>`
+            )}
+          </mwc-select>`,
           html`<wizard-textfield
             label="id"
             helper="${translate('scl.id')}"
-            .maybeValue=${id}
+            .maybeValue=""
             required
             maxlength="127"
             minlength="1"
@@ -191,42 +150,93 @@ export class EnumTypeEditor extends LitElement {
           html`<wizard-textfield
             label="desc"
             helper="${translate('scl.desc')}"
-            .maybeValue=${desc}
+            .maybeValue=${null}
             nullable
             pattern="${restrictions.normalizedString}"
           ></wizard-textfield>`,
-          isCreateOptions(options)
-            ? html``
-            : html`<mwc-button
-                  slot="graphic"
-                  icon="playlist_add"
-                  trailingIcon
-                  label="${translate('scl.EnumVal')}"
-                  @click=${(e: MouseEvent) =>
-                    e.target!.dispatchEvent(
-                      newWizardEvent(
-                        EnumValEditor.wizard({ parent: options.element }),
-                        {
-                          detail: { subwizard: true },
-                        }
-                      )
-                    )}
-                ></mwc-button>
-                <mwc-list style="margin-top: 0px;">
-                  ${repeat(
-                    // FIXME(c-dinkel): broken lib.dom.iterable.d.ts hack
-                    <Iterable<ChildNode>>(<unknown>options.element.childNodes),
-                    child =>
-                      child instanceof Element
-                        ? html`<enum-val-editor
-                            .element=${child}
-                          ></enum-val-editor>`
-                        : html``
-                  )}
-                </mwc-list> `,
         ],
       },
     ];
+  }
+
+  private static editWizard(element: Element): Wizard {
+    return [
+      {
+        title: get('enum.wizard.title.edit'),
+        primary: {
+          icon: 'edit',
+          label: get('save'),
+          action: updateIDNamingAction(element),
+        },
+        content: [
+          html`<mwc-button
+            icon="delete"
+            trailingIcon
+            label="${translate('delete')}"
+            @click=${(e: MouseEvent) => {
+              e.target!.dispatchEvent(newWizardEvent());
+              e.target!.dispatchEvent(
+                newActionEvent({
+                  old: {
+                    parent: element.parentElement!,
+                    element: element,
+                    reference: element.nextElementSibling,
+                  },
+                })
+              );
+            }}
+            fullwidth
+          ></mwc-button> `,
+          html`<wizard-textfield
+            label="id"
+            helper="${translate('scl.id')}"
+            .maybeValue=${element.getAttribute('id')}
+            required
+            maxlength="127"
+            minlength="1"
+            pattern="${restrictions.nmToken}"
+            dialogInitialFocus
+          ></wizard-textfield>`,
+          html`<wizard-textfield
+            label="desc"
+            helper="${translate('scl.desc')}"
+            .maybeValue=${element.getAttribute('desc')}
+            nullable
+            pattern="${restrictions.normalizedString}"
+          ></wizard-textfield>`,
+          html`<mwc-button
+              slot="graphic"
+              icon="playlist_add"
+              trailingIcon
+              label="${translate('scl.EnumVal')}"
+              @click=${(e: MouseEvent) =>
+                e.target!.dispatchEvent(
+                  newWizardEvent(EnumValEditor.wizard({ parent: element }), {
+                    detail: { subwizard: true },
+                  })
+                )}
+            ></mwc-button>
+            <mwc-list style="margin-top: 0px;">
+              ${repeat(
+                // FIXME(c-dinkel): broken lib.dom.iterable.d.ts hack
+                <Iterable<ChildNode>>(<unknown>element.childNodes),
+                child =>
+                  child instanceof Element
+                    ? html`<enum-val-editor
+                        .element=${child}
+                      ></enum-val-editor>`
+                    : html``
+              )}
+            </mwc-list> `,
+        ],
+      },
+    ];
+  }
+
+  static wizard(options: WizardOptions): Wizard {
+    return isCreateOptions(options)
+      ? EnumTypeEditor.createWizard(options.parent, options.templates)
+      : EnumTypeEditor.editWizard(options.element);
   }
 
   static styles = styles;

@@ -40,6 +40,19 @@ export default class TemplatesPlugin extends LitElement {
     );
   }
 
+  createDataTypeTemplates(): void {
+    if (!this.doc.querySelector(':root > DataTypeTemplates'))
+      this.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: this.doc.documentElement,
+            element: this.doc.createElement('DataTypeTemplates'),
+            reference: null,
+          },
+        })
+      );
+  }
+
   render(): TemplateResult {
     if (!this.doc?.querySelector(':root > DataTypeTemplates'))
       return html`<h1>
@@ -50,18 +63,7 @@ export default class TemplatesPlugin extends LitElement {
           extended
           icon="add"
           label="${translate('templates.add')}"
-          @click=${() => {
-            if (!this.doc.querySelector(':root > DataTypeTemplates'))
-              this.dispatchEvent(
-                newActionEvent({
-                  new: {
-                    parent: this.doc.documentElement,
-                    element: this.doc.createElement('DataTypeTemplates'),
-                    reference: null,
-                  },
-                })
-              );
-          }}
+          @click=${() => this.createDataTypeTemplates()}
         ></mwc-fab>
       </h1>`;
     return html`
