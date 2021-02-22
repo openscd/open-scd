@@ -1,15 +1,13 @@
-import { html as litHtml, property, query, TemplateResult } from 'lit-element';
-import { registerTranslateConfig, translate, use } from 'lit-translate';
+import { html as litHtml, query, TemplateResult } from 'lit-element';
+import { translate } from 'lit-translate';
 import wrapHtml from 'carehtml';
 const html = wrapHtml(litHtml);
 
 import { Dialog } from '@material/mwc-dialog';
-import { Select } from '@material/mwc-select';
-import { Switch } from '@material/mwc-switch';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
-import { Language, languages, loader } from './translations/loader.js';
 import { EditingElement } from './Editing.js';
+
 export type Plugin = {
   name: string;
   src: string;
@@ -78,10 +76,26 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         .map(this.addContent);
     }
 
+    @query('#pluginmanager')
+    pluginUI!: Dialog;
+
     constructor(...args: any[]) {
       super(...args);
 
       if (localStorage.getItem('plugins') === null) storeDefaultPlugins();
+    }
+
+    render(): TemplateResult {
+      return html`${ifImplemented(
+        super.render()
+      )} <mwc-dialog id="pluginmanager">
+      <mwc-textfield
+      label="${translate('filter')}"
+      iconTrailing="search"
+      outlined
+    ></mwc-textfield><mwc-list>${this.editors.map(
+      editor => html`<mwc-list-item>${editor.name}</mwc-list-item>`
+    )}</mwc-list></mwc-dailog>`;
     }
   }
 

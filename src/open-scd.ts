@@ -49,17 +49,17 @@ import {
   WizardInput,
 } from './foundation.js';
 import { getTheme } from './themes.js';
-import { Plugging, plugin } from './Plugin.js';
-import { zeroLineIcon } from './icons.js';
 import { SupportedVersion } from './schemas.js';
 
 import { Editing, newEmptySCD } from './Editing.js';
+import { Importing } from './Importing.js';
 import { Logging } from './Logging.js';
 import { Setting } from './Setting.js';
+import { Plugging } from './Plugging.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
-import { Importing } from './Importing.js';
+
 import { createMissingIEDNameSubscriberInfo } from './transform/SubscriberInfo.js';
 
 interface MenuEntry {
@@ -373,6 +373,12 @@ export class OpenSCD extends Setting(
       startsGroup: true,
       action: (): void => this.updateSubscriberInfo(),
       disabled: (): boolean => this.doc === null,
+    },
+    {
+      icon: 'extension',
+      name: 'Plug-In manager',
+      startsGroup: true,
+      action: (): void => this.pluginUI.show(),
     },
     {
       icon: 'settings',
