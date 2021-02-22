@@ -41,34 +41,41 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       return <Plugin[]>JSON.parse(localStorage.getItem('plugins') ?? '[]');
     }
 
+    private addContent(plugin: Plugin) {
+      return {
+        ...plugin,
+        getContent: async (): Promise<TemplateResult> => {
+          if (!loaded.has(plugin.src))
+            loaded.set(
+              plugin.src,
+              await import(plugin.src).then(mod => mod.default)
+            );
+          return html`<${loaded.get(plugin.src)} .doc=${
+            this.doc
+          }></${loaded.get(plugin.src)}>`;
+        },
+      };
+    }
+
     get editors(): Plugin[] {
       return this.plugins
         .filter(plugin => plugin.kind === 'editor')
-        .map((editor, index) => {
-          const tagName = 'editor-' + index;
-          return {
-            ...editor,
-            getContent: async (): Promise<TemplateResult> => {
-              if (!loaded.has(editor.src))
-                loaded.set(
-                  editor.src,
-                  await import(editor.src).then(mod => mod.default)
-                );
-              return html`<${loaded.get(editor.src)} .doc=${
-                this.doc
-              }></${loaded.get(editor.src)}>`;
-            },
-          };
-        });
+        .map(this.addContent);
     }
     get imports(): Plugin[] {
-      return this.plugins.filter(plugin => plugin.kind === 'import');
+      return this.plugins
+        .filter(plugin => plugin.kind === 'import')
+        .map(this.addContent);
     }
     get exports(): Plugin[] {
-      return this.plugins.filter(plugin => plugin.kind === 'export');
+      return this.plugins
+        .filter(plugin => plugin.kind === 'export')
+        .map(this.addContent);
     }
     get transforms(): Plugin[] {
-      return this.plugins.filter(plugin => plugin.kind === 'transform');
+      return this.plugins
+        .filter(plugin => plugin.kind === 'transform')
+        .map(this.addContent);
     }
 
     constructor(...args: any[]) {
