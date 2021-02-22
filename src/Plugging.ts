@@ -17,12 +17,19 @@ export type Plugin = {
   getContent: () => Promise<TemplateResult>;
 };
 
-const defaultPlugins = fetch('/public/json/plugins.json').then(res =>
-  res.json()
-);
+const defaultPlugins: Promise<Plugin[]> = fetch(
+  '/public/json/plugins.json'
+).then(res => res.json());
 
 async function storeDefaultPlugins(): Promise<void> {
-  localStorage.setItem('plugins', JSON.stringify(await defaultPlugins));
+  localStorage.setItem(
+    'plugins',
+    JSON.stringify(
+      await defaultPlugins.then(plugins =>
+        plugins.filter(plugin => plugin.default)
+      )
+    )
+  );
 }
 
 /** Mixin that saves [[`Plugins`]] to `localStorage`, reflecting them in the
@@ -87,16 +94,17 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     }
 
     render(): TemplateResult {
-      return html`${ifImplemented(
-        super.render()
-      )} <mwc-dialog id="pluginmanager">
-      <mwc-textfield
-      label="${translate('filter')}"
-      iconTrailing="search"
-      outlined
-    ></mwc-textfield><mwc-list>${this.editors.map(
-      editor => html`<mwc-list-item>${editor.name}</mwc-list-item>`
-    )}</mwc-list></mwc-dailog>`;
+      return html`${ifImplemented(super.render())}
+        <mwc-dialog id="pluginmanager">
+          <mwc-textfield
+            label="${translate('filter')}"
+            iconTrailing="search"
+            outlined
+            ></mwc-textfield>
+          <mwc-list>${this.editors.map(
+            editor => html`<mwc-list-item>${editor.name}</mwc-list-item>`
+          )}</mwc-list>
+          </mwc-dailog>`;
     }
   }
 
