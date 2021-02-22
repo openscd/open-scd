@@ -7,7 +7,7 @@
 ```html
 <h1>
   <span style="color: var(--base1)">
-    [substation.missing]
+    [templates.missing]
   </span>
   <mwc-fab
     extended=""
