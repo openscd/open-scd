@@ -1,0 +1,1 @@
+[Automated SCL manipuldation](https://github.com/openscd/open-scd/wiki/Update-GOOSE-subscriber-info-in-SCL)
