@@ -128,7 +128,7 @@ export function createMissingIEDNameSubscriberInfo(
 export default class SubscriberInfoPlugin extends LitElement {
   doc!: XMLDocument;
 
-  async transform(): Promise<string> {
+  async trigger(): Promise<string> {
     const actions: SimpleAction[] = createMissingIEDNameSubscriberInfo(
       this.doc!
     );

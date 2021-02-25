@@ -14,7 +14,7 @@ import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 const placeholderDoc = newEmptySCD('OpenSCDPlaceholder.scd', '2007B4');
 
-type EditorPluginKind = 'editor' | 'import' | 'export' | 'transform';
+type EditorPluginKind = 'editor' | 'triggered';
 
 export type EditorPlugin = {
   name: string;
@@ -26,10 +26,8 @@ export type EditorPlugin = {
 };
 
 export const pluginIcons: Record<EditorPluginKind, string> = {
-  editor: 'edit',
-  import: 'snippet_folder',
-  export: 'text_snippet',
-  transform: 'folder_special',
+  editor: 'tab',
+  triggered: 'play_circle',
 };
 
 const pluginRepo: Promise<(EditorPlugin & { default?: boolean })[]> = fetch(
@@ -86,19 +84,9 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         .filter(plugin => plugin.installed && plugin.kind === 'editor')
         .map(this.addContent);
     }
-    get imports(): EditorPlugin[] {
+    get items(): EditorPlugin[] {
       return this.plugins
-        .filter(plugin => plugin.installed && plugin.kind === 'import')
-        .map(this.addContent);
-    }
-    get exports(): EditorPlugin[] {
-      return this.plugins
-        .filter(plugin => plugin.installed && plugin.kind === 'export')
-        .map(this.addContent);
-    }
-    get transforms(): EditorPlugin[] {
-      return this.plugins
-        .filter(plugin => plugin.installed && plugin.kind === 'transform')
+        .filter(plugin => plugin.installed && plugin.kind === 'triggered')
         .map(this.addContent);
     }
 
@@ -207,19 +195,9 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                   >${pluginIcons['editor']}</mwc-icon
                 ></mwc-radio-list-item
               >
-              <mwc-radio-list-item value="import" hasMeta left
-                >${translate('plugins.import')}<mwc-icon slot="meta"
-                  >${pluginIcons['import']}</mwc-icon
-                ></mwc-radio-list-item
-              >
-              <mwc-radio-list-item value="export" hasMeta left
-                >${translate('plugins.export')}<mwc-icon slot="meta"
-                  >${pluginIcons['export']}</mwc-icon
-                ></mwc-radio-list-item
-              >
-              <mwc-radio-list-item value="transform" hasMeta left
-                >${translate('plugins.transform')}<mwc-icon slot="meta"
-                  >${pluginIcons['transform']}</mwc-icon
+              <mwc-radio-list-item value="triggered" hasMeta left
+                >${translate('plugins.triggered')}<mwc-icon slot="meta"
+                  >${pluginIcons['triggered']}</mwc-icon
                 ></mwc-radio-list-item
               >
             </mwc-list>

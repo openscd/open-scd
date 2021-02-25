@@ -24,6 +24,6 @@
     "name": "Subscriber Update",
     "src": "/src/transform/SubscriberInfo.js",
     "default": true,
-    "kind": "transform"
+    "kind": "triggered"
   }
 ]

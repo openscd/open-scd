@@ -53,7 +53,7 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Importing } from './Importing.js';
 import { Logging } from './Logging.js';
 import { Setting } from './Setting.js';
-import { EditorPlugin, Plugging } from './Plugging.js';
+import { EditorPlugin, Plugging, pluginIcons } from './Plugging.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
@@ -69,8 +69,8 @@ interface MenuItem {
   content?: () => Promise<TemplateResult>;
 }
 
-interface Transform {
-  transform: () => Promise<string>;
+interface Triggered {
+  trigger: () => Promise<string>;
 }
 
 /** The `<open-scd>` custom element is the main entry point of the
@@ -277,36 +277,20 @@ export class OpenSCD extends Setting(
   }
 
   get menu(): (MenuItem | 'divider')[] {
-    const imports: (MenuItem | 'divider')[] = [];
-    const exports: (MenuItem | 'divider')[] = [];
-    const transforms: (MenuItem | 'divider')[] = [];
+    const items: (MenuItem | 'divider')[] = [];
 
-    this.imports.forEach(plugin =>
-      imports.push({
-        icon: plugin.icon || 'snippet_folder',
-        name: plugin.name,
-        content: plugin.content,
-      })
-    );
-    this.exports.forEach(plugin =>
-      exports.push({
-        icon: plugin.icon || 'text_snippet',
-        name: plugin.name,
-        content: plugin.content,
-      })
-    );
-    this.transforms.forEach(plugin =>
-      transforms.push({
-        icon: plugin.icon || 'folder_special',
+    this.items.forEach(plugin =>
+      items.push({
+        icon: plugin.icon || pluginIcons['triggered'],
         name: plugin.name,
         action: ae => {
           this.dispatchEvent(
             newPendingStateEvent(
-              (<Transform>(
+              (<Triggered>(
                 (<unknown>(
                   (<List>ae.target).items[ae.detail.index].lastElementChild
                 ))
-              )).transform()
+              )).trigger()
             )
           );
         },
@@ -315,9 +299,7 @@ export class OpenSCD extends Setting(
       })
     );
 
-    if (imports.length > 0) imports.push('divider');
-    if (exports.length > 0) exports.push('divider');
-    if (transforms.length > 0) transforms.push('divider');
+    if (items.length > 0) items.push('divider');
 
     return [
       'divider',
@@ -384,9 +366,7 @@ export class OpenSCD extends Setting(
         action: (): void => this.logUI.show(),
       },
       'divider',
-      ...imports,
-      ...exports,
-      ...transforms,
+      ...items,
       {
         icon: 'settings',
         name: 'settings.name',
