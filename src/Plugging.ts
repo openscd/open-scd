@@ -139,7 +139,6 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       return html`
         ${ifImplemented(super.render())}
         <mwc-dialog
-          hideActions
           id="pluginManager"
           heading="${translate('plugins.heading')}"
         >
@@ -170,17 +169,26 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                   >`
               )}
             </mwc-list>
-            <mwc-fab
-              extended
-              iconTrailing
-              raised
-              icon="library_add"
-              label="${translate('add')}"
-              style="align-self: center;"
-              @click=${() => this.pluginDownloadUI.show()}
-            >
-            </mwc-fab>
           </div>
+          <mwc-button
+            slot="secondaryAction"
+            icon="refresh"
+            label="${translate('reset')}"
+            @click=${async () => {
+              storeDefaultPlugins();
+              this.requestUpdate();
+            }}
+            style="--mdc-theme-primary: var(--mdc-theme-error)"
+          >
+          </mwc-button>
+          <mwc-button
+            trailingIcon
+            slot="primaryAction"
+            icon="library_add"
+            label="${translate('add')}"
+            @click=${() => this.pluginDownloadUI.show()}
+          >
+          </mwc-button>
         </mwc-dialog>
         <mwc-dialog
           id="pluginAdd"
