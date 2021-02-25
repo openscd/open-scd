@@ -70,7 +70,7 @@ interface MenuItem {
 }
 
 interface Triggered {
-  trigger: () => Promise<string>;
+  trigger: () => Promise<void>;
 }
 
 /** The `<open-scd>` custom element is the main entry point of the
@@ -84,8 +84,6 @@ export class OpenSCD extends Setting(
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
-  /** The name of the current file. */
-  @property({ type: String }) srcName = '';
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -111,7 +109,6 @@ export class OpenSCD extends Setting(
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
     if (file) {
-      //this.srcName = file.name;
       const loaded = this.importIED(URL.createObjectURL(file), this.doc!);
       this.dispatchEvent(newPendingStateEvent(loaded));
       await loaded;
@@ -125,7 +122,7 @@ export class OpenSCD extends Setting(
     this.dispatchEvent(
       newLogEvent({
         kind: 'info',
-        title: get('openSCD.loading', { name: this.srcName }),
+        title: get('openSCD.loading', { name: this.docName }),
       })
     );
 
@@ -135,7 +132,7 @@ export class OpenSCD extends Setting(
 
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
 
-    const validated = this.validate(this.doc, { fileName: this.srcName });
+    const validated = this.validate(this.doc, { fileName: this.docName });
 
     if (this.doc) this.dispatchEvent(newPendingStateEvent(validated));
 
@@ -144,7 +141,7 @@ export class OpenSCD extends Setting(
     this.dispatchEvent(
       newLogEvent({
         kind: 'info',
-        title: get('openSCD.loaded', { name: this.srcName }),
+        title: get('openSCD.loaded', { name: this.docName }),
       })
     );
     return;
@@ -155,14 +152,14 @@ export class OpenSCD extends Setting(
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
     if (file) {
-      this.srcName = file.name;
+      this.docName = file.name;
       this.setAttribute('src', URL.createObjectURL(file));
     }
   }
 
   private saveAs(): void {
-    this.srcName =
-      this.saveUI.querySelector('mwc-textfield')?.value || this.srcName;
+    this.docName =
+      this.saveUI.querySelector('mwc-textfield')?.value || this.docName;
     this.save();
     this.saveUI.close();
   }
@@ -190,7 +187,7 @@ export class OpenSCD extends Setting(
       );
 
       const a = document.createElement('a');
-      a.download = this.srcName;
+      a.download = this.docName;
       a.href = URL.createObjectURL(blob);
       a.dataset.downloadurl = ['application/xml', a.download, a.href].join(':');
       a.style.display = 'none';
@@ -224,7 +221,7 @@ export class OpenSCD extends Setting(
     inputs: WizardInput[],
     wizard: Element
   ): EditorAction[] {
-    this.srcName = inputs[0].value.match(/\.s[sc]d$/i)
+    this.docName = inputs[0].value.match(/\.s[sc]d$/i)
       ? inputs[0].value
       : inputs[0].value + '.scd';
     const version = <SupportedVersion>(
@@ -234,7 +231,7 @@ export class OpenSCD extends Setting(
 
     this.reset();
 
-    this.doc = newEmptySCD(this.srcName.slice(0, -4), version);
+    this.doc = newEmptySCD(this.docName.slice(0, -4), version);
 
     return [{ actions: [], title: get('menu.new'), derived: true }];
   }
@@ -353,7 +350,7 @@ export class OpenSCD extends Setting(
           this.doc
             ? this.dispatchEvent(
                 newPendingStateEvent(
-                  this.validate(this.doc, { fileName: this.srcName })
+                  this.validate(this.doc, { fileName: this.docName })
                 )
               )
             : null,
@@ -432,7 +429,7 @@ export class OpenSCD extends Setting(
       <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
         <span slot="title">${translate('menu.name')}</span>
         ${
-          this.srcName ? html`<span slot="subtitle">${this.srcName}</span>` : ''
+          this.docName ? html`<span slot="subtitle">${this.docName}</span>` : ''
         }
         <mwc-list
           wrapFocus
@@ -450,7 +447,7 @@ export class OpenSCD extends Setting(
             slot="navigationIcon"
             @click=${() => (this.menuUI.open = true)}
           ></mwc-icon-button>
-          <div slot="title" id="title">${this.srcName}</div>
+          <div slot="title" id="title">${this.docName}</div>
           ${this.menu.map(this.renderActionItem)}
           ${
             this.doc
@@ -468,7 +465,7 @@ export class OpenSCD extends Setting(
       <mwc-dialog heading="${translate('saveAs')}" id="saveas">
         <mwc-textfield dialogInitialFocus label="${translate(
           'filename'
-        )}" value="${this.srcName}">
+        )}" value="${this.docName}">
         </mwc-textfield>
         <mwc-button
           @click=${() => this.saveAs()}

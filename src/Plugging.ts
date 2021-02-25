@@ -12,7 +12,6 @@ import { EditingElement, newEmptySCD } from './Editing.js';
 import { List } from '@material/mwc-list';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-const placeholderDoc = newEmptySCD('OpenSCDPlaceholder.scd', '2007B4');
 
 type EditorPluginKind = 'editor' | 'triggered';
 
@@ -72,9 +71,10 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
               plugin.src,
               await import(plugin.src).then(mod => mod.default)
             );
-          return html`<${loaded.get(plugin.src)} .doc=${
-            this.doc ?? placeholderDoc
-          }></${loaded.get(plugin.src)}>`;
+          return html`<${loaded.get(plugin.src)}
+            .doc=${this.doc}
+            .docName=${this.docName}
+          ></${loaded.get(plugin.src)}>`;
         },
       };
     }

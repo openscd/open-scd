@@ -49,6 +49,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     /** The `XMLDocument` to be edited */
     @property()
     doc: XMLDocument | null = null;
+    /** The name of the current [[`doc`]] */
+    @property({ type: String }) docName = '';
 
     private checkCreateValidity(create: Create): boolean {
       if (create.checkValidity !== undefined) return create.checkValidity();
