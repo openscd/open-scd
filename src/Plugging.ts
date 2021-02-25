@@ -1,6 +1,7 @@
 import { html as litHtml, query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
-import wrapHtml from 'carehtml';
+import wrapHtml from './carehtml/wrap.js';
+
 const html = wrapHtml(litHtml);
 
 import { Dialog } from '@material/mwc-dialog';
@@ -172,23 +173,21 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             ${this.plugins.map(
               plugin =>
                 html`<mwc-list-item
-                  value="${plugin.src || ''}"
+                  value="${plugin.src}"
                   hasMeta
                   graphic="icon"
-                  ?activated=${plugin.installed || false}
-                  ?selected=${plugin.installed || false}
+                  ?activated=${plugin.installed}
+                  ?selected=${plugin.installed}
                 >
                   <mwc-icon slot="graphic"
-                    >${plugin.icon ||
-                    pluginIcons[plugin.kind] ||
-                    'error'}</mwc-icon
+                    >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
                   >
-                  ${plugin.name || ''}
+                  ${plugin.name}
                   <mwc-icon slot="meta"
-                    >${pluginIcons[plugin.kind] || 'error'}</mwc-icon
+                    >${pluginIcons[plugin.kind]}</mwc-icon
                   ></mwc-list-item
                 >`
-            ) || ''}
+            )}
           </mwc-list>
         </mwc-dialog>
       `;
