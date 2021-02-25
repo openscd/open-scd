@@ -215,6 +215,7 @@ export class OpenSCD extends Setting(
     if (ctrlAnd('o')) this.fileUI.click();
     if (ctrlAnd('s')) this.save();
     if (ctrlAnd('S')) this.saveUI.show();
+    if (ctrlAnd('P')) this.pluginUI.show();
 
     if (handled) e.preventDefault();
   }
@@ -393,7 +394,7 @@ export class OpenSCD extends Setting(
       },
       {
         icon: 'extension',
-        name: 'plugins.name',
+        name: 'plugins.heading',
         action: (): void => this.pluginUI.show(),
       },
     ];
