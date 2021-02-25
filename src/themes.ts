@@ -41,6 +41,8 @@ export function getTheme(theme: Settings['theme']): TemplateResult {
         --mdc-circular-progress-bar-color-2: var(--mdc-theme-on-background);
         --mdc-circular-progress-bar-color-3: var(--mdc-theme-secondary);
         --mdc-circular-progress-bar-color-4: var(--mdc-theme-on-background);
+
+        --mdc-icon-font: 'Material Icons Outlined';
       }
 
       .mdc-drawer span.mdc-drawer__title {

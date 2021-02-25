@@ -2,22 +2,28 @@
   {
     "name": "Substation",
     "src": "/src/editors/Substation.js",
-    "icon": "coronavirus",
+    "icon": "margin",
     "default": true,
     "kind": "editor"
   },
   {
     "name": "Communication",
     "src": "/src/editors/Communication.js",
-    "icon": "social_distance",
+    "icon": "settings_ethernet",
     "default": true,
     "kind": "editor"
   },
   {
     "name": "Templates",
     "src": "/src/editors/Templates.js",
-    "icon": "surfing",
+    "icon": "copy_all",
     "default": true,
     "kind": "editor"
+  },
+  {
+    "name": "Subscriber Update",
+    "src": "/src/transform/SubscriberInfo.js",
+    "default": true,
+    "kind": "transform"
   }
 ]

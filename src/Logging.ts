@@ -1,4 +1,4 @@
-import { css, html, property, query, TemplateResult } from 'lit-element';
+import { html, property, query, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { Dialog } from '@material/mwc-dialog';
@@ -8,7 +8,6 @@ import {
   CommitEntry,
   ifImplemented,
   invert,
-  isSimple,
   LitElementConstructor,
   LogEntry,
   LogEvent,
