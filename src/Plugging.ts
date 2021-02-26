@@ -13,18 +13,22 @@ import { List } from '@material/mwc-list';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-type EditorPluginKind = 'editor' | 'triggered';
+type PluginKind = 'editor' | 'triggered';
 
-export type InstalledPlugin = {
+type AvailablePlugin = {
   name: string;
   src: string;
   icon?: string;
-  kind: EditorPluginKind;
-  content: () => Promise<TemplateResult>;
+  kind: PluginKind;
   installed: boolean;
 };
 
-export const pluginIcons: Record<EditorPluginKind, string> = {
+export type InstalledPlugin = AvailablePlugin & {
+  content: () => Promise<TemplateResult>;
+  installed: true;
+};
+
+export const pluginIcons: Record<PluginKind, string> = {
   editor: 'tab',
   triggered: 'play_circle',
 };
@@ -46,8 +50,7 @@ async function storeDefaultPlugins(): Promise<void> {
   );
 }
 
-/** Mixin that saves [[`Plugins`]] to `localStorage`, reflecting them in the
- * `plugins` property. */
+/** Mixin that manages Plugins in `localStorage` */
 export type PluggingElement = Mixin<typeof Plugging>;
 
 const loaded = new Map<string, LitElementConstructor>();
@@ -56,15 +59,50 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
   Base: TBase
 ) {
   class PluggingElement extends Base {
-    get plugins(): Omit<InstalledPlugin, 'content'>[] {
+    @query('#pluginManager')
+    pluginUI!: Dialog;
+    @query('#pluginList')
+    pluginList!: List;
+    @query('#pluginAdd')
+    pluginDownloadUI!: Dialog;
+
+    get editors(): InstalledPlugin[] {
+      return this.plugins
+        .filter(plugin => plugin.installed && plugin.kind === 'editor')
+        .map(this.addContent);
+    }
+    get items(): InstalledPlugin[] {
+      return this.plugins
+        .filter(plugin => plugin.installed && plugin.kind === 'triggered')
+        .map(this.addContent);
+    }
+
+    private setPlugins(indices: Set<number>): void {
+      const newPlugins = this.plugins.map((plugin, index) => {
+        return { ...plugin, installed: indices.has(index) };
+      });
+      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+      this.requestUpdate();
+    }
+
+    private addPlugin(plugin: AvailablePlugin): void {
+      if (this.plugins.some(p => p.src === plugin.src)) return;
+
+      const newPlugins = this.plugins;
+      newPlugins.push(plugin);
+      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+    }
+
+    private get plugins(): AvailablePlugin[] {
       return <InstalledPlugin[]>(
         JSON.parse(localStorage.getItem('plugins') ?? '[]')
       );
     }
 
-    private addContent(plugin: Omit<InstalledPlugin, 'content'>) {
+    private addContent(plugin: AvailablePlugin): InstalledPlugin {
       return {
         ...plugin,
+        installed: true,
         content: async (): Promise<TemplateResult> => {
           if (!loaded.has(plugin.src))
             loaded.set(
@@ -79,38 +117,36 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       };
     }
 
-    get editors(): InstalledPlugin[] {
-      return this.plugins
-        .filter(plugin => plugin.installed && plugin.kind === 'editor')
-        .map(this.addContent);
-    }
-    get items(): InstalledPlugin[] {
-      return this.plugins
-        .filter(plugin => plugin.installed && plugin.kind === 'triggered')
-        .map(this.addContent);
-    }
+    private handleAddPlugin() {
+      const pluginSrcInput = <TextField>(
+        this.pluginDownloadUI.querySelector('#pluginSrcInput')
+      );
+      const pluginNameInput = <TextField>(
+        this.pluginDownloadUI.querySelector('#pluginNameInput')
+      );
+      const pluginKindList = <List>(
+        this.pluginDownloadUI.querySelector('#pluginKindList')
+      );
 
-    @query('#pluginManager')
-    pluginUI!: Dialog;
-    @query('#pluginList')
-    pluginList!: List;
-    @query('#pluginAdd')
-    pluginDownloadUI!: Dialog;
+      if (
+        !(
+          pluginSrcInput.checkValidity() &&
+          pluginNameInput.checkValidity() &&
+          pluginKindList.selected
+        )
+      )
+        return;
 
-    setPlugins(indices: Set<number>): void {
-      const newPlugins = this.plugins.map((plugin, index) => {
-        return { ...plugin, installed: indices.has(index) };
+      this.addPlugin({
+        src: pluginSrcInput.value,
+        name: pluginNameInput.value,
+        kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
+        installed: true,
       });
-      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+
       this.requestUpdate();
-    }
-
-    addPlugin(plugin: Omit<InstalledPlugin, 'content'>): void {
-      if (this.plugins.some(p => p.src === plugin.src)) return;
-
-      const newPlugins = this.plugins;
-      newPlugins.push(plugin);
-      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+      this.pluginUI.requestUpdate();
+      this.pluginDownloadUI.close();
     }
 
     constructor(...args: any[]) {
@@ -228,47 +264,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         </mwc-dialog>
       `;
     }
-    handleAddPlugin() {
-      const pluginSrcInput = <TextField>(
-        this.pluginDownloadUI.querySelector('#pluginSrcInput')
-      );
-      const pluginNameInput = <TextField>(
-        this.pluginDownloadUI.querySelector('#pluginNameInput')
-      );
-      const pluginKindList = <List>(
-        this.pluginDownloadUI.querySelector('#pluginKindList')
-      );
-
-      if (
-        !(
-          pluginSrcInput.checkValidity() &&
-          pluginNameInput.checkValidity() &&
-          pluginKindList.selected
-        )
-      )
-        return;
-
-      this.addPlugin({
-        src: pluginSrcInput.value,
-        name: pluginNameInput.value,
-        kind: <EditorPluginKind>(<ListItem>pluginKindList.selected).value,
-        installed: true,
-      });
-
-      this.requestUpdate();
-      this.pluginUI.requestUpdate();
-      this.pluginDownloadUI.close();
-    }
   }
 
   return PluggingElement;
-}
-
-/** If `tagName` is not yet a custom element, imports the module at `src` and
- * registers its default export as a custom element called `tagName`. */
-export async function plugin(src: string, tagName: string): Promise<void> {
-  if (customElements.get(tagName) === undefined) {
-    const mod = await import(src);
-    customElements.define(tagName, mod.default);
-  }
 }

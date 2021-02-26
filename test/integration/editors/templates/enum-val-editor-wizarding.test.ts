@@ -9,7 +9,7 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 import { getDocument } from '../../../data.js';
 import { regexString, regExp } from '../../../foundation.js';
 
-describe('enum-val-editor wizard', () => {
+describe('enum-val-editor wizarding integration', () => {
   const doc = getDocument();
   let parent: WizardingElement;
   let editor: EnumValEditor;
