@@ -8,14 +8,14 @@ import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
-import { EditingElement, newEmptySCD } from './Editing.js';
+import { EditingElement } from './Editing.js';
 import { List } from '@material/mwc-list';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 type EditorPluginKind = 'editor' | 'triggered';
 
-export type EditorPlugin = {
+export type InstalledPlugin = {
   name: string;
   src: string;
   icon?: string;
@@ -29,7 +29,7 @@ export const pluginIcons: Record<EditorPluginKind, string> = {
   triggered: 'play_circle',
 };
 
-const pluginRepo: Promise<(EditorPlugin & { default?: boolean })[]> = fetch(
+const pluginRepo: Promise<(InstalledPlugin & { default?: boolean })[]> = fetch(
   '/public/json/plugins.json'
 ).then(res => res.json());
 
@@ -56,13 +56,13 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
   Base: TBase
 ) {
   class PluggingElement extends Base {
-    get plugins(): Omit<EditorPlugin, 'content'>[] {
-      return <EditorPlugin[]>(
+    get plugins(): Omit<InstalledPlugin, 'content'>[] {
+      return <InstalledPlugin[]>(
         JSON.parse(localStorage.getItem('plugins') ?? '[]')
       );
     }
 
-    private addContent(plugin: Omit<EditorPlugin, 'content'>) {
+    private addContent(plugin: Omit<InstalledPlugin, 'content'>) {
       return {
         ...plugin,
         content: async (): Promise<TemplateResult> => {
@@ -79,12 +79,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       };
     }
 
-    get editors(): EditorPlugin[] {
+    get editors(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'editor')
         .map(this.addContent);
     }
-    get items(): EditorPlugin[] {
+    get items(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'triggered')
         .map(this.addContent);
@@ -105,7 +105,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       this.requestUpdate();
     }
 
-    addPlugin(plugin: Omit<EditorPlugin, 'content'>): void {
+    addPlugin(plugin: Omit<InstalledPlugin, 'content'>): void {
       if (this.plugins.some(p => p.src === plugin.src)) return;
 
       const newPlugins = this.plugins;
@@ -127,37 +127,36 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       return html`
         ${ifImplemented(super.render())}
         <mwc-dialog
+          stacked
           id="pluginManager"
           heading="${translate('plugins.heading')}"
         >
-          <div style="display: flex; flex-direction: column; row-gap: 8px;">
-            <mwc-list
-              @selected=${(e: MultiSelectedEvent) =>
-                this.setPlugins(e.detail.index)}
-              id="pluginList"
-              activatable
-              multi
-            >
-              ${this.plugins.map(
-                plugin =>
-                  html`<mwc-list-item
-                    value="${plugin.src}"
-                    hasMeta
-                    graphic="icon"
-                    ?activated=${plugin.installed}
-                    ?selected=${plugin.installed}
+          <mwc-list
+            @selected=${(e: MultiSelectedEvent) =>
+              this.setPlugins(e.detail.index)}
+            id="pluginList"
+            activatable
+            multi
+          >
+            ${this.plugins.map(
+              plugin =>
+                html`<mwc-list-item
+                  value="${plugin.src}"
+                  hasMeta
+                  graphic="icon"
+                  ?activated=${plugin.installed}
+                  ?selected=${plugin.installed}
+                >
+                  <mwc-icon slot="graphic"
+                    >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
                   >
-                    <mwc-icon slot="graphic"
-                      >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
-                    >
-                    ${plugin.name}
-                    <mwc-icon slot="meta"
-                      >${pluginIcons[plugin.kind]}</mwc-icon
-                    ></mwc-list-item
-                  >`
-              )}
-            </mwc-list>
-          </div>
+                  ${plugin.name}
+                  <mwc-icon slot="meta"
+                    >${pluginIcons[plugin.kind]}</mwc-icon
+                  ></mwc-list-item
+                >`
+            )}
+          </mwc-list>
           <mwc-button
             slot="secondaryAction"
             icon="refresh"
@@ -170,10 +169,11 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           >
           </mwc-button>
           <mwc-button
+            raised
             trailingIcon
             slot="primaryAction"
             icon="library_add"
-            label="${translate('add')}"
+            label="${translate('add')}&hellip;"
             @click=${() => this.pluginDownloadUI.show()}
           >
           </mwc-button>
@@ -183,6 +183,9 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           heading="${translate('plugins.add.heading')}"
         >
           <div style="display: flex; flex-direction: column; row-gap: 8px;">
+            <p style="color:var(--mdc-theme-error);">
+              ${translate('plugins.add.warning')}
+            </p>
             <mwc-textfield
               label="${translate('plugins.add.name')}"
               helper="${translate('plugins.add.nameHelper')}"

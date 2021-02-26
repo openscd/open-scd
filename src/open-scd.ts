@@ -53,7 +53,7 @@ import { Editing, newEmptySCD } from './Editing.js';
 import { Importing } from './Importing.js';
 import { Logging } from './Logging.js';
 import { Setting } from './Setting.js';
-import { EditorPlugin, Plugging, pluginIcons } from './Plugging.js';
+import { InstalledPlugin, Plugging, pluginIcons } from './Plugging.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
@@ -419,7 +419,7 @@ export class OpenSCD extends Setting(
     else return html``;
   }
 
-  renderEditorTab({ name, icon }: EditorPlugin): TemplateResult {
+  renderEditorTab({ name, icon }: InstalledPlugin): TemplateResult {
     return html`<mwc-tab label=${translate(name)} icon=${icon || 'edit'}>
     </mwc-tab>`;
   }
