@@ -5,6 +5,7 @@ import { CommitEntry, newLogEvent } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
 import './mock-logger.js';
+import { IconButton } from '@material/mwc-icon-button';
 
 describe('LoggingElement', () => {
   let element: LoggingElement;
@@ -61,6 +62,192 @@ describe('LoggingElement', () => {
     expect(element.logUI).to.have.property('open', true);
   });
 
+  describe('has filter options', () => {
+    beforeEach(async () => {
+      element.dispatchEvent(
+        newLogEvent({
+          kind: 'info',
+          title: 'test Info',
+        })
+      );
+      element.requestUpdate();
+      await element.updateComplete;
+      element.dispatchEvent(
+        newLogEvent({
+          kind: 'warning',
+          title: 'test warning',
+        })
+      );
+      element.requestUpdate();
+      await element.updateComplete;
+      element.dispatchEvent(
+        newLogEvent({
+          kind: 'error',
+          title: 'test error',
+        })
+      );
+      element.requestUpdate();
+      await element.updateComplete;
+      element.dispatchEvent(
+        newLogEvent({
+          kind: 'action',
+          title: 'test MockAction',
+          action: MockAction.cre,
+        })
+      );
+      element.requestUpdate();
+      await element.updateComplete;
+    });
+
+    it('that can filter for infos', async () => {
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(1)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(1);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(3);
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(1)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(0);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(4);
+    });
+
+    it('that can filter for warnings', async () => {
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(2)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(1);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(3);
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(2)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(0);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(4);
+    });
+
+    it('that can filter for errors', async () => {
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(3)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(1);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(3);
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(3)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(0);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(4);
+    });
+
+    it('that can filter for actions', async () => {
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(4)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(1);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(3);
+      (<IconButton>(
+        element.filterContainer.querySelector(
+          'mwc-icon-button-toggle:nth-child(4)'
+        )
+      ))!.click();
+      element.requestUpdate();
+      await element.updateComplete;
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === 'display:none').length
+      ).to.equal(0);
+      expect(
+        Array.from(
+          element.shadowRoot!.querySelectorAll('#content mwc-list-item')
+        ).filter(item => item.getAttribute('style') === '').length
+      ).to.equal(4);
+    });
+  });
+
   describe('with an action logged', () => {
     beforeEach(async () => {
       element.dispatchEvent(
@@ -70,6 +257,8 @@ describe('LoggingElement', () => {
           action: MockAction.cre,
         })
       );
+      element.requestUpdate();
+      await element.updateComplete;
       element.requestUpdate();
       await element.updateComplete;
     });

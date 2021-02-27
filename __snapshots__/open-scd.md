@@ -324,18 +324,33 @@
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
-  <mwc-button
-    disabled=""
-    icon="undo"
-    label="Undo"
+  <div
+    id="filterContainer"
     slot="secondaryAction"
   >
-  </mwc-button>
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+  </div>
   <mwc-button
     disabled=""
     icon="redo"
     label="Redo"
     slot="secondaryAction"
+    style="float:right;"
+  >
+  </mwc-button>
+  <mwc-button
+    disabled=""
+    icon="undo"
+    label="Undo"
+    slot="secondaryAction"
+    style="float:right;"
   >
   </mwc-button>
   <mwc-button
