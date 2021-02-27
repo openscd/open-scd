@@ -236,4 +236,9 @@ export const styles = css`
   h3 > abbr > mwc-icon-button {
     float: right;
   }
+
+  abbr {
+    text-decoration: none;
+    border-bottom: none;
+  }
 `;
