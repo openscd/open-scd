@@ -1,4 +1,131 @@
-import { html } from 'lit-element';
+import { html, TemplateResult } from 'lit-element';
+
+const path1: Partial<Record<string, string>> = {
+  action: `M0 0h24v24H0z`,
+  info: `M0 0h24v24H0z`,
+  warning: `M0 0h24v24H0z`,
+  error: `M0 0h24v24H0z`,
+};
+
+const path2: Partial<Record<string, string>> = {
+  action: `M13 3c-4.97 0-9
+  4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7
+  7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0
+  9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z`,
+  info: `M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z`,
+  warning: `M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z`,
+  error: `M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z`,
+};
+
+export function getFilterTest(
+  type: string,
+  state: string,
+  color: string
+): TemplateResult {
+  return html`<svg
+    slot="${state}Icon"
+    xmlns="http://www.w3.org/2000/svg"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
+  >
+    <path d="${path1[type]}" fill="none" />
+    <path d="${path2[type]}" fill="var(${color ?? ''})" />
+  </svg> `;
+}
+
+export const filterActionOff = html`<svg
+  slot="offIcon"
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <path d="M0 0h24v24H0z" fill="none" />
+  <path
+    d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
+    fill="var(--blue)"
+  />
+</svg> `;
+
+export const filterInfoOn = html`<svg
+  slot="onIcon"
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <path d="M0 0h24v24H0z" fill="none" />
+  <path
+    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+  />
+</svg> `;
+
+export const filterInfoOff = html`<svg
+  slot="offIcon"
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <path d="M0 0h24v24H0z" fill="none" />
+  <path
+    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+    fill="var(--cyan)"
+  />
+</svg> `;
+
+export const filterWarningOn = html`<svg
+  slot="onIcon"
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <path d="M0 0h24v24H0z" fill="none" />
+  <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+</svg>`;
+
+export const filterWarningOff = html`<svg
+  slot="offIcon"
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <path d="M0 0h24v24H0z" fill="none" />
+  <path
+    d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+    fill="var(--yellow)"
+  />
+</svg>`;
+
+export const filterErrorOn = html`<svg
+  slot="onIcon"
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <path d="M0 0h24v24H0z" fill="none" />
+  <path
+    d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"
+  />
+</svg>`;
+
+export const filterErrorOff = html`<svg
+  slot="offIcon"
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <path d="M0 0h24v24H0z" fill="none" />
+  <path
+    d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM12 17.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zm1-4.3h-2V7h2v6z"
+    fill="var(--red)"
+  />
+</svg>`;
 
 export const iedIcon = html`<svg
   xmlns="http://www.w3.org/2000/svg"

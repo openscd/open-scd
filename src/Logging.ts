@@ -15,18 +15,19 @@ import {
   newActionEvent,
 } from './foundation.js';
 import { get, translate } from 'lit-translate';
+import { getFilterTest } from './icons.js';
+
 const icons = {
   info: 'info',
   warning: 'warning',
   error: 'report',
   action: 'history',
 };
-
-const colors = {
+const colors: Partial<Record<string, string>> = {
   info: '--cyan',
   warning: '--yellow',
   error: '--red',
-  action: undefined,
+  action: '--blue',
 };
 
 /**
@@ -52,9 +53,18 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     currentAction = -1;
+    @property({ type: Number })
+    filterError = false;
+    @property({ type: Number })
+    filterWarning = false;
+    @property({ type: Number })
+    filterInfo = false;
+    @property({ type: Number })
+    filterAction = false;
 
     @query('#log') logUI!: Dialog;
     @query('#message') messageUI!: Snackbar;
+    @query('#filterContainer') filterContainer!: Element;
 
     get canUndo(): boolean {
       return this.currentAction >= 0;
@@ -124,6 +134,38 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       this.requestUpdate('history', []);
     }
 
+    toggleFilter(filterType: string): void {
+      if (filterType == 'error')
+        this.filterError
+          ? (this.filterError = false)
+          : (this.filterError = true);
+
+      if (filterType == 'warning')
+        this.filterWarning
+          ? (this.filterWarning = false)
+          : (this.filterWarning = true);
+
+      if (filterType == 'info')
+        this.filterInfo ? (this.filterInfo = false) : (this.filterInfo = true);
+
+      if (filterType == 'action')
+        this.filterAction
+          ? (this.filterAction = false)
+          : (this.filterAction = true);
+    }
+
+    isLogEntryFiltered(entry: LogEntry): boolean {
+      if (entry.kind === 'error' && this.filterError) return true;
+
+      if (entry.kind === 'warning' && this.filterWarning) return true;
+
+      if (entry.kind === 'info' && this.filterInfo) return true;
+
+      if (entry.kind === 'action' && this.filterAction) return true;
+
+      return false;
+    }
+
     async performUpdate() {
       await new Promise<void>(resolve =>
         requestAnimationFrame(() => resolve())
@@ -148,6 +190,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     ): TemplateResult {
       return html` <abbr title="${entry.title}">
         <mwc-list-item
+          style="${this.isLogEntryFiltered(entry) ? 'display:none' : ''}"
           graphic="icon"
           ?twoline=${entry.message}
           ?activated=${this.currentAction == history.length - index - 1}
@@ -179,22 +222,43 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </mwc-list-item>`;
     }
 
+    renderFilterOptions(): TemplateResult {
+      return html`<div id="filterContainer" slot="secondaryAction">
+        ${Object.keys(icons).map(
+          type => html`<mwc-icon-button-toggle
+            @click="${() => {
+              this.toggleFilter(type);
+            }}"
+            >${getFilterTest(type, 'on', '--mdc-theme-on-background')}
+            ${getFilterTest(
+              type,
+              'off',
+              colors[type] ?? '--mdc-theme-on-background'
+            )}</mwc-icon-button-toggle
+          >`
+        )}
+      </div>`;
+    }
+
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
         <mwc-dialog id="log" heading="${translate('log.name')}">
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
+          ${this.renderFilterOptions()}
           <mwc-button
-            icon="undo"
-            label="${translate('undo')}"
-            ?disabled=${!this.canUndo}
-            @click=${this.undo}
-            slot="secondaryAction"
-          ></mwc-button>
-          <mwc-button
+            style="float:right;"
             icon="redo"
             label="${translate('redo')}"
             ?disabled=${!this.canRedo}
             @click=${this.redo}
+            slot="secondaryAction"
+          ></mwc-button>
+          <mwc-button
+            style="float:right;"
+            icon="undo"
+            label="${translate('undo')}"
+            ?disabled=${!this.canUndo}
+            @click=${this.undo}
             slot="secondaryAction"
           ></mwc-button>
           <mwc-button slot="primaryAction" dialogaction="close"

@@ -19,6 +19,7 @@ import '@material/mwc-fab';
 import '@material/mwc-formfield';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
+import '@material/mwc-icon-button-toggle';
 import '@material/mwc-linear-progress';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';
@@ -540,6 +541,39 @@ export class OpenSCD extends Setting(
     mwc-dialog > form {
       display: flex;
       flex-direction: column;
+    }
+
+    #log {
+      --mdc-dialog-min-width: 92vw;
+    }
+
+    #log > #filterContainer {
+      min-width: 55vw;
+      float: left;
+    }
+
+    #filterContainer > mwc-icon-button-toggle {
+      --mdc-icon-button-size: 36px;
+    }
+
+    #filterContainer > mwc-icon-button-toggle:nth-child(1) {
+      position: absolute;
+      left: 15px;
+    }
+
+    #filterContainer > mwc-icon-button-toggle:nth-child(2) {
+      position: absolute;
+      left: 51px;
+    }
+
+    #filterContainer > mwc-icon-button-toggle:nth-child(3) {
+      position: absolute;
+      left: 87px;
+    }
+
+    #filterContainer > mwc-icon-button-toggle:nth-child(4) {
+      position: absolute;
+      left: 123px;
     }
 
     mwc-dialog > form > * {
