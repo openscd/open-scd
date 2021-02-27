@@ -33,7 +33,7 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
         release = '1',
         fileName = 'untitled.scd',
       } = {}
-    ): Promise<string> {
+    ): Promise<void> {
       if (doc.documentElement)
         [version, revision, release] = [
           doc.documentElement.getAttribute('version') ?? '',
@@ -46,9 +46,23 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
       ).then(validator =>
         validator(new XMLSerializer().serializeToString(doc), fileName)
       );
-      if (!(await this.validated).valid)
-        throw get('validating.invalid', { name: fileName });
-      return get('validating.valid', { name: fileName });
+      if (!(await this.validated).valid) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'warning',
+            title: get('validating.invalid', { name: fileName }),
+          })
+        );
+        return;
+      }
+
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'info',
+          title: get('validating.valid', { name: fileName }),
+        })
+      );
+      return;
     }
 
     private async getValidator(
