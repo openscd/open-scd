@@ -15,16 +15,16 @@ describe('WaitingElement', () => {
     expect(element).property('waiting').to.be.false);
 
   it('starts waiting on incoming PendingStateEvent', async () => {
-    const promise = new Promise<string>(resolve =>
-      setTimeout(() => resolve('done'), 1000 /* ms */)
+    const promise = new Promise<void>(resolve =>
+      setTimeout(() => resolve(), 1500 /* ms */)
     );
     element.dispatchEvent(newPendingStateEvent(promise));
     expect(element).property('waiting').to.be.true;
   });
 
   it('stops waiting on promise resolution', async () => {
-    const promise = new Promise<string>(resolve =>
-      setTimeout(() => resolve('done'), 20 /* ms */)
+    const promise = new Promise<void>(resolve =>
+      setTimeout(() => resolve(), 20 /* ms */)
     );
     element.dispatchEvent(newPendingStateEvent(promise));
     await promise;
@@ -33,8 +33,8 @@ describe('WaitingElement', () => {
   });
 
   it('stops waiting on promise rejection', async () => {
-    const promise = new Promise<string>((_resolve, reject) =>
-      setTimeout(() => reject('done'), 20 /* ms */)
+    const promise = new Promise<void>((_resolve, reject) =>
+      setTimeout(() => reject(), 20 /* ms */)
     );
     element.dispatchEvent(newPendingStateEvent(promise));
     await promise.catch(() => null);
