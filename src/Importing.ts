@@ -248,6 +248,12 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
             title: get('import.log.parsererror'),
           })
         );
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('import.log.loaderror'),
+          })
+        );
         return;
       }
 
@@ -292,15 +298,13 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         return;
       }
 
-      if (isSuccessful) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'warning',
-            title: get('import.log.importerror'),
-          })
-        );
-        return;
-      }
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'warning',
+          title: get('import.log.importerror'),
+        })
+      );
+      return;
     }
   }
 
