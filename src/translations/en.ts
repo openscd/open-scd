@@ -65,6 +65,20 @@ export const en = {
       placeholder: 'No errors',
     },
   },
+  plugins: {
+    heading: 'Extensions',
+    editor: 'Editor pane',
+    triggered: 'Menu entry',
+    add: {
+      heading: 'Add custom extension',
+      warning: `Here you may add remote extensions directly from a custom URL.
+                You do this at your own risk.`,
+      name: 'Name',
+      nameHelper: 'Your preferred extension name',
+      src: 'URL',
+      srcHelper: 'The vendor supplied extension URL',
+    },
+  },
   substation: {
     name: 'Substation',
     missing: 'No substation',

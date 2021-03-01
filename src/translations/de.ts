@@ -68,6 +68,20 @@ export const de: Translations = {
       placeholder: 'Keine Fehler',
     },
   },
+  plugins: {
+    heading: 'Erweiterungen',
+    editor: 'Editor',
+    triggered: 'Menüeintrag',
+    add: {
+      heading: 'Benutzerdefinierte Erweiterung',
+      warning: `Hier können Sie benutzerdefinierte Erweiterungen hinzufügen.
+                OpenSCD übernimm hierfür keine Gewähr.`,
+      name: 'Name',
+      nameHelper: 'Lokaler Name der Erweiterung (frei wählbar)',
+      src: 'URL',
+      srcHelper: 'Die Erweiterungs-URL des Herstellers',
+    },
+  },
   substation: {
     name: 'Schaltanlage',
     missing: 'Keine Schaltanlage',
