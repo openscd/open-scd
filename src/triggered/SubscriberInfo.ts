@@ -3,7 +3,6 @@ import { get } from 'lit-translate';
 import {
   createElement,
   newActionEvent,
-  newLogEvent,
   SimpleAction,
 } from '../foundation.js';
 
@@ -128,7 +127,7 @@ export function createMissingIEDNameSubscriberInfo(
 export default class SubscriberInfoPlugin extends LitElement {
   doc!: XMLDocument;
 
-  async trigger(): Promise<string> {
+  async trigger(): Promise<void> {
     const actions: SimpleAction[] = createMissingIEDNameSubscriberInfo(
       this.doc!
     );
@@ -150,6 +149,6 @@ export default class SubscriberInfoPlugin extends LitElement {
       })
     );
 
-    return '';
+    return;
   }
 }

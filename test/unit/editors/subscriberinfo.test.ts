@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
 import { Create, isCreate, SimpleAction } from '../../../src/foundation.js';
 
-import { createMissingIEDNameSubscriberInfo } from '../../../src/transform/SubscriberInfo.js';
+import { createMissingIEDNameSubscriberInfo } from '../../../src/triggered/SubscriberInfo.js';
 import { getDocument } from '../../data.js';
 
 describe('Transformation function SubscriberInfo', () => {
