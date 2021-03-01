@@ -22,7 +22,7 @@
   },
   {
     "name": "Subscriber Update",
-    "src": "/src/transform/SubscriberInfo.js",
+    "src": "/src/triggered/SubscriberInfo.js",
     "default": true,
     "kind": "triggered"
   }
