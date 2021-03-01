@@ -53,7 +53,7 @@ describe('open-scd', () => {
     )).click();
     expect(element.doc?.querySelector('Header')).to.exist;
     expect(element.doc?.querySelector('Header')?.getAttribute('id')).to.equal(
-      element.srcName.slice(0, -4)
+      element.docName.slice(0, -4)
     );
     expect(element.doc?.querySelector('SCL')?.getAttribute('xmlns')).to.equal(
       'http://www.iec.ch/61850/2003/SCL'

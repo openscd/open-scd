@@ -1,8 +1,6 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
-import '@material/mwc-fab';
-
 import { newWizardEvent } from '../foundation.js';
 
 import { selectors, styles } from './substation/foundation.js';

@@ -8,7 +8,7 @@
   <base href="/">
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> <!-- Poor unicode coverage -->
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined&display=block" rel="stylesheet">
   <link href="public/css/normalize.css" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
@@ -21,11 +21,19 @@
 <body>
   <open-scd></open-scd>
 
+  <script>
+    const _customElementsDefine = window.customElements.define;
+    window.customElements.define = (name, cl, conf) => {
+      if (!customElements.get(name)) {
+        _customElementsDefine.call(window.customElements, name, cl, conf);
+      }
+    };
+  </script>
   <script type="module" src="./src/open-scd.js"></script>
-    <script>
+  <script>
     if ('serviceWorker' in navigator)
       navigator.serviceWorker.register('/sw.js');
-    </script>
+  </script>
 </body>
 
 </html>

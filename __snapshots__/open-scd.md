@@ -51,21 +51,6 @@
       aria-disabled="true"
       disabled=""
       graphic="icon"
-      iconid="snippet_folder"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        snippet_folder
-      </mwc-icon>
-      <span>
-        Import IED
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
       iconid="save_alt"
       mwc-list-item=""
       tabindex="-1"
@@ -90,6 +75,21 @@
       </mwc-icon>
       <span>
         Save as
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="snippet_folder"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        snippet_folder
+      </mwc-icon>
+      <span>
+        Import IED
       </span>
     </mwc-list-item>
     <li
@@ -128,14 +128,9 @@
         Redo
       </span>
     </mwc-list-item>
-    <li
-      divider=""
-      padded=""
-      role="separator"
-    >
-    </li>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="icon"
       iconid="rule_folder"
       mwc-list-item=""
@@ -172,16 +167,18 @@
       aria-disabled="true"
       disabled=""
       graphic="icon"
-      iconid="extension"
+      iconid="play_circle"
       mwc-list-item=""
       tabindex="-1"
     >
       <mwc-icon slot="graphic">
-        extension
+        play_circle
       </mwc-icon>
       <span>
-        Update subscriber info
+        Subscriber Update
       </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
     </mwc-list-item>
     <li
       divider=""
@@ -201,6 +198,20 @@
       </mwc-icon>
       <span>
         Settings
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
+      iconid="extension"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        extension
+      </mwc-icon>
+      <span>
+        plugins.heading
       </span>
     </mwc-list-item>
   </mwc-list>
@@ -351,6 +362,176 @@
   >
   </mwc-icon-button>
 </mwc-snackbar>
+<mwc-dialog
+  heading="plugins.heading"
+  id="pluginManager"
+  stacked=""
+>
+  <mwc-list
+    activatable=""
+    id="pluginList"
+    multi=""
+  >
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="0"
+      value="/src/editors/Substation.js"
+    >
+      <mwc-icon slot="graphic">
+        margin
+      </mwc-icon>
+      Substation
+      <mwc-icon slot="meta">
+        tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/Communication.js"
+    >
+      <mwc-icon slot="graphic">
+        settings_ethernet
+      </mwc-icon>
+      Communication
+      <mwc-icon slot="meta">
+        tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/Templates.js"
+    >
+      <mwc-icon slot="graphic">
+        copy_all
+      </mwc-icon>
+      Templates
+      <mwc-icon slot="meta">
+        tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/transform/SubscriberInfo.js"
+    >
+      <mwc-icon slot="graphic">
+        play_circle
+      </mwc-icon>
+      Subscriber Update
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
+  <mwc-button
+    icon="refresh"
+    label="Reset"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="library_add"
+    label="Add…"
+    raised=""
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+<mwc-dialog
+  heading="plugins.add.heading"
+  id="pluginAdd"
+>
+  <div style="display: flex; flex-direction: column; row-gap: 8px;">
+    <p style="color:var(--mdc-theme-error);">
+      plugins.add.warning
+    </p>
+    <mwc-textfield
+      helper="plugins.add.nameHelper"
+      id="pluginNameInput"
+      label="plugins.add.name"
+      required=""
+    >
+    </mwc-textfield>
+    <mwc-list id="pluginKindList">
+      <mwc-radio-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        graphic="control"
+        hasmeta=""
+        left=""
+        mwc-list-item=""
+        selected=""
+        tabindex="0"
+        value="editor"
+      >
+        plugins.editor
+        <mwc-icon slot="meta">
+          tab
+        </mwc-icon>
+      </mwc-radio-list-item>
+      <mwc-radio-list-item
+        aria-disabled="false"
+        graphic="control"
+        hasmeta=""
+        left=""
+        mwc-list-item=""
+        tabindex="-1"
+        value="triggered"
+      >
+        plugins.triggered
+        <mwc-icon slot="meta">
+          play_circle
+        </mwc-icon>
+      </mwc-radio-list-item>
+    </mwc-list>
+    <mwc-textfield
+      helper="plugins.add.srcHelper"
+      id="pluginSrcInput"
+      label="plugins.add.src"
+      placeholder="http://example.com/plugin.js"
+      required=""
+      type="url"
+    >
+    </mwc-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="Cancel"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
+    icon="add"
+    label="Add"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
 <mwc-circular-progress-four-color
   closed=""
   density="0"
@@ -414,7 +595,9 @@
   </mwc-button>
   <mwc-button
     dialogaction="save"
+    icon="save"
     slot="primaryAction"
+    trailingicon=""
   >
     Save
   </mwc-button>

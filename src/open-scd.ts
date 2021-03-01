@@ -12,19 +12,27 @@ import { translate, get } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-checkbox';
+import '@material/mwc-circular-progress-four-color';
 import '@material/mwc-dialog';
 import '@material/mwc-drawer';
+import '@material/mwc-fab';
 import '@material/mwc-formfield';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';
 import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
+import '@material/mwc-menu';
+import '@material/mwc-select';
+import '@material/mwc-snackbar';
+import '@material/mwc-switch';
 import '@material/mwc-tab';
 import '@material/mwc-tab-bar';
 import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
+
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Dialog } from '@material/mwc-dialog';
 import { Drawer } from '@material/mwc-drawer';
@@ -32,49 +40,50 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
   EditorAction,
-  newActionEvent,
   newLogEvent,
   newPendingStateEvent,
   newWizardEvent,
-  SimpleAction,
   Wizard,
   WizardInput,
 } from './foundation.js';
 import { getTheme } from './themes.js';
-import { plugin } from './plugin.js';
-import { zeroLineIcon } from './icons.js';
 import { SupportedVersion } from './schemas.js';
 
 import { Editing, newEmptySCD } from './Editing.js';
+import { Importing } from './Importing.js';
 import { Logging } from './Logging.js';
 import { Setting } from './Setting.js';
+import { InstalledPlugin, Plugging, pluginIcons } from './Plugging.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
-import { Importing } from './Importing.js';
-import { createMissingIEDNameSubscriberInfo } from './transform/SubscriberInfo.js';
 
-interface MenuEntry {
+import { List } from '@material/mwc-list';
+interface MenuItem {
   icon: string;
   name: string;
   hint?: string;
-  startsGroup?: boolean;
   actionItem?: boolean;
-  action?: () => void;
+  action?: (event: CustomEvent<ActionDetail>) => void;
   disabled?: () => boolean;
+  content?: () => Promise<TemplateResult>;
+}
+
+interface Triggered {
+  trigger: () => Promise<void>;
 }
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Setting(
-  Importing(Wizarding(Waiting(Validating(Editing(Logging(LitElement))))))
+  Importing(
+    Wizarding(Waiting(Validating(Plugging(Editing(Logging(LitElement))))))
+  )
 ) {
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
-  /** The name of the current file. */
-  @property({ type: String }) srcName = '';
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })
@@ -100,7 +109,6 @@ export class OpenSCD extends Setting(
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
     if (file) {
-      //this.srcName = file.name;
       const loaded = this.importIED(URL.createObjectURL(file), this.doc!);
       this.dispatchEvent(newPendingStateEvent(loaded));
       await loaded;
@@ -114,7 +122,7 @@ export class OpenSCD extends Setting(
     this.dispatchEvent(
       newLogEvent({
         kind: 'info',
-        title: get('openSCD.loading', { name: this.srcName }),
+        title: get('openSCD.loading', { name: this.docName }),
       })
     );
 
@@ -124,7 +132,7 @@ export class OpenSCD extends Setting(
 
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
 
-    const validated = this.validate(this.doc, { fileName: this.srcName });
+    const validated = this.validate(this.doc, { fileName: this.docName });
 
     if (this.doc) this.dispatchEvent(newPendingStateEvent(validated));
 
@@ -133,7 +141,7 @@ export class OpenSCD extends Setting(
     this.dispatchEvent(
       newLogEvent({
         kind: 'info',
-        title: get('openSCD.loaded', { name: this.srcName }),
+        title: get('openSCD.loaded', { name: this.docName }),
       })
     );
     return;
@@ -144,14 +152,14 @@ export class OpenSCD extends Setting(
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
     if (file) {
-      this.srcName = file.name;
+      this.docName = file.name;
       this.setAttribute('src', URL.createObjectURL(file));
     }
   }
 
   private saveAs(): void {
-    this.srcName =
-      this.saveUI.querySelector('mwc-textfield')?.value || this.srcName;
+    this.docName =
+      this.saveUI.querySelector('mwc-textfield')?.value || this.docName;
     this.save();
     this.saveUI.close();
   }
@@ -179,7 +187,7 @@ export class OpenSCD extends Setting(
       );
 
       const a = document.createElement('a');
-      a.download = this.srcName;
+      a.download = this.docName;
       a.href = URL.createObjectURL(blob);
       a.dataset.downloadurl = ['application/xml', a.download, a.href].join(':');
       a.style.display = 'none';
@@ -204,6 +212,7 @@ export class OpenSCD extends Setting(
     if (ctrlAnd('o')) this.fileUI.click();
     if (ctrlAnd('s')) this.save();
     if (ctrlAnd('S')) this.saveUI.show();
+    if (ctrlAnd('P')) this.pluginUI.show();
 
     if (handled) e.preventDefault();
   }
@@ -212,7 +221,7 @@ export class OpenSCD extends Setting(
     inputs: WizardInput[],
     wizard: Element
   ): EditorAction[] {
-    this.srcName = inputs[0].value.match(/\.s[sc]d$/i)
+    this.docName = inputs[0].value.match(/\.s[sc]d$/i)
       ? inputs[0].value
       : inputs[0].value + '.scd';
     const version = <SupportedVersion>(
@@ -222,7 +231,7 @@ export class OpenSCD extends Setting(
 
     this.reset();
 
-    this.doc = newEmptySCD(this.srcName.slice(0, -4), version);
+    this.doc = newEmptySCD(this.docName.slice(0, -4), version);
 
     return [{ actions: [], title: get('menu.new'), derived: true }];
   }
@@ -252,7 +261,7 @@ export class OpenSCD extends Setting(
                 >Edition 2 (Schema 3.1)</mwc-radio-list-item
               >
               <mwc-radio-list-item left selected value="2007B4"
-                >Edition 2.1 current (2007B4)</mwc-radio-list-item
+                >Edition 2.1 (2007B4)</mwc-radio-list-item
               >
             </mwc-list>`,
         ],
@@ -264,145 +273,109 @@ export class OpenSCD extends Setting(
     this.dispatchEvent(newWizardEvent(this.newProjectWizard()));
   }
 
-  private updateSubscriberInfo() {
-    const actions: SimpleAction[] = createMissingIEDNameSubscriberInfo(
-      this.doc!
-    );
+  get menu(): (MenuItem | 'divider')[] {
+    const items: (MenuItem | 'divider')[] = [];
 
-    if (!actions.length) {
-      this.dispatchEvent(
-        newLogEvent({
-          kind: 'info',
-          title:
-            get('transform.subscriber.description') +
-            get('transform.subscriber.nonewitems'),
-        })
-      );
-      return;
-    }
-
-    this.dispatchEvent(
-      newActionEvent({
-        title:
-          get('transform.subscriber.description') +
-          get('transform.subscriber.message', {
-            updatenumber: actions.length,
-          }),
-        actions: actions,
+    this.items.forEach(plugin =>
+      items.push({
+        icon: plugin.icon || pluginIcons['triggered'],
+        name: plugin.name,
+        action: ae => {
+          this.dispatchEvent(
+            newPendingStateEvent(
+              (<Triggered>(
+                (<unknown>(
+                  (<List>ae.target).items[ae.detail.index].lastElementChild
+                ))
+              )).trigger()
+            )
+          );
+        },
+        disabled: (): boolean => this.doc === null,
+        content: plugin.content,
       })
     );
-  }
 
-  menu: MenuEntry[] = [
-    {
-      icon: 'folder_open',
-      name: 'menu.open',
-      startsGroup: true,
-      action: (): void => this.fileUI.click(),
-    },
-    {
-      icon: 'create_new_folder',
-      name: 'menu.new',
-      action: (): void => this.openNewProjectWizard(),
-    },
-    {
-      icon: 'snippet_folder',
-      name: 'menu.importIED',
-      action: (): void => this.iedImport.click(),
-      disabled: (): boolean => this.doc === null,
-    },
-    {
-      icon: 'save_alt',
-      name: 'save',
-      action: (): void => this.save(),
-      disabled: (): boolean => this.doc === null,
-    },
-    {
-      icon: 'save',
-      name: 'saveAs',
-      action: (): void => this.saveUI.show(),
-      disabled: (): boolean => this.doc === null,
-    },
-    {
-      icon: 'undo',
-      name: 'undo',
-      startsGroup: true,
-      actionItem: true,
-      action: this.undo,
-      disabled: (): boolean => !this.canUndo,
-    },
-    {
-      icon: 'redo',
-      name: 'redo',
-      actionItem: true,
-      action: this.redo,
-      disabled: (): boolean => !this.canRedo,
-    },
-    {
-      icon: 'rule_folder',
-      name: 'menu.validate',
-      startsGroup: true,
-      action: () =>
-        this.doc
-          ? this.dispatchEvent(
-              newPendingStateEvent(
-                this.validate(this.doc, { fileName: this.srcName })
+    if (items.length > 0) items.push('divider');
+
+    return [
+      'divider',
+      {
+        icon: 'folder_open',
+        name: 'menu.open',
+        action: (): void => this.fileUI.click(),
+      },
+      {
+        icon: 'create_new_folder',
+        name: 'menu.new',
+        action: (): void => this.openNewProjectWizard(),
+      },
+      {
+        icon: 'save_alt',
+        name: 'save',
+        action: (): void => this.save(),
+        disabled: (): boolean => this.doc === null,
+      },
+      {
+        icon: 'save',
+        name: 'saveAs',
+        action: (): void => this.saveUI.show(),
+        disabled: (): boolean => this.doc === null,
+      },
+      {
+        icon: 'snippet_folder',
+        name: 'menu.importIED',
+        action: (): void => this.iedImport.click(),
+        disabled: (): boolean => this.doc === null,
+      },
+      'divider',
+      {
+        icon: 'undo',
+        name: 'undo',
+        actionItem: true,
+        action: this.undo,
+        disabled: (): boolean => !this.canUndo,
+      },
+      {
+        icon: 'redo',
+        name: 'redo',
+        actionItem: true,
+        action: this.redo,
+        disabled: (): boolean => !this.canRedo,
+      },
+      {
+        icon: 'rule_folder',
+        name: 'menu.validate',
+        action: () =>
+          this.doc
+            ? this.dispatchEvent(
+                newPendingStateEvent(
+                  this.validate(this.doc, { fileName: this.docName })
+                )
               )
-            )
-          : null,
-    },
-    {
-      icon: 'rule',
-      name: 'menu.viewLog',
-      actionItem: true,
-      action: (): void => this.logUI.show(),
-    },
-    {
-      icon: 'extension',
-      name: get('menu.subscriberinfo'),
-      startsGroup: true,
-      action: (): void => this.updateSubscriberInfo(),
-      disabled: (): boolean => this.doc === null,
-    },
-    {
-      icon: 'settings',
-      name: 'settings.name',
-      startsGroup: true,
-      action: (): void => this.settingsUI.show(),
-    },
-  ];
-
-  plugins = {
-    editors: [
-      {
-        name: 'substation.name',
-        id: 'substation',
-        icon: zeroLineIcon,
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/Substation.js', 'editor-0').then(
-            () => html`<editor-0 .doc=${this.doc}></editor-0>`
-          ),
+            : null,
+        disabled: (): boolean => this.doc === null,
       },
       {
-        name: 'communication.name',
-        id: 'communication',
-        icon: 'settings_ethernet',
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/Communication.js', 'editor-1').then(
-            () => html`<editor-1 .doc=${this.doc}></editor-1>`
-          ),
+        icon: 'rule',
+        name: 'menu.viewLog',
+        actionItem: true,
+        action: (): void => this.logUI.show(),
+      },
+      'divider',
+      ...items,
+      {
+        icon: 'settings',
+        name: 'settings.name',
+        action: (): void => this.settingsUI.show(),
       },
       {
-        name: 'templates.name',
-        id: 'templates',
-        icon: 'code',
-        getContent: (): Promise<TemplateResult> =>
-          plugin('./editors/Templates.js', 'editor-2').then(
-            () => html`<editor-2 .doc=${this.doc}></editor-2>`
-          ),
+        icon: 'extension',
+        name: 'plugins.heading',
+        action: (): void => this.pluginUI.show(),
       },
-    ],
-  };
+    ];
+  }
 
   constructor() {
     super();
@@ -411,24 +384,31 @@ export class OpenSCD extends Setting(
     document.onkeydown = this.handleKeyPress;
   }
 
-  renderMenuEntry(me: MenuEntry): TemplateResult {
+  renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
+    if (me === 'divider')
+      return html`<li divider padded role="separator"></li>`;
     return html`
-      ${me.startsGroup ? html`<li divider padded role="separator"></li>` : ''}
       <mwc-list-item
         iconid="${me.icon}"
         graphic="icon"
-        .disabled=${me.disabled?.() || (me.action ? false : true)}
-        ><mwc-icon slot="graphic"> ${me.icon} </mwc-icon>
+        .disabled=${me.disabled?.() || !me.action}
+        ><mwc-icon slot="graphic">${me.icon}</mwc-icon>
         <span>${translate(me.name)}</span>
         ${me.hint
           ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
+          : ''}
+        ${me.content
+          ? until(
+              me.content(),
+              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+            )
           : ''}
       </mwc-list-item>
     `;
   }
 
-  renderActionItem(me: MenuEntry): TemplateResult {
-    if (me.actionItem)
+  renderActionItem(me: MenuItem | 'divider'): TemplateResult {
+    if (me !== 'divider' && me.actionItem)
       return html`<mwc-icon-button
         slot="actionItems"
         icon="${me.icon}"
@@ -439,22 +419,8 @@ export class OpenSCD extends Setting(
     else return html``;
   }
 
-  renderEditorTab({
-    name,
-    id,
-    icon,
-  }: {
-    name: string;
-    id: string;
-    icon: string | TemplateResult;
-  }): TemplateResult {
-    return html`<mwc-tab
-      label=${translate(name)}
-      icon=${icon instanceof TemplateResult ? '' : icon}
-      id=${id}
-      hasimageicon
-    >
-      ${icon instanceof TemplateResult ? icon : ''}
+  renderEditorTab({ name, icon }: InstalledPlugin): TemplateResult {
+    return html`<mwc-tab label=${translate(name)} icon=${icon || 'edit'}>
     </mwc-tab>`;
   }
 
@@ -463,13 +429,15 @@ export class OpenSCD extends Setting(
       <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
         <span slot="title">${translate('menu.name')}</span>
         ${
-          this.srcName ? html`<span slot="subtitle">${this.srcName}</span>` : ''
+          this.docName ? html`<span slot="subtitle">${this.docName}</span>` : ''
         }
         <mwc-list
           wrapFocus
           @action=${(ae: CustomEvent<ActionDetail>) =>
-            this.menu[ae.detail.index]?.action!()}
-        > ${this.menu.map(this.renderMenuEntry)}
+            (<MenuItem>(
+              this.menu.filter(item => item !== 'divider')[ae.detail.index]
+            ))?.action?.(ae)}
+        > ${this.menu.map(this.renderMenuItem)}
         </mwc-list>
 
         <mwc-top-app-bar-fixed slot="appContent">
@@ -479,7 +447,7 @@ export class OpenSCD extends Setting(
             slot="navigationIcon"
             @click=${() => (this.menuUI.open = true)}
           ></mwc-icon-button>
-          <div slot="title" id="title">${this.srcName}</div>
+          <div slot="title" id="title">${this.docName}</div>
           ${this.menu.map(this.renderActionItem)}
           ${
             this.doc
@@ -487,7 +455,7 @@ export class OpenSCD extends Setting(
                   @MDCTabBar:activated=${(e: CustomEvent) =>
                     (this.activeTab = e.detail.index)}
                 >
-                  ${this.plugins.editors.map(this.renderEditorTab)}
+                  ${this.editors.map(this.renderEditorTab)}
                 </mwc-tab-bar>`
               : ``
           }
@@ -497,7 +465,7 @@ export class OpenSCD extends Setting(
       <mwc-dialog heading="${translate('saveAs')}" id="saveas">
         <mwc-textfield dialogInitialFocus label="${translate(
           'filename'
-        )}" value="${this.srcName}">
+        )}" value="${this.docName}">
         </mwc-textfield>
         <mwc-button
           @click=${() => this.saveAs()}
@@ -516,7 +484,8 @@ export class OpenSCD extends Setting(
       ${
         this.doc
           ? until(
-              this.plugins.editors[this.activeTab].getContent(),
+              this.editors[this.activeTab] &&
+                this.editors[this.activeTab].content(),
               html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
             )
           : html`<div class="landing">

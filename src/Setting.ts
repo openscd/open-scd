@@ -1,11 +1,6 @@
 import { html, property, query, TemplateResult } from 'lit-element';
 import { registerTranslateConfig, translate, use } from 'lit-translate';
 
-import '@material/mwc-dialog';
-import '@material/mwc-formfield';
-import '@material/mwc-list/mwc-list-item';
-import '@material/mwc-select';
-import '@material/mwc-switch';
 import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
@@ -54,7 +49,9 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
-        localStorage.clear();
+        Object.keys(this.settings).forEach(item =>
+          localStorage.removeItem(item)
+        );
         this.requestUpdate('settings');
       } else if (ae.detail?.action === 'save') {
         this.setSetting('language', <Language>this.languageUI.value);
@@ -116,7 +113,12 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           >
             ${translate('reset')}
           </mwc-button>
-          <mwc-button slot="primaryAction" dialogAction="save">
+          <mwc-button
+            icon="save"
+            trailingIcon
+            slot="primaryAction"
+            dialogAction="save"
+          >
             ${translate('save')}
           </mwc-button>
         </mwc-dialog>`;

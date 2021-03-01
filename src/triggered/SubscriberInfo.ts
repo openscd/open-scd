@@ -1,4 +1,10 @@
-import { createElement, SimpleAction } from '../foundation.js';
+import { LitElement } from 'lit-element';
+import { get } from 'lit-translate';
+import {
+  createElement,
+  newActionEvent,
+  SimpleAction,
+} from '../foundation.js';
 
 function getElementIndexOf(list: (Element | null)[], match: Element): number {
   for (let i = 0; list.length; i++) if (list[i]?.isEqualNode(match)) return i;
@@ -116,4 +122,33 @@ export function createMissingIEDNameSubscriberInfo(
   });
 
   return simpleAction;
+}
+
+export default class SubscriberInfoPlugin extends LitElement {
+  doc!: XMLDocument;
+
+  async trigger(): Promise<void> {
+    const actions: SimpleAction[] = createMissingIEDNameSubscriberInfo(
+      this.doc!
+    );
+
+    if (!actions.length)
+      throw new Error(
+        get('transform.subscriber.description') +
+          get('transform.subscriber.nonewitems')
+      );
+
+    this.dispatchEvent(
+      newActionEvent({
+        title:
+          get('transform.subscriber.description') +
+          get('transform.subscriber.message', {
+            updatenumber: actions.length,
+          }),
+        actions: actions,
+      })
+    );
+
+    return;
+  }
 }

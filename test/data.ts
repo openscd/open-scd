@@ -1,8 +1,8 @@
 export function getDocument(valid = true, version?: string): XMLDocument {
-  if (version && version === '2003')
+  if (valid && version && version === '2003')
     return new DOMParser().parseFromString(validSCL2003, 'application/xml');
 
-  if (version && version === '2007B')
+  if (valid && version && version === '2007B')
     return new DOMParser().parseFromString(validSCL2007B, 'application/xml');
 
   return new DOMParser().parseFromString(
