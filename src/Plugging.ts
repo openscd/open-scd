@@ -59,13 +59,6 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
   Base: TBase
 ) {
   class PluggingElement extends Base {
-    @query('#pluginManager')
-    pluginUI!: Dialog;
-    @query('#pluginList')
-    pluginList!: List;
-    @query('#pluginAdd')
-    pluginDownloadUI!: Dialog;
-
     get editors(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'editor')
@@ -76,6 +69,13 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         .filter(plugin => plugin.installed && plugin.kind === 'triggered')
         .map(this.addContent);
     }
+
+    @query('#pluginManager')
+    pluginUI!: Dialog;
+    @query('#pluginList')
+    pluginList!: List;
+    @query('#pluginAdd')
+    pluginDownloadUI!: Dialog;
 
     private setPlugins(indices: Set<number>): void {
       const newPlugins = this.plugins.map((plugin, index) => {
