@@ -62,12 +62,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     get editors(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'editor')
-        .map(this.addContent);
+        .map(plugin => this.addContent(plugin));
     }
     get items(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'triggered')
-        .map(this.addContent);
+        .map(plugin => this.addContent(plugin));
     }
 
     @query('#pluginManager')
@@ -154,9 +154,6 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
 
       if (localStorage.getItem('plugins') === null)
         storeDefaultPlugins().then(() => this.requestUpdate());
-      this.addContent = this.addContent.bind(this);
-      this.addPlugin = this.addPlugin.bind(this);
-      this.setPlugins = this.setPlugins.bind(this);
     }
 
     render(): TemplateResult {
