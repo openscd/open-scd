@@ -33,7 +33,7 @@ export const pluginIcons: Record<PluginKind, string> = {
   triggered: 'play_circle',
 };
 
-const pluginRepo: Promise<(InstalledPlugin & { default?: boolean })[]> = fetch(
+const officialPlugins: Promise<(AvailablePlugin & { default?: boolean })[]> = fetch(
   '/public/json/plugins.json'
 ).then(res => res.json());
 
@@ -41,7 +41,7 @@ async function storeDefaultPlugins(): Promise<void> {
   localStorage.setItem(
     'plugins',
     JSON.stringify(
-      await pluginRepo.then(plugins =>
+      await officialPlugins.then(plugins =>
         plugins.map(plugin => {
           return { ...plugin, installed: plugin.default ?? false };
         })
