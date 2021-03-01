@@ -33,9 +33,9 @@ export const pluginIcons: Record<PluginKind, string> = {
   triggered: 'play_circle',
 };
 
-const officialPlugins: Promise<(AvailablePlugin & { default?: boolean })[]> = fetch(
-  '/public/json/plugins.json'
-).then(res => res.json());
+const officialPlugins: Promise<
+  (AvailablePlugin & { default?: boolean })[]
+> = fetch('/public/json/plugins.json').then(res => res.json());
 
 async function storeDefaultPlugins(): Promise<void> {
   localStorage.setItem(
@@ -156,9 +156,61 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         storeDefaultPlugins().then(() => this.requestUpdate());
     }
 
-    render(): TemplateResult {
+    renderDownloadUI(): TemplateResult {
       return html`
-        ${ifImplemented(super.render())}
+        <mwc-dialog
+          id="pluginAdd"
+          heading="${translate('plugins.add.heading')}"
+        >
+          <div style="display: flex; flex-direction: column; row-gap: 8px;">
+            <p style="color:var(--mdc-theme-error);">
+              ${translate('plugins.add.warning')}
+            </p>
+            <mwc-textfield
+              label="${translate('plugins.add.name')}"
+              helper="${translate('plugins.add.nameHelper')}"
+              required
+              id="pluginNameInput"
+            ></mwc-textfield>
+            <mwc-list id="pluginKindList">
+              <mwc-radio-list-item value="editor" hasMeta selected left
+                >${translate('plugins.editor')}<mwc-icon slot="meta"
+                  >${pluginIcons['editor']}</mwc-icon
+                ></mwc-radio-list-item
+              >
+              <mwc-radio-list-item value="triggered" hasMeta left
+                >${translate('plugins.triggered')}<mwc-icon slot="meta"
+                  >${pluginIcons['triggered']}</mwc-icon
+                ></mwc-radio-list-item
+              >
+            </mwc-list>
+            <mwc-textfield
+              label="${translate('plugins.add.src')}"
+              helper="${translate('plugins.add.srcHelper')}"
+              placeholder="http://example.com/plugin.js"
+              type="url"
+              required
+              id="pluginSrcInput"
+            ></mwc-textfield>
+          </div>
+          <mwc-button
+            slot="secondaryAction"
+            dialogAction="close"
+            label="${translate('cancel')}"
+          ></mwc-button>
+          <mwc-button
+            slot="primaryAction"
+            icon="add"
+            label="${translate('add')}"
+            trailingIcon
+            @click=${() => this.handleAddPlugin()}
+          ></mwc-button>
+        </mwc-dialog>
+      `;
+    }
+
+    renderPluginUI(): TemplateResult {
+      return html`
         <mwc-dialog
           stacked
           id="pluginManager"
@@ -211,54 +263,13 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           >
           </mwc-button>
         </mwc-dialog>
-        <mwc-dialog
-          id="pluginAdd"
-          heading="${translate('plugins.add.heading')}"
-        >
-          <div style="display: flex; flex-direction: column; row-gap: 8px;">
-            <p style="color:var(--mdc-theme-error);">
-              ${translate('plugins.add.warning')}
-            </p>
-            <mwc-textfield
-              label="${translate('plugins.add.name')}"
-              helper="${translate('plugins.add.nameHelper')}"
-              required
-              id="pluginNameInput"
-            ></mwc-textfield>
-            <mwc-list id="pluginKindList">
-              <mwc-radio-list-item value="editor" hasMeta selected left
-                >${translate('plugins.editor')}<mwc-icon slot="meta"
-                  >${pluginIcons['editor']}</mwc-icon
-                ></mwc-radio-list-item
-              >
-              <mwc-radio-list-item value="triggered" hasMeta left
-                >${translate('plugins.triggered')}<mwc-icon slot="meta"
-                  >${pluginIcons['triggered']}</mwc-icon
-                ></mwc-radio-list-item
-              >
-            </mwc-list>
-            <mwc-textfield
-              label="${translate('plugins.add.src')}"
-              helper="${translate('plugins.add.srcHelper')}"
-              placeholder="http://example.com/plugin.js"
-              type="url"
-              required
-              id="pluginSrcInput"
-            ></mwc-textfield>
-          </div>
-          <mwc-button
-            slot="secondaryAction"
-            dialogAction="close"
-            label="${translate('cancel')}"
-          ></mwc-button>
-          <mwc-button
-            slot="primaryAction"
-            icon="add"
-            label="${translate('add')}"
-            trailingIcon
-            @click=${() => this.handleAddPlugin()}
-          ></mwc-button>
-        </mwc-dialog>
+      `;
+    }
+
+    render(): TemplateResult {
+      return html`
+        ${ifImplemented(super.render())} ${this.renderPluginUI()}
+        ${this.renderDownloadUI()}
       `;
     }
   }
