@@ -20,7 +20,7 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
     @property({ type: Boolean })
     waiting = false;
 
-    private work: Set<Promise<string>> = new Set();
+    private work: Set<Promise<void>> = new Set();
     /** A promise which resolves once all currently pending work is done. */
     workDone = Promise.allSettled(this.work);
 
@@ -28,10 +28,7 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
       this.waiting = true;
       this.work.add(e.detail.promise);
       this.workDone = Promise.allSettled(this.work);
-      await e.detail.promise.then(
-        msg => this.dispatchEvent(newLogEvent({ kind: 'info', title: msg })),
-        msg => this.dispatchEvent(newLogEvent({ kind: 'warning', title: msg }))
-      );
+      await e.detail.promise.catch(reason => console.warn(reason));
       this.work.delete(e.detail.promise);
       this.waiting = this.work.size > 0;
     }

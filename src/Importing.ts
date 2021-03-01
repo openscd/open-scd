@@ -234,7 +234,7 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     /** Loads and parses an `XMLDocument` after [[`srcIED`]] has changed. */
-    async importIED(src: string, doc: Document): Promise<string> {
+    async importIED(src: string, doc: Document): Promise<void> {
       let iedDoc: Document | null = null;
 
       const response = await fetch(src);
@@ -242,10 +242,17 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
       iedDoc = new DOMParser().parseFromString(text, 'application/xml');
 
       if (!iedDoc || iedDoc.querySelector('parsererror')) {
+        if (iedDoc.querySelector('parsererror'))
+          this.dispatchEvent(
+            newLogEvent({
+              kind: 'error',
+              title: get('import.log.parsererror'),
+            })
+          );
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
-            title: get('import.log.parsererror'),
+            title: get('import.log.loaderror'),
           })
         );
         throw new Error(get('import.log.loaderror'));
@@ -282,8 +289,22 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
 
       if (src.startsWith('blob:')) URL.revokeObjectURL(src);
 
-      if (isSuccessful) return msg;
+      if (isSuccessful) {
+        this.dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: msg,
+          })
+        );
+        return;
+      }
 
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'warning',
+          title: get('import.log.importerror'),
+        })
+      );
       throw new Error(get('import.log.importerror'));
     }
   }

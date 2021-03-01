@@ -98,8 +98,8 @@ describe('foundation', () => {
   });
 
   describe('PendingStateEvent', () => {
-    it('bears a string Promise in its detail', () => {
-      expect(newPendingStateEvent(Promise.resolve('test promise')))
+    it('bears a void Promise in its detail', () => {
+      expect(newPendingStateEvent(Promise.resolve()))
         .property('detail')
         .property('promise')
         .to.be.a('promise');

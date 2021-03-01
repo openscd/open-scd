@@ -231,11 +231,11 @@ export type LogEntry = InfoEntry | CommitEntry;
 
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {
-  promise: Promise<string>;
+  promise: Promise<void>;
 }
 export type PendingStateEvent = CustomEvent<PendingStateDetail>;
 export function newPendingStateEvent(
-  promise: Promise<string>,
+  promise: Promise<void>,
   eventInitDict?: CustomEventInit<Partial<PendingStateDetail>>
 ): PendingStateEvent {
   return new CustomEvent<PendingStateDetail>('pending-state', {

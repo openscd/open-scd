@@ -108,7 +108,7 @@ export class OpenSCD extends Setting(
   }
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
-  private async loadDoc(src: string): Promise<string> {
+  private async loadDoc(src: string): Promise<void> {
     this.reset();
 
     this.dispatchEvent(
@@ -130,7 +130,13 @@ export class OpenSCD extends Setting(
 
     await validated;
 
-    return get('openSCD.loaded', { name: this.srcName });
+    this.dispatchEvent(
+      newLogEvent({
+        kind: 'info',
+        title: get('openSCD.loaded', { name: this.srcName }),
+      })
+    );
+    return;
   }
 
   /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
