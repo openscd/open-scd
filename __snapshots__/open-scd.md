@@ -211,7 +211,7 @@
         extension
       </mwc-icon>
       <span>
-        plugins.heading
+        Extensions
       </span>
     </mwc-list-item>
   </mwc-list>
@@ -363,7 +363,7 @@
   </mwc-icon-button>
 </mwc-snackbar>
 <mwc-dialog
-  heading="plugins.heading"
+  heading="Extensions"
   id="pluginManager"
   stacked=""
 >
@@ -434,7 +434,7 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/transform/SubscriberInfo.js"
+      value="/src/triggered/SubscriberInfo.js"
     >
       <mwc-icon slot="graphic">
         play_circle
@@ -462,17 +462,18 @@
   </mwc-button>
 </mwc-dialog>
 <mwc-dialog
-  heading="plugins.add.heading"
+  heading="Add custom extension"
   id="pluginAdd"
 >
   <div style="display: flex; flex-direction: column; row-gap: 8px;">
     <p style="color:var(--mdc-theme-error);">
-      plugins.add.warning
+      Here you may add remote extensions directly from a custom URL.
+                You do this at your own risk.
     </p>
     <mwc-textfield
-      helper="plugins.add.nameHelper"
+      helper="Your preferred extension name"
       id="pluginNameInput"
-      label="plugins.add.name"
+      label="Name"
       required=""
     >
     </mwc-textfield>
@@ -488,7 +489,7 @@
         tabindex="0"
         value="editor"
       >
-        plugins.editor
+        Editor pane
         <mwc-icon slot="meta">
           tab
         </mwc-icon>
@@ -502,16 +503,16 @@
         tabindex="-1"
         value="triggered"
       >
-        plugins.triggered
+        Menu entry
         <mwc-icon slot="meta">
           play_circle
         </mwc-icon>
       </mwc-radio-list-item>
     </mwc-list>
     <mwc-textfield
-      helper="plugins.add.srcHelper"
+      helper="The vendor supplied extension URL"
       id="pluginSrcInput"
-      label="plugins.add.src"
+      label="URL"
       placeholder="http://example.com/plugin.js"
       required=""
       type="url"
