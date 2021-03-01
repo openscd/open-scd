@@ -28,10 +28,7 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
       this.waiting = true;
       this.work.add(e.detail.promise);
       this.workDone = Promise.allSettled(this.work);
-      await e.detail.promise.then(
-        () => null,
-        () => null
-      );
+      await e.detail.promise.catch(reason => console.warn(reason));
       this.work.delete(e.detail.promise);
       this.waiting = this.work.size > 0;
     }

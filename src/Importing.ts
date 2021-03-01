@@ -242,19 +242,20 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
       iedDoc = new DOMParser().parseFromString(text, 'application/xml');
 
       if (!iedDoc || iedDoc.querySelector('parsererror')) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'error',
-            title: get('import.log.parsererror'),
-          })
-        );
+        if (iedDoc.querySelector('parsererror'))
+          this.dispatchEvent(
+            newLogEvent({
+              kind: 'error',
+              title: get('import.log.parsererror'),
+            })
+          );
         this.dispatchEvent(
           newLogEvent({
             kind: 'error',
             title: get('import.log.loaderror'),
           })
         );
-        return;
+        throw new Error(get('import.log.loaderror'));
       }
 
       if (!doc.querySelector(':root > DataTypeTemplates')) {
@@ -304,7 +305,7 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
           title: get('import.log.importerror'),
         })
       );
-      return;
+      throw new Error(get('import.log.importerror'));
     }
   }
 

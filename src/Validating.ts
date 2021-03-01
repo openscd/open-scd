@@ -53,7 +53,7 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
             title: get('validating.invalid', { name: fileName }),
           })
         );
-        return;
+        throw new Error(get('validating.invalid', { name: fileName }));
       }
 
       this.dispatchEvent(
