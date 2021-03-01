@@ -53,7 +53,7 @@ async function storeDefaultPlugins(): Promise<void> {
 /** Mixin that manages Plugins in `localStorage` */
 export type PluggingElement = Mixin<typeof Plugging>;
 
-const loaded = new Map<string, LitElementConstructor>();
+const loadedPlugins = new Map<string, LitElementConstructor>();
 
 export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
   Base: TBase
@@ -104,15 +104,15 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         ...plugin,
         installed: true,
         content: async (): Promise<TemplateResult> => {
-          if (!loaded.has(plugin.src))
-            loaded.set(
+          if (!loadedPlugins.has(plugin.src))
+            loadedPlugins.set(
               plugin.src,
               await import(plugin.src).then(mod => mod.default)
             );
-          return html`<${loaded.get(plugin.src)}
+          return html`<${loadedPlugins.get(plugin.src)}
             .doc=${this.doc}
             .docName=${this.docName}
-          ></${loaded.get(plugin.src)}>`;
+          ></${loadedPlugins.get(plugin.src)}>`;
         },
       };
     }
