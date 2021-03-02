@@ -7,26 +7,30 @@
   id="container"
   tabindex="0"
 >
-  <mwc-icon-button
+  <mwc-fab
     class="left menu-item"
     icon="account_tree"
+    mini=""
   >
-  </mwc-icon-button>
-  <mwc-icon-button
+  </mwc-fab>
+  <mwc-fab
     class="menu-item up"
     icon="edit"
+    mini=""
   >
-  </mwc-icon-button>
-  <mwc-icon-button
+  </mwc-fab>
+  <mwc-fab
     class="menu-item right"
     icon="forward"
+    mini=""
   >
-  </mwc-icon-button>
-  <mwc-icon-button
+  </mwc-fab>
+  <mwc-fab
     class="down menu-item"
     icon="delete"
+    mini=""
   >
-  </mwc-icon-button>
+  </mwc-fab>
 </div>
 <h4>
   QA1

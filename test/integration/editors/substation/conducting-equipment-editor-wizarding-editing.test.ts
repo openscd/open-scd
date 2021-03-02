@@ -27,7 +27,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
       );
       element = parent.querySelector('conducting-equipment-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('*[icon="edit"]')
       )).click();
       await parent.updateComplete;
     });
@@ -113,7 +113,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
 
       (<HTMLElement>(
         element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="account_tree"]'
+          '*[icon="account_tree"]'
         )
       )).click();
       await parent.updateComplete;
@@ -196,7 +196,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
         doc.querySelector('ConductingEquipment')?.getAttribute('name')
       ).to.equal('QA1');
       (<HTMLElement>(
-        element2?.shadowRoot?.querySelector('mwc-icon-button[icon="forward"]')
+        element2?.shadowRoot?.querySelector('*[icon="forward"]')
       )).click();
       await parent.updateComplete;
       (<HTMLElement>element).click();
@@ -225,7 +225,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     it('removes ConductingEquipment on clicking delete button', async () => {
       expect(doc.querySelector('ConductingEquipment[name="QA1"]')).to.exist;
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        element?.shadowRoot?.querySelector('*[icon="delete"]')
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('ConductingEquipment[name="QA1"]')).to.not.exist;
