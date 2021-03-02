@@ -305,6 +305,16 @@
   heading="Log"
   id="log"
 >
+  <div id="filterContainer">
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+    <mwc-icon-button-toggle>
+    </mwc-icon-button-toggle>
+  </div>
   <mwc-list
     id="content"
     wrapfocus=""
@@ -324,33 +334,18 @@
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
-  <div
-    id="filterContainer"
-    slot="secondaryAction"
-  >
-    <mwc-icon-button-toggle>
-    </mwc-icon-button-toggle>
-    <mwc-icon-button-toggle>
-    </mwc-icon-button-toggle>
-    <mwc-icon-button-toggle>
-    </mwc-icon-button-toggle>
-    <mwc-icon-button-toggle>
-    </mwc-icon-button-toggle>
-  </div>
-  <mwc-button
-    disabled=""
-    icon="redo"
-    label="Redo"
-    slot="secondaryAction"
-    style="float:right;"
-  >
-  </mwc-button>
   <mwc-button
     disabled=""
     icon="undo"
     label="Undo"
     slot="secondaryAction"
-    style="float:right;"
+  >
+  </mwc-button>
+  <mwc-button
+    disabled=""
+    icon="redo"
+    label="Redo"
+    slot="secondaryAction"
   >
   </mwc-button>
   <mwc-button

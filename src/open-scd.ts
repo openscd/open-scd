@@ -548,32 +548,13 @@ export class OpenSCD extends Setting(
     }
 
     #log > #filterContainer {
-      min-width: 55vw;
-      float: left;
+      position: absolute;
+      top: 14px;
+      right: 14px;
     }
 
     #filterContainer > mwc-icon-button-toggle {
       --mdc-icon-button-size: 36px;
-    }
-
-    #filterContainer > mwc-icon-button-toggle:nth-child(1) {
-      position: absolute;
-      left: 15px;
-    }
-
-    #filterContainer > mwc-icon-button-toggle:nth-child(2) {
-      position: absolute;
-      left: 51px;
-    }
-
-    #filterContainer > mwc-icon-button-toggle:nth-child(3) {
-      position: absolute;
-      left: 87px;
-    }
-
-    #filterContainer > mwc-icon-button-toggle:nth-child(4) {
-      position: absolute;
-      left: 123px;
     }
 
     mwc-dialog > form > * {

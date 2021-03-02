@@ -10,6 +10,7 @@ import {
   invert,
   LitElementConstructor,
   LogEntry,
+  LogEntryType,
   LogEvent,
   Mixin,
   newActionEvent,
@@ -23,7 +24,8 @@ const icons = {
   error: 'report',
   action: 'history',
 };
-const colors: Partial<Record<string, string>> = {
+
+const colors = {
   info: '--cyan',
   warning: '--yellow',
   error: '--red',
@@ -134,7 +136,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       this.requestUpdate('history', []);
     }
 
-    toggleFilter(filterType: string): void {
+    toggleFilter(filterType: LogEntryType): void {
       if (filterType == 'error')
         this.filterError
           ? (this.filterError = false)
@@ -223,17 +225,17 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     renderFilterOptions(): TemplateResult {
-      return html`<div id="filterContainer" slot="secondaryAction">
-        ${Object.keys(icons).map(
-          type => html`<mwc-icon-button-toggle
+      return html`<div id="filterContainer">
+        ${(<LogEntryType[]>Object.keys(icons)).map(
+          kind => html`<mwc-icon-button-toggle
             @click="${() => {
-              this.toggleFilter(type);
+              this.toggleFilter(kind);
             }}"
-            >${getFilterTest(type, 'on', '--mdc-theme-on-background')}
+            >${getFilterTest(kind, 'on', '--mdc-theme-on-background')}
             ${getFilterTest(
-              type,
+              kind,
               'off',
-              colors[type] ?? '--mdc-theme-on-background'
+              colors[kind] ?? '--mdc-theme-on-background'
             )}</mwc-icon-button-toggle
           >`
         )}
@@ -243,22 +245,20 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
         <mwc-dialog id="log" heading="${translate('log.name')}">
-          <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           ${this.renderFilterOptions()}
+          <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button
-            style="float:right;"
-            icon="redo"
-            label="${translate('redo')}"
-            ?disabled=${!this.canRedo}
-            @click=${this.redo}
-            slot="secondaryAction"
-          ></mwc-button>
-          <mwc-button
-            style="float:right;"
             icon="undo"
             label="${translate('undo')}"
             ?disabled=${!this.canUndo}
             @click=${this.undo}
+            slot="secondaryAction"
+          ></mwc-button>
+          <mwc-button
+            icon="redo"
+            label="${translate('redo')}"
+            ?disabled=${!this.canRedo}
+            @click=${this.redo}
             slot="secondaryAction"
           ></mwc-button>
           <mwc-button slot="primaryAction" dialogaction="close"
