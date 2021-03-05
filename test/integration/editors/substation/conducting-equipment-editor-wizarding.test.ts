@@ -25,7 +25,7 @@ describe('conducting-equipment-editor wizarding integration', () => {
     (<HTMLElement>(
       parent
         ?.querySelector('conducting-equipment-editor')
-        ?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        ?.shadowRoot?.querySelector('*[icon="edit"]')
     )).click();
     await parent.updateComplete;
   });

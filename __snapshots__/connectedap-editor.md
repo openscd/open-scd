@@ -10,16 +10,18 @@
   <mwc-icon class="fancy">
     settings_input_hdmi
   </mwc-icon>
-  <mwc-icon-button
+  <mwc-fab
     class="left menu-item"
     icon="edit"
+    mini=""
   >
-  </mwc-icon-button>
-  <mwc-icon-button
+  </mwc-fab>
+  <mwc-fab
     class="menu-item right"
     icon="delete"
+    mini=""
   >
-  </mwc-icon-button>
+  </mwc-fab>
 </div>
 <h4>
   P1
