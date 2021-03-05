@@ -16,20 +16,13 @@ import {
   newActionEvent,
 } from './foundation.js';
 import { get, translate } from 'lit-translate';
-import { getFilterTest } from './icons.js';
+import { getFilterIcon, iconColors } from './icons.js';
 
 const icons = {
   info: 'info',
   warning: 'warning',
   error: 'report',
   action: 'history',
-};
-
-const colors = {
-  info: '--cyan',
-  warning: '--yellow',
-  error: '--red',
-  action: '--blue',
 };
 
 /**
@@ -55,18 +48,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     currentAction = -1;
-    @property({ type: Number })
-    filterError = false;
-    @property({ type: Number })
-    filterWarning = false;
-    @property({ type: Number })
-    filterInfo = false;
-    @property({ type: Number })
-    filterAction = false;
 
     @query('#log') logUI!: Dialog;
     @query('#message') messageUI!: Snackbar;
-    @query('#filterContainer') filterContainer!: Element;
 
     get canUndo(): boolean {
       return this.currentAction >= 0;
@@ -136,38 +120,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       this.requestUpdate('history', []);
     }
 
-    toggleFilter(filterType: LogEntryType): void {
-      if (filterType == 'error')
-        this.filterError
-          ? (this.filterError = false)
-          : (this.filterError = true);
-
-      if (filterType == 'warning')
-        this.filterWarning
-          ? (this.filterWarning = false)
-          : (this.filterWarning = true);
-
-      if (filterType == 'info')
-        this.filterInfo ? (this.filterInfo = false) : (this.filterInfo = true);
-
-      if (filterType == 'action')
-        this.filterAction
-          ? (this.filterAction = false)
-          : (this.filterAction = true);
-    }
-
-    isLogEntryFiltered(entry: LogEntry): boolean {
-      if (entry.kind === 'error' && this.filterError) return true;
-
-      if (entry.kind === 'warning' && this.filterWarning) return true;
-
-      if (entry.kind === 'info' && this.filterInfo) return true;
-
-      if (entry.kind === 'action' && this.filterAction) return true;
-
-      return false;
-    }
-
     async performUpdate() {
       await new Promise<void>(resolve =>
         requestAnimationFrame(() => resolve())
@@ -192,7 +144,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     ): TemplateResult {
       return html` <abbr title="${entry.title}">
         <mwc-list-item
-          style="${this.isLogEntryFiltered(entry) ? 'display:none' : ''}"
+          class="${entry.kind}"
           graphic="icon"
           ?twoline=${entry.message}
           ?activated=${this.currentAction == history.length - index - 1}
@@ -206,7 +158,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           <mwc-icon
             slot="graphic"
             style="--mdc-theme-text-icon-on-background:var(${ifDefined(
-              colors[entry.kind]
+              iconColors[entry.kind]
             )})"
             >${icons[entry.kind]}</mwc-icon
           >
@@ -214,7 +166,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       >`;
     }
 
-    renderHistory(): TemplateResult[] | TemplateResult {
+    private renderHistory(): TemplateResult[] | TemplateResult {
       if (this.history.length > 0)
         return this.history.slice().reverse().map(this.renderLogEntry, this);
       else
@@ -224,28 +176,63 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </mwc-list-item>`;
     }
 
-    renderFilterOptions(): TemplateResult {
-      return html`<div id="filterContainer">
-        ${(<LogEntryType[]>Object.keys(icons)).map(
-          kind => html`<mwc-icon-button-toggle
-            @click="${() => {
-              this.toggleFilter(kind);
-            }}"
-            >${getFilterTest(kind, 'on', '--mdc-theme-on-background')}
-            ${getFilterTest(
-              kind,
-              'off',
-              colors[kind] ?? '--mdc-theme-on-background'
-            )}</mwc-icon-button-toggle
-          >`
-        )}
-      </div>`;
+    private renderFilterButtons() {
+      return (<LogEntryType[]>Object.keys(icons)).map(
+        kind => html`<mwc-icon-button-toggle id="${kind}filter" on
+          >${getFilterIcon(kind, false)}
+          ${getFilterIcon(kind, true)}</mwc-icon-button-toggle
+        >`
+      );
     }
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
+        <style>
+          #log > mwc-icon-button-toggle {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+          }
+          #log > mwc-icon-button-toggle:nth-child(2) {
+            right: 62px;
+          }
+          #log > mwc-icon-button-toggle:nth-child(3) {
+            right: 110px;
+          }
+          #log > mwc-icon-button-toggle:nth-child(4) {
+            right: 158px;
+          }
+          #content mwc-list-item.info,
+          #content mwc-list-item.warning,
+          #content mwc-list-item.error,
+          #content mwc-list-item.action {
+            display: none;
+          }
+          #infofilter[on] ~ #content mwc-list-item.info {
+            display: flex;
+          }
+          #warningfilter[on] ~ #content mwc-list-item.warning {
+            display: flex;
+          }
+          #errorfilter[on] ~ #content mwc-list-item.error {
+            display: flex;
+          }
+          #actionfilter[on] ~ #content mwc-list-item.action {
+            display: flex;
+          }
+
+          #log {
+            --mdc-dialog-min-width: 92vw;
+          }
+
+          #log > #filterContainer {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+          }
+        </style>
         <mwc-dialog id="log" heading="${translate('log.name')}">
-          ${this.renderFilterOptions()}
+          ${this.renderFilterButtons()}
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button
             icon="undo"

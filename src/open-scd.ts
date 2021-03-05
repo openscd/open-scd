@@ -543,20 +543,6 @@ export class OpenSCD extends Setting(
       flex-direction: column;
     }
 
-    #log {
-      --mdc-dialog-min-width: 92vw;
-    }
-
-    #log > #filterContainer {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-    }
-
-    #filterContainer > mwc-icon-button-toggle {
-      --mdc-icon-button-size: 36px;
-    }
-
     mwc-dialog > form > * {
       display: block;
       margin-top: 16px;
