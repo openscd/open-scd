@@ -30,7 +30,7 @@ describe('connectedap-editor wizarding editing integration', () => {
       );
       element = parent.querySelector('connectedap-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
     });
@@ -89,7 +89,7 @@ describe('connectedap-editor wizarding editing integration', () => {
       expect(doc.querySelector('SubNetwork[name="StationBus"] > ConnectedAP'))
         .to.exist;
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        element?.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork[name="StationBus"] > ConnectedAP'))

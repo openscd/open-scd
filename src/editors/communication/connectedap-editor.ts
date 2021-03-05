@@ -125,16 +125,18 @@ export class ConnectedAPEditor extends LitElement {
     return html`
       <div id="container" tabindex="0">
         <mwc-icon class="fancy">settings_input_hdmi</mwc-icon>
-        <mwc-icon-button
+        <mwc-fab
+          mini
           class="menu-item left"
           icon="edit"
           @click="${() => this.openEditWizard()}"
-        ></mwc-icon-button>
-        <mwc-icon-button
+        ></mwc-fab>
+        <mwc-fab
+          mini
           class="menu-item right"
           icon="delete"
           @click="${() => this.remove()}}"
-        ></mwc-icon-button>
+        ></mwc-fab>
       </div>
       <h4>${this.apName}</h4>
     `;
