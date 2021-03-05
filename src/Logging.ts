@@ -10,23 +10,19 @@ import {
   invert,
   LitElementConstructor,
   LogEntry,
+  LogEntryType,
   LogEvent,
   Mixin,
   newActionEvent,
 } from './foundation.js';
 import { get, translate } from 'lit-translate';
+import { getFilterIcon, iconColors } from './icons.js';
+
 const icons = {
   info: 'info',
   warning: 'warning',
   error: 'report',
   action: 'history',
-};
-
-const colors = {
-  info: '--cyan',
-  warning: '--yellow',
-  error: '--red',
-  action: undefined,
 };
 
 /**
@@ -148,6 +144,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     ): TemplateResult {
       return html` <abbr title="${entry.title}">
         <mwc-list-item
+          class="${entry.kind}"
           graphic="icon"
           ?twoline=${entry.message}
           ?activated=${this.currentAction == history.length - index - 1}
@@ -161,7 +158,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           <mwc-icon
             slot="graphic"
             style="--mdc-theme-text-icon-on-background:var(${ifDefined(
-              colors[entry.kind]
+              iconColors[entry.kind]
             )})"
             >${icons[entry.kind]}</mwc-icon
           >
@@ -169,7 +166,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       >`;
     }
 
-    renderHistory(): TemplateResult[] | TemplateResult {
+    private renderHistory(): TemplateResult[] | TemplateResult {
       if (this.history.length > 0)
         return this.history.slice().reverse().map(this.renderLogEntry, this);
       else
@@ -179,9 +176,63 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </mwc-list-item>`;
     }
 
+    private renderFilterButtons() {
+      return (<LogEntryType[]>Object.keys(icons)).map(
+        kind => html`<mwc-icon-button-toggle id="${kind}filter" on
+          >${getFilterIcon(kind, false)}
+          ${getFilterIcon(kind, true)}</mwc-icon-button-toggle
+        >`
+      );
+    }
+
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
+        <style>
+          #log > mwc-icon-button-toggle {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+          }
+          #log > mwc-icon-button-toggle:nth-child(2) {
+            right: 62px;
+          }
+          #log > mwc-icon-button-toggle:nth-child(3) {
+            right: 110px;
+          }
+          #log > mwc-icon-button-toggle:nth-child(4) {
+            right: 158px;
+          }
+          #content mwc-list-item.info,
+          #content mwc-list-item.warning,
+          #content mwc-list-item.error,
+          #content mwc-list-item.action {
+            display: none;
+          }
+          #infofilter[on] ~ #content mwc-list-item.info {
+            display: flex;
+          }
+          #warningfilter[on] ~ #content mwc-list-item.warning {
+            display: flex;
+          }
+          #errorfilter[on] ~ #content mwc-list-item.error {
+            display: flex;
+          }
+          #actionfilter[on] ~ #content mwc-list-item.action {
+            display: flex;
+          }
+
+          #log {
+            --mdc-dialog-min-width: 92vw;
+          }
+
+          #log > #filterContainer {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+          }
+        </style>
         <mwc-dialog id="log" heading="${translate('log.name')}">
+          ${this.renderFilterButtons()}
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button
             icon="undo"

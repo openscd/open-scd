@@ -19,6 +19,7 @@ import '@material/mwc-fab';
 import '@material/mwc-formfield';
 import '@material/mwc-icon';
 import '@material/mwc-icon-button';
+import '@material/mwc-icon-button-toggle';
 import '@material/mwc-linear-progress';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';

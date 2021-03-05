@@ -305,6 +305,26 @@
   heading="Log"
   id="log"
 >
+  <mwc-icon-button-toggle
+    id="infofilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="warningfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="errorfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="actionfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""

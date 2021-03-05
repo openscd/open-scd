@@ -46,7 +46,8 @@ describe('LoggingElement', () => {
     expect(element).to.have.property('nextAction', -1));
 
   it('renders a placeholder message', () =>
-    expect(element.logUI).to.contain('mwc-list-item[disabled]')); // dirty hack: ask @open-wc/shadowDomDiff for contains support
+    expect(element.logUI).to.contain('mwc-list-item[disabled]'));
+  // dirty hack: ask @open-wc/shadowDomDiff for contains support
 
   it('shows a snackbar on logging an error', () => {
     expect(element.messageUI).to.have.property('open', false);
@@ -70,6 +71,8 @@ describe('LoggingElement', () => {
           action: MockAction.cre,
         })
       );
+      element.requestUpdate();
+      await element.updateComplete;
       element.requestUpdate();
       await element.updateComplete;
     });

@@ -189,6 +189,9 @@ export function newWizardEvent(
 }
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
+
+export type LogEntryType = 'info' | 'warning' | 'error' | 'action';
+
 /** The basic information contained in each [[`LogEntry`]]. */
 interface LogDetailBase {
   title: string;
