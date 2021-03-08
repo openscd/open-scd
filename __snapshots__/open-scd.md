@@ -436,6 +436,24 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/editors/IED.js"
+    >
+      <mwc-icon slot="graphic">
+        aod
+      </mwc-icon>
+      IED
+      <mwc-icon slot="meta">
+        tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/editors/Templates.js"
     >
       <mwc-icon slot="graphic">
