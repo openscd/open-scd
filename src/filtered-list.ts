@@ -20,9 +20,10 @@ export class Filterlist extends List {
     this.items.forEach(item => {
       const value: string =
         item.innerText +
+        '\n' +
         Array.from(item.children)
           .map(child => child.innerHTML)
-          .join('');
+          .join('\n');
 
       if (value)
         value.toUpperCase().includes(this.textField.value.toUpperCase())
