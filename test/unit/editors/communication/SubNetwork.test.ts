@@ -4,8 +4,8 @@ import {
   isCreate,
   isUpdate,
   isDelete,
-} from '../../../src/foundation.js';
-import { SubNetworkEditor } from '../../../src/editors/communication/subnetwork-editor.js';
+} from '../../../../src/foundation.js';
+import { SubNetworkEditor } from '../../../../src/editors/communication/subnetwork-editor.js';
 
 describe('SubNetworkEditor', () => {
   describe('with no nulled properties', () => {

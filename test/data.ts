@@ -1515,7 +1515,7 @@ export const validSCL2003 = `<?xml version="1.0" encoding="UTF-8"?>
 	</DataTypeTemplates>
 </SCL>`;
 
-export const missingSubstation = `<?xml version="1.0" encoding="UTF-8"?>
+export const missingSubstationCommunication = `<?xml version="1.0" encoding="UTF-8"?>
 <SCL version="2007" revision="B" release="4" xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL">
 	<Header id="TrainingIEC61850" version="1" revision="143" toolID="IEC 61850 System Configurator, Version: V5.90 " nameStructure="IEDName">
 		<Text>TrainingIEC61850</Text>
@@ -1523,37 +1523,6 @@ export const missingSubstation = `<?xml version="1.0" encoding="UTF-8"?>
 			<Hitem version="1" revision="143" when="Wednesday, September 25, 2019 9:11:36 AM" who="Licenced User: OMICRON electronics GmbH JakVog00 Machine: JAKVOG00LW01 User: JakVog00" what="Station is upgraded from IEC 61850 System Configurator, Version: V5.80 HF1 to V5.90 ." why="IEC 61850 System Configurator Automatic Startup: Insert Comment" />
 		</History>
 	</Header>
-	<Communication>
-		<SubNetwork name="StationBus" desc="desc" type="8-MMS">
-			<BitRate unit="b/s">100.0</BitRate>
-			<ConnectedAP iedName="IED1" apName="P1">
-				<Address>
-					<P type="IP">192.168.210.111</P>
-					<P type="IP-SUBNET">255.255.255.0</P>
-					<P type="IP-GATEWAY">192.168.210.1</P>
-					<P type="OSI-AP-Title">1,3,9999,23</P>
-					<P type="OSI-AE-Qualifier">23</P>
-					<P type="OSI-PSEL">00000001</P>
-					<P type="OSI-SSEL">0001</P>
-					<P type="OSI-TSEL">0001</P>
-				</Address>
-			</ConnectedAP>
-		</SubNetwork>
-		<SubNetwork name="ProcessBus" type="8-MMS">
-			<ConnectedAP iedName="IED2" apName="P1">
-				<Address>
-					<P type="IP">192.168.0.111</P>
-					<P type="IP-SUBNET">255.255.255.0</P>
-					<P type="IP-GATEWAY">192.168.210.1</P>
-					<P type="OSI-AP-Title">1,3,9999,23</P>
-					<P type="OSI-AE-Qualifier">23</P>
-					<P type="OSI-PSEL">00000001</P>
-					<P type="OSI-SSEL">0001</P>
-					<P type="OSI-TSEL">0001</P>
-				</Address>
-			</ConnectedAP>
-		</SubNetwork>
-	</Communication>
 	<IED name="IED1" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
 			<DynAssociation />

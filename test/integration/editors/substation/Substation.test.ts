@@ -5,7 +5,7 @@ import { Editing } from '../../../../src/Editing.js';
 import Substation from '../../../../src/editors/Substation.js';
 import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument, missingSubstation } from '../../../data.js';
+import { getDocument, missingSubstationCommunication } from '../../../data.js';
 
 describe('Substation Plugin', () => {
   customElements.define('substation-plugin', Wizarding(Editing(Substation)));
@@ -35,7 +35,7 @@ describe('Substation Plugin', () => {
 
   describe('with a doc loaded missing a substation section', () => {
     const doc = new DOMParser().parseFromString(
-      missingSubstation,
+      missingSubstationCommunication,
       'application/xml'
     );
     let parent: WizardingElement;
