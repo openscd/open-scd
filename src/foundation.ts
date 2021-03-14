@@ -340,6 +340,36 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
   );
 }
 
+/** @returns array of `ExtRef` element's connected to `FCDA` element  */
+export function getDataSink(fcda: Element): Element[] {
+  if (!fcda.ownerDocument || fcda.tagName !== 'FCDA' || fcda.closest('Private'))
+    return [];
+
+  const base = `ExtRef[iedName="${
+    fcda.closest('IED')?.getAttribute('name') ?? ''
+  }"][ldInst="${fcda.getAttribute('ldInst') ?? ''}"][lnClass="${
+    fcda.getAttribute('lnClass') ?? ''
+  }"][doName="${fcda.getAttribute('doName') ?? ''}"]`;
+
+  const daName = fcda.getAttribute('daName')
+    ? [`[daName="${fcda.getAttribute('daName')}"]`]
+    : [':not([daName])'];
+  const prefix = fcda.getAttribute('prefix')
+    ? [`[prefix="${fcda.getAttribute('prefix')}"]`]
+    : [':not([prefix])', '[prefix=""]'];
+  const lnInst = fcda.getAttribute('lnInst')
+    ? [`[lnInst="${fcda.getAttribute('lnInst')}"]`]
+    : [':not([lnInst])', '[lnInst=""]'];
+
+  const selector = crossProduct([base], daName, prefix, lnInst)
+    .map(a => a.join(''))
+    .join(',');
+
+  return Array.from(fcda.ownerDocument.querySelectorAll(selector)).filter(
+    item => !item.closest('Private')
+  );
+}
+
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;

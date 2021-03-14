@@ -129,6 +129,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 						<DataSet name="GooseDataSet1">
                             <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
                             <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+							<FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
                             <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
                             <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
                         </DataSet>
@@ -176,6 +177,9 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 						</DOI>
 					</LN>
 					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
+						<Private type="dummyType">
+							<esld:ExtRef xmlns:esld="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal"/>	
+						</Private>	
 						<Inputs>
 							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal"/>
 							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q"/>
@@ -233,6 +237,9 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				<Authentication />
 				<LDevice inst="CBSW">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<Private type="dummyType">
+							<esld:FCDA xmlns:esld="http://www.dummyURL.com/dummyNS" ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
+						</Private>	
 						<DataSet name="GooseDataSet1">
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST"/>

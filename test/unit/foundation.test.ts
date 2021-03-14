@@ -3,6 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import {
   ComplexAction,
   EditorAction,
+  getDataSink,
   ifImplemented,
   invert,
   isCreate,
@@ -14,6 +15,7 @@ import {
   newPendingStateEvent,
   newWizardEvent,
 } from '../../src/foundation.js';
+import { getDocument } from '../data.js';
 
 import { MockAction } from './mock-actions.js';
 
@@ -130,5 +132,31 @@ describe('foundation', () => {
 
     it('does not render empty objects into its template', () =>
       expect(empty).dom.to.be.empty);
+  });
+
+  describe('getDataSink', () => {
+    const doc = getDocument();
+    it('returns an array of ExtRef connected to the FCDA', () => {
+      // is checking that the ExtRef in the Privat element is NOT selected too
+      const fcda = doc.querySelector(
+        ':root > IED[name="IED2"] > AccessPoint > Server > LDevice[inst="CBSW"] > LN0 > DataSet > FCDA[daName="stVal"]'
+      )!;
+      expect(getDataSink(fcda)).to.have.lengthOf(1);
+    });
+
+    it('returns empty array if input not FCDA', () => {
+      expect(getDataSink(doc.querySelector('LN')!)).to.be.empty;
+    });
+
+    it('returns empty array if input is not public', () => {
+      expect(getDataSink(doc.querySelector('Private > FCDA')!)).to.be.empty;
+    });
+
+    it('returns empty array if data is not connected to other IED', () => {
+      const fcda = doc.querySelector(
+        ':root > IED[name="IED1"] > AccessPoint > Server > LDevice[inst="CircuitBreaker_CB1"] > LN0 > DataSet > FCDA[lnClass="CSWI"][daName="stVal"]'
+      )!;
+      expect(getDataSink(fcda)).to.be.empty;
+    });
   });
 });

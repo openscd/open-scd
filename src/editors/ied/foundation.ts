@@ -16,6 +16,46 @@ interface CreateOptions {
 }
 export type WizardOptions = UpdateOptions | CreateOptions;
 
+type LnReference = {
+  iedName: string;
+  apRef: string;
+  ldInst: string | null; //for client ln's ldInst is null
+  prefix: string | null;
+  lnClass: string;
+  lnInst: string;
+};
+
+/**Returns the reference for logical nodes or it's child elements as LnReference*/
+export function getLnReference(element: Element): LnReference | null {
+  if (element.closest('Private')) return null;
+
+  if (
+    !element.closest('IED') ||
+    !element.closest('AccessPoint') ||
+    !element.closest('Server') ||
+    !element.closest('LDevice') ||
+    !(element.closest('LN') || element.closest('LN0'))
+  )
+    return null; // not a valid logical node reference
+
+  const ln: Element | null =
+    element.tagName === 'LN' || element.tagName === 'LN0'
+      ? element
+      : element.closest('LN0')
+      ? element.closest('LN0')
+      : element.closest('LN');
+  const ld: Element | null = element.closest('LDevice');
+
+  return {
+    iedName: element.closest('IED')?.getAttribute('name') ?? '',
+    apRef: element.closest('AccessPoint')?.getAttribute('name') ?? '',
+    ldInst: ld?.getAttribute('inst') ?? '',
+    prefix: ln?.getAttribute('prefix') ?? '',
+    lnClass: ln?.getAttribute('lnClass') ?? '',
+    lnInst: ln?.getAttribute('inst') ?? '',
+  };
+}
+
 export function isCreateOptions(
   options: WizardOptions
 ): options is CreateOptions {
