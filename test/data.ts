@@ -144,6 +144,24 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 								<Val>status-only</Val>
 							</DAI>
 						</DOI>
+						<Inputs>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+							<ExtRef iedName="IED3" ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" serviceType="SMV" srcLDInst="MU01" srcCBName="MSVCB01"/>
+						</Inputs>
 					</LN>
 					<LN lnClass="CSWI" inst="1" lnType="Dummy.CSWIwithoutCtlModel">
 						<DOI name="Pos">
@@ -221,7 +239,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DataObjectDirectory />
 			<GetDataSetValue />
 			<SetDataSetValue />
-			<DataSetDirectory />
+			<DataSetDirectory />	
 			<ConfDataSet modify="false" max="3" />
 			<DynDataSet max="42" />
 			<ReadWrite />
@@ -339,8 +357,38 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		<AccessPoint name="P1">
 			<Server>
 				<Authentication none="true" />
-				<LDevice inst="CircuitBreaker_CB1">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+				<LDevice inst="MU01">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+					<DataSet name="PhsMeas1">
+                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
+                        </DataSet>
+					<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
+						<SmvOpts/>
+					</SampledValueControl>
+					</LN0>
+                    <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
+                    <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
+                    <LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
+                    <LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
+                    <LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
+                    <LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
+                    <LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
+                    <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -402,6 +450,23 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DO name="Ind1" type="Dummy.SPS" />
 			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
 		</LNodeType>
+		<LNodeType lnClass="TCTR" id="DummyTCTR">
+            <DO name="Mod" type="Dummy.LLN0.Mod"/>
+            <DO name="Beh" type="Dummy.LLN0.Beh"/>
+            <DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+            <DO name="Amp" type="DummySAV"/>
+        </LNodeType>
+		<LNodeType lnClass="TVTR" id="DummyTVTR">
+            <DO name="Mod" type="Dummy.LLN0.Mod"/>
+            <DO name="Beh" type="Dummy.LLN0.Beh"/>
+            <DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+            <DO name="Vol" type="DummySAV"/>
+        </LNodeType>
+		<DOType cdc="SAV" id="DummySAV">
+            <DA fc="MX" name="instMag" bType="Struct" type="AnalogueValue_i"/>
+            <DA fc="MX" qchg="true" name="q" bType="Quality"/>
+            <DA fc="CF" name="sVC" bType="Struct" type="ScaledValueConfig"/>
+        </DOType>
 		<DOType cdc="ENC" id="Dummy.LLN0.Mod">
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
@@ -504,6 +569,13 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
             <DA fc="ST" qchg="true" name="q" bType="Quality"/>
             <DA fc="ST" name="t" bType="Timestamp"/>
         </DOType>
+		<DAType id="AnalogueValue_i">
+            <BDA name="i" bType="INT32"/>
+        </DAType>
+		<DAType id="ScaledValueConfig">
+            <BDA name="scaleFactor" bType="FLOAT32"/>
+            <BDA name="offset" bType="FLOAT32"/>
+        </DAType>
 		<DAType id="Dummy_origin">
 			<BDA name="orCat" bType="Enum" type="Dummy_orCategory" />
 			<BDA name="orIdent" bType="Octet64" />

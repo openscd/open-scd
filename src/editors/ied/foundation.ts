@@ -50,8 +50,11 @@ export interface Connection {
 }
 
 /**@returns array of Connection's describing `GOOSE` connection's */
-export function getGseConnection(doc: Document): Connection[] {
-  const gseControlList = Array.from(doc.querySelectorAll('GSEControl')).filter(
+export function getDataConnection(
+  doc: Document,
+  CbTagNAme: 'GSEControl' | 'SampledValueControl' | 'ReportControl'
+): Connection[] {
+  const gseControlList = Array.from(doc.querySelectorAll(CbTagNAme)).filter(
     item => !item.closest('Private')
   );
 
@@ -89,7 +92,7 @@ export function getGseConnection(doc: Document): Connection[] {
               element: extRef,
               reference: getLnReference(extRef),
             },
-            serviceType: 'G',
+            serviceType: CbTagNAme === 'GSEControl' ? 'G' : 'SV',
           });
         });
     });

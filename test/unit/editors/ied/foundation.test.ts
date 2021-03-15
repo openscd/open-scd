@@ -1,6 +1,6 @@
 import { expect } from '@open-wc/testing';
 import {
-  getGseConnection,
+  getDataConnection,
   getLnReference,
   getReportConnection,
 } from '../../../../src/editors/ied/foundation.js';
@@ -116,11 +116,11 @@ describe('ied foundation', () => {
     });
   });
 
-  describe('has a getGseConnection function that', () => {
+  describe('has a getDataeConnection function that', () => {
     const doc = getDocument();
     it('returns an array of Connection describing GOOSE connection in the SCL', () => {
-      expect(getGseConnection(doc)).to.have.lengthOf(6);
-      const gseConn = getGseConnection(doc)[0];
+      expect(getDataConnection(doc, 'GSEControl')).to.have.lengthOf(6);
+      const gseConn = getDataConnection(doc, 'GSEControl')[0];
       expect(gseConn.source.cbName).is.equal('GCB');
       expect(gseConn.source.reference).to.deep.equal({
         iedName: 'IED1',
@@ -155,6 +155,47 @@ describe('ied foundation', () => {
         },
       });
       expect(gseConn.serviceType).to.deep.equal('G');
+    });
+
+    it('returns an array of Connection describing Sampled Values connection in the SCL', () => {
+      expect(getDataConnection(doc, 'SampledValueControl')).to.have.lengthOf(
+        16
+      );
+      const smvConn = getDataConnection(doc, 'SampledValueControl')[0];
+      expect(smvConn.source.cbName).is.equal('MSVCB01');
+      expect(smvConn.source.reference).to.deep.equal({
+        iedName: 'IED3',
+        apRef: 'P1',
+        ldInst: 'MU01',
+        prefix: '',
+        lnClass: 'LLN0',
+        inst: '',
+      });
+      expect(smvConn.source.data).to.deep.equal({
+        iedName: 'IED3',
+        apRef: 'P1',
+        ldInst: 'MU01',
+        prefix: 'I01A',
+        lnClass: 'TCTR',
+        inst: '1',
+        doName: 'Amp',
+        daName: 'instMag.i',
+        fc: 'MX',
+      });
+      expect(smvConn.sink).to.deep.equal({
+        element: doc.querySelector(
+          ':root > IED[name="IED1"] > AccessPoint > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"] >Inputs>ExtRef'
+        )!,
+        reference: {
+          iedName: 'IED1',
+          apRef: 'P1',
+          ldInst: 'CircuitBreaker_CB1',
+          prefix: '',
+          lnClass: 'XCBR',
+          inst: '1',
+        },
+      });
+      expect(smvConn.serviceType).to.deep.equal('SV');
     });
   });
 });
