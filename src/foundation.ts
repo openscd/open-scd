@@ -260,6 +260,35 @@ export function referencePath(element: Element): string {
   return path;
 }
 
+export function isIdentical(a: Element, b: Element): boolean {
+  if (a.closest('Private') || b.closest('Private')) return false;
+  if (a.tagName !== b.tagName) return false;
+
+  if (
+    a.tagName === 'SCL' ||
+    a.tagName === 'Header' ||
+    a.tagName === 'Communication' ||
+    a.tagName === 'DataTypeTemplates'
+  )
+    return true;
+
+  if (a.id || b.id) return a.id === b.id;
+
+  if (
+    a.tagName !== 'LDevice' &&
+    a.hasAttribute('name') &&
+    b.hasAttribute('name') &&
+    a.parentElement &&
+    b.parentElement
+  )
+    return (
+      a.getAttribute('name') === b.getAttribute('name') &&
+      isIdentical(a.parentElement, b.parentElement)
+    );
+
+  return false;
+}
+
 /** @returns a new [[`tag`]] element owned by [[`doc`]]. */
 export function createElement(
   doc: Document,

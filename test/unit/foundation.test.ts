@@ -7,6 +7,7 @@ import {
   invert,
   isCreate,
   isDelete,
+  isIdentical,
   isMove,
   isSimple,
   isUpdate,
@@ -14,7 +15,7 @@ import {
   newPendingStateEvent,
   newWizardEvent,
 } from '../../src/foundation.js';
-
+import { getDocument } from '../data.js';
 import { MockAction } from './mock-actions.js';
 
 describe('foundation', () => {
@@ -130,5 +131,90 @@ describe('foundation', () => {
 
     it('does not render empty objects into its template', () =>
       expect(empty).dom.to.be.empty);
+  });
+
+  describe('isIdentical', () => {
+    const scl1 = getDocument().documentElement;
+    const scl2 = getDocument(true, '2003').documentElement;
+
+    const substation = scl1.querySelector('Substation')!;
+    const ied = scl1.querySelector('IED')!;
+    const communication = scl1.querySelector('Communication')!;
+    const bay = scl1.querySelector('Bay')!;
+    const privateSection = bay.querySelector('Private')!;
+    const privateElement = privateSection.firstElementChild!;
+    const publicElement = bay.children.item(1)!;
+
+    it('is true of any two SCL Elements', () => {
+      expect(isIdentical(scl1, scl2)).to.be.true;
+    });
+
+    it('is true of any two Header Elements', () => {
+      expect(
+        isIdentical(
+          scl1.querySelector('Header')!,
+          scl2.querySelector('Header')!
+        )
+      ).to.be.true;
+    });
+
+    it('is true of any two Communication Elements', () => {
+      expect(
+        isIdentical(
+          scl1.querySelector('Communication')!,
+          scl2.querySelector('Communication')!
+        )
+      ).to.be.true;
+    });
+
+    it('is true of any two DataTypeTemplates Elements', () => {
+      expect(
+        isIdentical(
+          scl1.querySelector('DataTypeTemplates')!,
+          scl2.querySelector('DataTypeTemplates')!
+        )
+      ).to.be.true;
+    });
+
+    it('is false of any private sections', () => {
+      expect(isIdentical(privateSection, privateSection)).to.be.false;
+    });
+
+    it('is false of any private elements', () => {
+      expect(isIdentical(privateElement, privateElement)).to.be.false;
+      expect(isIdentical(privateElement, publicElement)).to.be.false;
+    });
+
+    it('is true of any one Element and itself', () => {
+      expect(isIdentical(substation, substation)).to.be.true;
+      expect(isIdentical(ied, ied)).to.be.true;
+      expect(isIdentical(bay, bay)).to.be.true;
+      expect(isIdentical(communication, communication)).to.be.true;
+    });
+
+    it('is false of elements with different tagNames', () => {
+      expect(isIdentical(substation, ied)).to.be.false;
+      expect(isIdentical(substation, bay)).to.be.false;
+      expect(isIdentical(bay, communication)).to.be.false;
+      expect(isIdentical(communication, ied)).to.be.false;
+    });
+
+    it('is true of elements with equal nonempty id attributes', () => {
+      expect(
+        isIdentical(
+          scl1.querySelector('LNodeType[id="Dummy.LLN0"]')!,
+          scl2.querySelector('LNodeType[id="Dummy.LLN0"]')!
+        )
+      ).to.be.true;
+    });
+
+    it('is false of elements with unequal id attributes', () => {
+      expect(
+        isIdentical(
+          scl1.querySelector('LNodeType[id="Dummy.LLN0"]')!,
+          scl1.querySelector('LNodeType[id="Dummy.LLN0.two"]')!
+        )
+      ).to.be.false;
+    });
   });
 });

@@ -46,6 +46,9 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
 			<Bay name="COUPLING_BAY" desc="Bay">
+        <Private type="dummyType">
+          <ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
+        </Private>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
 				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
@@ -329,6 +332,12 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 	</IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
+			<DO name="Mod" type="Dummy.LLN0.Mod" />
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="Health" type="Dummy.LLN0.Health" />
+			<DO name="NamPlt" type="Dummy.LLN0.NamPlt" />
+		</LNodeType>
+		<LNodeType lnClass="LLN0" id="Dummy.LLN0.two">
 			<DO name="Mod" type="Dummy.LLN0.Mod" />
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="Health" type="Dummy.LLN0.Health" />
