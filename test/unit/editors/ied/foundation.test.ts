@@ -1,5 +1,8 @@
 import { expect } from '@open-wc/testing';
-import { getLnReference } from '../../../../src/editors/ied/foundation.js';
+import {
+  getLnReference,
+  getReportConnection,
+} from '../../../../src/editors/ied/foundation.js';
 import { getDocument } from '../../../data.js';
 
 describe('ied foundation', () => {
@@ -30,7 +33,7 @@ describe('ied foundation', () => {
         ldInst: 'Disconnectors',
         prefix: 'DC',
         lnClass: 'CSWI',
-        lnInst: '1',
+        inst: '1',
       });
     });
 
@@ -45,7 +48,7 @@ describe('ied foundation', () => {
         ldInst: 'Disconnectors',
         prefix: 'DC',
         lnClass: 'CSWI',
-        lnInst: '1',
+        inst: '1',
       });
     });
 
@@ -60,7 +63,7 @@ describe('ied foundation', () => {
         ldInst: 'Disconnectors',
         prefix: '',
         lnClass: 'LLN0',
-        lnInst: '',
+        inst: '',
       });
     });
 
@@ -75,7 +78,39 @@ describe('ied foundation', () => {
         ldInst: 'CircuitBreaker_CB1',
         prefix: '',
         lnClass: 'LLN0',
-        lnInst: '',
+        inst: '',
+      });
+    });
+  });
+
+  describe('has a getReportconnection function that', () => {
+    const doc = getDocument();
+    it('returns an array of Connection describing Report connection in the SCL', () => {
+      expect(getReportConnection(doc)).to.have.lengthOf(1);
+      expect(getReportConnection(doc)[0]).to.deep.equal({
+        source: {
+          cbName: 'ReportCb',
+          reference: {
+            iedName: 'IED2',
+            apRef: 'P1',
+            ldInst: 'CBSW',
+            prefix: '',
+            lnClass: 'XSWI',
+            inst: '2',
+          },
+        },
+        sink: {
+          element: doc.querySelector('ClientLN')!,
+          reference: {
+            iedName: 'IED1',
+            apRef: 'P1',
+            ldInst: 'CircuitBreaker_CB1',
+            prefix: '',
+            lnClass: 'XCBR',
+            inst: '1',
+          },
+        },
+        serviceType: 'RP',
       });
     });
   });

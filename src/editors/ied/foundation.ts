@@ -16,14 +16,65 @@ interface CreateOptions {
 }
 export type WizardOptions = UpdateOptions | CreateOptions;
 
-type LnReference = {
+interface DataReference extends LnReference {
+  doName: string;
+  daName: string | null;
+  fc: string;
+}
+
+interface LnReference {
   iedName: string;
   apRef: string;
   ldInst: string | null; //for client ln's ldInst is null
   prefix: string | null;
   lnClass: string;
-  lnInst: string;
-};
+  inst: string | null;
+}
+
+interface Sink {
+  element: Element | null;
+  reference: LnReference | null;
+}
+
+interface Source {
+  cbName: string;
+  reference: LnReference;
+  data?: DataReference; // fcda within a control block
+}
+
+export interface Connection {
+  source: Source;
+  sink: Sink;
+  serviceType: 'RP' | 'G' | 'SV';
+}
+
+/**@returns array of Connection's  */
+export function getReportConnection(doc: Document): Connection[] {
+  return Array.from(
+    doc.querySelectorAll('ReportControl > RptEnabled > ClientLN')
+  )
+    .filter(item => !item.closest('Private'))
+    .map(clientLN => {
+      return {
+        source: {
+          cbName: clientLN.closest('ReportControl')!.getAttribute('name')!,
+          reference: getLnReference(clientLN)!,
+        },
+        sink: {
+          element: clientLN,
+          reference: {
+            iedName: clientLN.getAttribute('iedName')!,
+            apRef: clientLN.getAttribute('apRef')!,
+            ldInst: clientLN.getAttribute('ldInst')!,
+            prefix: clientLN.getAttribute('prefix') ?? '',
+            lnClass: clientLN.getAttribute('lnClass')!,
+            inst: clientLN.getAttribute('lnInst') ?? '',
+          },
+        },
+        serviceType: 'RP',
+      };
+    });
+}
 
 /**Returns the reference for logical nodes or it's child elements as LnReference*/
 export function getLnReference(element: Element): LnReference | null {
@@ -52,7 +103,7 @@ export function getLnReference(element: Element): LnReference | null {
     ldInst: ld?.getAttribute('inst') ?? '',
     prefix: ln?.getAttribute('prefix') ?? '',
     lnClass: ln?.getAttribute('lnClass') ?? '',
-    lnInst: ln?.getAttribute('inst') ?? '',
+    inst: ln?.getAttribute('inst') ?? '',
   };
 }
 
