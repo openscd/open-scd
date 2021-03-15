@@ -340,7 +340,7 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
   );
 }
 
-/** @returns array of `ExtRef` element's connected to `FCDA` element  */
+/** @returns array of `ExtRef` elements connected to `FCDA` element  */
 export function getDataSink(fcda: Element): Element[] {
   if (!fcda.ownerDocument || fcda.tagName !== 'FCDA' || fcda.closest('Private'))
     return [];
