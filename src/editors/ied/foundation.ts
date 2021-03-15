@@ -2,6 +2,7 @@ import { css } from 'lit-element';
 
 import {
   EditorAction,
+  getDataSink,
   getValue,
   WizardAction,
   WizardInput,
@@ -48,7 +49,56 @@ export interface Connection {
   serviceType: 'RP' | 'G' | 'SV';
 }
 
-/**@returns array of Connection's  */
+/**@returns array of Connection's describing `GOOSE` connection's */
+export function getGseConnection(doc: Document): Connection[] {
+  const gseControlList = Array.from(doc.querySelectorAll('GSEControl')).filter(
+    item => !item.closest('Private')
+  );
+
+  const conn: Connection[] = [];
+
+  gseControlList.forEach(gseControl => {
+    const ln0: Element = gseControl.parentElement!;
+    const dataList: Element[] = Array.from(
+      ln0.querySelectorAll(
+        ` DataSet[name="${gseControl.getAttribute('datSet')}"] > FCDA`
+      )
+    ).filter(item => !item.closest('Private'));
+
+    dataList.forEach(data => {
+      getDataSink(data)
+        .filter(extRef => extRef)
+        .forEach(extRef => {
+          conn.push({
+            source: {
+              cbName: gseControl.getAttribute('name')!,
+              reference: getLnReference(gseControl)!,
+              data: {
+                iedName: data.closest('IED')?.getAttribute('name') ?? '',
+                apRef: data.closest('AccessPoint')?.getAttribute('name') ?? '',
+                ldInst: data.getAttribute('ldInst') ?? '',
+                prefix: data.getAttribute('prefix') ?? '',
+                lnClass: data.getAttribute('lnClass') ?? '',
+                inst: data.getAttribute('lnInst') ?? '',
+                doName: data.getAttribute('doName')!,
+                daName: data.getAttribute('daName'),
+                fc: data.getAttribute('fc') ?? '',
+              },
+            },
+            sink: {
+              element: extRef,
+              reference: getLnReference(extRef),
+            },
+            serviceType: 'G',
+          });
+        });
+    });
+  });
+
+  return conn;
+}
+
+/**@returns array of Connection's  describing `Report` connection's */
 export function getReportConnection(doc: Document): Connection[] {
   return Array.from(
     doc.querySelectorAll('ReportControl > RptEnabled > ClientLN')

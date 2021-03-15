@@ -1,5 +1,6 @@
 import { expect } from '@open-wc/testing';
 import {
+  getGseConnection,
   getLnReference,
   getReportConnection,
 } from '../../../../src/editors/ied/foundation.js';
@@ -112,6 +113,48 @@ describe('ied foundation', () => {
         },
         serviceType: 'RP',
       });
+    });
+  });
+
+  describe('has a getGseConnection function that', () => {
+    const doc = getDocument();
+    it('returns an array of Connection describing GOOSE connection in the SCL', () => {
+      expect(getGseConnection(doc)).to.have.lengthOf(6);
+      const gseConn = getGseConnection(doc)[0];
+      expect(gseConn.source.cbName).is.equal('GCB');
+      expect(gseConn.source.reference).to.deep.equal({
+        iedName: 'IED1',
+        apRef: 'P1',
+        ldInst: 'CircuitBreaker_CB1',
+        prefix: '',
+        lnClass: 'LLN0',
+        inst: '',
+      });
+      expect(gseConn.source.data).to.deep.equal({
+        iedName: 'IED1',
+        apRef: 'P1',
+        ldInst: 'CircuitBreaker_CB1',
+        prefix: '',
+        lnClass: 'XCBR',
+        inst: '1',
+        doName: 'Pos',
+        daName: 'stVal',
+        fc: 'ST',
+      });
+      expect(gseConn.sink).to.deep.equal({
+        element: doc.querySelector(
+          ':root > IED[name="IED2"] > AccessPoint > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] >Inputs>ExtRef'
+        )!,
+        reference: {
+          iedName: 'IED2',
+          apRef: 'P1',
+          ldInst: 'CircuitBreaker_CB1',
+          prefix: '',
+          lnClass: 'CSWI',
+          inst: '1',
+        },
+      });
+      expect(gseConn.serviceType).to.deep.equal('G');
     });
   });
 });
