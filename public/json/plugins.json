@@ -25,5 +25,12 @@
     "src": "/src/triggered/SubscriberInfo.js",
     "default": true,
     "kind": "triggered"
+  },
+  {
+    "name": "Merge project",
+    "src": "/src/triggered/Merge.js",
+    "icon": "merge_type",
+    "default": true,
+    "kind": "triggered"
   }
 ]
