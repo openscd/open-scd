@@ -283,10 +283,15 @@ export function isIdentical(a: Element, b: Element): boolean {
   )
     return (
       a.getAttribute('name') === b.getAttribute('name') &&
-      isIdentical(a.parentElement, b.parentElement)
+      isSame(a.parentElement, b.parentElement)
     );
 
   return false;
+}
+
+export function isEqual(a: Element, b: Element): boolean {
+  if (a.closest('Private') || b.closest('Private')) return false;
+  return a.isEqualNode(b);
 }
 
 /** @returns a new [[`tag`]] element owned by [[`doc`]]. */
