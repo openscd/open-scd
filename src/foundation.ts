@@ -260,7 +260,8 @@ export function referencePath(element: Element): string {
   return path;
 }
 
-export function isIdentical(a: Element, b: Element): boolean {
+/** @returns whether `a` and `b` are considered identical by IEC-61850 */
+export function isSame(a: Element, b: Element): boolean {
   if (a.closest('Private') || b.closest('Private')) return false;
   if (a.tagName !== b.tagName) return false;
 

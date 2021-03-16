@@ -7,7 +7,7 @@ import {
   invert,
   isCreate,
   isDelete,
-  isIdentical,
+  isSame,
   isMove,
   isSimple,
   isUpdate,
@@ -133,7 +133,7 @@ describe('foundation', () => {
       expect(empty).dom.to.be.empty);
   });
 
-  describe('isIdentical', () => {
+  describe('isSame', () => {
     const scl1 = getDocument().documentElement;
     const scl2 = getDocument(true, '2003').documentElement;
 
@@ -146,21 +146,18 @@ describe('foundation', () => {
     const publicElement = bay.children.item(1)!;
 
     it('is true of any two SCL Elements', () => {
-      expect(isIdentical(scl1, scl2)).to.be.true;
+      expect(isSame(scl1, scl2)).to.be.true;
     });
 
     it('is true of any two Header Elements', () => {
       expect(
-        isIdentical(
-          scl1.querySelector('Header')!,
-          scl2.querySelector('Header')!
-        )
+        isSame(scl1.querySelector('Header')!, scl2.querySelector('Header')!)
       ).to.be.true;
     });
 
     it('is true of any two Communication Elements', () => {
       expect(
-        isIdentical(
+        isSame(
           scl1.querySelector('Communication')!,
           scl2.querySelector('Communication')!
         )
@@ -169,7 +166,7 @@ describe('foundation', () => {
 
     it('is true of any two DataTypeTemplates Elements', () => {
       expect(
-        isIdentical(
+        isSame(
           scl1.querySelector('DataTypeTemplates')!,
           scl2.querySelector('DataTypeTemplates')!
         )
@@ -177,31 +174,31 @@ describe('foundation', () => {
     });
 
     it('is false of any private sections', () => {
-      expect(isIdentical(privateSection, privateSection)).to.be.false;
+      expect(isSame(privateSection, privateSection)).to.be.false;
     });
 
     it('is false of any private elements', () => {
-      expect(isIdentical(privateElement, privateElement)).to.be.false;
-      expect(isIdentical(privateElement, publicElement)).to.be.false;
+      expect(isSame(privateElement, privateElement)).to.be.false;
+      expect(isSame(privateElement, publicElement)).to.be.false;
     });
 
     it('is true of any one Element and itself', () => {
-      expect(isIdentical(substation, substation)).to.be.true;
-      expect(isIdentical(ied, ied)).to.be.true;
-      expect(isIdentical(bay, bay)).to.be.true;
-      expect(isIdentical(communication, communication)).to.be.true;
+      expect(isSame(substation, substation)).to.be.true;
+      expect(isSame(ied, ied)).to.be.true;
+      expect(isSame(bay, bay)).to.be.true;
+      expect(isSame(communication, communication)).to.be.true;
     });
 
     it('is false of elements with different tagNames', () => {
-      expect(isIdentical(substation, ied)).to.be.false;
-      expect(isIdentical(substation, bay)).to.be.false;
-      expect(isIdentical(bay, communication)).to.be.false;
-      expect(isIdentical(communication, ied)).to.be.false;
+      expect(isSame(substation, ied)).to.be.false;
+      expect(isSame(substation, bay)).to.be.false;
+      expect(isSame(bay, communication)).to.be.false;
+      expect(isSame(communication, ied)).to.be.false;
     });
 
     it('is true of elements with equal nonempty id attributes', () => {
       expect(
-        isIdentical(
+        isSame(
           scl1.querySelector('LNodeType[id="Dummy.LLN0"]')!,
           scl2.querySelector('LNodeType[id="Dummy.LLN0"]')!
         )
@@ -210,7 +207,7 @@ describe('foundation', () => {
 
     it('is false of elements with unequal id attributes', () => {
       expect(
-        isIdentical(
+        isSame(
           scl1.querySelector('LNodeType[id="Dummy.LLN0"]')!,
           scl1.querySelector('LNodeType[id="Dummy.LLN0.two"]')!
         )

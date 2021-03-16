@@ -174,6 +174,12 @@ export const de: Translations = {
       description: `Schaltgeräten im Feld können oftmals bestimmten Steuerungsmodellen zugeordnet werden. \n Damit wird die Abschätzung oftmals genauer.`,
     },
   },
+  merge: {
+    action: 'Vereinigen',
+    defaultTitle: '{{ tag }} {{ source }} mit {{ sink }} vereinigen',
+    log: '{{ tag }} {{ source }} mit {{ sink }} vereinigt',
+    children: 'Kindelemente',
+  },
   import: {
     log: {
       successful: 'IED {{name}} geladen',
