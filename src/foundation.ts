@@ -311,7 +311,50 @@ function lNIdentity(e: ChildElement): string {
 }
 
 function extRefIdentity(e: ChildElement): string {
-  return ``; // FIXME: tmp
+  const parentIdentity = identity(e.parentElement);
+  const intAddr = e.getAttribute('intAddr');
+  const intAddrIndex = e.parentElement.querySelector(
+    `ExtRef[intAddr="${intAddr}"]`
+  );
+  if (intAddr) return `${parentIdentity}>${intAddr}[${intAddrIndex}]`;
+  const [
+    iedName,
+    ldInst,
+    prefix,
+    lnClass,
+    lnInst,
+    doName,
+    daName,
+    serviceType,
+    srcLDInst,
+    srcPrefix,
+    srcLNClass,
+    srcLNInst,
+    srcCBName,
+  ] = [
+    'iedName',
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+    'doName',
+    'daName',
+    'serviceType',
+    'srcLDInst',
+    'srcPrefix',
+    'srcLNClass',
+    'srcLNInst',
+    'srcCBName',
+  ].map(e.getAttribute);
+  const cbPath = srcCBName
+    ? `${serviceType}:${srcCBName} ${srcLDInst ?? ''}/${
+        srcPrefix ?? ''
+      }${srcLNClass}${srcLNInst ?? ''}`
+    : '';
+  const dataPath = `${iedName} ${ldInst}/${prefix ?? ''}${lnClass}${
+    lnInst ?? ''
+  }.${doName}${daName ? '.' + daName : ''}`;
+  return `${parentIdentity}>${cbPath}${dataPath}`;
 }
 
 function ixNamingIdentity(e: ChildElement): string {
