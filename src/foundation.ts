@@ -260,6 +260,176 @@ export function referencePath(element: Element): string {
   return path;
 }
 
+type ChildElement = Element & { parentElement: Element };
+
+function hitemIdentity(e: ChildElement): string {
+  return `v${e.getAttribute('version')}r${e.getAttribute('revision')}`;
+}
+
+function terminalIdentity(e: ChildElement): string {
+  return identity(e.parentElement) + '>' + e.getAttribute('connectivityNode');
+}
+
+function lNodeIdentity(e: ChildElement): string {
+  const [iedName, ldInst, prefix, lnClass, lnInst, lnType] = [
+    'iedName',
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+    'lnType',
+  ].map(e.getAttribute);
+  if (iedName === 'None') return `(${lnClass} ${lnType})`;
+  return `${iedName} ${ldInst ?? '(Client)'}/${prefix ?? ''}${lnClass}${
+    lnInst ?? ''
+  }`;
+}
+
+function lDeviceIdentity(e: ChildElement): string {
+  return `${identity(e.closest('IED')!)}>>${e.getAttribute('inst')}`;
+}
+
+function iEDNameIdentity(e: ChildElement): string {
+  const iedName = e.textContent;
+  const [apRef, ldInst, prefix, lnClass, lnInst] = [
+    'apRef',
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+  ].map(e.getAttribute);
+  return `${identity(e.parentElement)}>${iedName}${apRef ? ' ' + apRef : ''}${
+    ldInst ? ' ' + ldInst : ''
+  }/${prefix ?? ''}${lnClass ?? ''}${lnInst ?? ''}`;
+}
+
+function lNIdentity(e: ChildElement): string {
+  const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(
+    e.getAttribute
+  );
+  return `${prefix ?? ''}${lnClass}${inst}`;
+}
+
+function extRefIdentity(e: ChildElement): string {
+  return ``; // FIXME: tmp
+}
+
+function ixNamingIdentity(e: ChildElement): string {
+  const [name, ix] = ['name', 'ix'].map(e.getAttribute);
+  return `${identity(e.parentElement)}>${name}${ix ? '[' + ix + ']' : ''}`;
+}
+
+function valIdentity(e: ChildElement): string {
+  const sGroup = e.getAttribute('sGroup');
+  const index = Array.from(e.parentElement.children)
+    .filter(child => child.getAttribute('sGroup') === sGroup)
+    .findIndex(child => child.isSameNode(e));
+  return `${identity(e.parentElement)}>${sGroup ? sGroup + '.' : ''}${index}`;
+}
+
+function connectedAPIdentity(e: ChildElement): string {
+  const [iedName, apName] = ['iedName', 'apName'].map(e.getAttribute);
+  return `${iedName} ${apName}`;
+}
+
+function controlBlockIdentity(e: ChildElement): string {
+  const [ldInst, cbName] = ['ldInst', 'cbName'].map(e.getAttribute);
+  return `${ldInst} ${cbName}`;
+}
+
+function physConnIdentity(e: ChildElement): string | number {
+  if (!e.parentElement.querySelector('PhysConn[type="RedConn"]')) return NaN;
+  const pcType = e.getAttribute('type');
+  if (
+    e.parentElement.children.length > 1 &&
+    pcType !== 'Connection' &&
+    pcType !== 'RedConn'
+  )
+    return NaN;
+  return `${identity(e.parentElement)}>${pcType}`;
+}
+
+function pIdentity(e: ChildElement): string {
+  const eParent = e.parentElement;
+  const eType = e.getAttribute('type');
+  if (eParent.tagName === 'PhysConn')
+    return `${identity(e.parentElement)}>${eType}`;
+  const index = Array.from(e.parentElement.children)
+    .filter(child => child.getAttribute('type') === eType)
+    .findIndex(child => child.isSameNode(e));
+  return `${identity(e.parentElement)}>${eType}[${index}]`;
+}
+
+function enumValIdentity(e: ChildElement): string {
+  return `${identity(e.parentElement)}>${e.getAttribute('ord')}`;
+}
+
+function protNsIdentity(e: ChildElement): string {
+  return `${identity(e.parentElement)}>${e.getAttribute('type')} ${
+    e.textContent
+  }`;
+}
+
+const specialTags = {
+  Hitem: hitemIdentity,
+  Terminal: terminalIdentity,
+  LNode: lNodeIdentity,
+  LDevice: lDeviceIdentity,
+  IEDName: iEDNameIdentity,
+  LN: lNIdentity,
+  ExtRef: extRefIdentity,
+  DAI: ixNamingIdentity,
+  SDI: ixNamingIdentity,
+  Val: valIdentity,
+  ConnectedAP: connectedAPIdentity,
+  GSE: controlBlockIdentity,
+  SMV: controlBlockIdentity,
+  PhysConn: physConnIdentity,
+  P: pIdentity,
+  EnumVal: enumValIdentity,
+  ProtNs: protNsIdentity,
+};
+
+function singletonIdentity(e: ChildElement): string {
+  return identity(e.parentElement) + '>' + e.tagName;
+}
+
+const singletonTags = new Set([
+  'ServerAt',
+  'Server',
+  'LN0',
+  'RptEnabled',
+  'SettingControl',
+  'Inputs',
+  'Communication',
+  'Voltage',
+  'Header',
+  'DataTypeTemplates',
+  'MinTime',
+  'MaxTime',
+  'History',
+  'Address',
+  'BitRate',
+  'ConfSG',
+  'SGEdit',
+  'SettingGroups',
+  'Service',
+  'McSecurity',
+  'SmpRate',
+  'SamplesPerSec',
+  'SecPerSamples',
+  'TimeSyncProt',
+  'Protocol',
+  'SmvOpts',
+]);
+
+export function identity(e: Element): string | number {
+  if (e.closest('Private')) return NaN;
+  return (
+    identity(e.parentElement!) + '>' + e.tagName + ':' + e.getAttribute('name')
+  );
+}
+
 /** @returns whether `a` and `b` are considered identical by IEC-61850 */
 export function isSame(a: Element, b: Element): boolean {
   if (a.closest('Private') || b.closest('Private')) return false;
