@@ -285,6 +285,16 @@ function lNodeIdentity(e: ChildElement): string {
   }`;
 }
 
+function kdcIdentity(e: ChildElement): string {
+  return `${identity(e.parentElement)}>${e.getAttribute(
+    'iedName'
+  )} ${e.getAttribute('apName')}`;
+}
+
+function associationIdentity(e: ChildElement): string {
+  return `${identity(e.parentElement)} ${e.getAttribute('associationID')}`;
+}
+
 function lDeviceIdentity(e: ChildElement): string {
   return `${identity(e.closest('IED')!)}>>${e.getAttribute('inst')}`;
 }
@@ -450,6 +460,8 @@ const specialTags = {
   Hitem: hitemIdentity,
   Terminal: terminalIdentity,
   LNode: lNodeIdentity,
+  KDC: kdcIdentity,
+  Association: associationIdentity,
   LDevice: lDeviceIdentity,
   IEDName: iEDNameIdentity,
   FCDA: fCDAIdentity,
@@ -473,9 +485,51 @@ function singletonIdentity(e: ChildElement): string {
 }
 
 const singletonTags = new Set([
+  'Services',
+  'DynAssociation',
+  'SettingGroups',
+  'ConfSG',
+  'SGEdit',
+  'GetDirectory',
+  'GetDataObjectDefinition',
+  'DataObjectDirectory',
+  'GetDataSetValue',
+  'SetDataSetValue',
+  'DataSetDirectory',
+  'ConfDataSet',
+  'DynDataSet',
+  'ReadWrite',
+  'TimerActivatedControl',
+  'ConfReportControl',
+  'GetCBValues',
+  'ConfLogControl',
+  'ReportSettings',
+  'LogSettings',
+  'GSESettings',
+  'SMVSettings',
+  'GSEDir',
+  'GOOSE',
+  'GSSE',
+  'SMVsc',
+  'FileHandling',
+  'ConfLNs',
+  'ClientServices',
+  'ConfLdName',
+  'SupSubscription',
+  'ConfSigRef',
+  'ValueHandling',
+  'RedProt',
+  'TimeSyncProt',
+  'CommProt',
   'ServerAt',
   'Server',
+  'GOOSESecurity',
+  'SMVSecurity',
+  'Subject',
+  'IssuerName',
+  'Authentication',
   'LN0',
+  'AccessControl',
   'RptEnabled',
   'SettingControl',
   'Inputs',
@@ -488,15 +542,11 @@ const singletonTags = new Set([
   'History',
   'Address',
   'BitRate',
-  'ConfSG',
-  'SGEdit',
-  'SettingGroups',
   'Service',
   'McSecurity',
   'SmpRate',
   'SamplesPerSec',
   'SecPerSamples',
-  'TimeSyncProt',
   'Protocol',
   'SmvOpts',
   'OptFields',
