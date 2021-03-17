@@ -303,11 +303,23 @@ function iEDNameIdentity(e: ChildElement): string {
   }/${prefix ?? ''}${lnClass ?? ''}${lnInst ?? ''}`;
 }
 
-function lNIdentity(e: ChildElement): string {
-  const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(
-    e.getAttribute
-  );
-  return `${prefix ?? ''}${lnClass}${inst}`;
+function fCDAIdentity(e: ChildElement): string {
+  const [ldInst, prefix, lnClass, lnInst, doName, daName, fc, ix] = [
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+    'doName',
+    'daName',
+    'fc',
+    'ix',
+  ].map(e.getAttribute);
+  const dataPath = `${ldInst}/${prefix ?? ''}${lnClass}${
+    lnInst ?? ''
+  }.${doName}${daName ? '.' + daName : ''}`;
+  return `${identity(e.parentElement)}>${dataPath} (${fc}${
+    ix ? '[' + ix + ']' : ''
+  })`;
 }
 
 function extRefIdentity(e: ChildElement): string {
@@ -355,6 +367,27 @@ function extRefIdentity(e: ChildElement): string {
     lnInst ?? ''
   }.${doName}${daName ? '.' + daName : ''}`;
   return `${parentIdentity}>${cbPath}${dataPath}`;
+}
+
+function lNIdentity(e: ChildElement): string {
+  const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(
+    e.getAttribute
+  );
+  return `${prefix ?? ''}${lnClass}${inst}`;
+}
+
+function clientLNIdentity(e: ChildElement): string {
+  const [apRef, iedName, ldInst, prefix, lnClass, lnInst] = [
+    'apRef',
+    'iedName',
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+  ].map(e.getAttribute);
+  return `${identity(e.parentElement)}>${iedName}${
+    apRef ? ' ' + apRef : ''
+  } ${ldInst}/${prefix ?? ''}${lnClass}${lnInst}`;
 }
 
 function ixNamingIdentity(e: ChildElement): string {
@@ -419,8 +452,10 @@ const specialTags = {
   LNode: lNodeIdentity,
   LDevice: lDeviceIdentity,
   IEDName: iEDNameIdentity,
-  LN: lNIdentity,
+  FCDA: fCDAIdentity,
   ExtRef: extRefIdentity,
+  LN: lNIdentity,
+  ClientLN: clientLNIdentity,
   DAI: ixNamingIdentity,
   SDI: ixNamingIdentity,
   Val: valIdentity,
@@ -464,6 +499,8 @@ const singletonTags = new Set([
   'TimeSyncProt',
   'Protocol',
   'SmvOpts',
+  'OptFields',
+  'TrgOps',
 ]);
 
 export function identity(e: Element): string | number {
