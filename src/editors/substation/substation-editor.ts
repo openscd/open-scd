@@ -223,7 +223,7 @@ export class SubstationEditor extends LitElement {
     ${styles}
 
     section {
-      overflow: auto;
+      overflow: hidden;
     }
 
     :host {
