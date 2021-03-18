@@ -5,8 +5,8 @@ import {
   isDelete,
   isSimple,
   ComplexAction,
-} from '../../../src/foundation.js';
-import { ConnectedAPEditor } from '../../../src/editors/communication/connectedap-editor.js';
+} from '../../../../src/foundation.js';
+import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
 
 describe('ConnectedAPEditor', () => {
   describe('has a editorAction that', () => {
