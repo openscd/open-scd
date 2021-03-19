@@ -456,7 +456,9 @@ function protNsIdentity(e: ChildElement): string {
   }`;
 }
 
-const specialTags = {
+type IdentityFunction = (e: ChildElement) => string | number;
+
+const specialTags: Partial<Record<string, IdentityFunction>> = {
   Hitem: hitemIdentity,
   Terminal: terminalIdentity,
   LNode: lNodeIdentity,
@@ -485,114 +487,125 @@ function singletonIdentity(e: ChildElement): string {
 }
 
 const singletonTags = new Set([
-  'Services',
-  'DynAssociation',
-  'SettingGroups',
-  'ConfSG',
-  'SGEdit',
-  'GetDirectory',
-  'GetDataObjectDefinition',
-  'DataObjectDirectory',
-  'GetDataSetValue',
-  'SetDataSetValue',
-  'DataSetDirectory',
-  'ConfDataSet',
-  'DynDataSet',
-  'ReadWrite',
-  'TimerActivatedControl',
-  'ConfReportControl',
-  'GetCBValues',
-  'ConfLogControl',
-  'ReportSettings',
-  'LogSettings',
-  'GSESettings',
-  'SMVSettings',
-  'GSEDir',
-  'GOOSE',
-  'GSSE',
-  'SMVsc',
-  'FileHandling',
-  'ConfLNs',
-  'ClientServices',
-  'ConfLdName',
-  'SupSubscription',
-  'ConfSigRef',
-  'ValueHandling',
-  'RedProt',
-  'TimeSyncProt',
-  'CommProt',
-  'ServerAt',
-  'Server',
-  'GOOSESecurity',
-  'SMVSecurity',
-  'Subject',
-  'IssuerName',
-  'Authentication',
-  'LN0',
   'AccessControl',
-  'RptEnabled',
-  'SettingControl',
-  'Inputs',
-  'Communication',
-  'Voltage',
-  'Header',
-  'DataTypeTemplates',
-  'MinTime',
-  'MaxTime',
-  'History',
   'Address',
+  'Authentication',
   'BitRate',
-  'Service',
+  'ClientServices',
+  'CommProt',
+  'Communication',
+  'ConfDataSet',
+  'ConfLNs',
+  'ConfLdName',
+  'ConfLogControl',
+  'ConfReportControl',
+  'ConfSG',
+  'ConfSigRef',
+  'DataObjectDirectory',
+  'DataSetDirectory',
+  'DataTypeTemplates',
+  'DynAssociation',
+  'DynDataSet',
+  'FileHandling',
+  'GOOSE',
+  'GOOSESecurity',
+  'GSEDir',
+  'GSESettings',
+  'GSSE',
+  'GetCBValues',
+  'GetDataObjectDefinition',
+  'GetDataSetValue',
+  'GetDirectory',
+  'Header',
+  'History',
+  'Inputs',
+  'IssuerName',
+  'LN0',
+  'LogSettings',
+  'MaxTime',
   'McSecurity',
-  'SmpRate',
+  'MinTime',
+  'OptFields',
+  'Protocol',
+  'ReadWrite',
+  'RedProt',
+  'ReportSettings',
+  'RptEnabled',
+  'SGEdit',
+  'SMVSecurity',
+  'SMVSettings',
+  'SMVsc',
   'SamplesPerSec',
   'SecPerSamples',
-  'Protocol',
+  'Server',
+  'ServerAt',
+  'Services',
+  'SetDataSetValue',
+  'SettingControl',
+  'SettingGroups',
+  'SmpRate',
   'SmvOpts',
-  'OptFields',
+  'Subject',
+  'SupSubscription',
+  'TimeSyncProt',
+  'TimerActivatedControl',
   'TrgOps',
+  'ValueHandling',
+  'Voltage',
 ]);
 
 export function identity(e: Element): string | number {
   if (e.closest('Private')) return NaN;
-  return (
-    identity(e.parentElement!) + '>' + e.tagName + ':' + e.getAttribute('name')
-  );
+
+  if (singletonTags.has(e.tagName)) return singletonIdentity(<ChildElement>e);
+  const specialIdentity = specialTags[e.tagName];
+  if (specialIdentity) return specialIdentity(<ChildElement>e);
+
+  if (e.id) return `#${e.id}`;
+
+  if (e.hasAttribute('name'))
+    return `${identity(e.parentElement!)}>${e.getAttribute('name')}`;
+
+  if (e.tagName === 'SCL') return '';
+
+  return NaN;
 }
 
 /** @returns whether `a` and `b` are considered identical by IEC-61850 */
 export function isSame(a: Element, b: Element): boolean {
-  if (a.closest('Private') || b.closest('Private')) return false;
-  if (a.tagName !== b.tagName) return false;
-
-  if (
-    a.tagName === 'SCL' ||
-    a.tagName === 'Header' ||
-    a.tagName === 'Communication' ||
-    a.tagName === 'DataTypeTemplates'
-  )
-    return true;
-
-  if (a.id || b.id) return a.id === b.id;
-
-  if (
-    a.tagName !== 'LDevice' &&
-    a.hasAttribute('name') &&
-    b.hasAttribute('name') &&
-    a.parentElement &&
-    b.parentElement
-  )
-    return (
-      a.getAttribute('name') === b.getAttribute('name') &&
-      isSame(a.parentElement, b.parentElement)
-    );
-
-  return false;
+  if (a.tagName === 'Private')
+    return isSame(a.parentElement!, b.parentElement!) && a.isEqualNode(b);
+  return a.tagName === b.tagName && identity(a) === identity(b);
 }
 
 export function isEqual(a: Element, b: Element): boolean {
-  if (a.closest('Private') || b.closest('Private')) return false;
-  return a.isEqualNode(b);
+  if (a.closest('Private') || b.closest('Private')) return a.isEqualNode(b);
+
+  const attributeNames = new Set(
+    a.getAttributeNames().concat(b.getAttributeNames())
+  );
+  for (const name of attributeNames)
+    if (a.getAttribute(name) !== b.getAttribute(name)) return false;
+
+  if (a.childElementCount === 0)
+    return (
+      b.childElementCount === 0 &&
+      a.textContent?.trim() === b.textContent?.trim()
+    );
+
+  const aChildren = Array.from(a.children);
+  const bChildren = Array.from(b.children);
+
+  for (const aChild of aChildren) {
+    const twindex = bChildren.findIndex(bChild => isEqual(aChild, bChild));
+    if (twindex === -1) return false;
+    bChildren.splice(twindex, 1);
+  }
+
+  for (const bChild of bChildren)
+    if (!aChildren.find(aChild => isEqual(bChild, aChild))) return false;
+
+  return true;
 }
 
 /** @returns a new [[`tag`]] element owned by [[`doc`]]. */
