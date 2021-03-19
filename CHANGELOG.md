@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/openscd/open-scd/compare/v0.0.2...v0.0.3) (2021-03-19)
+
+
+### Bug Fixes
+
+* allow re-opening the same file again ([#7](https://github.com/openscd/open-scd/issues/7)) ([#160](https://github.com/openscd/open-scd/issues/160)) ([8b57883](https://github.com/openscd/open-scd/commits/8b57883cd191106dacabe5f8dbd8678c00cf92a4))
+* **editors/substation:** remove horizontal scroll bar on overflow ([#159](https://github.com/openscd/open-scd/issues/159)) ([#161](https://github.com/openscd/open-scd/issues/161)) ([4723bcd](https://github.com/openscd/open-scd/commits/4723bcd123e6c5d24287404b2a95b0148d302b79))
+
 ### [0.0.2](https://github.com/openscd/open-scd/compare/v0.0.1...v0.0.2) (2021-03-05)
 
 
