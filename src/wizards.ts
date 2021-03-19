@@ -5,6 +5,7 @@ import { get, translate } from 'lit-translate';
 
 import {
   EditorAction,
+  identity,
   isEqual,
   isSame,
   newWizardEvent,
@@ -23,16 +24,9 @@ type Diff<T> =
   | { ours: T; theirs: T };
 
 function describe(element: Element): string {
-  if (element.id) return element.id;
-  if (
-    element.tagName !== 'LDevice' &&
-    element.hasAttribute('name') &&
-    element.parentElement
-  )
-    return describe(element.parentElement) + ' ' + element.getAttribute('name');
-  if (element.tagName === 'SCL') return '';
+  const id = identity(element);
 
-  return element.tagName;
+  return typeof id === 'string' ? id.replace(/^>/, '') : get('unidentifiable');
 }
 
 function mergeWizardAction(
