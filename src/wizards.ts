@@ -51,6 +51,8 @@ function mergeWizardAction(
       actions.push({ old: { element: sink }, new: { element: newSink } });
     }
 
+    let test = false;
+
     const selectedChildDiffs = (<ListItem[]>checkList.selected)
       .filter(item => item.classList.contains('child'))
       .map(item => childDiffs[(item.value as unknown) as number]);
@@ -68,7 +70,8 @@ function mergeWizardAction(
               reference: diff.ours.nextElementSibling,
             },
           });
-        else
+        else {
+          test = true;
           wizard.dispatchEvent(
             newWizardEvent(
               mergeWizard(diff.ours, diff.theirs, {
@@ -77,9 +80,10 @@ function mergeWizardAction(
               })
             )
           );
+        }
     }
 
-    if (actions.length === 0) wizard.dispatchEvent(newWizardEvent());
+    if (actions.length === 0 && !test) wizard.dispatchEvent(newWizardEvent());
 
     return [
       {
@@ -202,14 +206,14 @@ export function mergeWizard(
                       : 'error'
                     : 'primary'});"
                 >
-                  <span
-                    >${diff.ours?.tagName ?? ''}
-                    ${diff.ours && diff.theirs ? html`&cularr;` : ' '}
-                    ${diff.theirs?.tagName ?? ''}</span
-                  >
+                  <span>${diff.ours?.tagName ?? diff.theirs?.tagName}</span>
                   <span slot="secondary"
                     >${diff.ours ? describe(diff.ours) : ''}
-                    ${diff.ours && diff.theirs ? html`&cularr;` : ' '}
+                    ${diff.ours &&
+                    diff.theirs &&
+                    describe(diff.ours) + describe(diff.theirs)
+                      ? html`&cularr;`
+                      : ' '}
                     ${diff.theirs ? describe(diff.theirs) : ''}</span
                   >
                   <mwc-icon slot="meta"

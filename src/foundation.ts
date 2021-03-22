@@ -483,7 +483,7 @@ const specialTags: Partial<Record<string, IdentityFunction>> = {
 };
 
 function singletonIdentity(e: ChildElement): string {
-  return identity(e.parentElement) + '>' + e.tagName;
+  return identity(e.parentElement).toString();
 }
 
 const singletonTags = new Set([
@@ -554,6 +554,8 @@ const singletonTags = new Set([
   'Voltage',
 ]);
 
+/** @returns a string uniquely identifying `e` in its document, or NaN if `e`
+ * is unidentifiable. */
 export function identity(e: Element): string | number {
   if (e.closest('Private')) return NaN;
 
