@@ -181,7 +181,7 @@ describe('open-scd', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
           .length
-      ).to.equal(13);
+      ).to.equal(14);
     });
     it('loads unique dotypes to the project', () => {
       expect(

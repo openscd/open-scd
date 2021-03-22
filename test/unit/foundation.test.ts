@@ -173,8 +173,8 @@ describe('foundation', () => {
       ).to.be.true;
     });
 
-    it('is false of any private sections', () => {
-      expect(isSame(privateSection, privateSection)).to.be.false;
+    it('is true of identical private sections', () => {
+      expect(isSame(privateSection, privateSection)).to.be.true;
     });
 
     it('is false of any private elements', () => {
