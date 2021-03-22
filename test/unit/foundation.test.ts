@@ -3,12 +3,13 @@ import { expect, fixture, html } from '@open-wc/testing';
 import {
   ComplexAction,
   EditorAction,
+  identity,
   ifImplemented,
   invert,
   isCreate,
   isDelete,
-  isSame,
   isMove,
+  isSame,
   isSimple,
   isUpdate,
   newActionEvent,
@@ -17,6 +18,17 @@ import {
 } from '../../src/foundation.js';
 import { getDocument } from '../data.js';
 import { MockAction } from './mock-actions.js';
+
+const scl1 = getDocument().documentElement;
+const scl2 = getDocument(true, '2003').documentElement;
+
+const substation = scl1.querySelector('Substation')!;
+const ied = scl1.querySelector('IED')!;
+const communication = scl1.querySelector('Communication')!;
+const bay = scl1.querySelector('Bay')!;
+const privateSection = bay.querySelector('Private')!;
+const privateElement = privateSection.firstElementChild!;
+const publicElement = bay.children.item(1)!;
 
 describe('foundation', () => {
   describe('EditorAction', () => {
@@ -134,17 +146,6 @@ describe('foundation', () => {
   });
 
   describe('isSame', () => {
-    const scl1 = getDocument().documentElement;
-    const scl2 = getDocument(true, '2003').documentElement;
-
-    const substation = scl1.querySelector('Substation')!;
-    const ied = scl1.querySelector('IED')!;
-    const communication = scl1.querySelector('Communication')!;
-    const bay = scl1.querySelector('Bay')!;
-    const privateSection = bay.querySelector('Private')!;
-    const privateElement = privateSection.firstElementChild!;
-    const publicElement = bay.children.item(1)!;
-
     it('is true of any two SCL Elements', () => {
       expect(isSame(scl1, scl2)).to.be.true;
     });
@@ -212,6 +213,12 @@ describe('foundation', () => {
           scl1.querySelector('LNodeType[id="Dummy.LLN0.two"]')!
         )
       ).to.be.false;
+    });
+  });
+
+  describe('identity', () => {
+    it('returns NaN for any private element', () => {
+      expect(identity(privateElement)).to.be.NaN;
     });
   });
 });
