@@ -15,6 +15,7 @@ import {
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
+  singletonTags,
 } from '../../src/foundation.js';
 import { getDocument } from '../data.js';
 import { MockAction } from './mock-actions.js';
@@ -219,6 +220,14 @@ describe('foundation', () => {
   describe('identity', () => {
     it('returns NaN for any private element', () => {
       expect(identity(privateElement)).to.be.NaN;
+    });
+    it('returns parent identity for singleton identities', () => {
+      singletonTags.forEach(tag => {
+        const element = scl1.querySelector(tag);
+        if (element) {
+          expect(identity(element)).to.equal(identity(element.parentElement!));
+        }
+      });
     });
   });
 });

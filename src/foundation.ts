@@ -278,7 +278,7 @@ function lNodeIdentity(e: ChildElement): string {
     'lnClass',
     'lnInst',
     'lnType',
-  ].map(e.getAttribute);
+  ].map(name => e.getAttribute(name));
   if (iedName === 'None') return `(${lnClass} ${lnType})`;
   return `${iedName} ${ldInst ?? '(Client)'}/${prefix ?? ''}${lnClass}${
     lnInst ?? ''
@@ -307,7 +307,7 @@ function iEDNameIdentity(e: ChildElement): string {
     'prefix',
     'lnClass',
     'lnInst',
-  ].map(e.getAttribute);
+  ].map(name => e.getAttribute(name));
   return `${identity(e.parentElement)}>${iedName}${apRef ? ' ' + apRef : ''}${
     ldInst ? ' ' + ldInst : ''
   }/${prefix ?? ''}${lnClass ?? ''}${lnInst ?? ''}`;
@@ -323,7 +323,7 @@ function fCDAIdentity(e: ChildElement): string {
     'daName',
     'fc',
     'ix',
-  ].map(e.getAttribute);
+  ].map(name => e.getAttribute(name));
   const dataPath = `${ldInst}/${prefix ?? ''}${lnClass}${
     lnInst ?? ''
   }.${doName}${daName ? '.' + daName : ''}`;
@@ -367,7 +367,7 @@ function extRefIdentity(e: ChildElement): string {
     'srcLNClass',
     'srcLNInst',
     'srcCBName',
-  ].map(e.getAttribute);
+  ].map(name => e.getAttribute(name));
   const cbPath = srcCBName
     ? `${serviceType}:${srcCBName} ${srcLDInst ?? ''}/${
         srcPrefix ?? ''
@@ -380,8 +380,8 @@ function extRefIdentity(e: ChildElement): string {
 }
 
 function lNIdentity(e: ChildElement): string {
-  const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(
-    e.getAttribute
+  const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(name =>
+    e.getAttribute(name)
   );
   return `${prefix ?? ''}${lnClass}${inst}`;
 }
@@ -394,14 +394,14 @@ function clientLNIdentity(e: ChildElement): string {
     'prefix',
     'lnClass',
     'lnInst',
-  ].map(e.getAttribute);
+  ].map(name => e.getAttribute(name));
   return `${identity(e.parentElement)}>${iedName}${
     apRef ? ' ' + apRef : ''
   } ${ldInst}/${prefix ?? ''}${lnClass}${lnInst}`;
 }
 
 function ixNamingIdentity(e: ChildElement): string {
-  const [name, ix] = ['name', 'ix'].map(e.getAttribute);
+  const [name, ix] = ['name', 'ix'].map(name => e.getAttribute(name));
   return `${identity(e.parentElement)}>${name}${ix ? '[' + ix + ']' : ''}`;
 }
 
@@ -414,12 +414,16 @@ function valIdentity(e: ChildElement): string {
 }
 
 function connectedAPIdentity(e: ChildElement): string {
-  const [iedName, apName] = ['iedName', 'apName'].map(e.getAttribute);
+  const [iedName, apName] = ['iedName', 'apName'].map(name =>
+    e.getAttribute(name)
+  );
   return `${iedName} ${apName}`;
 }
 
 function controlBlockIdentity(e: ChildElement): string {
-  const [ldInst, cbName] = ['ldInst', 'cbName'].map(e.getAttribute);
+  const [ldInst, cbName] = ['ldInst', 'cbName'].map(name =>
+    e.getAttribute(name)
+  );
   return `${ldInst} ${cbName}`;
 }
 
@@ -486,7 +490,7 @@ function singletonIdentity(e: ChildElement): string {
   return identity(e.parentElement).toString();
 }
 
-const singletonTags = new Set([
+export const singletonTags = new Set([
   'AccessControl',
   'Address',
   'Authentication',
