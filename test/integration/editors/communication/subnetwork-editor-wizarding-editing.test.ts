@@ -220,7 +220,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
     it('add ConnectedAP on primary action', async () => {
       expect(
         doc.querySelector(
-          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P1"]'
+          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P2"]'
         )
       ).to.not.exist;
       (<ListItemBase>(
@@ -236,7 +236,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       )).click();
       expect(
         doc.querySelector(
-          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P1"]'
+          ':root > Communication > SubNetwork[name="StationBus"] > ConnectedAP[iedName="IED3"][apName="P2"]'
         )
       ).to.exist;
     });

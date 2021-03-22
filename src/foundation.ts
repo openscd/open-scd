@@ -455,14 +455,14 @@ function enumValIdentity(e: ChildElement): string {
 }
 
 function protNsIdentity(e: ChildElement): string {
-  return `${identity(e.parentElement)}>${e.getAttribute('type')} ${
+  return `${identity(e.parentElement)}>${e.getAttribute('type') || '8-MMS'} ${
     e.textContent
   }`;
 }
 
 type IdentityFunction = (e: ChildElement) => string | number;
 
-const specialTags: Partial<Record<string, IdentityFunction>> = {
+export const specialTags: Partial<Record<string, IdentityFunction>> = {
   Hitem: hitemIdentity,
   Terminal: terminalIdentity,
   LNode: lNodeIdentity,

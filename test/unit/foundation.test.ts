@@ -16,6 +16,7 @@ import {
   newPendingStateEvent,
   newWizardEvent,
   singletonTags,
+  specialTags,
 } from '../../src/foundation.js';
 import { getDocument } from '../data.js';
 import { MockAction } from './mock-actions.js';
@@ -227,6 +228,36 @@ describe('foundation', () => {
         if (element) {
           expect(identity(element)).to.equal(identity(element.parentElement!));
         }
+      });
+    });
+    it('returns valid identity for Hitem tag', () => {
+      const expectations: Partial<Record<string, string>> = {
+        Hitem: 'v1r143',
+        Terminal: '>AA1>E1>COUPLING_BAY>QC11>AA1/E1/COUPLING_BAY/L2',
+        'Bay>LNode': 'IED2 CBSW/LPHD1',
+        LDevice: '>IED1>>CircuitBreaker_CB1',
+        IEDName:
+          '>IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/CSWI',
+        FCDA:
+          '>IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/XCBR1.Pos.stVal (ST)',
+        ExtRef: 'DCCSWI1>IED2 CBSW/XSWI2.Pos.stVal',
+        LN: 'XCBR1',
+        ClientLN: 'XSWI1>ReportCb>IED1 P1 CircuitBreaker_CB1/XCBR1',
+        DAI: 'XCBR1>Pos>ctlModel',
+        SDI: 'CBCSWI2>Pos>pulseConfig',
+        Val: 'XCBR1>Pos>ctlModel>0',
+        ConnectedAP: 'IED1 P1',
+        GSE: 'CircuitBreaker_CB1 GCB',
+        SMV: 'MU01 MSVCB01',
+        PhysConn: 'IED1 P1>RedConn',
+        P: 'IED1 P1>IP[0]',
+        EnumVal: '#Dummy_ctlModel>0',
+        ProtNs: '#Dummy.LLN0.Mod.SBOw>8-MMS IEC 61850-8-1:2003',
+      };
+
+      Object.keys(expectations).forEach(key => {
+        const element = scl1.querySelector(key);
+        expect(identity(element!)).to.equal(expectations[key]);
       });
     });
   });
