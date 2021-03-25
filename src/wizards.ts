@@ -46,8 +46,7 @@ function mergeWizardAction(
 
     if (selectedAttrDiffs.length) {
       const newSink = <Element>sink.cloneNode(false);
-      if (newSink.childElementCount === 0)
-        newSink.textContent = sink.textContent;
+      if (sink.childElementCount === 0) newSink.textContent = sink.textContent;
       for (const [name, diff] of selectedAttrDiffs)
         if (name === 'value') {
           newSink.textContent = diff.theirs;
@@ -130,7 +129,11 @@ export function mergeWizard(
   const ourText = sink.textContent ?? '';
   const theirText = source.textContent ?? '';
 
-  if (theirText !== ourText)
+  if (
+    sink.childElementCount === 0 &&
+    source.childElementCount === 0 &&
+    theirText !== ourText
+  )
     attrDiffs.push(['value', { ours: ourText, theirs: theirText }]);
 
   theirChildren.forEach(theirs => {
