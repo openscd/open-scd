@@ -43,15 +43,21 @@ function mergeWizardAction(
     const selectedAttrDiffs = (<ListItem[]>checkList.selected)
       .filter(item => item.classList.contains('attr'))
       .map(item => attrDiffs[(item.value as unknown) as number]);
+
     if (selectedAttrDiffs.length) {
       const newSink = <Element>sink.cloneNode(false);
+      if (newSink.childElementCount === 0)
+        newSink.textContent = sink.textContent;
       for (const [name, diff] of selectedAttrDiffs)
-        if (diff.theirs === null) newSink.removeAttribute(name);
+        if (name === 'value') {
+          newSink.textContent = diff.theirs;
+          console.log(diff.theirs);
+        } else if (diff.theirs === null) newSink.removeAttribute(name);
         else newSink.setAttribute(name, diff.theirs);
       actions.push({ old: { element: sink }, new: { element: newSink } });
     }
 
-    let test = false;
+    let acted = false;
 
     const selectedChildDiffs = (<ListItem[]>checkList.selected)
       .filter(item => item.classList.contains('child'))
@@ -71,7 +77,7 @@ function mergeWizardAction(
             },
           });
         else {
-          test = true;
+          acted = true;
           wizard.dispatchEvent(
             newWizardEvent(
               mergeWizard(diff.ours, diff.theirs, {
@@ -83,7 +89,7 @@ function mergeWizardAction(
         }
     }
 
-    if (actions.length === 0 && !test) wizard.dispatchEvent(newWizardEvent());
+    if (actions.length === 0 && !acted) wizard.dispatchEvent(newWizardEvent());
 
     return [
       {
@@ -121,6 +127,11 @@ export function mergeWizard(
   const childDiffs: Diff<Element>[] = [];
   const ourChildren = Array.from(sink.children);
   const theirChildren = Array.from(source.children);
+  const ourText = sink.textContent ?? '';
+  const theirText = source.textContent ?? '';
+
+  if (theirText !== ourText)
+    attrDiffs.push(['value', { ours: ourText, theirs: theirText }]);
 
   theirChildren.forEach(theirs => {
     const twinIndex = ourChildren.findIndex(ourChild =>
