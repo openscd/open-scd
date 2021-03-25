@@ -75,18 +75,17 @@ export class WizardDialog extends LitElement {
   }
 
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
-  async act(action?: WizardAction): Promise<boolean> {
-    if (action === undefined) return false;
+  async act(action?: WizardAction): Promise<void> {
+    if (action === undefined) return;
     const inputArray = Array.from(this.inputs);
     if (!this.checkValidity()) {
       this.pageIndex = this.firstInvalidPage;
       inputArray.map(wi => wi.reportValidity());
-      return false;
+      return;
     }
     const editorActions = action(inputArray, this);
     editorActions.forEach(ea => this.dispatchEvent(newActionEvent(ea)));
     if (editorActions.length > 0) this.dispatchEvent(newWizardEvent());
-    return true;
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {

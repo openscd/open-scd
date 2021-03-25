@@ -570,7 +570,9 @@ export function identity(e: Element): string | number {
   if (e.id) return `#${e.id}`;
 
   if (e.hasAttribute('name'))
-    return `${identity(e.parentElement!)}>${e.getAttribute('name')}`;
+    return e.parentElement
+      ? `${identity(e.parentElement)}>${e.getAttribute('name')}`
+      : NaN;
 
   if (e.tagName === 'SCL') return '';
 

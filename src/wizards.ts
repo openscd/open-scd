@@ -16,9 +16,10 @@ import {
 
 interface MergeOptions {
   title?: string;
+  selected?: (diff: Diff<Element | string>) => boolean;
 }
 
-type Diff<T> =
+export type Diff<T> =
   | { ours: T; theirs: null }
   | { ours: null; theirs: T }
   | { ours: T; theirs: T };
@@ -50,7 +51,6 @@ function mergeWizardAction(
       for (const [name, diff] of selectedAttrDiffs)
         if (name === 'value') {
           newSink.textContent = diff.theirs;
-          console.log(diff.theirs);
         } else if (diff.theirs === null) newSink.removeAttribute(name);
         else newSink.setAttribute(name, diff.theirs);
       actions.push({ old: { element: sink }, new: { element: newSink } });
@@ -109,6 +109,16 @@ export function mergeWizard(
   options?: MergeOptions
 ): Wizard {
   const attrDiffs: [string, Diff<string>][] = [];
+  const ourText = sink.textContent ?? '';
+  const theirText = source.textContent ?? '';
+
+  if (
+    sink.childElementCount === 0 &&
+    source.childElementCount === 0 &&
+    theirText !== ourText
+  )
+    attrDiffs.push(['value', { ours: ourText, theirs: theirText }]);
+
   const attributeNames = new Set(
     source.getAttributeNames().concat(sink.getAttributeNames())
   );
@@ -126,15 +136,6 @@ export function mergeWizard(
   const childDiffs: Diff<Element>[] = [];
   const ourChildren = Array.from(sink.children);
   const theirChildren = Array.from(source.children);
-  const ourText = sink.textContent ?? '';
-  const theirText = source.textContent ?? '';
-
-  if (
-    sink.childElementCount === 0 &&
-    source.childElementCount === 0 &&
-    theirText !== ourText
-  )
-    attrDiffs.push(['value', { ours: ourText, theirs: theirText }]);
 
   theirChildren.forEach(theirs => {
     const twinIndex = ourChildren.findIndex(ourChild =>
@@ -177,6 +178,7 @@ export function mergeWizard(
                   twoline
                   left
                   hasMeta
+                  .selected=${options?.selected?.(diff) ?? false}
                   style="--mdc-checkbox-checked-color: var(--mdc-theme-${diff.ours
                     ? diff.theirs
                       ? 'secondary'
@@ -214,6 +216,7 @@ export function mergeWizard(
                   twoline
                   left
                   hasMeta
+                  .selected=${options?.selected?.(diff) ?? false}
                   style="--mdc-checkbox-checked-color: var(--mdc-theme-${diff.ours
                     ? diff.theirs
                       ? 'secondary'
