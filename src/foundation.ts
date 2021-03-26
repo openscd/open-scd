@@ -260,17 +260,15 @@ export function referencePath(element: Element): string {
   return path;
 }
 
-type ChildElement = Element & { parentElement: Element };
-
-function hitemIdentity(e: ChildElement): string {
+function hitemIdentity(e: Element): string {
   return `v${e.getAttribute('version')}r${e.getAttribute('revision')}`;
 }
 
-function terminalIdentity(e: ChildElement): string {
+function terminalIdentity(e: Element): string {
   return identity(e.parentElement) + '>' + e.getAttribute('connectivityNode');
 }
 
-function lNodeIdentity(e: ChildElement): string {
+function lNodeIdentity(e: Element): string {
   const [iedName, ldInst, prefix, lnClass, lnInst, lnType] = [
     'iedName',
     'ldInst',
@@ -285,21 +283,21 @@ function lNodeIdentity(e: ChildElement): string {
   }`;
 }
 
-function kdcIdentity(e: ChildElement): string {
+function kdcIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${e.getAttribute(
     'iedName'
   )} ${e.getAttribute('apName')}`;
 }
 
-function associationIdentity(e: ChildElement): string {
+function associationIdentity(e: Element): string {
   return `${identity(e.parentElement)} ${e.getAttribute('associationID')}`;
 }
 
-function lDeviceIdentity(e: ChildElement): string {
+function lDeviceIdentity(e: Element): string {
   return `${identity(e.closest('IED')!)}>>${e.getAttribute('inst')}`;
 }
 
-function iEDNameIdentity(e: ChildElement): string {
+function iEDNameIdentity(e: Element): string {
   const iedName = e.textContent;
   const [apRef, ldInst, prefix, lnClass, lnInst] = [
     'apRef',
@@ -313,7 +311,7 @@ function iEDNameIdentity(e: ChildElement): string {
   }/${prefix ?? ''}${lnClass ?? ''}${lnInst ?? ''}`;
 }
 
-function fCDAIdentity(e: ChildElement): string {
+function fCDAIdentity(e: Element): string {
   const [ldInst, prefix, lnClass, lnInst, doName, daName, fc, ix] = [
     'ldInst',
     'prefix',
@@ -332,7 +330,8 @@ function fCDAIdentity(e: ChildElement): string {
   })`;
 }
 
-function extRefIdentity(e: ChildElement): string {
+function extRefIdentity(e: Element): string | number {
+  if (!e.parentElement) return NaN;
   const parentIdentity = identity(e.parentElement);
   const intAddr = e.getAttribute('intAddr');
   const intAddrIndex = e.parentElement.querySelector(
@@ -379,14 +378,14 @@ function extRefIdentity(e: ChildElement): string {
   return `${parentIdentity}>${cbPath}${dataPath}`;
 }
 
-function lNIdentity(e: ChildElement): string {
+function lNIdentity(e: Element): string {
   const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(name =>
     e.getAttribute(name)
   );
-  return `${prefix ?? ''}${lnClass}${inst}`;
+  return `${identity(e.parentElement)}>${prefix ?? ''}${lnClass}${inst}`;
 }
 
-function clientLNIdentity(e: ChildElement): string {
+function clientLNIdentity(e: Element): string {
   const [apRef, iedName, ldInst, prefix, lnClass, lnInst] = [
     'apRef',
     'iedName',
@@ -400,12 +399,13 @@ function clientLNIdentity(e: ChildElement): string {
   } ${ldInst}/${prefix ?? ''}${lnClass}${lnInst}`;
 }
 
-function ixNamingIdentity(e: ChildElement): string {
+function ixNamingIdentity(e: Element): string {
   const [name, ix] = ['name', 'ix'].map(name => e.getAttribute(name));
   return `${identity(e.parentElement)}>${name}${ix ? '[' + ix + ']' : ''}`;
 }
 
-function valIdentity(e: ChildElement): string {
+function valIdentity(e: Element): string | number {
+  if (!e.parentElement) return NaN;
   const sGroup = e.getAttribute('sGroup');
   const index = Array.from(e.parentElement.children)
     .filter(child => child.getAttribute('sGroup') === sGroup)
@@ -413,21 +413,22 @@ function valIdentity(e: ChildElement): string {
   return `${identity(e.parentElement)}>${sGroup ? sGroup + '.' : ''}${index}`;
 }
 
-function connectedAPIdentity(e: ChildElement): string {
+function connectedAPIdentity(e: Element): string {
   const [iedName, apName] = ['iedName', 'apName'].map(name =>
     e.getAttribute(name)
   );
   return `${iedName} ${apName}`;
 }
 
-function controlBlockIdentity(e: ChildElement): string {
+function controlBlockIdentity(e: Element): string {
   const [ldInst, cbName] = ['ldInst', 'cbName'].map(name =>
     e.getAttribute(name)
   );
   return `${ldInst} ${cbName}`;
 }
 
-function physConnIdentity(e: ChildElement): string | number {
+function physConnIdentity(e: Element): string | number {
+  if (!e.parentElement) return NaN;
   if (!e.parentElement.querySelector('PhysConn[type="RedConn"]')) return NaN;
   const pcType = e.getAttribute('type');
   if (
@@ -439,7 +440,8 @@ function physConnIdentity(e: ChildElement): string | number {
   return `${identity(e.parentElement)}>${pcType}`;
 }
 
-function pIdentity(e: ChildElement): string {
+function pIdentity(e: Element): string | number {
+  if (!e.parentElement) return NaN;
   const eParent = e.parentElement;
   const eType = e.getAttribute('type');
   if (eParent.tagName === 'PhysConn')
@@ -450,122 +452,222 @@ function pIdentity(e: ChildElement): string {
   return `${identity(e.parentElement)}>${eType}[${index}]`;
 }
 
-function enumValIdentity(e: ChildElement): string {
+function enumValIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${e.getAttribute('ord')}`;
 }
 
-function protNsIdentity(e: ChildElement): string {
+function protNsIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${e.getAttribute('type') || '8-MMS'} ${
     e.textContent
   }`;
 }
 
-type IdentityFunction = (e: ChildElement) => string | number;
+type IdentityFunction = (e: Element) => string | number;
+type SelectorFunction = (tagName: string, identity: string) => string;
 
-export const specialTags: Partial<Record<string, IdentityFunction>> = {
-  Hitem: hitemIdentity,
-  Terminal: terminalIdentity,
-  LNode: lNodeIdentity,
-  KDC: kdcIdentity,
-  Association: associationIdentity,
-  LDevice: lDeviceIdentity,
-  IEDName: iEDNameIdentity,
-  FCDA: fCDAIdentity,
-  ExtRef: extRefIdentity,
-  LN: lNIdentity,
-  ClientLN: clientLNIdentity,
-  DAI: ixNamingIdentity,
-  SDI: ixNamingIdentity,
-  Val: valIdentity,
-  ConnectedAP: connectedAPIdentity,
-  GSE: controlBlockIdentity,
-  SMV: controlBlockIdentity,
-  PhysConn: physConnIdentity,
-  P: pIdentity,
-  EnumVal: enumValIdentity,
-  ProtNs: protNsIdentity,
+export const specialTags: Partial<
+  Record<
+    string,
+    { identity: IdentityFunction; selector: SelectorFunction | null }
+  >
+> = {
+  Hitem: { identity: hitemIdentity, selector: null },
+  Terminal: { identity: terminalIdentity, selector: null },
+  LNode: { identity: lNodeIdentity, selector: null },
+  KDC: { identity: kdcIdentity, selector: null },
+  Association: { identity: associationIdentity, selector: null },
+  LDevice: { identity: lDeviceIdentity, selector: null },
+  IEDName: { identity: iEDNameIdentity, selector: null },
+  FCDA: { identity: fCDAIdentity, selector: null },
+  ExtRef: { identity: extRefIdentity, selector: null },
+  LN: { identity: lNIdentity, selector: null },
+  ClientLN: { identity: clientLNIdentity, selector: null },
+  DAI: { identity: ixNamingIdentity, selector: null },
+  SDI: { identity: ixNamingIdentity, selector: null },
+  Val: { identity: valIdentity, selector: null },
+  ConnectedAP: { identity: connectedAPIdentity, selector: null },
+  GSE: { identity: controlBlockIdentity, selector: null },
+  SMV: { identity: controlBlockIdentity, selector: null },
+  PhysConn: { identity: physConnIdentity, selector: null },
+  P: { identity: pIdentity, selector: null },
+  EnumVal: { identity: enumValIdentity, selector: null },
+  ProtNs: { identity: protNsIdentity, selector: null },
 };
 
-function singletonIdentity(e: ChildElement): string {
+function singletonIdentity(e: Element): string {
   return identity(e.parentElement).toString();
 }
 
-export const singletonTags = new Set([
-  'AccessControl',
-  'Address',
-  'Authentication',
-  'BitRate',
-  'ClientServices',
-  'CommProt',
-  'Communication',
-  'ConfDataSet',
-  'ConfLNs',
-  'ConfLdName',
-  'ConfLogControl',
-  'ConfReportControl',
-  'ConfSG',
-  'ConfSigRef',
-  'DataObjectDirectory',
-  'DataSetDirectory',
-  'DataTypeTemplates',
-  'DynAssociation',
-  'DynDataSet',
-  'FileHandling',
-  'GOOSE',
-  'GOOSESecurity',
-  'GSEDir',
-  'GSESettings',
-  'GSSE',
-  'GetCBValues',
-  'GetDataObjectDefinition',
-  'GetDataSetValue',
-  'GetDirectory',
-  'Header',
-  'History',
-  'Inputs',
-  'IssuerName',
-  'LN0',
-  'LogSettings',
-  'MaxTime',
-  'McSecurity',
-  'MinTime',
-  'OptFields',
-  'Protocol',
-  'ReadWrite',
-  'RedProt',
-  'ReportSettings',
-  'RptEnabled',
-  'SGEdit',
-  'SMVSecurity',
-  'SMVSettings',
-  'SMVsc',
-  'SamplesPerSec',
-  'SecPerSamples',
-  'Server',
-  'ServerAt',
-  'Services',
-  'SetDataSetValue',
-  'SettingControl',
-  'SettingGroups',
-  'SmpRate',
-  'SmvOpts',
-  'Subject',
-  'SupSubscription',
-  'TimeSyncProt',
-  'TimerActivatedControl',
-  'TrgOps',
-  'ValueHandling',
-  'Voltage',
-]);
+export const singletonTags: Partial<Record<string, string[]>> = {
+  AccessControl: ['LDevice'],
+  Address: ['ConnectedAP', 'GSE', 'SMV'],
+  Authentication: ['Server'],
+  BitRate: ['SubNetwork'],
+  ClientServices: ['Services'],
+  CommProt: ['Services'],
+  Communication: ['SCL'],
+  ConfDataSet: ['Services'],
+  ConfLdName: ['Services'],
+  ConfLNs: ['Services'],
+  ConfLogControl: ['Services'],
+  ConfReportControl: ['Services'],
+  ConfSG: ['SettingGroups'],
+  ConfSigRef: ['Services'],
+  DataObjectDirectory: ['Services'],
+  DataSetDirectory: ['Services'],
+  DataTypeTemplates: ['SCL'],
+  DynAssociation: ['Services'],
+  DynDataSet: ['Services'],
+  FileHandling: ['Services'],
+  GetCBValues: ['Services'],
+  GetDataObjectDefinition: ['Services'],
+  GetDataSetValue: ['Services'],
+  GetDirectory: ['Services'],
+  GOOSE: ['Services'],
+  GSEDir: ['Services'],
+  GSESettings: ['Services'],
+  GSSE: ['Services'],
+  Header: ['SCL'],
+  History: ['Header'],
+  Inputs: ['LN', 'LN0'],
+  IssuerName: ['GOOSESecurity', 'SMVSecurity'],
+  LN0: ['LDevice'],
+  LogSettings: ['Services'],
+  MaxTime: ['GSE'],
+  McSecurity: ['GSESettings', 'SMVSettings', 'ClientServices'],
+  MinTime: ['GSE'],
+  OptFields: ['ReportControl'],
+  Protocol: ['GSEControl', 'SMVControl'],
+  ReadWrite: ['Services'],
+  RedProt: ['Services'],
+  ReportSettings: ['Services'],
+  RptEnabled: ['ReportControl'],
+  SamplesPerSec: ['SMVSettings'],
+  SecPerSamples: ['SMVSettings'],
+  Server: ['AccessPoint'],
+  ServerAt: ['AccessPoint'],
+  Services: ['IED', 'AccessPoint'],
+  SetDataSetValue: ['Services'],
+  SettingControl: ['LN0'],
+  SettingGroups: ['Services'],
+  SGEdit: ['SettingGroups'],
+  SmpRate: ['SMVSettings'],
+  SmvOpts: ['SampledValueControl'],
+  SMVsc: ['Services'],
+  SMVSettings: ['Services'],
+  Subject: ['GOOSESecurity', 'SMVSecurity'],
+  SupSubscription: ['Services'],
+  TimerActivatedControl: ['Services'],
+  TimeSyncProt: ['Services'],
+  TrgOps: ['ReportControl'],
+  ValueHandling: ['Services'],
+  Voltage: ['VoltageLevel'],
+};
+
+const tAbstractConductingEquipment = [
+  'TransformerWinding',
+  'ConductingEquipment',
+];
+
+const tEquipment = [
+  'GeneralEquipment',
+  'PowerTransformer',
+  ...tAbstractConductingEquipment,
+];
+const tEquipmentContainer = ['Substation', 'VoltageLevel', 'Bay'];
+const tGeneralEquipmentContainer = ['Process', 'Line'];
+const tAbstractEqFuncSubFunc = ['EqSubFunction', 'EqFunction'];
+
+const tPowerSystemResource = [
+  'SubFunction',
+  'Function',
+  'TapChanger',
+  'SubEquipment',
+  ...tEquipment,
+  ...tEquipmentContainer,
+  ...tGeneralEquipmentContainer,
+  ...tAbstractEqFuncSubFunc,
+];
+const tLNodeContainer = ['ConnectivityNode', ...tPowerSystemResource];
+const tCertificate = ['GOOSESecurity', 'SMVSecurity'];
+const tNaming = ['SubNetwork', ...tCertificate, ...tLNodeContainer];
+
+export const namingTags: Partial<Record<string, string[]>> = {
+  SubNetwork: ['Communication'],
+  GOOSESecurity: ['AccessPoint'],
+  SMVSecurity: ['AccessPoint'],
+  ConnectivityNode: ['Bay', 'Line'],
+  SubFunction: ['SubFunction', 'Function'],
+  Function: [
+    'Bay',
+    'VoltageLevel',
+    'Substation',
+    ...tGeneralEquipmentContainer,
+  ],
+  TapChanger: ['TransformerWinding'],
+  SubEquipment: [
+    'TapChanger',
+    'PowerTransformer',
+    ...tAbstractConductingEquipment,
+  ],
+  Process: ['Process', 'SCL'],
+  Line: ['Process', 'SCL'],
+  EqSubFunction: tAbstractEqFuncSubFunc,
+  EqFunction: [
+    'GeneralEquipment',
+    'TapChanger',
+    'TransformerWinding',
+    'PowerTransformer',
+    'SubEquipment',
+    'ConductingEquipment',
+  ],
+  GeneralEquipment: [
+    'SubFunction',
+    'Function',
+    ...tGeneralEquipmentContainer,
+    ...tAbstractEqFuncSubFunc,
+    ...tEquipmentContainer,
+  ],
+  PowerTransformer: tEquipmentContainer,
+  TransformerWinding: ['PowerTransformer'],
+  ConductingEquipment: ['Process', 'Line', 'SubFunction', 'Function', 'Bay'],
+  Bay: ['VoltageLevel'],
+  VoltageLevel: ['Substation'],
+  Substation: ['SCL', 'Process'],
+};
+
+function singletonSelector(tagName: string, identity: string): string {
+  const parents = singletonTags[tagName];
+  if (!parents) return ':not(*)';
+
+  return parents
+    .map(parentTag => selector(parentTag, identity) + '>' + tagName)
+    .join(',');
+}
+
+function selector(tagName: string, identity: string | number): string {
+  if (typeof identity !== 'string') return ':not(*)';
+
+  if (singletonTags[tagName]) return singletonSelector(tagName, identity);
+  if (specialTags[tagName])
+    return specialTags[tagName]?.selector?.(tagName, identity) ?? ':not(*)';
+
+  if (identity.indexOf('>') > -1) return '';
+
+  if (identity.startsWith('#')) return tagName + identity;
+
+  return tagName;
+}
 
 /** @returns a string uniquely identifying `e` in its document, or NaN if `e`
  * is unidentifiable. */
-export function identity(e: Element): string | number {
+export function identity(e: Element | null): string | number {
+  if (e === null) return NaN;
   if (e.closest('Private')) return NaN;
 
-  if (singletonTags.has(e.tagName)) return singletonIdentity(<ChildElement>e);
-  const specialIdentity = specialTags[e.tagName];
-  if (specialIdentity) return specialIdentity(<ChildElement>e);
+  if (singletonTags[e.tagName]) return singletonIdentity(<Element>e);
+  const specialIdentity = specialTags[e.tagName]?.identity;
+  if (specialIdentity) return specialIdentity(<Element>e);
 
   if (e.id) return `#${e.id}`;
 
