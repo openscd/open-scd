@@ -567,16 +567,16 @@ export const singletonTags: Partial<Record<string, string[]>> = {
 const tAbstractConductingEquipment = [
   'TransformerWinding',
   'ConductingEquipment',
-];
+] as const;
 
 const tEquipment = [
   'GeneralEquipment',
   'PowerTransformer',
   ...tAbstractConductingEquipment,
-];
-const tEquipmentContainer = ['Substation', 'VoltageLevel', 'Bay'];
-const tGeneralEquipmentContainer = ['Process', 'Line'];
-const tAbstractEqFuncSubFunc = ['EqSubFunction', 'EqFunction'];
+] as const;
+const tEquipmentContainer = ['Substation', 'VoltageLevel', 'Bay'] as const;
+const tGeneralEquipmentContainer = ['Process', 'Line'] as const;
+const tAbstractEqFuncSubFunc = ['EqSubFunction', 'EqFunction'] as const;
 
 const tPowerSystemResource = [
   'SubFunction',
@@ -587,18 +587,34 @@ const tPowerSystemResource = [
   ...tEquipmentContainer,
   ...tGeneralEquipmentContainer,
   ...tAbstractEqFuncSubFunc,
-];
-const tLNodeContainer = ['ConnectivityNode', ...tPowerSystemResource];
-const tCertificate = ['GOOSESecurity', 'SMVSecurity'];
-const tNaming = ['SubNetwork', ...tCertificate, ...tLNodeContainer];
+] as const;
+const tLNodeContainer = ['ConnectivityNode', ...tPowerSystemResource] as const;
+const tCertificate = ['GOOSESecurity', 'SMVSecurity'] as const;
+const tNaming = ['SubNetwork', ...tCertificate, ...tLNodeContainer] as const;
 
-const tAbstractDataAttribute = ['BDA', 'DA'];
-const tControlWithIEDName = ['SampledValueControl', 'GSEControl'];
-const tControlWithTriggerOpt = ['LogControl', 'ReportControl'];
-const tControl = [...tControlWithIEDName, ...tControlWithTriggerOpt];
-const tAnyLN = ['LN0', 'LN'];
+const tAbstractDataAttribute = ['BDA', 'DA'] as const;
+const tControlWithIEDName = ['SampledValueControl', 'GSEControl'] as const;
+const tControlWithTriggerOpt = ['LogControl', 'ReportControl'] as const;
+const tControl = [...tControlWithIEDName, ...tControlWithTriggerOpt] as const;
+const tUnNaming = [
+  'SDO',
+  'DO',
+  'DAI',
+  'SDI',
+  'DOI',
+  'Log',
+  'DataSet',
+  'AccessPoint',
+  'IED',
+  ...tControl,
+  ...tAbstractDataAttribute,
+] as const;
 
-export const namingTags: Partial<Record<string, string[]>> = {
+const tAnyLN = ['LN0', 'LN'] as const;
+
+type NamingTag = typeof tNaming[number] | typeof tUnNaming[number];
+
+export const namingTags: Record<NamingTag, string[]> = {
   SubNetwork: ['Communication'],
   GOOSESecurity: ['AccessPoint'],
   SMVSecurity: ['AccessPoint'],
@@ -618,7 +634,7 @@ export const namingTags: Partial<Record<string, string[]>> = {
   ],
   Process: ['Process', 'SCL'],
   Line: ['Process', 'SCL'],
-  EqSubFunction: tAbstractEqFuncSubFunc,
+  EqSubFunction: [...tAbstractEqFuncSubFunc],
   EqFunction: [
     'GeneralEquipment',
     'TapChanger',
@@ -634,7 +650,7 @@ export const namingTags: Partial<Record<string, string[]>> = {
     ...tAbstractEqFuncSubFunc,
     ...tEquipmentContainer,
   ],
-  PowerTransformer: tEquipmentContainer,
+  PowerTransformer: [...tEquipmentContainer],
   TransformerWinding: ['PowerTransformer'],
   ConductingEquipment: ['Process', 'Line', 'SubFunction', 'Function', 'Bay'],
   Bay: ['VoltageLevel'],
@@ -657,6 +673,27 @@ export const namingTags: Partial<Record<string, string[]>> = {
   ReportControl: [...tAnyLN],
 };
 
+function namingSelector(tagName: NamingTag, identity: string): string {
+  const parents = namingTags[tagName];
+  if (!parents) return ':not(*)';
+
+  const path = identity.split('>');
+  const name = path.pop();
+  const parentIdentity = path.join('>');
+
+  return parents
+    .map(
+      parentTag =>
+        selector(parentTag, parentIdentity) +
+        '>' +
+        tagName +
+        '[name="' +
+        name +
+        '"]'
+    )
+    .join(',');
+}
+
 function singletonSelector(tagName: string, identity: string): string {
   const parents = singletonTags[tagName];
   if (!parents) return ':not(*)';
@@ -673,7 +710,8 @@ function selector(tagName: string, identity: string | number): string {
   if (specialTags[tagName])
     return specialTags[tagName]?.selector?.(tagName, identity) ?? ':not(*)';
 
-  if (identity.indexOf('>') > -1) return '';
+  if (namingTags[tagName as NamingTag])
+    return namingSelector(tagName as NamingTag, identity);
 
   if (identity.startsWith('#')) return tagName + identity;
 
