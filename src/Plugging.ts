@@ -1,6 +1,6 @@
 import { html as litHtml, query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
-import wrapHtml from './carehtml/wrap.js';
+import wrapHtml from 'carehtml';
 
 const html = wrapHtml(litHtml);
 
