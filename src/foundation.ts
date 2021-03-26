@@ -592,6 +592,11 @@ const tLNodeContainer = ['ConnectivityNode', ...tPowerSystemResource];
 const tCertificate = ['GOOSESecurity', 'SMVSecurity'];
 const tNaming = ['SubNetwork', ...tCertificate, ...tLNodeContainer];
 
+const tAbstractDataAttribute = ['BDA', 'DA'];
+const tControlWithIEDName = ['SampledValueControl', 'GSEControl'];
+const tControlWithTriggerOpt = ['LogControl', 'ReportControl'];
+const tControl = [...tControlWithIEDName, ...tControlWithTriggerOpt];
+
 export const namingTags: Partial<Record<string, string[]>> = {
   SubNetwork: ['Communication'],
   GOOSESecurity: ['AccessPoint'],
@@ -634,6 +639,21 @@ export const namingTags: Partial<Record<string, string[]>> = {
   Bay: ['VoltageLevel'],
   VoltageLevel: ['Substation'],
   Substation: ['SCL', 'Process'],
+  SDO: [],
+  DO: [],
+  DAI: [],
+  SDI: [],
+  DOI: [],
+  Log: [],
+  DataSet: [],
+  AccessPoint: [],
+  IED: [],
+  BDA: [],
+  DA: [],
+  SampledValueControl: [],
+  GSEControl: [],
+  LogControl: [],
+  ReportControl: [],
 };
 
 function singletonSelector(tagName: string, identity: string): string {
