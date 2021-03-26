@@ -250,6 +250,7 @@ export function newPendingStateEvent(
 }
 
 /** @returns a reference to `element` with segments delimited by '/'. */
+// TODO(c-dinkel): replace with identity (FIXME)
 export function referencePath(element: Element): string {
   let path = '';
   let nextParent: Element | null = element.parentElement;
@@ -260,12 +261,38 @@ export function referencePath(element: Element): string {
   return path;
 }
 
+function pathParts(identity: string): [string, string] {
+  const path = identity.split('>');
+  const end = path.pop() ?? '';
+  const start = path.join('>');
+  return [start, end];
+}
+
 function hitemIdentity(e: Element): string {
-  return `v${e.getAttribute('version')}r${e.getAttribute('revision')}`;
+  return `${e.getAttribute('version')}\t${e.getAttribute('revision')}`;
+}
+
+function hitemSelector(tagName: string, identity: string): string {
+  const [version, revision] = identity.split('\t');
+  return `${tagName}[version="${version}"][revision="${revision}"]`;
 }
 
 function terminalIdentity(e: Element): string {
   return identity(e.parentElement) + '>' + e.getAttribute('connectivityNode');
+}
+
+function terminalSelector(tagName: string, identity: string): string {
+  const [connectivityNode, parentIdentity] = pathParts(identity);
+
+  return tEquipment
+    .map(
+      parentTag =>
+        `${selector(
+          parentTag,
+          parentIdentity
+        )}>${tagName}[connectivityNode="${connectivityNode}"]`
+    )
+    .join(',');
 }
 
 function lNodeIdentity(e: Element): string {
@@ -277,24 +304,94 @@ function lNodeIdentity(e: Element): string {
     'lnInst',
     'lnType',
   ].map(name => e.getAttribute(name));
-  if (iedName === 'None') return `(${lnClass} ${lnType})`;
-  return `${iedName} ${ldInst ?? '(Client)'}/${prefix ?? ''}${lnClass}${
+  if (iedName === 'None')
+    return `${identity(e.parentElement)}>(${lnClass} ${lnType})`;
+  return `${iedName} ${ldInst || '(Client)'}/${prefix ?? ''} ${lnClass} ${
     lnInst ?? ''
   }`;
 }
 
-function kdcIdentity(e: Element): string {
+function lNodeSelector(tagName: string, identity: string): string {
+  if (identity.endsWith(')')) {
+    const [parentIdentity, myIdentity] = pathParts(identity);
+    const [lnClass, lnType] = myIdentity
+      .substring(1, identity.length - 2)
+      .split(' ');
+    return tLNodeContainer
+      .map(
+        parentTag =>
+          `${selector(
+            parentTag,
+            parentIdentity
+          )}>${tagName}[iedName="None"][lnClass="${lnClass}"][lnType="${lnType}"]`
+      )
+      .join(',');
+  }
+
+  const [iedName, ldInst, prefix, lnClass, lnInst] = identity.split(/[ /]/);
+
+  const [
+    iedNameSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+  ] = [
+    [`[iedName="${iedName}"]`],
+    ldInst === '(Client)'
+      ? [':not([ldInst])', '[ldInst=""]']
+      : ['[ldInst]:not([ldInst=""])'],
+    prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+    [`[lnClass=${lnClass}]`],
+    lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+  ];
+
+  return crossProduct(
+    [tagName],
+    iedNameSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
+}
+
+function kDCIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${e.getAttribute(
     'iedName'
   )} ${e.getAttribute('apName')}`;
 }
 
+function kDCSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [iedName, apName] = myIdentity.split(' ');
+  return `${selector(
+    'IED',
+    parentIdentity
+  )}>${tagName}[iedName="${iedName}"][apName="${apName}"]`;
+}
+
 function associationIdentity(e: Element): string {
-  return `${identity(e.parentElement)} ${e.getAttribute('associationID')}`;
+  return `${identity(e.parentElement)}>${e.getAttribute('associationID')}`;
+}
+
+function associationSelector(tagName: string, identity: string): string {
+  const [parentIdentity, associationID] = pathParts(identity);
+  return `${selector(
+    'Server',
+    parentIdentity
+  )}>${tagName}[associationID="${associationID}"]`;
 }
 
 function lDeviceIdentity(e: Element): string {
   return `${identity(e.closest('IED')!)}>>${e.getAttribute('inst')}`;
+}
+
+function lDeviceSelector(tagName: string, identity: string): string {
+  const [iedName, inst] = identity.split('>>');
+  return `IED[name="${iedName}"] ${tagName}[inst="${inst}"]`;
 }
 
 function iEDNameIdentity(e: Element): string {
@@ -471,12 +568,12 @@ export const specialTags: Partial<
     { identity: IdentityFunction; selector: SelectorFunction | null }
   >
 > = {
-  Hitem: { identity: hitemIdentity, selector: null },
-  Terminal: { identity: terminalIdentity, selector: null },
-  LNode: { identity: lNodeIdentity, selector: null },
-  KDC: { identity: kdcIdentity, selector: null },
-  Association: { identity: associationIdentity, selector: null },
-  LDevice: { identity: lDeviceIdentity, selector: null },
+  Hitem: { identity: hitemIdentity, selector: hitemSelector },
+  Terminal: { identity: terminalIdentity, selector: terminalSelector },
+  LNode: { identity: lNodeIdentity, selector: lNodeSelector },
+  KDC: { identity: kDCIdentity, selector: kDCSelector },
+  Association: { identity: associationIdentity, selector: associationSelector },
+  LDevice: { identity: lDeviceIdentity, selector: lDeviceSelector },
   IEDName: { identity: iEDNameIdentity, selector: null },
   FCDA: { identity: fCDAIdentity, selector: null },
   ExtRef: { identity: extRefIdentity, selector: null },
@@ -677,9 +774,7 @@ function namingSelector(tagName: NamingTag, identity: string): string {
   const parents = namingTags[tagName];
   if (!parents) return ':not(*)';
 
-  const path = identity.split('>');
-  const name = path.pop();
-  const parentIdentity = path.join('>');
+  const [name, parentIdentity] = pathParts(identity);
 
   return parents
     .map(
