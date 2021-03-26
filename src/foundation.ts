@@ -596,6 +596,7 @@ const tAbstractDataAttribute = ['BDA', 'DA'];
 const tControlWithIEDName = ['SampledValueControl', 'GSEControl'];
 const tControlWithTriggerOpt = ['LogControl', 'ReportControl'];
 const tControl = [...tControlWithIEDName, ...tControlWithTriggerOpt];
+const tAnyLN = ['LN0', 'LN'];
 
 export const namingTags: Partial<Record<string, string[]>> = {
   SubNetwork: ['Communication'],
@@ -639,21 +640,21 @@ export const namingTags: Partial<Record<string, string[]>> = {
   Bay: ['VoltageLevel'],
   VoltageLevel: ['Substation'],
   Substation: ['SCL', 'Process'],
-  SDO: [],
-  DO: [],
-  DAI: [],
-  SDI: [],
-  DOI: [],
-  Log: [],
-  DataSet: [],
-  AccessPoint: [],
-  IED: [],
-  BDA: [],
-  DA: [],
-  SampledValueControl: [],
-  GSEControl: [],
-  LogControl: [],
-  ReportControl: [],
+  SDO: ['DOType'],
+  DO: ['LNodeType'],
+  DAI: ['DOI', 'SDI'],
+  SDI: ['DOI', 'SDI'],
+  DOI: [...tAnyLN],
+  Log: [...tAnyLN],
+  DataSet: [...tAnyLN],
+  AccessPoint: ['IED'],
+  IED: ['SCL'],
+  BDA: ['DAType'],
+  DA: ['DOType'],
+  SampledValueControl: ['LN0'],
+  GSEControl: ['LN0'],
+  LogControl: [...tAnyLN],
+  ReportControl: [...tAnyLN],
 };
 
 function singletonSelector(tagName: string, identity: string): string {
