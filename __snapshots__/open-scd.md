@@ -210,6 +210,10 @@
       </mwc-icon>
       <span>
         Update Substation
+        play_circle
+      </mwc-icon>
+      <span>
+        Communication Mapping
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -530,6 +534,12 @@
         merge_type
       </mwc-icon>
       Update Substation
+      value="/src/triggered/CommunicationMapping.js"
+    >
+      <mwc-icon slot="graphic">
+        play_circle
+      </mwc-icon>
+      Communication Mapping
       <mwc-icon slot="meta">
         play_circle
       </mwc-icon>
@@ -695,4 +705,3 @@
 </mwc-dialog>
 
 ```
-
