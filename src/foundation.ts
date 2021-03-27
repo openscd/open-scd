@@ -1421,6 +1421,32 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
   );
 }
 
+/** @returns array of `ExtRef` elements connected to `FCDA` element  */
+export function getDataSink(fcda: Element): Element[] {
+  if (!fcda.ownerDocument || fcda.tagName !== 'FCDA' || fcda.closest('Private'))
+    return [];
+
+  return Array.from(fcda.ownerDocument.getElementsByTagName('ExtRef'))
+    .filter(item => !item.closest('Private'))
+    .filter(
+      extref =>
+        (fcda.closest('IED')?.getAttribute('name') ?? '') ===
+          (extref.getAttribute('iedName') ?? '') &&
+        (fcda.getAttribute('ldInst') ?? '') ===
+          (extref.getAttribute('ldInst') ?? '') &&
+        (fcda.getAttribute('prefix') ?? '') ===
+          (extref.getAttribute('prefix') ?? '') &&
+        (fcda.getAttribute('lnClass') ?? '') ===
+          (extref.getAttribute('lnClass') ?? '') &&
+        (fcda.getAttribute('lnInst') ?? '') ===
+          (extref.getAttribute('lnInst') ?? '') &&
+        (fcda.getAttribute('doName') ?? '') ===
+          (extref.getAttribute('doName') ?? '') &&
+        (fcda.getAttribute('daName') ?? '') ===
+          (extref.getAttribute('daName') ?? '')
+    );
+}
+
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;

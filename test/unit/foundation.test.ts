@@ -4,6 +4,7 @@ import {
   ComplexAction,
   EditorAction,
   identity,
+  getDataSink,
   ifImplemented,
   invert,
   isCreate,
@@ -21,6 +22,7 @@ import {
   specialTags,
 } from '../../src/foundation.js';
 import { getDocument } from '../data.js';
+
 import { MockAction } from './mock-actions.js';
 
 const scl1 = getDocument().documentElement;
