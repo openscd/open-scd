@@ -36,17 +36,25 @@ export class Filterlist extends List {
     });
   }
 
+  //HACK: tfContainer only for CSS width adjustment 100% does not work
   render(): TemplateResult {
-    return html`<mwc-textfield
-        label="${this.searchFieldLabel ?? ''}"
-        iconTrailing="search"
-        outlined
-        @input=${() => this.onFilterInput()}
-      ></mwc-textfield
-      >${super.render()}`;
+    return html`<div id="tfContainer">
+        <mwc-textfield
+          label="${this.searchFieldLabel ?? ''}"
+          iconTrailing="search"
+          outlined
+          @input=${() => this.onFilterInput()}
+        ></mwc-textfield>
+      </div>
+      ${super.render()}`;
   }
 
   static styles = css`
+    #tfContainer {
+      display: flex;
+      flex: auto;
+    }
+
     mwc-textfield {
       margin: 10px;
       width: 100%;
