@@ -45,6 +45,39 @@ export function getControlBlockConnection(
     });
 }
 
+/**
+ * @returns array of - data - Connection's
+ * Data connection are connections defined between the FCDA in the source
+ * and ExtRef in the sink
+ */
+export function getDataConnection(
+  root: Document | Element,
+  cbTagName: 'GSEControl' | 'SampledValueControl' | 'ReportControl'
+): Connection[] {
+  const controlBlocks = Array.from(root.querySelectorAll(cbTagName)).filter(
+    item => !item.closest('Private')
+  );
+
+  const conn: Connection[] = [];
+
+  controlBlocks.forEach(controlBlock => {
+    const anyLN: Element = controlBlock.parentElement!;
+    const data: Element[] = Array.from(
+      anyLN.querySelectorAll(
+        ` DataSet[name="${controlBlock.getAttribute('datSet')}"] > FCDA`
+      )
+    ).filter(item => !item.closest('Private'));
+
+    data.map(fcda => {
+      getDataSink(fcda).forEach(extref => {
+        conn.push({ source: controlBlock, data: fcda, sink: extref });
+      });
+    });
+  });
+
+  return conn;
+}
+
 export default class CommunicationMappingPlugin extends LitElement {
   doc!: XMLDocument;
 
