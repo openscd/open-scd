@@ -52,5 +52,8 @@ export class Filterlist extends List {
       width: 100%;
       --mdc-shape-small: 28px;
     }
+    .mdc-list {
+      padding-inline-start: 0px;
+    }
   `;
 }
