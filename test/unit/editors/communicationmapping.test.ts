@@ -1,5 +1,7 @@
 import { expect } from '@open-wc/testing';
 import {
+  getConnection,
+  getConnectionIndexOf,
   getControlBlockConnection,
   getDataConnection,
 } from '../../../src/triggered/CommunicationMapping.js';
@@ -65,6 +67,24 @@ describe('CommunicationMappingPlugin', () => {
           ':root > IED[name="IED1"] LDevice[inst="Disconnectors"] Inputs > ExtRef[prefix="I01B"][lnClass="TCTR"][lnInst="2"][doName="Amp"][daName="q"]'
         )
       );
+    });
+  });
+
+  describe('getConnectionIndexOf', () => {
+    it('is used to filter an array of Connection`s to a unique set of source ied, sink ied and control block', () => {
+      expect(
+        getDataConnection(doc, 'GSEControl').filter(
+          (v, i, a) => getConnectionIndexOf(a, v!) === i
+        ).length
+      ).to.equal(2);
+    });
+  });
+
+  describe('getConnection', () => {
+    it('is used to filter an array of Connection`s to match another Connection', () => {
+      const connections = getDataConnection(doc, 'GSEControl');
+      expect(getConnection(connections, connections[0]).length).to.equal(4);
+      expect(getConnection(connections, connections[4]).length).to.equal(2);
     });
   });
 });

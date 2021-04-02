@@ -21,6 +21,33 @@ interface Connection {
   sink: Element;
 }
 
+export function getConnectionIndexOf(
+  list: Connection[],
+  match: Connection
+): number {
+  for (let i = 0; list.length; i++)
+    if (
+      list[i].source.closest('IED')?.getAttribute('name') ===
+        match.source.closest('IED')?.getAttribute('name') &&
+      list[i].source.getAttribute('name') ===
+        match.source.getAttribute('name') &&
+      list[i].sink.getAttribute('iedName') ===
+        match.sink.getAttribute('iedName')
+    )
+      return i;
+
+  return -1;
+}
+
+export function getConnection(
+  connections: Connection[],
+  item: Connection
+): Connection[] {
+  return connections.filter(
+    match => match.source === item.source && match.sink === match.sink
+  );
+}
+
 /**
  * @returns array of - control block - Connection's
  * Control block connection are connections defined within the control block
