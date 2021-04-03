@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { MockPendingWizard } from '../../../mock-pending-wizard.js';
 import CommunicationMappingPlugin from '../../../../src/triggered/CommunicationMapping.js';
 import { List } from '@material/mwc-list';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
 describe('CommunicationMappingPlugin', () => {
   let doc: Document;
@@ -10,7 +10,7 @@ describe('CommunicationMappingPlugin', () => {
     'communication-mapping-plugin',
     CommunicationMappingPlugin
   );
-  let parent: MockPendingWizard;
+  let parent: MockWizardEditor;
   let element: CommunicationMappingPlugin;
 
   beforeEach(async () => {
