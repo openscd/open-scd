@@ -226,6 +226,7 @@ export const de: Translations = {
       nonewitems: 'keine neuen IEDName Elemente notwendig',
       message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
     },
+    'comm-map': { wizard: { title: 'Kommunikationszuordnung' } },
   },
   updatesubstation: {
     title: 'Schaltanlage aktualisieren',

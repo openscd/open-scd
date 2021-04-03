@@ -1,6 +1,10 @@
 import { LitElement } from 'lit-element';
 
-type ControlBlockType =
+import { getDataSink, newWizardEvent } from '../foundation.js';
+
+import { commMappingWizard } from './wizards.js';
+
+export type ControlBlockType =
   | 'ReportControl'
   | 'LogControl'
   | 'GSEControl'
@@ -15,7 +19,7 @@ const cbConnection: Record<ControlBlockType, ControlBlockConnectionType> = {
   SampledValuesControl: 'IEDName',
 };
 
-interface Connection {
+export interface Connection {
   source: Element;
   data?: Element;
   sink: Element;
@@ -110,6 +114,12 @@ export default class CommunicationMappingPlugin extends LitElement {
 
   async trigger(): Promise<void> {
     const report = getControlBlockConnection(this.doc, 'ReportControl');
+    const goose = getDataConnection(this.doc, 'GSEControl');
+    const smv = getDataConnection(this.doc, 'SampledValueControl');
+
+    const connections = report.concat(goose, smv);
+
+    this.dispatchEvent(newWizardEvent(commMappingWizard(connections)));
     return;
   }
 }

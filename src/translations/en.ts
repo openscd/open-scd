@@ -223,6 +223,7 @@ export const en = {
       nonewitems: 'no new IEDName elements to add',
       message: '{{updatenumber}} IEDName elements added to the project',
     },
+    'comm-map': { wizard: { title: 'Communication mapping' } },
   },
   updatesubstation: {
     title: 'Update substation',

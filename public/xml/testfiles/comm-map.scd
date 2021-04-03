@@ -158,8 +158,8 @@
 					</LN>
 					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
 						<Inputs>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal"/>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" intAddr="./stVal" serviceType="GOOSE" desc="testDesc" pServT="GOOSE" pLN="XSWI" pDO="Pos" pDA="stVal"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" intAddr="./q"/>
 						</Inputs>
 					</LN>
 					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
@@ -253,6 +253,7 @@
 							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
 							<RptEnabled max="5">
 								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="XCBR" lnInst="1" iedName="IED1"/>
+								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1" iedName="IED1"/>
 							</RptEnabled>
 						</ReportControl>
 						<DOI name="Pos">
