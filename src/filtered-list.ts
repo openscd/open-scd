@@ -25,8 +25,6 @@ export class Filterlist extends List {
           .map(child => child.innerHTML)
           .join('\n');
 
-      if (!value) return;
-
       const terms: string[] = this.searchField.value.split(' ');
       terms
         .map(term => value.toUpperCase().includes(term.toUpperCase()))
