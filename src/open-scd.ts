@@ -34,6 +34,8 @@ import '@material/mwc-tab-bar';
 import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
 
+import './filtered-list.js';
+
 import { ActionDetail } from '@material/mwc-list/mwc-list-foundation';
 import { Dialog } from '@material/mwc-dialog';
 import { Drawer } from '@material/mwc-drawer';
