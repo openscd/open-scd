@@ -18,8 +18,10 @@ describe('CommunicationMappingPlugin', () => {
     it('retruns an array of Connection`s for valid inputs of type `ReportControl`', () => {
       expect(getControlBlockConnection(doc, 'ReportControl')).to.have.length(2);
       expect(getControlBlockConnection(doc, 'ReportControl')[0]).to.deep.equal({
-        source: doc.querySelector('ReportControl'),
-        sink: doc.querySelector('ClientLN'),
+        controlBlock: doc.querySelector('ReportControl'),
+        sinkReference: doc.querySelector('ClientLN'),
+        fcda: null,
+        extRef: null,
       });
     });
   });
@@ -27,17 +29,19 @@ describe('CommunicationMappingPlugin', () => {
   describe('getDataConnection', () => {
     it('retruns an array of Connection`s for valid inputs of type `GSEControl`', () => {
       expect(getDataConnection(doc, 'GSEControl')).to.have.length(6);
-      expect(getDataConnection(doc, 'GSEControl')[0].source).to.deep.equal(
+      expect(
+        getDataConnection(doc, 'GSEControl')[0].controlBlock
+      ).to.deep.equal(
         doc.querySelector(
           ':root > IED[name="IED1"] LDevice[inst="CircuitBreaker_CB1"] GSEControl[name="GCB"]'
         )
       );
-      expect(getDataConnection(doc, 'GSEControl')[0].data).to.deep.equal(
+      expect(getDataConnection(doc, 'GSEControl')[0].fcda).to.deep.equal(
         doc.querySelector(
           ':root > IED[name="IED1"] LDevice[inst="CircuitBreaker_CB1"] DataSet > FCDA[lnClass="XCBR"][lnInst="1"][doName="Pos"]'
         )
       );
-      expect(getDataConnection(doc, 'GSEControl')[0].sink).to.deep.equal(
+      expect(getDataConnection(doc, 'GSEControl')[0].extRef).to.deep.equal(
         doc.querySelector(
           ':root > IED[name="IED2"] LDevice[inst="CircuitBreaker_CB1"] Inputs > ExtRef[lnClass="XCBR"][lnInst="1"][doName="Pos"]'
         )
@@ -47,21 +51,21 @@ describe('CommunicationMappingPlugin', () => {
     it('retruns an array of Connection`s for valid inputs of type `SampledValueControl`', () => {
       expect(getDataConnection(doc, 'SampledValueControl')).to.have.length(14);
       expect(
-        getDataConnection(doc, 'SampledValueControl')[3].source
+        getDataConnection(doc, 'SampledValueControl')[3].controlBlock
       ).to.deep.equal(
         doc.querySelector(
           ':root > IED[name="IED3"] LDevice[inst="MU01"] SampledValueControl[name="MSVCB01"]'
         )
       );
       expect(
-        getDataConnection(doc, 'SampledValueControl')[3].data
+        getDataConnection(doc, 'SampledValueControl')[3].fcda
       ).to.deep.equal(
         doc.querySelector(
           ':root > IED[name="IED3"] LDevice[inst="MU01"] DataSet > FCDA[prefix="I01B"][lnClass="TCTR"][lnInst="2"][doName="Amp"][daName="q"]'
         )
       );
       expect(
-        getDataConnection(doc, 'SampledValueControl')[3].sink
+        getDataConnection(doc, 'SampledValueControl')[3].extRef
       ).to.deep.equal(
         doc.querySelector(
           ':root > IED[name="IED1"] LDevice[inst="Disconnectors"] Inputs > ExtRef[prefix="I01B"][lnClass="TCTR"][lnInst="2"][doName="Amp"][daName="q"]'

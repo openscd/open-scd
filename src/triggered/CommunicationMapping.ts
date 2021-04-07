@@ -16,39 +16,53 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { clientIcon, controlBlockIcons, inputIcon } from '../icons.js';
 
-export type ControlBlockType =
+export type ControlBlockTag =
   | 'ReportControl'
   | 'LogControl'
   | 'GSEControl'
   | 'SampledValuesControl';
 
-type ControlBlockConnectionType = 'IEDName' | 'ClientLN';
+type SinkReferenceTag = 'IEDName' | 'ClientLN';
 
-const cbConnection: Record<ControlBlockType, ControlBlockConnectionType> = {
+const cbConnection: Record<ControlBlockTag, SinkReferenceTag> = {
   ReportControl: 'ClientLN',
   LogControl: 'ClientLN',
   GSEControl: 'IEDName',
   SampledValuesControl: 'IEDName',
 };
 
-export interface Connection {
-  source: Element;
-  data?: Element;
-  sink: Element;
-}
+type CommunicationMapping =
+  | {
+      controlBlock: Element;
+      sinkReference: Element;
+      fcda: Element | null;
+      extRef: Element | null;
+    }
+  | {
+      controlBlock: Element;
+      sinkReference: Element | null;
+      fcda: Element;
+      extRef: Element;
+    }
+  | {
+      controlBlock: null;
+      sinkReference: null;
+      fcda: Element;
+      extRef: Element;
+    };
 
 export function getConnectionIndexOf(
-  list: Connection[],
-  match: Connection
+  list: CommunicationMapping[],
+  match: CommunicationMapping
 ): number {
   for (let i = 0; list.length; i++)
     if (
-      list[i].source.closest('IED')?.getAttribute('name') ===
-        match.source.closest('IED')?.getAttribute('name') &&
-      list[i].source.getAttribute('name') ===
-        match.source.getAttribute('name') &&
-      list[i].sink.getAttribute('iedName') ===
-        match.sink.getAttribute('iedName')
+      list[i].controlBlock?.closest('IED')?.getAttribute('name') ===
+        match.controlBlock?.closest('IED')?.getAttribute('name') &&
+      list[i].controlBlock?.getAttribute('name') ===
+        match.controlBlock?.getAttribute('name') &&
+      list[i].extRef?.getAttribute('iedName') ===
+        match.extRef?.getAttribute('iedName')
     )
       return i;
 
@@ -56,11 +70,13 @@ export function getConnectionIndexOf(
 }
 
 export function getConnection(
-  connections: Connection[],
-  item: Connection
-): Connection[] {
+  connections: CommunicationMapping[],
+  item: CommunicationMapping
+): CommunicationMapping[] {
   return connections.filter(
-    match => match.source === item.source && match.sink === match.sink
+    match =>
+      match.controlBlock === item.controlBlock &&
+      match.controlBlock === match.controlBlock
   );
 }
 
@@ -72,8 +88,8 @@ export function getConnection(
  */
 export function getControlBlockConnection(
   root: Document | Element,
-  cbType: ControlBlockType
-): Connection[] {
+  cbType: ControlBlockTag
+): CommunicationMapping[] {
   return Array.from(root.querySelectorAll(cbType))
     .filter(controlBlock => !controlBlock.closest('Private'))
     .flatMap(controlBlock => {
@@ -81,8 +97,10 @@ export function getControlBlockConnection(
         .filter(item => !item.closest('Private'))
         .flatMap(connection => {
           return {
-            source: controlBlock,
-            sink: connection,
+            controlBlock: controlBlock,
+            sinkReference: connection,
+            fcda: null,
+            extRef: null,
           };
         });
     });
@@ -96,12 +114,12 @@ export function getControlBlockConnection(
 export function getDataConnection(
   root: Document | Element,
   cbTagName: 'GSEControl' | 'SampledValueControl' | 'ReportControl'
-): Connection[] {
+): CommunicationMapping[] {
   const controlBlocks = Array.from(root.querySelectorAll(cbTagName)).filter(
     item => !item.closest('Private')
   );
 
-  const conn: Connection[] = [];
+  const conn: CommunicationMapping[] = [];
 
   controlBlocks.forEach(controlBlock => {
     const anyLN: Element = controlBlock.parentElement!;
@@ -112,8 +130,8 @@ export function getDataConnection(
     ).filter(item => !item.closest('Private'));
 
     data.map(fcda => {
-      getDataSink(fcda).forEach(extref => {
-        conn.push({ source: controlBlock, data: fcda, sink: extref });
+      getDataSink(fcda).forEach(extRef => {
+        conn.push({ controlBlock, sinkReference: null, fcda, extRef });
       });
     });
   });
@@ -181,7 +199,9 @@ function disconnectExtRef(extRef: Element): EditorAction {
   };
 }
 
-export function disconnectSink(connections: Connection[]): WizardAction {
+export function disconnectSink(
+  connections: CommunicationMapping[]
+): WizardAction {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const items = <Set<number>>(
       (<List>wizard.shadowRoot!.querySelector('filtered-list')).index
@@ -190,15 +210,16 @@ export function disconnectSink(connections: Connection[]): WizardAction {
     const actions: EditorAction[] = [];
 
     items.forEach(index => {
-      const sink = connections[index].sink;
-      if (sink.tagName === 'ExtRef') actions.push(disconnectExtRef(sink));
+      if (connections[index].extRef)
+        actions.push(disconnectExtRef(connections[index].extRef!));
 
-      if (sink.tagName === 'ClientLN') {
+      if (connections[index].sinkReference) {
+        // Connections to IEDName are not direct but can shared for severel ExtRef's
         actions.push({
           old: {
-            parent: sink.parentElement!,
-            element: sink,
-            reference: sink.nextElementSibling,
+            parent: connections[index].sinkReference!.parentElement!,
+            element: connections[index].sinkReference!,
+            reference: connections[index].sinkReference!.nextElementSibling,
           },
         });
       }
@@ -208,15 +229,16 @@ export function disconnectSink(connections: Connection[]): WizardAction {
   };
 }
 
-function cbConnectionWizard(connections: Connection[]): Wizard {
+function cbConnectionWizard(connections: CommunicationMapping[]): Wizard {
   return [
     {
       title:
-        (connections[0].source.closest('IED')?.getAttribute('name') ?? '') +
+        (connections[0].controlBlock?.closest('IED')?.getAttribute('name') ??
+          '') +
         ' - ' +
-        (connections[0].sink.tagName === 'ClientLN'
-          ? connections[0].sink.getAttribute('iedName') ?? ''
-          : connections[0].sink.closest('IED')?.getAttribute('name') ?? ''),
+        (connections[0].sinkReference
+          ? connections[0].sinkReference?.getAttribute('iedName') ?? ''
+          : connections[0].extRef.closest('IED')?.getAttribute('name') ?? ''),
       primary: {
         icon: 'delete',
         label: 'Disconnect',
@@ -227,12 +249,17 @@ function cbConnectionWizard(connections: Connection[]): Wizard {
           >${connections.map(
             item =>
               html`<mwc-check-list-item graphic="icon" twoline>
-                <span>${sinkPrimary(item.sink)}</span
-                ><span slot="secondary">${sinkSecondary(item.sink)}</span>
+                <span
+                  >${sinkPrimary(
+                    item.sinkReference ? item.sinkReference : item.extRef
+                  )}</span
+                ><span slot="secondary"
+                  >${sinkSecondary(
+                    item.sinkReference ? item.sinkReference : item.extRef
+                  )}</span
+                >
                 <mwc-icon slot="graphic"
-                  >${item.sink.tagName === 'ClientLN'
-                    ? clientIcon
-                    : inputIcon}</mwc-icon
+                  >${item.sinkReference ? clientIcon : inputIcon}</mwc-icon
                 >
               </mwc-check-list-item> `
           )}</filtered-list
@@ -242,7 +269,9 @@ function cbConnectionWizard(connections: Connection[]): Wizard {
   ];
 }
 
-export function communicationMappingWizard(connections: Connection[]): Wizard {
+export function communicationMappingWizard(
+  connections: CommunicationMapping[]
+): Wizard {
   return [
     {
       title: get('transform.comm-map.wizard.title'),
@@ -267,24 +296,28 @@ export function communicationMappingWizard(connections: Connection[]): Wizard {
                     )}"
                 >
                   <span
-                    >${item.source.closest('IED')?.getAttribute('name') ?? ''}
+                    >${item.controlBlock
+                      ?.closest('IED')
+                      ?.getAttribute('name') ?? ''}
                     ${html`
                       <mwc-icon style="--mdc-icon-size: 1em;"
                         >trending_flat</mwc-icon
                       >
                     `}
-                    ${item.sink.tagName === 'ClientLN'
-                      ? item.sink.getAttribute('iedName')
-                      : item.sink.closest('IED')?.getAttribute('name') ??
+                    ${item.sinkReference
+                      ? item.sinkReference.getAttribute('iedName')
+                      : item.extRef?.closest('IED')?.getAttribute('name') ??
                         ''}</span
                   ><span slot="secondary"
-                    >${item.source.getAttribute('name') ?? ''}</span
+                    >${item.controlBlock?.getAttribute('name') ?? ''}</span
                   >
                   <span slot="meta" style="padding-left: 10px"
                     >${getConnection(connections, item).length}</span
                   >
                   <mwc-icon slot="graphic"
-                    >${controlBlockIcons[item.source.tagName ?? '']}</mwc-icon
+                    >${controlBlockIcons[
+                      item.controlBlock?.tagName ?? ''
+                    ]}</mwc-icon
                   >
                 </mwc-list-item> `
             )}</filtered-list
