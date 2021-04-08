@@ -73,11 +73,7 @@ export function getConnection(
   connections: CommunicationMapping[],
   item: CommunicationMapping
 ): CommunicationMapping[] {
-  return connections.filter(
-    match =>
-      match.controlBlock === item.controlBlock &&
-      match.controlBlock === match.controlBlock
-  );
+  return connections.filter(match => match.controlBlock === item.controlBlock);
 }
 
 /**
@@ -104,6 +100,18 @@ export function getControlBlockConnection(
           };
         });
     });
+}
+
+export function getSinkReferences(root: Document | Element): Element[] {
+  return Array.from(root.getElementsByTagName('IEDName'))
+    .concat(Array.from(root.getElementsByTagName('ClientLN')))
+    .filter(element => !element.closest('Private'));
+}
+
+export function getSourceReferences(root: Document | Element): Element[] {
+  return Array.from(root.getElementsByTagName('ExtRef'))
+    .filter(element => !element.closest('Private'))
+    .filter(element => element.getAttribute('iedName'));
 }
 
 /**
@@ -270,14 +278,14 @@ function cbConnectionWizard(connections: CommunicationMapping[]): Wizard {
 }
 
 export function communicationMappingWizard(
-  connections: CommunicationMapping[]
+  mappings: CommunicationMapping[]
 ): Wizard {
   return [
     {
       title: get('transform.comm-map.wizard.title'),
       content: [
         html`<filtered-list
-          >${connections
+          >${mappings
             .filter((v, i, a) => getConnectionIndexOf(a, v!) === i)
             .map(
               item =>
@@ -288,7 +296,7 @@ export function communicationMappingWizard(
                   @click="${(evt: SingleSelectedEvent) =>
                     evt.target!.dispatchEvent(
                       newWizardEvent(
-                        cbConnectionWizard(getConnection(connections, item)),
+                        cbConnectionWizard(getConnection(mappings, item)),
                         {
                           detail: { subwizard: true },
                         }
@@ -312,7 +320,7 @@ export function communicationMappingWizard(
                     >${item.controlBlock?.getAttribute('name') ?? ''}</span
                   >
                   <span slot="meta" style="padding-left: 10px"
-                    >${getConnection(connections, item).length}</span
+                    >${getConnection(mappings, item).length}</span
                   >
                   <mwc-icon slot="graphic"
                     >${controlBlockIcons[
