@@ -2,6 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import {
   ComplexAction,
+  createElement,
   EditorAction,
   identity,
   ifImplemented,
@@ -15,6 +16,7 @@ import {
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
+  selector,
   singletonTags,
   specialTags,
 } from '../../src/foundation.js';
@@ -238,27 +240,46 @@ describe('foundation', () => {
         KDC: '>IED1>IED1 P1',
         LDevice: '>IED1>>CircuitBreaker_CB1',
         IEDName:
-          '>IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/CSWI',
+          '>IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/ CSWI 1',
         FCDA:
-          '>IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/XCBR1.Pos.stVal (ST)',
-        ExtRef: '>IED1>>Disconnectors>DCCSWI1>IED2 CBSW/XSWI2.Pos.stVal',
-        LN: '>IED1>>CircuitBreaker_CB1>XCBR1',
-        ClientLN: '>IED2>>CBSW>XSWI1>ReportCb>IED1 P1 CircuitBreaker_CB1/XCBR1',
-        DAI: '>IED1>>CircuitBreaker_CB1>XCBR1>Pos>ctlModel',
-        SDI: '>IED1>>CircuitBreaker_CB1>CBCSWI2>Pos>pulseConfig',
-        Val: '>IED1>>CircuitBreaker_CB1>XCBR1>Pos>ctlModel>0',
+          '>IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)',
+        ExtRef:
+          '>IED1>>Disconnectors>DC CSWI 1>GOOSE:GCB CBSW/ LLN0  IED2 CBSW/ XSWI 2 Pos stVal@intAddr',
+        'ExtRef:not([iedName])': '>IED1>>Disconnectors>DC CSWI 1>stVal-t[0]',
+        LN: '>IED1>>CircuitBreaker_CB1> XCBR 1',
+        ClientLN:
+          '>IED2>>CBSW> XSWI 1>ReportCb>IED1 P1 CircuitBreaker_CB1/ XCBR 1',
+        DAI: '>IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel',
+        SDI: '>IED1>>CircuitBreaker_CB1>CB CSWI 2>Pos>pulseConfig',
+        Val: '>IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel> 0',
         ConnectedAP: 'IED1 P1',
         GSE: 'CircuitBreaker_CB1 GCB',
         SMV: 'MU01 MSVCB01',
         PhysConn: 'IED1 P1>RedConn',
-        P: 'IED1 P1>IP[0]',
+        P: 'IED1 P1>IP [0]',
         EnumVal: '#Dummy_ctlModel>0',
-        ProtNs: '#Dummy.LLN0.Mod.SBOw>8-MMS IEC 61850-8-1:2003',
+        ProtNs: '#Dummy.LLN0.Mod.SBOw>8-MMS\tIEC 61850-8-1:2003',
       };
 
       Object.keys(expectations).forEach(key => {
         const element = scl1.querySelector(key);
         expect(identity(element!)).to.equal(expectations[key]);
+      });
+    });
+  });
+
+  describe('selector', () => {
+    it('returns negation pseudo-class for idntity of type NaN', () => {
+      const element = scl1.querySelector('Assotiation');
+      const ident = identity(element!);
+      expect(selector('Assotiation', ident)).to.equal(':not(*)');
+    });
+    it('returns correct selector for singelton identities', () => {
+      Object.keys(singletonTags).forEach(tag => {
+        const element = scl1.querySelector(tag);
+        expect(
+          scl1.querySelector(selector(tag, identity(element!)))
+        ).to.deep.equal(element);
       });
     });
   });

@@ -391,7 +391,7 @@ function lDeviceIdentity(e: Element): string {
 
 function lDeviceSelector(tagName: string, identity: string): string {
   const [iedName, inst] = identity.split('>>');
-  return `IED[name="${iedName}"] ${tagName}[inst="${inst}"]`;
+  return `IED[name="${iedName.replace('>', '')}"] ${tagName}[inst="${inst}"]`;
 }
 
 function iEDNameIdentity(e: Element): string {
@@ -403,9 +403,50 @@ function iEDNameIdentity(e: Element): string {
     'lnClass',
     'lnInst',
   ].map(name => e.getAttribute(name));
-  return `${identity(e.parentElement)}>${iedName}${apRef ? ' ' + apRef : ''}${
-    ldInst ? ' ' + ldInst : ''
-  }/${prefix ?? ''}${lnClass ?? ''}${lnInst ?? ''}`;
+  return `${identity(e.parentElement)}>${iedName} ${apRef ? apRef : ''} ${
+    ldInst ? ldInst : ''
+  }/${prefix ?? ''} ${lnClass ?? ''} ${lnInst ?? ''}`;
+}
+
+function iEDNameSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = myIdentity.split(
+    /[ /]/
+  );
+
+  const [
+    parentSelectors,
+    iedNameSelectors,
+    apRefSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+  ] = [
+    tControlWithIEDName.map(parentTag => selector(parentTag, parentIdentity)),
+    [`${iedName}`],
+    apRef ? [`[apRef="${apRef}"]`] : [':not([apRef])', '[apRef=""]'],
+    ldInst ? [`[ldInst="${ldInst}"]`] : [':not([ldInst])', '[ldInst=""]'],
+    prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+    [`[lnClass=${lnClass}]`],
+    lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    apRefSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+    ['>'],
+    iedNameSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function fCDAIdentity(e: Element): string {
@@ -419,24 +460,78 @@ function fCDAIdentity(e: Element): string {
     'fc',
     'ix',
   ].map(name => e.getAttribute(name));
-  const dataPath = `${ldInst}/${prefix ?? ''}${lnClass}${
+  const dataPath = `${ldInst}/${prefix ?? ''} ${lnClass} ${
     lnInst ?? ''
-  }.${doName}${daName ? '.' + daName : ''}`;
+  }.${doName} ${daName ? daName : ''}`;
   return `${identity(e.parentElement)}>${dataPath} (${fc}${
-    ix ? '[' + ix + ']' : ''
+    ix ? ' [' + ix + ']' : ''
   })`;
+}
+
+function fCDASelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const [ldInst, prefix, lnClass, lnInst] = myIdentity.split(/[ /.]/);
+
+  const matchDoDa = myIdentity.match(/.([A-Z][a-z0-9.]*) ([A-Za-z0-9.]*) \(/);
+  const doName = matchDoDa && matchDoDa[1] ? matchDoDa[1] : '';
+  const daName = matchDoDa && matchDoDa[2] ? matchDoDa[2] : '';
+
+  const matchFx = myIdentity.match(/\(([A-Z]{2})/);
+  const matchIx = myIdentity.match(/ \[([0-9]{1,2})\]/);
+
+  const fc = matchFx && matchFx[1] ? matchFx[1] : '';
+  const ix = matchIx && matchIx[1] ? matchIx[1] : '';
+
+  const [
+    parentSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+    doNameSelectors,
+    daNameSelectors,
+    fcSelectors,
+    ixSelectors,
+  ] = [
+    [selector('DataSet', parentIdentity)],
+    [`[ldInst="${ldInst}"]`],
+    prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+    [`[lnClass=${lnClass}]`],
+    lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+    [`[doName="${doName}"]`],
+    daName ? [`[daName="${daName}"]`] : [':not([daName])', '[daName=""]'],
+    [`[fc="${fc}"]`],
+    ix ? [`[ix="${ix}"]`] : [':not([ix])', '[ix=""]'],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+    doNameSelectors,
+    daNameSelectors,
+    fcSelectors,
+    ixSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function extRefIdentity(e: Element): string | number {
   if (!e.parentElement) return NaN;
   const parentIdentity = identity(e.parentElement);
+  const iedName = e.getAttribute('iedName');
   const intAddr = e.getAttribute('intAddr');
-  const intAddrIndex = e.parentElement.querySelector(
-    `ExtRef[intAddr="${intAddr}"]`
-  );
-  if (intAddr) return `${parentIdentity}>${intAddr}[${intAddrIndex}]`;
+  const intAddrIndex = Array.from(
+    e.parentElement.querySelectorAll(`ExtRef[intAddr="${intAddr}"]`)
+  ).indexOf(e);
+  if (!iedName) return `${parentIdentity}>${intAddr}[${intAddrIndex}]`;
   const [
-    iedName,
     ldInst,
     prefix,
     lnClass,
@@ -450,7 +545,6 @@ function extRefIdentity(e: Element): string | number {
     srcLNInst,
     srcCBName,
   ] = [
-    'iedName',
     'ldInst',
     'prefix',
     'lnClass',
@@ -464,22 +558,201 @@ function extRefIdentity(e: Element): string | number {
     'srcLNInst',
     'srcCBName',
   ].map(name => e.getAttribute(name));
+
   const cbPath = srcCBName
     ? `${serviceType}:${srcCBName} ${srcLDInst ?? ''}/${
         srcPrefix ?? ''
-      }${srcLNClass}${srcLNInst ?? ''}`
+      } ${srcLNClass} ${srcLNInst ?? ''}`
     : '';
-  const dataPath = `${iedName} ${ldInst}/${prefix ?? ''}${lnClass}${
+  const dataPath = `${iedName} ${ldInst}/${prefix ?? ''} ${lnClass} ${
     lnInst ?? ''
-  }.${doName}${daName ? '.' + daName : ''}`;
-  return `${parentIdentity}>${cbPath}${dataPath}`;
+  } ${doName} ${daName ? daName : ''}`;
+  return `${parentIdentity}>${cbPath} ${dataPath}${
+    intAddr ? '@' + `${intAddr}` : ''
+  }`;
+}
+
+function extRefSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const parentSelectors = [selector('Inputs', parentIdentity)];
+
+  if (myIdentity.endsWith(']')) {
+    const [intAddr] = myIdentity.split('[');
+    const intAddrSelectors = [`[intAddr="${intAddr}"]`];
+
+    return crossProduct(parentSelectors, ['>'], [tagName], intAddrSelectors)
+      .map(strings => strings.join(''))
+      .join(',');
+  }
+
+  let iedName,
+    ldInst,
+    prefix,
+    lnClass,
+    lnInst,
+    doName,
+    daName,
+    serviceType,
+    srcCBName,
+    srcLDInst,
+    srcPrefix,
+    srcLNClass,
+    srcLNInst,
+    intAddr;
+
+  if (!myIdentity.includes(':') && !myIdentity.includes('@')) {
+    [
+      iedName,
+      ldInst,
+      prefix,
+      lnClass,
+      lnInst,
+      doName,
+      daName,
+    ] = myIdentity.split(/[ /]/);
+  } else if (myIdentity.includes(':') && !myIdentity.includes('@')) {
+    [
+      serviceType,
+      srcCBName,
+      srcLDInst,
+      srcPrefix,
+      srcLNClass,
+      srcLNInst,
+      iedName,
+      ldInst,
+      prefix,
+      lnClass,
+      lnInst,
+      doName,
+      daName,
+    ] = myIdentity.split(/[ /:]/);
+  } else if (!myIdentity.includes(':') && myIdentity.includes('@')) {
+    [
+      iedName,
+      ldInst,
+      prefix,
+      lnClass,
+      lnInst,
+      doName,
+      daName,
+      intAddr,
+    ] = myIdentity.split(/[ /@]/);
+  } else {
+    [
+      serviceType,
+      srcCBName,
+      srcLDInst,
+      srcPrefix,
+      srcLNClass,
+      srcLNInst,
+      iedName,
+      ldInst,
+      prefix,
+      lnClass,
+      lnInst,
+      doName,
+      daName,
+      intAddr,
+    ] = myIdentity.split(/[ /:@]/);
+  }
+
+  const [
+    iedNameSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+    doNameSelectors,
+    daNameSelectors,
+    serviceTypeSelectors,
+    srcCBNameSelectors,
+    srcLDInstSelectors,
+    srcPrefixSelectors,
+    srcLNClassSelectors,
+    srcLNInstSelectors,
+    intAddrSelectors,
+  ] = [
+    iedName ? [`[iedName="${iedName}"]`] : [':not([iedName])'],
+    ldInst ? [`[ldInst="${ldInst}"]`] : [':not([ldInst])', '[ldInst=""]'],
+    prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+    lnClass ? [`[lnClass=${lnClass}]`] : [':not([lnClass])'],
+    lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+    doName ? [`[doName="${doName}"]`] : [':not([doName])'],
+    daName ? [`[daName="${daName}"]`] : [':not([daName])', '[daName=""]'],
+    serviceType
+      ? [`[serviceType="${serviceType}"]`]
+      : [':not([serviceType])', '[serviceType=""]'],
+    srcCBName
+      ? [`[srcCBName="${srcCBName}"]`]
+      : [':not([srcCBName])', '[srcCBName=""]'],
+    srcLDInst
+      ? [`[srcLDInst="${srcLDInst}"]`]
+      : [':not([srcLDInst])', '[srcLDInst=""]'],
+    srcPrefix
+      ? [`[srcPrefix="${srcPrefix}"]`]
+      : [':not([srcPrefix])', '[srcPrefix=""]'],
+    srcLNClass
+      ? [`[srcLNClass="${srcLNClass}"]`]
+      : [':not([srcLNClass])', '[srcLNClass=""]'],
+    srcLNInst
+      ? [`[srcLNInst="${srcLNInst}"]`]
+      : [':not([srcLNInst])', '[srcLNInst=""]'],
+    intAddr ? [`[intAddr="${intAddr}"]`] : [':not([intAddr])', '[intAddr=""]'],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    iedNameSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+    doNameSelectors,
+    daNameSelectors,
+    serviceTypeSelectors,
+    srcCBNameSelectors,
+    srcLDInstSelectors,
+    srcPrefixSelectors,
+    srcLNClassSelectors,
+    srcLNInstSelectors,
+    intAddrSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function lNIdentity(e: Element): string {
   const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(name =>
     e.getAttribute(name)
   );
-  return `${identity(e.parentElement)}>${prefix ?? ''}${lnClass}${inst}`;
+  return `${identity(e.parentElement)}>${prefix ?? ''} ${lnClass} ${inst}`;
+}
+
+function lNSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const parentSelectors = [selector('LDevice', parentIdentity)];
+
+  const [prefix, lnClass, inst] = myIdentity.split(' ');
+  const [prefixSelectors, lnClassSelectors, instSelectors] = [
+    prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+    [`[lnClass="${lnClass}"]`],
+    [`[inst="${inst}"]`],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    prefixSelectors,
+    lnClassSelectors,
+    instSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function clientLNIdentity(e: Element): string {
@@ -491,14 +764,79 @@ function clientLNIdentity(e: Element): string {
     'lnClass',
     'lnInst',
   ].map(name => e.getAttribute(name));
-  return `${identity(e.parentElement)}>${iedName}${
-    apRef ? ' ' + apRef : ''
-  } ${ldInst}/${prefix ?? ''}${lnClass}${lnInst}`;
+  return `${identity(e.parentElement)}>${iedName} ${
+    apRef ? apRef : ''
+  } ${ldInst}/${prefix ?? ''} ${lnClass} ${lnInst}`;
+}
+
+function clientLNSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const parentSelectors = [selector('RptEnabled', parentIdentity)];
+
+  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = myIdentity.split(
+    /[ /]/
+  );
+
+  const [
+    iedNameSelectors,
+    apRefSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+  ] = [
+    iedName ? [`[iedName="${iedName}"]`] : [':not([iedName])', '[iedName=""]'],
+    apRef ? [`[apRef="${apRef}"]`] : [':not([apRef])', '[apRef=""]'],
+    ldInst ? [`[ldInst="${ldInst}"]`] : [':not([ldInst])', '[ldInst=""]'],
+    prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+    [`[lnClass=${lnClass}]`],
+    lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    iedNameSelectors,
+    apRefSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function ixNamingIdentity(e: Element): string {
   const [name, ix] = ['name', 'ix'].map(name => e.getAttribute(name));
   return `${identity(e.parentElement)}>${name}${ix ? '[' + ix + ']' : ''}`;
+}
+
+function ixNamingSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const [name] = myIdentity.split(' ');
+  const ix = myIdentity.match(/\[([0-9]*)\]/)
+    ? myIdentity.match(/\[([0-9]*)\]/)![1]
+    : '';
+
+  const [parentSelectors, nameSelectors, ixSelectors] = [
+    ['DOI', 'SDI'].map(parentTag => selector(parentTag, parentIdentity)),
+    [`[name="${name}"]`],
+    ix ? [`[ix="${ix}"]`] : [`[ix="${ix}"]`],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    nameSelectors,
+    ixSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function valIdentity(e: Element): string | number {
@@ -507,7 +845,29 @@ function valIdentity(e: Element): string | number {
   const index = Array.from(e.parentElement.children)
     .filter(child => child.getAttribute('sGroup') === sGroup)
     .findIndex(child => child.isSameNode(e));
-  return `${identity(e.parentElement)}>${sGroup ? sGroup + '.' : ''}${index}`;
+  return `${identity(e.parentElement)}>${sGroup ? sGroup + '.' : ''} ${index}`;
+}
+
+function valSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const [sGroup, index] = myIdentity.split(' ');
+
+  const [parentSelectors, nameSelectors, ixSelectors] = [
+    ['DAI', 'DA', 'BDA'].map(parentTag => selector(parentTag, parentIdentity)),
+    sGroup ? [`[sGroup="${sGroup}"]`] : [''],
+    index ? [`:nth-child(${index + 1})`] : [''],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    nameSelectors,
+    ixSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function connectedAPIdentity(e: Element): string {
@@ -517,11 +877,21 @@ function connectedAPIdentity(e: Element): string {
   return `${iedName} ${apName}`;
 }
 
+function connectedAPSelector(tagName: string, identity: string): string {
+  const [iedName, apName] = identity.split(' ');
+  return `${tagName}[iedName="${iedName}"][apName="${apName}"]`;
+}
+
 function controlBlockIdentity(e: Element): string {
   const [ldInst, cbName] = ['ldInst', 'cbName'].map(name =>
     e.getAttribute(name)
   );
   return `${ldInst} ${cbName}`;
+}
+
+function controlBlockSelector(tagName: string, identity: string): string {
+  const [ldInst, cbName] = identity.split(' ');
+  return `${tagName}[ldInst="${ldInst}"][cbName="${cbName}"]`;
 }
 
 function physConnIdentity(e: Element): string | number {
@@ -537,6 +907,19 @@ function physConnIdentity(e: Element): string | number {
   return `${identity(e.parentElement)}>${pcType}`;
 }
 
+function physConnSelector(tagName: string, identity: string): string {
+  const [parentIdentity, pcType] = pathParts(identity);
+
+  const [parentSelectors, typeSelectors] = [
+    ['ConnectedAP'].map(parentTag => selector(parentTag, parentIdentity)),
+    pcType ? [`[type="${pcType}"]`] : [''],
+  ];
+
+  return crossProduct(parentSelectors, ['>'], [tagName], typeSelectors)
+    .map(strings => strings.join(''))
+    .join(',');
+}
+
 function pIdentity(e: Element): string | number {
   if (!e.parentElement) return NaN;
   const eParent = e.parentElement;
@@ -546,17 +929,65 @@ function pIdentity(e: Element): string | number {
   const index = Array.from(e.parentElement.children)
     .filter(child => child.getAttribute('type') === eType)
     .findIndex(child => child.isSameNode(e));
-  return `${identity(e.parentElement)}>${eType}[${index}]`;
+  return `${identity(e.parentElement)}>${eType} [${index}]`;
+}
+
+function pSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const [type, index] = myIdentity.split(' ');
+
+  const [parentSelectors, typeSelectors, ixSelectors] = [
+    ['Address'].map(parentTag => selector(parentTag, parentIdentity)),
+    [`[sGroup="${type}"]`],
+    index ? [`:nth-child(${index + 1})`] : [''],
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    typeSelectors,
+    ixSelectors
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 function enumValIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${e.getAttribute('ord')}`;
 }
 
+function enumValSelector(tagName: string, identity: string): string {
+  const [parentIdentity, ord] = pathParts(identity);
+  return `${selector('EnumType', parentIdentity)}>${tagName}[ord="${ord}"]`;
+}
+
 function protNsIdentity(e: Element): string {
-  return `${identity(e.parentElement)}>${e.getAttribute('type') || '8-MMS'} ${
+  return `${identity(e.parentElement)}>${e.getAttribute('type') || '8-MMS'}\t${
     e.textContent
   }`;
+}
+
+function protNsSelector(tagName: string, identity: string): string {
+  const [parentIdentity, myIdentity] = pathParts(identity);
+
+  const [type, value] = myIdentity.split('\t');
+
+  const [parentSelectors] = [
+    ['DAType', 'DA'].map(parentTag => selector(parentTag, parentIdentity)),
+  ];
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [tagName],
+    [`[type="${type}"]`],
+    ['>'],
+    [value]
+  )
+    .map(strings => strings.join(''))
+    .join(',');
 }
 
 type IdentityFunction = (e: Element) => string | number;
@@ -574,21 +1005,21 @@ export const specialTags: Partial<
   KDC: { identity: kDCIdentity, selector: kDCSelector },
   Association: { identity: associationIdentity, selector: associationSelector },
   LDevice: { identity: lDeviceIdentity, selector: lDeviceSelector },
-  IEDName: { identity: iEDNameIdentity, selector: null },
-  FCDA: { identity: fCDAIdentity, selector: null },
-  ExtRef: { identity: extRefIdentity, selector: null },
-  LN: { identity: lNIdentity, selector: null },
-  ClientLN: { identity: clientLNIdentity, selector: null },
-  DAI: { identity: ixNamingIdentity, selector: null },
-  SDI: { identity: ixNamingIdentity, selector: null },
-  Val: { identity: valIdentity, selector: null },
-  ConnectedAP: { identity: connectedAPIdentity, selector: null },
-  GSE: { identity: controlBlockIdentity, selector: null },
-  SMV: { identity: controlBlockIdentity, selector: null },
-  PhysConn: { identity: physConnIdentity, selector: null },
-  P: { identity: pIdentity, selector: null },
-  EnumVal: { identity: enumValIdentity, selector: null },
-  ProtNs: { identity: protNsIdentity, selector: null },
+  IEDName: { identity: iEDNameIdentity, selector: iEDNameSelector },
+  FCDA: { identity: fCDAIdentity, selector: fCDASelector },
+  ExtRef: { identity: extRefIdentity, selector: extRefSelector },
+  LN: { identity: lNIdentity, selector: lNSelector },
+  ClientLN: { identity: clientLNIdentity, selector: clientLNSelector },
+  DAI: { identity: ixNamingIdentity, selector: ixNamingSelector },
+  SDI: { identity: ixNamingIdentity, selector: ixNamingSelector },
+  Val: { identity: valIdentity, selector: valSelector },
+  ConnectedAP: { identity: connectedAPIdentity, selector: connectedAPSelector },
+  GSE: { identity: controlBlockIdentity, selector: controlBlockSelector },
+  SMV: { identity: controlBlockIdentity, selector: controlBlockSelector },
+  PhysConn: { identity: physConnIdentity, selector: physConnSelector },
+  P: { identity: pIdentity, selector: pSelector },
+  EnumVal: { identity: enumValIdentity, selector: enumValSelector },
+  ProtNs: { identity: protNsIdentity, selector: protNsSelector },
 };
 
 function singletonIdentity(e: Element): string {
@@ -774,18 +1205,16 @@ function namingSelector(tagName: NamingTag, identity: string): string {
   const parents = namingTags[tagName];
   if (!parents) return ':not(*)';
 
-  const [name, parentIdentity] = pathParts(identity);
+  const [parentIdentity, name] = pathParts(identity);
 
-  return parents
-    .map(
-      parentTag =>
-        selector(parentTag, parentIdentity) +
-        '>' +
-        tagName +
-        '[name="' +
-        name +
-        '"]'
-    )
+  const [parentSelectors] = [
+    parents.flatMap(parentTag =>
+      selector(parentTag, parentIdentity).split(',')
+    ),
+  ];
+
+  return crossProduct(parentSelectors, ['>'], [tagName], [`[name="${name}"]`])
+    .map(strings => strings.join(''))
     .join(',');
 }
 
@@ -793,12 +1222,16 @@ function singletonSelector(tagName: string, identity: string): string {
   const parents = singletonTags[tagName];
   if (!parents) return ':not(*)';
 
-  return parents
-    .map(parentTag => selector(parentTag, identity) + '>' + tagName)
+  const [parentSelectors] = [
+    parents.flatMap(parentTag => selector(parentTag, identity).split(',')),
+  ];
+
+  return crossProduct(parentSelectors, ['>'], [tagName])
+    .map(strings => strings.join(''))
     .join(',');
 }
 
-function selector(tagName: string, identity: string | number): string {
+export function selector(tagName: string, identity: string | number): string {
   if (typeof identity !== 'string') return ':not(*)';
 
   if (singletonTags[tagName]) return singletonSelector(tagName, identity);
