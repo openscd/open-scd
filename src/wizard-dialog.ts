@@ -77,6 +77,8 @@ export class WizardDialog extends LitElement {
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
   async act(action?: WizardAction, primary = true): Promise<void> {
     if (action === undefined) return;
+    if (primary) this.wizard[this.pageIndex].primary = undefined;
+    else this.wizard[this.pageIndex].secondary = undefined;
     const inputArray = Array.from(this.inputs);
     if (!this.checkValidity()) {
       this.pageIndex = this.firstInvalidPage;
