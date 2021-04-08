@@ -247,6 +247,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				</LDevice>
 			</Server>
 		</AccessPoint>
+		<KDC iedName="IED1" apName="P1"/>
 	</IED>
 	<IED name="IED2" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>

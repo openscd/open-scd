@@ -223,29 +223,30 @@ describe('foundation', () => {
       expect(identity(privateElement)).to.be.NaN;
     });
     it('returns parent identity for singleton identities', () => {
-      singletonTags.forEach(tag => {
+      Object.keys(singletonTags).forEach(tag => {
         const element = scl1.querySelector(tag);
         if (element) {
           expect(identity(element)).to.equal(identity(element.parentElement!));
         }
       });
     });
-    it('returns valid identity for Hitem tag', () => {
+    it('returns valid identity for special identities', () => {
       const expectations: Partial<Record<string, string>> = {
-        Hitem: 'v1r143',
+        Hitem: '1\t143',
         Terminal: '>AA1>E1>COUPLING_BAY>QC11>AA1/E1/COUPLING_BAY/L2',
-        'Bay>LNode': 'IED2 CBSW/LPHD1',
+        'Bay>LNode': 'IED2 CBSW/LPHD 1',
+        KDC: '>IED1>IED1 P1',
         LDevice: '>IED1>>CircuitBreaker_CB1',
         IEDName:
           '>IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/CSWI',
         FCDA:
           '>IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/XCBR1.Pos.stVal (ST)',
-        ExtRef: 'DCCSWI1>IED2 CBSW/XSWI2.Pos.stVal',
-        LN: 'XCBR1',
-        ClientLN: 'XSWI1>ReportCb>IED1 P1 CircuitBreaker_CB1/XCBR1',
-        DAI: 'XCBR1>Pos>ctlModel',
-        SDI: 'CBCSWI2>Pos>pulseConfig',
-        Val: 'XCBR1>Pos>ctlModel>0',
+        ExtRef: '>IED1>>Disconnectors>DCCSWI1>IED2 CBSW/XSWI2.Pos.stVal',
+        LN: '>IED1>>CircuitBreaker_CB1>XCBR1',
+        ClientLN: '>IED2>>CBSW>XSWI1>ReportCb>IED1 P1 CircuitBreaker_CB1/XCBR1',
+        DAI: '>IED1>>CircuitBreaker_CB1>XCBR1>Pos>ctlModel',
+        SDI: '>IED1>>CircuitBreaker_CB1>CBCSWI2>Pos>pulseConfig',
+        Val: '>IED1>>CircuitBreaker_CB1>XCBR1>Pos>ctlModel>0',
         ConnectedAP: 'IED1 P1',
         GSE: 'CircuitBreaker_CB1 GCB',
         SMV: 'MU01 MSVCB01',
