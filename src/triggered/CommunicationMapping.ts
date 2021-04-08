@@ -16,7 +16,7 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { clientIcon, controlBlockIcons, inputIcon } from '../icons.js';
 
-export type ControlBlockTag =
+type ControlBlockTag =
   | 'ReportControl'
   | 'LogControl'
   | 'GSEControl'
@@ -51,7 +51,7 @@ type CommunicationMapping =
       extRef: Element;
     };
 
-export function getConnectionIndexOf(
+function getConnectionIndexOf(
   list: CommunicationMapping[],
   match: CommunicationMapping
 ): number {
@@ -69,7 +69,7 @@ export function getConnectionIndexOf(
   return -1;
 }
 
-export function getConnection(
+function getConnection(
   connections: CommunicationMapping[],
   item: CommunicationMapping
 ): CommunicationMapping[] {
@@ -82,7 +82,7 @@ export function getConnection(
  * by the element `ClientLN` for `ReportControl` and `LogControl` and
  * by the element `IEDName` for `GSEControl` and `SampledValueControl`
  */
-export function getControlBlockConnection(
+function getControlBlockConnection(
   root: Document | Element,
   cbType: ControlBlockTag
 ): CommunicationMapping[] {
@@ -102,13 +102,13 @@ export function getControlBlockConnection(
     });
 }
 
-export function getSinkReferences(root: Document | Element): Element[] {
+function getSinkReferences(root: Document | Element): Element[] {
   return Array.from(root.getElementsByTagName('IEDName'))
     .concat(Array.from(root.getElementsByTagName('ClientLN')))
     .filter(element => !element.closest('Private'));
 }
 
-export function getSourceReferences(root: Document | Element): Element[] {
+function getSourceReferences(root: Document | Element): Element[] {
   return Array.from(root.getElementsByTagName('ExtRef'))
     .filter(element => !element.closest('Private'))
     .filter(element => element.getAttribute('iedName'));
@@ -119,7 +119,7 @@ export function getSourceReferences(root: Document | Element): Element[] {
  * Data connection are connections defined between the FCDA in the source
  * and ExtRef in the sink
  */
-export function getDataConnection(
+function getDataConnection(
   root: Document | Element,
   cbTagName: 'GSEControl' | 'SampledValueControl' | 'ReportControl'
 ): CommunicationMapping[] {
@@ -207,7 +207,7 @@ function disconnectExtRef(extRef: Element): EditorAction {
   };
 }
 
-export function disconnectSink(
+function disconnectSink(
   connections: CommunicationMapping[]
 ): WizardAction {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
@@ -277,7 +277,7 @@ function cbConnectionWizard(connections: CommunicationMapping[]): Wizard {
   ];
 }
 
-export function communicationMappingWizard(
+function communicationMappingWizard(
   mappings: CommunicationMapping[]
 ): Wizard {
   return [
