@@ -234,7 +234,7 @@ describe('foundation', () => {
       const expectations: Partial<Record<string, string>> = {
         Hitem: '1\t143',
         Terminal: '>AA1>E1>COUPLING_BAY>QC11>AA1/E1/COUPLING_BAY/L2',
-        'Bay>LNode': 'IED2 CBSW/LPHD 1',
+        'Bay>LNode': 'IED2 CBSW/ LPHD 1',
         KDC: '>IED1>IED1 P1',
         LDevice: '>IED1>>CircuitBreaker_CB1',
         IEDName:
