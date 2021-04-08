@@ -36,13 +36,11 @@ function dialogValid(dialog?: Dialog): boolean {
 @customElement('wizard-dialog')
 export class WizardDialog extends LitElement {
   /** The [[`Wizard`]] implemented by this dialog. */
-  @property({type: Array})
+  @property({ type: Array })
   wizard: Wizard = [];
   /** Index of the currently active [[`WizardPage`]] */
   @internalProperty()
   pageIndex = 0;
-
-  private acted = false;
 
   @queryAll('mwc-dialog')
   dialogs!: NodeListOf<Dialog>;
@@ -77,8 +75,7 @@ export class WizardDialog extends LitElement {
   }
 
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
-  async act(action?: WizardAction): Promise<void> {
-    if (this.acted) return;
+  async act(action?: WizardAction, primary = true): Promise<void> {
     if (action === undefined) return;
     const inputArray = Array.from(this.inputs);
     if (!this.checkValidity()) {
@@ -87,9 +84,12 @@ export class WizardDialog extends LitElement {
       return;
     }
     const editorActions = action(inputArray, this);
+    if (editorActions.length > 0) {
+      if (primary) this.wizard[this.pageIndex].primary = undefined;
+      else this.wizard[this.pageIndex].secondary = undefined;
+      this.dispatchEvent(newWizardEvent());
+    }
     editorActions.forEach(ea => this.dispatchEvent(newActionEvent(ea)));
-    if (editorActions.length > 0) this.dispatchEvent(newWizardEvent());
-    this.acted = true;
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {
@@ -110,7 +110,6 @@ export class WizardDialog extends LitElement {
     if (changedProperties.has('wizard')) {
       this.dialog?.show();
       this.pageIndex = 0;
-      this.acted = false; // FIXME(c-dinkel): add `reset` method
     }
   }
 
@@ -133,7 +132,7 @@ export class WizardDialog extends LitElement {
       ${page.secondary
         ? html`<mwc-button
             slot="secondaryAction"
-            @click=${() => this.act(page.secondary?.action)}
+            @click=${() => this.act(page.secondary?.action, false)}
             icon="${page.secondary.icon}"
             label="${page.secondary.label}"
           ></mwc-button>`
@@ -150,6 +149,7 @@ export class WizardDialog extends LitElement {
             icon="${page.primary.icon}"
             label="${page.primary.label}"
             trailingIcon
+            dialogInitialFocus
           ></mwc-button>`
         : index + 1 < (this.wizard?.length ?? 0)
         ? html`<mwc-button
