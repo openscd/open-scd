@@ -133,7 +133,7 @@ function getDataConnection(
     const anyLN: Element = controlBlock.parentElement!;
     const data: Element[] = Array.from(
       anyLN.querySelectorAll(
-        ` DataSet[name="${controlBlock.getAttribute('datSet')}"] > FCDA`
+        `DataSet[name="${controlBlock.getAttribute('datSet')}"] > FCDA`
       )
     ).filter(item => !item.closest('Private'));
 
@@ -207,9 +207,7 @@ function disconnectExtRef(extRef: Element): EditorAction {
   };
 }
 
-function disconnectSink(
-  connections: CommunicationMapping[]
-): WizardAction {
+function disconnectSink(connections: CommunicationMapping[]): WizardAction {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const items = <Set<number>>(
       (<List>wizard.shadowRoot!.querySelector('filtered-list')).index
@@ -277,9 +275,7 @@ function cbConnectionWizard(connections: CommunicationMapping[]): Wizard {
   ];
 }
 
-function communicationMappingWizard(
-  mappings: CommunicationMapping[]
-): Wizard {
+function communicationMappingWizard(mappings: CommunicationMapping[]): Wizard {
   return [
     {
       title: get('transform.comm-map.wizard.title'),
