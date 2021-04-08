@@ -36,7 +36,7 @@ function dialogValid(dialog?: Dialog): boolean {
 @customElement('wizard-dialog')
 export class WizardDialog extends LitElement {
   /** The [[`Wizard`]] implemented by this dialog. */
-  @property()
+  @property({type: Array})
   wizard: Wizard = [];
   /** Index of the currently active [[`WizardPage`]] */
   @internalProperty()
