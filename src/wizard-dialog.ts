@@ -42,7 +42,7 @@ export class WizardDialog extends LitElement {
   @internalProperty()
   pageIndex = 0;
 
-  private actionCalled = false;
+  private acted = false;
 
   @queryAll('mwc-dialog')
   dialogs!: NodeListOf<Dialog>;
@@ -78,7 +78,7 @@ export class WizardDialog extends LitElement {
 
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
   async act(action?: WizardAction): Promise<void> {
-    if (this.actionCalled) return;
+    if (this.acted) return;
     if (action === undefined) return;
     const inputArray = Array.from(this.inputs);
     if (!this.checkValidity()) {
@@ -89,7 +89,7 @@ export class WizardDialog extends LitElement {
     const editorActions = action(inputArray, this);
     editorActions.forEach(ea => this.dispatchEvent(newActionEvent(ea)));
     if (editorActions.length > 0) this.dispatchEvent(newWizardEvent());
-    this.actionCalled = true;
+    this.acted = true;
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {
@@ -109,8 +109,8 @@ export class WizardDialog extends LitElement {
   updated(changedProperties: Map<string | number | symbol, unknown>): void {
     if (changedProperties.has('wizard')) {
       this.dialog?.show();
-      this.pageIndex = 0; // FIXME(c-dinkel): add `reset` method
-      this.actionCalled = false;
+      this.pageIndex = 0;
+      this.acted = false; // FIXME(c-dinkel): add `reset` method
     }
   }
 
