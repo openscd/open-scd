@@ -1421,30 +1421,60 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
   );
 }
 
-/** @returns array of `ExtRef` elements connected to `FCDA` element  */
-export function getDataSink(fcda: Element): Element[] {
-  if (!fcda.ownerDocument || fcda.tagName !== 'FCDA' || fcda.closest('Private'))
-    return [];
+export function findFCDAs(extRef: Element): Element[] {
+  if (extRef.tagName !== 'ExtRef' || extRef.closest('Private')) return [];
 
-  return Array.from(fcda.ownerDocument.getElementsByTagName('ExtRef'))
+  const [iedName, ldInst, prefix, lnClass, lnInst, doName, daName] = [
+    'iedName',
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+    'doName',
+    'daName',
+  ].map(name => extRef.getAttribute(name));
+  const ied = Array.from(extRef.ownerDocument.getElementsByTagName('IED')).find(
+    element =>
+      element.getAttribute('name') === iedName && !element.closest('Private')
+  );
+  if (!ied) return [];
+
+  return Array.from(ied.getElementsByTagName('FCDA'))
     .filter(item => !item.closest('Private'))
     .filter(
-      extref =>
-        (fcda.closest('IED')?.getAttribute('name') ?? '') ===
-          (extref.getAttribute('iedName') ?? '') &&
-        (fcda.getAttribute('ldInst') ?? '') ===
-          (extref.getAttribute('ldInst') ?? '') &&
-        (fcda.getAttribute('prefix') ?? '') ===
-          (extref.getAttribute('prefix') ?? '') &&
-        (fcda.getAttribute('lnClass') ?? '') ===
-          (extref.getAttribute('lnClass') ?? '') &&
-        (fcda.getAttribute('lnInst') ?? '') ===
-          (extref.getAttribute('lnInst') ?? '') &&
-        (fcda.getAttribute('doName') ?? '') ===
-          (extref.getAttribute('doName') ?? '') &&
-        (fcda.getAttribute('daName') ?? '') ===
-          (extref.getAttribute('daName') ?? '')
+      fcda =>
+        (fcda.getAttribute('ldInst') ?? '') === (ldInst ?? '') &&
+        (fcda.getAttribute('prefix') ?? '') === (prefix ?? '') &&
+        (fcda.getAttribute('lnClass') ?? '') === (lnClass ?? '') &&
+        (fcda.getAttribute('lnInst') ?? '') === (lnInst ?? '') &&
+        (fcda.getAttribute('doName') ?? '') === (doName ?? '') &&
+        (fcda.getAttribute('daName') ?? '') === (daName ?? '')
     );
+}
+
+const serviceTypeControlBlockTags: Partial<Record<string, string[]>> = {
+  GOOSE: ['GSEControl'],
+  SMV: ['SampledValueControl'],
+  Report: ['ReportControl'],
+  NONE: ['LogControl', 'GSEControl', 'SampledValueControl', 'ReportControl'],
+};
+
+export function findControlBlocks(extRef: Element): Set<Element> {
+  const fcdas = findFCDAs(extRef);
+  const cbTags =
+    serviceTypeControlBlockTags[extRef.getAttribute('serviceType') ?? 'NONE'] ??
+    [];
+  const controlBlocks = new Set(
+    fcdas.flatMap(fcda => {
+      const dataSet = fcda.parentElement!;
+      const dsName = dataSet.getAttribute('name') ?? '';
+      const anyLN = dataSet.parentElement!;
+      return cbTags
+        .flatMap(tag => Array.from(anyLN.getElementsByTagName(tag)))
+        .filter(cb => cb.getAttribute('datSet') === dsName);
+    })
+  );
+  return controlBlocks;
 }
 
 declare global {
