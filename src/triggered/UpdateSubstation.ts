@@ -32,6 +32,13 @@ export default class UpdateSubstationPlugin extends LitElement {
                         ) !== null
                       : true
                     : diff.theirs !== null,
+                disabled: (diff: Diff<Element | string>): boolean =>
+                  diff.theirs instanceof Element &&
+                  diff.theirs.tagName === 'LNode'
+                    ? this.doc.querySelector(
+                        selector('LNode', identity(diff.theirs))
+                      ) !== null
+                    : false,
               }
             )
           )
