@@ -282,5 +282,13 @@ describe('foundation', () => {
         ).to.deep.equal(element);
       });
     });
+    it('returns correct selector for special identities', () => {
+      Object.keys(specialTags).forEach(tag => {
+        const element = scl1.querySelector(tag);
+        expect(
+          scl1.querySelector(selector(tag, identity(element!)))
+        ).to.deep.equal(element);
+      });
+    });
   });
 });
