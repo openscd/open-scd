@@ -1258,10 +1258,10 @@ export function identity(e: Element | null): string | number {
 
   if (e.id) return `#${e.id}`;
 
-  if (e.hasAttribute('name'))
-    return e.parentElement
-      ? `${identity(e.parentElement)}>${e.getAttribute('name')}`
-      : NaN;
+  if (e.hasAttribute('name') && e.parentElement)
+    return e.parentElement.tagName === 'SCL'
+      ? e.getAttribute('name')!
+      : `${identity(e.parentElement)}>${e.getAttribute('name')}`;
 
   if (e.tagName === 'SCL') return '';
 
