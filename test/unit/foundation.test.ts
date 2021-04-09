@@ -4,6 +4,8 @@ import {
   ComplexAction,
   EditorAction,
   identity,
+  findControlBlocks,
+  findFCDAs,
   ifImplemented,
   invert,
   isCreate,
@@ -309,6 +311,71 @@ describe('foundation', () => {
             )
           );
       });
+    });
+  });
+
+  describe('findControlBlocks', () => {
+    let doc: Document;
+    beforeEach(async () => {
+      doc = await fetch('public/xml/testfiles/comm-map.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+    it('returns an Set of controlBlocks connected to the ExtRef', () => {
+      const extRef = doc.querySelector(
+        ':root > IED[name="IED2"] > AccessPoint > Server > LDevice[inst="CircuitBreaker_CB1"] ExtRef'
+      )!;
+      expect(findControlBlocks(extRef).size).to.have.equal(1);
+      expect(
+        Array.from(findControlBlocks(extRef))[0].isEqualNode(
+          doc.querySelector(
+            'IED[name="IED1"] LDevice[inst="CircuitBreaker_CB1"] GSEControl[name="GCB"]'
+          )
+        )
+      ).to.be.true;
+    });
+
+    it('returns empty Set if input not ExtRef', () => {
+      expect(findControlBlocks(doc.querySelector('LN')!).size).to.equal(0);
+    });
+
+    it('returns empty array if input is not public', () => {
+      expect(
+        findControlBlocks(doc.querySelector('Private > ExtRef')!).size
+      ).to.equal(0);
+    });
+  });
+
+  describe('findFCDAs', () => {
+    let doc: Document;
+    beforeEach(async () => {
+      doc = await fetch('public/xml/testfiles/comm-map.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+    it('returns an array of FCDAs connected to the ExtRef', () => {
+      const extRef = doc.querySelector(
+        ':root > IED[name="IED2"] > AccessPoint > Server > LDevice[inst="CircuitBreaker_CB1"] ExtRef'
+      )!;
+      expect(findFCDAs(extRef).length).to.have.equal(1);
+      expect(
+        findFCDAs(extRef)[0].isEqualNode(
+          doc.querySelector(
+            'IED[name="IED1"] LDevice[inst="CircuitBreaker_CB1"] ' +
+              'FCDA[ldInst="CircuitBreaker_CB1"][lnClass="XCBR"][doName="Pos"][daName="stVal"]'
+          )
+        )
+      ).to.be.true;
+    });
+
+    it('returns empty array if input not ExtRef', () => {
+      expect(findFCDAs(doc.querySelector('LN')!).length).to.equal(0);
+    });
+
+    it('returns empty array if input is not public', () => {
+      expect(findFCDAs(doc.querySelector('Private > ExtRef')!).length).to.equal(
+        0
+      );
     });
   });
 });

@@ -319,7 +319,10 @@
 				<Authentication none="true" />
 				<LDevice inst="MU01">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
-					<DataSet name="PhsMeas1">
+						<Private type="dummyType">
+							<esld:ExtRef xmlns:esld="http://www.dummyURL.com/dummyNS" ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
+						</Private>
+						<DataSet name="PhsMeas1">
                             <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
                             <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
                             <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
@@ -337,10 +340,10 @@
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
                         </DataSet>
-					<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
-						<SmvOpts/>
-						<IEDName apRef="P1" ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1">IED1</IEDName>
-					</SampledValueControl>
+						<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
+							<SmvOpts/>
+							<IEDName apRef="P1" ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1">IED1</IEDName>
+						</SampledValueControl>
 					</LN0>
                     <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
                     <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
