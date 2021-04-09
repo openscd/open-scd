@@ -135,11 +135,19 @@ export function newActionEvent<T extends EditorAction>(
 export const wizardInputSelector = 'wizard-textfield, mwc-select';
 export type WizardInput = WizardTextField | Select;
 
+export type WizardAction = EditorAction | (() => Wizard);
+
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
-export type WizardAction = (
+export type WizardActor = (
   inputs: WizardInput[],
   wizard: Element
-) => EditorAction[];
+) => WizardAction[];
+
+export function isWizard(
+  wizardAction: WizardAction
+): wizardAction is () => Wizard {
+  return typeof wizardAction === 'function';
+}
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInput): string | null {
@@ -160,12 +168,12 @@ export interface WizardPage {
   primary?: {
     icon: string;
     label: string;
-    action: WizardAction;
+    action: WizardActor;
   };
   secondary?: {
     icon: string;
     label: string;
-    action: WizardAction;
+    action: WizardActor;
   };
 }
 export type Wizard = WizardPage[];

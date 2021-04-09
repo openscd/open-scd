@@ -4,7 +4,7 @@ import {
   EditorAction,
   getValue,
   newActionEvent,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
@@ -28,7 +28,7 @@ export function isCreateOptions(
   return (<CreateOptions>options).parent !== undefined;
 }
 
-export function updateNamingAction(element: Element): WizardAction {
+export function updateNamingAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);

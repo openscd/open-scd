@@ -9,7 +9,7 @@ import {
   createElement,
   EditorAction,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -164,7 +164,7 @@ function createBayElement(
   return null;
 }
 
-function guessBasedOnCSWI(doc: XMLDocument): WizardAction {
+function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const actions: EditorAction[] = [];
 

@@ -15,7 +15,7 @@ import {
   newActionEvent,
   newWizardEvent,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -104,7 +104,7 @@ export class ConductingEquipmentEditor extends LitElement {
     `;
   }
 
-  static createAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -156,7 +156,7 @@ export class ConductingEquipmentEditor extends LitElement {
           '',
           Array.from(
             options.parent.querySelectorAll(selectors.ConductingEquipment)
-          ).map(condEq => condEq.getAttribute('name')),
+          ).map(condEq => condEq.getAttribute('name') ?? ''),
         ]
       : [
           get('conductingequipment.wizard.title.edit'),
@@ -170,7 +170,7 @@ export class ConductingEquipmentEditor extends LitElement {
               selectors.ConductingEquipment
             )
           )
-            .map(condEq => condEq.getAttribute('name'))
+            .map(condEq => condEq.getAttribute('name') ?? '')
             .filter(name => name !== options.element.getAttribute('name')),
         ];
 
@@ -191,12 +191,12 @@ export class ConductingEquipmentEditor extends LitElement {
             required
             validationMessage="${translate('textfield.required')}"
             dialogInitialFocus
-            .reservedValues="${reservedNames}"
+            .reservedValues=${reservedNames}
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="desc"
             .maybeValue=${desc}
-            nullable="true"
+            nullable
             helper="${translate('conductingequipment.wizard.descHelper')}"
           ></wizard-textfield>`,
         ],

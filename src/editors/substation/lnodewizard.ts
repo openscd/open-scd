@@ -7,7 +7,7 @@ import {
   EditorAction,
   referencePath,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -112,7 +112,7 @@ function deleteAction(parent: Element, value: LNValue): EditorAction {
  * @returns a `WizardAction` updating `parent`'s `LNodes`
  * to the entries selected in `wizard`'s `#lnList`.
  */
-export function lNodeWizardAction(parent: Element): WizardAction {
+export function lNodeWizardAction(parent: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const newLNodes = (<List>wizard.shadowRoot!.querySelector('#lnList')).items
       .filter(item => item.selected)

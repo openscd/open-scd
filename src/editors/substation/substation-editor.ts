@@ -15,7 +15,7 @@ import {
   newActionEvent,
   newWizardEvent,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -35,7 +35,7 @@ import { guessVoltageLevel } from './guess-wizard.js';
 @customElement('substation-editor')
 export class SubstationEditor extends LitElement {
   /** The edited `Element`, a common property of all Substation subeditors. */
-  @property()
+  @property({ attribute: false })
   element!: Element;
 
   /** [[element | `element.name`]] */
@@ -115,7 +115,7 @@ export class SubstationEditor extends LitElement {
     `;
   }
 
-  static createAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardActor {
     return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -206,7 +206,7 @@ export class SubstationEditor extends LitElement {
           html`<wizard-textfield
             label="desc"
             .maybeValue=${desc}
-            nullable="true"
+            nullable
             helper="${translate('substation.wizard.descHelper')}"
           ></wizard-textfield>`,
           guessable

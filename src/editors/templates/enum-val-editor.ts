@@ -16,7 +16,7 @@ import {
   newWizardEvent,
   restrictions,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 import {
@@ -78,7 +78,7 @@ export class EnumValEditor extends LitElement {
     </mwc-list-item>`;
   }
 
-  static createAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
       const value = getValue(inputs.find(i => i.label === 'value')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -104,7 +104,7 @@ export class EnumValEditor extends LitElement {
     };
   }
 
-  static updateAction(element: Element): WizardAction {
+  static updateAction(element: Element): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
       const value = getValue(inputs.find(i => i.label === 'value')!) ?? '';
       const desc = getValue(inputs.find(i => i.label === 'desc')!);

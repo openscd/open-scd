@@ -19,8 +19,9 @@ import {
   WizardInput,
   WizardPage,
   newWizardEvent,
-  WizardAction,
+  WizardActor,
   wizardInputSelector,
+  isWizard,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
@@ -75,23 +76,30 @@ export class WizardDialog extends LitElement {
   }
 
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
-  async act(action?: WizardAction, primary = true): Promise<void> {
-    if (action === undefined) return;
+  async act(action?: WizardActor, primary = false): Promise<boolean> {
+    if (action === undefined) return false;
     if (primary) this.wizard[this.pageIndex].primary = undefined;
     else this.wizard[this.pageIndex].secondary = undefined;
     const inputArray = Array.from(this.inputs);
     if (!this.checkValidity()) {
       this.pageIndex = this.firstInvalidPage;
       inputArray.map(wi => wi.reportValidity());
-      return;
+      return false;
     }
-    const editorActions = action(inputArray, this);
-    if (editorActions.length > 0) {
+
+    const wizardActions = action(inputArray, this);
+    if (wizardActions.length > 0) {
       if (primary) this.wizard[this.pageIndex].primary = undefined;
       else this.wizard[this.pageIndex].secondary = undefined;
       this.dispatchEvent(newWizardEvent());
     }
-    editorActions.forEach(ea => this.dispatchEvent(newActionEvent(ea)));
+    wizardActions.forEach(wa =>
+      isWizard(wa)
+        ? this.dispatchEvent(newWizardEvent(wa()))
+        : this.dispatchEvent(newActionEvent(wa))
+    );
+    if (wizardActions.length > 0) this.dispatchEvent(newWizardEvent());
+    return true;
   }
 
   private onClosed(ae: CustomEvent<{ action: string } | null>): void {

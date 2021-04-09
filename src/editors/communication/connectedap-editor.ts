@@ -17,7 +17,7 @@ import {
   EditorAction,
   newWizardEvent,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
   newActionEvent,
   compareNames,
@@ -142,7 +142,7 @@ export class ConnectedAPEditor extends LitElement {
     `;
   }
 
-  static createAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardActor {
     return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const apValue = (<ListItemBase[]>(
         (<List>wizard.shadowRoot!.querySelector('#apList')).selected
@@ -247,7 +247,7 @@ export class ConnectedAPEditor extends LitElement {
     ];
   }
 
-  static editAction(parent: Element): WizardAction {
+  static editAction(parent: Element): WizardActor {
     return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const instType: boolean =
         (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??

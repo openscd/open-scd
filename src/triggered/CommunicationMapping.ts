@@ -9,6 +9,7 @@ import {
   newWizardEvent,
   Wizard,
   WizardAction,
+  WizardActor,
   WizardInput,
 } from '../foundation.js';
 
@@ -85,13 +86,13 @@ function disconnectSink(connections: Element[]): WizardAction {
       (<List>wizard.shadowRoot!.querySelector('filtered-list')).index
     );
 
-    const actions: EditorAction[] = [];
+    const actions: WizardAction[] = [];
 
     items.forEach(index => {
       if (connections[index].tagName === 'ExtRef')
         actions.push(disconnectExtRef(connections[index]));
       else {
-        // Connections to IEDName are not direct but can shared for severel ExtRef's
+        // Connections to IEDName are not direct but can shared for several ExtRef's
         actions.push({
           old: {
             parent: connections[index].parentElement!,
@@ -102,23 +103,35 @@ function disconnectSink(connections: Element[]): WizardAction {
       }
     });
 
+    actions.push(() => communicationMappingWizard(root));
+
     return actions;
   };
+}
+
+function cancel(root: XMLDocument | Element): WizardActor {
+  return () => [() => communicationMappingWizard(root)];
 }
 
 function cbConnectionWizard(
   connections: Element[],
   cbId: string,
   cbTag: string,
-  iedName: string
+  iedName: string,
+  root: XMLDocument | Element
 ): Wizard {
   return [
     {
       title: cbId + ' - ' + iedName,
       primary: {
         icon: 'delete',
-        label: 'Disconnect',
-        action: disconnectSink(connections),
+        label: get('disconnect'), // FIXME: translate
+        action: disconnect(connections, root),
+      },
+      secondary: {
+        icon: '',
+        label: get('cancel'),
+        action: cancel(root),
       },
       content: [
         html`<filtered-list multi
@@ -191,30 +204,33 @@ function communicationMappingWizard(root: XMLDocument | Element): Wizard {
       content: [
         html`<filtered-list
           >${Array.from(connections.keys()).map(key => {
-            const [cbId, cbTag, iedName] = key.split(' | ');
+            const [cbId, cbTag, sinkIED] = key.split(' | ');
+            const [_, sourceIED, controlBlock] = cbId.match(/^(.+)>>(.*)$/)!;
             return html`<mwc-list-item
+              twoline
               graphic="icon"
               hasMeta
-              @click="${(evt: SingleSelectedEvent) =>
+              @click="${(evt: SingleSelectedEvent) => {
                 evt.target!.dispatchEvent(
                   newWizardEvent(
                     cbConnectionWizard(
                       connections.get(key)!,
                       cbId,
                       cbTag,
-                      iedName
-                    ),
-                    {
-                      detail: { subwizard: true },
-                    }
+                      sinkIED,
+                      root
+                    )
                   )
-                )}"
+                );
+                evt.target!.dispatchEvent(newWizardEvent());
+              }}"
             >
               <span
-                >${cbId}
+                >${sourceIED}
                 <mwc-icon style="--mdc-icon-size: 1em;">trending_flat</mwc-icon>
-                ${iedName}</span
+                ${sinkIED}</span
               >
+              <span slot="secondary">${controlBlock}</span>
               <span slot="meta" style="padding-left: 10px"
                 >${connections.get(key)!.length}</span
               >
