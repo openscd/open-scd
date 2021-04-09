@@ -57,26 +57,28 @@ function sinkSecondary(sink: Element): string {
 }
 
 function disconnectExtRef(extRef: Element): EditorAction {
-  if (extRef.getAttribute('intAddr')) {
+  const [intAddr, desc, serviceType, pServT, pLN, pDO, pDA] = [
+    'intAddr',
+    'desc',
+    'serviceType',
+    'pServT',
+    'pLN',
+    'pDO',
+    'pDA',
+  ].map(name => extRef.getAttribute(name));
+
+  if (intAddr) {
+    // FIXME(JakobVogelsang): Which specific attribute does this comment refer to?
     // cannot delete extRef but only specific attribute
-    const newExtRef = createElement(extRef.ownerDocument, 'ExtRef', {});
-    if (extRef.getAttribute('intAddr'))
-      newExtRef.setAttribute('intAddr', extRef.getAttribute('intAddr')!);
-    if (extRef.getAttribute('desc'))
-      newExtRef.setAttribute('desc', extRef.getAttribute('desc')!);
-    if (extRef.getAttribute('serviceType'))
-      newExtRef.setAttribute(
-        'serviceType',
-        extRef.getAttribute('serviceType')!
-      );
-    if (extRef.getAttribute('pServT'))
-      newExtRef.setAttribute('pServT', extRef.getAttribute('pServT')!);
-    if (extRef.getAttribute('pLN'))
-      newExtRef.setAttribute('pLN', extRef.getAttribute('pLN')!);
-    if (extRef.getAttribute('pDO'))
-      newExtRef.setAttribute('pDO', extRef.getAttribute('pDO')!);
-    if (extRef.getAttribute('pDA'))
-      newExtRef.setAttribute('pDA', extRef.getAttribute('pDA')!);
+    const newExtRef = createElement(extRef.ownerDocument, 'ExtRef', {
+      intAddr,
+      desc,
+      serviceType,
+      pServT,
+      pLN,
+      pDO,
+      pDA,
+    });
 
     return {
       new: {
