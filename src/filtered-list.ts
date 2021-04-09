@@ -18,25 +18,23 @@ export class Filterlist extends List {
 
   onFilterInput(): void {
     this.items.forEach(item => {
-      const value: string =
+      const text: string = (
         item.innerText +
         '\n' +
         Array.from(item.children)
-          .map(child => child.innerHTML)
-          .join('\n');
+          .map(child => (<HTMLElement>child).innerText)
+          .join('\n')
+      ).toUpperCase();
+      const terms: string[] = this.searchField.value.toUpperCase().split(' ');
 
-      const terms: string[] = this.searchField.value.split(' ');
-      terms
-        .map(term => value.toUpperCase().includes(term.toUpperCase()))
-        .some(item => item === false)
-        ? item.setAttribute('style', 'display:none;')
-        : item.removeAttribute('style');
+      terms.some(term => !text.includes(term))
+        ? item.classList.add('hidden')
+        : item.classList.remove('hidden');
     });
   }
 
-  //HACK: tfContainer only for CSS width adjustment 100% does not work
   render(): TemplateResult {
-    return html`<div id="tfContainer">
+    return html`<div id="tfcontainer">
         <mwc-textfield
           label="${this.searchFieldLabel ?? ''}"
           iconTrailing="search"
@@ -48,9 +46,15 @@ export class Filterlist extends List {
   }
 
   static styles = css`
-    #tfContainer {
+    ${List.styles}
+
+    #tfcontainer {
       display: flex;
       flex: auto;
+    }
+
+    ::slotted(.hidden) {
+      display: none;
     }
 
     mwc-textfield {
@@ -58,6 +62,7 @@ export class Filterlist extends List {
       width: 100%;
       --mdc-shape-small: 28px;
     }
+
     .mdc-list {
       padding-inline-start: 0px;
     }

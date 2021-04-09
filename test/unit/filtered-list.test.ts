@@ -33,10 +33,10 @@ describe('filtered-list', () => {
       element.onFilterInput();
       element.requestUpdate();
       await element.updateComplete;
-      expect(element.items[0].style.display).to.equal('');
-      expect(element.items[1].style.display).to.equal('none');
-      expect(element.items[2].style.display).to.equal('none');
-      expect(element.items[3].style.display).to.equal('none');
+      expect(element.items[0].classList.contains('hidden')).to.be.false;
+      expect(element.items[1].classList.contains('hidden')).to.be.true;
+      expect(element.items[2].classList.contains('hidden')).to.be.true;
+      expect(element.items[3].classList.contains('hidden')).to.be.true;
     });
 
     it('filteres within twoline mwc-list-item', async () => {
@@ -44,10 +44,10 @@ describe('filtered-list', () => {
       element.onFilterInput();
       element.requestUpdate();
       await element.updateComplete;
-      expect(element.items[0].style.display).to.equal('none');
-      expect(element.items[1].style.display).to.equal('');
-      expect(element.items[2].style.display).to.equal('none');
-      expect(element.items[3].style.display).to.equal('none');
+      expect(element.items[0].classList.contains('hidden')).to.be.true;
+      expect(element.items[1].classList.contains('hidden')).to.be.false;
+      expect(element.items[2].classList.contains('hidden')).to.be.true;
+      expect(element.items[3].classList.contains('hidden')).to.be.true;
     });
 
     it('uses space as logic AND ', async () => {
@@ -55,10 +55,10 @@ describe('filtered-list', () => {
       element.onFilterInput();
       element.requestUpdate();
       await element.updateComplete;
-      expect(element.items[0].style.display).to.equal('none');
-      expect(element.items[1].style.display).to.equal('none');
-      expect(element.items[2].style.display).to.equal('');
-      expect(element.items[3].style.display).to.equal('none');
+      expect(element.items[0].classList.contains('hidden')).to.be.true;
+      expect(element.items[1].classList.contains('hidden')).to.be.true;
+      expect(element.items[2].classList.contains('hidden')).to.be.false;
+      expect(element.items[3].classList.contains('hidden')).to.be.true;
     });
   });
 });

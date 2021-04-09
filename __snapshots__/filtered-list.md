@@ -3,7 +3,7 @@
 #### `looks like its latest snapshot`
 
 ```html
-<div id="tfContainer">
+<div id="tfcontainer">
   <mwc-textfield
     icontrailing="search"
     label=""
