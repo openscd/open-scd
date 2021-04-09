@@ -37,7 +37,8 @@ function sinkSecondary(sink: Element): string {
   return sink.tagName === 'ClientLN' ? '' : sink.getAttribute('ldInst') ?? '';
 }
 
-function disconnectExtRef(extRef: Element): EditorAction {
+function disconnectExtRef(extRef: Element): EditorAction[] {
+  const actions = <EditorAction[]>[];
   const [intAddr, desc, serviceType, pServT, pLN, pDO, pDA] = [
     'intAddr',
     'desc',
@@ -49,8 +50,7 @@ function disconnectExtRef(extRef: Element): EditorAction {
   ].map(name => extRef.getAttribute(name));
 
   if (intAddr) {
-    // FIXME(JakobVogelsang): Which specific attribute does this comment refer to?
-    // cannot delete extRef but only specific attribute
+    // cannot delete extRef but only DAPath attributes
     const newExtRef = createElement(extRef.ownerDocument, 'ExtRef', {
       intAddr,
       desc,
@@ -61,27 +61,69 @@ function disconnectExtRef(extRef: Element): EditorAction {
       pDA,
     });
 
-    return {
+    actions.push({
       new: {
         element: newExtRef,
       },
       old: {
         element: extRef,
       },
-    };
+    });
+  } else {
+    actions.push({
+      old: {
+        parent: extRef.parentElement!,
+        element: extRef,
+        reference: extRef.nextElementSibling,
+      },
+    });
   }
 
-  return {
-    old: {
-      parent: extRef.parentElement!,
-      element: extRef,
-      reference: extRef.nextElementSibling,
-    },
-  };
+  const controlBlocks = findControlBlocks(extRef);
+
+  controlBlocks.forEach(cb => {
+    const ied = extRef.closest('IED')?.getAttribute('name');
+    const ld = extRef.closest('LDevice')?.getAttribute('inst');
+    const ap = extRef.closest('AccessPoint')?.getAttribute('name');
+    const ln = extRef.closest('LN0') || extRef.closest('LN');
+    const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(name =>
+      ln?.getAttribute(name)
+    );
+    const iedNames = Array.from(cb.getElementsByTagName('IEDName')).filter(
+      iedName =>
+        iedName.textContent === ied &&
+        (iedName.getAttribute('apRef') || ap) === ap &&
+        (iedName.getAttribute('ldInst') || ld) === ld &&
+        (iedName.getAttribute('prefix') || prefix) === prefix &&
+        (iedName.getAttribute('lnClass') || lnClass) === lnClass &&
+        (iedName.getAttribute('lnInst') || inst) === inst
+    );
+    const targets = iedNames.map(findIEDNameTarget);
+  });
+
+  return actions;
 }
 
-function disconnectSink(connections: Element[]): WizardAction {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+function findIEDNameTarget(iedName: Element): Element | null {
+  const name = iedName.textContent ?? '';
+  const [apRef, ldInst, prefix, lnClass, lnInst] = [
+    'apRef',
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+  ].map(name => iedName.getAttribute(name));
+  const ied = iedName.ownerDocument.querySelector(`:root > IED[name=${name}]`);
+  if (!ied) return null;
+  const ap = ied.getElementsByTagName('AccessPoint');
+  return ied;
+}
+
+function disconnect(
+  connections: Element[],
+  root: XMLDocument | Element
+): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
     const items = <Set<number>>(
       (<List>wizard.shadowRoot!.querySelector('filtered-list')).index
     );
@@ -90,7 +132,7 @@ function disconnectSink(connections: Element[]): WizardAction {
 
     items.forEach(index => {
       if (connections[index].tagName === 'ExtRef')
-        actions.push(disconnectExtRef(connections[index]));
+        actions.concat(disconnectExtRef(connections[index]));
       else {
         // Connections to IEDName are not direct but can shared for several ExtRef's
         actions.push({
@@ -170,17 +212,17 @@ function communicationMappingWizard(root: XMLDocument | Element): Wizard {
   const sourceRefs = getSourceReferences(root);
   const sinkRefs = getSinkReferences(root);
 
-  sinkRefs.forEach(element => {
-    const controlBlock = element.parentElement!;
-    const iedName =
-      element.tagName === 'IEDName'
-        ? element.textContent
-        : element.getAttribute('iedName');
-    const key =
-      identity(controlBlock) + ' | ' + controlBlock.tagName + ' | ' + iedName;
-    if (!connections.has(key)) connections.set(key, []);
-    connections.get(key)?.push(element);
-  });
+  sinkRefs
+    .filter(element => element.tagName === 'ClientLN')
+    .forEach(element => {
+      const controlBlock = element.parentElement!.parentElement!;
+      const iedName = element.getAttribute('iedName');
+      const key =
+        identity(controlBlock) + ' | ' + controlBlock.tagName + ' | ' + iedName;
+      if (!connections.has(key)) connections.set(key, []);
+      connections.get(key)?.push(element);
+      console.warn(key, element);
+    });
 
   sourceRefs.forEach(element => {
     const iedName = element.closest('IED')?.getAttribute('name') ?? '';
