@@ -339,6 +339,7 @@
                         </DataSet>
 					<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
 						<SmvOpts/>
+						<IEDName apRef="P1" ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1">IED1</IEDName>
 					</SampledValueControl>
 					</LN0>
                     <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />

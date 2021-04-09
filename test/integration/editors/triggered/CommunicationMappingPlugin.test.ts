@@ -88,7 +88,9 @@ describe('CommunicationMappingPlugin', () => {
       commMappings.items[0].click();
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
-      expect(parent.wizardUI.dialog?.heading).to.equal('IED2 - IED1');
+      expect(parent.wizardUI.dialog?.heading).to.equal(
+        'IED2>>CBSW>XSWI2>ReportCb - IED1'
+      );
     });
 
     it('shows all ClientLNs', async () => {
@@ -130,7 +132,7 @@ describe('CommunicationMappingPlugin', () => {
       await parent.updateComplete;
       expect(
         parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
-      ).to.equal(4);
+      ).to.equal(14);
     });
 
     it('removes selected ExtRefs in case no intAddr is present', async () => {
@@ -185,6 +187,80 @@ describe('CommunicationMappingPlugin', () => {
           ':root > IED[name="IED1"] ExtRef:not([iedName]):not([ldInst]):not([lnClass]):not([doName]):not([daName])' +
             '[intAddr="./stVal"][serviceType="GOOSE"][desc="testDesc"]' +
             '[pServT="GOOSE"][pLN="XSWI"][pDO="Pos"][pDA="stVal"]'
+        )
+      ).to.exist;
+    });
+    it('removes IEDName if all linked ExtRefs are removed/disconnected', async () => {
+      expect(
+        doc.querySelector(
+          ':root > IED[name="IED1"] > AccessPoint > Server > ' +
+            'LDevice[inst="CircuitBreaker_CB1"] > LN0 > GSEControl > ' +
+            'IEDName[apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="CSWI"]'
+        )
+      ).to.exist;
+      commMappings.items[3].click();
+      await parent.updateComplete;
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      (<List>(
+        parent.wizardUI.dialog?.querySelector('filtered-list')
+      )).items[0].click();
+      await parent.updateComplete;
+      (<List>(
+        parent.wizardUI.dialog?.querySelector('filtered-list')
+      )).items[1].click();
+      await parent.updateComplete;
+      (<List>(
+        parent.wizardUI.dialog?.querySelector('filtered-list')
+      )).items[2].click();
+      await parent.updateComplete;
+      (<List>(
+        parent.wizardUI.dialog?.querySelector('filtered-list')
+      )).items[3].click();
+      await parent.updateComplete;
+      (<HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc.querySelector(
+          ':root > IED[name="IED1"] > AccessPoint > Server > ' +
+            'LDevice[inst="CircuitBreaker_CB1"] > LN0 > GSEControl > ' +
+            'IEDName[apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="CSWI"]'
+        )
+      ).to.not.exist;
+    });
+    it('does not removes IEDName if linked ExtRefs`not completely removed/disconnected', async () => {
+      expect(
+        doc.querySelector(
+          ':root > IED[name="IED1"] > AccessPoint > Server > ' +
+            'LDevice[inst="CircuitBreaker_CB1"] > LN0 > GSEControl > ' +
+            'IEDName[apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="CSWI"]'
+        )
+      ).to.exist;
+      commMappings.items[3].click();
+      await parent.updateComplete;
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      (<List>(
+        parent.wizardUI.dialog?.querySelector('filtered-list')
+      )).items[0].click();
+      await parent.updateComplete;
+      (<List>(
+        parent.wizardUI.dialog?.querySelector('filtered-list')
+      )).items[1].click();
+      await parent.updateComplete;
+      (<HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      )).click();
+      await parent.updateComplete;
+      expect(
+        doc.querySelector(
+          ':root > IED[name="IED1"] > AccessPoint > Server > ' +
+            'LDevice[inst="CircuitBreaker_CB1"] > LN0 > GSEControl > ' +
+            'IEDName[apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="CSWI"]'
         )
       ).to.exist;
     });

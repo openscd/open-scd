@@ -37,68 +37,97 @@ function sinkSecondary(sink: Element): string {
   return sink.tagName === 'ClientLN' ? '' : sink.getAttribute('ldInst') ?? '';
 }
 
-function disconnectExtRef(extRef: Element): EditorAction[] {
+function disconnectExtRefs(extRefs: Element[]): EditorAction[] {
   const actions = <EditorAction[]>[];
-  const [intAddr, desc, serviceType, pServT, pLN, pDO, pDA] = [
-    'intAddr',
-    'desc',
-    'serviceType',
-    'pServT',
-    'pLN',
-    'pDO',
-    'pDA',
-  ].map(name => extRef.getAttribute(name));
+  extRefs.forEach(extRef => {
+    const [intAddr, desc, serviceType, pServT, pLN, pDO, pDA] = [
+      'intAddr',
+      'desc',
+      'serviceType',
+      'pServT',
+      'pLN',
+      'pDO',
+      'pDA',
+    ].map(name => extRef.getAttribute(name));
 
-  if (intAddr) {
-    // cannot delete extRef but only DAPath attributes
-    const newExtRef = createElement(extRef.ownerDocument, 'ExtRef', {
-      intAddr,
-      desc,
-      serviceType,
-      pServT,
-      pLN,
-      pDO,
-      pDA,
+    if (intAddr) {
+      // cannot delete extRef but only DAPath attributes
+      const newExtRef = createElement(extRef.ownerDocument, 'ExtRef', {
+        intAddr,
+        desc,
+        serviceType,
+        pServT,
+        pLN,
+        pDO,
+        pDA,
+      });
+
+      actions.push({
+        new: {
+          element: newExtRef,
+        },
+        old: {
+          element: extRef,
+        },
+      });
+    } else {
+      actions.push({
+        old: {
+          parent: extRef.parentElement!,
+          element: extRef,
+          reference: extRef.nextElementSibling,
+        },
+      });
+    }
+  });
+
+  // cbConnectionWizard shows connections sources in ONE controlBlock
+  const sinkReference: Set<Element> = new Set();
+  extRefs.forEach(extRef => {
+    findControlBlocks(extRef).forEach(cb => {
+      const ied = extRef.closest('IED')?.getAttribute('name');
+      const ld = extRef.closest('LDevice')?.getAttribute('inst');
+      const ap = extRef.closest('AccessPoint')?.getAttribute('name');
+      const ln = extRef.closest('LN0') || extRef.closest('LN');
+      const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(name =>
+        ln?.getAttribute(name)
+      );
+      const iedNames = Array.from(cb.getElementsByTagName('IEDName')).filter(
+        iedName =>
+          iedName.textContent === ied &&
+          (iedName.getAttribute('apRef') || ap) === ap &&
+          (iedName.getAttribute('ldInst') || ld) === ld &&
+          (iedName.getAttribute('prefix') || prefix) === prefix &&
+          (iedName.getAttribute('lnClass') || lnClass) === lnClass &&
+          (iedName.getAttribute('lnInst') || inst) === inst
+      );
+
+      iedNames.forEach(iedName => {
+        sinkReference.add(iedName);
+      });
     });
+  });
 
-    actions.push({
-      new: {
-        element: newExtRef,
-      },
-      old: {
-        element: extRef,
-      },
-    });
-  } else {
-    actions.push({
-      old: {
-        parent: extRef.parentElement!,
-        element: extRef,
-        reference: extRef.nextElementSibling,
-      },
-    });
-  }
+  const sourceReferences: Set<Element> = new Set();
+  sinkReference.forEach(iedName => {
+    sourceReferences.clear();
 
-  const controlBlocks = findControlBlocks(extRef);
+    const target = findIEDNameTarget(iedName);
 
-  controlBlocks.forEach(cb => {
-    const ied = extRef.closest('IED')?.getAttribute('name');
-    const ld = extRef.closest('LDevice')?.getAttribute('inst');
-    const ap = extRef.closest('AccessPoint')?.getAttribute('name');
-    const ln = extRef.closest('LN0') || extRef.closest('LN');
-    const [prefix, lnClass, inst] = ['prefix', 'lnClass', 'inst'].map(name =>
-      ln?.getAttribute(name)
-    );
-    const iedNames = Array.from(cb.getElementsByTagName('IEDName')).filter(
-      iedName =>
-        iedName.textContent === ied &&
-        (iedName.getAttribute('apRef') || ap) === ap &&
-        (iedName.getAttribute('ldInst') || ld) === ld &&
-        (iedName.getAttribute('prefix') || prefix) === prefix &&
-        (iedName.getAttribute('lnClass') || lnClass) === lnClass &&
-        (iedName.getAttribute('lnInst') || inst) === inst
-    );
-    const targets = iedNames.map(findIEDNameTarget);
+    if (target)
+      getSourceReferences(target).forEach(sourceReference =>
+        sourceReferences.add(sourceReference)
+      );
+
+    extRefs.forEach(extRef => sourceReferences.delete(extRef));
+    if (sourceReferences.size === 0)
+      actions.push({
+        old: {
+          parent: iedName.parentElement!,
+          element: iedName,
+          reference: iedName.nextElementSibling,
+        },
+      });
   });
 
   return actions;
@@ -115,8 +144,20 @@ function findIEDNameTarget(iedName: Element): Element | null {
   ].map(name => iedName.getAttribute(name));
   const ied = iedName.ownerDocument.querySelector(`:root > IED[name=${name}]`);
   if (!ied) return null;
-  const ap = ied.getElementsByTagName('AccessPoint');
-  return ied;
+
+  const apRefSelector = apRef ? `AccessPoint[name="${apRef}"]` : '``';
+  const ldInstSeletor = ldInst ? `LDevice[inst="${ldInst}"]` : '';
+  const lnClassSelector = lnClass
+    ? lnClass === 'LLN0'
+      ? `LN0`
+      : `LN[lnClass="${lnClass}"]`
+    : '';
+  const prefixSelector = prefix ? `[prefix="${prefix}"]` : '';
+  const lnInstSelector = lnInst ? `[inst="${lnInst}"]` : '';
+
+  const selector = ` ${apRefSelector} ${ldInstSeletor} ${lnClassSelector}${prefixSelector}${lnInstSelector}`;
+
+  return ied.querySelector(selector);
 }
 
 function disconnect(
@@ -129,20 +170,24 @@ function disconnect(
     );
 
     const actions: WizardAction[] = [];
+    const selected = Array.from(items).map(index => connections[index]);
 
-    items.forEach(index => {
-      if (connections[index].tagName === 'ExtRef')
-        actions.concat(disconnectExtRef(connections[index]));
-      else {
-        // Connections to IEDName are not direct but can shared for several ExtRef's
-        actions.push({
-          old: {
-            parent: connections[index].parentElement!,
-            element: connections[index],
-            reference: connections[index].nextElementSibling,
-          },
-        });
-      }
+    const selectedExtRefs = selected.filter(
+      connection => connection.tagName === 'ExtRef'
+    );
+    disconnectExtRefs(selectedExtRefs).forEach(action => actions.push(action));
+
+    const selectedClientLNs = selected.filter(
+      connection => connection.tagName === 'ClientLN'
+    );
+    selectedClientLNs.forEach(clientLN => {
+      actions.push({
+        old: {
+          parent: clientLN.parentElement!,
+          element: clientLN,
+          reference: clientLN.nextElementSibling,
+        },
+      });
     });
 
     actions.push(() => communicationMappingWizard(root));
@@ -195,13 +240,13 @@ function cbConnectionWizard(
   ];
 }
 
-function getSinkReferences(root: Document | Element): Element[] {
+export function getSinkReferences(root: Document | Element): Element[] {
   return Array.from(root.getElementsByTagName('IEDName'))
     .concat(Array.from(root.getElementsByTagName('ClientLN')))
     .filter(element => !element.closest('Private'));
 }
 
-function getSourceReferences(root: Document | Element): Element[] {
+export function getSourceReferences(root: Document | Element): Element[] {
   return Array.from(root.getElementsByTagName('ExtRef'))
     .filter(element => !element.closest('Private'))
     .filter(element => element.getAttribute('iedName'));

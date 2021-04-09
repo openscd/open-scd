@@ -4,7 +4,6 @@ import {
   ComplexAction,
   EditorAction,
   identity,
-  getDataSink,
   ifImplemented,
   invert,
   isCreate,
