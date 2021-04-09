@@ -1,32 +1,8 @@
 import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { newWizardEvent } from '../foundation.js';
+import { identity, newWizardEvent, selector } from '../foundation.js';
 import { Diff, mergeWizard } from '../wizards.js';
-
-function lNSelector(lNode: Element): string {
-  const [iedName, ldInst, prefix, lnClass, lnInst] = [
-    'iedName',
-    'ldInst',
-    'prefix',
-    'lnClass',
-    'lnInst',
-  ].map(name => lNode.getAttribute(name));
-
-  // FIXME: give the correct LN selector string!
-  return lNode.getAttribute('ldInst')
-    ? `:root > IED[name="${lNode.getAttribute('iedName')}"] > AccessPoint > LN`
-    : `:root > IED[name="${lNode.getAttribute(
-        'iedName'
-      )}"] > AccessPoint > Server > LDevice[inst="${lNode.getAttribute(
-        'ldInst'
-      )}"] > LN` +
-        `,:root > IED[name="${lNode.getAttribute(
-          'iedName'
-        )}"] > AccessPoint > Server > LDevice[inst="${lNode.getAttribute(
-          'ldInst'
-        )}"] > LN0`;
-}
 
 export default class UpdateSubstationPlugin extends LitElement {
   doc!: XMLDocument;
@@ -51,7 +27,9 @@ export default class UpdateSubstationPlugin extends LitElement {
                 selected: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element
                     ? diff.theirs.tagName === 'LNode'
-                      ? this.doc.querySelector(lNSelector(diff.theirs)) !== null
+                      ? this.doc.querySelector(
+                          selector('LNode', identity(diff.theirs))
+                        ) !== null
                       : true
                     : diff.theirs !== null,
               }
