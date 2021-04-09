@@ -1142,7 +1142,7 @@ const tAnyLN = ['LN0', 'LN'] as const;
 
 type NamingTag = typeof tNaming[number] | typeof tUnNaming[number];
 
-export const namingTags: Record<NamingTag, string[]> = {
+export const namingParents: Record<NamingTag, string[]> = {
   SubNetwork: ['Communication'],
   GOOSESecurity: ['AccessPoint'],
   SMVSecurity: ['AccessPoint'],
@@ -1201,14 +1201,23 @@ export const namingTags: Record<NamingTag, string[]> = {
   ReportControl: [...tAnyLN],
 };
 
-function namingSelector(tagName: NamingTag, identity: string): string {
-  const parents = namingTags[tagName];
-  if (!parents) return ':not(*)';
+function namingSelector(
+  tagName: NamingTag,
+  identity: string,
+  depth = -1
+): string {
+  if (depth === -1) depth = identity.split('>').length;
 
   const [parentIdentity, name] = pathParts(identity);
+  if (depth === 0) return `${tagName}[name="${name}"]`;
+
+  const parents = namingParents[tagName];
+  if (!parents) return ':not(*)';
 
   const parentSelectors = parents.flatMap(parentTag =>
-    selector(parentTag, parentIdentity).split(',')
+    namingParents[<NamingTag>parentTag]
+      ? namingSelector(<NamingTag>parentTag, parentIdentity, depth - 1)
+      : selector(parentTag, parentIdentity).split(',')
   );
 
   return crossProduct(parentSelectors, ['>'], [tagName], [`[name="${name}"]`])
@@ -1236,7 +1245,7 @@ export function selector(tagName: string, identity: string | number): string {
   if (specialTags[tagName])
     return specialTags[tagName]?.selector?.(tagName, identity) ?? ':not(*)';
 
-  if (namingTags[tagName as NamingTag])
+  if (namingParents[tagName as NamingTag])
     return namingSelector(tagName as NamingTag, identity);
 
   if (identity.startsWith('#')) return tagName + identity;

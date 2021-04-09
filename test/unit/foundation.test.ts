@@ -2,7 +2,6 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import {
   ComplexAction,
-  createElement,
   EditorAction,
   identity,
   ifImplemented,
@@ -278,22 +277,22 @@ describe('foundation', () => {
       Object.keys(singletonTags).forEach(tag => {
         const element = scl1.querySelector(tag);
         if (element)
-          expect(
+          expect(element).to.satisfy((element: Element) =>
             element.isEqualNode(
               scl1.querySelector(selector(tag, identity(element)))
             )
-          ).to.be.true;
+          );
       });
     });
     it('returns correct selector for special identities', () => {
       Object.keys(specialTags).forEach(tag => {
         const element = scl1.querySelector(tag);
         if (element)
-          expect(
+          expect(element).to.satisfy((element: Element) =>
             element.isEqualNode(
               scl1.querySelector(selector(tag, identity(element)))
             )
-          ).to.be.true;
+          );
       });
     });
   });
