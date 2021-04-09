@@ -17,26 +17,6 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { clientIcon, controlBlockIcons, inputIcon } from '../icons.js';
 
-type CommunicationMapping =
-  | {
-      controlBlock: Element;
-      sinkReference: Element;
-      fcda: Element | null;
-      extRef: Element | null;
-    }
-  | {
-      controlBlock: Element;
-      sinkReference: Element | null;
-      fcda: Element;
-      extRef: Element;
-    }
-  | {
-      controlBlock: null;
-      sinkReference: null;
-      fcda: Element;
-      extRef: Element;
-    };
-
 function sinkPrimary(sink: Element): string {
   const ln =
     (sink.getAttribute('prefix') ?? '') +
