@@ -235,23 +235,23 @@ describe('foundation', () => {
     it('returns valid identity for special identities', () => {
       const expectations: Partial<Record<string, string>> = {
         Hitem: '1\t143',
-        Terminal: '>AA1>E1>COUPLING_BAY>QC11>AA1/E1/COUPLING_BAY/L2',
+        Terminal: 'AA1>E1>COUPLING_BAY>QC11>AA1/E1/COUPLING_BAY/L2',
         'Bay>LNode': 'IED2 CBSW/ LPHD 1',
-        KDC: '>IED1>IED1 P1',
-        LDevice: '>IED1>>CircuitBreaker_CB1',
+        KDC: 'IED1>IED1 P1',
+        LDevice: 'IED1>>CircuitBreaker_CB1',
         IEDName:
-          '>IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/ CSWI 1',
+          'IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/ CSWI 1',
         FCDA:
-          '>IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)',
+          'IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)',
         ExtRef:
-          '>IED1>>Disconnectors>DC CSWI 1>GOOSE:GCB CBSW/ LLN0  IED2 CBSW/ XSWI 2 Pos stVal@intAddr',
-        'ExtRef:not([iedName])': '>IED1>>Disconnectors>DC CSWI 1>stVal-t[0]',
-        LN: '>IED1>>CircuitBreaker_CB1> XCBR 1',
+          'IED1>>Disconnectors>DC CSWI 1>GOOSE:GCB CBSW/ LLN0  IED2 CBSW/ XSWI 2 Pos stVal@intAddr',
+        'ExtRef:not([iedName])': 'IED1>>Disconnectors>DC CSWI 1>stVal-t[0]',
+        LN: 'IED1>>CircuitBreaker_CB1> XCBR 1',
         ClientLN:
-          '>IED2>>CBSW> XSWI 1>ReportCb>IED1 P1 CircuitBreaker_CB1/ XCBR 1',
-        DAI: '>IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel',
-        SDI: '>IED1>>CircuitBreaker_CB1>CB CSWI 2>Pos>pulseConfig',
-        Val: '>IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel> 0',
+          'IED2>>CBSW> XSWI 1>ReportCb>IED1 P1 CircuitBreaker_CB1/ XCBR 1',
+        DAI: 'IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel',
+        SDI: 'IED1>>CircuitBreaker_CB1>CB CSWI 2>Pos>pulseConfig',
+        Val: 'IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel> 0',
         ConnectedAP: 'IED1 P1',
         GSE: 'CircuitBreaker_CB1 GCB',
         SMV: 'MU01 MSVCB01',
@@ -269,7 +269,7 @@ describe('foundation', () => {
   });
 
   describe('selector', () => {
-    it('returns negation pseudo-class for idntity of type NaN', () => {
+    it('returns negation pseudo-class for identity of type NaN', () => {
       const element = scl1.querySelector('Assotiation');
       const ident = identity(element!);
       expect(selector('Assotiation', ident)).to.equal(':not(*)');
@@ -277,17 +277,23 @@ describe('foundation', () => {
     it('returns correct selector for singelton identities', () => {
       Object.keys(singletonTags).forEach(tag => {
         const element = scl1.querySelector(tag);
-        expect(
-          scl1.querySelector(selector(tag, identity(element!)))
-        ).to.deep.equal(element);
+        if (element)
+          expect(
+            element.isEqualNode(
+              scl1.querySelector(selector(tag, identity(element)))
+            )
+          ).to.be.true;
       });
     });
     it('returns correct selector for special identities', () => {
       Object.keys(specialTags).forEach(tag => {
         const element = scl1.querySelector(tag);
-        expect(
-          scl1.querySelector(selector(tag, identity(element!)))
-        ).to.deep.equal(element);
+        if (element)
+          expect(
+            element.isEqualNode(
+              scl1.querySelector(selector(tag, identity(element)))
+            )
+          ).to.be.true;
       });
     });
   });

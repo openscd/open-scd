@@ -391,7 +391,7 @@ function lDeviceIdentity(e: Element): string {
 
 function lDeviceSelector(tagName: string, identity: string): string {
   const [iedName, inst] = identity.split('>>');
-  return `IED[name="${iedName.replace('>', '')}"] ${tagName}[inst="${inst}"]`;
+  return `IED[name="${iedName}"] ${tagName}[inst="${inst}"]`;
 }
 
 function iEDNameIdentity(e: Element): string {
@@ -1207,11 +1207,9 @@ function namingSelector(tagName: NamingTag, identity: string): string {
 
   const [parentIdentity, name] = pathParts(identity);
 
-  const [parentSelectors] = [
-    parents.flatMap(parentTag =>
-      selector(parentTag, parentIdentity).split(',')
-    ),
-  ];
+  const parentSelectors = parents.flatMap(parentTag =>
+    selector(parentTag, parentIdentity).split(',')
+  );
 
   return crossProduct(parentSelectors, ['>'], [tagName], [`[name="${name}"]`])
     .map(strings => strings.join(''))
@@ -1222,9 +1220,9 @@ function singletonSelector(tagName: string, identity: string): string {
   const parents = singletonTags[tagName];
   if (!parents) return ':not(*)';
 
-  const [parentSelectors] = [
-    parents.flatMap(parentTag => selector(parentTag, identity).split(',')),
-  ];
+  const parentSelectors = parents.flatMap(parentTag =>
+    selector(parentTag, identity).split(',')
+  );
 
   return crossProduct(parentSelectors, ['>'], [tagName])
     .map(strings => strings.join(''))
