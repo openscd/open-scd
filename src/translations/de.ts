@@ -227,6 +227,9 @@ export const de: Translations = {
       message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
     },
   },
+  updatesubstation: {
+    title: 'Schaltanlage aktualisieren',
+  },
   add: 'Hinzufügen',
   remove: 'Entfernen',
   edit: 'Bearbeiten',

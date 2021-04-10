@@ -224,6 +224,9 @@ export const en = {
       message: '{{updatenumber}} IEDName elements added to the project',
     },
   },
+  updatesubstation: {
+    title: 'Update substation',
+  },
   add: 'Add',
   remove: 'Remove',
   edit: 'Edit',
