@@ -46,6 +46,9 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
 			<Bay name="COUPLING_BAY" desc="Bay">
+        		<Private type="dummyType">
+          			<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
+        		</Private>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
 				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
@@ -85,12 +88,23 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 					<P type="OSI-SSEL">0001</P>
 					<P type="OSI-TSEL">0001</P>
 				</Address>
+				<GSE ldInst="CircuitBreaker_CB1" cbName="GCB">
+					<Address>
+						<P type="MAC-Address">01-0C-CD-01-00-10</P>
+						<P type="VLAN-ID">005</P>
+						<P type="VLAN-PRIORITY">4</P>
+						<P type="APPID">0010</P>
+					</Address>
+				</GSE>
+				<PhysConn type="RedConn">
+					<P type="Plug">RJ45</P>
+				</PhysConn>
 			</ConnectedAP>
 		</SubNetwork>
 		<SubNetwork name="ProcessBus" type="8-MMS">
 			<ConnectedAP iedName="IED2" apName="P1">
 				<Address>
-					<P type="IP">192.168.0.111</P>
+					<P type="IP">192.168.0.112</P>
 					<P type="IP-SUBNET">255.255.255.0</P>
 					<P type="IP-GATEWAY">192.168.210.1</P>
 					<P type="OSI-AP-Title">1,3,9999,23</P>
@@ -99,6 +113,26 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 					<P type="OSI-SSEL">0001</P>
 					<P type="OSI-TSEL">0001</P>
 				</Address>
+			</ConnectedAP>
+			<ConnectedAP iedName="IED3" apName="P1">
+				<Address>
+					<P type="IP">192.168.0.113</P>
+					<P type="IP-SUBNET">255.255.255.0</P>
+					<P type="IP-GATEWAY">192.168.210.1</P>
+					<P type="OSI-AP-Title">1,3,9999,23</P>
+					<P type="OSI-AE-Qualifier">23</P>
+					<P type="OSI-PSEL">00000001</P>
+					<P type="OSI-SSEL">0001</P>
+					<P type="OSI-TSEL">0001</P>
+				</Address>
+				<SMV ldInst="MU01" cbName="MSVCB01">
+                    <Address>
+                        <P type="MAC-Address">01-0C-CD-04-00-20</P>
+                        <P type="VLAN-ID">007</P>
+                        <P type="VLAN-PRIORITY">4</P>
+                        <P type="APPID">4002</P>
+                    </Address>
+                </SMV>
 			</ConnectedAP>
 		</SubNetwork>
 	</Communication>
@@ -133,7 +167,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
                             <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
                         </DataSet>
 						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
-							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI">IED2</IEDName>
+							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
@@ -160,6 +194,11 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 					</LN>
 					<LN prefix="CB" lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
 						<DOI name="Pos">
+							<SDI name="pulseConfig">
+								<DAI name="numPls">
+    								<Val>1</Val>
+								</DAI>
+                            </SDI>
 							<DAI name="ctlModel">
 								<Val>sbo-with-enhanced-security</Val>
 							</DAI>
@@ -177,8 +216,9 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 					</LN>
 					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
 						<Inputs>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" serviceType="GOOSE" srcCBName="GCB" srcLDInst="CBSW" srcLNClass="LLN0" intAddr="intAddr"/>
 							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q"/>
+							<ExtRef ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="t" intAddr="stVal-t"/>
 						</Inputs>
 					</LN>
 					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
@@ -208,6 +248,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				</LDevice>
 			</Server>
 		</AccessPoint>
+		<KDC iedName="IED1" apName="P1"/>
 	</IED>
 	<IED name="IED2" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
@@ -249,6 +290,17 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 						</DOI>
 					</LN>
 					<LN lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
+						<DataSet name="dataSet">
+                            <FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+                            <FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+                        </DataSet>
+						<ReportControl rptID="IED2/CBSW/XSWI/SwitchGearBRCB" confRev="9" buffered="true" bufTime="100" indexed="true" intgPd="0" name="ReportCb" datSet="dataSet">
+							<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
+							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
+							<RptEnabled max="5">
+								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="XCBR" lnInst="1" iedName="IED1"/>
+							</RptEnabled>
+						</ReportControl>
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -321,14 +373,52 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 		<AccessPoint name="P1">
 			<Server>
 				<Authentication none="true" />
-				<LDevice inst="CircuitBreaker_CB1">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
+				<LDevice inst="MU01">
+					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0.two">
+					<DataSet name="PhsMeas1">
+                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
+                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
+                        </DataSet>
+					<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
+						<SmvOpts/>
+					</SampledValueControl>
+					</LN0>
+                    <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
+                    <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
+                    <LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
+                    <LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
+                    <LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
+                    <LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
+                    <LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
+                    <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
 				</LDevice>
 			</Server>
+		</AccessPoint>
+		<AccessPoint name="P2">
 		</AccessPoint>
 	</IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
+			<DO name="Mod" type="Dummy.LLN0.Mod" />
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="Health" type="Dummy.LLN0.Health" />
+			<DO name="NamPlt" type="Dummy.LLN0.NamPlt" />
+		</LNodeType>
+		<LNodeType lnClass="LLN0" id="Dummy.LLN0.two">
 			<DO name="Mod" type="Dummy.LLN0.Mod" />
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="Health" type="Dummy.LLN0.Health" />
@@ -384,6 +474,23 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<DO name="Ind1" type="Dummy.SPS" />
 			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
 		</LNodeType>
+		<LNodeType lnClass="TCTR" id="DummyTCTR">
+            <DO name="Mod" type="Dummy.LLN0.Mod"/>
+            <DO name="Beh" type="Dummy.LLN0.Beh"/>
+            <DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+            <DO name="Amp" type="DummySAV"/>
+        </LNodeType>
+		<LNodeType lnClass="TVTR" id="DummyTVTR">
+            <DO name="Mod" type="Dummy.LLN0.Mod"/>
+            <DO name="Beh" type="Dummy.LLN0.Beh"/>
+            <DO name="NamPlt" type="Dummy.XCBR1.NamPlt"/>
+            <DO name="Vol" type="DummySAV"/>
+        </LNodeType>
+		<DOType cdc="SAV" id="DummySAV">
+            <DA fc="MX" name="instMag" bType="Struct" type="AnalogueValue_i"/>
+            <DA fc="MX" qchg="true" name="q" bType="Quality"/>
+            <DA fc="CF" name="sVC" bType="Struct" type="ScaledValueConfig"/>
+        </DOType>
 		<DOType cdc="ENC" id="Dummy.LLN0.Mod">
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
@@ -486,6 +593,13 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
             <DA fc="ST" qchg="true" name="q" bType="Quality"/>
             <DA fc="ST" name="t" bType="Timestamp"/>
         </DOType>
+		<DAType id="AnalogueValue_i">
+            <BDA name="i" bType="INT32"/>
+        </DAType>
+		<DAType id="ScaledValueConfig">
+            <BDA name="scaleFactor" bType="FLOAT32"/>
+            <BDA name="offset" bType="FLOAT32"/>
+        </DAType>
 		<DAType id="Dummy_origin">
 			<BDA name="orCat" bType="Enum" type="Dummy_orCategory" />
 			<BDA name="orIdent" bType="Octet64" />
@@ -497,6 +611,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<BDA name="T" bType="Timestamp" />
 			<BDA name="Test" bType="BOOLEAN" />
 			<BDA name="Check" bType="Check" />
+			<ProtNs>IEC 61850-8-1:2003</ProtNs>
 		</DAType>
 		<DAType id="Dummy.LLN0.Mod.Cancel">
 			<BDA name="ctlVal" bType="Enum" type="Dummy_Beh" />

@@ -171,9 +171,15 @@ export const en = {
       description: `IEDs often contain more controlable logical nodes than switch gear in the field. \n You can select the control model(s) used specific for switch gear.`,
     },
   },
+  merge: {
+    action: 'Merge',
+    defaultTitle: 'Merge {{ source }} into {{ sink }} ({{ tag }})',
+    log: 'Merged {{ tag }} {{ source }} into {{ sink }}',
+    children: 'Child elements',
+  },
   import: {
     log: {
-      successful: 'IED {{name}} loaded',
+      successful: 'IED {{ name }} loaded',
       parsererror: 'Parser error',
       loaderror: 'Could not load file',
       importerror: 'Could not import IED',
@@ -217,6 +223,9 @@ export const en = {
       nonewitems: 'no new IEDName elements to add',
       message: '{{updatenumber}} IEDName elements added to the project',
     },
+  },
+  updatesubstation: {
+    title: 'Update substation',
   },
   add: 'Add',
   remove: 'Remove',

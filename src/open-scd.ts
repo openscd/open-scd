@@ -530,11 +530,7 @@ export class OpenSCD extends Setting(
       --mdc-theme-primary: var(--mdc-theme-on-primary);
     }
 
-    #file-input {
-      display: none;
-    }
-
-    #ied-import {
+    input[type='file'] {
       display: none;
     }
 

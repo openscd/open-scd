@@ -25,5 +25,19 @@
     "src": "/src/triggered/SubscriberInfo.js",
     "default": true,
     "kind": "triggered"
+  },
+  {
+    "name": "Merge Project",
+    "src": "/src/triggered/Merge.js",
+    "icon": "merge_type",
+    "default": true,
+    "kind": "triggered"
+  },
+  {
+    "name": "Update Substation",
+    "src": "/src/triggered/UpdateSubstation.js",
+    "icon": "merge_type",
+    "default": true,
+    "kind": "triggered"
   }
 ]

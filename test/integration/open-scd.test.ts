@@ -181,19 +181,19 @@ describe('open-scd', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
           .length
-      ).to.equal(13);
+      ).to.equal(16);
     });
     it('loads unique dotypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
-      ).to.equal(25);
+      ).to.equal(26);
     });
     it('loads unique datypes to the project', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DAType')
           .length
-      ).to.equal(11);
+      ).to.equal(13);
     });
     it('loads unique enumtypes to the project', () => {
       expect(

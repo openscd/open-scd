@@ -3,19 +3,36 @@ import { expect, fixture, html } from '@open-wc/testing';
 import {
   ComplexAction,
   EditorAction,
+  identity,
   ifImplemented,
   invert,
   isCreate,
   isDelete,
   isMove,
+  isSame,
   isSimple,
   isUpdate,
+  namingParents,
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
+  selector,
+  singletonTags,
+  specialTags,
 } from '../../src/foundation.js';
-
+import { getDocument } from '../data.js';
 import { MockAction } from './mock-actions.js';
+
+const scl1 = getDocument().documentElement;
+const scl2 = getDocument(true, '2003').documentElement;
+
+const substation = scl1.querySelector('Substation')!;
+const ied = scl1.querySelector('IED')!;
+const communication = scl1.querySelector('Communication')!;
+const bay = scl1.querySelector('Bay')!;
+const privateSection = bay.querySelector('Private')!;
+const privateElement = privateSection.firstElementChild!;
+const publicElement = bay.children.item(1)!;
 
 describe('foundation', () => {
   describe('EditorAction', () => {
@@ -130,5 +147,167 @@ describe('foundation', () => {
 
     it('does not render empty objects into its template', () =>
       expect(empty).dom.to.be.empty);
+  });
+
+  describe('isSame', () => {
+    it('is true of any two SCL Elements', () => {
+      expect(isSame(scl1, scl2)).to.be.true;
+    });
+
+    it('is true of any two Header Elements', () => {
+      expect(
+        isSame(scl1.querySelector('Header')!, scl2.querySelector('Header')!)
+      ).to.be.true;
+    });
+
+    it('is true of any two Communication Elements', () => {
+      expect(
+        isSame(
+          scl1.querySelector('Communication')!,
+          scl2.querySelector('Communication')!
+        )
+      ).to.be.true;
+    });
+
+    it('is true of any two DataTypeTemplates Elements', () => {
+      expect(
+        isSame(
+          scl1.querySelector('DataTypeTemplates')!,
+          scl2.querySelector('DataTypeTemplates')!
+        )
+      ).to.be.true;
+    });
+
+    it('is true of identical private sections', () => {
+      expect(isSame(privateSection, privateSection)).to.be.true;
+    });
+
+    it('is false of any private elements', () => {
+      expect(isSame(privateElement, privateElement)).to.be.false;
+      expect(isSame(privateElement, publicElement)).to.be.false;
+    });
+
+    it('is true of any one Element and itself', () => {
+      expect(isSame(substation, substation)).to.be.true;
+      expect(isSame(ied, ied)).to.be.true;
+      expect(isSame(bay, bay)).to.be.true;
+      expect(isSame(communication, communication)).to.be.true;
+    });
+
+    it('is false of elements with different tagNames', () => {
+      expect(isSame(substation, ied)).to.be.false;
+      expect(isSame(substation, bay)).to.be.false;
+      expect(isSame(bay, communication)).to.be.false;
+      expect(isSame(communication, ied)).to.be.false;
+    });
+
+    it('is true of elements with equal nonempty id attributes', () => {
+      expect(
+        isSame(
+          scl1.querySelector('LNodeType[id="Dummy.LLN0"]')!,
+          scl2.querySelector('LNodeType[id="Dummy.LLN0"]')!
+        )
+      ).to.be.true;
+    });
+
+    it('is false of elements with unequal id attributes', () => {
+      expect(
+        isSame(
+          scl1.querySelector('LNodeType[id="Dummy.LLN0"]')!,
+          scl1.querySelector('LNodeType[id="Dummy.LLN0.two"]')!
+        )
+      ).to.be.false;
+    });
+  });
+
+  describe('identity', () => {
+    it('returns NaN for any private element', () => {
+      expect(identity(privateElement)).to.be.NaN;
+    });
+    it('returns parent identity for singleton identities', () => {
+      Object.keys(singletonTags).forEach(tag => {
+        const element = scl1.querySelector(tag);
+        if (element) {
+          expect(identity(element)).to.equal(identity(element.parentElement!));
+        }
+      });
+    });
+    it('returns valid identity for special identities', () => {
+      const expectations: Partial<Record<string, string>> = {
+        Hitem: '1\t143',
+        Terminal: 'AA1>E1>COUPLING_BAY>QC11>AA1/E1/COUPLING_BAY/L2',
+        'Bay>LNode': 'IED2 CBSW/ LPHD 1',
+        KDC: 'IED1>IED1 P1',
+        LDevice: 'IED1>>CircuitBreaker_CB1',
+        IEDName:
+          'IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/ CSWI 1',
+        FCDA:
+          'IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)',
+        ExtRef:
+          'IED1>>Disconnectors>DC CSWI 1>GOOSE:GCB CBSW/ LLN0  IED2 CBSW/ XSWI 2 Pos stVal@intAddr',
+        'ExtRef:not([iedName])': 'IED1>>Disconnectors>DC CSWI 1>stVal-t[0]',
+        LN: 'IED1>>CircuitBreaker_CB1> XCBR 1',
+        ClientLN:
+          'IED2>>CBSW> XSWI 1>ReportCb>IED1 P1 CircuitBreaker_CB1/ XCBR 1',
+        DAI: 'IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel',
+        SDI: 'IED1>>CircuitBreaker_CB1>CB CSWI 2>Pos>pulseConfig',
+        Val: 'IED1>>CircuitBreaker_CB1> XCBR 1>Pos>ctlModel> 0',
+        ConnectedAP: 'IED1 P1',
+        GSE: 'CircuitBreaker_CB1 GCB',
+        SMV: 'MU01 MSVCB01',
+        PhysConn: 'IED1 P1>RedConn',
+        P: 'IED1 P1>IP [0]',
+        EnumVal: '#Dummy_ctlModel>0',
+        ProtNs: '#Dummy.LLN0.Mod.SBOw>8-MMS\tIEC 61850-8-1:2003',
+      };
+
+      Object.keys(expectations).forEach(key => {
+        const element = scl1.querySelector(key);
+        expect(identity(element!)).to.equal(expectations[key]);
+      });
+    });
+  });
+
+  describe('selector', () => {
+    it('returns negation pseudo-class for identity of type NaN', () => {
+      const element = scl1.querySelector('Assotiation');
+      const ident = identity(element!);
+      expect(selector('Assotiation', ident)).to.equal(':not(*)');
+    });
+    it('returns correct selector for singelton identities', () => {
+      Object.keys(singletonTags).forEach(tag => {
+        const element = scl1.querySelector(tag);
+        if (element)
+          expect(element).to.satisfy((element: Element) =>
+            element.isEqualNode(
+              scl1.querySelector(selector(tag, identity(element)))
+            )
+          );
+      });
+    });
+    it('returns correct selector for special identities', () => {
+      Object.keys(specialTags).forEach(tag => {
+        const element = Array.from(scl1.querySelectorAll(tag)).filter(
+          item => !item.closest('Private')
+        )[0];
+        if (element && tag !== 'IEDName' && tag !== 'ProtNs')
+          expect(element).to.satisfy((element: Element) =>
+            element.isEqualNode(
+              scl1.querySelector(selector(tag, identity(element)))
+            )
+          );
+      });
+    });
+    it('returns correct selector for naming identities', () => {
+      Object.keys(namingParents).forEach(tag => {
+        const element = scl1.querySelector(tag);
+        if (element)
+          expect(element).to.satisfy((element: Element) =>
+            element.isEqualNode(
+              scl1.querySelector(selector(tag, identity(element)))
+            )
+          );
+      });
+    });
   });
 });

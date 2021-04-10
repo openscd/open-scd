@@ -162,7 +162,7 @@ describe('subnetwork-editor wizarding integration', () => {
         Array.from(
           parent.wizardUI.dialog!.querySelectorAll('mwc-check-list-item')
         ).filter(item => item.disabled).length
-      ).to.equal(2);
+      ).to.equal(3);
     });
     it('sorts non-conneted access points to the top', async () => {
       expect(
@@ -171,24 +171,7 @@ describe('subnetwork-editor wizarding integration', () => {
             'mwc-check-list-item:nth-child(1)'
           )
         )).value
-      ).to.equal('{"iedName":"IED3","apName":"P1"}');
+      ).to.equal('{"iedName":"IED3","apName":"P2"}');
     });
-    //FIXME: Event not triggered in input change of the search field
-    /* it('filters access point with the search text field', async () => {
-       expect(
-        Array.from(
-          parent.wizardUI.dialog!.querySelectorAll('mwc-check-list-item')
-        ).filter(item => item.style.display !== 'none').length
-      ).to.equal(3);
-      (<TextField>(
-        parent.wizardUI.dialog!.querySelector('mwc-textfield')
-      )).value = 'IED3';
-      await parent.updateComplete;
-      expect(
-        Array.from(
-          parent.wizardUI.dialog!.querySelectorAll('mwc-check-list-item')
-        ).filter(item => item.style.display !== 'none').length
-      ).to.equal(1); 
-    }); */
   });
 });

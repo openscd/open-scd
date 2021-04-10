@@ -180,6 +180,40 @@
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="merge_type"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        merge_type
+      </mwc-icon>
+      <span>
+        Merge Project
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="merge_type"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        merge_type
+      </mwc-icon>
+      <span>
+        Update Substation
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -460,6 +494,42 @@
         play_circle
       </mwc-icon>
       Subscriber Update
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/triggered/Merge.js"
+    >
+      <mwc-icon slot="graphic">
+        merge_type
+      </mwc-icon>
+      Merge Project
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/triggered/UpdateSubstation.js"
+    >
+      <mwc-icon slot="graphic">
+        merge_type
+      </mwc-icon>
+      Update Substation
       <mwc-icon slot="meta">
         play_circle
       </mwc-icon>
