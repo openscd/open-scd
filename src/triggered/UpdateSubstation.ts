@@ -9,7 +9,7 @@ import {
 } from '../foundation.js';
 import { Diff, mergeWizard } from '../wizards.js';
 
-function isValidReference(
+export function isValidReference(
   doc: XMLDocument,
   identity: string | number
 ): boolean {
@@ -18,7 +18,7 @@ function isValidReference(
 
   if (!iedName || !lnClass) return false;
 
-  if (!ldInst) {
+  if (ldInst === '(Client)') {
     const [
       iedNameSelectors,
       prefixSelectors,
@@ -28,7 +28,7 @@ function isValidReference(
       [`IED[name="${iedName}"]`],
       prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
       [`LN[lnClass="${lnClass}"]`],
-      lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+      lnInst ? [`[inst="${lnInst}"]`] : [':not([inst])', '[inst=""]'],
     ];
 
     return (
@@ -54,10 +54,10 @@ function isValidReference(
     lnInstSelectors,
   ] = [
     [`IED[name="${iedName}"]`],
-    [`LDevice[ldInst="${ldInst}"]`],
+    [`LDevice[inst="${ldInst}"]`],
     prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
     lnClass === 'LLN0' ? [`LN0`] : [`LN[lnClass="${lnClass}"]`],
-    lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+    lnInst ? [`[inst="${lnInst}"]`] : [':not([inst])', '[inst=""]'],
   ];
 
   return (
