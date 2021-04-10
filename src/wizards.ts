@@ -46,8 +46,9 @@ function mergeWizardAction(
       .filter(item => item.classList.contains('attr'))
       .map(item => attrDiffs[(item.value as unknown) as number]);
 
+    const newSink = <Element>sink.cloneNode(false);
+    const parent = selectedAttrDiffs.length ? newSink : sink;
     if (selectedAttrDiffs.length) {
-      const newSink = <Element>sink.cloneNode(false);
       if (sink.childElementCount === 0) newSink.textContent = sink.textContent;
       for (const [name, diff] of selectedAttrDiffs)
         if (name === 'value') {
@@ -66,12 +67,12 @@ function mergeWizardAction(
       for (const diff of selectedChildDiffs)
         if (!diff.ours)
           actions.push({
-            new: { parent: sink, element: diff.theirs, reference: null },
+            new: { parent, element: diff.theirs, reference: null },
           });
         else if (!diff.theirs)
           actions.push({
             old: {
-              parent: sink,
+              parent,
               element: diff.ours,
               reference: diff.ours.nextElementSibling,
             },
