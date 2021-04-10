@@ -282,16 +282,18 @@ function terminalIdentity(e: Element): string {
 }
 
 function terminalSelector(tagName: string, identity: string): string {
-  const [connectivityNode, parentIdentity] = pathParts(identity);
+  const [parentIdentity, connectivityNode] = pathParts(identity);
 
-  return tEquipment
-    .map(
-      parentTag =>
-        `${selector(
-          parentTag,
-          parentIdentity
-        )}>${tagName}[connectivityNode="${connectivityNode}"]`
-    )
+  const parentSelectors = tEquipment.flatMap(parentTag =>
+    selector(parentTag, parentIdentity).split(',')
+  );
+
+  return crossProduct(
+    parentSelectors,
+    ['>'],
+    [`${tagName}[connectivityNode="${connectivityNode}"]`]
+  )
+    .map(strings => strings.join(''))
     .join(',');
 }
 
@@ -340,9 +342,9 @@ function lNodeSelector(tagName: string, identity: string): string {
     [`[iedName="${iedName}"]`],
     ldInst === '(Client)'
       ? [':not([ldInst])', '[ldInst=""]']
-      : ['[ldInst]:not([ldInst=""])'],
+      : [`[ldInst="${ldInst}"]`],
     prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
-    [`[lnClass=${lnClass}]`],
+    [`[lnClass="${lnClass}"]`],
     lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
   ];
 
@@ -417,19 +419,20 @@ function iEDNameSelector(tagName: string, identity: string): string {
 
   const [
     parentSelectors,
-    iedNameSelectors,
     apRefSelectors,
     ldInstSelectors,
     prefixSelectors,
     lnClassSelectors,
     lnInstSelectors,
   ] = [
-    tControlWithIEDName.map(parentTag => selector(parentTag, parentIdentity)),
+    tControlWithIEDName.flatMap(parentTag =>
+      selector(parentTag, parentIdentity).split(',')
+    ),
     [`${iedName}`],
     apRef ? [`[apRef="${apRef}"]`] : [':not([apRef])', '[apRef=""]'],
     ldInst ? [`[ldInst="${ldInst}"]`] : [':not([ldInst])', '[ldInst=""]'],
     prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
-    [`[lnClass=${lnClass}]`],
+    [`[lnClass="${lnClass}"]`],
     lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
   ];
 
@@ -441,9 +444,7 @@ function iEDNameSelector(tagName: string, identity: string): string {
     ldInstSelectors,
     prefixSelectors,
     lnClassSelectors,
-    lnInstSelectors,
-    ['>'],
-    iedNameSelectors
+    lnInstSelectors
   )
     .map(strings => strings.join(''))
     .join(',');
@@ -494,10 +495,10 @@ function fCDASelector(tagName: string, identity: string): string {
     fcSelectors,
     ixSelectors,
   ] = [
-    [selector('DataSet', parentIdentity)],
+    selector('DataSet', parentIdentity).split(','),
     [`[ldInst="${ldInst}"]`],
     prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
-    [`[lnClass=${lnClass}]`],
+    [`[lnClass="${lnClass}"]`],
     lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
     [`[doName="${doName}"]`],
     daName ? [`[daName="${daName}"]`] : [':not([daName])', '[daName=""]'],
@@ -575,7 +576,7 @@ function extRefIdentity(e: Element): string | number {
 function extRefSelector(tagName: string, identity: string): string {
   const [parentIdentity, myIdentity] = pathParts(identity);
 
-  const parentSelectors = [selector('Inputs', parentIdentity)];
+  const parentSelectors = selector('Inputs', parentIdentity).split(',');
 
   if (myIdentity.endsWith(']')) {
     const [intAddr] = myIdentity.split('[');
@@ -676,7 +677,7 @@ function extRefSelector(tagName: string, identity: string): string {
     iedName ? [`[iedName="${iedName}"]`] : [':not([iedName])'],
     ldInst ? [`[ldInst="${ldInst}"]`] : [':not([ldInst])', '[ldInst=""]'],
     prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
-    lnClass ? [`[lnClass=${lnClass}]`] : [':not([lnClass])'],
+    lnClass ? [`[lnClass="${lnClass}"]`] : [':not([lnClass])'],
     lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
     doName ? [`[doName="${doName}"]`] : [':not([doName])'],
     daName ? [`[daName="${daName}"]`] : [':not([daName])', '[daName=""]'],
@@ -734,7 +735,7 @@ function lNIdentity(e: Element): string {
 function lNSelector(tagName: string, identity: string): string {
   const [parentIdentity, myIdentity] = pathParts(identity);
 
-  const parentSelectors = [selector('LDevice', parentIdentity)];
+  const parentSelectors = selector('LDevice', parentIdentity).split(',');
 
   const [prefix, lnClass, inst] = myIdentity.split(' ');
   const [prefixSelectors, lnClassSelectors, instSelectors] = [
@@ -772,7 +773,7 @@ function clientLNIdentity(e: Element): string {
 function clientLNSelector(tagName: string, identity: string): string {
   const [parentIdentity, myIdentity] = pathParts(identity);
 
-  const parentSelectors = [selector('RptEnabled', parentIdentity)];
+  const parentSelectors = selector('RptEnabled', parentIdentity).split(',');
 
   const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = myIdentity.split(
     /[ /]/
@@ -790,7 +791,7 @@ function clientLNSelector(tagName: string, identity: string): string {
     apRef ? [`[apRef="${apRef}"]`] : [':not([apRef])', '[apRef=""]'],
     ldInst ? [`[ldInst="${ldInst}"]`] : [':not([ldInst])', '[ldInst=""]'],
     prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
-    [`[lnClass=${lnClass}]`],
+    [`[lnClass="${lnClass}"]`],
     lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
   ];
 
@@ -814,7 +815,13 @@ function ixNamingIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${name}${ix ? '[' + ix + ']' : ''}`;
 }
 
-function ixNamingSelector(tagName: string, identity: string): string {
+function ixNamingSelector(
+  tagName: string,
+  identity: string,
+  depth = -1
+): string {
+  if (depth === -1) depth = identity.split('>').length;
+
   const [parentIdentity, myIdentity] = pathParts(identity);
 
   const [name] = myIdentity.split(' ');
@@ -822,10 +829,17 @@ function ixNamingSelector(tagName: string, identity: string): string {
     ? myIdentity.match(/\[([0-9]*)\]/)![1]
     : '';
 
-  const [parentSelectors, nameSelectors, ixSelectors] = [
-    ['DOI', 'SDI'].map(parentTag => selector(parentTag, parentIdentity)),
+  if (depth === 0) return `${tagName}[name="${name}"]`;
+
+  const parentSelectors = ['DOI', 'SDI'].flatMap(parentTag =>
+    parentTag === 'SDI'
+      ? ixNamingSelector(parentTag, parentIdentity, depth - 1).split(',')
+      : selector(parentTag, parentIdentity).split(',')
+  );
+
+  const [nameSelectors, ixSelectors] = [
     [`[name="${name}"]`],
-    ix ? [`[ix="${ix}"]`] : [`[ix="${ix}"]`],
+    ix ? [`[ix="${ix}"]`] : ['[ix=""]', ':not([ix])'],
   ];
 
   return crossProduct(
@@ -851,10 +865,14 @@ function valIdentity(e: Element): string | number {
 function valSelector(tagName: string, identity: string): string {
   const [parentIdentity, myIdentity] = pathParts(identity);
 
-  const [sGroup, index] = myIdentity.split(' ');
+  const [sGroup, indexText] = myIdentity.split(' ');
+  const index = parseFloat(indexText);
 
-  const [parentSelectors, nameSelectors, ixSelectors] = [
-    ['DAI', 'DA', 'BDA'].map(parentTag => selector(parentTag, parentIdentity)),
+  const parentSelectors = ['DAI', 'DA', 'BDA'].flatMap(parentTag =>
+    selector(parentTag, parentIdentity).split(',')
+  );
+
+  const [nameSelectors, ixSelectors] = [
     sGroup ? [`[sGroup="${sGroup}"]`] : [''],
     index ? [`:nth-child(${index + 1})`] : [''],
   ];
@@ -911,7 +929,7 @@ function physConnSelector(tagName: string, identity: string): string {
   const [parentIdentity, pcType] = pathParts(identity);
 
   const [parentSelectors, typeSelectors] = [
-    ['ConnectedAP'].map(parentTag => selector(parentTag, parentIdentity)),
+    selector('ConnectedAP', parentIdentity).split(','),
     pcType ? [`[type="${pcType}"]`] : [''],
   ];
 
@@ -935,11 +953,17 @@ function pIdentity(e: Element): string | number {
 function pSelector(tagName: string, identity: string): string {
   const [parentIdentity, myIdentity] = pathParts(identity);
 
-  const [type, index] = myIdentity.split(' ');
+  const [type] = myIdentity.split(' ');
+  const index =
+    myIdentity &&
+    myIdentity.match(/\[([0-9]+)\]/) &&
+    myIdentity.match(/\[([0-9]+)\]/)![1]
+      ? parseFloat(myIdentity.match(/\[([0-9]+)\]/)![1])
+      : NaN;
 
   const [parentSelectors, typeSelectors, ixSelectors] = [
-    ['Address'].map(parentTag => selector(parentTag, parentIdentity)),
-    [`[sGroup="${type}"]`],
+    selector('Address', parentIdentity).split(','),
+    [`[type="${type}"]`],
     index ? [`:nth-child(${index + 1})`] : [''],
   ];
 
@@ -975,7 +999,9 @@ function protNsSelector(tagName: string, identity: string): string {
   const [type, value] = myIdentity.split('\t');
 
   const [parentSelectors] = [
-    ['DAType', 'DA'].map(parentTag => selector(parentTag, parentIdentity)),
+    ['DAType', 'DA'].flatMap(parentTag =>
+      selector(parentTag, parentIdentity).split(',')
+    ),
   ];
 
   return crossProduct(
@@ -1216,7 +1242,9 @@ function namingSelector(
 
   const parentSelectors = parents.flatMap(parentTag =>
     namingParents[<NamingTag>parentTag]
-      ? namingSelector(<NamingTag>parentTag, parentIdentity, depth - 1)
+      ? namingSelector(<NamingTag>parentTag, parentIdentity, depth - 1).split(
+          ','
+        )
       : selector(parentTag, parentIdentity).split(',')
   );
 
@@ -1248,7 +1276,8 @@ export function selector(tagName: string, identity: string | number): string {
   if (namingParents[tagName as NamingTag])
     return namingSelector(tagName as NamingTag, identity);
 
-  if (identity.startsWith('#')) return tagName + identity;
+  if (identity.startsWith('#'))
+    return `${tagName}[id="${identity.replace('#', '')}"]`;
 
   return tagName;
 }

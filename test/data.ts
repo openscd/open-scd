@@ -47,7 +47,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
 			<Bay name="COUPLING_BAY" desc="Bay">
         		<Private type="dummyType">
-          			<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
+          			<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
         		</Private>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>

@@ -12,6 +12,7 @@ import {
   isSame,
   isSimple,
   isUpdate,
+  namingParents,
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
@@ -286,6 +287,19 @@ describe('foundation', () => {
     });
     it('returns correct selector for special identities', () => {
       Object.keys(specialTags).forEach(tag => {
+        const element = Array.from(scl1.querySelectorAll(tag)).filter(
+          item => !item.closest('Private')
+        )[0];
+        if (element && tag !== 'IEDName' && tag !== 'ProtNs')
+          expect(element).to.satisfy((element: Element) =>
+            element.isEqualNode(
+              scl1.querySelector(selector(tag, identity(element)))
+            )
+          );
+      });
+    });
+    it('returns correct selector for naming identities', () => {
+      Object.keys(namingParents).forEach(tag => {
         const element = scl1.querySelector(tag);
         if (element)
           expect(element).to.satisfy((element: Element) =>
