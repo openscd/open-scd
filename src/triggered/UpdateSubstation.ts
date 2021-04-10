@@ -1,8 +1,81 @@
 import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { identity, newWizardEvent, selector } from '../foundation.js';
+import {
+  crossProduct,
+  identity,
+  newWizardEvent,
+  selector,
+} from '../foundation.js';
 import { Diff, mergeWizard } from '../wizards.js';
+
+function isValidReference(
+  doc: XMLDocument,
+  identity: string | number
+): boolean {
+  if (typeof identity !== 'string') return false;
+  const [iedName, ldInst, prefix, lnClass, lnInst] = identity.split(/[ /]/);
+
+  if (!iedName || !lnClass) return false;
+
+  if (!ldInst) {
+    const [
+      iedNameSelectors,
+      prefixSelectors,
+      lnClassSelectors,
+      lnInstSelectors,
+    ] = [
+      [`IED[name="${iedName}"]`],
+      prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+      [`LN[lnClass="${lnClass}"]`],
+      lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+    ];
+
+    return (
+      doc.querySelector(
+        crossProduct(
+          iedNameSelectors,
+          ['>AccessPoint>'],
+          lnClassSelectors,
+          prefixSelectors,
+          lnInstSelectors
+        )
+          .map(strings => strings.join(''))
+          .join(',')
+      ) !== null
+    );
+  }
+
+  const [
+    iedNameSelectors,
+    ldInstSelectors,
+    prefixSelectors,
+    lnClassSelectors,
+    lnInstSelectors,
+  ] = [
+    [`IED[name="${iedName}"]`],
+    [`LDevice[ldInst="${ldInst}"]`],
+    prefix ? [`[prefix="${prefix}"]`] : [':not([prefix])', '[prefix=""]'],
+    lnClass === 'LLN0' ? [`LN0`] : [`LN[lnClass="${lnClass}"]`],
+    lnInst ? [`[lnInst="${lnInst}"]`] : [':not([lnInst])', '[lnInst=""]'],
+  ];
+
+  return (
+    doc.querySelector(
+      crossProduct(
+        iedNameSelectors,
+        [' '],
+        ldInstSelectors,
+        ['>'],
+        lnClassSelectors,
+        prefixSelectors,
+        lnInstSelectors
+      )
+        .map(strings => strings.join(''))
+        .join(',')
+    ) !== null
+  );
+}
 
 export default class UpdateSubstationPlugin extends LitElement {
   doc!: XMLDocument;
@@ -29,15 +102,17 @@ export default class UpdateSubstationPlugin extends LitElement {
                     ? diff.theirs.tagName === 'LNode'
                       ? this.doc.querySelector(
                           selector('LNode', identity(diff.theirs))
-                        ) === null
+                        ) === null &&
+                        isValidReference(doc, identity(diff.theirs))
                       : true
                     : diff.theirs !== null,
                 disabled: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element &&
                   diff.theirs.tagName === 'LNode' &&
-                  this.doc.querySelector(
+                  (this.doc.querySelector(
                     selector('LNode', identity(diff.theirs))
-                  ) !== null,
+                  ) !== null ||
+                    !isValidReference(doc, identity(diff.theirs))),
               }
             )
           )

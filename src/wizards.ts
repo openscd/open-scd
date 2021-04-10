@@ -219,6 +219,7 @@ export function mergeWizard(
                   left
                   hasMeta
                   .selected=${options?.selected?.(diff) ?? false}
+                  .disabled=${options?.disabled?.(diff) ?? false}
                   style="--mdc-checkbox-checked-color: var(--mdc-theme-${diff.ours
                     ? diff.theirs
                       ? 'secondary'
