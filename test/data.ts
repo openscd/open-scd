@@ -47,7 +47,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
 			<Bay name="COUPLING_BAY" desc="Bay">
         		<Private type="dummyType">
-          			<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
+          			<ekaf:LNode xmlns:ekaf="http://www.dummyURL.com/dummyNS" iedName="IED2" ldInst="CBSWr" lnClass="LPHD" lnInst="1"/>
         		</Private>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
 				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
@@ -167,7 +167,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
                             <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
                         </DataSet>
 						<GSEControl type="GOOSE" appID="0001" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
-							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI">IED2</IEDName>
+							<IEDName apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1">IED2</IEDName>
 						</GSEControl>
 						<GSEControl type="GOOSE" appID="0003" fixedOffs="false" confRev="1" name="GCB2"/>
 					</LN0>
@@ -216,8 +216,9 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 					</LN>
 					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
 						<Inputs>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" serviceType="GOOSE" srcCBName="GCB" srcLDInst="CBSW" srcLNClass="LLN0" intAddr="intAddr"/>
 							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q"/>
+							<ExtRef ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="t" intAddr="stVal-t"/>
 						</Inputs>
 					</LN>
 					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
@@ -247,6 +248,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				</LDevice>
 			</Server>
 		</AccessPoint>
+		<KDC iedName="IED1" apName="P1"/>
 	</IED>
 	<IED name="IED2" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
 		<Services>
