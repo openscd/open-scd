@@ -210,7 +210,20 @@
       </mwc-icon>
       <span>
         Update Substation
-        play_circle
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="sync_alt"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        sync_alt
       </mwc-icon>
       <span>
         Communication Mapping
@@ -534,10 +547,22 @@
         merge_type
       </mwc-icon>
       Update Substation
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/triggered/CommunicationMapping.js"
     >
       <mwc-icon slot="graphic">
-        play_circle
+        sync_alt
       </mwc-icon>
       Communication Mapping
       <mwc-icon slot="meta">
@@ -705,3 +730,4 @@
 </mwc-dialog>
 
 ```
+
