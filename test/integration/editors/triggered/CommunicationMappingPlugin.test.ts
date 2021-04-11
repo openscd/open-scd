@@ -89,7 +89,7 @@ describe('CommunicationMappingPlugin', () => {
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
       expect(parent.wizardUI.dialog?.heading).to.equal(
-        'IED2>>CBSW>XSWI2>ReportCb - IED1'
+        'IED2>>CBSW> XSWI 2>ReportCb - IED1'
       );
     });
 
