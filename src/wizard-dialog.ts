@@ -98,7 +98,6 @@ export class WizardDialog extends LitElement {
         ? this.dispatchEvent(newWizardEvent(wa()))
         : this.dispatchEvent(newActionEvent(wa))
     );
-    if (wizardActions.length > 0) this.dispatchEvent(newWizardEvent());
     return true;
   }
 

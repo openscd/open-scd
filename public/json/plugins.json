@@ -38,7 +38,7 @@
     "src": "/src/triggered/UpdateSubstation.js",
     "icon": "merge_type",
     "default": true,
-    "kind": "trigger"
+    "kind": "triggered"
   },
   {
     "name": "Communication Mapping",

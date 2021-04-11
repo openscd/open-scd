@@ -11,7 +11,7 @@ import {
   newWizardEvent,
   SimpleAction,
   Wizard,
-  WizardAction,
+  WizardActor,
 } from './foundation.js';
 
 interface MergeOptions {
@@ -37,7 +37,7 @@ function mergeWizardAction(
   sink: Element,
   source: Element,
   options?: MergeOptions
-): WizardAction {
+): WizardActor {
   return (_, wizard: Element): EditorAction[] => {
     const actions: SimpleAction[] = [];
     const checkList = wizard.shadowRoot!.querySelector('mwc-list')!;
