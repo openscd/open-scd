@@ -3,7 +3,7 @@ import { css } from 'lit-element';
 import {
   EditorAction,
   getValue,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -22,7 +22,7 @@ export function isCreateOptions(
   return (<CreateOptions>options).parent !== undefined;
 }
 
-export function updateIDNamingAction(element: Element): WizardAction {
+export function updateIDNamingAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const id = getValue(inputs.find(i => i.label === 'id')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);

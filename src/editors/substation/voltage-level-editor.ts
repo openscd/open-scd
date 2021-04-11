@@ -17,7 +17,7 @@ import {
   newWizardEvent,
   restrictions,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -192,7 +192,7 @@ export class VoltageLevelEditor extends LitElement {
     </section>`;
   }
 
-  static updateAction(element: Element): WizardAction {
+  static updateAction(element: Element): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -252,7 +252,7 @@ export class VoltageLevelEditor extends LitElement {
     };
   }
 
-  static createAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -353,13 +353,13 @@ export class VoltageLevelEditor extends LitElement {
           html`<wizard-textfield
             label="desc"
             .maybeValue=${desc}
-            nullable="true"
+            nullable
             helper="${translate('voltagelevel.wizard.descHelper')}"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="nomFreq"
             .maybeValue=${nomFreq}
-            nullable="true"
+            nullable
             helper="${translate('voltagelevel.wizard.nomFreqHelper')}"
             suffix="Hz"
             required
@@ -369,7 +369,7 @@ export class VoltageLevelEditor extends LitElement {
           html`<wizard-textfield
             label="numPhases"
             .maybeValue=${numPhases}
-            nullable="true"
+            nullable
             helper="${translate('voltagelevel.wizard.numPhaseHelper')}"
             suffix="#"
             required

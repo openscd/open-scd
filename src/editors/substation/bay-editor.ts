@@ -15,7 +15,7 @@ import {
   newActionEvent,
   newWizardEvent,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -140,7 +140,7 @@ export class BayEditor extends LitElement {
     </section> `;
   }
 
-  static createAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);

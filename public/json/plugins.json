@@ -39,5 +39,12 @@
     "icon": "merge_type",
     "default": true,
     "kind": "triggered"
+  },
+  {
+    "name": "Communication Mapping",
+    "src": "/src/triggered/CommunicationMapping.js",
+    "icon":"sync_alt",
+    "default": true,
+    "kind": "triggered"
   }
 ]

@@ -135,11 +135,19 @@ export function newActionEvent<T extends EditorAction>(
 export const wizardInputSelector = 'wizard-textfield, mwc-select';
 export type WizardInput = WizardTextField | Select;
 
+export type WizardAction = EditorAction | (() => Wizard);
+
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
-export type WizardAction = (
+export type WizardActor = (
   inputs: WizardInput[],
   wizard: Element
-) => EditorAction[];
+) => WizardAction[];
+
+export function isWizard(
+  wizardAction: WizardAction
+): wizardAction is () => Wizard {
+  return typeof wizardAction === 'function';
+}
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInput): string | null {
@@ -160,12 +168,12 @@ export interface WizardPage {
   primary?: {
     icon: string;
     label: string;
-    action: WizardAction;
+    action: WizardActor;
   };
   secondary?: {
     icon: string;
     label: string;
-    action: WizardAction;
+    action: WizardActor;
   };
 }
 export type Wizard = WizardPage[];
@@ -1419,6 +1427,62 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
     (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
     [[]]
   );
+}
+
+export function findFCDAs(extRef: Element): Element[] {
+  if (extRef.tagName !== 'ExtRef' || extRef.closest('Private')) return [];
+
+  const [iedName, ldInst, prefix, lnClass, lnInst, doName, daName] = [
+    'iedName',
+    'ldInst',
+    'prefix',
+    'lnClass',
+    'lnInst',
+    'doName',
+    'daName',
+  ].map(name => extRef.getAttribute(name));
+  const ied = Array.from(extRef.ownerDocument.getElementsByTagName('IED')).find(
+    element =>
+      element.getAttribute('name') === iedName && !element.closest('Private')
+  );
+  if (!ied) return [];
+
+  return Array.from(ied.getElementsByTagName('FCDA'))
+    .filter(item => !item.closest('Private'))
+    .filter(
+      fcda =>
+        (fcda.getAttribute('ldInst') ?? '') === (ldInst ?? '') &&
+        (fcda.getAttribute('prefix') ?? '') === (prefix ?? '') &&
+        (fcda.getAttribute('lnClass') ?? '') === (lnClass ?? '') &&
+        (fcda.getAttribute('lnInst') ?? '') === (lnInst ?? '') &&
+        (fcda.getAttribute('doName') ?? '') === (doName ?? '') &&
+        (fcda.getAttribute('daName') ?? '') === (daName ?? '')
+    );
+}
+
+const serviceTypeControlBlockTags: Partial<Record<string, string[]>> = {
+  GOOSE: ['GSEControl'],
+  SMV: ['SampledValueControl'],
+  Report: ['ReportControl'],
+  NONE: ['LogControl', 'GSEControl', 'SampledValueControl', 'ReportControl'],
+};
+
+export function findControlBlocks(extRef: Element): Set<Element> {
+  const fcdas = findFCDAs(extRef);
+  const cbTags =
+    serviceTypeControlBlockTags[extRef.getAttribute('serviceType') ?? 'NONE'] ??
+    [];
+  const controlBlocks = new Set(
+    fcdas.flatMap(fcda => {
+      const dataSet = fcda.parentElement!;
+      const dsName = dataSet.getAttribute('name') ?? '';
+      const anyLN = dataSet.parentElement!;
+      return cbTags
+        .flatMap(tag => Array.from(anyLN.getElementsByTagName(tag)))
+        .filter(cb => cb.getAttribute('datSet') === dsName);
+    })
+  );
+  return controlBlocks;
 }
 
 declare global {

@@ -163,6 +163,7 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 						<DataSet name="GooseDataSet1">
                             <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
                             <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+							<FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="CSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
                             <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
                             <FCDA ldInst="Disconnectors" prefix="DC" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
                         </DataSet>
@@ -274,6 +275,9 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 				<Authentication />
 				<LDevice inst="CBSW">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
+						<Private type="dummyType">
+							<esld:FCDA xmlns:esld="http://www.dummyURL.com/dummyNS" ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
+						</Private>
 						<DataSet name="GooseDataSet1">
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST"/>
@@ -312,6 +316,17 @@ export const validSCL = `<?xml version="1.0" encoding="UTF-8"?>
 						</Inputs>
 					</LN>
 					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
+						<DataSet name="dataSet">
+							<FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>
+							<FCDA ldInst="CBSW" lnClass="XSWI" lnInst="1" doName="Pos" daName="q" fc="ST"/>
+						</DataSet>
+						<ReportControl rptID="IED2/CBSW/XSWI/SwitchGearBRCB" confRev="9" buffered="true" bufTime="100" indexed="true" intgPd="0" name="ReportCb" datSet="dataSet">
+							<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
+							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
+							<RptEnabled max="5">
+								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="XCBR" lnInst="1" iedName="IED1"/>
+							</RptEnabled>
+						</ReportControl>
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>

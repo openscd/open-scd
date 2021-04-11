@@ -17,7 +17,7 @@ import {
   newWizardEvent,
   restrictions,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
 } from '../../foundation.js';
 
@@ -72,7 +72,7 @@ export class EnumTypeEditor extends LitElement {
     </mwc-list-item>`;
   }
 
-  static createAction(parent: Element, templates: XMLDocument): WizardAction {
+  static createAction(parent: Element, templates: XMLDocument): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
       const id = getValue(inputs.find(i => i.label === 'id')!);
 
@@ -136,7 +136,7 @@ export class EnumTypeEditor extends LitElement {
           html`<wizard-textfield
             label="id"
             helper="${translate('scl.id')}"
-            .maybeValue=""
+            .maybeValue=${''}
             required
             maxlength="127"
             minlength="1"

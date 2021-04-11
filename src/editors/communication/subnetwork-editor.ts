@@ -12,7 +12,7 @@ import {
   EditorAction,
   newWizardEvent,
   Wizard,
-  WizardAction,
+  WizardActor,
   WizardInput,
   newActionEvent,
   getValue,
@@ -199,7 +199,7 @@ export class SubNetworkEditor extends LitElement {
     </section>`;
   }
 
-  static updateAction(element: Element): WizardAction {
+  static updateAction(element: Element): WizardActor {
     return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const name = inputs.find(i => i.label === 'name')!.value;
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -254,7 +254,7 @@ export class SubNetworkEditor extends LitElement {
     };
   }
 
-  static createAction(parent: Element): WizardAction {
+  static createAction(parent: Element): WizardActor {
     return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
       const name = getValue(inputs.find(i => i.label === 'name')!);
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
