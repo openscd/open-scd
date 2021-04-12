@@ -7,6 +7,8 @@ export const en = {
     value: 'Value',
     EnumVal: 'Enum Value',
     EnumType: 'Enum Type',
+    Report: 'Report',
+    LN: 'Logical node',
   },
   settings: {
     name: 'Settings',
@@ -223,7 +225,13 @@ export const en = {
       nonewitems: 'no new IEDName elements to add',
       message: '{{updatenumber}} IEDName elements added to the project',
     },
-    'comm-map': { wizard: { title: 'Communication mapping' } },
+    'comm-map': {
+      wizard: { title: 'Communication mapping' },
+      connectCB: 'Connect {{CbType}}',
+      connectToIED: 'Connect to {{iedName}}',
+      sourceIED: 'Source IED',
+      sinkIED: 'Sink IED',
+    },
   },
   updatesubstation: {
     title: 'Update substation',
@@ -242,4 +250,6 @@ export const en = {
   undo: 'Undo',
   redo: 'Redo',
   duplicate: 'Clone',
+  connect: 'Connect',
+  disconnect: 'Disconnect',
 };

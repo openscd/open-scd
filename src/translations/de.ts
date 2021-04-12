@@ -9,6 +9,8 @@ export const de: Translations = {
     value: 'Wert',
     EnumVal: 'Enum Wert',
     EnumType: 'Enum Typ',
+    Report: 'Report',
+    LN: 'Logischer Knoten',
   },
   settings: {
     name: 'Einstellungen',
@@ -226,7 +228,13 @@ export const de: Translations = {
       nonewitems: 'keine neuen IEDName Elemente notwendig',
       message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
     },
-    'comm-map': { wizard: { title: 'Kommunikationszuordnung' } },
+    'comm-map': {
+      wizard: { title: 'Kommunikationszuordnung' },
+      connectCB: '{{CbType}} verbinden',
+      connectToIED: 'Verbinden mit {{iedName}}',
+      sourceIED: 'Quellgerät',
+      sinkIED: 'Zielgerät',
+    },
   },
   updatesubstation: {
     title: 'Schaltanlage aktualisieren',
@@ -245,4 +253,6 @@ export const de: Translations = {
   undo: 'Rückgängig',
   redo: 'Wiederholen',
   duplicate: 'Klonen',
+  connect: 'Verbinden',
+  disconnect: 'Trennen',
 };
