@@ -86,6 +86,7 @@
 			<ConfLNs fixPrefix="true" fixLnInst="true" />
 		</Services>
 		<AccessPoint name="P1">
+			<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
 			<Server>
 				<Authentication none="true" />
 				<LDevice inst="CircuitBreaker_CB1">
@@ -233,6 +234,10 @@
 						</DOI>
 					</LN>
 					<LN lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
+						<ReportControl rptID="IED2/CBSW/XSWI1/SwitchGearBRCB" confRev="9" buffered="true" bufTime="100" indexed="true" intgPd="0" name="ReportEmpty" datSet="dataSet">
+							<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
+							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
+						</ReportControl>
 						<DOI name="Pos">
 							<DAI name="ctlModel">
 								<Val>status-only</Val>
@@ -252,6 +257,8 @@
 							<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
 							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
 							<RptEnabled max="5">
+								<ClientLN apRef="P1" ldInst="LD0" prefix="DC" lnClass="CILO" lnInst="1" iedName="IED1"/>
+								<ClientLN apRef="P1" ldInst="Disconnectors" lnClass="LLN0" iedName="IED1"/>
 								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="XCBR" lnInst="1" iedName="IED1"/>
 								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1" iedName="IED1"/>
 							</RptEnabled>

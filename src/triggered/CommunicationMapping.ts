@@ -299,7 +299,7 @@ export function communicationMappingWizard(
   return [
     {
       title: get('transform.comm-map.wizard.title'),
-      secondary: {
+      primary: {
         icon: 'add',
         label: get('transform.comm-map.connectCB', { CbType: get('Report') }),
         action: openCreateConnection(

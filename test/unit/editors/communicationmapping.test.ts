@@ -7,7 +7,7 @@ import {
 describe('CommunicationMappingPlugin', () => {
   let doc: Document;
   beforeEach(async () => {
-    doc = await fetch('public/xml/testfiles/comm-map.scd')
+    doc = await fetch('/base/test/testfiles/comm-map.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -15,11 +15,13 @@ describe('CommunicationMappingPlugin', () => {
   describe('getSinkReferences', () => {
     it('retruns an array of ClientLN`s for ReportControl blocks', () => {
       expect(
-        getSinkReferences(doc.querySelector('ReportControl')!)
-      ).to.have.length(2);
+        getSinkReferences(doc.querySelector('ReportControl[name="ReportCb"]')!)
+      ).to.have.length(4);
       expect(
-        getSinkReferences(doc.querySelector('ReportControl')!)[0].isEqualNode(
-          doc.querySelector('ReportControl ClientLN')
+        getSinkReferences(
+          doc.querySelector('ReportControl[name="ReportCb"]')!
+        )[0].isEqualNode(
+          doc.querySelector('ReportControl[name="ReportCb"] ClientLN')
         )
       )?.to.be.true;
     });
