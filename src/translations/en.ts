@@ -8,7 +8,7 @@ export const en = {
     EnumVal: 'Enum Value',
     EnumType: 'Enum Type',
     Report: 'Report',
-    LN: 'Logic node',
+    LN: 'Logical node',
   },
   settings: {
     name: 'Settings',
@@ -250,5 +250,6 @@ export const en = {
   undo: 'Undo',
   redo: 'Redo',
   duplicate: 'Clone',
-  connect: 'Verbinden',
+  connect: 'Connect',
+  disconnect: 'Disconnect',
 };

@@ -254,4 +254,5 @@ export const de: Translations = {
   redo: 'Wiederholen',
   duplicate: 'Klonen',
   connect: 'Verbinden',
+  disconnect: 'Trennen',
 };
