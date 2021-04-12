@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/openscd/open-scd/compare/v0.0.3...v0.0.4) (2021-04-12)
+
+
+### Features
+
+* **comm-mapping:** add commMappingWizard and cbConectionWizard ([fa48b7f](https://github.com/openscd/open-scd/commits/fa48b7fb8deceaae871d8ecbdd45a68f58471c11))
+* **communication-mapping:** add commication mapping plugin ([11b0d23](https://github.com/openscd/open-scd/commits/11b0d23ff7389b7953cb8a6ef83ab858257dc54b))
+* **communicationmapping:** add Connection filter function ([ad80859](https://github.com/openscd/open-scd/commits/ad80859bc15599730d270a3a0d0e2ca21de26fe9))
+* **communicationmapping:** add getDataConnection function that allows filter for connections between FCDA and ExtRef element ([04a26cf](https://github.com/openscd/open-scd/commits/04a26cfd22ba7339681ab9d5c9cea7780b35d4eb))
+* **communicationmapping:** create control block connections with clientln ([0cf0611](https://github.com/openscd/open-scd/commits/0cf0611bfc9890afc9965333b0f40c515d38b5a6))
+* **filtered-list:** initial commit ([4d871ed](https://github.com/openscd/open-scd/commits/4d871ed138552e45b55a86098400c47e19ce092d))
+* **foundation:** add getDataSink function returning array of ExtRefs connected to FCDA ([4e1440e](https://github.com/openscd/open-scd/commits/4e1440e4c317842134c53f02f85d910f40a82d39))
+* **foundation:** add isEqual function ([54dfe5d](https://github.com/openscd/open-scd/commits/54dfe5d356257668cd2daeac8c9308a0907b2456))
+* **foundation:** add isIdentical function to identify Elements ([7dc494b](https://github.com/openscd/open-scd/commits/7dc494b290a67e56a739964be0307ab6b193ca8d))
+* **icons:** add goose, report and smv service icons ([87b25f9](https://github.com/openscd/open-scd/commits/87b25f9cc0e1cb6d6a57090b95d3f6746e5f22ab))
+* **icons:** add iccons for communication mapping ([50b0e30](https://github.com/openscd/open-scd/commits/50b0e30bc9df183c43ec949962956f3a28d10ae7))
+* **merge-plugin:** add general functionality to merge two SCL files ([610ec18](https://github.com/openscd/open-scd/commits/610ec180e9fdf8c613ec94eab5df58f06a3268c1)), closes [#156](https://github.com/openscd/open-scd/issues/156) [#156](https://github.com/openscd/open-scd/issues/156) [#168](https://github.com/openscd/open-scd/issues/168)
+* **trigger/communicationmapping:** use identities instead of stringyfied values ([79e08e1](https://github.com/openscd/open-scd/commits/79e08e1f0536f27037129cbeeac0e79dc6a71c73))
+* **triggered/communication-mapping:** IEDName handling on ExtRef disconnection ([06261bb](https://github.com/openscd/open-scd/commits/06261bb86258b7e58d3c9974aff88f04a9ef404d))
+* **triggered/communicationmapping:** add clientlnwizard ([4b02df5](https://github.com/openscd/open-scd/commits/4b02df5de5836eb6249b31c8baddf26f3bb2955d))
+* **triggered/merge:** add merge plugin ([#156](https://github.com/openscd/open-scd/issues/156)) ([15122e6](https://github.com/openscd/open-scd/commits/15122e6294f69d5fb1fca331b306b414f7d638e0))
+* **updatesubstation:** add special merge functionality for substation section ([#168](https://github.com/openscd/open-scd/issues/168)) ([413ae0e](https://github.com/openscd/open-scd/commits/413ae0e893320b0a30e03f1b52ca6d2a0be9c894))
+* **wizards:** initial merge wizard suggestion ([#156](https://github.com/openscd/open-scd/issues/156)) ([0f1d923](https://github.com/openscd/open-scd/commits/0f1d923ac19b8aca9659fe72ad77910d111f254a))
+* **wizards/merge:** add 'value' merging option ([4dabfd7](https://github.com/openscd/open-scd/commits/4dabfd7447d7d2567857459ba82c06e9b990c881))
+* **wizards/merge:** add default selected option ([ae09a53](https://github.com/openscd/open-scd/commits/ae09a530309a3212ed2d7c0949ca726bff57565b))
+
+
+### Bug Fixes
+
+* **foundation:** adopt identities in isSame and isEqual ([21238b5](https://github.com/openscd/open-scd/commits/21238b5f4b68a527cc02dd36299fe2d684c1ff43))
+* **foundation:** fix lNSelector ([491fd52](https://github.com/openscd/open-scd/commits/491fd521406df76e3d6c3b280ba3f560de5cf99d))
+* **translation:** minor imporvements ([055450a](https://github.com/openscd/open-scd/commits/055450a2bf9390c0e3f201dd7a22d89293ec5bfc))
+* **triggered/communicationmapping:** fix foldered naming and import statements ([901c44d](https://github.com/openscd/open-scd/commits/901c44d9fd37bc0135e93d000ed9ba14138b3587))
+* **triggered/mergeplugin:** use correct parent when attributes and children triggered at once ([272b60b](https://github.com/openscd/open-scd/commits/272b60b9283a718f35b8ed1698b4a0d73d7bdd17))
+* **wizard-dialog,plugs.json,wizards.ts:** rebase on main was not correct ([65f34ad](https://github.com/openscd/open-scd/commits/65f34ada27f72db7c211e9173af3001049a372be))
+* **wizards:** use new identities in mergeWizard ([21169e5](https://github.com/openscd/open-scd/commits/21169e5359909b26d63094b546fa15144e99f53b))
+* **wizards/merge:** show 'merge value' option only when needed ([1c67db2](https://github.com/openscd/open-scd/commits/1c67db29336576d7fa3dc1f465e6ea1ff611be88))
+
 ### [0.0.3](https://github.com/openscd/open-scd/compare/v0.0.2...v0.0.3) (2021-03-19)
 
 
