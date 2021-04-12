@@ -17,6 +17,7 @@ import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { clientIcon, controlBlockIcons, inputIcon } from '../icons.js';
+import { createConnectionWizard } from './communicationmapping./reportcbwizards.js';
 
 function sinkPrimary(sink: Element): string {
   const ln =
@@ -196,7 +197,9 @@ function disconnect(
   };
 }
 
-function cancel(root: XMLDocument | Element): WizardActor {
+export function openCommunicationMappingWizard(
+  root: XMLDocument | Element
+): WizardActor {
   return () => [() => communicationMappingWizard(root)];
 }
 
@@ -218,7 +221,7 @@ function cbConnectionWizard(
       secondary: {
         icon: '',
         label: get('cancel'),
-        action: cancel(root),
+        action: openCommunicationMappingWizard(root),
       },
       content: [
         html`<filtered-list multi
@@ -252,7 +255,15 @@ export function getSourceReferences(root: Document | Element): Element[] {
     .filter(element => element.getAttribute('iedName'));
 }
 
-function communicationMappingWizard(root: XMLDocument | Element): Wizard {
+export function openCreateConnection(doc: Document): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
+    return [() => createConnectionWizard(doc)];
+  };
+}
+
+export function communicationMappingWizard(
+  root: XMLDocument | Element
+): Wizard {
   const connections = new Map<string, Element[]>();
   const sourceRefs = getSourceReferences(root);
   const sinkRefs = getSinkReferences(root);
@@ -288,6 +299,13 @@ function communicationMappingWizard(root: XMLDocument | Element): Wizard {
   return [
     {
       title: get('transform.comm-map.wizard.title'),
+      secondary: {
+        icon: 'add',
+        label: get('transform.comm-map.connectCB', { CbType: get('Report') }),
+        action: openCreateConnection(
+          root instanceof XMLDocument ? root : root.ownerDocument
+        ),
+      },
       content: [
         html`<filtered-list
           >${Array.from(connections.keys()).map(key => {
