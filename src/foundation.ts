@@ -269,7 +269,7 @@ export function referencePath(element: Element): string {
   return path;
 }
 
-function pathParts(identity: string): [string, string] {
+export function pathParts(identity: string): [string, string] {
   const path = identity.split('>');
   const end = path.pop() ?? '';
   const start = path.join('>');

@@ -17,7 +17,7 @@ import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { clientIcon, controlBlockIcons, inputIcon } from '../icons.js';
-import { createConnectionWizard } from './communicationmapping./reportcbwizards.js';
+import { createConnectionWizard } from './communicationmapping/reportcbwizards.js';
 
 function sinkPrimary(sink: Element): string {
   const ln =
