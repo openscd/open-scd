@@ -317,7 +317,7 @@ describe('foundation', () => {
   describe('findControlBlocks', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('public/xml/testfiles/comm-map.scd')
+      doc = await fetch('/base/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -349,7 +349,7 @@ describe('foundation', () => {
   describe('findFCDAs', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('public/xml/testfiles/comm-map.scd')
+      doc = await fetch('/base/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
