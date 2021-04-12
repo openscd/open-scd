@@ -743,7 +743,9 @@ function lNIdentity(e: Element): string {
 function lNSelector(tagName: string, identity: string): string {
   const [parentIdentity, myIdentity] = pathParts(identity);
 
-  const parentSelectors = selector('LDevice', parentIdentity).split(',');
+  const parentSelectors = ['AccessPoint', 'LDevice'].flatMap(parentTag =>
+    selector(parentTag, parentIdentity).split(',')
+  );
 
   const [prefix, lnClass, inst] = myIdentity.split(' ');
   const [prefixSelectors, lnClassSelectors, instSelectors] = [

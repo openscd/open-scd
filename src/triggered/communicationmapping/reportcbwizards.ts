@@ -15,22 +15,12 @@ import {
   WizardAction,
   WizardActor,
   WizardInput,
-} from '../../foundation';
+} from '../../foundation.js';
 import {
   openCommunicationMappingWizard,
   communicationMappingWizard,
   openCreateConnection,
-} from '../CommunicationMapping';
-
-interface CBValue {
-  iedName: string;
-  apRef: string;
-  ldInst: string;
-  prefix: string | null;
-  lnClass: string;
-  lnInst: string | null;
-  cbName: string;
-}
+} from '../CommunicationMapping.js';
 
 interface LNValue {
   iedName: string;
@@ -41,33 +31,87 @@ interface LNValue {
   lnInst: string;
 }
 
-interface ItemDescription {
-  value: string | number;
-  numberClientLNs: number;
+function getPath(identity: string | number): string {
+  if (typeof identity !== 'string') return '';
+
+  return pathParts(identity)[0] ?? '';
 }
 
-/** Sorts connected `ListItem`s to the top*/
-function compareConnected(a: ItemDescription, b: ItemDescription): number {
-  return b.numberClientLNs - a.numberClientLNs;
+function getElement(identity: string | number): string {
+  if (typeof identity !== 'string') return '';
+
+  return pathParts(identity)[1] ?? '';
 }
 
-function getClientLN(cb: Element, ln: LNValue): Element | null {
-  const base = `RptEnabled > ClientLN[iedName="${ln.iedName}"][lnClass="${ln.lnClass}"]`;
-  const prefix = ln.prefix
-    ? [`[prefix="${ln.prefix}"]`]
-    : [':not([prefix])', '[prefix=""]'];
-  const lnInst = ln.lnInst
-    ? [`[lnInst="${ln.lnInst}"]`]
-    : [':not([lnInst])', '[lnInst=""]'];
-  const ldInst = ln.ldInst
-    ? [`[ldInst="${ln.ldInst}"]`]
-    : ['[ldInst="LD0"]', '[ldInst=""]'];
+function getLogicalNode(doc: XMLDocument, identity: string): Element | null {
+  if (identity.split('>').length === 4) {
+    return doc.querySelector(selector('LN', identity));
+  }
 
-  const selector = crossProduct([base], ldInst, prefix, lnInst)
-    .map(a => a.join(''))
-    .join(',');
+  if (identity.split('>').length === 3) {
+    if (getElement(identity).split(' ').length > 1) {
+      return doc.querySelector(selector('LN', identity));
+    }
 
-  return cb.querySelector(selector);
+    if (getElement(identity).split(' ').length === 1) {
+      return doc.querySelector(selector('LN0', identity));
+    }
+  }
+
+  return null;
+}
+
+function existClientLN(cb: Element, identity: string): boolean {
+  for (const clientLN of Array.from(cb.getElementsByTagName('ClientLN'))) {
+    const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = [
+      'iedName',
+      'apRef',
+      'ldInst',
+      'prefix',
+      'lnClass',
+      'lnInst',
+    ].map(attribute => clientLN.getAttribute(attribute));
+
+    const ln = getLogicalNode(cb.ownerDocument, identity);
+
+    if (identity.split('>').length === 4) {
+      if (
+        iedName === ln?.closest('IED')?.getAttribute('name') &&
+        apRef === ln?.closest('AccessPoint')?.getAttribute('name') &&
+        ldInst === ln?.closest('LDevice')?.getAttribute('inst') &&
+        (prefix ?? '') === (ln.getAttribute('prefix') ?? '') &&
+        lnClass === ln.getAttribute('lnClass') &&
+        (lnInst ?? '') === (ln.getAttribute('inst') ?? '')
+      )
+        return true;
+    }
+
+    if (identity.split('>').length === 3) {
+      if (getElement(identity).split(' ').length > 1) {
+        if (
+          iedName === ln?.closest('IED')?.getAttribute('name') &&
+          apRef === ln?.closest('AccessPoint')?.getAttribute('name') &&
+          (ldInst === 'LD0' || ldInst === '') &&
+          (prefix ?? '') === (ln.getAttribute('prefix') ?? '') &&
+          lnClass === ln.getAttribute('lnClass') &&
+          (lnInst ?? '') === (ln.getAttribute('inst') ?? '')
+        )
+          return true;
+      }
+
+      if (getElement(identity).split(' ').length === 1) {
+        if (
+          iedName === ln?.closest('IED')?.getAttribute('name') &&
+          apRef === ln?.closest('AccessPoint')?.getAttribute('name') &&
+          ldInst === ln.closest('LDevice')?.getAttribute('inst') &&
+          lnClass === ln.getAttribute('lnClass')
+        )
+          return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 function addClientLNAction(doc: XMLDocument): WizardActor {
@@ -83,33 +127,35 @@ function addClientLNAction(doc: XMLDocument): WizardActor {
     const actions: WizardAction[] = [];
 
     selectedLNs.forEach(selectedLN => {
-      const lnValue: LNValue = JSON.parse(selectedLN.value);
+      const lnIdentity = selectedLN.value;
 
-      const cbList: Element[] = <Element[]>cbSelected
-        .map(cb => JSON.parse(cb.value))
-        .map(cbValue => getReportCb(doc, cbValue))
+      const reportCbs = <Element[]>cbSelected
+        .map(cb => cb.value)
+        .map(cbValue => doc.querySelector(selector('ReportControl', cbValue)))
         .filter(cb => cb !== null);
 
-      cbList.forEach(cb => {
+      reportCbs.forEach(cb => {
         //RptEnabled is the parent for ClientLN and might be missing
         if (cb.querySelector('RptEnabled') === null) {
-          const element: Element = createElement(doc, 'RptEnabled', {
+          const rptEnabled: Element = createElement(doc, 'RptEnabled', {
             max: '1',
           });
-          cb.appendChild(element);
+          cb.appendChild(rptEnabled);
         }
 
+        const ln = getLogicalNode(doc, lnIdentity);
         if (
           cb.querySelector('RptEnabled') !== null &&
-          getClientLN(cb, lnValue) === null
+          !existClientLN(cb, lnIdentity) &&
+          ln
         ) {
           const element: Element = createElement(doc, 'ClientLN', {
-            iedName: lnValue.iedName,
-            apRef: lnValue.apRef,
-            ldInst: lnValue.ldInst ?? 'LD0', //ldInst is required and with Ed2 'LD0' for client ln's
-            prefix: lnValue.prefix ?? '', //OpenSCD empty string over null
-            lnClass: lnValue.lnClass,
-            lnInst: lnValue.lnInst ?? '', //OpenSCD empty string over null
+            iedName: ln?.closest('IED')?.getAttribute('name') ?? null,
+            apRef: ln?.closest('AccessPoint')?.getAttribute('name') ?? null,
+            ldInst: ln?.closest('LDevice')?.getAttribute('inst') ?? 'LD0', //ldInst is required and with Ed2 'LD0' for client ln's
+            prefix: ln?.getAttribute('prefix') ?? '', //OpenSCD empty string over null
+            lnClass: ln?.getAttribute('lnClass') ?? '',
+            lnInst: ln?.getAttribute('inst') ?? '', //OpenSCD empty string over null
           });
           actions.push({
             new: {
@@ -126,34 +172,6 @@ function addClientLNAction(doc: XMLDocument): WizardActor {
 
     return actions;
   };
-}
-
-function getReportCb(
-  source: Element | Document,
-  cbValue: CBValue
-): Element | null {
-  const base =
-    source instanceof Document
-      ? `IED[name="${cbValue.iedName}"]  LDevice[inst="${cbValue.ldInst}"]`
-      : `LDevice[inst="${cbValue.ldInst}"]`;
-  const cb = `ReportControl[name="${cbValue.cbName}"]`;
-
-  const lnBase = [];
-  if (cbValue.lnClass === 'LLN0') lnBase.push('LN0[lnClass="LLN0"]');
-  else lnBase.push(`LN[lnClass="${cbValue.lnClass}"]`);
-  const prefix = cbValue.prefix
-    ? [`[prefix="${cbValue.prefix}"]`]
-    : [':not([prefix])', '[prefix=""]'];
-  const lnInst = cbValue.lnInst
-    ? [`[inst="${cbValue.lnInst}"]`]
-    : [':not([inst])', '[inst=""]'];
-  const ln = crossProduct(lnBase, prefix, lnInst).map(a => a.join(''));
-
-  const selector = crossProduct([base], ln, [cb])
-    .map(a => a.join(' > '))
-    .join(',');
-
-  return source.querySelector(selector);
 }
 
 export function clientlnwizard(
@@ -206,16 +224,16 @@ export function clientlnwizard(
                   };
                 });
               })
-              //.sort(compareConnected)
+              .sort((a, b) => b.numberClientLNs - a.numberClientLNs)
               .map(
                 item =>
                   html`<mwc-check-list-item
                     left
                     hasMeta
                     twoline
-                    value="${pathParts(item.identity as string)[1] ?? ''}"
-                    ><span>${pathParts(item.identity as string)[0] ?? ''}</span
-                    ><span slot="secondary">${item.identity}</span
+                    value="${item.identity}"
+                    ><span>${getElement(item.identity)}</span
+                    ><span slot="secondary">${getPath(item.identity)}</span
                     ><span slot="meta"
                       >${item.numberClientLNs}</span
                     ></mwc-check-list-item
@@ -226,19 +244,38 @@ export function clientlnwizard(
             id="sinklist"
             activatable
             searchFieldLabel="${get('scl.LN')}"
-            >${Array.from(sinkIED.getElementsByTagName('LN'))
-              .concat(Array.from(sinkIED.getElementsByTagName('LN0')))
-              .map(
-                ln =>
-                  html`<mwc-check-list-item twoline value="${identity(ln)}">
-                    <span
-                      >${(ln.getAttribute('prefix') ?? '') +
-                      (ln.getAttribute('lnClass') ?? '') +
-                      (ln.getAttribute('lnInst') ?? '')}</span
-                    >
-                    <span slot="secondary">${identity(ln)}</span>
-                  </mwc-check-list-item>`
-              )}</filtered-list
+            >${Array.from(
+              sinkIED.querySelectorAll(':root > IED > AccessPoint > LN')
+            ).map(
+              ln =>
+                html`<mwc-check-list-item twoline value="${identity(ln)}">
+                  <span>${getElement(identity(ln))}</span>
+                  <span slot="secondary">${getPath(identity(ln))}</span>
+                </mwc-check-list-item>`
+            )}
+            <li divider role="separator"></li>
+            ${Array.from(
+              sinkIED.querySelectorAll(
+                ':root > IED > AccessPoint > Server > LDevice > LN'
+              )
+            ).map(
+              ln =>
+                html`<mwc-check-list-item twoline value="${identity(ln)}">
+                  <span>${getElement(identity(ln))}</span>
+                  <span slot="secondary">${getPath(identity(ln))}</span>
+                </mwc-check-list-item>`
+            )}
+            ${Array.from(
+              sinkIED.querySelectorAll(
+                ':root > IED > AccessPoint > Server > LDevice > LN0'
+              )
+            ).map(
+              ln0 =>
+                html`<mwc-check-list-item twoline value="${identity(ln0)}">
+                  <span>LLN0</span>
+                  <span slot="secondary">${identity(ln0)}</span>
+                </mwc-check-list-item>`
+            )}</filtered-list
           >
         </div>`,
       ],
