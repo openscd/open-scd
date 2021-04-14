@@ -78,10 +78,19 @@ function existClientLN(cb: Element, identity: string): boolean {
 
     if (identity.split('>').length === 3) {
       if (getElement(identity).split(' ').length > 1) {
+        // ClientLN attributes for LNs reside in a AccessPoint have specific requirements
+        // apRef: The name of the access point via which the IED shall be accessed.
+        //        Optional, not needed if the IED has only one access poin
+        //ldInst: the value of ldInst can be arbitrary
+        const numberAccessPoint = ln
+          ?.closest('IED')
+          ?.querySelectorAll('AccessPoint').length;
         if (
           iedName === ln?.closest('IED')?.getAttribute('name') &&
-          apRef === ln?.closest('AccessPoint')?.getAttribute('name') &&
-          (ldInst === 'LD0' || ldInst === '') &&
+          numberAccessPoint &&
+          (numberAccessPoint > 1
+            ? apRef === ln?.closest('AccessPoint')?.getAttribute('name')
+            : true) &&
           (prefix ?? '') === (ln.getAttribute('prefix') ?? '') &&
           lnClass === ln.getAttribute('lnClass') &&
           (lnInst ?? '') === (ln.getAttribute('inst') ?? '')
