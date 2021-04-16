@@ -1094,10 +1094,10 @@ export const tags: Record<
   ConfDataSet: { identity: singletonIdentity, selector: singletonSelector },
   DA: { identity: namingIdentity, selector: namingSelector },
   DAI: { identity: ixNamingIdentity, selector: ixNamingSelector },
-  DAType: { identity: idIdentity, selector: idSelector },
+  DAType: { identity: idNamingIdentity, selector: idNamingSelector },
   DO: { identity: namingIdentity, selector: namingSelector },
   DOI: { identity: namingIdentity, selector: namingSelector },
-  DOType: { identity: idIdentity, selector: idSelector },
+  DOType: { identity: idNamingIdentity, selector: idNamingSelector },
   DataObjectDirectory: {
     identity: singletonIdentity,
     selector: singletonSelector,
@@ -1110,7 +1110,7 @@ export const tags: Record<
   DurationInSec: { identity: singletonIdentity, selector: singletonSelector },
   DynAssociation: { identity: singletonIdentity, selector: singletonSelector },
   DynDataSet: { identity: singletonIdentity, selector: singletonSelector },
-  EnumType: { identity: idIdentity, selector: idSelector },
+  EnumType: { identity: idNamingIdentity, selector: idNamingSelector },
   EnumVal: { identity: enumValIdentity, selector: enumValSelector },
   EqFunction: { identity: namingIdentity, selector: namingSelector },
   EqSubFunction: { identity: namingIdentity, selector: namingSelector },
@@ -1141,7 +1141,7 @@ export const tags: Record<
   KDC: { identity: kDCIdentity, selector: kDCSelector },
   LDevice: { identity: lDeviceIdentity, selector: lDeviceSelector },
   LN: { identity: lNIdentity, selector: lNSelector },
-  LN0: { identity: lNIdentity, selector: lNSelector },
+  LN0: { identity: singletonIdentity, selector: singletonSelector },
   LNode: { identity: lNodeIdentity, selector: lNodeSelector },
   LNodeType: { identity: lNIdentity, selector: lNodeSelector },
   Line: { identity: namingIdentity, selector: namingSelector },
@@ -1368,7 +1368,7 @@ const tServiceSettings = [
 
 const tBaseElement = ['SCL', ...tNaming, ...tUnNaming, ...tIDNaming] as const;
 
-const SCLTags = [
+const sCLTags = [
   ...tBaseElement,
   ...tAnyContentFromOtherNamespace,
   'Header',
@@ -1405,9 +1405,9 @@ const SCLTags = [
   'Terminal',
 ] as const;
 
-console.log(Array.from(SCLTags).sort());
+console.log(Array.from(sCLTags).sort());
 
-type SCLTag = typeof SCLTags[number];
+type SCLTag = typeof sCLTags[number];
 
 type NamingTag = typeof tNaming[number] | typeof tUnNaming[number];
 
@@ -1470,6 +1470,12 @@ export const namingParents: Record<NamingTag, string[]> = {
   ReportControl: [...tAnyLN],
 };
 
+function namingIdentity(e: Element): string {
+  return e.parentElement!.tagName === 'SCL'
+    ? e.getAttribute('name')!
+    : `${identity(e.parentElement)}>${e.getAttribute('name')}`;
+}
+
 function namingSelector(
   tagName: NamingTag,
   identity: string,
@@ -1509,34 +1515,21 @@ function singletonSelector(tagName: string, identity: string): string {
     .join(',');
 }
 
-function idSelector(tagName: string, identity: string): string {
+function idNamingIdentity(e: Element): string {
+  return `#${e.id}`;
+}
+
+function idNamingSelector(tagName: string, identity: string): string {
   return `${tagName}[id="${identity.replace('#', '')}"]`;
 }
 
 export function selector(tagName: string, identity: string | number): string {
   if (typeof identity !== 'string') return ':not(*)';
 
-  if (singletonTags[tagName]) return singletonSelector(tagName, identity);
-  if (specialTags[tagName])
-    return specialTags[tagName]?.selector?.(tagName, identity) ?? ':not(*)';
-
-  if (namingParents[tagName as NamingTag])
-    return namingSelector(tagName as NamingTag, identity);
-
-  if (identity.startsWith('#'))
-    return `${tagName}[id="${identity.replace('#', '')}"]`;
+  if (sCLTags.includes(tagName))
+    return tags[tagName].selector(tagName, identity);
 
   return tagName;
-}
-
-function namingIdentity(e: Element): string {
-  return e.parentElement!.tagName === 'SCL'
-    ? e.getAttribute('name')!
-    : `${identity(e.parentElement)}>${e.getAttribute('name')}`;
-}
-
-function idIdentity(e: Element): string {
-  return `#${e.id}`;
 }
 
 /** @returns a string uniquely identifying `e` in its document, or NaN if `e`
@@ -1545,18 +1538,7 @@ export function identity(e: Element | null): string | number {
   if (e === null) return NaN;
   if (e.closest('Private')) return NaN;
 
-  if (singletonTags[e.tagName]) return singletonIdentity(<Element>e);
-  const specialIdentity = specialTags[e.tagName]?.identity;
-  if (specialIdentity) return specialIdentity(<Element>e);
-
-  if (e.id) return `#${e.id}`;
-
-  if (e.hasAttribute('name') && e.parentElement)
-    return e.parentElement.tagName === 'SCL'
-      ? e.getAttribute('name')!
-      : `${identity(e.parentElement)}>${e.getAttribute('name')}`;
-
-  if (e.tagName === 'SCL') return '';
+  if (sCLTags.includes(e.tagName)) return tags[e.tagName].identity(e);
 
   return NaN;
 }
