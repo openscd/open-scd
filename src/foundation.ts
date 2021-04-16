@@ -1174,6 +1174,111 @@ const tUnNaming = [
   ...tAbstractDataAttribute,
 ] as const;
 
+const tAnyContentFromOtherNamespace = [
+  'Text',
+  'Private',
+  'Hitem',
+  'AccessControl',
+] as const;
+
+const tCert = ['Subject', 'IssuerName'] as const;
+const tValueWithUnit = ['Voltage', 'DurationInSec'] as const;
+
+const tIDNaming = ['LNodeType', 'DOType', 'DAType', 'EnumType'] as const;
+
+const tFileHandling = ['FileHandling'] as const;
+const tTimeSyncProt = ['TimeSyncProt'] as const;
+const tCommProt = ['CommProt'] as const;
+const tServiceYesNo = [
+  'FileHandling',
+  'TimeSyncProt',
+  'CommProt',
+  'SGEdit',
+  'ConfSG',
+  'GetDirectory',
+  'GetDataObjectDefinition',
+  'DataObjectDirectory',
+  'GetDataSetValue',
+  'SetDataSetValue',
+  'DataSetDirectory',
+  'ReadWrite',
+  'TimerActivatedControl',
+  'GetCBValues',
+  'GSEDir',
+  'ConfLdName',
+  ...tFileHandling,
+  ...tTimeSyncProt,
+  ...tCommProt,
+] as const;
+
+const tClientServices = [] as const;
+
+const tServiceForConfDataSet = ['ConsfDataSet'] as const;
+const tServiceWithMaxAndMaxAttributes = [
+  'DynDataSet',
+  ...tServiceForConfDataSet,
+] as const;
+
+const tServiceConfReportControl = ['ConfReportControl'] as const;
+const tServiceWithMaxNonZero = ['ConfLogControl', 'ConfSigRef'] as const;
+const tGOOSEcapabilities = ['GOOSE'] as const;
+const tSMVsc = ['SMVsc'] as const;
+const tServiceWithMax = [
+  'GSSE',
+  ...tServiceWithMaxAndMaxAttributes,
+  ...tServiceConfReportControl,
+  ...tGOOSEcapabilities,
+  ...tSMVsc,
+] as const;
+
+const tReportSettings = ['ReportSettings'] as const;
+const tLogSettings = ['LogSettings'] as const;
+const tGSESettings = ['GSESettings'] as const;
+const tSMVSettings = ['SMVSettings'] as const;
+
+const tServiceSettings = [
+  ...tReportSettings,
+  ...tLogSettings,
+  ...tGSESettings,
+  ...tSMVSettings,
+] as const;
+
+const tBaseElement = ['SCL', ...tNaming, ...tUnNaming, ...tIDNaming] as const;
+
+const SCLTags = [
+  ...tBaseElement,
+  ...tAnyContentFromOtherNamespace,
+  'Header',
+  'Val',
+  ...tValueWithUnit,
+  'Services',
+  ...tCert,
+  'Association',
+  'FCDA',
+  'TrgOpts',
+  'ClientLN',
+  'ExtRef',
+  'Protocol',
+  ...tServiceYesNo,
+  'DynAssociation',
+  'SettingGroups',
+  ...tServiceWithMax,
+  ...tServiceWithMaxNonZero,
+  ...tServiceSettings,
+  'ConfLNs',
+  'ClientServices',
+  'SupSubscription',
+  'ValueHandling',
+  'RedProt',
+  'McSecurity',
+  'KDC',
+  'Address',
+  'ProtNS',
+  'EnumVal',
+] as const;
+
+type SCLTag = typeof SCLTags[number];
+
 const tAnyLN = ['LN0', 'LN'] as const;
 
 type NamingTag = typeof tNaming[number] | typeof tUnNaming[number];
