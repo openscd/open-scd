@@ -1026,10 +1026,16 @@ function protNsSelector(tagName: string, identity: string): string {
     .join(',');
 }
 
-type IdentityFunction = ((e: Element) => string | number) | null;
-type SelectorFunction =
-  | ((tagName: NamingTag, identity: string) => string)
-  | null;
+function sCLIdentity(): string {
+  return '';
+}
+
+function sCLSelector(): string {
+  return 'SCL';
+}
+
+type IdentityFunction = (e: Element) => string | number;
+type SelectorFunction = (tagName: SCLTag, identity: string) => string;
 
 export const specialTags: Partial<
   Record<
@@ -1153,7 +1159,7 @@ export const tags: Record<
   RedProt: { identity: singletonIdentity, selector: singletonSelector },
   ReportControl: { identity: namingIdentity, selector: namingSelector },
   ReportSettings: { identity: singletonIdentity, selector: singletonSelector },
-  SCL: { identity: null, selector: null },
+  SCL: { identity: sCLIdentity, selector: sCLSelector },
   SDI: { identity: ixNamingIdentity, selector: ixNamingSelector },
   SDO: { identity: namingIdentity, selector: namingSelector },
   SGEdit: { identity: singletonIdentity, selector: singletonSelector },
@@ -1322,10 +1328,10 @@ const tValueWithUnit = ['Voltage', 'DurationInSec'] as const;
 
 const tIDNaming = ['LNodeType', 'DOType', 'DAType', 'EnumType'] as const;
 
-const tFileHandling = ['FileHandling'] as const;
-const tTimeSyncProt = ['TimeSyncProt'] as const;
-const tCommProt = ['CommProt'] as const;
 const tServiceYesNo = [
+  'FileHandling',
+  'TimeSyncProt',
+  'CommProt',
   'SGEdit',
   'ConfSG',
   'GetDirectory',
@@ -1339,39 +1345,25 @@ const tServiceYesNo = [
   'GetCBValues',
   'GSEDir',
   'ConfLdName',
-  ...tFileHandling,
-  ...tTimeSyncProt,
-  ...tCommProt,
 ] as const;
 
-const tServiceForConfDataSet = ['ConfDataSet'] as const;
-const tServiceWithMaxAndMaxAttributes = [
-  'DynDataSet',
-  ...tServiceForConfDataSet,
-] as const;
+const tServiceWithMaxAndMaxAttributes = ['DynDataSet', 'ConfDataSet'] as const;
 
-const tServiceConfReportControl = ['ConfReportControl'] as const;
-const tServiceWithMaxNonZero = ['ConfLogControl', 'ConfSigRef'] as const;
-const tGOOSEcapabilities = ['GOOSE'] as const;
-const tSMVsc = ['SMVsc'] as const;
 const tServiceWithMax = [
   'GSSE',
+  'GOOSE',
+  'ConfReportControl',
+  'SMVsc',
   ...tServiceWithMaxAndMaxAttributes,
-  ...tServiceConfReportControl,
-  ...tGOOSEcapabilities,
-  ...tSMVsc,
 ] as const;
 
-const tReportSettings = ['ReportSettings'] as const;
-const tLogSettings = ['LogSettings'] as const;
-const tGSESettings = ['GSESettings'] as const;
-const tSMVSettings = ['SMVSettings'] as const;
+const tServiceWithMaxNonZero = ['ConfLogControl', 'ConfSigRef'] as const;
 
 const tServiceSettings = [
-  ...tReportSettings,
-  ...tLogSettings,
-  ...tGSESettings,
-  ...tSMVSettings,
+  'ReportSettings',
+  'LogSettings',
+  'GSESettings',
+  'SMVSettings',
 ] as const;
 
 const tBaseElement = ['SCL', ...tNaming, ...tUnNaming, ...tIDNaming] as const;
