@@ -269,6 +269,18 @@ describe('foundation', () => {
         expect(identity(element!)).to.equal(expectations[key]);
       });
     });
+    it('returns valid identity for naming identities', () => {
+      Object.keys(namingParents).forEach(tag => {
+        const element = scl1.querySelector(tag);
+        if (element) {
+          expect(identity(element)).to.equal(
+            identity(element.parentElement!) +
+              (element.parentElement?.tagName === 'SCL' ? '' : '>') +
+              element.getAttribute('name')
+          );
+        }
+      });
+    });
   });
 
   describe('selector', () => {
