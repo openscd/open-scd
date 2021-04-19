@@ -328,8 +328,8 @@ function lNodeIdentity(e: Element): string {
 
 function lNodeSelector(tagName: string, identity: string): string {
   if (identity.endsWith(')')) {
-    const [parentIdentity, myIdentity] = pathParts(identity);
-    const [lnClass, lnType] = myIdentity
+    const [parentIdentity, childIdentity] = pathParts(identity);
+    const [lnClass, lnType] = childIdentity
       .substring(1, identity.length - 2)
       .split(' ');
 
@@ -385,8 +385,8 @@ function kDCIdentity(e: Element): string {
 }
 
 function kDCSelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
-  const [iedName, apName] = myIdentity.split(' ');
+  const [parentIdentity, childIdentity] = pathParts(identity);
+  const [iedName, apName] = childIdentity.split(' ');
   return `${selector(
     'IED',
     parentIdentity
@@ -435,9 +435,9 @@ function iEDNameIdentity(e: Element): string {
 }
 
 function iEDNameSelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [parentIdentity, childIdentity] = pathParts(identity);
 
-  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = myIdentity.split(
+  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = childIdentity.split(
     /[ /]/
   );
 
@@ -494,16 +494,18 @@ function fCDAIdentity(e: Element): string {
 }
 
 function fCDASelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [parentIdentity, childIdentity] = pathParts(identity);
 
-  const [ldInst, prefix, lnClass, lnInst] = myIdentity.split(/[ /.]/);
+  const [ldInst, prefix, lnClass, lnInst] = childIdentity.split(/[ /.]/);
 
-  const matchDoDa = myIdentity.match(/.([A-Z][a-z0-9.]*) ([A-Za-z0-9.]*) \(/);
+  const matchDoDa = childIdentity.match(
+    /.([A-Z][a-z0-9.]*) ([A-Za-z0-9.]*) \(/
+  );
   const doName = matchDoDa && matchDoDa[1] ? matchDoDa[1] : '';
   const daName = matchDoDa && matchDoDa[2] ? matchDoDa[2] : '';
 
-  const matchFx = myIdentity.match(/\(([A-Z]{2})/);
-  const matchIx = myIdentity.match(/ \[([0-9]{1,2})\]/);
+  const matchFx = childIdentity.match(/\(([A-Z]{2})/);
+  const matchIx = childIdentity.match(/ \[([0-9]{1,2})\]/);
 
   const fc = matchFx && matchFx[1] ? matchFx[1] : '';
   const ix = matchIx && matchIx[1] ? matchIx[1] : '';
@@ -600,14 +602,14 @@ function extRefIdentity(e: Element): string | number {
 }
 
 function extRefSelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [parentIdentity, childIdentity] = pathParts(identity);
 
   const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
     selector(parentTag, parentIdentity).split(',')
   );
 
-  if (myIdentity.endsWith(']')) {
-    const [intAddr] = myIdentity.split('[');
+  if (childIdentity.endsWith(']')) {
+    const [intAddr] = childIdentity.split('[');
     const intAddrSelectors = [`[intAddr="${intAddr}"]`];
 
     return crossProduct(parentSelectors, ['>'], [tagName], intAddrSelectors)
@@ -630,7 +632,7 @@ function extRefSelector(tagName: string, identity: string): string {
     srcLNInst,
     intAddr;
 
-  if (!myIdentity.includes(':') && !myIdentity.includes('@')) {
+  if (!childIdentity.includes(':') && !childIdentity.includes('@')) {
     [
       iedName,
       ldInst,
@@ -639,8 +641,8 @@ function extRefSelector(tagName: string, identity: string): string {
       lnInst,
       doName,
       daName,
-    ] = myIdentity.split(/[ /]/);
-  } else if (myIdentity.includes(':') && !myIdentity.includes('@')) {
+    ] = childIdentity.split(/[ /]/);
+  } else if (childIdentity.includes(':') && !childIdentity.includes('@')) {
     [
       serviceType,
       srcCBName,
@@ -655,8 +657,8 @@ function extRefSelector(tagName: string, identity: string): string {
       lnInst,
       doName,
       daName,
-    ] = myIdentity.split(/[ /:]/);
-  } else if (!myIdentity.includes(':') && myIdentity.includes('@')) {
+    ] = childIdentity.split(/[ /:]/);
+  } else if (!childIdentity.includes(':') && childIdentity.includes('@')) {
     [
       iedName,
       ldInst,
@@ -666,7 +668,7 @@ function extRefSelector(tagName: string, identity: string): string {
       doName,
       daName,
       intAddr,
-    ] = myIdentity.split(/[ /@]/);
+    ] = childIdentity.split(/[ /@]/);
   } else {
     [
       serviceType,
@@ -683,7 +685,7 @@ function extRefSelector(tagName: string, identity: string): string {
       doName,
       daName,
       intAddr,
-    ] = myIdentity.split(/[ /:@]/);
+    ] = childIdentity.split(/[ /:@]/);
   }
 
   const [
@@ -804,13 +806,13 @@ function clientLNIdentity(e: Element): string {
 }
 
 function clientLNSelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [parentIdentity, childIdentity] = pathParts(identity);
 
   const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
     selector(parentTag, parentIdentity).split(',')
   );
 
-  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = myIdentity.split(
+  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = childIdentity.split(
     /[ /]/
   );
 
@@ -902,9 +904,9 @@ function valIdentity(e: Element): string | number {
 }
 
 function valSelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [parentIdentity, childIdentity] = pathParts(identity);
 
-  const [sGroup, indexText] = myIdentity.split(' ');
+  const [sGroup, indexText] = childIdentity.split(' ');
   const index = parseFloat(indexText);
 
   const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
@@ -996,14 +998,14 @@ function pIdentity(e: Element): string | number {
 }
 
 function pSelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [parentIdentity, childIdentity] = pathParts(identity);
 
-  const [type] = myIdentity.split(' ');
+  const [type] = childIdentity.split(' ');
   const index =
-    myIdentity &&
-    myIdentity.match(/\[([0-9]+)\]/) &&
-    myIdentity.match(/\[([0-9]+)\]/)![1]
-      ? parseFloat(myIdentity.match(/\[([0-9]+)\]/)![1])
+    childIdentity &&
+    childIdentity.match(/\[([0-9]+)\]/) &&
+    childIdentity.match(/\[([0-9]+)\]/)![1]
+      ? parseFloat(childIdentity.match(/\[([0-9]+)\]/)![1])
       : NaN;
 
   const [parentSelectors, typeSelectors, ixSelectors] = [
@@ -1041,9 +1043,9 @@ function protNsIdentity(e: Element): string {
 }
 
 function protNsSelector(tagName: string, identity: string): string {
-  const [parentIdentity, myIdentity] = pathParts(identity);
+  const [parentIdentity, childIdentity] = pathParts(identity);
 
-  const [type, value] = myIdentity.split('\t');
+  const [type, value] = childIdentity.split('\t');
 
   const [parentSelectors] = [
     tags[tagName].parents.flatMap(parentTag =>
@@ -1297,6 +1299,9 @@ const sCLTags = [
   'SmpRate',
   'SecPerSamples',
 ] as const;
+
+type SCLTag = typeof sCLTags[number];
+type NamingTag = typeof tNaming[number] | typeof tUnNaming[number];
 
 export const tags: Record<
   SCLTag,
@@ -1914,9 +1919,6 @@ export const tags: Record<
     parents: ['Substation'],
   },
 };
-
-type SCLTag = typeof sCLTags[number];
-type NamingTag = typeof tNaming[number] | typeof tUnNaming[number];
 
 export function selector(tagName: string, identity: string | number): string {
   if (typeof identity !== 'string') return voidSelector;
