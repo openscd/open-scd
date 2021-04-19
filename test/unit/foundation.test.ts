@@ -221,7 +221,6 @@ describe('foundation', () => {
       ).to.be.false;
     });
   });
-
   describe('identity', () => {
     it('returns NaN for any private element', () => {
       expect(identity(privateElement)).to.be.NaN;

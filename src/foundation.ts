@@ -1855,6 +1855,12 @@ export const tags: Record<
       'EqFunction',
     ],
   },
+  Private: {
+    identity: () => NaN,
+    selector: () => voidSelector,
+    parents: [],
+    children: [],
+  },
   Process: {
     identity: namingIdentity,
     selector: namingSelector,
@@ -2183,9 +2189,28 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['Substation'],
-    children: [...tEquipmentContainerSequence, 'Voltage', 'Bay','Function'],
+    children: [...tEquipmentContainerSequence, 'Voltage', 'Bay', 'Function'],
   },
 };
+
+export function getReference(parent: Element, tag: SCLTag): Element | null {
+  const parentTag = parent.tagName;
+  const children = Array.from(parent.children);
+
+  if (parentTag === 'Services' || parentTag === 'SettingGroups')
+    return children.find(child => child.tagName === tag) ?? null;
+
+  const sequence = tags[parent.tagName]?.children ?? [];
+  let index = sequence.findIndex(element => element === tag);
+
+  if (index < 0 || index === sequence.length - 1) return null;
+
+  let nextSibling: Element | undefined;
+  while (index < sequence.length - 1 && !nextSibling)
+    nextSibling = children.find(child => child.tagName === sequence[index++]);
+
+  return nextSibling ?? null;
+}
 
 export function selector(tagName: string, identity: string | number): string {
   if (typeof identity !== 'string') return voidSelector;
@@ -2243,37 +2268,6 @@ export function isEqual(a: Element, b: Element): boolean {
 
   return true;
 }
-
-type specialNaming =
-  | 'Header'
-  | 'History'
-  | 'Hitem'
-  | 'Terminal'
-  | 'LNode'
-  | 'KDC'
-  | 'Association'
-  | 'LDevice'
-  | 'IEDName'
-  | 'FCDA'
-  | 'ExtRef'
-  | 'LN'
-  | 'ClientLN'
-  | 'DAI'
-  | 'SDI'
-  | 'Val'
-  | 'ConnectedAP'
-  | 'GSE'
-  | 'SMV'
-  | 'PhysConn'
-  | 'P'
-  | 'EnumVal'
-  | 'ProtNs';
-
-export const sequenceChildren: Record<NamingTag | specialNaming, string[]> = {
-  VoltageLevel: 
-  SCLControl: [...tUnNamingSequence],
-  DAType: [...tIDNamingSequence, 'BDA'],
-};
 
 /** @returns a new [[`tag`]] element owned by [[`doc`]]. */
 export function createElement(
