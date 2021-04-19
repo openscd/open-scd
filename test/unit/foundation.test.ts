@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import { object } from 'fast-check';
 
 import {
   ComplexAction,
@@ -14,13 +15,11 @@ import {
   isSame,
   isSimple,
   isUpdate,
-  namingParents,
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
   selector,
-  singletonTags,
-  specialTags,
+  tags,
 } from '../../src/foundation.js';
 import { getDocument } from '../data.js';
 
@@ -228,7 +227,9 @@ describe('foundation', () => {
       expect(identity(privateElement)).to.be.NaN;
     });
     it('returns parent identity for singleton identities', () => {
-      Object.keys(singletonTags).forEach(tag => {
+      Object.entries(tags).forEach(([tag, data]) => {
+        if (data.identity !== tags['Server'].identity) return;
+
         const element = scl1.querySelector(tag);
         if (element) {
           expect(identity(element)).to.equal(identity(element.parentElement!));
@@ -270,7 +271,9 @@ describe('foundation', () => {
       });
     });
     it('returns valid identity for naming identities', () => {
-      Object.keys(namingParents).forEach(tag => {
+      Object.entries(tags).forEach(([tag, data]) => {
+        if (data.identity !== tags['Substation'].identity) return;
+
         const element = scl1.querySelector(tag);
         if (element) {
           expect(identity(element)).to.equal(
@@ -289,34 +292,12 @@ describe('foundation', () => {
       const ident = identity(element!);
       expect(selector('Assotiation', ident)).to.equal(':not(*)');
     });
-    it('returns correct selector for singelton identities', () => {
-      Object.keys(singletonTags).forEach(tag => {
-        const element = scl1.querySelector(tag);
-        if (element)
-          expect(element).to.satisfy((element: Element) =>
-            element.isEqualNode(
-              scl1.querySelector(selector(tag, identity(element)))
-            )
-          );
-      });
-    });
-    it('returns correct selector for special identities', () => {
-      Object.keys(specialTags).forEach(tag => {
+    it('returns correct selector for all tags except IEDName and ProtNs', () => {
+      Object.keys(tags).forEach(tag => {
         const element = Array.from(scl1.querySelectorAll(tag)).filter(
           item => !item.closest('Private')
         )[0];
         if (element && tag !== 'IEDName' && tag !== 'ProtNs')
-          expect(element).to.satisfy((element: Element) =>
-            element.isEqualNode(
-              scl1.querySelector(selector(tag, identity(element)))
-            )
-          );
-      });
-    });
-    it('returns correct selector for naming identities', () => {
-      Object.keys(namingParents).forEach(tag => {
-        const element = scl1.querySelector(tag);
-        if (element)
           expect(element).to.satisfy((element: Element) =>
             element.isEqualNode(
               scl1.querySelector(selector(tag, identity(element)))
