@@ -231,10 +231,13 @@ function renderIEDPage(element: Element): TemplateResult {
         .map(iedName => {
           return {
             selected:
-              Array.from(element.getElementsByTagName('LNode'))
+              Array.from(element.children)
                 .filter(item => !item.closest('Private'))
-                .filter(lnode => lnode.getAttribute('iedName') === iedName)
-                .length > 0,
+                .filter(
+                  item =>
+                    item.tagName === 'LNode' &&
+                    item.getAttribute('iedName') === iedName
+                ).length > 0,
             iedName: iedName,
           };
         })
