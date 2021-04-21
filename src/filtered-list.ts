@@ -1,4 +1,5 @@
 import { List } from '@material/mwc-list';
+import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { TextField } from '@material/mwc-textfield';
 import {
   css,
@@ -15,6 +16,35 @@ export class Filterlist extends List {
   searchFieldLabel!: string;
 
   @query('mwc-textfield') searchField!: TextField;
+
+  @property({ type: Boolean })
+  get existCheckListItem(): boolean {
+    return this.items.filter(item => item instanceof CheckListItem).length > 0
+      ? true
+      : false;
+  }
+
+  @property({ type: Boolean })
+  get isAllSelected(): boolean {
+    return (
+      this.items
+        .filter(item => item instanceof CheckListItem)
+        .filter(checkItem => !checkItem.selected).length === 0
+    );
+  }
+
+  @property({ type: Boolean })
+  get isNoneSelected(): boolean {
+    return (
+      this.items
+        .filter(item => item instanceof CheckListItem)
+        .filter(checkItem => checkItem.selected).length === 0
+    );
+  }
+
+  firstUpdated(): void {
+    this.requestUpdate();
+  }
 
   onFilterInput(): void {
     this.items.forEach(item => {
@@ -33,6 +63,17 @@ export class Filterlist extends List {
     });
   }
 
+  renderCheckAll(): TemplateResult {
+    return this.existCheckListItem
+      ? html`<mwc-formfield
+          ><mwc-checkbox
+            ?indeterminate=${!this.isAllSelected && !this.isNoneSelected}
+            ?checked=${this.isAllSelected}
+          ></mwc-checkbox
+        ></mwc-formfield>`
+      : html``;
+  }
+
   render(): TemplateResult {
     return html`<div id="tfcontainer">
         <mwc-textfield
@@ -42,7 +83,7 @@ export class Filterlist extends List {
           @input=${() => this.onFilterInput()}
         ></mwc-textfield>
       </div>
-      ${super.render()}`;
+      ${this.renderCheckAll()}${super.render()}`;
   }
 
   static styles = css`
