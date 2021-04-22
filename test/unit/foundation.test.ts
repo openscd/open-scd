@@ -1,5 +1,4 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { object } from 'fast-check';
 
 import {
   ComplexAction,
@@ -20,6 +19,7 @@ import {
   newWizardEvent,
   selector,
   tags,
+  getReference,
 } from '../../src/foundation.js';
 import { getDocument } from '../data.js';
 
@@ -303,6 +303,34 @@ describe('foundation', () => {
             )
           );
       });
+    });
+  });
+
+  describe('getReference', () => {
+    it('returns correct reference for already existing elements', () => {
+      Object.keys(tags)
+        .filter(tag => tags[tag].children.length > 0)
+        .forEach(tag => {
+          const element = Array.from(scl1.querySelectorAll(tag)).filter(
+            item => !item.closest('Private')
+          )[0];
+
+          if (
+            !element ||
+            element.tagName === 'Services' ||
+            element.tagName === 'SettingGroups'
+          )
+            return;
+
+          const children = Array.from(element.children);
+          const childTags = new Set(children.map(child => child.tagName));
+
+          for (const childTag of childTags) {
+            expect(getReference(element, childTag)).to.equal(
+              children.find(child => child.tagName === childTag)
+            );
+          }
+        });
     });
   });
 

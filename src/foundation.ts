@@ -1358,7 +1358,7 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['IED'],
-    children: [...tNamingSequence, 'LN'],
+    children: [...tNamingSequence, 'Server', 'LN'],
   },
   Address: {
     identity: singletonIdentity,
@@ -1501,7 +1501,7 @@ export const tags: Record<
     identity: idNamingIdentity,
     selector: idNamingSelector,
     parents: ['DataTypeTemplates'],
-    children: [...tIDNamingSequence, 'SDO', 'DA'],
+    children: [...tIDNamingSequence, 'BDA'],
   },
   DO: {
     identity: namingIdentity,
@@ -1543,7 +1543,7 @@ export const tags: Record<
     identity: singletonIdentity,
     selector: singletonSelector,
     parents: ['SCL'],
-    children: ['LNodeType', 'DoType', 'DAType', 'EnumType'],
+    children: ['LNodeType', 'DOType', 'DAType', 'EnumType'],
   },
   DynAssociation: {
     identity: singletonIdentity,
@@ -1699,25 +1699,25 @@ export const tags: Record<
     identity: singletonIdentity,
     selector: singletonSelector,
     parents: ['SCL'],
-    children: [],
+    children: ['Text', 'History'],
   },
   History: {
     identity: singletonIdentity,
     selector: singletonSelector,
     parents: ['Header'],
-    children: ['Text', 'History'],
+    children: ['Hitem'],
   },
   Hitem: {
     identity: hitemIdentity,
     selector: hitemSelector,
-    parents: ['Header'],
+    parents: ['History'],
     children: [],
   },
   IED: {
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['SCL'],
-    children: [...tNamingSequence, 'Services', 'AccessPoint'],
+    children: [...tNamingSequence, 'Services', 'AccessPoint', 'KDC'],
   },
   IEDName: {
     identity: iEDNameIdentity,
@@ -1913,7 +1913,7 @@ export const tags: Record<
     identity: singletonIdentity,
     selector: singletonSelector,
     parents: ['ReportControl'],
-    children: [...tUnNamingSequence, 'ClienLN'],
+    children: [...tUnNamingSequence, 'ClientLN'],
   },
   SamplesPerSec: {
     identity: singletonIdentity,
@@ -1964,7 +1964,7 @@ export const tags: Record<
     parents: ['AccessPoint'],
     children: [
       ...tUnNamingSequence,
-      'Authentification',
+      'Authentication',
       'LDevice',
       'Association',
     ],
@@ -2194,6 +2194,8 @@ export const tags: Record<
 };
 
 export function getReference(parent: Element, tag: SCLTag): Element | null {
+  if (tag === 'LNode') console.log(parent);
+
   const parentTag = parent.tagName;
   const children = Array.from(parent.children);
 
@@ -2203,11 +2205,13 @@ export function getReference(parent: Element, tag: SCLTag): Element | null {
   const sequence = tags[parent.tagName]?.children ?? [];
   let index = sequence.findIndex(element => element === tag);
 
-  if (index < 0 || index === sequence.length - 1) return null;
+  if (index < 0) return null;
 
   let nextSibling: Element | undefined;
-  while (index < sequence.length - 1 && !nextSibling)
-    nextSibling = children.find(child => child.tagName === sequence[index++]);
+  while (index < sequence.length && !nextSibling) {
+    nextSibling = children.find(child => child.tagName === sequence[index]);
+    index++;
+  }
 
   return nextSibling ?? null;
 }
