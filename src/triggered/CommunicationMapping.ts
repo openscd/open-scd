@@ -51,7 +51,7 @@ function getLogicalNode(doc: XMLDocument, identity: string): Element | null {
   return null;
 }
 
-function existClientLN(cb: Element, identity: string): boolean {
+function hasClientLN(cb: Element, identity: string): boolean {
   for (const clientLN of Array.from(cb.getElementsByTagName('ClientLN'))) {
     const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = [
       'iedName',
@@ -63,12 +63,16 @@ function existClientLN(cb: Element, identity: string): boolean {
     ].map(attribute => clientLN.getAttribute(attribute));
 
     const ln = getLogicalNode(cb.ownerDocument, identity);
+    if (!ln) break;
+    const ied = ln.closest('IED');
+    const ap = ln.closest('AccessPoint');
+    const ld = ln.closest('LDevice');
 
     if (identity.split('>').length === 4) {
       if (
-        iedName === ln?.closest('IED')?.getAttribute('name') &&
-        apRef === ln?.closest('AccessPoint')?.getAttribute('name') &&
-        ldInst === ln?.closest('LDevice')?.getAttribute('inst') &&
+        iedName === ied?.getAttribute('name') &&
+        apRef === ap?.getAttribute('name') &&
+        ldInst === ld?.getAttribute('inst') &&
         (prefix ?? '') === (ln.getAttribute('prefix') ?? '') &&
         lnClass === ln.getAttribute('lnClass') &&
         (lnInst ?? '') === (ln.getAttribute('inst') ?? '')
@@ -78,19 +82,14 @@ function existClientLN(cb: Element, identity: string): boolean {
 
     if (identity.split('>').length === 3) {
       if (getElement(identity).split(' ').length > 1) {
-        // ClientLN attributes for LNs reside in a AccessPoint have specific requirements
-        // apRef: The name of the access point via which the IED shall be accessed.
-        //        Optional, not needed if the IED has only one access poin
-        //ldInst: the value of ldInst can be arbitrary
-        const numberAccessPoint = ln
-          ?.closest('IED')
-          ?.querySelectorAll('AccessPoint').length;
+        // ClientLNs for LNs inside an AccessPoint have these requirements:
+        // apRef: AccessPoint name (optional if IED has only one AccessPoint)
+        // ldInst: can be arbitrary
+        const apCount = ied?.querySelectorAll('AccessPoint').length;
         if (
-          iedName === ln?.closest('IED')?.getAttribute('name') &&
-          numberAccessPoint &&
-          (numberAccessPoint > 1
-            ? apRef === ln?.closest('AccessPoint')?.getAttribute('name')
-            : true) &&
+          iedName === ied?.getAttribute('name') &&
+          apCount &&
+          (apCount <= 1 || apRef === ap?.getAttribute('name')) &&
           (prefix ?? '') === (ln.getAttribute('prefix') ?? '') &&
           lnClass === ln.getAttribute('lnClass') &&
           (lnInst ?? '') === (ln.getAttribute('inst') ?? '')
@@ -100,9 +99,9 @@ function existClientLN(cb: Element, identity: string): boolean {
 
       if (getElement(identity).split(' ').length === 1) {
         if (
-          iedName === ln?.closest('IED')?.getAttribute('name') &&
-          apRef === ln?.closest('AccessPoint')?.getAttribute('name') &&
-          ldInst === ln.closest('LDevice')?.getAttribute('inst') &&
+          iedName === ied?.getAttribute('name') &&
+          apRef === ap?.getAttribute('name') &&
+          ldInst === ld?.getAttribute('inst') &&
           lnClass === ln.getAttribute('lnClass')
         )
           return true;
@@ -145,7 +144,7 @@ function addClientLNAction(doc: XMLDocument): WizardActor {
         const ln = getLogicalNode(doc, lnIdentity);
         if (
           cb.querySelector('RptEnabled') !== null &&
-          !existClientLN(cb, lnIdentity) &&
+          !hasClientLN(cb, lnIdentity) &&
           ln
         ) {
           const element: Element = createElement(doc, 'ClientLN', {
