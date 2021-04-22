@@ -20,12 +20,12 @@ import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 interface ItemDescription {
   selected: boolean;
   disabled?: boolean;
-  prefered?: boolean;
+  preferred?: boolean;
   element?: Element;
 }
 
-/** Logical nodes perfered for lnode reference to substation element */
-const preferedLn: Partial<Record<string, string[]>> = {
+/** Logical nodes perferred for lnode reference to substation element */
+const preferredLn: Partial<Record<string, string[]>> = {
   CBR: ['CSWI', 'CILO', 'XCBR'],
   DIS: ['CSWI', 'CILO', 'XSWI'],
   VTR: ['TVTR'],
@@ -39,7 +39,7 @@ const preferedLn: Partial<Record<string, string[]>> = {
 function compare(a: ItemDescription, b: ItemDescription): number {
   if (a.disabled !== b.disabled) return b.disabled ? -1 : 1;
 
-  if (a.prefered !== b.prefered) return a.prefered ? -1 : 1;
+  if (a.preferred !== b.preferred) return a.preferred ? -1 : 1;
 
   if (a.selected !== b.selected) return a.selected ? -1 : 1;
 
@@ -143,10 +143,10 @@ export function lNodeWizardAction(parent: Element): WizardActor {
   };
 }
 
-function getListContainer(target: Element, id: string): Element | null {
+function getListContainer(target: Element, selector: string): Element | null {
   return (
     target.parentElement?.parentElement?.nextElementSibling?.querySelector(
-      id
+      selector
     ) ?? null
   );
 }
@@ -173,7 +173,7 @@ function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
     .filter(item => item !== null)
     .map(item => {
       const isPrefered =
-        preferedLn[
+        preferredLn[
           parent.getAttribute('type')
             ? parent.getAttribute('type') ?? ''
             : parent.tagName ?? ''
@@ -226,7 +226,7 @@ function renderIEDPage(element: Element): TemplateResult {
     return html`<filtered-list
       multi
       id="iedList"
-      @selected="${(evt: MultiSelectedEvent) => onIEDSelect(evt, element)}"
+      @selected=${(evt: MultiSelectedEvent) => onIEDSelect(evt, element)}
       >${Array.from(doc.querySelectorAll(':root > IED'))
         .map(ied => ied.getAttribute('name')!)
         .map(iedName => {
@@ -253,17 +253,13 @@ function renderIEDPage(element: Element): TemplateResult {
         )}</filtered-list
     >`;
   else
-    return html`<mwc-list-item disabled graphic="icon">
+    return html`<mwc-list-item noninteractive graphic="icon">
       <span>${translate('lnode.wizard.placeholder')}</span>
       <mwc-icon slot="graphic">info</mwc-icon>
     </mwc-list-item>`;
 }
 
-function renderLnPage(): TemplateResult {
-  return html` <filtered-list multi id="lnList"></filtered-list>`;
-}
-
-/** @returns a Wizard for editing `element`'s `LNode`s. */
+/** @returns a Wizard for editing `element`'s `LNode` children. */
 export function editlNode(element: Element): Wizard {
   return [
     {
@@ -271,13 +267,14 @@ export function editlNode(element: Element): Wizard {
       content: [renderIEDPage(element)],
     },
     {
+      initial: true,
       title: get('lnode.wizard.title.selectLNs'),
       primary: {
         icon: 'save',
         label: get('save'),
         action: lNodeWizardAction(element),
       },
-      content: [renderLnPage()],
+      content: [html`<filtered-list multi id="lnList"></filtered-list>`],
     },
   ];
 }
