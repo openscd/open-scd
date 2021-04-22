@@ -16,7 +16,7 @@ import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-/** Description of a `ListItem` representing an `IED`, `LDevice`, or `LN[0]` */
+/** Description of a `ListItem` representing an `IED` or `LN[0]` */
 interface ItemDescription {
   selected: boolean;
   disabled?: boolean;
@@ -24,6 +24,7 @@ interface ItemDescription {
   element?: Element;
 }
 
+/** Logical nodes perfered for lnode reference to substation element */
 const preferedLn: Partial<Record<string, string[]>> = {
   CBR: ['CSWI', 'CILO', 'XCBR'],
   DIS: ['CSWI', 'CILO', 'XSWI'],
