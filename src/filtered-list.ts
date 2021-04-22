@@ -5,6 +5,7 @@ import {
   css,
   customElement,
   html,
+  internalProperty,
   property,
   query,
   TemplateResult,
@@ -12,41 +13,39 @@ import {
 
 @customElement('filtered-list')
 export class Filterlist extends List {
-  @property()
+  @property({ type: String })
   searchFieldLabel!: string;
+
+  @property({ type: Boolean })
+  disableCheckAll = false;
+
+  @internalProperty()
+  private get existCheckListItem(): boolean {
+    return this.items.some(item => item instanceof CheckListItem);
+  }
+
+  @internalProperty()
+  private get isAllSelected(): boolean {
+    return this.items
+      .filter(item => item instanceof CheckListItem)
+      .every(checkItem => checkItem.selected);
+  }
+
+  @internalProperty()
+  private get isSomeSelected(): boolean {
+    return this.items
+      .filter(item => item instanceof CheckListItem)
+      .some(checkItem => checkItem.selected);
+  }
 
   @query('mwc-textfield') searchField!: TextField;
 
-  @property({ type: Boolean })
-  get existCheckListItem(): boolean {
-    return this.items.filter(item => item instanceof CheckListItem).length > 0
-      ? true
-      : false;
+  private onCheckAll(): void {
+    const select = !this.isAllSelected;
+    this.items.forEach(item => (item.selected = select));
   }
 
-  @property({ type: Boolean })
-  get isAllSelected(): boolean {
-    return (
-      this.items
-        .filter(item => item instanceof CheckListItem)
-        .filter(checkItem => !checkItem.selected).length === 0
-    );
-  }
-
-  @property({ type: Boolean })
-  get isNoneSelected(): boolean {
-    return (
-      this.items
-        .filter(item => item instanceof CheckListItem)
-        .filter(checkItem => checkItem.selected).length === 0
-    );
-  }
-
-  firstUpdated(): void {
-    this.requestUpdate();
-  }
-
-  onFilterInput(): void {
+  private onFilterInput(): void {
     this.items.forEach(item => {
       const text: string = (
         item.innerText +
@@ -63,12 +62,27 @@ export class Filterlist extends List {
     });
   }
 
-  renderCheckAll(): TemplateResult {
-    return this.existCheckListItem
-      ? html`<mwc-formfield
+  protected onListItemConnected(e: CustomEvent): void {
+    super.onListItemConnected(e);
+    this.requestUpdate();
+  }
+
+  constructor() {
+    super();
+    this.addEventListener('selected', () => {
+      this.requestUpdate();
+    });
+  }
+
+  private renderCheckAll(): TemplateResult {
+    return this.existCheckListItem && !this.disableCheckAll
+      ? html`<mwc-formfield class="checkall"
           ><mwc-checkbox
-            ?indeterminate=${!this.isAllSelected && !this.isNoneSelected}
+            ?indeterminate=${!this.isAllSelected && this.isSomeSelected}
             ?checked=${this.isAllSelected}
+            @change=${() => {
+              this.onCheckAll();
+            }}
           ></mwc-checkbox
         ></mwc-formfield>`
       : html``;
@@ -82,8 +96,9 @@ export class Filterlist extends List {
           outlined
           @input=${() => this.onFilterInput()}
         ></mwc-textfield>
+        ${this.renderCheckAll()}
       </div>
-      ${this.renderCheckAll()}${super.render()}`;
+      ${super.render()}`;
   }
 
   static styles = css`
@@ -102,6 +117,10 @@ export class Filterlist extends List {
       margin: 10px;
       width: 100%;
       --mdc-shape-small: 28px;
+    }
+
+    mwc-formfield.checkall {
+      padding-right: 8px;
     }
 
     .mdc-list {
