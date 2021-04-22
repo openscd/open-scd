@@ -33,8 +33,8 @@ describe('lnodewizard', () => {
     ).to.equal(2);
   });
 
-  describe('on the first wizard page', () => {
-    it('render a list of available IEDs in a mwc-list with checked items', () => {
+  describe('the first page', () => {
+    it('renders a list of available IEDs in a mwc-list with checked items', () => {
       expect(
         element.wizardUI.shadowRoot
           ?.querySelector('mwc-dialog')
@@ -42,16 +42,16 @@ describe('lnodewizard', () => {
       ).to.equal(doc.querySelectorAll('IED').length);
     });
 
-    it('select the IEDs that are connected', () => {
+    it('selects the IEDs that are connected', () => {
       expect(
         (<ListItemBase[]>(
-          (<List>element.wizardUI.dialog!.querySelector('#iedList')).selected
+          (<List>element.wizardUI.dialogs[0].querySelector('#iedList')).selected
         )).length
       ).to.equal(1);
     });
 
-    describe('on the second page', () => {
-      it('add logical nodes of the selected IEDs', async () => {
+    describe('the second page', () => {
+      it('adds logical nodes of the selected IEDs', async () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('mwc-dialog:nth-child(2)')
@@ -62,7 +62,7 @@ describe('lnodewizard', () => {
         );
       });
 
-      it('select logical nodes connected to the substation element', async () => {
+      it('selects logical nodes connected to the substation element', async () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('mwc-dialog:nth-child(2)')
@@ -70,7 +70,7 @@ describe('lnodewizard', () => {
         ).to.have.equal(3);
       });
 
-      it('disable logical nodes connected to another substation', async () => {
+      it('disables logical nodes connected to another substation', async () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('mwc-dialog:nth-child(2)')
@@ -79,8 +79,8 @@ describe('lnodewizard', () => {
       });
     });
 
-    describe('has a lNodeActions that', () => {
-      it('removes unselected logical nodes from the parent element', async () => {
+    describe('lNodeActions', () => {
+      it('removes unselected logical nodes', async () => {
         expect(
           doc.querySelector('Bay[name="COUPLING_BAY"]>LNode[lnClass="LLN0"]')
         ).to.exist;
@@ -101,7 +101,7 @@ describe('lnodewizard', () => {
         ).to.not.exist;
       });
 
-      it('creates selected logical nodes to parent element ', async () => {
+      it('creates selected logical nodes', async () => {
         expect(
           doc.querySelector(
             'Bay[name="COUPLING_BAY"]>LNode[ldInst="CBSW"][lnClass="XCBR"][lnInst="1"]'
@@ -126,7 +126,7 @@ describe('lnodewizard', () => {
         ).to.exist;
       });
 
-      it('leaves logical node references that has not been changed by user', async () => {
+      it('leaves logical node references that have not been changed by user', async () => {
         expect(
           doc.querySelector(
             'Bay[name="COUPLING_BAY"]>LNode[ldInst="CBSW"][lnClass="XSWI"][lnInst="3"]'
