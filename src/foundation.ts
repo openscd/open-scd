@@ -1943,7 +1943,7 @@ export const tags: Record<
       'Substation',
       'Communication',
       'IED',
-      'DataTypeTemplate',
+      'DataTypeTemplates',
     ],
   },
   SDI: {
