@@ -6,6 +6,7 @@ import {
   identity,
   newWizardEvent,
   selector,
+  tags,
 } from '../foundation.js';
 import { Diff, mergeWizard } from '../wizards.js';
 
@@ -93,8 +94,8 @@ export default class UpdateSubstationPlugin extends LitElement {
           newWizardEvent(
             mergeWizard(
               // FIXME: doesn't work with multiple Substations!
-              this.doc.querySelector('Substation')!,
-              doc.querySelector('Substation')!,
+              this.doc.documentElement,
+              doc.documentElement,
               {
                 title: get('updatesubstation.title'),
                 selected: (diff: Diff<Element | string>): boolean =>
@@ -104,7 +105,8 @@ export default class UpdateSubstationPlugin extends LitElement {
                           selector('LNode', identity(diff.theirs))
                         ) === null &&
                         isValidReference(doc, identity(diff.theirs))
-                      : true
+                      : diff.theirs.tagName === 'Substation' ||
+                        !tags['SCL'].children.includes(diff.theirs.tagName)
                     : diff.theirs !== null,
                 disabled: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element &&
