@@ -282,7 +282,7 @@ function hitemIdentity(e: Element): string {
   return `${e.getAttribute('version')}\t${e.getAttribute('revision')}`;
 }
 
-function hitemSelector(tagName: string, identity: string): string {
+function hitemSelector(tagName: SCLTag, identity: string): string {
   const [version, revision] = identity.split('\t');
 
   if (!version || !revision) return voidSelector;
@@ -294,7 +294,7 @@ function terminalIdentity(e: Element): string {
   return identity(e.parentElement) + '>' + e.getAttribute('connectivityNode');
 }
 
-function terminalSelector(tagName: string, identity: string): string {
+function terminalSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, connectivityNode] = pathParts(identity);
 
   const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
@@ -326,7 +326,7 @@ function lNodeIdentity(e: Element): string {
   }`;
 }
 
-function lNodeSelector(tagName: string, identity: string): string {
+function lNodeSelector(tagName: SCLTag, identity: string): string {
   if (identity.endsWith(')')) {
     const [parentIdentity, childIdentity] = pathParts(identity);
     const [lnClass, lnType] = childIdentity
@@ -384,7 +384,7 @@ function kDCIdentity(e: Element): string {
   )} ${e.getAttribute('apName')}`;
 }
 
-function kDCSelector(tagName: string, identity: string): string {
+function kDCSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
   const [iedName, apName] = childIdentity.split(' ');
   return `${selector(
@@ -397,7 +397,7 @@ function associationIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${e.getAttribute('associationID')}`;
 }
 
-function associationSelector(tagName: string, identity: string): string {
+function associationSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, associationID] = pathParts(identity);
 
   if (!associationID) return voidSelector;
@@ -412,7 +412,7 @@ function lDeviceIdentity(e: Element): string {
   return `${identity(e.closest('IED')!)}>>${e.getAttribute('inst')}`;
 }
 
-function lDeviceSelector(tagName: string, identity: string): string {
+function lDeviceSelector(tagName: SCLTag, identity: string): string {
   const [iedName, inst] = identity.split('>>');
 
   if (!inst) return voidSelector;
@@ -434,7 +434,7 @@ function iEDNameIdentity(e: Element): string {
   }/${prefix ?? ''} ${lnClass ?? ''} ${lnInst ?? ''}`;
 }
 
-function iEDNameSelector(tagName: string, identity: string): string {
+function iEDNameSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = childIdentity.split(
@@ -493,7 +493,7 @@ function fCDAIdentity(e: Element): string {
   })`;
 }
 
-function fCDASelector(tagName: string, identity: string): string {
+function fCDASelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const [ldInst, prefix, lnClass, lnInst] = childIdentity.split(/[ /.]/);
@@ -601,7 +601,7 @@ function extRefIdentity(e: Element): string | number {
   }`;
 }
 
-function extRefSelector(tagName: string, identity: string): string {
+function extRefSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
@@ -762,7 +762,7 @@ function lNIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${prefix ?? ''} ${lnClass} ${inst}`;
 }
 
-function lNSelector(tagName: string, identity: string): string {
+function lNSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
@@ -805,7 +805,7 @@ function clientLNIdentity(e: Element): string {
   } ${ldInst}/${prefix ?? ''} ${lnClass} ${lnInst}`;
 }
 
-function clientLNSelector(tagName: string, identity: string): string {
+function clientLNSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const parentSelectors = tags[tagName].parents.flatMap(parentTag =>
@@ -853,7 +853,7 @@ function ixNamingIdentity(e: Element): string {
 }
 
 function ixNamingSelector(
-  tagName: string,
+  tagName: SCLTag,
   identity: string,
   depth = -1
 ): string {
@@ -903,7 +903,7 @@ function valIdentity(e: Element): string | number {
   return `${identity(e.parentElement)}>${sGroup ? sGroup + '.' : ''} ${index}`;
 }
 
-function valSelector(tagName: string, identity: string): string {
+function valSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const [sGroup, indexText] = childIdentity.split(' ');
@@ -936,7 +936,7 @@ function connectedAPIdentity(e: Element): string {
   return `${iedName} ${apName}`;
 }
 
-function connectedAPSelector(tagName: string, identity: string): string {
+function connectedAPSelector(tagName: SCLTag, identity: string): string {
   const [iedName, apName] = identity.split(' ');
   if (!iedName || !apName) return voidSelector;
   return `${tagName}[iedName="${iedName}"][apName="${apName}"]`;
@@ -949,7 +949,7 @@ function controlBlockIdentity(e: Element): string {
   return `${ldInst} ${cbName}`;
 }
 
-function controlBlockSelector(tagName: string, identity: string): string {
+function controlBlockSelector(tagName: SCLTag, identity: string): string {
   const [ldInst, cbName] = identity.split(' ');
 
   if (!ldInst || !cbName) return voidSelector;
@@ -970,7 +970,7 @@ function physConnIdentity(e: Element): string | number {
   return `${identity(e.parentElement)}>${pcType}`;
 }
 
-function physConnSelector(tagName: string, identity: string): string {
+function physConnSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, pcType] = pathParts(identity);
 
   const [parentSelectors, typeSelectors] = [
@@ -997,7 +997,7 @@ function pIdentity(e: Element): string | number {
   return `${identity(e.parentElement)}>${eType} [${index}]`;
 }
 
-function pSelector(tagName: string, identity: string): string {
+function pSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const [type] = childIdentity.split(' ');
@@ -1031,7 +1031,7 @@ function enumValIdentity(e: Element): string {
   return `${identity(e.parentElement)}>${e.getAttribute('ord')}`;
 }
 
-function enumValSelector(tagName: string, identity: string): string {
+function enumValSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, ord] = pathParts(identity);
   return `${selector('EnumType', parentIdentity)}>${tagName}[ord="${ord}"]`;
 }
@@ -1042,7 +1042,7 @@ function protNsIdentity(e: Element): string {
   }`;
 }
 
-function protNsSelector(tagName: string, identity: string): string {
+function protNsSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
   const [type, value] = childIdentity.split('\t');
@@ -1108,7 +1108,7 @@ function singletonIdentity(e: Element): string {
   return identity(e.parentElement).toString();
 }
 
-function singletonSelector(tagName: string, identity: string): string {
+function singletonSelector(tagName: SCLTag, identity: string): string {
   const parents = tags[tagName].parents;
   if (!parents) return voidSelector;
 
@@ -1127,7 +1127,7 @@ function idNamingIdentity(e: Element): string {
   return `#${e.id}`;
 }
 
-function idNamingSelector(tagName: string, identity: string): string {
+function idNamingSelector(tagName: SCLTag, identity: string): string {
   const id = identity.replace(/^#/, '');
 
   if (!id) return voidSelector;
@@ -1170,7 +1170,7 @@ const tAbstractDataAttribute = ['BDA', 'DA'] as const;
 const tControlWithIEDName = ['SampledValueControl', 'GSEControl'] as const;
 const tControlWithTriggerOpt = ['LogControl', 'ReportControl'] as const;
 const tControl = [...tControlWithIEDName, ...tControlWithTriggerOpt] as const;
-const tControlBlock = ['GSE', 'SMV'];
+const tControlBlock = ['GSE', 'SMV'] as const;
 const tUnNaming = [
   'ConnectedAP',
   'PhysConn',
@@ -1298,7 +1298,12 @@ const sCLTags = [
 ] as const;
 
 type SCLTag = typeof sCLTags[number];
-type NamingTag = typeof tNaming[number] | typeof tUnNaming[number];
+
+const tagSet = new Set<string>(sCLTags);
+
+function isSCLTag(tag: string): tag is SCLTag {
+  return tagSet.has(tag);
+}
 
 const tBaseNameSequence = ['Text', 'Private'] as const;
 const tNamingSequence = [...tBaseNameSequence] as const;
@@ -2216,10 +2221,14 @@ export function getReference(parent: Element, tag: SCLTag): Element | null {
   const parentTag = parent.tagName;
   const children = Array.from(parent.children);
 
-  if (parentTag === 'Services' || parentTag === 'SettingGroups')
+  if (
+    parentTag === 'Services' ||
+    parentTag === 'SettingGroups' ||
+    !isSCLTag(parentTag)
+  )
     return children.find(child => child.tagName === tag) ?? null;
 
-  const sequence = tags[parent.tagName]?.children ?? [];
+  const sequence = tags[parentTag]?.children ?? [];
   let index = sequence.findIndex(element => element === tag);
 
   if (index < 0) return null;
@@ -2236,8 +2245,7 @@ export function getReference(parent: Element, tag: SCLTag): Element | null {
 export function selector(tagName: string, identity: string | number): string {
   if (typeof identity !== 'string') return voidSelector;
 
-  if (sCLTags.includes(tagName))
-    return tags[tagName].selector(tagName, identity);
+  if (isSCLTag(tagName)) return tags[tagName].selector(tagName, identity);
 
   return tagName;
 }
@@ -2247,8 +2255,9 @@ export function selector(tagName: string, identity: string | number): string {
 export function identity(e: Element | null): string | number {
   if (e === null) return NaN;
   if (e.closest('Private')) return NaN;
+  const tag = e.tagName;
 
-  if (sCLTags.includes(e.tagName)) return tags[e.tagName].identity(e);
+  if (isSCLTag(tag)) return tags[tag].identity(e);
 
   return NaN;
 }
