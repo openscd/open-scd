@@ -1079,11 +1079,7 @@ function namingIdentity(e: Element): string {
     : `${identity(e.parentElement)}>${e.getAttribute('name')}`;
 }
 
-function namingSelector(
-  tagName: NamingTag,
-  identity: string,
-  depth = -1
-): string {
+function namingSelector(tagName: SCLTag, identity: string, depth = -1): string {
   if (depth === -1) depth = identity.split('>').length;
 
   const [parentIdentity, name] = pathParts(identity);
@@ -1194,6 +1190,7 @@ const tUnNaming = [
   'DataSet',
   'AccessPoint',
   'IED',
+  'NeutralPoint',
   ...tControl,
   ...tControlBlock,
   ...tAbstractDataAttribute,
@@ -1331,6 +1328,7 @@ const tAnyLNSequence = [
   'LogControl',
   'DOI',
   'Inputs',
+  'Log',
 ] as const;
 const tGeneralEquipmentContainerSequence = [
   ...tPowerSystemResourceSequence,
@@ -1338,6 +1336,11 @@ const tGeneralEquipmentContainerSequence = [
   'Function',
 ] as const;
 const tControlWithTriggerOptSequence = [...tControlSequence, 'TrgOps'] as const;
+const tAbstractEqFuncSubFuncSequence = [
+  ...tPowerSystemResourceSequence,
+  'GeneralEquipment',
+  'EqSubFunction',
+] as const;
 
 export const tags: Record<
   SCLTag,
@@ -1358,7 +1361,15 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['IED'],
-    children: [...tNamingSequence, 'Server', 'LN'],
+    children: [
+      ...tNamingSequence,
+      'Server',
+      'LN',
+      'ServerAt',
+      'Services',
+      'GOOSESecurity',
+      'SMVSecurity',
+    ],
   },
   Address: {
     identity: singletonIdentity,
@@ -1411,7 +1422,7 @@ export const tags: Record<
     identity: singletonIdentity,
     selector: singletonSelector,
     parents: ['Services'],
-    children: [],
+    children: ['TimeSyncProt', 'McSecurity'],
   },
   CommProt: {
     identity: singletonIdentity,
@@ -1477,7 +1488,7 @@ export const tags: Record<
     identity: connectedAPIdentity,
     selector: connectedAPSelector,
     parents: ['SubNetwork'],
-    children: [...tNamingSequence, 'Address', 'GSE', 'SMV', 'PhysConn'],
+    children: [...tUnNamingSequence, 'Address', 'GSE', 'SMV', 'PhysConn'],
   },
   ConnectivityNode: {
     identity: namingIdentity,
@@ -1501,7 +1512,7 @@ export const tags: Record<
     identity: idNamingIdentity,
     selector: idNamingSelector,
     parents: ['DataTypeTemplates'],
-    children: [...tIDNamingSequence, 'BDA'],
+    children: [...tIDNamingSequence, 'BDA', 'ProtNs'],
   },
   DO: {
     identity: namingIdentity,
@@ -1512,7 +1523,7 @@ export const tags: Record<
   DOI: {
     identity: namingIdentity,
     selector: namingSelector,
-    parents: ['LN0', 'LN'],
+    parents: [...tAnyLN],
     children: [...tUnNamingSequence, 'SDI', 'DAI'],
   },
   DOType: {
@@ -1580,13 +1591,13 @@ export const tags: Record<
       'SubEquipment',
       'ConductingEquipment',
     ],
-    children: [...tAbstractConductingEquipmentSequence],
+    children: [...tAbstractEqFuncSubFuncSequence],
   },
   EqSubFunction: {
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['EqSubFunction', 'EqFunction'],
-    children: [...tAbstractConductingEquipmentSequence],
+    children: [...tAbstractEqFuncSubFuncSequence],
   },
   ExtRef: {
     identity: extRefIdentity,
@@ -1663,7 +1674,7 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['AccessPoint'],
-    children: [...tNamingSequence, 'Subject', 'IssueNaming'],
+    children: [...tNamingSequence, 'Subject', 'IssuerName'],
   },
   GSE: {
     identity: controlBlockIdentity,
@@ -1681,7 +1692,7 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['LN0'],
-    children: [...tControlWithIEDNameSequence],
+    children: [...tControlWithIEDNameSequence, 'Protocol'],
   },
   GSESettings: {
     identity: singletonIdentity,
@@ -1717,7 +1728,7 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: ['SCL'],
-    children: [...tNamingSequence, 'Services', 'AccessPoint', 'KDC'],
+    children: [...tUnNamingSequence, 'Services', 'AccessPoint', 'KDC'],
   },
   IEDName: {
     identity: iEDNameIdentity,
@@ -1764,8 +1775,6 @@ export const tags: Record<
       'GSEControl',
       'SampledValueControl',
       'SettingControl',
-      'SCLControl',
-      'Log',
     ],
   },
   LNode: {
@@ -1786,7 +1795,7 @@ export const tags: Record<
     parents: ['Process', 'SCL'],
     children: [
       ...tGeneralEquipmentContainerSequence,
-      'Volgate',
+      'Voltage',
       'ConductingEquipment',
     ],
   },
@@ -1826,6 +1835,12 @@ export const tags: Record<
     parents: ['GSE'],
     children: [],
   },
+  NeutralPoint: {
+    identity: terminalIdentity,
+    selector: terminalSelector,
+    parents: ['TransformerWinding'],
+    children: [...tUnNamingSequence],
+  },
   OptFields: {
     identity: singletonIdentity,
     selector: singletonSelector,
@@ -1835,7 +1850,7 @@ export const tags: Record<
   P: {
     identity: pIdentity,
     selector: pSelector,
-    parents: ['Address'],
+    parents: ['Address', 'PhysConn'],
     children: [],
   },
   PhysConn: {
@@ -1882,7 +1897,7 @@ export const tags: Record<
   Protocol: {
     identity: singletonIdentity,
     selector: singletonSelector,
-    parents: ['GSEControl', 'SMVControl'],
+    parents: ['GSEControl', 'SampledValueControl'],
     children: [],
   },
   ReadWrite: {
@@ -1901,13 +1916,13 @@ export const tags: Record<
     identity: namingIdentity,
     selector: namingSelector,
     parents: [...tAnyLN],
-    children: [],
+    children: [...tControlWithTriggerOptSequence, 'OptFields', 'RptEnabled'],
   },
   ReportSettings: {
     identity: singletonIdentity,
     selector: singletonSelector,
     parents: ['Services'],
-    children: [...tControlWithTriggerOptSequence, 'OptFields', 'RptEnabled'],
+    children: [],
   },
   RptEnabled: {
     identity: singletonIdentity,
@@ -1944,6 +1959,8 @@ export const tags: Record<
       'Communication',
       'IED',
       'DataTypeTemplates',
+      'Line',
+      'Process',
     ],
   },
   SDI: {
@@ -2083,7 +2100,7 @@ export const tags: Record<
       'PowerTransformer',
       ...tAbstractConductingEquipment,
     ],
-    children: [...tPowerSystemResourceSequence],
+    children: [...tPowerSystemResourceSequence, 'EqFunction'],
   },
   SubFunction: {
     identity: namingIdentity,
@@ -2092,7 +2109,7 @@ export const tags: Record<
     children: [
       ...tPowerSystemResourceSequence,
       'GeneralEquipment',
-      'ConductingEQuipment',
+      'ConductingEquipment',
       'SubFunction',
     ],
   },
@@ -2147,7 +2164,7 @@ export const tags: Record<
   TimeSyncProt: {
     identity: singletonIdentity,
     selector: singletonSelector,
-    parents: ['Services'],
+    parents: ['Services', 'ClientServices'],
     children: [],
   },
   TransformerWinding: {
@@ -2157,7 +2174,7 @@ export const tags: Record<
     children: [
       ...tAbstractConductingEquipmentSequence,
       'TapChanger',
-      'Terminal',
+      'NeutralPoint',
       'EqFunction',
     ],
   },
