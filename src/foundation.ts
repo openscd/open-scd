@@ -1297,7 +1297,7 @@ const sCLTags = [
   'SecPerSamples',
 ] as const;
 
-type SCLTag = typeof sCLTags[number];
+export type SCLTag = typeof sCLTags[number];
 
 const tagSet = new Set<string>(sCLTags);
 
