@@ -4,17 +4,17 @@ import { Filterlist } from '../../src/filtered-list.js';
 describe('filtered-list', () => {
   let element: Filterlist;
   const listItems = [
-    { prim: 'item1', sec: 'item1sec' },
-    { prim: 'item2', sec: 'item2sec' },
-    { prim: 'item3', sec: 'item3sec' },
-    { prim: 'item4', sec: 'item4sec' },
+    { prim: 'item1', sec: 'item1sec', disabled: false },
+    { prim: 'item2', sec: 'item2sec', disabled: false },
+    { prim: 'item3', sec: 'item3sec', disabled: false },
+    { prim: 'item4', sec: 'item4sec', disabled: true },
   ];
   beforeEach(async () => {
     element = await fixture(
       html`<filtered-list multi
         >${Array.from(listItems).map(
           item =>
-            html`<mwc-check-list-item twoline
+            html`<mwc-check-list-item twoline ?disabled=${item.disabled}
               ><span>${item.prim}</span
               ><span slot="secondary">${item.sec}</span></mwc-check-list-item
             >`
@@ -44,9 +44,11 @@ describe('filtered-list', () => {
       expect(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       ).to.not.have.attribute('checked');
-      element.items.forEach(item => {
-        item.click();
-      });
+      element.items
+        .filter(item => !item.disabled)
+        .forEach(item => {
+          item.click();
+        });
       await element.updateComplete;
 
       expect(
@@ -74,9 +76,18 @@ describe('filtered-list', () => {
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       )).click();
       await element.updateComplete;
-      element.items.forEach(item => {
-        expect(item).to.have.attribute('selected');
-      });
+      element.items
+        .filter(item => !item.disabled)
+        .forEach(item => {
+          expect(item).to.have.attribute('selected');
+        });
+    });
+    it('does not select disabled check-list-items on checkAll click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      )).click();
+      await element.updateComplete;
+      expect(element.items[3]).to.not.have.attribute('selected');
     });
     it('unselects all check-list-items on checkAll click', async () => {
       (<HTMLElement>(
@@ -86,9 +97,11 @@ describe('filtered-list', () => {
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       )).click();
       await element.updateComplete;
-      element.items.forEach(item => {
-        expect(item).to.not.have.attribute('selected');
-      });
+      element.items
+        .filter(item => !item.disabled)
+        .forEach(item => {
+          expect(item).to.not.have.attribute('selected');
+        });
     });
   });
 

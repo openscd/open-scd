@@ -225,6 +225,7 @@ function renderIEDPage(element: Element): TemplateResult {
   const doc = element.ownerDocument;
   if (doc.querySelectorAll(':root > IED').length > 0)
     return html`<filtered-list
+      disableCheckAll
       multi
       id="iedList"
       @selected=${(evt: MultiSelectedEvent) => onIEDSelect(evt, element)}
