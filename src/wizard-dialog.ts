@@ -118,6 +118,11 @@ export class WizardDialog extends LitElement {
       this.dialog?.show();
       this.pageIndex = 0;
     }
+    if (this.wizard[this.pageIndex]?.primary?.auto) {
+      this.updateComplete.then(() =>
+        this.act(this.wizard[this.pageIndex].primary!.action)
+      );
+    }
   }
 
   renderPage(page: WizardPage, index: number): TemplateResult {

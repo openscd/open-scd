@@ -118,6 +118,7 @@ export default class UpdateSubstationPlugin extends LitElement {
                     selector('LNode', identity(diff.theirs))
                   ) !== null ||
                     !isValidReference(doc, identity(diff.theirs))),
+                auto: (): boolean => true,
               }
             )
           )
