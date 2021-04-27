@@ -14,13 +14,13 @@ import {
   isSame,
   isSimple,
   isUpdate,
-  namingParents,
   newActionEvent,
   newPendingStateEvent,
   newWizardEvent,
   selector,
-  singletonTags,
-  specialTags,
+  tags,
+  getReference,
+  SCLTag,
 } from '../../src/foundation.js';
 import { getDocument } from '../data.js';
 
@@ -222,13 +222,14 @@ describe('foundation', () => {
       ).to.be.false;
     });
   });
-
   describe('identity', () => {
     it('returns NaN for any private element', () => {
       expect(identity(privateElement)).to.be.NaN;
     });
     it('returns parent identity for singleton identities', () => {
-      Object.keys(singletonTags).forEach(tag => {
+      Object.entries(tags).forEach(([tag, data]) => {
+        if (data.identity !== tags['Server'].identity) return;
+
         const element = scl1.querySelector(tag);
         if (element) {
           expect(identity(element)).to.equal(identity(element.parentElement!));
@@ -269,6 +270,20 @@ describe('foundation', () => {
         expect(identity(element!)).to.equal(expectations[key]);
       });
     });
+    it('returns valid identity for naming identities', () => {
+      Object.entries(tags).forEach(([tag, data]) => {
+        if (data.identity !== tags['Substation'].identity) return;
+
+        const element = scl1.querySelector(tag);
+        if (element) {
+          expect(identity(element)).to.equal(
+            identity(element.parentElement!) +
+              (element.parentElement?.tagName === 'SCL' ? '' : '>') +
+              element.getAttribute('name')
+          );
+        }
+      });
+    });
   });
 
   describe('selector', () => {
@@ -277,19 +292,8 @@ describe('foundation', () => {
       const ident = identity(element!);
       expect(selector('Assotiation', ident)).to.equal(':not(*)');
     });
-    it('returns correct selector for singelton identities', () => {
-      Object.keys(singletonTags).forEach(tag => {
-        const element = scl1.querySelector(tag);
-        if (element)
-          expect(element).to.satisfy((element: Element) =>
-            element.isEqualNode(
-              scl1.querySelector(selector(tag, identity(element)))
-            )
-          );
-      });
-    });
-    it('returns correct selector for special identities', () => {
-      Object.keys(specialTags).forEach(tag => {
+    it('returns correct selector for all tags except IEDName and ProtNs', () => {
+      Object.keys(tags).forEach(tag => {
         const element = Array.from(scl1.querySelectorAll(tag)).filter(
           item => !item.closest('Private')
         )[0];
@@ -301,16 +305,102 @@ describe('foundation', () => {
           );
       });
     });
-    it('returns correct selector for naming identities', () => {
-      Object.keys(namingParents).forEach(tag => {
-        const element = scl1.querySelector(tag);
-        if (element)
-          expect(element).to.satisfy((element: Element) =>
-            element.isEqualNode(
-              scl1.querySelector(selector(tag, identity(element)))
-            )
-          );
-      });
+  });
+
+  describe('getReference', () => {
+    it('returns correct reference for already existing elements', () => {
+      Object.keys(tags)
+        .filter(tag => tags[<SCLTag>tag].children.length > 0)
+        .forEach(tag => {
+          const element = Array.from(scl1.querySelectorAll(tag)).filter(
+            item => !item.closest('Private')
+          )[0];
+
+          if (
+            !element ||
+            element.tagName === 'Services' ||
+            element.tagName === 'SettingGroups'
+          )
+            return;
+
+          const children = Array.from(element.children);
+          const childTags = new Set(children.map(child => child.tagName));
+
+          for (const childTag of childTags) {
+            expect(getReference(element, <SCLTag>childTag)).to.equal(
+              children.find(child => child.tagName === childTag)
+            );
+          }
+        });
+    });
+
+    it('returns correct reference for LNode element', () => {
+      const scl = new DOMParser().parseFromString(
+        `<Bay>
+          <Private>testprivate</Private>
+          <ConductingEquipment name="QA1"></ConductingEquipment>
+        </Bay>`,
+        'application/xml'
+      ).documentElement;
+      expect(getReference(scl, 'LNode')).to.equal(
+        scl.querySelector('ConductingEquipment')
+      );
+      const scl2 = new DOMParser().parseFromString(
+        `<Bay>
+          <Private>testprivate</Private>
+          <PowerTransformer name="pTrans"></PowerTransformer>
+          <ConductingEquipment name="QA1"></ConductingEquipment>
+        </Bay>`,
+        'application/xml'
+      ).documentElement;
+      expect(getReference(scl2, 'LNode')).to.equal(
+        scl2.querySelector('PowerTransformer')
+      );
+    });
+    it('returns correct reference for Substation element', () => {
+      const scl = new DOMParser().parseFromString(
+        `<SCL>
+          <Header></Header>
+          <IED name="IED"></IED>
+          <DataTypeTemplates></DataTypeTemplates>
+        </SCL>`,
+        'application/xml'
+      ).documentElement;
+      expect(getReference(scl, 'Substation')).to.equal(
+        scl.querySelector('IED')
+      );
+    });
+    it('returns correct reference for VoltageLevel element', () => {
+      const scl = new DOMParser().parseFromString(
+        `<Substation>
+          <Private></Private>
+          <LNode></LNode>
+        </Substation>`,
+        'application/xml'
+      ).documentElement;
+      expect(getReference(scl, 'VoltageLevel')).to.be.null;
+    });
+    it('returns correct reference for Bay element', () => {
+      const scl = new DOMParser().parseFromString(
+        `<VoltageLevel>
+          <Private></Private>
+          <Function></Function>
+        </VoltageLevel>`,
+        'application/xml'
+      ).documentElement;
+      expect(getReference(scl, 'Bay')).to.equal(scl.querySelector('Function'));
+    });
+    it('returns correct reference for ConductingEquipment element', () => {
+      const scl = new DOMParser().parseFromString(
+        `<Bay>
+          <Private></Private>
+          <ConnectivityNode></ConnectivityNode>
+        </Bay>`,
+        'application/xml'
+      ).documentElement;
+      expect(getReference(scl, 'ConductingEquipment')).to.equal(
+        scl.querySelector('ConnectivityNode')
+      );
     });
   });
 
