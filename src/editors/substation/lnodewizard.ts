@@ -267,7 +267,9 @@ export function editlNode(element: Element): Wizard {
       content: [renderIEDPage(element)],
     },
     {
-      initial: true,
+      initial: Array.from(element.children).some(
+        child => child.tagName === 'LNode'
+      ),
       title: get('lnode.wizard.title.selectLNs'),
       primary: {
         icon: 'save',
