@@ -5,6 +5,7 @@ import {
   crossProduct,
   identity,
   newWizardEvent,
+  SCLTag,
   selector,
   tags,
 } from '../foundation.js';
@@ -106,7 +107,9 @@ export default class UpdateSubstationPlugin extends LitElement {
                         ) === null &&
                         isValidReference(doc, identity(diff.theirs))
                       : diff.theirs.tagName === 'Substation' ||
-                        !tags['SCL'].children.includes(diff.theirs.tagName)
+                        !tags['SCL'].children.includes(
+                          <SCLTag>diff.theirs.tagName
+                        )
                     : diff.theirs !== null,
                 disabled: (diff: Diff<Element | string>): boolean =>
                   diff.theirs instanceof Element &&
