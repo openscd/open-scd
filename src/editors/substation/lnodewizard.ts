@@ -4,6 +4,7 @@ import { get, translate } from 'lit-translate';
 import {
   createElement,
   EditorAction,
+  getReference,
   identity,
   referencePath,
   selector,
@@ -87,7 +88,7 @@ function createAction(parent: Element, anyln: Element): EditorAction {
     new: {
       parent,
       element,
-      reference: null,
+      reference: getReference(parent, 'LNode'),
     },
   };
 }
