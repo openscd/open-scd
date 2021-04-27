@@ -76,7 +76,7 @@ export class WizardDialog extends LitElement {
   }
 
   /** Commits `action` if all inputs are valid, reports validity otherwise. */
-  async act(action?: WizardActor, primary = false): Promise<boolean> {
+  async act(action?: WizardActor, primary = true): Promise<boolean> {
     if (action === undefined) return false;
     if (primary) this.wizard[this.pageIndex].primary = undefined;
     else this.wizard[this.pageIndex].secondary = undefined;
@@ -89,8 +89,6 @@ export class WizardDialog extends LitElement {
 
     const wizardActions = action(inputArray, this);
     if (wizardActions.length > 0) {
-      if (primary) this.wizard[this.pageIndex].primary = undefined;
-      else this.wizard[this.pageIndex].secondary = undefined;
       this.dispatchEvent(newWizardEvent());
     }
     wizardActions.forEach(wa =>
