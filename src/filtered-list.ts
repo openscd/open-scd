@@ -45,7 +45,7 @@ export class Filterlist extends List {
     this.items.forEach(item => (item.selected = select));
   }
 
-  private onFilterInput(): void {
+  onFilterInput(): void {
     this.items.forEach(item => {
       const text: string = (
         item.innerText +

@@ -11,12 +11,12 @@ describe('filtered-list', () => {
   ];
   beforeEach(async () => {
     element = await fixture(
-      html`<filtered-list
+      html`<filtered-list multi
         >${Array.from(listItems).map(
           item =>
-            html`<mwc-list-item twoline
+            html`<mwc-check-list-item twoline
               ><span>${item.prim}</span
-              ><span slot="secondary">${item.sec}</span></mwc-list-item
+              ><span slot="secondary">${item.sec}</span></mwc-check-list-item
             >`
         )}</filtered-list
       >`
@@ -25,6 +25,71 @@ describe('filtered-list', () => {
 
   it('looks like its latest snapshot', () => {
     expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  describe('has a check all checkbox that', () => {
+    it('is indeterminate if one but not all check-list-items are selected', async () => {
+      expect(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      ).to.not.have.attribute('indeterminate');
+
+      element.items[0].click();
+      await element.updateComplete;
+
+      expect(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      ).to.have.attribute('indeterminate');
+    });
+    it('is selected if all check-list-items are selected', async () => {
+      expect(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      ).to.not.have.attribute('checked');
+      element.items.forEach(item => {
+        item.click();
+      });
+      await element.updateComplete;
+
+      expect(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      ).to.have.attribute('checked');
+    });
+    it('is none of the above if no check-list-item is selected', () => {
+      expect(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      ).to.not.have.attribute('checked');
+      expect(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      ).to.not.have.attribute('indeterminate');
+    });
+    it('can be disabled with disableCheckAll property', async () => {
+      expect(element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')).to
+        .not.be.null;
+      element.disableCheckAll = true;
+      await element.requestUpdate();
+      expect(element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')).to
+        .be.null;
+    });
+    it('selects all check-list-items on checkAll click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      )).click();
+      await element.updateComplete;
+      element.items.forEach(item => {
+        expect(item).to.have.attribute('selected');
+      });
+    });
+    it('unselects all check-list-items on checkAll click', async () => {
+      (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      )).click();
+      (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
+      )).click();
+      await element.updateComplete;
+      element.items.forEach(item => {
+        expect(item).to.not.have.attribute('selected');
+      });
+    });
   });
 
   describe('onFilterInput', () => {
