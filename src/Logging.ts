@@ -43,14 +43,16 @@ export type LoggingElement = Mixin<typeof Logging>;
 export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
   class LoggingElement extends Base {
     /** All [[`LogEntry`]]s received so far through [[`LogEvent`]]s. */
-    @property()
+    @property({ type: Array })
     history: LogEntry[] = [];
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     currentAction = -1;
 
     @query('#log') logUI!: Dialog;
-    @query('#message') messageUI!: Snackbar;
+    @query('#error') errorUI!: Snackbar;
+    @query('#warning') warningUI!: Snackbar;
+    @query('#info') infoUI!: Snackbar;
 
     get canUndo(): boolean {
       return this.currentAction >= 0;
@@ -113,9 +115,20 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       }
 
       this.history.push(entry);
-      if (le.detail.kind == 'error' && !this.logUI.open) {
-        this.messageUI.close(); // hack to reset timeout
-        this.messageUI.show();
+      if (!this.logUI.open) {
+        const ui = {
+          error: this.errorUI,
+          warning: this.warningUI,
+          info: this.infoUI,
+          action: this.infoUI,
+        }[le.detail.kind];
+
+        ui.close();
+        ui.show();
+      }
+      if (le.detail.kind == 'error') {
+        this.errorUI.close(); // hack to reset timeout
+        this.errorUI.show();
       }
       this.requestUpdate('history', []);
     }
@@ -146,7 +159,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-list-item
           class="${entry.kind}"
           graphic="icon"
-          ?twoline=${entry.message}
+          ?twoline=${!!entry.message}
           ?activated=${this.currentAction == history.length - index - 1}
         >
           <span>
@@ -254,12 +267,40 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </mwc-dialog>
 
         <mwc-snackbar
-          id="message"
+          id="info"
+          timeoutMs="2000"
+          labelText="${this.history
+            .slice()
+            .reverse()
+            .find(le => le.kind === 'info' || le.kind === 'action')?.title ??
+          get('log.snackbar.placeholder')}"
+        >
+          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+        </mwc-snackbar>
+        <mwc-snackbar
+          id="warning"
+          timeoutMs="5000"
+          labelText="${this.history
+            .slice()
+            .reverse()
+            .find(le => le.kind === 'warning')?.title ??
+          get('log.snackbar.placeholder')}"
+        >
+          <mwc-button
+            slot="action"
+            icon="rule"
+            @click=${() => this.logUI.show()}
+            >${translate('log.snackbar.show')}</mwc-button
+          >
+          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+        </mwc-snackbar>
+        <mwc-snackbar
+          id="error"
           timeoutMs="10000"
           labelText="${this.history
             .slice()
             .reverse()
-            .find(le => le.kind == 'error')?.title ??
+            .find(le => le.kind === 'error')?.title ??
           get('log.snackbar.placeholder')}"
         >
           <mwc-button

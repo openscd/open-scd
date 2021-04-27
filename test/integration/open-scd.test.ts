@@ -98,7 +98,7 @@ describe('open-scd', () => {
 
   it('opens the log on snackbar button click', async () => {
     expect(element.logUI).to.have.property('open', false);
-    await element.messageUI.querySelector('mwc-button')!.click();
+    await element.errorUI.querySelector('mwc-button')!.click();
     expect(element.logUI).to.have.property('open', true);
   });
 

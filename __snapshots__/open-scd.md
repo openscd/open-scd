@@ -417,7 +417,35 @@
   </mwc-button>
 </mwc-dialog>
 <mwc-snackbar
-  id="message"
+  id="info"
+  labeltext="No errors"
+  timeoutms="2000"
+>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="warning"
+  labeltext="No errors"
+  timeoutms="5000"
+>
+  <mwc-button
+    icon="rule"
+    slot="action"
+  >
+    Show
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="error"
   labeltext="No errors"
   timeoutms="10000"
 >
