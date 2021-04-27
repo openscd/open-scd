@@ -10,6 +10,10 @@
     outlined=""
   >
   </mwc-textfield>
+  <mwc-formfield class="checkall">
+    <mwc-checkbox>
+    </mwc-checkbox>
+  </mwc-formfield>
 </div>
 <ul
   class="mdc-list"

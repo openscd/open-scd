@@ -1,9 +1,11 @@
 import { List } from '@material/mwc-list';
+import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { TextField } from '@material/mwc-textfield';
 import {
   css,
   customElement,
   html,
+  internalProperty,
   property,
   query,
   TemplateResult,
@@ -11,10 +13,37 @@ import {
 
 @customElement('filtered-list')
 export class Filterlist extends List {
-  @property()
+  @property({ type: String })
   searchFieldLabel!: string;
 
+  @property({ type: Boolean })
+  disableCheckAll = false;
+
+  @internalProperty()
+  private get existCheckListItem(): boolean {
+    return this.items.some(item => item instanceof CheckListItem);
+  }
+
+  @internalProperty()
+  private get isAllSelected(): boolean {
+    return this.items
+      .filter(item => item instanceof CheckListItem)
+      .every(checkItem => checkItem.selected);
+  }
+
+  @internalProperty()
+  private get isSomeSelected(): boolean {
+    return this.items
+      .filter(item => item instanceof CheckListItem)
+      .some(checkItem => checkItem.selected);
+  }
+
   @query('mwc-textfield') searchField!: TextField;
+
+  private onCheckAll(): void {
+    const select = !this.isAllSelected;
+    this.items.forEach(item => (item.selected = select));
+  }
 
   onFilterInput(): void {
     this.items.forEach(item => {
@@ -33,6 +62,32 @@ export class Filterlist extends List {
     });
   }
 
+  protected onListItemConnected(e: CustomEvent): void {
+    super.onListItemConnected(e);
+    this.requestUpdate();
+  }
+
+  constructor() {
+    super();
+    this.addEventListener('selected', () => {
+      this.requestUpdate();
+    });
+  }
+
+  private renderCheckAll(): TemplateResult {
+    return this.existCheckListItem && !this.disableCheckAll
+      ? html`<mwc-formfield class="checkall"
+          ><mwc-checkbox
+            ?indeterminate=${!this.isAllSelected && this.isSomeSelected}
+            ?checked=${this.isAllSelected}
+            @change=${() => {
+              this.onCheckAll();
+            }}
+          ></mwc-checkbox
+        ></mwc-formfield>`
+      : html``;
+  }
+
   render(): TemplateResult {
     return html`<div id="tfcontainer">
         <mwc-textfield
@@ -41,6 +96,7 @@ export class Filterlist extends List {
           outlined
           @input=${() => this.onFilterInput()}
         ></mwc-textfield>
+        ${this.renderCheckAll()}
       </div>
       ${super.render()}`;
   }
@@ -61,6 +117,10 @@ export class Filterlist extends List {
       margin: 10px;
       width: 100%;
       --mdc-shape-small: 28px;
+    }
+
+    mwc-formfield.checkall {
+      padding-right: 8px;
     }
 
     .mdc-list {
