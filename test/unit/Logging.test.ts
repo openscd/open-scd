@@ -49,15 +49,29 @@ describe('LoggingElement', () => {
     expect(element.logUI).to.contain('mwc-list-item[disabled]'));
   // dirty hack: ask @open-wc/shadowDomDiff for contains support
 
+  it('shows a snackbar on logging an info', () => {
+    expect(element.infoUI).to.have.property('open', false);
+    element.dispatchEvent(newLogEvent({ kind: 'info', title: 'test info' }));
+    expect(element.infoUI).to.have.property('open', true);
+  });
+
+  it('shows a snackbar on logging an warning', () => {
+    expect(element.warningUI).to.have.property('open', false);
+    element.dispatchEvent(
+      newLogEvent({ kind: 'warning', title: 'test warning' })
+    );
+    expect(element.warningUI).to.have.property('open', true);
+  });
+
   it('shows a snackbar on logging an error', () => {
-    expect(element.messageUI).to.have.property('open', false);
+    expect(element.errorUI).to.have.property('open', false);
     element.dispatchEvent(newLogEvent({ kind: 'error', title: 'test error' }));
-    expect(element.messageUI).to.have.property('open', true);
+    expect(element.errorUI).to.have.property('open', true);
   });
 
   it('opens the log dialog on snackbar "Show" button click', async () => {
     expect(element.logUI).to.have.property('open', false);
-    await element.messageUI.querySelector('mwc-button')!.click();
+    await element.errorUI.querySelector('mwc-button')!.click();
     await element.updateComplete;
     expect(element.logUI).to.have.property('open', true);
   });
