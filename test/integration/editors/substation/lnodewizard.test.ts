@@ -21,7 +21,7 @@ describe('lnodewizard', () => {
 
   beforeEach(async () => {
     element = <MockWizardEditor>(
-      await fixture(html`<mock-wizard-editor></mock-wizard-editor>>`)
+      await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
     element.workflow.push(editlNode(doc.querySelector('Bay')!));
     await element.requestUpdate();
@@ -111,7 +111,7 @@ describe('lnodewizard', () => {
           element.wizardUI.shadowRoot
             ?.querySelector('mwc-dialog:nth-child(2)')
             ?.querySelector('filtered-list')
-        )).items[4].click();
+        )).items[3].click();
         await element.updateComplete;
         (<HTMLElement>(
           element.wizardUI.shadowRoot
@@ -122,31 +122,6 @@ describe('lnodewizard', () => {
         expect(
           doc.querySelector(
             'Bay[name="COUPLING_BAY"]>LNode[ldInst="CBSW"][lnClass="XCBR"][lnInst="1"]'
-          )
-        ).to.exist;
-      });
-
-      it('leaves logical node references that have not been changed by user', async () => {
-        expect(
-          doc.querySelector(
-            'Bay[name="COUPLING_BAY"]>LNode[ldInst="CBSW"][lnClass="XSWI"][lnInst="3"]'
-          )
-        ).to.exist;
-        (<List>(
-          element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
-            ?.querySelector('filtered-list')
-        )).items[2].click();
-        await element.updateComplete;
-        (<HTMLElement>(
-          element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
-            ?.querySelector('mwc-button[slot="primaryAction"]')
-        )).click();
-        await element.updateComplete;
-        expect(
-          doc.querySelector(
-            'Bay[name="COUPLING_BAY"]>LNode[ldInst="CBSW"][lnClass="XSWI"][lnInst="3"]'
           )
         ).to.exist;
       });
