@@ -169,6 +169,7 @@ export interface WizardPage {
     icon: string;
     label: string;
     action: WizardActor;
+    auto?: boolean;
   };
   secondary?: {
     icon: string;

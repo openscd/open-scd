@@ -18,6 +18,7 @@ interface MergeOptions {
   title?: string;
   selected?: (diff: Diff<Element | string>) => boolean;
   disabled?: (diff: Diff<Element | string>) => boolean;
+  auto?: (sink: Element, source: Element) => boolean;
 }
 
 export type Diff<T> =
@@ -166,6 +167,7 @@ export function mergeWizard(
         label: get('merge.action'),
         icon: 'merge_type',
         action: mergeWizardAction(attrDiffs, childDiffs, sink, source, options),
+        auto: options?.auto?.(sink, source) ?? false,
       },
       content: [
         html`
