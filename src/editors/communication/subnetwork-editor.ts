@@ -20,6 +20,7 @@ import {
   restrictions,
   compareNames,
   createElement,
+  getReference,
 } from '../../foundation.js';
 
 import {
@@ -86,15 +87,15 @@ export function updateAction(element: Element): WizardActor {
     const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
     const multiplier = getMultiplier(inputs.find(i => i.label === 'BitRate')!);
 
-    let SubNetworkAction: EditorAction | null;
-    let BitRateAction: EditorAction | null;
+    let subNetworkAction: EditorAction | null;
+    let bitRateAction: EditorAction | null;
 
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc') &&
       type === element.getAttribute('type')
     ) {
-      SubNetworkAction = null;
+      subNetworkAction = null;
     } else {
       const newElement = <Element>element.cloneNode(false);
       newElement.setAttribute('name', name);
@@ -102,7 +103,7 @@ export function updateAction(element: Element): WizardActor {
       else newElement.setAttribute('desc', desc);
       if (type === null) newElement.removeAttribute('type');
       else newElement.setAttribute('type', type);
-      SubNetworkAction = { old: { element }, new: { element: newElement } };
+      subNetworkAction = { old: { element }, new: { element: newElement } };
     }
 
     if (
@@ -114,19 +115,19 @@ export function updateAction(element: Element): WizardActor {
           .querySelector('SubNetwork > BitRate')
           ?.getAttribute('multiplier') ?? null)
     ) {
-      BitRateAction = null;
+      bitRateAction = null;
     } else {
-      BitRateAction = getBitRateAction(
+      bitRateAction = getBitRateAction(
         element.querySelector('SubNetwork > BitRate'),
         BitRate,
         multiplier,
-        SubNetworkAction?.new.element ?? element
+        subNetworkAction?.new.element ?? element
       );
     }
 
     const actions: EditorAction[] = [];
-    if (SubNetworkAction) actions.push(SubNetworkAction);
-    if (BitRateAction) actions.push(BitRateAction);
+    if (subNetworkAction) actions.push(subNetworkAction);
+    if (bitRateAction) actions.push(bitRateAction);
     return actions;
   };
 }
@@ -158,7 +159,7 @@ export function createAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: null,
+        reference: getReference(parent, 'SubNetwork'),
       },
     };
 
