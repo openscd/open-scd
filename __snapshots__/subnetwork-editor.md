@@ -25,11 +25,14 @@
     </nav>
   </h1>
   <div id="connAPContainer">
-    <section id="iedSection">
+    <section
+      id="iedSection"
+      tabindex="0"
+    >
       <h3>
         IED1
       </h3>
-      <div id="ceContainer">
+      <div id="connApContainer">
         <connectedap-editor>
         </connectedap-editor>
       </div>

@@ -166,25 +166,26 @@ export class SubNetworkEditor extends LitElement {
     </h1>`;
   }
 
-  renderBla(): TemplateResult[] {
-    return Array.from(
-      this.element?.querySelectorAll(selectors.ConnectedAP) ?? []
-    )
+  renderIedContainer(): TemplateResult[] {
+    return Array.from(this.element.querySelectorAll('ConnectedAP') ?? [])
       .map(connAP => connAP.getAttribute('iedName')!)
       .filter((v, i, a) => a.indexOf(v) === i)
       .sort(compareNames)
       .map(
-        iedName => html` <section id="iedSection">
+        iedName => html` <section id="iedSection" tabindex="0">
           <h3>${iedName}</h3>
-          <div id="ceContainer">
+          <div id="connApContainer">
             ${Array.from(
-              this.element.querySelectorAll(
-                `:root > Communication > SubNetwork > ConnectedAP[iedName="${iedName}"]`
+              this.element.ownerDocument.querySelectorAll(
+                `ConnectedAP[iedName="${iedName}"]`
               )
             ).map(
-              connAP =>
+              connectedAP =>
                 html`<connectedap-editor
-                  .element=${connAP}
+                  class="${connectedAP.parentElement !== this.element
+                    ? 'disabled'
+                    : ''}"
+                  .element=${connectedAP}
                 ></connectedap-editor>`
             )}
           </div>
@@ -195,7 +196,7 @@ export class SubNetworkEditor extends LitElement {
   render(): TemplateResult {
     return html`<section tabindex="0">
       ${this.renderHeader()}
-      <div id="connAPContainer">${this.renderBla()}</div>
+      <div id="connAPContainer">${this.renderIedContainer()}</div>
     </section>`;
   }
 
@@ -350,13 +351,13 @@ export class SubNetworkEditor extends LitElement {
           html`<wizard-textfield
             label="desc"
             .maybeValue=${desc}
-            nullable="true"
+            nullable
             helper="${translate('subnetwork.wizard.descHelper')}"
           ></wizard-textfield>`,
           html`<wizard-textfield
             label="type"
             .maybeValue=${type}
-            nullable="true"
+            nullable
             helper="${translate('subnetwork.wizard.typeHelper')}"
             pattern="${restrictions.normalizedString}"
           ></wizard-textfield>`,
@@ -382,27 +383,30 @@ export class SubNetworkEditor extends LitElement {
 
     #iedSection {
       background-color: var(--mdc-theme-on-primary);
+      margin: 0px;
+    }
+
+    #iedSection:not(:focus):not(:focus-within) .disabled {
+      display: none;
+    }
+
+    #iedSection .disabled {
+      pointer-events: none;
+      opacity: 0.5;
     }
 
     #connAPContainer {
       display: grid;
-      grid-gap: 12px;
+      box-sizing: border-box;
+      gap: 12px;
       padding: 8px 12px 16px;
-      box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
+      grid-template-columns: repeat(auto-fit, minmax(150px, auto));
     }
 
-    @media (max-width: 387px) {
-      #connAPContainer {
-        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
-      }
-    }
-
-    #ceContainer {
+    #connApContainer {
       display: grid;
-      grid-gap: 12px;
-      padding: 12px;
       box-sizing: border-box;
+      padding: 8px 12px 8px;
       grid-template-columns: repeat(auto-fit, minmax(64px, auto));
     }
   `;
