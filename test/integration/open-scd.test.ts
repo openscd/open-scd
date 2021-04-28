@@ -41,7 +41,7 @@ describe('open-scd', () => {
     expect(element.wizardUI.dialog).to.exist;
   });
 
-  it('creates an empty project on wizard primary button click', async () => {
+  it('creates an empty Edition 2.1 project on wizard primary button click', async () => {
     (<HTMLElement>(
       element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
     )).click();
@@ -67,6 +67,66 @@ describe('open-scd', () => {
     expect(element.doc?.querySelector('SCL')?.getAttribute('release')).to.equal(
       '4'
     );
+  });
+
+  it('creates an empty Edition 2 project on wizard primary button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
+    )).click();
+    await element.updateComplete;
+    (<HTMLElement>(
+      element.wizardUI.dialog!.querySelector('mwc-radio-list-item:nth-child(2)')
+    )).click();
+    await element.updateComplete;
+    (<HTMLElement>(
+      element.wizardUI.shadowRoot!.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      )
+    )).click();
+    expect(element.doc?.querySelector('Header')).to.exist;
+    expect(element.doc?.querySelector('Header')?.getAttribute('id')).to.equal(
+      element.docName.slice(0, -4)
+    );
+    expect(element.doc?.querySelector('SCL')?.getAttribute('xmlns')).to.equal(
+      'http://www.iec.ch/61850/2003/SCL'
+    );
+    expect(element.doc?.querySelector('SCL')?.getAttribute('version')).to.equal(
+      '2007'
+    );
+    expect(
+      element.doc?.querySelector('SCL')?.getAttribute('revision')
+    ).to.equal('B');
+    expect(element.doc?.querySelector('SCL')?.getAttribute('release')).to.be
+      .null;
+  });
+
+  it('creates an empty Edition 1 project on wizard primary button click', async () => {
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('div > mwc-icon-button:nth-child(1)')
+    )).click();
+    await element.updateComplete;
+    (<HTMLElement>(
+      element.wizardUI.dialog!.querySelector('mwc-radio-list-item:nth-child(1)')
+    )).click();
+    await element.updateComplete;
+    (<HTMLElement>(
+      element.wizardUI.shadowRoot!.querySelector(
+        'mwc-button[slot="primaryAction"]'
+      )
+    )).click();
+    expect(element.doc?.querySelector('Header')).to.exist;
+    expect(element.doc?.querySelector('Header')?.getAttribute('id')).to.equal(
+      element.docName.slice(0, -4)
+    );
+    expect(element.doc?.querySelector('SCL')?.getAttribute('xmlns')).to.equal(
+      'http://www.iec.ch/61850/2003/SCL'
+    );
+    expect(element.doc?.querySelector('SCL')?.getAttribute('version')).to.be
+      .null;
+    expect(element.doc?.querySelector('SCL')?.getAttribute('revision')).to.be
+      .null;
+    expect(element.doc?.querySelector('SCL')?.getAttribute('release')).to.be
+      .null;
   });
 
   it('opens the menu on navigation icon click', async () => {
