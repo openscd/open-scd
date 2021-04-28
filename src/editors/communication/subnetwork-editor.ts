@@ -23,12 +23,7 @@ import {
   getReference,
 } from '../../foundation.js';
 
-import {
-  selectors,
-  styles,
-  WizardOptions,
-  isCreateOptions,
-} from './foundation.js';
+import { styles, WizardOptions, isCreateOptions } from './foundation.js';
 
 import './connectedap-editor.js';
 import { ConnectedAPEditor } from './connectedap-editor.js';
@@ -273,7 +268,7 @@ export class SubNetworkEditor extends LitElement {
   }
   @property()
   get bitrate(): string | null {
-    const V = this.element.querySelector(selectors.SubNetwork + ' > BitRate');
+    const V = this.element.querySelector('Subnetwork > BitRate');
     if (V === null) return null;
     const v = V.textContent ?? '';
     const m = V.getAttribute('multiplier');
