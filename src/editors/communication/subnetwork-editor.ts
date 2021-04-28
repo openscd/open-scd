@@ -78,6 +78,180 @@ function getBitRateAction(
   };
 }
 
+export function updateAction(element: Element): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+    const name = inputs.find(i => i.label === 'name')!.value;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const type = getValue(inputs.find(i => i.label === 'type')!);
+    const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
+    const multiplier = getMultiplier(inputs.find(i => i.label === 'BitRate')!);
+
+    let SubNetworkAction: EditorAction | null;
+    let BitRateAction: EditorAction | null;
+
+    if (
+      name === element.getAttribute('name') &&
+      desc === element.getAttribute('desc') &&
+      type === element.getAttribute('type')
+    ) {
+      SubNetworkAction = null;
+    } else {
+      const newElement = <Element>element.cloneNode(false);
+      newElement.setAttribute('name', name);
+      if (desc === null) newElement.removeAttribute('desc');
+      else newElement.setAttribute('desc', desc);
+      if (type === null) newElement.removeAttribute('type');
+      else newElement.setAttribute('type', type);
+      SubNetworkAction = { old: { element }, new: { element: newElement } };
+    }
+
+    if (
+      BitRate ===
+        (element.querySelector('SubNetwork > BitRate')?.textContent?.trim() ??
+          null) &&
+      multiplier ===
+        (element
+          .querySelector('SubNetwork > BitRate')
+          ?.getAttribute('multiplier') ?? null)
+    ) {
+      BitRateAction = null;
+    } else {
+      BitRateAction = getBitRateAction(
+        element.querySelector('SubNetwork > BitRate'),
+        BitRate,
+        multiplier,
+        SubNetworkAction?.new.element ?? element
+      );
+    }
+
+    const actions: EditorAction[] = [];
+    if (SubNetworkAction) actions.push(SubNetworkAction);
+    if (BitRateAction) actions.push(BitRateAction);
+    return actions;
+  };
+}
+
+export function createAction(parent: Element): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+    const name = getValue(inputs.find(i => i.label === 'name')!);
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const type = getValue(inputs.find(i => i.label === 'type')!);
+    const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
+    const multiplier = getMultiplier(inputs.find(i => i.label === 'BitRate')!);
+
+    const element = createElement(parent.ownerDocument, 'SubNetwork', {
+      name,
+      desc,
+      type,
+    });
+
+    if (BitRate !== null) {
+      const bitRateElement = createElement(parent.ownerDocument, 'BitRate', {
+        unit: 'b/s',
+        multiplier,
+      });
+      bitRateElement.textContent = BitRate;
+      element.appendChild(bitRateElement);
+    }
+
+    const action = {
+      new: {
+        parent,
+        element,
+        reference: null,
+      },
+    };
+
+    return [action];
+  };
+}
+
+export function subnetWorkWizard(options: WizardOptions): Wizard {
+  const [
+    heading,
+    actionName,
+    actionIcon,
+    action,
+    name,
+    desc,
+    type,
+    BitRate,
+    multiplier,
+  ] = isCreateOptions(options)
+    ? [
+        get('subnetwork.wizard.title.add'),
+        get('add'),
+        'add',
+        createAction(options.parent),
+        '',
+        '',
+        initial.type,
+        initial.bitrate,
+        initial.multiplier,
+      ]
+    : [
+        get('subnetwork.wizard.title.edit'),
+        get('save'),
+        'edit',
+        updateAction(options.element),
+        options.element.getAttribute('name'),
+        options.element.getAttribute('desc'),
+        options.element.getAttribute('type'),
+        options.element
+          .querySelector('SubNetwork > BitRate')
+          ?.textContent?.trim() ?? null,
+        options.element
+          .querySelector('SubNetwork > BitRate')
+          ?.getAttribute('multiplier') ?? null,
+      ];
+
+  return [
+    {
+      title: heading,
+      primary: {
+        icon: actionIcon,
+        label: actionName,
+        action: action,
+      },
+      content: [
+        html`<wizard-textfield
+          label="name"
+          .maybeValue=${name}
+          helper="${translate('subnetwork.wizard.nameHelper')}"
+          required
+          validationMessage="${translate('textfield.required')}"
+          dialogInitialFocus
+        ></wizard-textfield>`,
+        html`<wizard-textfield
+          label="desc"
+          .maybeValue=${desc}
+          nullable
+          helper="${translate('subnetwork.wizard.descHelper')}"
+        ></wizard-textfield>`,
+        html`<wizard-textfield
+          label="type"
+          .maybeValue=${type}
+          nullable
+          helper="${translate('subnetwork.wizard.typeHelper')}"
+          pattern="${restrictions.normalizedString}"
+        ></wizard-textfield>`,
+        html`<wizard-textfield
+          label="BitRate"
+          .maybeValue=${BitRate}
+          nullable
+          unit="b/s"
+          .multipliers=${[null, 'M']}
+          .multiplier=${multiplier}
+          helper="${translate('subnetwork.wizard.bitrateHelper')}"
+          required
+          validationMessage="${translate('textfield.nonempty')}"
+          pattern="${restrictions.decimal}"
+        ></wizard-textfield>`,
+      ],
+    },
+  ];
+}
+
 /** [[`Communication`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-editor')
 export class SubNetworkEditor extends LitElement {
@@ -114,7 +288,7 @@ export class SubNetworkEditor extends LitElement {
 
   openEditWizard(): void {
     this.dispatchEvent(
-      newWizardEvent(SubNetworkEditor.wizard({ element: this.element }))
+      newWizardEvent(subnetWorkWizard({ element: this.element }))
     );
   }
 
@@ -198,184 +372,6 @@ export class SubNetworkEditor extends LitElement {
       ${this.renderHeader()}
       <div id="connAPContainer">${this.renderIedContainer()}</div>
     </section>`;
-  }
-
-  static updateAction(element: Element): WizardActor {
-    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.value;
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-      const type = getValue(inputs.find(i => i.label === 'type')!);
-      const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
-      const multiplier = getMultiplier(
-        inputs.find(i => i.label === 'BitRate')!
-      );
-
-      let SubNetworkAction: EditorAction | null;
-      let BitRateAction: EditorAction | null;
-
-      if (
-        name === element.getAttribute('name') &&
-        desc === element.getAttribute('desc') &&
-        type === element.getAttribute('type')
-      ) {
-        SubNetworkAction = null;
-      } else {
-        const newElement = <Element>element.cloneNode(false);
-        newElement.setAttribute('name', name);
-        if (desc === null) newElement.removeAttribute('desc');
-        else newElement.setAttribute('desc', desc);
-        if (type === null) newElement.removeAttribute('type');
-        else newElement.setAttribute('type', type);
-        SubNetworkAction = { old: { element }, new: { element: newElement } };
-      }
-
-      if (
-        BitRate ===
-          (element.querySelector('SubNetwork > BitRate')?.textContent?.trim() ??
-            null) &&
-        multiplier ===
-          (element
-            .querySelector('SubNetwork > BitRate')
-            ?.getAttribute('multiplier') ?? null)
-      ) {
-        BitRateAction = null;
-      } else {
-        BitRateAction = getBitRateAction(
-          element.querySelector('SubNetwork > BitRate'),
-          BitRate,
-          multiplier,
-          SubNetworkAction?.new.element ?? element
-        );
-      }
-
-      const actions: EditorAction[] = [];
-      if (SubNetworkAction) actions.push(SubNetworkAction);
-      if (BitRateAction) actions.push(BitRateAction);
-      return actions;
-    };
-  }
-
-  static createAction(parent: Element): WizardActor {
-    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-      const name = getValue(inputs.find(i => i.label === 'name')!);
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-      const type = getValue(inputs.find(i => i.label === 'type')!);
-      const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
-      const multiplier = getMultiplier(
-        inputs.find(i => i.label === 'BitRate')!
-      );
-
-      const element = createElement(parent.ownerDocument, 'SubNetwork', {
-        name,
-        desc,
-        type,
-      });
-
-      if (BitRate !== null) {
-        const bitRateElement = createElement(parent.ownerDocument, 'BitRate', {
-          unit: 'b/s',
-          multiplier,
-        });
-        bitRateElement.textContent = BitRate;
-        element.appendChild(bitRateElement);
-      }
-
-      const action = {
-        new: {
-          parent,
-          element,
-          reference: null,
-        },
-      };
-
-      return [action];
-    };
-  }
-
-  static wizard(options: WizardOptions): Wizard {
-    const [
-      heading,
-      actionName,
-      actionIcon,
-      action,
-      name,
-      desc,
-      type,
-      BitRate,
-      multiplier,
-    ] = isCreateOptions(options)
-      ? [
-          get('subnetwork.wizard.title.add'),
-          get('add'),
-          'add',
-          SubNetworkEditor.createAction(options.parent),
-          '',
-          '',
-          initial.type,
-          initial.bitrate,
-          initial.multiplier,
-        ]
-      : [
-          get('subnetwork.wizard.title.edit'),
-          get('save'),
-          'edit',
-          SubNetworkEditor.updateAction(options.element),
-          options.element.getAttribute('name'),
-          options.element.getAttribute('desc'),
-          options.element.getAttribute('type'),
-          options.element
-            .querySelector('SubNetwork > BitRate')
-            ?.textContent?.trim() ?? null,
-          options.element
-            .querySelector('SubNetwork > BitRate')
-            ?.getAttribute('multiplier') ?? null,
-        ];
-
-    return [
-      {
-        title: heading,
-        primary: {
-          icon: actionIcon,
-          label: actionName,
-          action: action,
-        },
-        content: [
-          html`<wizard-textfield
-            label="name"
-            .maybeValue=${name}
-            helper="${translate('subnetwork.wizard.nameHelper')}"
-            required
-            validationMessage="${translate('textfield.required')}"
-            dialogInitialFocus
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="desc"
-            .maybeValue=${desc}
-            nullable
-            helper="${translate('subnetwork.wizard.descHelper')}"
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="type"
-            .maybeValue=${type}
-            nullable
-            helper="${translate('subnetwork.wizard.typeHelper')}"
-            pattern="${restrictions.normalizedString}"
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="BitRate"
-            .maybeValue=${BitRate}
-            nullable
-            unit="b/s"
-            .multipliers=${[null, 'M']}
-            .multiplier=${multiplier}
-            helper="${translate('subnetwork.wizard.bitrateHelper')}"
-            required
-            validationMessage="${translate('textfield.nonempty')}"
-            pattern="${restrictions.decimal}"
-          ></wizard-textfield>`,
-        ],
-      },
-    ];
   }
 
   static styles = css`

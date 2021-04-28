@@ -1,16 +1,17 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
-import { selectors, styles } from './communication/foundation.js';
-
 import {
   newWizardEvent,
   newActionEvent,
   createElement,
+  getReference,
 } from '../foundation.js';
 
+import { selectors, styles } from './communication/foundation.js';
+
 import './communication/subnetwork-editor.js';
-import { SubNetworkEditor } from './communication/subnetwork-editor.js';
+import { subnetWorkWizard } from './communication/subnetwork-editor.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */
 export default class CommunicationPlugin extends LitElement {
@@ -18,27 +19,27 @@ export default class CommunicationPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
+  createCommunication(): void {
+    this.dispatchEvent(
+      newActionEvent({
+        new: {
+          parent: this.doc.documentElement,
+          element: createElement(this.doc, 'Communication', {}),
+          reference: getReference(this.doc.documentElement, 'Communication'),
+        },
+      })
+    );
+  }
+
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
   openCreateSubNetworkWizard(): void {
     if (!this.doc.querySelector(selectors.Communication))
-      this.dispatchEvent(
-        newActionEvent({
-          new: {
-            parent: this.doc.documentElement,
-            element: createElement(this.doc, 'Communication', {}),
-            reference:
-              this.doc.querySelector(':root > IED') ||
-              this.doc.querySelector(':root > DataTypeTemplate') ||
-              null,
-          },
-        })
-      );
+      this.createCommunication();
+
     this.dispatchEvent(
       newWizardEvent(
-        SubNetworkEditor.wizard({
-          parent: this.doc.documentElement.querySelector(
-            selectors.Communication
-          )!,
+        subnetWorkWizard({
+          parent: this.doc.querySelector('Communication')!,
         })
       )
     );
