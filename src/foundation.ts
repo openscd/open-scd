@@ -175,6 +175,7 @@ export interface WizardPage {
     label: string;
     action: WizardActor;
   };
+  initial?: boolean;
 }
 export type Wizard = WizardPage[];
 

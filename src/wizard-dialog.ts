@@ -117,8 +117,15 @@ export class WizardDialog extends LitElement {
 
   updated(changedProperties: Map<string | number | symbol, unknown>): void {
     if (changedProperties.has('wizard')) {
-      this.dialog?.show();
       this.pageIndex = 0;
+      while (
+        this.wizard.findIndex(page => page.initial) > this.pageIndex &&
+        dialogValid(this.dialog)
+      ) {
+        this.dialog?.close();
+        this.next();
+      }
+      this.dialog?.show();
     }
   }
 

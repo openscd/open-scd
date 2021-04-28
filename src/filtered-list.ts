@@ -27,6 +27,7 @@ export class Filterlist extends List {
   @internalProperty()
   private get isAllSelected(): boolean {
     return this.items
+      .filter(item => !item.disabled)
       .filter(item => item instanceof CheckListItem)
       .every(checkItem => checkItem.selected);
   }
@@ -34,6 +35,7 @@ export class Filterlist extends List {
   @internalProperty()
   private get isSomeSelected(): boolean {
     return this.items
+      .filter(item => !item.disabled)
       .filter(item => item instanceof CheckListItem)
       .some(checkItem => checkItem.selected);
   }
@@ -42,7 +44,9 @@ export class Filterlist extends List {
 
   private onCheckAll(): void {
     const select = !this.isAllSelected;
-    this.items.forEach(item => (item.selected = select));
+    this.items
+      .filter(item => !item.disabled)
+      .forEach(item => (item.selected = select));
   }
 
   onFilterInput(): void {
