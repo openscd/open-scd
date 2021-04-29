@@ -26,7 +26,7 @@ import {
 import { styles, WizardOptions, isCreateOptions } from './foundation.js';
 
 import './connectedap-editor.js';
-import { ConnectedAPEditor } from './connectedap-editor.js';
+import { createConnectedApWizard } from './connectedap-editor.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {
@@ -74,7 +74,7 @@ function getBitRateAction(
   };
 }
 
-export function updateAction(element: Element): WizardActor {
+export function updateSubNetworkAction(element: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -127,7 +127,7 @@ export function updateAction(element: Element): WizardActor {
   };
 }
 
-export function createAction(parent: Element): WizardActor {
+export function createSubNetworkAction(parent: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -162,7 +162,7 @@ export function createAction(parent: Element): WizardActor {
   };
 }
 
-export function subnetWorkWizard(options: WizardOptions): Wizard {
+export function subNetworkWizard(options: WizardOptions): Wizard {
   const [
     heading,
     actionName,
@@ -178,7 +178,7 @@ export function subnetWorkWizard(options: WizardOptions): Wizard {
         get('subnetwork.wizard.title.add'),
         get('add'),
         'add',
-        createAction(options.parent),
+        createSubNetworkAction(options.parent),
         '',
         '',
         initial.type,
@@ -189,7 +189,7 @@ export function subnetWorkWizard(options: WizardOptions): Wizard {
         get('subnetwork.wizard.title.edit'),
         get('save'),
         'edit',
-        updateAction(options.element),
+        updateSubNetworkAction(options.element),
         options.element.getAttribute('name'),
         options.element.getAttribute('desc'),
         options.element.getAttribute('type'),
@@ -268,7 +268,7 @@ export class SubNetworkEditor extends LitElement {
   }
   @property()
   get bitrate(): string | null {
-    const V = this.element.querySelector('Subnetwork > BitRate');
+    const V = this.element.querySelector('BitRate');
     if (V === null) return null;
     const v = V.textContent ?? '';
     const m = V.getAttribute('multiplier');
@@ -277,14 +277,12 @@ export class SubNetworkEditor extends LitElement {
   }
 
   openConnectedAPwizard(): void {
-    this.dispatchEvent(
-      newWizardEvent(ConnectedAPEditor.createConnectedAP(this.element))
-    );
+    this.dispatchEvent(newWizardEvent(createConnectedApWizard(this.element)));
   }
 
   openEditWizard(): void {
     this.dispatchEvent(
-      newWizardEvent(subnetWorkWizard({ element: this.element }))
+      newWizardEvent(subNetworkWizard({ element: this.element }))
     );
   }
 

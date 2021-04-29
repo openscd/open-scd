@@ -11,7 +11,7 @@ import {
 import { selectors, styles } from './communication/foundation.js';
 
 import './communication/subnetwork-editor.js';
-import { subnetWorkWizard } from './communication/subnetwork-editor.js';
+import { subNetworkWizard } from './communication/subnetwork-editor.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */
 export default class CommunicationPlugin extends LitElement {
@@ -38,7 +38,7 @@ export default class CommunicationPlugin extends LitElement {
 
     this.dispatchEvent(
       newWizardEvent(
-        subnetWorkWizard({
+        subNetworkWizard({
           parent: this.doc.querySelector('Communication')!,
         })
       )

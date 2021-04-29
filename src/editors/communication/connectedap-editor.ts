@@ -6,6 +6,7 @@ import {
   property,
   css,
 } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
 import { Checkbox } from '@material/mwc-checkbox';
@@ -24,6 +25,7 @@ import {
   getValue,
   createElement,
   ComplexAction,
+  getReference,
 } from '../../foundation.js';
 
 import {
@@ -32,6 +34,7 @@ import {
   typeNullable,
   typeMaxLength,
 } from './p-types.js';
+
 import { selectors } from './foundation.js';
 
 /** Data needed to uniquely identify an `AccessPoint` */
@@ -91,6 +94,188 @@ function createAddressElement(
   return element;
 }
 
+function createConnectedApAction(parent: Element): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+    const apValue = (<ListItemBase[]>(
+      (<List>wizard.shadowRoot!.querySelector('#apList')).selected
+    )).map(item => <apAttributes>JSON.parse(item.value));
+
+    const actions = apValue.map(
+      value =>
+        <EditorAction>{
+          new: {
+            parent,
+            element: createElement(parent.ownerDocument, 'ConnectedAP', {
+              iedName: value.iedName,
+              apName: value.apName,
+            }),
+            reference: getReference(parent, 'ConnectedAP'),
+          },
+        }
+    );
+
+    return actions;
+  };
+}
+
+function onFilterInput(evt: InputEvent): void {
+  (<List>(
+    (<TextField>evt.target).parentElement?.querySelector('mwc-list')
+  )).items.forEach(item => {
+    item.value
+      .toUpperCase()
+      .includes((<TextField>evt.target).value.toUpperCase())
+      ? item.removeAttribute('style')
+      : item.setAttribute('style', 'display:none;');
+  });
+}
+
+function renderWizardPage(element: Element): TemplateResult {
+  const doc = element.ownerDocument;
+
+  const accPoints = Array.from(doc.querySelectorAll(':root > IED'))
+    .sort(compareNames)
+    .flatMap(ied =>
+      Array.from(ied.querySelectorAll(':root > IED > AccessPoint'))
+    )
+    .map(accP => {
+      return {
+        iedName: accP.parentElement!.getAttribute('name')!,
+        apName: accP.getAttribute('name')!,
+      };
+    });
+
+  const accPointDescription = accPoints
+    .map(value => {
+      return {
+        value,
+        connected:
+          doc?.querySelector(
+            `:root > Communication > SubNetwork > ConnectedAP[iedName="${value.iedName}"][apName="${value.apName}"]`
+          ) !== null,
+      };
+    })
+    .sort(compareListItemConnection);
+
+  if (accPointDescription.length)
+    return html` <filtered-list id="apList" multi
+      >${accPointDescription.map(
+        item => html`<mwc-check-list-item
+          value="${JSON.stringify(item.value)}"
+          twoline
+          ?disabled=${item.connected}
+          ><span>${item.value.apName}</span
+          ><span slot="secondary"
+            >${item.value.iedName}</span
+          ></mwc-check-list-item
+        >`
+      )}
+    </filtered-list>`;
+
+  return html`<mwc-list-item disabled graphic="icon">
+    <span>${translate('lnode.wizard.placeholder')}</span>
+    <mwc-icon slot="graphic">info</mwc-icon>
+  </mwc-list-item>`;
+}
+
+/** @returns a Wizard for creating `element` `ConnectedAP`. */
+export function createConnectedApWizard(element: Element): Wizard {
+  return [
+    {
+      title: get('connectedap.wizard.title.connect'),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createConnectedApAction(element),
+      },
+      content: [renderWizardPage(element)],
+    },
+  ];
+}
+
+export function editConnectedApAction(parent: Element): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+    const instType: boolean =
+      (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
+      false;
+
+    const newAddress = createAddressElement(inputs, parent, instType);
+
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get('connectedap.action.addaddress', {
+        iedName: parent.getAttribute('iedName') ?? '',
+        apName: parent.getAttribute('apName') ?? '',
+      }),
+    };
+
+    const oldAddress = parent.querySelector(selectors.Address);
+
+    if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
+      // We cannot use updateAction on address as both address child elements P are changed
+      complexAction.actions.push({
+        old: {
+          parent,
+          element: oldAddress,
+          reference: oldAddress.nextElementSibling,
+        },
+      });
+      complexAction.actions.push({
+        new: {
+          parent,
+          element: newAddress,
+          reference: oldAddress.nextElementSibling,
+        },
+      });
+    } else if (oldAddress === null)
+      complexAction.actions.push({
+        new: {
+          parent: parent,
+          element: newAddress,
+          reference: getReference(parent, 'Address'),
+        },
+      });
+
+    return [complexAction];
+  };
+}
+
+function editConnectedApWizard(element: Element): Wizard {
+  return [
+    {
+      title: get('connectedap.wizard.title.edit'),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: editConnectedApAction(element),
+      },
+      content: [
+        html`<mwc-formfield
+            label="${translate('connectedap.wizard.addschemainsttype')}"
+          >
+            <mwc-checkbox
+              id="instType"
+              ?checked="${Array.from(
+                element.querySelectorAll(selectors.Address + ' > P')
+              ).filter(pType => pType.getAttribute('xsi:type')).length > 0}"
+            ></mwc-checkbox> </mwc-formfield
+          >${getTypes(element).map(
+            ptype =>
+              html`<wizard-textfield
+                label="${ptype}"
+                pattern="${ifDefined(typePattern[ptype])}"
+                ?nullable=${typeNullable[ptype]}
+                .maybeValue=${element.querySelector(
+                  `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
+                )?.innerHTML ?? null}
+                maxLength="${ifDefined(typeMaxLength[ptype])}"
+              ></wizard-textfield>`
+          )}`,
+      ],
+    },
+  ];
+}
+
 /** [[`Communication`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-editor')
 export class ConnectedAPEditor extends LitElement {
@@ -103,9 +288,7 @@ export class ConnectedAPEditor extends LitElement {
   }
 
   openEditWizard(): void {
-    this.dispatchEvent(
-      newWizardEvent(ConnectedAPEditor.editWizard(this.element))
-    );
+    this.dispatchEvent(newWizardEvent(editConnectedApWizard(this.element)));
   }
 
   remove(): void {
@@ -140,194 +323,6 @@ export class ConnectedAPEditor extends LitElement {
       </div>
       <h4>${this.apName}</h4>
     `;
-  }
-
-  static createAction(parent: Element): WizardActor {
-    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-      const apValue = (<ListItemBase[]>(
-        (<List>wizard.shadowRoot!.querySelector('#apList')).selected
-      )).map(item => <apAttributes>JSON.parse(item.value));
-
-      const actions = apValue.map(
-        value =>
-          <EditorAction>{
-            new: {
-              parent,
-              element: createElement(parent.ownerDocument, 'ConnectedAP', {
-                iedName: value.iedName,
-                apName: value.apName,
-              }),
-              reference: null,
-            },
-          }
-      );
-
-      return actions;
-    };
-  }
-
-  static onFilterInput(evt: InputEvent): void {
-    (<List>(
-      (<TextField>evt.target).parentElement?.querySelector('mwc-list')
-    )).items.forEach(item => {
-      item.value
-        .toUpperCase()
-        .includes((<TextField>evt.target).value.toUpperCase())
-        ? item.removeAttribute('style')
-        : item.setAttribute('style', 'display:none;');
-    });
-  }
-
-  static renderWizardPage(element: Element): TemplateResult {
-    const doc = element.ownerDocument;
-
-    const accPoints = Array.from(doc.querySelectorAll(':root > IED'))
-      .sort(compareNames)
-      .flatMap(ied =>
-        Array.from(ied.querySelectorAll(':root > IED > AccessPoint'))
-      )
-      .map(accP => {
-        return {
-          iedName: accP.parentElement!.getAttribute('name')!,
-          apName: accP.getAttribute('name')!,
-        };
-      });
-
-    const accPointDescription = accPoints
-      .map(value => {
-        return {
-          value,
-          connected:
-            doc?.querySelector(
-              `:root > Communication > SubNetwork > ConnectedAP[iedName="${value.iedName}"][apName="${value.apName}"]`
-            ) !== null,
-        };
-      })
-      .sort(compareListItemConnection);
-
-    if (accPointDescription.length)
-      return html`<mwc-textfield
-          label="${translate('filter')}"
-          iconTrailing="search"
-          outlined
-          @input=${ConnectedAPEditor.onFilterInput}
-        ></mwc-textfield>
-        <mwc-list id="apList" multi
-          >${accPointDescription.map(
-            item => html`<mwc-check-list-item
-              value="${JSON.stringify(item.value)}"
-              twoline
-              ?disabled=${item.connected}
-              ><span>${item.value.apName}</span
-              ><span slot="secondary"
-                >${item.value.iedName}</span
-              ></mwc-check-list-item
-            >`
-          )}
-        </mwc-list>`;
-
-    return html`<mwc-list-item disabled graphic="icon">
-      <span>${translate('lnode.wizard.placeholder')}</span>
-      <mwc-icon slot="graphic">info</mwc-icon>
-    </mwc-list-item>`;
-  }
-
-  /** @returns a Wizard for creating `element` `ConnectedAP`. */
-  static createConnectedAP(element: Element): Wizard {
-    return [
-      {
-        title: get('connectedap.wizard.title.connect'),
-        primary: {
-          icon: 'save',
-          label: get('save'),
-          action: ConnectedAPEditor.createAction(element),
-        },
-        content: [ConnectedAPEditor.renderWizardPage(element)],
-      },
-    ];
-  }
-
-  static editAction(parent: Element): WizardActor {
-    return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-      const instType: boolean =
-        (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
-        false;
-
-      const newAddress = createAddressElement(inputs, parent, instType);
-
-      const complexAction: ComplexAction = {
-        actions: [],
-        title: get('connectedap.action.addaddress', {
-          iedName: parent.getAttribute('iedName') ?? '',
-          apName: parent.getAttribute('apName') ?? '',
-        }),
-      };
-
-      const oldAddress = parent.querySelector(selectors.Address);
-
-      if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
-        // We cannot use updateAction on address as both address child elements P are changed
-        complexAction.actions.push({
-          old: {
-            parent,
-            element: oldAddress,
-            reference: oldAddress.nextElementSibling,
-          },
-        });
-        complexAction.actions.push({
-          new: {
-            parent,
-            element: newAddress,
-            reference: oldAddress.nextElementSibling,
-          },
-        });
-      } else if (oldAddress === null)
-        complexAction.actions.push({
-          new: {
-            parent: parent,
-            element: newAddress,
-            reference: parent.firstElementChild,
-          },
-        });
-
-      return [complexAction];
-    };
-  }
-
-  static editWizard(element: Element): Wizard {
-    return [
-      {
-        title: get('connectedap.wizard.title.edit'),
-        primary: {
-          icon: 'save',
-          label: get('save'),
-          action: ConnectedAPEditor.editAction(element),
-        },
-        content: [
-          html`<mwc-formfield
-              label="${translate('connectedap.wizard.addschemainsttype')}"
-            >
-              <mwc-checkbox
-                id="instType"
-                ?checked="${Array.from(
-                  element.querySelectorAll(selectors.Address + ' > P')
-                ).filter(pType => pType.getAttribute('xsi:type')).length > 0}"
-              ></mwc-checkbox> </mwc-formfield
-            >${getTypes(element).map(
-              ptype =>
-                html`<wizard-textfield
-                  label="${ptype}"
-                  pattern="${typePattern[ptype]}"
-                  nullable=${typeNullable[ptype]}
-                  .maybeValue=${element.querySelector(
-                    `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
-                  )?.innerHTML ?? null}
-                  maxLength="${typeMaxLength[ptype] ?? null}"
-                ></wizard-textfield>`
-            )}`,
-        ],
-      },
-    ];
   }
 
   static styles = css`

@@ -6,9 +6,8 @@ import {
   isDelete,
 } from '../../../../src/foundation.js';
 import {
-  createAction,
-  SubNetworkEditor,
-  updateAction,
+  createSubNetworkAction,
+  updateSubNetworkAction,
 } from '../../../../src/editors/communication/subnetwork-editor.js';
 
 describe('SubNetworkEditor', () => {
@@ -46,7 +45,7 @@ describe('SubNetworkEditor', () => {
       });
 
       it('returns a WizardAction which returns a Create EditorAction', () => {
-        const wizardAction = createAction(parent);
+        const wizardAction = createSubNetworkAction(parent);
         expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
       });
     });
@@ -70,17 +69,17 @@ describe('SubNetworkEditor', () => {
         });
 
         it('returns a WizardAction which retruns two EditorActions', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Create', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isCreate);
         });
       });
@@ -97,17 +96,17 @@ describe('SubNetworkEditor', () => {
         });
 
         it('returns a WizardAction which returns two EditorActions', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Update', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isUpdate);
         });
       });
@@ -124,12 +123,12 @@ describe('SubNetworkEditor', () => {
         });
 
         it('returns a WizardAction which returns one EditorActions', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(1);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
       });
@@ -144,7 +143,7 @@ describe('SubNetworkEditor', () => {
         });
 
         it('returns a WizardAction with an empty EditorActions array', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(0);
         });
       });
@@ -197,17 +196,17 @@ describe('SubNetworkEditor', () => {
         });
 
         it('returns a WizardAction which returns two EditorActions', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard()).length).to.equal(2);
         });
 
         it('returns a WizardAction with the first returned EditorAction beeing an Update', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
         });
 
         it('returns a WizardAction with the second returned EditorAction beeing a Delete', () => {
-          const wizardAction = updateAction(element);
+          const wizardAction = updateSubNetworkAction(element);
           expect(wizardAction(inputs, newWizard())[1]).to.satisfy(isDelete);
         });
       });
