@@ -33,14 +33,14 @@ export type CommunicationTag =
   | 'ConnectedAP'
   | 'Address';
 
-/** `Private`-safeguarded selectors for `Substation` and its descendants */
+/** `Private`-safeguarded selectors for `Communication` and its descendants */
 export const selectors = <Record<CommunicationTag, string>>(
   Object.fromEntries(
     substationPath.map((e, i, a) => [e, a.slice(0, i + 1).join(' > ')])
   )
 );
 
-/** Common `CSS` styles used by substation subeditors */
+/** Common `CSS` styles used by communication subeditors */
 export const styles = css`
   :host(.moving) section {
     opacity: 0.3;
