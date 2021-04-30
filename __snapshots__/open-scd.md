@@ -419,7 +419,7 @@
 <mwc-snackbar
   id="info"
   labeltext="No errors"
-  timeoutms="2000"
+  timeoutms="4000"
 >
   <mwc-icon-button
     icon="close"
@@ -430,7 +430,7 @@
 <mwc-snackbar
   id="warning"
   labeltext="No errors"
-  timeoutms="5000"
+  timeoutms="6000"
 >
   <mwc-button
     icon="rule"
