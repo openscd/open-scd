@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/openscd/open-scd/compare/v0.0.4...v0.1.0) (2021-04-30)
+
+
+### Features
+
+* **communication-editor:** show all connected ap within ied ([#189](https://github.com/openscd/open-scd/issues/189)) ([6bb9815](https://github.com/openscd/open-scd/commits/6bb98156a05f6f08d2ea4debb5a39ca948f44325))
+* **filtered-list:** add check all to filtered-list ([#187](https://github.com/openscd/open-scd/issues/187)) ([d630a57](https://github.com/openscd/open-scd/commits/d630a5701507d3b480bc39fc3231f293f5e535d7))
+* **foundation:** getreference function ([#180](https://github.com/openscd/open-scd/issues/180)) ([19680cc](https://github.com/openscd/open-scd/commits/19680ccb327109a4eee09315c15475f6075d9539))
+* **logging:** show snackbars on info and warning ([#186](https://github.com/openscd/open-scd/issues/186)) ([dc6081b](https://github.com/openscd/open-scd/commits/dc6081b567f70827e8550ee0ccf28b22424baa1f))
+
+
+### Bug Fixes
+
+* **communicationmapping:** ClientLN handling for LNs reside in AccessPoint ([#173](https://github.com/openscd/open-scd/issues/173)) ([0fce19e](https://github.com/openscd/open-scd/commits/0fce19e1124ebb48b7b6a7227b1ecd546f16c27f))
+* **logging:** respect mwc snackbar minimum timeout ([1fbbd93](https://github.com/openscd/open-scd/commits/1fbbd932230b553c846bbb0a7e9d8e553243c073))
+* **open-scd:** fix createNewProject for Edition 2 ([#188](https://github.com/openscd/open-scd/issues/188)) ([ab786a0](https://github.com/openscd/open-scd/commits/ab786a0cdbf56b22163a9dd81fa2ed5328cddd8a))
+
 ### [0.0.4](https://github.com/openscd/open-scd/compare/v0.0.3...v0.0.4) (2021-04-12)
 
 
