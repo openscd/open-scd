@@ -2437,6 +2437,15 @@ export function findControlBlocks(extRef: Element): Set<Element> {
   return controlBlocks;
 }
 
+/** @returns the version of the SCL project */
+export function getVersion(element: Element): string {
+  const header = Array.from(
+    element.ownerDocument.getElementsByTagName('Header')
+  ).filter(item => !item.closest('Private'));
+
+  return header[0].getAttribute('version') ?? '2003';
+}
+
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;
