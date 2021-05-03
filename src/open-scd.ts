@@ -109,12 +109,19 @@ export class OpenSCD extends Setting(
 
   /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
   private async loadIEDFile(event: Event): Promise<void> {
-    const file =
-      (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
-    if (file) {
-      const loaded = this.importIED(URL.createObjectURL(file), this.doc!);
-      this.dispatchEvent(newPendingStateEvent(loaded));
-      await loaded;
+    const files = (<HTMLInputElement | null>event.target)?.files;
+
+    if (!files) return;
+
+    for (let i = 0; i < files!.length; i++) {
+      if (files!.item(i)) {
+        const loaded = this.importIED(
+          URL.createObjectURL(files!.item(i)),
+          this.doc!
+        );
+        this.dispatchEvent(newPendingStateEvent(loaded));
+        await loaded;
+      }
     }
   }
 
@@ -514,7 +521,7 @@ export class OpenSCD extends Setting(
       ) => ((<HTMLInputElement>event.target).value = '')} @change="${
       this.loadFile
     }"></input>
-      <input id="ied-import" type="file" accept=".icd,.iid,.cid" @click=${(
+      <input id="ied-import" type="file" multiple accept=".icd,.iid,.cid" @click=${(
         event: MouseEvent
       ) => ((<HTMLInputElement>event.target).value = '')} @change="${
       this.loadIEDFile
