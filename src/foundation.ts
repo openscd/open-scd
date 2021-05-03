@@ -2218,8 +2218,6 @@ export const tags: Record<
 };
 
 export function getReference(parent: Element, tag: SCLTag): Element | null {
-  if (tag === 'LNode') console.log(parent);
-
   const parentTag = parent.tagName;
   const children = Array.from(parent.children);
 

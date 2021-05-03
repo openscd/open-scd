@@ -1,6 +1,7 @@
 import { get } from 'lit-translate';
 
 import {
+  getReference,
   LitElementConstructor,
   Mixin,
   newLogEvent,
@@ -50,7 +51,10 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         new: {
           parent: doc.querySelector(':root > DataTypeTemplates')!,
           element: lNodeType,
-          reference: doc.querySelector(':root > DataTypeTemplates > DOType'),
+          reference: getReference(
+            doc.querySelector('DataTypeTemplates')!,
+            'LNodeType'
+          ),
         },
       };
     }
@@ -87,7 +91,10 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         new: {
           parent: doc.querySelector(':root > DataTypeTemplates')!,
           element: doType,
-          reference: doc.querySelector(':root > DataTypeTemplates > DAType'),
+          reference: getReference(
+            doc.querySelector(':root > DataTypeTemplates')!,
+            'DOType'
+          ),
         },
       };
     }
@@ -125,7 +132,10 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         new: {
           parent: doc.querySelector(':root > DataTypeTemplates')!,
           element: daType,
-          reference: doc.querySelector(':root > DataTypeTemplates > EnumType'),
+          reference: getReference(
+            doc.querySelector(':root > DataTypeTemplates')!,
+            'DAType'
+          ),
         },
       };
     }
@@ -162,7 +172,10 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         new: {
           parent: doc.querySelector(':root > DataTypeTemplates')!,
           element: enumType,
-          reference: null,
+          reference: getReference(
+            doc.querySelector(':root > DataTypeTemplates')!,
+            'EnumType'
+          ),
         },
       };
     }
@@ -190,7 +203,7 @@ export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
         new: {
           parent: doc!.querySelector(':root')!,
           element: ied,
-          reference: doc!.querySelector(':root > DataTypeTemplates')!,
+          reference: getReference(doc!.querySelector(':root')!, 'IED'),
         },
       });
 
