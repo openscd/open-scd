@@ -117,7 +117,42 @@ function addCommunicationElements(
   return actions;
 }
 
+function isConnected(type: Element, ied: Element): boolean {
+  const data: Element = type.parentElement!;
+  const id = type.getAttribute('id');
+
+  if (!data || !id) return false;
+
+  if (type.tagName === 'EnumType')
+    return Array.from(
+      data.querySelectorAll(
+        `DOType > DA[type="${id}"],DAType > BDA[type="${id}"]`
+      )
+    ).some(typeChild => isConnected(typeChild.parentElement!, ied));
+
+  if (type.tagName === 'DAType')
+    return Array.from(
+      data.querySelectorAll(
+        `DOType > DA[type="${id}"],DAType > BDA[type="${id}"]`
+      )
+    ).some(typeChild => isConnected(typeChild.parentElement!, ied));
+
+  if (type.tagName === 'DOType')
+    return Array.from(
+      data.querySelectorAll(
+        `LNodeType > DO[type="${id}"], DOType > SDO[type="${id}"]`
+      )
+    ).some(typeChild => isConnected(typeChild.parentElement!, ied));
+
+  return (
+    ied.querySelectorAll(
+      `AccessPoint > Server > LDevice > LN0[lnType="${id}"], AccessPoint > Server > LDevice > LN[lnType="${id}"]`
+    ).length > 0
+  );
+}
+
 function addEnumType(
+  ied: Element,
   enumType: Element,
   doc: Document
 ): SimpleAction | undefined {
@@ -127,14 +162,12 @@ function addEnumType(
 
   if (existEnumType && enumType.isEqualNode(existEnumType)) return;
 
+  if (!isConnected(enumType, ied)) return;
+
   if (existEnumType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
     //Rename the id by adding IED name at the beginning
-    const ied: Element = enumType.parentElement!.parentElement!.querySelector(
-      ':root > IED'
-    )!;
     const data: Element = enumType.parentElement!;
-
     const idOld = enumType.getAttribute('id');
     const idNew = ied.getAttribute('name')! + idOld;
 
@@ -158,21 +191,22 @@ function addEnumType(
   };
 }
 
-function addDAType(daType: Element, doc: Document): SimpleAction | undefined {
+function addDAType(
+  ied: Element,
+  daType: Element,
+  doc: Document
+): SimpleAction | undefined {
   const existDAType = doc.querySelector(
     `:root > DataTypeTemplates > DAType[id="${daType.getAttribute('id')}"]`
   );
 
   if (existDAType && daType.isEqualNode(existDAType)) return;
+  if (!isConnected(daType, ied)) return;
 
   if (existDAType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
     //Rename the id by adding IED name at the beginning
-    const ied: Element = daType.parentElement!.parentElement!.querySelector(
-      ':root > IED'
-    )!;
     const data: Element | null = daType.parentElement!;
-
     const idOld = daType.getAttribute('id');
     const idNew = ied.getAttribute('name')! + idOld;
 
@@ -196,23 +230,25 @@ function addDAType(daType: Element, doc: Document): SimpleAction | undefined {
   };
 }
 
-function addDOType(doType: Element, doc: Document): SimpleAction | undefined {
+function addDOType(
+  ied: Element,
+  doType: Element,
+  doc: Document
+): SimpleAction | undefined {
   const existDOType = doc.querySelector(
     `:root > DataTypeTemplates > DOType[id="${doType.getAttribute('id')}"]`
   );
 
   if (existDOType && doType.isEqualNode(existDOType)) return;
+  if (!isConnected(doType, ied)) return;
 
   if (existDOType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
     //Rename the id by adding IED name at the beginning
-    const ied: Element = doType.parentElement!.parentElement!.querySelector(
-      ':root > IED'
-    )!;
     const data: Element = doType.parentElement!;
-
     const idOld = doType.getAttribute('id');
     const idNew = ied.getAttribute('name')! + idOld;
+
     doType.setAttribute('id', idNew);
     data
       .querySelectorAll(
@@ -234,6 +270,7 @@ function addDOType(doType: Element, doc: Document): SimpleAction | undefined {
 }
 
 function addLNodeType(
+  ied: Element,
   lNodeType: Element,
   doc: Document
 ): SimpleAction | undefined {
@@ -244,14 +281,11 @@ function addLNodeType(
   );
 
   if (existLNodeType && lNodeType.isEqualNode(existLNodeType)) return;
+  if (!isConnected(lNodeType, ied)) return;
 
   if (existLNodeType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
     //Rename the id by adding IED name at the beginning
-    const ied: Element = lNodeType.parentElement!.parentElement!.querySelector(
-      ':root > IED'
-    )!;
-
     const idOld = lNodeType.getAttribute('id')!;
     const idNew = ied.getAttribute('name')!.concat(idOld);
 
@@ -276,6 +310,7 @@ function addLNodeType(
 }
 
 function addDataTypeTemplates(
+  ied: Element,
   templates: Element,
   doc: XMLDocument
 ): SimpleAction[] {
@@ -283,19 +318,19 @@ function addDataTypeTemplates(
 
   templates
     .querySelectorAll(':root > DataTypeTemplates > LNodeType')
-    .forEach(lNodeType => actions.push(addLNodeType(lNodeType, doc)));
+    .forEach(lNodeType => actions.push(addLNodeType(ied, lNodeType, doc)));
 
   templates
     .querySelectorAll(':root > DataTypeTemplates > DOType')
-    .forEach(doType => actions.push(addDOType(doType, doc)));
+    .forEach(doType => actions.push(addDOType(ied, doType, doc)));
 
   templates
     .querySelectorAll(':root > DataTypeTemplates > DAType')
-    .forEach(daType => actions.push(addDAType(daType, doc)));
+    .forEach(daType => actions.push(addDAType(ied, daType, doc)));
 
   templates
     .querySelectorAll(':root > DataTypeTemplates > EnumType')
-    .forEach(enumType => actions.push(addEnumType(enumType, doc)));
+    .forEach(enumType => actions.push(addEnumType(ied, enumType, doc)));
 
   return <SimpleAction[]>actions.filter(item => item !== undefined);
 }
@@ -363,17 +398,16 @@ async function importIED(
   }
 
   const iedAction = addIED(ied, doc);
-  const dataTypeTemplateActions = addDataTypeTemplates(templates, doc);
+  const dataTypeTemplateActions = addDataTypeTemplates(ied, templates, doc);
   const communicationActions = addCommunicationElements(
     ied.getAttribute('name')!,
     ied.ownerDocument.querySelector('Communication')!,
     doc
   );
 
-  const actions = [iedAction].concat(
-    dataTypeTemplateActions,
-    communicationActions
-  );
+  const actions = communicationActions.concat(dataTypeTemplateActions, [
+    iedAction,
+  ]);
 
   object.dispatchEvent(
     newActionEvent({
