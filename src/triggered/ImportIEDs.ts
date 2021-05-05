@@ -29,20 +29,15 @@ function importIedsAction(
     selectedItems.forEach(item => {
       const ied = importDoc.querySelector(selector('IED', item.value));
 
-      if (ied)
-        importIED(
-          ied,
-          importDoc.querySelector(':root > DataTypeTemplates')!,
-          doc,
-          <HTMLElement>wizard
-        );
+      if (ied) importIED(ied, doc, <HTMLElement>wizard);
     });
 
+    wizard.dispatchEvent(newWizardEvent());
     return [];
   };
 }
 
-function importIEDsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
+function importIedsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
   return [
     {
       title: 'Import IEDs',
@@ -73,22 +68,18 @@ function getSubNetwork(elements: Element[], element: Element): Element {
 }
 
 function addCommunicationElements(
-  incommingIedName: string,
-  incommingCommunication: Element,
+  ied: Element,
   doc: XMLDocument
 ): SimpleAction[] {
   const actions = [];
 
-  // make sure the communication section does exist
-  const existingCommunicationElement = doc.querySelector(
-    ':root > Communication'
-  );
+  const oldCommunicationElement = doc.querySelector(':root > Communication');
 
-  const communication = existingCommunicationElement
-    ? existingCommunicationElement
+  const communication = oldCommunicationElement
+    ? oldCommunicationElement
     : createElement(doc, 'Communication', {});
 
-  if (!existingCommunicationElement)
+  if (!oldCommunicationElement)
     actions.push({
       new: {
         parent: doc.querySelector(':root')!,
@@ -98,42 +89,44 @@ function addCommunicationElements(
     });
 
   const connectedAPs = Array.from(
-    incommingCommunication.querySelectorAll(
-      `:root > Communication > SubNetwork > ConnectedAP[iedName="${incommingIedName}"]`
+    ied.ownerDocument.querySelectorAll(
+      `:root > Communication > SubNetwork > ConnectedAP[iedName="${ied.getAttribute(
+        'name'
+      )}"]`
     )
   );
 
   const createdSubNetworks: Element[] = [];
 
   connectedAPs.forEach(connectedAP => {
-    const incommingSubnetwork = <Element>connectedAP.parentElement!;
-    const existingSubnetworkMatch = communication.querySelector(
-      `:root > Communication > SubNetwork[name="${incommingSubnetwork.getAttribute(
+    const newSubNetwork = <Element>connectedAP.parentElement!;
+    const oldSubNetworkMatch = communication.querySelector(
+      `:root > Communication > SubNetwork[name="${newSubNetwork.getAttribute(
         'name'
       )}"]`
     );
 
-    const parent = existingSubnetworkMatch
-      ? existingSubnetworkMatch
-      : getSubNetwork(createdSubNetworks, incommingSubnetwork);
+    const subNetwork = oldSubNetworkMatch
+      ? oldSubNetworkMatch
+      : getSubNetwork(createdSubNetworks, newSubNetwork);
     const element = <Element>connectedAP.cloneNode(true);
 
-    if (!existingSubnetworkMatch && !createdSubNetworks.includes(parent)) {
+    if (!oldSubNetworkMatch && !createdSubNetworks.includes(subNetwork)) {
       actions.push({
         new: {
           parent: communication,
-          element: parent,
+          element: subNetwork,
           reference: getReference(communication, 'SubNetwork'),
         },
       });
-      createdSubNetworks.push(parent);
+      createdSubNetworks.push(subNetwork);
     }
 
     actions.push({
       new: {
-        parent,
+        parent: subNetwork,
         element,
-        reference: getReference(parent, 'ConnectedAP'),
+        reference: getReference(subNetwork, 'ConnectedAP'),
       },
     });
   });
@@ -141,7 +134,7 @@ function addCommunicationElements(
   return actions;
 }
 
-function isConnected(type: Element, ied: Element): boolean {
+function hasConnectionToIed(type: Element, ied: Element): boolean {
   const data: Element = type.parentElement!;
   const id = type.getAttribute('id');
 
@@ -152,27 +145,25 @@ function isConnected(type: Element, ied: Element): boolean {
       data.querySelectorAll(
         `DOType > DA[type="${id}"],DAType > BDA[type="${id}"]`
       )
-    ).some(typeChild => isConnected(typeChild.parentElement!, ied));
+    ).some(typeChild => hasConnectionToIed(typeChild.parentElement!, ied));
 
   if (type.tagName === 'DAType')
     return Array.from(
       data.querySelectorAll(
         `DOType > DA[type="${id}"],DAType > BDA[type="${id}"]`
       )
-    ).some(typeChild => isConnected(typeChild.parentElement!, ied));
+    ).some(typeChild => hasConnectionToIed(typeChild.parentElement!, ied));
 
   if (type.tagName === 'DOType')
     return Array.from(
       data.querySelectorAll(
         `LNodeType > DO[type="${id}"], DOType > SDO[type="${id}"]`
       )
-    ).some(typeChild => isConnected(typeChild.parentElement!, ied));
+    ).some(typeChild => hasConnectionToIed(typeChild.parentElement!, ied));
 
-  return (
-    ied.querySelectorAll(
-      `AccessPoint > Server > LDevice > LN0[lnType="${id}"], AccessPoint > Server > LDevice > LN[lnType="${id}"]`
-    ).length > 0
-  );
+  return Array.from(ied.getElementsByTagName('LN0'))
+    .concat(Array.from(ied.getElementsByTagName('LN')))
+    .some(anyln => anyln.getAttribute('lnType') === id);
 }
 
 function addEnumType(
@@ -185,8 +176,7 @@ function addEnumType(
   );
 
   if (existEnumType && enumType.isEqualNode(existEnumType)) return;
-
-  if (!isConnected(enumType, ied)) return;
+  if (!hasConnectionToIed(enumType, ied)) return;
 
   if (existEnumType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
@@ -225,7 +215,7 @@ function addDAType(
   );
 
   if (existDAType && daType.isEqualNode(existDAType)) return;
-  if (!isConnected(daType, ied)) return;
+  if (!hasConnectionToIed(daType, ied)) return;
 
   if (existDAType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
@@ -264,7 +254,7 @@ function addDOType(
   );
 
   if (existDOType && doType.isEqualNode(existDOType)) return;
-  if (!isConnected(doType, ied)) return;
+  if (!hasConnectionToIed(doType, ied)) return;
 
   if (existDOType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
@@ -305,7 +295,7 @@ function addLNodeType(
   );
 
   if (existLNodeType && lNodeType.isEqualNode(existLNodeType)) return;
-  if (!isConnected(lNodeType, ied)) return;
+  if (!hasConnectionToIed(lNodeType, ied)) return;
 
   if (existLNodeType) {
     //INFO: id's within DataTypeTemplate must be unique. This is not the case here.
@@ -333,40 +323,26 @@ function addLNodeType(
   };
 }
 
-function addDataTypeTemplates(
-  ied: Element,
-  templates: Element,
-  doc: XMLDocument
-): SimpleAction[] {
+function addDataTypeTemplates(ied: Element, doc: XMLDocument): SimpleAction[] {
   const actions: (SimpleAction | undefined)[] = [];
 
-  templates
+  ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > LNodeType')
     .forEach(lNodeType => actions.push(addLNodeType(ied, lNodeType, doc)));
 
-  templates
+  ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > DOType')
     .forEach(doType => actions.push(addDOType(ied, doType, doc)));
 
-  templates
+  ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > DAType')
     .forEach(daType => actions.push(addDAType(ied, daType, doc)));
 
-  templates
+  ied.ownerDocument
     .querySelectorAll(':root > DataTypeTemplates > EnumType')
     .forEach(enumType => actions.push(addEnumType(ied, enumType, doc)));
 
   return <SimpleAction[]>actions.filter(item => item !== undefined);
-}
-
-function addIED(ied: Element, doc: Document): SimpleAction {
-  return {
-    new: {
-      parent: doc!.querySelector(':root')!,
-      element: ied,
-      reference: getReference(doc!.querySelector(':root')!, 'IED'),
-    },
-  };
 }
 
 function isIedNameUnique(ied: Element, doc: Document): boolean {
@@ -382,12 +358,11 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
 
 async function importIED(
   ied: Element,
-  templates: Element,
   doc: Document,
-  object: HTMLElement
+  dispatchObject: HTMLElement
 ): Promise<void> {
   if (!isIedNameUnique(ied, doc)) {
-    object.dispatchEvent(
+    dispatchObject.dispatchEvent(
       newLogEvent({
         kind: 'error',
         title: get('import.log.nouniqueied', {
@@ -395,34 +370,23 @@ async function importIED(
         }),
       })
     );
-    throw new Error(get('import.log.importerror'));
   }
 
-  const iedAction = addIED(ied, doc);
-  const dataTypeTemplateActions = addDataTypeTemplates(ied, templates, doc);
-  const communicationActions = addCommunicationElements(
-    ied.getAttribute('name')!,
-    ied.ownerDocument.querySelector('Communication')!,
-    doc
-  );
+  const dataTypeTemplateActions = addDataTypeTemplates(ied, doc);
+  const communicationActions = addCommunicationElements(ied, doc);
+  const actions = communicationActions.concat(dataTypeTemplateActions);
+  actions.push({
+    new: {
+      parent: doc!.querySelector(':root')!,
+      element: ied,
+      reference: getReference(doc!.querySelector(':root')!, 'IED'),
+    },
+  });
 
-  const actions = communicationActions.concat(dataTypeTemplateActions, [
-    iedAction,
-  ]);
-
-  object.dispatchEvent(
+  dispatchObject.dispatchEvent(
     newActionEvent({
       title: get('editing.import', { name: ied.getAttribute('name')! }),
-      actions: <SimpleAction[]>actions.filter(action => action !== undefined),
-    })
-  );
-
-  object.dispatchEvent(
-    newLogEvent({
-      kind: 'info',
-      title: get('import.log.successful', {
-        name: ied.getAttribute('name') ?? '',
-      }),
+      actions,
     })
   );
 }
@@ -433,28 +397,34 @@ export default class ImportingIedPlugin extends LitElement {
   @query('#importied-plugin-input') pluginFileUI!: HTMLInputElement;
 
   /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
-  private async loadIEDFile(event: Event): Promise<void> {
-    const files = (<HTMLInputElement | null>event.target)?.files;
+  private async loadIedFiles(event: Event): Promise<void> {
+    const files = Array.from(
+      (<HTMLInputElement | null>event.target)?.files ?? []
+    );
 
-    if (!files) return;
+    const loaded = files.map(async file => {
+      const importDoc = new DOMParser().parseFromString(
+        await file.text(),
+        'application/xml'
+      );
 
-    for (let i = 0; i < files!.length; i++) {
-      if (files!.item(i)) {
-        const loaded = this.importIEDs(
-          URL.createObjectURL(files!.item(i)),
-          this.doc!
-        );
-        document.dispatchEvent(newPendingStateEvent(loaded));
-        await loaded;
-      }
-    }
+      const loaded = this.importIEDs(importDoc, this.doc!);
+      return loaded;
+    });
+
+    const promise = new Promise<void>((resolve, reject) =>
+      Promise.allSettled(loaded).then(
+        () => resolve(),
+        () => reject()
+      )
+    );
+
+    document
+      .querySelector('open-scd')!
+      .dispatchEvent(newPendingStateEvent(promise));
   }
 
-  async importIEDs(src: string, doc: XMLDocument): Promise<void> {
-    const response = await fetch(src);
-    const text = await response.text();
-    const importDoc = new DOMParser().parseFromString(text, 'application/xml');
-
+  async importIEDs(importDoc: XMLDocument, doc: XMLDocument): Promise<void> {
     const openscd = document.querySelector('open-scd')!;
 
     if (!importDoc) {
@@ -503,16 +473,11 @@ export default class ImportingIedPlugin extends LitElement {
     }
 
     if (ieds.length === 1) {
-      importIED(
-        ieds[0],
-        importDoc.querySelector(':root>DataTypeTemplates')!,
-        doc,
-        <HTMLElement>openscd
-      );
+      importIED(ieds[0], doc, <HTMLElement>openscd);
       return;
     }
 
-    openscd.dispatchEvent(newWizardEvent(importIEDsWizard(importDoc, doc)));
+    openscd.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
   }
 
   async trigger(): Promise<void> {
@@ -520,9 +485,9 @@ export default class ImportingIedPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<input @click=${(event: MouseEvent) =>
+    return html`<input multiple @click=${(event: MouseEvent) =>
       ((<HTMLInputElement>event.target).value = '')} @change=${
-      this.loadIEDFile
+      this.loadIedFiles
     } id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
   }
 
