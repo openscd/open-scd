@@ -26,7 +26,7 @@ function importIedsAction(
       (<List>wizard.shadowRoot!.querySelector('#iedList')).selected
     );
 
-    selectedItems.forEach(item => {
+    selectedItems.forEach(async item => {
       const ied = importDoc.querySelector(selector('IED', item.value));
 
       if (ied) importIED(ied, doc, <HTMLElement>wizard);
@@ -361,6 +361,16 @@ async function importIED(
   doc: Document,
   dispatchObject: HTMLElement
 ): Promise<void> {
+  if (ied.getAttribute('name') === 'TEMPLATE')
+    ied.setAttribute(
+      'name',
+      'TEMPLATE_IED' +
+        (Array.from(doc.querySelectorAll('IED')).filter(ied =>
+          ied.getAttribute('name')?.includes('TEMPLATE')
+        ).length +
+          1)
+    );
+
   if (!isIedNameUnique(ied, doc)) {
     dispatchObject.dispatchEvent(
       newLogEvent({
@@ -408,8 +418,7 @@ export default class ImportingIedPlugin extends LitElement {
         'application/xml'
       );
 
-      const loaded = this.importIEDs(importDoc, this.doc!);
-      return loaded;
+      return this.importIEDs(importDoc, this.doc!);
     });
 
     const promise = new Promise<void>((resolve, reject) =>

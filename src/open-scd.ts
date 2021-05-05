@@ -527,7 +527,7 @@ export class OpenSCD extends Setting(
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 1;
+      z-index: 99;
       pointer-events: none;
     }
 
