@@ -1,25 +1,26 @@
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { html, internalProperty } from 'lit-element';
+import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
-
 import {
-  getReference,
-  LitElementConstructor,
-  Mixin,
-  newLogEvent,
-  newActionEvent,
-  SimpleAction,
   createElement,
-  Wizard,
-  identity,
-  WizardActor,
   EditorAction,
+  getReference,
+  identity,
+  newActionEvent,
+  newLogEvent,
+  newPendingStateEvent,
   newWizardEvent,
   selector,
-} from './foundation.js';
+  SimpleAction,
+  Wizard,
+  WizardActor,
+} from '../foundation.js';
 
-function dummyImportIED(importDoc: XMLDocument, doc: XMLDocument): WizardActor {
+function importIedsAction(
+  importDoc: XMLDocument,
+  doc: XMLDocument
+): WizardActor {
   return (_, wizard: Element): EditorAction[] => {
     const selectedItems = <ListItemBase[]>(
       (<List>wizard.shadowRoot!.querySelector('#iedList')).selected
@@ -39,6 +40,29 @@ function dummyImportIED(importDoc: XMLDocument, doc: XMLDocument): WizardActor {
 
     return [];
   };
+}
+
+function importIEDsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
+  return [
+    {
+      title: 'Import IEDs',
+      primary: {
+        icon: 'add',
+        label: 'IEDs',
+        action: importIedsAction(importDoc, doc),
+      },
+      content: [
+        html`<filtered-list id="iedList" multi
+          >${Array.from(importDoc.querySelectorAll(':root > IED')).map(
+            ied =>
+              html`<mwc-check-list-item value="${identity(ied)}"
+                >${ied.getAttribute('name')}</mwc-check-list-item
+              >`
+          )}</filtered-list
+        >`,
+      ],
+    },
+  ];
 }
 
 function getSubNetwork(elements: Element[], element: Element): Element {
@@ -356,29 +380,6 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
-function importIEDsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
-  return [
-    {
-      title: 'Import IEDs',
-      primary: {
-        icon: 'add',
-        label: 'IEDs',
-        action: dummyImportIED(importDoc, doc),
-      },
-      content: [
-        html`<filtered-list id="iedList" multi
-          >${Array.from(importDoc.querySelectorAll(':root > IED')).map(
-            ied =>
-              html`<mwc-check-list-item value="${identity(ied)}"
-                >${ied.getAttribute('name')}</mwc-check-list-item
-              >`
-          )}</filtered-list
-        >`,
-      ],
-    },
-  ];
-}
-
 async function importIED(
   ied: Element,
   templates: Element,
@@ -426,80 +427,110 @@ async function importIED(
   );
 }
 
-/** Mixin that handles IED import*/
-export type ImportingElement = Mixin<typeof Importing>;
+export default class ImportingIedPlugin extends LitElement {
+  doc!: XMLDocument;
 
-/** @typeParam TBase - a type extending `LitElement`
- * @returns `Base` dispatching [[`LogEvent`]]s and [[`EditorActionEvent`]]s. */
-export function Importing<TBase extends LitElementConstructor>(Base: TBase) {
-  class ImportingElement extends Base {
-    /** Loads and parses an `XMLDocument` after [[`srcIED`]] has changed. */
-    async importIEDs(src: string, doc: XMLDocument): Promise<void> {
-      const response = await fetch(src);
-      const text = await response.text();
-      const importDoc = new DOMParser().parseFromString(
-        text,
-        'application/xml'
-      );
+  @query('#importied-plugin-input') pluginFileUI!: HTMLInputElement;
 
-      if (!importDoc) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'error',
-            title: get('import.log.loaderror'),
-          })
+  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
+  private async loadIEDFile(event: Event): Promise<void> {
+    const files = (<HTMLInputElement | null>event.target)?.files;
+
+    if (!files) return;
+
+    for (let i = 0; i < files!.length; i++) {
+      if (files!.item(i)) {
+        const loaded = this.importIEDs(
+          URL.createObjectURL(files!.item(i)),
+          this.doc!
         );
-        throw new Error(get('import.log.loaderror'));
+        document.dispatchEvent(newPendingStateEvent(loaded));
+        await loaded;
       }
-
-      if (importDoc.querySelector('parsererror')) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'error',
-            title: get('import.log.parsererror'),
-          })
-        );
-        throw new Error(get('import.log.loaderror'));
-      }
-
-      const ieds = Array.from(importDoc.querySelectorAll(':root > IED'));
-      if (ieds.length === 0) {
-        this.dispatchEvent(
-          newLogEvent({
-            kind: 'error',
-            title: get('import.log.missingied'),
-          })
-        );
-        return;
-      }
-
-      if (!doc.querySelector(':root > DataTypeTemplates')) {
-        const element = createElement(doc, 'DataTypeTemplates', {});
-
-        this.dispatchEvent(
-          newActionEvent({
-            new: {
-              parent: doc.documentElement,
-              element,
-              reference: getReference(doc.documentElement, 'DataTypeTemplates'),
-            },
-          })
-        );
-      }
-
-      if (ieds.length === 1) {
-        importIED(
-          ieds[0],
-          importDoc.querySelector(':root>DataTypeTemplates')!,
-          doc,
-          this
-        );
-        return;
-      }
-
-      this.dispatchEvent(newWizardEvent(importIEDsWizard(importDoc, doc)));
     }
   }
 
-  return ImportingElement;
+  async importIEDs(src: string, doc: XMLDocument): Promise<void> {
+    const response = await fetch(src);
+    const text = await response.text();
+    const importDoc = new DOMParser().parseFromString(text, 'application/xml');
+
+    const openscd = document.querySelector('open-scd')!;
+
+    if (!importDoc) {
+      openscd.dispatchEvent(
+        newLogEvent({
+          kind: 'error',
+          title: get('import.log.loaderror'),
+        })
+      );
+      return;
+    }
+
+    if (importDoc.querySelector('parsererror')) {
+      openscd.dispatchEvent(
+        newLogEvent({
+          kind: 'error',
+          title: get('import.log.parsererror'),
+        })
+      );
+      return;
+    }
+
+    const ieds = Array.from(importDoc.querySelectorAll(':root > IED'));
+    if (ieds.length === 0) {
+      openscd.dispatchEvent(
+        newLogEvent({
+          kind: 'error',
+          title: get('import.log.missingied'),
+        })
+      );
+      return;
+    }
+
+    if (!doc.querySelector(':root > DataTypeTemplates')) {
+      const element = createElement(doc, 'DataTypeTemplates', {});
+
+      openscd.dispatchEvent(
+        newActionEvent({
+          new: {
+            parent: doc.documentElement,
+            element,
+            reference: getReference(doc.documentElement, 'DataTypeTemplates'),
+          },
+        })
+      );
+    }
+
+    if (ieds.length === 1) {
+      importIED(
+        ieds[0],
+        importDoc.querySelector(':root>DataTypeTemplates')!,
+        doc,
+        <HTMLElement>openscd
+      );
+      return;
+    }
+
+    openscd.dispatchEvent(newWizardEvent(importIEDsWizard(importDoc, doc)));
+  }
+
+  async trigger(): Promise<void> {
+    this.pluginFileUI.click();
+  }
+
+  render(): TemplateResult {
+    return html`<input @click=${(event: MouseEvent) =>
+      ((<HTMLInputElement>event.target).value = '')} @change=${
+      this.loadIEDFile
+    } id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+  }
+
+  static styles = css`
+    input {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+  `;
 }
