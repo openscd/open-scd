@@ -14,7 +14,7 @@
         </VoltageLevel>
     </Substation>
     <Communication>
-        <SubNetwork type="8-MMS" name="Stationbus">
+        <SubNetwork type="8-MMS" name="NewSubNetwork">
             <ConnectedAP iedName="TestImportIED" apName="E">
                 <Address>
                     <P type="IP">192.168.210.111</P>
