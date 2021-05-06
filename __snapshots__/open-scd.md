@@ -77,21 +77,6 @@
         Save as
       </span>
     </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      iconid="snippet_folder"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        snippet_folder
-      </mwc-icon>
-      <span>
-        Import IED
-      </span>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -163,6 +148,23 @@
       role="separator"
     >
     </li>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="snippet_folder"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        snippet_folder
+      </mwc-icon>
+      <span>
+        Import IEDs
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
       disabled=""
@@ -347,11 +349,6 @@
   id="file-input"
   type="file"
 >
-<input
-  accept=".icd,.iid,.cid"
-  id="ied-import"
-  type="file"
->
 <mwc-dialog
   heading="Log"
   id="log"
@@ -523,6 +520,24 @@
       Templates
       <mwc-icon slot="meta">
         tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/triggered/ImportIEDs.js"
+    >
+      <mwc-icon slot="graphic">
+        snippet_folder
+      </mwc-icon>
+      Import IEDs
+      <mwc-icon slot="meta">
+        play_circle
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
