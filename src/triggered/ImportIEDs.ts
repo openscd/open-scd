@@ -26,12 +26,21 @@ function importIedsAction(
       (<List>wizard.shadowRoot!.querySelector('#iedList')).selected
     );
 
-    selectedItems.forEach(async item => {
-      const ied = importDoc.querySelector(selector('IED', item.value));
+    const promises = selectedItems
+      .map(item => {
+        return importDoc.querySelector(selector('IED', item.value));
+      })
+      .filter(ied => ied)
+      .map(ied => importIED(ied!, doc, <HTMLElement>wizard));
 
-      if (ied) importIED(ied, doc, <HTMLElement>wizard);
-    });
+    const mergedPromise = new Promise<void>((resolve, reject) =>
+      Promise.allSettled(promises).then(
+        () => resolve(),
+        () => reject()
+      )
+    );
 
+    wizard.dispatchEvent(newPendingStateEvent(mergedPromise));
     wizard.dispatchEvent(newWizardEvent());
     return [];
   };
@@ -356,9 +365,9 @@ function isIedNameUnique(ied: Element, doc: Document): boolean {
   return true;
 }
 
-async function importIED(
+export async function importIED(
   ied: Element,
-  doc: Document,
+  doc: XMLDocument,
   dispatchObject: HTMLElement
 ): Promise<void> {
   if (ied.getAttribute('name') === 'TEMPLATE')
@@ -403,6 +412,7 @@ async function importIED(
 
 export default class ImportingIedPlugin extends LitElement {
   doc!: XMLDocument;
+  parent!: HTMLElement;
 
   @query('#importied-plugin-input') pluginFileUI!: HTMLInputElement;
 
@@ -412,32 +422,31 @@ export default class ImportingIedPlugin extends LitElement {
       (<HTMLInputElement | null>event.target)?.files ?? []
     );
 
-    const loaded = files.map(async file => {
+    const promises = files.map(async file => {
       const importDoc = new DOMParser().parseFromString(
         await file.text(),
         'application/xml'
       );
 
-      return this.importIEDs(importDoc, this.doc!);
+      return this.prepareImport(importDoc, this.doc!);
     });
 
-    const promise = new Promise<void>((resolve, reject) =>
-      Promise.allSettled(loaded).then(
+    const mergedPromise = new Promise<void>((resolve, reject) =>
+      Promise.allSettled(promises).then(
         () => resolve(),
         () => reject()
       )
     );
 
-    document
-      .querySelector('open-scd')!
-      .dispatchEvent(newPendingStateEvent(promise));
+    this.parent.dispatchEvent(newPendingStateEvent(mergedPromise));
   }
 
-  async importIEDs(importDoc: XMLDocument, doc: XMLDocument): Promise<void> {
-    const openscd = document.querySelector('open-scd')!;
-
+  public async prepareImport(
+    importDoc: XMLDocument,
+    doc: XMLDocument
+  ): Promise<void> {
     if (!importDoc) {
-      openscd.dispatchEvent(
+      this.parent.dispatchEvent(
         newLogEvent({
           kind: 'error',
           title: get('import.log.loaderror'),
@@ -447,7 +456,7 @@ export default class ImportingIedPlugin extends LitElement {
     }
 
     if (importDoc.querySelector('parsererror')) {
-      openscd.dispatchEvent(
+      this.parent.dispatchEvent(
         newLogEvent({
           kind: 'error',
           title: get('import.log.parsererror'),
@@ -458,7 +467,7 @@ export default class ImportingIedPlugin extends LitElement {
 
     const ieds = Array.from(importDoc.querySelectorAll(':root > IED'));
     if (ieds.length === 0) {
-      openscd.dispatchEvent(
+      this.parent.dispatchEvent(
         newLogEvent({
           kind: 'error',
           title: get('import.log.missingied'),
@@ -470,7 +479,7 @@ export default class ImportingIedPlugin extends LitElement {
     if (!doc.querySelector(':root > DataTypeTemplates')) {
       const element = createElement(doc, 'DataTypeTemplates', {});
 
-      openscd.dispatchEvent(
+      this.parent.dispatchEvent(
         newActionEvent({
           new: {
             parent: doc.documentElement,
@@ -482,22 +491,26 @@ export default class ImportingIedPlugin extends LitElement {
     }
 
     if (ieds.length === 1) {
-      importIED(ieds[0], doc, <HTMLElement>openscd);
+      importIED(ieds[0], doc, this.parent);
       return;
     }
 
-    openscd.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
+    this.parent.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
   }
 
   async trigger(): Promise<void> {
     this.pluginFileUI.click();
   }
 
+  firstUpdated(): void {
+    this.parent = this.parentElement!;
+  }
+
   render(): TemplateResult {
-    return html`<input multiple @click=${(event: MouseEvent) =>
-      ((<HTMLInputElement>event.target).value = '')} @change=${
-      this.loadIedFiles
-    } id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
+    return html`<input multiple @change=${(event: Event) =>
+      this.loadIedFiles(
+        event
+      )} id="importied-plugin-input" accept=".sed,.scd,.ssd,.iid,.cid,.icd" type="file"></input>`;
   }
 
   static styles = css`
