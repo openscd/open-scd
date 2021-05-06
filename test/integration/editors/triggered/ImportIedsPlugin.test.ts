@@ -2,10 +2,8 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 import ImportingIedPlugin from '../../../../src/triggered/ImportIEDs.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
-import { MockWizardEditorLog } from '../../../mock-wizard-editor-log.js';
 import { OpenSCD } from '../../../../src/open-scd.js';
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
 describe('ImportIedsPlugin', () => {
