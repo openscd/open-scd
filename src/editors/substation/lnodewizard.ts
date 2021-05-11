@@ -116,10 +116,14 @@ function includesLNode(anyln: Element, lnodes: Element[]): boolean {
  * to the entries selected in `wizard`'s `#lnList`.
  */
 export function lNodeWizardAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-    const selectedAnyLn = <Element[]>(<List>(
-      wizard.shadowRoot!.querySelector('#lnList')
-    )).items
+  return (
+    inputs: WizardInput[],
+    wizard: Element,
+    list?: List | null
+  ): EditorAction[] => {
+    if (!list) return [];
+
+    const selectedAnyLn = <Element[]>list.items
       .filter(item => item.selected)
       .map(item => item.value)
       .map(identity => {
