@@ -112,7 +112,7 @@ function hasClientLN(cb: Element, identity: string): boolean {
   return false;
 }
 
-function addClientLNAction(doc: XMLDocument): WizardActor {
+function addClientLnAction(doc: XMLDocument): WizardActor {
   return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
     const cbSelected = <ListItemBase[]>(
       (<List>wizard.shadowRoot!.querySelector('#sourcelist')).selected
@@ -184,7 +184,7 @@ export function clientlnwizard(
       primary: {
         label: get('connect'),
         icon: '',
-        action: addClientLNAction(sinkIED.ownerDocument),
+        action: addClientLnAction(sinkIED.ownerDocument),
       },
       secondary: {
         label: get('cancel'),
@@ -518,10 +518,12 @@ function disconnect(
   connections: Element[],
   root: XMLDocument | Element
 ): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
-    const items = <Set<number>>(
-      (<List>wizard.shadowRoot!.querySelector('filtered-list')).index
-    );
+  return (
+    inputs: WizardInput[],
+    wizard: Element,
+    list?: List | null
+  ): WizardAction[] => {
+    const items = <Set<number>>list!.index;
 
     const actions: WizardAction[] = [];
     const selected = Array.from(items).map(index => connections[index]);
