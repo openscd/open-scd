@@ -119,40 +119,8 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     it('opens lnode wizard ', async () => {
       expect(parent.wizardUI).to.exist;
     });
-    it('has three wizard pages', async () => {
+    it('has two wizard pages', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(2);
-    });
-    it('adds a LNode element when selecting a logical node', async () => {
-      expect(
-        doc.querySelector(
-          'ConductingEquipment > LNode[iedName=IED1][ldInst="CircuitBreaker_CB1"][lnClass="LLN0"][lnInst=""]'
-        )
-      ).to.not.exist;
-      (<ListItemBase>(
-        parent.wizardUI
-          .shadowRoot!.querySelector('mwc-dialog:nth-child(1)')!
-          .querySelector('mwc-check-list-item[value="IED1"]')
-      )).click();
-      await parent.requestUpdate();
-      (<ListItemBase>(
-        parent.wizardUI
-          .shadowRoot!.querySelector('mwc-dialog:nth-child(2)')!
-          .querySelector(
-            'mwc-check-list-item[value="IED1>>CircuitBreaker_CB1"]'
-          )
-      )).click();
-      await parent.requestUpdate();
-      (<HTMLElement>(
-        parent.wizardUI
-          .shadowRoot!.querySelector('mwc-dialog:nth-child(2)')!
-          .querySelector('mwc-button[slot="primaryAction"]')
-      )).click();
-      await parent.requestUpdate();
-      expect(
-        doc.querySelector(
-          'ConductingEquipment > LNode[iedName=IED1][ldInst="CircuitBreaker_CB1"][lnClass="LLN0"][lnInst=""]'
-        )
-      ).to.exist;
     });
   });
   describe('move action', () => {
