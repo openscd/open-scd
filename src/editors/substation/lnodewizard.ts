@@ -121,9 +121,7 @@ export function lNodeWizardAction(parent: Element): WizardActor {
     wizard: Element,
     list?: List | null
   ): EditorAction[] => {
-    if (!list) return [];
-
-    const selectedAnyLn = <Element[]>list.items
+    const selectedAnyLn = <Element[]>list!.items
       .filter(item => item.selected)
       .map(item => item.value)
       .map(identity => {
