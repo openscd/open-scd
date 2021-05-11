@@ -165,12 +165,16 @@ function createBayElement(
 }
 
 function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (
+    inputs: WizardInput[],
+    wizard: Element,
+    list?: List | null
+  ): EditorAction[] => {
     const actions: EditorAction[] = [];
 
-    const ctlModelList = (<ListItemBase[]>(
-      (<List>wizard.shadowRoot!.querySelector('#ctlModelList')).selected
-    )).map(item => item.value);
+    const ctlModelList = (<ListItemBase[]>list!.selected).map(
+      item => item.value
+    );
 
     const root = doc.documentElement;
 
