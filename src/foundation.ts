@@ -1,6 +1,7 @@
 import { LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
 
+import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
 
 import { WizardTextField } from './wizard-textfield.js';
@@ -140,7 +141,8 @@ export type WizardAction = EditorAction | (() => Wizard);
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardActor = (
   inputs: WizardInput[],
-  wizard: Element
+  wizard: Element,
+  list?: List | null
 ) => WizardAction[];
 
 export function isWizard(
