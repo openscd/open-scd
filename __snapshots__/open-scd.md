@@ -192,23 +192,6 @@
         merge_type
       </mwc-icon>
       <span>
-        Merge Project
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      iconid="merge_type"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        merge_type
-      </mwc-icon>
-      <span>
         Update Substation
       </span>
       <mwc-linear-progress indeterminate="">
@@ -468,7 +451,7 @@
 >
   <mwc-list
     activatable=""
-    id="pluginList"
+    id="officialPluginList"
     multi=""
   >
     <mwc-list-item
@@ -544,12 +527,10 @@
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      activated=""
       aria-disabled="false"
       graphic="icon"
       hasmeta=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/triggered/Merge.js"
     >
@@ -597,6 +578,12 @@
         play_circle
       </mwc-icon>
     </mwc-list-item>
+  </mwc-list>
+  <mwc-list
+    activatable=""
+    id="externalPluginList"
+    multi=""
+  >
   </mwc-list>
   <mwc-button
     icon="refresh"
