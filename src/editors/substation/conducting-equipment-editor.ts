@@ -11,6 +11,7 @@ import { translate, get } from 'lit-translate';
 import {
   createElement,
   EditorAction,
+  getReference,
   getValue,
   newActionEvent,
   newWizardEvent,
@@ -129,7 +130,7 @@ export class ConductingEquipmentEditor extends LitElement {
         new: {
           parent,
           element,
-          reference: null,
+          reference: getReference(parent, 'ConductingEquipment'),
         },
       };
 

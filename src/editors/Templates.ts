@@ -1,7 +1,7 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { getReference, newActionEvent, newWizardEvent } from '../foundation.js';
 
 import { styles } from './templates/foundation.js';
 import './templates/enum-type-editor.js';
@@ -25,7 +25,10 @@ export default class TemplatesPlugin extends LitElement {
           new: {
             parent: this.doc.documentElement,
             element: this.doc.createElement('DataTypeTemplates'),
-            reference: null,
+            reference: getReference(
+              this.doc.documentElement,
+              'DataTypeTemplates'
+            ),
           },
         })
       );
@@ -47,7 +50,10 @@ export default class TemplatesPlugin extends LitElement {
           new: {
             parent: this.doc.documentElement,
             element: this.doc.createElement('DataTypeTemplates'),
-            reference: null,
+            reference: getReference(
+              this.doc.documentElement,
+              'DataTypeTemplates'
+            ),
           },
         })
       );

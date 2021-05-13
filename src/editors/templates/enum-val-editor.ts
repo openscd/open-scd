@@ -11,6 +11,7 @@ import { translate, get } from 'lit-translate';
 import {
   createElement,
   EditorAction,
+  getReference,
   getValue,
   newActionEvent,
   newWizardEvent,
@@ -96,7 +97,7 @@ export class EnumValEditor extends LitElement {
         new: {
           parent,
           element,
-          reference: null,
+          reference: getReference(parent, 'EnumVal'),
         },
       };
 

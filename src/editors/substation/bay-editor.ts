@@ -11,6 +11,7 @@ import { translate, get } from 'lit-translate';
 import {
   createElement,
   EditorAction,
+  getReference,
   getValue,
   newActionEvent,
   newWizardEvent,
@@ -153,7 +154,7 @@ export class BayEditor extends LitElement {
         new: {
           parent,
           element,
-          reference: null,
+          reference: getReference(parent, 'Bay'),
         },
       };
 
@@ -207,7 +208,7 @@ export class BayEditor extends LitElement {
           html`<wizard-textfield
             label="desc"
             .maybeValue=${desc}
-            nullable="true"
+            nullable
             helper="${translate('bay.wizard.descHelper')}"
           ></wizard-textfield>`,
         ],
