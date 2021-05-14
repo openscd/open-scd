@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/openscd/open-scd/compare/v0.1.0...v0.2.0) (2021-05-14)
+
+
+### Features
+
+* **importied:** allow import TEMPLATE IED ([0b017b1](https://github.com/openscd/open-scd/commits/0b017b1f8c6ae7ace827e67fee16ef043587b7ad))
+* **importied:** move from mixin to plugin ([92c966e](https://github.com/openscd/open-scd/commits/92c966e6d012230f8cf5c0fa87bf0745975a2a86))
+* **importing:** add communication section elements as well ([b419725](https://github.com/openscd/open-scd/commits/b419725e7ba13ec6bb653281345b560c1fb7d587))
+* **importing:** allow multiple file import ([38fa1d2](https://github.com/openscd/open-scd/commits/38fa1d21ecfaab39ab48ae46d6018a5604f4b2e7))
+* **importing:** generate reference automatically ([d6b11c8](https://github.com/openscd/open-scd/commits/d6b11c810e9936b00ff982283925f0fe896d2d09))
+* **plugin:** reload official plugins without reset ([#196](https://github.com/openscd/open-scd/issues/196)) ([dd9c8d5](https://github.com/openscd/open-scd/commits/dd9c8d5111027702813e58176da8a0b4c4d6cefd))
+* **subscriberinfo:** sampledvaluecontrol included, edition1 difference acknowledged ([#192](https://github.com/openscd/open-scd/issues/192)) ([7b6e363](https://github.com/openscd/open-scd/commits/7b6e3632382b3663b699f68f3c0493d0556f665a))
+
+
+### Bug Fixes
+
+* integrate getReference to follow the element order as defined in the schema ([#197](https://github.com/openscd/open-scd/issues/197)) ([a8c46da](https://github.com/openscd/open-scd/commits/a8c46da48d39ee00508aff9fbb6a69e2134547af))
+* **communicationmappings:** remove leftover console.warn ([c210bfc](https://github.com/openscd/open-scd/commits/c210bfc71bd7f96d9f4ef646d967e1252dbfd993))
+* **importing:** make sure id references are correct ([7bd9808](https://github.com/openscd/open-scd/commits/7bd98083ff6be7d5046338b6258de4a5ba03bf54))
+
 ## [0.1.0](https://github.com/openscd/open-scd/compare/v0.0.4...v0.1.0) (2021-04-30)
 
 
