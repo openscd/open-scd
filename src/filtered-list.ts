@@ -12,7 +12,7 @@ import {
 } from 'lit-element';
 
 @customElement('filtered-list')
-export class Filterlist extends List {
+export class FilteredList extends List {
   @property({ type: String })
   searchFieldLabel!: string;
 

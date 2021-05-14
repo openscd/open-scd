@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { Filterlist } from '../../src/filtered-list.js';
+import { FilteredList } from '../../src/filtered-list.js';
 
 describe('filtered-list', () => {
-  let element: Filterlist;
+  let element: FilteredList;
   const listItems = [
     { prim: 'item1', sec: 'item1sec', disabled: false },
     { prim: 'item2', sec: 'item2sec', disabled: false },

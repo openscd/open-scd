@@ -188,32 +188,8 @@ describe('bay-editor wizarding editing integration', () => {
     it('opens lnode wizard ', async () => {
       expect(parent.wizardUI).to.exist;
     });
-    it('has three wizard pages', async () => {
+    it('has two wizard pages', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(2);
-    });
-    it('adds a LNode element when selecting a logical node', async () => {
-      expect(
-        doc.querySelector(
-          'Bay[name="COUPLING_BAY"] > LNode[iedName=IED2][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
-        )
-      ).to.not.exist;
-      (<ListItemBase>(
-        parent.wizardUI
-          .shadowRoot!.querySelector('mwc-dialog:nth-child(2)')!
-          .querySelector('mwc-check-list-item[value="IED2>>CBSW"]')
-      )).click();
-      await parent.requestUpdate();
-      (<HTMLElement>(
-        parent.wizardUI
-          .shadowRoot!.querySelector('mwc-dialog:nth-child(2)')!
-          .querySelector('mwc-button[slot="primaryAction"]')
-      )).click();
-      await parent.requestUpdate();
-      expect(
-        doc.querySelector(
-          'Bay[name="COUPLING_BAY"] > LNode[iedName=IED2][ldInst="CBSW"][lnClass="LLN0"][lnInst=""]'
-        )
-      ).to.exist;
     });
   });
   describe('move action', () => {

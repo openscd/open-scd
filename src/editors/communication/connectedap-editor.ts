@@ -12,7 +12,6 @@ import { translate, get } from 'lit-translate';
 import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { TextField } from '@material/mwc-textfield';
 
 import {
   EditorAction,
@@ -95,10 +94,16 @@ function createAddressElement(
 }
 
 function createConnectedApAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-    const apValue = (<ListItemBase[]>(
-      (<List>wizard.shadowRoot!.querySelector('#apList')).selected
-    )).map(item => <apAttributes>JSON.parse(item.value));
+  return (
+    inputs: WizardInput[],
+    wizard: Element,
+    list?: List | null
+  ): EditorAction[] => {
+    if (!list) return [];
+
+    const apValue = (<ListItemBase[]>list.selected).map(
+      item => <apAttributes>JSON.parse(item.value)
+    );
 
     const actions = apValue.map(
       value =>
@@ -116,18 +121,6 @@ function createConnectedApAction(parent: Element): WizardActor {
 
     return actions;
   };
-}
-
-function onFilterInput(evt: InputEvent): void {
-  (<List>(
-    (<TextField>evt.target).parentElement?.querySelector('mwc-list')
-  )).items.forEach(item => {
-    item.value
-      .toUpperCase()
-      .includes((<TextField>evt.target).value.toUpperCase())
-      ? item.removeAttribute('style')
-      : item.setAttribute('style', 'display:none;');
-  });
 }
 
 function renderWizardPage(element: Element): TemplateResult {
