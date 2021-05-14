@@ -53,7 +53,6 @@ import { getTheme } from './themes.js';
 import { SupportedVersion } from './schemas.js';
 
 import { Editing, newEmptySCD } from './Editing.js';
-import { Importing } from './Importing.js';
 import { Logging } from './Logging.js';
 import { Setting } from './Setting.js';
 import { InstalledPlugin, Plugging, pluginIcons } from './Plugging.js';
@@ -80,9 +79,7 @@ interface Triggered {
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Setting(
-  Importing(
-    Wizarding(Waiting(Validating(Plugging(Editing(Logging(LitElement))))))
-  )
+  Wizarding(Waiting(Validating(Plugging(Editing(Logging(LitElement))))))
 ) {
   /** The currently active editor tab. */
   @property({ type: Number })
@@ -97,26 +94,10 @@ export class OpenSCD extends Setting(
     this.currentSrc = value;
     this.dispatchEvent(newPendingStateEvent(this.loadDoc(value)));
   }
-  @property({ type: String })
-  set srcIED(value: string) {
-    this.dispatchEvent(newPendingStateEvent(this.importIED(value, this.doc!)));
-  }
 
   @query('#menu') menuUI!: Drawer;
   @query('#file-input') fileUI!: HTMLInputElement;
-  @query('#ied-import') iedImport!: HTMLInputElement;
   @query('#saveas') saveUI!: Dialog;
-
-  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
-  private async loadIEDFile(event: Event): Promise<void> {
-    const file =
-      (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
-    if (file) {
-      const loaded = this.importIED(URL.createObjectURL(file), this.doc!);
-      this.dispatchEvent(newPendingStateEvent(loaded));
-      await loaded;
-    }
-  }
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<void> {
@@ -325,12 +306,6 @@ export class OpenSCD extends Setting(
         action: (): void => this.saveUI.show(),
         disabled: (): boolean => this.doc === null,
       },
-      {
-        icon: 'snippet_folder',
-        name: 'menu.importIED',
-        action: (): void => this.iedImport.click(),
-        disabled: (): boolean => this.doc === null,
-      },
       'divider',
       {
         icon: 'undo',
@@ -514,11 +489,6 @@ export class OpenSCD extends Setting(
       ) => ((<HTMLInputElement>event.target).value = '')} @change="${
       this.loadFile
     }"></input>
-      <input id="ied-import" type="file" accept=".icd,.iid,.cid" @click=${(
-        event: MouseEvent
-      ) => ((<HTMLInputElement>event.target).value = '')} @change="${
-      this.loadIEDFile
-    }"></input>
       ${super.render()}
       ${getTheme(this.settings.theme)}
     `;
@@ -557,7 +527,7 @@ export class OpenSCD extends Setting(
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 1;
+      z-index: 99;
       pointer-events: none;
     }
 
