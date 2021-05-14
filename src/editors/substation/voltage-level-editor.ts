@@ -12,6 +12,7 @@ import {
   createElement,
   EditorAction,
   getMultiplier,
+  getReference,
   getValue,
   newActionEvent,
   newWizardEvent,
@@ -284,7 +285,7 @@ export class VoltageLevelEditor extends LitElement {
           new: {
             parent,
             element,
-            reference: null,
+            reference: getReference(parent, 'VoltageLevel'),
           },
         },
       ];

@@ -9,6 +9,7 @@ import {
   createElement,
   EditorAction,
   findControlBlocks,
+  getReference,
   identity,
   newWizardEvent,
   pathParts,
@@ -159,7 +160,10 @@ function addClientLNAction(doc: XMLDocument): WizardActor {
             new: {
               parent: cb.querySelector('RptEnabled')!,
               element,
-              reference: null,
+              reference: getReference(
+                cb.querySelector('RptEnabled')!,
+                'ClientLN'
+              ),
             },
           });
         }
