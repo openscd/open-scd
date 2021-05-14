@@ -4,14 +4,15 @@ import wrapHtml from 'carehtml';
 
 const html = wrapHtml(litHtml);
 
-import { TextField } from '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
+import { List } from '@material/mwc-list';
+import { TextField } from '@material/mwc-textfield';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
-import { List } from '@material/mwc-list';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { officialPlugins } from '../public/js/plugins.js';
 
 type PluginKind = 'editor' | 'triggered';
 
@@ -33,20 +34,40 @@ export const pluginIcons: Record<PluginKind, string> = {
   triggered: 'play_circle',
 };
 
-const officialPlugins: Promise<
+/* const officialPlugins: Promise<
   (AvailablePlugin & { default?: boolean })[]
 > = fetch('/public/json/plugins.json').then(res => res.json());
-
+ */
 async function storeDefaultPlugins(): Promise<void> {
+  localStorage.setItem('externalPlugins', JSON.stringify([]));
   localStorage.setItem(
-    'plugins',
+    'officialPlugins',
     JSON.stringify(
-      await officialPlugins.then(plugins =>
-        plugins.map(plugin => {
-          return { ...plugin, installed: plugin.default ?? false };
-        })
-      )
+      await officialPlugins.map(plugin => {
+        return { ...plugin, installed: plugin.default ?? false };
+      })
     )
+  );
+}
+
+function isNew(src: string): boolean {
+  const installedOfficialPlugins = <AvailablePlugin[]>(
+    JSON.parse(localStorage.getItem('officialPlugins') ?? '[]')
+  );
+
+  return !installedOfficialPlugins.some(
+    installedOfficialPlugin => installedOfficialPlugin.src === src
+  );
+}
+
+function isInstalled(src: string): boolean {
+  const installedOfficialPlugins = <AvailablePlugin[]>(
+    JSON.parse(localStorage.getItem('officialPlugins') ?? '[]')
+  );
+
+  return installedOfficialPlugins.some(
+    installedOfficialPlugin =>
+      installedOfficialPlugin.src === src && installedOfficialPlugin.installed
   );
 }
 
@@ -70,33 +91,54 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         .map(plugin => this.addContent(plugin));
     }
 
+    private get plugins(): AvailablePlugin[] {
+      return this.officialPlugins.concat(this.externalPlugins);
+    }
+
+    private get officialPlugins(): AvailablePlugin[] {
+      return <InstalledPlugin[]>(<unknown>officialPlugins.map(plugin => {
+        return {
+          ...plugin,
+          installed: isNew(plugin.src) || isInstalled(plugin.src),
+        };
+      }));
+    }
+
+    private get externalPlugins(): AvailablePlugin[] {
+      return <InstalledPlugin[]>(
+        JSON.parse(localStorage.getItem('externalPlugins') ?? '[]')
+      );
+    }
+
     @query('#pluginManager')
     pluginUI!: Dialog;
-    @query('#pluginList')
-    pluginList!: List;
+    @query('#officialPluginList')
+    officialPluginList!: List;
     @query('#pluginAdd')
     pluginDownloadUI!: Dialog;
 
-    private setPlugins(indices: Set<number>): void {
-      const newPlugins = this.plugins.map((plugin, index) => {
+    private setOfficialPlugins(indices: Set<number>): void {
+      const newPlugins = this.officialPlugins.map((plugin, index) => {
         return { ...plugin, installed: indices.has(index) };
       });
-      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+      localStorage.setItem('officialPlugins', JSON.stringify(newPlugins));
       this.requestUpdate();
     }
 
-    private addPlugin(plugin: AvailablePlugin): void {
-      if (this.plugins.some(p => p.src === plugin.src)) return;
-
-      const newPlugins = this.plugins;
-      newPlugins.push(plugin);
-      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+    private setExternalPlugins(indices: Set<number>): void {
+      const newPlugins = this.externalPlugins.map((plugin, index) => {
+        return { ...plugin, installed: indices.has(index) };
+      });
+      localStorage.setItem('externalPlugins', JSON.stringify(newPlugins));
+      this.requestUpdate();
     }
 
-    private get plugins(): AvailablePlugin[] {
-      return <InstalledPlugin[]>(
-        JSON.parse(localStorage.getItem('plugins') ?? '[]')
-      );
+    private addExternalPlugin(plugin: AvailablePlugin): void {
+      if (this.externalPlugins.some(p => p.src === plugin.src)) return;
+
+      const newPlugins = this.externalPlugins;
+      newPlugins.push(plugin);
+      localStorage.setItem('externalPlugins', JSON.stringify(newPlugins));
     }
 
     private addContent(plugin: AvailablePlugin): InstalledPlugin {
@@ -137,7 +179,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       )
         return;
 
-      this.addPlugin({
+      this.addExternalPlugin({
         src: pluginSrcInput.value,
         name: pluginNameInput.value,
         kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
@@ -152,7 +194,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     constructor(...args: any[]) {
       super(...args);
 
-      if (localStorage.getItem('plugins') === null)
+      if (localStorage.getItem('officialPlugins') === null)
         storeDefaultPlugins().then(() => this.requestUpdate());
     }
 
@@ -218,12 +260,38 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         >
           <mwc-list
             @selected=${(e: MultiSelectedEvent) =>
-              this.setPlugins(e.detail.index)}
-            id="pluginList"
+              this.setOfficialPlugins(e.detail.index)}
+            id="officialPluginList"
             activatable
             multi
           >
-            ${this.plugins.map(
+            ${this.officialPlugins.map(
+              plugin =>
+                html`<mwc-list-item
+                  value="${plugin.src}"
+                  hasMeta
+                  graphic="icon"
+                  ?activated=${plugin.installed}
+                  ?selected=${plugin.installed}
+                >
+                  <mwc-icon slot="graphic"
+                    >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
+                  >
+                  ${plugin.name}
+                  <mwc-icon slot="meta"
+                    >${pluginIcons[plugin.kind]}</mwc-icon
+                  ></mwc-list-item
+                >`
+            )}
+          </mwc-list>
+          <mwc-list
+            @selected=${(e: MultiSelectedEvent) =>
+              this.setExternalPlugins(e.detail.index)}
+            id="externalPluginList"
+            activatable
+            multi
+          >
+            ${this.externalPlugins.map(
               plugin =>
                 html`<mwc-list-item
                   value="${plugin.src}"

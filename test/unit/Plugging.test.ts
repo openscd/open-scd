@@ -29,21 +29,21 @@ describe('PluggingElement', () => {
     });
 
     it('disables deselected plugins', async () => {
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.officialPluginList.firstElementChild).click();
       await element.updateComplete;
       expect(element).property('editors').to.have.lengthOf(2);
     });
 
     it('enables selected plugins', async () => {
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.officialPluginList.firstElementChild).click();
       await element.updateComplete;
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.officialPluginList.firstElementChild).click();
       await element.updateComplete;
       expect(element).property('editors').to.have.lengthOf(3);
     });
 
     it('resets plugins to default on reset button click', async () => {
-      (<HTMLElement>element.pluginList.firstElementChild).click();
+      (<HTMLElement>element.officialPluginList.firstElementChild).click();
       await element.updateComplete;
       (<HTMLElement>(
         element.pluginUI.querySelector('mwc-button[slot="secondaryAction"]')
