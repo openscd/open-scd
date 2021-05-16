@@ -21,6 +21,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    "name": "Import IEDs",
+    "src": "/src/triggered/ImportIEDs.js",
+    "icon": "snippet_folder",
+    "default": true,
+    "kind": "triggered"
+  },
+  {
     name: 'Subscriber Update',
     src: '/src/triggered/SubscriberInfo.js',
     default: true,
@@ -30,7 +37,7 @@ export const officialPlugins = [
     name: 'Merge Project',
     src: '/src/triggered/Merge.js',
     icon: 'merge_type',
-    default: false,
+    default: true,
     kind: 'triggered',
   },
   {

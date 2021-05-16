@@ -152,6 +152,23 @@
       aria-disabled="true"
       disabled=""
       graphic="icon"
+      iconid="snippet_folder"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        snippet_folder
+      </mwc-icon>
+      <span>
+        Import IEDs
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
       iconid="play_circle"
       mwc-list-item=""
       tabindex="-1"
@@ -161,6 +178,23 @@
       </mwc-icon>
       <span>
         Subscriber Update
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="merge_type"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        merge_type
+      </mwc-icon>
+      <span>
+        Merge Project
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -496,6 +530,24 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/triggered/ImportIEDs.js"
+    >
+      <mwc-icon slot="graphic">
+        snippet_folder
+      </mwc-icon>
+      Import IEDs
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/triggered/SubscriberInfo.js"
     >
       <mwc-icon slot="graphic">
@@ -507,10 +559,12 @@
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
+      activated=""
       aria-disabled="false"
       graphic="icon"
       hasmeta=""
       mwc-list-item=""
+      selected=""
       tabindex="-1"
       value="/src/triggered/Merge.js"
     >

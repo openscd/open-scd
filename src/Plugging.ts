@@ -34,10 +34,6 @@ export const pluginIcons: Record<PluginKind, string> = {
   triggered: 'play_circle',
 };
 
-/* const officialPlugins: Promise<
-  (AvailablePlugin & { default?: boolean })[]
-> = fetch('/public/json/plugins.json').then(res => res.json());
- */
 async function storeDefaultPlugins(): Promise<void> {
   localStorage.setItem('externalPlugins', JSON.stringify([]));
   localStorage.setItem(
