@@ -2,6 +2,96 @@
 <SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
   <Header id="OpenSCD_DataTypeTemplates"/>
   <DataTypeTemplate>
+    <DAType id="Originator">
+      <BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
+      <BDA name="orIdent" bType="Octet64"/>
+    </DAType>
+    <DAType id="RangeConfig">
+      <BDA name="hhLim" bType="Struct" type="AnalogueValue_Float32"/>
+      <BDA name="hLim" bType="Struct" type="AnalogueValue_Float32"/>
+      <BDA name="lLim" bType="Struct" type="AnalogueValue_Float32"/>
+      <BDA name="llLim" bType="Struct" type="AnalogueValue_Float32"/>
+      <BDA name="min" bType="Struct" type="AnalogueValue_Float32"/>
+      <BDA name="max" bType="Struct" type="AnalogueValue_Float32"/>
+      <BDA name="limDb" bType="INT32"/>
+    </DAType>
+    <DAType id="ValWOTrans">
+      <BDA name="posVal" bType="INT8"/>
+    </DAType>
+    <DAType id="ValWithTrans">
+      <BDA name="posVal" bType="INT8"/>
+      <BDA name="transInd" bType="BOOLEAN"/>
+    </DAType>
+    <DAType id="Unit_WO_Multiplier">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
+    </DAType>
+    <DAType id="Unit_With_Multiplier">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
+      <BDA name="multiplier" bType="Enum" type="MultiplierKind"/>
+    </DAType>
+    <DAType id="PulseConfig">
+      <BDA name="cmdQual" bType="Enum" type="OutputSignalKind"/>
+      <BDA name="onDur" bType="INT32U"/>
+      <BDA name="offDur" bType="INT32U"/>
+      <BDA name="numPls" bType="INT32U"/>
+    </DAType>
+    <DAType id="VektorI_With_Angle">
+      <BDA name="mag" bType="Struct" type="AnalogueValue_Integer32"/>
+      <BDA name="ang" bType="Struct" type="AnalogueValue_Integer32"/>
+    </DAType>
+    <DAType id="VektorF_WO_Angle">
+      <BDA name="mag" bType="Struct" type="AnalogueValue_Float32"/>
+      <BDA name="ang" bType="Struct" type="AnalogueValue_Integer32"/>
+    </DAType>
+    <DAType id="VektorI_With_Angle">
+      <BDA name="mag" bType="Struct" type="AnalogueValue_Integer32"/>
+    </DAType>
+    <DAType id="VektorF_WO_Angle">
+      <BDA name="mag" bType="Struct" type="AnalogueValue_Float32"/>
+    </DAType>
+    <DAType id="Cell2D">
+      <BDA name="xStart" bType="FLOAT32"/>
+      <BDA name="xEnd" bType="FLOAT32"/>
+      <BDA name="yStart" bType="FLOAT32"/>
+      <BDA name="yEnd" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="Cell1D">
+      <BDA name="xStart" bType="FLOAT32"/>
+      <BDA name="xEnd" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="Point3D">
+      <BDA name="xVal" bType="FLOAT32"/>
+      <BDA name="yVal" bType="FLOAT32"/>
+      <BDA name="zVal" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="Point2D">
+      <BDA name="xVal" bType="FLOAT32"/>
+      <BDA name="yVal" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="CalendarTime">
+      <BDA name="occ" bType="INT16U"/>
+      <BDA name="occType" bType="Enum" type="OccurrenceKind"/>
+      <BDA name="occPer" bType="Enum" type="PeriodKind"/>
+      <BDA name="weekDay" bType="Enum" type="WeekdayKind"/>
+      <BDA name="month" bType="Enum" type="MonthKind"/>
+      <BDA name="day" bType="INT8U"/>
+      <BDA name="hr" bType="INT8U"/>
+      <BDA name="mn" bType="INT8U"/>
+    </DAType>
+    <DAType id="AnalogueValue_Integer32_and_Float32">
+      <BDA name="f" bType="FLOAT32"/>
+      <BDA name="i" bType="INT32"/>
+    </DAType>
+    <DAType id="AnalogueValue_Float32">
+      <BDA name="f" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="AnalogueValue_Integer32">
+      <BDA name="i" bType="INT32"/>
+    </DAType>
+    <DAType id="ScaledValueConfig">
+      <BDA name="scaleFactor" bType="FLOAT32"/>
+      <BDA name="offset" bType="FLOAT32"/>
+    </DAType>
     <EnumType id="BehaviourModeKind">
       <EnumVal ord="1">on</EnumVal>
       <EnumVal ord="2">blocked</EnumVal>
