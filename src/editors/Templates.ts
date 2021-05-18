@@ -1,11 +1,14 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 
 import {
   getReference,
   identity,
   newActionEvent,
   newWizardEvent,
+  restrictions,
+  selector,
+  Wizard,
 } from '../foundation.js';
 
 import '../filtered-list.js';
@@ -13,16 +16,89 @@ import '../filtered-list.js';
 import { styles } from './templates/foundation.js';
 import './templates/enum-type-editor.js';
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+function dATypeWizard(identity: string, doc: XMLDocument): Wizard {
+  const datype = doc.querySelector(selector('DAType', identity));
+  if (!datype) return [];
+
+  return [
+    {
+      title: get('datype.wizard.title'),
+      content: [
+        html`<mwc-button
+          icon="delete"
+          trailingIcon
+          label="${translate('delete')}"
+          @click=${(e: MouseEvent) => {
+            e.target!.dispatchEvent(newWizardEvent());
+            e.target!.dispatchEvent(
+              newActionEvent({
+                old: {
+                  parent: datype.parentElement!,
+                  element: datype,
+                  reference: datype.nextElementSibling,
+                },
+              })
+            );
+          }}
+          fullwidth
+        ></mwc-button> `,
+        html`<wizard-textfield
+          label="id"
+          helper="${translate('scl.id')}"
+          .maybeValue=${datype.getAttribute('id')}
+          required
+          maxlength="127"
+          minlength="1"
+          pattern="${restrictions.nmToken}"
+          dialogInitialFocus
+        ></wizard-textfield>`,
+        html`<wizard-textfield
+          label="desc"
+          helper="${translate('scl.desc')}"
+          .maybeValue=${datype.getAttribute('desc')}
+          nullable
+          pattern="${restrictions.normalizedString}"
+        ></wizard-textfield>`,
+        html`<mwc-button
+            slot="graphic"
+            icon="playlist_add"
+            trailingIcon
+            label="${translate('scl.BDA')}"
+          ></mwc-button>
+          <mwc-list style="margin-top: 0px;">
+            ${Array.from(datype.querySelectorAll('BDA')).map(
+              bda =>
+                html`<mwc-list-item twoline tabindex="0"
+                  ><span>${bda.getAttribute('name')}</span
+                  ><span slot="secondary"
+                    >${bda.getAttribute('bType') === 'Enum' ||
+                    bda.getAttribute('bType') === 'Struct'
+                      ? '#' + bda.getAttribute('type')
+                      : bda.getAttribute('bType')}</span
+                  ></mwc-list-item
+                >`
+            )}
+          </mwc-list> `,
+      ],
+    },
+  ];
+}
 
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
 export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  openDATypeWizard(identity: string): void {
+    this.dispatchEvent(newWizardEvent(dATypeWizard(identity, this.doc)));
+  }
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   async openCreateEnumWizard(): Promise<void> {
@@ -100,6 +176,9 @@ export default class TemplatesPlugin extends LitElement {
                   value="${identity(datype)}"
                   tabindex="0"
                   hasMeta
+                  @click=${(e: Event) => {
+                    this.openDATypeWizard((<ListItemBase>e.target).value);
+                  }}
                   ><span>${datype.getAttribute('id')}</span
                   ><span slot="meta"
                     >${datype.querySelectorAll('BDA').length}</span
