@@ -1,7 +1,7 @@
 /* eslint-disable no-control-regex */
 
 import fc, { Arbitrary, array, hexaString, integer, tuple } from 'fast-check';
-import { restrictions } from '../src/foundation.js';
+import { patterns } from '../src/foundation.js';
 
 export function regexString(
   re: RegExp,
@@ -31,15 +31,15 @@ export const regExp = {
   tPrefix: /^[A-Za-z][0-9A-Za-z_]*$/,
   tLNClass: /^[A-Z]{1,4}$/,
   tLNInst: /^[0-9]{0,12}$/,
-  decimal: new RegExp(`^${restrictions.decimal}$`),
-  unsigned: new RegExp(`^${restrictions.unsigned}$`),
-  tName: new RegExp(`^${restrictions.normalizedString}$`),
-  desc: new RegExp(`^${restrictions.normalizedString}$`),
+  decimal: new RegExp(`^${patterns.decimal}$`),
+  unsigned: new RegExp(`^${patterns.unsigned}$`),
+  tName: new RegExp(`^${patterns.normalizedString}$`),
+  desc: new RegExp(`^${patterns.normalizedString}$`),
   IPv4: /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/,
   OSI: /^[0-9A-F]+$/,
   OSIAPi: /^[0-9\u002C]+$/,
   OSIid: /^[0-9]+$/,
-  token: new RegExp('^' + restrictions.nmToken + '$'),
+  token: new RegExp('^' + patterns.nmToken + '$'),
 };
 
 export const inverseRegExp = {

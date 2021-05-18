@@ -6,14 +6,19 @@ import {
   identity,
   newActionEvent,
   newWizardEvent,
-  restrictions,
+  patterns,
   selector,
   Wizard,
 } from '../foundation.js';
 
 import '../filtered-list.js';
 
-import { styles } from './templates/foundation.js';
+import {
+  getListItemList,
+  predefinedBasicTypeEnum,
+  styles,
+  valKindEnum,
+} from './templates/foundation.js';
 import './templates/enum-type-editor.js';
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -22,8 +27,89 @@ const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-function dATypeWizard(identity: string, doc: XMLDocument): Wizard {
-  const datype = doc.querySelector(selector('DAType', identity));
+function bDAWizard(identity: string, doc: XMLDocument): Wizard {
+  const bda = doc.querySelector(selector('BDA', identity));
+  if (!bda) return [];
+
+  const isEnum = bda.getAttribute('bType') === 'Enum';
+  const isStruct = bda.getAttribute('bType') === 'Struct';
+  const type = bda.getAttribute('type');
+  const referenceList =
+    isEnum || isStruct
+      ? Array.from(
+          doc.querySelectorAll(
+            `:root > DataTypeTemplates > ${isEnum ? 'EnumType' : 'DAType'}`
+          )
+        ).map(type => type.getAttribute('id'))
+      : [];
+
+  const typeTemplate =
+    isEnum || isStruct ? getListItemList(referenceList, type) : html``;
+
+  return [
+    {
+      title: get('bda.wizard.title'),
+      content: [
+        html`<wizard-textfield
+          label="name"
+          .maybeValue=${bda.getAttribute('name')}
+          helper="${translate('scl.name')}"
+          required
+          pattern="${patterns.alphanumeric}"
+          dialogInitialFocus
+        >
+          ></wizard-textfield
+        >`,
+        html`<wizard-textfield
+          label="desc"
+          helper="${translate('scl.desc')}"
+          .maybeValue=${bda.getAttribute('desc')}
+          nullable
+          pattern="${patterns.normalizedString}"
+        ></wizard-textfield>`,
+        html`<mwc-select
+          label="bType"
+          helper="${translate('bda.bType')}"
+          required
+          >${getListItemList(
+            predefinedBasicTypeEnum,
+            bda.getAttribute('bType')
+          )}</mwc-select
+        >`,
+        html`<wizard-textfield
+          label="sAddr"
+          helper="${translate('bda.sAddr')}"
+          .maybeValue=${bda.getAttribute('sAddr')}
+          nullable
+          pattern="${patterns.normalizedString}"
+        ></wizard-textfield>`,
+        html`<mwc-select label="valKind" helper="${translate('bda.valKind')}"
+          >${getListItemList(
+            valKindEnum,
+            bda.getAttribute('valKind')
+          )}</mwc-select
+        >`,
+        html`<mwc-select
+          label="valImport"
+          helper="${translate('bda.valImport')}"
+          >${getListItemList(
+            [null, 'true', 'false'],
+            bda.getAttribute('valImport')
+          )}</mwc-select
+        >`,
+        html`<mwc-select
+          label="type"
+          helper="${translate('bda.type')}"
+          ?disabled=${!(isEnum || isStruct)}
+          >${typeTemplate}</mwc-select
+        >`,
+      ],
+    },
+  ];
+}
+
+function dATypeWizard(dATypeIdentity: string, doc: XMLDocument): Wizard {
+  const datype = doc.querySelector(selector('DAType', dATypeIdentity));
   if (!datype) return [];
 
   return [
@@ -55,7 +141,7 @@ function dATypeWizard(identity: string, doc: XMLDocument): Wizard {
           required
           maxlength="127"
           minlength="1"
-          pattern="${restrictions.nmToken}"
+          pattern="${patterns.nmToken}"
           dialogInitialFocus
         ></wizard-textfield>`,
         html`<wizard-textfield
@@ -63,7 +149,7 @@ function dATypeWizard(identity: string, doc: XMLDocument): Wizard {
           helper="${translate('scl.desc')}"
           .maybeValue=${datype.getAttribute('desc')}
           nullable
-          pattern="${restrictions.normalizedString}"
+          pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<mwc-button
             slot="graphic"
@@ -74,7 +160,18 @@ function dATypeWizard(identity: string, doc: XMLDocument): Wizard {
           <mwc-list style="margin-top: 0px;">
             ${Array.from(datype.querySelectorAll('BDA')).map(
               bda =>
-                html`<mwc-list-item twoline tabindex="0"
+                html`<mwc-list-item
+                  twoline
+                  tabindex="0"
+                  value="${identity(bda)}"
+                  @click="${(evt: Event) => {
+                    evt.target!.dispatchEvent(
+                      newWizardEvent(
+                        bDAWizard((<ListItemBase>evt.target).value, doc)
+                      )
+                    );
+                    evt.target!.dispatchEvent(newWizardEvent());
+                  }}"
                   ><span>${bda.getAttribute('name')}</span
                   ><span slot="secondary"
                     >${bda.getAttribute('bType') === 'Enum' ||
