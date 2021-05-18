@@ -9,6 +9,7 @@ export const de: Translations = {
     value: 'Wert',
     EnumVal: 'Enum Wert',
     EnumType: 'Enum Typ',
+    DAType: 'Datenattribut Typ',
     Report: 'Report',
     LN: 'Logischer Knoten',
   },

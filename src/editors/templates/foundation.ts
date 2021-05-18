@@ -54,7 +54,6 @@ export const styles = css`
     outline-color: var(--mdc-theme-primary);
     outline-style: solid;
     outline-width: 0px;
-    margin: 8px 12px 16px;
     opacity: 1;
   }
 

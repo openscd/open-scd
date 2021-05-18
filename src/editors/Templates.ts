@@ -1,7 +1,14 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { getReference, newActionEvent, newWizardEvent } from '../foundation.js';
+import {
+  getReference,
+  identity,
+  newActionEvent,
+  newWizardEvent,
+} from '../foundation.js';
+
+import '../filtered-list.js';
 
 import { styles } from './templates/foundation.js';
 import './templates/enum-type-editor.js';
@@ -73,28 +80,58 @@ export default class TemplatesPlugin extends LitElement {
         ></mwc-fab>
       </h1>`;
     return html`
-      <section tabindex="0">
-        <h1>
-          ${translate('scl.EnumType')}
-          <nav>
-            <abbr title="${translate('add')}">
-              <mwc-icon-button
-                icon="playlist_add"
-                @click=${() => this.openCreateEnumWizard()}
-              ></mwc-icon-button>
-            </abbr>
-          </nav>
-        </h1>
-        <mwc-list>
-          ${Array.from(
-            this.doc.querySelectorAll(':root > DataTypeTemplates > EnumType') ??
-              []
-          ).map(
-            enumType =>
-              html`<enum-type-editor .element=${enumType}></enum-type-editor>`
-          )}
-        </mwc-list>
-      </section>
+      <div id="containerTemplates">
+        <section tabindex="0">
+          <h1>
+            ${translate('scl.DAType')}
+            <nav>
+              <abbr title="${translate('add')}">
+                <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+              </abbr>
+            </nav>
+          </h1>
+          <filtered-list>
+            ${Array.from(
+              this.doc.querySelectorAll(':root > DataTypeTemplates > DAType') ??
+                []
+            ).map(
+              datype =>
+                html`<mwc-list-item
+                  value="${identity(datype)}"
+                  tabindex="0"
+                  hasMeta
+                  ><span>${datype.getAttribute('id')}</span
+                  ><span slot="meta"
+                    >${datype.querySelectorAll('BDA').length}</span
+                  ></mwc-list-item
+                >`
+            )}
+          </filtered-list>
+        </section>
+        <section tabindex="0">
+          <h1>
+            ${translate('scl.EnumType')}
+            <nav>
+              <abbr title="${translate('add')}">
+                <mwc-icon-button
+                  icon="playlist_add"
+                  @click=${() => this.openCreateEnumWizard()}
+                ></mwc-icon-button>
+              </abbr>
+            </nav>
+          </h1>
+          <mwc-list>
+            ${Array.from(
+              this.doc.querySelectorAll(
+                ':root > DataTypeTemplates > EnumType'
+              ) ?? []
+            ).map(
+              enumType =>
+                html`<enum-type-editor .element=${enumType}></enum-type-editor>`
+            )}
+          </mwc-list>
+        </section>
+      </div>
     `;
   }
 
@@ -109,6 +146,20 @@ export default class TemplatesPlugin extends LitElement {
 
     :host {
       width: 100vw;
+    }
+
+    #containerTemplates {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+    }
+
+    @media (max-width: 387px) {
+      #containerTemplates {
+        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
+      }
     }
   `;
 }
