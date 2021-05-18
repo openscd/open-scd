@@ -3,12 +3,16 @@ import { get, translate } from 'lit-translate';
 
 import {
   getReference,
+  getValue,
   identity,
   newActionEvent,
   newWizardEvent,
   patterns,
   selector,
   Wizard,
+  WizardAction,
+  WizardActor,
+  WizardInput,
 } from '../foundation.js';
 
 import '../filtered-list.js';
@@ -17,6 +21,7 @@ import {
   getListItemList,
   predefinedBasicTypeEnum,
   styles,
+  updateIDNamingAction,
   valKindEnum,
 } from './templates/foundation.js';
 import './templates/enum-type-editor.js';
@@ -76,6 +81,12 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard {
             bda.getAttribute('bType')
           )}</mwc-select
         >`,
+        html`<mwc-select
+          label="type"
+          helper="${translate('bda.type')}"
+          ?disabled=${!(isEnum || isStruct)}
+          >${typeTemplate}</mwc-select
+        >`,
         html`<wizard-textfield
           label="sAddr"
           helper="${translate('bda.sAddr')}"
@@ -97,12 +108,6 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard {
             bda.getAttribute('valImport')
           )}</mwc-select
         >`,
-        html`<mwc-select
-          label="type"
-          helper="${translate('bda.type')}"
-          ?disabled=${!(isEnum || isStruct)}
-          >${typeTemplate}</mwc-select
-        >`,
       ],
     },
   ];
@@ -115,6 +120,11 @@ function dATypeWizard(dATypeIdentity: string, doc: XMLDocument): Wizard {
   return [
     {
       title: get('datype.wizard.title'),
+      primary: {
+        icon: '',
+        label: get('save'),
+        action: updateIDNamingAction(datype),
+      },
       content: [
         html`<mwc-button
           icon="delete"
