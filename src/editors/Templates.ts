@@ -33,9 +33,9 @@ const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-function bDAWizard(identity: string, doc: XMLDocument): Wizard {
+function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
   const bda = doc.querySelector(selector('BDA', identity));
-  if (!bda) return [];
+  if (!bda) return undefined;
 
   const isEnum = bda.getAttribute('bType') === 'Enum';
   const isStruct = bda.getAttribute('bType') === 'Struct';
@@ -114,9 +114,12 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard {
   ];
 }
 
-function dATypeWizard(dATypeIdentity: string, doc: XMLDocument): Wizard {
+function dATypeWizard(
+  dATypeIdentity: string,
+  doc: XMLDocument
+): Wizard | undefined {
   const datype = doc.querySelector(selector('DAType', dATypeIdentity));
-  if (!datype) return [];
+  if (!datype) return undefined;
 
   return [
     {
@@ -310,7 +313,8 @@ export default class TemplatesPlugin extends LitElement {
   doc!: XMLDocument;
 
   openDATypeWizard(identity: string): void {
-    this.dispatchEvent(newWizardEvent(dATypeWizard(identity, this.doc)));
+    const wizard = dATypeWizard(identity, this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
