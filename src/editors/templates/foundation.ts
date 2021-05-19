@@ -3,7 +3,9 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 
 import {
   EditorAction,
+  getReference,
   getValue,
+  SCLTag,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
@@ -43,11 +45,42 @@ export function updateIDNamingAction(element: Element): WizardActor {
   };
 }
 
+export function addReferencesDataTypes(
   element: Element,
   parent: Element
+): EditorAction[] {
+  const templates = element.closest('DataTypeTemplates')!;
+  const ids = Array.from(
+    parent.querySelectorAll('LNodeType,DOType,DAType,EnumType')
+  ).map(type => type.getAttribute('id'));
+
+  const types = Array.from(element.children)
+    .map(child => child.getAttribute('type'))
+    .filter(type => type)
+    .filter(type => !ids.includes(type));
+
+  const adjacents = types.map(
+    type =>
+      templates.querySelector(
+        `LNodeType[id="${type}"],DOType[id="${type}"],DAType[id="${type}"],EnumType[id="${type}"]`
+      )!
   );
 
+  const actions: EditorAction[] = [];
+  adjacents
+    .flatMap(adjacent => addReferencesDataTypes(adjacent, parent))
+    .forEach(action => actions.push(action));
+
+  adjacents.forEach(adjacent =>
+    actions.push({
+      new: {
+        parent,
+        element: adjacent,
+        reference: getReference(parent, <SCLTag>adjacent.tagName),
+      },
+    })
   );
+  return actions;
 }
 
 export function buildListFromStringArray(
