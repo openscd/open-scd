@@ -176,11 +176,12 @@ function dATypeWizard(dATypeIdentity: string, doc: XMLDocument): Wizard {
                   tabindex="0"
                   value="${identity(bda)}"
                   @click="${(evt: Event) => {
-                    evt.target!.dispatchEvent(
-                      newWizardEvent(
-                        bDAWizard((<ListItemBase>evt.target).value, doc)
-                      )
+                    const wizard = bDAWizard(
+                      (<ListItemBase>evt.target).value,
+                      doc
                     );
+                    if (wizard)
+                      evt.target!.dispatchEvent(newWizardEvent(wizard));
                     evt.target!.dispatchEvent(newWizardEvent());
                   }}"
                   ><span>${bda.getAttribute('name')}</span
@@ -394,7 +395,9 @@ export default class TemplatesPlugin extends LitElement {
                   tabindex="0"
                   hasMeta
                   @click=${(e: Event) => {
-                    this.openDATypeWizard((<ListItemBase>e.target).value);
+                    this.openDATypeWizard(
+                      (<Element>e.target).closest('mwc-list-item')!.value
+                    );
                   }}
                   ><span>${datype.getAttribute('id')}</span
                   ><span slot="meta"
