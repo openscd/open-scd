@@ -74,6 +74,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<mwc-select
+          fixedMenuPosition
           label="bType"
           helper="${translate('bda.bType')}"
           required
@@ -83,6 +84,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           )}</mwc-select
         >`,
         html`<mwc-select
+          fixedMenuPosition
           label="type"
           helper="${translate('bda.type')}"
           ?disabled=${!(isEnum || isStruct)}
@@ -95,13 +97,17 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
-        html`<mwc-select label="valKind" helper="${translate('bda.valKind')}"
+        html`<mwc-select
+          label="valKind"
+          helper="${translate('bda.valKind')}"
+          fixedMenuPosition
           >${getListItemList(
             valKindEnum,
             bda.getAttribute('valKind')
           )}</mwc-select
         >`,
         html`<mwc-select
+          fixedMenuPosition
           label="valImport"
           helper="${translate('bda.valImport')}"
           >${getListItemList(
@@ -265,7 +271,7 @@ function createDATypeWizard(parent: Element, templates: Document): Wizard {
       }, */
       content: [
         html`<mwc-select
-          style="--mdc-menu-max-height: 196px;"
+          fixedMenuPosition
           outlined
           icon="playlist_add_check"
           label="values"
