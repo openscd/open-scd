@@ -2,6 +2,7 @@ import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  EditorAction,
   getReference,
   getValue,
   identity,
@@ -10,7 +11,6 @@ import {
   patterns,
   selector,
   Wizard,
-  WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
@@ -27,6 +27,7 @@ import {
 import './templates/enum-type-editor.js';
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { Select } from '@material/mwc-select';
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
@@ -197,6 +198,110 @@ function dATypeWizard(dATypeIdentity: string, doc: XMLDocument): Wizard {
   ];
 }
 
+function addPredefinedDAType(
+  parent: Element,
+  templates: XMLDocument
+): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!);
+
+    if (!id) return [];
+
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const values = <Select>inputs.find(i => i.label === 'values');
+    const element = values.selected
+      ? <Element>(
+          templates
+            .querySelector(`DAType[id="${values.selected.value}"]`)!
+            .cloneNode(true)
+        )
+      : parent.ownerDocument.createElement('DAType');
+
+    element.setAttribute('id', id);
+    if (desc) element.setAttribute('desc', desc);
+
+    const actions = [];
+    actions.push({
+      new: {
+        parent,
+        element,
+        reference: parent.firstElementChild,
+      },
+    });
+
+    //check for alle child elements
+    /* const referencedEnums = Array.from(element.querySelectorAll('BDA'))
+      .filter(
+        bda =>
+          bda.getAttribute('bType') === 'Enum' &&
+          bda.getAttribute('type') !== null
+      )
+      .map(bda => bda.getAttribute('type')!)
+      .map(id => templates.querySelector(`EnumTpye[id="${id}"]`))
+      .filter(type => type)
+      .forEach(type => {
+        const identicalType = findIdenticalType('EnumType', type!, parent);
+        const equalIdType = findEqualIdElement('EnumType',type!,parent);
+
+        if (identicalType?.isSameNode(equalIdType))
+
+      }); */
+
+    return actions;
+  };
+}
+
+function createDATypeWizard(parent: Element, templates: Document): Wizard {
+  return [
+    {
+      title: get('datype.wizard.title.add'),
+      /*  primary: {
+        icon: 'add',
+        label: get('add'),
+      }, */
+      content: [
+        html`<mwc-select
+          style="--mdc-menu-max-height: 196px;"
+          outlined
+          icon="playlist_add_check"
+          label="values"
+          helper="Default enumerations"
+        >
+          ${Array.from(templates.querySelectorAll('DAType')).map(
+            datype =>
+              html`<mwc-list-item
+                graphic="icon"
+                hasMeta
+                value="${datype.getAttribute('id') ?? ''}"
+                ><span>${datype.getAttribute('id')}</span>
+                <span slot="meta"
+                  >${datype.querySelectorAll('BDA').length}</span
+                >
+              </mwc-list-item>`
+          )}
+        </mwc-select>`,
+        html`<wizard-textfield
+          label="id"
+          helper="${translate('scl.id')}"
+          .maybeValue=${''}
+          required
+          maxlength="255"
+          minlength="1"
+          pattern="${patterns.nmToken}"
+          dialogInitialFocus
+        ></wizard-textfield>`,
+        html`<wizard-textfield
+          label="desc"
+          helper="${translate('scl.desc')}"
+          .maybeValue=${null}
+          nullable
+          pattern="${patterns.normalizedString}"
+        ></wizard-textfield>`,
+      ],
+    },
+  ];
+}
+
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
 export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
@@ -208,20 +313,22 @@ export default class TemplatesPlugin extends LitElement {
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
+  async openCreateDATypeWizard(): Promise<void> {
+    this.createDataTypeTemplates();
+
+    this.dispatchEvent(
+      newWizardEvent(
+        createDATypeWizard(
+          this.doc.querySelector(':root > DataTypeTemplates')!,
+          await templates
+        )
+      )
+    );
+  }
+
+  /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   async openCreateEnumWizard(): Promise<void> {
-    if (!this.doc.querySelector(':root > DataTypeTemplates'))
-      this.dispatchEvent(
-        newActionEvent({
-          new: {
-            parent: this.doc.documentElement,
-            element: this.doc.createElement('DataTypeTemplates'),
-            reference: getReference(
-              this.doc.documentElement,
-              'DataTypeTemplates'
-            ),
-          },
-        })
-      );
+    this.createDataTypeTemplates();
 
     this.dispatchEvent(
       newWizardEvent(
@@ -269,7 +376,10 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.DAType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+                <mwc-icon-button
+                  icon="playlist_add"
+                  @click=${() => this.openCreateDATypeWizard()}
+                ></mwc-icon-button>
               </abbr>
             </nav>
           </h1>
