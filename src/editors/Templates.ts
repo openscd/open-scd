@@ -18,7 +18,7 @@ import {
 import '../filtered-list.js';
 
 import {
-  getListItemList,
+  buildListFromStringArray,
   predefinedBasicTypeEnum,
   styles,
   updateIDNamingAction,
@@ -53,7 +53,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
       : [];
 
   const typeTemplate =
-    isEnum || isStruct ? getListItemList(referenceList, type) : html``;
+    isEnum || isStruct ? buildListFromStringArray(referenceList, type) : html``;
 
   return [
     {
@@ -81,7 +81,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           label="bType"
           helper="${translate('bda.bType')}"
           required
-          >${getListItemList(
+          >${buildListFromStringArray(
             predefinedBasicTypeEnum,
             bda.getAttribute('bType')
           )}</mwc-select
@@ -104,7 +104,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           label="valKind"
           helper="${translate('bda.valKind')}"
           fixedMenuPosition
-          >${getListItemList(
+          >${buildListFromStringArray(
             valKindEnum,
             bda.getAttribute('valKind')
           )}</mwc-select
@@ -113,7 +113,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           fixedMenuPosition
           label="valImport"
           helper="${translate('bda.valImport')}"
-          >${getListItemList(
+          >${buildListFromStringArray(
             [null, 'true', 'false'],
             bda.getAttribute('valImport')
           )}</mwc-select

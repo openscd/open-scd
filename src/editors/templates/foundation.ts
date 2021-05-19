@@ -76,7 +76,7 @@ export function findIdenticalType(
   );
 }
 
-export function getListItemList(
+export function buildListFromStringArray(
   list: (string | null)[],
   selected: string | null
 ): TemplateResult[] {
