@@ -18,6 +18,7 @@ import {
 import '../filtered-list.js';
 
 import {
+  addReferencesDataTypes,
   buildListFromStringArray,
   predefinedBasicTypeEnum,
   styles,
@@ -26,7 +27,6 @@ import {
 } from './templates/foundation.js';
 import './templates/enum-type-editor.js';
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { Select } from '@material/mwc-select';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -221,20 +221,31 @@ function addPredefinedDAType(
 
     if (!id) return [];
 
+    const existId = Array.from(
+      templates.querySelectorAll('DAType, EnumType')
+    ).some(type => type.getAttribute('id') === id);
+
+    if (existId) return [];
+
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const values = <Select>inputs.find(i => i.label === 'values');
+    const selectedElement = values.selected
+      ? templates.querySelector(`DAType[id="${values.selected.value}"]`)
+      : null;
     const element = values.selected
-      ? <Element>(
-          templates
-            .querySelector(`DAType[id="${values.selected.value}"]`)!
-            .cloneNode(true)
-        )
+      ? <Element>selectedElement!.cloneNode(true)
       : parent.ownerDocument.createElement('DAType');
 
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
 
     const actions = [];
+
+    if (selectedElement)
+      addReferencesDataTypes(selectedElement, parent).forEach(action =>
+        actions.push(action)
+      );
+
     actions.push({
       new: {
         parent,
@@ -242,24 +253,6 @@ function addPredefinedDAType(
         reference: parent.firstElementChild,
       },
     });
-
-    //check for alle child elements
-    /* const referencedEnums = Array.from(element.querySelectorAll('BDA'))
-      .filter(
-        bda =>
-          bda.getAttribute('bType') === 'Enum' &&
-          bda.getAttribute('type') !== null
-      )
-      .map(bda => bda.getAttribute('type')!)
-      .map(id => templates.querySelector(`EnumTpye[id="${id}"]`))
-      .filter(type => type)
-      .forEach(type => {
-        const identicalType = findIdenticalType('EnumType', type!, parent);
-        const equalIdType = findEqualIdElement('EnumType',type!,parent);
-
-        if (identicalType?.isSameNode(equalIdType))
-
-      }); */
 
     return actions;
   };
@@ -272,11 +265,7 @@ function createDATypeWizard(parent: Element, templates: Document): Wizard {
       primary: {
         icon: 'add',
         label: get('add'),
-        action: (
-          inputs: WizardInput[],
-          wizard: Element,
-          list?: List | null
-        ) => [() => []],
+        action: addPredefinedDAType(parent, templates),
       },
       content: [
         html`<mwc-select
@@ -292,7 +281,9 @@ function createDATypeWizard(parent: Element, templates: Document): Wizard {
                 graphic="icon"
                 hasMeta
                 value="${datype.getAttribute('id') ?? ''}"
-                ><span>${datype.getAttribute('id')}</span>
+                ><span
+                  >${datype.getAttribute('id')?.replace('OpenSCD_', '')}</span
+                >
                 <span slot="meta"
                   >${datype.querySelectorAll('BDA').length}</span
                 >
