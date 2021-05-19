@@ -87,7 +87,9 @@ describe('Templates Plugin', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('templates-plugin')
-          ?.shadowRoot?.querySelector('mwc-icon-button[icon="playlist_add"]')
+          ?.shadowRoot?.querySelector(
+            'section:last-child mwc-icon-button[icon="playlist_add"]'
+          )
       )).click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
