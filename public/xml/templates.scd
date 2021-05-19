@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
   <Header id="OpenSCD_DataTypeTemplates"/>
-  <DataTypeTemplate>
-    <DAType id="Originator">
+  <DataTypeTemplates>
+    <DAType id="OpenSCD_Originator">
       <BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
       <BDA name="orIdent" bType="Octet64"/>
     </DAType>
-    <DAType id="RangeConfig">
-      <BDA name="hhLim" bType="Struct" type="AnalogueValue_Float32"/>
-      <BDA name="hLim" bType="Struct" type="AnalogueValue_Float32"/>
-      <BDA name="lLim" bType="Struct" type="AnalogueValue_Float32"/>
-      <BDA name="llLim" bType="Struct" type="AnalogueValue_Float32"/>
-      <BDA name="min" bType="Struct" type="AnalogueValue_Float32"/>
-      <BDA name="max" bType="Struct" type="AnalogueValue_Float32"/>
+    <DAType id="OpenSCD_RangeConfig">
+      <BDA name="hhLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="hLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="lLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="llLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="min" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="max" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
       <BDA name="limDb" bType="INT32"/>
     </DAType>
-    <DAType id="ValWOTrans">
+    <DAType id="OpenSCD_ValWOTrans">
       <BDA name="posVal" bType="INT8"/>
     </DAType>
-    <DAType id="ValWithTrans">
+    <DAType id="OpenSCD_ValWithTrans">
       <BDA name="posVal" bType="INT8"/>
       <BDA name="transInd" bType="BOOLEAN"/>
     </DAType>
-    <DAType id="Unit_WO_Multiplier">
+    <DAType id="OpenSCD_UnitwoMultiplier">
       <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
     </DAType>
-    <DAType id="Unit_With_Multiplier">
+    <DAType id="OpenSCD_UnitwithMultiplier">
       <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
       <BDA name="multiplier" bType="Enum" type="MultiplierKind"/>
     </DAType>
-    <DAType id="PulseConfig">
+    <DAType id="OpenSCD_PulseConfig">
       <BDA name="cmdQual" bType="Enum" type="OutputSignalKind"/>
       <BDA name="onDur" bType="INT32U"/>
       <BDA name="offDur" bType="INT32U"/>
       <BDA name="numPls" bType="INT32U"/>
     </DAType>
-    <DAType id="VektorI_With_Angle">
-      <BDA name="mag" bType="Struct" type="AnalogueValue_Integer32"/>
-      <BDA name="ang" bType="Struct" type="AnalogueValue_Integer32"/>
+    <DAType id="OpenSCD_VectorIwithAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
+      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
     </DAType>
-    <DAType id="VektorF_WO_Angle">
-      <BDA name="mag" bType="Struct" type="AnalogueValue_Float32"/>
-      <BDA name="ang" bType="Struct" type="AnalogueValue_Integer32"/>
+    <DAType id="OpenSCD_VectorFwoAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
     </DAType>
-    <DAType id="VektorI_With_Angle">
-      <BDA name="mag" bType="Struct" type="AnalogueValue_Integer32"/>
+    <DAType id="OpenSCD_VectorIwithAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
     </DAType>
-    <DAType id="VektorF_WO_Angle">
-      <BDA name="mag" bType="Struct" type="AnalogueValue_Float32"/>
+    <DAType id="OpenSCD_VectorFwoAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
     </DAType>
-    <DAType id="Cell2D">
+    <DAType id="OpenSCD_Cell2D">
       <BDA name="xStart" bType="FLOAT32"/>
       <BDA name="xEnd" bType="FLOAT32"/>
       <BDA name="yStart" bType="FLOAT32"/>
       <BDA name="yEnd" bType="FLOAT32"/>
     </DAType>
-    <DAType id="Cell1D">
+    <DAType id="OpenSCD_Cell1D">
       <BDA name="xStart" bType="FLOAT32"/>
       <BDA name="xEnd" bType="FLOAT32"/>
     </DAType>
-    <DAType id="Point3D">
+    <DAType id="OpenSCD_Point3D">
       <BDA name="xVal" bType="FLOAT32"/>
       <BDA name="yVal" bType="FLOAT32"/>
       <BDA name="zVal" bType="FLOAT32"/>
     </DAType>
-    <DAType id="Point2D">
+    <DAType id="OpenSCD_Point2D">
       <BDA name="xVal" bType="FLOAT32"/>
       <BDA name="yVal" bType="FLOAT32"/>
     </DAType>
-    <DAType id="CalendarTime">
+    <DAType id="OpenSCD_CalendarTime">
       <BDA name="occ" bType="INT16U"/>
       <BDA name="occType" bType="Enum" type="OccurrenceKind"/>
       <BDA name="occPer" bType="Enum" type="PeriodKind"/>
@@ -78,17 +78,17 @@
       <BDA name="hr" bType="INT8U"/>
       <BDA name="mn" bType="INT8U"/>
     </DAType>
-    <DAType id="AnalogueValue_Integer32_and_Float32">
+    <DAType id="OpenSCD_AnalogueValueInteger32andFloat32">
       <BDA name="f" bType="FLOAT32"/>
       <BDA name="i" bType="INT32"/>
     </DAType>
-    <DAType id="AnalogueValue_Float32">
+    <DAType id="OpenSCD_AnalogueValueFloat32">
       <BDA name="f" bType="FLOAT32"/>
     </DAType>
-    <DAType id="AnalogueValue_Integer32">
+    <DAType id="OpenSCD_AnalogueValueInteger32">
       <BDA name="i" bType="INT32"/>
     </DAType>
-    <DAType id="ScaledValueConfig">
+    <DAType id="OpenSCD_ScaledValueConfig">
       <BDA name="scaleFactor" bType="FLOAT32"/>
       <BDA name="offset" bType="FLOAT32"/>
     </DAType>
@@ -787,5 +787,6 @@
       <EnumVal ord="3">Echo</EnumVal>
       <EnumVal ord="4">Echo and Operate</EnumVal>
     </EnumType>
-  </DataTypeTemplate>
+
+  </DataTypeTemplates>
 </SCL>
