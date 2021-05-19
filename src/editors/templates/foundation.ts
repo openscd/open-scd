@@ -43,36 +43,10 @@ export function updateIDNamingAction(element: Element): WizardActor {
   };
 }
 
-export function findEqualIdElement(
-  type: 'LNodeType' | 'DOType' | 'DAType' | 'EnumType',
   element: Element,
   parent: Element
-): Element | undefined {
-  return Array.from(parent.querySelectorAll(type)).find(
-    existingElement =>
-      existingElement.getAttribute('id') === element.getAttribute('name')
   );
-}
 
-function isIdentical(a: Element, b: Element): boolean {
-  if (a.childNodes.length !== b.childNodes.length) return false;
-
-  for (let i = 0; i < a.childNodes.length; i++) {
-    if (!a.childNodes.item(i).isEqualNode(b.childNodes.item(i))) return false;
-  }
-
-  return true;
-}
-
-export function findIdenticalType(
-  type: 'LNodeType' | 'DOType' | 'DAType' | 'EnumType',
-  element: Element,
-  parent: Element
-): Element | undefined {
-  const existingElements = Array.from(parent.querySelectorAll(type));
-
-  return existingElements.find(existingElement =>
-    isIdentical(element, existingElement)
   );
 }
 
