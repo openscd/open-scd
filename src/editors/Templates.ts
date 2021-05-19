@@ -28,6 +28,9 @@ import './templates/enum-type-editor.js';
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { Select } from '@material/mwc-select';
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
@@ -177,22 +180,23 @@ function dATypeWizard(
             trailingIcon
             label="${translate('scl.BDA')}"
           ></mwc-button>
-          <mwc-list style="margin-top: 0px;">
+          <mwc-list
+            style="margin-top: 0px;"
+            @selected=${(e: SingleSelectedEvent) => {
+              const wizard = bDAWizard(
+                (<ListItem>(<List>e.target).selected).value,
+                doc
+              );
+              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
+              e.target!.dispatchEvent(newWizardEvent());
+            }}
+          >
             ${Array.from(datype.querySelectorAll('BDA')).map(
               bda =>
                 html`<mwc-list-item
                   twoline
                   tabindex="0"
                   value="${identity(bda)}"
-                  @click="${(evt: Event) => {
-                    const wizard = bDAWizard(
-                      (<ListItemBase>evt.target).value,
-                      doc
-                    );
-                    if (wizard)
-                      evt.target!.dispatchEvent(newWizardEvent(wizard));
-                    evt.target!.dispatchEvent(newWizardEvent());
-                  }}"
                   ><span>${bda.getAttribute('name')}</span
                   ><span slot="secondary"
                     >${bda.getAttribute('bType') === 'Enum' ||
@@ -265,10 +269,15 @@ function createDATypeWizard(parent: Element, templates: Document): Wizard {
   return [
     {
       title: get('datype.wizard.title.add'),
-      /*  primary: {
+      primary: {
         icon: 'add',
         label: get('add'),
-      }, */
+        action: (
+          inputs: WizardInput[],
+          wizard: Element,
+          list?: List | null
+        ) => [() => []],
+      },
       content: [
         html`<mwc-select
           fixedMenuPosition
@@ -394,7 +403,12 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <filtered-list>
+          <filtered-list
+            @selected=${(e: SingleSelectedEvent) =>
+              this.openDATypeWizard(
+                (<ListItem>(<List>e.target).selected).value
+              )}
+          >
             ${Array.from(
               this.doc.querySelectorAll(':root > DataTypeTemplates > DAType') ??
                 []
@@ -404,11 +418,6 @@ export default class TemplatesPlugin extends LitElement {
                   value="${identity(datype)}"
                   tabindex="0"
                   hasMeta
-                  @click=${(e: Event) => {
-                    this.openDATypeWizard(
-                      (<Element>e.target).closest('mwc-list-item')!.value
-                    );
-                  }}
                   ><span>${datype.getAttribute('id')}</span
                   ><span slot="meta"
                     >${datype.querySelectorAll('BDA').length}</span
