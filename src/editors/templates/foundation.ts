@@ -1,11 +1,9 @@
-import { boolean } from 'fast-check';
 import { css, html, TemplateResult } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import {
   EditorAction,
-  getReference,
   getValue,
-  selector,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
@@ -83,7 +81,9 @@ export function getListItemList(
   selected: string | null
 ): TemplateResult[] {
   return list.map(
-    item => html`<mwc-list-item value="${item}" ?selected=${item === selected}
+    item => html`<mwc-list-item
+      value=${ifDefined(item === null ? undefined : item)}
+      ?selected=${item === selected}
       >${item}</mwc-list-item
     >`
   );
