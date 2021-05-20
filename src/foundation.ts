@@ -2438,6 +2438,10 @@ export function findControlBlocks(extRef: Element): Set<Element> {
   return controlBlocks;
 }
 
+export function isPublic(element:Element):boolean{
+  return !element.closest('Private');
+}
+
 /** @returns the version of the SCL project */
 export function getVersion(element: Element): string {
   const header = Array.from(
