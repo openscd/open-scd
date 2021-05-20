@@ -48,7 +48,7 @@ export function updateIDNamingAction(element: Element): WizardActor {
   };
 }
 
-export function addReferencesDataTypes(
+export function addReferencedDataTypes(
   element: Element,
   parent: Element
 ): EditorAction[] {
@@ -73,7 +73,7 @@ export function addReferencesDataTypes(
 
   const actions: EditorAction[] = [];
   adjacents
-    .flatMap(adjacent => addReferencesDataTypes(adjacent, parent))
+    .flatMap(adjacent => addReferencedDataTypes(adjacent, parent))
     .forEach(action => actions.push(action));
 
   adjacents.forEach(adjacent =>

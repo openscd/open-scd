@@ -18,7 +18,8 @@ import {
 import '../filtered-list.js';
 
 import {
-  addReferencesDataTypes,
+  addReferencedDataTypes,
+  allDataTypeSelector,
   buildListFromStringArray,
   predefinedBasicTypeEnum,
   styles,
@@ -222,7 +223,7 @@ function addPredefinedDAType(
     if (!id) return [];
 
     const existId = Array.from(
-      templates.querySelectorAll('DAType, EnumType')
+      templates.querySelectorAll(allDataTypeSelector)
     ).some(type => type.getAttribute('id') === id);
 
     if (existId) return [];
@@ -242,7 +243,7 @@ function addPredefinedDAType(
     const actions = [];
 
     if (selectedElement)
-      addReferencesDataTypes(selectedElement, parent).forEach(action =>
+      addReferencedDataTypes(selectedElement, parent).forEach(action =>
         actions.push(action)
       );
 
