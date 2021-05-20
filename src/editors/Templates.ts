@@ -6,6 +6,7 @@ import {
   getReference,
   getValue,
   identity,
+  isPublic,
   newActionEvent,
   newWizardEvent,
   patterns,
@@ -31,30 +32,25 @@ import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { Select } from '@material/mwc-select';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import {
+  SelectedEvent,
+  SingleSelectedEvent,
+} from '@material/mwc-list/mwc-list-foundation';
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
 function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
-  const bda = doc.querySelector(selector('BDA', identity));
+  const bda = Array.from(doc.querySelectorAll(selector('BDA', identity))).find(
+    isPublic
+  );
   if (!bda) return undefined;
 
-  const isEnum = bda.getAttribute('bType') === 'Enum';
-  const isStruct = bda.getAttribute('bType') === 'Struct';
   const type = bda.getAttribute('type');
-  const referenceList =
-    isEnum || isStruct
-      ? Array.from(
-          doc.querySelectorAll(
-            `:root > DataTypeTemplates > ${isEnum ? 'EnumType' : 'DAType'}`
-          )
-        ).map(type => type.getAttribute('id'))
-      : [];
-
-  const typeTemplate =
-    isEnum || isStruct ? buildListFromStringArray(referenceList, type) : html``;
+  const types = Array.from(doc.querySelectorAll('DAType, EnumType'))
+    .filter(isPublic)
+    .filter(type => type.getAttribute('id'));
 
   return [
     {
@@ -82,6 +78,28 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           label="bType"
           helper="${translate('bda.bType')}"
           required
+          @selected=${(e: SelectedEvent) => {
+            const bType = (<Select>e.target).selected!.value!;
+
+            const typeUI = <Select>(
+              (<Select>e.target).parentElement!.querySelector(
+                'mwc-select[label="type"]'
+              )!
+            );
+
+            Array.from(typeUI.children).forEach(child => {
+              (<ListItem>child).disabled = !child.classList.contains(bType);
+              (<ListItem>child).noninteractive =
+                !child.classList.contains(bType);
+              (<ListItem>child).style.display = !child.classList.contains(bType)
+                ? 'none'
+                : '';
+              (<ListItem>child).selected = child.classList.contains(bType);
+            });
+
+            typeUI.disabled = !(bType === 'Enum' || bType === 'Struct');
+            typeUI.requestUpdate();
+          }}
           >${buildListFromStringArray(
             predefinedBasicTypeEnum,
             bda.getAttribute('bType')
@@ -91,8 +109,15 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           fixedMenuPosition
           label="type"
           helper="${translate('bda.type')}"
-          ?disabled=${!(isEnum || isStruct)}
-          >${typeTemplate}</mwc-select
+          >${types.map(
+            dataType =>
+              html`<mwc-list-item
+                class="${dataType.tagName === 'EnumType' ? 'Enum' : 'Struct'}"
+                value=${dataType.id}
+                ?selected=${dataType.id === type}
+                >${dataType.id}</mwc-list-item
+              >`
+          )}</mwc-select
         >`,
         html`<wizard-textfield
           label="sAddr"
