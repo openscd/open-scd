@@ -56,6 +56,24 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
     {
       title: get('bda.wizard.title'),
       content: [
+        html`<mwc-button
+          icon="delete"
+          trailingIcon
+          label="${translate('delete')}"
+          @click=${(e: MouseEvent) => {
+            e.target!.dispatchEvent(newWizardEvent());
+            e.target!.dispatchEvent(
+              newActionEvent({
+                old: {
+                  parent: bda.parentElement!,
+                  element: bda,
+                  reference: bda.nextElementSibling,
+                },
+              })
+            );
+          }}
+          fullwidth
+        ></mwc-button> `,
         html`<wizard-textfield
           label="name"
           .maybeValue=${bda.getAttribute('name')}
