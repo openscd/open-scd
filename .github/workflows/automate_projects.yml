@@ -17,7 +17,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PROJECT_URL: https://github.com/com-pas/compas-open-scd/projects/1
           GITHUB_PROJECT_COLUMN_NAME: To do
-      - name: add-new-pull-rquest-to-repository-based-project-column
+      - name: add-new-pull-request-to-repository-based-project-column
         uses: takanabe/github-actions-automate-projects@v0.0.2
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         env:
@@ -30,4 +30,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PROJECT_URL: https://github.com/orgs/com-pas/projects/1
+          GITHUB_PROJECT_COLUMN_NAME: To do
+      - name: add-new-pull-request-to-organization-based-project-column
+        uses: takanabe/github-actions-automate-projects@v0.0.2
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_PROJECT_URL: https://github.com/orgs/com-pas/projects/2
           GITHUB_PROJECT_COLUMN_NAME: To do
