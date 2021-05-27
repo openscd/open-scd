@@ -152,6 +152,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           helper="${translate('bda.bType')}"
           required
           @selected=${(e: SelectedEvent) => {
+            const bTypeOriginal = bda.getAttribute('bType');
             const bType = (<Select>e.target).selected!.value!;
 
             const typeUI = <Select>(
@@ -167,7 +168,10 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
               (<ListItem>child).style.display = !child.classList.contains(bType)
                 ? 'none'
                 : '';
-              (<ListItem>child).selected = child.classList.contains(bType);
+              (<ListItem>child).selected =
+                bTypeOriginal === bType
+                  ? (<ListItem>child).value === type
+                  : child.classList.contains(bType);
             });
 
             typeUI.disabled = !(bType === 'Enum' || bType === 'Struct');
