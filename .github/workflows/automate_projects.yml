@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2021 Alliander N.V.
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: CC-BY-4.0
 
 name: Add issues and pull request to project boards
 
@@ -28,13 +28,13 @@ jobs:
         uses: takanabe/github-actions-automate-projects@v0.0.2
         if: github.event_name == 'issues' && github.event.action == 'opened'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
           GITHUB_PROJECT_URL: https://github.com/orgs/com-pas/projects/1
           GITHUB_PROJECT_COLUMN_NAME: To do
       - name: add-new-pull-request-to-organization-based-project-column
         uses: takanabe/github-actions-automate-projects@v0.0.2
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ORG_GITHUB_ACTION_SECRET }}
           GITHUB_PROJECT_URL: https://github.com/orgs/com-pas/projects/2
           GITHUB_PROJECT_COLUMN_NAME: To do
