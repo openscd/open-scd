@@ -2,6 +2,7 @@ import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  createElement,
   EditorAction,
   getReference,
   getValue,
@@ -10,6 +11,7 @@ import {
   newActionEvent,
   newWizardEvent,
   patterns,
+  SCLTag,
   selector,
   Wizard,
   WizardActor,
@@ -36,6 +38,15 @@ import {
   SelectedEvent,
   SingleSelectedEvent,
 } from '@material/mwc-list/mwc-list-foundation';
+
+interface UpdateOptions {
+  identity: string | null;
+  doc: XMLDocument;
+}
+interface CreateOptions {
+  parent: Element;
+}
+export type WizardOptions = UpdateOptions | CreateOptions;
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
@@ -95,22 +106,73 @@ function updateBDaAction(element: Element): WizardActor {
   };
 }
 
-function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
-  const bda = Array.from(doc.querySelectorAll(selector('BDA', identity))).find(
-    isPublic
-  );
-  if (!bda) return undefined;
+function createBDaAction(parent: Element): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const name = getValue(inputs.find(i => i.label === 'name')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
+    const type =
+      bType === 'Enum' || bType === 'Struct'
+        ? getValue(inputs.find(i => i.label === 'type')!)
+        : null;
+    const sAddr = getValue(inputs.find(i => i.label === 'sAddr')!);
+    const valKind =
+      getValue(inputs.find(i => i.label === 'valKind')!) !== ''
+        ? getValue(inputs.find(i => i.label === 'valKind')!)
+        : null;
+    const valImport =
+      getValue(inputs.find(i => i.label === 'valImport')!) !== ''
+        ? getValue(inputs.find(i => i.label === 'valImport')!)
+        : null;
 
-  const type = bda.getAttribute('type');
-  const types = Array.from(doc.querySelectorAll('DAType, EnumType'))
-    .filter(isPublic)
-    .filter(type => type.getAttribute('id'));
+    const actions: EditorAction[] = [];
 
-  return [
-    {
-      title: get('bda.wizard.title'),
-      primary: { icon: '', label: get('save'), action: updateBDaAction(bda) },
-      content: [
+    const element = createElement(parent.ownerDocument, 'BDA', {
+      name,
+      desc,
+      bType,
+      type,
+      sAddr,
+      valKind,
+      valImport,
+    });
+    actions.push({
+      new: {
+        parent,
+        element,
+        reference: getReference(parent, <SCLTag>element.tagName),
+      },
+    });
+
+    return actions;
+  };
+}
+
+function bDAWizard(options: WizardOptions): Wizard | undefined {
+  const doc = (<UpdateOptions>options).doc
+    ? (<UpdateOptions>options).doc
+    : (<CreateOptions>options).parent.ownerDocument;
+  const bda =
+    Array.from(
+      doc.querySelectorAll(
+        selector('BDA', (<UpdateOptions>options).identity ?? NaN)
+      )
+    ).find(isPublic) ?? null;
+
+  const [
+    action,
+    type,
+    deleteButton,
+    name,
+    desc,
+    bTypeList,
+    sAddr,
+    valKindList,
+    valImportList,
+  ] = bda
+    ? [
+        updateBDaAction(bda),
+        bda.getAttribute('type'),
         html`<mwc-button
           icon="delete"
           trailingIcon
@@ -129,9 +191,44 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           }}
           fullwidth
         ></mwc-button> `,
+        bda.getAttribute('name'),
+        bda.getAttribute('desc'),
+        buildListFromStringArray(
+          predefinedBasicTypeEnum,
+          bda.getAttribute('bType')
+        ),
+        bda.getAttribute('sAddr'),
+        buildListFromStringArray(valKindEnum, bda.getAttribute('valKind')),
+        buildListFromStringArray(
+          [null, 'true', 'false'],
+          bda.getAttribute('valImport')
+        ),
+      ]
+    : [
+        createBDaAction((<CreateOptions>options).parent),
+        null,
+        html``,
+        '',
+        null,
+        buildListFromStringArray(predefinedBasicTypeEnum, 'Struct'),
+        null,
+        buildListFromStringArray(valKindEnum, null),
+        buildListFromStringArray([null, 'true', 'false'], null),
+      ];
+
+  const types = Array.from(doc.querySelectorAll('DAType, EnumType'))
+    .filter(isPublic)
+    .filter(type => type.getAttribute('id'));
+
+  return [
+    {
+      title: get('bda.wizard.title'),
+      primary: { icon: '', label: get('save'), action: action },
+      content: [
+        deleteButton,
         html`<wizard-textfield
           label="name"
-          .maybeValue=${bda.getAttribute('name')}
+          .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
           pattern="${patterns.alphanumeric}"
@@ -142,7 +239,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
         html`<wizard-textfield
           label="desc"
           helper="${translate('scl.desc')}"
-          .maybeValue=${bda.getAttribute('desc')}
+          .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
@@ -152,7 +249,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           helper="${translate('bda.bType')}"
           required
           @selected=${(e: SelectedEvent) => {
-            const bTypeOriginal = bda.getAttribute('bType');
+            const bTypeOriginal = bda?.getAttribute('bType') ?? '';
             const bType = (<Select>e.target).selected!.value!;
 
             const typeUI = <Select>(
@@ -177,10 +274,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
             typeUI.disabled = !(bType === 'Enum' || bType === 'Struct');
             typeUI.requestUpdate();
           }}
-          >${buildListFromStringArray(
-            predefinedBasicTypeEnum,
-            bda.getAttribute('bType')
-          )}</mwc-select
+          >${bTypeList}</mwc-select
         >`,
         html`<mwc-select
           fixedMenuPosition
@@ -199,7 +293,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
         html`<wizard-textfield
           label="sAddr"
           helper="${translate('bda.sAddr')}"
-          .maybeValue=${bda.getAttribute('sAddr')}
+          .maybeValue=${sAddr}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
@@ -207,19 +301,13 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
           label="valKind"
           helper="${translate('bda.valKind')}"
           fixedMenuPosition
-          >${buildListFromStringArray(
-            valKindEnum,
-            bda.getAttribute('valKind')
-          )}</mwc-select
+          >${valKindList}</mwc-select
         >`,
         html`<mwc-select
           fixedMenuPosition
           label="valImport"
           helper="${translate('bda.valImport')}"
-          >${buildListFromStringArray(
-            [null, 'true', 'false'],
-            bda.getAttribute('valImport')
-          )}</mwc-select
+          >${valImportList}</mwc-select
         >`,
       ],
     },
@@ -282,14 +370,21 @@ function dATypeWizard(
             icon="playlist_add"
             trailingIcon
             label="${translate('scl.BDA')}"
+            @click=${(e: Event) => {
+              const wizard = bDAWizard({
+                parent: datype,
+              });
+              if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
+              e.target!.dispatchEvent(newWizardEvent());
+            }}
           ></mwc-button>
           <mwc-list
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {
-              const wizard = bDAWizard(
-                (<ListItem>(<List>e.target).selected).value,
-                doc
-              );
+              const wizard = bDAWizard({
+                identity: (<ListItem>(<List>e.target).selected).value,
+                doc,
+              });
               if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
               e.target!.dispatchEvent(newWizardEvent());
             }}
