@@ -41,6 +41,60 @@ const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
+function updateBDaAction(element: Element): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const name = getValue(inputs.find(i => i.label === 'name')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
+    const type =
+      bType === 'Enum' || bType === 'Struct'
+        ? getValue(inputs.find(i => i.label === 'type')!)
+        : null;
+    const sAddr = getValue(inputs.find(i => i.label === 'sAddr')!);
+    const valKind =
+      getValue(inputs.find(i => i.label === 'valKind')!) !== ''
+        ? getValue(inputs.find(i => i.label === 'valKind')!)
+        : null;
+    const valImport =
+      getValue(inputs.find(i => i.label === 'valImport')!) !== ''
+        ? getValue(inputs.find(i => i.label === 'valImport')!)
+        : null;
+
+    const actions: EditorAction[] = [];
+    if (
+      name === element.getAttribute('name') &&
+      desc === element.getAttribute('desc') &&
+      bType === element.getAttribute('bType') &&
+      type === element.getAttribute('type') &&
+      sAddr === element.getAttribute('sAddr') &&
+      valKind === element.getAttribute('valKind') &&
+      valImport === element.getAttribute('valImprot')
+    ) {
+      return [];
+    }
+
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('name', name);
+    if (desc === null) newElement.removeAttribute('desc');
+    else newElement.setAttribute('desc', desc);
+    newElement.setAttribute('bType', bType);
+    if (type === null) newElement.removeAttribute('type');
+    else newElement.setAttribute('type', type);
+    if (sAddr === null) newElement.removeAttribute('sAddr');
+    else newElement.setAttribute('sAddr', sAddr);
+    if (valKind === null) newElement.removeAttribute('valKind');
+    else newElement.setAttribute('valKind', valKind);
+    if (valImport === null) newElement.removeAttribute('valImport');
+    else newElement.setAttribute('valImport', valImport);
+    actions.push({
+      old: { element },
+      new: { element: newElement },
+    });
+
+    return actions;
+  };
+}
+
 function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
   const bda = Array.from(doc.querySelectorAll(selector('BDA', identity))).find(
     isPublic
@@ -55,6 +109,7 @@ function bDAWizard(identity: string, doc: XMLDocument): Wizard | undefined {
   return [
     {
       title: get('bda.wizard.title'),
+      primary: { icon: '', label: get('save'), action: updateBDaAction(bda) },
       content: [
         html`<mwc-button
           icon="delete"
