@@ -1,0 +1,379 @@
+# `DAType wizards`
+
+## `defines a createDATypeWizard`
+
+####   `looks like the latest snapshot`
+
+```html
+<mwc-dialog
+  defaultaction="close"
+  heading="[datype.wizard.title.add]"
+  open=""
+>
+  <div id="wizard-content">
+    <mwc-select
+      fixedmenuposition=""
+      helper="Default enumerations"
+      icon="playlist_add_check"
+      label="values"
+      outlined=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+        value="OpenSCD_Originator"
+      >
+        <span>
+          Originator
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_RangeConfig"
+      >
+        <span>
+          RangeConfig
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ValWOTrans"
+      >
+        <span>
+          ValWOTrans
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ValWithTrans"
+      >
+        <span>
+          ValWithTrans
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_UnitwoMultiplier"
+      >
+        <span>
+          UnitwoMultiplier
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_UnitwithMultiplier"
+      >
+        <span>
+          UnitwithMultiplier
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_PulseConfig"
+      >
+        <span>
+          PulseConfig
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_VectorIwithAngle"
+      >
+        <span>
+          VectorIwithAngle
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_VectorFwoAngle"
+      >
+        <span>
+          VectorFwoAngle
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_VectorIwithAngle"
+      >
+        <span>
+          VectorIwithAngle
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_VectorFwoAngle"
+      >
+        <span>
+          VectorFwoAngle
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Cell2D"
+      >
+        <span>
+          Cell2D
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Cell1D"
+      >
+        <span>
+          Cell1D
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Point3D"
+      >
+        <span>
+          Point3D
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Point2D"
+      >
+        <span>
+          Point2D
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_CalendarTime"
+      >
+        <span>
+          CalendarTime
+        </span>
+        <span slot="meta">
+          8
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_AnalogueValueInteger32andFloat32"
+      >
+        <span>
+          AnalogueValueInteger32andFloat32
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_AnalogueValueFloat32"
+      >
+        <span>
+          AnalogueValueFloat32
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_AnalogueValueInteger32"
+      >
+        <span>
+          AnalogueValueInteger32
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ScaledValueConfig"
+      >
+        <span>
+          ScaledValueConfig
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+    </mwc-select>
+    <wizard-textfield
+      dialoginitialfocus=""
+      helper="[scl.id]"
+      label="id"
+      maxlength="255"
+      minlength="1"
+      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[𐀀\-󯿿]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.desc]"
+      label="desc"
+      nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="add"
+    label="[add]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+
+```
+
