@@ -1,12 +1,6 @@
-import { List } from '@material/mwc-list';
-import {
-  SelectedEvent,
-  SingleSelectedEvent,
-} from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
+
 import {
   createElement,
   EditorAction,
@@ -31,6 +25,14 @@ import {
   updateIDNamingAction,
   valKindEnum,
 } from './foundation.js';
+
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
+import {
+  SelectedEvent,
+  SingleSelectedEvent,
+} from '@material/mwc-list/mwc-list-foundation';
 
 interface UpdateOptions {
   identity: string | null;
@@ -437,7 +439,7 @@ function addPredefinedDAType(
       new: {
         parent,
         element,
-        reference: parent.firstElementChild,
+        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
