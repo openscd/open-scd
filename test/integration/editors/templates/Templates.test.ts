@@ -1,14 +1,17 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import Templates from '../../../../src/editors/Templates.js';
+import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { Editing, EditingElement } from '../../../../src/Editing.js';
 import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
 
 import { getDocument } from '../../../data.js';
 
 describe('Templates Plugin', () => {
-  customElements.define('templates-plugin', Wizarding(Editing(Templates)));
-  let element: Templates;
+  customElements.define(
+    'templates-plugin',
+    Wizarding(Editing(TemplatesPlugin))
+  );
+  let element: TemplatesPlugin;
   beforeEach(async () => {
     element = await fixture(html`<templates-plugin></templates-plugin>`);
   });
