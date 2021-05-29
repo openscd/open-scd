@@ -89,6 +89,20 @@ describe('DAType wizards', () => {
         doc.querySelectorAll('EnumType[id="OriginatorCategoryKind"]').length
       ).to.equal(1);
     });
+    it('recursevly add missing! subsequent DAType elements', async () => {
+      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValueFloat32"]')).to
+        .not.exist;
+      selector.value = 'OpenSCD_RangeConfig';
+      idField.maybeValue = 'myOriginator';
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValueFloat32"]')).to
+        .exist;
+      expect(
+        doc.querySelectorAll('DAType[id="OpenSCD_AnalogueValueFloat32"]').length
+      ).to.equal(1);
+    });
   });
 
   /* describe('defines a dATypeWizard',{
