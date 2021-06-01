@@ -299,13 +299,104 @@ describe('DAType wizards', () => {
     });
   });
 
-  /*describe('defines a bDAWizard to edit BDA element',{
+  describe('defines a bDAWizard to create a new BDA element', () => {
+    let nameField: WizardTextField;
+    let descField: WizardTextField;
+    let sAddrField: WizardTextField;
+    let bTypeSelect: Select;
+    let typeSelect: Select;
+    let valKindSelect: Select;
+    let valImportSelect: Select;
+    let primayAction: HTMLElement;
 
-    it('looks like the latest snapshot',{});
-    it('filters available types depending on the bType',{});
-    it('enables type selection only for bType Enum or DAType',{});
-    it('remembers the current type',{});
-    it('allows to edit BDA elements',{});
-    it('does not edit unchanged BDA elements',{});
-  }) */
+    beforeEach(async () => {
+      (<ListItem>(
+        dATypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod.SBOw"]')
+      )).click();
+      await parent.requestUpdate();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      (<HTMLElement>(
+        parent.wizardUI.dialog?.querySelector('mwc-button[icon="playlist_add"]')
+      )).click();
+      await parent.requestUpdate();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      descField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+      );
+      sAddrField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="sAddr"]')
+      );
+      bTypeSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
+      );
+      typeSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+      );
+      valKindSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="valKind"]')
+      );
+      valImportSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="valImport"]')
+      );
+      primayAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    });
+    it('creates a new BDA element', async () => {
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement"]'
+        )
+      ).to.not.exist;
+      nameField.value = 'newBDAElement';
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.requestUpdate();
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement"]:not([desc]):not([sAddr])[bType="Struct"][type="Dummy.LPHD1.Sim.Cancel"]:not([valKind]):not([valImport])'
+        )
+      ).to.exist;
+    });
+    it('creates yet another new BDA element', async () => {
+      const name = 'newBDAElement2';
+      const desc = 'newBDAdesc';
+      const sAddr = 'myNewAddr';
+      const valKind = 'RO';
+      const valImport = 'true';
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement2"]'
+        )
+      ).to.not.exist;
+      nameField.value = name;
+      descField.nullable = false;
+      descField.value = desc;
+      sAddrField.nullable = false;
+      sAddrField.value = sAddr;
+      bTypeSelect.value = 'BOOLEAN';
+      valKindSelect.value = 'RO';
+      valImportSelect.value = 'true';
+
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.requestUpdate();
+      expect(
+        doc.querySelector(
+          `DAType[id="Dummy.LLN0.Mod.SBOw"] >` +
+            `BDA[name="${name}"][desc="${desc}"][sAddr="${sAddr}"][bType="BOOLEAN"]:not([type])[valKind="RO"][valImport="true"]`
+        )
+      ).to.exist;
+    });
+  });
 });
