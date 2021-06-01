@@ -171,6 +171,134 @@ describe('DAType wizards', () => {
     });
   });
 
+  describe('defines a bDAWizard to edit an existing BDA', () => {
+    let nameField: WizardTextField;
+    let primayAction: HTMLElement;
+    let deleteButton: HTMLElement;
+    let bTypeSelect: Select;
+    let typeSelect: Select;
+
+    beforeEach(async () => {
+      (<ListItem>(
+        dATypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod.SBOw"]')
+      )).click();
+      await parent.requestUpdate();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      (<HTMLElement>(
+        parent.wizardUI?.dialog?.querySelector(
+          'mwc-list-item[value="#Dummy.LLN0.Mod.SBOw>ctlVal"]'
+        )
+      )).click();
+      await parent.requestUpdate();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      primayAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+      deleteButton = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+      );
+      bTypeSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
+      );
+      typeSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+      );
+    });
+
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    });
+    it('edits BDA attributes name', async () => {
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
+        )
+      ).to.exist;
+      nameField.value = 'newCtlVal';
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.requestUpdate();
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
+        )
+      ).to.not.exist;
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newCtlVal"]'
+        )
+      ).to.exist;
+    });
+    it('deletes the BDA element on delete button click', async () => {
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
+        )
+      ).to.exist;
+      expect(
+        doc.querySelectorAll('DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA').length
+      ).to.equal(6);
+      deleteButton.click();
+      await parent.requestUpdate();
+      expect(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
+        )
+      ).to.not.exist;
+      expect(
+        doc.querySelectorAll('DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA').length
+      ).to.equal(5);
+    });
+    it('does not edit BDA element without changes', async () => {
+      const originData = (<Element>(
+        doc.querySelector(
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
+        )
+      )).cloneNode(true);
+      primayAction.click();
+      await parent.requestUpdate();
+      expect(
+        originData.isEqualNode(
+          doc.querySelector(
+            'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
+          )
+        )
+      ).to.be.true;
+    });
+    it('filters the type selector to EnumTypes if bType is Enum', () => {
+      expect(
+        Array.from(typeSelect!.querySelectorAll('mwc-list-item')).find(
+          item =>
+            (<ListItem>item).className === 'Enum' &&
+            (<ListItem>item).style.display === 'none'
+        )
+      ).to.be.undefined;
+    });
+    it('filters the type selector to DATypes if bType is Struct', async () => {
+      bTypeSelect.value = 'Struct';
+      await parent.requestUpdate();
+      expect(
+        Array.from(typeSelect!.querySelectorAll('mwc-list-item')).find(
+          item =>
+            (<ListItem>item).className === 'Struct' &&
+            (<ListItem>item).style.display === 'none'
+        )
+      ).to.be.undefined;
+    });
+    it('disables the type selector if bType is not Enum nor Struct', async () => {
+      expect(typeSelect.disabled).to.be.false;
+      bTypeSelect.value = 'BOOLEAN';
+      await parent.requestUpdate();
+      expect(typeSelect.disabled).to.be.true;
+    });
+  });
+
   /*describe('defines a bDAWizard to edit BDA element',{
 
     it('looks like the latest snapshot',{});
