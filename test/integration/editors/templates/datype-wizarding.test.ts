@@ -5,12 +5,15 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
 import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { FilteredList } from '../../../../src/filtered-list.js';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 describe('DAType wizards', () => {
   let doc: Document;
   customElements.define('templates-editor', TemplatesPlugin);
   let parent: MockWizardEditor;
   let templates: TemplatesPlugin;
+  let dATypeList: FilteredList;
 
   beforeEach(async () => {
     parent = await fixture(
@@ -26,6 +29,9 @@ describe('DAType wizards', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;
     await templates.updateComplete;
+    dATypeList = <FilteredList>(
+      templates.shadowRoot?.querySelector('filtered-list[id="datypelist"]')
+    );
   });
 
   describe('defines a createDATypeWizard', () => {
@@ -105,13 +111,67 @@ describe('DAType wizards', () => {
     });
   });
 
-  /* describe('defines a dATypeWizard',{
+  describe('defines a dATypeWizard', () => {
+    let idField: WizardTextField;
+    let primayAction: HTMLElement;
+    let deleteButton: HTMLElement;
 
-    it('looks like the latest snapshot',{});
-    it('allows to edit DATypes to the project',{});
-  })
+    beforeEach(async () => {
+      (<ListItem>(
+        dATypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod.SBOw"]')
+      )).click();
+      await parent.requestUpdate();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      idField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+      );
+      primayAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+      deleteButton = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+      );
+    });
 
-  describe('defines a bDAWizard to edit BDA element',{
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    });
+    it('edits DAType attributes id', async () => {
+      expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"]')).to.exist;
+      idField.value = 'changedDAType';
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.requestUpdate();
+      expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"]')).to.not
+        .exist;
+      expect(doc.querySelector('DAType[id="changedDAType"]')).to.exist;
+    });
+    it('deletes the DAType attribute on delete button click', async () => {
+      expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"]')).to.exist;
+      expect(doc.querySelectorAll('DAType').length).to.equal(5);
+      deleteButton.click();
+      await parent.requestUpdate();
+      expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"]')).to.not
+        .exist;
+      expect(doc.querySelectorAll('DAType').length).to.equal(4);
+    });
+    it('does not edit DAType element without changes', async () => {
+      const originData = (<Element>(
+        doc.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"]')
+      )).cloneNode(true);
+      primayAction.click();
+      await parent.requestUpdate();
+      expect(
+        originData.isEqualNode(
+          doc.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"]')
+        )
+      ).to.be.true;
+    });
+  });
+
+  /*describe('defines a bDAWizard to edit BDA element',{
 
     it('looks like the latest snapshot',{});
     it('filters available types depending on the bType',{});

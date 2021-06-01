@@ -109,6 +109,7 @@ export default class TemplatesPlugin extends LitElement {
             </nav>
           </h1>
           <filtered-list
+            id="datypelist"
             @selected=${(e: SingleSelectedEvent) =>
               this.openDATypeWizard(
                 (<ListItem>(<List>e.target).selected).value

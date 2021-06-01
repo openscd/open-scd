@@ -374,6 +374,154 @@
   >
   </mwc-button>
 </mwc-dialog>
+```
+
+## `defines a dATypeWizard`
+
+####   `looks like the latest snapshot`
+
+```html
+<mwc-dialog
+  defaultaction="close"
+  heading="[datype.wizard.title]"
+  open=""
+>
+  <div id="wizard-content">
+    <mwc-button
+      fullwidth=""
+      icon="delete"
+      label="[delete]"
+      trailingicon=""
+    >
+    </mwc-button>
+    <wizard-textfield
+      dialoginitialfocus=""
+      helper="[scl.id]"
+      label="id"
+      maxlength="127"
+      minlength="1"
+      pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[𐀀\-󯿿]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.desc]"
+      label="desc"
+      nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
+    >
+    </wizard-textfield>
+    <mwc-button
+      icon="playlist_add"
+      label="[scl.BDA]"
+      slot="graphic"
+      trailingicon=""
+    >
+    </mwc-button>
+    <mwc-list style="margin-top: 0px;">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="0"
+        twoline=""
+        value="#Dummy.LLN0.Mod.SBOw>ctlVal"
+      >
+        <span>
+          ctlVal
+        </span>
+        <span slot="secondary">
+          #Dummy_Beh
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod.SBOw>origin"
+      >
+        <span>
+          origin
+        </span>
+        <span slot="secondary">
+          #Dummy_origin
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod.SBOw>ctlNum"
+      >
+        <span>
+          ctlNum
+        </span>
+        <span slot="secondary">
+          INT8U
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod.SBOw>T"
+      >
+        <span>
+          T
+        </span>
+        <span slot="secondary">
+          Timestamp
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod.SBOw>Test"
+      >
+        <span>
+          Test
+        </span>
+        <span slot="secondary">
+          BOOLEAN
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod.SBOw>Check"
+      >
+        <span>
+          Check
+        </span>
+        <span slot="secondary">
+          Check
+        </span>
+      </mwc-list-item>
+    </mwc-list>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon=""
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
 
 ```
 
