@@ -1,8 +1,12 @@
-import { css } from 'lit-element';
+import { css, html, TemplateResult } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import {
   EditorAction,
+  getReference,
   getValue,
+  isPublic,
+  SCLTag,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
@@ -15,6 +19,8 @@ interface CreateOptions {
   templates: XMLDocument;
 }
 export type WizardOptions = UpdateOptions | CreateOptions;
+
+export const allDataTypeSelector = 'LNodeType, DOType, DAType, EnumType';
 
 export function isCreateOptions(
   options: WizardOptions
@@ -42,6 +48,99 @@ export function updateIDNamingAction(element: Element): WizardActor {
   };
 }
 
+export function addReferencedDataTypes(
+  element: Element,
+  parent: Element
+): EditorAction[] {
+  const templates = element.closest('DataTypeTemplates')!;
+  const ids = Array.from(parent.querySelectorAll(allDataTypeSelector))
+    .filter(isPublic)
+    .map(type => type.getAttribute('id'));
+
+  const types = Array.from(element.children)
+    .map(child => child.getAttribute('type'))
+    .filter(type => type)
+    .filter(type => !ids.includes(type));
+
+  const adjacents = types
+    .map(
+      type =>
+        templates.querySelector(
+          `LNodeType[id="${type}"],DOType[id="${type}"],DAType[id="${type}"],EnumType[id="${type}"]`
+        )!
+    )
+    .filter(isPublic);
+
+  const actions: EditorAction[] = [];
+  adjacents
+    .flatMap(adjacent => addReferencedDataTypes(adjacent, parent))
+    .forEach(action => actions.push(action));
+
+  adjacents.forEach(adjacent =>
+    actions.push({
+      new: {
+        parent,
+        element: adjacent,
+        reference: getReference(parent, <SCLTag>adjacent.tagName),
+      },
+    })
+  );
+  return actions;
+}
+
+export function buildListFromStringArray(
+  list: (string | null)[],
+  selected: string | null
+): TemplateResult[] {
+  return list.map(
+    item => html`<mwc-list-item
+      value=${ifDefined(item === null ? undefined : item)}
+      ?selected=${item === selected}
+      >${item}</mwc-list-item
+    >`
+  );
+}
+
+export const predefinedBasicTypeEnum = [
+  'BOOLEAN',
+  'INT8',
+  'INT16',
+  'INT24',
+  'INT32',
+  'INT64',
+  'INT128',
+  'INT8U',
+  'INT16U',
+  'INT24U',
+  'INT32U',
+  'FLOAT32',
+  'FLOAT64',
+  'Enum',
+  'Dbpos',
+  'Tcmd',
+  'Quality',
+  'Timestamp',
+  'VisString32',
+  'VisString64',
+  'VisString65',
+  'VisString129',
+  'VisString255',
+  'Octet64',
+  'Unicode255',
+  'Struct',
+  'EntryTime',
+  'Check',
+  'ObjRef',
+  'Currency',
+  'PhyComAddr',
+  'TrgOps',
+  'OptFlds',
+  'SvOptFlds',
+  'EntryID',
+];
+
+export const valKindEnum = [null, 'Spec', 'Conf', 'RO', 'Set'];
+
 /** Common `CSS` styles used by DataTypeTemplate subeditors */
 export const styles = css`
   :host(.moving) section {
@@ -54,7 +153,6 @@ export const styles = css`
     outline-color: var(--mdc-theme-primary);
     outline-style: solid;
     outline-width: 0px;
-    margin: 8px 12px 16px;
     opacity: 1;
   }
 

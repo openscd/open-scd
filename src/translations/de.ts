@@ -9,6 +9,7 @@ export const de: Translations = {
     value: 'Wert',
     EnumVal: 'Enum Wert',
     EnumType: 'Enum Typ',
+    DAType: 'Datenattribut Typ',
     Report: 'Report',
     LN: 'Logischer Knoten',
   },
@@ -156,6 +157,27 @@ export const de: Translations = {
         add: 'EnumType hinzufügen',
         edit: 'EnumType bearbeiten',
       },
+    },
+  },
+  datype: {
+    wizard: {
+      title: {
+        add: 'DAType hinzufügen',
+        edit: 'DAType bearbeiten',
+      },
+    },
+  },
+  bda: {
+    wizard: {
+      title: {
+        add: 'BDA hinzufügen',
+        edit: 'BDA bearbeiten',
+      },
+      bType: 'Basistyp',
+      type: 'Typ',
+      sAddr: 'Kurze Adresse',
+      valKind: 'Art von Wert',
+      valImport: 'Wert importierbar',
     },
   },
   lnode: {

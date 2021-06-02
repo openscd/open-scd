@@ -1,7 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
   <Header id="OpenSCD_DataTypeTemplates"/>
-  <DataTypeTemplate>
+  <DataTypeTemplates>
+    <DAType id="OpenSCD_Originator">
+      <BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
+      <BDA name="orIdent" bType="Octet64"/>
+    </DAType>
+    <DAType id="OpenSCD_RangeConfig">
+      <BDA name="hhLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="hLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="lLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="llLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="min" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="max" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="limDb" bType="INT32"/>
+    </DAType>
+    <DAType id="OpenSCD_ValWOTrans">
+      <BDA name="posVal" bType="INT8"/>
+    </DAType>
+    <DAType id="OpenSCD_ValWithTrans">
+      <BDA name="posVal" bType="INT8"/>
+      <BDA name="transInd" bType="BOOLEAN"/>
+    </DAType>
+    <DAType id="OpenSCD_UnitwoMultiplier">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
+    </DAType>
+    <DAType id="OpenSCD_UnitwithMultiplier">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
+      <BDA name="multiplier" bType="Enum" type="MultiplierKind"/>
+    </DAType>
+    <DAType id="OpenSCD_PulseConfig">
+      <BDA name="cmdQual" bType="Enum" type="OutputSignalKind"/>
+      <BDA name="onDur" bType="INT32U"/>
+      <BDA name="offDur" bType="INT32U"/>
+      <BDA name="numPls" bType="INT32U"/>
+    </DAType>
+    <DAType id="OpenSCD_VectorIwithAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
+      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
+    </DAType>
+    <DAType id="OpenSCD_VectorFwoAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
+    </DAType>
+    <DAType id="OpenSCD_VectorIwithAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
+    </DAType>
+    <DAType id="OpenSCD_VectorFwoAngle">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+    </DAType>
+    <DAType id="OpenSCD_Cell2D">
+      <BDA name="xStart" bType="FLOAT32"/>
+      <BDA name="xEnd" bType="FLOAT32"/>
+      <BDA name="yStart" bType="FLOAT32"/>
+      <BDA name="yEnd" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_Cell1D">
+      <BDA name="xStart" bType="FLOAT32"/>
+      <BDA name="xEnd" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_Point3D">
+      <BDA name="xVal" bType="FLOAT32"/>
+      <BDA name="yVal" bType="FLOAT32"/>
+      <BDA name="zVal" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_Point2D">
+      <BDA name="xVal" bType="FLOAT32"/>
+      <BDA name="yVal" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_CalendarTime">
+      <BDA name="occ" bType="INT16U"/>
+      <BDA name="occType" bType="Enum" type="OccurrenceKind"/>
+      <BDA name="occPer" bType="Enum" type="PeriodKind"/>
+      <BDA name="weekDay" bType="Enum" type="WeekdayKind"/>
+      <BDA name="month" bType="Enum" type="MonthKind"/>
+      <BDA name="day" bType="INT8U"/>
+      <BDA name="hr" bType="INT8U"/>
+      <BDA name="mn" bType="INT8U"/>
+    </DAType>
+    <DAType id="OpenSCD_AnalogueValueInteger32andFloat32">
+      <BDA name="f" bType="FLOAT32"/>
+      <BDA name="i" bType="INT32"/>
+    </DAType>
+    <DAType id="OpenSCD_AnalogueValueFloat32">
+      <BDA name="f" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_AnalogueValueInteger32">
+      <BDA name="i" bType="INT32"/>
+    </DAType>
+    <DAType id="OpenSCD_ScaledValueConfig">
+      <BDA name="scaleFactor" bType="FLOAT32"/>
+      <BDA name="offset" bType="FLOAT32"/>
+    </DAType>
     <EnumType id="BehaviourModeKind">
       <EnumVal ord="1">on</EnumVal>
       <EnumVal ord="2">blocked</EnumVal>
@@ -697,5 +787,6 @@
       <EnumVal ord="3">Echo</EnumVal>
       <EnumVal ord="4">Echo and Operate</EnumVal>
     </EnumType>
-  </DataTypeTemplate>
+
+  </DataTypeTemplates>
 </SCL>
