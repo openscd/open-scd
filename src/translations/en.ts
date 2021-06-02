@@ -156,6 +156,27 @@ export const en = {
       },
     },
   },
+  datype: {
+    wizard: {
+      title: {
+        add: 'Add DAType',
+        edit: 'Edit DAType',
+      },
+    },
+  },
+  bda: {
+    wizard: {
+      title: {
+        add: 'Add BDA',
+        edit: 'Edit BDA',
+      },
+      bType: 'Basic type',
+      type: 'Type',
+      sAddr: 'Short address',
+      valKind: 'Value kind',
+      valImport: 'Import value',
+    },
+  },
   lnode: {
     wizard: {
       title: {

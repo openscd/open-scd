@@ -151,6 +151,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
     ).find(isPublic) ?? null;
 
   const [
+    title,
     action,
     type,
     deleteButton,
@@ -162,6 +163,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
     valImportList,
   ] = bda
     ? [
+        get('bda.wizard.title.edit'),
         updateBDaAction(bda),
         bda.getAttribute('type'),
         html`<mwc-button
@@ -196,6 +198,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
         ),
       ]
     : [
+        get('bda.wizard.title.add'),
         createBDaAction((<CreateOptions>options).parent),
         null,
         html``,
@@ -213,7 +216,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
 
   return [
     {
-      title: get('bda.wizard.title'),
+      title,
       primary: { icon: '', label: get('save'), action: action },
       content: [
         deleteButton,
@@ -237,7 +240,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="bType"
-          helper="${translate('bda.bType')}"
+          helper="${translate('bda.wizard.bType')}"
           required
           @selected=${(e: SelectedEvent) => {
             const bTypeOriginal = bda?.getAttribute('bType') ?? '';
@@ -270,7 +273,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="type"
-          helper="${translate('bda.type')}"
+          helper="${translate('bda.wizard.type')}"
           >${types.map(
             dataType =>
               html`<mwc-list-item
@@ -283,21 +286,21 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
         >`,
         html`<wizard-textfield
           label="sAddr"
-          helper="${translate('bda.sAddr')}"
+          helper="${translate('bda.wizard.sAddr')}"
           .maybeValue=${sAddr}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<mwc-select
           label="valKind"
-          helper="${translate('bda.valKind')}"
+          helper="${translate('bda.wizard.valKind')}"
           fixedMenuPosition
           >${valKindList}</mwc-select
         >`,
         html`<mwc-select
           fixedMenuPosition
           label="valImport"
-          helper="${translate('bda.valImport')}"
+          helper="${translate('bda.wizard.valImport')}"
           >${valImportList}</mwc-select
         >`,
       ],
@@ -314,7 +317,7 @@ export function dATypeWizard(
 
   return [
     {
-      title: get('datype.wizard.title'),
+      title: get('datype.wizard.title.edit'),
       primary: {
         icon: '',
         label: get('save'),
