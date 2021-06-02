@@ -252,4 +252,13 @@ export const en = {
   duplicate: 'Clone',
   connect: 'Connect',
   disconnect: 'Disconnect',
+
+  compas: {
+    open: {
+      listSclTypes: 'Type of SCL',
+      noSclTypes: 'No types found',
+      listScls: 'List of SCL ({{ code }})',
+      noScls: 'No SCLs found',
+    }
+  },
 };

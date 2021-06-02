@@ -255,4 +255,13 @@ export const de: Translations = {
   duplicate: 'Klonen',
   connect: 'Verbinden',
   disconnect: 'Trennen',
+
+  compas: {
+    open: {
+      listSclTypes: '???',
+      noSclTypes: '???',
+      listScls: '??? ({{ code }})',
+      noScls: "???",
+    }
+  },
 };

@@ -28,6 +28,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: "Open from CoMPAS",
+    src: "/src/triggered/OpenCompas.js",
+    icon: "snippet_folder",
+    default: true,
+    kind: "triggered"
+  },
+  {
     name: "Import IEDs",
     src: "/src/triggered/ImportIEDs.js",
     icon: "snippet_folder",
