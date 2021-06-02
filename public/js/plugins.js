@@ -1,5 +1,12 @@
 export const officialPlugins = [
   {
+    name: 'Open file',
+    src: '/src/triggered/OpenFile.js',
+    icon: 'coronavirus',
+    default: true,
+    kind: 'triggered'
+  },
+  {
     name: 'Substation',
     src: '/src/editors/Substation.js',
     icon: 'margin',
@@ -21,11 +28,11 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
-    "name": "Import IEDs",
-    "src": "/src/triggered/ImportIEDs.js",
-    "icon": "snippet_folder",
-    "default": true,
-    "kind": "triggered"
+    name: "Import IEDs",
+    src: "/src/triggered/ImportIEDs.js",
+    icon: "snippet_folder",
+    default: true,
+    kind: "triggered"
   },
   {
     name: 'Subscriber Update',

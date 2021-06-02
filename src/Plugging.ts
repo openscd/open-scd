@@ -150,6 +150,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           return html`<${loadedPlugins.get(plugin.src)}
             .doc=${this.doc}
             .docName=${this.docName}
+            .docId=${this.docId}
           ></${loadedPlugins.get(plugin.src)}>`;
         },
       };

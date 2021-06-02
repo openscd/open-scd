@@ -44,6 +44,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import {
   EditorAction,
   newLogEvent,
+  newOpenDocEvent,
   newPendingStateEvent,
   newWizardEvent,
   Wizard,
@@ -101,44 +102,27 @@ export class OpenSCD extends Setting(
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<void> {
-    this.reset();
-
-    this.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('openSCD.loading', { name: this.docName }),
-      })
-    );
-
     const response = await fetch(src);
     const text = await response.text();
-    this.doc = new DOMParser().parseFromString(text, 'application/xml');
+    if (!text) return;
+
+    const doc = new DOMParser().parseFromString(text, 'application/xml');
+    const docName = src;
+    this.dispatchEvent(newOpenDocEvent(doc, docName));
 
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-
-    const validated = this.validate(this.doc, { fileName: this.docName });
-
-    if (this.doc) this.dispatchEvent(newPendingStateEvent(validated));
-
-    await validated;
-
-    this.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('openSCD.loaded', { name: this.docName }),
-      })
-    );
-    return;
   }
 
-  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
-  private loadFile(event: Event): void {
+  private async loadFile(event: Event): Promise<void> {
     const file =
       (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
-    if (file) {
-      this.docName = file.name;
-      this.setAttribute('src', URL.createObjectURL(file));
-    }
+    if (!file) return;
+
+    const text = await file.text();
+    const docName = file.name;
+    const doc = new DOMParser().parseFromString(text, 'application/xml');
+
+    this.dispatchEvent(newOpenDocEvent(doc, docName));
   }
 
   private saveAs(): void {
