@@ -24,7 +24,7 @@ describe('DAType wizards', () => {
 
     templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
 
-    doc = await fetch('/base/test/testfiles/datypes.scd')
+    doc = await fetch('/base/test/testfiles/templates/datypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;
@@ -40,9 +40,9 @@ describe('DAType wizards', () => {
     let primayAction: HTMLElement;
     beforeEach(async () => {
       const button = <HTMLElement>(
-        templates?.shadowRoot?.querySelector(
+        templates?.shadowRoot?.querySelectorAll(
           'mwc-icon-button[icon="playlist_add"]'
-        )
+        )[1]
       );
       button.click();
       await parent.updateComplete;

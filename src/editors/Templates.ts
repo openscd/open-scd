@@ -98,6 +98,36 @@ export default class TemplatesPlugin extends LitElement {
       <div id="containerTemplates">
         <section tabindex="0">
           <h1>
+            ${translate('scl.DOType')}
+            <nav>
+              <abbr title="${translate('add')}">
+                <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+              </abbr>
+            </nav>
+          </h1>
+          <filtered-list id="dotypelist">
+            ${Array.from(
+              this.doc.querySelectorAll(':root > DataTypeTemplates > DOType') ??
+                []
+            ).map(
+              dotype =>
+                html`<mwc-list-item
+                  twoline
+                  value="${identity(dotype)}"
+                  tabindex="0"
+                  hasMeta
+                  ><span>${dotype.getAttribute('id')}</span
+                  ><span slot="secondary">${dotype.getAttribute(
+                    'cdc'
+                  )}</span></span><span slot="meta"
+                    >${dotype.querySelectorAll('SDO, DA').length}</span
+                  ></mwc-list-item
+                >`
+            )}
+          </filtered-list>
+        </section>
+        <section tabindex="0">
+          <h1>
             ${translate('scl.DAType')}
             <nav>
               <abbr title="${translate('add')}">

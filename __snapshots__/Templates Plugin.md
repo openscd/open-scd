@@ -29,6 +29,253 @@
 <div id="containerTemplates">
   <section tabindex="0">
     <h1>
+      [scl.DOType]
+      <nav>
+        <abbr title="[add]">
+          <mwc-icon-button icon="playlist_add">
+          </mwc-icon-button>
+        </abbr>
+      </nav>
+    </h1>
+    <filtered-list id="dotypelist">
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="0"
+        twoline=""
+        value="#Dummy.LLN0.Mod"
+      >
+        <span>
+          Dummy.LLN0.Mod
+        </span>
+        <span slot="secondary">
+          ENC
+        </span>
+        <span slot="meta">
+          14
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Beh"
+      >
+        <span>
+          Dummy.LLN0.Beh
+        </span>
+        <span slot="secondary">
+          ENS
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Health"
+      >
+        <span>
+          Dummy.LLN0.Health
+        </span>
+        <span slot="secondary">
+          ENS
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.NamPlt"
+      >
+        <span>
+          Dummy.LLN0.NamPlt
+        </span>
+        <span slot="secondary">
+          LPL
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LPHD1.PhyNam"
+      >
+        <span>
+          Dummy.LPHD1.PhyNam
+        </span>
+        <span slot="secondary">
+          DPL
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LPHD1.Sim"
+      >
+        <span>
+          Dummy.LPHD1.Sim
+        </span>
+        <span slot="secondary">
+          SPC
+        </span>
+        <span slot="meta">
+          15
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.XCBR1.Pos"
+      >
+        <span>
+          Dummy.XCBR1.Pos
+        </span>
+        <span slot="secondary">
+          DPC
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.CSWI.Pos1"
+      >
+        <span>
+          Dummy.CSWI.Pos1
+        </span>
+        <span slot="secondary">
+          DPC
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.CSWI.Pos2"
+      >
+        <span>
+          Dummy.CSWI.Pos2
+        </span>
+        <span slot="secondary">
+          DPC
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.XCBR1.OpCnt"
+      >
+        <span>
+          Dummy.XCBR1.OpCnt
+        </span>
+        <span slot="secondary">
+          INS
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.XCBR1.NamPlt"
+      >
+        <span>
+          Dummy.XCBR1.NamPlt
+        </span>
+        <span slot="secondary">
+          LPL
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.XCBR1.BlkOpn"
+      >
+        <span>
+          Dummy.XCBR1.BlkOpn
+        </span>
+        <span slot="secondary">
+          SPC
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.SPS"
+      >
+        <span>
+          Dummy.SPS
+        </span>
+        <span slot="secondary">
+          SPS
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+    </filtered-list>
+  </section>
+  <section tabindex="0">
+    <h1>
       [scl.DAType]
       <nav>
         <abbr title="[add]">
@@ -43,34 +290,6 @@
         hasmeta=""
         mwc-list-item=""
         tabindex="0"
-        value="#AnalogueValue_i"
-      >
-        <span>
-          AnalogueValue_i
-        </span>
-        <span slot="meta">
-          1
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
-        value="#ScaledValueConfig"
-      >
-        <span>
-          ScaledValueConfig
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        hasmeta=""
-        mwc-list-item=""
-        tabindex="-1"
         value="#Dummy_origin"
       >
         <span>
