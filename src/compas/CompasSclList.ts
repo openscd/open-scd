@@ -1,17 +1,17 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {newLogEvent, newOpenDocEvent, newPendingStateEvent, newWizardEvent} from "../../foundation.js";
-import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
-import {string} from "fast-check";
-import {Validating} from "../../Validating.js";
 import {get} from "lit-translate";
+import {newOpenDocEvent, newPendingStateEvent, newWizardEvent} from "../foundation.js";
+import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
+import {Validating} from "../Validating.js";
+import {getSclDocument, listScls} from "./CompasService.js";
 
 @customElement('compas-scl-list')
 export class CompasSclListEditor extends Validating(LitElement) {
   @property({type: String})
-  code: string | undefined;
+  code = '';
 
   @property({type: Document})
-  scls: Document | undefined;
+  scls: Document | null = null;
 
   connectedCallback() {
     super.connectedCallback();
@@ -19,21 +19,16 @@ export class CompasSclListEditor extends Validating(LitElement) {
   }
 
   fetchData() {
-    fetch('http://localhost:8080/scl/v1/' + this.code + '/list')
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+    listScls(this.code)
       .then(scls => { this.scls = scls;})
   }
 
   openScl(id?: string) {
-    this.dispatchEvent(newPendingStateEvent(this.loadDoc(id)));
+    this.dispatchEvent(newPendingStateEvent(this.getSclDocument(id)));
   }
 
-  private async loadDoc(id?: string): Promise<void> {
-    const sclUrl = 'http://localhost:8080/scl/v1/' + this.code + '/' + id + '/scl';
-    const doc = await fetch(sclUrl)
-                        .then(response => response.text())
-                        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+  private async getSclDocument(id?: string): Promise<void> {
+    const doc = await getSclDocument(this.code, id ?? '');
     const docName = id + "." + this.code?.toLowerCase();
 
     document

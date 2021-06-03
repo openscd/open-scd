@@ -1,7 +1,7 @@
 import {html, LitElement} from 'lit-element';
 import {get} from "lit-translate";
 import {newWizardEvent, Wizard, WizardActor} from '../foundation.js';
-import '../editors/compas/compas-scltype-list.ts';
+import '../compas/CompasScltypeList.ts';
 
 export default class OpenCompasPlugin extends LitElement {
   async trigger(): Promise<void> {
