@@ -81,7 +81,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         .filter(plugin => plugin.installed && plugin.kind === 'editor')
         .map(plugin => this.addContent(plugin));
     }
-    get items(): InstalledPlugin[] {
+    get triggered(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'triggered')
         .map(plugin => this.addContent(plugin));

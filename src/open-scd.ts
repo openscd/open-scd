@@ -43,7 +43,6 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
   EditorAction,
-  newLogEvent,
   newOpenDocEvent,
   newPendingStateEvent,
   newWizardEvent,
@@ -244,7 +243,7 @@ export class OpenSCD extends Setting(
   get menu(): (MenuItem | 'divider')[] {
     const items: (MenuItem | 'divider')[] = [];
 
-    this.items.forEach(plugin =>
+    this.triggered.forEach(plugin =>
       items.push({
         icon: plugin.icon || pluginIcons['triggered'],
         name: plugin.name,
