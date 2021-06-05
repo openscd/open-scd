@@ -7,8 +7,11 @@ export const en = {
     value: 'Value',
     EnumVal: 'Enum Value',
     EnumType: 'Enum Type',
+    DA: 'Data attribute',
+    DO: 'Data object',
     DAType: 'Data Attribute Type',
     DOType: 'Data Object Type',
+    CDC: 'Common data class',
     Report: 'Report',
     LN: 'Logical Node',
   },
@@ -176,6 +179,14 @@ export const en = {
       sAddr: 'Short address',
       valKind: 'Value kind',
       valImport: 'Import value',
+    },
+  },
+  dotype: {
+    wizard: {
+      title: {
+        add: 'Add DOType',
+        edit: 'Edit DOType',
+      },
     },
   },
   lnode: {

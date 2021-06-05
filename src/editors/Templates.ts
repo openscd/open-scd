@@ -17,6 +17,8 @@ import {
   dATypeWizard,
 } from './templates/datype-wizards.js';
 
+import { dOTypeWizard } from './templates/dotype-wizards.js';
+
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -31,6 +33,11 @@ export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  openDOTypeWizard(identity: string): void {
+    const wizard = dOTypeWizard(identity, this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   openDATypeWizard(identity: string): void {
     const wizard = dATypeWizard(identity, this.doc);
@@ -105,7 +112,13 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <filtered-list id="dotypelist">
+          <filtered-list
+            id="dotypelist"
+            @selected=${(e: SingleSelectedEvent) =>
+              this.openDOTypeWizard(
+                (<ListItem>(<List>e.target).selected).value
+              )}
+          >
             ${Array.from(
               this.doc.querySelectorAll(':root > DataTypeTemplates > DOType') ??
                 []

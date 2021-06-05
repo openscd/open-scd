@@ -363,7 +363,7 @@ export function dATypeWizard(
             slot="graphic"
             icon="playlist_add"
             trailingIcon
-            label="${translate('scl.BDA')}"
+            label="${translate('scl.DA')}"
             @click=${(e: Event) => {
               const wizard = bDAWizard({
                 parent: datype,
