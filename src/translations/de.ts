@@ -184,6 +184,14 @@ export const de: Translations = {
       valImport: 'Wert importierbar',
     },
   },
+  dotype: {
+    wizard: {
+      title: {
+        add: 'DOType hinzufügen',
+        edit: 'DOType bearbeiten',
+      },
+    },
+  },
   lnode: {
     wizard: {
       title: {
