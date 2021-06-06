@@ -415,7 +415,7 @@
     </wizard-textfield>
     <mwc-button
       icon="playlist_add"
-      label="[scl.BDA]"
+      label="[scl.DA]"
       slot="graphic"
       trailingicon=""
     >
