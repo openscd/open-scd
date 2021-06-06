@@ -2,15 +2,130 @@ import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  EditorAction,
+  getReference,
+  getValue,
   identity,
   newActionEvent,
   newWizardEvent,
   patterns,
+  SCLTag,
   selector,
   Wizard,
+  WizardActor,
+  WizardInput,
 } from '../../foundation.js';
 
-import { updateIDNamingAction } from './foundation.js';
+import {
+  addReferencedDataTypes,
+  allDataTypeSelector,
+  updateIDNamingAction,
+} from './foundation.js';
+
+import { Select } from '@material/mwc-select';
+
+function addPredefinedDOType(
+  parent: Element,
+  templates: XMLDocument
+): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!);
+
+    if (!id) return [];
+
+    const existId = Array.from(
+      templates.querySelectorAll(allDataTypeSelector)
+    ).some(type => type.getAttribute('id') === id);
+
+    if (existId) return [];
+
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const values = <Select>inputs.find(i => i.label === 'values');
+    const selectedElement = values.selected
+      ? templates.querySelector(`DOType[id="${values.selected.value}"]`)
+      : null;
+    const element = values.selected
+      ? <Element>selectedElement!.cloneNode(true)
+      : parent.ownerDocument.createElement('DOType');
+
+    element.setAttribute('id', id);
+    if (desc) element.setAttribute('desc', desc);
+
+    const actions = [];
+
+    if (selectedElement)
+      addReferencedDataTypes(selectedElement, parent).forEach(action =>
+        actions.push(action)
+      );
+
+    actions.push({
+      new: {
+        parent,
+        element,
+        reference: getReference(parent, <SCLTag>element.tagName),
+      },
+    });
+
+    return actions;
+  };
+}
+
+export function createDOTypeWizard(
+  parent: Element,
+  templates: Document
+): Wizard {
+  return [
+    {
+      title: get('dotype.wizard.title.add'),
+      primary: {
+        icon: 'add',
+        label: get('add'),
+        action: addPredefinedDOType(parent, templates),
+      },
+      content: [
+        html`<mwc-select
+          fixedMenuPosition
+          outlined
+          icon="playlist_add_check"
+          label="values"
+          helper="Default enumerations"
+        >
+          ${Array.from(templates.querySelectorAll('DOType')).map(
+            datype =>
+              html`<mwc-list-item
+                graphic="icon"
+                hasMeta
+                value="${datype.getAttribute('id') ?? ''}"
+                ><span
+                  >${datype.getAttribute('id')?.replace('OpenSCD_', '')}</span
+                >
+                <span slot="meta"
+                  >${datype.querySelectorAll('SDO,DA').length}</span
+                >
+              </mwc-list-item>`
+          )}
+        </mwc-select>`,
+        html`<wizard-textfield
+          label="id"
+          helper="${translate('scl.id')}"
+          .maybeValue=${''}
+          required
+          maxlength="127"
+          minlength="1"
+          pattern="${patterns.nmToken}"
+          dialogInitialFocus
+        ></wizard-textfield>`,
+        html`<wizard-textfield
+          label="desc"
+          helper="${translate('scl.desc')}"
+          .maybeValue=${null}
+          nullable
+          pattern="${patterns.normalizedString}"
+        ></wizard-textfield>`,
+      ],
+    },
+  ];
+}
 
 export function dOTypeWizard(
   dOTypeIdentity: string,

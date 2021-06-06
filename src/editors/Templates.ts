@@ -17,7 +17,10 @@ import {
   dATypeWizard,
 } from './templates/datype-wizards.js';
 
-import { dOTypeWizard } from './templates/dotype-wizards.js';
+import {
+  createDOTypeWizard,
+  dOTypeWizard,
+} from './templates/dotype-wizards.js';
 
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { List } from '@material/mwc-list';
@@ -34,6 +37,19 @@ export default class TemplatesPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
+  async openCreateDOTypeWizard(): Promise<void> {
+    this.createDataTypeTemplates();
+
+    this.dispatchEvent(
+      newWizardEvent(
+        createDOTypeWizard(
+          this.doc.querySelector(':root > DataTypeTemplates')!,
+          await templates
+        )
+      )
+    );
+  }
+
   openDOTypeWizard(identity: string): void {
     const wizard = dOTypeWizard(identity, this.doc);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -44,7 +60,6 @@ export default class TemplatesPlugin extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   async openCreateDATypeWizard(): Promise<void> {
     this.createDataTypeTemplates();
 
@@ -58,7 +73,6 @@ export default class TemplatesPlugin extends LitElement {
     );
   }
 
-  /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   async openCreateEnumWizard(): Promise<void> {
     this.createDataTypeTemplates();
 
@@ -108,7 +122,10 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.DOType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+                <mwc-icon-button
+                  icon="playlist_add"
+                  @click=${() => this.openCreateDOTypeWizard()}
+                ></mwc-icon-button>
               </abbr>
             </nav>
           </h1>
