@@ -127,6 +127,29 @@ export function createDOTypeWizard(
   ];
 }
 
+function updateDOTypeAction(element: Element): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!)!;
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const cdc = getValue(inputs.find(i => i.label === 'CDC')!)!;
+
+    if (
+      id === element.getAttribute('id') &&
+      desc === element.getAttribute('desc') &&
+      cdc == element.getAttribute('cdc')
+    )
+      return [];
+
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('id', id);
+    if (desc === null) newElement.removeAttribute('desc');
+    else newElement.setAttribute('desc', desc);
+    newElement.setAttribute('cdc', cdc);
+
+    return [{ old: { element }, new: { element: newElement } }];
+  };
+}
+
 export function dOTypeWizard(
   dOTypeIdentity: string,
   doc: XMLDocument
@@ -140,7 +163,7 @@ export function dOTypeWizard(
       primary: {
         icon: '',
         label: get('save'),
-        action: updateIDNamingAction(dotype),
+        action: updateDOTypeAction(dotype),
       },
       content: [
         html`<mwc-button
