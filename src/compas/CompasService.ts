@@ -1,4 +1,4 @@
-const baseUrl = '/compas-scl-data-service'; //http://localhost:9090
+const baseUrl = 'http://localhost:9090/compas-scl-data-service';
 
 export function listSclTypes(): Promise<Document> {
   return fetch(baseUrl + '/common/v1/type/list')

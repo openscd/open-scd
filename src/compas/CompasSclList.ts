@@ -6,7 +6,7 @@ import {Validating} from "../Validating.js";
 import {getSclDocument, listScls} from "./CompasService.js";
 
 @customElement('compas-scl-list')
-export class CompasSclListEditor extends Validating(LitElement) {
+export class CompasSclList extends Validating(LitElement) {
   @property({type: String})
   code = '';
 

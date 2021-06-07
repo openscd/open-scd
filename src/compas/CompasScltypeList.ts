@@ -7,7 +7,7 @@ import {listSclTypes} from "./CompasService.js";
 import './CompasSclList.ts';
 
 @customElement('compas-scltype-list')
-export class CompasSclTypeListEditor extends LitElement {
+export class CompasSclTypeList extends LitElement {
   @property({type: Document})
   sclTypes: Document | undefined;
 

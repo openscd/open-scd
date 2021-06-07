@@ -2,7 +2,7 @@ export const officialPlugins = [
   {
     name: 'Open file',
     src: '/src/triggered/OpenFile.js',
-    icon: 'coronavirus',
+    icon: 'folder_open',
     default: true,
     kind: 'triggered'
   },
@@ -30,7 +30,7 @@ export const officialPlugins = [
   {
     name: "Open from CoMPAS",
     src: "/src/triggered/OpenCompas.js",
-    icon: "snippet_folder",
+    icon: "folder_open",
     default: true,
     kind: "triggered"
   },
