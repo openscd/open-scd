@@ -8,6 +8,7 @@ export const en = {
     EnumVal: 'Enum Value',
     EnumType: 'Enum Type',
     DAType: 'Data Attribute Type',
+    DOType: 'Data Object Type',
     Report: 'Report',
     LN: 'Logical Node',
   },
