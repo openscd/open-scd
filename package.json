@@ -88,7 +88,7 @@
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0",
     "sinon": "^10.0.0",
-    "snowpack": "^3.4.0",
+    "snowpack": "3.0.13",
     "standard-version": "^9.3.0",
     "tslib": "^2.2.0",
     "typedoc": "^0.20.36",
