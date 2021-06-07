@@ -16,6 +16,11 @@ export const de: Translations = {
     CDC: ' Datenklasse nach 7-3',
     Report: 'Report',
     LN: 'Logischer Knoten',
+    bType: 'Basic type',
+    type: 'Type',
+    sAddr: 'Short address',
+    valKind: 'Value kind',
+    valImport: 'Import value',
   },
   settings: {
     name: 'Einstellungen',
@@ -177,11 +182,22 @@ export const de: Translations = {
         add: 'BDA hinzufügen',
         edit: 'BDA bearbeiten',
       },
-      bType: 'Basistyp',
-      type: 'Typ',
-      sAddr: 'Kurze Adresse',
-      valKind: 'Art von Wert',
-      valImport: 'Wert importierbar',
+    },
+  },
+  da: {
+    wizard: {
+      title: {
+        add: 'Add DA',
+        edit: 'Edit DA',
+      },
+    },
+  },
+  sdo: {
+    wizard: {
+      title: {
+        add: 'SDO hinzufügen',
+        edit: 'SDO bearbeiten',
+      },
     },
   },
   dotype: {

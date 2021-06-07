@@ -240,7 +240,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="bType"
-          helper="${translate('bda.wizard.bType')}"
+          helper="${translate('scl.bType')}"
           required
           @selected=${(e: SelectedEvent) => {
             const bTypeOriginal = bda?.getAttribute('bType') ?? '';
@@ -254,8 +254,9 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
 
             Array.from(typeUI.children).forEach(child => {
               (<ListItem>child).disabled = !child.classList.contains(bType);
-              (<ListItem>child).noninteractive =
-                !child.classList.contains(bType);
+              (<ListItem>child).noninteractive = !child.classList.contains(
+                bType
+              );
               (<ListItem>child).style.display = !child.classList.contains(bType)
                 ? 'none'
                 : '';
@@ -273,7 +274,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="type"
-          helper="${translate('bda.wizard.type')}"
+          helper="${translate('scl.type')}"
           >${types.map(
             dataType =>
               html`<mwc-list-item
@@ -286,21 +287,21 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
         >`,
         html`<wizard-textfield
           label="sAddr"
-          helper="${translate('bda.wizard.sAddr')}"
+          helper="${translate('scl.sAddr')}"
           .maybeValue=${sAddr}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<mwc-select
           label="valKind"
-          helper="${translate('bda.wizard.valKind')}"
+          helper="${translate('scl.valKind')}"
           fixedMenuPosition
           >${valKindList}</mwc-select
         >`,
         html`<mwc-select
           fixedMenuPosition
           label="valImport"
-          helper="${translate('bda.wizard.valImport')}"
+          helper="${translate('scl.valImport')}"
           >${valImportList}</mwc-select
         >`,
       ],

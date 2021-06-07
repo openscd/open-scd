@@ -110,7 +110,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
 
   const [title, action, type, deleteButton, name, desc] = sdo
     ? [
-        get('bda.wizard.title.edit'),
+        get('sdo.wizard.title.edit'),
         updateSDoAction(sdo),
         sdo.getAttribute('type'),
         html`<mwc-button
@@ -135,7 +135,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         sdo.getAttribute('desc'),
       ]
     : [
-        get('bda.wizard.title.add'),
+        get('sdo.wizard.title.add'),
         createSDoAction((<CreateOptions>options).parent),
         null,
         html``,
@@ -173,7 +173,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="type"
-          helper="${translate('bda.wizard.type')}"
+          helper="${translate('scl.type')}"
           >${types.map(
             dataType =>
               html`<mwc-list-item
@@ -308,7 +308,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
     valImportList,
   ] = da
     ? [
-        get('bda.wizard.title.edit'),
+        get('da.wizard.title.edit'),
         updateDaAction(da),
         da.getAttribute('type'),
         html`<mwc-button
@@ -343,7 +343,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
         ),
       ]
     : [
-        get('bda.wizard.title.add'),
+        get('da.wizard.title.add'),
         createDaAction((<CreateOptions>options).parent),
         null,
         html``,
@@ -385,7 +385,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="bType"
-          helper="${translate('bda.wizard.bType')}"
+          helper="${translate('scl.bType')}"
           required
           @selected=${(e: SelectedEvent) => {
             const bTypeOriginal = da?.getAttribute('bType') ?? '';
@@ -399,8 +399,9 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
 
             Array.from(typeUI.children).forEach(child => {
               (<ListItem>child).disabled = !child.classList.contains(bType);
-              (<ListItem>child).noninteractive =
-                !child.classList.contains(bType);
+              (<ListItem>child).noninteractive = !child.classList.contains(
+                bType
+              );
               (<ListItem>child).style.display = !child.classList.contains(bType)
                 ? 'none'
                 : '';
@@ -418,7 +419,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="type"
-          helper="${translate('bda.wizard.type')}"
+          helper="${translate('scl.type')}"
           >${types.map(
             dataType =>
               html`<mwc-list-item
@@ -431,21 +432,21 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
         >`,
         html`<wizard-textfield
           label="sAddr"
-          helper="${translate('bda.wizard.sAddr')}"
+          helper="${translate('scl.sAddr')}"
           .maybeValue=${sAddr}
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
         html`<mwc-select
           label="valKind"
-          helper="${translate('bda.wizard.valKind')}"
+          helper="${translate('scl.valKind')}"
           fixedMenuPosition
           >${valKindList}</mwc-select
         >`,
         html`<mwc-select
           fixedMenuPosition
           label="valImport"
-          helper="${translate('bda.wizard.valImport')}"
+          helper="${translate('scl.valImport')}"
           >${valImportList}</mwc-select
         >`,
       ],

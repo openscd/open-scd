@@ -14,6 +14,11 @@ export const en = {
     CDC: 'Common data class',
     Report: 'Report',
     LN: 'Logical Node',
+    bType: 'Basic type',
+    type: 'Type',
+    sAddr: 'Short address',
+    valKind: 'Value kind',
+    valImport: 'Import value',
   },
   settings: {
     name: 'Settings',
@@ -174,11 +179,22 @@ export const en = {
         add: 'Add BDA',
         edit: 'Edit BDA',
       },
-      bType: 'Basic type',
-      type: 'Type',
-      sAddr: 'Short address',
-      valKind: 'Value kind',
-      valImport: 'Import value',
+    },
+  },
+  da: {
+    wizard: {
+      title: {
+        add: 'Add DA',
+        edit: 'Edit DA',
+      },
+    },
+  },
+  sdo: {
+    wizard: {
+      title: {
+        add: 'Add SDO',
+        edit: 'Edit SDO',
+      },
     },
   },
   dotype: {
