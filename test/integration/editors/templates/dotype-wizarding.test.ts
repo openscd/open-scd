@@ -103,7 +103,7 @@ describe('DOType wizards', () => {
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      await new Promise(resolve => setTimeout(resolve, 1000)); // await animation
       expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValueFloat32"]')).to
         .exist;
       expect(
