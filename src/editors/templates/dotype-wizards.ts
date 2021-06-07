@@ -173,6 +173,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-select
           fixedMenuPosition
           label="type"
+          required
           helper="${translate('scl.type')}"
           >${types.map(
             dataType =>
@@ -399,9 +400,8 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
 
             Array.from(typeUI.children).forEach(child => {
               (<ListItem>child).disabled = !child.classList.contains(bType);
-              (<ListItem>child).noninteractive = !child.classList.contains(
-                bType
-              );
+              (<ListItem>child).noninteractive =
+                !child.classList.contains(bType);
               (<ListItem>child).style.display = !child.classList.contains(bType)
                 ? 'none'
                 : '';
