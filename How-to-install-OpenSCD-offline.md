@@ -9,10 +9,13 @@ For `Web Server for Chrome`
 * Extract `open-scd.zip`
 * Start the web server 
 * Click on `CHOOSE FOLDER`
-* Navigate to the extracted `open-scd` folder 
+* Navigate to the extracted `open-scd` folder (You see folders .git, doc, public and other).
 * Click on the web server URL within `WEb Server for Chrome`
-* If you use `Chrome` or `Edge` you can install OpenSCD
+*  ![WebServer](https://user-images.githubusercontent.com/66802940/121010207-685e5800-c795-11eb-8805-ca59e1a2d98b.png)
 
+
+* If you use `Chrome` or `Edge` you can install OpenSCD
+* ![InstallOpenSCD](https://user-images.githubusercontent.com/66802940/121010699-0520f580-c796-11eb-9e9e-4ec8a314be4c.png)
 
 
 
