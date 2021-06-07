@@ -563,7 +563,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.bType]"
+      helper="[scl.bType]"
       label="bType"
       required=""
     >
@@ -887,7 +887,7 @@
     </mwc-select>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.type]"
+      helper="[scl.type]"
       label="type"
     >
       <mwc-list-item
@@ -995,7 +995,7 @@
     </mwc-select>
     <wizard-textfield
       disabled=""
-      helper="[bda.wizard.sAddr]"
+      helper="[scl.sAddr]"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -1003,7 +1003,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.valKind]"
+      helper="[scl.valKind]"
       label="valKind"
     >
       <mwc-list-item
@@ -1054,7 +1054,7 @@
     </mwc-select>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.valImport]"
+      helper="[scl.valImport]"
       label="valImport"
     >
       <mwc-list-item
@@ -1135,7 +1135,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.bType]"
+      helper="[scl.bType]"
       label="bType"
       required=""
     >
@@ -1459,7 +1459,7 @@
     </mwc-select>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.type]"
+      helper="[scl.type]"
       label="type"
     >
       <mwc-list-item
@@ -1570,7 +1570,7 @@
     </mwc-select>
     <wizard-textfield
       disabled=""
-      helper="[bda.wizard.sAddr]"
+      helper="[scl.sAddr]"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -1578,7 +1578,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.valKind]"
+      helper="[scl.valKind]"
       label="valKind"
     >
       <mwc-list-item
@@ -1629,7 +1629,7 @@
     </mwc-select>
     <mwc-select
       fixedmenuposition=""
-      helper="[bda.wizard.valImport]"
+      helper="[scl.valImport]"
       label="valImport"
     >
       <mwc-list-item
