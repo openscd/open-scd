@@ -19,6 +19,7 @@ export const en = {
     sAddr: 'Short address',
     valKind: 'Value kind',
     valImport: 'Import value',
+    fc: 'Function contraint',
   },
   settings: {
     name: 'Settings',

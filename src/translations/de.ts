@@ -21,6 +21,7 @@ export const de: Translations = {
     sAddr: 'Short address',
     valKind: 'Value kind',
     valImport: 'Import value',
+    fc: 'Funktionale Einschränkung',
   },
   settings: {
     name: 'Einstellungen',

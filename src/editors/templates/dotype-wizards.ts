@@ -22,6 +22,7 @@ import {
   addReferencedDataTypes,
   allDataTypeSelector,
   buildListFromStringArray,
+  functionalConstraintEnum,
   predefinedBasicTypeEnum,
   valKindEnum,
 } from './foundation.js';
@@ -307,6 +308,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
     sAddr,
     valKindList,
     valImportList,
+    fcList,
   ] = da
     ? [
         get('da.wizard.title.edit'),
@@ -342,6 +344,10 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
           [null, 'true', 'false'],
           da.getAttribute('valImport')
         ),
+        buildListFromStringArray(
+          functionalConstraintEnum,
+          da.getAttribute('fc')
+        ),
       ]
     : [
         get('da.wizard.title.add'),
@@ -354,6 +360,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
         null,
         buildListFromStringArray(valKindEnum, null),
         buildListFromStringArray([null, 'true', 'false'], null),
+        buildListFromStringArray(functionalConstraintEnum, null),
       ];
 
   const types = Array.from(doc.querySelectorAll('DAType, EnumType'))
@@ -448,6 +455,13 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
           label="valImport"
           helper="${translate('scl.valImport')}"
           >${valImportList}</mwc-select
+        >`,
+        html`<mwc-select
+          label="fc"
+          helper="${translate('scl.fc')}"
+          required
+          fixedMenuPosition
+          >${fcList}</mwc-select
         >`,
       ],
     },

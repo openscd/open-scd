@@ -294,6 +294,7 @@
   >
   </mwc-button>
 </mwc-dialog>
+
 ```
 
 ## `defines a dOTypeWizard`
@@ -583,6 +584,7 @@
   >
   </mwc-button>
 </mwc-dialog>
+
 ```
 
 ## `defines a dAWizard to edit an existing DA`
@@ -1188,6 +1190,123 @@
         false
       </mwc-list-item>
     </mwc-select>
+    <mwc-select
+      fixedmenuposition=""
+      helper="[scl.fc]"
+      label="fc"
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+        value="ST"
+      >
+        ST
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="MX"
+      >
+        MX
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SP"
+      >
+        SP
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SV"
+      >
+        SV
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="CF"
+      >
+        CF
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="DC"
+      >
+        DC
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SG"
+      >
+        SG
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SE"
+      >
+        SE
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SR"
+      >
+        SR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OR"
+      >
+        OR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="BL"
+      >
+        BL
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="EX"
+      >
+        EX
+      </mwc-list-item>
+    </mwc-select>
   </div>
   <mwc-button
     dialogaction="close"
@@ -1205,6 +1324,7 @@
   >
   </mwc-button>
 </mwc-dialog>
+
 ```
 
 ## `defines a dAWizard to create a new DA element`
@@ -1808,6 +1928,121 @@
         false
       </mwc-list-item>
     </mwc-select>
+    <mwc-select
+      fixedmenuposition=""
+      helper="[scl.fc]"
+      label="fc"
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+        value="ST"
+      >
+        ST
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="MX"
+      >
+        MX
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SP"
+      >
+        SP
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SV"
+      >
+        SV
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="CF"
+      >
+        CF
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="DC"
+      >
+        DC
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SG"
+      >
+        SG
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SE"
+      >
+        SE
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SR"
+      >
+        SR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OR"
+      >
+        OR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="BL"
+      >
+        BL
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="EX"
+      >
+        EX
+      </mwc-list-item>
+    </mwc-select>
   </div>
   <mwc-button
     dialogaction="close"
@@ -1825,6 +2060,7 @@
   >
   </mwc-button>
 </mwc-dialog>
+
 ```
 
 ## `defines a sDOWizard to edit an existing SDO`

@@ -10,7 +10,6 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 describe('DOType wizards', () => {
   let doc: Document;
-  //customElements.define('templates-editor', TemplatesPlugin);
   let parent: MockWizardEditor;
   let templates: TemplatesPlugin;
   let dOTypeList: FilteredList;
@@ -63,7 +62,6 @@ describe('DOType wizards', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-
     it('allows to add empty DOTypes to the project', async () => {
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
       idField.maybeValue = 'myGeneralDOType';
@@ -290,6 +288,7 @@ describe('DOType wizards', () => {
     let typeSelect: Select;
     let valKindSelect: Select;
     let valImportSelect: Select;
+    let fcSelect: Select;
     let primayAction: HTMLElement;
 
     beforeEach(async () => {
@@ -327,6 +326,9 @@ describe('DOType wizards', () => {
       valImportSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="valImport"]')
       );
+      fcSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="fc"]')
+      );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
@@ -344,6 +346,7 @@ describe('DOType wizards', () => {
         )
       ).to.not.exist;
       nameField.value = 'newDAElement';
+      fcSelect.value = 'ST';
       await parent.requestUpdate();
       primayAction.click();
       await parent.requestUpdate();
@@ -371,6 +374,7 @@ describe('DOType wizards', () => {
       bTypeSelect.value = 'BOOLEAN';
       valKindSelect.value = 'RO';
       valImportSelect.value = 'true';
+      fcSelect.value = 'ST';
 
       await parent.requestUpdate();
       primayAction.click();
