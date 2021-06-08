@@ -29,6 +29,163 @@
 <div id="containerTemplates">
   <section tabindex="0">
     <h1>
+      [scl.LNodeType]
+      <nav>
+        <abbr title="[add]">
+          <mwc-icon-button icon="playlist_add">
+          </mwc-icon-button>
+        </abbr>
+      </nav>
+    </h1>
+    <filtered-list id="lnodetype">
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="0"
+        twoline=""
+        value="#Dummy.LLN0"
+      >
+        <span>
+          Dummy.LLN0
+        </span>
+        <span slot="secondary">
+          LLN0
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LPHD1"
+      >
+        <span>
+          Dummy.LPHD1
+        </span>
+        <span slot="secondary">
+          LPHD
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.XCBR1"
+      >
+        <span>
+          Dummy.XCBR1
+        </span>
+        <span slot="secondary">
+          XCBR
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.CSWI"
+      >
+        <span>
+          Dummy.CSWI
+        </span>
+        <span slot="secondary">
+          CSWI
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.CILO"
+      >
+        <span>
+          Dummy.CILO
+        </span>
+        <span slot="secondary">
+          CILO
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.CSWIwithoutCtlModel"
+      >
+        <span>
+          Dummy.CSWIwithoutCtlModel
+        </span>
+        <span slot="secondary">
+          CSWI
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.XSWI1"
+      >
+        <span>
+          Dummy.XSWI1
+        </span>
+        <span slot="secondary">
+          XSWI
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.GGIO1"
+      >
+        <span>
+          Dummy.GGIO1
+        </span>
+        <span slot="secondary">
+          GGIO
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+    </filtered-list>
+  </section>
+  <section tabindex="0">
+    <h1>
       [scl.DOType]
       <nav>
         <abbr title="[add]">

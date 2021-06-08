@@ -20,6 +20,7 @@ export const en = {
     valKind: 'Value kind',
     valImport: 'Import value',
     fc: 'Function contraint',
+    LNodeType: 'Logical Node Type',
   },
   settings: {
     name: 'Settings',

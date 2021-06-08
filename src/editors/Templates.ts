@@ -119,6 +119,37 @@ export default class TemplatesPlugin extends LitElement {
       <div id="containerTemplates">
         <section tabindex="0">
           <h1>
+            ${translate('scl.LNodeType')}
+            <nav>
+              <abbr title="${translate('add')}">
+                <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+              </abbr>
+            </nav>
+          </h1>
+          <filtered-list id="lnodetype">
+            ${Array.from(
+              this.doc.querySelectorAll(
+                ':root > DataTypeTemplates > LNodeType'
+              ) ?? []
+            ).map(
+              lnodetype =>
+                html`<mwc-list-item
+              twoline
+              value="${identity(lnodetype)}"
+              tabindex="0"
+              hasMeta
+              ><span>${lnodetype.getAttribute('id')}</span
+              ><span slot="secondary">${lnodetype.getAttribute(
+                'lnClass'
+              )}</span></span><span slot="meta"
+                >${lnodetype.querySelectorAll('DO').length}</span
+              ></mwc-list-item
+            >`
+            )}
+          </filtered-list>
+        </section>
+        <section tabindex="0">
+          <h1>
             ${translate('scl.DOType')}
             <nav>
               <abbr title="${translate('add')}">
