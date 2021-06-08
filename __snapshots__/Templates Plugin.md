@@ -37,7 +37,7 @@
         </abbr>
       </nav>
     </h1>
-    <filtered-list id="lnodetype">
+    <filtered-list id="lnodetypelist">
       <mwc-list-item
         aria-disabled="false"
         hasmeta=""

@@ -23,6 +23,7 @@ export const de: Translations = {
     valImport: 'Import value',
     fc: 'Funktionale Einschränkung',
     LNodeType: 'Logischer Knoten Type',
+    lnClass: 'Klasse logischer Knoten',
   },
   settings: {
     name: 'Einstellungen',

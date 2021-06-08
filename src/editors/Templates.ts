@@ -26,6 +26,7 @@ import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { lNodeTypeWizard } from './templates/lnodetype-wizard.js';
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
@@ -36,6 +37,11 @@ export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  openLNodeTypeWizard(identity: string): void {
+    const wizard = lNodeTypeWizard(identity, this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   async openCreateDOTypeWizard(): Promise<void> {
     this.createDataTypeTemplates();
@@ -126,7 +132,13 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <filtered-list id="lnodetype">
+          <filtered-list
+            id="lnodetypelist"
+            @selected=${(e: SingleSelectedEvent) =>
+              this.openLNodeTypeWizard(
+                (<ListItem>(<List>e.target).selected).value
+              )}
+          >
             ${Array.from(
               this.doc.querySelectorAll(
                 ':root > DataTypeTemplates > LNodeType'
