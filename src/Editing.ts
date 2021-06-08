@@ -54,6 +54,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     @property({ type: String }) docName = '';
     /** The UUID of the current [[`doc`]] */
     @property({ type: String }) docId = '';
+    /** The type of the current [[`doc`]] */
+    @property({ type: String }) docType = '';
 
     private checkCreateValidity(create: Create): boolean {
       if (create.checkValidity !== undefined) return create.checkValidity();
@@ -262,6 +264,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.doc = event.detail.doc;
       this.docName = event.detail.docName;
       this.docId = event.detail.docId ?? '';
+      this.docType = (event.detail.docType ?? '').toLowerCase();
 
       this.dispatchEvent(
         newLogEvent({

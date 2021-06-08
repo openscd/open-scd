@@ -35,6 +35,13 @@ export const officialPlugins = [
     kind: "triggered"
   },
   {
+    name: "Save to CoMPAS",
+    src: "/src/triggered/SaveToCompas.js",
+    icon: "folder_open",
+    default: true,
+    kind: "triggered"
+  },
+  {
     name: "Import IEDs",
     src: "/src/triggered/ImportIEDs.js",
     icon: "snippet_folder",

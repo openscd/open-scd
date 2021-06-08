@@ -1,14 +1,14 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get} from "lit-translate";
-import {newOpenDocEvent, newPendingStateEvent, newWizardEvent} from "../foundation.js";
+import {newOpenDocEvent, newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
-import {Validating} from "../Validating.js";
 import {getSclDocument, listScls} from "./CompasService.js";
+import {compasSclTypeListWizardActor} from "./CompasScltype.js";
 
 @customElement('compas-scl-list')
-export class CompasSclList extends Validating(LitElement) {
+export class CompasScl extends LitElement {
   @property({type: String})
-  code = '';
+  type = '';
 
   @property({type: Document})
   scls: Document | null = null;
@@ -19,7 +19,7 @@ export class CompasSclList extends Validating(LitElement) {
   }
 
   fetchData() {
-    listScls(this.code)
+    listScls(this.type)
       .then(scls => { this.scls = scls;})
   }
 
@@ -28,12 +28,12 @@ export class CompasSclList extends Validating(LitElement) {
   }
 
   private async getSclDocument(id?: string): Promise<void> {
-    const doc = await getSclDocument(this.code, id ?? '');
-    const docName = id + "." + this.code?.toLowerCase();
+    const doc = await getSclDocument(this.type, id ?? '');
+    const docName = id + "." + this.type?.toLowerCase();
 
     document
       .querySelector('open-scd')!
-      .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
+      .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id, docType: this.type}}));
   }
 
   render(): TemplateResult {
@@ -63,4 +63,20 @@ export class CompasSclList extends Validating(LitElement) {
               })}
           </mwc-list>`
   }
+}
+
+export function listSclsWizard(type: string): Wizard {
+  return [
+    {
+      title: get('compas.open.listScls', {type: type}),
+      secondary: {
+        icon: '',
+        label: get('cancel'),
+        action: compasSclTypeListWizardActor(),
+      },
+      content: [
+        html`<compas-scl-list .type="${type}"/>`,
+      ],
+    },
+  ];
 }

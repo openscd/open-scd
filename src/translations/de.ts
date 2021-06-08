@@ -260,8 +260,11 @@ export const de: Translations = {
     open: {
       listSclTypes: '???',
       noSclTypes: '???',
-      listScls: '??? ({{ code }})',
+      listScls: '??? ({{ type }})',
       noScls: "???",
+    },
+    saveTo: {
+      title: "???"
     }
   },
 };

@@ -266,6 +266,7 @@ export interface OpenDocDetail {
   doc: XMLDocument;
   docName: string;
   docId?: string;
+  docType?: string;
 }
 export type OpenDocEvent = CustomEvent<OpenDocDetail>;
 export function newOpenDocEvent(

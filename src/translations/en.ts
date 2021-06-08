@@ -257,8 +257,11 @@ export const en = {
     open: {
       listSclTypes: 'Type of SCL',
       noSclTypes: 'No types found',
-      listScls: 'List of SCL ({{ code }})',
+      listScls: 'List of SCL ({{ type }})',
       noScls: 'No SCLs found',
+    },
+    saveTo: {
+      title: "Save to Compas"
     }
   },
 };
