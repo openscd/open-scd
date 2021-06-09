@@ -9,13 +9,13 @@ export function listSclTypes(): Promise<Document> {
 }
 
 export function listScls(type: string): Promise<Document> {
-  return fetch(baseUrl + '/scl/v1/' + type + '/list')
+  return fetch(baseUrl + '/scl/v1/' + type?.toUpperCase() + '/list')
     .then(response => response.text())
     .then(str => new DOMParser().parseFromString(str, 'application/xml'))
 }
 
 export function getSclDocument(type: string, id: string): Promise<Document> {
-  const sclUrl = baseUrl + '/scl/v1/' + type + '/' + id + '/scl';
+  const sclUrl = baseUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/scl';
   return fetch(sclUrl)
     .then(response => response.text())
     .then(str => new DOMParser().parseFromString(str, 'application/xml'))
@@ -26,7 +26,7 @@ export interface CreateRequestBody {
   doc: Document
 }
 export function addSclDocument(type: string, body: CreateRequestBody): Promise<Document> {
-  const sclUrl = baseUrl + '/scl/v1/' + type;
+  const sclUrl = baseUrl + '/scl/v1/' + type?.toUpperCase();
   return fetch(sclUrl, {
       method: 'POST',
       headers: {
@@ -47,7 +47,7 @@ export interface UpdateRequestBody {
   doc: Document
 }
 export function updateSclDocument(type: string, id: string, body: UpdateRequestBody): Promise<Response> {
-  const sclUrl = baseUrl + '/scl/v1/' + type + '/' + id;
+  const sclUrl = baseUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
   return fetch(sclUrl, {
       method: 'PUT',
       headers: {

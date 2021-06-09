@@ -33,7 +33,7 @@ export class CompasScl extends LitElement {
 
     document
       .querySelector('open-scd')!
-      .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id, docType: this.type}}));
+      .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id, docType: this.type?.toLowerCase()}}));
   }
 
   render(): TemplateResult {

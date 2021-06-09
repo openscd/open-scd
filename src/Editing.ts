@@ -264,7 +264,7 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       this.doc = event.detail.doc;
       this.docName = event.detail.docName;
       this.docId = event.detail.docId ?? '';
-      this.docType = (event.detail.docType ?? '').toLowerCase();
+      this.docType = event.detail.docType ?? '';
 
       this.dispatchEvent(
         newLogEvent({
