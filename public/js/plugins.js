@@ -1,12 +1,5 @@
 export const officialPlugins = [
   {
-    name: 'Open file',
-    src: '/src/triggered/OpenFile.js',
-    icon: 'folder_open',
-    default: true,
-    kind: 'triggered'
-  },
-  {
     name: 'Substation',
     src: '/src/editors/Substation.js',
     icon: 'margin',
@@ -26,6 +19,13 @@ export const officialPlugins = [
     icon: 'copy_all',
     default: true,
     kind: 'editor',
+  },
+  {
+    name: 'Open project',
+    src: '/src/loaders/OpenProject.js',
+    icon: 'folder_open',
+    default: true,
+    kind: 'loader'
   },
   {
     name: "Import IEDs",

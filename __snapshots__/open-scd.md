@@ -13,12 +13,6 @@
     Menu
   </span>
   <mwc-list wrapfocus="">
-    <li
-      divider=""
-      padded=""
-      role="separator"
-    >
-    </li>
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -32,7 +26,15 @@
       <span>
         Open project
       </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
     </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -344,11 +346,6 @@
     </div>
   </mwc-icon-button>
 </div>
-<input
-  accept=".scd,.ssd"
-  id="file-input"
-  type="file"
->
 <mwc-dialog
   heading="Log"
   id="log"
@@ -520,6 +517,24 @@
       Templates
       <mwc-icon slot="meta">
         tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/loaders/OpenProject.js"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      Open project
+      <mwc-icon slot="meta">
+        folder_open
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
