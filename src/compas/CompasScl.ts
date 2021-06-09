@@ -10,8 +10,8 @@ export class CompasScl extends LitElement {
   @property({type: String})
   type = '';
 
-  @property({type: Document})
-  scls: Document | null = null;
+  @property()
+  scls!: Element[];
 
   connectedCallback() {
     super.connectedCallback();
@@ -20,7 +20,7 @@ export class CompasScl extends LitElement {
 
   fetchData() {
     listScls(this.type)
-      .then(scls => { this.scls = scls;})
+      .then(scls => { this.scls = Array.from(scls.querySelectorAll('Item') ?? [])})
   }
 
   openScl(id?: string) {
@@ -40,8 +40,7 @@ export class CompasScl extends LitElement {
     if (!this.scls) {
       return html `<mwc-list><mwc-list-item>Loading...</mwc-list-item></mwc-list>`
     }
-    const scls = Array.from(this.scls.querySelectorAll('Item') ?? []);
-    if (scls?.length <= 0) {
+    if (this.scls?.length <= 0) {
       return html `<mwc-list>
                         <mwc-list-item>
                           ${get("compas.open.noScls")}
@@ -50,7 +49,7 @@ export class CompasScl extends LitElement {
     }
     return html`
           <mwc-list>
-            ${scls.map( item => {
+            ${this.scls.map( item => {
                 const id = item.getElementsByTagName("Id").item(0);
                 const version = item.getElementsByTagName("Version").item(0);
                 return html`<mwc-list-item tabindex="0"

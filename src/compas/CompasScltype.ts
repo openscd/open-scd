@@ -8,7 +8,7 @@ import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
 
 @customElement('compas-scltype-list')
 export class CompasScltypeList extends LitElement {
-  @property({type: Document})
+  @property()
   sclTypes!: Element[];
 
   connectedCallback() {
@@ -90,12 +90,12 @@ export class CompasScltypeRadiogroup extends LitElement {
     return html`
       <mwc-list activatable>
         ${this.sclTypes.map( type => {
-      const code = type.getElementsByTagName("Code").item(0);
-      const description = type.getElementsByTagName("Description").item(0);
-      return html`<mwc-radio-list-item value="${code!.textContent ?? ''}" left>
+          const code = type.getElementsByTagName("Code").item(0);
+          const description = type.getElementsByTagName("Description").item(0);
+          return html`<mwc-radio-list-item value="${code!.textContent ?? ''}" left>
                               <span>${description} (${code})</span>
                       </mwc-radio-list-item>`;
-    })}
+        })}
       </mwc-list>`
   }
 }

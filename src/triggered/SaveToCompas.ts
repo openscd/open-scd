@@ -9,7 +9,7 @@ export default class SaveCompasPlugin extends LitElement {
   docType!: string;
 
   async trigger(): Promise<void> {
-    this.dispatchEvent(newWizardEvent(saveToCompasWizard(this.doc, this.docName, this.docId, this.docType)));
+    this.dispatchEvent(newWizardEvent(saveToCompasWizard(this.doc, {docName: this.docName, docId: this.docId, docType: this.docType})));
   }
 }
 
