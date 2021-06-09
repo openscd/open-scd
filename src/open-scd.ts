@@ -302,9 +302,9 @@ export class OpenSCD extends Setting(
     if (triggered.length > 0) triggered.push('divider');
 
     return [
+      'divider',
       ...loaders,
       ...savers,
-      'divider',
       {
         icon: 'create_new_folder',
         name: 'menu.new',
