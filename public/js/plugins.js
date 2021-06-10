@@ -29,14 +29,14 @@ export const officialPlugins = [
   },
   {
     name: 'Open from CoMPAS',
-    src: '/src/triggered/OpenCompas.js',
+    src: '/src/loaders/OpenCompas.js',
     icon: 'folder_open',
     default: true,
     kind: 'loader'
   },
   {
     name: 'Save to CoMPAS',
-    src: '/src/triggered/SaveToCompas.js',
+    src: '/src/savers/SaveToCompas.js',
     icon: 'folder_open',
     default: true,
     kind: 'triggered'
