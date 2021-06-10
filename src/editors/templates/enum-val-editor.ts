@@ -15,7 +15,7 @@ import {
   getValue,
   newActionEvent,
   newWizardEvent,
-  restrictions,
+  patterns,
   Wizard,
   WizardActor,
   WizardInput,
@@ -200,7 +200,7 @@ export class EnumValEditor extends LitElement {
             label="value"
             helper="${translate('scl.value')}"
             .maybeValue=${value}
-            pattern="${restrictions.normalizedString}"
+            pattern="${patterns.normalizedString}"
             dialogInitialFocus
           ></wizard-textfield>`,
           html`<wizard-textfield
@@ -209,7 +209,7 @@ export class EnumValEditor extends LitElement {
             helper="${translate('scl.desc')}"
             .maybeValue=${desc}
             nullable
-            pattern="${restrictions.normalizedString}"
+            pattern="${patterns.normalizedString}"
           ></wizard-textfield>`,
         ],
       },

@@ -1,14 +1,15 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import Templates from '../../../../src/editors/Templates.js';
+import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { Editing, EditingElement } from '../../../../src/Editing.js';
 import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
-
 describe('Templates Plugin', () => {
-  customElements.define('templates-plugin', Wizarding(Editing(Templates)));
-  let element: Templates;
+  customElements.define(
+    'templates-plugin',
+    Wizarding(Editing(TemplatesPlugin))
+  );
+  let element: TemplatesPlugin;
   beforeEach(async () => {
     element = await fixture(html`<templates-plugin></templates-plugin>`);
   });
@@ -20,8 +21,12 @@ describe('Templates Plugin', () => {
   });
 
   describe('with a doc loaded', () => {
+    let doc: XMLDocument;
     beforeEach(async () => {
-      element.doc = getDocument();
+      doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      element.doc = doc;
       await element.updateComplete;
     });
     it('looks like the latest snapshot', () => {
@@ -30,10 +35,14 @@ describe('Templates Plugin', () => {
   });
 
   describe('with a doc loaded missing a datatypetemplates section', () => {
-    const doc = getDocument(false);
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/templates/missingdatatypes.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -58,10 +67,13 @@ describe('Templates Plugin', () => {
     });
   });
   describe('with a doc loaded having a datatypetemplates section', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -76,7 +88,9 @@ describe('Templates Plugin', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('templates-plugin')
-          ?.shadowRoot?.querySelector('mwc-icon-button[icon="playlist_add"]')
+          ?.shadowRoot?.querySelectorAll(
+            'mwc-icon-button[icon="playlist_add"]'
+          )[2]
       )).click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -87,7 +101,9 @@ describe('Templates Plugin', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('templates-plugin')
-          ?.shadowRoot?.querySelector('mwc-icon-button[icon="playlist_add"]')
+          ?.shadowRoot?.querySelector(
+            'section:last-child mwc-icon-button[icon="playlist_add"]'
+          )
       )).click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

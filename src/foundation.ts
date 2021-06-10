@@ -2337,7 +2337,7 @@ const nameChar =
 const name = nameStartChar + '(' + nameChar + ')*';
 const nmToken = '(' + nameChar + ')+';
 
-export const restrictions = {
+export const patterns = {
   string:
     '([\u0009-\u000A]|[\u000D]|[\u0020-\u007E]|[\u0085]|[\u00A0-\uD7FF]' +
     '|[\uE000-\uFFFD]|[\u{10000}\\-\u{10FFFF}])*',
@@ -2350,6 +2350,7 @@ export const restrictions = {
   nmTokens: nmToken + '( ' + nmToken + ')*',
   decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
+  alphanumeric: '[a-z][0-9,A-Z,a-z]*',
 };
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
@@ -2435,6 +2436,10 @@ export function findControlBlocks(extRef: Element): Set<Element> {
     })
   );
   return controlBlocks;
+}
+
+export function isPublic(element:Element):boolean{
+  return !element.closest('Private');
 }
 
 /** @returns the version of the SCL project */

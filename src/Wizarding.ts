@@ -23,9 +23,11 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
     @query('wizard-dialog') wizardUI!: WizardDialog;
 
     private onWizard(we: WizardEvent) {
-      if (we.detail.wizard === null) this.workflow.shift();
-      else if (we.detail.subwizard) this.workflow.unshift(we.detail.wizard);
-      else this.workflow.push(we.detail.wizard);
+      const wizard = we.detail.wizard;
+      if (wizard?.length === 0) return;
+      if (wizard === null) this.workflow.shift();
+      else if (we.detail.subwizard) this.workflow.unshift(wizard);
+      else this.workflow.push(wizard);
       this.requestUpdate('workflow');
       this.updateComplete.then(() =>
         this.wizardUI.updateComplete.then(() =>

@@ -9,6 +9,7 @@ import {
   property,
   query,
   TemplateResult,
+  unsafeCSS,
 } from 'lit-element';
 
 @customElement('filtered-list')
@@ -106,7 +107,7 @@ export class FilteredList extends List {
   }
 
   static styles = css`
-    ${List.styles}
+    ${unsafeCSS(List.styles)}
 
     #tfcontainer {
       display: flex;

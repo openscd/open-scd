@@ -7,8 +7,10 @@ export const en = {
     value: 'Value',
     EnumVal: 'Enum Value',
     EnumType: 'Enum Type',
+    DAType: 'Data Attribute Type',
+    DOType: 'Data Object Type',
     Report: 'Report',
-    LN: 'Logical node',
+    LN: 'Logical Node',
   },
   settings: {
     name: 'Settings',
@@ -153,6 +155,27 @@ export const en = {
         add: 'Add EnumType',
         edit: 'Edit EnumType',
       },
+    },
+  },
+  datype: {
+    wizard: {
+      title: {
+        add: 'Add DAType',
+        edit: 'Edit DAType',
+      },
+    },
+  },
+  bda: {
+    wizard: {
+      title: {
+        add: 'Add BDA',
+        edit: 'Edit BDA',
+      },
+      bType: 'Basic type',
+      type: 'Type',
+      sAddr: 'Short address',
+      valKind: 'Value kind',
+      valImport: 'Import value',
     },
   },
   lnode: {
