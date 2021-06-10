@@ -264,7 +264,11 @@ export const de: Translations = {
       noScls: "???",
     },
     saveTo: {
-      title: "???"
+      title: "???",
+      addError: '???',
+      addSuccess: '???',
+      updateError: '???',
+      updateSuccess: '???',
     }
   },
 };

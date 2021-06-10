@@ -15,7 +15,7 @@ export class CompasScl extends LitElement {
 
   firstUpdated() {
     listScls(this.type)
-      .then(scls => { this.scls = Array.from(scls.querySelectorAll('Item') ?? [])})
+      .then(xmlResponse => { this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])})
   }
 
   openScl(id?: string) {
@@ -28,7 +28,7 @@ export class CompasScl extends LitElement {
 
     document
       .querySelector('open-scd')!
-      .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id, docType: this.type?.toLowerCase()}}));
+      .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
   }
 
   render(): TemplateResult {

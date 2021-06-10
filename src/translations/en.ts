@@ -261,7 +261,11 @@ export const en = {
       noScls: 'No SCLs found',
     },
     saveTo: {
-      title: "Save to Compas"
+      title: 'Save to Compas',
+      addError: 'Error adding SCL to CoMPAS!',
+      addSuccess: 'SCL added to CoMPAS.',
+      updateError: 'Error updating SCL in CoMPAS!',
+      updateSuccess: 'SCL updated in CoMPAS',
     }
   },
 };

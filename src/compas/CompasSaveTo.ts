@@ -1,5 +1,5 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {newWizardEvent, Wizard, WizardInput} from "../foundation.js";
+import {InfoDetail, newLogEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 import {get, translate} from "lit-translate";
 
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
@@ -17,14 +17,9 @@ export class CompasSaveTo extends LitElement {
   docName!: string;
   @property({type: String})
   docId!: string;
-  @property({type: String})
-  docType!: string;
 
-  @property({type: String})
-  errorMessage!: string;
-
-  getNameValue() : string {
-    return (<TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="name"]')).value;
+  getNameField() : TextFieldBase {
+    return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="name"]');
   }
 
   getSclTypeRadioGroup() : CompasScltypeRadiogroup {
@@ -37,19 +32,26 @@ export class CompasSaveTo extends LitElement {
       .querySelector("compas-changeset-radiogroup"))
   }
 
+  checkValidity(): boolean {
+    if (!this.docId) {
+      return this.getNameField().checkValidity()
+        && this.getSclTypeRadioGroup().checkValidity();
+    }
+    return this.getChangeSetRadiogroup().checkValidity();
+  }
+
   render(): TemplateResult {
     return this.renderWizardPage();
   }
 
   renderWizardPage(): TemplateResult {
-    if (!this.docId || !this.docType) {
+    if (!this.docId) {
       return html`
-        <div style="error">${this.errorMessage}</div>
         <mwc-textfield dialogInitialFocus id="name" label="${translate('scl.name')}"
                        value="${this.docName}" required>
         </mwc-textfield>
 
-        <compas-scltype-radiogroup></compas-scltype-radiogroup>
+        <compas-scltype-radiogroup .value="${getTypeFromDocName(this.docName)}"></compas-scltype-radiogroup>
       `;
     }
     return html `
@@ -58,66 +60,100 @@ export class CompasSaveTo extends LitElement {
   }
 }
 
-function addSclToCompass(wizard: Element, doc: XMLDocument) {
+function getTypeFromDocName(docName: string) {
+  if (docName!.lastIndexOf(".") == docName!.length - 4) {
+    return docName.substring(docName.lastIndexOf(".") + 1);
+  }
+  throw "Unable to determine type from document name!";
+}
+
+function addSclToCompass(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDocument) {
   const openScd = <OpenSCD>document.querySelector('open-scd');
-  const compasSaveTo = <CompasSaveTo> wizard.shadowRoot!.querySelector('compas-save-to')
-  let name = compasSaveTo.getNameValue();
+  let name = compasSaveTo.getNameField()!.value;
   if (name!.lastIndexOf(".") == name!.length - 4) {
     name = name.substring(0, name.lastIndexOf("."));
   }
-  const newDocType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue();
+  const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue();
+  if (docType === null) {
+    return;
+  }
 
-  openScd!.docType = newDocType;
-  openScd!.docName = name + "." + newDocType.toLowerCase()
-
-  addSclDocument(newDocType, {sclName: name, doc: doc})
-    .then(document => {
-      const id = Array.from(document.querySelectorAll('Id') ?? [])[0];
+  openScd!.docName = name + "." + docType!.toLowerCase()
+  addSclDocument(docType, {sclName: name, doc: doc})
+    .then(xmlResponse => {
+      const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
       openScd!.docId = id.textContent ?? "";
-      openScd!.docName = (id.textContent ?? "") + "." + newDocType.toLowerCase()
-      compasSaveTo.errorMessage = "";
+      openScd!.docName = (id.textContent ?? "") + "." + docType.toLowerCase()
+
+      document
+        .querySelector('open-scd')!
+        .dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: get('compas.saveTo.addSuccess')}));
 
       // Close the Save Dialog.
       openScd!.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
-      compasSaveTo.errorMessage = "Error adding SCL to CoMPAS!";
+      document
+        .querySelector('open-scd')!
+        .dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('compas.saveTo.addError')}));
     });
 }
 
-function updateSclInCompas(wizard: Element, docType: string, docId: string, doc: XMLDocument) {
+function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: string, docName: string, doc: XMLDocument) {
   const openScd = <OpenSCD>document.querySelector('open-scd');
-  const compasSaveTo = <CompasSaveTo>wizard.shadowRoot!.querySelector('compas-save-to')
   const changeSet = compasSaveTo.getChangeSetRadiogroup().getSelectedValue();
+  if (changeSet === null) {
+    return;
+  }
+  const docType = getTypeFromDocName(docName);
+
   updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet, doc: doc})
     .then(() => {
-      compasSaveTo.errorMessage = "";
+      document
+        .querySelector('open-scd')!
+        .dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: get('compas.saveTo.updateSuccess')}));
 
       // Close the Save Dialog.
       openScd!.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
-      compasSaveTo.errorMessage = "Error updating SCL in CoMPAS!";
+      document
+        .querySelector('open-scd')!
+        .dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('compas.saveTo.updateError')}));
     });
 }
 
-function saveToCompass(doc: XMLDocument, docId: string, docType: string) {
+function saveToCompass(docId: string, docName: string, doc: XMLDocument) {
   return function (inputs: WizardInput[], wizard: Element) {
-    if (doc) {
-      if (!docId || !docType) {
-        addSclToCompass(wizard, doc);
-      } else {
-        updateSclInCompas(wizard, docType, docId, doc);
-      }
+    const compasSaveTo = <CompasSaveTo>wizard.shadowRoot!.querySelector('compas-save-to')
+    if (!doc || !compasSaveTo.checkValidity()) {
+      return [];
+    }
+
+    if (!docId) {
+      addSclToCompass(wizard, compasSaveTo, doc);
+    } else {
+      updateSclInCompas(wizard, compasSaveTo, docId, docName, doc);
     }
     return [];
   };
 }
 
 export interface SaveToCompasWizardOptions {
-  docName: string,
   docId: string,
-  docType: string
+  docName: string
 }
 export function saveToCompasWizard(doc: XMLDocument, saveToOptions: SaveToCompasWizardOptions): Wizard {
   return [
@@ -126,11 +162,11 @@ export function saveToCompasWizard(doc: XMLDocument, saveToOptions: SaveToCompas
       primary: {
         icon: 'save',
         label: get('save'),
-        action: saveToCompass(doc, saveToOptions.docId, saveToOptions.docType),
+        action: saveToCompass(saveToOptions.docId, saveToOptions.docName, doc),
       },
       content: [
         html `
-          <compas-save-to .docName="${saveToOptions.docName}" .docId="${saveToOptions.docId}" .docType="${saveToOptions.docType}"/>
+          <compas-save-to .docName="${saveToOptions.docName}" .docId="${saveToOptions.docId}"/>
         ` ],
     },
   ];

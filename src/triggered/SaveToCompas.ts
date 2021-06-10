@@ -4,12 +4,11 @@ import {saveToCompasWizard} from "../compas/CompasSaveTo.js";
 
 export default class SaveCompasPlugin extends LitElement {
   doc!: XMLDocument;
-  docName!: string;
   docId!: string;
-  docType!: string;
+  docName!: string;
 
   async trigger(): Promise<void> {
-    this.dispatchEvent(newWizardEvent(saveToCompasWizard(this.doc, {docName: this.docName, docId: this.docId, docType: this.docType})));
+    this.dispatchEvent(newWizardEvent(saveToCompasWizard(this.doc, {docId: this.docId, docName: this.docName})));
   }
 }
 

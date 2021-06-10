@@ -2,9 +2,13 @@ import {customElement, html, LitElement, property, TemplateResult} from "lit-ele
 import {get} from "lit-translate";
 import {listSclTypesAndOrder} from "./CompasService.js";
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
+import {List} from "@material/mwc-list";
 
 @customElement('compas-scltype-radiogroup')
 export class CompasScltypeRadiogroup extends LitElement {
+  @property({type: String})
+  value = '';
+
   @property({type: Document})
   sclTypes!:Element[];
 
@@ -18,8 +22,20 @@ export class CompasScltypeRadiogroup extends LitElement {
       .then(types => this.sclTypes = types)
   }
 
-  getSelectedValue() : string {
-    return (<ListItemBase>this.shadowRoot!.querySelector('mwc-list')!.selected).value;
+  private getSelectedListItem() : ListItemBase | null {
+    return <ListItemBase>this.shadowRoot!.querySelector('mwc-list')!.selected;
+  }
+
+  getSelectedValue() : string | null {
+    const listItem = this.getSelectedListItem();
+    if (listItem) {
+      return listItem.value;
+    }
+    return null;
+  }
+
+  checkValidity(): boolean {
+    return this.getSelectedListItem() != null;
   }
 
   render(): TemplateResult {
@@ -37,9 +53,10 @@ export class CompasScltypeRadiogroup extends LitElement {
     return html`
       <mwc-list activatable>
         ${this.sclTypes.map( type => {
-          const code = type.getElementsByTagName("Code").item(0);
+          const code = type.getElementsByTagName("Code").item(0)!.textContent ?? '';
           const description = type.getElementsByTagName("Description").item(0);
-          return html`<mwc-radio-list-item value="${code!.textContent ?? ''}" left>
+          const selected = (code.toLowerCase() === this.value.toLowerCase());
+          return html`<mwc-radio-list-item value="${code ?? ''}" ?selected="${selected}" left>
                               <span>${description} (${code})</span>
                       </mwc-radio-list-item>`;
         })}

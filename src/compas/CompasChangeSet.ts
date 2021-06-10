@@ -17,16 +17,28 @@ const changeSetDetails = new Map<ChangeSet, ChangeSetDetail>([
 
 @customElement('compas-changeset-radiogroup')
 export class CompasChangeSetRadiogroup extends LitElement {
+  private getSelectedListItem() : ListItemBase | null {
+    return <ListItemBase>this.shadowRoot!.querySelector('mwc-list')!.selected;
+  }
+
+  getSelectedValue() : ChangeSet | null {
+    const changeSet = this.getSelectedListItem();
+    if (changeSet) {
+      return <ChangeSet>changeSet.value;
+    }
+    return null;
+  }
+
+  checkValidity(): boolean {
+    return this.getSelectedListItem() != null;
+  }
+
   render(): TemplateResult {
     return html`
       <mwc-list activatable>
         ${Object.values(ChangeSet)
-          .map((key) => html `<mwc-radio-list-item value="${key}" left>${changeSetDetails.get(key)!.description}</mwc-radio-list-item>`)}
+      .map((key) => html `<mwc-radio-list-item value="${key}" left>${changeSetDetails.get(key)!.description}</mwc-radio-list-item>`)}
       </mwc-list>
     `
-  }
-
-  getSelectedValue() : ChangeSet {
-    return <ChangeSet>(<ListItemBase>this.shadowRoot!.querySelector('mwc-list')!.selected).value;
   }
 }
