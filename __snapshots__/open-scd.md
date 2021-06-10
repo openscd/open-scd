@@ -13,6 +13,12 @@
     Menu
   </span>
   <mwc-list wrapfocus="">
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
@@ -29,12 +35,6 @@
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
-    <li
-      divider=""
-      padded=""
-      role="separator"
-    >
-    </li>
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
