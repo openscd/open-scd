@@ -185,6 +185,7 @@ export class OpenSCD extends Setting(
     this.docName = inputs[0].value.match(/\.s[sc]d$/i)
       ? inputs[0].value
       : inputs[0].value + '.scd';
+    this.docId = '';
     const version = <SupportedVersion>(
       (<ListItemBase>wizard.shadowRoot!.querySelector('mwc-list')!.selected)
         .value
