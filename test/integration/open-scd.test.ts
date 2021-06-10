@@ -195,7 +195,7 @@ describe('open-scd', () => {
     await element.validated;
     expect(element).property('history').to.have.length(4);
     expect(element.doc?.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
-  });
+  }).timeout(10000);
 
   it('generates no error messages for valid SCL file', async () => {
     const validBlobURL = URL.createObjectURL(

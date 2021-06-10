@@ -1,12 +1,5 @@
 export const officialPlugins = [
   {
-    name: 'Open file',
-    src: '/src/triggered/OpenFile.js',
-    icon: 'folder_open',
-    default: true,
-    kind: 'triggered'
-  },
-  {
     name: 'Substation',
     src: '/src/editors/Substation.js',
     icon: 'margin',
@@ -28,25 +21,32 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
-    name: "Open from CoMPAS",
-    src: "/src/triggered/OpenCompas.js",
-    icon: "folder_open",
+    name: 'Open project',
+    src: '/src/loaders/OpenProject.js',
+    icon: 'folder_open',
     default: true,
-    kind: "triggered"
+    kind: 'loader'
   },
   {
-    name: "Save to CoMPAS",
-    src: "/src/triggered/SaveToCompas.js",
-    icon: "folder_open",
+    name: 'Open from CoMPAS',
+    src: '/src/triggered/OpenCompas.js',
+    icon: 'folder_open',
     default: true,
-    kind: "triggered"
+    kind: 'loader'
   },
   {
-    name: "Import IEDs",
-    src: "/src/triggered/ImportIEDs.js",
-    icon: "snippet_folder",
+    name: 'Save to CoMPAS',
+    src: '/src/triggered/SaveToCompas.js',
+    icon: 'folder_open',
     default: true,
-    kind: "triggered"
+    kind: 'triggered'
+  },
+  {
+    name: 'Import IEDs',
+    src: '/src/triggered/ImportIEDs.js',
+    icon: 'snippet_folder',
+    default: true,
+    kind: 'triggered'
   },
   {
     name: 'Subscriber Update',
