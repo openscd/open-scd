@@ -2,7 +2,7 @@ import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 
 import { newOpenDocEvent } from '../foundation.js';
 
-export default class OpenFilePlugin extends LitElement {
+export default class OpenProjectPlugin extends LitElement {
   @query('#open-plugin-input') pluginFileUI!: HTMLInputElement;
 
   async openDoc(event: Event): Promise<void> {
@@ -20,7 +20,7 @@ export default class OpenFilePlugin extends LitElement {
     this.pluginFileUI.onchange = null;
   }
 
-  async trigger(): Promise<void> {
+  async load(): Promise<void> {
     this.pluginFileUI.click();
   }
 

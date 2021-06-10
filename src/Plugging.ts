@@ -14,7 +14,7 @@ import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { officialPlugins } from '../public/js/plugins.js';
 
-type PluginKind = 'editor' | 'triggered';
+type PluginKind = 'editor' | 'triggered' | 'loader' | 'saver';
 
 type AvailablePlugin = {
   name: string;
@@ -32,6 +32,8 @@ export type InstalledPlugin = AvailablePlugin & {
 export const pluginIcons: Record<PluginKind, string> = {
   editor: 'tab',
   triggered: 'play_circle',
+  loader: 'folder_open',
+  saver: 'save',
 };
 
 async function storeDefaultPlugins(): Promise<void> {
@@ -81,7 +83,17 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         .filter(plugin => plugin.installed && plugin.kind === 'editor')
         .map(plugin => this.addContent(plugin));
     }
-    get items(): InstalledPlugin[] {
+    get loaders(): InstalledPlugin[] {
+      return this.plugins
+        .filter(plugin => plugin.installed && plugin.kind === 'loader')
+        .map(plugin => this.addContent(plugin));
+    }
+    get savers(): InstalledPlugin[] {
+      return this.plugins
+        .filter(plugin => plugin.installed && plugin.kind === 'saver')
+        .map(plugin => this.addContent(plugin));
+    }
+    get triggered(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'triggered')
         .map(plugin => this.addContent(plugin));

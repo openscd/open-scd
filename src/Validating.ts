@@ -1,7 +1,12 @@
 import { property } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { LitElementConstructor, Mixin, newLogEvent } from './foundation.js';
+import {
+  LitElementConstructor,
+  Mixin,
+  newLogEvent,
+  OpenDocEvent,
+} from './foundation.js';
 import {
   getSchema,
   isLoadSchemaResult,
@@ -126,6 +131,14 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
         });
         worker.postMessage({ content: xsd, name: xsdName });
       });
+    }
+
+    constructor(...args: any[]) {
+      super(...args);
+
+      this.addEventListener('open-doc', (event: OpenDocEvent) =>
+        this.validate(event.detail.doc, { fileName: event.detail.docName })
+      );
     }
   }
 
