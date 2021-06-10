@@ -152,6 +152,57 @@
       aria-disabled="true"
       disabled=""
       graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Open file
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Open from CoMPAS
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Save to CoMPAS
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
       iconid="snippet_folder"
       mwc-list-item=""
       tabindex="-1"
@@ -476,6 +527,24 @@
       mwc-list-item=""
       selected=""
       tabindex="0"
+      value="/src/triggered/OpenFile.js"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      Open file
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/editors/Substation.js"
     >
       <mwc-icon slot="graphic">
@@ -520,6 +589,42 @@
       Templates
       <mwc-icon slot="meta">
         tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/triggered/OpenCompas.js"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      Open from CoMPAS
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/triggered/SaveToCompas.js"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      Save to CoMPAS
+      <mwc-icon slot="meta">
+        play_circle
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item

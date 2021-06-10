@@ -5,11 +5,11 @@ import {get, translate} from "lit-translate";
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 import {OpenSCD} from "../open-scd.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSet.js";
-import {CompasScltypeRadiogroup} from "./CompasScltype.js";
+import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
 import {addSclDocument, updateSclDocument} from "./CompasService.js";
 
 import '../compas/CompasChangeSet.js';
-import '../compas/CompasScltype.js';
+import './CompasScltypeRadiogroup.js';
 
 @customElement('compas-save-to')
 export class CompasSaveTo extends LitElement {

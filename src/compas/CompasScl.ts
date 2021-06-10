@@ -3,7 +3,7 @@ import {get} from "lit-translate";
 import {newOpenDocEvent, newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 import {getSclDocument, listScls} from "./CompasService.js";
-import {compasSclTypeListWizardActor} from "./CompasScltype.js";
+import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
 
 @customElement('compas-scl-list')
 export class CompasScl extends LitElement {
@@ -13,12 +13,7 @@ export class CompasScl extends LitElement {
   @property()
   scls!: Element[];
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.fetchData();
-  }
-
-  fetchData() {
+  firstUpdated() {
     listScls(this.type)
       .then(scls => { this.scls = Array.from(scls.querySelectorAll('Item') ?? [])})
   }

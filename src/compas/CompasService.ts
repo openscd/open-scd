@@ -8,6 +8,18 @@ export function listSclTypes(): Promise<Document> {
     .then(str => new DOMParser().parseFromString(str, 'application/xml'))
 }
 
+export function listSclTypesAndOrder(): Promise<Element[]> {
+  return listSclTypes()
+    .then(sclTypesDocument => {
+      return Array.from(sclTypesDocument.querySelectorAll('Type') ?? [])
+        .sort((type1, type2) => {
+          const description1 = type1.getElementsByTagName("Description")!.item(0)!.textContent ?? "";
+          const description2 = type2.getElementsByTagName("Description")!.item(0)!.textContent ?? "";
+          return description1.localeCompare(description2)
+        });
+    })
+}
+
 export function listScls(type: string): Promise<Document> {
   return fetch(baseUrl + '/scl/v1/' + type?.toUpperCase() + '/list')
     .then(response => response.text())
