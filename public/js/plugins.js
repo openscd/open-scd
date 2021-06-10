@@ -39,7 +39,7 @@ export const officialPlugins = [
     src: '/src/savers/SaveToCompas.js',
     icon: 'folder_open',
     default: true,
-    kind: 'triggered'
+    kind: 'saver'
   },
   {
     name: 'Import IEDs',
