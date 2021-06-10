@@ -55,6 +55,7 @@ import { SupportedVersion } from './schemas.js';
 import { Editing, newEmptySCD } from './Editing.js';
 import { Logging } from './Logging.js';
 import { Setting } from './Setting.js';
+import { CompasSettingUI } from "./compas/CompasSetting.js";
 import { InstalledPlugin, Plugging, pluginIcons } from './Plugging.js';
 import { Validating } from './Validating.js';
 import { Waiting } from './Waiting.js';
@@ -86,9 +87,7 @@ interface Saver {
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Setting(
-  Wizarding(Waiting(Validating(Plugging(Editing(Logging(LitElement))))))
-) {
+export class OpenSCD extends Setting(CompasSettingUI(Wizarding(Waiting(Validating(Plugging(Editing(Logging(LitElement)))))))) {
   /** The currently active editor tab. */
   @property({ type: Number })
   activeTab = 0;
@@ -363,6 +362,11 @@ export class OpenSCD extends Setting(
         icon: 'settings',
         name: 'settings.name',
         action: (): void => this.settingsUI.show(),
+      },
+      {
+        icon: 'settings',
+        name: 'compas.settings.name',
+        action: (): void => this.compasSettingsUI.show(),
       },
       {
         icon: 'extension',

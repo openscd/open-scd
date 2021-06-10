@@ -269,6 +269,10 @@ export const de: Translations = {
       addSuccess: '???',
       updateError: '???',
       updateSuccess: '???',
+    },
+    settings: {
+      name: "CoMPAS Einstellungen",
+      sclDataServiceUrl: "CoMPAS SCL Data Service"
     }
   },
 };

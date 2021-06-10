@@ -1,14 +1,14 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {InfoDetail, newLogEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
+import {newLogEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 import {get, translate} from "lit-translate";
 
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 import {OpenSCD} from "../open-scd.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSet.js";
 import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
-import {addSclDocument, updateSclDocument} from "./CompasService.js";
+import {CompasService} from "./CompasService.js";
 
-import '../compas/CompasChangeSet.js';
+import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
 
 @customElement('compas-save-to')
@@ -79,7 +79,7 @@ function addSclToCompass(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDo
   }
 
   openScd!.docName = name + "." + docType!.toLowerCase()
-  addSclDocument(docType, {sclName: name, doc: doc})
+  CompasService().addSclDocument(docType, {sclName: name, doc: doc})
     .then(xmlResponse => {
       const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
       openScd!.docId = id.textContent ?? "";
@@ -113,7 +113,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
   }
   const docType = getTypeFromDocName(docName);
 
-  updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet, doc: doc})
+  CompasService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet, doc: doc})
     .then(() => {
       document
         .querySelector('open-scd')!
