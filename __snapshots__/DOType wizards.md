@@ -13,7 +13,7 @@
   <div id="wizard-content">
     <mwc-select
       fixedmenuposition=""
-      helper="Default enumerations"
+      helper="[dotype.wizard.enums]"
       icon="playlist_add_check"
       label="values"
       outlined=""

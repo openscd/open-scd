@@ -16,7 +16,7 @@
   </mwc-formfield>
 </div>
 <ul
-  class="mdc-deprecated-list"
+  class="mdc-list"
   tabindex="-1"
 >
   <slot>

@@ -6,7 +6,9 @@
 <section tabindex="0">
   <h1>
     StationBus — desc
-      (8-MMS—100.0b/s)
+      (8-MMS
+    —
+    100.0b/s)
     <abbr title="[add]">
       <mwc-icon-button icon="playlist_add">
       </mwc-icon-button>
