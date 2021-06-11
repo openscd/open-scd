@@ -41,7 +41,7 @@ describe('DOType wizards', () => {
       const button = <HTMLElement>(
         templates?.shadowRoot?.querySelectorAll(
           'mwc-icon-button[icon="playlist_add"]'
-        )[0]
+        )[1]
       );
       button.click();
       await parent.updateComplete;
