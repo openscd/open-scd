@@ -43,7 +43,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
   EditorAction,
-  newLogEvent,
+  newOpenDocEvent,
   newPendingStateEvent,
   newWizardEvent,
   Wizard,
@@ -75,6 +75,14 @@ interface Triggered {
   trigger: () => Promise<void>;
 }
 
+interface Loader {
+  load: () => Promise<void>;
+}
+
+interface Saver {
+  save: () => Promise<void>;
+}
+
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
@@ -96,49 +104,19 @@ export class OpenSCD extends Setting(
   }
 
   @query('#menu') menuUI!: Drawer;
-  @query('#file-input') fileUI!: HTMLInputElement;
   @query('#saveas') saveUI!: Dialog;
 
   /** Loads and parses an `XMLDocument` after [[`src`]] has changed. */
   private async loadDoc(src: string): Promise<void> {
-    this.reset();
-
-    this.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('openSCD.loading', { name: this.docName }),
-      })
-    );
-
     const response = await fetch(src);
     const text = await response.text();
-    this.doc = new DOMParser().parseFromString(text, 'application/xml');
+    if (!text) return;
+
+    const doc = new DOMParser().parseFromString(text, 'application/xml');
+    const docName = src;
+    this.dispatchEvent(newOpenDocEvent(doc, docName));
 
     if (src.startsWith('blob:')) URL.revokeObjectURL(src);
-
-    const validated = this.validate(this.doc, { fileName: this.docName });
-
-    if (this.doc) this.dispatchEvent(newPendingStateEvent(validated));
-
-    await validated;
-
-    this.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('openSCD.loaded', { name: this.docName }),
-      })
-    );
-    return;
-  }
-
-  /** Loads the file `event.target.files[0]` into [[`src`]] as a `blob:...`. */
-  private loadFile(event: Event): void {
-    const file =
-      (<HTMLInputElement | null>event.target)?.files?.item(0) ?? false;
-    if (file) {
-      this.docName = file.name;
-      this.setAttribute('src', URL.createObjectURL(file));
-    }
   }
 
   private saveAs(): void {
@@ -193,7 +171,7 @@ export class OpenSCD extends Setting(
     if (ctrlAnd('z')) this.undo();
     if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
     if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
-    if (ctrlAnd('o')) this.fileUI.click();
+    if (ctrlAnd('o')) this.menuUI.querySelector('mwc-list-item')!.click();
     if (ctrlAnd('s')) this.save();
     if (ctrlAnd('S')) this.saveUI.show();
     if (ctrlAnd('P')) this.pluginUI.show();
@@ -258,10 +236,12 @@ export class OpenSCD extends Setting(
   }
 
   get menu(): (MenuItem | 'divider')[] {
-    const items: (MenuItem | 'divider')[] = [];
+    const triggered: (MenuItem | 'divider')[] = [];
+    const loaders: (MenuItem | 'divider')[] = [];
+    const savers: (MenuItem | 'divider')[] = [];
 
-    this.items.forEach(plugin =>
-      items.push({
+    this.triggered.forEach(plugin =>
+      triggered.push({
         icon: plugin.icon || pluginIcons['triggered'],
         name: plugin.name,
         action: ae => {
@@ -280,15 +260,52 @@ export class OpenSCD extends Setting(
       })
     );
 
-    if (items.length > 0) items.push('divider');
+    this.loaders.forEach(plugin =>
+      loaders.push({
+        icon: plugin.icon || pluginIcons['loader'],
+        name: plugin.name,
+        action: ae => {
+          this.dispatchEvent(
+            newPendingStateEvent(
+              (<Loader>(
+                (<unknown>(
+                  (<List>ae.target).items[ae.detail.index].lastElementChild
+                ))
+              )).load()
+            )
+          );
+        },
+        disabled: (): boolean => false,
+        content: plugin.content,
+      })
+    );
+
+    this.savers.forEach(plugin =>
+      loaders.push({
+        icon: plugin.icon || pluginIcons['saver'],
+        name: plugin.name,
+        action: ae => {
+          this.dispatchEvent(
+            newPendingStateEvent(
+              (<Saver>(
+                (<unknown>(
+                  (<List>ae.target).items[ae.detail.index].lastElementChild
+                ))
+              )).save()
+            )
+          );
+        },
+        disabled: (): boolean => this.doc === null,
+        content: plugin.content,
+      })
+    );
+
+    if (triggered.length > 0) triggered.push('divider');
 
     return [
       'divider',
-      {
-        icon: 'folder_open',
-        name: 'menu.open',
-        action: (): void => this.fileUI.click(),
-      },
+      ...loaders,
+      ...savers,
       {
         icon: 'create_new_folder',
         name: 'menu.new',
@@ -341,7 +358,7 @@ export class OpenSCD extends Setting(
         action: (): void => this.logUI.show(),
       },
       'divider',
-      ...items,
+      ...triggered,
       {
         icon: 'settings',
         name: 'settings.name',
@@ -406,16 +423,17 @@ export class OpenSCD extends Setting(
     return html`
       <mwc-drawer class="mdc-theme--surface" hasheader type="modal" id="menu">
         <span slot="title">${translate('menu.name')}</span>
-        ${
-          this.docName ? html`<span slot="subtitle">${this.docName}</span>` : ''
-        }
+        ${this.docName
+          ? html`<span slot="subtitle">${this.docName}</span>`
+          : ''}
         <mwc-list
           wrapFocus
           @action=${(ae: CustomEvent<ActionDetail>) =>
             (<MenuItem>(
               this.menu.filter(item => item !== 'divider')[ae.detail.index]
             ))?.action?.(ae)}
-        > ${this.menu.map(this.renderMenuItem)}
+        >
+          ${this.menu.map(this.renderMenuItem)}
         </mwc-list>
 
         <mwc-top-app-bar-fixed slot="appContent">
@@ -427,70 +445,64 @@ export class OpenSCD extends Setting(
           ></mwc-icon-button>
           <div slot="title" id="title">${this.docName}</div>
           ${this.menu.map(this.renderActionItem)}
-          ${
-            this.doc
-              ? html`<mwc-tab-bar
-                  @MDCTabBar:activated=${(e: CustomEvent) =>
-                    (this.activeTab = e.detail.index)}
-                >
-                  ${this.editors.map(this.renderEditorTab)}
-                </mwc-tab-bar>`
-              : ``
-          }
+          ${this.doc
+            ? html`<mwc-tab-bar
+                @MDCTabBar:activated=${(e: CustomEvent) =>
+                  (this.activeTab = e.detail.index)}
+              >
+                ${this.editors.map(this.renderEditorTab)}
+              </mwc-tab-bar>`
+            : ``}
         </mwc-top-app-bar-fixed>
       </mwc-drawer>
 
       <mwc-dialog heading="${translate('saveAs')}" id="saveas">
-        <mwc-textfield dialogInitialFocus label="${translate(
-          'filename'
-        )}" value="${this.docName}">
+        <mwc-textfield
+          dialogInitialFocus
+          label="${translate('filename')}"
+          value="${this.docName}"
+        >
         </mwc-textfield>
         <mwc-button
           @click=${() => this.saveAs()}
           icon="save"
-          slot="primaryAction">
+          slot="primaryAction"
+        >
           ${translate('save')}
         </mwc-button>
         <mwc-button
           dialogAction="cancel"
           style="--mdc-theme-primary: var(--mdc-theme-error)"
-          slot="secondaryAction">
+          slot="secondaryAction"
+        >
           ${translate('cancel')}
         </mwc-button>
       </mwc-dialog>
-        
-      ${
-        this.doc
-          ? until(
-              this.editors[this.activeTab] &&
-                this.editors[this.activeTab].content(),
-              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-            )
-          : html`<div class="landing">
-              <mwc-icon-button
-                class="landing_icon"
-                icon="create_new_folder"
-                @click=${() => this.openNewProjectWizard()}
-              >
-                <div class="landing_label">${translate('menu.new')}</div>
-              </mwc-icon-button>
-              <mwc-icon-button
-                class="landing_icon"
-                icon="folder_open"
-                @click=${() => this.fileUI.click()}
-              >
-                <div class="landing_label">${translate('menu.open')}</div>
-              </mwc-icon-button>
-            </div>`
-      }
 
-      <input id="file-input" type="file" accept=".scd,.ssd" @click=${(
-        event: MouseEvent
-      ) => ((<HTMLInputElement>event.target).value = '')} @change="${
-      this.loadFile
-    }"></input>
-      ${super.render()}
-      ${getTheme(this.settings.theme)}
+      ${this.doc
+        ? until(
+            this.editors[this.activeTab] &&
+              this.editors[this.activeTab].content(),
+            html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+          )
+        : html`<div class="landing">
+            <mwc-icon-button
+              class="landing_icon"
+              icon="create_new_folder"
+              @click=${() => this.openNewProjectWizard()}
+            >
+              <div class="landing_label">${translate('menu.new')}</div>
+            </mwc-icon-button>
+            <mwc-icon-button
+              class="landing_icon"
+              icon="folder_open"
+              @click=${() =>
+                this.menuUI.querySelector('mwc-list-item')!.click()}
+            >
+              <div class="landing_label">${translate('menu.open')}</div>
+            </mwc-icon-button>
+          </div>`}
+      ${super.render()} ${getTheme(this.settings.theme)}
     `;
   }
 

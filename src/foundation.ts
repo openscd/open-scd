@@ -261,6 +261,26 @@ export function newPendingStateEvent(
   });
 }
 
+/** Represents a document to be opened. */
+export interface OpenDocDetail {
+  doc: XMLDocument;
+  docName: string;
+  docId?: string;
+}
+export type OpenDocEvent = CustomEvent<OpenDocDetail>;
+export function newOpenDocEvent(
+  doc: XMLDocument,
+  docName: string,
+  eventInitDict?: CustomEventInit<Partial<OpenDocDetail>>
+): OpenDocEvent {
+  return new CustomEvent<OpenDocDetail>('open-doc', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { doc, docName, ...eventInitDict?.detail },
+  });
+}
+
 /** @returns a reference to `element` with segments delimited by '/'. */
 // TODO(c-dinkel): replace with identity (FIXME)
 export function referencePath(element: Element): string {
@@ -441,9 +461,8 @@ function iEDNameIdentity(e: Element): string {
 function iEDNameSelector(tagName: SCLTag, identity: string): string {
   const [parentIdentity, childIdentity] = pathParts(identity);
 
-  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = childIdentity.split(
-    /[ /]/
-  );
+  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] =
+    childIdentity.split(/[ /]/);
 
   const [
     parentSelectors,
@@ -637,15 +656,8 @@ function extRefSelector(tagName: SCLTag, identity: string): string {
     intAddr;
 
   if (!childIdentity.includes(':') && !childIdentity.includes('@')) {
-    [
-      iedName,
-      ldInst,
-      prefix,
-      lnClass,
-      lnInst,
-      doName,
-      daName,
-    ] = childIdentity.split(/[ /]/);
+    [iedName, ldInst, prefix, lnClass, lnInst, doName, daName] =
+      childIdentity.split(/[ /]/);
   } else if (childIdentity.includes(':') && !childIdentity.includes('@')) {
     [
       serviceType,
@@ -663,16 +675,8 @@ function extRefSelector(tagName: SCLTag, identity: string): string {
       daName,
     ] = childIdentity.split(/[ /:]/);
   } else if (!childIdentity.includes(':') && childIdentity.includes('@')) {
-    [
-      iedName,
-      ldInst,
-      prefix,
-      lnClass,
-      lnInst,
-      doName,
-      daName,
-      intAddr,
-    ] = childIdentity.split(/[ /@]/);
+    [iedName, ldInst, prefix, lnClass, lnInst, doName, daName, intAddr] =
+      childIdentity.split(/[ /@]/);
   } else {
     [
       serviceType,
@@ -816,9 +820,8 @@ function clientLNSelector(tagName: SCLTag, identity: string): string {
     selector(parentTag, parentIdentity).split(',')
   );
 
-  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] = childIdentity.split(
-    /[ /]/
-  );
+  const [iedName, apRef, ldInst, prefix, lnClass, lnInst] =
+    childIdentity.split(/[ /]/);
 
   const [
     iedNameSelectors,
@@ -2455,6 +2458,7 @@ declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;
     ['editor-action']: EditorActionEvent<EditorAction>;
+    ['open-doc']: OpenDocEvent;
     ['wizard']: WizardEvent;
     ['log']: LogEvent;
   }
