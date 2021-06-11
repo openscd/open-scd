@@ -205,6 +205,7 @@ export const en = {
         add: 'Add DOType',
         edit: 'Edit DOType',
       },
+      enums: 'Default enumerations',
     },
   },
   lnode: {

@@ -208,6 +208,7 @@ export const de: Translations = {
         add: 'DOType hinzufügen',
         edit: 'DOType bearbeiten',
       },
+      enums: 'Standard Enumerations',
     },
   },
   lnode: {
