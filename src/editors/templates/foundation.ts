@@ -57,19 +57,21 @@ export function addReferencedDataTypes(
     .filter(isPublic)
     .map(type => type.getAttribute('id'));
 
-  const types = Array.from(element.children)
-    .map(child => child.getAttribute('type'))
-    .filter(type => type)
-    .filter(type => !ids.includes(type));
+  const types = new Set(
+    <string[]>Array.from(element.children)
+      .map(child => child.getAttribute('type'))
+      .filter(type => type !== null)
+      .filter(type => !ids.includes(type))
+  );
 
-  const adjacents = types
-    .map(
-      type =>
-        templates.querySelector(
-          `LNodeType[id="${type}"],DOType[id="${type}"],DAType[id="${type}"],EnumType[id="${type}"]`
-        )!
-    )
-    .filter(isPublic);
+  const adjacents: Element[] = [];
+  types.forEach(type => {
+    const adjacent = templates.querySelector(
+      `LNodeType[id="${type}"],DOType[id="${type}"],DAType[id="${type}"],EnumType[id="${type}"]`
+    )!;
+
+    if (adjacent !== null && isPublic(adjacent)) adjacents.push(adjacent);
+  });
 
   const actions: EditorAction[] = [];
   adjacents
@@ -80,7 +82,7 @@ export function addReferencedDataTypes(
     actions.push({
       new: {
         parent,
-        element: adjacent,
+        element: <Element>adjacent.cloneNode(true),
         reference: getReference(parent, <SCLTag>adjacent.tagName),
       },
     })
@@ -137,6 +139,21 @@ export const predefinedBasicTypeEnum = [
   'OptFlds',
   'SvOptFlds',
   'EntryID',
+];
+
+export const functionalConstraintEnum = [
+  'ST',
+  'MX',
+  'SP',
+  'SV',
+  'CF',
+  'DC',
+  'SG',
+  'SE',
+  'SR',
+  'OR',
+  'BL',
+  'EX',
 ];
 
 export const valKindEnum = [null, 'Spec', 'Conf', 'RO', 'Set'];
