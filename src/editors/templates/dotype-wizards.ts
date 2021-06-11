@@ -532,7 +532,7 @@ export function createDOTypeWizard(
           outlined
           icon="playlist_add_check"
           label="values"
-          helper="Default enumerations"
+          helper="${translate('dotype.wizard.enums')}"
         >
           ${Array.from(templates.querySelectorAll('DOType')).map(
             datype =>
