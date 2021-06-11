@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/openscd/open-scd/compare/v0.2.0...v0.3.0) (2021-06-11)
+
+
+### Features
+
+* **editors/templates:** add read-only DOType section ([#208](https://github.com/openscd/open-scd/issues/208)) ([75cfbdf](https://github.com/openscd/open-scd/commits/75cfbdfc2a8c952e0f9d4d8428f1fcb6eb0ee83d))
+* **templates:** add DAType basic manipulation capability ([#201](https://github.com/openscd/open-scd/issues/201)) ([f75dd55](https://github.com/openscd/open-scd/commits/f75dd558a020684d7c40b38a5105823c37560070))
+
+
+### Bug Fixes
+
+* **lit-element:** return to last working version ([3c3e084](https://github.com/openscd/open-scd/commits/3c3e0845a2eb69ce241cce0c3d7e9652ffee48d5))
+* **package:** fix typescript version ([e6771c2](https://github.com/openscd/open-scd/commits/e6771c28af00f96d7d8e1bc7a21333d81de145e1))
+* **package-lock:** downgrade typescript ([3441cad](https://github.com/openscd/open-scd/commits/3441cad3ca23e12928103e948cc40cac26c38cb7))
+* **pluggin:** add missing import ied plugin in the plugins.js ([27d35f0](https://github.com/openscd/open-scd/commits/27d35f03d2b5aa448cb3400e570f0b8c41ed7fc3))
+* **snowpack:** return to last working version ([3fcd2b4](https://github.com/openscd/open-scd/commits/3fcd2b48bcdb8ef80bacfd8448e47a604cda7731))
+
 ## [0.2.0](https://github.com/openscd/open-scd/compare/v0.1.0...v0.2.0) (2021-05-14)
 
 
