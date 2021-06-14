@@ -1,6 +1,6 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get} from "lit-translate";
-import {CompasService} from "./CompasService.js";
+import {CompasSclDataService} from "./CompasSclDataService.js";
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
 
 @customElement('compas-scltype-radiogroup')
@@ -17,7 +17,7 @@ export class CompasScltypeRadiogroup extends LitElement {
   }
 
   fetchData() {
-    CompasService().listSclTypesAndOrder()
+    CompasSclDataService().listSclTypesAndOrder()
       .then(types => this.sclTypes = types)
   }
 

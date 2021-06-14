@@ -11,7 +11,7 @@ export interface UpdateRequestBody {
   doc: Document
 }
 
-export function CompasService() {
+export function CompasSclDataService() {
   function getCompasSettings() {
     return CompasSetting().compasSettings;
   }

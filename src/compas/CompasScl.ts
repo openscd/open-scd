@@ -2,7 +2,7 @@ import {customElement, html, LitElement, property, TemplateResult} from "lit-ele
 import {get} from "lit-translate";
 import {newOpenDocEvent, newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
-import {CompasService} from "./CompasService.js";
+import {CompasSclDataService} from "./CompasSclDataService.js";
 import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
 
 @customElement('compas-scl-list')
@@ -14,7 +14,7 @@ export class CompasScl extends LitElement {
   scls!: Element[];
 
   firstUpdated() {
-    CompasService().listScls(this.type)
+    CompasSclDataService().listScls(this.type)
       .then(xmlResponse => { this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])})
   }
 
@@ -23,7 +23,7 @@ export class CompasScl extends LitElement {
   }
 
   private async getSclDocument(id?: string): Promise<void> {
-    const doc = await CompasService().getSclDocument(this.type, id ?? '');
+    const doc = await CompasSclDataService().getSclDocument(this.type, id ?? '');
     const docName = id + "." + this.type?.toLowerCase();
 
     document

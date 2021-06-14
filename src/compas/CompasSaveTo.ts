@@ -6,7 +6,7 @@ import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 import {OpenSCD} from "../open-scd.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSet.js";
 import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
-import {CompasService} from "./CompasService.js";
+import {CompasSclDataService} from "./CompasSclDataService.js";
 
 import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
@@ -83,7 +83,7 @@ function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDoc
   const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue();
 
   openScd.docName = name + "." + docType!.toLowerCase()
-  CompasService().addSclDocument(docType!, {sclName: name, doc: doc})
+  CompasSclDataService().addSclDocument(docType!, {sclName: name, doc: doc})
     .then(xmlResponse => {
       const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
       openScd.docId = id.textContent ?? "";
@@ -114,7 +114,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
   const changeSet = compasSaveTo.getChangeSetRadiogroup().getSelectedValue();
   const docType = getTypeFromDocName(docName);
 
-  CompasService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, doc: doc})
+  CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, doc: doc})
     .then(() => {
       document
         .querySelector('open-scd')!
