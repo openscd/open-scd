@@ -12,7 +12,7 @@
     tabindex="0"
     value="MAJOR"
   >
-    Major change
+    [compas.changeset.major]
   </mwc-radio-list-item>
   <mwc-radio-list-item
     aria-disabled="false"
@@ -22,7 +22,7 @@
     tabindex="-1"
     value="MINOR"
   >
-    Minor change
+    [compas.changeset.minor]
   </mwc-radio-list-item>
   <mwc-radio-list-item
     aria-disabled="false"
@@ -32,7 +32,7 @@
     tabindex="-1"
     value="PATCH"
   >
-    Patch change
+    [compas.changeset.patch]
   </mwc-radio-list-item>
 </mwc-list>
 

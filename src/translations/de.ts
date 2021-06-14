@@ -257,6 +257,11 @@ export const de: Translations = {
   disconnect: 'Trennen',
 
   compas: {
+    changeset: {
+      major: "???",
+      minor: "???",
+      patch: "???",
+    },
     open: {
       listSclTypes: '???',
       noSclTypes: '???',
