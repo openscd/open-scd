@@ -18,11 +18,6 @@ describe('compas-changeset-radiogroup', () => {
       .to.have.length(3)
   });
 
-  it('has the correct value for MAJOR Item', () => {
-    expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-radio-list-item[value = "MAJOR"]'))
-      .to.have.text("Major change")
-  });
-
   it('looks like the latest snapshot', () => {
     expect(element).shadowDom
       .to.equalSnapshot();

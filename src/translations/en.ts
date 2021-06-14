@@ -254,6 +254,11 @@ export const en = {
   disconnect: 'Disconnect',
 
   compas: {
+    changeset: {
+      major: "Major change",
+      minor: "Minor change",
+      patch: "Patch change",
+    },
     open: {
       listSclTypes: 'Type of SCL',
       noSclTypes: 'No types found',
@@ -261,7 +266,7 @@ export const en = {
       noScls: 'No SCLs found',
     },
     saveTo: {
-      title: 'Save to Compas',
+      title: 'Save to CoMPAS',
       addError: 'Error adding SCL to CoMPAS!',
       addSuccess: 'SCL added to CoMPAS.',
       updateError: 'Error updating SCL in CoMPAS!',

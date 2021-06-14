@@ -52,6 +52,23 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Save to CoMPAS
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
       aria-disabled="false"
       graphic="icon"
       iconid="create_new_folder"
@@ -166,23 +183,6 @@
       role="separator"
     >
     </li>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      iconid="folder_open"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        folder_open
-      </mwc-icon>
-      <span>
-        Save to CoMPAS
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
-    </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
       disabled=""
@@ -578,7 +578,7 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/OpenCompas.js"
+      value="/src/loaders/OpenCompas.js"
     >
       <mwc-icon slot="graphic">
         folder_open
@@ -596,14 +596,14 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/SaveToCompas.js"
+      value="/src/savers/SaveToCompas.js"
     >
       <mwc-icon slot="graphic">
         folder_open
       </mwc-icon>
       Save to CoMPAS
       <mwc-icon slot="meta">
-        play_circle
+        save
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item

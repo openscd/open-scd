@@ -61,29 +61,33 @@ export class CompasSaveTo extends LitElement {
 }
 
 function getTypeFromDocName(docName: string) {
-  if (docName!.lastIndexOf(".") == docName!.length - 4) {
+  if (docName.lastIndexOf(".") == docName.length - 4) {
     return docName.substring(docName.lastIndexOf(".") + 1);
   }
   throw "Unable to determine type from document name!";
 }
 
-function addSclToCompass(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDocument) {
-  const openScd = <OpenSCD>document.querySelector('open-scd');
-  let name = compasSaveTo.getNameField()!.value;
-  if (name!.lastIndexOf(".") == name!.length - 4) {
+function stripExtensionFromName(docName: string): string {
+  let name = docName;
+  const FILE_EXTENSION_LENGTH = 3;
+  // Check if the name includes a file extension, if the case remove it.
+  if (name.lastIndexOf(".") == name.length - (FILE_EXTENSION_LENGTH + 1)) {
     name = name.substring(0, name.lastIndexOf("."));
   }
-  const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue();
-  if (docType === null) {
-    return;
-  }
+  return name
+}
 
-  openScd!.docName = name + "." + docType!.toLowerCase()
-  addSclDocument(docType, {sclName: name, doc: doc})
+function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDocument) {
+  const openScd = <OpenSCD>document.querySelector('open-scd');
+  const name = stripExtensionFromName(compasSaveTo.getNameField().value);
+  const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue();
+
+  openScd.docName = name + "." + docType!.toLowerCase()
+  addSclDocument(docType!, {sclName: name, doc: doc})
     .then(xmlResponse => {
       const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
-      openScd!.docId = id.textContent ?? "";
-      openScd!.docName = (id.textContent ?? "") + "." + docType.toLowerCase()
+      openScd.docId = id.textContent ?? "";
+      openScd.docName = (id.textContent ?? "") + "." + docType!.toLowerCase()
 
       document
         .querySelector('open-scd')!
@@ -93,7 +97,7 @@ function addSclToCompass(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDo
             title: get('compas.saveTo.addSuccess')}));
 
       // Close the Save Dialog.
-      openScd!.dispatchEvent(newWizardEvent());
+      openScd.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
       document
@@ -123,7 +127,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
             title: get('compas.saveTo.updateSuccess')}));
 
       // Close the Save Dialog.
-      openScd!.dispatchEvent(newWizardEvent());
+      openScd.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
       document
@@ -135,7 +139,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
     });
 }
 
-function saveToCompass(docId: string, docName: string, doc: XMLDocument) {
+function saveToCompas(docId: string, docName: string, doc: XMLDocument) {
   return function (inputs: WizardInput[], wizard: Element) {
     const compasSaveTo = <CompasSaveTo>wizard.shadowRoot!.querySelector('compas-save-to')
     if (!doc || !compasSaveTo.checkValidity()) {
@@ -143,7 +147,7 @@ function saveToCompass(docId: string, docName: string, doc: XMLDocument) {
     }
 
     if (!docId) {
-      addSclToCompass(wizard, compasSaveTo, doc);
+      addSclToCompas(wizard, compasSaveTo, doc);
     } else {
       updateSclInCompas(wizard, compasSaveTo, docId, docName, doc);
     }
@@ -162,7 +166,7 @@ export function saveToCompasWizard(doc: XMLDocument, saveToOptions: SaveToCompas
       primary: {
         icon: 'save',
         label: get('save'),
-        action: saveToCompass(saveToOptions.docId, saveToOptions.docName, doc),
+        action: saveToCompas(saveToOptions.docId, saveToOptions.docName, doc),
       },
       content: [
         html `

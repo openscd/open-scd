@@ -1,5 +1,6 @@
 import {customElement, html, LitElement, TemplateResult} from "lit-element";
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
+import {get} from "lit-translate";
 
 export enum ChangeSet {
   MAJOR = "MAJOR",
@@ -10,9 +11,9 @@ type ChangeSetDetail = {
   description: string
 }
 const changeSetDetails = new Map<ChangeSet, ChangeSetDetail>([
-  [ChangeSet.MAJOR, {description: "Major change"}],
-  [ChangeSet.MINOR, {description: "Minor change"}],
-  [ChangeSet.PATCH, {description: "Patch change"}]
+  [ChangeSet.MAJOR, {description: get('compas.changeset.major')}],
+  [ChangeSet.MINOR, {description: get('compas.changeset.minor')}],
+  [ChangeSet.PATCH, {description: get('compas.changeset.patch')}]
 ])
 
 @customElement('compas-changeset-radiogroup')
