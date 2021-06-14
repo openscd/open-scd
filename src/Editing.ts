@@ -15,6 +15,7 @@ import {
   Mixin,
   Move,
   newLogEvent,
+  OpenDocEvent,
   SimpleAction,
   Update,
 } from './foundation.js';
@@ -51,6 +52,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     doc: XMLDocument | null = null;
     /** The name of the current [[`doc`]] */
     @property({ type: String }) docName = '';
+    /** The ID of the current [[`doc`]] */
+    @property({ type: String }) docId = '';
 
     private checkCreateValidity(create: Create): boolean {
       if (create.checkValidity !== undefined) return create.checkValidity();
@@ -255,10 +258,24 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         if (element instanceof LitElement) element.requestUpdate();
     }
 
+    private onOpenDoc(event: OpenDocEvent) {
+      this.doc = event.detail.doc;
+      this.docName = event.detail.docName;
+      this.docId = event.detail.docId ?? '';
+
+      this.dispatchEvent(
+        newLogEvent({
+          kind: 'info',
+          title: get('openSCD.loaded', { name: this.docName }),
+        })
+      );
+    }
+
     constructor(...args: any[]) {
       super(...args);
 
       this.addEventListener('editor-action', this.onAction);
+      this.addEventListener('open-doc', this.onOpenDoc);
     }
   }
 

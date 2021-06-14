@@ -21,11 +21,32 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
-    "name": "Import IEDs",
-    "src": "/src/triggered/ImportIEDs.js",
-    "icon": "snippet_folder",
-    "default": true,
-    "kind": "triggered"
+    name: 'Open project',
+    src: '/src/loaders/OpenProject.js',
+    icon: 'folder_open',
+    default: true,
+    kind: 'loader'
+  },
+  {
+    name: 'Open from CoMPAS',
+    src: '/src/loaders/OpenCompas.js',
+    icon: 'folder_open',
+    default: true,
+    kind: 'loader'
+  },
+  {
+    name: 'Save to CoMPAS',
+    src: '/src/savers/SaveToCompas.js',
+    icon: 'folder_open',
+    default: true,
+    kind: 'saver'
+  },
+  {
+    name: 'Import IEDs',
+    src: '/src/triggered/ImportIEDs.js',
+    icon: 'snippet_folder',
+    default: true,
+    kind: 'triggered'
   },
   {
     name: 'Subscriber Update',

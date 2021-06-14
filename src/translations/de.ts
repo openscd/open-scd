@@ -278,4 +278,25 @@ export const de: Translations = {
   duplicate: 'Klonen',
   connect: 'Verbinden',
   disconnect: 'Trennen',
+
+  compas: {
+    changeset: {
+      major: "???",
+      minor: "???",
+      patch: "???",
+    },
+    open: {
+      listSclTypes: '???',
+      noSclTypes: '???',
+      listScls: '??? ({{ type }})',
+      noScls: "???",
+    },
+    saveTo: {
+      title: "???",
+      addError: '???',
+      addSuccess: '???',
+      updateError: '???',
+      updateSuccess: '???',
+    }
+  },
 };
