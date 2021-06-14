@@ -1,14 +1,14 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {InfoDetail, newLogEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
+import {newLogEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 import {get, translate} from "lit-translate";
 
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 import {OpenSCD} from "../open-scd.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSet.js";
 import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
-import {addSclDocument, updateSclDocument} from "./CompasService.js";
+import {CompasSclDataService} from "./CompasSclDataService.js";
 
-import '../compas/CompasChangeSet.js';
+import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
 
 @customElement('compas-save-to')
@@ -60,14 +60,14 @@ export class CompasSaveTo extends LitElement {
   }
 }
 
-function getTypeFromDocName(docName: string) {
+export function getTypeFromDocName(docName: string) {
   if (docName.lastIndexOf(".") == docName.length - 4) {
     return docName.substring(docName.lastIndexOf(".") + 1);
   }
-  throw "Unable to determine type from document name!";
+  throw new Error('Unable to determine type from document name!');
 }
 
-function stripExtensionFromName(docName: string): string {
+export function stripExtensionFromName(docName: string): string {
   let name = docName;
   const FILE_EXTENSION_LENGTH = 3;
   // Check if the name includes a file extension, if the case remove it.
@@ -83,7 +83,7 @@ function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDoc
   const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue();
 
   openScd.docName = name + "." + docType!.toLowerCase()
-  addSclDocument(docType!, {sclName: name, doc: doc})
+  CompasSclDataService().addSclDocument(docType!, {sclName: name, doc: doc})
     .then(xmlResponse => {
       const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
       openScd.docId = id.textContent ?? "";
@@ -112,12 +112,9 @@ function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDoc
 function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: string, docName: string, doc: XMLDocument) {
   const openScd = <OpenSCD>document.querySelector('open-scd');
   const changeSet = compasSaveTo.getChangeSetRadiogroup().getSelectedValue();
-  if (changeSet === null) {
-    return;
-  }
   const docType = getTypeFromDocName(docName);
 
-  updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet, doc: doc})
+  CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, doc: doc})
     .then(() => {
       document
         .querySelector('open-scd')!

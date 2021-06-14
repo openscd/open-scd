@@ -291,6 +291,20 @@
     <mwc-list-item
       aria-disabled="false"
       graphic="icon"
+      iconid="settings"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        settings
+      </mwc-icon>
+      <span>
+        CoMPAS Settings
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="icon"
       iconid="extension"
       mwc-list-item=""
       tabindex="-1"
@@ -800,6 +814,43 @@
 </mwc-circular-progress-four-color>
 <wizard-dialog>
 </wizard-dialog>
+<mwc-dialog
+  class="styled"
+  heading="CoMPAS Settings"
+  id="compasSettings"
+>
+  <form>
+    <mwc-textfield
+      dialoginitialfocus=""
+      id="sclDataServiceUrl"
+      label="CoMPAS SCL Data Service"
+      required=""
+      value="http://localhost:9090/compas-scl-data-service"
+    >
+    </mwc-textfield>
+  </form>
+  <mwc-button
+    dialogaction="close"
+    slot="secondaryAction"
+  >
+    Cancel
+  </mwc-button>
+  <mwc-button
+    dialogaction="reset"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+    Reset
+  </mwc-button>
+  <mwc-button
+    dialogaction="save"
+    icon="save"
+    slot="primaryAction"
+    trailingicon=""
+  >
+    Save
+  </mwc-button>
+</mwc-dialog>
 <mwc-dialog
   heading="Settings"
   id="settings"

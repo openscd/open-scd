@@ -2,7 +2,7 @@ import {customElement, html, LitElement, property, TemplateResult} from "lit-ele
 import {get} from "lit-translate";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 import {newWizardEvent, Wizard, WizardActor} from '../foundation.js';
-import {listSclTypesAndOrder} from "./CompasService.js";
+import {CompasSclDataService} from "./CompasSclDataService.js";
 import {listSclsWizard} from "./CompasScl.js";
 
 @customElement('compas-scltype-list')
@@ -11,7 +11,7 @@ export class CompasScltypeList extends LitElement {
   sclTypes!: Element[];
 
   firstUpdated() {
-    listSclTypesAndOrder()
+    CompasSclDataService().listSclTypesAndOrder()
       .then(types => this.sclTypes = types)
   }
 

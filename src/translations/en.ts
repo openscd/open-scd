@@ -294,6 +294,10 @@ export const en = {
       addSuccess: 'SCL added to CoMPAS.',
       updateError: 'Error updating SCL in CoMPAS!',
       updateSuccess: 'SCL updated in CoMPAS',
+    },
+    settings: {
+      name: "CoMPAS Settings",
+      sclDataServiceUrl: "CoMPAS SCL Data Service"
     }
   },
 };
