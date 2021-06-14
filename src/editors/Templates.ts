@@ -26,7 +26,10 @@ import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { lNodeTypeWizard } from './templates/lnodetype-wizard.js';
+import {
+  createLNodeTypeWizard,
+  lNodeTypeWizard,
+} from './templates/lnodetype-wizard.js';
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
@@ -37,6 +40,19 @@ export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  async openCreateLNodeTypeWizard(): Promise<void> {
+    this.createDataTypeTemplates();
+
+    this.dispatchEvent(
+      newWizardEvent(
+        createLNodeTypeWizard(
+          this.doc.querySelector(':root > DataTypeTemplates')!,
+          await templates
+        )
+      )
+    );
+  }
 
   openLNodeTypeWizard(identity: string): void {
     const wizard = lNodeTypeWizard(identity, this.doc);
@@ -128,7 +144,10 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.LNodeType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+                <mwc-icon-button
+                  icon="playlist_add"
+                  @click=${() => this.openCreateLNodeTypeWizard()}
+                ></mwc-icon-button>
               </abbr>
             </nav>
           </h1>

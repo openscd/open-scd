@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  Create,
   createElement,
   EditorAction,
   getReference,
@@ -495,10 +496,10 @@ function addPredefinedDOType(
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
 
-    const actions = [];
+    const actions: Create[] = [];
 
     if (selectedElement)
-      addReferencedDataTypes(selectedElement, parent).forEach(action =>
+      addReferencedDataTypes(selectedElement, parent, actions).forEach(action =>
         actions.push(action)
       );
 

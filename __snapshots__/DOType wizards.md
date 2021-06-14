@@ -41,6 +41,38 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="OpenSCD_SPCstatusOnly"
+      >
+        <span>
+          SPCstatusOnly
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_DPCstatusOnly"
+      >
+        <span>
+          DPCstatusOnly
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="OpenSCD_DPSsimple"
       >
         <span>
@@ -48,6 +80,22 @@
         </span>
         <span slot="meta">
           4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_DPC"
+      >
+        <span>
+          DPC
+        </span>
+        <span slot="meta">
+          11
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -80,6 +128,22 @@
         </span>
         <span slot="meta">
           3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ENCMod"
+      >
+        <span>
+          ENCMod
+        </span>
+        <span slot="meta">
+          10
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -256,6 +320,22 @@
         </span>
         <span slot="meta">
           5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_LPLnoLD"
+      >
+        <span>
+          LPLnoLD
+        </span>
+        <span slot="meta">
+          4
         </span>
       </mwc-list-item>
     </mwc-select>

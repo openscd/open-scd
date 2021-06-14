@@ -2,6 +2,7 @@ import { css, html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import {
+  Create,
   EditorAction,
   getReference,
   getValue,
@@ -48,10 +49,23 @@ export function updateIDNamingAction(element: Element): WizardActor {
   };
 }
 
+function isActionUnique(actions: Create[], newAction: Create): boolean {
+  for (const action of actions) {
+    if (
+      action.new.parent === newAction.new.parent &&
+      action.new.element.getAttribute('id') ===
+        newAction.new.element.getAttribute('id')
+    )
+      return false;
+  }
+  return true;
+}
+
 export function addReferencedDataTypes(
   element: Element,
-  parent: Element
-): EditorAction[] {
+  parent: Element,
+  actions: Create[]
+): Create[] {
   const templates = element.closest('DataTypeTemplates')!;
   const ids = Array.from(parent.querySelectorAll(allDataTypeSelector))
     .filter(isPublic)
@@ -73,20 +87,24 @@ export function addReferencedDataTypes(
     if (adjacent !== null && isPublic(adjacent)) adjacents.push(adjacent);
   });
 
-  const actions: EditorAction[] = [];
   adjacents
-    .flatMap(adjacent => addReferencedDataTypes(adjacent, parent))
+    .flatMap(adjacent => addReferencedDataTypes(adjacent, parent, actions))
     .forEach(action => actions.push(action));
 
-  adjacents.forEach(adjacent =>
-    actions.push({
+  // clean up actions that are reperitive
+
+  adjacents.forEach(adjacent => {
+    const action = {
       new: {
         parent,
         element: <Element>adjacent.cloneNode(true),
         reference: getReference(parent, <SCLTag>adjacent.tagName),
       },
-    })
-  );
+    };
+
+    if (isActionUnique(actions, action)) actions.push(action);
+  });
+
   return actions;
 }
 

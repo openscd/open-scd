@@ -2,6 +2,7 @@ import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  Create,
   createElement,
   EditorAction,
   getReference,
@@ -254,9 +255,8 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
 
             Array.from(typeUI.children).forEach(child => {
               (<ListItem>child).disabled = !child.classList.contains(bType);
-              (<ListItem>child).noninteractive = !child.classList.contains(
-                bType
-              );
+              (<ListItem>child).noninteractive =
+                !child.classList.contains(bType);
               (<ListItem>child).style.display = !child.classList.contains(bType)
                 ? 'none'
                 : '';
@@ -432,10 +432,10 @@ function addPredefinedDAType(
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
 
-    const actions = [];
+    const actions: Create[] = [];
 
     if (selectedElement)
-      addReferencedDataTypes(selectedElement, parent).forEach(action =>
+      addReferencedDataTypes(selectedElement, parent, actions).forEach(action =>
         actions.push(action)
       );
 

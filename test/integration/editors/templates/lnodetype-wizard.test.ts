@@ -89,7 +89,7 @@ describe('LNodeType wizards', () => {
     });
   });
 
-  /* describe('defines a createDOTypeWizard', () => {
+  describe('defines a createLNodeTypeWizard', () => {
     let selector: Select;
     let idField: WizardTextField;
     let primayAction: HTMLElement;
@@ -97,7 +97,7 @@ describe('LNodeType wizards', () => {
       const button = <HTMLElement>(
         templates?.shadowRoot?.querySelectorAll(
           'mwc-icon-button[icon="playlist_add"]'
-        )[1]
+        )[0]
       );
       button.click();
       await parent.updateComplete;
@@ -118,53 +118,115 @@ describe('LNodeType wizards', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('allows to add empty DOTypes to the project', async () => {
-      expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
-      idField.maybeValue = 'myGeneralDOType';
+    it('allows to add empty LNodeTypes to the project', async () => {
+      expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.not
+        .exist;
+      idField.maybeValue = 'myGeneralLNodeType';
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.exist;
+      expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.exist;
     });
     it('respects the sequence defined in the standard', async () => {
-      idField.maybeValue = 'myGeneralDOType';
+      idField.maybeValue = 'myGeneralLNodeType';
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
-      const element = doc.querySelector('DOType[id="myGeneralDOType"]');
-      expect(element?.nextElementSibling?.tagName).to.equal('DOType');
-      expect(element?.previousElementSibling?.tagName).to.equal('LNodeType');
+      const element = doc.querySelector('LNodeType[id="myGeneralLNodeType"]');
+      expect(element?.nextElementSibling?.tagName).to.equal('LNodeType');
+      expect(element?.previousElementSibling).to.be.null;
     });
-    it('recursevly add missing! subsequent EnumType elements', async () => {
-      expect(doc.querySelector('DOType[id="myENSHealth"]')).to.not.exist;
-      expect(doc.querySelector('EnumType[id="HealthKind"]')).to.not.exist;
-      selector.value = 'OpenSCD_ENSHealth';
-      idField.maybeValue = 'myENSHealth';
+    it('recursevly add missing! subsequent DOType elements', async () => {
+      expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_ENCMod"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_ENSBeh"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_ENSHealth"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_LPLnoLD"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_SPSsimple"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_DPC"]')).to.not.exist;
+      selector.value = 'OpenSCD_CSWI';
+      idField.maybeValue = 'myCSWI';
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('DOType[id="myENSHealth"]')).to.exist;
-      expect(doc.querySelector('EnumType[id="HealthKind"]')).to.exist;
+      expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.exist;
+      expect(
+        doc.querySelectorAll('DOType[id="OpenSCD_ENCMod"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DOType[id="OpenSCD_ENSBeh"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DOType[id="OpenSCD_ENSHealth"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DOType[id="OpenSCD_LPLnoLD"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DOType[id="OpenSCD_SPSsimple"]').length
+      ).to.equal(1);
+      expect(doc.querySelectorAll('DOType[id="OpenSCD_DPC"]').length).to.equal(
+        1
+      );
+    }).timeout(5000);
+    it('recursevly add missing! subsequent DAType elements', async () => {
+      expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
+      expect(doc.querySelector('DAType[id="OpenSCD_Originator"]')).to.not.exist;
+      expect(doc.querySelector('DAType[id="OpenSCD_OpenSBOw"]')).to.not.exist;
+      expect(doc.querySelector('DAType[id="OpenSCD_Cancel"]')).to.not.exist;
+      expect(doc.querySelector('DAType[id="OpenSCD_PulseConfig"]')).to.not
+        .exist;
+      selector.value = 'OpenSCD_CSWI';
+      idField.maybeValue = 'myCSWI';
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.exist;
+      expect(
+        doc.querySelectorAll('DAType[id="OpenSCD_Originator"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DAType[id="OpenSCD_OpenSBOw"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DAType[id="OpenSCD_Cancel"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DAType[id="OpenSCD_PulseConfig"]').length
+      ).to.equal(1);
+    }).timeout(5000);
+    it('recursevly add missing! subsequent EnumType elements', async () => {
+      expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
+      expect(doc.querySelector('EnumType[id="OriginatorCategoryKind"]')).to.not
+        .exist;
+      expect(doc.querySelector('EnumType[id="BehaviourModeKind"]')).to.not
+        .exist;
+      expect(doc.querySelector('EnumType[id="CtlModelKind"]')).to.not.exist;
+      expect(doc.querySelector('EnumType[id="HealthKind"]')).to.not.exist;
+      expect(doc.querySelector('EnumType[id="OutputSignalKind"]')).to.not.exist;
+      selector.value = 'OpenSCD_CSWI';
+      idField.maybeValue = 'myCSWI';
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.exist;
+      expect(
+        doc.querySelectorAll('EnumType[id="OriginatorCategoryKind"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('EnumType[id="BehaviourModeKind"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('EnumType[id="CtlModelKind"]').length
+      ).to.equal(1);
       expect(doc.querySelectorAll('EnumType[id="HealthKind"]').length).to.equal(
         1
       );
-    });
-    it('recursevly add missing! subsequent DAType elements', async () => {
-      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValueFloat32"]')).to
-        .not.exist;
-      selector.value = 'OpenSCD_MVinst';
-      idField.maybeValue = 'myMV';
-      await parent.requestUpdate();
-      primayAction.click();
-      await parent.updateComplete;
-      await new Promise(resolve => setTimeout(resolve, 1000)); // await animation
-      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValueFloat32"]')).to
-        .exist;
       expect(
-        doc.querySelectorAll('DAType[id="OpenSCD_AnalogueValueFloat32"]').length
+        doc.querySelectorAll('EnumType[id="OutputSignalKind"]').length
       ).to.equal(1);
-    });
-  }); */
+    }).timeout(5000);
+  });
 
   /* describe('defines a sDOWizard to edit an existing SDO', () => {
     let nameField: WizardTextField;
