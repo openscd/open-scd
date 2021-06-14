@@ -60,14 +60,14 @@ export class CompasSaveTo extends LitElement {
   }
 }
 
-function getTypeFromDocName(docName: string) {
+export function getTypeFromDocName(docName: string) {
   if (docName.lastIndexOf(".") == docName.length - 4) {
     return docName.substring(docName.lastIndexOf(".") + 1);
   }
-  throw "Unable to determine type from document name!";
+  throw new Error('Unable to determine type from document name!');
 }
 
-function stripExtensionFromName(docName: string): string {
+export function stripExtensionFromName(docName: string): string {
   let name = docName;
   const FILE_EXTENSION_LENGTH = 3;
   // Check if the name includes a file extension, if the case remove it.
