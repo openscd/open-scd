@@ -22,10 +22,13 @@ import {
   addReferencedDataTypes,
   allDataTypeSelector,
   buildListFromStringArray,
+  CreateOptions,
   predefinedBasicTypeEnum,
   unifyCreateActionArray,
   updateIDNamingAction,
+  UpdateOptions,
   valKindEnum,
+  WizardOptions,
 } from './foundation.js';
 
 import { List } from '@material/mwc-list';
@@ -35,15 +38,6 @@ import {
   SelectedEvent,
   SingleSelectedEvent,
 } from '@material/mwc-list/mwc-list-foundation';
-
-interface UpdateOptions {
-  identity: string | null;
-  doc: XMLDocument;
-}
-interface CreateOptions {
-  parent: Element;
-}
-export type WizardOptions = UpdateOptions | CreateOptions;
 
 function updateBDaAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {

@@ -524,16 +524,64 @@
         </abbr>
       </nav>
     </h1>
-    <mwc-list>
-      <enum-type-editor>
-      </enum-type-editor>
-      <enum-type-editor>
-      </enum-type-editor>
-      <enum-type-editor>
-      </enum-type-editor>
-      <enum-type-editor>
-      </enum-type-editor>
-    </mwc-list>
+    <filtered-list id="enumtypelist">
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="0"
+        value="#Dummy_ctlModel"
+      >
+        <span>
+          Dummy_ctlModel
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        value="#Dummy_Beh"
+      >
+        <span>
+          Dummy_Beh
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        value="#Dummy_Health"
+      >
+        <span>
+          Dummy_Health
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        value="#Dummy_orCategory"
+      >
+        <span>
+          Dummy_orCategory
+        </span>
+        <span slot="meta">
+          9
+        </span>
+      </mwc-list-item>
+    </filtered-list>
   </section>
 </div>
 <wizard-dialog>
