@@ -21,6 +21,9 @@ export const en = {
     valImport: 'Import value',
     fc: 'Function contraint',
     LNodeType: 'Logical Node Type',
+    lnClass: 'Logical node class',
+    accessControl: 'Access control',
+    transient: 'Transient data',
   },
   settings: {
     name: 'Settings',
@@ -199,6 +202,14 @@ export const en = {
       },
     },
   },
+  do: {
+    wizard: {
+      title: {
+        add: 'Add DO',
+        edit: 'Edit DO',
+      },
+    },
+  },
   dotype: {
     wizard: {
       title: {
@@ -206,6 +217,14 @@ export const en = {
         edit: 'Edit DOType',
       },
       enums: 'Default enumerations',
+    },
+  },
+  lnodetype: {
+    wizard: {
+      title: {
+        add: 'Add LNodeType',
+        edit: 'Edit LNodeType',
+      },
     },
   },
   lnode: {

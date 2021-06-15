@@ -2,6 +2,7 @@ import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  Create,
   createElement,
   EditorAction,
   getReference,
@@ -22,6 +23,7 @@ import {
   allDataTypeSelector,
   buildListFromStringArray,
   predefinedBasicTypeEnum,
+  unifyCreateActionArray,
   updateIDNamingAction,
   valKindEnum,
 } from './foundation.js';
@@ -225,7 +227,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumeric}"
+          pattern="${patterns.alphanumericFirstLowerCase}"
           dialogInitialFocus
         >
           ></wizard-textfield
@@ -254,9 +256,8 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
 
             Array.from(typeUI.children).forEach(child => {
               (<ListItem>child).disabled = !child.classList.contains(bType);
-              (<ListItem>child).noninteractive = !child.classList.contains(
-                bType
-              );
+              (<ListItem>child).noninteractive =
+                !child.classList.contains(bType);
               (<ListItem>child).style.display = !child.classList.contains(bType)
                 ? 'none'
                 : '';
@@ -432,7 +433,7 @@ function addPredefinedDAType(
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
 
-    const actions = [];
+    const actions: Create[] = [];
 
     if (selectedElement)
       addReferencedDataTypes(selectedElement, parent).forEach(action =>
@@ -447,7 +448,7 @@ function addPredefinedDAType(
       },
     });
 
-    return actions;
+    return unifyCreateActionArray(actions);
   };
 }
 

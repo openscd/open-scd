@@ -2,17 +2,93 @@
 <SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
   <Header id="OpenSCD_DataTypeTemplates"/>
   <DataTypeTemplates>
+    <LNodeType lnClass="CSWI" id="OpenSCD_CSWI">
+      <DO name="Mod" type="OpenSCD_ENCMod"/>
+      <DO name="Beh" type="OpenSCD_ENSBeh"/>
+      <DO name="Health" type="OpenSCD_ENSHealth"/>
+      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
+      <DO name="LocKey" type="OpenSCD_SPSsimple"/>
+      <DO name="Loc" type="OpenSCD_SPSsimple"/>
+      <DO name="Pos" type="OpenSCD_DPC"/>
+    </LNodeType>
+    <LNodeType lnClass="CILO" id="OpenSCD_CILO">
+      <DO name="Mod" type="OpenSCD_ENCMod"/>
+      <DO name="Beh" type="OpenSCD_ENSBeh"/>
+      <DO name="Health" type="OpenSCD_ENSHealth"/>
+      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
+      <DO name="EnaOpn" type="OpenSCD_SPSsimple"/>
+      <DO name="EnaCls" type="OpenSCD_SPSsimple"/>
+    </LNodeType>
+    <LNodeType lnClass="XSWI" id="OpenSCD_XSWI">
+      <DO name="Mod" type="OpenSCD_ENCMod"/>
+      <DO name="Beh" type="OpenSCD_ENSBeh"/>
+      <DO name="Health" type="OpenSCD_ENSHealth"/>
+      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
+      <DO name="LocKey" type="OpenSCD_SPSsimple"/>
+      <DO name="Loc" type="OpenSCD_SPSsimple"/>
+      <DO name="OpCnt" type="OpenSCD_INSsimple"/>
+      <DO name="Pos" type="OpenSCD_DPCstatusOnly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPCstatusOnly"/>
+      <DO name="BlkCls" type="OpenSCD_SPCstatusOnly"/>
+    </LNodeType>
+    <LNodeType lnClass="XCBR" id="OpenSCD_XCBR">
+      <DO name="Mod" type="OpenSCD_ENCMod"/>
+      <DO name="Beh" type="OpenSCD_ENSBeh"/>
+      <DO name="Health" type="OpenSCD_ENSHealth"/>
+      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
+      <DO name="LocKey" type="OpenSCD_SPSsimple"/>
+      <DO name="Loc" type="OpenSCD_SPSsimple"/>
+      <DO name="OpCnt" type="OpenSCD_INSsimple"/>
+      <DO name="Pos" type="OpenSCD_DPCstatusOnly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPCstatusOnly"/>
+      <DO name="BlkCls" type="OpenSCD_SPCstatusOnly"/>
+    </LNodeType>
     <DOType cdc="SPS" id="OpenSCD_SPSsimple">
       <DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="d" bType="VisString255" fc="DC"/>
     </DOType>
+    <DOType cdc="SPC" id="OpenSCD_SPCstatusOnly">
+      <DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
+      <DA fc="ST" qchg="true" name="q" bType="Quality"/>
+      <DA fc="ST" name="t" bType="Timestamp"/>
+      <DA fc="CF" dchg="true" name="ctlModel" bType="Enum" valKind="RO" type="OpenSCD_StatusOnly">
+        <Val>status-only</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="DPC" id="OpenSCD_DPCstatusOnly">
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="ctlModel" bType="Enum" fc="CF" type="OpenSCD_StatusOnly">
+        <Val>status-only</Val>
+      </DA>
+    </DOType>
     <DOType cdc="DPS" id="OpenSCD_DPSsimple">
       <DA name="stVal" bType="Dbpos" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="DPC" id="OpenSCD_DPC">
+      <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="ctlModel" bType="Enum" fc="CF" type="CtlModelKind">
+        <Val>sbo-with-enhanced-security</Val>
+      </DA>
+      <DA name="sboTimeout" bType="INT32U" fc="CF">
+        <Val>30000</Val>
+      </DA>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>600</Val>
+      </DA>
+      <DA name="pulseConfig" bType="Struct" fc="CO" type="OpenSCD_PulseConfig"/>
+      <DA name="SBOw" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
+      <DA name="Oper" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
+      <DA name="Cancel" bType="Struct" fc="CO" type="OpenSCD_Cancel"/>
     </DOType>
     <DOType cdc="INS" id="OpenSCD_INSsimple">
       <DA name="stVal" bType="INT32" dchg="true" fc="ST"/>
@@ -21,18 +97,32 @@
       <DA name="d" bType="VisString255" fc="DC"/>
     </DOType>
     <DOType cdc="ENS" id="OpenSCD_ENSBeh">
-      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind">
-        <Val>on</Val>
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+    </DOType>
+    <DOType cdc="ENS" id="OpenSCD_ENCMod">
+      <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="ctlModel" bType="Enum" fc="CF" type="CtlModelKind">
+        <Val>sbo-with-enhanced-security</Val>
       </DA>
-      <DA name="q" bType="Quality" qchg="true" fc="ST" />
-      <DA name="t" bType="Timestamp" fc="ST" />
+      <DA name="sboTimeout" bType="INT32U" fc="CF">
+        <Val>30000</Val>
+      </DA>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>600</Val>
+      </DA>
+      <DA name="SBOw" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
+      <DA name="Oper" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
+      <DA name="Cancel" bType="Struct" fc="CO" type="OpenSCD_Cancel"/>
     </DOType>
     <DOType cdc="ENS" id="OpenSCD_ENSHealth">
-      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="HealthKind">
-        <Val>Ok</Val>
-      </DA>
-      <DA name="q" bType="Quality" qchg="true" fc="ST" />
-      <DA name="t" bType="Timestamp" fc="ST" />
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="HealthKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
     </DOType>
     <DOType cdc="ACT" id="OpenSCD_ACTgeneral">
       <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
@@ -107,6 +197,12 @@
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
       <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="LPL" id="OpenSCD_LPLnoLD">
+      <DA fc="DC" name="vendor" bType="VisString255" valKind="RO"/>
+      <DA fc="DC" name="swRev" bType="VisString255" valKind="RO"/>
+      <DA fc="DC" name="d" bType="VisString255" valKind="RO"/>
+      <DA fc="DC" name="configRev" bType="VisString255" valKind="RO"/>
     </DOType>
     <DAType id="OpenSCD_Originator">
       <BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
@@ -198,6 +294,23 @@
       <BDA name="scaleFactor" bType="FLOAT32"/>
       <BDA name="offset" bType="FLOAT32"/>
     </DAType>
+    <DAType id="OpenSCD_OpenSBOw">
+      <BDA name="ctlVal" bType="BOOLEAN"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <BDA name="Check" bType="Check"/>
+      <ProtNs>IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_Cancel">
+      <BDA name="ctlVal" bType="BOOLEAN"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
     <EnumType id="BehaviourModeKind">
       <EnumVal ord="1">on</EnumVal>
       <EnumVal ord="2">blocked</EnumVal>
@@ -211,6 +324,9 @@
       <EnumVal ord="2">sbo-with-normal-security</EnumVal>
       <EnumVal ord="3">direct-with-enhanced-security</EnumVal>
       <EnumVal ord="4">sbo-with-enhanced-security</EnumVal>
+    </EnumType>
+    <EnumType id="OpenSCD_StatusOnly">
+      <EnumVal ord="0">status-only</EnumVal>
     </EnumType>
     <EnumType id="OriginatorCategoryKind">
       <EnumVal ord="0">not-supported</EnumVal>

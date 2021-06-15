@@ -207,4 +207,4 @@ describe('open-scd', () => {
     await element.workDone;
     await element.validated;
   });
-});
+}).timeout(4000);

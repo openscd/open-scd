@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  Create,
   createElement,
   EditorAction,
   getReference,
@@ -24,6 +25,7 @@ import {
   buildListFromStringArray,
   functionalConstraintEnum,
   predefinedBasicTypeEnum,
+  unifyCreateActionArray,
   valKindEnum,
 } from './foundation.js';
 
@@ -159,7 +161,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumeric}"
+          pattern="${patterns.alphanumericFirstLowerCase}"
           dialogInitialFocus
         >
           ></wizard-textfield
@@ -378,7 +380,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumeric}"
+          pattern="${patterns.alphanumericFirstLowerCase}"
           dialogInitialFocus
         >
           ></wizard-textfield
@@ -495,7 +497,7 @@ function addPredefinedDOType(
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
 
-    const actions = [];
+    const actions: Create[] = [];
 
     if (selectedElement)
       addReferencedDataTypes(selectedElement, parent).forEach(action =>
@@ -510,7 +512,7 @@ function addPredefinedDOType(
       },
     });
 
-    return actions;
+    return unifyCreateActionArray(actions);
   };
 }
 
