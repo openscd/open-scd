@@ -12,12 +12,12 @@ import {
   WizardInput,
 } from '../../foundation.js';
 
-interface UpdateOptions {
-  element: Element;
+export interface UpdateOptions {
+  identity: string | null;
+  doc: XMLDocument;
 }
-interface CreateOptions {
+export interface CreateOptions {
   parent: Element;
-  templates: XMLDocument;
 }
 export type WizardOptions = UpdateOptions | CreateOptions;
 
