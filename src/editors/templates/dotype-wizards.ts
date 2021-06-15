@@ -25,6 +25,7 @@ import {
   buildListFromStringArray,
   functionalConstraintEnum,
   predefinedBasicTypeEnum,
+  unifyCreateActionArray,
   valKindEnum,
 } from './foundation.js';
 
@@ -499,7 +500,7 @@ function addPredefinedDOType(
     const actions: Create[] = [];
 
     if (selectedElement)
-      addReferencedDataTypes(selectedElement, parent, actions).forEach(action =>
+      addReferencedDataTypes(selectedElement, parent).forEach(action =>
         actions.push(action)
       );
 
@@ -511,7 +512,7 @@ function addPredefinedDOType(
       },
     });
 
-    return actions;
+    return unifyCreateActionArray(actions);
   };
 }
 

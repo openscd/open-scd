@@ -50,21 +50,24 @@ export function updateIDNamingAction(element: Element): WizardActor {
 }
 
 function isActionUnique(actions: Create[], newAction: Create): boolean {
-  for (const action of actions) {
-    if (
+  return !actions.some(
+    action =>
       action.new.parent === newAction.new.parent &&
       action.new.element.getAttribute('id') ===
         newAction.new.element.getAttribute('id')
-    )
-      return false;
-  }
-  return true;
+  );
+}
+
+export function unifyCreateActionArray(actions: Create[]): Create[] {
+  const uniqueActions: Create[] = [];
+  for (const action of actions)
+    if (isActionUnique(uniqueActions, action)) uniqueActions.push(action);
+  return uniqueActions;
 }
 
 export function addReferencedDataTypes(
   element: Element,
-  parent: Element,
-  actions: Create[]
+  parent: Element
 ): Create[] {
   const templates = element.closest('DataTypeTemplates')!;
   const ids = Array.from(parent.querySelectorAll(allDataTypeSelector))
@@ -87,22 +90,19 @@ export function addReferencedDataTypes(
     if (adjacent !== null && isPublic(adjacent)) adjacents.push(adjacent);
   });
 
+  const actions: Create[] = [];
   adjacents
-    .flatMap(adjacent => addReferencedDataTypes(adjacent, parent, actions))
+    .flatMap(adjacent => addReferencedDataTypes(adjacent, parent))
     .forEach(action => actions.push(action));
 
-  // clean up actions that are reperitive
-
   adjacents.forEach(adjacent => {
-    const action = {
+    actions.push({
       new: {
         parent,
         element: <Element>adjacent.cloneNode(true),
         reference: getReference(parent, <SCLTag>adjacent.tagName),
       },
-    };
-
-    if (isActionUnique(actions, action)) actions.push(action);
+    });
   });
 
   return actions;

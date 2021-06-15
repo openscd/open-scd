@@ -22,6 +22,7 @@ import {
   addReferencedDataTypes,
   allDataTypeSelector,
   buildListFromStringArray,
+  unifyCreateActionArray,
 } from './foundation.js';
 
 import { List } from '@material/mwc-list';
@@ -265,7 +266,7 @@ function addPredefinedLNodeType(
     const actions: Create[] = [];
 
     if (selectedElement)
-      addReferencedDataTypes(selectedElement, parent, actions).forEach(action =>
+      addReferencedDataTypes(selectedElement, parent).forEach(action =>
         actions.push(action)
       );
 
@@ -277,7 +278,7 @@ function addPredefinedLNodeType(
       },
     });
 
-    return actions;
+    return unifyCreateActionArray(actions);
   };
 }
 
