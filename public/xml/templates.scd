@@ -2,6 +2,112 @@
 <SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
   <Header id="OpenSCD_DataTypeTemplates"/>
   <DataTypeTemplates>
+    <DOType cdc="SPS" id="OpenSCD_SPSsimple">
+      <DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="DPS" id="OpenSCD_DPSsimple">
+      <DA name="stVal" bType="Dbpos" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="INS" id="OpenSCD_INSsimple">
+      <DA name="stVal" bType="INT32" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="ENS" id="OpenSCD_ENSBeh">
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind">
+        <Val>on</Val>
+      </DA>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="ENS" id="OpenSCD_ENSHealth">
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="HealthKind">
+        <Val>Ok</Val>
+      </DA>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="ACT" id="OpenSCD_ACTgeneral">
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="ACD" id="OpenSCD_ACDgeneral">
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="dirGeneral" bType="Enum" dchg="true" fc="ST" type="FaultDirectionKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="SEC" id="OpenSCD_SEC">
+      <DA name="cnt" bType="INT32U" dchg="true" fc="ST"/>
+      <DA name="q" bType="Enum" fc="ST" type="SeverityKind"/>
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="BCR" id="OpenSCD_BCR">
+      <DA name="actVal" bType="INT64" dchg="true" fc="ST"/>
+      <DA name="frVal" bType="INT64" dchg="true" fc="ST"/>
+      <DA name="frTm" bType="Timestamp" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST" />
+      <DA name="pulsQty" bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="frEna" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="frPd" bType="INT32" dchg="true" fc="CF"/>
+      <DA name="frRs" bType="INT32" dchg="true" fc="CF"/>
+    </DOType>
+    <DOType cdc="HST" id="OpenSCD_HST1D">
+      <DA name="hstVal" bType="INT32" dchg="true" dupd="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST" />
+      <DA name="numPts" bType="INT16U" dchg="true" fc="CF"/>
+      <DA name="hstRangeC" bType="Struct" dchg="true" fc="CF" type="OpenSCD_Cell1D"/>
+      <DA name="xUnits" bType="Struct" dchg="true" fc="CF" type="OpenSCD_UnitwithMultiplier"/>
+      <DA name="maxPts" bType="INT16U" dchg="true" fc="CF"/>
+      <DA name="xD" bType="VisString255" fc="CF"/>
+    </DOType>
+    <DOType cdc="HST" id="OpenSCD_HST2D">
+      <DA name="hstVal" bType="INT32" dchg="true" dupd="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST" />
+      <DA name="numPts" bType="INT16U" dchg="true" fc="CF"/>
+      <DA name="hstRangeC" bType="Struct" dchg="true" fc="CF" type="OpenSCD_Cell1D"/>
+      <DA name="xUnits" bType="Struct" dchg="true" fc="CF" type="OpenSCD_UnitwithMultiplier"/>
+      <DA name="yUnits" bType="Struct" dchg="true" fc="CF" type="OpenSCD_UnitwithMultiplier"/>
+      <DA name="maxPts" bType="INT16U" dchg="true" fc="CF"/>
+      <DA name="xD" bType="VisString255" fc="CF"/>
+      <DA name="yD" bType="VisString255" fc="CF"/>
+    </DOType>
+    <DOType cdc="VSS" id="OpenSCD_VSS">
+      <DA name="stVal" bType="VisString255" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="ORS" id="OpenSCD_ORS">
+      <DA name="stVal" bType="ObjRef" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="TCS" id="OpenSCD_TCS">
+      <DA name="stVal" bType="Timestamp" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="MV" id="OpenSCD_MVinst">
+      <DA name="instMag" bType="Struct" fc="MX" type="OpenSCD_AnalogueValueFloat32"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" fc="MX" type="OpenSCD_AnalogueValueFloat32"/>
+      <DA name="q" bType="Quality" qchg="true" fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
     <DAType id="OpenSCD_Originator">
       <BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
       <BDA name="orIdent" bType="Octet64"/>

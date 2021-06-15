@@ -17,6 +17,11 @@ import {
   dATypeWizard,
 } from './templates/datype-wizards.js';
 
+import {
+  createDOTypeWizard,
+  dOTypeWizard,
+} from './templates/dotype-wizards.js';
+
 import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -32,12 +37,29 @@ export default class TemplatesPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
+  async openCreateDOTypeWizard(): Promise<void> {
+    this.createDataTypeTemplates();
+
+    this.dispatchEvent(
+      newWizardEvent(
+        createDOTypeWizard(
+          this.doc.querySelector(':root > DataTypeTemplates')!,
+          await templates
+        )
+      )
+    );
+  }
+
+  openDOTypeWizard(identity: string): void {
+    const wizard = dOTypeWizard(identity, this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   openDATypeWizard(identity: string): void {
     const wizard = dATypeWizard(identity, this.doc);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   async openCreateDATypeWizard(): Promise<void> {
     this.createDataTypeTemplates();
 
@@ -51,7 +73,6 @@ export default class TemplatesPlugin extends LitElement {
     );
   }
 
-  /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   async openCreateEnumWizard(): Promise<void> {
     this.createDataTypeTemplates();
 
@@ -98,14 +119,54 @@ export default class TemplatesPlugin extends LitElement {
       <div id="containerTemplates">
         <section tabindex="0">
           <h1>
-            ${translate('scl.DOType')}
+            ${translate('scl.LNodeType')}
             <nav>
               <abbr title="${translate('add')}">
                 <mwc-icon-button icon="playlist_add"></mwc-icon-button>
               </abbr>
             </nav>
           </h1>
-          <filtered-list id="dotypelist">
+          <filtered-list id="lnodetype">
+            ${Array.from(
+              this.doc.querySelectorAll(
+                ':root > DataTypeTemplates > LNodeType'
+              ) ?? []
+            ).map(
+              lnodetype =>
+                html`<mwc-list-item
+              twoline
+              value="${identity(lnodetype)}"
+              tabindex="0"
+              hasMeta
+              ><span>${lnodetype.getAttribute('id')}</span
+              ><span slot="secondary">${lnodetype.getAttribute(
+                'lnClass'
+              )}</span></span><span slot="meta"
+                >${lnodetype.querySelectorAll('DO').length}</span
+              ></mwc-list-item
+            >`
+            )}
+          </filtered-list>
+        </section>
+        <section tabindex="0">
+          <h1>
+            ${translate('scl.DOType')}
+            <nav>
+              <abbr title="${translate('add')}">
+                <mwc-icon-button
+                  icon="playlist_add"
+                  @click=${() => this.openCreateDOTypeWizard()}
+                ></mwc-icon-button>
+              </abbr>
+            </nav>
+          </h1>
+          <filtered-list
+            id="dotypelist"
+            @selected=${(e: SingleSelectedEvent) =>
+              this.openDOTypeWizard(
+                (<ListItem>(<List>e.target).selected).value
+              )}
+          >
             ${Array.from(
               this.doc.querySelectorAll(':root > DataTypeTemplates > DOType') ??
                 []

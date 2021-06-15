@@ -1,19 +1,19 @@
-# `DAType wizards`
+# `DOType wizards`
 
-## `defines a createDATypeWizard`
+## `defines a createDOTypeWizard`
 
 ####   `looks like the latest snapshot`
 
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[datype.wizard.title.add]"
+  heading="[dotype.wizard.title.add]"
   open=""
 >
   <div id="wizard-content">
     <mwc-select
       fixedmenuposition=""
-      helper="Default enumerations"
+      helper="[dotype.wizard.enums]"
       icon="playlist_add_check"
       label="values"
       outlined=""
@@ -25,106 +25,10 @@
         mwc-list-item=""
         role="option"
         tabindex="0"
-        value="OpenSCD_Originator"
+        value="OpenSCD_SPSsimple"
       >
         <span>
-          Originator
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_RangeConfig"
-      >
-        <span>
-          RangeConfig
-        </span>
-        <span slot="meta">
-          7
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_ValWOTrans"
-      >
-        <span>
-          ValWOTrans
-        </span>
-        <span slot="meta">
-          1
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_ValWithTrans"
-      >
-        <span>
-          ValWithTrans
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_UnitwoMultiplier"
-      >
-        <span>
-          UnitwoMultiplier
-        </span>
-        <span slot="meta">
-          1
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_UnitwithMultiplier"
-      >
-        <span>
-          UnitwithMultiplier
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_PulseConfig"
-      >
-        <span>
-          PulseConfig
+          SPSsimple
         </span>
         <span slot="meta">
           4
@@ -137,74 +41,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_VectorIwithAngle"
+        value="OpenSCD_DPSsimple"
       >
         <span>
-          VectorIwithAngle
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_VectorFwoAngle"
-      >
-        <span>
-          VectorFwoAngle
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_VectorIwithAngle"
-      >
-        <span>
-          VectorIwithAngle
-        </span>
-        <span slot="meta">
-          1
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_VectorFwoAngle"
-      >
-        <span>
-          VectorFwoAngle
-        </span>
-        <span slot="meta">
-          1
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_Cell2D"
-      >
-        <span>
-          Cell2D
+          DPSsimple
         </span>
         <span slot="meta">
           4
@@ -217,13 +57,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_Cell1D"
+        value="OpenSCD_INSsimple"
       >
         <span>
-          Cell1D
+          INSsimple
         </span>
         <span slot="meta">
-          2
+          4
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -233,10 +73,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_Point3D"
+        value="OpenSCD_ENSBeh"
       >
         <span>
-          Point3D
+          ENSBeh
         </span>
         <span slot="meta">
           3
@@ -249,13 +89,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_Point2D"
+        value="OpenSCD_ENSHealth"
       >
         <span>
-          Point2D
+          ENSHealth
         </span>
         <span slot="meta">
-          2
+          3
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -265,10 +105,74 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_CalendarTime"
+        value="OpenSCD_ACTgeneral"
       >
         <span>
-          CalendarTime
+          ACTgeneral
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ACDgeneral"
+      >
+        <span>
+          ACDgeneral
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_SEC"
+      >
+        <span>
+          SEC
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_BCR"
+      >
+        <span>
+          BCR
+        </span>
+        <span slot="meta">
+          9
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_HST1D"
+      >
+        <span>
+          HST1D
         </span>
         <span slot="meta">
           8
@@ -281,13 +185,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_AnalogueValueInteger32andFloat32"
+        value="OpenSCD_HST2D"
       >
         <span>
-          AnalogueValueInteger32andFloat32
+          HST2D
         </span>
         <span slot="meta">
-          2
+          10
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -297,13 +201,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_AnalogueValueFloat32"
+        value="OpenSCD_VSS"
       >
         <span>
-          AnalogueValueFloat32
+          VSS
         </span>
         <span slot="meta">
-          1
+          4
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -313,13 +217,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_AnalogueValueInteger32"
+        value="OpenSCD_ORS"
       >
         <span>
-          AnalogueValueInteger32
+          ORS
         </span>
         <span slot="meta">
-          1
+          4
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -329,13 +233,29 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ScaledValueConfig"
+        value="OpenSCD_TCS"
       >
         <span>
-          ScaledValueConfig
+          TCS
         </span>
         <span slot="meta">
-          2
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_MVinst"
+      >
+        <span>
+          MVinst
+        </span>
+        <span slot="meta">
+          5
         </span>
       </mwc-list-item>
     </mwc-select>
@@ -343,7 +263,7 @@
       dialoginitialfocus=""
       helper="[scl.id]"
       label="id"
-      maxlength="255"
+      maxlength="127"
       minlength="1"
       pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[𐀀\-󯿿]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
@@ -377,14 +297,14 @@
 
 ```
 
-## `defines a dATypeWizard`
+## `defines a dOTypeWizard`
 
 ####   `looks like the latest snapshot`
 
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[datype.wizard.title.edit]"
+  heading="[dotype.wizard.title.edit]"
   open=""
 >
   <div id="wizard-content">
@@ -413,23 +333,39 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-textfield>
-    <mwc-button
-      icon="playlist_add"
-      label="[scl.DA]"
-      slot="graphic"
-      trailingicon=""
+    <wizard-textfield
+      helper="[scl.CDC]"
+      label="CDC"
+      pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </mwc-button>
+    </wizard-textfield>
+    <section>
+      <mwc-button
+        icon="playlist_add"
+        label="[scl.DO]"
+        slot="graphic"
+        trailingicon=""
+      >
+      </mwc-button>
+      <mwc-button
+        icon="playlist_add"
+        label="[scl.DA]"
+        slot="graphic"
+        trailingicon=""
+      >
+      </mwc-button>
+    </section>
     <mwc-list style="margin-top: 0px;">
       <mwc-list-item
         aria-disabled="false"
+        class="DA"
         mwc-list-item=""
         tabindex="0"
         twoline=""
-        value="#Dummy.LLN0.Mod.SBOw>ctlVal"
+        value="#Dummy.LLN0.Mod>stVal"
       >
         <span>
-          ctlVal
+          stVal
         </span>
         <span slot="secondary">
           #Dummy_Beh
@@ -437,41 +373,29 @@
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
+        class="DA"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="#Dummy.LLN0.Mod.SBOw>origin"
+        value="#Dummy.LLN0.Mod>q"
       >
         <span>
-          origin
+          q
         </span>
         <span slot="secondary">
-          #Dummy_origin
+          Quality
         </span>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
+        class="DA"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="#Dummy.LLN0.Mod.SBOw>ctlNum"
+        value="#Dummy.LLN0.Mod>t"
       >
         <span>
-          ctlNum
-        </span>
-        <span slot="secondary">
-          INT8U
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-        value="#Dummy.LLN0.Mod.SBOw>T"
-      >
-        <span>
-          T
+          t
         </span>
         <span slot="secondary">
           Timestamp
@@ -479,13 +403,14 @@
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
+        class="DA"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="#Dummy.LLN0.Mod.SBOw>Test"
+        value="#Dummy.LLN0.Mod>stSeld"
       >
         <span>
-          Test
+          stSeld
         </span>
         <span slot="secondary">
           BOOLEAN
@@ -493,16 +418,152 @@
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
+        class="DA"
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="#Dummy.LLN0.Mod.SBOw>Check"
+        value="#Dummy.LLN0.Mod>opRcvd"
       >
         <span>
-          Check
+          opRcvd
         </span>
         <span slot="secondary">
-          Check
+          BOOLEAN
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>opOk"
+      >
+        <span>
+          opOk
+        </span>
+        <span slot="secondary">
+          BOOLEAN
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>tOpOk"
+      >
+        <span>
+          tOpOk
+        </span>
+        <span slot="secondary">
+          Timestamp
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>ctlModel"
+      >
+        <span>
+          ctlModel
+        </span>
+        <span slot="secondary">
+          #Dummy_ctlModel
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>sboTimeout"
+      >
+        <span>
+          sboTimeout
+        </span>
+        <span slot="secondary">
+          INT32U
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>operTimeout"
+      >
+        <span>
+          operTimeout
+        </span>
+        <span slot="secondary">
+          INT32U
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>SBO"
+      >
+        <span>
+          SBO
+        </span>
+        <span slot="secondary">
+          ObjRef
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>SBOw"
+      >
+        <span>
+          SBOw
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Mod.SBOw
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>Oper"
+      >
+        <span>
+          Oper
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Mod.SBOw
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="DA"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="#Dummy.LLN0.Mod>Cancel"
+      >
+        <span>
+          Cancel
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Mod.Cancel
         </span>
       </mwc-list-item>
     </mwc-list>
@@ -526,14 +587,14 @@
 
 ```
 
-## `defines a bDAWizard to edit an existing BDA`
+## `defines a dAWizard to edit an existing DA`
 
 ####   `looks like the latest snapshot`
 
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[bda.wizard.title.edit]"
+  heading="[da.wizard.title.edit]"
   open=""
 >
   <div id="wizard-content">
@@ -951,6 +1012,30 @@
         Dummy.LPHD1.Sim.Cancel
       </mwc-list-item>
       <mwc-list-item
+        aria-disabled="true"
+        class="Struct"
+        disabled=""
+        noninteractive=""
+        role="option"
+        style="display: none;"
+        tabindex="-1"
+        value="Dummy.Vector"
+      >
+        Dummy.Vector
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="true"
+        class="Struct"
+        disabled=""
+        noninteractive=""
+        role="option"
+        style="display: none;"
+        tabindex="-1"
+        value="Dummy.Units"
+      >
+        Dummy.Units
+      </mwc-list-item>
+      <mwc-list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -991,6 +1076,26 @@
         value="Dummy_orCategory"
       >
         Dummy_orCategory
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="Enum"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.SIUnitsKind"
+      >
+        Dummy.SIUnitsKind
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        class="Enum"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.MultiplierKind"
+      >
+        Dummy.MultiplierKind
       </mwc-list-item>
     </mwc-select>
     <wizard-textfield
@@ -1085,6 +1190,123 @@
         false
       </mwc-list-item>
     </mwc-select>
+    <mwc-select
+      fixedmenuposition=""
+      helper="[scl.fc]"
+      label="fc"
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="0"
+        value="ST"
+      >
+        ST
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="MX"
+      >
+        MX
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SP"
+      >
+        SP
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SV"
+      >
+        SV
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="CF"
+      >
+        CF
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="DC"
+      >
+        DC
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SG"
+      >
+        SG
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SE"
+      >
+        SE
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SR"
+      >
+        SR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OR"
+      >
+        OR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="BL"
+      >
+        BL
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="EX"
+      >
+        EX
+      </mwc-list-item>
+    </mwc-select>
   </div>
   <mwc-button
     dialogaction="close"
@@ -1105,14 +1327,14 @@
 
 ```
 
-## `defines a bDAWizard to create a new BDA element`
+## `defines a dAWizard to create a new DA element`
 
 ####   `looks like the latest snapshot`
 
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[bda.wizard.title.add]"
+  heading="[da.wizard.title.add]"
   open=""
 >
   <div id="wizard-content">
@@ -1501,10 +1723,32 @@
         class="Struct"
         mwc-list-item=""
         role="option"
-        tabindex="0"
+        tabindex="-1"
         value="Dummy.LPHD1.Sim.SBOw"
       >
         Dummy.LPHD1.Sim.SBOw
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="false"
+        class="Struct"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LPHD1.Sim.Cancel"
+      >
+        Dummy.LPHD1.Sim.Cancel
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="false"
+        class="Struct"
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+        value="Dummy.Vector"
+      >
+        Dummy.Vector
       </mwc-list-item>
       <mwc-list-item
         activated=""
@@ -1515,9 +1759,9 @@
         role="option"
         selected=""
         tabindex="-1"
-        value="Dummy.LPHD1.Sim.Cancel"
+        value="Dummy.Units"
       >
-        Dummy.LPHD1.Sim.Cancel
+        Dummy.Units
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="true"
@@ -1566,6 +1810,30 @@
         value="Dummy_orCategory"
       >
         Dummy_orCategory
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="true"
+        class="Enum"
+        disabled=""
+        noninteractive=""
+        role="option"
+        style="display: none;"
+        tabindex="-1"
+        value="Dummy.SIUnitsKind"
+      >
+        Dummy.SIUnitsKind
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="true"
+        class="Enum"
+        disabled=""
+        noninteractive=""
+        role="option"
+        style="display: none;"
+        tabindex="-1"
+        value="Dummy.MultiplierKind"
+      >
+        Dummy.MultiplierKind
       </mwc-list-item>
     </mwc-select>
     <wizard-textfield
@@ -1658,6 +1926,510 @@
         value="false"
       >
         false
+      </mwc-list-item>
+    </mwc-select>
+    <mwc-select
+      fixedmenuposition=""
+      helper="[scl.fc]"
+      label="fc"
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+        value="ST"
+      >
+        ST
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="MX"
+      >
+        MX
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SP"
+      >
+        SP
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SV"
+      >
+        SV
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="CF"
+      >
+        CF
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="DC"
+      >
+        DC
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SG"
+      >
+        SG
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SE"
+      >
+        SE
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="SR"
+      >
+        SR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OR"
+      >
+        OR
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="BL"
+      >
+        BL
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="EX"
+      >
+        EX
+      </mwc-list-item>
+    </mwc-select>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon=""
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+
+```
+
+## `defines a sDOWizard to edit an existing SDO`
+
+####   `looks like the latest snapshot`
+
+```html
+<mwc-dialog
+  defaultaction="close"
+  heading="[sdo.wizard.title.edit]"
+  open=""
+>
+  <div id="wizard-content">
+    <mwc-button
+      fullwidth=""
+      icon="delete"
+      label="[delete]"
+      trailingicon=""
+    >
+    </mwc-button>
+    <wizard-textfield
+      dialoginitialfocus=""
+      helper="[scl.name]"
+      label="name"
+      pattern="[a-z][0-9,A-Z,a-z]*"
+      required=""
+    >
+      >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.desc]"
+      label="desc"
+      nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
+    >
+    </wizard-textfield>
+    <mwc-select
+      fixedmenuposition=""
+      helper="[scl.type]"
+      label="type"
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+        value="Dummy.LLN0.Mod"
+      >
+        Dummy.LLN0.Mod
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.Beh"
+      >
+        Dummy.LLN0.Beh
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.Health"
+      >
+        Dummy.LLN0.Health
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.NamPlt"
+      >
+        Dummy.LLN0.NamPlt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LPHD1.PhyNam"
+      >
+        Dummy.LPHD1.PhyNam
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LPHD1.Sim"
+      >
+        Dummy.LPHD1.Sim
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.Pos"
+      >
+        Dummy.XCBR1.Pos
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CSWI.Pos1"
+      >
+        Dummy.CSWI.Pos1
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CSWI.Pos2"
+      >
+        Dummy.CSWI.Pos2
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.OpCnt"
+      >
+        Dummy.XCBR1.OpCnt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.NamPlt"
+      >
+        Dummy.XCBR1.NamPlt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.BlkOpn"
+      >
+        Dummy.XCBR1.BlkOpn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.SPS"
+      >
+        Dummy.SPS
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.WYE"
+      >
+        Dummy.WYE
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        aria-selected="true"
+        mwc-list-item=""
+        role="option"
+        selected=""
+        tabindex="-1"
+        value="Dummy.CMV"
+      >
+        Dummy.CMV
+      </mwc-list-item>
+    </mwc-select>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon=""
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+
+```
+
+## `defines a sDOWizard to create a new SDO element`
+
+####   `looks like the latest snapshot`
+
+```html
+<mwc-dialog
+  defaultaction="close"
+  heading="[sdo.wizard.title.add]"
+  open=""
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      dialoginitialfocus=""
+      helper="[scl.name]"
+      label="name"
+      pattern="[a-z][0-9,A-Z,a-z]*"
+      required=""
+    >
+      >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.desc]"
+      label="desc"
+      nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
+    >
+    </wizard-textfield>
+    <mwc-select
+      fixedmenuposition=""
+      helper="[scl.type]"
+      label="type"
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="0"
+        value="Dummy.LLN0.Mod"
+      >
+        Dummy.LLN0.Mod
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.Beh"
+      >
+        Dummy.LLN0.Beh
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.Health"
+      >
+        Dummy.LLN0.Health
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LLN0.NamPlt"
+      >
+        Dummy.LLN0.NamPlt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LPHD1.PhyNam"
+      >
+        Dummy.LPHD1.PhyNam
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.LPHD1.Sim"
+      >
+        Dummy.LPHD1.Sim
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.Pos"
+      >
+        Dummy.XCBR1.Pos
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CSWI.Pos1"
+      >
+        Dummy.CSWI.Pos1
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CSWI.Pos2"
+      >
+        Dummy.CSWI.Pos2
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.OpCnt"
+      >
+        Dummy.XCBR1.OpCnt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.NamPlt"
+      >
+        Dummy.XCBR1.NamPlt
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.XCBR1.BlkOpn"
+      >
+        Dummy.XCBR1.BlkOpn
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.SPS"
+      >
+        Dummy.SPS
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.WYE"
+      >
+        Dummy.WYE
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="Dummy.CMV"
+      >
+        Dummy.CMV
       </mwc-list-item>
     </mwc-select>
   </div>
