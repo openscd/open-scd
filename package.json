@@ -1,6 +1,6 @@
 {
   "name": "open-scd",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": "https://github.com/openscd/open-scd.git",
   "description": "A bottom-up substation configuration designer for projects described using SCL `IEC 61850-6` Edition 2 or greater.",
   "keywords": [
@@ -93,7 +93,7 @@
     "tslib": "^2.2.0",
     "typedoc": "^0.20.36",
     "typedoc-plugin-markdown": "^3.8.1",
-    "typescript": "^4.2.4",
+    "typescript": "4.2.4",
     "web-component-analyzer": "^1.1.6",
     "workbox-cli": "^6.1.5"
   },
