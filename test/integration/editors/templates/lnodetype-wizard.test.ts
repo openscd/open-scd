@@ -228,22 +228,24 @@ describe('LNodeType wizards', () => {
     }).timeout(5000);
   });
 
-  /* describe('defines a sDOWizard to edit an existing SDO', () => {
+  describe('defines a dOWizard to edit an existing DO', () => {
     let nameField: WizardTextField;
-    let primayAction: HTMLElement;
-    let deleteButton: HTMLElement;
-    let bTypeSelect: Select;
+    let descField: WizardTextField;
     let typeSelect: Select;
+    let accessControlField: WizardTextField;
+    let transientSelect: Select;
+    let primaryAction: HTMLElement;
+    let deleteButton: HTMLElement;
 
     beforeEach(async () => {
       (<ListItem>(
-        dOTypeList.querySelector('mwc-list-item[value="#Dummy.WYE"]')
+        lNodeTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI?.dialog?.querySelector(
-          'mwc-list-item[value="#Dummy.WYE>phsA"]'
+          'mwc-list-item[value="#Dummy.LLN0>Mod"]'
         )
       )).click();
       await parent.requestUpdate();
@@ -252,7 +254,21 @@ describe('LNodeType wizards', () => {
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
       );
-      primayAction = <HTMLElement>(
+      descField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+      );
+      accessControlField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-textfield[label="accessControl"]'
+        )
+      );
+      typeSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+      );
+      transientSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
+      );
+      primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
         )
@@ -260,52 +276,70 @@ describe('LNodeType wizards', () => {
       deleteButton = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
       );
-      bTypeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
-      );
-      typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
-      );
     });
 
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('edits SDO attributes name', async () => {
-      expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
-        .exist;
-      nameField.value = 'newPhsA';
-      await parent.requestUpdate();
-      primayAction.click();
-      await parent.requestUpdate();
-      expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
-        .not.exist;
-      expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="newPhsA"]'))
+    it('edits DO attributes name', async () => {
+      expect(doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'))
         .to.exist;
-    });
-    it('deletes the SDO element on delete button click', async () => {
-      expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
-        .exist;
+      nameField.value = 'NewMod';
+      await parent.requestUpdate();
+      primaryAction.click();
+      await parent.requestUpdate();
+      expect(doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'))
+        .to.not.exist;
       expect(
-        doc.querySelectorAll('DOType[id="Dummy.WYE"] > SDO').length
-      ).to.equal(3);
+        doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="NewMod"]')
+      ).to.exist;
+    });
+    it('edits yet another attribute of the DO element', async () => {
+      expect(
+        doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="NewMod"]')
+      ).to.not.exist;
+
+      nameField.value = 'NewMod';
+      descField.nullable = false;
+      descField.value = 'myDesc';
+      typeSelect.value = 'Dummy.CMV';
+      accessControlField.nullable = false;
+      accessControlField.maybeValue = 'myAccessControl';
+      transientSelect.value = 'true';
+
+      await parent.requestUpdate();
+      primaryAction.click();
+      await parent.requestUpdate();
+      expect(
+        doc.querySelector(
+          `LNodeType[id="Dummy.LLN0"] >` +
+            `DO[name="NewMod"][desc="myDesc"][type="Dummy.CMV"][accessControl="myAccessControl"][transient="true"]`
+        )
+      ).to.exist;
+    });
+    it('deletes the DO element on delete button click', async () => {
+      expect(doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'))
+        .to.exist;
+      expect(
+        doc.querySelectorAll('LNodeType[id="Dummy.LLN0"] > DO').length
+      ).to.equal(4);
       deleteButton.click();
       await parent.requestUpdate();
-      expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
-        .not.exist;
+      expect(doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'))
+        .to.not.exist;
       expect(
-        doc.querySelectorAll('DOType[id="Dummy.WYE"] > SDO').length
-      ).to.equal(2);
+        doc.querySelectorAll('LNodeType[id="Dummy.LLN0"] > DO').length
+      ).to.equal(3);
     });
-    it('does not edit SDO element without changes', async () => {
+    it('does not edit DO element without changes', async () => {
       const originData = (<Element>(
-        doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')
+        doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')
       )).cloneNode(true);
-      primayAction.click();
+      primaryAction.click();
       await parent.requestUpdate();
       expect(
         originData.isEqualNode(
-          doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')
+          doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')
         )
       ).to.be.true;
     });
@@ -314,17 +348,19 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('DOType').length
       );
     });
-  }); */
+  });
 
-  /* describe('defines a sDOWizard to create a new SDO element', () => {
+  describe('defines a dOWizard to create a new DO element', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
     let typeSelect: Select;
+    let accessControlField: WizardTextField;
+    let transientSelect: Select;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
       (<ListItem>(
-        dOTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod"]')
+        lNodeTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -342,8 +378,16 @@ describe('LNodeType wizards', () => {
       descField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
       );
+      accessControlField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-textfield[label="accessControl"]'
+        )
+      );
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+      );
+      transientSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -355,46 +399,43 @@ describe('LNodeType wizards', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('creates a new SDO element', async () => {
+    it('creates a new DO element', async () => {
       expect(
-        doc.querySelector(
-          'DOType[id="Dummy.LLN0.Mod"] > SDO[name="newSDOElement"]'
-        )
+        doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="NewMod"]')
       ).to.not.exist;
-      nameField.value = 'newSDOElement';
+      nameField.value = 'NewMod';
       typeSelect.value = 'Dummy.CMV';
       await parent.requestUpdate();
       primaryAction.click();
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          'DOType[id="Dummy.LLN0.Mod"] > SDO[name="newSDOElement"]:not([desc])[type="Dummy.CMV"]'
+          'LNodeType[id="Dummy.LLN0"] > DO[name="NewMod"]:not([desc])[type="Dummy.CMV"]:not([accessControl]):not([transient])'
         )
       ).to.exist;
     });
-    it('creates yet another new SDO element', async () => {
-      const name = 'newSDOElement2';
-      const desc = 'newSDOdesc';
-
+    it('creates yet another new DO element', async () => {
       expect(
-        doc.querySelector(
-          'DOType[id="#Dummy.LLN0.Mod"] > SDO[name="newSDOElement2"]'
-        )
+        doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="NewMod"]')
       ).to.not.exist;
-      nameField.value = name;
+
+      nameField.value = 'NewMod';
       descField.nullable = false;
-      descField.value = desc;
+      descField.value = 'myDesc';
       typeSelect.value = 'Dummy.CMV';
+      accessControlField.nullable = false;
+      accessControlField.maybeValue = 'myAccessControl';
+      transientSelect.value = 'true';
 
       await parent.requestUpdate();
       primaryAction.click();
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          `DOType[id="Dummy.LLN0.Mod"] >` +
-            `SDO[name="${name}"][desc="${desc}"][type="Dummy.CMV"]`
+          `LNodeType[id="Dummy.LLN0"] >` +
+            `DO[name="NewMod"][desc="myDesc"][type="Dummy.CMV"][accessControl="myAccessControl"][transient="true"]`
         )
       ).to.exist;
     });
-  }); */
+  });
 });

@@ -2353,7 +2353,8 @@ export const patterns = {
   nmTokens: nmToken + '( ' + nmToken + ')*',
   decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
-  alphanumeric: '[a-z][0-9,A-Z,a-z]*',
+  alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
+  alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
   lnClass: '[A-Z]{4,4}',
 };
 

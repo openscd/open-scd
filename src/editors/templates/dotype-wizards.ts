@@ -160,7 +160,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumeric}"
+          pattern="${patterns.alphanumericFirstLowerCase}"
           dialogInitialFocus
         >
           ></wizard-textfield
@@ -379,7 +379,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumeric}"
+          pattern="${patterns.alphanumericFirstLowerCase}"
           dialogInitialFocus
         >
           ></wizard-textfield
