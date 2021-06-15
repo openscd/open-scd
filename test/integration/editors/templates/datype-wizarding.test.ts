@@ -9,8 +9,9 @@ import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 describe('DAType wizards', () => {
+  if (customElements.get('templates-editor') === undefined)
+    customElements.define('templates-editor', TemplatesPlugin);
   let doc: Document;
-  customElements.define('templates-editor', TemplatesPlugin);
   let parent: MockWizardEditor;
   let templates: TemplatesPlugin;
   let dATypeList: FilteredList;

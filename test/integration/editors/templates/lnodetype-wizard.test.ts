@@ -9,6 +9,8 @@ import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 describe('LNodeType wizards', () => {
+  if (customElements.get('templates-editor') === undefined)
+    customElements.define('templates-editor', TemplatesPlugin);
   let doc: Document;
   let parent: MockWizardEditor;
   let templates: TemplatesPlugin;
