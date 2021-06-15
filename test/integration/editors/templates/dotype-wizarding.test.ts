@@ -287,7 +287,6 @@ describe('DOType wizards', () => {
     let descField: WizardTextField;
     let sAddrField: WizardTextField;
     let bTypeSelect: Select;
-    let typeSelect: Select;
     let valKindSelect: Select;
     let valImportSelect: Select;
     let fcSelect: Select;
@@ -318,9 +317,6 @@ describe('DOType wizards', () => {
       );
       bTypeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
-      );
-      typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
       );
       valKindSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="valKind"]')
@@ -394,7 +390,6 @@ describe('DOType wizards', () => {
     let nameField: WizardTextField;
     let primayAction: HTMLElement;
     let deleteButton: HTMLElement;
-    let bTypeSelect: Select;
     let typeSelect: Select;
 
     beforeEach(async () => {
@@ -421,9 +416,6 @@ describe('DOType wizards', () => {
       );
       deleteButton = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
-      );
-      bTypeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
       );
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')

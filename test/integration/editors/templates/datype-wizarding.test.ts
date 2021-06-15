@@ -305,7 +305,6 @@ describe('DAType wizards', () => {
     let descField: WizardTextField;
     let sAddrField: WizardTextField;
     let bTypeSelect: Select;
-    let typeSelect: Select;
     let valKindSelect: Select;
     let valImportSelect: Select;
     let primayAction: HTMLElement;
@@ -333,9 +332,6 @@ describe('DAType wizards', () => {
       );
       bTypeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
-      );
-      typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
       );
       valKindSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="valKind"]')
@@ -373,8 +369,6 @@ describe('DAType wizards', () => {
       const name = 'newBDAElement2';
       const desc = 'newBDAdesc';
       const sAddr = 'myNewAddr';
-      const valKind = 'RO';
-      const valImport = 'true';
       expect(
         doc.querySelector(
           'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement2"]'
