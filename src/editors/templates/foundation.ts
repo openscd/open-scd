@@ -49,7 +49,7 @@ export function updateIDNamingAction(element: Element): WizardActor {
   };
 }
 
-function isActionUnique(actions: Create[], newAction: Create): boolean {
+function containsCreateAction(actions: Create[], newAction: Create): boolean {
   return !actions.some(
     action =>
       action.new.parent === newAction.new.parent &&
@@ -61,7 +61,7 @@ function isActionUnique(actions: Create[], newAction: Create): boolean {
 export function unifyCreateActionArray(actions: Create[]): Create[] {
   const uniqueActions: Create[] = [];
   for (const action of actions)
-    if (isActionUnique(uniqueActions, action)) uniqueActions.push(action);
+    if (containsCreateAction(uniqueActions, action)) uniqueActions.push(action);
   return uniqueActions;
 }
 
