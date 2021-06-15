@@ -7,11 +7,9 @@ import {
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
-
 import { styles } from './templates/foundation.js';
 
 import '../filtered-list.js';
-import './templates/enum-type-editor.js';
 
 import {
   createEnumTypeWizard,
