@@ -16,6 +16,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
     let typeField: WizardTextField;
+    let bitRateField: WizardTextField;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
@@ -45,6 +46,11 @@ describe('subnetwork-editor wizarding editing integration', () => {
       );
       typeField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
+      );
+      bitRateField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-textfield[label="BitRate"]'
+        )
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -88,7 +94,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
     });
     it('deletes desc attribute if wizard-textfield is deactivated', async () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      (<HTMLElement>descField.shadowRoot?.querySelector('mwc-switch')).click();
+      descField.nullSwitch!.click();
       await parent.updateComplete;
       primaryAction.click();
       await parent.updateComplete;
@@ -104,22 +110,20 @@ describe('subnetwork-editor wizarding editing integration', () => {
     });
     it('deletes type attribute if wizard-textfield is deactivated', async () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      await (<HTMLElement>(
-        typeField.shadowRoot?.querySelector('mwc-switch')
-      )).click();
+      typeField.nullSwitch!.click();
       await parent.updateComplete;
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.getAttribute('type')).to.be.null;
     });
-    it('changes value on primary action', async () => {
-      parent.wizardUI.inputs[3].value = '20.0';
+    it('changes BitRate value on primary action', async () => {
+      bitRateField.value = '20.0';
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('BitRate')?.innerHTML).to.equal('20.0');
     });
-    it('changes multiplier on primary action', async () => {
-      (<WizardTextField>parent.wizardUI.inputs[3]).multiplier = 'M';
+    it('changes BitRate multiplier on primary action', async () => {
+      bitRateField.multiplier = 'M';
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('BitRate')?.getAttribute('multiplier')).to.equal(
@@ -131,28 +135,12 @@ describe('subnetwork-editor wizarding editing integration', () => {
     });
     it('deletes BitRate element if voltage wizard-textfield is deactivated', async () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      await (<HTMLElement>(
-        parent.wizardUI.inputs[3].shadowRoot?.querySelector('mwc-switch')
-      )).click();
+      bitRateField.nullSwitch!.click();
       await parent.updateComplete;
       primaryAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork')?.querySelector('BitRate')).to.be
         .null;
-    });
-    describe('edit BitRate', () => {
-      let primaryAction: HTMLElement;
-      beforeEach(async () => {
-        await (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
-        )).click();
-        await parent.updateComplete;
-        primaryAction = <HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        );
-      });
     });
   });
   describe('remove action', () => {
