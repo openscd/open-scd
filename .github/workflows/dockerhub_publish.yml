@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Extract tag name
+        id: extract_tagname
+        shell: bash
+        run: echo "##[set-output name=tagname;]$(echo ${GITHUB_REF##*/})"
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
@@ -33,5 +37,5 @@ jobs:
         with:
           push: true
           tags: |
-            lfenergycompas/compas-open-scd:${{ GITHUB_REF##*/ }}
+            lfenergycompas/compas-open-scd:${{ steps.extract_tagname.outputs.tagname }}
             lfenergycompas/compas-open-scd:latest
