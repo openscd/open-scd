@@ -2,12 +2,15 @@ import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/substation/conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from '../../../../src/editors/substation/conducting-equipment-editor.js';
-import { getDocument } from '../../../data.js';
 
 describe('conducting-equipment-editor', () => {
   let element: ConductingEquipmentEditor;
-  const validSCL = getDocument();
+  let validSCL: XMLDocument;
+
   beforeEach(async () => {
+    validSCL = await fetch('/base/test/testfiles/valid.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <ConductingEquipmentEditor>(
       await fixture(
         html`<conducting-equipment-editor

@@ -2,12 +2,15 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/substation/substation-editor.js';
 import { SubstationEditor } from '../../../../src/editors/substation/substation-editor.js';
-import { getDocument } from '../../../data.js';
 
 describe('substation-editor', () => {
   let element: SubstationEditor;
-  const validSCL = getDocument();
+  let validSCL: XMLDocument;
+
   beforeEach(async () => {
+    validSCL = await fetch('/base/test/testfiles/valid.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = await fixture(html`<substation-editor
       .element=${validSCL.querySelector('Substation')}
     ></substation-editor>`);

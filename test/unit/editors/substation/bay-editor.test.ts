@@ -2,12 +2,15 @@ import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/substation/bay-editor.js';
 import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
-import { getDocument } from '../../../data.js';
 
 describe('bay-editor', () => {
   let element: BayEditor;
-  const validSCL = getDocument();
+  let validSCL: XMLDocument;
+
   beforeEach(async () => {
+    validSCL = await fetch('/base/test/testfiles/valid.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <BayEditor>(
       await fixture(
         html`<bay-editor
