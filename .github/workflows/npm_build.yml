@@ -16,4 +16,6 @@ jobs:
         with:
           node-version: '14.x'
       - name: Build application with npm
-        run: npm ci && npm run-script build
+        run: |
+          npm ci
+          npm run-script build

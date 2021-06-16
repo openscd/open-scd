@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: '14.x'
       - name: Build application with npm
-        run: npm ci && npm run-script build
+        run: |
+          npm ci
+          npm run-script build
       - name: Login to Docker Hub
         run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
       - name: Build and push image to Docker Hub
