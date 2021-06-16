@@ -31,32 +31,8 @@ describe('conducting-equipment-editor wizarding integration', () => {
     )).click();
     await parent.updateComplete;
   });
-  it('has one wizard-dialog', async () => {
-    expect(parent.wizardUI.dialogs.length).to.equal(1);
-  });
-  describe('include two buttons', () => {
-    it('and only two buttons', () => {
-      expect(
-        parent.wizardUI.dialog?.querySelectorAll('mwc-button').length
-      ).to.equal(2);
-    });
-    it('a cancel button as secondary action', () => {
-      expect(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="secondaryAction"]'
-        )
-      ).to.exist;
-    });
-    it('a edit button as primary action', () => {
-      expect(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      ).to.exist;
-    });
-  });
-  it('include 3 wizard inputs', async () => {
-    expect(parent.wizardUI.inputs.length).to.equal(3);
+  it('looks like the latest snapshot', () => {
+    expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
   it('the first input element only displaying the type', () => {
     expect(parent.wizardUI.inputs[0]).to.have.property('disabled', true);

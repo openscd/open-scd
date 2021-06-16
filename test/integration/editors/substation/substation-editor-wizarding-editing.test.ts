@@ -5,12 +5,18 @@ import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
 import { SubstationEditor } from '../../../../src/editors/substation/substation-editor.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('substation-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: SubstationEditor | null;
+
+    let nameField: WizardTextField;
+    let descField: WizardTextField;
+    let secondaryAction: HTMLElement;
+    let primaryAction: HTMLElement;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid.scd')
@@ -30,61 +36,63 @@ describe('substation-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
-    });
-    it('closes on secondary action', async () => {
-      await (<HTMLElement>(
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      descField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+      );
+      secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'
         )
-      )).click();
+      );
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+    it('closes on secondary action', async () => {
+      secondaryAction.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI.dialog).to.not.exist;
     });
-    describe('edit attributes within Substation', () => {
-      it('changes name attribute on primary action', async () => {
-        parent.wizardUI.inputs[0].value = 'newName';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(doc.querySelector('Substation')?.getAttribute('name')).to.equal(
-          'newName'
-        );
-      });
-      it('changes desc attribute on primary action', async () => {
-        parent.wizardUI.inputs[1].value = 'newDesc';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(doc.querySelector('Substation')?.getAttribute('desc')).to.equal(
-          'newDesc'
-        );
-      });
-      it('deletes desc attribute if wizard-textfield is deactivated', async () => {
-        await (<HTMLElement>(
-          parent.wizardUI.inputs[1].shadowRoot?.querySelector('mwc-switch')
-        )).click();
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await parent.updateComplete;
-        expect(doc.querySelector('Substation')?.getAttribute('desc')).to.be
-          .null;
-      });
+    it('changes name attribute on primary action', async () => {
+      nameField.value = 'newName';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Substation')?.getAttribute('name')).to.equal(
+        'newName'
+      );
+    });
+    it('changes desc attribute on primary action', async () => {
+      descField.value = 'newDesc';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Substation')?.getAttribute('desc')).to.equal(
+        'newDesc'
+      );
+    });
+    it('deletes desc attribute if wizard-textfield is deactivated', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      descField.nullSwitch!.click();
+      await parent.updateComplete;
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Substation')?.getAttribute('desc')).to.be.null;
     });
   });
   describe('open add voltage level wizard', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: SubstationEditor | null;
+
+    let nameField: WizardTextField;
+    let descField: WizardTextField;
+    let secondaryAction: HTMLElement;
+    let primaryAction: HTMLElement;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid.scd')
@@ -108,6 +116,18 @@ describe('substation-editor wizarding editing integration', () => {
         )
       )).click();
       await parent.updateComplete;
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      descField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+      );
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
     });
     it('opens voltage level wizard ', async () => {
       expect(parent.wizardUI).to.exist;
@@ -116,25 +136,17 @@ describe('substation-editor wizarding editing integration', () => {
       expect(parent.wizardUI.inputs.length).to.equal(5);
     });
     it('does not add voltage level if name attribute is not unique', async () => {
-      parent.wizardUI.inputs[0].value = 'E1';
+      nameField.value = 'E1';
+      primaryAction.click();
       await parent.updateComplete;
-      await (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      )).click();
       expect(doc.querySelectorAll('VoltageLevel[name="E1"]').length).to.equal(
         1
       );
     });
     it('does add voltage level if name attribute is unique', async () => {
-      parent.wizardUI.inputs[0].value = 'J1';
+      nameField.value = 'J1';
+      primaryAction.click();
       await parent.updateComplete;
-      await (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      )).click();
       expect(doc.querySelector('VoltageLevel[name="J1"]')).to.exist;
     });
   });

@@ -31,32 +31,8 @@ describe('voltage-level-editor wizarding integration', () => {
     )).click();
     await parent.updateComplete;
   });
-  it('has one wizard-dialog', async () => {
-    expect(parent.wizardUI.dialogs.length).to.equal(1);
-  });
-  describe('include two buttons', () => {
-    it('and only two buttons', () => {
-      expect(
-        parent.wizardUI.dialog?.querySelectorAll('mwc-button').length
-      ).to.equal(2);
-    });
-    it('a cancel button as secondary action', () => {
-      expect(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="secondaryAction"]'
-        )
-      ).to.exist;
-    });
-    it('a edit button as primary action', () => {
-      expect(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      ).to.exist;
-    });
-  });
-  it('include 5 wizard inputs', async () => {
-    expect(parent.wizardUI.inputs.length).to.equal(5);
+  it('looks like the latest snapshot', () => {
+    expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
   describe('the first input element', () => {
     it('edits the attribute name', async () => {

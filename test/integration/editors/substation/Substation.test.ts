@@ -56,7 +56,7 @@ describe('Substation Plugin', () => {
     it('has a mwc-fab', () => {
       expect(element.shadowRoot?.querySelector('mwc-fab')).to.exist;
     });
-    it('that opens a add substation wizard on click()', async () => {
+    it('that opens an add substation wizard on click', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(0);
       (<HTMLElement>(
         parent
