@@ -15,5 +15,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - run: npm ci
-      - run: npm run-script build
+      - name: Build application with npm
+        run: npm ci && npm run-script build
