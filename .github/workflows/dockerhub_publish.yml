@@ -35,6 +35,7 @@ jobs:
       - name: Build and push image to Docker Hub
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: true
           tags: |
             lfenergycompas/compas-open-scd:${{ steps.extract_tagname.outputs.tagname }}
