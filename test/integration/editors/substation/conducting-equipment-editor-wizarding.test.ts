@@ -4,14 +4,16 @@ import fc from 'fast-check';
 import '../../../mock-wizard.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
 import { regexString, regExp } from '../../../foundation.js';
 
 describe('conducting-equipment-editor wizarding integration', () => {
-  const doc = getDocument();
+  let doc: XMLDocument;
   let parent: WizardingElement;
 
   beforeEach(async () => {
+    doc = await fetch('/base/test/testfiles/valid.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     parent = <WizardingElement>(
       await fixture(
         html`<mock-wizard

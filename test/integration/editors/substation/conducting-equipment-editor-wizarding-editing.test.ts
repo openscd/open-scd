@@ -5,17 +5,16 @@ import { ConductingEquipmentEditor } from '../../../../src/editors/substation/co
 import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
-
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-
 describe('conducting-equipment-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
-    const doc = getDocument();
-
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConductingEquipmentEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -95,10 +94,14 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     });
   });
   describe('open lnode wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConductingEquipmentEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -124,11 +127,15 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     });
   });
   describe('move action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConductingEquipmentEditor | null;
     let element2: ConductingEquipmentEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -169,10 +176,14 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     });
   });
   describe('remove action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConductingEquipmentEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
