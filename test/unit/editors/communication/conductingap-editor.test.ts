@@ -2,12 +2,15 @@ import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/communication/connectedap-editor.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
-import { getDocument } from '../../../data.js';
 
 describe('connectedap-editor', () => {
   let element: ConnectedAPEditor;
-  const validSCL = getDocument();
+  let validSCL: XMLDocument;
+
   beforeEach(async () => {
+    validSCL = await fetch('/base/test/testfiles/valid.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <ConnectedAPEditor>(
       await fixture(
         html`<connectedap-editor
