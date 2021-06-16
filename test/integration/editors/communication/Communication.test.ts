@@ -41,6 +41,7 @@ describe('Communication Plugin', () => {
   describe('with a doc loaded missing a communication section', () => {
     let doc: XMLDocument;
     let parent: WizardingElement;
+    let fab: HTMLElement;
 
     beforeEach(async () => {
       doc = await fetch(
@@ -56,17 +57,18 @@ describe('Communication Plugin', () => {
         )
       );
       await element.updateComplete;
+      fab = <HTMLElement>(
+        parent
+          ?.querySelector('communication-plugin')
+          ?.shadowRoot?.querySelector('mwc-fab')
+      );
     });
     it('has a mwc-fab', () => {
       expect(element.shadowRoot?.querySelector('mwc-fab')).to.exist;
     });
-    it('that opens a add subnetwork wizard on click()', async () => {
+    it('that opens a add subnetwork wizard on mwc-fab click', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(0);
-      (<HTMLElement>(
-        parent
-          ?.querySelector('communication-plugin')
-          ?.shadowRoot?.querySelector('mwc-fab')
-      )).click();
+      fab.click();
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
     });
