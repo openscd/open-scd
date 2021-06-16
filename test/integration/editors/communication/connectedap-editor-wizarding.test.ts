@@ -6,15 +6,17 @@ import { regexString, regExp, ipV6, ipV6SubNet } from '../../../foundation.js';
 import '../../../mock-wizard.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
 import '../../../../src/editors/communication/connectedap-editor.js';
 
 describe('conductingap-editor wizarding integration', () => {
   describe('for schema 2003 (Edition1) projects', () => {
-    const doc = getDocument(true, '2003');
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/validSCL2003.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -224,10 +226,13 @@ describe('conductingap-editor wizarding integration', () => {
     });
   });
   describe('for schema 2007B (Edition2) projects', () => {
-    const doc = getDocument(true, '2007B');
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -351,10 +356,13 @@ describe('conductingap-editor wizarding integration', () => {
     });
   });
   describe('for schema 2007B4 (Edition2.1) projects', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -497,10 +505,13 @@ describe('conductingap-editor wizarding integration', () => {
     });
   });
   describe('for all versions', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard

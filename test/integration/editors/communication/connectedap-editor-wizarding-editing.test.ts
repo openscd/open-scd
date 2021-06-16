@@ -7,15 +7,16 @@ import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
 
-import { getDocument } from '../../../data.js';
-
 describe('connectedap-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
-    const doc = getDocument();
-
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConnectedAPEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -68,10 +69,14 @@ describe('connectedap-editor wizarding editing integration', () => {
     });
   });
   describe('remove action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConnectedAPEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
