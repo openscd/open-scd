@@ -5,19 +5,19 @@ import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
 import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
-
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { Select } from '@material/mwc-select';
 
 describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
-    const doc = getDocument();
-
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -94,10 +94,14 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('open add conducting equipment wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -164,10 +168,14 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('open lnode wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -193,11 +201,15 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('move action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
     let element2: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -225,10 +237,14 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('remove action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -250,10 +266,14 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('clone action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
