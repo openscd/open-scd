@@ -22,22 +22,41 @@ import {
   getReference,
   SCLTag,
 } from '../../src/foundation.js';
-import { getDocument } from '../data.js';
 
 import { MockAction } from './mock-actions.js';
 
-const scl1 = getDocument().documentElement;
-const scl2 = getDocument(true, '2003').documentElement;
-
-const substation = scl1.querySelector('Substation')!;
-const ied = scl1.querySelector('IED')!;
-const communication = scl1.querySelector('Communication')!;
-const bay = scl1.querySelector('Bay')!;
-const privateSection = bay.querySelector('Private')!;
-const privateElement = privateSection.firstElementChild!;
-const publicElement = bay.children.item(1)!;
-
 describe('foundation', () => {
+  let scl1: Element;
+  let scl2: Element;
+
+  let substation: Element;
+  let ied: Element;
+  let communication: Element;
+  let bay: Element;
+  let privateSection: Element;
+  let privateElement: Element;
+  let publicElement: Element;
+
+  beforeEach(async () => {
+    scl1 = (
+      await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+    ).documentElement;
+    scl2 = (
+      await fetch('/base/test/testfiles/validSCL2003.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+    ).documentElement;
+
+    substation = scl1.querySelector('Substation')!;
+    ied = scl1.querySelector('IED')!;
+    communication = scl1.querySelector('Communication')!;
+    bay = scl1.querySelector('Bay')!;
+    privateSection = bay.querySelector('Private')!;
+    privateElement = privateSection.firstElementChild!;
+    publicElement = bay.children.item(1)!;
+  });
   describe('EditorAction', () => {
     it('consists of four disjunct simple types', () => {
       expect(MockAction.cre).to.satisfy(isCreate);
@@ -245,8 +264,7 @@ describe('foundation', () => {
         LDevice: 'IED1>>CircuitBreaker_CB1',
         IEDName:
           'IED1>>CircuitBreaker_CB1>GCB>IED2 P1 CircuitBreaker_CB1/ CSWI 1',
-        FCDA:
-          'IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)',
+        FCDA: 'IED1>>CircuitBreaker_CB1>GooseDataSet1>CircuitBreaker_CB1/ XCBR 1.Pos stVal (ST)',
         ExtRef:
           'IED1>>Disconnectors>DC CSWI 1>GOOSE:GCB CBSW/ LLN0  IED2 CBSW/ XSWI 2 Pos stVal@intAddr',
         'ExtRef:not([iedName])': 'IED1>>Disconnectors>DC CSWI 1>stVal-t[0]',
