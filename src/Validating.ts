@@ -136,9 +136,9 @@ export function Validating<TBase extends LitElementConstructor>(Base: TBase) {
     constructor(...args: any[]) {
       super(...args);
 
-      this.addEventListener('open-doc', (event: OpenDocEvent) =>
+      /* this.addEventListener('open-doc', (event: OpenDocEvent) =>
         this.validate(event.detail.doc, { fileName: event.detail.docName })
-      );
+      ); */
     }
   }
 

@@ -83,6 +83,10 @@ interface Saver {
   save: () => Promise<void>;
 }
 
+interface Validator {
+  validate: () => Promise<void>;
+}
+
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
@@ -239,6 +243,7 @@ export class OpenSCD extends Setting(
     const triggered: (MenuItem | 'divider')[] = [];
     const loaders: (MenuItem | 'divider')[] = [];
     const savers: (MenuItem | 'divider')[] = [];
+    const validators: (MenuItem | 'divider')[] = [];
 
     this.triggered.forEach(plugin =>
       triggered.push({
@@ -281,7 +286,7 @@ export class OpenSCD extends Setting(
     );
 
     this.savers.forEach(plugin =>
-      loaders.push({
+      savers.push({
         icon: plugin.icon || pluginIcons['saver'],
         name: plugin.name,
         action: ae => {
@@ -292,6 +297,26 @@ export class OpenSCD extends Setting(
                   (<List>ae.target).items[ae.detail.index].lastElementChild
                 ))
               )).save()
+            )
+          );
+        },
+        disabled: (): boolean => this.doc === null,
+        content: plugin.content,
+      })
+    );
+
+    this.validators.forEach(plugin =>
+      validators.push({
+        icon: plugin.icon || pluginIcons['validator'],
+        name: plugin.name,
+        action: ae => {
+          this.dispatchEvent(
+            newPendingStateEvent(
+              (<Validator>(
+                (<unknown>(
+                  (<List>ae.target).items[ae.detail.index].lastElementChild
+                ))
+              )).validate()
             )
           );
         },
@@ -338,7 +363,7 @@ export class OpenSCD extends Setting(
         action: this.redo,
         disabled: (): boolean => !this.canRedo,
       },
-      {
+      /* {
         icon: 'rule_folder',
         name: 'menu.validate',
         action: () =>
@@ -350,7 +375,8 @@ export class OpenSCD extends Setting(
               )
             : null,
         disabled: (): boolean => this.doc === null,
-      },
+      }, */
+      ...validators,
       {
         icon: 'rule',
         name: 'menu.viewLog',

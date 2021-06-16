@@ -28,6 +28,13 @@ export const officialPlugins = [
     kind: 'loader'
   },
   {
+    name: 'Validate project',
+    src: '/src/validators/ValidateSchema.js',
+    icon: 'rule_folder',
+    default: true,
+    kind: 'validator'
+  },
+  {
     name: "Import IEDs",
     src: "/src/triggered/ImportIEDs.js",
     icon: "snippet_folder",

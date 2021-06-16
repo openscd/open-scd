@@ -1,10 +1,15 @@
 import { LitElement, property } from 'lit-element';
 import { get } from 'lit-translate';
+
 import { newLogEvent } from '../foundation.js';
+
 import {
   getSchema,
+  isLoadSchemaResult,
+  isValidationError,
   isValidationResult,
   ValidationResult,
+  Validator,
   WorkerMessage,
 } from '../schemas.js';
 
@@ -52,7 +57,7 @@ export default class ValidateSchema extends LitElement {
           const parts = e.data.message.split(': ', 2);
           const description = parts[1] ? parts[1] : parts[0];
           const qualifiedTag = parts[1] ? ' (' + parts[0] + ')' : '';
-          this.dispatchEvent(
+          document.querySelector('open-scd')!.dispatchEvent(
             newLogEvent({
               title: description,
               kind: e.data.level > 1 ? 'error' : 'warning',
@@ -68,7 +73,7 @@ export default class ValidateSchema extends LitElement {
             })
           );
         } else if (!isValidationResult(e.data)) {
-          this.dispatchEvent(
+          document.querySelector('open-scd')!.dispatchEvent(
             newLogEvent({
               title: get('validating.fatal'),
               kind: 'error',
@@ -100,7 +105,7 @@ export default class ValidateSchema extends LitElement {
       validator(new XMLSerializer().serializeToString(this.doc), fileName)
     );
     if (!(await this.validated).valid) {
-      this.dispatchEvent(
+      document.querySelector('open-scd')!.dispatchEvent(
         newLogEvent({
           kind: 'warning',
           title: get('validating.invalid', { name: fileName }),
@@ -109,7 +114,7 @@ export default class ValidateSchema extends LitElement {
       throw new Error(get('validating.invalid', { name: fileName }));
     }
 
-    this.dispatchEvent(
+    document.querySelector('open-scd')!.dispatchEvent(
       newLogEvent({
         kind: 'info',
         title: get('validating.valid', { name: fileName }),
