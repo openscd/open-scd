@@ -33,5 +33,5 @@ jobs:
         with:
           push: true
           tags: |
-            lfenergycompas/compas-open-scd:${GITHUB_REF##*/}
+            lfenergycompas/compas-open-scd:${{ GITHUB_REF##*/ }}
             lfenergycompas/compas-open-scd:latest
