@@ -5,18 +5,19 @@ import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 import { SubNetworkEditor } from '../../../../src/editors/communication/subnetwork-editor.js';
 
-import { getDocument } from '../../../data.js';
-
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('subnetwork-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
 
     let parent: WizardingElement & EditingElement;
     let element: SubNetworkEditor | null;
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -170,10 +171,14 @@ describe('subnetwork-editor wizarding editing integration', () => {
     });
   });
   describe('remove action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: SubNetworkEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -195,10 +200,14 @@ describe('subnetwork-editor wizarding editing integration', () => {
     });
   });
   describe('add ConnectedAP action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: SubNetworkEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor

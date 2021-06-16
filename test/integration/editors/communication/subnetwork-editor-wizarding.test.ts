@@ -4,17 +4,18 @@ import fc from 'fast-check';
 import '../../../mock-wizard.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
 import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { TextField } from '@material/mwc-textfield';
 
 describe('subnetwork-editor wizarding integration', () => {
   describe('edit/add Subnetwork wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -129,10 +130,13 @@ describe('subnetwork-editor wizarding integration', () => {
     });
   });
   describe('add ConnectedAP wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
