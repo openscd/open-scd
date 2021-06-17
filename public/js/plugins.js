@@ -28,6 +28,20 @@ export const officialPlugins = [
     kind: 'loader'
   },
   {
+    name: 'New project',
+    src: '/src/loaders/NewProject.js',
+    icon: 'create_new_folder',
+    default: true,
+    kind: 'loader'
+  },
+  {
+    name: 'Save project',
+    src: '/src/savers/SaveProject.js',
+    icon: 'save',
+    default: true,
+    kind: 'saver'
+  },
+  {
     name: 'Validate project',
     src: '/src/validators/ValidateSchema.js',
     icon: 'rule_folder',

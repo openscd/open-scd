@@ -1,3 +1,20 @@
+/** Returns a new empty SCD document. */
+export function newEmptySCD(
+  id: string,
+  versionId: SupportedVersion
+): XMLDocument {
+  const { version, revision, release } = supportedAttributes[versionId];
+  const markup = `<?xml version="1.0" encoding="UTF-8"?>
+    <SCL xmlns="http://www.iec.ch/61850/2003/SCL" ${
+      version ? `version="${version}"` : ''
+    } ${revision ? `revision="${revision}"` : ''} ${
+    release ? `release="${release}"` : ''
+  }>
+      <Header id="${id}"/>
+    </SCL>`;
+  return new DOMParser().parseFromString(markup, 'application/xml');
+}
+
 export interface ValidationError {
   file: string;
   line: number;

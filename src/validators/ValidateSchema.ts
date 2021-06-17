@@ -22,13 +22,6 @@ export default class ValidateSchema extends LitElement {
   @property()
   docName!: string;
 
-  @property()
-  validated: Promise<ValidationResult> = Promise.resolve({
-    file: 'untitled.scd',
-    valid: true,
-    code: 0,
-  });
-
   private async getValidator(xsd: string, xsdName: string): Promise<Validator> {
     if (!window.Worker) throw new Error(get('validating.fatal'));
     if (validators[xsdName]) return validators[xsdName]!;
@@ -98,28 +91,28 @@ export default class ValidateSchema extends LitElement {
         this.doc.documentElement.getAttribute('revision') ?? '',
         this.doc.documentElement.getAttribute('release') ?? '',
       ];
-    this.validated = this.getValidator(
+    const result = await this.getValidator(
       getSchema(version, revision, release),
       'SCL' + version + revision + release + '.xsd'
     ).then(validator =>
       validator(new XMLSerializer().serializeToString(this.doc), fileName)
     );
-    if (!(await this.validated).valid) {
+
+    if (!result.valid) {
       document.querySelector('open-scd')!.dispatchEvent(
         newLogEvent({
           kind: 'warning',
-          title: get('validating.invalid', { name: fileName }),
+          title: get('validating.invalid', { name: result.file }),
         })
       );
-      throw new Error(get('validating.invalid', { name: fileName }));
+      throw new Error(get('validating.invalid', { name: result.file }));
     }
 
     document.querySelector('open-scd')!.dispatchEvent(
       newLogEvent({
         kind: 'info',
-        title: get('validating.valid', { name: fileName }),
+        title: get('validating.valid', { name: result.file }),
       })
     );
-    return;
   }
 }
