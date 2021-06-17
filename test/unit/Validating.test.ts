@@ -1,12 +1,12 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { ValidatingElement } from '../../src/Validating.js';
-import './mock-validator.js';
+//import { ValidatingElement } from '../../src/Validating.js';
+
+//import { getDocument } from '../data.js';
+//import './mock-validator.js';
 
 describe('ValidatingElement', () => {
-  let element: ValidatingElement;
-  let validSCL: XMLDocument;
-  let invalidSCL: XMLDocument;
+  /* let element: ValidatingElement;
   beforeEach(async () => {
     validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
@@ -32,5 +32,5 @@ describe('ValidatingElement', () => {
   it('does not validate an invalid SCL document', async () => {
     element.validate(invalidSCL, { fileName: 'invalid.scd' });
     expect(await element.validated).to.have.property('valid', false);
-  });
+  }); */
 });
