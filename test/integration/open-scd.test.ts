@@ -3,11 +3,19 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/Editing.js';
-import { invalidSCL, validSCL } from '../data.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
+  let invalidSCL: string;
+  let validSCL: string;
+
   beforeEach(async () => {
+    invalidSCL = await fetch('/base/test/testfiles/invalid2007B.scd').then(
+      response => response.text()
+    );
+    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd').then(
+      response => response.text()
+    );
     element = await fixture(html`
       <open-scd></open-scd>
       <link

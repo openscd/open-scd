@@ -5,8 +5,6 @@ import { Editing } from '../../../../src/Editing.js';
 import Substation from '../../../../src/editors/Substation.js';
 import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument, missingSubstationCommunication } from '../../../data.js';
-
 describe('Substation Plugin', () => {
   customElements.define('substation-plugin', Wizarding(Editing(Substation)));
   let element: Substation;
@@ -21,9 +19,12 @@ describe('Substation Plugin', () => {
   });
 
   describe('with a doc loaded including substation section', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let element: Substation;
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
         html`<substation-plugin .doc="${doc}"></substation-plugin>`
       );
@@ -34,13 +35,15 @@ describe('Substation Plugin', () => {
   });
 
   describe('with a doc loaded missing a substation section', () => {
-    const doc = new DOMParser().parseFromString(
-      missingSubstationCommunication,
-      'application/xml'
-    );
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch(
+        '/base/test/testfiles/missingSubstationCommunication.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -53,7 +56,7 @@ describe('Substation Plugin', () => {
     it('has a mwc-fab', () => {
       expect(element.shadowRoot?.querySelector('mwc-fab')).to.exist;
     });
-    it('that opens a add substation wizard on click()', async () => {
+    it('that opens an add substation wizard on click', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(0);
       (<HTMLElement>(
         parent

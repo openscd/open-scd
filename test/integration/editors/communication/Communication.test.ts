@@ -4,8 +4,6 @@ import Communication from '../../../../src/editors/Communication.js';
 import { Editing } from '../../../../src/Editing.js';
 import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument, missingSubstationCommunication } from '../../../data.js';
-
 describe('Communication Plugin', () => {
   customElements.define(
     'communication-plugin',
@@ -25,9 +23,12 @@ describe('Communication Plugin', () => {
   });
 
   describe('with a doc loaded including communication section', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let element: Communication;
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
         html`<communication-plugin .doc="${doc}"></communication-plugin>`
       );
@@ -38,13 +39,16 @@ describe('Communication Plugin', () => {
   });
 
   describe('with a doc loaded missing a communication section', () => {
-    const doc = new DOMParser().parseFromString(
-      missingSubstationCommunication,
-      'application/xml'
-    );
+    let doc: XMLDocument;
     let parent: WizardingElement;
+    let fab: HTMLElement;
 
     beforeEach(async () => {
+      doc = await fetch(
+        '/base/test/testfiles/missingSubstationCommunication.scd'
+      )
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -53,17 +57,18 @@ describe('Communication Plugin', () => {
         )
       );
       await element.updateComplete;
+      fab = <HTMLElement>(
+        parent
+          ?.querySelector('communication-plugin')
+          ?.shadowRoot?.querySelector('mwc-fab')
+      );
     });
     it('has a mwc-fab', () => {
       expect(element.shadowRoot?.querySelector('mwc-fab')).to.exist;
     });
-    it('that opens a add subnetwork wizard on click()', async () => {
+    it('that opens a add subnetwork wizard on mwc-fab click', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(0);
-      (<HTMLElement>(
-        parent
-          ?.querySelector('communication-plugin')
-          ?.shadowRoot?.querySelector('mwc-fab')
-      )).click();
+      fab.click();
       await parent.updateComplete;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
     });
