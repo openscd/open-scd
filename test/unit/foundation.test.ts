@@ -39,12 +39,12 @@ describe('foundation', () => {
 
   beforeEach(async () => {
     scl1 = (
-      await fetch('/base/test/testfiles/valid.scd')
+      await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;
     scl2 = (
-      await fetch('/base/test/testfiles/validSCL2003.scd')
+      await fetch('/base/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;

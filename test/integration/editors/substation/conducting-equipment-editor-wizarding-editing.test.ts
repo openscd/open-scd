@@ -18,7 +18,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
@@ -99,7 +99,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     let element: ConductingEquipmentEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
@@ -133,7 +133,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     let element2: ConductingEquipmentEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
@@ -181,7 +181,7 @@ describe('conducting-equipment-editor wizarding editing integration', () => {
     let element: ConductingEquipmentEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(

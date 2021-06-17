@@ -19,7 +19,7 @@ describe('substation-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
@@ -95,7 +95,7 @@ describe('substation-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
@@ -156,7 +156,7 @@ describe('substation-editor wizarding editing integration', () => {
     let element: SubstationEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
@@ -191,7 +191,7 @@ describe('substation-editor wizarding editing integration', () => {
     let element: SubstationEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(

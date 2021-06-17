@@ -14,7 +14,7 @@ describe('conductingap-editor wizarding integration', () => {
     let parent: WizardingElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/validSCL2003.scd')
+      doc = await fetch('/base/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
@@ -360,7 +360,7 @@ describe('conductingap-editor wizarding integration', () => {
     let parent: WizardingElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(

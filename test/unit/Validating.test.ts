@@ -8,10 +8,10 @@ describe('ValidatingElement', () => {
   let validSCL: XMLDocument;
   let invalidSCL: XMLDocument;
   beforeEach(async () => {
-    validSCL = await fetch('/base/test/testfiles/valid.scd')
+    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    invalidSCL = await fetch('/base/test/testfiles/invalidSCL.scd')
+    invalidSCL = await fetch('/base/test/testfiles/invalid2007B.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <ValidatingElement>(

@@ -14,7 +14,7 @@ describe('subnetwork-editor wizarding integration', () => {
     let parent: WizardingElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
@@ -111,7 +111,7 @@ describe('subnetwork-editor wizarding integration', () => {
     let parent: WizardingElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(

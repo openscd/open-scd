@@ -10,11 +10,11 @@ describe('open-scd', () => {
   let validSCL: string;
 
   beforeEach(async () => {
-    invalidSCL = await fetch('/base/test/testfiles/invalidSCL.scd').then(
+    invalidSCL = await fetch('/base/test/testfiles/invalid2007B.scd').then(
       response => response.text()
     );
-    validSCL = await fetch('/base/test/testfiles/valid.scd').then(response =>
-      response.text()
+    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd').then(
+      response => response.text()
     );
     element = await fixture(html`
       <open-scd></open-scd>
