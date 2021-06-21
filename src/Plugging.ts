@@ -14,7 +14,7 @@ import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { officialPlugins } from '../public/js/plugins.js';
 
-type PluginKind = 'editor' | 'triggered' | 'loader' | 'saver';
+type PluginKind = 'editor' | 'triggered' | 'loader' | 'saver' | 'validator';
 
 type AvailablePlugin = {
   name: string;
@@ -34,6 +34,7 @@ export const pluginIcons: Record<PluginKind, string> = {
   triggered: 'play_circle',
   loader: 'folder_open',
   saver: 'save',
+  validator: 'rule_folder',
 };
 
 async function storeDefaultPlugins(): Promise<void> {
@@ -96,6 +97,11 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     get triggered(): InstalledPlugin[] {
       return this.plugins
         .filter(plugin => plugin.installed && plugin.kind === 'triggered')
+        .map(plugin => this.addContent(plugin));
+    }
+    get validators(): InstalledPlugin[] {
+      return this.plugins
+        .filter(plugin => plugin.installed && plugin.kind === 'validator')
         .map(plugin => this.addContent(plugin));
     }
 

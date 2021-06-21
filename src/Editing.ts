@@ -15,29 +15,11 @@ import {
   Mixin,
   Move,
   newLogEvent,
+  newValidateEvent,
   OpenDocEvent,
   SimpleAction,
   Update,
 } from './foundation.js';
-
-import { supportedAttributes, SupportedVersion } from './schemas.js';
-
-/** Returns a new empty SCD document. */
-export function newEmptySCD(
-  id: string,
-  versionId: SupportedVersion
-): XMLDocument {
-  const { version, revision, release } = supportedAttributes[versionId];
-  const markup = `<?xml version="1.0" encoding="UTF-8"?>
-    <SCL xmlns="http://www.iec.ch/61850/2003/SCL" ${
-      version ? `version="${version}"` : ''
-    } ${revision ? `revision="${revision}"` : ''} ${
-    release ? `release="${release}"` : ''
-  }>
-      <Header id="${id}"/>
-    </SCL>`;
-  return new DOMParser().parseFromString(markup, 'application/xml');
-}
 
 /** Mixin that edits an `XML` `doc`, listening to [[`EditorActionEvent`]]s */
 export type EditingElement = Mixin<typeof Editing>;
@@ -48,7 +30,7 @@ export type EditingElement = Mixin<typeof Editing>;
 export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
   class EditingElement extends Base {
     /** The `XMLDocument` to be edited */
-    @property()
+    @property({ attribute: false })
     doc: XMLDocument | null = null;
     /** The name of the current [[`doc`]] */
     @property({ type: String }) docName = '';
@@ -258,10 +240,14 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         if (element instanceof LitElement) element.requestUpdate();
     }
 
-    private onOpenDoc(event: OpenDocEvent) {
+    private async onOpenDoc(event: OpenDocEvent) {
       this.doc = event.detail.doc;
       this.docName = event.detail.docName;
       this.docId = event.detail.docId ?? '';
+
+      await this.updateComplete;
+
+      this.dispatchEvent(newValidateEvent());
 
       this.dispatchEvent(
         newLogEvent({

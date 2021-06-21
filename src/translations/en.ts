@@ -63,7 +63,7 @@ export const en = {
     },
   },
   validating: {
-    valid: '{{ name }} validation succesful',
+    valid: '{{ name }} validation successful',
     invalid: '{{ name }} validation failed',
     fatal: 'Fatal validation error',
     loadError: 'Could not load schema {{ name }}',

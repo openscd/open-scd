@@ -261,6 +261,23 @@ export function newPendingStateEvent(
   });
 }
 
+/** Represents a request for validation. */
+export interface ValidateDetail {
+  identity: string;
+}
+export type ValidateEvent = CustomEvent<ValidateDetail>;
+export function newValidateEvent(
+  identity = '',
+  eventInitDict?: CustomEventInit<Partial<ValidateDetail>>
+): ValidateEvent {
+  return new CustomEvent<ValidateDetail>('validate', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { identity, ...eventInitDict?.detail },
+  });
+}
+
 /** Represents a document to be opened. */
 export interface OpenDocDetail {
   doc: XMLDocument;
@@ -2462,6 +2479,7 @@ declare global {
     ['editor-action']: EditorActionEvent<EditorAction>;
     ['open-doc']: OpenDocEvent;
     ['wizard']: WizardEvent;
+    ['validate']: ValidateEvent;
     ['log']: LogEvent;
   }
 }
