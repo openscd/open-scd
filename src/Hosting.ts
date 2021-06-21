@@ -36,7 +36,7 @@ interface Validator {
   validate: (identity: string) => Promise<void>;
 }
 
-/** Mixin that manages Plugins in `localStorage` */
+/** Mixin that hosts the UI for Plugins, Settings and Logging */
 export type HostingElement = Mixin<typeof Hosting>;
 
 export function Hosting<
