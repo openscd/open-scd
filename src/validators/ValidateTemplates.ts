@@ -20,6 +20,56 @@ function getAdjacentClass(nsd: XMLDocument, base: string): Element[] {
   ).concat(adjacents);
 }
 
+async function getAllDataObject(base: string): Promise<Element[]> {
+  const lnodeclasses = getAdjacentClass(await iec6185074, base);
+
+  return lnodeclasses.flatMap(lnodeclass =>
+    Array.from(lnodeclass.querySelectorAll('DataObject'))
+  );
+}
+
+async function validateDoCDCSetting(lnodetype: Element): Promise<LogDetail[]> {
+  const errors: LogDetail[] = [];
+  const lnClass = lnodetype.getAttribute('lnClass');
+  if (!lnClass) return [];
+
+  const alldos = await getAllDataObject(lnClass);
+
+  for (const DO of alldos) {
+    const type = lnodetype
+      .querySelector(`DO[name="${DO.getAttribute('name')}"]`)
+      ?.getAttribute('type');
+
+    if (!type) continue;
+
+    const dOType = lnodetype
+      .closest('DataTypeTemplates')
+      ?.querySelector(`DOType[id="${type}"]`);
+
+    if (!dOType) {
+      errors.push({
+        title: `Cannot validate data object ${DO.getAttribute(
+          'name'
+        )} in LNodeType ${lnClass}`,
+        kind: 'warning',
+      });
+      continue;
+    }
+
+    if (dOType!.getAttribute('cdc') !== DO.getAttribute('type'))
+      errors.push({
+        title: `The element DOs ${DO.getAttribute(
+          'name'
+        )} class definition ${dOType!.getAttribute(
+          'cdc'
+        )} is expected to be ${DO.getAttribute('type')}`,
+        kind: 'error',
+      });
+  }
+
+  return errors;
+}
+
 async function getMendatoryDataObject(base: string): Promise<Element[]> {
   const lnodeclasses = getAdjacentClass(await iec6185074, base);
 
@@ -58,6 +108,12 @@ export default class ValidateTemplates extends LitElement {
   async validate(): Promise<void> {
     Array.from(this.doc.querySelectorAll('LNodeType')).forEach(lnodetype => {
       validateMandatoryDo(lnodetype).then(errors => {
+        errors.forEach(error =>
+          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
+        );
+      });
+
+      validateDoCDCSetting(lnodetype).then(errors => {
         errors.forEach(error =>
           document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
         );
