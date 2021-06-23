@@ -237,6 +237,7 @@ function editConnectedApWizard(element: Element): Wizard {
   return [
     {
       title: get('connectedap.wizard.title.edit'),
+      element,
       primary: {
         icon: 'save',
         label: get('save'),

@@ -213,6 +213,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
   return [
     {
       title,
+      element: bda ?? undefined,
       primary: { icon: '', label: get('save'), action: action },
       content: [
         deleteButton,
@@ -314,6 +315,7 @@ export function dATypeWizard(
   return [
     {
       title: get('datype.wizard.title.edit'),
+      element: datype ?? undefined,
       primary: {
         icon: '',
         label: get('save'),

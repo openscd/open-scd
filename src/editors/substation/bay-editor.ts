@@ -36,7 +36,7 @@ import { VoltageLevelEditor } from './voltage-level-editor.js';
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
 export class BayEditor extends LitElement {
-  @property()
+  @property({ attribute: false })
   element!: Element;
 
   @property({ type: String })
@@ -163,34 +163,31 @@ export class BayEditor extends LitElement {
   }
 
   static wizard(options: WizardOptions): Wizard {
-    const [
-      heading,
-      actionName,
-      actionIcon,
-      action,
-      name,
-      desc,
-    ] = isCreateOptions(options)
-      ? [
-          get('bay.wizard.title.add'),
-          get('add'),
-          'add',
-          BayEditor.createAction(options.parent),
-          '',
-          '',
-        ]
-      : [
-          get('bay.wizard.title.edit'),
-          get('save'),
-          'edit',
-          updateNamingAction(options.element),
-          options.element.getAttribute('name'),
-          options.element.getAttribute('desc'),
-        ];
+    const [heading, actionName, actionIcon, action, name, desc, element] =
+      isCreateOptions(options)
+        ? [
+            get('bay.wizard.title.add'),
+            get('add'),
+            'add',
+            BayEditor.createAction(options.parent),
+            '',
+            '',
+            undefined,
+          ]
+        : [
+            get('bay.wizard.title.edit'),
+            get('save'),
+            'edit',
+            updateNamingAction(options.element),
+            options.element.getAttribute('name'),
+            options.element.getAttribute('desc'),
+            options.element,
+          ];
 
     return [
       {
         title: heading,
+        element,
         primary: {
           icon: actionIcon,
           label: actionName,

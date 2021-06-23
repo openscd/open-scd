@@ -195,7 +195,7 @@ export class VoltageLevelEditor extends LitElement {
 
   static updateAction(element: Element): WizardActor {
     return (inputs: WizardInput[]): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.value;
+      const name = inputs.find(i => i.label === 'name')!.value!;
       const desc = getValue(inputs.find(i => i.label === 'desc')!);
       const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
       const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
@@ -304,6 +304,7 @@ export class VoltageLevelEditor extends LitElement {
       numPhases,
       Voltage,
       multiplier,
+      element,
     ] = isCreateOptions(options)
       ? [
           get('voltagelevel.wizard.title.add'),
@@ -316,6 +317,7 @@ export class VoltageLevelEditor extends LitElement {
           initial.numPhases,
           initial.Voltage,
           initial.multiplier,
+          undefined,
         ]
       : [
           get('voltagelevel.wizard.title.edit'),
@@ -332,11 +334,13 @@ export class VoltageLevelEditor extends LitElement {
           options.element
             .querySelector('VoltageLevel > Voltage')
             ?.getAttribute('multiplier') ?? null,
+          options.element,
         ];
 
     return [
       {
         title: heading,
+        element,
         primary: {
           icon: actionIcon,
           label: actionName,

@@ -147,6 +147,7 @@ export class ConductingEquipmentEditor extends LitElement {
       name,
       desc,
       reservedNames,
+      element,
     ] = isCreateOptions(options)
       ? [
           get('conductingequipment.wizard.title.add'),
@@ -158,6 +159,7 @@ export class ConductingEquipmentEditor extends LitElement {
           Array.from(
             options.parent.querySelectorAll(selectors.ConductingEquipment)
           ).map(condEq => condEq.getAttribute('name') ?? ''),
+          undefined,
         ]
       : [
           get('conductingequipment.wizard.title.edit'),
@@ -173,11 +175,13 @@ export class ConductingEquipmentEditor extends LitElement {
           )
             .map(condEq => condEq.getAttribute('name') ?? '')
             .filter(name => name !== options.element.getAttribute('name')),
+          options.element,
         ];
 
     return [
       {
         title: heading,
+        element,
         primary: {
           icon: actionIcon,
           label: actionName,
