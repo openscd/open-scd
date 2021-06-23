@@ -18,3 +18,9 @@ jobs:
         run: |
           npm ci
           npm run-script build
+      - name: Build docker image
+        uses: docker/build-push-action@v2
+        with:
+          # Set the context to use the current directory and not execute it's own git checkout.
+          context: .
+          push: false
