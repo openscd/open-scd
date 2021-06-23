@@ -34,7 +34,6 @@ export class CompasChangeSetRadiogroup extends LitElement {
     return this.getSelectedListItem() !== null;
   }
 
-
   render(): TemplateResult {
     return html`
       <mwc-list activatable>
