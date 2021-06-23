@@ -32,12 +32,12 @@ export class CompasSaveTo extends LitElement {
       .querySelector("compas-changeset-radiogroup"))
   }
 
-  checkValidity(): boolean {
+  valid(): boolean {
     if (!this.docId) {
       return this.getNameField().checkValidity()
-        && this.getSclTypeRadioGroup().checkValidity();
+        && this.getSclTypeRadioGroup().valid();
     }
-    return this.getChangeSetRadiogroup().checkValidity();
+    return this.getChangeSetRadiogroup().valid();
   }
 
   render(): TemplateResult {
@@ -139,7 +139,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
 function saveToCompas(docId: string, docName: string, doc: XMLDocument) {
   return function (inputs: WizardInput[], wizard: Element) {
     const compasSaveTo = <CompasSaveTo>wizard.shadowRoot!.querySelector('compas-save-to')
-    if (!doc || !compasSaveTo.checkValidity()) {
+    if (!doc || !compasSaveTo.valid()) {
       return [];
     }
 

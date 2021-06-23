@@ -30,15 +30,16 @@ export class CompasChangeSetRadiogroup extends LitElement {
     return null;
   }
 
-  checkValidity(): boolean {
-    return this.getSelectedListItem() != null;
+  valid(): boolean {
+    return this.getSelectedListItem() !== null;
   }
+
 
   render(): TemplateResult {
     return html`
-      <mwc-list activatable>
+      <mwc-list activatable required>
         ${Object.values(ChangeSet)
-      .map((key) => html `<mwc-radio-list-item value="${key}" left>${changeSetDetails.get(key)!.description}</mwc-radio-list-item>`)}
+      .map((key) => html `<mwc-radio-list-item value="${key}" left required>${changeSetDetails.get(key)!.description}</mwc-radio-list-item>`)}
       </mwc-list>
     `
   }

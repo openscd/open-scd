@@ -33,8 +33,8 @@ export class CompasScltypeRadiogroup extends LitElement {
     return null;
   }
 
-  checkValidity(): boolean {
-    return this.getSelectedListItem() != null;
+  valid(): boolean {
+    return this.getSelectedListItem() !== null;
   }
 
   render(): TemplateResult {
