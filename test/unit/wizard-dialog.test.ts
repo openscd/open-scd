@@ -3,7 +3,12 @@ import { html, fixture, expect } from '@open-wc/testing';
 import '../../src/wizard-textfield.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
-import { WizardInput } from '../../src/foundation.js';
+import {
+  EditorAction,
+  Wizard,
+  WizardActor,
+  WizardInput,
+} from '../../src/foundation.js';
 
 describe('wizard-dialog', () => {
   let element: WizardDialog;
@@ -166,6 +171,56 @@ describe('wizard-dialog', () => {
         await element.updateComplete;
         expect(element.dialog).to.have.property('heading', 'Page 1');
       });
+    });
+
+    it('removes primary action to prevent multiple trigger during wizard close', async () => {
+      element.wizard = [
+        {
+          title: 'Page 1',
+          content: [],
+          primary: {
+            icon: 'anchor',
+            action: (
+              inputs: WizardInput[],
+              wizard: Element
+            ): EditorAction[] => {
+              return [
+                {
+                  new: {
+                    parent: element,
+                    element: element,
+                    reference: null,
+                  },
+                },
+              ];
+            },
+            label: 'Test primary',
+          },
+        },
+      ];
+      await element.updateComplete;
+      await (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-button[slot="primaryAction"]')
+      )).click();
+      expect(element.wizard[0].primary).to.not.exist;
+    });
+    it('does not remove primary action as long as no editor action is dispatched', async () => {
+      element.wizard = [
+        {
+          title: 'Page 1',
+          content: [],
+          primary: {
+            icon: 'anchor',
+            action: () => [],
+            label: 'Test primary',
+          },
+        },
+      ];
+      await element.updateComplete;
+      await (<HTMLElement>(
+        element.shadowRoot!.querySelector('mwc-button[slot="primaryAction"]')
+      )).click();
+      expect(element.wizard[0].primary).to.exist;
     });
   });
 });
