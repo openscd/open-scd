@@ -5,18 +5,26 @@ import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
 
-import { getDocument } from '../../../data.js';
-
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('voltage-level-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
-    const doc = getDocument();
-
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: VoltageLevelEditor | null;
+
+    let nameField: WizardTextField;
+    let descField: WizardTextField;
+    let nomFreqField: WizardTextField;
+    let numPhasesField: WizardTextField;
+    let voltageField: WizardTextField;
+    let secondaryAction: HTMLElement;
+    let primaryAction: HTMLElement;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -31,174 +39,149 @@ describe('voltage-level-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
-    });
-    it('closes on secondary action', async () => {
-      await (<HTMLElement>(
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      descField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+      );
+      nomFreqField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-textfield[label="nomFreq"]'
+        )
+      );
+      numPhasesField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-textfield[label="numPhases"]'
+        )
+      );
+      voltageField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-textfield[label="Voltage"]'
+        )
+      );
+      secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'
         )
-      )).click();
+      );
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+    it('closes on secondary action', async () => {
+      secondaryAction.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI.dialog).to.not.exist;
     });
-    describe('edit attributes within VoltageLevel', () => {
-      it('does not change name attribute if not unique within parent element', async () => {
-        const oldName = parent.wizardUI.inputs[0].value;
-        parent.wizardUI.inputs[0].value = 'J1';
-
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(
-          doc.querySelector('VoltageLevel')?.getAttribute('name')
-        ).to.equal(oldName);
-      });
-      it('changes name attribute on primary action', async () => {
-        parent.wizardUI.inputs[0].value = 'newName';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(
-          doc.querySelector('VoltageLevel')?.getAttribute('name')
-        ).to.equal('newName');
-      });
-      it('changes desc attribute on primary action', async () => {
-        parent.wizardUI.inputs[1].value = 'newDesc';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(
-          doc.querySelector('VoltageLevel')?.getAttribute('desc')
-        ).to.equal('newDesc');
-      });
-      it('deletes desc attribute if wizard-textfield is deactivated', async () => {
-        await (<HTMLElement>(
-          parent.wizardUI.inputs[1].shadowRoot?.querySelector('mwc-switch')
-        )).click();
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await parent.updateComplete;
-        expect(doc.querySelector('VoltageLevel')?.getAttribute('desc')).to.be
-          .null;
-      });
-      it('changes nomFreq attribute on primary action', async () => {
-        parent.wizardUI.inputs[2].value = '30';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(
-          doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')
-        ).to.equal('30');
-      });
-      it('deletes nomFreq attribute if wizard-textfield is deactivated', async () => {
-        await (<HTMLElement>(
-          parent.wizardUI.inputs[2].shadowRoot?.querySelector('mwc-switch')
-        )).click();
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await parent.updateComplete;
-        expect(doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')).to.be
-          .null;
-      });
-      it('changes numPhases attribute on primary action', async () => {
-        parent.wizardUI.inputs[3].value = '3';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(
-          doc.querySelector('VoltageLevel')?.getAttribute('numPhases')
-        ).to.equal('3');
-      });
-      it('deletes numPhases attribute if wizard-textfield is deactivated', async () => {
-        await (<HTMLElement>(
-          parent.wizardUI.inputs[3].shadowRoot?.querySelector('mwc-switch')
-        )).click();
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await parent.updateComplete;
-        expect(doc.querySelector('VoltageLevel')?.getAttribute('numPhases')).to
-          .be.null;
-      });
+    it('does not change name attribute if not unique within parent element', async () => {
+      const oldName = nameField.value;
+      nameField.value = 'J1';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
+        oldName
+      );
     });
-    describe('edit Voltage', () => {
-      beforeEach(async () => {
-        await (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
-        )).click();
-        await parent.updateComplete;
-      });
-      it('changes value on primary action', async () => {
-        parent.wizardUI.inputs[4].value = '20.0';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(doc.querySelector('Voltage')?.innerHTML).to.equal('20.0');
-      });
-      it('changes multiplier on primary action', async () => {
-        (<WizardTextField>parent.wizardUI.inputs[4]).multiplier = 'M';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(
-          doc.querySelector('Voltage')?.getAttribute('multiplier')
-        ).to.equal('M');
-        expect(doc.querySelector('Voltage')?.getAttribute('unit')).to.equal(
-          'V'
-        );
-      });
-      it('deletes voltage element if voltage wizard-textfield is deactivated', async () => {
-        await (<HTMLElement>(
-          parent.wizardUI.inputs[4].shadowRoot?.querySelector('mwc-switch')
-        )).click();
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await parent.updateComplete;
-        expect(doc.querySelector('VoltageLevel')?.querySelector('Voltage')).to
-          .be.null;
-      });
+    it('changes name attribute on primary action', async () => {
+      nameField.value = 'newName';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
+        'newName'
+      );
+    });
+    it('changes desc attribute on primary action', async () => {
+      descField.value = 'newDesc';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('desc')).to.equal(
+        'newDesc'
+      );
+    });
+    it('deletes desc attribute if wizard-textfield is deactivated', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      descField.nullSwitch!.click();
+      await parent.updateComplete;
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('desc')).to.be
+        .null;
+    });
+    it('changes nomFreq attribute on primary action', async () => {
+      nomFreqField.value = '30';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(
+        doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')
+      ).to.equal('30');
+    });
+    it('deletes nomFreq attribute if wizard-textfield is deactivated', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      nomFreqField.nullSwitch!.click();
+      await parent.updateComplete;
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')).to.be
+        .null;
+    });
+    it('changes numPhases attribute on primary action', async () => {
+      numPhasesField.value = '3';
+      await parent.updateComplete;
+      primaryAction.click();
+      expect(
+        doc.querySelector('VoltageLevel')?.getAttribute('numPhases')
+      ).to.equal('3');
+    });
+    it('deletes numPhases attribute if wizard-textfield is deactivated', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      numPhasesField.nullSwitch!.click();
+      await parent.updateComplete;
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.getAttribute('numPhases')).to.be
+        .null;
+    });
+    it('changes Voltage value on primary action', async () => {
+      voltageField.value = '20.0';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Voltage')?.innerHTML).to.equal('20.0');
+    });
+    it('changes Voltage multiplier on primary action', async () => {
+      voltageField.multiplier = 'M';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Voltage')?.getAttribute('multiplier')).to.equal(
+        'M'
+      );
+      expect(doc.querySelector('Voltage')?.getAttribute('unit')).to.equal('V');
+    });
+    it('deletes voltage element if voltage wizard-textfield is deactivated', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      voltageField.nullSwitch!.click();
+      await parent.updateComplete;
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('VoltageLevel')?.querySelector('Voltage')).to.be
+        .null;
     });
   });
   describe('open add bay wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: VoltageLevelEditor | null;
+
+    let nameField: WizardTextField;
+    let primaryAction: HTMLElement;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -217,43 +200,44 @@ describe('voltage-level-editor wizarding editing integration', () => {
         )
       )).click();
       await parent.updateComplete;
-    });
-    it('opens bay wizard ', async () => {
-      expect(parent.wizardUI).to.exist;
-    });
-    it('has two wizard-textfield', async () => {
-      expect(parent.wizardUI.inputs.length).to.equal(2);
-    });
-    it('does not add bay if name attribute is not unique', async () => {
-      parent.wizardUI.inputs[0].value = 'COUPLING_BAY';
-      await parent.updateComplete;
-      await (<HTMLElement>(
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
         )
-      )).click();
+      );
+    });
+    it('does not add bay if name attribute is not unique', async () => {
+      nameField.value = 'COUPLING_BAY';
+      await new Promise(resolve => setTimeout(resolve, 100)); // update takes some time
+      primaryAction.click();
+      await parent.updateComplete;
       expect(
         doc.querySelectorAll('VoltageLevel[name="E1"] > Bay').length
       ).to.equal(2);
     });
     it('does add bay if name attribute is unique', async () => {
-      parent.wizardUI.inputs[0].value = 'SecondBay';
+      nameField.value = 'SecondBay';
+      await new Promise(resolve => setTimeout(resolve, 100)); // update takes some time
+      primaryAction.click();
       await parent.updateComplete;
-      await (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      )).click();
       expect(
         doc.querySelector('VoltageLevel[name="E1"] > Bay[name="SecondBay"]')
       ).to.exist;
     });
   });
   describe('open lnode wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: VoltageLevelEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -281,11 +265,15 @@ describe('voltage-level-editor wizarding editing integration', () => {
     });
   });
   describe('move action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: VoltageLevelEditor | null;
     let element2: VoltageLevelEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -318,10 +306,14 @@ describe('voltage-level-editor wizarding editing integration', () => {
     });
   });
   describe('remove action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: VoltageLevelEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -343,10 +335,15 @@ describe('voltage-level-editor wizarding editing integration', () => {
     });
   });
   describe('clone action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: VoltageLevelEditor | null;
+    let copyContentButton: HTMLElement;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -357,13 +354,16 @@ describe('voltage-level-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('voltage-level-editor');
-    });
-    it('duplicates VoltageLevel on clicking duplicate button', async () => {
-      (<HTMLElement>(
+      await parent.updateComplete;
+
+      copyContentButton = <HTMLElement>(
         element?.shadowRoot?.querySelector(
           'mwc-icon-button[icon="content_copy"]'
         )
-      )).click();
+      );
+    });
+    it('duplicates VoltageLevel on clicking duplicate button', async () => {
+      copyContentButton.click();
       await parent.updateComplete;
       expect(doc.querySelector('VoltageLevel[name="E11"]')).to.exist;
     });
@@ -371,11 +371,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       expect(
         doc.querySelector('VoltageLevel[name="E1"]')?.querySelector('LNode')
       ).to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc.querySelector('VoltageLevel[name="E11"]')?.querySelector('LNode')
@@ -387,11 +383,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
           .querySelector('VoltageLevel[name="E1"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
@@ -405,11 +397,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
           .querySelector('VoltageLevel[name="E1"]')
           ?.querySelector('ConnectivityNode')
       ).to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
@@ -418,11 +406,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       ).to.not.exist;
     });
     it('keeps all Bay elements in the copy', async () => {
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc.querySelector('VoltageLevel[name="E1"]')?.querySelectorAll('Bay')
@@ -433,11 +417,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       );
     });
     it('keeps all ConductingEquipment elements in the copy', async () => {
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc

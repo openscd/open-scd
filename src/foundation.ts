@@ -262,6 +262,23 @@ export function newPendingStateEvent(
   });
 }
 
+/** Represents a request for validation. */
+export interface ValidateDetail {
+  identity: string;
+}
+export type ValidateEvent = CustomEvent<ValidateDetail>;
+export function newValidateEvent(
+  identity = '',
+  eventInitDict?: CustomEventInit<Partial<ValidateDetail>>
+): ValidateEvent {
+  return new CustomEvent<ValidateDetail>('validate', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { identity, ...eventInitDict?.detail },
+  });
+}
+
 /** Represents a document to be opened. */
 export interface OpenDocDetail {
   doc: XMLDocument;
@@ -2354,7 +2371,9 @@ export const patterns = {
   nmTokens: nmToken + '( ' + nmToken + ')*',
   decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
-  alphanumeric: '[a-z][0-9,A-Z,a-z]*',
+  alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
+  alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
+  lnClass: '[A-Z]{4,4}',
 };
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
@@ -2442,7 +2461,7 @@ export function findControlBlocks(extRef: Element): Set<Element> {
   return controlBlocks;
 }
 
-export function isPublic(element:Element):boolean{
+export function isPublic(element: Element): boolean {
   return !element.closest('Private');
 }
 
@@ -2461,6 +2480,7 @@ declare global {
     ['editor-action']: EditorActionEvent<EditorAction>;
     ['open-doc']: OpenDocEvent;
     ['wizard']: WizardEvent;
+    ['validate']: ValidateEvent;
     ['log']: LogEvent;
   }
 }

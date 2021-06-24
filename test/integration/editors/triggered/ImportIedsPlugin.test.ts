@@ -25,7 +25,7 @@ describe('ImportIedsPlugin', () => {
 
       element = <ImportingIedPlugin>parent.querySelector('import-ieds-plugin')!;
 
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
@@ -184,7 +184,7 @@ describe('ImportIedsPlugin', () => {
 
       element = <ImportingIedPlugin>parent.querySelector('import-ieds-plugin')!;
 
-      doc = await fetch('/base/test/testfiles/valid.scd')
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;

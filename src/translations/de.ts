@@ -23,6 +23,9 @@ export const de: Translations = {
     valImport: 'Import value',
     fc: 'Funktionale Einschränkung',
     LNodeType: 'Logischer Knoten Type',
+    lnClass: 'Klasse logischer Knoten',
+    accessControl: 'Zugriffskontrolle',
+    transient: 'Datenpunkt transient',
   },
   settings: {
     name: 'Einstellungen',
@@ -202,6 +205,14 @@ export const de: Translations = {
       },
     },
   },
+  do: {
+    wizard: {
+      title: {
+        add: 'DO hinzufügen',
+        edit: 'DO bearbeiten',
+      },
+    },
+  },
   dotype: {
     wizard: {
       title: {
@@ -209,6 +220,14 @@ export const de: Translations = {
         edit: 'DOType bearbeiten',
       },
       enums: 'Standard Enumerations',
+    },
+  },
+  lnodetype: {
+    wizard: {
+      title: {
+        add: 'LNodeType hinzufügen',
+        edit: 'LNodeType bearbeiten',
+      },
     },
   },
   lnode: {

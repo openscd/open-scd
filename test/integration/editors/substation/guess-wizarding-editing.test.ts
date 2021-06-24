@@ -5,7 +5,6 @@ import '../../../mock-wizard-editor.js';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
 import '../../../mock-wizard.js';
-import { getDocument } from '../../../data.js';
 import { MockWizard } from '../../../mock-wizard.js';
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
 import { EditingElement } from '../../../../src/Editing.js';
@@ -15,7 +14,9 @@ describe('guess-wizard-integration', () => {
   let element: MockWizard;
   let validSCL: XMLDocument;
   beforeEach(async () => {
-    validSCL = getDocument();
+    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     validSCL.querySelector('Substation')!.innerHTML = '';
     element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
     element.workflow.push(guessVoltageLevel(validSCL));
@@ -73,7 +74,9 @@ describe('guess-wizarding-editing-integration', () => {
   let element: WizardingElement & EditingElement;
   let validSCL: XMLDocument;
   beforeEach(async () => {
-    validSCL = getDocument();
+    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     validSCL.querySelector('Substation')!.innerHTML = '';
     element = <WizardingElement & EditingElement>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)

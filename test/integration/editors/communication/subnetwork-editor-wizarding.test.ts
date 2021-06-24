@@ -1,20 +1,22 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../../mock-wizard.js';
+import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
-import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
+import '../../../mock-wizard.js';
+
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { TextField } from '@material/mwc-textfield';
 
 describe('subnetwork-editor wizarding integration', () => {
   describe('edit/add Subnetwork wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -32,32 +34,8 @@ describe('subnetwork-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('has one wizard-dialog', async () => {
-      expect(parent.wizardUI.dialogs.length).to.equal(1);
-    });
-    describe('include two buttons', () => {
-      it('and only two buttons', () => {
-        expect(
-          parent.wizardUI.dialog?.querySelectorAll('mwc-button').length
-        ).to.equal(2);
-      });
-      it('a cancel button as secondary action', () => {
-        expect(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="secondaryAction"]'
-          )
-        ).to.exist;
-      });
-      it('a edit button as primary action', () => {
-        expect(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        ).to.exist;
-      });
-    });
-    it('include 4 wizard inputs', async () => {
-      expect(parent.wizardUI.inputs.length).to.equal(4);
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the first input element', () => {
       it('edits the attribute name', async () => {
@@ -129,10 +107,13 @@ describe('subnetwork-editor wizarding integration', () => {
     });
   });
   describe('add ConnectedAP wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -149,6 +130,9 @@ describe('subnetwork-editor wizarding integration', () => {
           ?.shadowRoot?.querySelector('mwc-icon-button[icon="playlist_add"]')
       )).click();
       await parent.updateComplete;
+    });
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('display all access point in the project', async () => {
       expect(parent.wizardUI.dialog).to.exist;

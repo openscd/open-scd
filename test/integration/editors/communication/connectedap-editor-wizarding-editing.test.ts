@@ -6,16 +6,21 @@ import '../../../../src/editors/communication/connectedap-editor.js';
 import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
-
-import { getDocument } from '../../../data.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('connectedap-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
-    const doc = getDocument();
-
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConnectedAPEditor | null;
+    let secondaryAction: HTMLElement;
+    let primaryAction: HTMLElement;
+    let ipField: WizardTextField;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -33,45 +38,55 @@ describe('connectedap-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
-    });
-    it('closes on secondary action', async () => {
-      await (<HTMLElement>(
+      ipField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="IP"]')
+      );
+      secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'
         )
-      )).click();
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      expect(parent.wizardUI).to.have.property('dialog', undefined);
+      );
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
     });
-    describe('edit attributes within SubNetwork', () => {
-      it('does not change Address if no changes have been made', async () => {
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-        expect(parent.wizardUI).to.exist;
-      });
-      it('changes name attribute on primary action', async () => {
-        /* parent.wizardUI.inputs[0].value = 'newSubNetwork';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(doc.querySelector('SubNetwork')?.getAttribute('name')).to.equal(
-          'newSubNetwork'
-        ); */
-      });
+    it('closes on secondary action', async () => {
+      expect(parent.wizardUI.dialog).to.exist;
+      secondaryAction.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      expect(parent.wizardUI.dialog).to.not.exist;
+    });
+    it('changes name attribute on primary action', async () => {
+      expect(
+        doc.querySelector('ConnectedAP > Address > P[type="IP"]')?.textContent
+      ).to.equal('192.168.210.111');
+      ipField.value = '192.168.210.116';
+      await parent.requestUpdate();
+      primaryAction.click();
+      await parent.requestUpdate();
+      expect(
+        doc.querySelector('ConnectedAP > Address > P[type="IP"]')?.textContent
+      ).to.equal('192.168.210.116');
+    });
+    it('does not change Address if no changes have been made', async () => {
+      const reference = doc.querySelector('ConnectedAP');
+      primaryAction.click();
+      expect(doc.querySelector('ConnectedAP')?.isEqualNode(reference)).to.be
+        .true;
     });
   });
   describe('remove action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: ConnectedAPEditor | null;
+    let deleteButton: HTMLElement;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -84,13 +99,15 @@ describe('connectedap-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('connectedap-editor');
+      await parent.updateComplete;
+      deleteButton = <HTMLElement>(
+        element?.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
+      );
     });
-    it('removes ConnectedAP on clicking delete button', async () => {
+    it('removes ConnectedAP on delete button click', async () => {
       expect(doc.querySelector('SubNetwork[name="StationBus"] > ConnectedAP'))
         .to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
-      )).click();
+      deleteButton.click();
       await parent.updateComplete;
       expect(doc.querySelector('SubNetwork[name="StationBus"] > ConnectedAP'))
         .to.not.exist;

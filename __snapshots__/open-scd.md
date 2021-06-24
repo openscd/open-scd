@@ -21,6 +21,7 @@
     </li>
     <mwc-list-item
       aria-disabled="false"
+      class="loader"
       graphic="icon"
       iconid="folder_open"
       mwc-list-item=""
@@ -37,6 +38,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="loader"
       graphic="icon"
       iconid="folder_open"
       mwc-list-item=""
@@ -52,7 +54,43 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
+      aria-disabled="false"
+      class="loader"
+      graphic="icon"
+      iconid="create_new_folder"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        create_new_folder
+      </mwc-icon>
+      <span>
+        New project
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
       aria-disabled="true"
+      class="saver"
+      disabled=""
+      graphic="icon"
+      iconid="save"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        save
+      </mwc-icon>
+      <span>
+        Save project
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="saver"
       disabled=""
       graphic="icon"
       iconid="folder_open"
@@ -68,50 +106,6 @@
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="icon"
-      iconid="create_new_folder"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        create_new_folder
-      </mwc-icon>
-      <span>
-        New project
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      iconid="save_alt"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        save_alt
-      </mwc-icon>
-      <span>
-        Save
-      </span>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      disabled=""
-      graphic="icon"
-      iconid="save"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        save
-      </mwc-icon>
-      <span>
-        Save as
-      </span>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -120,6 +114,7 @@
     </li>
     <mwc-list-item
       aria-disabled="true"
+      class="static"
       disabled=""
       graphic="icon"
       iconid="undo"
@@ -135,6 +130,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
+      class="static"
       disabled=""
       graphic="icon"
       iconid="redo"
@@ -150,6 +146,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
+      class="validator"
       disabled=""
       graphic="icon"
       iconid="rule_folder"
@@ -162,9 +159,12 @@
       <span>
         Validate project
       </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="static"
       graphic="icon"
       iconid="rule"
       mwc-list-item=""
@@ -185,6 +185,7 @@
     </li>
     <mwc-list-item
       aria-disabled="true"
+      class="triggered"
       disabled=""
       graphic="icon"
       iconid="snippet_folder"
@@ -202,6 +203,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
+      class="triggered"
       disabled=""
       graphic="icon"
       iconid="play_circle"
@@ -219,6 +221,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
+      class="triggered"
       disabled=""
       graphic="icon"
       iconid="merge_type"
@@ -236,6 +239,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
+      class="triggered"
       disabled=""
       graphic="icon"
       iconid="merge_type"
@@ -253,6 +257,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
+      class="triggered"
       disabled=""
       graphic="icon"
       iconid="sync_alt"
@@ -276,6 +281,7 @@
     </li>
     <mwc-list-item
       aria-disabled="false"
+      class="static"
       graphic="icon"
       iconid="settings"
       mwc-list-item=""
@@ -290,6 +296,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="static"
       graphic="icon"
       iconid="settings"
       mwc-list-item=""
@@ -304,6 +311,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="static"
       graphic="icon"
       iconid="extension"
       mwc-list-item=""
@@ -351,37 +359,13 @@
     </mwc-icon-button>
   </mwc-top-app-bar-fixed>
 </mwc-drawer>
-<mwc-dialog
-  heading="Save as"
-  id="saveas"
->
-  <mwc-textfield
-    dialoginitialfocus=""
-    label="filename"
-    value=""
-  >
-  </mwc-textfield>
-  <mwc-button
-    icon="save"
-    slot="primaryAction"
-  >
-    Save
-  </mwc-button>
-  <mwc-button
-    dialogaction="cancel"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-    Cancel
-  </mwc-button>
-</mwc-dialog>
 <div class="landing">
   <mwc-icon-button
     class="landing_icon"
-    icon="create_new_folder"
+    icon="folder_open"
   >
     <div class="landing_label">
-      New project
+      Open project
     </div>
   </mwc-icon-button>
   <mwc-icon-button
@@ -389,7 +373,15 @@
     icon="folder_open"
   >
     <div class="landing_label">
-      Open project
+      Open from CoMPAS
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="create_new_folder"
+  >
+    <div class="landing_label">
+      New project
     </div>
   </mwc-icon-button>
 </div>
@@ -610,6 +602,42 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/loaders/NewProject.js"
+    >
+      <mwc-icon slot="graphic">
+        create_new_folder
+      </mwc-icon>
+      New project
+      <mwc-icon slot="meta">
+        folder_open
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/savers/SaveProject.js"
+    >
+      <mwc-icon slot="graphic">
+        save
+      </mwc-icon>
+      Save project
+      <mwc-icon slot="meta">
+        save
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/savers/SaveToCompas.js"
     >
       <mwc-icon slot="graphic">
@@ -618,6 +646,24 @@
       Save to CoMPAS
       <mwc-icon slot="meta">
         save
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/validators/ValidateSchema.js"
+    >
+      <mwc-icon slot="graphic">
+        rule_folder
+      </mwc-icon>
+      Validate project
+      <mwc-icon slot="meta">
+        rule_folder
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item

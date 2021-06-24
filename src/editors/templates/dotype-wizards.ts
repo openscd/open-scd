@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  Create,
   createElement,
   EditorAction,
   getReference,
@@ -22,9 +23,13 @@ import {
   addReferencedDataTypes,
   allDataTypeSelector,
   buildListFromStringArray,
+  CreateOptions,
   functionalConstraintEnum,
   predefinedBasicTypeEnum,
+  unifyCreateActionArray,
+  UpdateOptions,
   valKindEnum,
+  WizardOptions,
 } from './foundation.js';
 
 import { Select } from '@material/mwc-select';
@@ -34,15 +39,6 @@ import {
 } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { List } from '@material/mwc-list';
-
-interface UpdateOptions {
-  identity: string | null;
-  doc: XMLDocument;
-}
-interface CreateOptions {
-  parent: Element;
-}
-export type WizardOptions = UpdateOptions | CreateOptions;
 
 function updateSDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -159,7 +155,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumeric}"
+          pattern="${patterns.alphanumericFirstLowerCase}"
           dialogInitialFocus
         >
           ></wizard-textfield
@@ -378,7 +374,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumeric}"
+          pattern="${patterns.alphanumericFirstLowerCase}"
           dialogInitialFocus
         >
           ></wizard-textfield
@@ -495,7 +491,7 @@ function addPredefinedDOType(
     element.setAttribute('id', id);
     if (desc) element.setAttribute('desc', desc);
 
-    const actions = [];
+    const actions: Create[] = [];
 
     if (selectedElement)
       addReferencedDataTypes(selectedElement, parent).forEach(action =>
@@ -510,7 +506,7 @@ function addPredefinedDOType(
       },
     });
 
-    return actions;
+    return unifyCreateActionArray(actions);
   };
 }
 

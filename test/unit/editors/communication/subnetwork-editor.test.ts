@@ -2,12 +2,14 @@ import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/communication/subnetwork-editor.js';
 import { SubNetworkEditor } from '../../../../src/editors/communication/subnetwork-editor.js';
-import { getDocument } from '../../../data.js';
 
 describe('subnetwork-editor', () => {
   let element: SubNetworkEditor;
-  const validSCL = getDocument();
+  let validSCL: XMLDocument;
   beforeEach(async () => {
+    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <SubNetworkEditor>(
       await fixture(
         html`<subnetwork-editor

@@ -5,19 +5,24 @@ import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
 import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
-
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { Select } from '@material/mwc-select';
 
 describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
-    const doc = getDocument();
-
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
+    let nameField: WizardTextField;
+    let descField: WizardTextField;
+    let secondaryAction: HTMLElement;
+    let primaryAction: HTMLElement;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -30,74 +35,74 @@ describe('bay-editor wizarding editing integration', () => {
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
-    });
-    it('closes on secondary action', async () => {
-      await (<HTMLElement>(
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      descField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+      );
+      secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'
         )
-      )).click();
+      );
+      primaryAction = <HTMLElement>(
+        parent.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+    it('closes on secondary action', async () => {
+      secondaryAction.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(parent.wizardUI.dialog).to.not.exist;
     });
-    describe('edit attributes within a Bay', () => {
-      it('does not change name attribute if not unique within parent element', async () => {
-        const oldName = parent.wizardUI.inputs[0].value;
-        parent.wizardUI.inputs[0].value = 'Bay2';
-
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal(
-          oldName
-        );
-      });
-      it('changes name attribute on primary action', async () => {
-        parent.wizardUI.inputs[0].value = 'newName';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal(
-          'newName'
-        );
-      });
-      it('changes desc attribute on primary action', async () => {
-        parent.wizardUI.inputs[1].value = 'newDesc';
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        expect(doc.querySelector('Bay')?.getAttribute('desc')).to.equal(
-          'newDesc'
-        );
-      });
-      it('deletes desc attribute if wizard-textfield is deactivated', async () => {
-        await (<HTMLElement>(
-          parent.wizardUI.inputs[1].shadowRoot?.querySelector('mwc-switch')
-        )).click();
-        await parent.updateComplete;
-        await (<HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        )).click();
-        await parent.updateComplete;
-        expect(doc.querySelector('Bay')?.getAttribute('desc')).to.be.null;
-      });
+    it('does not change name attribute if not unique within parent element', async () => {
+      const oldName = nameField.value;
+      nameField.value = 'Bay2';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal(oldName);
+    });
+    it('changes name attribute on primary action', async () => {
+      parent.wizardUI.inputs[0].value = 'newName';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal(
+        'newName'
+      );
+    });
+    it('changes desc attribute on primary action', async () => {
+      descField.value = 'newDesc';
+      primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Bay')?.getAttribute('desc')).to.equal(
+        'newDesc'
+      );
+    });
+    it('deletes desc attribute if wizard-textfield is deactivated', async () => {
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      descField.nullSwitch!.click();
+      await parent.updateComplete;
+      await primaryAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('Bay')?.getAttribute('desc')).to.be.null;
     });
   });
   describe('open add conducting equipment wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
+    let nameField: WizardTextField;
+    let typeSelect: Select;
+    let primaryAction: HTMLElement;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -114,33 +119,25 @@ describe('bay-editor wizarding editing integration', () => {
         )
       )).click();
       await parent.updateComplete;
-    });
-    it('opens conducting equipment wizard ', async () => {
-      expect(parent.wizardUI).to.exist;
-    });
-    it('has three wizard inputs', async () => {
-      expect(parent.wizardUI.inputs.length).to.equal(3);
-    });
-    it('the first a selctor for the type attribute', async () => {
-      expect(parent.wizardUI.inputs[0]).to.be.instanceOf(Select);
-    });
-    it('the second one a wizard-textfield for name attribute', async () => {
-      expect(parent.wizardUI.inputs[1]).to.be.instanceOf(WizardTextField);
-      expect(parent.wizardUI.inputs[1].label).to.equal('name');
-    });
-    it('the third one a wizard-textfield for desc attribute', async () => {
-      expect(parent.wizardUI.inputs[2]).to.be.instanceOf(WizardTextField);
-      expect(parent.wizardUI.inputs[2].label).to.equal('desc');
-    });
-    it('does not add conducting equipment if name attribute is not unique', async () => {
-      parent.wizardUI.inputs[0].value = 'CBR';
-      parent.wizardUI.inputs[1].value = 'QA1';
-      await parent.updateComplete;
-      await (<HTMLElement>(
+
+      nameField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      typeSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+      );
+      primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
         )
-      )).click();
+      );
+    });
+
+    it('does not add conducting equipment if name attribute is not unique', async () => {
+      typeSelect.value = 'CBR';
+      nameField.value = 'QA1';
+      primaryAction.click();
+      await parent.updateComplete;
       expect(
         doc.querySelectorAll(
           'VoltageLevel[name="E1"] > Bay[name="COUPLING_BAY"] > ConductingEquipment[name="QA1"]'
@@ -148,14 +145,10 @@ describe('bay-editor wizarding editing integration', () => {
       ).to.equal(1);
     });
     it('does add conducting equipment if name attribute is unique', async () => {
-      (<Select>parent.wizardUI.inputs[0]).value = 'CBR';
-      parent.wizardUI.inputs[1].value = 'QA2';
+      typeSelect.value = 'CBR';
+      nameField.value = 'QA2';
       await parent.updateComplete;
-      await (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      )).click();
+      primaryAction.click();
       expect(
         doc.querySelector(
           'VoltageLevel[name="E1"] > Bay[name="COUPLING_BAY"] > ConductingEquipment[name="QA2"]'
@@ -164,10 +157,14 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('open lnode wizard', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -193,11 +190,15 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('move action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
     let element2: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -225,10 +226,14 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('remove action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -250,10 +255,15 @@ describe('bay-editor wizarding editing integration', () => {
     });
   });
   describe('clone action', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
     let element: BayEditor | null;
+    let copyContentButton: HTMLElement;
+
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
@@ -264,13 +274,16 @@ describe('bay-editor wizarding editing integration', () => {
         )
       );
       element = parent.querySelector('bay-editor');
-    });
-    it('duplicates Bay on clicking duplicate button', async () => {
-      (<HTMLElement>(
+      await parent.updateComplete;
+
+      copyContentButton = <HTMLElement>(
         element?.shadowRoot?.querySelector(
           'mwc-icon-button[icon="content_copy"]'
         )
-      )).click();
+      );
+    });
+    it('duplicates Bay on clicking duplicate button', async () => {
+      copyContentButton.click();
       await parent.updateComplete;
       expect(doc.querySelector('Bay[name="COUPLING_BAY1')).to.exist;
     });
@@ -278,11 +291,7 @@ describe('bay-editor wizarding editing integration', () => {
       expect(
         doc.querySelector('Bay[name="COUPLING_BAY"]')?.querySelector('LNode')
       ).to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
@@ -296,11 +305,7 @@ describe('bay-editor wizarding editing integration', () => {
           .querySelector('Bay[name="COUPLING_BAY"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
@@ -314,11 +319,7 @@ describe('bay-editor wizarding editing integration', () => {
           .querySelector('Bay[name="COUPLING_BAY"]')
           ?.querySelector('ConnectivityNode')
       ).to.exist;
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
@@ -327,11 +328,7 @@ describe('bay-editor wizarding editing integration', () => {
       ).to.not.exist;
     });
     it('keeps all ConductingEquipment elements in the copy', async () => {
-      (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
-      )).click();
+      copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc

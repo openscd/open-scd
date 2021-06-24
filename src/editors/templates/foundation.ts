@@ -2,6 +2,7 @@ import { css, html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import {
+  Create,
   EditorAction,
   getReference,
   getValue,
@@ -11,12 +12,12 @@ import {
   WizardInput,
 } from '../../foundation.js';
 
-interface UpdateOptions {
-  element: Element;
+export interface UpdateOptions {
+  identity: string | null;
+  doc: XMLDocument;
 }
-interface CreateOptions {
+export interface CreateOptions {
   parent: Element;
-  templates: XMLDocument;
 }
 export type WizardOptions = UpdateOptions | CreateOptions;
 
@@ -48,10 +49,26 @@ export function updateIDNamingAction(element: Element): WizardActor {
   };
 }
 
+function containsCreateAction(actions: Create[], newAction: Create): boolean {
+  return !actions.some(
+    action =>
+      action.new.parent === newAction.new.parent &&
+      action.new.element.getAttribute('id') ===
+        newAction.new.element.getAttribute('id')
+  );
+}
+
+export function unifyCreateActionArray(actions: Create[]): Create[] {
+  const uniqueActions: Create[] = [];
+  for (const action of actions)
+    if (containsCreateAction(uniqueActions, action)) uniqueActions.push(action);
+  return uniqueActions;
+}
+
 export function addReferencedDataTypes(
   element: Element,
   parent: Element
-): EditorAction[] {
+): Create[] {
   const templates = element.closest('DataTypeTemplates')!;
   const ids = Array.from(parent.querySelectorAll(allDataTypeSelector))
     .filter(isPublic)
@@ -73,20 +90,21 @@ export function addReferencedDataTypes(
     if (adjacent !== null && isPublic(adjacent)) adjacents.push(adjacent);
   });
 
-  const actions: EditorAction[] = [];
+  const actions: Create[] = [];
   adjacents
     .flatMap(adjacent => addReferencedDataTypes(adjacent, parent))
     .forEach(action => actions.push(action));
 
-  adjacents.forEach(adjacent =>
+  adjacents.forEach(adjacent => {
     actions.push({
       new: {
         parent,
         element: <Element>adjacent.cloneNode(true),
         reference: getReference(parent, <SCLTag>adjacent.tagName),
       },
-    })
-  );
+    });
+  });
+
   return actions;
 }
 

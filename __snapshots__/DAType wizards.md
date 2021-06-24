@@ -338,6 +338,38 @@
           2
         </span>
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_OpenSBOw"
+      >
+        <span>
+          OpenSBOw
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Cancel"
+      >
+        <span>
+          Cancel
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
     </mwc-select>
     <wizard-textfield
       dialoginitialfocus=""

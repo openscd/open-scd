@@ -6,15 +6,17 @@ import { regexString, regExp, ipV6, ipV6SubNet } from '../../../foundation.js';
 import '../../../mock-wizard.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
-import { getDocument } from '../../../data.js';
 import '../../../../src/editors/communication/connectedap-editor.js';
 
 describe('conductingap-editor wizarding integration', () => {
   describe('for schema 2003 (Edition1) projects', () => {
-    const doc = getDocument(true, '2003');
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2003.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -34,8 +36,8 @@ describe('conductingap-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('include 13 wizard inputs in schema 2007B4', async () => {
-      expect(parent.wizardUI.inputs.length).to.equal(13);
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the 1st input element', () => {
       it('edits the attribute IP', async () => {
@@ -224,10 +226,13 @@ describe('conductingap-editor wizarding integration', () => {
     });
   });
   describe('for schema 2007B (Edition2) projects', () => {
-    const doc = getDocument(true, '2007B');
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -247,8 +252,8 @@ describe('conductingap-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('include 6 more wizard inputs', async () => {
-      expect(parent.wizardUI.inputs.length).to.equal(19);
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the 14th input element', () => {
       it('edits the attribute SNTP-Port', async () => {
@@ -351,10 +356,13 @@ describe('conductingap-editor wizarding integration', () => {
     });
   });
   describe('for schema 2007B4 (Edition2.1) projects', () => {
-    const doc = getDocument();
+    let doc: XMLDocument;
     let parent: WizardingElement;
 
     beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
         await fixture(
           html`<mock-wizard
@@ -374,8 +382,8 @@ describe('conductingap-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('include 8 more wizard inputs', async () => {
-      expect(parent.wizardUI.inputs.length).to.equal(27);
+    it('looks like the latest snapshot', () => {
+      expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the 20th input element', () => {
       it('edits the attribute IPv6', async () => {
@@ -493,55 +501,6 @@ describe('conductingap-editor wizarding integration', () => {
             expect(parent.wizardUI.inputs[26].checkValidity()).to.be.true;
           })
         );
-      });
-    });
-  });
-  describe('for all versions', () => {
-    const doc = getDocument();
-    let parent: WizardingElement;
-
-    beforeEach(async () => {
-      parent = <WizardingElement>(
-        await fixture(
-          html`<mock-wizard
-            ><connectedap-editor
-              .element=${doc.querySelector(
-                'SubNetwork[name="StationBus"] > ConnectedAP'
-              )}
-            ></connectedap-editor
-          ></mock-wizard>`
-        )
-      );
-
-      (<HTMLElement>(
-        parent
-          ?.querySelector('connectedap-editor')
-          ?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-      )).click();
-      await parent.updateComplete;
-    });
-    it('has one wizard-dialog', async () => {
-      expect(parent.wizardUI.dialogs.length).to.equal(1);
-    });
-    describe('include two buttons', () => {
-      it('and only two buttons', () => {
-        expect(
-          parent.wizardUI.dialog?.querySelectorAll('mwc-button').length
-        ).to.equal(2);
-      });
-      it('a cancel button as secondary action', () => {
-        expect(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="secondaryAction"]'
-          )
-        ).to.exist;
-      });
-      it('a edit button as primary action', () => {
-        expect(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        ).to.exist;
       });
     });
   });

@@ -7,22 +7,27 @@ import {
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
-
 import { styles } from './templates/foundation.js';
 
 import '../filtered-list.js';
-import './templates/enum-type-editor.js';
+
+import {
+  createEnumTypeWizard,
+  eNumTypeEditWizard,
+} from './templates/enumtype-wizard.js';
 import {
   createDATypeWizard,
   dATypeWizard,
 } from './templates/datype-wizards.js';
-
 import {
   createDOTypeWizard,
   dOTypeWizard,
 } from './templates/dotype-wizards.js';
+import {
+  createLNodeTypeWizard,
+  lNodeTypeWizard,
+} from './templates/lnodetype-wizard.js';
 
-import { EnumTypeEditor } from './templates/enum-type-editor.js';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -36,6 +41,24 @@ export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  async openCreateLNodeTypeWizard(): Promise<void> {
+    this.createDataTypeTemplates();
+
+    this.dispatchEvent(
+      newWizardEvent(
+        createLNodeTypeWizard(
+          this.doc.querySelector(':root > DataTypeTemplates')!,
+          await templates
+        )
+      )
+    );
+  }
+
+  openLNodeTypeWizard(identity: string): void {
+    const wizard = lNodeTypeWizard(identity, this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   async openCreateDOTypeWizard(): Promise<void> {
     this.createDataTypeTemplates();
@@ -73,15 +96,20 @@ export default class TemplatesPlugin extends LitElement {
     );
   }
 
+  openEnumTypeWizard(identity: string): void {
+    const wizard = eNumTypeEditWizard(identity, this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   async openCreateEnumWizard(): Promise<void> {
     this.createDataTypeTemplates();
 
     this.dispatchEvent(
       newWizardEvent(
-        EnumTypeEditor.wizard({
-          parent: this.doc.querySelector(':root > DataTypeTemplates')!,
-          templates: await templates,
-        })
+        createEnumTypeWizard(
+          this.doc.querySelector(':root > DataTypeTemplates')!,
+          await templates
+        )
       )
     );
   }
@@ -122,11 +150,20 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.LNodeType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+                <mwc-icon-button
+                  icon="playlist_add"
+                  @click=${() => this.openCreateLNodeTypeWizard()}
+                ></mwc-icon-button>
               </abbr>
             </nav>
           </h1>
-          <filtered-list id="lnodetype">
+          <filtered-list
+            id="lnodetypelist"
+            @selected=${(e: SingleSelectedEvent) =>
+              this.openLNodeTypeWizard(
+                (<ListItem>(<List>e.target).selected).value
+              )}
+          >
             ${Array.from(
               this.doc.querySelectorAll(
                 ':root > DataTypeTemplates > LNodeType'
@@ -235,16 +272,30 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <mwc-list>
+          <filtered-list
+            id="enumtypelist"
+            @selected=${(e: SingleSelectedEvent) =>
+              this.openEnumTypeWizard(
+                (<ListItem>(<List>e.target).selected).value
+              )}
+          >
             ${Array.from(
               this.doc.querySelectorAll(
                 ':root > DataTypeTemplates > EnumType'
               ) ?? []
             ).map(
-              enumType =>
-                html`<enum-type-editor .element=${enumType}></enum-type-editor>`
+              enumtype =>
+                html`<mwc-list-item
+                  value="${identity(enumtype)}"
+                  tabindex="0"
+                  hasMeta
+                  ><span>${enumtype.getAttribute('id')}</span
+                  ><span slot="meta"
+                    >${enumtype.querySelectorAll('EnumVal').length}</span
+                  ></mwc-list-item
+                >`
             )}
-          </mwc-list>
+          </filtered-list>
         </section>
       </div>
     `;
