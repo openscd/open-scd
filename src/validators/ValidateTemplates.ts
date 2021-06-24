@@ -9,6 +9,62 @@ const iec6185073 = fetch('public/xml/IEC_61850-7-3_2007B3.nsd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
+async function getMendatorySubDataAttributes(
+  datype: Element
+): Promise<Element[]> {
+  const parentDAs =
+    Array.from(
+      datype
+        .closest('DataTypeTemplates')!
+        .querySelectorAll<Element>(
+          `DOType > DA[type="${datype.getAttribute('id')}"]`
+        )
+    ) ?? [];
+
+  const nsd = await iec6185073;
+  const dataAttributes = parentDAs.map(parentDA => {
+    const parentCDC = <Element>parentDA.parentElement!;
+    return nsd.querySelector(
+      `CDC[name="${parentCDC.getAttribute(
+        'cdc'
+      )}"] > DataAttribute[name="${parentDA.getAttribute('name')}"]`
+    );
+  });
+
+  const type = dataAttributes
+    .filter(data => data && data.getAttribute('typeKind') === 'CONSTRUCTED')
+    .map(data => data?.getAttribute('type') ?? '')
+    .filter(type => type !== '');
+
+  return (
+    Array.from(
+      nsd.querySelectorAll(
+        `ConstructedAttributes > ConstructedAttribute[name="${type[0]}"] > SubDataAttribute[presCond="M"]`
+      )
+    ) ?? []
+  );
+}
+
+async function validateMandatorySubDAs(datype: Element): Promise<LogDetail[]> {
+  const errors: LogDetail[] = [];
+
+  const mandatorysubdas = await (
+    await getMendatorySubDataAttributes(datype)
+  ).map(DA => DA.getAttribute('name')!);
+
+  mandatorysubdas.forEach(mandatorysubda => {
+    if (!datype.querySelector(`BDA[name="${mandatorysubda}"]`))
+      errors.push({
+        title: `The element DA ${mandatorysubda} is mendatory DAType ${datype.getAttribute(
+          'id'
+        )}`,
+        kind: 'error',
+      });
+  });
+
+  return errors;
+}
+
 async function getMendatoryDataAttribute(base: string): Promise<Element[]> {
   const nsd = await iec6185073;
   const cdc = nsd.querySelector(`CDC[name="${base}"]`);
@@ -139,7 +195,9 @@ export default class ValidateTemplates extends LitElement {
   docName!: string;
 
   async validate(): Promise<void> {
-    Array.from(this.doc.querySelectorAll('LNodeType')).forEach(lnodetype => {
+    for (const lnodetype of Array.from(
+      this.doc.querySelectorAll('LNodeType')
+    )) {
       validateMandatoryDOs(lnodetype).then(errors => {
         errors.forEach(error =>
           document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
@@ -151,14 +209,20 @@ export default class ValidateTemplates extends LitElement {
           document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
         );
       });
-    });
+    }
 
-    Array.from(this.doc.querySelectorAll('DOType')).forEach(dotype => {
+    for (const dotype of Array.from(this.doc.querySelectorAll('DOType')))
       validateMandatoryDAs(dotype).then(errors => {
         errors.forEach(error =>
           document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
         );
       });
-    });
+
+    for (const datype of Array.from(this.doc.querySelectorAll('DAType')))
+      validateMandatorySubDAs(datype).then(errors => {
+        errors.forEach(error =>
+          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
+        );
+      });
   }
 }
