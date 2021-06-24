@@ -324,4 +324,29 @@ export const en = {
   duplicate: 'Clone',
   connect: 'Connect',
   disconnect: 'Disconnect',
+
+  compas: {
+    changeset: {
+      major: "Major change",
+      minor: "Minor change",
+      patch: "Patch change",
+    },
+    open: {
+      listSclTypes: 'Type of SCL',
+      noSclTypes: 'No types found',
+      listScls: 'List of SCL ({{ type }})',
+      noScls: 'No SCLs found',
+    },
+    saveTo: {
+      title: 'Save to CoMPAS',
+      addError: 'Error adding SCL to CoMPAS!',
+      addSuccess: 'SCL added to CoMPAS.',
+      updateError: 'Error updating SCL in CoMPAS!',
+      updateSuccess: 'SCL updated in CoMPAS',
+    },
+    settings: {
+      name: "CoMPAS Settings",
+      sclDataServiceUrl: "CoMPAS SCL Data Service"
+    }
+  },
 };

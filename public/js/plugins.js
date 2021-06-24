@@ -28,6 +28,13 @@ export const officialPlugins = [
     kind: 'loader'
   },
   {
+    name: 'Open from CoMPAS',
+    src: '/src/loaders/OpenCompas.js',
+    icon: 'folder_open',
+    default: true,
+    kind: 'loader'
+  },
+  {
     name: 'New project',
     src: '/src/loaders/NewProject.js',
     icon: 'create_new_folder',
@@ -42,6 +49,13 @@ export const officialPlugins = [
     kind: 'saver'
   },
   {
+    name: 'Save to CoMPAS',
+    src: '/src/savers/SaveToCompas.js',
+    icon: 'folder_open',
+    default: true,
+    kind: 'saver'
+  },
+  {
     name: 'Validate project',
     src: '/src/validators/ValidateSchema.js',
     icon: 'rule_folder',
@@ -49,11 +63,11 @@ export const officialPlugins = [
     kind: 'validator'
   },
   {
-    name: "Import IEDs",
-    src: "/src/triggered/ImportIEDs.js",
-    icon: "snippet_folder",
+    name: 'Import IEDs',
+    src: '/src/triggered/ImportIEDs.js',
+    icon: 'snippet_folder',
     default: true,
-    kind: "triggered"
+    kind: 'triggered'
   },
   {
     name: 'Subscriber Update',

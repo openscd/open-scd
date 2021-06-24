@@ -40,6 +40,23 @@
       aria-disabled="false"
       class="loader"
       graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Open from CoMPAS
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="loader"
+      graphic="icon"
       iconid="create_new_folder"
       mwc-list-item=""
       tabindex="-1"
@@ -67,6 +84,24 @@
       </mwc-icon>
       <span>
         Save project
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="saver"
+      disabled=""
+      graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Save to CoMPAS
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -263,6 +298,21 @@
       aria-disabled="false"
       class="static"
       graphic="icon"
+      iconid="settings"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        settings
+      </mwc-icon>
+      <span>
+        CoMPAS Settings
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="static"
+      graphic="icon"
       iconid="extension"
       mwc-list-item=""
       tabindex="-1"
@@ -316,6 +366,14 @@
   >
     <div class="landing_label">
       Open project
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="folder_open"
+  >
+    <div class="landing_label">
+      Open from CoMPAS
     </div>
   </mwc-icon-button>
   <mwc-icon-button
@@ -526,6 +584,24 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/loaders/OpenCompas.js"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      Open from CoMPAS
+      <mwc-icon slot="meta">
+        folder_open
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/loaders/NewProject.js"
     >
       <mwc-icon slot="graphic">
@@ -550,6 +626,24 @@
         save
       </mwc-icon>
       Save project
+      <mwc-icon slot="meta">
+        save
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/savers/SaveToCompas.js"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      Save to CoMPAS
       <mwc-icon slot="meta">
         save
       </mwc-icon>
@@ -766,6 +860,43 @@
 </mwc-circular-progress-four-color>
 <wizard-dialog>
 </wizard-dialog>
+<mwc-dialog
+  class="styled"
+  heading="CoMPAS Settings"
+  id="compasSettings"
+>
+  <form>
+    <mwc-textfield
+      dialoginitialfocus=""
+      id="sclDataServiceUrl"
+      label="CoMPAS SCL Data Service"
+      required=""
+      value="http://localhost:9090/compas-scl-data-service"
+    >
+    </mwc-textfield>
+  </form>
+  <mwc-button
+    dialogaction="close"
+    slot="secondaryAction"
+  >
+    Cancel
+  </mwc-button>
+  <mwc-button
+    dialogaction="reset"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+    Reset
+  </mwc-button>
+  <mwc-button
+    dialogaction="save"
+    icon="save"
+    slot="primaryAction"
+    trailingicon=""
+  >
+    Save
+  </mwc-button>
+</mwc-dialog>
 <mwc-dialog
   heading="Settings"
   id="settings"

@@ -3,6 +3,7 @@ import { directive, Part } from 'lit-html';
 
 import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
+import { TextField } from '@material/mwc-textfield'
 
 import { WizardTextField } from './wizard-textfield.js';
 
@@ -133,8 +134,8 @@ export function newActionEvent<T extends EditorAction>(
   });
 }
 
-export const wizardInputSelector = 'wizard-textfield, mwc-select';
-export type WizardInput = WizardTextField | Select;
+export const wizardInputSelector = 'wizard-textfield, mwc-textfield, mwc-select';
+export type WizardInput = WizardTextField | TextField | Select;
 
 export type WizardAction = EditorAction | (() => Wizard);
 
