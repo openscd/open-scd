@@ -371,6 +371,156 @@
 			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
 			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
 		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC2">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>sbo-with-normal-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC1">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>sbo-with-enhanced-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC8">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>sbo-with-enhanced-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC3">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>direct-with-normal-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC4">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>status-only</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC5">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>direct-with-normal-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.Operfalse" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC6">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>sbo-with-enhanced-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOwfalse" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.SPC7">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>sbo-with-enhanced-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancelfalse" />
+		</DOType>
+        <DOType cdc="SPC" id="Dummy.LPHD1.Sim">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="SBO" bType="ObjRef" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+		</DOType>
 		<DOType cdc="DPC" id="Dummy.XCBR1.Pos">
 			<DA fc="ST" name="stVal" bType="Dbpos" />
 			<DA fc="ST" name="q" bType="Quality" />
@@ -395,7 +545,7 @@
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 		</DOType>
-		<DOType cdc="LPL" id="Dummy.XCBR1.NamPlt">
+		<DOType cdc="LPH" id="Dummy.XCBR1.NamPlt">
 			<DA fc="DC" name="vendor" bType="VisString255" />
 			<DA fc="DC" name="swRev" bType="VisString255" />
 			<DA fc="DC" name="d" bType="VisString255" />
@@ -438,13 +588,33 @@
 			<BDA name="T" bType="Timestamp" />
 			<BDA name="Test" bType="BOOLEAN" />
 		</DAType>
-		<DAType id="Dummy.LPHD1.Sim.SBOw">
+        <DAType id="Dummy.LPHD1.Sim.SBOw">
 			<BDA name="ctlVal" bType="BOOLEAN" />
 			<BDA name="origin" bType="Struct" type="Dummy_origin" />
 			<BDA name="ctlNum" bType="INT8U" />
 			<BDA name="T" bType="Timestamp" />
 			<BDA name="Test" bType="BOOLEAN" />
 			<BDA name="Check" bType="Check" />
+		</DAType>
+		<DAType id="Dummy.LPHD1.Sim.Operfalse">
+			<BDA name="ctlVal" bType="BOOLEAN" />
+			<BDA name="origin" bType="Struct" type="Dummy_origin" />
+			<BDA name="T" bType="Timestamp" />
+			<BDA name="Test" bType="BOOLEAN" />
+			<BDA name="Check" bType="Check" />
+		</DAType>
+        <DAType id="Dummy.LPHD1.Sim.SBOwfalse">
+			<BDA name="ctlVal" bType="BOOLEAN" />
+			<BDA name="ctlNum" bType="INT8U" />
+			<BDA name="T" bType="Timestamp" />
+			<BDA name="Test" bType="BOOLEAN" />
+			<BDA name="Check" bType="Check" />
+		</DAType>
+        <DAType id="Dummy.LPHD1.Sim.Cancelfalse">
+			<BDA name="origin" bType="Struct" type="Dummy_origin" />
+			<BDA name="ctlNum" bType="INT8U" />
+			<BDA name="T" bType="Timestamp" />
+			<BDA name="Test" bType="BOOLEAN" />
 		</DAType>
 		<DAType id="Dummy.LPHD1.Sim.Cancel">
 			<BDA name="ctlVal" bType="BOOLEAN" />
