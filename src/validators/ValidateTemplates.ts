@@ -9,6 +9,166 @@ const iec6185073 = fetch('public/xml/IEC_61850-7-3_2007B3.nsd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
+const iec6185072 = fetch('public/xml/IEC_61850-7-2_2007B3.nsd')
+  .then(response => response.text())
+  .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+const iec6185081 = fetch('public/xml/IEC_61850-8-1_2003A2.nsd')
+  .then(response => response.text())
+  .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+const serviceSCD = ['SPC', 'DPC', 'INC', 'ENC', 'BSC', 'ISC', 'APC', 'BAC'];
+
+async function validateCoOperStructure(
+  oper: Element | null
+): Promise<LogDetail[]> {
+  if (!oper)
+    return [
+      {
+        title: `Controlable data objects Oper is missing`,
+        kind: 'error',
+      },
+    ];
+
+  const type = oper.getAttribute('type');
+  if (!type) return [];
+
+  const structure =
+    oper.closest('DataTypeTemplates')?.querySelector(`DAType[id="${type}"]`) ??
+    null;
+
+  const nsd81 = await iec6185081;
+
+  const errors: LogDetail[] = [];
+  const mendatoryDAs = Array.from(
+    nsd81.querySelectorAll(
+      `ServiceConstructedAttributes > ServiceConstructedAttribute[name="Oper"] > SubDataAttribute[presCond="M"]`
+    )
+  ).map(data => data.getAttribute('name')!);
+
+  for (const mendatoryDA of mendatoryDAs)
+    if (structure && !structure.querySelector(`BDA[name="${mendatoryDA}"]`))
+      errors.push({
+        title: `Data structure SBOw is missing mandatory data ${mendatoryDA}`,
+        kind: 'error',
+      });
+
+  return errors;
+}
+
+async function validateCoSBOwStructure(
+  sbow: Element | null
+): Promise<LogDetail[]> {
+  if (!sbow)
+    return [
+      {
+        title: `Controlable data objects SBOw is missing`,
+        kind: 'error',
+      },
+    ];
+
+  const type = sbow.getAttribute('type');
+  if (!type) return [];
+
+  const structure =
+    sbow.closest('DataTypeTemplates')?.querySelector(`DAType[id="${type}"]`) ??
+    null;
+
+  const nsd81 = await iec6185081;
+
+  const errors: LogDetail[] = [];
+  const mendatoryDAs = Array.from(
+    nsd81.querySelectorAll(
+      `ServiceConstructedAttributes > ServiceConstructedAttribute[name="SBOw"] > SubDataAttribute[presCond="M"]`
+    )
+  ).map(data => data.getAttribute('name')!);
+
+  for (const mendatoryDA of mendatoryDAs)
+    if (structure && !structure.querySelector(`BDA[name="${mendatoryDA}"]`))
+      errors.push({
+        title: `Data structure SBOw is missing mandatory data ${mendatoryDA}`,
+        kind: 'error',
+      });
+
+  return errors;
+}
+
+async function validateCoCancelStructure(
+  cancel: Element | null
+): Promise<LogDetail[]> {
+  if (!cancel)
+    return [
+      {
+        title: `Controlable data objects Cancel is missing`,
+        kind: 'error',
+      },
+    ];
+
+  const type = cancel.getAttribute('type');
+  if (!type) return [];
+
+  const structure =
+    cancel
+      .closest('DataTypeTemplates')
+      ?.querySelector(`DAType[id="${type}"]`) ?? null;
+
+  const nsd81 = await iec6185081;
+
+  const errors: LogDetail[] = [];
+  const mendatoryDAs = Array.from(
+    nsd81.querySelectorAll(
+      `ServiceConstructedAttributes > ServiceConstructedAttribute[name="Cancel"] > SubDataAttribute[presCond="M"]`
+    )
+  ).map(data => data.getAttribute('name')!);
+
+  for (const mendatoryDA of mendatoryDAs)
+    if (structure && !structure.querySelector(`BDA[name="${mendatoryDA}"]`))
+      errors.push({
+        title: `Data structure Cancel is missing mandatory data ${mendatoryDA}`,
+        kind: 'error',
+      });
+
+  return errors;
+}
+
+async function validateControlCDC(dotype: Element): Promise<LogDetail[]> {
+  //characteristic for controlable CDCs is the third and last character that must be xxC
+  if (
+    dotype.getAttribute('cdc') &&
+    !serviceSCD.includes(dotype.getAttribute('cdc')!)
+  )
+    return [];
+
+  let errors: LogDetail[] = [];
+  const ctlModel = dotype.querySelector('DA[name="ctlModel"] > Val')?.innerHTML;
+
+  if (ctlModel === 'sbo-with-enhanced-security') {
+    const error1 = await validateCoSBOwStructure(
+      dotype.querySelector('DA[fc="CO"][name="SBOw"][bType="Struct"]')
+    );
+    errors.concat(error1);
+    const error2 = await validateCoCancelStructure(
+      dotype.querySelector('DA[fc="CO"][name="Cancel"][bType="Struct"]')
+    );
+    errors = error1.concat(error2);
+  } else if (ctlModel === 'sbo-with-normal-security') {
+    if (!dotype.querySelector('DA[fc="CO"][name="SBO"][bType="ObjRef"]'))
+      errors.push({
+        title: `Mendatory data SBO is missing`,
+        kind: 'error',
+      });
+    errors = await validateCoCancelStructure(
+      dotype.querySelector('DA[fc="CO"][name="Cancel"][bType="Struct"]')
+    );
+  } else if (ctlModel !== 'status-only') {
+    errors = await validateCoOperStructure(
+      dotype.querySelector('DA[fc="CO"][name="Oper"][bType="Struct"]')
+    );
+  }
+
+  return errors;
+}
+
 async function getMendatorySubDataAttributes(
   datype: Element
 ): Promise<Element[]> {
@@ -211,12 +371,18 @@ export default class ValidateTemplates extends LitElement {
       });
     }
 
-    for (const dotype of Array.from(this.doc.querySelectorAll('DOType')))
+    for (const dotype of Array.from(this.doc.querySelectorAll('DOType'))) {
       validateMandatoryDAs(dotype).then(errors => {
         errors.forEach(error =>
           document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
         );
       });
+      validateControlCDC(dotype).then(errors => {
+        errors.forEach(error =>
+          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
+        );
+      });
+    }
 
     for (const datype of Array.from(this.doc.querySelectorAll('DAType')))
       validateMandatorySubDAs(datype).then(errors => {
