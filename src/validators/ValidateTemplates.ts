@@ -205,13 +205,16 @@ async function getMendatorySubDataAttributes(
   );
 }
 
-async function validateMandatorySubDAs(datype: Element): Promise<LogDetail[]> {
-  const errors: LogDetail[] = [];
+export async function validateMandatorySubDAs(
+  datype: Element
+): Promise<LogDetail[]> {
+  if (!datype) return [];
 
   const mandatorysubdas = await (
     await getMendatorySubDataAttributes(datype)
   ).map(DA => DA.getAttribute('name')!);
 
+  const errors: LogDetail[] = [];
   mandatorysubdas.forEach(mandatorysubda => {
     if (!datype.querySelector(`BDA[name="${mandatorysubda}"]`))
       errors.push({
@@ -234,7 +237,9 @@ async function getMendatoryDataAttribute(base: string): Promise<Element[]> {
   return Array.from(cdc.querySelectorAll('DataAttribute[presCond="M"]'));
 }
 
-async function validateMandatoryDAs(dotype: Element): Promise<LogDetail[]> {
+export async function validateMandatoryDAs(
+  dotype: Element
+): Promise<LogDetail[]> {
   const errors: LogDetail[] = [];
   const cdc = dotype.getAttribute('cdc');
   if (!cdc) return [];
@@ -327,7 +332,9 @@ async function getMendatoryDataObject(base: string): Promise<Element[]> {
   );
 }
 
-async function validateMandatoryDOs(lnodetype: Element): Promise<LogDetail[]> {
+export async function validateMandatoryDOs(
+  lnodetype: Element
+): Promise<LogDetail[]> {
   const errors: LogDetail[] = [];
   const lnClass = lnodetype.getAttribute('lnClass');
   if (!lnClass) return [];
