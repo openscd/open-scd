@@ -131,7 +131,9 @@ async function validateCoCancelStructure(
   return errors;
 }
 
-async function validateControlCDC(dotype: Element): Promise<LogDetail[]> {
+export async function validateControlCDC(
+  dotype: Element
+): Promise<LogDetail[]> {
   //characteristic for controlable CDCs is the third and last character that must be xxC
   if (
     dotype.getAttribute('cdc') &&
@@ -152,14 +154,14 @@ async function validateControlCDC(dotype: Element): Promise<LogDetail[]> {
     );
     errors = error1.concat(error2);
   } else if (ctlModel === 'sbo-with-normal-security') {
+    errors = await validateCoCancelStructure(
+      dotype.querySelector('DA[fc="CO"][name="Cancel"][bType="Struct"]')
+    );
     if (!dotype.querySelector('DA[fc="CO"][name="SBO"][bType="ObjRef"]'))
       errors.push({
         title: `Mendatory data SBO is missing`,
         kind: 'error',
       });
-    errors = await validateCoCancelStructure(
-      dotype.querySelector('DA[fc="CO"][name="Cancel"][bType="Struct"]')
-    );
   } else if (ctlModel !== 'status-only') {
     errors = await validateCoOperStructure(
       dotype.querySelector('DA[fc="CO"][name="Oper"][bType="Struct"]')
@@ -208,8 +210,6 @@ async function getMendatorySubDataAttributes(
 export async function validateMandatorySubDAs(
   datype: Element
 ): Promise<LogDetail[]> {
-  if (!datype) return [];
-
   const mandatorysubdas = await (
     await getMendatorySubDataAttributes(datype)
   ).map(DA => DA.getAttribute('name')!);
@@ -282,7 +282,9 @@ async function getAllDataObject(base: string): Promise<Element[]> {
   );
 }
 
-async function validateDoCDCSetting(lnodetype: Element): Promise<LogDetail[]> {
+export async function validateDoCDCSetting(
+  lnodetype: Element
+): Promise<LogDetail[]> {
   const errors: LogDetail[] = [];
   const lnClass = lnodetype.getAttribute('lnClass');
   if (!lnClass) return [];
