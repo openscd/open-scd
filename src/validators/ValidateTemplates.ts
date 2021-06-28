@@ -1,5 +1,5 @@
 import { LitElement, property } from 'lit-element';
-import { LogDetail, newLogEvent } from '../foundation.js';
+import { identity, LogDetail, newLogEvent } from '../foundation.js';
 
 const iec6185074 = fetch('public/xml/IEC_61850-7-4_2007B3.nsd')
   .then(response => response.text())
@@ -19,21 +19,11 @@ const iec6185081 = fetch('public/xml/IEC_61850-8-1_2003A2.nsd')
 
 const serviceSCD = ['SPC', 'DPC', 'INC', 'ENC', 'BSC', 'ISC', 'APC', 'BAC'];
 
-async function validateCoOperStructure(
-  oper: Element | null
-): Promise<LogDetail[]> {
-  if (!oper)
-    return [
-      {
-        title: `Controlable data objects Oper is missing`,
-        kind: 'error',
-      },
-    ];
-
+async function validateCoOperStructure(oper: Element): Promise<LogDetail[]> {
   const type = oper.getAttribute('type');
   if (!type) return [];
 
-  const structure =
+  const datype =
     oper.closest('DataTypeTemplates')?.querySelector(`DAType[id="${type}"]`) ??
     null;
 
@@ -47,30 +37,21 @@ async function validateCoOperStructure(
   ).map(data => data.getAttribute('name')!);
 
   for (const mendatoryDA of mendatoryDAs)
-    if (structure && !structure.querySelector(`BDA[name="${mendatoryDA}"]`))
+    if (datype && !datype.querySelector(`BDA[name="${mendatoryDA}"]`))
       errors.push({
         title: `Data structure SBOw is missing mandatory data ${mendatoryDA}`,
         kind: 'error',
+        message: `${identity(datype)}`,
       });
 
   return errors;
 }
 
-async function validateCoSBOwStructure(
-  sbow: Element | null
-): Promise<LogDetail[]> {
-  if (!sbow)
-    return [
-      {
-        title: `Controlable data objects SBOw is missing`,
-        kind: 'error',
-      },
-    ];
-
+async function validateCoSBOwStructure(sbow: Element): Promise<LogDetail[]> {
   const type = sbow.getAttribute('type');
   if (!type) return [];
 
-  const structure =
+  const datype =
     sbow.closest('DataTypeTemplates')?.querySelector(`DAType[id="${type}"]`) ??
     null;
 
@@ -84,30 +65,23 @@ async function validateCoSBOwStructure(
   ).map(data => data.getAttribute('name')!);
 
   for (const mendatoryDA of mendatoryDAs)
-    if (structure && !structure.querySelector(`BDA[name="${mendatoryDA}"]`))
+    if (datype && !datype.querySelector(`BDA[name="${mendatoryDA}"]`))
       errors.push({
         title: `Data structure SBOw is missing mandatory data ${mendatoryDA}`,
         kind: 'error',
+        message: `${identity(datype)}`,
       });
 
   return errors;
 }
 
 async function validateCoCancelStructure(
-  cancel: Element | null
+  cancel: Element
 ): Promise<LogDetail[]> {
-  if (!cancel)
-    return [
-      {
-        title: `Controlable data objects Cancel is missing`,
-        kind: 'error',
-      },
-    ];
-
   const type = cancel.getAttribute('type');
   if (!type) return [];
 
-  const structure =
+  const datype =
     cancel
       .closest('DataTypeTemplates')
       ?.querySelector(`DAType[id="${type}"]`) ?? null;
@@ -122,13 +96,25 @@ async function validateCoCancelStructure(
   ).map(data => data.getAttribute('name')!);
 
   for (const mendatoryDA of mendatoryDAs)
-    if (structure && !structure.querySelector(`BDA[name="${mendatoryDA}"]`))
+    if (datype && !datype.querySelector(`BDA[name="${mendatoryDA}"]`))
       errors.push({
         title: `Data structure Cancel is missing mandatory data ${mendatoryDA}`,
         kind: 'error',
+        message: `${identity(datype)}`,
       });
 
   return errors;
+}
+
+function missingCoDataToLog(
+  reference: string | number,
+  type: 'Oper' | 'SBOw' | 'SBO' | 'Cancel'
+): LogDetail {
+  return {
+    title: `Controlable data objects ${type} is missing`,
+    kind: 'error',
+    message: `${reference}`,
+  };
 }
 
 export async function validateControlCDC(
@@ -143,29 +129,30 @@ export async function validateControlCDC(
 
   let errors: LogDetail[] = [];
   const ctlModel = dotype.querySelector('DA[name="ctlModel"] > Val')?.innerHTML;
+  const oper = dotype.querySelector('DA[fc="CO"][name="Oper"][bType="Struct"]');
+  const sbo = dotype.querySelector('DA[fc="CO"][name="SBO"][bType="ObjRef"]');
+  const cancel = dotype.querySelector(
+    'DA[fc="CO"][name="Cancel"][bType="Struct"]'
+  );
+  const sbow = dotype.querySelector('DA[fc="CO"][name="SBOw"][bType="Struct"]');
 
   if (ctlModel === 'sbo-with-enhanced-security') {
-    const error1 = await validateCoSBOwStructure(
-      dotype.querySelector('DA[fc="CO"][name="SBOw"][bType="Struct"]')
-    );
-    errors.concat(error1);
-    const error2 = await validateCoCancelStructure(
-      dotype.querySelector('DA[fc="CO"][name="Cancel"][bType="Struct"]')
-    );
-    errors = error1.concat(error2);
+    const errorsSBOw = sbow
+      ? await validateCoSBOwStructure(sbow)
+      : [missingCoDataToLog(identity(dotype), 'SBOw')];
+    const errorsCancel = cancel
+      ? await validateCoCancelStructure(cancel)
+      : [missingCoDataToLog(identity(dotype), 'Cancel')];
+    errors = errorsSBOw.concat(errorsCancel);
   } else if (ctlModel === 'sbo-with-normal-security') {
-    errors = await validateCoCancelStructure(
-      dotype.querySelector('DA[fc="CO"][name="Cancel"][bType="Struct"]')
-    );
-    if (!dotype.querySelector('DA[fc="CO"][name="SBO"][bType="ObjRef"]'))
-      errors.push({
-        title: `Mendatory data SBO is missing`,
-        kind: 'error',
-      });
+    errors = cancel
+      ? await validateCoCancelStructure(cancel)
+      : [missingCoDataToLog(identity(dotype), 'Cancel')];
+    if (!sbo) errors.push(missingCoDataToLog(identity(dotype), 'SBO'));
   } else if (ctlModel !== 'status-only') {
-    errors = await validateCoOperStructure(
-      dotype.querySelector('DA[fc="CO"][name="Oper"][bType="Struct"]')
-    );
+    errors = oper
+      ? await validateCoOperStructure(oper)
+      : [missingCoDataToLog(identity(dotype), 'Oper')];
   }
 
   return errors;
@@ -222,6 +209,7 @@ export async function validateMandatorySubDAs(
           'id'
         )}`,
         kind: 'error',
+        message: `${datype}`,
       });
   });
 
@@ -253,6 +241,7 @@ export async function validateMandatoryDAs(
       errors.push({
         title: `The element DA ${mandatoryda} is mendatory in Common Data Class ${cdc}`,
         kind: 'error',
+        message: `${identity(dotype)}`,
       });
   });
 
@@ -308,6 +297,7 @@ export async function validateDoCDCSetting(
           'name'
         )} in LNodeType ${lnClass}`,
         kind: 'warning',
+        message: `${identity(lnodetype)}`,
       });
       continue;
     }
@@ -320,6 +310,7 @@ export async function validateDoCDCSetting(
           'cdc'
         )} is expected to be ${DO.getAttribute('type')}`,
         kind: 'error',
+        message: `${identity(dOType)} > ${DO.getAttribute('name')}`,
       });
   }
 
@@ -350,6 +341,7 @@ export async function validateMandatoryDOs(
       errors.push({
         title: `The element DO ${mandatorydo} is mendatory in LN Class ${lnClass}`,
         kind: 'error',
+        message: `${identity(lnodetype)} > ${mandatorydo}`,
       });
   });
 
