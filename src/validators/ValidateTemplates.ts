@@ -364,40 +364,63 @@ export default class ValidateTemplates extends LitElement {
   docName!: string;
 
   async validate(): Promise<void> {
+    const promises: Promise<void>[] = [];
     for (const lnodetype of Array.from(
       this.doc.querySelectorAll('LNodeType')
     )) {
-      validateMandatoryDOs(lnodetype).then(errors => {
-        errors.forEach(error =>
-          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
-        );
-      });
+      promises.push(
+        validateMandatoryDOs(lnodetype).then(errors => {
+          errors.forEach(error =>
+            document
+              .querySelector('open-scd')
+              ?.dispatchEvent(newLogEvent(error))
+          );
+        })
+      );
 
-      validateDoCDCSetting(lnodetype).then(errors => {
-        errors.forEach(error =>
-          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
-        );
-      });
+      promises.push(
+        validateDoCDCSetting(lnodetype).then(errors => {
+          errors.forEach(error =>
+            document
+              .querySelector('open-scd')
+              ?.dispatchEvent(newLogEvent(error))
+          );
+        })
+      );
     }
 
     for (const dotype of Array.from(this.doc.querySelectorAll('DOType'))) {
-      validateMandatoryDAs(dotype).then(errors => {
-        errors.forEach(error =>
-          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
-        );
-      });
-      validateControlCDC(dotype).then(errors => {
-        errors.forEach(error =>
-          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
-        );
-      });
+      promises.push(
+        validateMandatoryDAs(dotype).then(errors => {
+          errors.forEach(error =>
+            document
+              .querySelector('open-scd')
+              ?.dispatchEvent(newLogEvent(error))
+          );
+        })
+      );
+      promises.push(
+        validateControlCDC(dotype).then(errors => {
+          errors.forEach(error =>
+            document
+              .querySelector('open-scd')
+              ?.dispatchEvent(newLogEvent(error))
+          );
+        })
+      );
     }
 
     for (const datype of Array.from(this.doc.querySelectorAll('DAType')))
-      validateMandatorySubDAs(datype).then(errors => {
-        errors.forEach(error =>
-          document.querySelector('open-scd')?.dispatchEvent(newLogEvent(error))
-        );
-      });
+      promises.push(
+        validateMandatorySubDAs(datype).then(errors => {
+          errors.forEach(error =>
+            document
+              .querySelector('open-scd')
+              ?.dispatchEvent(newLogEvent(error))
+          );
+        })
+      );
+
+    await Promise.allSettled(promises);
   }
 }

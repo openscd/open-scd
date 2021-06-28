@@ -36,7 +36,6 @@ describe('ValidateTemplates plugin', () => {
   it('generates error messages in the log', async () => {
     await element.validate();
     await parent.workDone;
-    await new Promise(resolve => setTimeout(resolve, 400)); // await animation
 
     expect(parent.history.length).to.equal(24);
   }).timeout(1000);
