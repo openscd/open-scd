@@ -41,8 +41,21 @@ export function CompasSclDataService() {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
 
+    listVersions(type: string, id: string): Promise<Document> {
+      return fetch(getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + "/versions")
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+    },
+
     getSclDocument(type: string, id: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/scl';
+      return fetch(sclUrl)
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+    },
+
+    getSclDocumentVersion(type: string, id: string, version: string): Promise<Document> {
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/' + version + '/scl';
       return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
@@ -56,10 +69,10 @@ export function CompasSclDataService() {
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
-                   <CreateRequest>
-                       <Name>${body.sclName}</Name>
-                       ${new XMLSerializer().serializeToString(body.doc.documentElement)}
-                   </CreateRequest>`
+               <CreateRequest>
+                   <Name>${body.sclName}</Name>
+                   ${new XMLSerializer().serializeToString(body.doc.documentElement)}
+               </CreateRequest>`
       })
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
@@ -73,11 +86,11 @@ export function CompasSclDataService() {
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
-                   <UpdateRequest>
-                        <ChangeSet>${body.changeSet}</ChangeSet>
-                        ${new XMLSerializer().serializeToString(body.doc.documentElement)}
-                   </UpdateRequest>`
+               <UpdateRequest>
+                    <ChangeSet>${body.changeSet}</ChangeSet>
+                    ${new XMLSerializer().serializeToString(body.doc.documentElement)}
+               </UpdateRequest>`
       })
-    },
+    }
   }
 }

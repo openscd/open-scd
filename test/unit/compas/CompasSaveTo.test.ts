@@ -1,7 +1,8 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import "../../../src/compas/CompasChangeSet.js";
-import {CompasSaveTo, getTypeFromDocName, stripExtensionFromName} from "../../../src/compas/CompasSaveTo.js";
+import {CompasSaveTo} from "../../../src/compas/CompasSaveTo.js";
+import {getTypeFromDocName, stripExtensionFromName} from "../../../src/compas/foundation.js";
 
 describe('compas-save-to-common', () => {
   it('when retrieve type from name, but name has no extension a exception is thrown', () => {
