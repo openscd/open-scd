@@ -1,12 +1,14 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {newLogEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 import {get, translate} from "lit-translate";
-
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
+
+import {newLogEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 import {OpenSCD} from "../open-scd.js";
+
 import {CompasChangeSetRadiogroup} from "./CompasChangeSet.js";
 import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
 import {CompasSclDataService} from "./CompasSclDataService.js";
+import {getTypeFromDocName, stripExtensionFromName, updateDocumentInOpenSCD} from "./foundation.js";
 
 import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
@@ -60,38 +62,28 @@ export class CompasSaveTo extends LitElement {
   }
 }
 
-export function getTypeFromDocName(docName: string) {
-  if (docName.lastIndexOf(".") == docName.length - 4) {
-    return docName.substring(docName.lastIndexOf(".") + 1);
-  }
-  throw new Error('Unable to determine type from document name!');
-}
-
-export function stripExtensionFromName(docName: string): string {
-  let name = docName;
-  const FILE_EXTENSION_LENGTH = 3;
-  // Check if the name includes a file extension, if the case remove it.
-  if (name.lastIndexOf(".") == name.length - (FILE_EXTENSION_LENGTH + 1)) {
-    name = name.substring(0, name.lastIndexOf("."));
-  }
-  return name
+function getSclDocument(type: string, id: string): void {
+  CompasSclDataService().getSclDocument(type, id)
+    .then(doc => {
+      updateDocumentInOpenSCD(doc);
+    });
 }
 
 function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDocument) {
   const openScd = <OpenSCD>document.querySelector('open-scd');
   const name = stripExtensionFromName(compasSaveTo.getNameField().value);
-  const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue();
+  const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue() ?? '';
 
-  openScd.docName = name + "." + docType!.toLowerCase()
-  CompasSclDataService().addSclDocument(docType!, {sclName: name, doc: doc})
+  openScd.docName = name + "." + docType.toLowerCase()
+  CompasSclDataService().addSclDocument(docType, {sclName: name, doc: doc})
     .then(xmlResponse => {
       const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
-      openScd.docId = id.textContent ?? "";
-      openScd.docName = (id.textContent ?? "") + "." + docType!.toLowerCase()
+      openScd.docId = id.textContent ?? '';
 
-      document
-        .querySelector('open-scd')!
-        .dispatchEvent(
+      // Retrieve the document to fetch server-side updates.
+      getSclDocument(docType, id.textContent ?? '');
+
+      openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
             title: get('compas.saveTo.addSuccess')}));
@@ -100,9 +92,7 @@ function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDoc
       openScd.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
-      document
-        .querySelector('open-scd')!
-        .dispatchEvent(
+      openScd.dispatchEvent(
           newLogEvent({
             kind: 'error',
             title: get('compas.saveTo.addError')}));
@@ -116,9 +106,10 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
 
   CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, doc: doc})
     .then(() => {
-      document
-        .querySelector('open-scd')!
-        .dispatchEvent(
+      // Retrieve the document to fetch server-side updates.
+      getSclDocument(docType, docId);
+
+      openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
             title: get('compas.saveTo.updateSuccess')}));
@@ -127,9 +118,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
       openScd.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
-      document
-        .querySelector('open-scd')!
-        .dispatchEvent(
+      openScd.dispatchEvent(
           newLogEvent({
             kind: 'error',
             title: get('compas.saveTo.updateError')}));

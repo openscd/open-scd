@@ -1,9 +1,12 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get} from "lit-translate";
-import {newOpenDocEvent, newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
+
+import {newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
+
 import {CompasSclDataService} from "./CompasSclDataService.js";
 import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
+import {updateDocumentInOpenSCD} from "./foundation.js";
 
 @customElement('compas-scl-list')
 export class CompasScl extends LitElement {
@@ -15,7 +18,9 @@ export class CompasScl extends LitElement {
 
   firstUpdated() {
     CompasSclDataService().listScls(this.type)
-      .then(xmlResponse => { this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])})
+      .then(xmlResponse => {
+        this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])
+      })
   }
 
   openScl(id?: string) {
@@ -24,11 +29,7 @@ export class CompasScl extends LitElement {
 
   private async getSclDocument(id?: string): Promise<void> {
     const doc = await CompasSclDataService().getSclDocument(this.type, id ?? '');
-    const docName = id + "." + this.type?.toLowerCase();
-
-    document
-      .querySelector('open-scd')!
-      .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
+    updateDocumentInOpenSCD(doc);
   }
 
   render(): TemplateResult {
@@ -45,14 +46,18 @@ export class CompasScl extends LitElement {
     return html`
           <mwc-list>
             ${this.scls.map( item => {
-                const id = item.getElementsByTagName("Id").item(0);
+                const id = item.getElementsByTagName("Id").item(0)!.textContent ?? '';
+                let name = item.getElementsByTagName("Name").item(0)!.textContent ?? '';
+                if (name === '') {
+                  name = id;
+                }
                 const version = item.getElementsByTagName("Version").item(0);
                 return html`<mwc-list-item tabindex="0"
                               @click=${(evt: SingleSelectedEvent) => {
-                                this.openScl(id!.textContent ?? '');
+                                this.openScl(id);
                                 evt.target!.dispatchEvent(newWizardEvent());
                               }}>
-                                ${id} (${version})
+                                ${name} (${version})
                             </mwc-list-item>`
               })}
           </mwc-list>`

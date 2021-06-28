@@ -344,6 +344,14 @@ export const en = {
       updateError: 'Error updating SCL in CoMPAS!',
       updateSuccess: 'SCL updated in CoMPAS',
     },
+    versions: {
+      title: 'CoMPAS Versions',
+      noVersions: "No CoMPAS versions found",
+      noScls: "No versions found for this SCL in CoMPAS",
+      confirmTitle: "Restore?",
+      confirm: "Are you sure to restore previous version?",
+      confirmButton: "Confirm",
+    },
     settings: {
       name: "CoMPAS Settings",
       sclDataServiceUrl: "CoMPAS SCL Data Service"

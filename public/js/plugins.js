@@ -21,6 +21,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'CoMPAS Versions',
+    src: '/src/compas-editors/CompasVersions.js',
+    icon: 'copy_all',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Open project',
     src: '/src/loaders/OpenProject.js',
     icon: 'folder_open',
@@ -28,7 +35,7 @@ export const officialPlugins = [
     kind: 'loader'
   },
   {
-    name: 'Open from CoMPAS',
+    name: 'Open CoMPAS',
     src: '/src/loaders/OpenCompas.js',
     icon: 'folder_open',
     default: true,
@@ -49,7 +56,7 @@ export const officialPlugins = [
     kind: 'saver'
   },
   {
-    name: 'Save to CoMPAS',
+    name: 'Save CoMPAS',
     src: '/src/savers/SaveToCompas.js',
     icon: 'folder_open',
     default: true,

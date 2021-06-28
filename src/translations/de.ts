@@ -347,6 +347,14 @@ export const de: Translations = {
       updateError: '???',
       updateSuccess: '???',
     },
+    versions: {
+      title: '???',
+      noVersions: "???",
+      noScls: "???",
+      confirmTitle: "???",
+      confirm: "???",
+      confirmButton: "???",
+    },
     settings: {
       name: "CoMPAS Einstellungen",
       sclDataServiceUrl: "CoMPAS SCL Data Service"
