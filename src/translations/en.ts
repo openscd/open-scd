@@ -326,6 +326,10 @@ export const en = {
   disconnect: 'Disconnect',
 
   compas: {
+    loading: "Loading...",
+    error: {
+      type: "Unable to determine type from document name!",
+    },
     changeset: {
       major: "Major change",
       minor: "Minor change",

@@ -26,12 +26,12 @@ export class CompasSaveTo extends LitElement {
 
   getSclTypeRadioGroup() : CompasScltypeRadiogroup {
     return (<CompasScltypeRadiogroup>this.shadowRoot!
-      .querySelector("compas-scltype-radiogroup"))
+      .querySelector('compas-scltype-radiogroup'))
   }
 
   getChangeSetRadiogroup(): CompasChangeSetRadiogroup {
     return (<CompasChangeSetRadiogroup>this.shadowRoot!
-      .querySelector("compas-changeset-radiogroup"))
+      .querySelector('compas-changeset-radiogroup'))
   }
 
   valid(): boolean {
@@ -43,10 +43,6 @@ export class CompasSaveTo extends LitElement {
   }
 
   render(): TemplateResult {
-    return this.renderWizardPage();
-  }
-
-  renderWizardPage(): TemplateResult {
     if (!this.docId) {
       return html`
         <mwc-textfield dialogInitialFocus id="name" label="${translate('scl.name')}"
@@ -70,19 +66,17 @@ function getSclDocument(type: string, id: string): void {
 }
 
 function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDocument) {
-  const openScd = <OpenSCD>document.querySelector('open-scd');
   const name = stripExtensionFromName(compasSaveTo.getNameField().value);
   const docType = compasSaveTo.getSclTypeRadioGroup().getSelectedValue() ?? '';
 
-  openScd.docName = name + "." + docType.toLowerCase()
   CompasSclDataService().addSclDocument(docType, {sclName: name, doc: doc})
     .then(xmlResponse => {
       const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
-      openScd.docId = id.textContent ?? '';
 
       // Retrieve the document to fetch server-side updates.
       getSclDocument(docType, id.textContent ?? '');
 
+      const openScd = <OpenSCD>document.querySelector('open-scd');
       openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
@@ -92,6 +86,7 @@ function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDoc
       openScd.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
+      const openScd = <OpenSCD>document.querySelector('open-scd');
       openScd.dispatchEvent(
           newLogEvent({
             kind: 'error',
@@ -100,7 +95,6 @@ function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDoc
 }
 
 function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: string, docName: string, doc: XMLDocument) {
-  const openScd = <OpenSCD>document.querySelector('open-scd');
   const changeSet = compasSaveTo.getChangeSetRadiogroup().getSelectedValue();
   const docType = getTypeFromDocName(docName);
 
@@ -109,6 +103,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
       // Retrieve the document to fetch server-side updates.
       getSclDocument(docType, docId);
 
+      const openScd = <OpenSCD>document.querySelector('open-scd');
       openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
@@ -118,6 +113,7 @@ function updateSclInCompas(wizard: Element, compasSaveTo: CompasSaveTo, docId: s
       openScd.dispatchEvent(newWizardEvent());
     })
     .catch(() => {
+      const openScd = <OpenSCD>document.querySelector('open-scd');
       openScd.dispatchEvent(
           newLogEvent({
             kind: 'error',

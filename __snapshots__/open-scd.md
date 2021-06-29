@@ -48,7 +48,7 @@
         folder_open
       </mwc-icon>
       <span>
-        Open from CoMPAS
+        Open CoMPAS
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -101,7 +101,7 @@
         folder_open
       </mwc-icon>
       <span>
-        Save to CoMPAS
+        Save CoMPAS
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -373,7 +373,7 @@
     icon="folder_open"
   >
     <div class="landing_label">
-      Open from CoMPAS
+      Open CoMPAS
     </div>
   </mwc-icon-button>
   <mwc-icon-button
@@ -566,6 +566,24 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/compas-editors/CompasVersions.js"
+    >
+      <mwc-icon slot="graphic">
+        copy_all
+      </mwc-icon>
+      CoMPAS Versions
+      <mwc-icon slot="meta">
+        tab
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/loaders/OpenProject.js"
     >
       <mwc-icon slot="graphic">
@@ -589,7 +607,7 @@
       <mwc-icon slot="graphic">
         folder_open
       </mwc-icon>
-      Open from CoMPAS
+      Open CoMPAS
       <mwc-icon slot="meta">
         folder_open
       </mwc-icon>
@@ -643,7 +661,7 @@
       <mwc-icon slot="graphic">
         folder_open
       </mwc-icon>
-      Save to CoMPAS
+      Save CoMPAS
       <mwc-icon slot="meta">
         save
       </mwc-icon>

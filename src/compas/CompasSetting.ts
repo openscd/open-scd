@@ -9,7 +9,9 @@ import {TextField} from "@material/mwc-textfield";
 export type CompasSettings = {
   sclDataServiceUrl: string;
 };
-export const defaults: CompasSettings = { sclDataServiceUrl: 'http://localhost:9090/compas-scl-data-service' };
+export const defaults: CompasSettings = {
+  sclDataServiceUrl: 'http://localhost:9090/compas-scl-data-service'
+};
 
 export function CompasSetting() {
   return {

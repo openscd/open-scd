@@ -32,17 +32,19 @@ export default class CompasVersionsPlugin extends LitElement {
 
   render(): TemplateResult {
     if (!this.scls) {
-      return html`<h1>
-        <span style="color: var(--base1)">${translate('compas.versions.noVersions')}</span>
-      </h1>`;
+      return html `
+        <h1>
+          <span style="color: var(--base1)">${translate("compas.loading")}</span>
+        </h1>`
     }
 
     if (this.scls?.length <= 0) {
-      return html `<mwc-list>
-                        <mwc-list-item>
-                          <span style="color: var(--base1)">${translate('compas.versions.noScls')}</span>
-                        </mwc-list-item>
-                     </mwc-list>`
+      return html `
+        <mwc-list>
+          <mwc-list-item>
+            <span style="color: var(--base1)">${translate('compas.versions.noScls')}</span>
+          </mwc-list-item>
+        </mwc-list>`
     }
     return html`
       <div id="containerCompasVersions">

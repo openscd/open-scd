@@ -1,5 +1,5 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {get} from "lit-translate";
+import {get, translate} from "lit-translate";
 
 import {newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
@@ -34,33 +34,35 @@ export class CompasScl extends LitElement {
 
   render(): TemplateResult {
     if (!this.scls) {
-      return html `<mwc-list><mwc-list-item>Loading...</mwc-list-item></mwc-list>`
+      return html `
+        <mwc-list>
+          <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
+        </mwc-list>`
     }
     if (this.scls?.length <= 0) {
-      return html `<mwc-list>
-                        <mwc-list-item>
-                          ${get("compas.open.noScls")}
-                        </mwc-list-item>
-                     </mwc-list>`
+      return html `
+        <mwc-list>
+          <mwc-list-item>${translate("compas.open.noScls")}</mwc-list-item>
+        </mwc-list>`
     }
     return html`
-          <mwc-list>
-            ${this.scls.map( item => {
-                const id = item.getElementsByTagName("Id").item(0)!.textContent ?? '';
-                let name = item.getElementsByTagName("Name").item(0)!.textContent ?? '';
-                if (name === '') {
-                  name = id;
-                }
-                const version = item.getElementsByTagName("Version").item(0);
-                return html`<mwc-list-item tabindex="0"
-                              @click=${(evt: SingleSelectedEvent) => {
-                                this.openScl(id);
-                                evt.target!.dispatchEvent(newWizardEvent());
-                              }}>
-                                ${name} (${version})
-                            </mwc-list-item>`
-              })}
-          </mwc-list>`
+      <mwc-list>
+        ${this.scls.map( item => {
+            const id = item.getElementsByTagName("Id").item(0)!.textContent ?? '';
+            let name = item.getElementsByTagName("Name").item(0)!.textContent ?? '';
+            if (name === '') {
+              name = id;
+            }
+            const version = item.getElementsByTagName("Version").item(0);
+            return html`<mwc-list-item tabindex="0"
+                          @click=${(evt: SingleSelectedEvent) => {
+                            this.openScl(id);
+                            evt.target!.dispatchEvent(newWizardEvent());
+                          }}>
+                            ${name} (${version})
+                        </mwc-list-item>`
+          })}
+      </mwc-list>`
   }
 }
 
