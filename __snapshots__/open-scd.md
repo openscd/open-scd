@@ -128,6 +128,24 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
+      aria-disabled="true"
+      class="validator"
+      disabled=""
+      graphic="icon"
+      iconid="rule_folder"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        rule_folder
+      </mwc-icon>
+      <span>
+        Validate Templates
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -568,6 +586,24 @@
         rule_folder
       </mwc-icon>
       Validate project
+      <mwc-icon slot="meta">
+        rule_folder
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      activated=""
+      aria-disabled="false"
+      graphic="icon"
+      hasmeta=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/validators/ValidateTemplates.js"
+    >
+      <mwc-icon slot="graphic">
+        rule_folder
+      </mwc-icon>
+      Validate Templates
       <mwc-icon slot="meta">
         rule_folder
       </mwc-icon>

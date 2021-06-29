@@ -26,7 +26,7 @@ npm start
 
 ## License
 
-The [IEC 61850](https://webstore.iec.ch/publication/63319) XML schemas used are
+The [IEC 61850](https://webstore.iec.ch/publication/63319) XSD and NSD code components used are
 distributed under their [end user license agreement](CC-EULA.pdf).
 
 This project is licensed under the [Apache License 2.0](LICENSE).

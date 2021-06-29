@@ -49,6 +49,13 @@ export const officialPlugins = [
     kind: 'validator'
   },
   {
+    name: 'Validate Templates',
+    src: '/src/validators/ValidateTemplates.js',
+    icon: 'rule_folder',
+    default: true,
+    kind: 'validator'
+  },
+  {
     name: "Import IEDs",
     src: "/src/triggered/ImportIEDs.js",
     icon: "snippet_folder",
