@@ -17,7 +17,7 @@ const iec6185081 = fetch('public/xml/IEC_61850-8-1_2003A2.nsd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-const serviceSCD = ['SPC', 'DPC', 'INC', 'ENC', 'BSC', 'ISC', 'APC', 'BAC'];
+const serviceCDCs = ['SPC', 'DPC', 'INC', 'ENC', 'BSC', 'ISC', 'APC', 'BAC'];
 
 async function validateCoOperStructure(oper: Element): Promise<LogDetail[]> {
   const type = oper.getAttribute('type');
@@ -123,7 +123,7 @@ export async function validateControlCDC(
   //characteristic for controlable CDCs is the third and last character that must be xxC
   if (
     dotype.getAttribute('cdc') &&
-    !serviceSCD.includes(dotype.getAttribute('cdc')!)
+    !serviceCDCs.includes(dotype.getAttribute('cdc')!)
   )
     return [];
 

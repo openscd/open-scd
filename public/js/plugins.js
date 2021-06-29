@@ -49,7 +49,7 @@ export const officialPlugins = [
     kind: 'validator'
   },
   {
-    name: 'Validate data',
+    name: 'Validate Templates',
     src: '/src/validators/ValidateTemplates.js',
     icon: 'rule_folder',
     default: true,
