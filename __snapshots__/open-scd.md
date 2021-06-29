@@ -140,7 +140,7 @@
         rule_folder
       </mwc-icon>
       <span>
-        Validate data
+        Validate Templates
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -603,7 +603,7 @@
       <mwc-icon slot="graphic">
         rule_folder
       </mwc-icon>
-      Validate data
+      Validate Templates
       <mwc-icon slot="meta">
         rule_folder
       </mwc-icon>
