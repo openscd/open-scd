@@ -38,7 +38,9 @@ export class CompasChangeSetRadiogroup extends LitElement {
     return html`
       <mwc-list activatable>
         ${Object.values(ChangeSet)
-      .map((key) => html `<mwc-radio-list-item value="${key}" left>${changeSetDetails.get(key)!.description}</mwc-radio-list-item>`)}
+                .map((key) =>
+                  html `<mwc-radio-list-item value="${key}" left>${changeSetDetails.get(key)!.description}</mwc-radio-list-item>`
+                )}
       </mwc-list>
     `
   }

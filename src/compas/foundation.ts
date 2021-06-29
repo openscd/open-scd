@@ -1,4 +1,5 @@
 import {newOpenDocEvent} from "../foundation.js";
+import {get} from "lit-translate";
 
 const FILE_EXTENSION_LENGTH = 3;
 
@@ -6,7 +7,7 @@ export function getTypeFromDocName(docName: string): string {
   if (docName.lastIndexOf(".") == docName.length - (FILE_EXTENSION_LENGTH + 1)) {
     return docName.substring(docName.lastIndexOf(".") + 1);
   }
-  throw new Error('Unable to determine type from document name!');
+  throw new Error(get('compas.error.type'));
 }
 
 export function stripExtensionFromName(docName: string): string {

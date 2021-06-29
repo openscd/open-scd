@@ -22,7 +22,7 @@ describe('PluggingElement', () => {
   });
 
   it('stores default plugins on load', () =>
-    expect(element).property('editors').to.have.lengthOf(3));
+    expect(element).property('editors').to.have.lengthOf(4));
 
   describe('plugin manager dialog', () => {
     beforeEach(async () => {
@@ -33,7 +33,7 @@ describe('PluggingElement', () => {
     it('disables deselected plugins', async () => {
       (<HTMLElement>element.officialPluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(2);
+      expect(element).property('editors').to.have.lengthOf(3);
     });
 
     it('enables selected plugins', async () => {
@@ -41,7 +41,7 @@ describe('PluggingElement', () => {
       await element.updateComplete;
       (<HTMLElement>element.officialPluginList.firstElementChild).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(3);
+      expect(element).property('editors').to.have.lengthOf(4);
     });
 
     it('resets plugins to default on reset button click', async () => {
@@ -51,7 +51,7 @@ describe('PluggingElement', () => {
         element.pluginUI.querySelector('mwc-button[slot="secondaryAction"]')
       )).click();
       await element.updateComplete;
-      expect(element).property('editors').to.have.lengthOf(3);
+      expect(element).property('editors').to.have.lengthOf(4);
     });
 
     it('opens the custom plugin dialog on add button click', async () => {
@@ -115,7 +115,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primary.click();
       await element.updateComplete;
-      expect(element.editors).to.have.lengthOf(4);
+      expect(element.editors).to.have.lengthOf(5);
     });
   });
 });

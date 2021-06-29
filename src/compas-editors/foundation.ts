@@ -1,6 +1,6 @@
 import {css} from "lit-element";
 
-/** Common `CSS` styles used by DataTypeTemplate subeditors */
+/** Common `CSS` styles used by Compas Editors subeditors */
 export const styles = css`
   :host(.moving) section {
     opacity: 0.3;

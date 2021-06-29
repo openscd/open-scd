@@ -1,5 +1,5 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {get} from "lit-translate";
+import {get, translate} from "lit-translate";
 import {CompasSclDataService} from "./CompasSclDataService.js";
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
 
@@ -39,15 +39,19 @@ export class CompasScltypeRadiogroup extends LitElement {
 
   render(): TemplateResult {
     if (!this.sclTypes) {
-      return html `<mwc-list><mwc-list-item>Loading...</mwc-list-item></mwc-list>`
+      return html `
+        <mwc-list>
+          <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
+        </mwc-list>`
     }
 
     if (this.sclTypes.length <= 0) {
-      return html `<mwc-list>
-                      <mwc-list-item>
-                        ${get("compas.open.noSclTypes")}
-                      </mwc-list-item>
-                   </mwc-list>`
+      return html `
+        <mwc-list>
+          <mwc-list-item>
+            ${translate("compas.open.noSclTypes")}
+          </mwc-list-item>
+       </mwc-list>`
     }
     return html`
       <mwc-list activatable>

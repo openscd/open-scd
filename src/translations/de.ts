@@ -329,6 +329,10 @@ export const de: Translations = {
   disconnect: 'Trennen',
 
   compas: {
+    loading: "???",
+    error: {
+      type: "???",
+    },
     changeset: {
       major: "???",
       minor: "???",

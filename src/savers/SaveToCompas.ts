@@ -1,4 +1,4 @@
-import {LitElement, property} from 'lit-element';
+import {LitElement} from 'lit-element';
 import {newWizardEvent} from '../foundation.js';
 import {saveToCompasWizard} from "../compas/CompasSaveTo.js";
 

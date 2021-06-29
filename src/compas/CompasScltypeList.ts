@@ -1,5 +1,5 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {get} from "lit-translate";
+import {get, translate} from "lit-translate";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 import {newWizardEvent, Wizard, WizardActor} from '../foundation.js';
 import {CompasSclDataService} from "./CompasSclDataService.js";
@@ -21,32 +21,36 @@ export class CompasScltypeList extends LitElement {
 
   render(): TemplateResult {
       if (!this.sclTypes) {
-        return html `<mwc-list><mwc-list-item>Loading...</mwc-list-item></mwc-list>`
+        return html `
+          <mwc-list>
+            <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
+          </mwc-list>`
       }
 
       if (this.sclTypes.length <= 0) {
-        return html `<mwc-list>
-                        <mwc-list-item>
-                          ${get("compas.open.noSclTypes")}
-                        </mwc-list-item>
-                     </mwc-list>`
+        return html `
+          <mwc-list>
+            <mwc-list-item>
+              ${translate("compas.open.noSclTypes")}
+            </mwc-list-item>
+         </mwc-list>`
       }
       return html`
-          <mwc-list>
-            ${this.sclTypes.map( type => {
-                const code = type.getElementsByTagName("Code").item(0);
-                const description = type.getElementsByTagName("Description").item(0);
-                return html`<mwc-list-item
-                              @click=${(evt: SingleSelectedEvent) => {
-                                evt.target!.dispatchEvent(newWizardEvent());
-                                this.listScls(code!.textContent ?? '');
-                              }}
-                              tabindex="0"
-                            >
-                              <span>${description} (${code})</span>
-                            </mwc-list-item>`;
-              })}
-          </mwc-list>`
+        <mwc-list>
+          ${this.sclTypes.map( type => {
+              const code = type.getElementsByTagName("Code").item(0);
+              const description = type.getElementsByTagName("Description").item(0);
+              return html`<mwc-list-item
+                            @click=${(evt: SingleSelectedEvent) => {
+                              evt.target!.dispatchEvent(newWizardEvent());
+                              this.listScls(code!.textContent ?? '');
+                            }}
+                            tabindex="0"
+                          >
+                            <span>${description} (${code})</span>
+                          </mwc-list-item>`;
+            })}
+        </mwc-list>`
      }
 }
 
