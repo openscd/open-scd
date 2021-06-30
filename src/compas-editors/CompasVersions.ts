@@ -4,7 +4,7 @@ import {get, translate} from 'lit-translate';
 import {OpenSCD} from "../open-scd.js";
 import {newWizardEvent, Wizard} from "../foundation.js";
 
-import {CompasSclDataService} from "../compas/CompasSclDataService.js";
+import {CompasSclDataService, SDS_NAMESPACE} from "../compas/CompasSclDataService.js";
 import {getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
 import { styles } from './foundation.js';
 
@@ -19,6 +19,14 @@ export default class CompasVersionsPlugin extends LitElement {
   scls!: Element[];
 
   firstUpdated() {
+    if (!this.docId) {
+      this.scls = [];
+    } else {
+      this.fetchData()
+    }
+  }
+
+  fetchData() {
     const type = getTypeFromDocName(this.docName);
     CompasSclDataService().listVersions(type, this.docId)
       .then(xmlResponse => {
@@ -52,11 +60,11 @@ export default class CompasVersionsPlugin extends LitElement {
           <h1>${translate('compas.versions.title')}</h1>
           <mwc-list>
             ${this.scls.map( item => {
-                let name = item.getElementsByTagName("Name").item(0)!.textContent ?? '';
+                let name = item.getElementsByTagNameNS(SDS_NAMESPACE, "Name").item(0)!.textContent ?? '';
                 if (name === '') {
-                  name = item.getElementsByTagName("Id").item(0)!.textContent ?? '';
+                  name = item.getElementsByTagNameNS(SDS_NAMESPACE, "Id").item(0)!.textContent ?? '';
                 }
-                const version = item.getElementsByTagName("Version").item(0)!.textContent ?? '';
+                const version = item.getElementsByTagNameNS(SDS_NAMESPACE, "Version").item(0)!.textContent ?? '';
                 return html`<mwc-list-item tabindex="0"
                                         @click=${() => {
                                           this.confirmRestoreCompas(version);

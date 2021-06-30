@@ -1,6 +1,6 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get, translate} from "lit-translate";
-import {CompasSclDataService} from "./CompasSclDataService.js";
+import {CompasSclDataService, SDS_NAMESPACE} from "./CompasSclDataService.js";
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
 
 @customElement('compas-scltype-radiogroup')
@@ -11,8 +11,7 @@ export class CompasScltypeRadiogroup extends LitElement {
   @property({type: Document})
   sclTypes!:Element[];
 
-  connectedCallback() {
-    super.connectedCallback();
+  firstUpdated() {
     this.fetchData();
   }
 
@@ -56,8 +55,8 @@ export class CompasScltypeRadiogroup extends LitElement {
     return html`
       <mwc-list activatable>
         ${this.sclTypes.map( type => {
-          const code = type.getElementsByTagName("Code").item(0)!.textContent ?? '';
-          const description = type.getElementsByTagName("Description").item(0);
+          const code = type.getElementsByTagNameNS(SDS_NAMESPACE, "Code").item(0)!.textContent ?? '';
+          const description = type.getElementsByTagNameNS(SDS_NAMESPACE, "Description").item(0);
           const selected = (code.toLowerCase() === this.value.toLowerCase());
           return html`<mwc-radio-list-item value="${code ?? ''}" ?selected="${selected}" left>
                               <span>${description} (${code})</span>

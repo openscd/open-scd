@@ -71,7 +71,7 @@ function addSclToCompas(wizard: Element, compasSaveTo: CompasSaveTo, doc: XMLDoc
 
   CompasSclDataService().addSclDocument(docType, {sclName: name, doc: doc})
     .then(xmlResponse => {
-      const id = Array.from(xmlResponse.querySelectorAll('Id') ?? [])[0];
+      const id = Array.from(xmlResponse.querySelectorAll('*|Id') ?? [])[0]
 
       // Retrieve the document to fetch server-side updates.
       getSclDocument(docType, id.textContent ?? '');

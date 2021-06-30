@@ -7,7 +7,7 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[enum.wizard.title.add]"
+  heading="Add EnumType"
   open=""
 >
   <div id="wizard-content">
@@ -1333,7 +1333,7 @@
     </mwc-select>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -1343,7 +1343,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -1352,7 +1352,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1360,7 +1360,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="add"
-    label="[add]"
+    label="Add"
     slot="primaryAction"
     trailingicon=""
   >
@@ -1376,20 +1376,20 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[enum.wizard.title.edit]"
+  heading="Edit EnumType"
   open=""
 >
   <div id="wizard-content">
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[delete]"
+      label="delete"
       trailingicon=""
     >
     </mwc-button>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -1399,7 +1399,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -1407,7 +1407,7 @@
     </wizard-textfield>
     <mwc-button
       icon="playlist_add"
-      label="[scl.EnumVal]"
+      label="Enum Value"
       slot="graphic"
     >
     </mwc-button>
@@ -1491,7 +1491,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1499,7 +1499,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -1515,19 +1515,19 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[enum-val.wizard.title.edit]"
+  heading="Edit EnumVal"
   open=""
 >
   <div id="wizard-content">
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[delete]"
+      label="delete"
       trailingicon=""
     >
     </mwc-button>
     <wizard-textfield
-      helper="[scl.ord]"
+      helper="Ordinal"
       label="ord"
       required=""
       type="number"
@@ -1535,14 +1535,14 @@
     </wizard-textfield>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.value]"
+      helper="Value"
       label="value"
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       id="evDesc"
       label="desc"
       nullable=""
@@ -1552,7 +1552,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1576,12 +1576,12 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[enum-val.wizard.title.add]"
+  heading="Add EnumVal"
   open=""
 >
   <div id="wizard-content">
     <wizard-textfield
-      helper="[scl.ord]"
+      helper="Ordinal"
       label="ord"
       required=""
       type="number"
@@ -1589,14 +1589,14 @@
     </wizard-textfield>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.value]"
+      helper="Value"
       label="value"
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       id="evDesc"
       label="desc"
       nullable=""
@@ -1606,7 +1606,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >

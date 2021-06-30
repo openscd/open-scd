@@ -7,12 +7,12 @@
 ```html
 <h1>
   <span style="color: var(--base1)">
-    [substation.missing]
+    No substation
   </span>
   <mwc-fab
     extended=""
     icon="add"
-    label="[substation.wizard.title.add]"
+    label="Add substation"
   >
   </mwc-fab>
 </h1>
