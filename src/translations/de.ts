@@ -313,6 +313,7 @@ export const de: Translations = {
   },
   add: 'Hinzufügen',
   remove: 'Entfernen',
+  delete: 'Löschen',
   edit: 'Bearbeiten',
   move: 'Verschieben',
   create: 'Erstellen',

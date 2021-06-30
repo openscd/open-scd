@@ -310,6 +310,7 @@ export const en = {
   },
   add: 'Add',
   remove: 'Remove',
+  delete: 'Delete',
   edit: 'Edit',
   move: 'Move',
   create: 'Create',
