@@ -7,45 +7,45 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[subnetwork.wizard.title.edit]"
+  heading="Edit subnetwork"
   open=""
 >
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[subnetwork.wizard.nameHelper]"
+      helper="Subnetwork name"
       label="name"
       required=""
-      validationmessage="[textfield.required]"
+      validationmessage="Required"
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[subnetwork.wizard.descHelper]"
+      helper="Subnetwork description"
       label="desc"
       nullable=""
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[subnetwork.wizard.typeHelper]"
+      helper="Network type (e.g. 8-MMS)"
       label="type"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[subnetwork.wizard.bitrateHelper]"
+      helper="Bit rate"
       label="BitRate"
       nullable=""
       pattern="((-|\+)?([0-9]+(\.[0-9]*)?|\.[0-9]+))"
       required=""
       unit="b/s"
-      validationmessage="[textfield.nonempty]"
+      validationmessage="Must not be empty"
     >
     </wizard-textfield>
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -53,7 +53,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="edit"
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -69,7 +69,7 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[connectedap.wizard.title.connect]"
+  heading="Connect access point"
   open=""
 >
   <div id="wizard-content">
@@ -144,7 +144,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -152,7 +152,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="save"
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

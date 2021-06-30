@@ -2,7 +2,7 @@ import {customElement, html, LitElement, property, TemplateResult} from "lit-ele
 import {get, translate} from "lit-translate";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 import {newWizardEvent, Wizard, WizardActor} from '../foundation.js';
-import {CompasSclDataService} from "./CompasSclDataService.js";
+import {CompasSclDataService, SDS_NAMESPACE} from "./CompasSclDataService.js";
 import {listSclsWizard} from "./CompasScl.js";
 
 @customElement('compas-scltype-list')
@@ -38,8 +38,8 @@ export class CompasScltypeList extends LitElement {
       return html`
         <mwc-list>
           ${this.sclTypes.map( type => {
-              const code = type.getElementsByTagName("Code").item(0);
-              const description = type.getElementsByTagName("Description").item(0);
+              const code = type.getElementsByTagNameNS(SDS_NAMESPACE, "Code").item(0);
+              const description = type.getElementsByTagNameNS(SDS_NAMESPACE, "Description").item(0);
               return html`<mwc-list-item
                             @click=${(evt: SingleSelectedEvent) => {
                               evt.target!.dispatchEvent(newWizardEvent());

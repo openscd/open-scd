@@ -4,7 +4,7 @@ import {get, translate} from "lit-translate";
 import {newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 
-import {CompasSclDataService} from "./CompasSclDataService.js";
+import {CompasSclDataService, SDS_NAMESPACE} from "./CompasSclDataService.js";
 import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
 import {updateDocumentInOpenSCD} from "./foundation.js";
 
@@ -48,12 +48,12 @@ export class CompasScl extends LitElement {
     return html`
       <mwc-list>
         ${this.scls.map( item => {
-            const id = item.getElementsByTagName("Id").item(0)!.textContent ?? '';
-            let name = item.getElementsByTagName("Name").item(0)!.textContent ?? '';
+            const id = item.getElementsByTagNameNS(SDS_NAMESPACE, "Id").item(0)!.textContent ?? '';
+            let name = item.getElementsByTagNameNS(SDS_NAMESPACE, "Name").item(0)!.textContent ?? '';
             if (name === '') {
               name = id;
             }
-            const version = item.getElementsByTagName("Version").item(0);
+            const version = item.getElementsByTagNameNS(SDS_NAMESPACE, "Version").item(0);
             return html`<mwc-list-item tabindex="0"
                           @click=${(evt: SingleSelectedEvent) => {
                             this.openScl(id);

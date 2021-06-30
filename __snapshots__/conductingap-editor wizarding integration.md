@@ -7,11 +7,11 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[connectedap.wizard.title.edit]"
+  heading="Edit access point"
   open=""
 >
   <div id="wizard-content">
-    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+    <mwc-formfield label="Add XMLSchema-instance type">
       <mwc-checkbox id="instType">
       </mwc-checkbox>
     </mwc-formfield>
@@ -102,7 +102,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -110,7 +110,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="save"
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -126,11 +126,11 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[connectedap.wizard.title.edit]"
+  heading="Edit access point"
   open=""
 >
   <div id="wizard-content">
-    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+    <mwc-formfield label="Add XMLSchema-instance type">
       <mwc-checkbox id="instType">
       </mwc-checkbox>
     </mwc-formfield>
@@ -263,7 +263,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -271,7 +271,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="save"
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -287,11 +287,11 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[connectedap.wizard.title.edit]"
+  heading="Edit access point"
   open=""
 >
   <div id="wizard-content">
-    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+    <mwc-formfield label="Add XMLSchema-instance type">
       <mwc-checkbox id="instType">
       </mwc-checkbox>
     </mwc-formfield>
@@ -481,7 +481,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -489,7 +489,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="save"
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

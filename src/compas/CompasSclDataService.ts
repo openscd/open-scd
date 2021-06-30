@@ -1,6 +1,8 @@
 import {ChangeSet} from "./CompasChangeSet.js";
 import {CompasSetting} from "./CompasSetting.js";
 
+export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService';
+
 export interface CreateRequestBody {
   sclName: string,
   doc: Document
@@ -12,6 +14,7 @@ export interface UpdateRequestBody {
 }
 
 export function CompasSclDataService() {
+
   function getCompasSettings() {
     return CompasSetting().compasSettings;
   }
@@ -26,10 +29,10 @@ export function CompasSclDataService() {
     listSclTypesAndOrder(): Promise<Element[]> {
       return this.listSclTypes()
         .then(xmlResponse => {
-          return Array.from(xmlResponse.querySelectorAll('Type') ?? [])
+          return Array.from(xmlResponse.querySelectorAll('*|Type') ?? [])
             .sort((type1, type2) => {
-              const description1 = type1.getElementsByTagName("Description")!.item(0)!.textContent ?? "";
-              const description2 = type2.getElementsByTagName("Description")!.item(0)!.textContent ?? "";
+              const description1 = type1.getElementsByTagNameNS(SDS_NAMESPACE, "Description")!.item(0)!.textContent ?? "";
+              const description2 = type2.getElementsByTagNameNS(SDS_NAMESPACE, "Description")!.item(0)!.textContent ?? "";
               return description1.localeCompare(description2)
             });
         })
@@ -69,7 +72,7 @@ export function CompasSclDataService() {
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
-               <CreateRequest>
+               <CreateRequest xmlns="${SDS_NAMESPACE}">
                    <Name>${body.sclName}</Name>
                    ${new XMLSerializer().serializeToString(body.doc.documentElement)}
                </CreateRequest>`
@@ -86,7 +89,7 @@ export function CompasSclDataService() {
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
-               <UpdateRequest>
+               <UpdateRequest xmlns="${SDS_NAMESPACE}">
                     <ChangeSet>${body.changeSet}</ChangeSet>
                     ${new XMLSerializer().serializeToString(body.doc.documentElement)}
                </UpdateRequest>`
