@@ -12,6 +12,7 @@ export const officialPlugins = [
     icon: 'settings_ethernet',
     default: true,
     kind: 'editor',
+
   },
   {
     name: 'Templates',
@@ -25,28 +26,34 @@ export const officialPlugins = [
     src: '/src/loaders/OpenProject.js',
     icon: 'folder_open',
     default: true,
-    kind: 'loader'
+    kind: 'menu',
+    needsDoc: false,
+    position: 'top'
   },
   {
     name: 'New project',
     src: '/src/loaders/NewProject.js',
     icon: 'create_new_folder',
     default: true,
-    kind: 'loader'
+    kind: 'menu',
+    needsDoc: false,
+    position: 'top'
   },
   {
     name: 'Save project',
     src: '/src/savers/SaveProject.js',
     icon: 'save',
     default: true,
-    kind: 'saver'
+    kind: 'menu',
+    needsDoc: true,
+    position: 'top'
   },
   {
     name: 'Validate project',
     src: '/src/validators/ValidateSchema.js',
     icon: 'rule_folder',
     default: true,
-    kind: 'validator'
+    kind: 'validator',
   },
   {
     name: 'Validate Templates',
@@ -56,37 +63,47 @@ export const officialPlugins = [
     kind: 'validator'
   },
   {
-    name: "Import IEDs",
-    src: "/src/triggered/ImportIEDs.js",
-    icon: "snippet_folder",
+    name: 'Import IEDs',
+    src: '/src/triggered/ImportIEDs.js',
+    icon: 'snippet_folder',
     default: true,
-    kind: "triggered"
+    kind: 'menu',
+    needsDoc: true,
+    position: 'middle'
   },
   {
     name: 'Subscriber Update',
     src: '/src/triggered/SubscriberInfo.js',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    needsDoc: true,
+    position: 'middle'
   },
   {
     name: 'Merge Project',
     src: '/src/triggered/Merge.js',
     icon: 'merge_type',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    needsDoc: true,
+    position: 'middle'
   },
   {
     name: 'Update Substation',
     src: '/src/triggered/UpdateSubstation.js',
     icon: 'merge_type',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    needsDoc: true,
+    position: 'middle'
   },
   {
     name: 'Communication Mapping',
     src: '/src/triggered/CommunicationMapping.js',
     icon: 'sync_alt',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    needsDoc: true,
+    position: 'middle'
   },
 ];
