@@ -138,7 +138,6 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     pluginDownloadUI!: Dialog;
 
     private setPlugins(indices: Set<number>) {
-      console.warn('setting plugins', indices);
       const newPlugins = this.plugins.map((plugin, index) => {
         return { ...plugin, installed: indices.has(index), content: undefined };
       });
@@ -239,15 +238,15 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                   >${pluginIcons['editor']}</mwc-icon
                 ></mwc-radio-list-item
               >
-              <mwc-radio-list-item id="triggered" value="triggered" hasMeta left
+              <mwc-radio-list-item id="menu" value="menu" hasMeta left
                 >${translate('plugins.menu')}<mwc-icon slot="meta"
                   >${pluginIcons['menu']}</mwc-icon
                 ></mwc-radio-list-item
               >
-              <div id="triggerdetails">
+              <div id="menudetails">
                 <mwc-formfield
                   id="enabledefault"
-                  label="${translate('plugins.enablewithdoc')}"
+                  label="${translate('plugins.requireDoc')}"
                 >
                   <mwc-switch></mwc-switch>
                 </mwc-formfield>
@@ -261,12 +260,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 >
               </div>
               <style>
-                #triggerdetails {
+                #menudetails {
                   display: none;
                   padding: 20px;
                   padding-left: 50px;
                 }
-                #triggered[selected] ~ #triggerdetails {
+                #menu[selected] ~ #menudetails {
                   display: grid;
                 }
                 #enabledefault {

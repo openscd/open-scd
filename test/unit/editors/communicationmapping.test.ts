@@ -2,7 +2,7 @@ import { expect } from '@open-wc/testing';
 import {
   getSinkReferences,
   getSourceReferences,
-} from '../../../src/triggered/CommunicationMapping.js';
+} from '../../../src/menu/CommunicationMapping.js';
 
 describe('CommunicationMappingPlugin', () => {
   let doc: Document;

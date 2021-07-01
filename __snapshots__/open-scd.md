@@ -3,22 +3,10 @@
 #### `looks like its snapshot`
 
 ```html
-<mwc-drawer
-  class="mdc-theme--surface"
-  hasheader=""
-  id="menu"
-  type="modal"
->
-  <span slot="title">
-    Menu
-  </span>
+<mwc-drawer class="mdc-theme--surface" hasheader="" id="menu" type="modal">
+  <span slot="title"> Menu </span>
   <mwc-list wrapfocus="">
-    <li
-      divider=""
-      padded=""
-      role="separator"
-    >
-    </li>
+    <li divider="" padded="" role="separator"></li>
     <mwc-list-item
       aria-disabled="false"
       class="loader"
@@ -27,14 +15,9 @@
       mwc-list-item=""
       tabindex="0"
     >
-      <mwc-icon slot="graphic">
-        folder_open
-      </mwc-icon>
-      <span>
-        Open project
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> folder_open </mwc-icon>
+      <span> Open project </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -44,14 +27,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        create_new_folder
-      </mwc-icon>
-      <span>
-        New project
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> create_new_folder </mwc-icon>
+      <span> New project </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -62,21 +40,11 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        save
-      </mwc-icon>
-      <span>
-        Save project
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> save </mwc-icon>
+      <span> Save project </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
-    <li
-      divider=""
-      padded=""
-      role="separator"
-    >
-    </li>
+    <li divider="" padded="" role="separator"></li>
     <mwc-list-item
       aria-disabled="true"
       class="static"
@@ -86,12 +54,8 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        undo
-      </mwc-icon>
-      <span>
-        Undo
-      </span>
+      <mwc-icon slot="graphic"> undo </mwc-icon>
+      <span> Undo </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -102,12 +66,8 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        redo
-      </mwc-icon>
-      <span>
-        Redo
-      </span>
+      <mwc-icon slot="graphic"> redo </mwc-icon>
+      <span> Redo </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -118,14 +78,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        rule_folder
-      </mwc-icon>
-      <span>
-        Validate project
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> rule_folder </mwc-icon>
+      <span> Validate project </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -136,14 +91,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        rule_folder
-      </mwc-icon>
-      <span>
-        Validate Templates
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> rule_folder </mwc-icon>
+      <span> Validate Templates </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -153,19 +103,10 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        rule
-      </mwc-icon>
-      <span>
-        View log
-      </span>
+      <mwc-icon slot="graphic"> rule </mwc-icon>
+      <span> View log </span>
     </mwc-list-item>
-    <li
-      divider=""
-      padded=""
-      role="separator"
-    >
-    </li>
+    <li divider="" padded="" role="separator"></li>
     <mwc-list-item
       aria-disabled="true"
       class="triggered"
@@ -175,14 +116,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        snippet_folder
-      </mwc-icon>
-      <span>
-        Import IEDs
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> snippet_folder </mwc-icon>
+      <span> Import IEDs </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -193,14 +129,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        play_circle
-      </mwc-icon>
-      <span>
-        Subscriber Update
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> play_circle </mwc-icon>
+      <span> Subscriber Update </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -211,14 +142,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        merge_type
-      </mwc-icon>
-      <span>
-        Merge Project
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> merge_type </mwc-icon>
+      <span> Merge Project </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -229,14 +155,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        merge_type
-      </mwc-icon>
-      <span>
-        Update Substation
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> merge_type </mwc-icon>
+      <span> Update Substation </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
@@ -247,21 +168,11 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        sync_alt
-      </mwc-icon>
-      <span>
-        Communication Mapping
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
+      <mwc-icon slot="graphic"> sync_alt </mwc-icon>
+      <span> Communication Mapping </span>
+      <mwc-linear-progress indeterminate=""> </mwc-linear-progress>
     </mwc-list-item>
-    <li
-      divider=""
-      padded=""
-      role="separator"
-    >
-    </li>
+    <li divider="" padded="" role="separator"></li>
     <mwc-list-item
       aria-disabled="false"
       class="static"
@@ -270,12 +181,8 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        settings
-      </mwc-icon>
-      <span>
-        Settings
-      </span>
+      <mwc-icon slot="graphic"> settings </mwc-icon>
+      <span> Settings </span>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -285,94 +192,36 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
-        extension
-      </mwc-icon>
-      <span>
-        Extensions
-      </span>
+      <mwc-icon slot="graphic"> extension </mwc-icon>
+      <span> Extensions </span>
     </mwc-list-item>
   </mwc-list>
   <mwc-top-app-bar-fixed slot="appContent">
-    <mwc-icon-button
-      icon="menu"
-      label="Menu"
-      slot="navigationIcon"
-    >
+    <mwc-icon-button icon="menu" label="Menu" slot="navigationIcon">
     </mwc-icon-button>
-    <div
-      id="title"
-      slot="title"
-    >
-    </div>
-    <mwc-icon-button
-      disabled=""
-      icon="undo"
-      label="undo"
-      slot="actionItems"
-    >
+    <div id="title" slot="title"></div>
+    <mwc-icon-button disabled="" icon="undo" label="undo" slot="actionItems">
     </mwc-icon-button>
-    <mwc-icon-button
-      disabled=""
-      icon="redo"
-      label="redo"
-      slot="actionItems"
-    >
+    <mwc-icon-button disabled="" icon="redo" label="redo" slot="actionItems">
     </mwc-icon-button>
-    <mwc-icon-button
-      icon="rule"
-      label="menu.viewLog"
-      slot="actionItems"
-    >
+    <mwc-icon-button icon="rule" label="menu.viewLog" slot="actionItems">
     </mwc-icon-button>
   </mwc-top-app-bar-fixed>
 </mwc-drawer>
 <div class="landing">
-  <mwc-icon-button
-    class="landing_icon"
-    icon="folder_open"
-  >
-    <div class="landing_label">
-      Open project
-    </div>
+  <mwc-icon-button class="landing_icon" icon="folder_open">
+    <div class="landing_label">Open project</div>
   </mwc-icon-button>
-  <mwc-icon-button
-    class="landing_icon"
-    icon="create_new_folder"
-  >
-    <div class="landing_label">
-      New project
-    </div>
+  <mwc-icon-button class="landing_icon" icon="create_new_folder">
+    <div class="landing_label">New project</div>
   </mwc-icon-button>
 </div>
-<mwc-dialog
-  heading="Log"
-  id="log"
->
-  <mwc-icon-button-toggle
-    id="infofilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle
-    id="warningfilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle
-    id="errorfilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
-  <mwc-icon-button-toggle
-    id="actionfilter"
-    on=""
-  >
-  </mwc-icon-button-toggle>
-  <mwc-list
-    id="content"
-    wrapfocus=""
-  >
+<mwc-dialog heading="Log" id="log">
+  <mwc-icon-button-toggle id="infofilter" on=""> </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle id="warningfilter" on=""> </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle id="errorfilter" on=""> </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle id="actionfilter" on=""> </mwc-icon-button-toggle>
+  <mwc-list id="content" wrapfocus="">
     <mwc-list-item
       aria-disabled="true"
       disabled=""
@@ -380,90 +229,29 @@
       mwc-list-item=""
       tabindex="0"
     >
-      <span>
-        Edits, errors, and other notifications will show up here.
-      </span>
-      <mwc-icon slot="graphic">
-        info
-      </mwc-icon>
+      <span> Edits, errors, and other notifications will show up here. </span>
+      <mwc-icon slot="graphic"> info </mwc-icon>
     </mwc-list-item>
   </mwc-list>
-  <mwc-button
-    disabled=""
-    icon="undo"
-    label="Undo"
-    slot="secondaryAction"
-  >
+  <mwc-button disabled="" icon="undo" label="Undo" slot="secondaryAction">
   </mwc-button>
-  <mwc-button
-    disabled=""
-    icon="redo"
-    label="Redo"
-    slot="secondaryAction"
-  >
+  <mwc-button disabled="" icon="redo" label="Redo" slot="secondaryAction">
   </mwc-button>
-  <mwc-button
-    dialogaction="close"
-    slot="primaryAction"
-  >
-    Close
-  </mwc-button>
+  <mwc-button dialogaction="close" slot="primaryAction"> Close </mwc-button>
 </mwc-dialog>
-<mwc-snackbar
-  id="info"
-  labeltext="No errors"
-  timeoutms="4000"
->
-  <mwc-icon-button
-    icon="close"
-    slot="dismiss"
-  >
-  </mwc-icon-button>
+<mwc-snackbar id="info" labeltext="No errors" timeoutms="4000">
+  <mwc-icon-button icon="close" slot="dismiss"> </mwc-icon-button>
 </mwc-snackbar>
-<mwc-snackbar
-  id="warning"
-  labeltext="No errors"
-  timeoutms="6000"
->
-  <mwc-button
-    icon="rule"
-    slot="action"
-  >
-    Show
-  </mwc-button>
-  <mwc-icon-button
-    icon="close"
-    slot="dismiss"
-  >
-  </mwc-icon-button>
+<mwc-snackbar id="warning" labeltext="No errors" timeoutms="6000">
+  <mwc-button icon="rule" slot="action"> Show </mwc-button>
+  <mwc-icon-button icon="close" slot="dismiss"> </mwc-icon-button>
 </mwc-snackbar>
-<mwc-snackbar
-  id="error"
-  labeltext="No errors"
-  timeoutms="10000"
->
-  <mwc-button
-    icon="rule"
-    slot="action"
-  >
-    Show
-  </mwc-button>
-  <mwc-icon-button
-    icon="close"
-    slot="dismiss"
-  >
-  </mwc-icon-button>
+<mwc-snackbar id="error" labeltext="No errors" timeoutms="10000">
+  <mwc-button icon="rule" slot="action"> Show </mwc-button>
+  <mwc-icon-button icon="close" slot="dismiss"> </mwc-icon-button>
 </mwc-snackbar>
-<mwc-dialog
-  heading="Extensions"
-  id="pluginManager"
-  stacked=""
->
-  <mwc-list
-    activatable=""
-    id="officialPluginList"
-    multi=""
-  >
+<mwc-dialog heading="Extensions" id="pluginManager" stacked="">
+  <mwc-list activatable="" id="officialPluginList" multi="">
     <mwc-list-item
       activated=""
       aria-disabled="false"
@@ -474,13 +262,9 @@
       tabindex="0"
       value="/src/editors/Substation.js"
     >
-      <mwc-icon slot="graphic">
-        margin
-      </mwc-icon>
+      <mwc-icon slot="graphic"> margin </mwc-icon>
       Substation
-      <mwc-icon slot="meta">
-        tab
-      </mwc-icon>
+      <mwc-icon slot="meta"> tab </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -492,13 +276,9 @@
       tabindex="-1"
       value="/src/editors/Communication.js"
     >
-      <mwc-icon slot="graphic">
-        settings_ethernet
-      </mwc-icon>
+      <mwc-icon slot="graphic"> settings_ethernet </mwc-icon>
       Communication
-      <mwc-icon slot="meta">
-        tab
-      </mwc-icon>
+      <mwc-icon slot="meta"> tab </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -510,13 +290,9 @@
       tabindex="-1"
       value="/src/editors/Templates.js"
     >
-      <mwc-icon slot="graphic">
-        copy_all
-      </mwc-icon>
+      <mwc-icon slot="graphic"> copy_all </mwc-icon>
       Templates
-      <mwc-icon slot="meta">
-        tab
-      </mwc-icon>
+      <mwc-icon slot="meta"> tab </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -528,13 +304,9 @@
       tabindex="-1"
       value="/src/loaders/OpenProject.js"
     >
-      <mwc-icon slot="graphic">
-        folder_open
-      </mwc-icon>
+      <mwc-icon slot="graphic"> folder_open </mwc-icon>
       Open project
-      <mwc-icon slot="meta">
-        folder_open
-      </mwc-icon>
+      <mwc-icon slot="meta"> folder_open </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -546,13 +318,9 @@
       tabindex="-1"
       value="/src/loaders/NewProject.js"
     >
-      <mwc-icon slot="graphic">
-        create_new_folder
-      </mwc-icon>
+      <mwc-icon slot="graphic"> create_new_folder </mwc-icon>
       New project
-      <mwc-icon slot="meta">
-        folder_open
-      </mwc-icon>
+      <mwc-icon slot="meta"> folder_open </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -564,13 +332,9 @@
       tabindex="-1"
       value="/src/savers/SaveProject.js"
     >
-      <mwc-icon slot="graphic">
-        save
-      </mwc-icon>
+      <mwc-icon slot="graphic"> save </mwc-icon>
       Save project
-      <mwc-icon slot="meta">
-        save
-      </mwc-icon>
+      <mwc-icon slot="meta"> save </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -582,13 +346,9 @@
       tabindex="-1"
       value="/src/validators/ValidateSchema.js"
     >
-      <mwc-icon slot="graphic">
-        rule_folder
-      </mwc-icon>
+      <mwc-icon slot="graphic"> rule_folder </mwc-icon>
       Validate project
-      <mwc-icon slot="meta">
-        rule_folder
-      </mwc-icon>
+      <mwc-icon slot="meta"> rule_folder </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -600,13 +360,9 @@
       tabindex="-1"
       value="/src/validators/ValidateTemplates.js"
     >
-      <mwc-icon slot="graphic">
-        rule_folder
-      </mwc-icon>
+      <mwc-icon slot="graphic"> rule_folder </mwc-icon>
       Validate Templates
-      <mwc-icon slot="meta">
-        rule_folder
-      </mwc-icon>
+      <mwc-icon slot="meta"> rule_folder </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -616,15 +372,11 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/ImportIEDs.js"
+      value="/src/menu/ImportIEDs.js"
     >
-      <mwc-icon slot="graphic">
-        snippet_folder
-      </mwc-icon>
+      <mwc-icon slot="graphic"> snippet_folder </mwc-icon>
       Import IEDs
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
+      <mwc-icon slot="meta"> play_circle </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -634,15 +386,11 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/SubscriberInfo.js"
+      value="/src/menu/SubscriberInfo.js"
     >
-      <mwc-icon slot="graphic">
-        play_circle
-      </mwc-icon>
+      <mwc-icon slot="graphic"> play_circle </mwc-icon>
       Subscriber Update
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
+      <mwc-icon slot="meta"> play_circle </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -652,15 +400,11 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/Merge.js"
+      value="/src/menu/Merge.js"
     >
-      <mwc-icon slot="graphic">
-        merge_type
-      </mwc-icon>
+      <mwc-icon slot="graphic"> merge_type </mwc-icon>
       Merge Project
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
+      <mwc-icon slot="meta"> play_circle </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -670,15 +414,11 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/UpdateSubstation.js"
+      value="/src/menu/UpdateSubstation.js"
     >
-      <mwc-icon slot="graphic">
-        merge_type
-      </mwc-icon>
+      <mwc-icon slot="graphic"> merge_type </mwc-icon>
       Update Substation
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
+      <mwc-icon slot="meta"> play_circle </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       activated=""
@@ -688,23 +428,14 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/CommunicationMapping.js"
+      value="/src/menu/CommunicationMapping.js"
     >
-      <mwc-icon slot="graphic">
-        sync_alt
-      </mwc-icon>
+      <mwc-icon slot="graphic"> sync_alt </mwc-icon>
       Communication Mapping
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
+      <mwc-icon slot="meta"> play_circle </mwc-icon>
     </mwc-list-item>
   </mwc-list>
-  <mwc-list
-    activatable=""
-    id="externalPluginList"
-    multi=""
-  >
-  </mwc-list>
+  <mwc-list activatable="" id="externalPluginList" multi=""> </mwc-list>
   <mwc-button
     icon="refresh"
     label="Reset"
@@ -721,14 +452,11 @@
   >
   </mwc-button>
 </mwc-dialog>
-<mwc-dialog
-  heading="Add custom extension"
-  id="pluginAdd"
->
+<mwc-dialog heading="Add custom extension" id="pluginAdd">
   <div style="display: flex; flex-direction: column; row-gap: 8px;">
     <p style="color:var(--mdc-theme-error);">
-      Here you may add remote extensions directly from a custom URL.
-                You do this at your own risk.
+      Here you may add remote extensions directly from a custom URL. You do this
+      at your own risk.
     </p>
     <mwc-textfield
       helper="Your preferred extension name"
@@ -750,9 +478,7 @@
         value="editor"
       >
         Editor pane
-        <mwc-icon slot="meta">
-          tab
-        </mwc-icon>
+        <mwc-icon slot="meta"> tab </mwc-icon>
       </mwc-radio-list-item>
       <mwc-radio-list-item
         aria-disabled="false"
@@ -764,9 +490,7 @@
         value="triggered"
       >
         Menu entry
-        <mwc-icon slot="meta">
-          play_circle
-        </mwc-icon>
+        <mwc-icon slot="meta"> play_circle </mwc-icon>
       </mwc-radio-list-item>
     </mwc-list>
     <mwc-textfield
@@ -779,18 +503,9 @@
     >
     </mwc-textfield>
   </div>
-  <mwc-button
-    dialogaction="close"
-    label="Cancel"
-    slot="secondaryAction"
-  >
+  <mwc-button dialogaction="close" label="Cancel" slot="secondaryAction">
   </mwc-button>
-  <mwc-button
-    icon="add"
-    label="Add"
-    slot="primaryAction"
-    trailingicon=""
-  >
+  <mwc-button icon="add" label="Add" slot="primaryAction" trailingicon="">
   </mwc-button>
 </mwc-dialog>
 <mwc-circular-progress-four-color
@@ -800,12 +515,8 @@
   progress="0"
 >
 </mwc-circular-progress-four-color>
-<wizard-dialog>
-</wizard-dialog>
-<mwc-dialog
-  heading="Settings"
-  id="settings"
->
+<wizard-dialog> </wizard-dialog>
+<mwc-dialog heading="Settings" id="settings">
   <form>
     <mwc-select
       icon="language"
@@ -837,16 +548,10 @@
       </mwc-list-item>
     </mwc-select>
     <mwc-formfield label="Dark theme">
-      <mwc-switch id="dark">
-      </mwc-switch>
+      <mwc-switch id="dark"> </mwc-switch>
     </mwc-formfield>
   </form>
-  <mwc-button
-    dialogaction="close"
-    slot="secondaryAction"
-  >
-    Cancel
-  </mwc-button>
+  <mwc-button dialogaction="close" slot="secondaryAction"> Cancel </mwc-button>
   <mwc-button
     dialogaction="reset"
     slot="secondaryAction"
@@ -863,6 +568,4 @@
     Save
   </mwc-button>
 </mwc-dialog>
-
 ```
-

@@ -92,7 +92,7 @@ export const de: Translations = {
     add: {
       heading: 'Benutzerdefinierte Erweiterung',
       warning: `Hier können Sie benutzerdefinierte Erweiterungen hinzufügen.
-                OpenSCD übernimm hierfür keine Gewähr.`,
+                OpenSCD übernimmt hierfür keine Gewähr.`,
       name: 'Name',
       nameHelper: 'Lokaler Name der Erweiterung (frei wählbar)',
       src: 'URL',
