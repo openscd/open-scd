@@ -67,7 +67,7 @@ export function Hosting<
               )
             );
           },
-          disabled: (): boolean => plugin.needsDoc! && this.doc === null,
+          disabled: (): boolean => plugin.requireDoc! && this.doc === null,
           content: plugin.content,
           kind: 'top',
         })
@@ -88,7 +88,7 @@ export function Hosting<
               )
             );
           },
-          disabled: (): boolean => plugin.needsDoc! && this.doc === null,
+          disabled: (): boolean => plugin.requireDoc! && this.doc === null,
           content: plugin.content,
           kind: 'middle',
         })
@@ -109,7 +109,7 @@ export function Hosting<
               )
             );
           },
-          disabled: (): boolean => plugin.needsDoc! && this.doc === null,
+          disabled: (): boolean => plugin.requireDoc! && this.doc === null,
           content: plugin.content,
           kind: 'middle',
         })

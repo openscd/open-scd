@@ -6,6 +6,8 @@ const html = wrapHtml(litHtml);
 
 import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
+import { Select } from '@material/mwc-select';
+import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
@@ -23,7 +25,7 @@ export type Plugin = {
   src: string;
   icon?: string;
   kind: PluginKind;
-  needsDoc?: boolean;
+  requireDoc?: boolean;
   position?: MenuPosition;
   installed: boolean;
   official?: boolean;
@@ -70,8 +72,8 @@ function menuCompare(a: Plugin, b: Plugin): -1 | 0 | 1 {
 }
 
 function compareNeedsDoc(a: Plugin, b: Plugin): -1 | 0 | 1 {
-  if (a.needsDoc === b.needsDoc) return 0;
-  return a.needsDoc ? 1 : -1;
+  if (a.requireDoc === b.requireDoc) return 0;
+  return a.requireDoc ? 1 : -1;
 }
 
 const loadedPlugins = new Map<string, LitElementConstructor>();
@@ -181,12 +183,20 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       const pluginKindList = <List>(
         this.pluginDownloadUI.querySelector('#pluginKindList')
       );
+      const requireDoc = <Switch>(
+        this.pluginDownloadUI.querySelector('#requireDoc')
+      );
+      const positionList = <Select>(
+        this.pluginDownloadUI.querySelector('#menuPosition')
+      );
 
       if (
         !(
           pluginSrcInput.checkValidity() &&
           pluginNameInput.checkValidity() &&
-          pluginKindList.selected
+          pluginKindList.selected &&
+          requireDoc &&
+          positionList.selected
         )
       )
         return;
@@ -195,6 +205,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
         src: pluginSrcInput.value,
         name: pluginNameInput.value,
         kind: <PluginKind>(<ListItem>pluginKindList.selected).value,
+        requireDoc: requireDoc.checked,
+        position: <MenuPosition>positionList.value,
         installed: true,
       });
 
@@ -248,12 +260,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                   id="enabledefault"
                   label="${translate('plugins.requireDoc')}"
                 >
-                  <mwc-switch></mwc-switch>
+                  <mwc-switch id="requireDoc" checked></mwc-switch>
                 </mwc-formfield>
-                <mwc-select id="menutypes" naturalMenuWidth
+                <mwc-select id="menuPosition" value="middle" fixedMenuPosition
                   >${Object.values(menuPosition).map(
                     menutype =>
-                      html`<mwc-list-item
+                      html`<mwc-list-item value="${menutype}"
                         >${translate('plugins.' + menutype)}</mwc-list-item
                       >`
                   )}</mwc-select
@@ -271,7 +283,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 #enabledefault {
                   padding-bottom: 20px;
                 }
-                #menutypes {
+                #menuPosition {
                   max-width: 250px;
                 }
               </style>
