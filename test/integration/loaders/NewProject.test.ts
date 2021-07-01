@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import NewProjectPlugin from '../../../src/loaders/NewProject.js';
+import NewProjectPlugin from '../../../src/menu/NewProject.js';
 import { OpenSCD } from '../../../src/open-scd.js';
 
 describe('NewProject loader', () => {
@@ -25,7 +25,7 @@ describe('NewProject loader', () => {
   });
 
   it('creates an empty Edition 2.1 project on wizard primary button click', async () => {
-    element.load();
+    element.run();
     await element.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(
@@ -52,7 +52,7 @@ describe('NewProject loader', () => {
   });
 
   it('creates an empty Edition 2 project on wizard primary button click', async () => {
-    element.load();
+    element.run();
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(
@@ -84,7 +84,7 @@ describe('NewProject loader', () => {
   });
 
   it('creates an empty Edition 1 project on wizard primary button click', async () => {
-    element.load();
+    element.run();
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(

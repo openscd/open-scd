@@ -127,7 +127,7 @@ export default class UpdateSubstationPlugin extends LitElement {
     this.pluginFileUI.onchange = null;
   }
 
-  async trigger(): Promise<void> {
+  async run(): Promise<void> {
     this.pluginFileUI.click();
   }
 

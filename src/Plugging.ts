@@ -15,8 +15,8 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { officialPlugins } from '../public/js/plugins.js';
 
 type PluginKind = 'editor' | 'menu' | 'validator';
-type MenuPosition = 'top' | 'middle' | 'bottom';
-const menuPosition = ['top', 'middle', 'bottom'];
+const menuPosition = ['top', 'middle', 'bottom'] as const;
+type MenuPosition = typeof menuPosition[number];
 
 export type Plugin = {
   name: string;
@@ -26,46 +26,47 @@ export type Plugin = {
   needsDoc?: boolean;
   position?: MenuPosition;
   installed: boolean;
+  official?: boolean;
   content: () => Promise<TemplateResult>;
 };
 
-export const pluginIcons: Record<PluginKind, string> = {
+export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
   editor: 'tab',
   menu: 'play_circle',
   validator: 'rule_folder',
+  top: 'play_circle',
+  middle: 'play_circle',
+  bottom: 'play_circle',
 };
 
 function storeDefaultPlugins(): void {
-  localStorage.setItem('externalPlugins', JSON.stringify([]));
   localStorage.setItem(
-    'officialPlugins',
+    'plugins',
     JSON.stringify(
       officialPlugins.map(plugin => {
-        return { ...plugin, installed: plugin.default ?? false };
+        return {
+          src: plugin.src,
+          installed: plugin.default ?? false,
+          official: true,
+        };
       })
     )
   );
 }
 
-function isNew(src: string): boolean {
-  const installedOfficialPlugins = <Plugin[]>(
-    JSON.parse(localStorage.getItem('officialPlugins') ?? '[]')
+const menuOrder: (PluginKind | MenuPosition)[] = [
+  'editor',
+  'top',
+  'validator',
+  'middle',
+  'bottom',
+];
+function menuCompare(a: Plugin, b: Plugin): -1 | 0 | 1 {
+  if (a.kind === b.kind && a.position === b.position) return 0;
+  const earlier = menuOrder.find(kind =>
+    [a.kind, b.kind, a.position, b.position].includes(kind)
   );
-
-  return !installedOfficialPlugins.some(
-    installedOfficialPlugin => installedOfficialPlugin.src === src
-  );
-}
-
-function isInstalled(src: string): boolean {
-  const installedOfficialPlugins = <Plugin[]>(
-    JSON.parse(localStorage.getItem('officialPlugins') ?? '[]')
-  );
-
-  return installedOfficialPlugins.some(
-    installedOfficialPlugin =>
-      installedOfficialPlugin.src === src && installedOfficialPlugin.installed
-  );
+  return [a.kind, a.position].includes(earlier) ? -1 : 1;
 }
 
 function compareNeedsDoc(a: Plugin, b: Plugin): -1 | 0 | 1 {
@@ -108,26 +109,24 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     }
 
     private get plugins(): Plugin[] {
-      return this.officialPlugins
-        .concat(this.externalPlugins)
-        .map(plugin => this.addContent(plugin))
-        .sort(compareNeedsDoc);
-    }
-
-    private get officialPlugins(): Omit<Plugin, 'content'>[] {
-      return <Omit<Plugin, 'content'>[]>(<unknown>officialPlugins.map(
-        plugin => {
-          return {
+      return this.storedPlugins
+        .map(plugin => {
+          if (!plugin.official) return this.addContent(plugin);
+          const officialPlugin = officialPlugins.find(
+            needle => needle.src === plugin.src
+          );
+          return this.addContent(<Omit<Plugin, 'content'>>{
+            ...officialPlugin,
             ...plugin,
-            installed: isNew(plugin.src) || isInstalled(plugin.src),
-          };
-        }
-      ));
+          });
+        })
+        .sort(compareNeedsDoc)
+        .sort(menuCompare);
     }
 
-    private get externalPlugins(): Omit<Plugin, 'content'>[] {
+    private get storedPlugins(): Omit<Plugin, 'content'>[] {
       return <Omit<Plugin, 'content'>[]>(
-        JSON.parse(localStorage.getItem('externalPlugins') ?? '[]')
+        JSON.parse(localStorage.getItem('plugins') ?? '[]')
       );
     }
 
@@ -138,28 +137,21 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     @query('#pluginAdd')
     pluginDownloadUI!: Dialog;
 
-    private setOfficialPlugins(indices: Set<number>): void {
-      const newPlugins = this.officialPlugins.map((plugin, index) => {
-        return { ...plugin, installed: indices.has(index) };
+    private setPlugins(indices: Set<number>) {
+      console.warn('setting plugins', indices);
+      const newPlugins = this.plugins.map((plugin, index) => {
+        return { ...plugin, installed: indices.has(index), content: undefined };
       });
-      localStorage.setItem('officialPlugins', JSON.stringify(newPlugins));
-      this.requestUpdate();
-    }
-
-    private setExternalPlugins(indices: Set<number>): void {
-      const newPlugins = this.externalPlugins.map((plugin, index) => {
-        return { ...plugin, installed: indices.has(index) };
-      });
-      localStorage.setItem('externalPlugins', JSON.stringify(newPlugins));
+      localStorage.setItem('plugins', JSON.stringify(newPlugins));
       this.requestUpdate();
     }
 
     private addExternalPlugin(plugin: Omit<Plugin, 'content'>): void {
-      if (this.externalPlugins.some(p => p.src === plugin.src)) return;
+      if (this.storedPlugins.some(p => p.src === plugin.src)) return;
 
-      const newPlugins = this.externalPlugins;
+      const newPlugins = this.storedPlugins;
       newPlugins.push(plugin);
-      localStorage.setItem('externalPlugins', JSON.stringify(newPlugins));
+      localStorage.setItem('plugins', JSON.stringify(newPlugins));
     }
 
     private addContent(plugin: Omit<Plugin, 'content'>): Plugin {
@@ -248,7 +240,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 ></mwc-radio-list-item
               >
               <mwc-radio-list-item id="triggered" value="triggered" hasMeta left
-                >${translate('plugins.triggered')}<mwc-icon slot="meta"
+                >${translate('plugins.menu')}<mwc-icon slot="meta"
                   >${pluginIcons['menu']}</mwc-icon
                 ></mwc-radio-list-item
               >
@@ -261,10 +253,29 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 </mwc-formfield>
                 <mwc-select id="menutypes" naturalMenuWidth
                   >${Object.values(menuPosition).map(
-                    menutype => html`<mwc-list-item>${menutype}</mwc-list-item>`
+                    menutype =>
+                      html`<mwc-list-item
+                        >${translate('plugins.' + menutype)}</mwc-list-item
+                      >`
                   )}</mwc-select
                 >
               </div>
+              <style>
+                #triggerdetails {
+                  display: none;
+                  padding: 20px;
+                  padding-left: 50px;
+                }
+                #triggered[selected] ~ #triggerdetails {
+                  display: grid;
+                }
+                #enabledefault {
+                  padding-bottom: 20px;
+                }
+                #menutypes {
+                  max-width: 250px;
+                }
+              </style>
               <mwc-radio-list-item id="validator" value="validator" hasMeta left
                 >${translate('plugins.validator')}<mwc-icon slot="meta"
                   >${pluginIcons['validator']}</mwc-icon
@@ -296,32 +307,27 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       `;
     }
 
-    renderPluginKind(type: PluginKind, plugins: Plugin[]): TemplateResult {
-      return html`<mwc-list multi>
-        <mwc-list-item graphic="avatar" noninteractive
-          >${translate(`plugins.${type}`)}<mwc-icon
-            slot="graphic"
-            class="inverted"
-            >${pluginIcons[type]}</mwc-icon
-          ></mwc-list-item
-        >
-        <li divider role="separator">
-          </li>
-          ${plugins.map(
-            plugin =>
-              html`<mwc-check-list-item
-                value="${plugin.src}"
-                graphic="icon"
-                ?selected=${plugin.installed}
+    renderPluginKind(
+      type: PluginKind | MenuPosition,
+      plugins: Plugin[]
+    ): TemplateResult {
+      return html`
+        ${plugins.map(
+          plugin =>
+            html`<mwc-check-list-item
+              class="${plugin.official ? 'official' : 'external'}"
+              value="${plugin.src}"
+              ?selected=${plugin.installed}
+              hasMeta
+              left
+            >
+              <mwc-icon slot="meta"
+                >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
               >
-                <mwc-icon slot="graphic"
-                  >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
-                >
-                ${plugin.name}
-              </mwc-check-list-item>`
-          )}
-        </li></mwc-list
-      >`;
+              ${plugin.name}
+            </mwc-check-list-item>`
+        )}
+      `;
     }
 
     renderPluginUI(): TemplateResult {
@@ -331,9 +337,55 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           id="pluginManager"
           heading="${translate('plugins.heading')}"
         >
-          ${this.renderPluginKind('editor', this.editors)}
-          ${this.renderPluginKind('validator', this.validators)}
-          ${this.renderPluginKind('menu', this.menuEntries)}
+          <mwc-list
+            multi
+            @selected=${(e: MultiSelectedEvent) =>
+              this.setPlugins(e.detail.index)}
+          >
+            <mwc-list-item graphic="avatar" noninteractive
+              ><strong>${translate(`plugins.editor`)}</strong
+              ><mwc-icon slot="graphic" class="inverted"
+                >${pluginIcons['editor']}</mwc-icon
+              ></mwc-list-item
+            >
+            <li divider role="separator"></li>
+            ${this.renderPluginKind(
+              'editor',
+              this.plugins.filter(p => p.kind === 'editor')
+            )}
+            <mwc-list-item graphic="avatar" noninteractive
+              ><strong>${translate(`plugins.menu`)}</strong
+              ><mwc-icon slot="graphic" class="inverted"
+                ><strong>${pluginIcons['menu']}</strong></mwc-icon
+              ></mwc-list-item
+            >
+            <li divider role="separator"></li>
+            ${this.renderPluginKind(
+              'top',
+              this.plugins.filter(
+                p => p.kind === 'menu' && p.position === 'top'
+              )
+            )}
+            <li divider role="separator" inset></li>
+            ${this.renderPluginKind(
+              'validator',
+              this.plugins.filter(p => p.kind === 'validator')
+            )}
+            <li divider role="separator" inset></li>
+            ${this.renderPluginKind(
+              'middle',
+              this.plugins.filter(
+                p => p.kind === 'menu' && p.position === 'middle'
+              )
+            )}
+            <li divider role="separator" inset></li>
+            ${this.renderPluginKind(
+              'bottom',
+              this.plugins.filter(
+                p => p.kind === 'menu' && p.position === 'bottom'
+              )
+            )}
+          </mwc-list>
           <mwc-button
             slot="secondaryAction"
             icon="refresh"
@@ -362,28 +414,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       return html`
         ${ifImplemented(super.render())} ${this.renderPluginUI()}
         ${this.renderDownloadUI()}
-        <style>
-          #enabledefault {
-            padding-bottom: 20px;
-          }
-
-          #menutypes {
-            max-width: 250px;
-          }
-
-          #triggerdetails {
-            display: none;
-            padding: 20px;
-            padding-left: 50px;
-          }
-          #triggered[selected] ~ #triggerdetails {
-            display: grid;
-          }
-        </style>
       `;
     }
-
-    //static style = css``;
   }
 
   return PluggingElement;

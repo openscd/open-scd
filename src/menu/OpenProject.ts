@@ -20,7 +20,7 @@ export default class OpenProjectPlugin extends LitElement {
     this.pluginFileUI.onchange = null;
   }
 
-  async load(): Promise<void> {
+  async run(): Promise<void> {
     this.pluginFileUI.click();
   }
 

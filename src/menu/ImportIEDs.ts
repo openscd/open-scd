@@ -498,7 +498,7 @@ export default class ImportingIedPlugin extends LitElement {
     this.parent.dispatchEvent(newWizardEvent(importIedsWizard(importDoc, doc)));
   }
 
-  async trigger(): Promise<void> {
+  async run(): Promise<void> {
     this.pluginFileUI.click();
   }
 

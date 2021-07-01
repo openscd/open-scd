@@ -45,7 +45,7 @@ function mergeWizardAction(
 
     const selectedAttrDiffs = (<ListItem[]>checkList.selected)
       .filter(item => item.classList.contains('attr'))
-      .map(item => attrDiffs[(item.value as unknown) as number]);
+      .map(item => attrDiffs[item.value as unknown as number]);
 
     const newSink = <Element>sink.cloneNode(false);
     const parent = selectedAttrDiffs.length ? newSink : sink;
@@ -63,7 +63,7 @@ function mergeWizardAction(
 
     const selectedChildDiffs = (<ListItem[]>checkList.selected)
       .filter(item => item.classList.contains('child'))
-      .map(item => childDiffs[(item.value as unknown) as number]);
+      .map(item => childDiffs[item.value as unknown as number]);
     if (selectedChildDiffs.length) {
       for (const diff of selectedChildDiffs)
         if (!diff.ours)
@@ -164,7 +164,7 @@ export function mergeWizard(
           tag: sink.tagName,
         }),
       primary: {
-        label: get('merge.action'),
+        label: get('merge.title'),
         icon: 'merge_type',
         action: mergeWizardAction(attrDiffs, childDiffs, sink, source, options),
         auto: options?.auto?.(sink, source) ?? false,

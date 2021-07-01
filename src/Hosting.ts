@@ -20,14 +20,6 @@ interface MenuItem {
   kind: string;
 }
 
-interface Triggered {
-  trigger: () => Promise<void>;
-}
-
-interface Loader {
-  load: () => Promise<void>;
-}
-
 interface Validator {
   validate: (identity: string) => Promise<void>;
 }
@@ -55,8 +47,9 @@ export function Hosting<
     @query('#menu') menuUI!: Drawer;
 
     get menu(): (MenuItem | 'divider')[] {
-      const middleMenu: (MenuItem | 'divider')[] = [];
       const topMenu: (MenuItem | 'divider')[] = [];
+      const middleMenu: (MenuItem | 'divider')[] = [];
+      const bottomMenu: (MenuItem | 'divider')[] = [];
       const validators: (MenuItem | 'divider')[] = [];
 
       this.topMenu.forEach(plugin =>
@@ -101,6 +94,27 @@ export function Hosting<
         })
       );
 
+      this.bottomMenu.forEach(plugin =>
+        bottomMenu.push({
+          icon: plugin.icon || pluginIcons['menu'],
+          name: plugin.name,
+          action: ae => {
+            this.dispatchEvent(
+              newPendingStateEvent(
+                (<MenuPlugin>(
+                  (<unknown>(
+                    (<List>ae.target).items[ae.detail.index].lastElementChild
+                  ))
+                )).run()
+              )
+            );
+          },
+          disabled: (): boolean => plugin.needsDoc! && this.doc === null,
+          content: plugin.content,
+          kind: 'middle',
+        })
+      );
+
       this.validators.forEach(plugin =>
         validators.push({
           icon: plugin.icon || pluginIcons['validator'],
@@ -123,6 +137,7 @@ export function Hosting<
       );
 
       if (middleMenu.length > 0) middleMenu.push('divider');
+      if (bottomMenu.length > 0) bottomMenu.push('divider');
 
       return [
         'divider',
@@ -156,10 +171,11 @@ export function Hosting<
         ...middleMenu,
         {
           icon: 'settings',
-          name: 'settings.name',
+          name: 'settings.title',
           action: (): void => this.settingsUI.show(),
           kind: 'static',
         },
+        ...bottomMenu,
         {
           icon: 'extension',
           name: 'plugins.heading',
@@ -235,7 +251,7 @@ export function Hosting<
           type="modal"
           id="menu"
         >
-          <span slot="title">${translate('menu.name')}</span>
+          <span slot="title">${translate('menu.title')}</span>
           ${this.docName
             ? html`<span slot="subtitle">${this.docName}</span>`
             : ''}
@@ -278,7 +294,7 @@ export function Hosting<
           : html`<div class="landing">
               ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
                 (mi: MenuItem, index) =>
-                  mi.kind === 'loader'
+                  mi.kind === 'top' && !mi.disabled?.()
                     ? html`
                         <mwc-icon-button
                           class="landing_icon"
