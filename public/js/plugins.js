@@ -106,4 +106,13 @@ export const officialPlugins = [
     requireDoc: true,
     position: 'middle'
   },
+  {
+    name: 'Help',
+    src: '/src/menu/AboutBox.js',
+    icon: 'help',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'bottom'
+  },
 ];

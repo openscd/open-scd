@@ -142,7 +142,7 @@ describe('PluggingElement', () => {
       expect(element.editors).to.have.lengthOf(4);
     });
     it('adds a new menu kind plugin on add button click', async () => {
-      expect(element.menuEntries).to.have.lengthOf(8);
+      const lengthMenuKindPlugins = element.menuEntries.length;
       src.value = 'http://example.com/plugin.js';
       name.value = 'testName';
       menuKindOption.click();
@@ -150,7 +150,7 @@ describe('PluggingElement', () => {
       await name.updateComplete;
       primaryAction.click();
       await element.updateComplete;
-      expect(element.menuEntries).to.have.lengthOf(9);
+      expect(element.menuEntries).to.have.lengthOf(lengthMenuKindPlugins + 1);
     });
     it('sets requireDoc and position for new menu kind plugin', async () => {
       src.value = 'http://example.com/plugin.js';
