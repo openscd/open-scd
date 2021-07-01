@@ -32,6 +32,7 @@ export const de: Translations = {
     language: 'Sprache',
     languages: { de: 'Deutsch', en: 'Englisch (English)' },
     dark: 'Dunkles Design',
+    mode: 'Profimodus',
   },
   menu: {
     title: 'Menü',

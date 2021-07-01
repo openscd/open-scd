@@ -30,6 +30,7 @@ export const en = {
     language: 'Language',
     languages: { de: 'German (Deutsch)', en: 'English' },
     dark: 'Dark theme',
+    mode: 'Pro mode',
   },
   menu: {
     title: 'Menu',

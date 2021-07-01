@@ -91,7 +91,10 @@ export class WizardDialog extends LitElement {
   }
 
   get code(): boolean {
-    return this.dialog?.querySelector('mwc-icon-button-toggle')?.on ?? false;
+    return (
+      (this.dialog?.querySelector('mwc-icon-button-toggle')?.on ?? false) &&
+      localStorage.getItem('mode') === 'pro'
+    );
   }
 
   /** Checks the inputs of all [[`WizardPage`]]s for validity. */
@@ -183,7 +186,7 @@ export class WizardDialog extends LitElement {
       heading=${page.title}
       @closed=${this.onClosed}
     >
-      ${page.element
+      ${page.element && localStorage.getItem('mode') === 'pro'
         ? html`<mwc-icon-button-toggle
             onicon="code"
             officon="code_off"
@@ -267,6 +270,7 @@ export class WizardDialog extends LitElement {
       position: absolute;
       top: 8px;
       right: 14px;
+      color: var(--base00);
     }
 
     mwc-dialog > mwc-icon-button-toggle[on] {

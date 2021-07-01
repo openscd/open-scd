@@ -4,6 +4,8 @@ import { repeat } from 'lit-html/directives/repeat';
 import { get, translate } from 'lit-translate';
 
 import {
+  Create,
+  Delete,
   EditorAction,
   identity,
   isEqual,
@@ -13,6 +15,7 @@ import {
   Wizard,
   WizardActor,
 } from './foundation.js';
+import { WizardDialog } from './wizard-dialog.js';
 
 interface MergeOptions {
   title?: string;

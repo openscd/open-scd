@@ -7,12 +7,18 @@ import { Switch } from '@material/mwc-switch';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
+import { WizardDialog } from './wizard-dialog.js';
 
 export type Settings = {
   language: Language;
   theme: 'light' | 'dark';
+  mode: 'safe' | 'pro';
 };
-export const defaults: Settings = { language: 'en', theme: 'light' };
+export const defaults: Settings = {
+  language: 'en',
+  theme: 'light',
+  mode: 'safe',
+};
 
 /** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
  * `settings` property, setting them through `setSetting(setting, value)`. */
@@ -26,6 +32,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       return {
         language: this.getSetting('language'),
         theme: this.getSetting('theme'),
+        mode: this.getSetting('mode'),
       };
     }
 
@@ -35,6 +42,8 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     languageUI!: Select;
     @query('#dark')
     darkThemeUI!: Switch;
+    @query('#mode')
+    modeUI!: Switch;
 
     private getSetting<T extends keyof Settings>(setting: T): Settings[T] {
       return (
@@ -44,6 +53,9 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     /** Update the `value` of `setting`, storing to `localStorage`. */
     setSetting<T extends keyof Settings>(setting: T, value: Settings[T]): void {
       localStorage.setItem(setting, <string>(<unknown>value));
+      this.shadowRoot
+        ?.querySelector<WizardDialog>('wizard-dialog')
+        ?.requestUpdate();
       this.requestUpdate();
     }
 
@@ -56,6 +68,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       } else if (ae.detail?.action === 'save') {
         this.setSetting('language', <Language>this.languageUI.value);
         this.setSetting('theme', this.darkThemeUI.checked ? 'dark' : 'light');
+        this.setSetting('mode', this.modeUI.checked ? 'pro' : 'safe');
         this.requestUpdate('settings');
       }
     }
@@ -81,7 +94,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         >
           <form>
             <mwc-select
-              naturalMenuWidth
+              fixedMenuPosition
               id="language"
               icon="language"
               label="${translate('settings.language')}"
@@ -100,6 +113,12 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
               <mwc-switch
                 id="dark"
                 ?checked=${this.settings.theme === 'dark'}
+              ></mwc-switch>
+            </mwc-formfield>
+            <mwc-formfield label="${translate('settings.mode')}">
+              <mwc-switch
+                id="mode"
+                ?checked=${this.settings.mode === 'pro'}
               ></mwc-switch>
             </mwc-formfield>
           </form>
