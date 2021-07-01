@@ -27,7 +27,7 @@ export const officialPlugins = [
     icon: 'folder_open',
     default: true,
     kind: 'menu',
-    needsDoc: false,
+    requireDoc: false,
     position: 'top'
   },
   {
@@ -36,7 +36,7 @@ export const officialPlugins = [
     icon: 'create_new_folder',
     default: true,
     kind: 'menu',
-    needsDoc: false,
+    requireDoc: false,
     position: 'top'
   },
   {
@@ -45,7 +45,7 @@ export const officialPlugins = [
     icon: 'save',
     default: true,
     kind: 'menu',
-    needsDoc: true,
+    requireDoc: true,
     position: 'top'
   },
   {
@@ -68,7 +68,7 @@ export const officialPlugins = [
     icon: 'snippet_folder',
     default: true,
     kind: 'menu',
-    needsDoc: true,
+    requireDoc: true,
     position: 'middle'
   },
   {
@@ -76,7 +76,7 @@ export const officialPlugins = [
     src: '/src/menu/SubscriberInfo.js',
     default: true,
     kind: 'menu',
-    needsDoc: true,
+    requireDoc: true,
     position: 'middle'
   },
   {
@@ -85,7 +85,7 @@ export const officialPlugins = [
     icon: 'merge_type',
     default: true,
     kind: 'menu',
-    needsDoc: true,
+    requireDoc: true,
     position: 'middle'
   },
   {
@@ -94,7 +94,7 @@ export const officialPlugins = [
     icon: 'merge_type',
     default: true,
     kind: 'menu',
-    needsDoc: true,
+    requireDoc: true,
     position: 'middle'
   },
   {
@@ -103,7 +103,7 @@ export const officialPlugins = [
     icon: 'sync_alt',
     default: true,
     kind: 'menu',
-    needsDoc: true,
+    requireDoc: true,
     position: 'middle'
   },
 ];

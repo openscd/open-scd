@@ -54,8 +54,9 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       class="top"
+      disabled=""
       graphic="icon"
       iconid="save"
       mwc-list-item=""
@@ -166,8 +167,9 @@
     >
     </li>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       class="middle"
+      disabled=""
       graphic="icon"
       iconid="snippet_folder"
       mwc-list-item=""
@@ -183,8 +185,9 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       class="middle"
+      disabled=""
       graphic="icon"
       iconid="play_circle"
       mwc-list-item=""
@@ -200,8 +203,9 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       class="middle"
+      disabled=""
       graphic="icon"
       iconid="merge_type"
       mwc-list-item=""
@@ -217,8 +221,9 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       class="middle"
+      disabled=""
       graphic="icon"
       iconid="merge_type"
       mwc-list-item=""
@@ -234,8 +239,9 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
       class="middle"
+      disabled=""
       graphic="icon"
       iconid="sync_alt"
       mwc-list-item=""
@@ -336,14 +342,6 @@
   >
     <div class="landing_label">
       New project
-    </div>
-  </mwc-icon-button>
-  <mwc-icon-button
-    class="landing_icon"
-    icon="save"
-  >
-    <div class="landing_label">
-      Save project
     </div>
   </mwc-icon-button>
 </div>
