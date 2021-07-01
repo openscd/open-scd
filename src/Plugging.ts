@@ -134,8 +134,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
 
     @query('#pluginManager')
     pluginUI!: Dialog;
-    @query('#officialPluginList')
-    officialPluginList!: List;
+    @query('#pluginList')
+    pluginList!: List;
     @query('#pluginAdd')
     pluginDownloadUI!: Dialog;
 
@@ -349,6 +349,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           heading="${translate('plugins.heading')}"
         >
           <mwc-list
+            id="pluginList"
             multi
             @selected=${(e: MultiSelectedEvent) =>
               this.setPlugins(e.detail.index)}
