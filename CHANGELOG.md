@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.4.0](https://github.com/openscd/open-scd/compare/v0.3.0...v0.4.0) (2021-07-02)
 
+> **NB** for plugin developers:
+> * All menu item plugins in `public/js/plugins.js` are now listed under `kind: 'menu'` with a `position: 'top' | 'middle' | 'bottom'` determining positioning in the menu and `requireDoc: boolean` indicating whether the plugin requires a `doc` to be loaded in order to be clickable.
+> * All menu item and validator plugins now use the unified method signature `run(): Promise<void>` to be triggered.
 
 ### Features
 
