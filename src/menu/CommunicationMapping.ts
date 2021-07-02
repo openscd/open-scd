@@ -182,7 +182,7 @@ export function clientlnwizard(
 ): Wizard {
   return [
     {
-      title: get('transform.comm-map.connectToIED', {
+      title: get('commMap.connectToIED', {
         iedName: sinkIED.getAttribute('name') ?? '',
       }),
       primary: {
@@ -313,7 +313,7 @@ function getSelectedSourceIedElements(
 export function createConnectionWizard(doc: Document): Wizard {
   return [
     {
-      title: get('transform.comm-map.connectCB', { CbType: get('Report') }),
+      title: get('commMap.connectCB', { CbType: get('Report') }),
       secondary: {
         icon: '',
         label: get('cancel'),
@@ -329,7 +329,7 @@ export function createConnectionWizard(doc: Document): Wizard {
                 <filtered-list
                   id="sourcelist"
                   multi
-                  searchFieldLabel="${get('transform.comm-map.sourceIED')}"
+                  searchFieldLabel="${get('commMap.sourceIED')}"
                 >
                   ${Array.from(doc.querySelectorAll(':root > IED') ?? []).map(
                     ied =>
@@ -340,7 +340,7 @@ export function createConnectionWizard(doc: Document): Wizard {
                 </filtered-list>
                 <filtered-list
                   id="sinklist"
-                  searchFieldLabel="${get('transform.comm-map.sinkIED')}"
+                  searchFieldLabel="${get('commMap.sinkIED')}"
                   @selected="${(evt: SingleSelectedEvent) => {
                     evt.target!.dispatchEvent(
                       newWizardEvent(
@@ -656,10 +656,10 @@ export function communicationMappingWizard(
 
   return [
     {
-      title: get('transform.comm-map.wizard.title'),
+      title: get('commMap.title'),
       primary: {
         icon: 'add',
-        label: get('transform.comm-map.connectCB', { CbType: get('Report') }),
+        label: get('commMap.connectCB', { CbType: get('Report') }),
         action: openCreateConnection(
           root instanceof XMLDocument ? root : root.ownerDocument
         ),
@@ -709,7 +709,7 @@ export function communicationMappingWizard(
 export default class CommunicationMappingPlugin extends LitElement {
   doc!: XMLDocument;
 
-  async trigger(): Promise<void> {
+  async run(): Promise<void> {
     this.dispatchEvent(newWizardEvent(communicationMappingWizard(this.doc)));
   }
 }

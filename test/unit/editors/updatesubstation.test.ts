@@ -1,6 +1,6 @@
 import { expect } from '@open-wc/testing';
 import { identity } from '../../../src/foundation.js';
-import { isValidReference } from '../../../src/triggered/UpdateSubstation.js';
+import { isValidReference } from '../../../src/menu/UpdateSubstation.js';
 
 describe('isValidReference', () => {
   let ours: XMLDocument;

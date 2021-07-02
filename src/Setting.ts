@@ -76,7 +76,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       return html`${ifImplemented(super.render())}
         <mwc-dialog
           id="settings"
-          heading="${translate('settings.name')}"
+          heading="${translate('settings.title')}"
           @closing=${this.onClosing}
         >
           <form>

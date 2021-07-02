@@ -28,19 +28,13 @@ export const de: Translations = {
     transient: 'Datenpunkt transient',
   },
   settings: {
-    name: 'Einstellungen',
+    title: 'Einstellungen',
     language: 'Sprache',
     languages: { de: 'Deutsch', en: 'Englisch (English)' },
     dark: 'Dunkles Design',
   },
   menu: {
-    name: 'Menü',
-    open: 'Projekt öffnen',
-    new: 'Neues Projekt',
-    importIED: 'IED importieren',
-    save: 'Projekt speichern',
-    subscriberinfo: 'Empfänger aktualisieren',
-    validate: 'Projekt validieren',
+    title: 'Menü',
     viewLog: 'Protokoll anzeigen',
   },
   openSCD: {
@@ -64,7 +58,8 @@ export const de: Translations = {
         '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
     },
   },
-  validating: {
+  validate: {
+    title: 'Projekt validieren',
     valid: '{{ name }} erfolgreich validiert',
     invalid: '{{ name }} Validierung fehlgeschlagen',
     fatal: 'Fataler Validierungsfehler',
@@ -88,11 +83,16 @@ export const de: Translations = {
   plugins: {
     heading: 'Erweiterungen',
     editor: 'Editor',
-    triggered: 'Menüeintrag',
+    menu: 'Menüeintrag',
+    requireDoc: 'Benötigt Dokument',
+    top: 'oben',
+    middle: 'mittig',
+    bottom: 'unten',
+    validator: 'Validator',
     add: {
       heading: 'Benutzerdefinierte Erweiterung',
       warning: `Hier können Sie benutzerdefinierte Erweiterungen hinzufügen.
-                OpenSCD übernimm hierfür keine Gewähr.`,
+                OpenSCD übernimmt hierfür keine Gewähr.`,
       name: 'Name',
       nameHelper: 'Lokaler Name der Erweiterung (frei wählbar)',
       src: 'URL',
@@ -249,12 +249,13 @@ export const de: Translations = {
     },
   },
   merge: {
-    action: 'Vereinigen',
+    title: 'Vereinigen',
     defaultTitle: '{{ tag }} {{ source }} mit {{ sink }} vereinigen',
     log: '{{ tag }} {{ source }} mit {{ sink }} vereinigt',
     children: 'Kindelemente',
   },
   import: {
+    title: 'IEDs importieren',
     log: {
       successful: 'IED {{name}} geladen',
       parsererror: 'Parser Fehler',
@@ -294,30 +295,31 @@ export const de: Translations = {
       addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
     },
   },
-  transform: {
-    subscriber: {
-      description: 'GOOSE Ziele aktualisieren: ',
-      nonewitems: 'keine neuen IEDName Elemente notwendig',
-      message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
-    },
-    'comm-map': {
-      wizard: { title: 'Kommunikationszuordnung' },
-      connectCB: '{{CbType}} verbinden',
-      connectToIED: 'Verbinden mit {{iedName}}',
-      sourceIED: 'Quellgerät',
-      sinkIED: 'Zielgerät',
-    },
+  subscriber: {
+    title: 'Subscriber Update',
+    description: 'GOOSE Ziele aktualisieren: ',
+    nonewitems: 'keine neuen IEDName Elemente notwendig',
+    message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
+  },
+  commMap: {
+    title: 'Kommunikationszuordnung',
+    connectCB: '{{CbType}} verbinden',
+    connectToIED: 'Verbinden mit {{iedName}}',
+    sourceIED: 'Quellgerät',
+    sinkIED: 'Zielgerät',
   },
   updatesubstation: {
     title: 'Schaltanlage aktualisieren',
   },
   add: 'Hinzufügen',
+  new: 'Neu',
   remove: 'Entfernen',
   edit: 'Bearbeiten',
   move: 'Verschieben',
   create: 'Erstellen',
   save: 'Speichern',
   saveAs: 'Speichern unter',
+  open: 'Öffnen',
   reset: 'Zurücksetzen',
   cancel: 'Abbrechen',
   close: 'Schließen',

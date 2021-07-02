@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import ImportingIedPlugin from '../../../../src/triggered/ImportIEDs.js';
+import ImportingIedPlugin from '../../../../src/menu/ImportIEDs.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import { OpenSCD } from '../../../../src/open-scd.js';
 

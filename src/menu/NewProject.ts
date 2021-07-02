@@ -67,7 +67,7 @@ export default class NewProjectPlugin extends LitElement {
     ];
   }
 
-  async load(): Promise<void> {
+  async run(): Promise<void> {
     document
       .querySelector('open-scd')
       ?.dispatchEvent(newWizardEvent(this.newProjectWizard()));

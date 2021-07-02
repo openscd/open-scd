@@ -6,7 +6,7 @@ import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 import { Mixin, newPendingStateEvent, ValidateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
-import { InstalledPlugin, PluggingElement, pluginIcons } from './Plugging.js';
+import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
 
 interface MenuItem {
@@ -20,20 +20,12 @@ interface MenuItem {
   kind: string;
 }
 
-interface Triggered {
-  trigger: () => Promise<void>;
-}
-
-interface Loader {
-  load: () => Promise<void>;
-}
-
-interface Saver {
-  save: () => Promise<void>;
-}
-
 interface Validator {
   validate: (identity: string) => Promise<void>;
+}
+
+interface MenuPlugin {
+  run: () => Promise<void>;
 }
 
 /** Mixin that hosts the UI for Plugins, Settings and Logging */
@@ -55,71 +47,71 @@ export function Hosting<
     @query('#menu') menuUI!: Drawer;
 
     get menu(): (MenuItem | 'divider')[] {
-      const triggered: (MenuItem | 'divider')[] = [];
-      const loaders: (MenuItem | 'divider')[] = [];
-      const savers: (MenuItem | 'divider')[] = [];
+      const topMenu: (MenuItem | 'divider')[] = [];
+      const middleMenu: (MenuItem | 'divider')[] = [];
+      const bottomMenu: (MenuItem | 'divider')[] = [];
       const validators: (MenuItem | 'divider')[] = [];
 
-      this.triggered.forEach(plugin =>
-        triggered.push({
-          icon: plugin.icon || pluginIcons['triggered'],
+      this.topMenu.forEach(plugin =>
+        topMenu.push({
+          icon: plugin.icon || pluginIcons['menu'],
           name: plugin.name,
           action: ae => {
             this.dispatchEvent(
               newPendingStateEvent(
-                (<Triggered>(
+                (<MenuPlugin>(
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].lastElementChild
                   ))
-                )).trigger()
+                )).run()
               )
             );
           },
-          disabled: (): boolean => this.doc === null,
+          disabled: (): boolean => plugin.requireDoc! && this.doc === null,
           content: plugin.content,
-          kind: 'triggered',
+          kind: 'top',
         })
       );
 
-      this.loaders.forEach(plugin =>
-        loaders.push({
-          icon: plugin.icon || pluginIcons['loader'],
+      this.middleMenu.forEach(plugin =>
+        middleMenu.push({
+          icon: plugin.icon || pluginIcons['menu'],
           name: plugin.name,
           action: ae => {
             this.dispatchEvent(
               newPendingStateEvent(
-                (<Loader>(
+                (<MenuPlugin>(
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].lastElementChild
                   ))
-                )).load()
+                )).run()
               )
             );
           },
-          disabled: (): boolean => false,
+          disabled: (): boolean => plugin.requireDoc! && this.doc === null,
           content: plugin.content,
-          kind: 'loader',
+          kind: 'middle',
         })
       );
 
-      this.savers.forEach(plugin =>
-        savers.push({
-          icon: plugin.icon || pluginIcons['saver'],
+      this.bottomMenu.forEach(plugin =>
+        bottomMenu.push({
+          icon: plugin.icon || pluginIcons['menu'],
           name: plugin.name,
           action: ae => {
             this.dispatchEvent(
               newPendingStateEvent(
-                (<Saver>(
+                (<MenuPlugin>(
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].lastElementChild
                   ))
-                )).save()
+                )).run()
               )
             );
           },
-          disabled: (): boolean => this.doc === null,
+          disabled: (): boolean => plugin.requireDoc! && this.doc === null,
           content: plugin.content,
-          kind: 'saver',
+          kind: 'middle',
         })
       );
 
@@ -144,12 +136,12 @@ export function Hosting<
         })
       );
 
-      if (triggered.length > 0) triggered.push('divider');
+      if (middleMenu.length > 0) middleMenu.push('divider');
+      if (bottomMenu.length > 0) bottomMenu.push('divider');
 
       return [
         'divider',
-        ...loaders,
-        ...savers,
+        ...topMenu,
         'divider',
         {
           icon: 'undo',
@@ -176,13 +168,14 @@ export function Hosting<
           kind: 'static',
         },
         'divider',
-        ...triggered,
+        ...middleMenu,
         {
           icon: 'settings',
-          name: 'settings.name',
+          name: 'settings.title',
           action: (): void => this.settingsUI.show(),
           kind: 'static',
         },
+        ...bottomMenu,
         {
           icon: 'extension',
           name: 'plugins.heading',
@@ -246,7 +239,7 @@ export function Hosting<
       else return html``;
     }
 
-    renderEditorTab({ name, icon }: InstalledPlugin): TemplateResult {
+    renderEditorTab({ name, icon }: Plugin): TemplateResult {
       return html`<mwc-tab label=${translate(name)} icon=${icon || 'edit'}>
       </mwc-tab>`;
     }
@@ -258,7 +251,7 @@ export function Hosting<
           type="modal"
           id="menu"
         >
-          <span slot="title">${translate('menu.name')}</span>
+          <span slot="title">${translate('menu.title')}</span>
           ${this.docName
             ? html`<span slot="subtitle">${this.docName}</span>`
             : ''}
@@ -301,7 +294,7 @@ export function Hosting<
           : html`<div class="landing">
               ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
                 (mi: MenuItem, index) =>
-                  mi.kind === 'loader'
+                  mi.kind === 'top' && !mi.disabled?.()
                     ? html`
                         <mwc-icon-button
                           class="landing_icon"

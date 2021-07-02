@@ -21,7 +21,7 @@
     </li>
     <mwc-list-item
       aria-disabled="false"
-      class="loader"
+      class="top"
       graphic="icon"
       iconid="folder_open"
       mwc-list-item=""
@@ -38,7 +38,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="loader"
+      class="top"
       graphic="icon"
       iconid="create_new_folder"
       mwc-list-item=""
@@ -55,7 +55,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
-      class="saver"
+      class="top"
       disabled=""
       graphic="icon"
       iconid="save"
@@ -168,7 +168,7 @@
     </li>
     <mwc-list-item
       aria-disabled="true"
-      class="triggered"
+      class="middle"
       disabled=""
       graphic="icon"
       iconid="snippet_folder"
@@ -186,7 +186,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
-      class="triggered"
+      class="middle"
       disabled=""
       graphic="icon"
       iconid="play_circle"
@@ -204,7 +204,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
-      class="triggered"
+      class="middle"
       disabled=""
       graphic="icon"
       iconid="merge_type"
@@ -222,7 +222,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
-      class="triggered"
+      class="middle"
       disabled=""
       graphic="icon"
       iconid="merge_type"
@@ -240,7 +240,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="true"
-      class="triggered"
+      class="middle"
       disabled=""
       graphic="icon"
       iconid="sync_alt"
@@ -460,250 +460,279 @@
   stacked=""
 >
   <mwc-list
-    activatable=""
-    id="officialPluginList"
+    id="pluginList"
     multi=""
   >
     <mwc-list-item
-      activated=""
       aria-disabled="false"
-      graphic="icon"
+      graphic="avatar"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <strong>
+        Editor tab
+      </strong>
+      <mwc-icon
+        class="inverted"
+        slot="graphic"
+      >
+        tab
+      </mwc-icon>
+    </mwc-list-item>
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="0"
       value="/src/editors/Substation.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         margin
       </mwc-icon>
       Substation
-      <mwc-icon slot="meta">
-        tab
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/editors/Communication.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         settings_ethernet
       </mwc-icon>
       Communication
-      <mwc-icon slot="meta">
-        tab
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/editors/Templates.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         copy_all
       </mwc-icon>
       Templates
-      <mwc-icon slot="meta">
-        tab
+    </mwc-check-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <strong>
+        Menu entry
+      </strong>
+      <mwc-icon
+        class="inverted"
+        slot="graphic"
+      >
+        <strong>
+          play_circle
+        </strong>
       </mwc-icon>
     </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    <li
+      divider=""
+      role="separator"
+    >
+    </li>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/loaders/OpenProject.js"
+      value="/src/menu/OpenProject.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         folder_open
       </mwc-icon>
       Open project
-      <mwc-icon slot="meta">
-        folder_open
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/loaders/NewProject.js"
+      value="/src/menu/NewProject.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         create_new_folder
       </mwc-icon>
       New project
-      <mwc-icon slot="meta">
-        folder_open
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/savers/SaveProject.js"
+      value="/src/menu/SaveProject.js"
     >
-      <mwc-icon slot="graphic">
-        save
-      </mwc-icon>
-      Save project
       <mwc-icon slot="meta">
         save
       </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+      Save project
+    </mwc-check-list-item>
+    <li
+      divider=""
+      inset=""
+      role="separator"
+    >
+    </li>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/validators/ValidateSchema.js"
     >
-      <mwc-icon slot="graphic">
-        rule_folder
-      </mwc-icon>
-      Validate project
       <mwc-icon slot="meta">
         rule_folder
       </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+      Validate project
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/validators/ValidateTemplates.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         rule_folder
       </mwc-icon>
       Validate Templates
-      <mwc-icon slot="meta">
-        rule_folder
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <li
+      divider=""
+      inset=""
+      role="separator"
+    >
+    </li>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/ImportIEDs.js"
+      value="/src/menu/ImportIEDs.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         snippet_folder
       </mwc-icon>
       Import IEDs
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/SubscriberInfo.js"
+      value="/src/menu/SubscriberInfo.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         play_circle
       </mwc-icon>
       Subscriber Update
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/Merge.js"
+      value="/src/menu/Merge.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         merge_type
       </mwc-icon>
       Merge Project
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/UpdateSubstation.js"
+      value="/src/menu/UpdateSubstation.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         merge_type
       </mwc-icon>
       Update Substation
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      activated=""
+    </mwc-check-list-item>
+    <mwc-check-list-item
       aria-disabled="false"
-      graphic="icon"
+      class="official"
+      graphic="control"
       hasmeta=""
+      left=""
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/triggered/CommunicationMapping.js"
+      value="/src/menu/CommunicationMapping.js"
     >
-      <mwc-icon slot="graphic">
+      <mwc-icon slot="meta">
         sync_alt
       </mwc-icon>
       Communication Mapping
-      <mwc-icon slot="meta">
-        play_circle
-      </mwc-icon>
-    </mwc-list-item>
-  </mwc-list>
-  <mwc-list
-    activatable=""
-    id="externalPluginList"
-    multi=""
-  >
+    </mwc-check-list-item>
+    <li
+      divider=""
+      inset=""
+      role="separator"
+    >
+    </li>
   </mwc-list>
   <mwc-button
     icon="refresh"
@@ -743,13 +772,14 @@
         aria-selected="true"
         graphic="control"
         hasmeta=""
+        id="editor"
         left=""
         mwc-list-item=""
         selected=""
         tabindex="0"
         value="editor"
       >
-        Editor pane
+        Editor tab
         <mwc-icon slot="meta">
           tab
         </mwc-icon>
@@ -758,14 +788,78 @@
         aria-disabled="false"
         graphic="control"
         hasmeta=""
+        id="menu"
         left=""
         mwc-list-item=""
         tabindex="-1"
-        value="triggered"
+        value="menu"
       >
         Menu entry
         <mwc-icon slot="meta">
           play_circle
+        </mwc-icon>
+      </mwc-radio-list-item>
+      <div id="menudetails">
+        <mwc-formfield
+          id="enabledefault"
+          label="Requires loaded document"
+        >
+          <mwc-switch
+            checked=""
+            id="requireDoc"
+          >
+          </mwc-switch>
+        </mwc-formfield>
+        <mwc-select
+          fixedmenuposition=""
+          id="menuPosition"
+          value="middle"
+        >
+          <mwc-list-item
+            aria-disabled="false"
+            mwc-list-item=""
+            role="option"
+            tabindex="-1"
+            value="top"
+          >
+            top
+          </mwc-list-item>
+          <mwc-list-item
+            activated=""
+            aria-disabled="false"
+            aria-selected="true"
+            mwc-list-item=""
+            role="option"
+            selected=""
+            tabindex="0"
+            value="middle"
+          >
+            middle
+          </mwc-list-item>
+          <mwc-list-item
+            aria-disabled="false"
+            mwc-list-item=""
+            role="option"
+            tabindex="-1"
+            value="bottom"
+          >
+            bottom
+          </mwc-list-item>
+        </mwc-select>
+      </div>
+      <mwc-radio-list-item
+        aria-disabled="false"
+        graphic="control"
+        hasmeta=""
+        id="validator"
+        left=""
+        mwc-list-item=""
+        tabindex="-1"
+        value="validator"
+      >
+        Validator
+        <mwc-icon slot="meta">
+          rule_folder
         </mwc-icon>
       </mwc-radio-list-item>
     </mwc-list>

@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import CommunicationMappingPlugin from '../../../../src/triggered/CommunicationMapping.js';
+import CommunicationMappingPlugin from '../../../../src/menu/CommunicationMapping.js';
 import { List } from '@material/mwc-list';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
@@ -33,7 +33,7 @@ describe('CommunicationMappingPlugin', () => {
 
   describe('communication mapping wizard', () => {
     beforeEach(async () => {
-      await element.trigger();
+      await element.run();
       await parent.updateComplete;
     });
 
@@ -76,7 +76,7 @@ describe('CommunicationMappingPlugin', () => {
   describe('control block connection wizard', () => {
     let commMappings: List;
     beforeEach(async () => {
-      await element.trigger();
+      await element.run();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       commMappings = <List>(
@@ -270,7 +270,7 @@ describe('CommunicationMappingPlugin', () => {
 
   describe('connection wizard', () => {
     beforeEach(async () => {
-      await element.trigger();
+      await element.run();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
@@ -301,7 +301,7 @@ describe('CommunicationMappingPlugin', () => {
 
   describe('client wizard', () => {
     beforeEach(async () => {
-      await element.trigger();
+      await element.run();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
