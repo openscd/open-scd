@@ -108,7 +108,7 @@ export const officialPlugins = [
   },
   {
     name: 'Help',
-    src: '/src/menu/AboutBox.js',
+    src: '/src/menu/Help.js',
     icon: 'help',
     default: true,
     kind: 'menu',
