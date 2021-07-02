@@ -50,6 +50,7 @@ function codeAction(element: Element): WizardActor {
     };
     const del: Delete = {
       old: desc,
+      checkValidity: () => true,
     };
     const cre: Create = {
       new: {
@@ -57,6 +58,7 @@ function codeAction(element: Element): WizardActor {
         element: new DOMParser().parseFromString(text, 'application/xml')
           .documentElement,
       },
+      checkValidity: () => true,
     };
     return [
       {
