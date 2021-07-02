@@ -279,6 +279,29 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
+      class="middle"
+      graphic="icon"
+      iconid="help"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        help
+      </mwc-icon>
+      <span>
+        Help
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <mwc-list-item
+      aria-disabled="false"
       class="static"
       graphic="icon"
       iconid="extension"
@@ -733,6 +756,22 @@
       role="separator"
     >
     </li>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/AboutBox.js"
+    >
+      <mwc-icon slot="meta">
+        help
+      </mwc-icon>
+      Help
+    </mwc-check-list-item>
   </mwc-list>
   <mwc-button
     icon="refresh"
