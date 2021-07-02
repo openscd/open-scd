@@ -3,7 +3,7 @@ import { html, LitElement } from 'lit-element';
 import { newWizardEvent, Wizard } from '../foundation.js';
 import { openSCDIcon } from '../icons.js';
 
-import additionInfo from '../../package.json';
+import additionInfo from '../../manifest.json';
 
 export function aboutBoxWizard(): Wizard {
   return [
