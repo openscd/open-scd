@@ -30,6 +30,7 @@ export const en = {
     language: 'Language',
     languages: { de: 'German (Deutsch)', en: 'English' },
     dark: 'Dark theme',
+    mode: 'Pro mode',
   },
   menu: {
     title: 'Menu',
@@ -307,6 +308,9 @@ export const en = {
   },
   updatesubstation: {
     title: 'Update substation',
+  },
+  code: {
+    log: 'Changed element in XML editor: {{id}}',
   },
   add: 'Add',
   new: 'New',

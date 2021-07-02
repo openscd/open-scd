@@ -941,10 +941,10 @@
 >
   <form>
     <mwc-select
+      fixedmenuposition=""
       icon="language"
       id="language"
       label="Language"
-      naturalmenuwidth=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -971,6 +971,10 @@
     </mwc-select>
     <mwc-formfield label="Dark theme">
       <mwc-switch id="dark">
+      </mwc-switch>
+    </mwc-formfield>
+    <mwc-formfield label="Pro mode">
+      <mwc-switch id="mode">
       </mwc-switch>
     </mwc-formfield>
   </form>

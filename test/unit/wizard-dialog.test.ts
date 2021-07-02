@@ -1,14 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
+import { Button } from '@material/mwc-button';
+
 import '../../src/wizard-textfield.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
-import {
-  EditorAction,
-  Wizard,
-  WizardActor,
-  WizardInput,
-} from '../../src/foundation.js';
+import { EditorAction, WizardInput } from '../../src/foundation.js';
+
+import './mock-editor.js';
 
 describe('wizard-dialog', () => {
   let element: WizardDialog;
@@ -62,7 +61,7 @@ describe('wizard-dialog', () => {
     });
 
     it('advances to the second page on next button click', async () => {
-      await (<HTMLElement>(
+      (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-button[dialogaction="next"]')
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -74,36 +73,12 @@ describe('wizard-dialog', () => {
       element.next();
       await element.updateComplete;
       expect(element.dialog).to.have.property('heading', 'Page 2');
-      await (<HTMLElement>(
+      (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-button[dialogaction="prev"]')
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       await element.updateComplete;
       expect(element.dialog).to.have.property('heading', 'Page 1');
-    });
-
-    it('executes the secondary action on secondary button click', done => {
-      element.wizard[0].secondary!.action = () => {
-        done();
-        return [];
-      };
-      (<HTMLElement>(
-        element.dialog!.querySelector('mwc-button[slot="secondaryAction"]')
-      )).click();
-    });
-
-    it('executes the primary action on primary button click', done => {
-      element.wizard[2].primary!.action = () => {
-        done();
-        return [];
-      };
-      element.next();
-      element.next();
-      element.updateComplete.then(() =>
-        (<HTMLElement>(
-          element.dialog!.querySelector('mwc-button[slot="primaryAction"]')
-        )).click()
-      );
     });
 
     describe('with invalid inputs', () => {
@@ -180,10 +155,7 @@ describe('wizard-dialog', () => {
           content: [],
           primary: {
             icon: 'anchor',
-            action: (
-              inputs: WizardInput[],
-              wizard: Element
-            ): EditorAction[] => {
+            action: (): EditorAction[] => {
               return [
                 {
                   new: {
@@ -199,7 +171,7 @@ describe('wizard-dialog', () => {
         },
       ];
       await element.updateComplete;
-      await (<HTMLElement>(
+      (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-button[slot="primaryAction"]')
       )).click();
       expect(element.wizard[0].primary).to.not.exist;
@@ -217,10 +189,72 @@ describe('wizard-dialog', () => {
         },
       ];
       await element.updateComplete;
-      await (<HTMLElement>(
+      (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-button[slot="primaryAction"]')
       )).click();
       expect(element.wizard[0].primary).to.exist;
+    });
+
+    describe('in pro mode', () => {
+      let host: Element;
+
+      beforeEach(async () => {
+        element = await fixture(
+          html`<mock-editor><wizard-dialog></wizard-dialog></mock-editor>`
+        ).then(elm => elm.querySelector<WizardDialog>('wizard-dialog')!);
+        localStorage.setItem('mode', 'pro');
+        element.requestUpdate();
+        await element.updateComplete;
+        host = new DOMParser().parseFromString(
+          '<host><test></test><host>',
+          'application/xml'
+        ).documentElement;
+        element.wizard = [
+          {
+            title: 'Page 1',
+            element: host.firstElementChild!,
+            content: [],
+            primary: {
+              icon: 'anchor',
+              action: () => [],
+              label: 'Test primary',
+            },
+          },
+        ];
+      });
+
+      it('looks like its snapshot', () => expect(element).to.equalSnapshot());
+
+      it('switches to code editor view on code toggle button click', async () => {
+        element.dialog!.querySelector('mwc-icon-button-toggle')!.on = true;
+        element.requestUpdate();
+        await element.updateComplete;
+        await element.dialog?.updateComplete;
+        expect(element).to.equalSnapshot();
+      });
+
+      describe('in code editor mode', () => {
+        beforeEach(async () => {
+          element.dialog!.querySelector('mwc-icon-button-toggle')!.on = true;
+          element.requestUpdate();
+          await element.updateComplete;
+          await element.dialog?.updateComplete;
+        });
+
+        it('commits the code action on primary button click', async () => {
+          element.dialog
+            ?.querySelector('ace-editor')
+            ?.setAttribute('value', '<success></success>');
+          await element.updateComplete;
+          element.dialog
+            ?.querySelector<Button>('mwc-button[slot="primaryAction"]')!
+            .click();
+          await element.updateComplete;
+          expect(host.firstElementChild).to.have.property('tagName', 'success');
+        });
+      });
+
+      after(() => localStorage.removeItem('mode'));
     });
   });
 });

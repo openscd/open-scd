@@ -32,6 +32,7 @@ export const de: Translations = {
     language: 'Sprache',
     languages: { de: 'Deutsch', en: 'Englisch (English)' },
     dark: 'Dunkles Design',
+    mode: 'Profimodus',
   },
   menu: {
     title: 'Menü',
@@ -310,6 +311,9 @@ export const de: Translations = {
   },
   updatesubstation: {
     title: 'Schaltanlage aktualisieren',
+  },
+  code: {
+    log: 'Element im XML Editor angepasst:  {{id}}',
   },
   add: 'Hinzufügen',
   new: 'Neu',

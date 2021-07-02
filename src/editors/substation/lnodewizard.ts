@@ -268,6 +268,7 @@ export function editlNode(element: Element): Wizard {
   return [
     {
       title: get('lnode.wizard.title.selectIEDs'),
+      element,
       content: [renderIEDPage(element)],
     },
     {
@@ -275,6 +276,7 @@ export function editlNode(element: Element): Wizard {
         child => child.tagName === 'LNode'
       ),
       title: get('lnode.wizard.title.selectLNs'),
+      element,
       primary: {
         icon: 'save',
         label: get('save'),

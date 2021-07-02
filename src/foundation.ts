@@ -3,6 +3,7 @@ import { directive, Part } from 'lit-html';
 
 import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
+import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
 
@@ -133,8 +134,12 @@ export function newActionEvent<T extends EditorAction>(
   });
 }
 
-export const wizardInputSelector = 'wizard-textfield, mwc-select';
-export type WizardInput = WizardTextField | Select;
+export const wizardInputSelector = 'wizard-textfield, ace-editor, mwc-select';
+export type WizardInput =
+  | WizardTextField
+  | (AceEditor & { checkValidity: () => boolean; label: string })
+  // TODO(c-dinkel): extend component
+  | Select;
 
 export type WizardAction = EditorAction | (() => Wizard);
 
@@ -151,10 +156,24 @@ export function isWizard(
   return typeof wizardAction === 'function';
 }
 
+/** @returns the validity of `input` depending on type. */
+export function checkValidity(input: WizardInput): boolean {
+  if (input instanceof WizardTextField || input instanceof Select)
+    return input.checkValidity();
+  else return true;
+}
+
+/** reports the validity of `input` depending on type. */
+export function reportValidity(input: WizardInput): boolean {
+  if (input instanceof WizardTextField || input instanceof Select)
+    return input.reportValidity();
+  else return true;
+}
+
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInput): string | null {
   if (input instanceof WizardTextField) return input.maybeValue;
-  else return input.value;
+  else return input.value ?? null;
 }
 
 /** @returns the `multiplier` of `input` if available. */
@@ -179,6 +198,7 @@ export interface WizardPage {
     action: WizardActor;
   };
   initial?: boolean;
+  element?: Element;
 }
 export type Wizard = WizardPage[];
 
