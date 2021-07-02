@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/openscd/open-scd/compare/v0.4.0...v0.4.1) (2021-07-02)
+
+
+### Bug Fixes
+
+* **help:** wrong plugin name in plugin.js for help ([7301d28](https://github.com/openscd/open-scd/commits/7301d28badd463ddd8c2111833b9588743b840c1))
+
 ## [0.4.0](https://github.com/openscd/open-scd/compare/v0.3.0...v0.4.0) (2021-07-02)
 
 
