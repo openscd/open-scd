@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/openscd/open-scd/compare/v0.3.0...v0.4.0) (2021-07-02)
+
+
+### Features
+
+* **editors/templates/lnodetype-wizards:** add basic lnodetype manipulation capabilities ([#213](https://github.com/openscd/open-scd/issues/213)) ([48a3753](https://github.com/openscd/open-scd/commits/48a37537dc2f59da87060b96e1530db200909c74))
+* **validators/validatetemplates:** add validation based on NSD files ([#229](https://github.com/openscd/open-scd/issues/229)) ([4397f9e](https://github.com/openscd/open-scd/commits/4397f9ee2d545d4f6b32a25d6b51282920186476))
+* **wizard-dialog:** add code editor to wizards ([#233](https://github.com/openscd/open-scd/issues/233)) ([78cc0b6](https://github.com/openscd/open-scd/commits/78cc0b62d4a64be6ecef5d87bdc6ee65cfd2d516))
+
+
+### Bug Fixes
+
+* **templates:** adjustwidth setting to better fit to small portable devices ([#236](https://github.com/openscd/open-scd/issues/236)) ([df60ca7](https://github.com/openscd/open-scd/commits/df60ca7df7f581016622d19c8014dc4da5d951d6))
+* **wizard-dialog:** remove button actions only after action was successful ([#231](https://github.com/openscd/open-scd/issues/231)) ([ba7cb33](https://github.com/openscd/open-scd/commits/ba7cb336e30785321c1a04d4c3b01254ac8344ed))
+
 ## [0.3.0](https://github.com/openscd/open-scd/compare/v0.2.0...v0.3.0) (2021-06-11)
 
 
