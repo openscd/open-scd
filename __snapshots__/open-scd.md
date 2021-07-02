@@ -765,7 +765,7 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/AboutBox.js"
+      value="/src/menu/Help.js"
     >
       <mwc-icon slot="meta">
         help
