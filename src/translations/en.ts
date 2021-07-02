@@ -309,6 +309,9 @@ export const en = {
   updatesubstation: {
     title: 'Update substation',
   },
+  code: {
+    log: 'Changed element in XML editor: {{id}}',
+  },
   add: 'Add',
   new: 'New',
   remove: 'Remove',
