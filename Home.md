@@ -11,7 +11,7 @@ This is the OpenSCD help. It could be a source for information on topics around 
 
 ### Substation
 
-- [Guess substation structure](https://github.com/openscd/open-scd/wiki/)
+- [Guess substation structure](https://github.com/openscd/open-scd/wiki/Guess-substation-structure)
 
 ### Communication
 
