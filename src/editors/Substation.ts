@@ -2,6 +2,7 @@ import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import { newWizardEvent } from '../foundation.js';
+import { wizards } from '../wizards/wizard-library.js';
 
 import { selectors, styles } from './substation/foundation.js';
 
@@ -16,11 +17,8 @@ export default class SubstationPlugin extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   openCreateSubstationWizard(): void {
-    this.dispatchEvent(
-      newWizardEvent(
-        SubstationEditor.wizard({ parent: this.doc.documentElement })
-      )
-    );
+    const wizard = wizards['Substation'].create(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   render(): TemplateResult {

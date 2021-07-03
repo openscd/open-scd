@@ -34,6 +34,7 @@ import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { editlNode } from './lnodewizard.js';
 import { SubstationEditor } from './substation-editor.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 /** Initial attribute values suggested for `VoltageLevel` creation */
 const initial = {
@@ -108,9 +109,8 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   openEditWizard(): void {
-    this.dispatchEvent(
-      newWizardEvent(VoltageLevelEditor.wizard({ element: this.element }))
-    );
+    const wizard = wizards['VoltageLevel'].create(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   openBayWizard(): void {
@@ -191,213 +191,6 @@ export class VoltageLevelEditor extends LitElement {
         )}
       </div>
     </section>`;
-  }
-
-  static updateAction(element: Element): WizardActor {
-    return (inputs: WizardInput[]): EditorAction[] => {
-      const name = inputs.find(i => i.label === 'name')!.value!;
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
-      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
-      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
-      const multiplier = getMultiplier(
-        inputs.find(i => i.label === 'Voltage')!
-      );
-
-      let voltageLevelAction: EditorAction | null;
-      let voltageAction: EditorAction | null;
-
-      if (
-        name === element.getAttribute('name') &&
-        desc === element.getAttribute('desc') &&
-        nomFreq === element.getAttribute('nomFreq') &&
-        numPhases === element.getAttribute('numPhases')
-      ) {
-        voltageLevelAction = null;
-      } else {
-        const newElement = <Element>element.cloneNode(false);
-        newElement.setAttribute('name', name);
-        if (desc === null) newElement.removeAttribute('desc');
-        else newElement.setAttribute('desc', desc);
-        if (nomFreq === null) newElement.removeAttribute('nomFreq');
-        else newElement.setAttribute('nomFreq', nomFreq);
-        if (numPhases === null) newElement.removeAttribute('numPhases');
-        else newElement.setAttribute('numPhases', numPhases);
-        voltageLevelAction = { old: { element }, new: { element: newElement } };
-      }
-
-      if (
-        Voltage ===
-          (element
-            .querySelector('VoltageLevel > Voltage')
-            ?.textContent?.trim() ?? null) &&
-        multiplier ===
-          (element
-            .querySelector('VoltageLevel > Voltage')
-            ?.getAttribute('multiplier') ?? null)
-      ) {
-        voltageAction = null;
-      } else {
-        voltageAction = getVoltageAction(
-          element.querySelector('VoltageLevel > Voltage'),
-          Voltage,
-          multiplier,
-          voltageLevelAction?.new.element ?? element
-        );
-      }
-
-      const actions: EditorAction[] = [];
-      if (voltageLevelAction) actions.push(voltageLevelAction);
-      if (voltageAction) actions.push(voltageAction);
-      return actions;
-    };
-  }
-
-  static createAction(parent: Element): WizardActor {
-    return (inputs: WizardInput[]): EditorAction[] => {
-      const name = getValue(inputs.find(i => i.label === 'name')!);
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-      const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
-      const numPhases = getValue(inputs.find(i => i.label === 'numPhases')!);
-      const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
-      const multiplier = getMultiplier(
-        inputs.find(i => i.label === 'Voltage')!
-      );
-
-      const element = createElement(parent.ownerDocument, 'VoltageLevel', {
-        name,
-        desc,
-        nomFreq,
-        numPhases,
-      });
-
-      if (Voltage !== null) {
-        const voltageElement = createElement(parent.ownerDocument, 'Voltage', {
-          unit: 'V',
-          multiplier,
-        });
-        voltageElement.textContent = Voltage;
-        element.appendChild(voltageElement);
-      }
-
-      return [
-        {
-          new: {
-            parent,
-            element,
-            reference: getReference(parent, 'VoltageLevel'),
-          },
-        },
-      ];
-    };
-  }
-
-  static wizard(options: WizardOptions): Wizard {
-    const [
-      heading,
-      actionName,
-      actionIcon,
-      action,
-      name,
-      desc,
-      nomFreq,
-      numPhases,
-      Voltage,
-      multiplier,
-      element,
-    ] = isCreateOptions(options)
-      ? [
-          get('voltagelevel.wizard.title.add'),
-          get('add'),
-          'add',
-          VoltageLevelEditor.createAction(options.parent),
-          '',
-          '',
-          initial.nomFreq,
-          initial.numPhases,
-          initial.Voltage,
-          initial.multiplier,
-          undefined,
-        ]
-      : [
-          get('voltagelevel.wizard.title.edit'),
-          get('save'),
-          'edit',
-          VoltageLevelEditor.updateAction(options.element),
-          options.element.getAttribute('name'),
-          options.element.getAttribute('desc'),
-          options.element.getAttribute('nomFreq'),
-          options.element.getAttribute('numPhases'),
-          options.element
-            .querySelector('VoltageLevel > Voltage')
-            ?.textContent?.trim() ?? null,
-          options.element
-            .querySelector('VoltageLevel > Voltage')
-            ?.getAttribute('multiplier') ?? null,
-          options.element,
-        ];
-
-    return [
-      {
-        title: heading,
-        element,
-        primary: {
-          icon: actionIcon,
-          label: actionName,
-          action: action,
-        },
-        content: [
-          html`<wizard-textfield
-            label="name"
-            .maybeValue=${name}
-            helper="${translate('voltagelevel.wizard.nameHelper')}"
-            required
-            validationMessage="${translate('textfield.required')}"
-            dialogInitialFocus
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="desc"
-            .maybeValue=${desc}
-            nullable
-            helper="${translate('voltagelevel.wizard.descHelper')}"
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="nomFreq"
-            .maybeValue=${nomFreq}
-            nullable
-            helper="${translate('voltagelevel.wizard.nomFreqHelper')}"
-            suffix="Hz"
-            required
-            validationMessage="${translate('textfield.nonempty')}"
-            pattern="${patterns.unsigned}"
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="numPhases"
-            .maybeValue=${numPhases}
-            nullable
-            helper="${translate('voltagelevel.wizard.numPhaseHelper')}"
-            suffix="#"
-            required
-            validationMessage="${translate('textfield.nonempty')}"
-            type="number"
-            min="1"
-            max="255"
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="Voltage"
-            .maybeValue=${Voltage}
-            nullable
-            unit="V"
-            .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
-            .multiplier=${multiplier}
-            helper="${translate('voltagelevel.wizard.voltageHelper')}"
-            required
-            validationMessage="${translate('textfield.nonempty')}"
-            pattern="${patterns.decimal}"
-          ></wizard-textfield>`,
-        ],
-      },
-    ];
   }
 
   static styles = css`

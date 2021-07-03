@@ -1,9 +1,16 @@
 import { SCLTag, Wizard } from '../foundation.js';
 
+import { substationCreateWizard, substationEditWizard } from './substation.js';
+
+import {
+  voltageLevelCreateWizard,
+  voltageLevelEditWizard,
+} from './voltagelevel.js';
+
 type EditWizard = (element: Element) => Wizard | undefined;
 type CreateWizards = (parent: Element) => Wizard | undefined;
 
-function emptyWizard(element: Element): Wizard | undefined {
+function emptyWizard(): Wizard | undefined {
   return;
 }
 
@@ -459,8 +466,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Substation: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: substationEditWizard,
+    create: substationCreateWizard,
   },
   SupSubscription: {
     edit: emptyWizard,
@@ -507,7 +514,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   VoltageLevel: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: voltageLevelEditWizard,
+    create: voltageLevelCreateWizard,
   },
 };
