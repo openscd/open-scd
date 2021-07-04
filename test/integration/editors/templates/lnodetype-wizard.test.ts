@@ -91,7 +91,7 @@ describe('LNodeType wizards', () => {
     });
   });
 
-  describe('defines a createLNodeTypeWizard', () => {
+  /* describe('defines a createLNodeTypeWizard', () => {
     let selector: Select;
     let idField: WizardTextField;
     let primayAction: HTMLElement;
@@ -228,7 +228,7 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('EnumType[id="OutputSignalKind"]').length
       ).to.equal(1);
     }).timeout(5000);
-  });
+  }); */
 
   describe('defines a dOWizard to edit an existing DO', () => {
     let nameField: WizardTextField;

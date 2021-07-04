@@ -277,9 +277,33 @@ function addPredefinedLNodeType(
   };
 }
 
+function getAdjacentClass(nsd74: XMLDocument, base: string): Element[] {
+  if (base === '') return [];
+  const adjacents = getAdjacentClass(
+    nsd74,
+    nsd74
+      .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
+      ?.getAttribute('base') ?? ''
+  );
+  return Array.from(
+    nsd74.querySelectorAll(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+    )
+  ).concat(adjacents);
+}
+
+function getAllDataObject(nsd74: XMLDocument, base: string): Element[] {
+  const lnodeclasses = getAdjacentClass(nsd74, base);
+
+  return lnodeclasses.flatMap(lnodeclass =>
+    Array.from(lnodeclass.querySelectorAll('DataObject'))
+  );
+}
+
 export function createLNodeTypeWizard(
   parent: Element,
-  templates: Document
+  templates: Document,
+  nsd74: XMLDocument
 ): Wizard {
   return [
     {
@@ -297,17 +321,20 @@ export function createLNodeTypeWizard(
           label="values"
           helper="Default logical nodes"
         >
-          ${Array.from(templates.querySelectorAll('LNodeType')).map(
-            datype =>
-              html`<mwc-list-item
+          ${Array.from(nsd74.querySelectorAll('LNClasses > LNClass')).map(
+            lnClass => {
+              const className = lnClass.getAttribute('name') ?? '';
+              return html`<mwc-list-item
+                style="min-width:200px"
                 graphic="icon"
                 hasMeta
-                value="${datype.getAttribute('id') ?? ''}"
-                ><span
-                  >${datype.getAttribute('id')?.replace('OpenSCD_', '')}</span
+                value="${className}"
+                ><span>${className}</span>
+                <span slot="meta"
+                  >${getAllDataObject(nsd74, className).length}</span
                 >
-                <span slot="meta">${datype.querySelectorAll('DO').length}</span>
-              </mwc-list-item>`
+              </mwc-list-item>`;
+            }
           )}
         </mwc-select>`,
         html`<wizard-textfield
