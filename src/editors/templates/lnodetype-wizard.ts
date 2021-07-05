@@ -231,52 +231,6 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
   ];
 }
 
-function addPredefinedLNodeType(
-  parent: Element,
-  templates: XMLDocument
-): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const id = getValue(inputs.find(i => i.label === 'id')!);
-
-    if (!id) return [];
-
-    const existId = Array.from(
-      templates.querySelectorAll(allDataTypeSelector)
-    ).some(type => type.getAttribute('id') === id);
-
-    if (existId) return [];
-
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-    const values = <Select>inputs.find(i => i.label === 'values');
-    const selectedElement = values.selected
-      ? templates.querySelector(`LNodeType[id="${values.selected.value}"]`)
-      : null;
-    const element = values.selected
-      ? <Element>selectedElement!.cloneNode(true)
-      : parent.ownerDocument.createElement('LNodeType');
-
-    element.setAttribute('id', id);
-    if (desc) element.setAttribute('desc', desc);
-
-    const actions: Create[] = [];
-
-    if (selectedElement)
-      addReferencedDataTypes(selectedElement, parent).forEach(action =>
-        actions.push(action)
-      );
-
-    actions.push({
-      new: {
-        parent,
-        element,
-        reference: getReference(parent, <SCLTag>element.tagName),
-      },
-    });
-
-    return unifyCreateActionArray(actions);
-  };
-}
-
 function getAdjacentClass(nsd74: XMLDocument, base: string): Element[] {
   if (base === '') return [];
   const adjacents = getAdjacentClass(
@@ -285,11 +239,13 @@ function getAdjacentClass(nsd74: XMLDocument, base: string): Element[] {
       .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
       ?.getAttribute('base') ?? ''
   );
-  return Array.from(
-    nsd74.querySelectorAll(
-      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+  return adjacents.concat(
+    Array.from(
+      nsd74.querySelectorAll(
+        `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+      )
     )
-  ).concat(adjacents);
+  );
 }
 
 function getAllDataObject(nsd74: XMLDocument, base: string): Element[] {
@@ -298,6 +254,47 @@ function getAllDataObject(nsd74: XMLDocument, base: string): Element[] {
   return lnodeclasses.flatMap(lnodeclass =>
     Array.from(lnodeclass.querySelectorAll('DataObject'))
   );
+}
+
+function lNTypeTypeHelperWizard(allDo: Element[]): Wizard {
+  return [
+    {
+      title: 'asd',
+      content: [
+        html`<mwc-list multi>
+          ${allDo.map(DO => {
+            const presCond = DO.getAttribute('presCond');
+            const name = DO.getAttribute('name');
+            return html`<mwc-check-list-item
+              left
+              hasMeta
+              value="${name}"
+              ?selected=${presCond === 'M'}
+              ><span>${name}</span
+              ><span slot="meta"
+                >${presCond === 'M' || presCond === 'O' ? presCond : 'C'}</span
+              ></mwc-check-list-item
+            >`;
+          })}
+        </mwc-list>`,
+      ],
+    },
+  ];
+}
+
+function openLnTypeHelperWizardAction(nsd74: XMLDocument): WizardActor {
+  return (_: WizardInput[], wizard: Element): EditorAction[] => {
+    const lnClass = (<Select>(
+      wizard.shadowRoot?.querySelector('#lnclassnamelist')
+    )).selected?.value;
+    if (!lnClass) return [];
+
+    const allDo = getAllDataObject(nsd74, lnClass!);
+
+    wizard.dispatchEvent(newWizardEvent(lNTypeTypeHelperWizard(allDo)));
+    wizard.dispatchEvent(newWizardEvent()); //close old wizard
+    return [];
+  };
 }
 
 export function createLNodeTypeWizard(
@@ -309,12 +306,13 @@ export function createLNodeTypeWizard(
     {
       title: get('lnodetype.wizard.title.add'),
       primary: {
-        icon: 'add',
-        label: get('add'),
-        action: addPredefinedLNodeType(parent, templates),
+        icon: '',
+        label: get('proceed'),
+        action: openLnTypeHelperWizardAction(nsd74),
       },
       content: [
         html`<mwc-select
+          id="lnclassnamelist"
           fixedMenuPosition
           outlined
           icon="playlist_add_check"
@@ -485,3 +483,49 @@ export function lNodeTypeWizard(
     },
   ];
 }
+
+/* function addPredefinedLNodeType(
+  parent: Element,
+  templates: XMLDocument
+): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!);
+
+    if (!id) return [];
+
+    const existId = Array.from(
+      templates.querySelectorAll(allDataTypeSelector)
+    ).some(type => type.getAttribute('id') === id);
+
+    if (existId) return [];
+
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const values = <Select>inputs.find(i => i.label === 'values');
+    const selectedElement = values.selected
+      ? templates.querySelector(`LNodeType[id="${values.selected.value}"]`)
+      : null;
+    const element = values.selected
+      ? <Element>selectedElement!.cloneNode(true)
+      : parent.ownerDocument.createElement('LNodeType');
+
+    element.setAttribute('id', id);
+    if (desc) element.setAttribute('desc', desc);
+
+    const actions: Create[] = [];
+
+    if (selectedElement)
+      addReferencedDataTypes(selectedElement, parent).forEach(action =>
+        actions.push(action)
+      );
+
+    actions.push({
+      new: {
+        parent,
+        element,
+        reference: getReference(parent, <SCLTag>element.tagName),
+      },
+    });
+
+    return unifyCreateActionArray(actions);
+  };
+}  */
