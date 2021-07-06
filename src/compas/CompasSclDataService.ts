@@ -72,10 +72,10 @@ export function CompasSclDataService() {
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
-               <CreateRequest xmlns="${SDS_NAMESPACE}">
-                   <Name>${body.sclName}</Name>
+               <sds:CreateRequest xmlns:sds="${SDS_NAMESPACE}">
+                   <sds:Name>${body.sclName}</sds:Name>
                    ${new XMLSerializer().serializeToString(body.doc.documentElement)}
-               </CreateRequest>`
+               </sds:CreateRequest>`
       })
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
@@ -89,10 +89,10 @@ export function CompasSclDataService() {
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
-               <UpdateRequest xmlns="${SDS_NAMESPACE}">
-                    <ChangeSet>${body.changeSet}</ChangeSet>
+               <sds:UpdateRequest xmlns:sds="${SDS_NAMESPACE}">
+                    <sds:ChangeSet>${body.changeSet}</sds:ChangeSet>
                     ${new XMLSerializer().serializeToString(body.doc.documentElement)}
-               </UpdateRequest>`
+               </sds:UpdateRequest>`
       })
     }
   }
