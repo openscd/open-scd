@@ -31,6 +31,6 @@ distributed under their [end user license agreement](CC-EULA.pdf).
 
 This project is licensed under the [Apache License 2.0](LICENSE).
 
-&copy; 2020 OMICRON electronics GmbH
+&copy; 2020-2021 OMICRON electronics GmbH
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_large)
