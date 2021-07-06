@@ -1,11 +1,16 @@
 import { SCLTag, Wizard } from '../foundation.js';
 
-import { substationCreateWizard, substationEditWizard } from './substation.js';
+import { createBayWizard, editBayWizard } from './bay.js';
 
 import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
 } from './voltagelevel.js';
+import { substationCreateWizard, substationEditWizard } from './substation.js';
+import {
+  createConductingEquipmentWizard,
+  editConductingEquipmentWizard,
+} from './conductingequipment.js';
 
 type EditWizard = (element: Element) => Wizard | undefined;
 type CreateWizards = (parent: Element) => Wizard | undefined;
@@ -50,8 +55,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Bay: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editBayWizard,
+    create: createBayWizard,
   },
   ClientLN: {
     edit: emptyWizard,
@@ -70,8 +75,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   ConductingEquipment: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editConductingEquipmentWizard,
+    create: createConductingEquipmentWizard,
   },
   ConfDataSet: {
     edit: emptyWizard,

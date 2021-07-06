@@ -11,78 +11,16 @@ import { translate, get } from 'lit-translate';
 import {
   createElement,
   EditorAction,
-  getMultiplier,
-  getReference,
-  getValue,
   newActionEvent,
   newWizardEvent,
-  patterns,
-  Wizard,
-  WizardActor,
-  WizardInput,
 } from '../../foundation.js';
 
-import {
-  isCreateOptions,
-  selectors,
-  startMove,
-  styles,
-  WizardOptions,
-  cloneElement,
-} from './foundation.js';
+import { selectors, startMove, styles, cloneElement } from './foundation.js';
 import './bay-editor.js';
 import { BayEditor } from './bay-editor.js';
 import { editlNode } from './lnodewizard.js';
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../../wizards/wizard-library.js';
-
-/** Initial attribute values suggested for `VoltageLevel` creation */
-const initial = {
-  nomFreq: '50',
-  numPhases: '3',
-  Voltage: '110',
-  multiplier: 'k',
-};
-
-function getVoltageAction(
-  oldVoltage: Element | null,
-  Voltage: string | null,
-  multiplier: string | null,
-  voltageLevel: Element
-): EditorAction {
-  if (oldVoltage === null) {
-    const element = createElement(voltageLevel.ownerDocument, 'Voltage', {
-      unit: 'V',
-      multiplier,
-    });
-    element.textContent = Voltage;
-    return {
-      new: {
-        parent: voltageLevel,
-        element,
-        reference: voltageLevel.firstElementChild,
-      },
-    };
-  }
-
-  if (Voltage === null)
-    return {
-      old: {
-        parent: voltageLevel,
-        element: oldVoltage,
-        reference: oldVoltage.nextElementSibling,
-      },
-    };
-
-  const newVoltage = <Element>oldVoltage.cloneNode(false);
-  newVoltage.textContent = Voltage;
-  if (multiplier === null) newVoltage.removeAttribute('multiplier');
-  else newVoltage.setAttribute('multiplier', multiplier);
-  return {
-    old: { element: oldVoltage },
-    new: { element: newVoltage },
-  };
-}
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
@@ -114,9 +52,8 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   openBayWizard(): void {
-    this.dispatchEvent(
-      newWizardEvent(BayEditor.wizard({ parent: this.element }))
-    );
+    const wizard = wizards['Bay'].create(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   openLNodeWizard(): void {
