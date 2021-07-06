@@ -31,7 +31,11 @@ import {
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import {
+  SelectedEvent,
+  SingleSelectedEvent,
+} from '@material/mwc-list/mwc-list-foundation';
+import { Switch } from '@material/mwc-switch';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -256,12 +260,36 @@ function getAllDataObject(nsd74: XMLDocument, base: string): Element[] {
   );
 }
 
-function lNTypeTypeHelperWizard(allDo: Element[]): Wizard {
+function triggerDoWizards(allDo: Element[]): WizardActor {
+  return (_: WizardInput[], wizard: Element): EditorAction[] => {
+    const selectedDOs = <ListItem[]>(
+      (<List>wizard.shadowRoot?.querySelector('#donamelist')).selected
+    );
+    if (!selectedDOs) return [];
+
+    const doNames = selectedDOs.map(listItem => listItem.value);
+
+    allDo.forEach(DO => {
+      if (doNames.includes(DO.getAttribute('name') ?? ''))
+        wizard.dispatchEvent(newWizardEvent()); // trigger create
+    });
+
+    wizard.dispatchEvent(newWizardEvent()); //close old wizard
+    return [];
+  };
+}
+
+function lNTypeTypeHelperWizard(allDo: Element[], lnClass: string): Wizard {
   return [
     {
-      title: 'asd',
+      title: `Select ${lnClass}`,
+      primary: {
+        label: get('proceed'),
+        icon: '',
+        action: triggerDoWizards(allDo),
+      },
       content: [
-        html`<mwc-list multi>
+        html`<mwc-list id="#donamelist" multi>
           ${allDo.map(DO => {
             const presCond = DO.getAttribute('presCond');
             const name = DO.getAttribute('name');
@@ -282,8 +310,54 @@ function lNTypeTypeHelperWizard(allDo: Element[]): Wizard {
   ];
 }
 
-function openLnTypeHelperWizardAction(nsd74: XMLDocument): WizardActor {
-  return (_: WizardInput[], wizard: Element): EditorAction[] => {
+function createAction(
+  parent: Element,
+  templates: XMLDocument,
+  nsd74: XMLDocument
+): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+    const id = getValue(inputs.find(i => i.label === 'id')!);
+
+    if (!id) return [];
+
+    const existId = Array.from(
+      templates.querySelectorAll(allDataTypeSelector)
+    ).some(type => type.getAttribute('id') === id);
+
+    if (existId) return [];
+
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const values = <Select>inputs.find(i => i.label === 'lnClass');
+    const selectedElement = values.selected
+      ? templates.querySelector(`LNodeType[lnClass="${values.selected.value}"]`)
+      : null;
+    const element = selectedElement
+      ? <Element>selectedElement!.cloneNode(true)
+      : parent.ownerDocument.createElement('LNodeType');
+
+    element.setAttribute('id', id);
+    if (desc) element.setAttribute('desc', desc);
+
+    const autoimport =
+      wizard.shadowRoot?.querySelector<Switch>('#autoimport')?.checked;
+
+    const actions: Create[] = [];
+    if (autoimport && selectedElement) {
+      addReferencedDataTypes(selectedElement, parent).forEach(action =>
+        actions.push(action)
+      );
+
+      actions.push({
+        new: {
+          parent,
+          element,
+          reference: getReference(parent, <SCLTag>element.tagName),
+        },
+      });
+
+      return unifyCreateActionArray(actions);
+    }
+
     const lnClass = (<Select>(
       wizard.shadowRoot?.querySelector('#lnclassnamelist')
     )).selected?.value;
@@ -291,7 +365,9 @@ function openLnTypeHelperWizardAction(nsd74: XMLDocument): WizardActor {
 
     const allDo = getAllDataObject(nsd74, lnClass!);
 
-    wizard.dispatchEvent(newWizardEvent(lNTypeTypeHelperWizard(allDo)));
+    wizard.dispatchEvent(
+      newWizardEvent(lNTypeTypeHelperWizard(allDo, lnClass))
+    );
     wizard.dispatchEvent(newWizardEvent()); //close old wizard
     return [];
   };
@@ -308,7 +384,7 @@ export function createLNodeTypeWizard(
       primary: {
         icon: '',
         label: get('proceed'),
-        action: openLnTypeHelperWizardAction(nsd74),
+        action: createAction(parent, templates, nsd74),
       },
       content: [
         html`<mwc-select
@@ -316,8 +392,21 @@ export function createLNodeTypeWizard(
           fixedMenuPosition
           outlined
           icon="playlist_add_check"
-          label="values"
+          label="lnClass"
           helper="Default logical nodes"
+          required
+          @selected=${(e: SelectedEvent) => {
+            const lnClass = (<Select>e.target).selected?.value ?? '';
+            const autoimport = (<Select>e.target).parentElement?.querySelector(
+              'mwc-formfield'
+            );
+
+            (<Switch>autoimport!.querySelector('mwc-switch')).checked = false; //default
+
+            if (templates.querySelector(`LNodeType[lnClass="${lnClass}"]`))
+              autoimport!.style.display = 'block';
+            else autoimport!.style.display = 'none';
+          }}
         >
           ${Array.from(nsd74.querySelectorAll('LNClasses > LNClass')).map(
             lnClass => {
@@ -335,6 +424,12 @@ export function createLNodeTypeWizard(
             }
           )}
         </mwc-select>`,
+        html`<mwc-formfield
+          style="display:none"
+          label="${translate('lnodetype.autoimport')}"
+          ><mwc-switch id="autoimport"></mwc-switch
+          ><mwc-formfield></mwc-formfield
+        ></mwc-formfield>`,
         html`<wizard-textfield
           label="id"
           helper="${translate('scl.id')}"
@@ -483,49 +578,3 @@ export function lNodeTypeWizard(
     },
   ];
 }
-
-/* function addPredefinedLNodeType(
-  parent: Element,
-  templates: XMLDocument
-): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const id = getValue(inputs.find(i => i.label === 'id')!);
-
-    if (!id) return [];
-
-    const existId = Array.from(
-      templates.querySelectorAll(allDataTypeSelector)
-    ).some(type => type.getAttribute('id') === id);
-
-    if (existId) return [];
-
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-    const values = <Select>inputs.find(i => i.label === 'values');
-    const selectedElement = values.selected
-      ? templates.querySelector(`LNodeType[id="${values.selected.value}"]`)
-      : null;
-    const element = values.selected
-      ? <Element>selectedElement!.cloneNode(true)
-      : parent.ownerDocument.createElement('LNodeType');
-
-    element.setAttribute('id', id);
-    if (desc) element.setAttribute('desc', desc);
-
-    const actions: Create[] = [];
-
-    if (selectedElement)
-      addReferencedDataTypes(selectedElement, parent).forEach(action =>
-        actions.push(action)
-      );
-
-    actions.push({
-      new: {
-        parent,
-        element,
-        reference: getReference(parent, <SCLTag>element.tagName),
-      },
-    });
-
-    return unifyCreateActionArray(actions);
-  };
-}  */

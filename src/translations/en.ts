@@ -227,6 +227,7 @@ export const en = {
         edit: 'Edit LNodeType',
       },
     },
+    autoimport: 'Load from template',
   },
   lnode: {
     wizard: {

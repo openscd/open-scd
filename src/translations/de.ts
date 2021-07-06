@@ -230,6 +230,7 @@ export const de: Translations = {
         edit: 'LNodeType bearbeiten',
       },
     },
+    autoimport: 'Aus Template laden',
   },
   lnode: {
     wizard: {
