@@ -40,6 +40,23 @@
       aria-disabled="false"
       class="top"
       graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Open CoMPAS
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
       iconid="create_new_folder"
       mwc-list-item=""
       tabindex="-1"
@@ -67,6 +84,24 @@
       </mwc-icon>
       <span>
         Save project
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="top"
+      disabled=""
+      graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Save CoMPAS
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -304,6 +339,21 @@
       aria-disabled="false"
       class="static"
       graphic="icon"
+      iconid="settings"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        settings
+      </mwc-icon>
+      <span>
+        CoMPAS Settings
+      </span>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="static"
+      graphic="icon"
       iconid="extension"
       mwc-list-item=""
       tabindex="-1"
@@ -357,6 +407,14 @@
   >
     <div class="landing_label">
       Open project
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="folder_open"
+  >
+    <div class="landing_label">
+      Open CoMPAS
     </div>
   </mwc-icon-button>
   <mwc-icon-button
@@ -555,6 +613,22 @@
       </mwc-icon>
       Templates
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/compas-editors/CompasVersions.js"
+    >
+      <mwc-icon slot="meta">
+        copy_all
+      </mwc-icon>
+      CoMPAS Versions
+    </mwc-check-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
@@ -603,6 +677,22 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/menu/OpenCompas.js"
+    >
+      <mwc-icon slot="meta">
+        folder_open
+      </mwc-icon>
+      Open CoMPAS
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/menu/NewProject.js"
     >
       <mwc-icon slot="meta">
@@ -625,6 +715,22 @@
         save
       </mwc-icon>
       Save project
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/SaveToCompas.js"
+    >
+      <mwc-icon slot="meta">
+        folder_open
+      </mwc-icon>
+      Save CoMPAS
     </mwc-check-list-item>
     <li
       divider=""
@@ -935,6 +1041,43 @@
 </mwc-circular-progress-four-color>
 <wizard-dialog>
 </wizard-dialog>
+<mwc-dialog
+  class="styled"
+  heading="CoMPAS Settings"
+  id="compasSettings"
+>
+  <form>
+    <mwc-textfield
+      dialoginitialfocus=""
+      id="sclDataServiceUrl"
+      label="CoMPAS SCL Data Service"
+      required=""
+      value="http://localhost:9090/compas-scl-data-service"
+    >
+    </mwc-textfield>
+  </form>
+  <mwc-button
+    dialogaction="close"
+    slot="secondaryAction"
+  >
+    Cancel
+  </mwc-button>
+  <mwc-button
+    dialogaction="reset"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+    Reset
+  </mwc-button>
+  <mwc-button
+    dialogaction="save"
+    icon="save"
+    slot="primaryAction"
+    trailingicon=""
+  >
+    Save
+  </mwc-button>
+</mwc-dialog>
 <mwc-dialog
   heading="Settings"
   id="settings"

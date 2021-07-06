@@ -1,0 +1,26 @@
+name: NodeJS Build
+
+on: push
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Build application with npm
+        run: |
+          npm ci
+          npm run-script build
+      - name: Build docker image
+        uses: docker/build-push-action@v2
+        with:
+          # Set the context to use the current directory and not execute it's own git checkout.
+          context: .
+          push: false

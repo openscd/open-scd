@@ -315,6 +315,7 @@ export const en = {
   add: 'Add',
   new: 'New',
   remove: 'Remove',
+  delete: 'Delete',
   edit: 'Edit',
   move: 'Move',
   create: 'Create',
@@ -330,4 +331,41 @@ export const en = {
   duplicate: 'Clone',
   connect: 'Connect',
   disconnect: 'Disconnect',
+
+  compas: {
+    loading: "Loading...",
+    error: {
+      type: "Unable to determine type from document name!",
+    },
+    changeset: {
+      major: "Major change",
+      minor: "Minor change",
+      patch: "Patch change",
+    },
+    open: {
+      listSclTypes: 'Type of SCL',
+      noSclTypes: 'No types found',
+      listScls: 'List of SCL ({{ type }})',
+      noScls: 'No SCLs found',
+    },
+    saveTo: {
+      title: 'Save to CoMPAS',
+      addError: 'Error adding SCL to CoMPAS!',
+      addSuccess: 'SCL added to CoMPAS.',
+      updateError: 'Error updating SCL in CoMPAS!',
+      updateSuccess: 'SCL updated in CoMPAS',
+    },
+    versions: {
+      title: 'CoMPAS Versions',
+      noVersions: "No CoMPAS versions found",
+      noScls: "No versions found for this SCL in CoMPAS",
+      confirmTitle: "Restore?",
+      confirm: "Are you sure to restore previous version?",
+      confirmButton: "Confirm",
+    },
+    settings: {
+      name: "CoMPAS Settings",
+      sclDataServiceUrl: "CoMPAS SCL Data Service"
+    }
+  },
 };

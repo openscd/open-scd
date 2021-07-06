@@ -4,6 +4,7 @@ import { directive, Part } from 'lit-html';
 import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
 import AceEditor from 'ace-custom-element';
+import { TextField } from '@material/mwc-textfield'
 
 import { WizardTextField } from './wizard-textfield.js';
 
@@ -134,11 +135,12 @@ export function newActionEvent<T extends EditorAction>(
   });
 }
 
-export const wizardInputSelector = 'wizard-textfield, ace-editor, mwc-select';
+export const wizardInputSelector = 'wizard-textfield, ace-editor, mwc-textfield, mwc-select';
 export type WizardInput =
   | WizardTextField
   | (AceEditor & { checkValidity: () => boolean; label: string })
   // TODO(c-dinkel): extend component
+  | TextField
   | Select;
 
 export type WizardAction = EditorAction | (() => Wizard);
