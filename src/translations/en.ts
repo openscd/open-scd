@@ -225,6 +225,7 @@ export const en = {
       title: {
         add: 'Add LNodeType',
         edit: 'Edit LNodeType',
+        select: 'Select Data Objects',
       },
     },
     autoimport: 'Load from template',

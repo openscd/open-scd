@@ -228,6 +228,7 @@ export const de: Translations = {
       title: {
         add: 'LNodeType hinzufügen',
         edit: 'LNodeType bearbeiten',
+        select: 'Data Objects auswählen',
       },
     },
     autoimport: 'Aus Template laden',

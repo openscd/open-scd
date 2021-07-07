@@ -36,7 +36,7 @@ describe('LNodeType wizards', () => {
     );
   });
 
-  describe('defines a lNodeTypeWizard', () => {
+  describe('defines a lNodeTypeHelperWizard', () => {
     let idField: WizardTextField;
     let primayAction: HTMLElement;
     let deleteButton: HTMLElement;
@@ -245,6 +245,116 @@ describe('LNodeType wizards', () => {
       expect(element?.nextElementSibling?.tagName).to.equal('LNodeType');
       expect(element?.previousElementSibling).to.be.null;
     }).timeout(5000);
+
+    describe('opens a createLNodeTypeHelperWizard', () => {
+      let saveButton: HTMLElement;
+      let beh: Select;
+      let enaOpn: Select;
+      let enaCls: Select;
+      let ens: Element;
+      let sps: Element;
+      let ensId: string;
+      let spsId: string;
+
+      beforeEach(async () => {
+        selector.value = 'CILO';
+        idField.maybeValue = 'myGeneralLNodeType';
+        await parent.updateComplete;
+
+        (<HTMLElement>(
+          parent.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        )).click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        saveButton = parent.wizardUI.shadowRoot!.querySelector<HTMLElement>(
+          'mwc-button[slot="primaryAction"]'
+        )!;
+
+        beh = parent.wizardUI.shadowRoot!.querySelector<Select>(
+          'mwc-select:nth-child(2)'
+        )!;
+        enaOpn = parent.wizardUI.shadowRoot!.querySelector<Select>(
+          'mwc-select:nth-child(21)'
+        )!;
+        enaCls = parent.wizardUI.shadowRoot!.querySelector<Select>(
+          'mwc-select:nth-child(22)'
+        )!;
+
+        ens = doc.querySelector('DOType[cdc="ENS"]')!;
+        sps = doc.querySelector('DOType[cdc="SPS"]')!;
+        ensId = ens?.getAttribute('id') ?? '';
+        spsId = sps?.getAttribute('id') ?? '';
+      });
+
+      it('looks like the latest snapshot', () => {
+        expect(parent.wizardUI.dialog).to.equalSnapshot();
+      });
+
+      it('filters the type selection for each DO to fit the cdc', () => {
+        expect(beh.querySelectorAll('mwc-list-item').length).to.equal(
+          doc.querySelectorAll('DOType[cdc="ENS"]').length
+        );
+      });
+
+      it('requires all mendatory DOs to be defined', async () => {
+        beh.value = ensId;
+        await parent.updateComplete;
+        saveButton.click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(parent.wizardUI.dialog).to.exist;
+        expect(
+          doc.querySelector(
+            'LNodeType[id="myGeneralLNodeType"][lnClass="CILO"]'
+          )
+        ).to.not.exist;
+      });
+      it('adds new lnodetype with corrrect id and lnClass', async () => {
+        beh.value = ensId;
+        enaOpn.value = spsId;
+        enaCls.value = spsId;
+        await parent.updateComplete;
+        saveButton.click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(parent.wizardUI.dialog).to.not.exist;
+        expect(
+          doc.querySelector(
+            'LNodeType[id="myGeneralLNodeType"][lnClass="CILO"]'
+          )
+        ).to.exist;
+      });
+      it('adds selected DOs to new lnodetype', async () => {
+        beh.value = ensId;
+        enaOpn.value = spsId;
+        enaCls.value = spsId;
+        await parent.updateComplete;
+        saveButton.click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(
+          doc.querySelector(
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="Beh"][bType="Struct"][type="${ensId}"]`
+          )
+        ).to.exist;
+        expect(
+          doc.querySelector(
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaOpn"][bType="Struct"][type="${spsId}"]`
+          )
+        ).to.exist;
+        expect(
+          doc.querySelector(
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaCls"][bType="Struct"][type="${spsId}"]`
+          )
+        ).to.exist;
+      });
+    });
   });
 
   describe('defines a dOWizard to edit an existing DO', () => {
