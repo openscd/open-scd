@@ -138,7 +138,8 @@ function eNumValWizard(options: WizardOptions): Wizard {
 
   return [
     {
-      title: title,
+      title,
+      element: enumval ?? undefined,
       primary: {
         icon: '',
         label: 'Save',
@@ -267,6 +268,7 @@ export function eNumTypeEditWizard(
   return [
     {
       title: get('enum.wizard.title.edit'),
+      element: enumtype,
       primary: {
         icon: '',
         label: get('save'),

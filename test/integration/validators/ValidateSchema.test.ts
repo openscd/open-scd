@@ -43,7 +43,7 @@ describe('ValidateSchema plugin', () => {
       const lastEntry = <LogEntry>parent.history.pop();
       expect(lastEntry.kind).to.equal('info');
       expect(lastEntry.title).to.contain('validation successful');
-    }).timeout(5000);
+    }).timeout(15000);
   });
 
   describe('for invalid SCL files', () => {

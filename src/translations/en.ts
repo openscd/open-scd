@@ -26,19 +26,14 @@ export const en = {
     transient: 'Transient data',
   },
   settings: {
-    name: 'Settings',
+    title: 'Settings',
     language: 'Language',
     languages: { de: 'German (Deutsch)', en: 'English' },
     dark: 'Dark theme',
+    mode: 'Pro mode',
   },
   menu: {
-    name: 'Menu',
-    open: 'Open project',
-    new: 'New project',
-    importIED: 'Import IED',
-    save: 'Save project',
-    subscriberinfo: 'Update subscriber info',
-    validate: 'Validate project',
+    title: 'Menu',
     viewLog: 'View log',
   },
   openSCD: {
@@ -57,16 +52,10 @@ export const en = {
       create: 'Could not add {{ name }}',
       update: 'Could not edit {{ name }}',
       move: 'Could not move {{ name }}',
-      duplicate: 'Could not copy {{name}}',
+      duplicate: 'Could not copy {{ name }}',
       nameClash:
         'Parent {{ parent }} already contains a {{ child }} named "{{ name }}"',
     },
-  },
-  validating: {
-    valid: '{{ name }} validation successful',
-    invalid: '{{ name }} validation failed',
-    fatal: 'Fatal validation error',
-    loadError: 'Could not load schema {{ name }}',
   },
   textfield: {
     required: 'Required',
@@ -84,8 +73,13 @@ export const en = {
   },
   plugins: {
     heading: 'Extensions',
-    editor: 'Editor pane',
-    triggered: 'Menu entry',
+    editor: 'Editor tab',
+    menu: 'Menu entry',
+    requireDoc: 'Requires loaded document',
+    top: 'top',
+    middle: 'middle',
+    bottom: 'bottom',
+    validator: 'Validator',
     add: {
       heading: 'Add custom extension',
       warning: `Here you may add remote extensions directly from a custom URL.
@@ -95,6 +89,13 @@ export const en = {
       src: 'URL',
       srcHelper: 'The vendor supplied extension URL',
     },
+  },
+  validate: {
+    title: 'Validate project',
+    valid: '{{ name }} validation successful',
+    invalid: '{{ name }} validation failed',
+    fatal: 'Fatal validation error',
+    loadError: 'Could not load schema {{ name }}',
   },
   substation: {
     name: 'Substation',
@@ -246,12 +247,13 @@ export const en = {
     },
   },
   merge: {
-    action: 'Merge',
+    title: 'Merge',
     defaultTitle: 'Merge {{ source }} into {{ sink }} ({{ tag }})',
     log: 'Merged {{ tag }} {{ source }} into {{ sink }}',
     children: 'Child elements',
   },
   import: {
+    title: 'Import IEDs',
     log: {
       successful: 'IED {{ name }} loaded',
       parsererror: 'Parser error',
@@ -291,24 +293,27 @@ export const en = {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',
     },
   },
-  transform: {
-    subscriber: {
-      description: 'Subscriber update: ',
-      nonewitems: 'no new IEDName elements to add',
-      message: '{{updatenumber}} IEDName elements added to the project',
-    },
-    'comm-map': {
-      wizard: { title: 'Communication mapping' },
-      connectCB: 'Connect {{CbType}}',
-      connectToIED: 'Connect to {{iedName}}',
-      sourceIED: 'Source IED',
-      sinkIED: 'Sink IED',
-    },
+  subscriber: {
+    title: 'Subscriber update',
+    description: 'Subscriber update: ',
+    nonewitems: 'no new IEDName elements to add',
+    message: '{{updatenumber}} IEDName elements added to the project',
+  },
+  commMap: {
+    title: 'Communication mapping',
+    connectCB: 'Connect {{CbType}}',
+    connectToIED: 'Connect to {{iedName}}',
+    sourceIED: 'Source IED',
+    sinkIED: 'Sink IED',
   },
   updatesubstation: {
     title: 'Update substation',
   },
+  code: {
+    log: 'Changed element in XML editor: {{id}}',
+  },
   add: 'Add',
+  new: 'New',
   remove: 'Remove',
   delete: 'Delete',
   edit: 'Edit',
@@ -316,6 +321,7 @@ export const en = {
   create: 'Create',
   save: 'Save',
   saveAs: 'Save as',
+  open: 'Open',
   reset: 'Reset',
   cancel: 'Cancel',
   close: 'Close',

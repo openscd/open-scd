@@ -151,22 +151,21 @@ export function createMissingIEDNameSubscriberInfo(
 export default class SubscriberInfoPlugin extends LitElement {
   doc!: XMLDocument;
 
-  async trigger(): Promise<void> {
+  async run(): Promise<void> {
     const actions: SimpleAction[] = createMissingIEDNameSubscriberInfo(
       this.doc!
     );
 
     if (!actions.length)
       throw new Error(
-        get('transform.subscriber.description') +
-          get('transform.subscriber.nonewitems')
+        get('subscriber.description') + get('subscriber.nonewitems')
       );
 
     this.dispatchEvent(
       newActionEvent({
         title:
-          get('transform.subscriber.description') +
-          get('transform.subscriber.message', {
+          get('subscriber.description') +
+          get('subscriber.message', {
             updatenumber: actions.length,
           }),
         actions: actions,

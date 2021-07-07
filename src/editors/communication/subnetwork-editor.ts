@@ -76,7 +76,7 @@ function getBitRateAction(
 
 export function updateSubNetworkAction(element: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-    const name = inputs.find(i => i.label === 'name')!.value;
+    const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
     const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
@@ -173,6 +173,7 @@ export function subNetworkWizard(options: WizardOptions): Wizard {
     type,
     BitRate,
     multiplier,
+    element,
   ] = isCreateOptions(options)
     ? [
         get('subnetwork.wizard.title.add'),
@@ -184,6 +185,7 @@ export function subNetworkWizard(options: WizardOptions): Wizard {
         initial.type,
         initial.bitrate,
         initial.multiplier,
+        undefined,
       ]
     : [
         get('subnetwork.wizard.title.edit'),
@@ -199,11 +201,13 @@ export function subNetworkWizard(options: WizardOptions): Wizard {
         options.element
           .querySelector('SubNetwork > BitRate')
           ?.getAttribute('multiplier') ?? null,
+        options.element,
       ];
 
   return [
     {
       title: heading,
+      element,
       primary: {
         icon: actionIcon,
         label: actionName,

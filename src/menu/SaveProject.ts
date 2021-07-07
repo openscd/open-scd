@@ -17,7 +17,7 @@ export default class SaveProjectPlugin extends LitElement {
   @property() doc!: XMLDocument;
   @property() docName!: string;
 
-  async save(): Promise<void> {
+  async run(): Promise<void> {
     if (this.doc) {
       const blob = new Blob(
         [formatXml(new XMLSerializer().serializeToString(this.doc))],

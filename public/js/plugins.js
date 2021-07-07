@@ -12,6 +12,7 @@ export const officialPlugins = [
     icon: 'settings_ethernet',
     default: true,
     kind: 'editor',
+
   },
   {
     name: 'Templates',
@@ -29,78 +30,114 @@ export const officialPlugins = [
   },
   {
     name: 'Open project',
-    src: '/src/loaders/OpenProject.js',
+    src: '/src/menu/OpenProject.js',
     icon: 'folder_open',
     default: true,
-    kind: 'loader'
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top'
   },
   {
     name: 'Open CoMPAS',
-    src: '/src/loaders/OpenCompas.js',
+    src: '/src/menu/OpenCompas.js',
     icon: 'folder_open',
     default: true,
-    kind: 'loader'
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top'
   },
   {
     name: 'New project',
-    src: '/src/loaders/NewProject.js',
+    src: '/src/menu/NewProject.js',
     icon: 'create_new_folder',
     default: true,
-    kind: 'loader'
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top'
   },
   {
     name: 'Save project',
-    src: '/src/savers/SaveProject.js',
+    src: '/src/menu/SaveProject.js',
     icon: 'save',
     default: true,
-    kind: 'saver'
+    kind: 'menu',
+    requireDoc: true,
+    position: 'top'
   },
   {
     name: 'Save CoMPAS',
-    src: '/src/savers/SaveToCompas.js',
+    src: '/src/menu/SaveToCompas.js',
     icon: 'folder_open',
     default: true,
-    kind: 'saver'
+    kind: 'menu',
+    requireDoc: true,
+    position: 'top'
   },
   {
     name: 'Validate project',
     src: '/src/validators/ValidateSchema.js',
     icon: 'rule_folder',
     default: true,
+    kind: 'validator',
+  },
+  {
+    name: 'Validate Templates',
+    src: '/src/validators/ValidateTemplates.js',
+    icon: 'rule_folder',
+    default: true,
     kind: 'validator'
   },
   {
     name: 'Import IEDs',
-    src: '/src/triggered/ImportIEDs.js',
+    src: '/src/menu/ImportIEDs.js',
     icon: 'snippet_folder',
     default: true,
-    kind: 'triggered'
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
   },
   {
     name: 'Subscriber Update',
-    src: '/src/triggered/SubscriberInfo.js',
+    src: '/src/menu/SubscriberInfo.js',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
   },
   {
     name: 'Merge Project',
-    src: '/src/triggered/Merge.js',
+    src: '/src/menu/Merge.js',
     icon: 'merge_type',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
   },
   {
     name: 'Update Substation',
-    src: '/src/triggered/UpdateSubstation.js',
+    src: '/src/menu/UpdateSubstation.js',
     icon: 'merge_type',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
   },
   {
     name: 'Communication Mapping',
-    src: '/src/triggered/CommunicationMapping.js',
+    src: '/src/menu/CommunicationMapping.js',
     icon: 'sync_alt',
     default: true,
-    kind: 'triggered',
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
+    name: 'Help',
+    src: '/src/menu/Help.js',
+    icon: 'help',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'bottom'
   },
 ];

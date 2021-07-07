@@ -556,3 +556,21 @@ export const generalConductingEquipmentIcon = html`<svg
     stroke-linecap="round"
   />
 </svg>`;
+
+export const openSCDIcon = html` <svg
+  xmlns="http://www.w3.org/2000/svg"
+  style="width:100px;height:100px"
+  viewBox="0 0 25 25"
+>
+  <path
+    d="M 2 9 L 12.5 2 L 23 9 L 21 9 L 21 21 L 4 21 L 4 9 Z"
+    fill="#eee8d5"
+    stroke="#6c71c4"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M 11 7 L 17.5 7 L 13.5 11 L 16.5 11 L 10 19 L 11.5 13 L 8.5 13 Z "
+    fill="#2aa198"
+  />
+</svg>`;

@@ -124,7 +124,7 @@ export class OpenSCD extends Hosting(Setting(CompasSettingUI(
     }
 
     mwc-dialog {
-      --mdc-dialog-max-width: 92vw;
+      --mdc-dialog-max-width: 98vw;
     }
 
     mwc-dialog > form {

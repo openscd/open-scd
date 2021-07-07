@@ -17,7 +17,7 @@ export default class NewProjectPlugin extends LitElement {
     inputs: WizardInput[],
     wizard: Element
   ): EditorAction[] {
-    const docName = inputs[0].value.match(/\.s[sc]d$/i)
+    const docName = inputs[0].value?.match(/\.s[sc]d$/i)
       ? inputs[0].value
       : inputs[0].value + '.scd';
     const version = <SupportedVersion>(
@@ -67,7 +67,7 @@ export default class NewProjectPlugin extends LitElement {
     ];
   }
 
-  async load(): Promise<void> {
+  async run(): Promise<void> {
     document
       .querySelector('open-scd')
       ?.dispatchEvent(newWizardEvent(this.newProjectWizard()));

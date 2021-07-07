@@ -167,6 +167,7 @@ export class SubstationEditor extends LitElement {
       name,
       desc,
       guessable,
+      element,
     ] = isCreateOptions(options)
       ? [
           get('substation.wizard.title.add'),
@@ -176,6 +177,7 @@ export class SubstationEditor extends LitElement {
           '',
           '',
           options.parent.querySelector(':root > IED'),
+          undefined,
         ]
       : [
           get('substation.wizard.title.edit'),
@@ -185,11 +187,13 @@ export class SubstationEditor extends LitElement {
           options.element.getAttribute('name'),
           options.element.getAttribute('desc'),
           false,
+          options.element,
         ];
 
     return [
       {
         title: heading,
+        element,
         primary: {
           icon: actionIcon,
           label: actionName,

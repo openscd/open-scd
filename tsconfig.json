@@ -15,6 +15,7 @@
     "outDir": "out-tsc",
     "sourceMap": true,
     "inlineSources": true,
+    "resolveJsonModule": true,
     "rootDir": "./"
   },
   "include": ["**/*.ts"]

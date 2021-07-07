@@ -147,6 +147,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
   return [
     {
       title,
+      element: sdo ?? undefined,
       primary: { icon: '', label: get('save'), action },
       content: [
         deleteButton,
@@ -366,6 +367,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
   return [
     {
       title,
+      element: da ?? undefined,
       primary: { icon: '', label: get('save'), action: action },
       content: [
         deleteButton,
@@ -600,6 +602,7 @@ export function dOTypeWizard(
   return [
     {
       title: get('dotype.wizard.title.edit'),
+      element: dotype,
       primary: {
         icon: '',
         label: get('save'),

@@ -178,6 +178,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
   return [
     {
       title,
+      element: DO ?? undefined,
       primary: { icon: '', label: get('save'), action },
       content: [
         deleteButton,
@@ -364,6 +365,7 @@ export function lNodeTypeWizard(
   return [
     {
       title: get('lnodetype.wizard.title.edit'),
+      element: lnodetype,
       primary: {
         icon: '',
         label: get('save'),
