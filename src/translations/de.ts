@@ -228,8 +228,11 @@ export const de: Translations = {
       title: {
         add: 'LNodeType hinzufügen',
         edit: 'LNodeType bearbeiten',
+        select: 'Data Objects auswählen',
       },
     },
+    autoimport: 'Vordefinierte OpenSCD LN Klasse verwenden',
+    missinglnclass: 'Vordefinierte LN Klasse fehlt',
   },
   lnode: {
     wizard: {
@@ -333,4 +336,5 @@ export const de: Translations = {
   duplicate: 'Klonen',
   connect: 'Verbinden',
   disconnect: 'Trennen',
+  next: 'Weiter',
 };

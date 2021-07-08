@@ -36,6 +36,10 @@ const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
+const nsd74 = fetch('public/xml/IEC_61850-7-4_2007B3.nsd')
+  .then(response => response.text())
+  .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
 /** An editor [[`plugin`]] for editing the `DataTypeTemplates` section. */
 export default class TemplatesPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
@@ -49,7 +53,8 @@ export default class TemplatesPlugin extends LitElement {
       newWizardEvent(
         createLNodeTypeWizard(
           this.doc.querySelector(':root > DataTypeTemplates')!,
-          await templates
+          await templates,
+          await nsd74
         )
       )
     );
