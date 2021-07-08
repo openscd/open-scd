@@ -1,20 +1,18 @@
 import { SCLTag, Wizard } from '../foundation.js';
 
 import { createBayWizard, editBayWizard } from './bay.js';
-
-import { substationCreateWizard, substationEditWizard } from './substation.js';
 import {
   createConductingEquipmentWizard,
   editConductingEquipmentWizard,
 } from './conductingequipment.js';
 import { lNodeWizard } from './lnode.js';
+import { substationCreateWizard, substationEditWizard } from './substation.js';
 import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
 } from './voltagelevel.js';
 
-type EditWizard = (element: Element) => Wizard | undefined;
-type CreateWizards = (parent: Element) => Wizard | undefined;
+type SclElementWizard = (element: Element) => Wizard | undefined;
 
 function emptyWizard(): Wizard | undefined {
   return;
@@ -23,8 +21,8 @@ function emptyWizard(): Wizard | undefined {
 export const wizards: Record<
   SCLTag,
   {
-    edit: EditWizard;
-    create: CreateWizards;
+    edit: SclElementWizard;
+    create: SclElementWizard;
   }
 > = {
   AccessControl: {
