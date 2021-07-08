@@ -228,7 +228,8 @@ export const en = {
         select: 'Select Data Objects',
       },
     },
-    autoimport: 'Load from template',
+    autoimport: 'Use LN class from OpenSCD template',
+    missinglnclass: 'Missing pre-defined LN class',
   },
   lnode: {
     wizard: {
@@ -332,4 +333,5 @@ export const en = {
   duplicate: 'Clone',
   connect: 'Connect',
   disconnect: 'Disconnect',
+  next: 'Next',
 };

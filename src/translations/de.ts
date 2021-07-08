@@ -231,7 +231,8 @@ export const de: Translations = {
         select: 'Data Objects auswählen',
       },
     },
-    autoimport: 'Aus Template laden',
+    autoimport: 'Vordefinierte OpenSCD LN Klasse verwenden',
+    missinglnclass: 'Vordefinierte LN Klasse fehlt',
   },
   lnode: {
     wizard: {
@@ -335,4 +336,5 @@ export const de: Translations = {
   duplicate: 'Klonen',
   connect: 'Verbinden',
   disconnect: 'Trennen',
+  next: 'Weiter',
 };

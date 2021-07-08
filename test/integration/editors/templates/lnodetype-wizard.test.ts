@@ -128,6 +128,7 @@ describe('LNodeType wizards', () => {
       expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.not
         .exist;
       selector.value = 'CSWI';
+      await parent.requestUpdate();
       idField.maybeValue = 'myGeneralLNodeType';
       autoimport.checked = false;
       await parent.requestUpdate();
@@ -260,6 +261,7 @@ describe('LNodeType wizards', () => {
         selector.value = 'CILO';
         idField.maybeValue = 'myGeneralLNodeType';
         await parent.updateComplete;
+        autoimport.checked = false;
 
         (<HTMLElement>(
           parent.wizardUI.dialog?.querySelector(

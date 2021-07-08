@@ -33,6 +33,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
+import { Formfield } from '@material/mwc-formfield';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -232,15 +233,15 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
   ];
 }
 
-function getAdjacentClass(nsd74: XMLDocument, base: string): Element[] {
+function getDescendantClasses(nsd74: XMLDocument, base: string): Element[] {
   if (base === '') return [];
-  const adjacents = getAdjacentClass(
+  const descendants = getDescendantClasses(
     nsd74,
     nsd74
       .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
       ?.getAttribute('base') ?? ''
   );
-  return adjacents.concat(
+  return descendants.concat(
     Array.from(
       nsd74.querySelectorAll(
         `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
@@ -249,8 +250,8 @@ function getAdjacentClass(nsd74: XMLDocument, base: string): Element[] {
   );
 }
 
-function getAllDataObject(nsd74: XMLDocument, base: string): Element[] {
-  const lnodeclasses = getAdjacentClass(nsd74, base);
+function getAllDataObjects(nsd74: XMLDocument, base: string): Element[] {
+  const lnodeclasses = getDescendantClasses(nsd74, base);
 
   return lnodeclasses.flatMap(lnodeclass =>
     Array.from(lnodeclass.querySelectorAll('DataObject'))
@@ -352,7 +353,7 @@ function addPredefinedLNodeType(
   return unifyCreateActionArray(actions);
 }
 
-function proceedLNodeTypeCreate(
+function startLNodeTypeCreate(
   parent: Element,
   templates: XMLDocument,
   nsd74: XMLDocument
@@ -390,7 +391,7 @@ function proceedLNodeTypeCreate(
     if (autoimport && templateLNodeType)
       return addPredefinedLNodeType(parent, newLNodeType, templateLNodeType);
 
-    const allDo = getAllDataObject(nsd74, lnClass!);
+    const allDo = getAllDataObjects(nsd74, lnClass!);
     wizard.dispatchEvent(
       newWizardEvent(createLNodeTypeHelperWizard(parent, newLNodeType, allDo))
     );
@@ -400,17 +401,53 @@ function proceedLNodeTypeCreate(
   };
 }
 
-function manageAutoimport(e: Event, templates: XMLDocument): void {
+function onLnClassChange(e: Event, templates: XMLDocument): void {
   const lnClass = (<Select>e.target).selected?.value;
   const autoimport = (<Select>e.target).parentElement!.querySelector<Switch>(
     '#autoimport'
   )!;
 
-  autoimport.checked = false;
+  const primaryAction =
+    (<Element>e.target)
+      ?.closest('mwc-dialog')
+      ?.querySelector('mwc-button[slot="primaryAction"]') ?? null;
 
-  if (templates.querySelector(`LNodeType[lnClass="${lnClass}"]`))
-    autoimport.parentElement!.style.display = 'block';
-  else autoimport.parentElement!.style.display = 'none';
+  autoimport.parentElement!.removeAttribute('style');
+
+  if (templates.querySelector(`LNodeType[lnClass="${lnClass}"]`)) {
+    autoimport.checked = true;
+    autoimport.disabled = false;
+    autoimport.parentElement!.setAttribute(
+      'label',
+      get('lnodetype.autoimport')
+    );
+    primaryAction?.setAttribute('label', get('save'));
+    primaryAction?.setAttribute('icon', 'save');
+  } else {
+    autoimport.checked = false;
+    autoimport.disabled = true;
+    autoimport.parentElement!.setAttribute(
+      'label',
+      get('lnodetype.missinglnclass')
+    );
+    primaryAction?.setAttribute('label', get('next') + '...');
+    primaryAction?.setAttribute('icon', '');
+  }
+}
+
+function toggleAutoimport(e: Event): void {
+  const autoimport = <Switch>e.target;
+  const primaryAction =
+    (<Element>e.target)
+      ?.closest('mwc-dialog')
+      ?.querySelector('mwc-button[slot="primaryAction"]') ?? null;
+
+  autoimport.checked
+    ? primaryAction?.setAttribute('label', get('save'))
+    : primaryAction?.setAttribute('label', get('next') + '...');
+  autoimport.checked
+    ? primaryAction?.setAttribute('icon', 'save')
+    : primaryAction?.setAttribute('icon', '');
 }
 
 export function createLNodeTypeWizard(
@@ -423,8 +460,8 @@ export function createLNodeTypeWizard(
       title: get('lnodetype.wizard.title.add'),
       primary: {
         icon: '',
-        label: get('proceed'),
-        action: proceedLNodeTypeCreate(parent, templates, nsd74),
+        label: get('next') + '...',
+        action: startLNodeTypeCreate(parent, templates, nsd74),
       },
       content: [
         html`<mwc-select
@@ -435,7 +472,8 @@ export function createLNodeTypeWizard(
           label="lnClass"
           helper="Default logical nodes"
           required
-          @selected=${(e: Event) => manageAutoimport(e, templates)}
+          dialogInitialFocus
+          @selected=${(e: Event) => onLnClassChange(e, templates)}
         >
           ${Array.from(nsd74.querySelectorAll('LNClasses > LNClass')).map(
             lnClass => {
@@ -447,16 +485,17 @@ export function createLNodeTypeWizard(
                 value="${className}"
                 ><span>${className}</span>
                 <span slot="meta"
-                  >${getAllDataObject(nsd74, className).length}</span
+                  >${getAllDataObjects(nsd74, className).length}</span
                 >
               </mwc-list-item>`;
             }
           )}
         </mwc-select>`,
-        html`<mwc-formfield
-          style="display:none"
-          label="${translate('lnodetype.autoimport')}"
-          ><mwc-switch id="autoimport"></mwc-switch
+        html`<mwc-formfield style="display:none"
+          ><mwc-switch
+            id="autoimport"
+            @change=${(e: Event) => toggleAutoimport(e)}
+          ></mwc-switch
           ><mwc-formfield></mwc-formfield
         ></mwc-formfield>`,
         html`<wizard-textfield
@@ -467,7 +506,6 @@ export function createLNodeTypeWizard(
           maxlength="127"
           minlength="1"
           pattern="${patterns.nmToken}"
-          dialogInitialFocus
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
