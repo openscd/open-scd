@@ -80,7 +80,7 @@ function render(
   ];
 }
 
-function createAction(parent: Element): WizardActor {
+export function createAction(parent: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -179,7 +179,7 @@ function getVoltageAction(
   };
 }
 
-function updateAction(element: Element): WizardActor {
+export function updateAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);

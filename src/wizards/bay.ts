@@ -31,7 +31,7 @@ function render(name: string | null, desc: string | null): TemplateResult[] {
   ];
 }
 
-function createAction(parent: Element): WizardActor {
+export function createAction(parent: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);

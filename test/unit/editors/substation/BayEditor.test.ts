@@ -4,6 +4,8 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '../../../../src/wizard-textfield.js';
 import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
 import { updateNamingAction } from '../../../../src/editors/substation/foundation.js';
+import { wizards } from '../../../../src/wizards/wizard-library.js';
+import { createAction } from '../../../../src/wizards/bay.js';
 
 describe('BayEditor', () => {
   const noOp = () => {
@@ -37,7 +39,7 @@ describe('BayEditor', () => {
     });
 
     it('returns a WizardAction which returns a Create EditorAction', () => {
-      const wizardAction = BayEditor.createAction(parent);
+      const wizardAction = createAction(parent);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
     });
   });
