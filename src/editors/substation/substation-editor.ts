@@ -6,35 +6,14 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate, get } from 'lit-translate';
+import { translate } from 'lit-translate';
 
-import {
-  createElement,
-  EditorAction,
-  getReference,
-  getValue,
-  newActionEvent,
-  newWizardEvent,
-  SCLTag,
-  Wizard,
-  WizardActor,
-  WizardInput,
-} from '../../foundation.js';
+import { newActionEvent, newWizardEvent } from '../../foundation.js';
 
-import {
-  isCreateOptions,
-  selectors,
-  styles,
-  updateNamingAction,
-  WizardOptions,
-} from './foundation.js';
+import { selectors, styles } from './foundation.js';
 
 import './voltage-level-editor.js';
-import { VoltageLevelEditor } from './voltage-level-editor.js';
-import { editlNode } from './lnodewizard.js';
-import { guessVoltageLevel } from './guess-wizard.js';
 import { wizards } from '../../wizards/wizard-library.js';
-import { substationEditWizard } from '../../wizards/substation.js';
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
 export class SubstationEditor extends LitElement {
@@ -67,7 +46,8 @@ export class SubstationEditor extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+    const wizard = wizards['LNode'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   /** Deletes [[`element`]]. */

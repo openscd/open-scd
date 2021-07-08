@@ -6,19 +6,12 @@ import {
   property,
   css,
 } from 'lit-element';
-import { translate, get } from 'lit-translate';
+import { translate } from 'lit-translate';
 
-import {
-  createElement,
-  EditorAction,
-  newActionEvent,
-  newWizardEvent,
-} from '../../foundation.js';
+import { newActionEvent, newWizardEvent } from '../../foundation.js';
 
 import { selectors, startMove, styles, cloneElement } from './foundation.js';
 import './bay-editor.js';
-import { BayEditor } from './bay-editor.js';
-import { editlNode } from './lnodewizard.js';
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
@@ -47,7 +40,7 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   openEditWizard(): void {
-    const wizard = wizards['VoltageLevel'].create(this.element);
+    const wizard = wizards['VoltageLevel'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -56,8 +49,10 @@ export class VoltageLevelEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+    const wizard = wizards['LNode'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   remove(): void {

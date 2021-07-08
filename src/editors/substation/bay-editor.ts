@@ -12,7 +12,6 @@ import { newActionEvent, newWizardEvent } from '../../foundation.js';
 
 import { startMove, styles, cloneElement } from './foundation.js';
 import './conducting-equipment-editor.js';
-import { editlNode } from './lnodewizard.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
@@ -41,8 +40,10 @@ export class BayEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+    const wizard = wizards['LNode'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   remove(): void {

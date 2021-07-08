@@ -2,15 +2,16 @@ import { SCLTag, Wizard } from '../foundation.js';
 
 import { createBayWizard, editBayWizard } from './bay.js';
 
-import {
-  voltageLevelCreateWizard,
-  voltageLevelEditWizard,
-} from './voltagelevel.js';
 import { substationCreateWizard, substationEditWizard } from './substation.js';
 import {
   createConductingEquipmentWizard,
   editConductingEquipmentWizard,
 } from './conductingequipment.js';
+import { lNodeWizard } from './lnode.js';
+import {
+  voltageLevelCreateWizard,
+  voltageLevelEditWizard,
+} from './voltagelevel.js';
 
 type EditWizard = (element: Element) => Wizard | undefined;
 type CreateWizards = (parent: Element) => Wizard | undefined;
@@ -287,8 +288,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   LNode: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: lNodeWizard,
+    create: lNodeWizard,
   },
   LNodeType: {
     edit: emptyWizard,

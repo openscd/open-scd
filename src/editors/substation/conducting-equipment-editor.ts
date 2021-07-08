@@ -10,7 +10,6 @@ import {
 import { newActionEvent, newWizardEvent } from '../../foundation.js';
 
 import { startMove } from './foundation.js';
-import { editlNode } from './lnodewizard.js';
 import { BayEditor } from './bay-editor.js';
 
 import { typeIcon } from './conducting-equipment-types.js';
@@ -37,8 +36,10 @@ export class ConductingEquipmentEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+    const wizard = wizards['LNode'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   remove(): void {

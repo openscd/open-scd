@@ -1,5 +1,4 @@
 import { TemplateResult } from 'lit-html';
-import { get } from 'lit-translate';
 
 import {
   disconnectorIcon,

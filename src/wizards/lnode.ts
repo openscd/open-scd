@@ -13,7 +13,7 @@ import {
   Wizard,
   WizardActor,
   WizardInput,
-} from '../../foundation.js';
+} from '../foundation.js';
 
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -266,7 +266,7 @@ function renderIEDPage(element: Element): TemplateResult {
 }
 
 /** @returns a Wizard for editing `element`'s `LNode` children. */
-export function editlNode(element: Element): Wizard {
+export function lNodeWizard(element: Element): Wizard {
   return [
     {
       title: get('lnode.wizard.title.selectIEDs'),
