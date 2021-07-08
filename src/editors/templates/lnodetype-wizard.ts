@@ -294,6 +294,11 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
   };
 }
 
+function compareDOTypeId(id: string, cdc: string): -1 | 0 | 1 {
+  if (id.includes(cdc)) return 1;
+  return 0;
+}
+
 function createLNodeTypeHelperWizard(
   parent: Element,
   element: Element,
@@ -309,12 +314,13 @@ function createLNodeTypeHelperWizard(
       },
       content: allDo.map(DO => {
         const presCond = DO.getAttribute('presCond');
-        const name = DO.getAttribute('name');
+        const name = DO.getAttribute('name') ?? '';
         const validDOTypes = Array.from(
           parent
             .closest('DataTypeTemplates')!
             .querySelectorAll(`DOType[cdc="${DO.getAttribute('type')}"]`)
-        );
+        ).sort((a, b) => compareDOTypeId(b.getAttribute('id') ?? '', name));
+
         return html`<mwc-select
           fixedMenuPosition
           naturalMenuWidth
