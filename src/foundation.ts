@@ -2493,6 +2493,15 @@ export function getVersion(element: Element): string {
   return header[0].getAttribute('version') ?? '2003';
 }
 
+export function getChildElementsByTagName(
+  element: Element,
+  tag: string
+): Element[] {
+  return Array.from(element.children).filter(
+    element => element.tagName === tag
+  );
+}
+
 declare global {
   interface ElementEventMap {
     ['pending-state']: PendingStateEvent;

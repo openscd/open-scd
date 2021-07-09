@@ -4,8 +4,10 @@ import { get, translate } from 'lit-translate';
 import {
   createElement,
   EditorAction,
+  getChildElementsByTagName,
   getReference,
   identity,
+  isPublic,
   referencePath,
   selector,
   Wizard,
@@ -131,8 +133,8 @@ export function lNodeWizardAction(parent: Element): WizardActor {
       })
       .filter(item => item !== null);
 
-    const oldLNodes = Array.from(parent.getElementsByTagName('LNode')).filter(
-      item => !item.closest('Private')
+    const oldLNodes = getChildElementsByTagName(parent, 'LNode').filter(
+      isPublic
     );
 
     const deleteActions = oldLNodes

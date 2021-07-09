@@ -125,6 +125,26 @@ describe('lnodewizard', () => {
           )
         ).to.exist;
       });
+      it('only create and remove its own logical node references', async () => {
+        const allLNodesNumber = doc.querySelectorAll(
+          'Bay[name="COUPLING_BAY"] LNode'
+        ).length;
+        (<List>(
+          element.wizardUI.shadowRoot
+            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('filtered-list')
+        )).items[3].click();
+        await element.updateComplete;
+        (<HTMLElement>(
+          element.wizardUI.shadowRoot
+            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('mwc-button[slot="primaryAction"]')
+        )).click();
+        await element.updateComplete;
+        expect(
+          doc.querySelectorAll('Bay[name="COUPLING_BAY"] LNode').length
+        ).to.equal(allLNodesNumber + 1);
+      });
     });
   });
 });
