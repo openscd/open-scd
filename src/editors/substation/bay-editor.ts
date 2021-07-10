@@ -6,32 +6,14 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { translate, get } from 'lit-translate';
+import { translate } from 'lit-translate';
 
-import {
-  createElement,
-  EditorAction,
-  getReference,
-  getValue,
-  newActionEvent,
-  newWizardEvent,
-  Wizard,
-  WizardActor,
-  WizardInput,
-} from '../../foundation.js';
+import { newActionEvent, newWizardEvent } from '../../foundation.js';
 
-import {
-  isCreateOptions,
-  startMove,
-  styles,
-  updateNamingAction,
-  WizardOptions,
-  cloneElement,
-} from './foundation.js';
+import { startMove, styles, cloneElement } from './foundation.js';
 import './conducting-equipment-editor.js';
-import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
-import { editlNode } from './lnodewizard.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
@@ -49,21 +31,19 @@ export class BayEditor extends LitElement {
   }
 
   openEditWizard(): void {
-    this.dispatchEvent(
-      newWizardEvent(BayEditor.wizard({ element: this.element }))
-    );
+    const wizard = wizards['Bay'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   openConductingEquipmentWizard(): void {
-    if (!this.element) return;
-    const event = newWizardEvent(
-      ConductingEquipmentEditor.wizard({ parent: this.element })
-    );
-    this.dispatchEvent(event);
+    const wizard = wizards['ConductingEquipment'].create(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
   openLNodeWizard(): void {
-    this.dispatchEvent(newWizardEvent(editlNode(this.element)));
+    const wizard = wizards['LNode'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   remove(): void {
@@ -139,78 +119,6 @@ export class BayEditor extends LitElement {
         )}
       </div>
     </section> `;
-  }
-
-  static createAction(parent: Element): WizardActor {
-    return (inputs: WizardInput[]): EditorAction[] => {
-      const name = getValue(inputs.find(i => i.label === 'name')!);
-      const desc = getValue(inputs.find(i => i.label === 'desc')!);
-      const element = createElement(parent.ownerDocument, 'Bay', {
-        name,
-        desc,
-      });
-
-      const action = {
-        new: {
-          parent,
-          element,
-          reference: getReference(parent, 'Bay'),
-        },
-      };
-
-      return [action];
-    };
-  }
-
-  static wizard(options: WizardOptions): Wizard {
-    const [heading, actionName, actionIcon, action, name, desc, element] =
-      isCreateOptions(options)
-        ? [
-            get('bay.wizard.title.add'),
-            get('add'),
-            'add',
-            BayEditor.createAction(options.parent),
-            '',
-            '',
-            undefined,
-          ]
-        : [
-            get('bay.wizard.title.edit'),
-            get('save'),
-            'edit',
-            updateNamingAction(options.element),
-            options.element.getAttribute('name'),
-            options.element.getAttribute('desc'),
-            options.element,
-          ];
-
-    return [
-      {
-        title: heading,
-        element,
-        primary: {
-          icon: actionIcon,
-          label: actionName,
-          action: action,
-        },
-        content: [
-          html`<wizard-textfield
-            label="name"
-            .maybeValue=${name}
-            helper="${translate('bay.wizard.nameHelper')}"
-            required
-            validationMessage="${translate('textfield.required')}"
-            dialogInitialFocus
-          ></wizard-textfield>`,
-          html`<wizard-textfield
-            label="desc"
-            .maybeValue=${desc}
-            nullable
-            helper="${translate('bay.wizard.descHelper')}"
-          ></wizard-textfield>`,
-        ],
-      },
-    ];
   }
 
   static styles = css`

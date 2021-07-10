@@ -5,7 +5,7 @@ import '@material/mwc-list/mwc-list';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
-import { editlNode } from '../../../../src/editors/substation/lnodewizard.js';
+import { lNodeWizard } from '../../../../src/wizards/lnode.js';
 
 import '../../../mock-wizard.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
@@ -23,7 +23,7 @@ describe('lnodewizard', () => {
     element = <MockWizardEditor>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
-    element.workflow.push(editlNode(doc.querySelector('Bay')!));
+    element.workflow.push(lNodeWizard(doc.querySelector('Bay')!));
     await element.requestUpdate();
   });
 
