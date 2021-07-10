@@ -21,6 +21,7 @@ import {
   tags,
   getReference,
   SCLTag,
+  getChildElementsByTagName,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -483,6 +484,23 @@ describe('foundation', () => {
     it('returns empty array if input is not public', () => {
       expect(findFCDAs(doc.querySelector('Private > ExtRef')!).length).to.equal(
         0
+      );
+    });
+  });
+
+  describe('getChildElementsByTagName', () => {
+    let doc: Document;
+    beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/lnodewizard.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    });
+    it('returns a child Element array with a specific tag', () => {
+      const parent = doc.querySelector('Bay[name="COUPLING_BAY"]');
+      expect(getChildElementsByTagName(parent!, 'LNode').length).to.have.equal(
+        parent?.querySelectorAll(
+          ':root > Substation > VoltageLevel > Bay[name="COUPLING_BAY"] > LNode'
+        ).length
       );
     });
   });
