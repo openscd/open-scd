@@ -6,7 +6,6 @@ import {
   newWizardEvent,
   Wizard,
   WizardActor,
-  WizardInput,
 } from '../foundation.js';
 
 import http from 'isomorphic-git/http/web';

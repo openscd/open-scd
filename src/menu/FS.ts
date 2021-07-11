@@ -9,7 +9,7 @@ export async function readPath(
   fs: LightningFS,
   path: string[]
 ): Promise<Directory> {
-  const pwd = '/' + path.join('/');
+  const pwd = path.join('/') || '/';
   const stat = await fs.promises.stat(pwd);
   const content = html`<h2>${pwd}</h2>
     <pre>${JSON.stringify(stat, undefined, 2)}</pre>`;

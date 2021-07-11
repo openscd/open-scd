@@ -110,6 +110,10 @@ export class FinderPane extends LitElement {
       overflow: auto;
     }
 
+    h2 {
+      color: var(--mdc-theme-primary);
+    }
+
     section {
       display: flex;
       flex-direction: column;
