@@ -67,7 +67,7 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
     "build": "npm run test && npm run build:notest",
-    "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
+    "build:notest": "npm run doc && snowpack build --polyfill-node && workbox generateSW workbox-config.cjs",
     "start": "snowpack dev --polyfill-node"
   },
   "devDependencies": {
