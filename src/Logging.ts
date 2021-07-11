@@ -23,6 +23,7 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
+  reset: 'none',
 };
 
 /**
@@ -102,12 +103,14 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onLog(le: LogEvent): void {
+      if (le.detail.kind === 'reset') return this.reset();
+
       const entry: LogEntry = {
         time: new Date(),
         ...le.detail,
       };
 
-      if (entry.kind == 'action') {
+      if (entry.kind === 'action') {
         if (entry.action.derived) return;
         entry.action.derived = true;
         if (this.nextAction !== -1) this.history.splice(this.nextAction);
@@ -149,7 +152,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.onLog = this.onLog.bind(this);
       this.addEventListener('log', this.onLog);
-      this.addEventListener('open-doc', this.reset);
     }
 
     renderLogEntry(

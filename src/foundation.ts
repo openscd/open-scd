@@ -222,7 +222,7 @@ export function newWizardEvent(
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
 
-export type LogEntryType = 'info' | 'warning' | 'error' | 'action';
+export type LogEntryType = 'info' | 'warning' | 'error' | 'action' | 'reset';
 
 /** The basic information contained in each [[`LogEntry`]]. */
 interface LogDetailBase {
@@ -240,7 +240,11 @@ export interface InfoDetail extends LogDetailBase {
   cause?: LogEntry;
 }
 
-export type LogDetail = InfoDetail | CommitDetail;
+export interface ResetDetail {
+  kind: 'reset';
+}
+
+export type LogDetail = InfoDetail | CommitDetail | ResetDetail;
 export type LogEvent = CustomEvent<LogDetail>;
 export function newLogEvent(
   detail: LogDetail,
