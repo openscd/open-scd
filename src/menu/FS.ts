@@ -11,7 +11,7 @@ export async function readPath(
 ): Promise<Directory> {
   const pwd = path.join('/') || '/';
   const stat = await fs.promises.stat(pwd);
-  const content = html`<h2>${pwd}</h2>
+  const content = html`<h2>${path[path.length - 1] || '/'}</h2>
     <pre>${JSON.stringify(stat, undefined, 2)}</pre>`;
   const children = stat.isDirectory() ? await fs.promises.readdir(pwd) : [];
   return { content, children };
