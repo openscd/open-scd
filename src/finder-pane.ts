@@ -106,7 +106,6 @@ export class FinderPane extends LitElement {
     div {
       display: flex;
       flex-direction: row;
-      gap: 12px;
       overflow: auto;
     }
 
@@ -117,7 +116,6 @@ export class FinderPane extends LitElement {
     section {
       display: flex;
       flex-direction: column;
-      gap: 12px;
       width: max-content;
     }
 
