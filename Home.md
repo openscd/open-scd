@@ -1,6 +1,6 @@
 This is the OpenSCD help. It could be a source for information on topics around IEC 61850-6. You are welcome to share your knowledge with the rest of the world.
 
-# Table of Content
+# Table of Contents
 
 ## OpenSCD related Topics
 
