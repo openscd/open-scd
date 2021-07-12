@@ -1,5 +1,5 @@
 import {ChangeSet} from "./CompasChangeSet.js";
-import {CompasSetting} from "./CompasSetting.js";
+import {CompasSettings} from "./CompasSettingsElement.js";
 
 export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService';
 
@@ -16,7 +16,7 @@ export interface UpdateRequestBody {
 export function CompasSclDataService() {
 
   function getCompasSettings() {
-    return CompasSetting().compasSettings;
+    return CompasSettings().compasSettings;
   }
 
   return {

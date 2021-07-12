@@ -8,7 +8,6 @@ import { Mixin, newPendingStateEvent, ValidateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
-import {CompasSettingElement} from "./compas/CompasSetting.js";
 
 interface MenuItem {
   icon: string;
@@ -35,8 +34,7 @@ export type HostingElement = Mixin<typeof Hosting>;
 export function Hosting<
   TBase extends new (...args: any[]) => PluggingElement &
     LoggingElement &
-    SettingElement &
-    CompasSettingElement
+    SettingElement
 >(Base: TBase) {
   class HostingElement extends Base {
     /** The currently active editor tab. */
@@ -175,12 +173,6 @@ export function Hosting<
           icon: 'settings',
           name: 'settings.title',
           action: (): void => this.settingsUI.show(),
-          kind: 'static',
-        },
-        {
-          icon: 'settings',
-          name: 'compas.settings.name',
-          action: (): void => this.compasSettingsUI.show(),
           kind: 'static',
         },
         ...bottomMenu,

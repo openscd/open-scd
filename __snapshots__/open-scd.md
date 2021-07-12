@@ -314,7 +314,7 @@
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
-      class="static"
+      class="middle"
       graphic="icon"
       iconid="settings"
       mwc-list-item=""
@@ -326,6 +326,8 @@
       <span>
         CoMPAS Settings
       </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
@@ -871,6 +873,22 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/menu/CompasSettings.js"
+    >
+      <mwc-icon slot="meta">
+        settings
+      </mwc-icon>
+      CoMPAS Settings
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/menu/Help.js"
     >
       <mwc-icon slot="meta">
@@ -1041,43 +1059,6 @@
 </mwc-circular-progress-four-color>
 <wizard-dialog>
 </wizard-dialog>
-<mwc-dialog
-  class="styled"
-  heading="CoMPAS Settings"
-  id="compasSettings"
->
-  <form>
-    <mwc-textfield
-      dialoginitialfocus=""
-      id="sclDataServiceUrl"
-      label="CoMPAS SCL Data Service"
-      required=""
-      value="http://localhost:9090/compas-scl-data-service"
-    >
-    </mwc-textfield>
-  </form>
-  <mwc-button
-    dialogaction="close"
-    slot="secondaryAction"
-  >
-    Cancel
-  </mwc-button>
-  <mwc-button
-    dialogaction="reset"
-    slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
-  >
-    Reset
-  </mwc-button>
-  <mwc-button
-    dialogaction="save"
-    icon="save"
-    slot="primaryAction"
-    trailingicon=""
-  >
-    Save
-  </mwc-button>
-</mwc-dialog>
 <mwc-dialog
   heading="Settings"
   id="settings"

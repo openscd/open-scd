@@ -11,6 +11,10 @@ export class CompasScltypeList extends LitElement {
   sclTypes!: Element[];
 
   firstUpdated() {
+    this.fetchData();
+  }
+
+  fetchData() {
     CompasSclDataService().listSclTypesAndOrder()
       .then(types => this.sclTypes = types)
   }
