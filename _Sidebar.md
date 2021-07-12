@@ -3,7 +3,7 @@
 - [How to install OpenSCD offline](https://github.com/openscd/open-scd/wiki/How-to-install-OpenSCD-offline)
 - [Manage save project](https://github.com/openscd/open-scd/wiki/Manage-save-project)
 
-## OpenSCD and the IEC 61850-6
+## SCL Sections
 
 ### Substation
 
@@ -11,7 +11,7 @@
 
 ### Communication
 
-### IED section
+### IED
 
 - [Connect Report Control Blocks with ClientLN](https://github.com/openscd/open-scd/wiki/Connect-Report-Control-Blocks-with-ClientLN)
 - [Importing IEDs](https://github.com/openscd/open-scd/wiki/Importing-IEDs)
@@ -21,6 +21,6 @@
 
 - [DataTypeTemplate editor](https://github.com/openscd/open-scd/wiki/DataTypeTemplate-editor)
 
-### Other goodies
+### All sections
 
 - [Merge functionality](https://github.com/openscd/open-scd/wiki/Merge-functionality)
