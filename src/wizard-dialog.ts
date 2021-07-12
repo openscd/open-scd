@@ -279,6 +279,17 @@ export class WizardDialog extends LitElement {
       color: var(--mdc-theme-primary);
     }
 
+    mwc-dialog > mwc-icon-button-toggle {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      color: var(--base00);
+    }
+
+    mwc-dialog > mwc-icon-button-toggle[on] {
+      color: var(--mdc-theme-primary);
+    }
+
     #wizard-content {
       display: flex;
       flex-direction: column;

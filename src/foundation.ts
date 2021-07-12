@@ -3,6 +3,7 @@ import { directive, Part } from 'lit-html';
 
 import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
+import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
@@ -100,7 +101,7 @@ export function invert(action: EditorAction): EditorAction {
   };
   if (isCreate(action)) return { old: action.new, ...metaData };
   else if (isDelete(action)) return { new: action.old, ...metaData };
-  else if (isMove(action))
+  else if (isMove(action)) {
     return {
       old: {
         parent: action.new.parent,
@@ -110,9 +111,9 @@ export function invert(action: EditorAction): EditorAction {
       new: { parent: action.old.parent, reference: action.old.reference },
       ...metaData,
     };
-  else if (isUpdate(action))
+  } else if (isUpdate(action)) {
     return { new: action.old, old: action.new, ...metaData };
-  else return unreachable('Unknown EditorAction type in invert.');
+  } else return unreachable('Unknown EditorAction type in invert.');
 }
 
 /** Represents some intended modification of a `Document` being edited. */
@@ -134,9 +135,11 @@ export function newActionEvent<T extends EditorAction>(
   });
 }
 
-export const wizardInputSelector = 'wizard-textfield, ace-editor, mwc-select';
+export const wizardInputSelector =
+  'wizard-textfield, mwc-textfield, ace-editor, mwc-select';
 export type WizardInput =
   | WizardTextField
+  | TextField
   | (AceEditor & { checkValidity: () => boolean; label: string })
   // TODO(c-dinkel): extend component
   | Select;
@@ -158,16 +161,16 @@ export function isWizard(
 
 /** @returns the validity of `input` depending on type. */
 export function checkValidity(input: WizardInput): boolean {
-  if (input instanceof WizardTextField || input instanceof Select)
+  if (input instanceof WizardTextField || input instanceof Select) {
     return input.checkValidity();
-  else return true;
+  } else return true;
 }
 
 /** reports the validity of `input` depending on type. */
 export function reportValidity(input: WizardInput): boolean {
-  if (input instanceof WizardTextField || input instanceof Select)
+  if (input instanceof WizardTextField || input instanceof Select) {
     return input.reportValidity();
-  else return true;
+  } else return true;
 }
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
@@ -380,8 +383,9 @@ function lNodeIdentity(e: Element): string {
     'lnInst',
     'lnType',
   ].map(name => e.getAttribute(name));
-  if (iedName === 'None')
+  if (iedName === 'None') {
     return `${identity(e.parentElement)}>(${lnClass} ${lnType})`;
+  }
   return `${iedName} ${ldInst || '(Client)'}/${prefix ?? ''} ${lnClass} ${
     lnInst ?? ''
   }`;
@@ -1009,8 +1013,9 @@ function physConnIdentity(e: Element): string | number {
     e.parentElement.children.length > 1 &&
     pcType !== 'Connection' &&
     pcType !== 'RedConn'
-  )
+  ) {
     return NaN;
+  }
   return `${identity(e.parentElement)}>${pcType}`;
 }
 
@@ -1033,8 +1038,9 @@ function pIdentity(e: Element): string | number {
   if (!e.parentElement) return NaN;
   const eParent = e.parentElement;
   const eType = e.getAttribute('type');
-  if (eParent.tagName === 'PhysConn')
+  if (eParent.tagName === 'PhysConn') {
     return `${identity(e.parentElement)}>${eType}`;
+  }
   const index = Array.from(e.parentElement.children)
     .filter(child => child.getAttribute('type') === eType)
     .findIndex(child => child.isSameNode(e));
@@ -2267,8 +2273,9 @@ export function getReference(parent: Element, tag: SCLTag): Element | null {
     parentTag === 'Services' ||
     parentTag === 'SettingGroups' ||
     !isSCLTag(parentTag)
-  )
+  ) {
     return children.find(child => child.tagName === tag) ?? null;
+  }
 
   const sequence = tags[parentTag]?.children ?? [];
   let index = sequence.findIndex(element => element === tag);
@@ -2306,8 +2313,9 @@ export function identity(e: Element | null): string | number {
 
 /** @returns whether `a` and `b` are considered identical by IEC-61850 */
 export function isSame(a: Element, b: Element): boolean {
-  if (a.tagName === 'Private')
+  if (a.tagName === 'Private') {
     return isSame(a.parentElement!, b.parentElement!) && a.isEqualNode(b);
+  }
   return a.tagName === b.tagName && identity(a) === identity(b);
 }
 
@@ -2317,14 +2325,16 @@ export function isEqual(a: Element, b: Element): boolean {
   const attributeNames = new Set(
     a.getAttributeNames().concat(b.getAttributeNames())
   );
-  for (const name of attributeNames)
+  for (const name of attributeNames) {
     if (a.getAttribute(name) !== b.getAttribute(name)) return false;
+  }
 
-  if (a.childElementCount === 0)
+  if (a.childElementCount === 0) {
     return (
       b.childElementCount === 0 &&
       a.textContent?.trim() === b.textContent?.trim()
     );
+  }
 
   const aChildren = Array.from(a.children);
   const bChildren = Array.from(b.children);
@@ -2335,8 +2345,9 @@ export function isEqual(a: Element, b: Element): boolean {
     bChildren.splice(twindex, 1);
   }
 
-  for (const bChild of bChildren)
+  for (const bChild of bChildren) {
     if (!aChildren.find(aChild => isEqual(bChild, aChild))) return false;
+  }
 
   return true;
 }
@@ -2399,14 +2410,17 @@ export const patterns = {
 export function compareNames(a: Element | string, b: Element | string): number {
   if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b);
 
-  if (typeof a === 'object' && typeof b === 'string')
+  if (typeof a === 'object' && typeof b === 'string') {
     return a.getAttribute('name')!.localeCompare(b);
+  }
 
-  if (typeof a === 'string' && typeof b === 'object')
+  if (typeof a === 'string' && typeof b === 'object') {
     return a.localeCompare(b.getAttribute('name')!);
+  }
 
-  if (typeof a === 'object' && typeof b === 'object')
+  if (typeof a === 'object' && typeof b === 'object') {
     return a.getAttribute('name')!.localeCompare(b.getAttribute('name')!);
+  }
 
   return 0;
 }
