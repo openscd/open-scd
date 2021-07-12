@@ -98,12 +98,15 @@ export class FinderPane extends LitElement {
     const lists = this.path.map((parent, index) =>
       this.renderDirectory(parent, index)
     );
+    if (lists.length === 0) lists.push(this.renderDirectory('', 0));
     this.loaded = Promise.allSettled(lists).then();
-    return html`<div>${lists.map(list => until(list, waitingList))}</div>`;
+    return html`<div class="finder">
+      ${lists.map(list => until(list, waitingList))}
+    </div>`;
   }
 
   static styles = css`
-    div {
+    div.finder {
       display: flex;
       flex-direction: row;
       overflow: auto;
@@ -121,6 +124,20 @@ export class FinderPane extends LitElement {
 
     section > mwc-list {
       margin-top: 76px;
+    }
+
+    a {
+      color: var(--mdc-theme-error);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:link {
+      color: var(--mdc-theme-primary);
+    }
+
+    a:visited {
+      color: var(--mdc-theme-secondary);
     }
   `;
 }
