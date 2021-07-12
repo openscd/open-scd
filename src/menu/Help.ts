@@ -34,8 +34,7 @@ const aboutBox = html`<div>
 
 async function getLinkedPages(path: string[]): Promise<Directory> {
   if (path.length === 0) {
-    const index = (await getLinkedPages(['_Sidebar'])).children;
-    return { content: aboutBox, children: ['Home', ...index] };
+    return { content: aboutBox, children: ['Home'] };
   }
 
   const page = path[path.length - 1].replace(/ /g, '-');
@@ -46,7 +45,7 @@ async function getLinkedPages(path: string[]): Promise<Directory> {
     `<a href="#$2" onclick="Array.from(event.target.closest('section').lastElementChild.children).find(child => child.text === '$1').click()">$1</a>`
   );
   const content = html`<div style="padding: 8px;">
-    ${unsafeHTML(marked(unlinkedMd))}
+    ${page === 'Home' ? aboutBox : html``} ${unsafeHTML(marked(unlinkedMd))}
   </div>`;
   const children = Array.from(
     md.matchAll(/\(https:..github.com.openscd.open-scd.wiki.([^)]*)\)/g)
@@ -61,7 +60,7 @@ export function aboutBoxWizard(): Wizard {
       title: 'Help',
       content: [
         html`<finder-pane
-          .path=${[]}
+          .path=${['Home']}
           .getChildren=${getLinkedPages}
         ></finder-pane>`,
       ],
