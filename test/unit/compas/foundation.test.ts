@@ -5,7 +5,7 @@ import {getTypeFromDocName, stripExtensionFromName} from "../../../src/compas/fo
 describe('compas-foundation', () => {
   it('when retrieve type from name, but name has no extension a exception is thrown', () => {
     const name = 'just-some-station';
-    expect(() => getTypeFromDocName(name)).to.throw('Unable to determine type from document name!');
+    expect(() => getTypeFromDocName(name)).to.throw('[compas.error.type]');
   })
 
   it('when retrieve type from nameand name has a extension, the extension will be the type', () => {

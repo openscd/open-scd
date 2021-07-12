@@ -41,7 +41,6 @@ import { Hosting } from './Hosting.js';
 import { Logging } from './Logging.js';
 import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
-import { CompasSettingUI } from "./compas/CompasSetting.js";
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
 
@@ -50,8 +49,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Hosting(Setting(CompasSettingUI(
-  Wizarding(Waiting(Plugging(Editing(Logging(LitElement)))))))) {
+export class OpenSCD extends Hosting(Setting(Wizarding(Waiting(Plugging(Editing(Logging(LitElement))))))) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })

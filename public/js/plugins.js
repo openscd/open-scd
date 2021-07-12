@@ -132,6 +132,15 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
+    name: 'CoMPAS Settings',
+    src: '/src/menu/CompasSettings.js',
+    icon: 'settings',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'bottom'
+  },
+  {
     name: 'Help',
     src: '/src/menu/Help.js',
     icon: 'help',

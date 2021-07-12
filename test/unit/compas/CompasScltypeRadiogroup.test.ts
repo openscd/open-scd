@@ -1,26 +1,25 @@
-import {expect, fixture, fixtureSync, html, waitUntil} from '@open-wc/testing';
+import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon, {SinonStub} from 'sinon';
 
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
-
+import {BASIC_TYPE_LIST_RESPONSE, stubFetchResponseFunction} from "./CompasSclDataServiceResponses.js";
 import {CompasScltypeRadiogroup} from "../../../src/compas/CompasScltypeRadiogroup.js";
 import "../../../src/compas/CompasScltypeRadiogroup.js";
-import {SDS_NAMESPACE} from "../../../src/compas/CompasSclDataService";
 
 describe('compas-scltype-radiogroup', () => {
+  const FETCH_FUNCTION = 'fetchData';
+
   let element: CompasScltypeRadiogroup;
   let stub: SinonStub;
 
   describe('show-loading', () => {
     beforeEach(async () => {
-      element = fixtureSync(
-          html`
-          <compas-scltype-radiogroup></compas-scltype-radiogroup>`
-      );
+      element = fixtureSync(html`<compas-scltype-radiogroup></compas-scltype-radiogroup>`);
 
-      stub = sinon.stub(element, 'fetchData').callsFake(() => {
-        // Do nothing, so loading... will be displayed.
-      });
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined,
+        () => {
+          // Do nothing, so loading... will be displayed.
+        });
 
       await element;
     });
@@ -37,14 +36,12 @@ describe('compas-scltype-radiogroup', () => {
 
   describe('no-items-in-list', () => {
     beforeEach(async () => {
-      element = fixtureSync(
-          html`
-          <compas-scltype-radiogroup></compas-scltype-radiogroup>`
-      );
+      element = fixtureSync(html`<compas-scltype-radiogroup></compas-scltype-radiogroup>`);
 
-      stub = sinon.stub(element, 'fetchData').callsFake(() => {
-        element.sclTypes = [];
-      });
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined,
+        (result: Element[]) => {
+          element.sclTypes = result;
+        });
 
       await element;
       await waitUntil(() => element.sclTypes !== undefined);
@@ -63,27 +60,12 @@ describe('compas-scltype-radiogroup', () => {
 
   describe('after-list-loaded', () => {
     beforeEach(async () => {
-      element = fixtureSync(
-          html`
-          <compas-scltype-radiogroup></compas-scltype-radiogroup>`
-      );
+      element = fixtureSync(html`<compas-scltype-radiogroup></compas-scltype-radiogroup>`);
 
-      stub = sinon.stub(element, 'fetchData').callsFake(() => {
-        const response = `
-             <TypeListResponse xmlns="${SDS_NAMESPACE}">
-                  <Type>
-                      <Code>SED</Code>
-                      <Description>System Exchange Description</Description>
-                  </Type>
-                  <Type>
-                      <Code>SSD</Code>
-                      <Description>Substation Specification Description</Description>
-                  </Type>
-             </TypeListResponse>`;
-        const parser = new DOMParser();
-        const document = parser.parseFromString(response, "text/xml");
-        element.sclTypes = Array.from(document.querySelectorAll('Type') ?? [])
-      });
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, BASIC_TYPE_LIST_RESPONSE,
+        (result: Element[]) => {
+          element.sclTypes = result;
+        });
 
       await element;
       await waitUntil(() => element.sclTypes !== undefined);

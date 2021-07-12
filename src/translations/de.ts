@@ -368,7 +368,7 @@ export const de: Translations = {
     },
     settings: {
       name: "CoMPAS Einstellungen",
-      sclDataServiceUrl: "CoMPAS SCL Data Service"
+      sclDataServiceUrl: "CoMPAS SCL Data Service URL"
     }
   },
 };
