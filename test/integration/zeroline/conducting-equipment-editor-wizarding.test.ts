@@ -1,12 +1,12 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../../mock-wizard.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
+import { regexString, regExp } from '../../foundation.js';
+import '../../mock-wizard.js';
 
-import { regexString, regExp } from '../../../foundation.js';
+import { WizardingElement } from '../../../src/Wizarding.js';
 
-describe('bay-editor wizarding integration', () => {
+describe('conducting-equipment-editor wizarding integration', () => {
   let doc: XMLDocument;
   let parent: WizardingElement;
 
@@ -17,43 +17,48 @@ describe('bay-editor wizarding integration', () => {
     parent = <WizardingElement>(
       await fixture(
         html`<mock-wizard
-          ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
+          ><conducting-equipment-editor
+            .element=${doc.querySelector('ConductingEquipment')}
+          ></conducting-equipment-editor
         ></mock-wizard>`
       )
     );
 
     (<HTMLElement>(
       parent
-        ?.querySelector('bay-editor')
-        ?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        ?.querySelector('conducting-equipment-editor')
+        ?.shadowRoot?.querySelector('*[icon="edit"]')
     )).click();
     await parent.updateComplete;
   });
   it('looks like the latest snapshot', () => {
     expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
-  describe('the first input element', () => {
+  it('the first input element only displaying the type', () => {
+    expect(parent.wizardUI.inputs[0]).to.have.property('disabled', true);
+  });
+  describe('the second input element', () => {
     it('edits the attribute name', async () => {
-      expect(parent.wizardUI.inputs[0].label).to.equal('name');
+      expect(parent.wizardUI.inputs[1].label).to.equal('name');
     });
     it('edits only for valid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(regexString(regExp.tName, 1), async name => {
-          parent.wizardUI.inputs[0].value = name;
+          parent.wizardUI.inputs[1].value = name;
           await parent.updateComplete;
           expect(parent.wizardUI.inputs[0].checkValidity()).to.be.true;
         })
       );
     });
   });
-  describe('the second input element', () => {
+  describe('the third input element', () => {
     it('edits the attribute desc', async () => {
-      expect(parent.wizardUI.inputs[1].label).to.equal('desc');
+      expect(parent.wizardUI.inputs[2].label).to.equal('desc');
     });
     it('edits only for valid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(regexString(regExp.desc), async desc => {
-          parent.wizardUI.inputs[1].value = desc;
+          parent.wizardUI.inputs[2].value = desc;
           await parent.updateComplete;
           expect(parent.wizardUI.inputs[1].checkValidity()).to.be.true;
         })

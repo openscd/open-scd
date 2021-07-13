@@ -32,6 +32,7 @@ import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
 
 import './filtered-list.js';
+import './zeroline-pane.js';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
 import { getTheme } from './themes.js';

@@ -1,13 +1,10 @@
-import { WizardInput, isCreate, isUpdate } from '../../../../src/foundation.js';
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../../src/wizard-textfield.js';
-import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
-import { updateNamingAction } from '../../../../src/editors/substation/foundation.js';
-import { wizards } from '../../../../src/wizards/wizard-library.js';
-import { createAction } from '../../../../src/wizards/bay.js';
+import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { createAction } from '../../../src/wizards/substation.js';
+import { updateNamingAction } from '../../../src/zeroline/foundation.js';
 
-describe('BayEditor', () => {
+describe('SubstationEditor', () => {
   const noOp = () => {
     return;
   };
@@ -33,7 +30,7 @@ describe('BayEditor', () => {
     let parent: Element;
     beforeEach(() => {
       parent = new DOMParser().parseFromString(
-        '<Voltage Level></Voltage Level>',
+        '<SCL></SCL>',
         'application/xml'
       ).documentElement;
     });
@@ -48,7 +45,7 @@ describe('BayEditor', () => {
     let element: Element;
     beforeEach(() => {
       element = new DOMParser().parseFromString(
-        '<Bay></Bay>',
+        '<Substation></Substation>',
         'application/xml'
       ).documentElement;
     });
@@ -63,12 +60,12 @@ describe('BayEditor', () => {
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
     });
 
-    describe('with no change in element Bay', () => {
+    describe('with no change in element Substation', () => {
       let element: Element;
       beforeEach(() => {
         element = new DOMParser().parseFromString(
-          `<Bay name="" desc="">
-              </Bay>`,
+          `<Substation name="" desc="">
+              </Substation>`,
           'application/xml'
         ).documentElement;
       });

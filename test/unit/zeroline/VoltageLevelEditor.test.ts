@@ -4,12 +4,12 @@ import {
   isCreate,
   isUpdate,
   isDelete,
-} from '../../../../src/foundation.js';
-import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
+} from '../../../src/foundation.js';
+
 import {
   createAction,
   updateAction,
-} from '../../../../src/wizards/voltagelevel.js';
+} from '../../../src/wizards/voltagelevel.js';
 
 describe('VoltageLevelEditor', () => {
   describe('with no nulled properties', () => {

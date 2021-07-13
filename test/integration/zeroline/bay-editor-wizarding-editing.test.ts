@@ -1,23 +1,21 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard-editor.js';
-import { EditingElement } from '../../../../src/Editing.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
-import { VoltageLevelEditor } from '../../../../src/editors/substation/voltage-level-editor.js';
+import '../../mock-wizard-editor.js';
 
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { BayEditor } from '../../../src/zeroline/bay-editor.js';
+import { EditingElement } from '../../../src/Editing.js';
+import { Select } from '@material/mwc-select';
+import { WizardingElement } from '../../../src/Wizarding.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
-describe('voltage-level-editor wizarding editing integration', () => {
+describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
 
     let nameField: WizardTextField;
     let descField: WizardTextField;
-    let nomFreqField: WizardTextField;
-    let numPhasesField: WizardTextField;
-    let voltageField: WizardTextField;
     let secondaryAction: HTMLElement;
     let primaryAction: HTMLElement;
 
@@ -28,13 +26,11 @@ describe('voltage-level-editor wizarding editing integration', () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
-            ><voltage-level-editor
-              .element=${doc.querySelector('VoltageLevel')}
-            ></voltage-level-editor
+            ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
           ></mock-wizard-editor>`
         )
       );
-      element = parent.querySelector('voltage-level-editor');
+      element = parent.querySelector('bay-editor');
       await (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
       )).click();
@@ -45,21 +41,6 @@ describe('voltage-level-editor wizarding editing integration', () => {
       );
       descField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
-      );
-      nomFreqField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="nomFreq"]'
-        )
-      );
-      numPhasesField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="numPhases"]'
-        )
-      );
-      voltageField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="Voltage"]'
-        )
       );
       secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -79,18 +60,16 @@ describe('voltage-level-editor wizarding editing integration', () => {
     });
     it('does not change name attribute if not unique within parent element', async () => {
       const oldName = nameField.value;
-      nameField.value = 'J1';
+      nameField.value = 'Bay2';
       primaryAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
-        oldName
-      );
+      expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal(oldName);
     });
     it('changes name attribute on primary action', async () => {
-      nameField.value = 'newName';
+      parent.wizardUI.inputs[0].value = 'newName';
       primaryAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
+      expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal(
         'newName'
       );
     });
@@ -98,7 +77,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       descField.value = 'newDesc';
       primaryAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('desc')).to.equal(
+      expect(doc.querySelector('Bay')?.getAttribute('desc')).to.equal(
         'newDesc'
       );
     });
@@ -106,76 +85,18 @@ describe('voltage-level-editor wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       descField.nullSwitch!.click();
       await parent.updateComplete;
-      primaryAction.click();
+      await primaryAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('desc')).to.be
-        .null;
-    });
-    it('changes nomFreq attribute on primary action', async () => {
-      nomFreqField.value = '30';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')
-      ).to.equal('30');
-    });
-    it('deletes nomFreq attribute if wizard-textfield is deactivated', async () => {
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      nomFreqField.nullSwitch!.click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('nomFreq')).to.be
-        .null;
-    });
-    it('changes numPhases attribute on primary action', async () => {
-      numPhasesField.value = '3';
-      await parent.updateComplete;
-      primaryAction.click();
-      expect(
-        doc.querySelector('VoltageLevel')?.getAttribute('numPhases')
-      ).to.equal('3');
-    });
-    it('deletes numPhases attribute if wizard-textfield is deactivated', async () => {
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      numPhasesField.nullSwitch!.click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('numPhases')).to.be
-        .null;
-    });
-    it('changes Voltage value on primary action', async () => {
-      voltageField.value = '20.0';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('Voltage')?.innerHTML).to.equal('20.0');
-    });
-    it('changes Voltage multiplier on primary action', async () => {
-      voltageField.multiplier = 'M';
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('Voltage')?.getAttribute('multiplier')).to.equal(
-        'M'
-      );
-      expect(doc.querySelector('Voltage')?.getAttribute('unit')).to.equal('V');
-    });
-    it('deletes voltage element if voltage wizard-textfield is deactivated', async () => {
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      voltageField.nullSwitch!.click();
-      await parent.updateComplete;
-      primaryAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.querySelector('Voltage')).to.be
-        .null;
+      expect(doc.querySelector('Bay')?.getAttribute('desc')).to.be.null;
     });
   });
-  describe('open add bay wizard', () => {
+  describe('open add conducting equipment wizard', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
 
     let nameField: WizardTextField;
+    let typeSelect: Select;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
@@ -185,14 +106,12 @@ describe('voltage-level-editor wizarding editing integration', () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
-            ><voltage-level-editor
-              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
-            ></voltage-level-editor
+            ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
           ></mock-wizard-editor>`
         )
       );
 
-      element = parent.querySelector('voltage-level-editor');
+      element = parent.querySelector('bay-editor');
 
       (<HTMLElement>(
         element?.shadowRoot?.querySelector(
@@ -204,35 +123,43 @@ describe('voltage-level-editor wizarding editing integration', () => {
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
       );
+      typeSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+      );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
         )
       );
     });
-    it('does not add bay if name attribute is not unique', async () => {
-      nameField.value = 'COUPLING_BAY';
-      await new Promise(resolve => setTimeout(resolve, 100)); // update takes some time
+
+    it('does not add conducting equipment if name attribute is not unique', async () => {
+      typeSelect.value = 'CBR';
+      nameField.value = 'QA1';
       primaryAction.click();
       await parent.updateComplete;
       expect(
-        doc.querySelectorAll('VoltageLevel[name="E1"] > Bay').length
-      ).to.equal(2);
+        doc.querySelectorAll(
+          'VoltageLevel[name="E1"] > Bay[name="COUPLING_BAY"] > ConductingEquipment[name="QA1"]'
+        ).length
+      ).to.equal(1);
     });
-    it('does add bay if name attribute is unique', async () => {
-      nameField.value = 'SecondBay';
-      await new Promise(resolve => setTimeout(resolve, 100)); // update takes some time
-      primaryAction.click();
+    it('does add conducting equipment if name attribute is unique', async () => {
+      typeSelect.value = 'CBR';
+      nameField.value = 'QA2';
       await parent.updateComplete;
+      primaryAction.click();
       expect(
-        doc.querySelector('VoltageLevel[name="E1"] > Bay[name="SecondBay"]')
+        doc.querySelector(
+          'VoltageLevel[name="E1"] > Bay[name="COUPLING_BAY"] > ConductingEquipment[name="QA2"]'
+        )
       ).to.exist;
     });
   });
   describe('open lnode wizard', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
@@ -241,14 +168,12 @@ describe('voltage-level-editor wizarding editing integration', () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
-            ><voltage-level-editor
-              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
-            ></voltage-level-editor
+            ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
           ></mock-wizard-editor>`
         )
       );
 
-      element = parent.querySelector('voltage-level-editor');
+      element = parent.querySelector('bay-editor');
 
       (<HTMLElement>(
         element?.shadowRoot?.querySelector(
@@ -267,8 +192,8 @@ describe('voltage-level-editor wizarding editing integration', () => {
   describe('move action', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
-    let element2: VoltageLevelEditor | null;
+    let element: BayEditor | null;
+    let element2: BayEditor | null;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
@@ -277,22 +202,19 @@ describe('voltage-level-editor wizarding editing integration', () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
-            >${Array.from(doc?.querySelectorAll('VoltageLevel') ?? []).map(
-              vLevel =>
-                html`<voltage-level-editor
-                  .element=${vLevel}
-                ></voltage-level-editor>`
+            >${Array.from(doc?.querySelectorAll('Bay') ?? []).map(
+              bay => html`<bay-editor .element=${bay}></bay-editor>`
             )}
             ></mock-wizard-editor
           >`
         )
       );
-      element = parent.querySelector('voltage-level-editor:nth-child(1)');
-      element2 = parent.querySelector('voltage-level-editor:nth-child(2)');
+      element = parent.querySelector('bay-editor:nth-child(1)');
+      element2 = parent.querySelector('bay-editor:nth-child(2)');
     });
-    it('moves VoltageLevel within Substation', async () => {
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
-        'E1'
+    it('moves Bay within VoltageLevel', async () => {
+      expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal(
+        'COUPLING_BAY'
       );
       (<HTMLElement>(
         element2?.shadowRoot?.querySelector('mwc-icon-button[icon="forward"]')
@@ -300,15 +222,13 @@ describe('voltage-level-editor wizarding editing integration', () => {
       await parent.updateComplete;
       (<HTMLElement>element).click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel')?.getAttribute('name')).to.equal(
-        'J1'
-      );
+      expect(doc.querySelector('Bay')?.getAttribute('name')).to.equal('Bay2');
     });
   });
   describe('remove action', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
@@ -317,27 +237,27 @@ describe('voltage-level-editor wizarding editing integration', () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
-            ><voltage-level-editor
-              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
-            ></voltage-level-editor
+            ><bay-editor
+              .element=${doc.querySelector('Bay[name="COUPLING_BAY"]')}
+            ></bay-editor
           ></mock-wizard-editor>`
         )
       );
-      element = parent.querySelector('voltage-level-editor');
+      element = parent.querySelector('bay-editor');
     });
-    it('removes VoltageLevel on clicking delete button', async () => {
-      expect(doc.querySelector('VoltageLevel[name="E1"]')).to.exist;
+    it('removes Bay on clicking delete button', async () => {
+      expect(doc.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
       (<HTMLElement>(
         element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
       )).click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel[name="E1"]')).to.not.exist;
+      expect(doc.querySelector('Bay[name="COUPLING_BAY"]')).to.not.exist;
     });
   });
   describe('clone action', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
-    let element: VoltageLevelEditor | null;
+    let element: BayEditor | null;
     let copyContentButton: HTMLElement;
 
     beforeEach(async () => {
@@ -347,13 +267,13 @@ describe('voltage-level-editor wizarding editing integration', () => {
       parent = <WizardingElement & EditingElement>(
         await fixture(
           html`<mock-wizard-editor
-            ><voltage-level-editor
-              .element=${doc.querySelector('VoltageLevel[name="E1"]')}
-            ></voltage-level-editor
+            ><bay-editor
+              .element=${doc.querySelector('Bay[name="COUPLING_BAY"]')}
+            ></bay-editor
           ></mock-wizard-editor>`
         )
       );
-      element = parent.querySelector('voltage-level-editor');
+      element = parent.querySelector('bay-editor');
       await parent.updateComplete;
 
       copyContentButton = <HTMLElement>(
@@ -362,70 +282,61 @@ describe('voltage-level-editor wizarding editing integration', () => {
         )
       );
     });
-    it('duplicates VoltageLevel on clicking duplicate button', async () => {
+    it('duplicates Bay on clicking duplicate button', async () => {
       copyContentButton.click();
       await parent.updateComplete;
-      expect(doc.querySelector('VoltageLevel[name="E11"]')).to.exist;
+      expect(doc.querySelector('Bay[name="COUPLING_BAY1')).to.exist;
     });
     it('removes all LNode elements in the copy', async () => {
       expect(
-        doc.querySelector('VoltageLevel[name="E1"]')?.querySelector('LNode')
+        doc.querySelector('Bay[name="COUPLING_BAY"]')?.querySelector('LNode')
       ).to.exist;
       copyContentButton.click();
       await parent.updateComplete;
       expect(
-        doc.querySelector('VoltageLevel[name="E11"]')?.querySelector('LNode')
+        doc
+          .querySelector('Bay[name="COUPLING_BAY - copy"]')
+          ?.querySelector('LNode')
       ).to.not.exist;
     });
-    it('removes all Terminal elements except the grounding in the copy', async () => {
+    it('removes all Terminal elements exepct the grounding in the copy', async () => {
       expect(
         doc
-          .querySelector('VoltageLevel[name="E1"]')
+          .querySelector('Bay[name="COUPLING_BAY"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.exist;
       copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('VoltageLevel[name="E11"]')
+          .querySelector('Bay[name="COUPLING_BAY - copy"]')
           ?.querySelector('Terminal:not([cNodeName="grounded"])')
       ).to.not.exist;
     });
     it('removes all ConnectivityNode elements in the copy', async () => {
       expect(
         doc
-          .querySelector('VoltageLevel[name="E1"]')
+          .querySelector('Bay[name="COUPLING_BAY"]')
           ?.querySelector('ConnectivityNode')
       ).to.exist;
       copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('VoltageLevel[name="E11"]')
+          .querySelector('Bay[name="COUPLING_BAY - copy"]')
           ?.querySelector('ConnectivityNode')
       ).to.not.exist;
-    });
-    it('keeps all Bay elements in the copy', async () => {
-      copyContentButton.click();
-      await parent.updateComplete;
-      expect(
-        doc.querySelector('VoltageLevel[name="E1"]')?.querySelectorAll('Bay')
-          .length
-      ).to.equal(
-        doc.querySelector('VoltageLevel[name="E11"]')?.querySelectorAll('Bay')
-          .length
-      );
     });
     it('keeps all ConductingEquipment elements in the copy', async () => {
       copyContentButton.click();
       await parent.updateComplete;
       expect(
         doc
-          .querySelector('VoltageLevel[name="E1"]')
+          .querySelector('Bay[name="COUPLING_BAY1"]')
           ?.querySelectorAll('ConductingEquipment').length
       ).to.equal(
         doc
-          .querySelector('VoltageLevel[name="E11"]')
+          .querySelector('Bay[name="COUPLING_BAY"]')
           ?.querySelectorAll('ConductingEquipment').length
       );
     });
