@@ -1,0 +1,1 @@
+The Substation Editor has the ability to [Guess substation structure](https://github.com/openscd/open-scd/wiki/Guess-substation-structure) from an SCL file containing IEDs and a Data Model but no ready Substation section.
