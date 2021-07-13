@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { updateNamingAction } from '../editors/substation/foundation.js';
+import { updateNamingAction } from '../zeroline/foundation.js';
 import {
   createElement,
   EditorAction,

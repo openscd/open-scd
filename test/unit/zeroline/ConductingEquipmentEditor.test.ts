@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
-import { updateNamingAction } from '../../../src/editors/substation/foundation.js';
+import { updateNamingAction } from '../../../src/zeroline/foundation.js';
 import { createAction } from '../../../src/wizards/conductingequipment.js';
 
 describe('ConductingEquipmentEditor', () => {
