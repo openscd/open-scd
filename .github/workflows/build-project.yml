@@ -1,4 +1,4 @@
-name: NodeJS Build
+name: Build Project
 
 on: push
 
