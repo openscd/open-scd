@@ -13,16 +13,6 @@ import { VoltageLevelEditor } from './voltage-level-editor.js';
 
 import './ied-editor.js';
 
-export function renderIedContainer(element: Element): TemplateResult {
-  return attachedIeds(element).length > 0
-    ? html`<div id="iedcontainer">
-        ${attachedIeds(element).map(
-          ied => html`<ied-editor .element=${ied}></ied-editor>`
-        )}
-      </div>`
-    : html``;
-}
-
 function containsReference(element: Element, iedName: string): boolean {
   return (
     Array.from(element.querySelectorAll('LNode'))
@@ -33,17 +23,15 @@ function containsReference(element: Element, iedName: string): boolean {
 
 function isMultiparent(element: Element, iedName: string): boolean {
   return (
-    (<Element[]>(
-      Array.from(element.childNodes).filter(child => child instanceof Element)
-    )).filter(element => containsReference(element, iedName)).length > 1
+    (<Element[]>Array.from(element.children)).filter(element =>
+      containsReference(element, iedName)
+    ).length > 1
   );
 }
 
 function isReference(element: Element, iedName: string): boolean {
   return (
-    (<Element[]>(
-      Array.from(element.childNodes).filter(child => child instanceof Element)
-    )).filter(
+    (<Element[]>Array.from(element.children)).filter(
       element =>
         element.tagName === 'LNode' &&
         element.getAttribute('iedName') === iedName
@@ -70,6 +58,37 @@ export function attachedIeds(element: Element): Element[] {
   });
 
   return attachedIeds;
+}
+
+export function unreferencedIeds(doc: XMLDocument): Element[] {
+  const ieds = Array.from(doc.querySelectorAll(':root > IED'));
+  const root = doc.querySelector(':root');
+  if (!root) return [];
+
+  const unreferencedIeds: Element[] = [];
+
+  ieds.forEach(ied => {
+    const iedName = ied.getAttribute('name')!;
+    if (
+      isMultiparent(root, iedName) ||
+      Array.from(doc.querySelectorAll('LNode'))
+        .filter(isPublic)
+        .filter(lnode => lnode.getAttribute('iedName') === iedName).length === 0
+    )
+      unreferencedIeds.push(ied);
+  });
+
+  return unreferencedIeds;
+}
+
+export function renderIedContainer(element: Element): TemplateResult {
+  return attachedIeds(element).length > 0
+    ? html`<div id="iedcontainer">
+        ${attachedIeds(element).map(
+          ied => html`<ied-editor .element=${ied}></ied-editor>`
+        )}
+      </div>`
+    : html``;
 }
 
 export type ElementEditor = Element & {

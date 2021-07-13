@@ -7,26 +7,9 @@ import {
 } from 'lit-element';
 
 import { isPublic } from './foundation.js';
+import { unreferencedIeds } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
-
-function unreferencedIeds(doc: XMLDocument): Element[] {
-  const ieds = Array.from(doc.querySelectorAll(':root > IED'));
-
-  const unreferencedIeds: Element[] = [];
-
-  ieds.forEach(ied => {
-    const iedName = ied.getAttribute('name')!;
-    if (
-      Array.from(doc.querySelectorAll('LNode'))
-        .filter(isPublic)
-        .filter(lnode => lnode.getAttribute('iedName') === iedName).length === 0
-    )
-      unreferencedIeds.push(ied);
-  });
-
-  return unreferencedIeds;
-}
 
 /** [[`Zeroline`]] pane for displaying `Substation` and/or `IED` sections. */
 @customElement('zeroline-pane')
