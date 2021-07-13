@@ -1,13 +1,14 @@
-/* import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
+import '../../../mock-wizard.js';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
-import '../../../mock-wizard.js';
+
+import { EditingElement } from '../../../../src/Editing.js';
 import { MockWizard } from '../../../mock-wizard.js';
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
-import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
 describe('guess-wizard-integration', () => {
@@ -245,4 +246,3 @@ describe('guess-wizarding-editing-integration', () => {
     ).to.exist;
   });
 });
- */
