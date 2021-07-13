@@ -42,7 +42,7 @@ async function getLinkedPages(path: string[]): Promise<Directory> {
   const md = await res.text();
   const unlinkedMd = md.replace(
     /\[([^\]]*)\]\(https:..github.com.openscd.open-scd.wiki.([^)]*)\)/g,
-    `<a href="#$2" onclick="Array.from(event.target.closest('section').lastElementChild.children).find(child => child.text === '$1').click()">$1</a>`
+    `<a style="cursor: help;" onclick="Array.from(event.target.closest('section').lastElementChild.children).find(child => child.text === '$1').click()">$1</a>`
   );
   const content = html`<div style="padding: 8px;">
     ${page === 'Home' ? aboutBox : html``} ${unsafeHTML(marked(unlinkedMd))}
