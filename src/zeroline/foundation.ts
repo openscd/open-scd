@@ -1,14 +1,76 @@
-import { css } from 'lit-element';
-
+import { css, html, TemplateResult } from 'lit-element';
 import {
   EditorAction,
   getValue,
   newActionEvent,
   WizardActor,
   WizardInput,
-} from '../../foundation.js';
-//import { VoltageLevelEditor } from './voltage-level-editor.js';
-//import { BayEditor } from './bay-editor.js';
+  isPublic,
+} from '../foundation.js';
+
+import { BayEditor } from './bay-editor.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
+
+import './ied-editor.js';
+
+export function renderIedContainer(element: Element): TemplateResult {
+  return attachedIeds(element).length > 0
+    ? html`<div id="iedcontainer">
+        ${attachedIeds(element).map(
+          ied => html`<ied-editor .element=${ied}></ied-editor>`
+        )}
+      </div>`
+    : html``;
+}
+
+function containsReference(element: Element, iedName: string): boolean {
+  return (
+    Array.from(element.querySelectorAll('LNode'))
+      .filter(isPublic)
+      .filter(lnode => lnode.getAttribute('iedName') === iedName).length !== 0
+  );
+}
+
+function isMultiparent(element: Element, iedName: string): boolean {
+  return (
+    (<Element[]>(
+      Array.from(element.childNodes).filter(child => child instanceof Element)
+    )).filter(element => containsReference(element, iedName)).length > 1
+  );
+}
+
+function isReference(element: Element, iedName: string): boolean {
+  return (
+    (<Element[]>(
+      Array.from(element.childNodes).filter(child => child instanceof Element)
+    )).filter(
+      element =>
+        element.tagName === 'LNode' &&
+        element.getAttribute('iedName') === iedName
+    ).length !== 0
+  );
+}
+
+export function attachedIeds(element: Element): Element[] {
+  const doc = element.ownerDocument;
+
+  const ieds = Array.from(doc.querySelectorAll(':root > IED'));
+
+  const attachedIeds: Element[] = [];
+
+  ieds.forEach(ied => {
+    const iedName = ied.getAttribute('name')!;
+    if (
+      (isMultiparent(element, iedName) &&
+        !isMultiparent(element.parentElement!, iedName)) ||
+      (isReference(element, iedName) &&
+        !isMultiparent(element.parentElement!, iedName))
+    )
+      attachedIeds.push(ied);
+  });
+
+  return attachedIeds;
+}
 
 export type ElementEditor = Element & {
   element: Element;
@@ -48,7 +110,7 @@ export function updateNamingAction(element: Element): WizardActor {
   };
 }
 
-/* export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
+export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
   const element: Element = editor.element;
   const parent: Element = element.parentElement!;
   const num = parent.querySelectorAll(
@@ -80,11 +142,11 @@ export function updateNamingAction(element: Element): WizardActor {
       new: {
         parent: parent,
         element: clone,
-        reference: element.nextSibling,
+        reference: element.nextElementSibling,
       },
     })
   );
-} */
+}
 
 /**
  * Moves the element edited by `editor` to the place before the next `Child`
@@ -146,7 +208,7 @@ export function startMove<E extends ElementEditor, P extends ElementEditor>(
           old: {
             element: editor.element,
             parent: editor.element.parentElement!,
-            reference: editor.element.nextSibling,
+            reference: editor.element.nextElementSibling,
           },
           new: destination,
         })

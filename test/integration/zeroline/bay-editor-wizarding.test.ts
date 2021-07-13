@@ -1,12 +1,12 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import '../../../mock-wizard.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
+import { regExp, regexString } from '../../foundation.js';
+import '../../mock-wizard.js';
 
-import { regexString, regExp } from '../../../foundation.js';
+import { WizardingElement } from '../../../src/Wizarding.js';
 
-describe('substation-editor wizarding integration', () => {
+describe('bay-editor wizarding integration', () => {
   let doc: XMLDocument;
   let parent: WizardingElement;
 
@@ -17,16 +17,14 @@ describe('substation-editor wizarding integration', () => {
     parent = <WizardingElement>(
       await fixture(
         html`<mock-wizard
-          ><substation-editor
-            .element=${doc.querySelector('Substation')}
-          ></substation-editor
+          ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
         ></mock-wizard>`
       )
     );
 
     (<HTMLElement>(
       parent
-        ?.querySelector('substation-editor')
+        ?.querySelector('bay-editor')
         ?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
     )).click();
     await parent.updateComplete;

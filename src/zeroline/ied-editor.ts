@@ -6,19 +6,11 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-
-import { newActionEvent, newWizardEvent } from '../../foundation.js';
-
-import { startMove } from './foundation.js';
-import { BayEditor } from './bay-editor.js';
-
-import { typeIcon } from './conducting-equipment-types.js';
-
-import { wizards } from '../../wizards/wizard-library.js';
+import { newActionEvent } from '../foundation.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
-@customElement('conducting-equipment-editor')
-export class ConductingEquipmentEditor extends LitElement {
+@customElement('ied-editor')
+export class IedEditor extends LitElement {
   @property({ type: Element })
   element!: Element;
 
@@ -29,17 +21,6 @@ export class ConductingEquipmentEditor extends LitElement {
   @property({ type: String })
   get desc(): string {
     return this.element.getAttribute('desc') ?? '';
-  }
-
-  openEditWizard(): void {
-    const wizard = wizards['ConductingEquipment'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  /** Opens a [[`WizardDialog`]] for editing `LNode` connections. */
-  openLNodeWizard(): void {
-    const wizard = wizards['LNode'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   remove(): void {
@@ -58,32 +39,21 @@ export class ConductingEquipmentEditor extends LitElement {
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
-        ${typeIcon(this.element)}
+        <mwc-icon class="icon">developer_board</mwc-icon>
         <mwc-fab
           mini
           class="menu-item left"
-          @click="${() => this.openLNodeWizard()}"
           icon="account_tree"
+          disabled
         ></mwc-fab>
-        <mwc-fab
-          mini
-          class="menu-item up"
-          icon="edit"
-          @click="${() => this.openEditWizard()}}"
-        ></mwc-fab>
+        <mwc-fab mini class="menu-item up" icon="edit" disabled></mwc-fab>
         <mwc-fab
           mini
           class="menu-item right"
-          @click="${() =>
-            startMove(this, ConductingEquipmentEditor, BayEditor)}"
-          icon="forward"
+          icon="sync_alt"
+          disabled
         ></mwc-fab>
-        <mwc-fab
-          mini
-          class="menu-item down"
-          icon="delete"
-          @click="${() => this.remove()}}"
-        ></mwc-fab>
+        <mwc-fab mini class="menu-item down" icon="delete" disabled></mwc-fab>
       </div>
       <h4>${this.name}</h4>
     `;
@@ -103,7 +73,16 @@ export class ConductingEquipmentEditor extends LitElement {
       outline: none;
     }
 
-    #container > svg {
+    .icon {
+      color: var(--mdc-theme-on-surface);
+      --mdc-icon-size: 64px;
+      transition: transform 150ms linear, box-shadow 200ms linear;
+      outline-color: var(--mdc-theme-primary);
+      outline-style: solid;
+      outline-width: 0px;
+    }
+
+    #container > .icon {
       color: var(--mdc-theme-on-surface);
       width: 64px;
       height: 64px;
@@ -113,17 +92,17 @@ export class ConductingEquipmentEditor extends LitElement {
       outline-width: 0px;
     }
 
-    #container:focus > svg {
+    #container:focus > .icon {
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
 
-    #container:hover > svg {
+    #container:hover > .icom {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
     }
 
-    #container:focus-within > svg {
+    #container:focus-within > .icon {
       outline: 2px solid var(--mdc-theme-primary);
       background: var(--mdc-theme-on-primary);
       transform: scale(0.8);

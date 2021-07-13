@@ -35,6 +35,7 @@ import './filtered-list.js';
 import './wizard-dialog.js';
 import './wizard-textfield.js';
 import './finder-pane.js';
+import './zeroline-pane.js';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
 import { getTheme } from './themes.js';

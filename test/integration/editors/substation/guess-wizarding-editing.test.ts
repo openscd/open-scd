@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+/* import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 
@@ -245,3 +245,4 @@ describe('guess-wizarding-editing-integration', () => {
     ).to.exist;
   });
 });
+ */

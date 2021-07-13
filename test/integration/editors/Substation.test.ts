@@ -1,9 +1,9 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../mock-wizard.js';
-import { Editing } from '../../../../src/Editing.js';
-import Substation from '../../../../src/editors/Substation.js';
-import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
+import '../../mock-wizard.js';
+import { Editing } from '../../../src/Editing.js';
+import Substation from '../../../src/editors/Substation.js';
+import { Wizarding, WizardingElement } from '../../../src/Wizarding.js';
 
 describe('Substation Plugin', () => {
   customElements.define('substation-plugin', Wizarding(Editing(Substation)));
@@ -29,8 +29,8 @@ describe('Substation Plugin', () => {
         html`<substation-plugin .doc="${doc}"></substation-plugin>`
       );
     });
-    it('constains a substation-editor rendering the substation section', () => {
-      expect(element.shadowRoot?.querySelector('substation-editor')).to.exist;
+    it('constains a zeroline-pane rendering the substation sections', () => {
+      expect(element.shadowRoot?.querySelector('zeroline-pane')).to.exist;
     });
   });
 
