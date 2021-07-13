@@ -29,6 +29,19 @@ function isMultiparent(element: Element, iedName: string): boolean {
   );
 }
 
+function isUniquechild(element: Element, iedName: string): boolean {
+  const isUnique =
+    (<Element[]>Array.from(element.children)).filter(element =>
+      containsReference(element, iedName)
+    ).length === 1;
+
+  if (!isUnique) return false;
+  if (element.parentNode instanceof XMLDocument) return isUnique;
+  if (isUnique) return isUniquechild(element.parentElement!, iedName);
+
+  return true;
+}
+
 function isReference(element: Element, iedName: string): boolean {
   return (
     (<Element[]>Array.from(element.children)).filter(
@@ -50,9 +63,9 @@ export function attachedIeds(element: Element): Element[] {
     const iedName = ied.getAttribute('name')!;
     if (
       (isMultiparent(element, iedName) &&
-        !isMultiparent(element.parentElement!, iedName)) ||
+        isUniquechild(element.parentElement!, iedName)) ||
       (isReference(element, iedName) &&
-        !isMultiparent(element.parentElement!, iedName))
+        isUniquechild(element.parentElement!, iedName))
     )
       attachedIeds.push(ied);
   });
