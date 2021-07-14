@@ -64,23 +64,6 @@ describe('DOType wizards', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('allows to add empty DOTypes to the project', async () => {
-      expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
-      idField.maybeValue = 'myGeneralDOType';
-      await parent.requestUpdate();
-      primayAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.exist;
-    });
-    it('respects the sequence defined in the standard', async () => {
-      idField.maybeValue = 'myGeneralDOType';
-      await parent.requestUpdate();
-      primayAction.click();
-      await parent.updateComplete;
-      const element = doc.querySelector('DOType[id="myGeneralDOType"]');
-      expect(element?.nextElementSibling?.tagName).to.equal('DOType');
-      expect(element?.previousElementSibling?.tagName).to.equal('LNodeType');
-    });
     it('recursevly add missing! subsequent EnumType elements', async () => {
       expect(doc.querySelector('DOType[id="myENSHealth"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="HealthKind"]')).to.not.exist;
@@ -109,6 +92,16 @@ describe('DOType wizards', () => {
       expect(
         doc.querySelectorAll('DAType[id="OpenSCD_AnalogueValueFloat32"]').length
       ).to.equal(1);
+    });
+    it('respects the sequence defined in the standard', async () => {
+      selector.value = 'OpenSCD_ENSHealth';
+      idField.maybeValue = 'myGeneralDOType';
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.updateComplete;
+      const element = doc.querySelector('DOType[id="myGeneralDOType"]');
+      expect(element?.nextElementSibling?.tagName).to.equal('DOType');
+      expect(element?.previousElementSibling?.tagName).to.equal('LNodeType');
     });
   });
 
