@@ -514,7 +514,8 @@ function addPredefinedDOType(
 
 export function createDOTypeWizard(
   parent: Element,
-  templates: Document
+  templates: XMLDocument,
+  nsd73: XMLDocument
 ): Wizard {
   return [
     {
@@ -531,7 +532,25 @@ export function createDOTypeWizard(
           icon="playlist_add_check"
           label="values"
           helper="${translate('dotype.wizard.enums')}"
+          dialogInitialFocus
+          required
         >
+          <mwc-list-item noninteractive>${translate('new.cdc')}</mwc-list-item>
+          <li divider role="separator"></li>
+          ${Array.from(nsd73.querySelectorAll('CDCs > CDC')).map(
+            cdc =>
+              html`<mwc-list-item
+                graphic="icon"
+                value="${cdc.getAttribute('name')}"
+                >${cdc.getAttribute('name')}${cdc.getAttribute('variant')
+                  ? html` - ${cdc.getAttribute('variant')}`
+                  : html``}</mwc-list-item
+              >`
+          )}
+          <mwc-list-item noninteractive
+            >${translate('prefefinced.cdc')}</mwc-list-item
+          >
+          <li divider role="separator"></li>
           ${Array.from(templates.querySelectorAll('DOType')).map(
             datype =>
               html`<mwc-list-item
@@ -555,7 +574,6 @@ export function createDOTypeWizard(
           maxlength="127"
           minlength="1"
           pattern="${patterns.nmToken}"
-          dialogInitialFocus
         ></wizard-textfield>`,
         html`<wizard-textfield
           label="desc"
