@@ -8,7 +8,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
-import { get, translate } from 'lit-translate';
+import { translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -36,12 +36,6 @@ export class FinderPane extends LitElement {
   getChildren: (path: string[]) => Promise<Directory> = async () => {
     return { content: html``, children: [] };
   };
-
-  @property({ type: String })
-  searchFieldLabel: string = get('filter');
-
-  @property({ type: Boolean })
-  multi = false;
 
   @property({ attribute: false })
   loaded: Promise<void> = Promise.resolve();
