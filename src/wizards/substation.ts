@@ -40,7 +40,7 @@ function render(
   ];
 }
 
-function createAction(parent: Element): WizardActor {
+export function createAction(parent: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);

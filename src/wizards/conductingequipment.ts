@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { updateNamingAction } from '../editors/substation/foundation.js';
+import { updateNamingAction } from '../zeroline/foundation.js';
 import {
   createElement,
   EditorAction,
@@ -110,7 +110,7 @@ function render(
   ];
 }
 
-function createAction(parent: Element): WizardActor {
+export function createAction(parent: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);

@@ -4,11 +4,6 @@ import { translate, get } from 'lit-translate';
 import { newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
-import { selectors, styles } from './substation/foundation.js';
-
-import './substation/substation-editor.js';
-import { SubstationEditor } from './substation/substation-editor.js';
-
 /** An editor [[`plugin`]] for editing the `Substation` section. */
 export default class SubstationPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
@@ -22,7 +17,7 @@ export default class SubstationPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    if (!this.doc?.querySelector(selectors.Substation))
+    if (!this.doc?.querySelector(':root > Substation'))
       return html`<h1>
         <span style="color: var(--base1)"
           >${translate('substation.missing')}</span
@@ -34,17 +29,10 @@ export default class SubstationPlugin extends LitElement {
           @click=${() => this.openCreateSubstationWizard()}
         ></mwc-fab>
       </h1>`;
-    return html`
-      ${Array.from(this.doc.querySelectorAll(selectors.Substation) ?? []).map(
-        substation =>
-          html`<substation-editor .element=${substation}></substation-editor>`
-      )}
-    `;
+    return html` <zeroline-pane .doc=${this.doc}></zeroline-pane> `;
   }
 
   static styles = css`
-    ${styles}
-
     mwc-fab {
       position: fixed;
       bottom: 32px;

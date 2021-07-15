@@ -1,8 +1,9 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate } from '../../../../src/foundation.js';
-import { SubstationEditor } from '../../../../src/editors/substation/substation-editor.js';
-import { updateNamingAction } from '../../../../src/editors/substation/foundation.js';
+import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { createAction } from '../../../src/wizards/substation.js';
+import { updateNamingAction } from '../../../src/zeroline/foundation.js';
+
 describe('SubstationEditor', () => {
   const noOp = () => {
     return;
@@ -34,10 +35,10 @@ describe('SubstationEditor', () => {
       ).documentElement;
     });
 
-    /* it('returns a WizardAction which returns a Create EditorAction', () => {
-      const wizardAction = SubstationEditor.createAction(parent);
+    it('returns a WizardAction which returns a Create EditorAction', () => {
+      const wizardAction = createAction(parent);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isCreate);
-    }); */
+    });
   });
 
   describe('updateAction', () => {

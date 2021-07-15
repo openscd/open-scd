@@ -1,14 +1,108 @@
-import { css } from 'lit-element';
-
+import { css, html, TemplateResult } from 'lit-element';
 import {
   EditorAction,
   getValue,
   newActionEvent,
   WizardActor,
   WizardInput,
-} from '../../foundation.js';
-import { VoltageLevelEditor } from './voltage-level-editor.js';
+  isPublic,
+} from '../foundation.js';
+
 import { BayEditor } from './bay-editor.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
+
+import './ied-editor.js';
+
+function containsReference(element: Element, iedName: string): boolean {
+  return (
+    Array.from(element.querySelectorAll('LNode'))
+      .filter(isPublic)
+      .filter(lnode => lnode.getAttribute('iedName') === iedName).length !== 0
+  );
+}
+
+function isMultiparent(element: Element, iedName: string): boolean {
+  return (
+    (<Element[]>Array.from(element.children)).filter(element =>
+      containsReference(element, iedName)
+    ).length > 1
+  );
+}
+
+function isUniquechild(element: Element, iedName: string): boolean {
+  const isUnique =
+    (<Element[]>Array.from(element.children)).filter(element =>
+      containsReference(element, iedName)
+    ).length === 1;
+
+  if (!isUnique) return false;
+  if (element.parentNode instanceof XMLDocument) return isUnique;
+  if (isUnique) return isUniquechild(element.parentElement!, iedName);
+
+  return true;
+}
+
+function isReference(element: Element, iedName: string): boolean {
+  return (
+    (<Element[]>Array.from(element.children)).filter(
+      element =>
+        element.tagName === 'LNode' &&
+        element.getAttribute('iedName') === iedName
+    ).length !== 0
+  );
+}
+
+export function attachedIeds(element: Element): Element[] {
+  const doc = element.ownerDocument;
+
+  const ieds = Array.from(doc.querySelectorAll(':root > IED'));
+
+  const attachedIeds: Element[] = [];
+
+  ieds.forEach(ied => {
+    const iedName = ied.getAttribute('name')!;
+    if (
+      (isMultiparent(element, iedName) &&
+        isUniquechild(element.parentElement!, iedName)) ||
+      (isReference(element, iedName) &&
+        isUniquechild(element.parentElement!, iedName))
+    )
+      attachedIeds.push(ied);
+  });
+
+  return attachedIeds;
+}
+
+export function unreferencedIeds(doc: XMLDocument): Element[] {
+  const ieds = Array.from(doc.querySelectorAll(':root > IED'));
+  const root = doc.querySelector(':root');
+  if (!root) return [];
+
+  const unreferencedIeds: Element[] = [];
+
+  ieds.forEach(ied => {
+    const iedName = ied.getAttribute('name')!;
+    if (
+      isMultiparent(root, iedName) ||
+      Array.from(doc.querySelectorAll('LNode'))
+        .filter(isPublic)
+        .filter(lnode => lnode.getAttribute('iedName') === iedName).length === 0
+    )
+      unreferencedIeds.push(ied);
+  });
+
+  return unreferencedIeds;
+}
+
+export function renderIedContainer(element: Element): TemplateResult {
+  return attachedIeds(element).length > 0
+    ? html`<div id="iedcontainer">
+        ${attachedIeds(element).map(
+          ied => html`<ied-editor .element=${ied}></ied-editor>`
+        )}
+      </div>`
+    : html``;
+}
 
 export type ElementEditor = Element & {
   element: Element;

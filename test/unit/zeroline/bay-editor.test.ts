@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/substation/bay-editor.js';
-import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
+import '../../../src/zeroline/bay-editor.js';
+import { BayEditor } from '../../../src/zeroline/bay-editor.js';
 
 describe('bay-editor', () => {
   let element: BayEditor;
@@ -20,13 +20,17 @@ describe('bay-editor', () => {
     );
   });
 
-  it('has a name property', () =>
-    expect(element).to.have.property('name', 'COUPLING_BAY'));
-
-  it('has a desc property', () =>
-    expect(element).to.have.property('desc', 'Bay'));
-
   it('looks like the latest snapshot', () => {
     expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  describe('with readonly property', () => {
+    beforeEach(async () => {
+      element.readonly = true;
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', () => {
+      expect(element).shadowDom.to.equalSnapshot();
+    });
   });
 });

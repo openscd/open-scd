@@ -1,6 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
-import { updateNamingAction } from '../editors/substation/foundation.js';
 
 import {
   createElement,
@@ -11,6 +10,8 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+
+import { updateNamingAction } from '../zeroline/foundation.js';
 
 function render(name: string | null, desc: string | null): TemplateResult[] {
   return [
