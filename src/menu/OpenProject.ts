@@ -1,6 +1,6 @@
 import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 
-import { newOpenDocEvent } from '../foundation.js';
+import { newLogEvent, newOpenDocEvent } from '../foundation.js';
 
 export default class OpenProjectPlugin extends LitElement {
   @query('#open-plugin-input') pluginFileUI!: HTMLInputElement;
@@ -14,6 +14,9 @@ export default class OpenProjectPlugin extends LitElement {
     const docName = file.name;
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
+    document
+      .querySelector('open-scd')!
+      .dispatchEvent(newLogEvent({ kind: 'reset' }));
     document
       .querySelector('open-scd')!
       .dispatchEvent(newOpenDocEvent(doc, docName));

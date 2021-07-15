@@ -392,6 +392,11 @@
     on=""
   >
   </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="resetfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""

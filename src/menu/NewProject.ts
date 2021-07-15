@@ -5,6 +5,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
   EditorAction,
+  newLogEvent,
   newOpenDocEvent,
   newWizardEvent,
   Wizard,
@@ -25,6 +26,9 @@ export default class NewProjectPlugin extends LitElement {
         .value
     );
 
+    document
+      .querySelector('open-scd')
+      ?.dispatchEvent(newLogEvent({ kind: 'reset' }));
     document
       .querySelector('open-scd')
       ?.dispatchEvent(

@@ -54,9 +54,10 @@ export const iconColors = {
 };
 
 export function getFilterIcon(
-  type: 'action' | 'info' | 'warning' | 'error',
+  type: 'action' | 'info' | 'warning' | 'error' | 'reset',
   state: boolean
 ): TemplateResult {
+  if (type === 'reset') return html``;
   return html`<svg
     slot="${state ? 'onIcon' : 'offIcon'}"
     style="color:var(${state ? iconColors[type] : '--mwc-theme-on-background'})"
