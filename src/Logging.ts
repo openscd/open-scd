@@ -34,8 +34,6 @@ const icons = {
  * the committed action, allowing the user to go to `previousAction` with
  * `undo()` if `canUndo` and to go to `nextAction` with `redo()` if `canRedo`.
  *
- * Also provides a `reset()` method resetting the history and `currentAction`.
- *
  * Renders the `history` to `logUI` and the latest `'error'` [[`LogEntry`]] to
  * `messageUI`.
  */
@@ -96,14 +94,12 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return true;
     }
 
-    /** Resets the history to an empty state. */
-    reset(): void {
-      this.history = [];
-      this.currentAction = -1;
-    }
-
     private onLog(le: LogEvent): void {
-      if (le.detail.kind === 'reset') return this.reset();
+      if (le.detail.kind === 'reset') {
+        this.history = [];
+        this.currentAction = -1;
+        return;
+      }
 
       const entry: LogEntry = {
         time: new Date(),
@@ -148,7 +144,6 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.undo = this.undo.bind(this);
       this.redo = this.redo.bind(this);
-      this.reset = this.reset.bind(this);
 
       this.onLog = this.onLog.bind(this);
       this.addEventListener('log', this.onLog);
