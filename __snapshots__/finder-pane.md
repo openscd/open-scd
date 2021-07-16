@@ -3,7 +3,7 @@
 #### `displays nothing with default properties`
 
 ```html
-<div>
+<div class="pane">
 </div>
 
 ```
@@ -13,7 +13,7 @@
 ####   `displays one list of children per path entry`
 
 ```html
-<div>
+<div class="pane">
   <section>
     <p>
       e2
@@ -95,7 +95,7 @@
 ####     `appends a new column with the chosen entry's children`
 
 ```html
-<div>
+<div class="pane">
   <section>
     <p>
       e2
@@ -161,7 +161,7 @@
 ####     `replaces all but the first column with a new column`
 
 ```html
-<div>
+<div class="pane">
   <section>
     <p>
       e2
