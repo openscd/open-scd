@@ -3,7 +3,7 @@ import HelpPlugin from '../../../src/menu/Help.js';
 
 import { OpenSCD } from '../../../src/open-scd.js';
 
-describe('Help menu', () => {
+describe('Help', () => {
   customElements.define('help-plugin', HelpPlugin);
   let parent: OpenSCD;
   let element: HelpPlugin;
