@@ -8,7 +8,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
-import { get, translate } from 'lit-translate';
+import { translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -36,12 +36,6 @@ export class FinderPane extends LitElement {
   getChildren: (path: string[]) => Promise<Directory> = async () => {
     return { content: html``, children: [] };
   };
-
-  @property({ type: String })
-  searchFieldLabel: string = get('filter');
-
-  @property({ type: Boolean })
-  multi = false;
 
   @property({ attribute: false })
   loaded: Promise<void> = Promise.resolve();
@@ -98,15 +92,12 @@ export class FinderPane extends LitElement {
     const lists = this.path.map((parent, index) =>
       this.renderDirectory(parent, index)
     );
-    if (lists.length === 0) lists.push(this.renderDirectory('', 0));
     this.loaded = Promise.allSettled(lists).then();
-    return html`<div class="finder">
-      ${lists.map(list => until(list, waitingList))}
-    </div>`;
+    return html`<div>${lists.map(list => until(list, waitingList))}</div>`;
   }
 
   static styles = css`
-    div.finder {
+    div {
       display: flex;
       flex-direction: row;
       overflow: auto;
@@ -124,20 +115,6 @@ export class FinderPane extends LitElement {
 
     section > mwc-list {
       margin-top: 76px;
-    }
-
-    a {
-      color: var(--mdc-theme-error);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    a:link {
-      color: var(--mdc-theme-primary);
-    }
-
-    a:visited {
-      color: var(--mdc-theme-secondary);
     }
   `;
 }
