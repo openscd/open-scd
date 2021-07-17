@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/openscd/open-scd/compare/v0.4.1...v0.5.0) (2021-07-17)
+
+
+### Features
+
+* **help:** integrate user manual ([#249](https://github.com/openscd/open-scd/issues/249)) ([e5f4470](https://github.com/openscd/open-scd/commits/e5f44706e435c913c0fb9d503876f468a0cc5cb8))
+* **templates/lnodetype-wizards:** add helper wizard for missing lnClass in templates ([#241](https://github.com/openscd/open-scd/issues/241)) ([07c8b3e](https://github.com/openscd/open-scd/commits/07c8b3e20b1f9e5aff1e18bcd8f515c540fdc17c))
+* **wizard-select:** add nullabl mwc-select web-component ([#250](https://github.com/openscd/open-scd/issues/250)) ([f118779](https://github.com/openscd/open-scd/commits/f1187798820dd7a67fbcc9db409e27177de7952d))
+
+
+### Bug Fixes
+
+* **help:** get version info from manifest.js ([35846aa](https://github.com/openscd/open-scd/commits/35846aa6f1cabbe79166328123c316b8a139f94a))
+* **substation/lnodewizard:** localize LNode changes ([#245](https://github.com/openscd/open-scd/issues/245)) ([2a09fe0](https://github.com/openscd/open-scd/commits/2a09fe0dc3d91e313506a41a1550329e1690735c))
+
 ### [0.4.1](https://github.com/openscd/open-scd/compare/v0.4.0...v0.4.1) (2021-07-02)
 
 
