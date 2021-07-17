@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **help:** integrate user manual ([#249](https://github.com/openscd/open-scd/issues/249)) ([e5f4470](https://github.com/openscd/open-scd/commits/e5f44706e435c913c0fb9d503876f468a0cc5cb8))
 * **templates/lnodetype-wizards:** add helper wizard for missing lnClass in templates ([#241](https://github.com/openscd/open-scd/issues/241)) ([07c8b3e](https://github.com/openscd/open-scd/commits/07c8b3e20b1f9e5aff1e18bcd8f515c540fdc17c))
-* **wizard-select:** add nullabl mwc-select web-component ([#250](https://github.com/openscd/open-scd/issues/250)) ([f118779](https://github.com/openscd/open-scd/commits/f1187798820dd7a67fbcc9db409e27177de7952d))
+* **wizard-select:** add nullable mwc-select web-component ([#250](https://github.com/openscd/open-scd/issues/250)) ([f118779](https://github.com/openscd/open-scd/commits/f1187798820dd7a67fbcc9db409e27177de7952d))
 
 
 ### Bug Fixes
