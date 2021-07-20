@@ -3082,18 +3082,18 @@
         mwc-list-item=""
         role="option"
         tabindex="0"
-        value="Dummy.LLN0.Beh"
+        value="Dummy.LLN0.Health"
       >
-        Dummy.LLN0.Beh
+        Dummy.LLN0.Health
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="Dummy.LLN0.Health"
+        value="Dummy.LLN0.Beh"
       >
-        Dummy.LLN0.Health
+        Dummy.LLN0.Beh
       </mwc-list-item>
     </mwc-select>
     <mwc-select
