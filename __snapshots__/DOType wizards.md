@@ -169,6 +169,22 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="OpenSCD_ENSSwTyp"
+      >
+        <span>
+          ENSSwTyp
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="OpenSCD_ACTgeneral"
       >
         <span>
