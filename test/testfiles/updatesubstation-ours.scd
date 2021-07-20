@@ -59,7 +59,7 @@
 			<ConfLNs fixPrefix="true" fixLnInst="true" />
 		</Services>
 		<AccessPoint name="P1">
-			<LN prefix="DC3" lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
+			<LN prefix="DC3" lnClass="XSWI" inst="2" lnType="Dummy.XSWI1"/>
 			<Server>
 				<Authentication none="true" />
 				<LDevice inst="CircuitBreaker_CB1">
