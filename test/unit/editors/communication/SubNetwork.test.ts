@@ -90,7 +90,7 @@ describe('SubNetworkEditor', () => {
           element = new DOMParser().parseFromString(
             `<SubNetwork>
               <BitRate unit="b/s" multiplier="M">100</BitRate>
-              </BitRate>`,
+              </SubNetwork>`,
             'application/xml'
           ).documentElement;
         });
