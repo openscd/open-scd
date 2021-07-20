@@ -165,7 +165,7 @@ function getVoltageAction(
       old: {
         parent: voltageLevel,
         element: oldVoltage,
-        reference: oldVoltage.nextElementSibling,
+        reference: oldVoltage.nextSibling,
       },
     };
 

@@ -45,7 +45,7 @@ function codeAction(element: Element): WizardActor {
     if (!text || !element.parentElement) return [];
     const desc = {
       parent: element.parentElement!,
-      reference: element.nextElementSibling,
+      reference: element.nextSibling,
       element,
     };
     const del: Delete = {

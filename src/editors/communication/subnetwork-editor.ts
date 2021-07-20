@@ -60,7 +60,7 @@ function getBitRateAction(
       old: {
         parent: SubNetwork,
         element: oldBitRate,
-        reference: oldBitRate.nextElementSibling,
+        reference: oldBitRate.nextSibling,
       },
     };
 
@@ -297,7 +297,7 @@ export class SubNetworkEditor extends LitElement {
           old: {
             parent: this.element.parentElement!,
             element: this.element,
-            reference: this.element.nextElementSibling,
+            reference: this.element.nextSibling,
           },
         })
       );

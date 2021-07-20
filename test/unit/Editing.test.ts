@@ -9,7 +9,7 @@ describe('EditingElement', () => {
   let elm: EditingElement;
   let parent: Element;
   let element: Element;
-  let reference: Element | null;
+  let reference: Node | null;
 
   beforeEach(async () => {
     const doc = mockSCD();
@@ -19,7 +19,7 @@ describe('EditingElement', () => {
 
     parent = elm.doc!.querySelector('parent1')!;
     element = parent.querySelector('child1')!;
-    reference = element.nextElementSibling;
+    reference = element.nextSibling;
   });
 
   it('creates an element on receiving a Create Action', () => {

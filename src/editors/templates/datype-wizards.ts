@@ -173,7 +173,7 @@ function bDAWizard(options: WizardOptions): Wizard | undefined {
                 old: {
                   parent: bda.parentElement!,
                   element: bda,
-                  reference: bda.nextElementSibling,
+                  reference: bda.nextSibling,
                 },
               })
             );
@@ -333,7 +333,7 @@ export function dATypeWizard(
                 old: {
                   parent: datype.parentElement!,
                   element: datype,
-                  reference: datype.nextElementSibling,
+                  reference: datype.nextSibling,
                 },
               })
             );

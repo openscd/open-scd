@@ -121,7 +121,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
                 old: {
                   parent: sdo.parentElement!,
                   element: sdo,
-                  reference: sdo.nextElementSibling,
+                  reference: sdo.nextSibling,
                 },
               })
             );
@@ -322,7 +322,7 @@ function dAWizard(options: WizardOptions): Wizard | undefined {
                 old: {
                   parent: da.parentElement!,
                   element: da,
-                  reference: da.nextElementSibling,
+                  reference: da.nextSibling,
                 },
               })
             );
@@ -620,7 +620,7 @@ export function dOTypeWizard(
                 old: {
                   parent: dotype.parentElement!,
                   element: dotype,
-                  reference: dotype.nextElementSibling,
+                  reference: dotype.nextSibling,
                 },
               })
             );
