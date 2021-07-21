@@ -33,7 +33,6 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
-import { isAbsolute } from 'path/posix';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
