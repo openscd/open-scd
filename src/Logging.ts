@@ -23,7 +23,6 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
-  reset: 'none',
 };
 
 /**
