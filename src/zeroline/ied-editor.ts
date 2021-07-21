@@ -6,7 +6,8 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { newActionEvent } from '../foundation.js';
+import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { communicationMappingWizard } from '../wizards/commmap-wizards.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('ied-editor')
