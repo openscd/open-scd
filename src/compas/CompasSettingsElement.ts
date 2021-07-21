@@ -103,7 +103,7 @@ export class CompasSettingsElement extends LitElement {
 
 export function saveAction() {
   return function (inputs: WizardInput[], wizard: Element) {
-    const compasSettingsElement = <CompasSettingsElement>wizard.shadowRoot!.querySelector('compas-setting')
+    const compasSettingsElement = <CompasSettingsElement>wizard.shadowRoot!.querySelector('compas-settings')
     if (compasSettingsElement.save()) {
       compasSettingsElement.close();
     }
