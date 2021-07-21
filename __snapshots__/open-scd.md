@@ -783,21 +783,6 @@
       hasmeta=""
       left=""
       mwc-list-item=""
-      tabindex="-1"
-      value="/src/menu/Git.js"
-    >
-      <mwc-icon slot="meta">
-        source
-      </mwc-icon>
-      Git
-    </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/menu/Help.js"
