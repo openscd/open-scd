@@ -107,6 +107,15 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
+    name: 'FS',
+    src: '/src/menu/FS.js',
+    icon: 'inventory_2',
+    default: false,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'middle'
+  },
+  {
     name: 'Help',
     src: '/src/menu/Help.js',
     icon: 'help',

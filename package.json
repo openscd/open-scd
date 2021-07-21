@@ -17,6 +17,7 @@
   "module": "open-scd.js",
   "type": "module",
   "dependencies": {
+    "@isomorphic-git/lightning-fs": "^4.4.1",
     "@material/mwc-circular-progress-four-color": "^0.21.0",
     "@material/mwc-dialog": "^0.21.0",
     "@material/mwc-drawer": "^0.21.0",
@@ -35,6 +36,7 @@
     "@material/mwc-tab-bar": "^0.21.0",
     "@material/mwc-textfield": "^0.21.0",
     "@material/mwc-top-app-bar-fixed": "^0.21.0",
+    "@types/isomorphic-git__lightning-fs": "^4.4.2",
     "ace-custom-element": "^1.6.5",
     "carehtml": "^0.1.3",
     "lit-element": "2.4.0",
