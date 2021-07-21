@@ -33,7 +33,6 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
-import { Formfield } from '@material/mwc-formfield';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -294,9 +293,19 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
   };
 }
 
-function compareDOTypeId(id: string, cdc: string): -1 | 0 | 1 {
-  if (id.includes(cdc)) return 1;
-  return 0;
+function doComparator(name: string) {
+  return (a: Element, b: Element) => {
+    const idA = a.getAttribute('id') ?? '';
+    const idB = b.getAttribute('id') ?? '';
+
+    const aHasName = idA.includes(name);
+    const bHasName = idB.includes(name);
+
+    if (!aHasName && bHasName) return 1;
+    if (aHasName && !bHasName) return -1;
+
+    return idA.localeCompare(idB);
+  };
 }
 
 function createLNodeTypeHelperWizard(
@@ -319,7 +328,7 @@ function createLNodeTypeHelperWizard(
           parent
             .closest('DataTypeTemplates')!
             .querySelectorAll(`DOType[cdc="${DO.getAttribute('type')}"]`)
-        ).sort((a, b) => compareDOTypeId(b.getAttribute('id') ?? '', name));
+        ).sort(doComparator(name));
 
         return html`<mwc-select
           fixedMenuPosition
