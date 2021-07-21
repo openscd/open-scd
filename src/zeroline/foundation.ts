@@ -11,8 +11,6 @@ import {
 import { BayEditor } from './bay-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 
-import './ied-editor.js';
-
 function containsReference(element: Element, iedName: string): boolean {
   return (
     Array.from(element.querySelectorAll('LNode'))

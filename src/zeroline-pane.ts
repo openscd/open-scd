@@ -10,6 +10,7 @@ import { isPublic } from './foundation.js';
 import { unreferencedIeds } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
+import './zeroline/ied-editor.js';
 
 /** [[`Zeroline`]] pane for displaying `Substation` and/or `IED` sections. */
 @customElement('zeroline-pane')
