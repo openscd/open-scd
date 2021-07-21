@@ -33,7 +33,7 @@
       </abbr>
     </nav>
   </h3>
-  <div id="box">
+  <div>
     <div id="ceContainer">
       <conducting-equipment-editor>
       </conducting-equipment-editor>
@@ -60,7 +60,7 @@
   <h3>
     COUPLING_BAY — Bay
   </h3>
-  <div id="box">
+  <div>
     <div id="ceContainer">
       <conducting-equipment-editor readonly="">
       </conducting-equipment-editor>
