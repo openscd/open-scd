@@ -118,7 +118,7 @@ export class BayEditor extends LitElement {
   render(): TemplateResult {
     return html`<section tabindex="0">
       ${this.renderHeader()}
-      <div id="box">
+      <div>
         ${this.showieds ? renderIedContainer(this.element) : html``}
         <div id="ceContainer">
           ${Array.from(
@@ -142,14 +142,6 @@ export class BayEditor extends LitElement {
 
     section {
       margin: 0px;
-    }
-
-    #box {
-      display: grid;
-      grid-gap: 12px;
-      padding: 12px;
-      box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(100px, auto));
     }
 
     #ceContainer {

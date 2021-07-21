@@ -40,20 +40,6 @@ export class IedEditor extends LitElement {
     return html`
       <div id="container" tabindex="0">
         <mwc-icon class="icon">developer_board</mwc-icon>
-        <mwc-fab
-          mini
-          class="menu-item left"
-          icon="account_tree"
-          disabled
-        ></mwc-fab>
-        <mwc-fab mini class="menu-item up" icon="edit" disabled></mwc-fab>
-        <mwc-fab
-          mini
-          class="menu-item right"
-          icon="sync_alt"
-          disabled
-        ></mwc-fab>
-        <mwc-fab mini class="menu-item down" icon="delete" disabled></mwc-fab>
       </div>
       <h4>${this.name}</h4>
     `;
@@ -62,8 +48,8 @@ export class IedEditor extends LitElement {
   static styles = css`
     #container {
       color: var(--mdc-theme-on-surface);
-      width: 64px;
-      height: 64px;
+      width: 50px;
+      height: 50px;
       margin: auto;
       position: relative;
       transition: all 200ms linear;
@@ -75,7 +61,7 @@ export class IedEditor extends LitElement {
 
     .icon {
       color: var(--mdc-theme-on-surface);
-      --mdc-icon-size: 64px;
+      --mdc-icon-size: 50px;
       transition: transform 150ms linear, box-shadow 200ms linear;
       outline-color: var(--mdc-theme-primary);
       outline-style: solid;
@@ -84,8 +70,8 @@ export class IedEditor extends LitElement {
 
     #container > .icon {
       color: var(--mdc-theme-on-surface);
-      width: 64px;
-      height: 64px;
+      width: 50px;
+      height: 50px;
       transition: transform 150ms linear, box-shadow 200ms linear;
       outline-color: var(--mdc-theme-primary);
       outline-style: solid;
@@ -155,6 +141,7 @@ export class IedEditor extends LitElement {
       opacity: 1;
       transition: opacity 200ms linear;
       text-align: center;
+      direction: rtl;
     }
 
     :host(.moving) #container,

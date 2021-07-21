@@ -29,6 +29,15 @@ export class ZerolinePane extends LitElement {
       ${unreferencedIeds(this.doc).map(
         ied => html`<ied-editor .element=${ied}></ied-editor>`
       )}
+      <style>
+        #iedcontainer {
+          display: grid;
+          grid-gap: 12px;
+          padding: 8px 12px 16px;
+          box-sizing: border-box;
+          grid-template-columns: repeat(auto-fit, minmax(80px, 80px));
+        }
+      </style>
     </div>`;
   }
 
