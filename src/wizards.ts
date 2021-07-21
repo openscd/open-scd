@@ -78,7 +78,7 @@ function mergeWizardAction(
             old: {
               parent,
               element: diff.ours,
-              reference: diff.ours.nextElementSibling,
+              reference: diff.ours.nextSibling,
             },
           });
         else {

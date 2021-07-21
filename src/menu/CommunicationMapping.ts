@@ -433,7 +433,7 @@ function disconnectExtRefs(extRefs: Element[]): EditorAction[] {
         old: {
           parent: extRef.parentElement!,
           element: extRef,
-          reference: extRef.nextElementSibling,
+          reference: extRef.nextSibling,
         },
       });
     }
@@ -483,7 +483,7 @@ function disconnectExtRefs(extRefs: Element[]): EditorAction[] {
         old: {
           parent: iedName.parentElement!,
           element: iedName,
-          reference: iedName.nextElementSibling,
+          reference: iedName.nextSibling,
         },
       });
   });
@@ -545,7 +545,7 @@ function disconnect(
         old: {
           parent: clientLN.parentElement!,
           element: clientLN,
-          reference: clientLN.nextElementSibling,
+          reference: clientLN.nextSibling,
         },
       });
     });

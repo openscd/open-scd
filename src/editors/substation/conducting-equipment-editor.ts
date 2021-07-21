@@ -49,7 +49,7 @@ export class ConductingEquipmentEditor extends LitElement {
           old: {
             parent: this.element.parentElement!,
             element: this.element,
-            reference: this.element.nextElementSibling,
+            reference: this.element.nextSibling,
           },
         })
       );

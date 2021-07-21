@@ -80,7 +80,7 @@ export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
       new: {
         parent: parent,
         element: clone,
-        reference: element.nextElementSibling,
+        reference: element.nextSibling,
       },
     })
   );
@@ -146,7 +146,7 @@ export function startMove<E extends ElementEditor, P extends ElementEditor>(
           old: {
             element: editor.element,
             parent: editor.element.parentElement!,
-            reference: editor.element.nextElementSibling,
+            reference: editor.element.nextSibling,
           },
           new: destination,
         })

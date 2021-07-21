@@ -18,20 +18,20 @@ export type ComplexAction = {
 export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference: Element | null };
+  new: { parent: Element; element: Element; reference: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference: Element | null };
+  old: { parent: Element; element: Element; reference: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Reparents of `old.element` to `new.parent` before `new.reference`. */
 export interface Move {
-  old: { parent: Element; element: Element; reference: Element | null };
-  new: { parent: Element; reference: Element | null };
+  old: { parent: Element; element: Element; reference: Node | null };
+  new: { parent: Element; reference: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }

@@ -147,7 +147,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
                 old: {
                   parent: DO.parentElement!,
                   element: DO,
-                  reference: DO.nextElementSibling,
+                  reference: DO.nextSibling,
                 },
               })
             );
@@ -576,7 +576,7 @@ export function lNodeTypeWizard(
                 old: {
                   parent: lnodetype.parentElement!,
                   element: lnodetype,
-                  reference: lnodetype.nextElementSibling,
+                  reference: lnodetype.nextSibling,
                 },
               })
             );

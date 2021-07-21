@@ -119,7 +119,7 @@ function eNumValWizard(options: WizardOptions): Wizard {
                 old: {
                   parent: enumval.parentElement!,
                   element: enumval,
-                  reference: enumval.nextElementSibling,
+                  reference: enumval.nextSibling,
                 },
               })
             );
@@ -286,7 +286,7 @@ export function eNumTypeEditWizard(
                 old: {
                   parent: enumtype.parentElement!,
                   element: enumtype,
-                  reference: enumtype.nextElementSibling,
+                  reference: enumtype.nextSibling,
                 },
               })
             );
