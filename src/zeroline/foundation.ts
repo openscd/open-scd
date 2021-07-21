@@ -21,53 +21,71 @@ function containsReference(element: Element, iedName: string): boolean {
   );
 }
 
-function isMultiparent(element: Element, iedName: string): boolean {
-  return (
-    (<Element[]>Array.from(element.children)).filter(element =>
-      containsReference(element, iedName)
-    ).length > 1
-  );
-}
-
-function isUniquechild(element: Element, iedName: string): boolean {
-  const isUnique =
-    (<Element[]>Array.from(element.children)).filter(element =>
-      containsReference(element, iedName)
-    ).length === 1;
-
-  if (!isUnique) return false;
-  if (element.parentNode instanceof XMLDocument) return isUnique;
-  if (isUnique) return isUniquechild(element.parentElement!, iedName);
-
-  return true;
-}
-
-function isReference(element: Element, iedName: string): boolean {
+function isReferencedItself(element: Element, iedName: string): boolean {
   return (
     (<Element[]>Array.from(element.children)).filter(
-      element =>
-        element.tagName === 'LNode' &&
-        element.getAttribute('iedName') === iedName
+      child =>
+        child.tagName === 'LNode' && child.getAttribute('iedName') === iedName
     ).length !== 0
   );
 }
 
+function hasReferencedChildren(
+  element: Element,
+  iedName: string,
+  multi: boolean
+): boolean {
+  const threshold = multi ? 1 : 0;
+  return (
+    (<Element[]>Array.from(element.children)).filter(child =>
+      containsReference(child, iedName)
+    ).length > threshold
+  );
+}
+
+function isReferencedAside(element: Element, iedName: string): boolean {
+  const isUnique =
+    (<Element[]>Array.from(element.children)).filter(child =>
+      containsReference(child, iedName)
+    ).length === 1;
+
+  if (!isUnique) return true;
+  if (element.parentElement && !(element.parentElement instanceof XMLDocument))
+    return isReferencedAside(element.parentElement, iedName);
+
+  return false;
+}
+
+function isReferencedAbove(element: Element, iedName: string): boolean {
+  const isReferenced = isReferencedItself(element, iedName);
+
+  if (isReferenced) return true;
+
+  if (element.parentElement && !(element.parentElement instanceof XMLDocument))
+    return isReferencedAbove(element.parentElement, iedName);
+
+  return false;
+}
+
 export function attachedIeds(element: Element): Element[] {
   const doc = element.ownerDocument;
-
   const ieds = Array.from(doc.querySelectorAll(':root > IED'));
 
   const attachedIeds: Element[] = [];
-
   ieds.forEach(ied => {
     const iedName = ied.getAttribute('name')!;
-    if (
-      (isMultiparent(element, iedName) &&
-        isUniquechild(element.parentElement!, iedName)) ||
-      (isReference(element, iedName) &&
-        isUniquechild(element.parentElement!, iedName))
-    )
-      attachedIeds.push(ied);
+
+    const belongsHere =
+      hasReferencedChildren(
+        element,
+        iedName,
+        element.tagName === 'Bay' ? false : true
+      ) || isReferencedItself(element, iedName);
+    const belongsAbove =
+      isReferencedAbove(element.parentElement!, iedName) ||
+      isReferencedAside(element.parentElement!, iedName);
+
+    if (!belongsAbove && belongsHere) attachedIeds.push(ied);
   });
 
   return attachedIeds;
@@ -83,7 +101,7 @@ export function unreferencedIeds(doc: XMLDocument): Element[] {
   ieds.forEach(ied => {
     const iedName = ied.getAttribute('name')!;
     if (
-      isMultiparent(root, iedName) ||
+      hasReferencedChildren(root, iedName, true) ||
       Array.from(doc.querySelectorAll('LNode'))
         .filter(isPublic)
         .filter(lnode => lnode.getAttribute('iedName') === iedName).length === 0
