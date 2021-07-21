@@ -114,7 +114,7 @@ describe('LoggingElement', () => {
     });
 
     it('can reset its history', () => {
-      element.reset();
+      element.dispatchEvent(newLogEvent({ kind: 'reset' }));
       expect(element).property('history').to.be.empty;
       expect(element).to.have.property('currentAction', -1);
     });
