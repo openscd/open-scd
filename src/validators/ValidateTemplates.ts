@@ -1,4 +1,5 @@
 import { LitElement, property } from 'lit-element';
+import { get } from 'lit-translate';
 import { identity, LogDetail, newLogEvent } from '../foundation.js';
 
 const iec6185074 = fetch('public/xml/IEC_61850-7-4_2007B3.nsd')
@@ -30,16 +31,21 @@ async function validateCoOperStructure(oper: Element): Promise<LogDetail[]> {
   const nsd81 = await iec6185081;
 
   const errors: LogDetail[] = [];
-  const mendatoryDAs = Array.from(
+  const mandatoryBDAs = Array.from(
     nsd81.querySelectorAll(
       `ServiceConstructedAttributes > ServiceConstructedAttribute[name="Oper"] > SubDataAttribute[presCond="M"]`
     )
   ).map(data => data.getAttribute('name')!);
 
-  for (const mendatoryDA of mendatoryDAs)
-    if (datype && !datype.querySelector(`BDA[name="${mendatoryDA}"]`))
+  for (const mandatoryBDA of mandatoryBDAs)
+    if (datype && !datype.querySelector(`BDA[name="${mandatoryBDA}"]`))
       errors.push({
-        title: `Data structure SBOw is missing mandatory data ${mendatoryDA}`,
+        title: get('validator.templates.mandatoryChild', {
+          tag: 'DAType',
+          id: type,
+          childTag: 'BDA',
+          childId: mandatoryBDA,
+        }),
         kind: 'error',
         message: `${identity(datype)}`,
       });
@@ -58,16 +64,21 @@ async function validateCoSBOwStructure(sbow: Element): Promise<LogDetail[]> {
   const nsd81 = await iec6185081;
 
   const errors: LogDetail[] = [];
-  const mendatoryDAs = Array.from(
+  const mandatoryBDAs = Array.from(
     nsd81.querySelectorAll(
       `ServiceConstructedAttributes > ServiceConstructedAttribute[name="SBOw"] > SubDataAttribute[presCond="M"]`
     )
   ).map(data => data.getAttribute('name')!);
 
-  for (const mendatoryDA of mendatoryDAs)
-    if (datype && !datype.querySelector(`BDA[name="${mendatoryDA}"]`))
+  for (const mandatoryBDA of mandatoryBDAs)
+    if (datype && !datype.querySelector(`BDA[name="${mandatoryBDA}"]`))
       errors.push({
-        title: `Data structure SBOw is missing mandatory data ${mendatoryDA}`,
+        title: get('validator.templates.mandatoryChild', {
+          tag: 'SBOw',
+          id: type,
+          childTag: 'BDA',
+          childId: mandatoryBDA,
+        }),
         kind: 'error',
         message: `${identity(datype)}`,
       });
@@ -89,16 +100,21 @@ async function validateCoCancelStructure(
   const nsd81 = await iec6185081;
 
   const errors: LogDetail[] = [];
-  const mendatoryDAs = Array.from(
+  const mandatoryBDAs = Array.from(
     nsd81.querySelectorAll(
       `ServiceConstructedAttributes > ServiceConstructedAttribute[name="Cancel"] > SubDataAttribute[presCond="M"]`
     )
   ).map(data => data.getAttribute('name')!);
 
-  for (const mendatoryDA of mendatoryDAs)
-    if (datype && !datype.querySelector(`BDA[name="${mendatoryDA}"]`))
+  for (const mandatoryBDA of mandatoryBDAs)
+    if (datype && !datype.querySelector(`BDA[name="${mandatoryBDA}"]`))
       errors.push({
-        title: `Data structure Cancel is missing mandatory data ${mendatoryDA}`,
+        title: get('validator.templates.mandatoryChild', {
+          tag: 'DAType',
+          id: type,
+          childTag: 'BDA',
+          childId: mandatoryBDA,
+        }),
         kind: 'error',
         message: `${identity(datype)}`,
       });
@@ -111,7 +127,7 @@ function missingCoDataToLog(
   type: 'Oper' | 'SBOw' | 'SBO' | 'Cancel'
 ): LogDetail {
   return {
-    title: `Controlable data objects ${type} is missing`,
+    title: get('validator.templates.missingCoDO', { type }),
     kind: 'error',
     message: `${reference}`,
   };
@@ -128,7 +144,9 @@ export async function validateControlCDC(
     return [];
 
   let errors: LogDetail[] = [];
-  const ctlModel = dotype.querySelector('DA[name="ctlModel"] > Val')?.innerHTML;
+  const ctlModel = dotype
+    .querySelector('DA[name="ctlModel"] > Val')
+    ?.textContent?.trim();
   const oper = dotype.querySelector('DA[fc="CO"][name="Oper"][bType="Struct"]');
   const sbo = dotype.querySelector('DA[fc="CO"][name="SBO"][bType="ObjRef"]');
   const cancel = dotype.querySelector(
@@ -153,14 +171,25 @@ export async function validateControlCDC(
     errors = oper
       ? await validateCoOperStructure(oper)
       : [missingCoDataToLog(identity(dotype), 'Oper')];
+  } else {
+    return [
+      {
+        title: get('validator.templates.cannotValidate', {
+          tag: 'DOType',
+          id: dotype.id || 'UNIDENTIFIABLE',
+          childTag: 'ctlModel',
+          childId: 'Val',
+        }),
+        kind: 'warning',
+        message: <string>(identity(dotype) || 'UNIDENTIFIABLE'),
+      },
+    ];
   }
 
   return errors;
 }
 
-async function getMendatorySubDataAttributes(
-  datype: Element
-): Promise<Element[]> {
+async function getMandatorySubDAs(datype: Element): Promise<Element[]> {
   const parentDAs =
     Array.from(
       datype
@@ -197,26 +226,29 @@ async function getMendatorySubDataAttributes(
 export async function validateMandatorySubDAs(
   datype: Element
 ): Promise<LogDetail[]> {
-  const mandatorysubdas = await (
-    await getMendatorySubDataAttributes(datype)
-  ).map(DA => DA.getAttribute('name')!);
+  const mandatorySubDAs = await getMandatorySubDAs(datype);
+  const subDANames = mandatorySubDAs.map(
+    DA => DA.getAttribute('name') ?? 'NONAME'
+  );
+  const missingDANames = subDANames.filter(
+    da => !datype.querySelector(`BDA[name="${da}"]`)
+  );
 
-  const errors: LogDetail[] = [];
-  mandatorysubdas.forEach(mandatorysubda => {
-    if (!datype.querySelector(`BDA[name="${mandatorysubda}"]`))
-      errors.push({
-        title: `The element DA ${mandatorysubda} is mendatory DAType ${datype.getAttribute(
-          'id'
-        )}`,
-        kind: 'error',
-        message: `${datype}`,
-      });
+  return missingDANames.map(da => {
+    return {
+      title: get('validator.templates.mandatoryChild', {
+        tag: 'DAType',
+        id: datype.getAttribute('id') ?? '',
+        childTag: 'DA',
+        childId: da,
+      }),
+      kind: 'error',
+      message: `${datype}`,
+    };
   });
-
-  return errors;
 }
 
-async function getMendatoryDataAttribute(base: string): Promise<Element[]> {
+async function getMandatoryDataAttribute(base: string): Promise<Element[]> {
   const nsd = await iec6185073;
   const cdc = nsd.querySelector(`CDC[name="${base}"]`);
 
@@ -232,14 +264,19 @@ export async function validateMandatoryDAs(
   const cdc = dotype.getAttribute('cdc');
   if (!cdc) return [];
 
-  const mandatorydas = await (
-    await getMendatoryDataAttribute(cdc)
-  ).map(DA => DA.getAttribute('name')!);
+  const mandatorydas = (await getMandatoryDataAttribute(cdc)).map(
+    DA => DA.getAttribute('name')!
+  );
 
   mandatorydas.forEach(mandatoryda => {
     if (!dotype.querySelector(`DA[name="${mandatoryda}"]`))
       errors.push({
-        title: `The element DA ${mandatoryda} is mendatory in Common Data Class ${cdc}`,
+        title: get('validator.templates.mandatoryChild', {
+          tag: 'Common Data Class',
+          id: cdc,
+          childTag: 'DA',
+          childId: mandatoryda,
+        }),
         kind: 'error',
         message: `${identity(dotype)}`,
       });
@@ -263,7 +300,7 @@ function getAdjacentClass(nsd: XMLDocument, base: string): Element[] {
   ).concat(adjacents);
 }
 
-async function getAllDataObject(base: string): Promise<Element[]> {
+async function getAllDataObjects(base: string): Promise<Element[]> {
   const lnodeclasses = getAdjacentClass(await iec6185074, base);
 
   return lnodeclasses.flatMap(lnodeclass =>
@@ -278,7 +315,7 @@ export async function validateDoCDCSetting(
   const lnClass = lnodetype.getAttribute('lnClass');
   if (!lnClass) return [];
 
-  const alldos = await getAllDataObject(lnClass);
+  const alldos = await getAllDataObjects(lnClass);
 
   for (const DO of alldos) {
     const type = lnodetype
@@ -293,9 +330,12 @@ export async function validateDoCDCSetting(
 
     if (!dOType) {
       errors.push({
-        title: `Cannot validate data object ${DO.getAttribute(
-          'name'
-        )} in LNodeType ${lnClass}`,
+        title: get('validator.templates.cannotValidate', {
+          tag: 'LNodeType',
+          id: lnClass,
+          childTag: 'DO',
+          childId: DO.getAttribute('name') || 'UNNAMED',
+        }),
         kind: 'warning',
         message: `${identity(lnodetype)}`,
       });
@@ -304,11 +344,12 @@ export async function validateDoCDCSetting(
 
     if (dOType!.getAttribute('cdc') !== DO.getAttribute('type'))
       errors.push({
-        title: `The element DOs ${DO.getAttribute(
-          'name'
-        )} class definition ${dOType!.getAttribute(
-          'cdc'
-        )} is expected to be ${DO.getAttribute('type')}`,
+        title: get('validator.templates.mandatoryChild', {
+          tag: 'DOType',
+          id: dOType.getAttribute('cdc') || 'UNCLASSIFIED',
+          childTag: 'DO',
+          childId: DO.getAttribute('type') || 'UNTYPED',
+        }),
         kind: 'error',
         message: `${identity(dOType)} > ${DO.getAttribute('name')}`,
       });
@@ -317,7 +358,7 @@ export async function validateDoCDCSetting(
   return errors;
 }
 
-async function getMendatoryDataObject(base: string): Promise<Element[]> {
+async function getMandatoryDataObject(base: string): Promise<Element[]> {
   const lnodeclasses = getAdjacentClass(await iec6185074, base);
 
   return lnodeclasses.flatMap(lnodeclass =>
@@ -333,13 +374,18 @@ export async function validateMandatoryDOs(
   if (!lnClass) return [];
 
   const mandatorydos = await (
-    await getMendatoryDataObject(lnClass)
+    await getMandatoryDataObject(lnClass)
   ).map(DO => DO.getAttribute('name')!);
 
   mandatorydos.forEach(mandatorydo => {
     if (!lnodetype.querySelector(`DO[name="${mandatorydo}"]`))
       errors.push({
-        title: `The element DO ${mandatorydo} is mendatory in LN Class ${lnClass}`,
+        title: get('validator.templates.mandatoryChild', {
+          tag: 'lnClass',
+          id: lnClass,
+          childTag: 'DO',
+          childId: mandatorydo,
+        }),
         kind: 'error',
         message: `${identity(lnodetype)} > ${mandatorydo}`,
       });
@@ -349,7 +395,7 @@ export async function validateMandatoryDOs(
 }
 
 export default class ValidateTemplates extends LitElement {
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
 
   @property()

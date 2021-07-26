@@ -301,7 +301,7 @@ describe('LNodeType wizards', () => {
         );
       });
 
-      it('requires all mendatory DOs to be defined', async () => {
+      it('requires all mandatory DOs to be defined', async () => {
         beh.value = ensId;
         await parent.updateComplete;
         saveButton.click();

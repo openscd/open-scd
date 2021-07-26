@@ -90,12 +90,22 @@ export const en = {
       srcHelper: 'The vendor supplied extension URL',
     },
   },
-  validate: {
-    title: 'Validate project',
-    valid: '{{ name }} validation successful',
-    invalid: '{{ name }} validation failed',
-    fatal: 'Fatal validation error',
-    loadError: 'Could not load schema {{ name }}',
+  validator: {
+    schema: {
+      title: 'Validate project',
+      valid: '{{ name }} validation successful',
+      invalid: '{{ name }} validation failed',
+      fatal: 'Fatal validation error',
+      loadError: 'Could not load schema {{ name }}',
+    },
+    templates: {
+      title: 'Validate templates',
+      mandatoryChild:
+        '{{ tag }} {{ id }} is missing mandatory child {{ childTag }} {{ childId }}',
+      missingCoDO: 'Control DO of type {{ type }} is missing',
+      cannotValidate:
+        'Cannot validate {{ childTag }} {{ childId }} within {{ tag }} {{ id }}',
+    },
   },
   substation: {
     name: 'Substation',
