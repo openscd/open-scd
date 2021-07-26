@@ -6,11 +6,12 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
-import { renderIedContainer, selectors, styles } from './foundation.js';
+import { selectors, styles } from './foundation.js';
 
 import './voltage-level-editor.js';
 
@@ -20,12 +21,8 @@ export class SubstationEditor extends LitElement {
   /** The edited `Element`, a common property of all Substation subeditors. */
   @property({ attribute: false })
   element!: Element;
-
   @property({ type: Boolean })
   readonly = false;
-
-  @property({ type: Boolean })
-  showieds = false;
 
   /** [[element | `element.name`]] */
   @property({ type: String })
@@ -37,6 +34,11 @@ export class SubstationEditor extends LitElement {
   get desc(): string | null {
     return this.element.getAttribute('desc');
   }
+
+  @property({ attribute: false })
+  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => {
+    return [];
+  };
 
   /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
   openEditWizard(): void {
@@ -67,6 +69,15 @@ export class SubstationEditor extends LitElement {
         },
       })
     );
+  }
+
+  async renderIedContainer(): Promise<TemplateResult> {
+    const ieds = await this.getAttachedIeds?.(this.element);
+    return ieds
+      ? html`<div id="iedcontainer">
+          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+        </div>`
+      : html``;
   }
 
   renderHeader(): TemplateResult {
@@ -112,13 +123,16 @@ export class SubstationEditor extends LitElement {
     return html`
       <section tabindex="0">
         ${this.renderHeader()}
-        ${this.showieds ? renderIedContainer(this.element) : html``}
+        ${until(
+          this.renderIedContainer(),
+          html`<span>${translate('zeroline.iedsloading')}</span>`
+        )}
         ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
           voltageLevel =>
             html`<voltage-level-editor
               .element=${voltageLevel}
+              .getAttachedIeds=${this.getAttachedIeds}
               ?readonly=${this.readonly}
-              ?showieds=${this.showieds}
             ></voltage-level-editor>`
         )}
       </section>

@@ -1,4 +1,5 @@
-import { css, html, TemplateResult } from 'lit-element';
+import { css } from 'lit-element';
+
 import {
   EditorAction,
   getValue,
@@ -12,28 +13,20 @@ import { BayEditor } from './bay-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 
 function containsReference(element: Element, iedName: string): boolean {
-  return (
-    Array.from(element.querySelectorAll('LNode'))
-      .filter(isPublic)
-      .filter(lnode => lnode.getAttribute('iedName') === iedName).length !== 0
-  );
+  return Array.from(element.getElementsByTagName('LNode'))
+    .filter(isPublic)
+    .some(lnode => lnode.getAttribute('iedName') === iedName);
 }
 
 function isReferencedItself(element: Element, iedName: string): boolean {
-  return (
-    (<Element[]>Array.from(element.children)).filter(
-      child =>
-        child.tagName === 'LNode' && child.getAttribute('iedName') === iedName
-    ).length !== 0
+  return (<Element[]>Array.from(element.children)).some(
+    child =>
+      child.tagName === 'LNode' && child.getAttribute('iedName') === iedName
   );
 }
 
-function hasReferencedChildren(
-  element: Element,
-  iedName: string,
-  multi: boolean
-): boolean {
-  const threshold = multi ? 1 : 0;
+function hasReferencedChildren(element: Element, iedName: string): boolean {
+  const threshold = element.tagName === 'Bay' ? 0 : 1;
   return (
     (<Element[]>Array.from(element.children)).filter(child =>
       containsReference(child, iedName)
@@ -41,111 +34,76 @@ function hasReferencedChildren(
   );
 }
 
-function isReferencedAside(element: Element, iedName: string): boolean {
-  const isUnique =
-    (<Element[]>Array.from(element.children)).filter(child =>
-      containsReference(child, iedName)
-    ).length === 1;
-
-  if (!isUnique) return true;
-  if (element.parentElement && !(element.parentElement instanceof XMLDocument))
-    return isReferencedAside(element.parentElement, iedName);
-
-  return false;
+function hasOurs(element: Element, iedName: string): boolean {
+  return Array.from(element.getElementsByTagName('LNode'))
+    .filter(isPublic)
+    .some(lnode => lnode.getAttribute('iedName') === iedName);
 }
 
-function isReferencedAbove(element: Element, iedName: string): boolean {
-  const isReferenced = isReferencedItself(element, iedName);
-
-  if (isReferenced) return true;
-
-  if (element.parentElement && !(element.parentElement instanceof XMLDocument))
-    return isReferencedAbove(element.parentElement, iedName);
-
-  return false;
+function getOurs(element: Element, iedName: string): Element[] {
+  return Array.from(element.getElementsByTagName('LNode'))
+    .filter(isPublic)
+    .filter(lnode => lnode.getAttribute('iedName') === iedName);
 }
 
-export function attachedIeds(element: Element): Element[] {
-  const doc = element.ownerDocument;
-  const ieds = Array.from(doc.querySelectorAll(':root > IED'));
+function hasTheirs(element: Element, iedName: string): boolean {
+  const ours = getOurs(element, iedName);
+  const scl = element.closest('SCL')!;
+
+  return Array.from(scl.getElementsByTagName('LNode'))
+    .filter(isPublic)
+    .filter(lnode => lnode.getAttribute('iedName') === iedName)
+    .some(lnode => !ours.includes(lnode));
+}
+
+export async function attachedIeds(
+  element: Element,
+  remainingIeds: Set<Element>
+): Promise<Element[]> {
+  await new Promise(requestAnimationFrame);
 
   const attachedIeds: Element[] = [];
-  ieds.forEach(ied => {
+  for (const ied of remainingIeds) {
     const iedName = ied.getAttribute('name')!;
 
-    const belongsHere =
-      hasReferencedChildren(
-        element,
-        iedName,
-        element.tagName === 'Bay' ? false : true
-      ) || isReferencedItself(element, iedName);
-    const belongsAbove =
-      isReferencedAbove(element.parentElement!, iedName) ||
-      isReferencedAside(element.parentElement!, iedName);
+    if (element.tagName === 'SCL') {
+      if (!hasOurs(element, iedName) || hasReferencedChildren(element, iedName))
+        attachedIeds.push(ied);
 
-    if (!belongsAbove && belongsHere) attachedIeds.push(ied);
-  });
+      continue;
+    }
+
+    if (hasTheirs(element, iedName)) continue;
+    if (
+      hasReferencedChildren(element, iedName) ||
+      isReferencedItself(element, iedName)
+    )
+      attachedIeds.push(ied);
+  }
+
+  for (const ied of attachedIeds) {
+    remainingIeds.delete(ied);
+  }
 
   return attachedIeds;
 }
 
-export function unreferencedIeds(doc: XMLDocument): Element[] {
-  const ieds = Array.from(doc.querySelectorAll(':root > IED'));
-  const root = doc.querySelector(':root');
-  if (!root) return [];
+export function getAttachedIeds(
+  doc: XMLDocument
+): (element: Element) => Promise<Element[]> {
+  return async (element: Element) => {
+    const ieds = new Set(
+      Array.from(doc.querySelectorAll('IED')).filter(isPublic)
+    );
+    await new Promise(requestAnimationFrame);
 
-  const unreferencedIeds: Element[] = [];
-
-  ieds.forEach(ied => {
-    const iedName = ied.getAttribute('name')!;
-    if (
-      hasReferencedChildren(root, iedName, true) ||
-      Array.from(doc.querySelectorAll('LNode'))
-        .filter(isPublic)
-        .filter(lnode => lnode.getAttribute('iedName') === iedName).length === 0
-    )
-      unreferencedIeds.push(ied);
-  });
-
-  return unreferencedIeds;
-}
-
-export function renderIedContainer(element: Element): TemplateResult {
-  return attachedIeds(element).length > 0
-    ? html`<div id="iedcontainer">
-        ${attachedIeds(element).map(
-          ied => html`<ied-editor .element=${ied}></ied-editor>`
-        )}
-        <style>
-          #iedcontainer {
-            display: grid;
-            grid-gap: 12px;
-            padding: 8px 12px 16px;
-            box-sizing: border-box;
-            grid-template-columns: repeat(auto-fit, minmax(64px, auto));
-          }
-        </style>
-      </div>`
-    : html``;
+    return await attachedIeds(element, ieds);
+  };
 }
 
 export type ElementEditor = Element & {
   element: Element;
 };
-
-interface UpdateOptions {
-  element: Element;
-}
-interface CreateOptions {
-  parent: Element;
-}
-export type WizardOptions = UpdateOptions | CreateOptions;
-
-export function isCreateOptions(
-  options: WizardOptions
-): options is CreateOptions {
-  return (<CreateOptions>options).parent !== undefined;
-}
 
 export function updateNamingAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -359,5 +317,13 @@ export const styles = css`
   abbr {
     text-decoration: none;
     border-bottom: none;
+  }
+
+  #iedcontainer {
+    display: grid;
+    grid-gap: 12px;
+    padding: 8px 12px 16px;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(64px, auto));
   }
 `;

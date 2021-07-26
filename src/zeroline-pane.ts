@@ -4,10 +4,13 @@ import {
   TemplateResult,
   property,
   customElement,
+  css,
 } from 'lit-element';
+import { until } from 'lit-html/directives/until';
+import { translate } from 'lit-translate';
 
 import { isPublic } from './foundation.js';
-import { unreferencedIeds } from './zeroline/foundation.js';
+import { styles } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
@@ -18,45 +21,51 @@ export class ZerolinePane extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })
   doc!: XMLDocument;
-
   @property({ type: Boolean })
   readonly = false;
 
-  @property({ type: Boolean })
-  showieds = false;
+  @property({ attribute: false })
+  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => {
+    return [];
+  };
 
-  renderIedContainer(): TemplateResult {
-    return html`<div id="iedcontainer">
-      ${unreferencedIeds(this.doc).map(
-        ied => html`<ied-editor .element=${ied}></ied-editor>`
-      )}
-      <style>
-        #iedcontainer {
-          display: grid;
-          grid-gap: 12px;
-          padding: 8px 12px 16px;
-          box-sizing: border-box;
-          grid-template-columns: repeat(auto-fit, minmax(64px, auto));
-        }
-      </style>
-    </div>`;
+  async renderIedContainer(): Promise<TemplateResult> {
+    const ieds = await this.getAttachedIeds?.(this.doc.documentElement);
+
+    await new Promise(requestAnimationFrame);
+    return ieds
+      ? html`<div id="iedcontainer">
+          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+        </div>`
+      : html``;
   }
 
   render(): TemplateResult {
-    return html`
-      <section tabindex="0">
-        ${this.showieds ? this.renderIedContainer() : html``}
-        ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
-          .filter(isPublic)
-          .map(
-            substation =>
-              html`<substation-editor
-                .element=${substation}
-                .readonly=${this.readonly}
-                .showieds=${this.showieds}
-              ></substation-editor>`
-          )}
-      </section>
-    `;
+    return html`${until(
+      this.renderIedContainer(),
+      html`<span>loading ieds...</span>`
+    )}
+    ${!this.doc?.querySelector(':root > Substation')
+      ? html`<h1>
+          <span style="color: var(--base1)"
+            >${translate('substation.missing')}</span
+          >
+        </h1>`
+      : html`<section tabindex="0">
+          ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
+            .filter(isPublic)
+            .map(
+              substation =>
+                html`<substation-editor
+                  .element=${substation}
+                  .getAttachedIeds=${this.getAttachedIeds}
+                  ?readonly=${this.readonly}
+                ></substation-editor>`
+            )}
+        </section>`}`;
   }
+
+  static styles = css`
+    ${styles}
+  `;
 }

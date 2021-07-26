@@ -54,10 +54,6 @@ export class ConductingEquipmentEditor extends LitElement {
   get name(): string {
     return this.element.getAttribute('name') ?? '';
   }
-  @property({ type: String })
-  get desc(): string {
-    return this.element.getAttribute('desc') ?? '';
-  }
 
   openEditWizard(): void {
     const wizard = wizards['ConductingEquipment'].edit(this.element);

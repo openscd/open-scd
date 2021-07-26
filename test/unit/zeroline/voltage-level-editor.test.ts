@@ -33,25 +33,4 @@ describe('voltage-level-editor', () => {
       expect(element).shadowDom.to.equalSnapshot();
     });
   });
-
-  describe('with showieds property', () => {
-    beforeEach(async () => {
-      element.showieds = true;
-      await element.requestUpdate();
-    });
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
-
-  describe('with readonly and showieds property', () => {
-    beforeEach(async () => {
-      element.showieds = true;
-      element.readonly = true;
-      await element.requestUpdate();
-    });
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
 });

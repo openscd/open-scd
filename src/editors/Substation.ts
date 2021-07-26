@@ -4,7 +4,13 @@ import { translate, get } from 'lit-translate';
 import { newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
+import { getAttachedIeds } from '../zeroline/foundation.js';
+
 import '../zeroline-pane.js';
+
+function isShowieds(): boolean {
+  return localStorage.getItem('showieds') === 'on';
+}
 
 /** An editor [[`plugin`]] for editing the `Substation` section. */
 export default class SubstationPlugin extends LitElement {
@@ -18,20 +24,44 @@ export default class SubstationPlugin extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  renderHeader(): TemplateResult {
+    return html`
+        <h1>
+          ${html`<abbr title="${translate('add')}">
+              <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+            </abbr>
+            <nav>
+              <abbr title="${translate('lnode.tooltip')}">
+                <mwc-icon-button-toggle
+                  ?on=${isShowieds()}
+                  id="showieds"
+                  onIcon="developer_board"
+                  offIcon="developer_board_off"
+                  disabled
+                ></mwc-icon-button-toggle>
+              </abbr>
+            </nav>`}
+          </nav>
+        </h1>
+      `;
+  }
+
   render(): TemplateResult {
-    if (!this.doc?.querySelector(':root > Substation'))
-      return html`<h1>
-        <span style="color: var(--base1)"
-          >${translate('substation.missing')}</span
-        >
-        <mwc-fab
-          extended
-          icon="add"
-          label="${get('substation.wizard.title.add')}"
-          @click=${() => this.openCreateSubstationWizard()}
-        ></mwc-fab>
-      </h1>`;
-    return html` <zeroline-pane .doc=${this.doc} showieds></zeroline-pane> `;
+    return html` ${this.renderHeader()}
+      <zeroline-pane
+        .doc=${this.doc}
+        .getAttachedIeds=${isShowieds() ? getAttachedIeds(this.doc) : undefined}
+      ></zeroline-pane>
+      ${!this.doc?.querySelector(':root > Substation')
+        ? html`<h1>
+            <mwc-fab
+              extended
+              icon="add"
+              label="${get('substation.wizard.title.add')}"
+              @click=${() => this.openCreateSubstationWizard()}
+            ></mwc-fab>
+          </h1>`
+        : html``}`;
   }
 
   static styles = css`
@@ -43,6 +73,23 @@ export default class SubstationPlugin extends LitElement {
 
     :host {
       width: 100vw;
+    }
+
+    h1 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 0px;
+      line-height: 48px;
+      padding-left: 0.3em;
+      transition: background-color 150ms linear;
+    }
+
+    h1 > nav,
+    h1 > abbr > mwc-icon-button {
+      float: right;
     }
   `;
 }

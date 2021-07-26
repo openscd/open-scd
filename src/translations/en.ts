@@ -31,6 +31,7 @@ export const en = {
     languages: { de: 'German (Deutsch)', en: 'English' },
     dark: 'Dark theme',
     mode: 'Pro mode',
+    showieds: 'Show IEDs in substation editor',
   },
   menu: {
     title: 'Menu',
@@ -41,6 +42,9 @@ export const en = {
     loaded: '{{ name }} loaded',
     readError: 'Error reading {{ name }}',
     readAbort: 'Aborted reading {{ name }}',
+  },
+  zeroline: {
+    iedsloading: 'Loading IEDs...',
   },
   editing: {
     created: 'Added {{ name }}',

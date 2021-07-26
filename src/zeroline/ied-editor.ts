@@ -18,23 +18,6 @@ export class IedEditor extends LitElement {
   get name(): string {
     return this.element.getAttribute('name') ?? '';
   }
-  @property({ type: String })
-  get desc(): string {
-    return this.element.getAttribute('desc') ?? '';
-  }
-
-  remove(): void {
-    if (this.element)
-      this.dispatchEvent(
-        newActionEvent({
-          old: {
-            parent: this.element.parentElement!,
-            element: this.element,
-            reference: this.element.nextSibling,
-          },
-        })
-      );
-  }
 
   render(): TemplateResult {
     return html`

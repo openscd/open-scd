@@ -8,29 +8,20 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import {
-  selectors,
-  startMove,
-  styles,
-  cloneElement,
-  renderIedContainer,
-} from './foundation.js';
+import { selectors, startMove, styles, cloneElement } from './foundation.js';
 import './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { until } from 'lit-html/directives/until';
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
 export class VoltageLevelEditor extends LitElement {
   @property()
   element!: Element;
-
   @property({ type: Boolean })
   readonly = false;
-
-  @property({ type: Boolean })
-  showieds = false;
 
   @property()
   get name(): string {
@@ -49,6 +40,11 @@ export class VoltageLevelEditor extends LitElement {
     const u = m === null ? 'V' : ' ' + m + 'V';
     return v ? v + u : null;
   }
+
+  @property({ attribute: false })
+  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => {
+    return [];
+  };
 
   openEditWizard(): void {
     const wizard = wizards['VoltageLevel'].edit(this.element);
@@ -77,6 +73,15 @@ export class VoltageLevelEditor extends LitElement {
           },
         })
       );
+  }
+
+  async renderIedContainer(): Promise<TemplateResult> {
+    const ieds = await this.getAttachedIeds?.(this.element);
+    return ieds
+      ? html`<div id="iedcontainer">
+          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+        </div>`
+      : html``;
   }
 
   renderHeader(): TemplateResult {
@@ -130,13 +135,16 @@ export class VoltageLevelEditor extends LitElement {
   render(): TemplateResult {
     return html`<section tabindex="0">
       ${this.renderHeader()}
-      ${this.showieds ? renderIedContainer(this.element) : html``}
+      ${until(
+        this.renderIedContainer(),
+        html`<span>${translate('zeroline.iedsloading')}</span>`
+      )}
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
           bay => html`<bay-editor
             .element=${bay}
+            .getAttachedIeds=${this.getAttachedIeds}
             ?readonly=${this.readonly}
-            ?showieds=${this.showieds}
           ></bay-editor>`
         )}
       </div>

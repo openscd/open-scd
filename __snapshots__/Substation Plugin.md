@@ -6,9 +6,25 @@
 
 ```html
 <h1>
-  <span style="color: var(--base1)">
-    [substation.missing]
-  </span>
+  <abbr title="[add]">
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+  </abbr>
+  <nav>
+    <abbr title="[lnode.tooltip]">
+      <mwc-icon-button-toggle
+        disabled=""
+        id="showieds"
+        officon="developer_board_off"
+        onicon="developer_board"
+      >
+      </mwc-icon-button-toggle>
+    </abbr>
+  </nav>
+</h1>
+<zeroline-pane>
+</zeroline-pane>
+<h1>
   <mwc-fab
     extended=""
     icon="add"

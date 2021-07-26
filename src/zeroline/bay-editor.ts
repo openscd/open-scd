@@ -6,30 +6,24 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
-import {
-  startMove,
-  styles,
-  cloneElement,
-  renderIedContainer,
-} from './foundation.js';
-import './conducting-equipment-editor.js';
-import { VoltageLevelEditor } from './voltage-level-editor.js';
-import { wizards } from '../wizards/wizard-library.js';
+import { startMove, styles, cloneElement } from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
+
+import { wizards } from '../wizards/wizard-library.js';
+
+import { VoltageLevelEditor } from './voltage-level-editor.js';
+import './conducting-equipment-editor.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
 export class BayEditor extends LitElement {
   @property({ attribute: false })
   element!: Element;
-
   @property({ type: Boolean })
   readonly = false;
-
-  @property({ type: Boolean })
-  showieds = false;
 
   @property({ type: String })
   get name(): string {
@@ -39,6 +33,11 @@ export class BayEditor extends LitElement {
   get desc(): string | null {
     return this.element.getAttribute('desc') ?? null;
   }
+
+  @property({ attribute: false })
+  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => {
+    return [];
+  };
 
   openEditWizard(): void {
     const wizard = wizards['Bay'].edit(this.element);
@@ -67,6 +66,15 @@ export class BayEditor extends LitElement {
           },
         })
       );
+  }
+
+  async renderIedContainer(): Promise<TemplateResult> {
+    const ieds = await this.getAttachedIeds?.(this.element);
+    return ieds
+      ? html`<div id="iedcontainer">
+          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+        </div>`
+      : html``;
   }
 
   renderHeader(): TemplateResult {
@@ -119,7 +127,10 @@ export class BayEditor extends LitElement {
     return html`<section tabindex="0">
       ${this.renderHeader()}
       <div>
-        ${this.showieds ? renderIedContainer(this.element) : html``}
+        ${until(
+          this.renderIedContainer(),
+          html`<span>${translate('zeroline.iedsloading')}</span>`
+        )}
         <div id="ceContainer">
           ${Array.from(
             this.element?.querySelectorAll(

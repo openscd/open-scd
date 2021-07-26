@@ -1,8 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { ZerolinePane } from '../../src/zeroline-pane.js';
 import {
   attachedIeds,
-  unreferencedIeds,
+  getAttachedIeds,
 } from '../../src/zeroline/foundation.js';
 
 describe('zeroline-pane', () => {
@@ -17,6 +16,8 @@ describe('zeroline-pane', () => {
   let bay1: Element;
   let bay2: Element;
 
+  let remainingIeds: Set<Element>;
+
   beforeEach(async () => {
     doc = await fetch('/base/test/testfiles/zeroline/iedalloctest.scd')
       .then(response => response.text())
@@ -30,11 +31,16 @@ describe('zeroline-pane', () => {
 
     bay1 = doc.querySelector('Bay[name="Bay1"]')!;
     bay2 = doc.querySelector('Bay[name="Bay2"]')!;
+
+    remainingIeds = new Set(Array.from(doc.querySelectorAll('IED')));
   });
 
   it('per default looks like the latest snapshot', async () => {
     const element = await fixture(
-      html`<zeroline-pane .doc=${doc}></zeroline-pane>`
+      html`<zeroline-pane
+        .doc=${doc}
+        .getAttachedIeds="${undefined}"
+      ></zeroline-pane>`
     );
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
@@ -44,7 +50,11 @@ describe('zeroline-pane', () => {
 
   it('readonly looks like the latest snapshot', async () => {
     const element = await fixture(
-      html`<zeroline-pane .doc=${doc} .readonly=${true}></zeroline-pane>`
+      html`<zeroline-pane
+        .doc=${doc}
+        .readonly=${true}
+        .getAttachedIeds="${undefined}"
+      ></zeroline-pane>`
     );
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
@@ -54,7 +64,10 @@ describe('zeroline-pane', () => {
 
   it('showieds looks like the latest snapshot', async () => {
     const element = await fixture(
-      html`<zeroline-pane .doc=${doc} .showieds=${true}></zeroline-pane>`
+      html`<zeroline-pane
+        .doc=${doc}
+        .getAttachedIeds=${getAttachedIeds(doc)}
+      ></zeroline-pane>`
     );
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
@@ -62,64 +75,67 @@ describe('zeroline-pane', () => {
     expect(element).shadowDom.to.equalSnapshot();
   }).timeout(5000);
 
-  describe('unreferencedIeds', () => {
-    it('returns IEDs that cannot be allocated to any element', () => {
-      expect(unreferencedIeds(doc).length).to.equal(2);
-      expect(unreferencedIeds(doc)[0].getAttribute('name')).to.equal('IED6');
-      expect(unreferencedIeds(doc)[1].getAttribute('name')).to.equal('IED8');
-    });
-  });
   describe('attachedIeds', () => {
+    it('returns IEDs that cannot be allocated to any element', async () => {
+      const ieds = await attachedIeds(doc.documentElement!, remainingIeds);
+
+      expect(ieds.length).to.equal(2);
+      expect(ieds[0].getAttribute('name')).to.equal('IED6');
+      expect(ieds[1].getAttribute('name')).to.equal('IED8');
+    });
     describe('return IEDs for Bay elements that', () => {
-      it('are connected itself or underlaying conduncting equipment', () => {
-        expect(attachedIeds(bay1).length).to.equal(2);
-        expect(attachedIeds(bay1)[0].getAttribute('name')).to.equal('IED1');
-        expect(attachedIeds(bay1)[1].getAttribute('name')).to.equal('IED4');
+      it('are connected itself or underlaying conduncting equipment', async () => {
+        const ieds = await attachedIeds(bay1, remainingIeds);
+
+        expect(ieds.length).to.equal(2);
+        expect(ieds[0].getAttribute('name')).to.equal('IED1');
+        expect(ieds[1].getAttribute('name')).to.equal('IED4');
       });
 
-      it('are not connected to another Bay ass well', () => {
-        expect(attachedIeds(bay2).length).to.equal(0);
+      it('are not connected to another Bay as well', async () => {
+        expect((await attachedIeds(bay2, remainingIeds)).length).to.equal(0);
       });
     });
     describe('return IEDs for VoltageLevel elements that', () => {
-      it('are connected itself or underlaying elements', () => {
-        expect(attachedIeds(voltageLevel1).length).to.equal(2);
-        expect(attachedIeds(voltageLevel1)[0].getAttribute('name')).to.equal(
-          'IED2'
-        );
-        expect(attachedIeds(voltageLevel1)[1].getAttribute('name')).to.equal(
-          'IED5'
-        );
+      it('are connected itself or underlaying elements', async () => {
+        const ieds = await attachedIeds(voltageLevel1, remainingIeds);
+
+        expect(ieds.length).to.equal(2);
+        expect(ieds[0].getAttribute('name')).to.equal('IED2');
+        expect(ieds[1].getAttribute('name')).to.equal('IED5');
       });
 
-      it('are not connected to another Bay ass well', () => {
-        expect(attachedIeds(voltageLevel2).length).to.equal(0);
+      it('are not connected to another Bay ass well', async () => {
+        expect(
+          (await attachedIeds(voltageLevel2, remainingIeds)).length
+        ).to.equal(0);
       });
     });
     describe('return IEDs for Substation elements that', () => {
-      it('are connected itself or underlaying elements', () => {
-        expect(attachedIeds(substation1).length).to.equal(2);
-        expect(attachedIeds(substation1)[0].getAttribute('name')).to.equal(
-          'IED3'
-        );
-        expect(attachedIeds(substation1)[1].getAttribute('name')).to.equal(
-          'IED7'
-        );
+      it('are connected itself or underlaying elements', async () => {
+        const ieds = await attachedIeds(substation1, remainingIeds);
+
+        expect(ieds.length).to.equal(2);
+        expect(ieds[0].getAttribute('name')).to.equal('IED3');
+        expect(ieds[1].getAttribute('name')).to.equal('IED7');
       });
-      it('are not connected to another Substation ass well', () => {
-        expect(attachedIeds(substation2).length).to.equal(0);
+      it('are not connected to another Substation ass well', async () => {
+        expect(
+          (await attachedIeds(substation2, remainingIeds)).length
+        ).to.equal(0);
       });
     });
   });
-  it('both the functions return every IED only once', () => {
-    const numSub1 = attachedIeds(substation1).length;
-    const numSub2 = attachedIeds(substation2).length;
-    const numVolt1 = attachedIeds(voltageLevel1).length;
-    const numVolt2 = attachedIeds(voltageLevel2).length;
-    const numBay1 = attachedIeds(bay1).length;
-    const numBay2 = attachedIeds(bay2).length;
+  it('both the functions return every IED only once', async () => {
+    const numSub1 = (await attachedIeds(substation1, remainingIeds)).length;
+    const numSub2 = (await attachedIeds(substation2, remainingIeds)).length;
+    const numVolt1 = (await attachedIeds(voltageLevel1, remainingIeds)).length;
+    const numVolt2 = (await attachedIeds(voltageLevel2, remainingIeds)).length;
+    const numBay1 = (await attachedIeds(bay1, remainingIeds)).length;
+    const numBay2 = (await attachedIeds(bay2, remainingIeds)).length;
 
-    const numUnRef = unreferencedIeds(doc).length;
+    const numUnRef = (await attachedIeds(doc.documentElement, remainingIeds))
+      .length;
 
     const sumIeds =
       numBay1 + numBay2 + numVolt1 + numVolt2 + numSub1 + numSub2 + numUnRef;

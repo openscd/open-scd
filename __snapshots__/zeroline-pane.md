@@ -16,9 +16,9 @@
 
 ```html
 <section tabindex="0">
-  <substation-editor>
+  <substation-editor readonly="">
   </substation-editor>
-  <substation-editor>
+  <substation-editor readonly="">
   </substation-editor>
 </section>
 
@@ -27,13 +27,13 @@
 #### `showieds looks like the latest snapshot`
 
 ```html
+<div id="iedcontainer">
+  <ied-editor>
+  </ied-editor>
+  <ied-editor>
+  </ied-editor>
+</div>
 <section tabindex="0">
-  <div id="iedcontainer">
-    <ied-editor>
-    </ied-editor>
-    <ied-editor>
-    </ied-editor>
-  </div>
   <substation-editor>
   </substation-editor>
   <substation-editor>
