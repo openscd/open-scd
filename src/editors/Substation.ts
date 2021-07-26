@@ -28,7 +28,10 @@ export default class SubstationPlugin extends LitElement {
     return html`
         <h1>
           ${html`<abbr title="${translate('add')}">
-              <mwc-icon-button icon="playlist_add"></mwc-icon-button>
+              <mwc-icon-button
+                icon="playlist_add"
+                @click=${() => this.openCreateSubstationWizard()}
+              ></mwc-icon-button>
             </abbr>
             <nav>
               <abbr title="${translate('lnode.tooltip')}">

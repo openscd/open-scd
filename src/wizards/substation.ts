@@ -69,6 +69,8 @@ export function createAction(parent: Element): WizardActor {
 }
 
 export function substationCreateWizard(parent: Element): Wizard {
+  const guessable = parent.querySelector('Substation') === null;
+
   return [
     {
       title: get('substation.wizard.title.add'),
@@ -78,7 +80,7 @@ export function substationCreateWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: render('', '', true),
+      content: render('', '', guessable),
     },
   ];
 }
