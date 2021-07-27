@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/substation/substation-editor.js';
-import { SubstationEditor } from '../../../../src/editors/substation/substation-editor.js';
+import '../../../src/zeroline/substation-editor.js';
+import { SubstationEditor } from '../../../src/zeroline/substation-editor.js';
 
 describe('substation-editor', () => {
   let element: SubstationEditor;
@@ -16,13 +16,17 @@ describe('substation-editor', () => {
     ></substation-editor>`);
   });
 
-  it('has a name property', () =>
-    expect(element).to.have.property('name', 'AA1'));
-
-  it('has a desc property', () =>
-    expect(element).to.have.property('desc', 'Substation'));
-
   it('looks like the latest snapshot', () => {
     expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  describe('with readonly property', () => {
+    beforeEach(async () => {
+      element.readonly = true;
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', () => {
+      expect(element).shadowDom.to.equalSnapshot();
+    });
   });
 });

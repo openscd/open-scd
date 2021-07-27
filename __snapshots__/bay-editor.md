@@ -33,17 +33,46 @@
       </abbr>
     </nav>
   </h3>
-  <div id="ceContainer">
-    <conducting-equipment-editor>
-    </conducting-equipment-editor>
-    <conducting-equipment-editor>
-    </conducting-equipment-editor>
-    <conducting-equipment-editor>
-    </conducting-equipment-editor>
-    <conducting-equipment-editor>
-    </conducting-equipment-editor>
-    <conducting-equipment-editor>
-    </conducting-equipment-editor>
+  <div>
+    <div id="ceContainer">
+      <conducting-equipment-editor>
+      </conducting-equipment-editor>
+      <conducting-equipment-editor>
+      </conducting-equipment-editor>
+      <conducting-equipment-editor>
+      </conducting-equipment-editor>
+      <conducting-equipment-editor>
+      </conducting-equipment-editor>
+      <conducting-equipment-editor>
+      </conducting-equipment-editor>
+    </div>
+  </div>
+</section>
+
+```
+
+## `with readonly property`
+
+####   `looks like the latest snapshot`
+
+```html
+<section tabindex="0">
+  <h3>
+    COUPLING_BAY — Bay
+  </h3>
+  <div>
+    <div id="ceContainer">
+      <conducting-equipment-editor readonly="">
+      </conducting-equipment-editor>
+      <conducting-equipment-editor readonly="">
+      </conducting-equipment-editor>
+      <conducting-equipment-editor readonly="">
+      </conducting-equipment-editor>
+      <conducting-equipment-editor readonly="">
+      </conducting-equipment-editor>
+      <conducting-equipment-editor readonly="">
+      </conducting-equipment-editor>
+    </div>
   </div>
 </section>
 

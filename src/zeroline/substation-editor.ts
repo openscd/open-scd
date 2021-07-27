@@ -6,20 +6,23 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
-
-import { newActionEvent, newWizardEvent } from '../../foundation.js';
+import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { wizards } from '../wizards/wizard-library.js';
 
 import { selectors, styles } from './foundation.js';
 
 import './voltage-level-editor.js';
-import { wizards } from '../../wizards/wizard-library.js';
+
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
 export class SubstationEditor extends LitElement {
   /** The edited `Element`, a common property of all Substation subeditors. */
   @property({ attribute: false })
   element!: Element;
+  @property({ type: Boolean })
+  readonly = false;
 
   /** [[element | `element.name`]] */
   @property({ type: String })
@@ -31,6 +34,11 @@ export class SubstationEditor extends LitElement {
   get desc(): string | null {
     return this.element.getAttribute('desc');
   }
+
+  @property({ attribute: false })
+  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => {
+    return [];
+  };
 
   /** Opens a [[`WizardDialog`]] for editing [[`element`]]. */
   openEditWizard(): void {
@@ -63,48 +71,68 @@ export class SubstationEditor extends LitElement {
     );
   }
 
+  async renderIedContainer(): Promise<TemplateResult> {
+    const ieds = await this.getAttachedIeds?.(this.element);
+    return ieds?.length
+      ? html`<div id="iedcontainer">
+          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+        </div>`
+      : html``;
+  }
+
   renderHeader(): TemplateResult {
     return html`
-      <h1>
-        ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-        <abbr title="${translate('add')}">
-          <mwc-icon-button
-            icon="playlist_add"
-            @click=${() => this.openVoltageLevelWizard()}
-          ></mwc-icon-button>
-        </abbr>
-        <nav>
-          <abbr title="${translate('lnode.tooltip')}">
-            <mwc-icon-button
-              icon="account_tree"
-              @click=${() => this.openLNodeWizard()}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr title="${translate('edit')}">
-            <mwc-icon-button
-              icon="edit"
-              @click=${() => this.openEditWizard()}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr title="${translate('remove')}">
-            <mwc-icon-button
-              icon="delete"
-              @click=${() => this.remove()}
-            ></mwc-icon-button>
-          </abbr>
-        </nav>
-      </h1>
-    `;
+        <h1>
+          ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
+          ${
+            this.readonly
+              ? html``
+              : html`<abbr title="${translate('add')}">
+                    <mwc-icon-button
+                      icon="playlist_add"
+                      @click=${() => this.openVoltageLevelWizard()}
+                    ></mwc-icon-button>
+                  </abbr>
+                  <nav>
+                    <abbr title="${translate('lnode.tooltip')}">
+                      <mwc-icon-button
+                        icon="account_tree"
+                        @click=${() => this.openLNodeWizard()}
+                      ></mwc-icon-button>
+                    </abbr>
+                    <abbr title="${translate('edit')}">
+                      <mwc-icon-button
+                        icon="edit"
+                        @click=${() => this.openEditWizard()}
+                      ></mwc-icon-button>
+                    </abbr>
+                    <abbr title="${translate('remove')}">
+                      <mwc-icon-button
+                        icon="delete"
+                        @click=${() => this.remove()}
+                      ></mwc-icon-button>
+                    </abbr>
+                  </nav>`
+          }
+          </nav>
+        </h1>
+      `;
   }
 
   render(): TemplateResult {
     return html`
       <section tabindex="0">
         ${this.renderHeader()}
+        ${until(
+          this.renderIedContainer(),
+          html`<span>${translate('zeroline.iedsloading')}</span>`
+        )}
         ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
           voltageLevel =>
             html`<voltage-level-editor
               .element=${voltageLevel}
+              .getAttachedIeds=${this.getAttachedIeds}
+              ?readonly=${this.readonly}
             ></voltage-level-editor>`
         )}
       </section>

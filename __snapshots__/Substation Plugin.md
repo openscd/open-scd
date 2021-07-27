@@ -5,10 +5,9 @@
 ####   `looks like the latest snapshot`
 
 ```html
+<zeroline-pane>
+</zeroline-pane>
 <h1>
-  <span style="color: var(--base1)">
-    [substation.missing]
-  </span>
   <mwc-fab
     extended=""
     icon="add"

@@ -1,13 +1,10 @@
-import { WizardInput, isCreate, isUpdate } from '../../../../src/foundation.js';
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../../src/wizard-textfield.js';
-import { BayEditor } from '../../../../src/editors/substation/bay-editor.js';
-import { updateNamingAction } from '../../../../src/editors/substation/foundation.js';
-import { wizards } from '../../../../src/wizards/wizard-library.js';
-import { createAction } from '../../../../src/wizards/bay.js';
+import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { updateNamingAction } from '../../../src/zeroline/foundation.js';
+import { createAction } from '../../../src/wizards/conductingequipment.js';
 
-describe('BayEditor', () => {
+describe('ConductingEquipmentEditor', () => {
   const noOp = () => {
     return;
   };
@@ -20,12 +17,15 @@ describe('BayEditor', () => {
   let inputs: WizardInput[];
   beforeEach(async () => {
     inputs = await Promise.all(
-      ['name', 'desc'].map(
+      ['name', 'desc', 'type'].map(
         label =>
           <Promise<WizardInput>>(
             fixture(html`<wizard-textfield label=${label}></wizard-textfield>`)
           )
       )
+    );
+    inputs[2] = await fixture(
+      html`<mwc-select value="CBR" label="type">"Circuit Breaker"</mwc-select>`
     );
   });
 
@@ -33,7 +33,7 @@ describe('BayEditor', () => {
     let parent: Element;
     beforeEach(() => {
       parent = new DOMParser().parseFromString(
-        '<Voltage Level></Voltage Level>',
+        '<Bay></Bay>',
         'application/xml'
       ).documentElement;
     });
@@ -48,32 +48,31 @@ describe('BayEditor', () => {
     let element: Element;
     beforeEach(() => {
       element = new DOMParser().parseFromString(
-        '<Bay></Bay>',
+        '<ConductingEquipment></ConductingEquipment>',
         'application/xml'
       ).documentElement;
     });
 
-    it('returns a WizardAction which retruns one EditorAction', () => {
+    it('returns a WizardAction which retruns one EditorActions', () => {
       const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard()).length).to.equal(1);
     });
 
-    it('returns a WizardAction which returns an Update EditorAction', () => {
+    it('returns a WizardAction with returned EditorAction beeing an Update', () => {
       const wizardAction = updateNamingAction(element);
       expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
     });
 
-    describe('with no change in element Bay', () => {
+    describe('with no change in ConductingEquipement', () => {
       let element: Element;
       beforeEach(() => {
         element = new DOMParser().parseFromString(
-          `<Bay name="" desc="">
-              </Bay>`,
+          '<ConductingEqipment name="" desc="" ></ConductingEqipment>',
           'application/xml'
         ).documentElement;
       });
 
-      it('returns a WizardAction which returns empty EditorAction array', () => {
+      it('returns a WizardAction with an empty EditorActions array', () => {
         const wizardAction = updateNamingAction(element);
         expect(wizardAction(inputs, newWizard()).length).to.equal(0);
       });

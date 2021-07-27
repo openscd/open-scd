@@ -44,3 +44,23 @@
 
 ```
 
+## `with readonly property`
+
+####   `looks like the latest snapshot`
+
+```html
+<section tabindex="0">
+  <h2>
+    E1 — Voltage Level
+      (110.0 kV)
+  </h2>
+  <div id="bayContainer">
+    <bay-editor readonly="">
+    </bay-editor>
+    <bay-editor readonly="">
+    </bay-editor>
+  </div>
+</section>
+
+```
+

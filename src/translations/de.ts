@@ -33,6 +33,7 @@ export const de: Translations = {
     languages: { de: 'Deutsch', en: 'Englisch (English)' },
     dark: 'Dunkles Design',
     mode: 'Profimodus',
+    showieds: 'Zeige IEDs im Substation-Editor',
   },
   menu: {
     title: 'Menü',
@@ -43,6 +44,10 @@ export const de: Translations = {
     loaded: '{{ name }} geladen',
     readError: '{{ name }} Lesefehler',
     readAbort: '{{ name }} Leseabbruch',
+  },
+  zeroline: {
+    iedsloading: 'IEDs werden geladen...',
+    showieds: 'IEDs anzeigen/ausblenden',
   },
   editing: {
     created: '{{ name }} hinzugefügt',

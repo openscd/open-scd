@@ -7,14 +7,39 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { newActionEvent, newWizardEvent } from '../../foundation.js';
-
 import { startMove } from './foundation.js';
+import { newActionEvent, newWizardEvent } from '../foundation.js';
+
+import {
+  circuitBreakerIcon,
+  currentTransformerIcon,
+  disconnectorIcon,
+  earthSwitchIcon,
+  generalConductingEquipmentIcon,
+  voltageTransformerIcon,
+} from '../icons.js';
+
 import { BayEditor } from './bay-editor.js';
+import { wizards } from '../wizards/wizard-library.js';
 
-import { typeIcon } from './conducting-equipment-types.js';
+function typeStr(condEq: Element): string {
+  return condEq.getAttribute('type') === 'DIS' &&
+    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
+    ? 'ERS'
+    : condEq.getAttribute('type') ?? '';
+}
 
-import { wizards } from '../../wizards/wizard-library.js';
+const typeIcons: Partial<Record<string, TemplateResult>> = {
+  CBR: circuitBreakerIcon,
+  DIS: disconnectorIcon,
+  CTR: currentTransformerIcon,
+  VTR: voltageTransformerIcon,
+  ERS: earthSwitchIcon,
+};
+
+export function typeIcon(condEq: Element): TemplateResult {
+  return typeIcons[typeStr(condEq)] ?? generalConductingEquipmentIcon;
+}
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('conducting-equipment-editor')
@@ -22,13 +47,12 @@ export class ConductingEquipmentEditor extends LitElement {
   @property({ type: Element })
   element!: Element;
 
+  @property({ type: Boolean })
+  readonly = false;
+
   @property({ type: String })
   get name(): string {
     return this.element.getAttribute('name') ?? '';
-  }
-  @property({ type: String })
-  get desc(): string {
-    return this.element.getAttribute('desc') ?? '';
   }
 
   openEditWizard(): void {
@@ -59,31 +83,33 @@ export class ConductingEquipmentEditor extends LitElement {
     return html`
       <div id="container" tabindex="0">
         ${typeIcon(this.element)}
-        <mwc-fab
-          mini
-          class="menu-item left"
-          @click="${() => this.openLNodeWizard()}"
-          icon="account_tree"
-        ></mwc-fab>
-        <mwc-fab
-          mini
-          class="menu-item up"
-          icon="edit"
-          @click="${() => this.openEditWizard()}}"
-        ></mwc-fab>
-        <mwc-fab
-          mini
-          class="menu-item right"
-          @click="${() =>
-            startMove(this, ConductingEquipmentEditor, BayEditor)}"
-          icon="forward"
-        ></mwc-fab>
-        <mwc-fab
-          mini
-          class="menu-item down"
-          icon="delete"
-          @click="${() => this.remove()}}"
-        ></mwc-fab>
+        ${this.readonly
+          ? html``
+          : html`<mwc-fab
+                mini
+                class="menu-item left"
+                @click="${() => this.openLNodeWizard()}"
+                icon="account_tree"
+              ></mwc-fab>
+              <mwc-fab
+                mini
+                class="menu-item up"
+                icon="edit"
+                @click="${() => this.openEditWizard()}}"
+              ></mwc-fab>
+              <mwc-fab
+                mini
+                class="menu-item right"
+                @click="${() =>
+                  startMove(this, ConductingEquipmentEditor, BayEditor)}"
+                icon="forward"
+              ></mwc-fab>
+              <mwc-fab
+                mini
+                class="menu-item down"
+                icon="delete"
+                @click="${() => this.remove()}}"
+              ></mwc-fab>`}
       </div>
       <h4>${this.name}</h4>
     `;

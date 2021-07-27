@@ -977,6 +977,10 @@
       <mwc-switch id="mode">
       </mwc-switch>
     </mwc-formfield>
+    <mwc-formfield label="Show IEDs in substation editor">
+      <mwc-switch id="showieds">
+      </mwc-switch>
+    </mwc-formfield>
   </form>
   <mwc-button
     dialogaction="close"
