@@ -45,6 +45,7 @@ export const en = {
   },
   zeroline: {
     iedsloading: 'Loading IEDs...',
+    showieds: 'Display/hide IEDs',
   },
   editing: {
     created: 'Added {{ name }}',

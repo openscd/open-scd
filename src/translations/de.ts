@@ -47,6 +47,7 @@ export const de: Translations = {
   },
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
+    showieds: 'IEDs anzeigen/ausblenden',
   },
   editing: {
     created: '{{ name }} hinzugefügt',
