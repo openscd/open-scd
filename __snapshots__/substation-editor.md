@@ -25,8 +25,6 @@
       </abbr>
     </nav>
   </h1>
-  <div id="iedcontainer">
-  </div>
   <voltage-level-editor>
   </voltage-level-editor>
   <voltage-level-editor>
@@ -44,8 +42,6 @@
   <h1>
     AA1 — Substation
   </h1>
-  <div id="iedcontainer">
-  </div>
   <voltage-level-editor readonly="">
   </voltage-level-editor>
   <voltage-level-editor readonly="">

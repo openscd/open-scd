@@ -73,7 +73,7 @@ export class SubstationEditor extends LitElement {
 
   async renderIedContainer(): Promise<TemplateResult> {
     const ieds = await this.getAttachedIeds?.(this.element);
-    return ieds
+    return ieds?.length
       ? html`<div id="iedcontainer">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
         </div>`

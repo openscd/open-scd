@@ -34,8 +34,6 @@
     </nav>
   </h3>
   <div>
-    <div id="iedcontainer">
-    </div>
     <div id="ceContainer">
       <conducting-equipment-editor>
       </conducting-equipment-editor>
@@ -63,8 +61,6 @@
     COUPLING_BAY — Bay
   </h3>
   <div>
-    <div id="iedcontainer">
-    </div>
     <div id="ceContainer">
       <conducting-equipment-editor readonly="">
       </conducting-equipment-editor>

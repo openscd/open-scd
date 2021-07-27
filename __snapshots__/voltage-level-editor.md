@@ -34,8 +34,6 @@
       </abbr>
     </nav>
   </h2>
-  <div id="iedcontainer">
-  </div>
   <div id="bayContainer">
     <bay-editor>
     </bay-editor>
@@ -56,8 +54,6 @@
     E1 — Voltage Level
       (110.0 kV)
   </h2>
-  <div id="iedcontainer">
-  </div>
   <div id="bayContainer">
     <bay-editor readonly="">
     </bay-editor>
