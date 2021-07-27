@@ -20,10 +20,21 @@ export class IedEditor extends LitElement {
     return this.element.getAttribute('name') ?? '';
   }
 
+  openCommunicationMapping(): void {
+    const wizard = communicationMappingWizard(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
         <mwc-icon class="icon">developer_board</mwc-icon>
+        <mwc-fab
+          mini
+          class="menu-item right"
+          @click="${() => this.openCommunicationMapping()}"
+          icon="sync_alt"
+        ></mwc-fab>
       </div>
       <h4>${this.name}</h4>
     `;
@@ -84,8 +95,8 @@ export class IedEditor extends LitElement {
       transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 200ms linear;
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 2px;
+      left: 2px;
       pointer-events: none;
       z-index: 1;
       opacity: 0;
@@ -99,19 +110,19 @@ export class IedEditor extends LitElement {
     }
 
     #container:focus-within > .menu-item.up {
-      transform: translate(0px, -52px);
+      transform: translate(0px, -60px);
     }
 
     #container:focus-within > .menu-item.down {
-      transform: translate(0px, 52px);
+      transform: translate(0px, 60px);
     }
 
     #container:focus-within > .menu-item.right {
-      transform: translate(52px, 0px);
+      transform: translate(60px, 0px);
     }
 
     #container:focus-within > .menu-item.left {
-      transform: translate(-52px, 0px);
+      transform: translate(-60px, 0px);
     }
 
     h4 {

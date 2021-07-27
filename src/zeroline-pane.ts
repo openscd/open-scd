@@ -5,6 +5,7 @@ import {
   property,
   customElement,
   css,
+  query,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
@@ -16,6 +17,8 @@ import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
 import { wizards } from './wizards/wizard-library.js';
+import { communicationMappingWizard } from './wizards/commmap-wizards.js';
+import { IconButton } from '@material/mwc-icon-button';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -36,6 +39,13 @@ export class ZerolinePane extends LitElement {
 
   @property({ attribute: false })
   getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => [];
+
+  @query('#commmap') commmap!: IconButton;
+
+  openCommunicationMapping(): void {
+    const wizard = communicationMappingWizard(this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   openCreateSubstationWizard(): void {
@@ -84,6 +94,13 @@ export class ZerolinePane extends LitElement {
             onIcon="developer_board"
             offIcon="developer_board_off"
           ></mwc-icon-button-toggle>
+        </abbr>
+        <abbr title="${translate('zeroline.commmap')}">
+          <mwc-icon-button
+            id="commmap"
+            icon="sync_alt"
+            @click=${() => this.openCommunicationMapping()}
+          ></mwc-icon-button>
         </abbr>
       </nav>
         </h1>

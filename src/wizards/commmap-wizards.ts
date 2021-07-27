@@ -38,6 +38,15 @@ export function getSinkReferences(root: Document | Element): Element[] {
 }
 
 export function getSourceReferences(root: Document | Element): Element[] {
+  if (root instanceof Element && root.tagName === 'IED')
+    return Array.from(root.ownerDocument.getElementsByTagName('ExtRef'))
+      .filter(isPublic)
+      .filter(
+        extRef =>
+          extRef.getAttribute('iedName') === root.getAttribute('name') ||
+          (extRef.closest('IED') === root && extRef.getAttribute('iedName'))
+      );
+
   return Array.from(root.getElementsByTagName('ExtRef'))
     .filter(isPublic)
     .filter(element => element.getAttribute('iedName'));
@@ -50,11 +59,14 @@ export function openCreateConnection(doc: Document): WizardActor {
 }
 
 export function communicationMappingWizard(
-  root: XMLDocument | Element
+  element: XMLDocument | Element
 ): Wizard {
+  const ownerDocument =
+    element instanceof XMLDocument ? element : element.ownerDocument;
+
   const connections = new Map<string, Element[]>();
-  const sourceRefs = getSourceReferences(root);
-  const sinkRefs = getSinkReferences(root);
+  const sourceRefs = getSourceReferences(element);
+  const sinkRefs = getSinkReferences(element);
 
   sinkRefs
     .filter(element => element.tagName === 'ClientLN')
@@ -90,7 +102,7 @@ export function communicationMappingWizard(
         icon: 'add',
         label: get('commMap.connectCB', { CbType: get('Report') }),
         action: openCreateConnection(
-          root instanceof XMLDocument ? root : root.ownerDocument
+          element instanceof XMLDocument ? element : element.ownerDocument
         ),
       },
       content: [
@@ -98,7 +110,9 @@ export function communicationMappingWizard(
           >${Array.from(connections.keys()).map(key => {
             const elements = connections.get(key)!;
             const [cbId, cbTag, sinkIED] = key.split(' | ');
-            const cbElement = root.querySelector(selector(cbTag, cbId));
+            const cbElement = ownerDocument.querySelector(
+              selector(cbTag, cbId)
+            );
             const [_, sourceIED, controlBlock] = cbId.match(/^(.+)>>(.*)$/)!;
 
             return html`<mwc-list-item
@@ -109,7 +123,7 @@ export function communicationMappingWizard(
                 evt.target!.dispatchEvent(
                   newWizardEvent(
                     cbTag === 'ReportControl'
-                      ? editClientLNsWizard(elements, root)
+                      ? editClientLNsWizard(elements, element)
                       : editExtRefsWizard(elements, cbElement)
                   )
                 );
