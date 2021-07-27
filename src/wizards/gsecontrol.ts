@@ -1,8 +1,9 @@
-import { List } from '@material/mwc-list';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
+
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import {
   EditorAction,
@@ -17,6 +18,21 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { editDataSetWizard } from './dataset.js';
+import { editGseWizard } from './gse.js';
+
+function getGSE(element: Element): Element | null | undefined {
+  const cbName = element.getAttribute('name');
+  const iedName = element.closest('IED')?.getAttribute('name');
+  const apName = element.closest('AccessPoint')?.getAttribute('name');
+  const ldInst = element.closest('LDevice')?.getAttribute('inst');
+  return element
+    .closest('SCL')
+    ?.querySelector(
+      `:root > Communication > SubNetwork > ` +
+        `ConnectedAP[iedName="${iedName}"][apName="${apName}"] > ` +
+        `GSE[ldInst="${ldInst}"][cbName="${cbName}"]`
+    );
+}
 
 function render(
   name: string | null,
@@ -87,6 +103,8 @@ function removeGseControl(
     `DataSet[name="${element.getAttribute('datSet')}"]`
   );
 
+  const gSE = getGSE(element);
+
   const singleUse =
     Array.from(
       element.parentElement?.querySelectorAll<Element>(
@@ -115,6 +133,18 @@ function removeGseControl(
           parent: element.parentElement!,
           element: dataSet,
           reference: element.nextSibling,
+        },
+      })
+    );
+  }
+
+  if (gSE) {
+    dispatcher?.dispatchEvent(
+      newActionEvent({
+        old: {
+          parent: gSE.parentElement!,
+          element: gSE,
+          reference: gSE.nextSibling,
         },
       })
     );
@@ -163,6 +193,8 @@ export function editGseControlWizard(element: Element): Wizard {
   const fixedOffs = element.getAttribute('fixedOffs');
   const securityEnabled = element.getAttribute('securityEnabled');
 
+  const gSE = getGSE(element);
+
   return [
     {
       title: get('gsecontrol.wizard.edit'),
@@ -197,6 +229,16 @@ export function editGseControlWizard(element: Element): Wizard {
             }
           }}
         ></mwc-button>`,
+        gSE
+          ? html`<mwc-button
+              label=${translate('edit.GSE')}
+              icon="edit"
+              @click="${(e: MouseEvent) => {
+                e.target?.dispatchEvent(newWizardEvent());
+                e.target?.dispatchEvent(newWizardEvent(editGseWizard(gSE)));
+              }}}"
+            ></mwc-button>`
+          : html``,
       ],
     },
   ];
