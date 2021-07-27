@@ -50,6 +50,7 @@ export function editDataSetWizard(element: Element): Wizard {
   return [
     {
       title: get('dataset.edit'),
+      element,
       primary: {
         label: get('edit'),
         icon: 'save',
