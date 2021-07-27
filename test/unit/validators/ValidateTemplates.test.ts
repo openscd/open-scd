@@ -29,7 +29,7 @@ describe('VelidateTemplate', () => {
       expect(errors.length).to.equal(1);
       expect(errors[0].kind).to.equal('error');
     });
-    it('returns empty array if LNodeType includes all mendatory DOs', async () => {
+    it('returns empty array if LNodeType includes all mandatory DOs', async () => {
       const element = doc.querySelector('LNodeType[id="Dummy.GGIO1"]')!;
       const errors = await validateMandatoryDOs(element);
       expect(errors.length).to.equal(0);
@@ -52,7 +52,7 @@ describe('VelidateTemplate', () => {
       const errors = await validateMandatoryDAs(element);
       expect(errors.length).to.equal(0);
     });
-    it('returns empty array if LNodeType includes all mendatory DOs', async () => {
+    it('returns empty array if LNodeType includes all mandatory DOs', async () => {
       const element = doc.querySelector('DOType[id="Dummy.LPHD1.Sim"]')!;
       const errors = await validateMandatoryDAs(element);
       expect(errors.length).to.equal(0);
@@ -82,7 +82,7 @@ describe('VelidateTemplate', () => {
       const errors = await validateMandatorySubDAs(element);
       expect(errors.length).to.equal(0);
     });
-    it('returns empty array if DAType includes all mendatory BDAs', async () => {
+    it('returns empty array if DAType includes all mandatory BDAs', async () => {
       const element = doc.querySelector('DAType[id="Dummy.RangeConfig"]')!;
       const errors = await validateMandatorySubDAs(element);
       expect(errors.length).to.equal(0);
@@ -148,6 +148,12 @@ describe('VelidateTemplate', () => {
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
       expect(errors[0].kind).to.equal('error');
+    });
+    it('returns a warning if ctlModel definition is missing', async () => {
+      const element = doc.querySelector('DOType[id="Dummy.CSWI.Pos1"]')!;
+      const errors = await validateControlCDC(element);
+      expect(errors.length).to.equal(1);
+      expect(errors[0].kind).to.equal('warning');
     });
   });
 });

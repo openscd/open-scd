@@ -64,12 +64,22 @@ export const de: Translations = {
         '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
     },
   },
-  validate: {
-    title: 'Projekt validieren',
-    valid: '{{ name }} erfolgreich validiert',
-    invalid: '{{ name }} Validierung fehlgeschlagen',
-    fatal: 'Fataler Validierungsfehler',
-    loadError: 'Konnte Schema {{ name }} nicht laden',
+  validator: {
+    schema: {
+      title: 'Projekt validieren',
+      valid: '{{ name }} erfolgreich validiert',
+      invalid: '{{ name }} Validierung fehlgeschlagen',
+      fatal: 'Fataler Validierungsfehler',
+      loadError: 'Konnte Schema {{ name }} nicht laden',
+    },
+    templates: {
+      title: 'Templates validieren',
+      mandatoryChild:
+        '{{ tag }} {{ id }} fehlt ein obligatorisches {{ childTag }}-Kind {{ childId }}',
+      missingCoDO: 'Control-Dienst Datenattribut vom Typ {{ type }} fehlt',
+      missingCtlModelDef:
+        'CtlModel Definition fehlt. Kann {{ childTag }} {{ childId }} in {{ tag }} {{ id }} nicht validieren.',
+    },
   },
   textfield: {
     required: 'Pflichtfeld',

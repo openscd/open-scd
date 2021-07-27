@@ -323,7 +323,9 @@
 			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
 			<DA fc="OR" name="opOk" bType="BOOLEAN" />
 			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="CO" name="SBO" bType="ObjRef" />
@@ -362,7 +364,9 @@
 			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
 			<DA fc="OR" name="opOk" bType="BOOLEAN" />
 			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
@@ -504,27 +508,12 @@
 			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
 			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancelfalse" />
 		</DOType>
-        <DOType cdc="SPC" id="Dummy.LPHD1.Sim">
-			<DA fc="ST" name="stVal" bType="BOOLEAN" />
-			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
-			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
-			<DA fc="OR" name="opOk" bType="BOOLEAN" />
-			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
-			<DA fc="CF" name="sboTimeout" bType="INT32U" />
-			<DA fc="CF" name="operTimeout" bType="INT32U" />
-			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="SBO" bType="ObjRef" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
-		</DOType>
 		<DOType cdc="DPC" id="Dummy.XCBR1.Pos">
 			<DA fc="ST" name="stVal" bType="Dbpos" />
 			<DA fc="ST" name="q" bType="Quality" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos1">
@@ -537,7 +526,9 @@
 			<DA fc="ST" name="stVal" bType="Dbpos" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="INS" id="Dummy.XCBR1.OpCnt">
@@ -554,7 +545,9 @@
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="SPS" id="Dummy.SPS">
