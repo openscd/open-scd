@@ -4,13 +4,7 @@ import { translate, get } from 'lit-translate';
 import { newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
-import { getAttachedIeds } from '../zeroline/foundation.js';
-
 import '../zeroline-pane.js';
-
-function isShowieds(): boolean {
-  return localStorage.getItem('showieds') === 'on';
-}
 
 /** An editor [[`plugin`]] for editing the `Substation` section. */
 export default class SubstationPlugin extends LitElement {
@@ -28,22 +22,11 @@ export default class SubstationPlugin extends LitElement {
     return html`
         <h1>
           ${html`<abbr title="${translate('add')}">
-              <mwc-icon-button
-                icon="playlist_add"
-                @click=${() => this.openCreateSubstationWizard()}
-              ></mwc-icon-button>
-            </abbr>
-            <nav>
-              <abbr title="${translate('lnode.tooltip')}">
-                <mwc-icon-button-toggle
-                  ?on=${isShowieds()}
-                  id="showieds"
-                  onIcon="developer_board"
-                  offIcon="developer_board_off"
-                  disabled
-                ></mwc-icon-button-toggle>
-              </abbr>
-            </nav>`}
+            <mwc-icon-button
+              icon="playlist_add"
+              @click=${() => this.openCreateSubstationWizard()}
+            ></mwc-icon-button>
+          </abbr> `}
           </nav>
         </h1>
       `;
@@ -51,10 +34,7 @@ export default class SubstationPlugin extends LitElement {
 
   render(): TemplateResult {
     return html` ${this.renderHeader()}
-      <zeroline-pane
-        .doc=${this.doc}
-        .getAttachedIeds=${isShowieds() ? getAttachedIeds(this.doc) : undefined}
-      ></zeroline-pane>
+      <zeroline-pane .doc=${this.doc}></zeroline-pane>
       ${!this.doc?.querySelector(':root > Substation')
         ? html`<h1>
             <mwc-fab
