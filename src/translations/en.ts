@@ -102,9 +102,9 @@ export const en = {
       title: 'Validate templates',
       mandatoryChild:
         '{{ tag }} {{ id }} is missing mandatory child {{ childTag }} {{ childId }}',
-      missingCoDO: 'Control DO of type {{ type }} is missing',
-      cannotValidate:
-        'Cannot validate {{ childTag }} {{ childId }} within {{ tag }} {{ id }}',
+      missingCoDO: 'Control service related DA of type {{ type }} is missing',
+      missingCtlModelDef:
+        'Missing ctlModel definition. Cannot validate {{ childTag }} {{ childId }} within {{ tag }} {{ id }}',
     },
   },
   substation: {

@@ -37,6 +37,6 @@ describe('ValidateTemplates plugin', () => {
     await element.validate();
     await parent.workDone;
 
-    expect(parent.history.length).to.equal(24);
+    expect(parent.history.length).to.equal(21);
   }).timeout(1000);
 });

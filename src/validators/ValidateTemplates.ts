@@ -167,14 +167,17 @@ export async function validateControlCDC(
       ? await validateCoCancelStructure(cancel)
       : [missingCoDataToLog(identity(dotype), 'Cancel')];
     if (!sbo) errors.push(missingCoDataToLog(identity(dotype), 'SBO'));
-  } else if (ctlModel !== 'status-only') {
+  } else if (
+    ctlModel === 'direct-with-normal-security' ||
+    ctlModel === 'direct-with-enhanced-security'
+  ) {
     errors = oper
       ? await validateCoOperStructure(oper)
       : [missingCoDataToLog(identity(dotype), 'Oper')];
-  } else {
+  } else if (ctlModel !== 'status-only') {
     return [
       {
-        title: get('validator.templates.cannotValidate', {
+        title: get('validator.templates.missingCtlModelDef', {
           tag: 'DOType',
           id: dotype.id || 'UNIDENTIFIABLE',
           childTag: 'ctlModel',

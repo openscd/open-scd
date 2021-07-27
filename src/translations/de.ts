@@ -71,9 +71,9 @@ export const de: Translations = {
       title: 'Templates validieren',
       mandatoryChild:
         '{{ tag }} {{ id }} fehlt ein obligatorisches {{ childTag }}-Kind {{ childId }}',
-      missingCoDO: 'Control Datenobjekt vom Typ {{ type }} fehlt',
-      cannotValidate:
-        'Kann {{ childTag }} {{ childId }} in {{ tag }} {{ id }} nicht validieren',
+      missingCoDO: 'Control-Dienst Datenattribut vom Typ {{ type }} fehlt',
+      missingCtlModelDef:
+        'CtlModel Definition fehlt. Kann {{ childTag }} {{ childId }} in {{ tag }} {{ id }} nicht validieren.',
     },
   },
   textfield: {
