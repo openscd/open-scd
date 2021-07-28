@@ -67,7 +67,6 @@ export class ZerolinePane extends LitElement {
       : async () => [];
     const ieds = await this.getAttachedIeds?.(this.doc.documentElement);
 
-    await new Promise(requestAnimationFrame);
     return ieds.length
       ? html`<div id="iedcontainer">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
@@ -104,7 +103,10 @@ export class ZerolinePane extends LitElement {
         </abbr>
       </nav>
         </h1>
-      ${until(this.renderIedContainer(), html`<span>loading ieds...</span>`)}
+      ${until(
+        this.renderIedContainer(),
+        html`<h3>${translate('zeroline.iedsloading')}</h3>`
+      )}
       ${
         this.doc?.querySelector(':root > Substation')
           ? html`<section tabindex="0">
@@ -128,6 +130,36 @@ export class ZerolinePane extends LitElement {
   }
 
   static styles = css`
-    ${styles}
+    h1,
+    h3 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
+      line-height: 48px;
+      padding-left: 0.3em;
+      transition: background-color 150ms linear;
+    }
+
+    h1 > nav,
+    h1 > abbr > mwc-icon-button {
+      float: right;
+    }
+
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
+
+    #iedcontainer {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
   `;
 }

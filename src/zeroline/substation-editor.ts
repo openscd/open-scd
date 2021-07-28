@@ -125,7 +125,7 @@ export class SubstationEditor extends LitElement {
         ${this.renderHeader()}
         ${until(
           this.renderIedContainer(),
-          html`<span>${translate('zeroline.iedsloading')}</span>`
+          html`<h3>${translate('zeroline.iedsloading')}</h3>`
         )}
         ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
           voltageLevel =>

@@ -137,7 +137,7 @@ export class VoltageLevelEditor extends LitElement {
       ${this.renderHeader()}
       ${until(
         this.renderIedContainer(),
-        html`<span>${translate('zeroline.iedsloading')}</span>`
+        html`<h3>${translate('zeroline.iedsloading')}</h3>`
       )}
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(

@@ -129,7 +129,7 @@ export class BayEditor extends LitElement {
       <div>
         ${until(
           this.renderIedContainer(),
-          html`<span>${translate('zeroline.iedsloading')}</span>`
+          html`<h3>${translate('zeroline.iedsloading')}</h3>`
         )}
         <div id="ceContainer">
           ${Array.from(
