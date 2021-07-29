@@ -1,11 +1,11 @@
-# `communication-mapping wizard`
+# `communication mapping wizard`
 
 #### `looks like the latest snapshot`
 
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[commMap.title]"
+  heading="[commmap.title]"
   open=""
 >
   <div id="wizard-content">
@@ -16,6 +16,33 @@
         hasmeta=""
         mwc-list-item=""
         tabindex="0"
+        twoline=""
+      >
+        <span>
+          IED1
+          <mwc-icon style="--mdc-icon-size: 1em;">
+            trending_flat
+          </mwc-icon>
+          IED3
+        </span>
+        <span slot="secondary">
+          Disconnectors> XSWI 2>ReportCb
+        </span>
+        <span
+          slot="meta"
+          style="padding-left: 10px"
+        >
+          2
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
         twoline=""
       >
         <span>
@@ -32,7 +59,34 @@
           slot="meta"
           style="padding-left: 10px"
         >
-          4
+          3
+        </span>
+        <mwc-icon slot="graphic">
+        </mwc-icon>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          IED2
+          <mwc-icon style="--mdc-icon-size: 1em;">
+            trending_flat
+          </mwc-icon>
+          IED3
+        </span>
+        <span slot="secondary">
+          CBSW> XSWI 2>ReportCb
+        </span>
+        <span
+          slot="meta"
+          style="padding-left: 10px"
+        >
+          1
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
@@ -130,7 +184,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="add"
-    label="[commMap.connectCB]"
+    label="[commmap.connectCB]"
     slot="primaryAction"
     trailingicon=""
   >

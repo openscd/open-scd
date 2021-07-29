@@ -4,7 +4,7 @@ import { List } from '@material/mwc-list';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
 
-describe('gse and smv control block connection wizard', () => {
+describe('selectExtRefWizard', () => {
   let doc: Document;
   let parent: MockWizardEditor;
   let element: ZerolinePane;
@@ -31,13 +31,13 @@ describe('gse and smv control block connection wizard', () => {
   });
 
   it('looks like the latest snapshot', async () => {
-    commMappings.items[1].click();
+    commMappings.items[3].click();
     await parent.updateComplete;
     expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
 
   it('shows all ExtRefs', async () => {
-    commMappings.items[1].click();
+    commMappings.items[3].click();
     await parent.updateComplete;
     expect(
       parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
@@ -50,7 +50,7 @@ describe('gse and smv control block connection wizard', () => {
         ':root > IED[name="IED2"] ExtRef[iedName="IED1"][ldInst="Disconnectors"][lnClass="XSWI"][doName="Pos"][daName="stVal"]'
       )
     ).to.exist;
-    commMappings.items[1].click();
+    commMappings.items[3].click();
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<List>(
@@ -76,7 +76,7 @@ describe('gse and smv control block connection wizard', () => {
           '[pServT="GOOSE"][pLN="XSWI"][pDO="Pos"][pDA="stVal"]'
       )
     ).to.exist;
-    commMappings.items[2].click();
+    commMappings.items[4].click();
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<List>(
@@ -103,7 +103,7 @@ describe('gse and smv control block connection wizard', () => {
           'IEDName[apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="CSWI"]'
       )
     ).to.exist;
-    commMappings.items[3].click();
+    commMappings.items[5].click();
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<List>(
@@ -142,7 +142,7 @@ describe('gse and smv control block connection wizard', () => {
           'IEDName[apRef="P1"][ldInst="CircuitBreaker_CB1"][lnClass="CSWI"]'
       )
     ).to.exist;
-    commMappings.items[3].click();
+    commMappings.items[5].click();
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<List>(

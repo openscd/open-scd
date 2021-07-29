@@ -3,12 +3,13 @@ import {
   getSinkReferences,
   getSourceReferences,
 } from '../../../src/wizards/commmap-wizards.js';
-import { ZerolinePane } from '../../../src/zeroline-pane.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-describe('communication-mapping wizard', () => {
+import { MockWizard } from '../../mock-wizard.js';
+import { ZerolinePane } from '../../../src/zeroline-pane.js';
+
+describe('communication mapping wizard', () => {
   let doc: Document;
-  let parent: MockWizardEditor;
+  let parent: MockWizard;
   let element: ZerolinePane;
 
   beforeEach(async () => {
@@ -17,9 +18,9 @@ describe('communication-mapping wizard', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     parent = await fixture(
-      html`<mock-wizard-editor
+      html`<mock-wizard
         ><zeroline-pane .doc=${doc}></zeroline-pane
-      ></mock-wizard-editor>`
+      ></mock-wizard>`
     );
 
     element = <ZerolinePane>parent.querySelector('zeroline-pane')!;
@@ -31,7 +32,7 @@ describe('communication-mapping wizard', () => {
     expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
 
-  it('closes on secondary action', async () => {
+  it('closes wizard on secondary action', async () => {
     (<HTMLElement>(
       parent.wizardUI.dialog!.querySelector(
         'mwc-button[slot="secondaryAction"]'
@@ -42,35 +43,23 @@ describe('communication-mapping wizard', () => {
     expect(parent.wizardUI.dialogs.length).to.equal(0);
   });
 
-  it('groups connections to unique pair of source ied, sink ied and control block', () => {
-    expect(
-      parent.wizardUI.dialog?.querySelectorAll('mwc-list-item').length
-    ).to.equal(4);
-  });
-
-  it('indicates the control block type with mwc-list graphic slot', () => {
-    expect(
-      parent.wizardUI.dialog!.querySelectorAll('mwc-list-item > mwc-icon')
-        .length
-    ).to.equal(4);
-  });
-
-  it('show the source ied, sink ied and control block', () => {
-    expect(
-      parent.wizardUI.dialog!.querySelectorAll('mwc-list-item > mwc-icon')
-        .length
-    ).to.equal(4);
-  });
-
   describe('getSinkReferences', () => {
-    it('retruns an array of ClientLN`s for ReportControl blocks', () => {
+    it('returns an array of all ClientLN`s for doc as input', () => {
+      const clientlns = getSinkReferences(doc);
+      expect(clientlns).to.have.length(6);
       expect(
-        getSinkReferences(doc.querySelector('ReportControl[name="ReportCb"]')!)
-      ).to.have.length(4);
+        clientlns[0].isEqualNode(
+          doc.querySelector('ReportControl[name="ReportCb"] ClientLN')
+        )
+      )?.to.be.true;
+    });
+    it('returns an array all ClientLN`s connected to an IED - send and receive', () => {
+      const clientlns = getSinkReferences(
+        doc.querySelector('IED[name="IED1"]')!
+      );
+      expect(clientlns).to.have.length(5);
       expect(
-        getSinkReferences(
-          doc.querySelector('ReportControl[name="ReportCb"]')!
-        )[0].isEqualNode(
+        clientlns[0].isEqualNode(
           doc.querySelector('ReportControl[name="ReportCb"] ClientLN')
         )
       )?.to.be.true;
@@ -78,10 +67,18 @@ describe('communication-mapping wizard', () => {
   });
 
   describe('getSourceReferences', () => {
-    it('retruns an array of child ExtRef`s', () => {
-      expect(getSourceReferences(doc)).to.have.length(20);
+    it('returns an array of all ExtRef`s with doc as inputs', () => {
+      const extRefs = getSourceReferences(doc);
+      expect(extRefs).to.have.length(20);
+      expect(extRefs[0].isEqualNode(doc.querySelector('ExtRef'))).to.be.true;
+    });
+    it('returns an array of all ExtRef`s connected to an IED - send and receive', () => {
+      const extRefs = getSourceReferences(
+        doc.querySelector('IED[name="IED2"]')!
+      );
+      expect(extRefs).to.have.length(6);
       expect(
-        getSourceReferences(doc)[0].isEqualNode(doc.querySelector('ExtRef'))
+        extRefs[2].isEqualNode(doc.querySelector('IED[name="IED2"] ExtRef'))
       ).to.be.true;
     });
   });

@@ -1,6 +1,8 @@
-# `report control block connection wizard`
+# `clientln wizards`
 
-#### `looks like the latest snapshot`
+## `selectClientLnWizard`
+
+####   `looks like the latest snapshot`
 
 ```html
 <mwc-dialog
@@ -18,18 +20,6 @@
       >
         <span>
           DCCILO1
-        </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
-        aria-disabled="false"
-        graphic="icon"
-        mwc-list-item=""
-        tabindex="-1"
-      >
-        <span>
-          LLN0
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>

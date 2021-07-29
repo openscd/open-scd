@@ -14,7 +14,10 @@ import {
 import { List } from '@material/mwc-list';
 
 import { inputIcon } from '../icons.js';
-import { getSourceReferences } from './commmap-wizards.js';
+import {
+  getSourceReferences,
+  openCommunicationMappingWizard,
+} from './commmap-wizards.js';
 
 function findIEDNameTarget(iedName: Element): Element | null {
   const name = iedName.textContent ?? '';
@@ -155,9 +158,10 @@ function disconnect(extRef: Element[]): WizardActor {
   };
 }
 
-export function editExtRefsWizard(
+export function selectExtRefsWizard(
   sinkExtRefs: Element[],
-  sourceControlBlock: Element | null | undefined
+  sourceControlBlock: Element | null | undefined,
+  root: XMLDocument | Element
 ): Wizard | undefined {
   if (!sourceControlBlock) return undefined;
 
@@ -171,6 +175,11 @@ export function editExtRefsWizard(
         icon: 'delete',
         label: get('disconnect'), // FIXME: translate
         action: disconnect(sinkExtRefs),
+      },
+      secondary: {
+        icon: '',
+        label: get('back'),
+        action: openCommunicationMappingWizard(root),
       },
       content: [
         html`<filtered-list multi

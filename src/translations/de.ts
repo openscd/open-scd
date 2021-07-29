@@ -321,9 +321,9 @@ export const de: Translations = {
     nonewitems: 'keine neuen IEDName Elemente notwendig',
     message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
   },
-  commMap: {
+  commmap: {
     title: 'Kommunikationszuordnung',
-    connectCB: '{{CbType}} verbinden',
+    connectCB: '{{cbType}} verbinden',
     connectToIED: 'Verbinden mit {{iedName}}',
     sourceIED: 'Quellgerät',
     sinkIED: 'Zielgerät',

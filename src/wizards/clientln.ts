@@ -18,6 +18,9 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
+import { openCommunicationMappingWizard } from './commmap-wizards.js';
+import { clientIcon } from '../icons.js';
+
 function getPath(identity: string | number): string {
   if (typeof identity !== 'string') return '';
 
@@ -170,13 +173,39 @@ function addClientLnAction(doc: XMLDocument): WizardActor {
   };
 }
 
-export function clientlnwizard(
+export function createClientLnWizard(
   sourceIEDs: Element[],
   sinkIED: Element
 ): Wizard {
+  const reportItems = sourceIEDs.flatMap(sourceIED => {
+    return Array.from(sourceIED.getElementsByTagName('ReportControl')).map(
+      cb => {
+        return {
+          identity: identity(cb),
+          numberClientLNs: Array.from(cb.getElementsByTagName('ClientLN'))
+            .length,
+          max: Number(cb.querySelector('RptEnabled')?.getAttribute('max')),
+        };
+      }
+    );
+  });
+  const clientLns = Array.from(
+    sinkIED.querySelectorAll(':root > IED > AccessPoint > LN')
+  );
+  const serverLns = Array.from(
+    sinkIED.querySelectorAll(
+      ':root > IED > AccessPoint > Server > LDevice > LN'
+    )
+  );
+  const serverLn0s = Array.from(
+    sinkIED.querySelectorAll(
+      ':root > IED > AccessPoint > Server > LDevice > LN0'
+    )
+  );
+
   return [
     {
-      title: get('commMap.connectToIED', {
+      title: get('commmap.connectToIED', {
         iedName: sinkIED.getAttribute('name') ?? '',
       }),
       primary: {
@@ -193,28 +222,7 @@ export function clientlnwizard(
             id="sourcelist"
             multi
             searchFieldLabel="${get('scl.Report')}"
-            >${sourceIEDs
-              .filter(
-                sourceIED =>
-                  sourceIED.getAttribute('name') !==
-                  sinkIED.getAttribute('name')
-              )
-              .flatMap(sourceIED => {
-                return Array.from(
-                  sourceIED.getElementsByTagName('ReportControl')
-                ).map(cb => {
-                  return {
-                    identity: identity(cb),
-                    numberClientLNs: Array.from(
-                      cb.getElementsByTagName('ClientLN')
-                    ).filter(
-                      clientLN =>
-                        clientLN.getAttribute('iedName') ===
-                        sinkIED.getAttribute('name')
-                    ).length,
-                  };
-                });
-              })
+            >${reportItems
               .sort((a, b) => b.numberClientLNs - a.numberClientLNs)
               .map(
                 item =>
@@ -223,10 +231,13 @@ export function clientlnwizard(
                     hasMeta
                     twoline
                     value="${item.identity}"
+                    ?disabled=${item.numberClientLNs >= item.max}
                     ><span>${getElement(item.identity)}</span
                     ><span slot="secondary">${getPath(item.identity)}</span
                     ><span slot="meta"
-                      >${item.numberClientLNs}</span
+                      >${item.max
+                        ? item.numberClientLNs + `/` + item.max
+                        : item.numberClientLNs}</span
                     ></mwc-check-list-item
                   >`
               )}</filtered-list
@@ -235,9 +246,7 @@ export function clientlnwizard(
             id="sinklist"
             activatable
             searchFieldLabel="${get('scl.LN')}"
-            >${Array.from(
-              sinkIED.querySelectorAll(':root > IED > AccessPoint > LN')
-            ).map(
+            >${clientLns.map(
               ln =>
                 html`<mwc-check-list-item twoline value="${identity(ln)}">
                   <span>${getElement(identity(ln))}</span>
@@ -245,22 +254,14 @@ export function clientlnwizard(
                 </mwc-check-list-item>`
             )}
             <li divider role="separator"></li>
-            ${Array.from(
-              sinkIED.querySelectorAll(
-                ':root > IED > AccessPoint > Server > LDevice > LN'
-              )
-            ).map(
+            ${serverLns.map(
               ln =>
                 html`<mwc-check-list-item twoline value="${identity(ln)}">
                   <span>${getElement(identity(ln))}</span>
                   <span slot="secondary">${getPath(identity(ln))}</span>
                 </mwc-check-list-item>`
             )}
-            ${Array.from(
-              sinkIED.querySelectorAll(
-                ':root > IED > AccessPoint > Server > LDevice > LN0'
-              )
-            ).map(
+            ${serverLn0s.map(
               ln0 =>
                 html`<mwc-check-list-item twoline value="${identity(ln0)}">
                   <span>LLN0</span>
@@ -287,8 +288,9 @@ function getSelectedSourceIedElements(
   const selectedItems =
     <ListItemBase[]>(
       (
-        <List>(<List>evt.target).parentElement?.querySelector('#sourcelist') ??
-        []
+        <List>(
+          (<List>evt.target).parentElement?.querySelector<List>('#sourcelist')
+        ) ?? []
       ).selected
     ) ?? [];
 
@@ -299,10 +301,10 @@ function getSelectedSourceIedElements(
   );
 }
 
-export function createClientLnWizard(doc: Document): Wizard {
+export function selectIedsWizard(doc: Document): Wizard {
   return [
     {
-      title: get('commMap.connectCB', { CbType: get('Report') }),
+      title: get('commmap.connectCB', { cbType: get('Report') }),
       content:
         doc.querySelectorAll(':root > IED').length > 1
           ? [
@@ -313,7 +315,7 @@ export function createClientLnWizard(doc: Document): Wizard {
                 <filtered-list
                   id="sourcelist"
                   multi
-                  searchFieldLabel="${get('commMap.sourceIED')}"
+                  searchFieldLabel="${get('commmap.sourceIED')}"
                 >
                   ${Array.from(doc.querySelectorAll(':root > IED') ?? []).map(
                     ied =>
@@ -324,11 +326,11 @@ export function createClientLnWizard(doc: Document): Wizard {
                 </filtered-list>
                 <filtered-list
                   id="sinklist"
-                  searchFieldLabel="${get('commMap.sinkIED')}"
+                  searchFieldLabel="${get('commmap.sinkIED')}"
                   @selected="${(evt: SingleSelectedEvent) => {
                     evt.target!.dispatchEvent(
                       newWizardEvent(
-                        clientlnwizard(
+                        createClientLnWizard(
                           getSelectedSourceIedElements(evt, doc),
                           getSinkIedElement(evt, doc)
                         )
@@ -356,6 +358,70 @@ export function createClientLnWizard(doc: Document): Wizard {
                 </div>
               `,
             ],
+    },
+  ];
+}
+
+function disconnectClientLnAction(elements: Element[]): WizardActor {
+  return (
+    inputs: WizardInput[],
+    wizard: Element,
+    list?: List | null
+  ): WizardAction[] => {
+    const items = <Set<number>>list!.index;
+    const selectedClientLNs = Array.from(items).map(index => elements[index]);
+
+    const actions: WizardAction[] = [];
+    selectedClientLNs.forEach(clientLN => {
+      actions.push({
+        old: {
+          parent: clientLN.parentElement!,
+          element: clientLN,
+          reference: clientLN.nextElementSibling,
+        },
+      });
+    });
+
+    return actions;
+  };
+}
+
+export function selectClientLNsWizard(
+  clientLns: Element[],
+  root: XMLDocument | Element
+): Wizard {
+  const controlBlock = clientLns[0].closest('ReportControl');
+  const cbId = identity(controlBlock);
+  const sinkIedName = clientLns[0].getAttribute('iedName');
+
+  return [
+    {
+      title: cbId + ' - ' + sinkIedName,
+      primary: {
+        icon: 'delete',
+        label: get('disconnect'),
+        action: disconnectClientLnAction(clientLns),
+      },
+      secondary: {
+        icon: '',
+        label: get('back'),
+        action: openCommunicationMappingWizard(root),
+      },
+      content: [
+        html`<filtered-list multi
+          >${clientLns.map(clientLN => {
+            const ln =
+              (clientLN.getAttribute('prefix') ?? '') +
+              clientLN.getAttribute('lnClass') +
+              (clientLN.getAttribute('lnInst') ?? '');
+
+            return html`<mwc-check-list-item graphic="icon">
+              <span>${ln}</span>
+              <mwc-icon slot="graphic">${clientIcon}</mwc-icon>
+            </mwc-check-list-item> `;
+          })}</filtered-list
+        >`,
+      ],
     },
   ];
 }

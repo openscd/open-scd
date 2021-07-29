@@ -9,19 +9,20 @@ import {
   newWizardEvent,
   selector,
   Wizard,
-  WizardAction,
   WizardActor,
-  WizardInput,
 } from '../foundation.js';
-import { createClientLnWizard } from './clientln.js';
-import { editClientLNsWizard } from './reportcontrolblock.js';
-import { editExtRefsWizard } from './controlwithiedname.js';
+import { selectIedsWizard, selectClientLNsWizard } from './clientln.js';
+import { selectExtRefsWizard } from './controlwithiedname.js';
 import { controlBlockIcons } from '../icons.js';
 
 export function openCommunicationMappingWizard(
   root: XMLDocument | Element
 ): WizardActor {
   return () => [() => communicationMappingWizard(root)];
+}
+
+export function openCreateConnection(doc: XMLDocument): WizardActor {
+  return () => [() => selectIedsWizard(doc)];
 }
 
 export function getSinkReferences(root: Document | Element): Element[] {
@@ -52,12 +53,6 @@ export function getSourceReferences(root: Document | Element): Element[] {
     .filter(element => element.getAttribute('iedName'));
 }
 
-export function openCreateConnection(doc: Document): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
-    return [() => createClientLnWizard(doc)];
-  };
-}
-
 export function communicationMappingWizard(
   element: XMLDocument | Element
 ): Wizard {
@@ -68,17 +63,14 @@ export function communicationMappingWizard(
   const sourceRefs = getSourceReferences(element);
   const sinkRefs = getSinkReferences(element);
 
-  sinkRefs
-    .filter(element => element.tagName === 'ClientLN')
-    .forEach(element => {
-      const controlBlock = element.parentElement!.parentElement!;
-      const iedName = element.getAttribute('iedName');
-      const key =
-        identity(controlBlock) + ' | ' + controlBlock.tagName + ' | ' + iedName;
-      if (!connections.has(key)) connections.set(key, []);
-      connections.get(key)?.push(element);
-    });
-
+  sinkRefs.forEach(element => {
+    const controlBlock = element.parentElement!.parentElement!;
+    const iedName = element.getAttribute('iedName');
+    const key =
+      identity(controlBlock) + ' | ' + controlBlock.tagName + ' | ' + iedName;
+    if (!connections.has(key)) connections.set(key, []);
+    connections.get(key)?.push(element);
+  });
   sourceRefs.forEach(element => {
     const iedName = element.closest('IED')?.getAttribute('name') ?? '';
     const controlBlocks = findControlBlocks(element);
@@ -97,10 +89,10 @@ export function communicationMappingWizard(
 
   return [
     {
-      title: get('commMap.title'),
+      title: get('commmap.title'),
       primary: {
         icon: 'add',
-        label: get('commMap.connectCB', { CbType: get('Report') }),
+        label: get('commmap.connectCB', { cbType: get('Report') }),
         action: openCreateConnection(
           element instanceof XMLDocument ? element : element.ownerDocument
         ),
@@ -123,8 +115,8 @@ export function communicationMappingWizard(
                 evt.target!.dispatchEvent(
                   newWizardEvent(
                     cbTag === 'ReportControl'
-                      ? editClientLNsWizard(elements, element)
-                      : editExtRefsWizard(elements, cbElement)
+                      ? selectClientLNsWizard(elements, element)
+                      : selectExtRefsWizard(elements, cbElement, element)
                   )
                 );
                 evt.target!.dispatchEvent(newWizardEvent());

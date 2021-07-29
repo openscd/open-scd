@@ -1,4 +1,4 @@
-# `gse and smv control block connection wizard`
+# `selectExtRefWizard`
 
 #### `looks like the latest snapshot`
 
@@ -209,10 +209,9 @@
     </filtered-list>
   </div>
   <mwc-button
-    dialogaction="close"
-    label="[cancel]"
+    icon=""
+    label="[back]"
     slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
   <mwc-button

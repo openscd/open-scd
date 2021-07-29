@@ -318,9 +318,9 @@ export const en = {
     nonewitems: 'no new IEDName elements to add',
     message: '{{updatenumber}} IEDName elements added to the project',
   },
-  commMap: {
+  commmap: {
     title: 'Communication mapping',
-    connectCB: 'Connect {{CbType}}',
+    connectCB: 'Connect {{cbType}}',
     connectToIED: 'Connect to {{iedName}}',
     sourceIED: 'Source IED',
     sinkIED: 'Sink IED',
