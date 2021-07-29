@@ -39,9 +39,7 @@ describe('Substation Plugin', () => {
     let parent: WizardingElement;
 
     beforeEach(async () => {
-      doc = await fetch(
-        '/base/test/testfiles/missingSubstationCommunication.scd'
-      )
+      doc = await fetch('/base/test/testfiles/missingSubstation.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement>(
