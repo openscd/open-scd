@@ -54,10 +54,8 @@ export class ZerolinePane extends LitElement {
   }
 
   toggleShowIEDs(): void {
-    console.warn(shouldShowIEDs());
     if (shouldShowIEDs()) setShowIEDs('off');
     else setShowIEDs('on');
-    console.log(shouldShowIEDs());
     this.requestUpdate();
   }
 

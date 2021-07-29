@@ -48,7 +48,6 @@ describe('finder-pane', () => {
 
     describe('when an entry in the last column is selected', () => {
       beforeEach(async () => {
-        console.log(items);
         items[items.length - 1].click();
         await element.updateComplete;
       });
@@ -59,7 +58,6 @@ describe('finder-pane', () => {
 
     describe('when an entry in the first column is selected', () => {
       beforeEach(async () => {
-        console.log(items);
         items[0].click();
         await element.updateComplete;
       });
