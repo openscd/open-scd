@@ -11,11 +11,9 @@
   <div id="wizard-content">
     <filtered-list>
       <mwc-list-item
-        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
-        tabindex="0"
         twoline=""
       >
         <span>
@@ -38,11 +36,9 @@
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
         twoline=""
       >
         <span>
@@ -65,11 +61,9 @@
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
         twoline=""
       >
         <span>
@@ -92,11 +86,9 @@
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
         twoline=""
       >
         <span>
@@ -119,11 +111,9 @@
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
         twoline=""
       >
         <span>
@@ -146,11 +136,9 @@
         </mwc-icon>
       </mwc-list-item>
       <mwc-list-item
-        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
-        tabindex="-1"
         twoline=""
       >
         <span>

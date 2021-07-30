@@ -6,7 +6,6 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
 import { startMove, styles, cloneElement } from './foundation.js';

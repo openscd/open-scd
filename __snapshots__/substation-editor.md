@@ -15,8 +15,16 @@
         <mwc-icon-button icon="account_tree">
         </mwc-icon-button>
       </abbr>
+      <abbr title="[duplicate]">
+        <mwc-icon-button icon="content_copy">
+        </mwc-icon-button>
+      </abbr>
       <abbr title="[edit]">
         <mwc-icon-button icon="edit">
+        </mwc-icon-button>
+      </abbr>
+      <abbr title="[move]">
+        <mwc-icon-button icon="forward">
         </mwc-icon-button>
       </abbr>
       <abbr title="[remove]">

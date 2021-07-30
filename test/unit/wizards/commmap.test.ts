@@ -33,6 +33,7 @@ describe('communication mapping wizard', () => {
   });
 
   it('closes wizard on secondary action', async () => {
+    await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(
       parent.wizardUI.dialog!.querySelector(
         'mwc-button[slot="secondaryAction"]'

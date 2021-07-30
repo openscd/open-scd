@@ -13,7 +13,6 @@ import './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
-import { until } from 'lit-html/directives/until';
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')

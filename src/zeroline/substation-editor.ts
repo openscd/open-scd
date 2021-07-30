@@ -9,7 +9,6 @@ import {
 import { translate } from 'lit-translate';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
-import { ZerolinePane } from '../zeroline-pane.js';
 
 import { cloneElement, selectors, startMove, styles } from './foundation.js';
 
