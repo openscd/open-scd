@@ -6,7 +6,6 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
 import { startMove, styles, cloneElement } from './foundation.js';
@@ -35,7 +34,7 @@ export class BayEditor extends LitElement {
   }
 
   @property({ attribute: false })
-  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => {
+  getAttachedIeds?: (element: Element) => Element[] = () => {
     return [];
   };
 
@@ -68,8 +67,8 @@ export class BayEditor extends LitElement {
       );
   }
 
-  async renderIedContainer(): Promise<TemplateResult> {
-    const ieds = await this.getAttachedIeds?.(this.element);
+  renderIedContainer(): TemplateResult {
+    const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
       ? html`<div id="iedcontainer">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
@@ -127,10 +126,7 @@ export class BayEditor extends LitElement {
     return html`<section tabindex="0">
       ${this.renderHeader()}
       <div>
-        ${until(
-          this.renderIedContainer(),
-          html`<span>${translate('zeroline.iedsloading')}</span>`
-        )}
+        ${this.renderIedContainer()}
         <div id="ceContainer">
           ${Array.from(
             this.element?.querySelectorAll(

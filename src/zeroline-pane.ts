@@ -5,6 +5,7 @@ import {
   property,
   customElement,
   css,
+  query,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
@@ -16,6 +17,9 @@ import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
 import { wizards } from './wizards/wizard-library.js';
+import { communicationMappingWizard } from './wizards/commmap-wizards.js';
+import { IconButton } from '@material/mwc-icon-button';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -35,7 +39,15 @@ export class ZerolinePane extends LitElement {
   readonly = false;
 
   @property({ attribute: false })
-  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => [];
+  getAttachedIeds?: (element: Element) => Element[] = () => [];
+
+  @query('#commmap') commmap!: IconButton;
+  @query('#showieds') showieds!: IconButtonToggle;
+
+  openCommunicationMapping(): void {
+    const wizard = communicationMappingWizard(this.doc);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   openCreateSubstationWizard(): void {
@@ -44,20 +56,17 @@ export class ZerolinePane extends LitElement {
   }
 
   toggleShowIEDs(): void {
-    console.warn(shouldShowIEDs());
     if (shouldShowIEDs()) setShowIEDs('off');
     else setShowIEDs('on');
-    console.log(shouldShowIEDs());
     this.requestUpdate();
   }
 
-  async renderIedContainer(): Promise<TemplateResult> {
+  renderIedContainer(): TemplateResult {
     this.getAttachedIeds = shouldShowIEDs()
       ? getAttachedIeds(this.doc)
-      : async () => [];
-    const ieds = await this.getAttachedIeds?.(this.doc.documentElement);
+      : () => [];
+    const ieds = this.getAttachedIeds?.(this.doc.documentElement) ?? [];
 
-    await new Promise(requestAnimationFrame);
     return ieds.length
       ? html`<div id="iedcontainer">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
@@ -85,9 +94,16 @@ export class ZerolinePane extends LitElement {
             offIcon="developer_board_off"
           ></mwc-icon-button-toggle>
         </abbr>
+        <abbr title="${translate('zeroline.commmap')}">
+          <mwc-icon-button
+            id="commmap"
+            icon="link"
+            @click=${() => this.openCommunicationMapping()}
+          ></mwc-icon-button>
+        </abbr>
       </nav>
         </h1>
-      ${until(this.renderIedContainer(), html`<span>loading ieds...</span>`)}
+      ${this.renderIedContainer()}
       ${
         this.doc?.querySelector(':root > Substation')
           ? html`<section tabindex="0">
@@ -111,6 +127,36 @@ export class ZerolinePane extends LitElement {
   }
 
   static styles = css`
-    ${styles}
+    h1,
+    h3 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
+      line-height: 48px;
+      padding-left: 0.3em;
+      transition: background-color 150ms linear;
+    }
+
+    h1 > nav,
+    h1 > abbr > mwc-icon-button {
+      float: right;
+    }
+
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
+    }
+
+    #iedcontainer {
+      display: grid;
+      grid-gap: 12px;
+      padding: 8px 12px 16px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
   `;
 }

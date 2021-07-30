@@ -47,7 +47,7 @@ export const de: Translations = {
   },
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
-    showieds: 'IEDs anzeigen/ausblenden',
+    commmap: 'Kommunikationszuordnung',
   },
   editing: {
     created: '{{ name }} hinzugefügt',
@@ -320,9 +320,9 @@ export const de: Translations = {
     nonewitems: 'keine neuen IEDName Elemente notwendig',
     message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
   },
-  commMap: {
+  commmap: {
     title: 'Kommunikationszuordnung',
-    connectCB: '{{CbType}} verbinden',
+    connectCB: '{{cbType}} verbinden',
     connectToIED: 'Verbinden mit {{iedName}}',
     sourceIED: 'Quellgerät',
     sinkIED: 'Zielgerät',

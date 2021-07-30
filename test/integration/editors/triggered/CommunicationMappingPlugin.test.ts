@@ -1,39 +1,32 @@
-import { expect, fixture, html } from '@open-wc/testing';
+/* import { expect, fixture, html } from '@open-wc/testing';
 
-import CommunicationMappingPlugin from '../../../../src/menu/CommunicationMapping.js';
 import { List } from '@material/mwc-list';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import { ZerolinePane } from '../../../../src/zeroline-pane.js';
 
 describe('CommunicationMappingPlugin', () => {
   let doc: Document;
-  customElements.define(
-    'communication-mapping-plugin',
-    CommunicationMappingPlugin
-  );
   let parent: MockWizardEditor;
-  let element: CommunicationMappingPlugin;
+  let element: ZerolinePane;
 
   beforeEach(async () => {
-    parent = await fixture(
-      html`<mock-wizard-editor
-        ><communication-mapping-plugin></communication-mapping-plugin
-      ></mock-wizard-editor>`
-    );
-
-    element = <CommunicationMappingPlugin>(
-      parent.querySelector('communication-mapping-plugin')!
-    );
-
     doc = await fetch('/base/test/testfiles/comm-map.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    element.doc = doc;
+
+    parent = await fixture(
+      html`<mock-wizard-editor
+        ><zeroline-pane .doc=${doc}></zeroline-pane
+      ></mock-wizard-editor>`
+    );
+
+    element = <ZerolinePane>parent.querySelector('zeroline-pane')!;
     await element.updateComplete;
   });
 
   describe('communication mapping wizard', () => {
     beforeEach(async () => {
-      await element.run();
+      await element.commmap.click();
       await parent.updateComplete;
     });
 
@@ -76,7 +69,7 @@ describe('CommunicationMappingPlugin', () => {
   describe('control block connection wizard', () => {
     let commMappings: List;
     beforeEach(async () => {
-      await element.run();
+      await element.commmap.click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       commMappings = <List>(
@@ -270,7 +263,7 @@ describe('CommunicationMappingPlugin', () => {
 
   describe('connection wizard', () => {
     beforeEach(async () => {
-      await element.run();
+      await element.commmap.click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
@@ -301,7 +294,7 @@ describe('CommunicationMappingPlugin', () => {
 
   describe('client wizard', () => {
     beforeEach(async () => {
-      await element.run();
+      await element.commmap.click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
@@ -518,3 +511,4 @@ describe('CommunicationMappingPlugin', () => {
     });
   });
 });
+ */

@@ -4,9 +4,13 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
-import { newActionEvent } from '../foundation.js';
+import { newWizardEvent } from '../foundation.js';
+import { createClientLnWizard } from '../wizards/clientln.js';
+
+import { Fab } from '@material/mwc-fab';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('ied-editor')
@@ -19,10 +23,27 @@ export class IedEditor extends LitElement {
     return this.element.getAttribute('name') ?? '';
   }
 
+  @query('#connectreport') connectReport!: Fab;
+
+  openCommunicationMapping(): void {
+    const sendingIeds = Array.from(
+      this.element.closest('SCL')?.querySelectorAll('IED') ?? []
+    );
+    const wizard = createClientLnWizard(sendingIeds, this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
         <mwc-icon class="icon">developer_board</mwc-icon>
+        <mwc-fab
+          id="connectreport"
+          mini
+          class="menu-item right"
+          @click="${() => this.openCommunicationMapping()}"
+          icon="add_link"
+        ></mwc-fab>
       </div>
       <h4>${this.name}</h4>
     `;
@@ -36,6 +57,7 @@ export class IedEditor extends LitElement {
       margin: auto;
       position: relative;
       transition: all 200ms linear;
+      user-select: none;
     }
 
     #container:focus {
@@ -66,7 +88,7 @@ export class IedEditor extends LitElement {
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
 
-    #container:hover > .icom {
+    #container:hover > .icon {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
     }
@@ -83,8 +105,8 @@ export class IedEditor extends LitElement {
       transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 200ms linear;
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 2px;
+      left: 2px;
       pointer-events: none;
       z-index: 1;
       opacity: 0;
@@ -98,19 +120,19 @@ export class IedEditor extends LitElement {
     }
 
     #container:focus-within > .menu-item.up {
-      transform: translate(0px, -52px);
+      transform: translate(0px, -60px);
     }
 
     #container:focus-within > .menu-item.down {
-      transform: translate(0px, 52px);
+      transform: translate(0px, 60px);
     }
 
     #container:focus-within > .menu-item.right {
-      transform: translate(52px, 0px);
+      transform: translate(60px, 0px);
     }
 
     #container:focus-within > .menu-item.left {
-      transform: translate(-52px, 0px);
+      transform: translate(-60px, 0px);
     }
 
     h4 {

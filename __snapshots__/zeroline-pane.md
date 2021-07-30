@@ -17,6 +17,13 @@
       >
       </mwc-icon-button-toggle>
     </abbr>
+    <abbr title="[zeroline.commmap]">
+      <mwc-icon-button
+        icon="link"
+        id="commmap"
+      >
+      </mwc-icon-button>
+    </abbr>
   </nav>
 </h1>
 <section tabindex="0">
@@ -45,6 +52,13 @@
       >
       </mwc-icon-button-toggle>
     </abbr>
+    <abbr title="[zeroline.commmap]">
+      <mwc-icon-button
+        icon="link"
+        id="commmap"
+      >
+      </mwc-icon-button>
+    </abbr>
   </nav>
 </h1>
 <section tabindex="0">
@@ -72,6 +86,13 @@
         onicon="developer_board"
       >
       </mwc-icon-button-toggle>
+    </abbr>
+    <abbr title="[zeroline.commmap]">
+      <mwc-icon-button
+        icon="link"
+        id="commmap"
+      >
+      </mwc-icon-button>
     </abbr>
   </nav>
 </h1>
