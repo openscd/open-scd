@@ -19,7 +19,7 @@
     </abbr>
     <abbr title="[zeroline.commmap]">
       <mwc-icon-button
-        icon="sync_alt"
+        icon="link"
         id="commmap"
       >
       </mwc-icon-button>
@@ -54,7 +54,7 @@
     </abbr>
     <abbr title="[zeroline.commmap]">
       <mwc-icon-button
-        icon="sync_alt"
+        icon="link"
         id="commmap"
       >
       </mwc-icon-button>
@@ -89,7 +89,7 @@
     </abbr>
     <abbr title="[zeroline.commmap]">
       <mwc-icon-button
-        icon="sync_alt"
+        icon="link"
         id="commmap"
       >
       </mwc-icon-button>
