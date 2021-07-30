@@ -24,7 +24,7 @@ describe('selectExtRefWizard', () => {
     element = <ZerolinePane>parent.querySelector('zeroline-pane')!;
     await element.updateComplete;
 
-    await element.commmap.click();
+    element.commmap.click();
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     commMappings = <List>parent.wizardUI.dialog?.querySelector('filtered-list');

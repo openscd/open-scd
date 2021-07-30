@@ -24,7 +24,7 @@ describe('communication mapping wizard', () => {
     );
 
     element = <ZerolinePane>parent.querySelector('zeroline-pane')!;
-    await element.commmap.click();
+    element.commmap.click();
     await element.updateComplete;
   });
 

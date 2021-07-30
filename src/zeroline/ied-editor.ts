@@ -57,6 +57,7 @@ export class IedEditor extends LitElement {
       margin: auto;
       position: relative;
       transition: all 200ms linear;
+      user-select: none;
     }
 
     #container:focus {
@@ -87,7 +88,7 @@ export class IedEditor extends LitElement {
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
 
-    #container:hover > .icom {
+    #container:hover > .icon {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
     }

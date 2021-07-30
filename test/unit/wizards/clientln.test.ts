@@ -169,7 +169,7 @@ describe('clientln wizards', () => {
     let commMappings: List;
 
     beforeEach(async () => {
-      await element.commmap.click();
+      element.commmap.click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       commMappings = <List>(
