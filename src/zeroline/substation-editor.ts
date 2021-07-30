@@ -36,7 +36,7 @@ export class SubstationEditor extends LitElement {
   }
 
   @property({ attribute: false })
-  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => {
+  getAttachedIeds?: (element: Element) => Element[] = () => {
     return [];
   };
 
@@ -71,8 +71,8 @@ export class SubstationEditor extends LitElement {
     );
   }
 
-  async renderIedContainer(): Promise<TemplateResult> {
-    const ieds = await this.getAttachedIeds?.(this.element);
+  renderIedContainer(): TemplateResult {
+    const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
       ? html`<div id="iedcontainer">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
@@ -122,11 +122,7 @@ export class SubstationEditor extends LitElement {
   render(): TemplateResult {
     return html`
       <section tabindex="0">
-        ${this.renderHeader()}
-        ${until(
-          this.renderIedContainer(),
-          html`<h3>${translate('zeroline.iedsloading')}</h3>`
-        )}
+        ${this.renderHeader()} ${this.renderIedContainer()}
         ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
           voltageLevel =>
             html`<voltage-level-editor

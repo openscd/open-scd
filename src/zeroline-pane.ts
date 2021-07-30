@@ -39,7 +39,7 @@ export class ZerolinePane extends LitElement {
   readonly = false;
 
   @property({ attribute: false })
-  getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => [];
+  getAttachedIeds?: (element: Element) => Element[] = () => [];
 
   @query('#commmap') commmap!: IconButton;
   @query('#showieds') showieds!: IconButtonToggle;
@@ -61,11 +61,11 @@ export class ZerolinePane extends LitElement {
     this.requestUpdate();
   }
 
-  async renderIedContainer(): Promise<TemplateResult> {
+  renderIedContainer(): TemplateResult {
     this.getAttachedIeds = shouldShowIEDs()
       ? getAttachedIeds(this.doc)
-      : async () => [];
-    const ieds = await this.getAttachedIeds?.(this.doc.documentElement);
+      : () => [];
+    const ieds = this.getAttachedIeds?.(this.doc.documentElement) ?? [];
 
     return ieds.length
       ? html`<div id="iedcontainer">
@@ -103,10 +103,7 @@ export class ZerolinePane extends LitElement {
         </abbr>
       </nav>
         </h1>
-      ${until(
-        this.renderIedContainer(),
-        html`<h3>${translate('zeroline.iedsloading')}</h3>`
-      )}
+      ${this.renderIedContainer()}
       ${
         this.doc?.querySelector(':root > Substation')
           ? html`<section tabindex="0">

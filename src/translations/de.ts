@@ -47,7 +47,6 @@ export const de: Translations = {
   },
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
-    showieds: 'IEDs anzeigen/ausblenden',
     commmap: 'Kommunikationszuordnung',
   },
   editing: {

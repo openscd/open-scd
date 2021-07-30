@@ -56,12 +56,10 @@ function hasTheirs(element: Element, iedName: string): boolean {
     .some(lnode => !ours.includes(lnode));
 }
 
-export async function attachedIeds(
+export function attachedIeds(
   element: Element,
   remainingIeds: Set<Element>
-): Promise<Element[]> {
-  await new Promise(requestAnimationFrame);
-
+): Element[] {
   const attachedIeds: Element[] = [];
   for (const ied of remainingIeds) {
     const iedName = ied.getAttribute('name')!;
@@ -90,14 +88,13 @@ export async function attachedIeds(
 
 export function getAttachedIeds(
   doc: XMLDocument
-): (element: Element) => Promise<Element[]> {
-  return async (element: Element) => {
+): (element: Element) => Element[] {
+  return (element: Element) => {
     const ieds = new Set(
       Array.from(doc.querySelectorAll('IED')).filter(isPublic)
     );
-    await new Promise(requestAnimationFrame);
 
-    return await attachedIeds(element, ieds);
+    return attachedIeds(element, ieds);
   };
 }
 

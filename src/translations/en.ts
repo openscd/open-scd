@@ -45,7 +45,6 @@ export const en = {
   },
   zeroline: {
     iedsloading: 'Loading IEDs...',
-    showieds: 'Display/hide IEDs',
     commmap: 'Communication mapping',
   },
   editing: {
