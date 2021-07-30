@@ -1,4 +1,9 @@
 import { html, render, TemplateResult } from 'lit-html';
+import { translate } from 'lit-translate';
+
+import { createElement, EditorAction } from '../foundation.js';
+import { maxLenght, patterns } from './foundation.ts/limits.js';
+import { predefinedBasicTypeEnum, valKindEnum } from './foundation.ts/enums.js';
 
 import { WizardSelect } from '../wizard-select.js';
 import { WizardTextField } from '../wizard-textfield.js';
@@ -6,10 +11,6 @@ import { WizardTextField } from '../wizard-textfield.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Select } from '@material/mwc-select';
-import { translate } from 'lit-translate';
-import { predefinedBasicTypeEnum, valKindEnum } from './foundation.ts/enums.js';
-import { patterns } from './foundation.ts/limits.js';
-import { createElement, EditorAction } from '../foundation.js';
 
 function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
   const typeSelected = (<Select>e.target).selected?.value;
@@ -89,7 +90,7 @@ function selectBType(
   typeUI.requestUpdate();
 }
 
-export function renderWizard(
+export function wizardContent(
   name: string | null,
   desc: string | null,
   bType: string,
@@ -107,7 +108,8 @@ export function renderWizard(
       .maybeValue=${name}
       helper="${translate('scl.name')}"
       required
-      pattern="${patterns.alphanumericFirstLowerCase}"
+      pattern="${patterns.restrName1stU}"
+      maxLength="${maxLenght.abstracDaName}"
       dialogInitialFocus
     >
       ></wizard-textfield

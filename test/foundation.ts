@@ -40,6 +40,8 @@ export const regExp = {
   OSIAPi: /^[0-9\u002C]+$/,
   OSIid: /^[0-9]+$/,
   token: new RegExp('^' + patterns.nmToken + '$'),
+  tAsciName: /^[A-Za-z][0-9A-Za-z_]$/,
+  tRestrName1stL: /^[a-z][0-9A-Za-z]*$/,
 };
 
 export const inverseRegExp = {

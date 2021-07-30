@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import fc from 'fast-check';
 import {
   Create,
   isCreate,
@@ -8,7 +9,11 @@ import {
 } from '../../../src/foundation.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { getValAction, renderWizard } from '../../../src/wizards/abstractda.js';
+import {
+  getValAction,
+  wizardContent,
+} from '../../../src/wizards/abstractda.js';
+import { regExp, regexString } from '../../foundation.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 describe('abstractda wizards', () => {
@@ -50,6 +55,7 @@ describe('abstractda wizards', () => {
     let element: MockWizard;
     let enumTypes: string[];
     let daTypes: string[];
+    let nameTextField: WizardTextField;
     let valSelect: WizardSelect;
     let valTextField: WizardTextField;
     let bTypeSelect: WizardSelect;
@@ -71,7 +77,7 @@ describe('abstractda wizards', () => {
       const wizard = [
         {
           title: 'title',
-          content: renderWizard(
+          content: wizardContent(
             '',
             null,
             'Enum',
@@ -87,6 +93,9 @@ describe('abstractda wizards', () => {
       ];
       element.workflow.push(wizard);
       await element.requestUpdate();
+      nameTextField = element.wizardUI.dialog!.querySelector<WizardTextField>(
+        'wizard-textfield[label="name"]'
+      )!;
       bTypeSelect = element.wizardUI.dialog!.querySelector<WizardSelect>(
         'wizard-select[label="bType"]'
       )!;
@@ -99,6 +108,30 @@ describe('abstractda wizards', () => {
       typeSelect = element.wizardUI.dialog!.querySelector<WizardSelect>(
         'wizard-select[label="type"]'
       )!;
+    });
+    it('looks like the latest snapshot', () => {
+      expect(element.wizardUI.dialog).to.equalSnapshot();
+    });
+    it('edits name attribute only for valid inputs', async () => {
+      await fc.assert(
+        fc.asyncProperty(
+          regexString(regExp.tRestrName1stL, 1, 32),
+          async name => {
+            nameTextField.value = name;
+            await nameTextField.requestUpdate();
+            expect(nameTextField.checkValidity()).to.be.true;
+          }
+        )
+      );
+    });
+    it('rejects name attribute starting with decimals', async () => {
+      await fc.assert(
+        fc.asyncProperty(regexString(regExp.decimal, 1, 1), async name => {
+          nameTextField.value = name;
+          await nameTextField.requestUpdate();
+          expect(nameTextField.checkValidity()).to.be.false;
+        })
+      );
     });
     it('disables the type field in case bType is not Enum nor Struct', async () => {
       bTypeSelect.value = 'BOOLEAN';

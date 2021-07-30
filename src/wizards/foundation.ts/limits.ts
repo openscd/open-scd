@@ -21,6 +21,12 @@ export const patterns = {
   decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
   unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
   alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
-  alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
+  asciName: '[A-Za-z][0-9,A-Z,a-z_]*',
   lnClass: '[A-Z]{4,4}',
+  restrName1stU: '[a-z][0-9A-Za-z]*',
+};
+
+export const maxLenght = {
+  cbName: 32,
+  abstracDaName: 60,
 };
