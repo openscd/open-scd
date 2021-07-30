@@ -11,7 +11,7 @@ import {
   Wizard,
   WizardActor,
 } from '../foundation.js';
-import { selectIedsWizard, selectClientLNsWizard } from './clientln.js';
+import { selectClientLNsWizard } from './clientln.js';
 import { selectExtRefsWizard } from './controlwithiedname.js';
 import { controlBlockIcons } from '../icons.js';
 
@@ -19,10 +19,6 @@ export function openCommunicationMappingWizard(
   root: XMLDocument | Element
 ): WizardActor {
   return () => [() => communicationMappingWizard(root)];
-}
-
-export function openCreateConnection(doc: XMLDocument): WizardActor {
-  return () => [() => selectIedsWizard(doc)];
 }
 
 export function getSinkReferences(root: Document | Element): Element[] {
@@ -90,13 +86,6 @@ export function communicationMappingWizard(
   return [
     {
       title: get('commmap.title'),
-      primary: {
-        icon: 'add',
-        label: get('commmap.connectCB', { cbType: get('Report') }),
-        action: openCreateConnection(
-          element instanceof XMLDocument ? element : element.ownerDocument
-        ),
-      },
       content: [
         html`<filtered-list
           >${Array.from(connections.keys()).map(key => {

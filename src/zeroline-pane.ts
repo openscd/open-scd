@@ -19,6 +19,7 @@ import { Settings } from './Setting.js';
 import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { IconButton } from '@material/mwc-icon-button';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -41,6 +42,7 @@ export class ZerolinePane extends LitElement {
   getAttachedIeds?: (element: Element) => Promise<Element[]> = async () => [];
 
   @query('#commmap') commmap!: IconButton;
+  @query('#showieds') showieds!: IconButtonToggle;
 
   openCommunicationMapping(): void {
     const wizard = communicationMappingWizard(this.doc);

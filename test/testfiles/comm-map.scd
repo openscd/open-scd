@@ -266,9 +266,9 @@
 							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
 							<RptEnabled max="5">
 								<ClientLN apRef="P1" ldInst="LD0" prefix="DC" lnClass="CILO" lnInst="1" iedName="IED1"/>
-								<ClientLN apRef="P1" ldInst="Disconnectors" lnClass="LLN0" iedName="IED3"/>
 								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="XCBR" lnInst="1" iedName="IED1"/>
-								<ClientLN apRef="P1" ldInst="CircuitBreaker_CB1" lnClass="CSWI" lnInst="1" iedName="IED1"/>
+								<ClientLN apRef="P1" ldInst="Disconnectors" lnClass="LLN0" iedName="IED1"/>
+								<ClientLN apRef="P1" ldInst="Disconnectors" lnClass="LLN0" iedName="IED3"/>
 							</RptEnabled>
 						</ReportControl>
 						<DOI name="Pos">

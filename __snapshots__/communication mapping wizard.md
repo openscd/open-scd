@@ -181,14 +181,6 @@
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
-  <mwc-button
-    dialoginitialfocus=""
-    icon="add"
-    label="[commmap.connectCB]"
-    slot="primaryAction"
-    trailingicon=""
-  >
-  </mwc-button>
 </mwc-dialog>
 
 ```

@@ -4,10 +4,13 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
-import { communicationMappingWizard } from '../wizards/commmap-wizards.js';
+import { newWizardEvent } from '../foundation.js';
+import { createClientLnWizard } from '../wizards/clientln.js';
+
+import { Fab } from '@material/mwc-fab';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('ied-editor')
@@ -20,8 +23,13 @@ export class IedEditor extends LitElement {
     return this.element.getAttribute('name') ?? '';
   }
 
+  @query('#connectreport') connectReport!: Fab;
+
   openCommunicationMapping(): void {
-    const wizard = communicationMappingWizard(this.element);
+    const sendingIeds = Array.from(
+      this.element.closest('SCL')?.querySelectorAll('IED') ?? []
+    );
+    const wizard = createClientLnWizard(sendingIeds, this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -30,10 +38,11 @@ export class IedEditor extends LitElement {
       <div id="container" tabindex="0">
         <mwc-icon class="icon">developer_board</mwc-icon>
         <mwc-fab
+          id="connectreport"
           mini
           class="menu-item right"
           @click="${() => this.openCommunicationMapping()}"
-          icon="sync_alt"
+          icon="add_link"
         ></mwc-fab>
       </div>
       <h4>${this.name}</h4>
