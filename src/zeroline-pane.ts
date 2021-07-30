@@ -97,7 +97,7 @@ export class ZerolinePane extends LitElement {
         <abbr title="${translate('zeroline.commmap')}">
           <mwc-icon-button
             id="commmap"
-            icon="sync_alt"
+            icon="link"
             @click=${() => this.openCommunicationMapping()}
           ></mwc-icon-button>
         </abbr>
