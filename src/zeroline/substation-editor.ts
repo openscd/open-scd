@@ -6,12 +6,12 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
+import { ZerolinePane } from '../zeroline-pane.js';
 
-import { selectors, styles } from './foundation.js';
+import { cloneElement, selectors, startMove, styles } from './foundation.js';
 
 import './voltage-level-editor.js';
 
@@ -100,10 +100,23 @@ export class SubstationEditor extends LitElement {
                         @click=${() => this.openLNodeWizard()}
                       ></mwc-icon-button>
                     </abbr>
+                    <abbr title="${translate('duplicate')}">
+                      <mwc-icon-button
+                        icon="content_copy"
+                        @click=${() => cloneElement(this)}
+                      ></mwc-icon-button>
+                    </abbr>
                     <abbr title="${translate('edit')}">
                       <mwc-icon-button
                         icon="edit"
                         @click=${() => this.openEditWizard()}
+                      ></mwc-icon-button>
+                    </abbr>
+                    <abbr title="${translate('move')}">
+                      <mwc-icon-button
+                        icon="forward"
+                        @click=${() =>
+                          startMove(this, SubstationEditor, SubstationEditor)}
                       ></mwc-icon-button>
                     </abbr>
                     <abbr title="${translate('remove')}">

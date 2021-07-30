@@ -10,6 +10,7 @@ import {
 } from '../foundation.js';
 
 import { BayEditor } from './bay-editor.js';
+import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 
 function containsReference(element: Element, iedName: string): boolean {
@@ -122,7 +123,9 @@ export function updateNamingAction(element: Element): WizardActor {
   };
 }
 
-export function cloneElement(editor: BayEditor | VoltageLevelEditor): void {
+export function cloneElement(
+  editor: BayEditor | VoltageLevelEditor | SubstationEditor
+): void {
   const element: Element = editor.element;
   const parent: Element = element.parentElement!;
   const num = parent.querySelectorAll(
