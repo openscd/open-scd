@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/openscd/open-scd/compare/v0.5.0...v0.6.0) (2021-07-30)
+
+
+### Features
+
+* **communicationmapping:** move to ied-editor ([#270](https://github.com/openscd/open-scd/issues/270)) ([d427ca4](https://github.com/openscd/open-scd/commits/d427ca4c34d44d877dcd008e5055ffb58b395a2b))
+* **zeroline-pane:** add combined Substation and IED overview ([#251](https://github.com/openscd/open-scd/issues/251)) ([21ab8ce](https://github.com/openscd/open-scd/commits/21ab8cee8c9e3323311486422644002ebcfe4b1c))
+
+
+### Bug Fixes
+
+* **logging:** remove superfluous invisible reset filter ([#266](https://github.com/openscd/open-scd/issues/266)) ([b6294ef](https://github.com/openscd/open-scd/commits/b6294ef2aacae2c11661406661af977be938bc11))
+* **package:** sync package-lock.json ([4394ef2](https://github.com/openscd/open-scd/commits/4394ef21328b948c53f7be635b594757862709ee))
+* **plugging:** fix plugin auto-update ([#253](https://github.com/openscd/open-scd/issues/253)) ([#264](https://github.com/openscd/open-scd/issues/264)) ([79abfbe](https://github.com/openscd/open-scd/commits/79abfbe2462f11d6afeb3e91163a2af369d8effa))
+* **templates:** add missing SwTyp and fix wrong cdc ([#263](https://github.com/openscd/open-scd/issues/263)) ([071add9](https://github.com/openscd/open-scd/commits/071add99f5e8c64ef46b0f8295d66d446b27fe7e))
+* **validatetemplates:** don't require "Oper" if ctlModel=status-only ([#269](https://github.com/openscd/open-scd/issues/269)) ([2cef3d7](https://github.com/openscd/open-scd/commits/2cef3d75418d685c3b46c714c0bbdaaabcaa0b2b))
+
 ## [0.5.0](https://github.com/openscd/open-scd/compare/v0.4.1...v0.5.0) (2021-07-17)
 
 
