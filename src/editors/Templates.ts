@@ -17,7 +17,7 @@ import {
 } from './templates/enumtype-wizard.js';
 import {
   createDATypeWizard,
-  dATypeWizard,
+  editDaTypeWizard,
 } from './templates/datype-wizards.js';
 import {
   createDOTypeWizard,
@@ -84,7 +84,7 @@ export default class TemplatesPlugin extends LitElement {
   }
 
   openDATypeWizard(identity: string): void {
-    const wizard = dATypeWizard(identity, this.doc);
+    const wizard = editDaTypeWizard(identity, this.doc);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
