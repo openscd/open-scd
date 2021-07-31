@@ -115,7 +115,7 @@ describe('abstractda wizards', () => {
     it('edits name attribute only for valid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(
-          regexString(regExp.tRestrName1stL, 1, 32),
+          regexString(regExp.abstractDataAttributeName, 1, 32),
           async name => {
             nameTextField.value = name;
             await nameTextField.requestUpdate();

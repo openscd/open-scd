@@ -108,7 +108,7 @@ export function wizardContent(
       .maybeValue=${name}
       helper="${translate('scl.name')}"
       required
-      pattern="${patterns.restrName1stU}"
+      pattern="${patterns.abstractDataAttributeName}"
       maxLength="${maxLenght.abstracDaName}"
       dialogInitialFocus
     >

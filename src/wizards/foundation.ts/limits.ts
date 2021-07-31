@@ -24,6 +24,8 @@ export const patterns = {
   asciName: '[A-Za-z][0-9,A-Z,a-z_]*',
   lnClass: '[A-Z]{4,4}',
   restrName1stU: '[a-z][0-9A-Za-z]*',
+  abstractDataAttributeName:
+    '((T)|(Test)|(Check)|(SIUnit)|(Open)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)',
 };
 
 export const maxLenght = {
