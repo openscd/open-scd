@@ -292,6 +292,10 @@ export function createDaWizard(element: Element): Wizard {
   const Val = null;
   const valKind = null;
   const valImport = null;
+  const fc = '';
+  const dchg = null;
+  const qchg = null;
+  const dupd = null;
 
   const types = Array.from(doc.querySelectorAll('DAType, EnumType'))
     .filter(isPublic)
@@ -301,8 +305,7 @@ export function createDaWizard(element: Element): Wizard {
 
   return [
     {
-      title: get('bda.wizard.title.edit'),
-      element: element ?? undefined,
+      title: get('da.wizard.title.edit'),
       primary: {
         icon: '',
         label: get('save'),
@@ -321,6 +324,7 @@ export function createDaWizard(element: Element): Wizard {
           Val,
           data
         ),
+        ...renderDa(fc, dchg, qchg, dupd),
       ],
     },
   ];

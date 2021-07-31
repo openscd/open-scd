@@ -8,13 +8,13 @@ import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-describe('BDA wizarding editing integration', () => {
+describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
     customElements.define('templates-editor', TemplatesPlugin);
   let doc: Document;
   let parent: MockWizardEditor;
   let templates: TemplatesPlugin;
-  let dATypeList: FilteredList;
+  let dOTypeList: FilteredList;
 
   beforeEach(async () => {
     parent = await fixture(
@@ -25,17 +25,17 @@ describe('BDA wizarding editing integration', () => {
 
     templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
 
-    doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+    doc = await fetch('/base/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;
     await templates.updateComplete;
-    dATypeList = <FilteredList>(
-      templates.shadowRoot?.querySelector('filtered-list[id="datypelist"]')
+    dOTypeList = <FilteredList>(
+      templates.shadowRoot?.querySelector('filtered-list[id="dotypelist"]')
     );
   });
 
-  describe('defines a bDAWizard to edit an existing BDA', () => {
+  describe('defines a editDaWizard to edit an existing DA', () => {
     let nameField: WizardTextField;
     let primayAction: HTMLElement;
     let deleteButton: HTMLElement;
@@ -44,13 +44,13 @@ describe('BDA wizarding editing integration', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        dATypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod.SBOw"]')
+        dOTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI?.dialog?.querySelector(
-          'mwc-list-item[value="#Dummy.LLN0.Mod.SBOw>ctlVal"]'
+          'mwc-list-item[value="#Dummy.LLN0.Mod>stVal"]'
         )
       )).click();
       await parent.requestUpdate();
@@ -72,66 +72,71 @@ describe('BDA wizarding editing integration', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('edits BDA element', async () => {
+    it('edits DA attributes name', async () => {
       expect(
-        doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
-        )
+        doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       ).to.exist;
       nameField.value = 'newCtlVal';
       await parent.requestUpdate();
       primayAction.click();
       await parent.requestUpdate();
       expect(
-        doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
-        )
+        doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       ).to.not.exist;
       expect(
-        doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newCtlVal"]'
-        )
+        doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="newCtlVal"]')
       ).to.exist;
     });
-    it('deletes the BDA element on delete button click', async () => {
+    it('deletes the DA element on delete button click', async () => {
       expect(
-        doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
-        )
+        doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       ).to.exist;
       expect(
-        doc.querySelectorAll('DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA').length
-      ).to.equal(6);
+        doc.querySelectorAll('DOType[id="Dummy.LLN0.Mod"] > DA').length
+      ).to.equal(14);
       deleteButton.click();
       await parent.requestUpdate();
       expect(
-        doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlVal"]'
-        )
+        doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
       ).to.not.exist;
       expect(
-        doc.querySelectorAll('DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA').length
-      ).to.equal(5);
+        doc.querySelectorAll('DOType[id="Dummy.LLN0.Mod"] > DA').length
+      ).to.equal(13);
+    });
+    it('does not edit DA element without changes', async () => {
+      const originData = (<Element>(
+        doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
+      )).cloneNode(true);
+      primayAction.click();
+      await parent.requestUpdate();
+      expect(
+        originData.isEqualNode(
+          doc.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="stVal"]')
+        )
+      ).to.be.true;
     });
   });
 
-  describe('defines a bDAWizard to create a new BDA element', () => {
+  describe('defines a createDaWizard to create a new DA element', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
     let sAddrField: WizardTextField;
     let bTypeSelect: Select;
     let valKindSelect: Select;
     let valImportSelect: Select;
+    let fcSelect: Select;
     let primayAction: HTMLElement;
 
     beforeEach(async () => {
       (<ListItem>(
-        dATypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod.SBOw"]')
+        dOTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="playlist_add"]')
+        parent.wizardUI.dialog?.querySelectorAll(
+          'mwc-button[icon="playlist_add"]'
+        )[1]
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -154,6 +159,9 @@ describe('BDA wizarding editing integration', () => {
       valImportSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="valImport"]')
       );
+      fcSelect = <Select>(
+        parent.wizardUI.dialog?.querySelector('mwc-select[label="fc"]')
+      );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
@@ -164,29 +172,31 @@ describe('BDA wizarding editing integration', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('creates a new BDA element', async () => {
+    it('creates a new DA element', async () => {
       expect(
         doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement"]'
+          'DOType[id="Dummy.LLN0.Mod"] > DA[name="newDAElement"]'
         )
       ).to.not.exist;
-      nameField.value = 'newBDAElement';
+      nameField.value = 'newDAElement';
+      fcSelect.value = 'ST';
       await parent.requestUpdate();
       primayAction.click();
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement"]:not([desc]):not([sAddr])[bType="Struct"][type="Dummy.LPHD1.Sim.Cancel"]:not([valKind]):not([valImport])'
+          'DOType[id="Dummy.LLN0.Mod"] > DA[name="newDAElement"]:not([desc]):not([sAddr])[bType="Struct"][type="Dummy.Units"]:not([valKind]):not([valImport])'
         )
       ).to.exist;
     });
-    it('creates yet another new BDA element', async () => {
-      const name = 'newBDAElement2';
-      const desc = 'newBDAdesc';
+    it('creates yet another new DA element', async () => {
+      const name = 'newDAElement2';
+      const desc = 'newDAdesc';
       const sAddr = 'myNewAddr';
+
       expect(
         doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement2"]'
+          'DAType[id="#Dummy.LLN0.Mod"] > DA[name="newDAElement2"]'
         )
       ).to.not.exist;
       nameField.value = name;
@@ -197,14 +207,15 @@ describe('BDA wizarding editing integration', () => {
       bTypeSelect.value = 'BOOLEAN';
       valKindSelect.value = 'RO';
       valImportSelect.value = 'true';
+      fcSelect.value = 'ST';
 
       await parent.requestUpdate();
       primayAction.click();
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          `DAType[id="Dummy.LLN0.Mod.SBOw"] >` +
-            `BDA[name="${name}"][desc="${desc}"][sAddr="${sAddr}"][bType="BOOLEAN"]:not([type])[valKind="RO"][valImport="true"]`
+          `DOType[id="Dummy.LLN0.Mod"] >` +
+            `DA[name="${name}"][desc="${desc}"][sAddr="${sAddr}"][bType="BOOLEAN"]:not([type])[valKind="RO"][valImport="true"]`
         )
       ).to.exist;
     });
