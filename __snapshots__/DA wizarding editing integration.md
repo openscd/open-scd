@@ -596,6 +596,7 @@
     </wizard-select>
     <wizard-select
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
     >
@@ -652,6 +653,7 @@
     </wizard-select>
     <wizard-textfield
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
       style="display: none;"
@@ -659,7 +661,7 @@
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="Import value"
+      helper="Function contraint"
       label="fc"
       required=""
     >
@@ -1454,19 +1456,21 @@
     </wizard-select>
     <wizard-select
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
     >
     </wizard-select>
     <wizard-textfield
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
     >
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="Import value"
+      helper="Function contraint"
       label="fc"
       required=""
     >

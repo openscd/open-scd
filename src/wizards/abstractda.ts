@@ -185,7 +185,11 @@ export function wizardContent(
           >`
       )}</wizard-select
     >`,
-    html`<wizard-select label="Val" .maybeValue=${Val} nullable
+    html`<wizard-select
+      label="Val"
+      .maybeValue=${Val}
+      helper="${translate('scl.Val')}"
+      nullable
       >${Array.from(
         data.querySelectorAll(`EnumType > EnumVal[id="${type}"]`)
       ).map(
@@ -198,6 +202,7 @@ export function wizardContent(
     html`<wizard-textfield
       label="Val"
       .maybeValue=${Val}
+      helper="${translate('scl.Val')}"
       nullable
     ></wizard-textfield>`,
   ];

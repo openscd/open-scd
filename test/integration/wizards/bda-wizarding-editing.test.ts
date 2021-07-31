@@ -1,12 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../../src/editors/Templates.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import TemplatesPlugin from '../../../src/editors/Templates.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { Select } from '@material/mwc-select';
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { FilteredList } from '../../../../src/filtered-list.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { FilteredList } from '../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { WizardSelect } from '../../../src/wizard-select.js';
 
 describe('BDA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -35,12 +36,10 @@ describe('BDA wizarding editing integration', () => {
     );
   });
 
-  describe('defines a bDAWizard to edit an existing BDA', () => {
+  describe('defines a editBDaWizard to edit an existing BDA', () => {
     let nameField: WizardTextField;
     let primayAction: HTMLElement;
     let deleteButton: HTMLElement;
-    let bTypeSelect: Select;
-    let typeSelect: Select;
 
     beforeEach(async () => {
       (<ListItem>(
@@ -115,13 +114,13 @@ describe('BDA wizarding editing integration', () => {
     });
   });
 
-  describe('defines a bDAWizard to create a new BDA element', () => {
+  describe('defines a createBDaWizard to create a new BDA element', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
     let sAddrField: WizardTextField;
-    let bTypeSelect: Select;
-    let valKindSelect: Select;
-    let valImportSelect: Select;
+    let bTypeSelect: WizardSelect;
+    let valKindSelect: WizardSelect;
+    let valImportSelect: WizardSelect;
     let primayAction: HTMLElement;
 
     beforeEach(async () => {
@@ -145,14 +144,16 @@ describe('BDA wizarding editing integration', () => {
       sAddrField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="sAddr"]')
       );
-      bTypeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
+      bTypeSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector('wizard-select[label="bType"]')
       );
-      valKindSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="valKind"]')
+      valKindSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector('wizard-select[label="valKind"]')
       );
-      valImportSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="valImport"]')
+      valImportSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-select[label="valImport"]'
+        )
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -172,11 +173,13 @@ describe('BDA wizarding editing integration', () => {
       ).to.not.exist;
       nameField.value = 'newBDAElement';
       await parent.requestUpdate();
+      bTypeSelect.value = 'BOOLEAN';
+      await parent.requestUpdate();
       primayAction.click();
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement"]:not([desc]):not([sAddr])[bType="Struct"][type="Dummy.LPHD1.Sim.Cancel"]:not([valKind]):not([valImport])'
+          'DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="newBDAElement"]:not([desc]):not([sAddr])[bType="BOOLEAN"]:not([valKind]):not([valImport])'
         )
       ).to.exist;
     });
@@ -195,7 +198,9 @@ describe('BDA wizarding editing integration', () => {
       sAddrField.nullable = false;
       sAddrField.value = sAddr;
       bTypeSelect.value = 'BOOLEAN';
+      valKindSelect.nullable = false;
       valKindSelect.value = 'RO';
+      valImportSelect.nullable = false;
       valImportSelect.value = 'true';
 
       await parent.requestUpdate();

@@ -496,11 +496,13 @@
       </mwc-list-item>
     </wizard-select>
     <wizard-select
+      helper="[scl.Val]"
       label="Val"
       nullable=""
     >
     </wizard-select>
     <wizard-textfield
+      helper="[scl.Val]"
       label="Val"
       nullable=""
     >

@@ -26,6 +26,10 @@ export const de: Translations = {
     lnClass: 'Klasse logischer Knoten',
     accessControl: 'Zugriffskontrolle',
     transient: 'Datenpunkt transient',
+    Val: 'Standardwert',
+    dchg: 'Detenänderung ist Auslöser',
+    qchg: 'Qualitätsanderung ist Auslöser',
+    dupd: 'Datenupdate ist Auslöser',
   },
   settings: {
     title: 'Einstellungen',

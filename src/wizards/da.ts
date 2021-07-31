@@ -28,7 +28,7 @@ export function renderDa(
     html`<wizard-select
       label="fc"
       .maybeValue=${fc}
-      helper="${translate('scl.valImport')}"
+      helper="${translate('scl.fc')}"
       required
       fixedMenuPosition
       >${functionalConstraintEnum.map(
@@ -309,7 +309,7 @@ export function createDaWizard(element: Element): Wizard {
       primary: {
         icon: '',
         label: get('save'),
-        action: updateDaAction(element),
+        action: createDaAction(element),
       },
       content: [
         ...wizardContent(

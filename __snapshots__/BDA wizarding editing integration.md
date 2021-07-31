@@ -1,6 +1,6 @@
 # `BDA wizarding editing integration`
 
-## `defines a bDAWizard to edit an existing BDA`
+## `defines a editBDaWizard to edit an existing BDA`
 
 ####   `looks like the latest snapshot`
 
@@ -552,6 +552,7 @@
     </wizard-select>
     <wizard-select
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
     >
@@ -608,6 +609,7 @@
     </wizard-select>
     <wizard-textfield
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
       style="display: none;"
@@ -633,7 +635,7 @@
 
 ```
 
-## `defines a bDAWizard to create a new BDA element`
+## `defines a createBDaWizard to create a new BDA element`
 
 ####   `looks like the latest snapshot`
 
@@ -1162,12 +1164,14 @@
     </wizard-select>
     <wizard-select
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
     >
     </wizard-select>
     <wizard-textfield
       disabled=""
+      helper="Default value"
       label="Val"
       nullable=""
     >

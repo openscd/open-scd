@@ -1,12 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../../src/editors/Templates.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import TemplatesPlugin from '../../../src/editors/Templates.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { Select } from '@material/mwc-select';
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { FilteredList } from '../../../../src/filtered-list.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { FilteredList } from '../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { WizardSelect } from '../../../src/wizard-select.js';
 
 describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -39,8 +40,6 @@ describe('DA wizarding editing integration', () => {
     let nameField: WizardTextField;
     let primayAction: HTMLElement;
     let deleteButton: HTMLElement;
-    let bTypeSelect: Select;
-    let typeSelect: Select;
 
     beforeEach(async () => {
       (<ListItem>(
@@ -121,10 +120,11 @@ describe('DA wizarding editing integration', () => {
     let nameField: WizardTextField;
     let descField: WizardTextField;
     let sAddrField: WizardTextField;
-    let bTypeSelect: Select;
-    let valKindSelect: Select;
-    let valImportSelect: Select;
-    let fcSelect: Select;
+    let bTypeSelect: WizardSelect;
+    let typeSelect: WizardSelect;
+    let valKindSelect: WizardSelect;
+    let valImportSelect: WizardSelect;
+    let fcSelect: WizardSelect;
     let primayAction: HTMLElement;
 
     beforeEach(async () => {
@@ -150,17 +150,22 @@ describe('DA wizarding editing integration', () => {
       sAddrField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="sAddr"]')
       );
-      bTypeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="bType"]')
+      bTypeSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector('wizard-select[label="bType"]')
       );
-      valKindSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="valKind"]')
+      typeSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector('wizard-select[label="type"]')
       );
-      valImportSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="valImport"]')
+      valKindSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector('wizard-select[label="valKind"]')
       );
-      fcSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="fc"]')
+      valImportSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-select[label="valImport"]'
+        )
+      );
+      fcSelect = <WizardSelect>(
+        parent.wizardUI.dialog?.querySelector('wizard-select[label="fc"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -180,12 +185,16 @@ describe('DA wizarding editing integration', () => {
       ).to.not.exist;
       nameField.value = 'newDAElement';
       fcSelect.value = 'ST';
+      bTypeSelect.value = 'Struct';
+
       await parent.requestUpdate();
       primayAction.click();
       await parent.requestUpdate();
       expect(
         doc.querySelector(
-          'DOType[id="Dummy.LLN0.Mod"] > DA[name="newDAElement"]:not([desc]):not([sAddr])[bType="Struct"][type="Dummy.Units"]:not([valKind]):not([valImport])'
+          'DOType[id="Dummy.LLN0.Mod"] > ' +
+            'DA[name="newDAElement"]:not([desc]):not([sAddr])[bType="Struct"]' +
+            '[type="Dummy_origin"]:not([valKind]):not([valImport])'
         )
       ).to.exist;
     });
@@ -205,7 +214,9 @@ describe('DA wizarding editing integration', () => {
       sAddrField.nullable = false;
       sAddrField.value = sAddr;
       bTypeSelect.value = 'BOOLEAN';
+      valKindSelect.nullable = false;
       valKindSelect.value = 'RO';
+      valImportSelect.nullable = false;
       valImportSelect.value = 'true';
       fcSelect.value = 'ST';
 
@@ -215,7 +226,8 @@ describe('DA wizarding editing integration', () => {
       expect(
         doc.querySelector(
           `DOType[id="Dummy.LLN0.Mod"] >` +
-            `DA[name="${name}"][desc="${desc}"][sAddr="${sAddr}"][bType="BOOLEAN"]:not([type])[valKind="RO"][valImport="true"]`
+            `DA[name="${name}"][desc="${desc}"][sAddr="${sAddr}"][bType="BOOLEAN"]` +
+            `:not([type])[valKind="RO"][valImport="true"]`
         )
       ).to.exist;
     });
