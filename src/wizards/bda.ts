@@ -144,7 +144,7 @@ export function editBDAWizard(element: Element): Wizard {
   ];
 }
 
-function createBDaAction(parent: Element): WizardActor {
+export function createBDaAction(parent: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -163,7 +163,10 @@ function createBDaAction(parent: Element): WizardActor {
         ? getValue(inputs.find(i => i.label === 'valImport')!)
         : null;
 
-    const actions: EditorAction[] = [];
+    const valField = inputs.find(
+      i => i.label === 'Val' && i.style.display !== 'none'
+    );
+    const Val = valField ? getValue(valField) : null;
 
     const element = createElement(parent.ownerDocument, 'BDA', {
       name,
@@ -174,15 +177,22 @@ function createBDaAction(parent: Element): WizardActor {
       valKind,
       valImport,
     });
-    actions.push({
-      new: {
-        parent,
-        element,
-        reference: getReference(parent, <SCLTag>element.tagName),
-      },
-    });
 
-    return actions;
+    if (Val !== null) {
+      const valElement = createElement(parent.ownerDocument, 'Val', {});
+      valElement.textContent = Val;
+      element.appendChild(valElement);
+    }
+
+    return [
+      {
+        new: {
+          parent,
+          element,
+          reference: getReference(parent, <SCLTag>element.tagName),
+        },
+      },
+    ];
   };
 }
 
@@ -207,11 +217,10 @@ export function createBDAWizard(element: Element): Wizard {
   return [
     {
       title: get('bda.wizard.title.edit'),
-      element: element ?? undefined,
       primary: {
         icon: '',
         label: get('save'),
-        action: updateBDaAction(element),
+        action: createBDaAction(element),
       },
       content: [
         ...wizardContent(
