@@ -68,7 +68,7 @@ export function renderGseAttributes(
       helper="${translate('gse.type')}"
       nullable
       required
-      >${['GOOSE', 'GSE'].map(
+      >${['GOOSE', 'GSSE'].map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
     >`,
