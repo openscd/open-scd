@@ -9,7 +9,7 @@ import {
   WizardInput,
 } from '../foundation.js';
 
-function updateDataSetAction(element: Element): WizardActor {
+export function updateDataSetAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): WizardAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
@@ -29,15 +29,18 @@ function updateDataSetAction(element: Element): WizardActor {
       },
     ];
 
-    const cbUpdateAction = Array.from(
-      element.parentElement?.querySelectorAll(
-        `ReportControlBock[datSet=${oldName}], GSEControl[datSet=${oldName}],SampledValueControl[datSet=${oldName}] `
-      ) ?? []
-    ).map(cb => {
-      const newCb = <Element>cb.cloneNode(false);
-      newCb.setAttribute('datSet', name);
-      return { old: { element: cb }, new: { element: newCb } };
-    });
+    const cbUpdateAction =
+      name !== oldName
+        ? Array.from(
+            element.parentElement?.querySelectorAll(
+              `ReportControlBock[datSet=${oldName}], GSEControl[datSet=${oldName}],SampledValueControl[datSet=${oldName}] `
+            ) ?? []
+          ).map(cb => {
+            const newCb = <Element>cb.cloneNode(false);
+            newCb.setAttribute('datSet', name);
+            return { old: { element: cb }, new: { element: newCb } };
+          })
+        : [];
 
     return dataSetUpdateAction.concat(cbUpdateAction);
   };

@@ -248,6 +248,13 @@
 						</DataSet>
 						<GSEControl type="GOOSE" appID="0002" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
 						</GSEControl>
+						<ReportControl rptID="adf" confRev="9" buffered="true" bufTime="100" indexed="true" intgPd="0" name="ReportCb" datSet="GooseDataSet1">
+							<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
+							<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
+						</ReportControl>
+						<SampledValueControl smvID="asdfads" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="GooseDataSet1">
+							<SmvOpts/>
+						</SampledValueControl>
 					</LN0>
 					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
