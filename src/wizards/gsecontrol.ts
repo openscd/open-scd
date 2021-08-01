@@ -6,6 +6,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import {
+  Delete,
   EditorAction,
   getValue,
   identity,
@@ -17,6 +18,8 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { maxLenght, patterns } from './foundation.ts/limits.js';
+
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 
@@ -34,7 +37,7 @@ function getGSE(element: Element): Element | null | undefined {
     );
 }
 
-function render(
+export function renderGseAttributes(
   name: string | null,
   desc: string | null,
   type: string | null,
@@ -49,6 +52,8 @@ function render(
       helper="${translate('gse.name')}"
       required
       validationMessage="${translate('textfield.required')}"
+      pattern="${patterns.asciName}"
+      maxLength="${maxLenght.cbName}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield
@@ -84,7 +89,7 @@ function render(
       )}</wizard-select
     >`,
     html`<wizard-select
-      lable="securityEnabled"
+      label="securityEnabled"
       .maybeValue=${securityEnabled}
       nullable
       required
@@ -95,14 +100,10 @@ function render(
   ];
 }
 
-function removeGseControl(
-  dispatcher: EventTarget | null,
-  element: Element
-): void {
+export function removeGseControl(element: Element): Delete[] {
   const dataSet = element.parentElement!.querySelector(
     `DataSet[name="${element.getAttribute('datSet')}"]`
   );
-
   const gSE = getGSE(element);
 
   const singleUse =
@@ -115,47 +116,43 @@ function removeGseControl(
         controlblock.getAttribute('datSet') === dataSet?.getAttribute('name')
     ).length <= 1;
 
-  dispatcher?.dispatchEvent(newWizardEvent());
-  dispatcher?.dispatchEvent(
-    newActionEvent({
+  const actions: Delete[] = [];
+
+  actions.push({
+    old: {
+      parent: element.parentElement!,
+      element,
+      reference: element.nextSibling,
+    },
+  });
+
+  if (dataSet && singleUse)
+    actions.push({
       old: {
         parent: element.parentElement!,
-        element,
+        element: dataSet,
         reference: element.nextSibling,
       },
-    })
-  );
+    });
 
-  if (dataSet && singleUse) {
-    dispatcher?.dispatchEvent(
-      newActionEvent({
-        old: {
-          parent: element.parentElement!,
-          element: dataSet,
-          reference: element.nextSibling,
-        },
-      })
-    );
-  }
+  if (gSE)
+    actions.push({
+      old: {
+        parent: gSE.parentElement!,
+        element: gSE,
+        reference: gSE.nextSibling,
+      },
+    });
 
-  if (gSE) {
-    dispatcher?.dispatchEvent(
-      newActionEvent({
-        old: {
-          parent: gSE.parentElement!,
-          element: gSE,
-          reference: gSE.nextSibling,
-        },
-      })
-    );
-  }
+  return actions;
 }
 
-export function updateAction(element: Element): WizardActor {
+export function updateGseControlAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
+    const appID = getValue(inputs.find(i => i.label === 'appID')!)!;
     const fixedOffs = getValue(inputs.find(i => i.label === 'fixedOffs')!);
     const securityEnabled = getValue(
       inputs.find(i => i.label === 'securityEnabled')!
@@ -165,6 +162,7 @@ export function updateAction(element: Element): WizardActor {
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc') &&
       type === element.getAttribute('type') &&
+      appID === element.getAttribute('appID') &&
       fixedOffs === element.getAttribute('numPhases') &&
       securityEnabled === element.getAttribute('securityEnabled')
     )
@@ -174,6 +172,7 @@ export function updateAction(element: Element): WizardActor {
     newElement.setAttribute('name', name);
     if (desc === null) newElement.removeAttribute('desc');
     else newElement.setAttribute('desc', desc);
+    newElement.setAttribute('appID', appID);
     if (type === null) newElement.removeAttribute('type');
     else newElement.setAttribute('type', type);
     if (fixedOffs === null) newElement.removeAttribute('fixedOffs');
@@ -202,17 +201,27 @@ export function editGseControlWizard(element: Element): Wizard {
       primary: {
         icon: 'aave',
         label: get('save'),
-        action: updateAction(element),
+        action: updateGseControlAction(element),
       },
       content: [
         html`<mwc-button
           label="delete"
           icon="delete"
           @click=${(e: MouseEvent) => {
-            removeGseControl(e.target, element);
+            const deleteActions = removeGseControl(element);
+            deleteActions.forEach(deleteAction =>
+              e.target?.dispatchEvent(newActionEvent(deleteAction))
+            );
           }}
         ></mwc-button>`,
-        ...render(name, desc, type, appID, fixedOffs, securityEnabled),
+        ...renderGseAttributes(
+          name,
+          desc,
+          type,
+          appID,
+          fixedOffs,
+          securityEnabled
+        ),
         html`<mwc-button
           label=${translate('edit.dataset')}
           icon="edit"
@@ -244,7 +253,7 @@ export function editGseControlWizard(element: Element): Wizard {
   ];
 }
 
-export function gseControlSelectionWizard(element: Element): Wizard {
+export function selectGseControlWizard(element: Element): Wizard {
   const gseControls = Array.from(element.querySelectorAll('GSEControl')).filter(
     isPublic
   );
