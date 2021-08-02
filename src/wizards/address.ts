@@ -16,12 +16,11 @@ import {
   typePattern,
 } from './foundation.ts/p-types.js';
 
-import { Checkbox } from '@material/mwc-checkbox';
+export function renderGseSmvAddress(parent: Element): TemplateResult[] {
+  const hasInstType = Array.from(parent.querySelectorAll('Address > P')).some(
+    pType => pType.getAttribute('xsi:type')
+  );
 
-export function renderGseSmvAddress(
-  hasInstType: boolean,
-  element: Element
-): TemplateResult[] {
   return [
     html`<mwc-formfield
       label="${translate('connectedap.wizard.addschemainsttype')}"
@@ -32,7 +31,7 @@ export function renderGseSmvAddress(
       ptype =>
         html`<wizard-textfield
           label="${ptype}"
-          .maybeValue=${element
+          .maybeValue=${parent
             .querySelector(`Address > P[type="${ptype}"]`)
             ?.innerHTML.trim() ?? null}
           ?nullable=${typeNullable[ptype]}
@@ -79,30 +78,27 @@ function createAddressElement(
 }
 
 export function updateAddress(
-  element: Element,
+  parent: Element,
   inputs: WizardInput[],
-  wizard: Element
+  instType: boolean
 ): (Create | Delete)[] {
   const actions: (Create | Delete)[] = [];
 
-  const instType: boolean =
-    (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ?? false;
-
-  const newAddress = createAddressElement(inputs, element, instType);
-  const oldAddress = element.querySelector('Address');
+  const newAddress = createAddressElement(inputs, parent, instType);
+  const oldAddress = parent.querySelector('Address');
 
   if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
     // We cannot use updateAction on address as both address child elements P are changed
     actions.push({
       old: {
-        parent: element,
+        parent: parent,
         element: oldAddress,
         reference: oldAddress.nextSibling,
       },
     });
     actions.push({
       new: {
-        parent: element,
+        parent: parent,
         element: newAddress,
         reference: oldAddress.nextSibling,
       },
@@ -110,9 +106,9 @@ export function updateAddress(
   } else if (oldAddress === null)
     actions.push({
       new: {
-        parent: element,
+        parent: parent,
         element: newAddress,
-        reference: getReference(element, 'Address'),
+        reference: getReference(parent, 'Address'),
       },
     });
 
