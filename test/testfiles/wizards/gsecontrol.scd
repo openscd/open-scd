@@ -62,6 +62,10 @@
 					<MinTime unit="s" multiplier="m">10</MinTime>
 					<MaxTime unit="s" multiplier="m">10000</MaxTime>
 				</GSE>
+				<GSE ldInst="CircuitBreaker_CB1" cbName="GCB2">
+					<MinTime unit="s" multiplier="m">10</MinTime>
+					<MaxTime unit="s" multiplier="m">10000</MaxTime>
+				</GSE>
 				<PhysConn type="RedConn">
 					<P type="Plug">RJ45</P>
 				</PhysConn>
