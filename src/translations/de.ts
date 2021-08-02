@@ -30,6 +30,8 @@ export const de: Translations = {
     dchg: 'Detenänderung ist Auslöser',
     qchg: 'Qualitätsanderung ist Auslöser',
     dupd: 'Datenupdate ist Auslöser',
+    fixedOffs: 'Fester Offset',
+    securityEnabled: 'Aktive Sicherungsmaßnahmen',
   },
   settings: {
     title: 'Einstellungen',
@@ -43,6 +45,13 @@ export const de: Translations = {
     title: 'Menü',
     viewLog: 'Protokoll anzeigen',
   },
+  wizard: {
+    title: {
+      select: '{{tagName}} auswählen',
+      edit: '{{tagName}} bearbeiten',
+      add: '{{tagName}} hinzufügen',
+    },
+  },
   openSCD: {
     loading: 'Lade Projekt {{ name }}',
     loaded: '{{ name }} geladen',
@@ -52,6 +61,7 @@ export const de: Translations = {
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
     commmap: 'Kommunikationszuordnung',
+    gsecontrol: 'GOOSEs anzeigen',
   },
   editing: {
     created: '{{ name }} hinzugefügt',
