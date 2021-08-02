@@ -49,7 +49,7 @@ export function renderGseAttributes(
     html`<wizard-textfield
       label="name"
       .maybeValue=${name}
-      helper="${translate('gse.name')}"
+      helper="${translate('scl.name')}"
       required
       validationMessage="${translate('textfield.required')}"
       pattern="${patterns.asciName}"
@@ -60,12 +60,12 @@ export function renderGseAttributes(
       label="desc"
       .maybeValue=${desc}
       nullable
-      helper="${translate('gse.desc')}"
+      helper="${translate('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="type"
       .maybeValue=${type}
-      helper="${translate('gse.type')}"
+      helper="${translate('scl.type')}"
       nullable
       required
       >${['GOOSE', 'GSSE'].map(
@@ -75,7 +75,7 @@ export function renderGseAttributes(
     html`<wizard-textfield
       label="appID"
       .maybeValue=${appID}
-      helper="${translate('gse.appID')}"
+      helper="${translate('scl.id')}"
       required
       validationMessage="${translate('textfield.nonempty')}"
     ></wizard-textfield>`,
@@ -84,6 +84,7 @@ export function renderGseAttributes(
       .maybeValue=${fixedOffs}
       nullable
       required
+      helper="${translate('scl.fixedOffs')}"
       >${['true', 'false'].map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
@@ -93,6 +94,7 @@ export function renderGseAttributes(
       .maybeValue=${securityEnabled}
       nullable
       required
+      helper="${translate('scl.securityEnabled')}"
       >${['None', 'Signature', 'SignatureAndEncryption'].map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
@@ -196,16 +198,16 @@ export function editGseControlWizard(element: Element): Wizard {
 
   return [
     {
-      title: get('gsecontrol.wizard.edit'),
+      title: get('wizard.title.edit', { tagName: element.tagName }),
       element,
       primary: {
-        icon: 'aave',
+        icon: 'save',
         label: get('save'),
         action: updateGseControlAction(element),
       },
       content: [
         html`<mwc-button
-          label="delete"
+          label="${translate('remove')}"
           icon="delete"
           @click=${(e: MouseEvent) => {
             const deleteActions = removeGseControl(element);
@@ -260,7 +262,7 @@ export function selectGseControlWizard(element: Element): Wizard {
 
   return [
     {
-      title: get('gse.select'),
+      title: get('wizard.title.select', { tagName: gseControls[0].tagName }),
       content: [
         html`<filtered-list
           @selected=${(e: SingleSelectedEvent) => {
