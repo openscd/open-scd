@@ -27,7 +27,7 @@ describe('abstractda wizards', () => {
       'application/xml'
     ).documentElement;
 
-    it('updates a Val child element when missing', () => {
+    it('updates a Val child element when changed', () => {
       const editorAction = getValAction(oldVal, 'newVal', abstractda);
       expect(editorAction).to.satisfy(isUpdate);
     });

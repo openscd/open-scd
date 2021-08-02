@@ -1,18 +1,10 @@
 import { html } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined';
-import { get, translate } from 'lit-translate';
-import {
-  pTypesGSESMV,
-  typeMaxLength,
-  typeNullable,
-  typePattern,
-} from '../editors/communication/p-types.js';
+import { get } from 'lit-translate';
 
 import {
   ComplexAction,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   SimpleAction,
   Wizard,
@@ -20,25 +12,25 @@ import {
   WizardInput,
 } from '../foundation.js';
 
-import { Checkbox } from '@material/mwc-checkbox';
+import { renderGseSmvAddress, updateAddress } from './address.js';
 
-function getMTimeAction(
+export function getMTimeAction(
   type: 'MinTime' | 'MaxTime',
   oldTime: Element | null,
   Time: string | null,
-  gSE: Element
+  gse: Element
 ): SimpleAction {
   if (oldTime === null) {
-    const element = createElement(gSE.ownerDocument, type, {
+    const element = createElement(gse.ownerDocument, type, {
       unit: 's',
       multiplier: 'm',
     });
     element.textContent = Time;
     return {
       new: {
-        parent: gSE,
+        parent: gse,
         element,
-        reference: gSE.firstElementChild,
+        reference: gse.firstElementChild,
       },
     };
   }
@@ -46,7 +38,7 @@ function getMTimeAction(
   if (Time === null)
     return {
       old: {
-        parent: gSE,
+        parent: gse,
         element: oldTime,
         reference: oldTime.nextSibling,
       },
@@ -60,84 +52,19 @@ function getMTimeAction(
   };
 }
 
-function isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
-  return (
-    Array.from(oldAddr.querySelectorAll('P')).filter(
-      pType =>
-        !newAdddr
-          .querySelector(`Address > P[type="${pType.getAttribute('type')}"]`)
-          ?.isEqualNode(pType)
-    ).length === 0
-  );
-}
-
-function createAddressElement(
-  inputs: WizardInput[],
-  parent: Element,
-  instType: boolean
-): Element {
-  const element = createElement(parent.ownerDocument, 'Address', {});
-
-  inputs
-    .filter(input => getValue(input) !== null)
-    .forEach(validInput => {
-      const type = validInput.label;
-      const child = createElement(parent.ownerDocument, 'P', { type });
-      if (instType)
-        child.setAttributeNS(
-          'http://www.w3.org/2001/XMLSchema-instance',
-          'xsi:type',
-          'tP_' + type
-        );
-      child.textContent = getValue(validInput);
-      element.appendChild(child);
-    });
-
-  return element;
-}
-
-function editGSEAction(element: Element): WizardActor {
+export function updateGSEAction(element: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-    const instType: boolean =
-      (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
-      false;
-
-    const newAddress = createAddressElement(inputs, element, instType);
-
     const complexAction: ComplexAction = {
       actions: [],
-      title: get('connectedap.action.addaddress', {
-        iedName: element.getAttribute('iedName') ?? '',
-        apName: element.getAttribute('apName') ?? '',
+      title: get('gse.action.addaddress', {
+        iedName: element.closest('ConnectedAP')?.getAttribute('iedName') ?? '',
+        cbName: element.getAttribute('cbName') ?? '',
       }),
     };
-
-    const oldAddress = element.querySelector('Address');
-
-    if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
-      // We cannot use updateAction on address as both address child elements P are changed
-      complexAction.actions.push({
-        old: {
-          parent: element,
-          element: oldAddress,
-          reference: oldAddress.nextSibling,
-        },
-      });
-      complexAction.actions.push({
-        new: {
-          parent: element,
-          element: newAddress,
-          reference: oldAddress.nextSibling,
-        },
-      });
-    } else if (oldAddress === null)
-      complexAction.actions.push({
-        new: {
-          parent: element,
-          element: newAddress,
-          reference: getReference(element, 'Address'),
-        },
-      });
+    const addressActions = updateAddress(element, inputs, wizard);
+    addressActions.forEach(action => {
+      complexAction.actions.push(action);
+    });
 
     const MinTime = getValue(inputs.find(i => i.label === 'MinTime')!);
     const MaxTime = getValue(inputs.find(i => i.label === 'MaxTime')!);
@@ -175,6 +102,10 @@ function editGSEAction(element: Element): WizardActor {
 export function editGseWizard(element: Element): Wizard {
   const minTime = element.querySelector('MinTime')?.innerHTML.trim();
   const maxTime = element.querySelector('MaxTime')?.innerHTML.trim();
+
+  const hasInstType = Array.from(element.querySelectorAll('Address > P')).some(
+    pType => pType.getAttribute('xsi:type')
+  );
   return [
     {
       title: get('gse.edit'),
@@ -182,31 +113,10 @@ export function editGseWizard(element: Element): Wizard {
       primary: {
         label: get('save'),
         icon: 'edit',
-        action: editGSEAction(element),
+        action: updateGSEAction(element),
       },
       content: [
-        html`<mwc-formfield
-          label="${translate('connectedap.wizard.addschemainsttype')}"
-        >
-          <mwc-checkbox
-            id="instType"
-            ?checked="${Array.from(
-              element.querySelectorAll('Address > P')
-            ).some(pType => pType.getAttribute('xsi:type'))}"
-          ></mwc-checkbox>
-        </mwc-formfield>`,
-        html`${pTypesGSESMV.map(
-          ptype =>
-            html`<wizard-textfield
-              label="${ptype}"
-              .maybeValue=${element
-                .querySelector(`Address > P[type="${ptype}"]`)
-                ?.innerHTML.trim() ?? null}
-              ?nullable=${typeNullable[ptype]}
-              pattern="${ifDefined(typePattern[ptype])}"
-              maxLength="${ifDefined(typeMaxLength[ptype])}"
-            ></wizard-textfield>`
-        )}`,
+        ...renderGseSmvAddress(hasInstType, element),
         html`<wizard-textfield
           label="MinTime"
           .maybeValue=${minTime}
@@ -215,7 +125,7 @@ export function editGseWizard(element: Element): Wizard {
           type="number"
         ></wizard-textfield>`,
         html`<wizard-textfield
-          label="MinTime"
+          label="MaxTime"
           .maybeValue=${maxTime}
           nullable
           suffix="ms"

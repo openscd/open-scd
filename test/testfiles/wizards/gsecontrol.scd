@@ -59,6 +59,8 @@
 						<P type="VLAN-PRIORITY">4</P>
 						<P type="APPID">0010</P>
 					</Address>
+					<MinTime unit="s" multiplier="m">10</MinTime>
+					<MaxTime unit="s" multiplier="m">10000</MaxTime>
 				</GSE>
 				<PhysConn type="RedConn">
 					<P type="Plug">RJ45</P>
