@@ -11,6 +11,8 @@ import { newWizardEvent } from '../foundation.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
 
 import { Fab } from '@material/mwc-fab';
+import { selectGseControlWizard } from '../wizards/gsecontrol.js';
+import { gooseIcon } from '../icons.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('ied-editor')
@@ -33,6 +35,11 @@ export class IedEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  openGseControlSelection(): void {
+    const wizard = selectGseControlWizard(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
@@ -44,6 +51,13 @@ export class IedEditor extends LitElement {
           @click="${() => this.openCommunicationMapping()}"
           icon="add_link"
         ></mwc-fab>
+        <mwc-fab
+          id="connectreport"
+          mini
+          class="menu-item left"
+          @click="${() => this.openGseControlSelection()}"
+          ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></mwc-fab
+        >
       </div>
       <h4>${this.name}</h4>
     `;

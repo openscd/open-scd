@@ -20,6 +20,8 @@ import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { IconButton } from '@material/mwc-icon-button';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
+import { selectGseControlWizard } from './wizards/gsecontrol.js';
+import { gooseIcon } from './icons.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -55,6 +57,11 @@ export class ZerolinePane extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
+  openGseControlSelection(): void {
+    const wizard = selectGseControlWizard(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
   toggleShowIEDs(): void {
     if (shouldShowIEDs()) setShowIEDs('off');
     else setShowIEDs('on');
@@ -75,55 +82,62 @@ export class ZerolinePane extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`
-      <h1>
-          ${html`<abbr title="${translate('add')}">
+    return html` <h1>
+        <nav>
+          <abbr title="${translate('add')}">
             <mwc-icon-button
               icon="playlist_add"
               @click=${() => this.openCreateSubstationWizard()}
             ></mwc-icon-button>
-          </abbr> `}
-          </nav>
-          <nav>
-        <abbr title="${translate('zeroline.showieds')}">
-          <mwc-icon-button-toggle
-            ?on=${shouldShowIEDs()}
-            @click=${() => this.toggleShowIEDs()}
-            id="showieds"
-            onIcon="developer_board"
-            offIcon="developer_board_off"
-          ></mwc-icon-button-toggle>
-        </abbr>
-        <abbr title="${translate('zeroline.commmap')}">
-          <mwc-icon-button
-            id="commmap"
-            icon="link"
-            @click=${() => this.openCommunicationMapping()}
-          ></mwc-icon-button>
-        </abbr>
-      </nav>
-        </h1>
+          </abbr>
+        </nav>
+        <nav>
+          <abbr title="${translate('zeroline.commmap')}">
+            <mwc-icon-button-toggle
+              ?on=${shouldShowIEDs()}
+              @click=${() => this.toggleShowIEDs()}
+              id="showieds"
+              onIcon="developer_board"
+              offIcon="developer_board_off"
+            ></mwc-icon-button-toggle>
+          </abbr>
+          <abbr title="${translate('zeroline.commmap')}">
+            <mwc-icon-button
+              id="commmap"
+              icon="link"
+              @click=${() => this.openCommunicationMapping()}
+            ></mwc-icon-button>
+          </abbr>
+          <abbr title="${translate('zeroline.gsecontrol')}"
+            ><mwc-icon-button
+              id="connectreport"
+              mini
+              class="menu-item left"
+              @click="${() => this.openGseControlSelection()}"
+              >${gooseIcon}</mwc-icon-button
+            ></abbr
+          >
+        </nav>
+      </h1>
       ${this.renderIedContainer()}
-      ${
-        this.doc?.querySelector(':root > Substation')
-          ? html`<section tabindex="0">
-              ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
-                .filter(isPublic)
-                .map(
-                  substation =>
-                    html`<substation-editor
-                      .element=${substation}
-                      .getAttachedIeds=${this.getAttachedIeds}
-                      ?readonly=${this.readonly}
-                    ></substation-editor>`
-                )}
-            </section>`
-          : html`<h1>
-              <span style="color: var(--base1)"
-                >${translate('substation.missing')}</span
-              >
-            </h1>`
-      }`;
+      ${this.doc?.querySelector(':root > Substation')
+        ? html`<section tabindex="0">
+            ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
+              .filter(isPublic)
+              .map(
+                substation =>
+                  html`<substation-editor
+                    .element=${substation}
+                    .getAttachedIeds=${this.getAttachedIeds}
+                    ?readonly=${this.readonly}
+                  ></substation-editor>`
+              )}
+          </section>`
+        : html`<h1>
+            <span style="color: var(--base1)"
+              >${translate('substation.missing')}</span
+            >
+          </h1>`}`;
   }
 
   static styles = css`
