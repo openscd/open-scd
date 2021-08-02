@@ -52,7 +52,7 @@ export function editDaTypeWizard(
         html`<mwc-button
           icon="delete"
           trailingIcon
-          label="${translate('delete')}"
+          label="${translate('remove')}"
           @click=${(e: MouseEvent) => {
             e.target!.dispatchEvent(newWizardEvent());
             e.target!.dispatchEvent(
