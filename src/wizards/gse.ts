@@ -112,7 +112,7 @@ export function editGseWizard(element: Element): Wizard {
 
   return [
     {
-      title: get('gse.edit'),
+      title: get('wizard.title.edit', { tagName: element.tagName }),
       element,
       primary: {
         label: get('save'),

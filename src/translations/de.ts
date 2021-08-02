@@ -32,6 +32,8 @@ export const de: Translations = {
     dupd: 'Datenupdate ist Auslöser',
     fixedOffs: 'Fester Offset',
     securityEnabled: 'Aktive Sicherungsmaßnahmen',
+    DataSet: 'Datensetz',
+    Communication: 'Kommunikation',
   },
   settings: {
     title: 'Einstellungen',

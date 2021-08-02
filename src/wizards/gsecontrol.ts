@@ -225,7 +225,9 @@ export function editGseControlWizard(element: Element): Wizard {
           securityEnabled
         ),
         html`<mwc-button
-          label=${translate('edit.dataset')}
+          label=${translate('wizard.title.edit', {
+            tagName: get('scl.DataSet'),
+          })}
           icon="edit"
           @click=${(e: MouseEvent) => {
             const dataSet = element.parentElement?.querySelector(
@@ -242,7 +244,7 @@ export function editGseControlWizard(element: Element): Wizard {
         ></mwc-button>`,
         gSE
           ? html`<mwc-button
-              label=${translate('edit.GSE')}
+              label=${translate('scl.Communication')}
               icon="edit"
               @click="${(e: MouseEvent) => {
                 e.target?.dispatchEvent(newWizardEvent());
@@ -262,7 +264,7 @@ export function selectGseControlWizard(element: Element): Wizard {
 
   return [
     {
-      title: get('wizard.title.select', { tagName: gseControls[0].tagName }),
+      title: get('wizard.title.select', { tagName: 'GSEcontrol' }),
       content: [
         html`<filtered-list
           @selected=${(e: SingleSelectedEvent) => {

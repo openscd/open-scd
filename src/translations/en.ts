@@ -30,6 +30,8 @@ export const en = {
     dupd: 'Trigger on data update',
     fixedOffs: 'Fixed offset',
     securityEnabled: 'Security enabled',
+    DataSet: 'Dataset',
+    Communication: 'Communication',
   },
   settings: {
     title: 'Settings',
