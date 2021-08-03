@@ -72,14 +72,7 @@ export class WizardSelect extends Select {
   }
 
   checkValidity(): boolean {
-    if (
-      this.reservedValues &&
-      this.reservedValues.some(array => array === this.value)
-    ) {
-      this.setCustomValidity(get('textfield.unique'));
-      return false;
-    }
-    this.setCustomValidity(''); //Reset. Otherwise super.checkValidity always falseM
+    if (this.nullable && !this.nullSwitch?.checked) return true;
     return super.checkValidity();
   }
 

@@ -7,6 +7,7 @@ import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
+import { WizardSelect } from './wizard-select.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
@@ -136,13 +137,14 @@ export function newActionEvent<T extends EditorAction>(
 }
 
 export const wizardInputSelector =
-  'wizard-textfield, mwc-textfield, ace-editor, mwc-select';
+  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select';
 export type WizardInput =
   | WizardTextField
   | TextField
   | (AceEditor & { checkValidity: () => boolean; label: string })
   // TODO(c-dinkel): extend component
-  | Select;
+  | Select
+  | WizardSelect;
 
 export type WizardAction = EditorAction | (() => Wizard);
 
@@ -175,7 +177,8 @@ export function reportValidity(input: WizardInput): boolean {
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInput): string | null {
-  if (input instanceof WizardTextField) return input.maybeValue;
+  if (input instanceof WizardTextField || input instanceof WizardSelect)
+    return input.maybeValue;
   else return input.value ?? null;
 }
 

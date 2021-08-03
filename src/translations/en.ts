@@ -24,6 +24,10 @@ export const en = {
     lnClass: 'Logical node class',
     accessControl: 'Access control',
     transient: 'Transient data',
+    Val: 'Default value',
+    dchg: 'Triggre on data change',
+    qchg: 'Trigger on quality change',
+    dupd: 'Trigger on data update',
   },
   settings: {
     title: 'Settings',
