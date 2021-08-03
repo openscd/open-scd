@@ -14,7 +14,7 @@
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[delete]"
+      label="[remove]"
       trailingicon=""
     >
     </mwc-button>
@@ -3327,7 +3327,7 @@
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[delete]"
+      label="[remove]"
       trailingicon=""
     >
     </mwc-button>
