@@ -196,6 +196,10 @@ export function editGseControlWizard(element: Element): Wizard {
 
   const gSE = getGSE(element);
 
+  const dataSet = element.parentElement?.querySelector(
+    `DataSet[name="${element.getAttribute('datSet')}"]`
+  );
+
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -224,26 +228,26 @@ export function editGseControlWizard(element: Element): Wizard {
           fixedOffs,
           securityEnabled
         ),
-        html`<mwc-button
-          label=${translate('wizard.title.edit', {
-            tagName: get('scl.DataSet'),
-          })}
-          icon="edit"
-          @click=${(e: MouseEvent) => {
-            const dataSet = element.parentElement?.querySelector(
-              `DataSet[name="${element.getAttribute('datSet')}"]`
-            );
-
-            if (dataSet) {
-              e.target?.dispatchEvent(newWizardEvent());
-              e.target?.dispatchEvent(
-                newWizardEvent(editDataSetWizard(dataSet))
-              );
-            }
-          }}
-        ></mwc-button>`,
+        dataSet
+          ? html`<mwc-button
+              id="editdataset"
+              label=${translate('wizard.title.edit', {
+                tagName: get('scl.DataSet'),
+              })}
+              icon="edit"
+              @click=${(e: MouseEvent) => {
+                if (dataSet) {
+                  e.target?.dispatchEvent(newWizardEvent());
+                  e.target?.dispatchEvent(
+                    newWizardEvent(editDataSetWizard(dataSet))
+                  );
+                }
+              }}
+            ></mwc-button>`
+          : html``,
         gSE
           ? html`<mwc-button
+              id="editgse"
               label=${translate('scl.Communication')}
               icon="edit"
               @click="${(e: MouseEvent) => {

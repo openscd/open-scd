@@ -7,11 +7,10 @@ import {
   css,
   query,
 } from 'lit-element';
-import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
 import { isPublic, newWizardEvent } from './foundation.js';
-import { getAttachedIeds, styles } from './zeroline/foundation.js';
+import { getAttachedIeds } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
@@ -45,6 +44,8 @@ export class ZerolinePane extends LitElement {
 
   @query('#commmap') commmap!: IconButton;
   @query('#showieds') showieds!: IconButtonToggle;
+  @query('#gsecontrol') gsecontrol!: IconButton;
+  @query('#createsubstation') createsubstation!: IconButton;
 
   openCommunicationMapping(): void {
     const wizard = communicationMappingWizard(this.doc);
@@ -86,6 +87,7 @@ export class ZerolinePane extends LitElement {
         <nav>
           <abbr title="${translate('add')}">
             <mwc-icon-button
+              id="createsubstation"
               icon="playlist_add"
               @click=${() => this.openCreateSubstationWizard()}
             ></mwc-icon-button>
@@ -110,9 +112,7 @@ export class ZerolinePane extends LitElement {
           </abbr>
           <abbr title="${translate('zeroline.gsecontrol')}"
             ><mwc-icon-button
-              id="connectreport"
-              mini
-              class="menu-item left"
+              id="gsecontrol"
               @click="${() => this.openGseControlSelection()}"
               >${gooseIcon}</mwc-icon-button
             ></abbr
