@@ -327,6 +327,11 @@ export const en = {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',
     },
   },
+  gse: {
+    action: {
+      addaddress: 'Edit GSE ({{identity}})',
+    },
+  },
   subscriber: {
     title: 'Subscriber update',
     description: 'Subscriber update: ',

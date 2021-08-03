@@ -6,6 +6,7 @@ import {
   createElement,
   EditorAction,
   getValue,
+  identity,
   SimpleAction,
   Wizard,
   WizardActor,
@@ -59,8 +60,7 @@ export function updateGSEAction(element: Element): WizardActor {
     const complexAction: ComplexAction = {
       actions: [],
       title: get('gse.action.addaddress', {
-        iedName: element.closest('ConnectedAP')?.getAttribute('iedName') ?? '',
-        cbName: element.getAttribute('cbName') ?? '',
+        identity: identity(element),
       }),
     };
 

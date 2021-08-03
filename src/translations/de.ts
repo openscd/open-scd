@@ -330,6 +330,11 @@ export const de: Translations = {
       addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
     },
   },
+  gse: {
+    action: {
+      addaddress: 'GSE bearbeitet ({{identity}})',
+    },
+  },
   subscriber: {
     title: 'Subscriber Update',
     description: 'GOOSE Ziele aktualisieren: ',
