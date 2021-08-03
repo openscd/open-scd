@@ -31,18 +31,22 @@ describe('abstractda wizards', () => {
       const editorAction = getValAction(oldVal, 'newVal', abstractda);
       expect(editorAction).to.satisfy(isUpdate);
     });
+
     it('properly updates an new Val', () => {
       const editorAction = <Update>getValAction(oldVal, 'newVal', abstractda);
       expect(editorAction.new.element.textContent?.trim()).to.equal('newVal');
     });
+
     it('creates a Val child element when missing', () => {
       const editorAction = getValAction(null, 'newVal', abstractda);
       expect(editorAction).to.satisfy(isCreate);
     });
+
     it('properly creates new Val', () => {
       const editorAction = <Create>getValAction(null, 'newVal', abstractda);
       expect(editorAction.new.element.textContent?.trim()).to.equal('newVal');
     });
+
     it('remove a Val child element if present', () => {
       const editorAction = getValAction(oldVal, null, abstractda);
       expect(editorAction).to.satisfy(isDelete);
@@ -109,9 +113,11 @@ describe('abstractda wizards', () => {
         'wizard-select[label="type"]'
       )!;
     });
+
     it('looks like the latest snapshot', () => {
       expect(element.wizardUI.dialog).to.equalSnapshot();
     });
+
     it('edits name attribute only for valid inputs', async () => {
       await fc.assert(
         fc.asyncProperty(
@@ -124,6 +130,7 @@ describe('abstractda wizards', () => {
         )
       );
     });
+
     it('rejects name attribute starting with decimals', async () => {
       await fc.assert(
         fc.asyncProperty(regexString(regExp.decimal, 1, 1), async name => {
@@ -133,15 +140,18 @@ describe('abstractda wizards', () => {
         })
       );
     });
+
     it('disables the type field in case bType is not Enum nor Struct', async () => {
       bTypeSelect.value = 'BOOLEAN';
       await typeSelect.requestUpdate();
       expect(typeSelect.disabled).to.be.true;
     });
+
     it('pre-selects the type in the type field in case bType is Enum or Struct', async () => {
       await typeSelect.requestUpdate();
       expect(typeSelect.value).to.be.equal('Dummy_ctlModel');
     });
+
     it('pre-selects the type in the type field bType has re-selected to the initial bType', async () => {
       bTypeSelect.value = 'BOOLEAN';
       await typeSelect.requestUpdate();
@@ -150,6 +160,7 @@ describe('abstractda wizards', () => {
       await typeSelect.requestUpdate();
       expect(typeSelect.value).to.be.equal('Dummy_ctlModel');
     });
+
     it('filters EnumType in the type field if bType is Enum ', async () => {
       bTypeSelect.value = 'Enum';
       await typeSelect.requestUpdate();
@@ -158,6 +169,7 @@ describe('abstractda wizards', () => {
         .map(item => item.value);
       expect(typeList.length).to.equal(enumTypes.length);
     });
+
     it('filters DAType in the type field if bType is Struct ', async () => {
       bTypeSelect.value = 'Struct';
       await typeSelect.requestUpdate();
@@ -166,6 +178,7 @@ describe('abstractda wizards', () => {
         .map(item => item.value);
       expect(typeList.length).to.equal(daTypes.length);
     });
+
     it('selects first DAType item when bType changes from enum to Struct', async () => {
       bTypeSelect.value = 'Enum';
       await typeSelect.requestUpdate();
@@ -173,6 +186,7 @@ describe('abstractda wizards', () => {
       await typeSelect.requestUpdate();
       expect(typeSelect.value).to.equal(daTypes[0]);
     });
+
     it('renders the Val field as wizard-select when bType is Enum', async () => {
       bTypeSelect.value = 'Enum';
       await valSelect.requestUpdate();
@@ -180,6 +194,7 @@ describe('abstractda wizards', () => {
       expect(valSelect.style.display).to.equal('');
       expect(valTextField.style.display).to.equal('none');
     });
+
     it('does not render the Val field when bType is Struct', async () => {
       bTypeSelect.value = 'Struct';
       await valSelect.requestUpdate();
@@ -187,6 +202,7 @@ describe('abstractda wizards', () => {
       expect(valSelect.style.display).to.equal('none');
       expect(valTextField.style.display).to.equal('none');
     });
+
     it('renders the Val field as wizard-textfield in all other cases', async () => {
       bTypeSelect.value = 'Struct';
       await valSelect.requestUpdate();
@@ -194,10 +210,12 @@ describe('abstractda wizards', () => {
       expect(valSelect.style.display).to.equal('none');
       expect(valTextField.style.display).to.equal('none');
     });
+
     it('shows Val form the file in the Val fields', async () => {
       await valSelect.requestUpdate();
       expect(valSelect.value).to.equal('status-only');
     });
+
     it('filters Val selection for the initially loaded Enum', async () => {
       await valSelect.requestUpdate();
       expect(valSelect.items.length).to.equal(
@@ -205,6 +223,7 @@ describe('abstractda wizards', () => {
           .length
       );
     });
+
     it('filters Val selection for bType Enum and ctlModelKind', async () => {
       bTypeSelect.value = 'Enum';
       await valSelect.requestUpdate();
@@ -213,6 +232,7 @@ describe('abstractda wizards', () => {
           .length
       );
     });
+
     it('filters Val selection for bType Enum and HealthKind', async () => {
       bTypeSelect.value = 'Enum';
       typeSelect.value = 'Dummy_Health';
@@ -222,6 +242,7 @@ describe('abstractda wizards', () => {
           .length
       );
     });
+
     it('does not filters Val selection it bType is not Enum', async () => {
       bTypeSelect.value = 'Struct';
       typeSelect.value = 'Dummy_origin';

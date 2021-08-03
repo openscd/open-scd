@@ -2,8 +2,8 @@ import { html, render, TemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
 import { createElement, EditorAction } from '../foundation.js';
-import { maxLenght, patterns } from './foundation.ts/limits.js';
-import { predefinedBasicTypeEnum, valKindEnum } from './foundation.ts/enums.js';
+import { maxLength, patterns } from './foundation/limits.js';
+import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 
 import { WizardSelect } from '../wizard-select.js';
 import { WizardTextField } from '../wizard-textfield.js';
@@ -27,7 +27,7 @@ function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
   ).map(
     enumval =>
       html`<mwc-list-item
-        value="${enumval.textContent?.trim()}"
+        value="${enumval.textContent?.trim() ?? ''}"
         ?selected=${enumval.textContent?.trim() === Val}
         >${enumval.textContent?.trim()}</mwc-list-item
       >`
@@ -109,7 +109,7 @@ export function wizardContent(
       helper="${translate('scl.name')}"
       required
       pattern="${patterns.abstractDataAttributeName}"
-      maxLength="${maxLenght.abstracDaName}"
+      maxLength="${maxLength.abstracDaName}"
       dialogInitialFocus
     >
       ></wizard-textfield
@@ -194,7 +194,7 @@ export function wizardContent(
         data.querySelectorAll(`EnumType > EnumVal[id="${type}"]`)
       ).map(
         enumVal =>
-          html`<mwc-list-item value="${enumVal.textContent?.trim()}"
+          html`<mwc-list-item value="${enumVal.textContent?.trim() ?? ''}"
             >${enumVal.textContent?.trim()}</mwc-list-item
           >`
       )}</wizard-select
