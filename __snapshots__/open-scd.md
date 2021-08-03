@@ -71,6 +71,23 @@
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
+      iconid="input"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        input
+      </mwc-icon>
+      <span>
+        New project from CIM
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
       aria-disabled="true"
       class="top"
       disabled=""
@@ -427,6 +444,14 @@
       New project
     </div>
   </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="input"
+  >
+    <div class="landing_label">
+      New project from CIM
+    </div>
+  </mwc-icon-button>
 </div>
 <mwc-dialog
   heading="Log"
@@ -701,6 +726,22 @@
         create_new_folder
       </mwc-icon>
       New project
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasCimMapping.js"
+    >
+      <mwc-icon slot="meta">
+        input
+      </mwc-icon>
+      New project from CIM
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"

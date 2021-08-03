@@ -60,8 +60,13 @@ export class CompasSaveTo extends LitElement {
 
 function getSclDocument(type: string, id: string): void {
   CompasSclDataService().getSclDocument(type, id)
-    .then(doc => {
-      updateDocumentInOpenSCD(doc);
+    .then(response => {
+      // Copy the SCL Result from the Response and create a new Document from it.
+      const sclElement = response.querySelectorAll("SCL").item(0);
+      const sclDocument = document.implementation.createDocument("", "", null);
+      sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+
+      updateDocumentInOpenSCD(sclDocument);
     });
 }
 

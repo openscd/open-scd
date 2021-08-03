@@ -51,14 +51,14 @@ export function CompasSclDataService() {
     },
 
     getSclDocument(type: string, id: string): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/scl';
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
       return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
 
     getSclDocumentVersion(type: string, id: string, version: string): Promise<Document> {
-      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/' + version + '/scl';
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/' + version;
       return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
