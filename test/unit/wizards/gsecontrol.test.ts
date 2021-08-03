@@ -251,7 +251,7 @@ describe('gsecontrol wizards', () => {
       expect(updateAction.old.element).to.not.have.attribute('desc');
       expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
     });
-    it('update a GSEControl element when only bType attribute changed', async () => {
+    it('update a GSEControl element when only type attribute changed', async () => {
       const input = <WizardTextField>inputs[2];
       input.value = 'GSSE';
       await input.requestUpdate();
@@ -262,6 +262,18 @@ describe('gsecontrol wizards', () => {
       const updateAction = <Update>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('type', 'GOOSE');
       expect(updateAction.new.element).to.have.attribute('type', 'GSSE');
+    });
+    it('update a GSEControl element when type is changed to null', async () => {
+      const input = <WizardTextField>inputs[2];
+      input.nullSwitch?.click();
+      await input.requestUpdate();
+      const editorAction = updateGseControlAction(gseControl);
+      const updateActions = editorAction(inputs, newWizard());
+      expect(updateActions.length).to.equal(1);
+      expect(updateActions[0]).to.satisfy(isUpdate);
+      const updateAction = <Update>updateActions[0];
+      expect(updateAction.old.element).to.have.attribute('type', 'GOOSE');
+      expect(updateAction.new.element).to.not.have.attribute('type');
     });
     it('update a GSEControl element when appID attribute changed', async () => {
       const input = <WizardTextField>inputs[3];

@@ -218,6 +218,7 @@ export function editGseControlWizard(element: Element): Wizard {
             deleteActions.forEach(deleteAction =>
               e.target?.dispatchEvent(newActionEvent(deleteAction))
             );
+            e.target?.dispatchEvent(newWizardEvent());
           }}
         ></mwc-button>`,
         ...renderGseAttributes(
