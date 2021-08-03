@@ -42,6 +42,7 @@ describe('zeroline-pane wizarding editing integration', () => {
       doc.querySelectorAll('GSEControl').length
     );
   });
+
   it('add Substation element with createSubstationWizard', async () => {
     expect(doc.querySelector('Substation[name="newSubstation"]')).to.not.exist;
     zeroline.createsubstation.click();
