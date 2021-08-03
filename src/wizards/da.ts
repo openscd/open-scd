@@ -16,7 +16,7 @@ import {
 } from '../foundation.js';
 
 import { getValAction, wizardContent } from './abstractda.js';
-import { functionalConstraintEnum } from './foundation.ts/enums.js';
+import { functionalConstraintEnum } from './foundation/enums.js';
 
 export function renderDa(
   fc: string,

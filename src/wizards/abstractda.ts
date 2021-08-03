@@ -2,8 +2,8 @@ import { html, render, TemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
 import { createElement, EditorAction } from '../foundation.js';
-import { maxLenght, patterns } from './foundation.ts/limits.js';
-import { predefinedBasicTypeEnum, valKindEnum } from './foundation.ts/enums.js';
+import { maxLenght, patterns } from './foundation/limits.js';
+import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 
 import { WizardSelect } from '../wizard-select.js';
 import { WizardTextField } from '../wizard-textfield.js';
