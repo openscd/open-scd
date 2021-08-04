@@ -11,10 +11,8 @@ import keycloakInstance from './KeycloakManager.js';
 export class LoginElement extends LitElement {
 
   login() {
-    keycloakInstance.init({onLoad: 'login-required'}).then(authenticated => {
-        keycloakInstance.loadUserInfo().then(userInfo => {
-          console.log("Logged in as '" + userInfo.preferred_username + "'")
-        });
+    keycloakInstance.init({onLoad: 'login-required'}).then(() => {
+      console.log("Logged in as '" + keycloakInstance.subject + "'");
     });
 
     return true;
