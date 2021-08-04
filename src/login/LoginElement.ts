@@ -5,31 +5,19 @@ import {newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 import {OpenSCD} from "../open-scd.js";
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 
-import Keycloak from 'keycloak-js';
+import keycloakInstance from './KeycloakManager.js';
 
 @customElement('openscd-login')
 export class LoginElement extends LitElement {
 
   login() {
-    let _keycloak = Keycloak({
-      url: 'http://localhost:8089/auth/',
-      realm: 'compas',
-      clientId: 'openscd'
-    });
-
-    _keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-        console.log(authenticated ? 'authenticated' : 'not authenticated')
+    keycloakInstance.init({onLoad: 'login-required'}).then(authenticated => {
+        keycloakInstance.loadUserInfo().then(userInfo => {
+          console.log("Logged in as '" + userInfo.preferred_username + "'")
+        });
     });
 
     return true;
-  }
-
-  getUsernameField(): TextFieldBase {
-    return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="username"]');
-  }
-
-  getPasswordField(): TextFieldBase {
-    return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="password"]');
   }
 
   close(): void {
