@@ -2364,6 +2364,19 @@ export function createElement(
   return element;
 }
 
+/** @returns a cloned Element based on old Element and new attrs */
+export function cloneElement(
+  element: Element,
+  attrs: Record<string, string | null>
+): Element {
+  const newElement = <Element>element.cloneNode(false);
+  Object.entries(attrs).forEach(([name, value]) => {
+    if (value === null) newElement.removeAttribute(name);
+    else newElement.setAttribute(name, value);
+  });
+  return newElement;
+}
+
 /** A directive rendering its argument `rendered` only if `rendered !== {}`. */
 export const ifImplemented = directive(rendered => (part: Part) => {
   if (Object.keys(rendered).length) part.setValue(rendered);
