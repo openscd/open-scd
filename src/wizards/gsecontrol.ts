@@ -18,7 +18,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-import { maxLenght, patterns } from './foundation.ts/limits.js';
+import { maxLength, patterns } from './foundation/limits.js';
 
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
@@ -53,7 +53,7 @@ export function renderGseAttributes(
       required
       validationMessage="${translate('textfield.required')}"
       pattern="${patterns.asciName}"
-      maxLength="${maxLenght.cbName}"
+      maxLength="${maxLength.cbName}"
       dialogInitialFocus
     ></wizard-textfield>`,
     html`<wizard-textfield

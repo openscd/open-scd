@@ -14,7 +14,7 @@ import {
   pTypesGSESMV,
   typeNullable,
   typePattern,
-} from './foundation.ts/p-types.js';
+} from './foundation/p-types.js';
 
 export function renderGseSmvAddress(parent: Element): TemplateResult[] {
   const hasInstType = Array.from(parent.querySelectorAll('Address > P')).some(
