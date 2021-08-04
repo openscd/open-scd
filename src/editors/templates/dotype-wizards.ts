@@ -107,7 +107,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         html`<mwc-button
           icon="delete"
           trailingIcon
-          label="${translate('delete')}"
+          label="${translate('remove')}"
           @click=${(e: MouseEvent) => {
             e.target!.dispatchEvent(newWizardEvent());
             e.target!.dispatchEvent(
@@ -327,7 +327,7 @@ export function dOTypeWizard(
         html`<mwc-button
           icon="delete"
           trailingIcon
-          label="${translate('delete')}"
+          label="${translate('remove')}"
           @click=${(e: MouseEvent) => {
             e.target!.dispatchEvent(newWizardEvent());
             e.target!.dispatchEvent(

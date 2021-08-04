@@ -2,21 +2,12 @@
 
 ## `defines a editDaWizard to edit an existing DA`
 
-####   `looks like the latest snapshot`
+#### `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
-  defaultaction="close"
-  heading="Edit DA"
-  open=""
->
+<mwc-dialog defaultaction="close" heading="Edit DA" open="">
   <div id="wizard-content">
-    <mwc-button
-      fullwidth=""
-      icon="delete"
-      label="delete"
-      trailingicon=""
-    >
+    <mwc-button fullwidth="" icon="delete" label="Remove" trailingicon="">
     </mwc-button>
     <wizard-textfield
       dialoginitialfocus=""
@@ -361,11 +352,7 @@
         EntryID
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      fixedmenuposition=""
-      helper="Type"
-      label="type"
-    >
+    <wizard-select fixedmenuposition="" helper="Type" label="type">
       <mwc-list-item
         aria-disabled="true"
         class="Struct"
@@ -594,12 +581,7 @@
         false
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      helper="Default value"
-      label="Val"
-      nullable=""
-    >
+    <wizard-select disabled="" helper="Default value" label="Val" nullable="">
       <mwc-list-item
         aria-disabled="false"
         aria-selected="false"
@@ -884,19 +866,14 @@
   >
   </mwc-button>
 </mwc-dialog>
-
 ```
 
 ## `defines a createDaWizard to create a new DA element`
 
-####   `looks like the latest snapshot`
+#### `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
-  defaultaction="close"
-  heading="Edit DA"
-  open=""
->
+<mwc-dialog defaultaction="close" heading="Edit DA" open="">
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
@@ -1238,11 +1215,7 @@
         EntryID
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      fixedmenuposition=""
-      helper="Type"
-      label="type"
-    >
+    <wizard-select fixedmenuposition="" helper="Type" label="type">
       <mwc-list-item
         aria-disabled="false"
         class="Struct"
@@ -1454,12 +1427,7 @@
         false
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      helper="Default value"
-      label="Val"
-      nullable=""
-    >
+    <wizard-select disabled="" helper="Default value" label="Val" nullable="">
     </wizard-select>
     <wizard-textfield
       disabled=""
@@ -1690,6 +1658,4 @@
   >
   </mwc-button>
 </mwc-dialog>
-
 ```
-

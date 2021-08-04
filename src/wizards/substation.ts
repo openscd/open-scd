@@ -68,7 +68,7 @@ export function createAction(parent: Element): WizardActor {
   };
 }
 
-export function substationCreateWizard(parent: Element): Wizard {
+export function createSubstationWizard(parent: Element): Wizard {
   const guessable = parent.querySelector('Substation') === null;
 
   return [

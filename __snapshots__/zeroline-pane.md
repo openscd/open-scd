@@ -4,12 +4,17 @@
 
 ```html
 <h1>
-  <abbr title="[add]">
-    <mwc-icon-button icon="playlist_add">
-    </mwc-icon-button>
-  </abbr>
   <nav>
-    <abbr title="[zeroline.showieds]">
+    <abbr title="[add]">
+      <mwc-icon-button
+        icon="playlist_add"
+        id="createsubstation"
+      >
+      </mwc-icon-button>
+    </abbr>
+  </nav>
+  <nav>
+    <abbr title="[zeroline.commmap]">
       <mwc-icon-button-toggle
         id="showieds"
         officon="developer_board_off"
@@ -22,6 +27,10 @@
         icon="link"
         id="commmap"
       >
+      </mwc-icon-button>
+    </abbr>
+    <abbr title="[zeroline.gsecontrol]">
+      <mwc-icon-button id="gsecontrol">
       </mwc-icon-button>
     </abbr>
   </nav>
@@ -39,12 +48,17 @@
 
 ```html
 <h1>
-  <abbr title="[add]">
-    <mwc-icon-button icon="playlist_add">
-    </mwc-icon-button>
-  </abbr>
   <nav>
-    <abbr title="[zeroline.showieds]">
+    <abbr title="[add]">
+      <mwc-icon-button
+        icon="playlist_add"
+        id="createsubstation"
+      >
+      </mwc-icon-button>
+    </abbr>
+  </nav>
+  <nav>
+    <abbr title="[zeroline.commmap]">
       <mwc-icon-button-toggle
         id="showieds"
         officon="developer_board_off"
@@ -57,6 +71,10 @@
         icon="link"
         id="commmap"
       >
+      </mwc-icon-button>
+    </abbr>
+    <abbr title="[zeroline.gsecontrol]">
+      <mwc-icon-button id="gsecontrol">
       </mwc-icon-button>
     </abbr>
   </nav>
@@ -74,12 +92,17 @@
 
 ```html
 <h1>
-  <abbr title="[add]">
-    <mwc-icon-button icon="playlist_add">
-    </mwc-icon-button>
-  </abbr>
   <nav>
-    <abbr title="[zeroline.showieds]">
+    <abbr title="[add]">
+      <mwc-icon-button
+        icon="playlist_add"
+        id="createsubstation"
+      >
+      </mwc-icon-button>
+    </abbr>
+  </nav>
+  <nav>
+    <abbr title="[zeroline.commmap]">
       <mwc-icon-button-toggle
         id="showieds"
         officon="developer_board_off"
@@ -92,6 +115,10 @@
         icon="link"
         id="commmap"
       >
+      </mwc-icon-button>
+    </abbr>
+    <abbr title="[zeroline.gsecontrol]">
+      <mwc-icon-button id="gsecontrol">
       </mwc-icon-button>
     </abbr>
   </nav>

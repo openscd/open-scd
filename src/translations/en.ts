@@ -28,6 +28,10 @@ export const en = {
     dchg: 'Triggre on data change',
     qchg: 'Trigger on quality change',
     dupd: 'Trigger on data update',
+    fixedOffs: 'Fixed offset',
+    securityEnabled: 'Security enabled',
+    DataSet: 'Dataset',
+    Communication: 'Communication',
   },
   settings: {
     title: 'Settings',
@@ -41,6 +45,13 @@ export const en = {
     title: 'Menu',
     viewLog: 'View log',
   },
+  wizard: {
+    title: {
+      select: 'Select {{tagName}}',
+      edit: 'Edit {{tagName}}',
+      add: 'Add {{tagName}}',
+    },
+  },
   openSCD: {
     loading: 'Loading project {{ name }}',
     loaded: '{{ name }} loaded',
@@ -50,6 +61,7 @@ export const en = {
   zeroline: {
     iedsloading: 'Loading IEDs...',
     commmap: 'Communication mapping',
+    gsecontrol: 'Show all GOOSEs',
   },
   editing: {
     created: 'Added {{ name }}',
@@ -313,6 +325,11 @@ export const en = {
     },
     action: {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',
+    },
+  },
+  gse: {
+    action: {
+      addaddress: 'Edit GSE ({{identity}})',
     },
   },
   subscriber: {

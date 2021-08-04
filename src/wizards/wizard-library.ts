@@ -6,7 +6,7 @@ import {
   editConductingEquipmentWizard,
 } from './conductingequipment.js';
 import { lNodeWizard } from './lnode.js';
-import { substationCreateWizard, substationEditWizard } from './substation.js';
+import { createSubstationWizard, substationEditWizard } from './substation.js';
 import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
@@ -471,7 +471,7 @@ export const wizards: Record<
   },
   Substation: {
     edit: substationEditWizard,
-    create: substationCreateWizard,
+    create: createSubstationWizard,
   },
   SupSubscription: {
     edit: emptyWizard,

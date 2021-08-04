@@ -7,11 +7,10 @@ import {
   css,
   query,
 } from 'lit-element';
-import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
 import { isPublic, newWizardEvent } from './foundation.js';
-import { getAttachedIeds, styles } from './zeroline/foundation.js';
+import { getAttachedIeds } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
@@ -20,6 +19,8 @@ import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { IconButton } from '@material/mwc-icon-button';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
+import { selectGseControlWizard } from './wizards/gsecontrol.js';
+import { gooseIcon } from './icons.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -43,6 +44,8 @@ export class ZerolinePane extends LitElement {
 
   @query('#commmap') commmap!: IconButton;
   @query('#showieds') showieds!: IconButtonToggle;
+  @query('#gsecontrol') gsecontrol!: IconButton;
+  @query('#createsubstation') createsubstation!: IconButton;
 
   openCommunicationMapping(): void {
     const wizard = communicationMappingWizard(this.doc);
@@ -52,6 +55,11 @@ export class ZerolinePane extends LitElement {
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   openCreateSubstationWizard(): void {
     const wizard = wizards['Substation'].create(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  openGseControlSelection(): void {
+    const wizard = selectGseControlWizard(this.doc.documentElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -75,55 +83,61 @@ export class ZerolinePane extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`
-      <h1>
-          ${html`<abbr title="${translate('add')}">
+    return html` <h1>
+        <nav>
+          <abbr title="${translate('add')}">
             <mwc-icon-button
+              id="createsubstation"
               icon="playlist_add"
               @click=${() => this.openCreateSubstationWizard()}
             ></mwc-icon-button>
-          </abbr> `}
-          </nav>
-          <nav>
-        <abbr title="${translate('zeroline.showieds')}">
-          <mwc-icon-button-toggle
-            ?on=${shouldShowIEDs()}
-            @click=${() => this.toggleShowIEDs()}
-            id="showieds"
-            onIcon="developer_board"
-            offIcon="developer_board_off"
-          ></mwc-icon-button-toggle>
-        </abbr>
-        <abbr title="${translate('zeroline.commmap')}">
-          <mwc-icon-button
-            id="commmap"
-            icon="link"
-            @click=${() => this.openCommunicationMapping()}
-          ></mwc-icon-button>
-        </abbr>
-      </nav>
-        </h1>
+          </abbr>
+        </nav>
+        <nav>
+          <abbr title="${translate('zeroline.commmap')}">
+            <mwc-icon-button-toggle
+              ?on=${shouldShowIEDs()}
+              @click=${() => this.toggleShowIEDs()}
+              id="showieds"
+              onIcon="developer_board"
+              offIcon="developer_board_off"
+            ></mwc-icon-button-toggle>
+          </abbr>
+          <abbr title="${translate('zeroline.commmap')}">
+            <mwc-icon-button
+              id="commmap"
+              icon="link"
+              @click=${() => this.openCommunicationMapping()}
+            ></mwc-icon-button>
+          </abbr>
+          <abbr title="${translate('zeroline.gsecontrol')}"
+            ><mwc-icon-button
+              id="gsecontrol"
+              @click="${() => this.openGseControlSelection()}"
+              >${gooseIcon}</mwc-icon-button
+            ></abbr
+          >
+        </nav>
+      </h1>
       ${this.renderIedContainer()}
-      ${
-        this.doc?.querySelector(':root > Substation')
-          ? html`<section tabindex="0">
-              ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
-                .filter(isPublic)
-                .map(
-                  substation =>
-                    html`<substation-editor
-                      .element=${substation}
-                      .getAttachedIeds=${this.getAttachedIeds}
-                      ?readonly=${this.readonly}
-                    ></substation-editor>`
-                )}
-            </section>`
-          : html`<h1>
-              <span style="color: var(--base1)"
-                >${translate('substation.missing')}</span
-              >
-            </h1>`
-      }`;
+      ${this.doc?.querySelector(':root > Substation')
+        ? html`<section tabindex="0">
+            ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
+              .filter(isPublic)
+              .map(
+                substation =>
+                  html`<substation-editor
+                    .element=${substation}
+                    .getAttachedIeds=${this.getAttachedIeds}
+                    ?readonly=${this.readonly}
+                  ></substation-editor>`
+              )}
+          </section>`
+        : html`<h1>
+            <span style="color: var(--base1)"
+              >${translate('substation.missing')}</span
+            >
+          </h1>`}`;
   }
 
   static styles = css`
