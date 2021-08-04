@@ -369,11 +369,6 @@ export const de: Translations = {
     settings: {
       name: "CoMPAS Einstellungen",
       sclDataServiceUrl: "CoMPAS SCL Data Service URL"
-    },
-    login: {
-      name: "Anmeldung",
-      username: "Nutzername",
-      password: "Passwort",
     }
-  },
+  }
 };
