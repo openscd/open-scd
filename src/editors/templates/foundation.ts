@@ -2,6 +2,7 @@ import { css, html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import {
+  cloneElement,
   Create,
   EditorAction,
   getReference,
@@ -40,10 +41,7 @@ export function updateIDNamingAction(element: Element): WizardActor {
     )
       return [];
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('id', id);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
+    const newElement = cloneElement(element, { id, desc });
 
     return [{ old: { element }, new: { element: newElement } }];
   };
