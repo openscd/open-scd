@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
-import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
+
 import {
   createElement,
   EditorAction,
@@ -11,6 +11,9 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { updateNamingAction } from './foundation/actions.js';
+
+import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
 
 function render(
   name: string,
@@ -83,26 +86,6 @@ export function createSubstationWizard(parent: Element): Wizard {
       content: render('', '', guessable),
     },
   ];
-}
-
-function updateNamingAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const name = getValue(inputs.find(i => i.label === 'name')!)!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-    if (
-      name === element.getAttribute('name') &&
-      desc === element.getAttribute('desc')
-    )
-      return [];
-
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-
-    return [{ old: { element }, new: { element: newElement } }];
-  };
 }
 
 export function substationEditWizard(element: Element): Wizard {

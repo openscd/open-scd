@@ -3,8 +3,8 @@ import { fixture, html, expect } from '@open-wc/testing';
 import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
 
 import '../../../src/wizard-textfield.js';
-import { updateNamingAction } from '../../../src/zeroline/foundation.js';
 import { createAction } from '../../../src/wizards/bay.js';
+import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 
 describe('BayEditor', () => {
   const noOp = () => {
