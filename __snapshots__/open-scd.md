@@ -688,7 +688,7 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/KeycloakLogin.js"
+      value="/src/menu/Login.js"
     >
       <mwc-icon slot="meta">
         login

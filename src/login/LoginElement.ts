@@ -5,33 +5,22 @@ import {newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 import {OpenSCD} from "../open-scd.js";
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 
-// import Keycloak from "keycloak-connect";
-// import session from "express-session";
+import Keycloak from 'keycloak-js';
 
-@customElement('keycloak-login')
-export class KeycloakLoginElement extends LitElement {
-  login(): boolean {
-    console.log('Login');
-    console.log(this.getUsernameField().value);
-    console.log(this.getPasswordField().value);
+@customElement('openscd-login')
+export class LoginElement extends LitElement {
 
-    // let kcConfig = {
-    //   "realm": "compas",
-    //   "auth-server-url": "http://localhost:8089/auth/",
-    //   "ssl-required": "external",
-    //   "resource": "open-scd",
-    //   "verify-token-audience": true,
-    //   "credentials": {
-    //     "secret": "ae172d6e-4caf-4239-997a-4f0c661cad75"
-    //   },
-    //   "use-resource-role-mappings": true,
-    //   "confidential-port": 0,
-    //   "policy-enforcer": {}
-    // };
+  login() {
+    let _keycloak = Keycloak({
+      url: 'http://localhost:8089/auth/',
+      realm: 'compas',
+      clientId: 'openscd'
+    });
 
-    // let memoryStore = new session.MemoryStore();
-    // let keycloak = new Keycloak({ store: memoryStore }, kcConfig);
-    
+    _keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+        console.log(authenticated ? 'authenticated' : 'not authenticated')
+    });
+
     return true;
   }
 
@@ -73,7 +62,7 @@ export class KeycloakLoginElement extends LitElement {
 
 export function loginAction() {
   return function (inputs: WizardInput[], wizard: Element) {
-    const compasSettingsElement = <KeycloakLoginElement>wizard.shadowRoot!.querySelector('keycloak-login')
+    const compasSettingsElement = <LoginElement>wizard.shadowRoot!.querySelector('openscd-login')
     if (compasSettingsElement.login()) {
       compasSettingsElement.close();
     }
@@ -81,7 +70,7 @@ export function loginAction() {
   };
 }
 
-export function keycloakLoginWizard(): Wizard {
+export function loginWizard(): Wizard {
   return [
     {
       title: get('compas.login.name'),
@@ -91,7 +80,7 @@ export function keycloakLoginWizard(): Wizard {
         action: loginAction(),
       },
       content: [
-        html`<keycloak-login></keycloak-login>`,
+        html`<openscd-login></openscd-login>`,
       ],
     },
   ];

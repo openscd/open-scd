@@ -30,7 +30,7 @@ export const officialPlugins = [
   },
   {
     name: 'Login',
-    src: '/src/menu/KeycloakLogin.js',
+    src: '/src/menu/Login.js',
     icon: 'login',
     default: true,
     kind: 'menu',
