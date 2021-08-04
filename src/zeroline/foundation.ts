@@ -123,7 +123,7 @@ export function updateNamingAction(element: Element): WizardActor {
   };
 }
 
-export function cloneElement(
+export function cloneSubstationElement(
   editor: BayEditor | VoltageLevelEditor | SubstationEditor
 ): void {
   const element: Element = editor.element;

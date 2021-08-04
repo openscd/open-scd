@@ -10,7 +10,12 @@ import { translate } from 'lit-translate';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
-import { cloneElement, selectors, startMove, styles } from './foundation.js';
+import {
+  cloneSubstationElement,
+  selectors,
+  startMove,
+  styles,
+} from './foundation.js';
 
 import './voltage-level-editor.js';
 
@@ -102,7 +107,7 @@ export class SubstationEditor extends LitElement {
                     <abbr title="${translate('duplicate')}">
                       <mwc-icon-button
                         icon="content_copy"
-                        @click=${() => cloneElement(this)}
+                        @click=${() => cloneSubstationElement(this)}
                       ></mwc-icon-button>
                     </abbr>
                     <abbr title="${translate('edit')}">
