@@ -89,9 +89,6 @@ describe('address', () => {
           expect(actions[1]).to.satisfy(isCreate);
           const oldElement = (<Delete>actions[0]).old.element;
           const newElement = (<Create>actions[1]).new.element;
-          console.log(type);
-          console.log(oldValue);
-          console.log(newValue);
           expect(
             oldElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
           ).to.equal(oldValue);
@@ -122,9 +119,6 @@ describe('address', () => {
           expect(actions[1]).to.satisfy(isCreate);
           const oldElement = (<Delete>actions[0]).old.element;
           const newElement = (<Create>actions[1]).new.element;
-          console.log(type);
-          console.log(oldValue);
-          console.log(newValue);
           expect(
             oldElement.querySelector(`P[type="${type}"]`)?.textContent?.trim()
           ).to.equal(oldValue);
