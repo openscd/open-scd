@@ -56,6 +56,15 @@ export const officialPlugins = [
     position: 'top'
   },
   {
+    name: 'New project from CIM',
+    src: '/src/menu/CompasCimMapping.js',
+    icon: 'input',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top'
+  },
+  {
     name: 'Save project',
     src: '/src/menu/SaveProject.js',
     icon: 'save',

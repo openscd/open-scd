@@ -1,11 +1,17 @@
-import {expect, fixture, fixtureSync, html, waitUntil} from '@open-wc/testing';
+import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon, {SinonStub} from "sinon";
 
 import {Editing} from '../../../src/Editing.js';
 import {Wizarding} from '../../../src/Wizarding.js';
+import {
+  BASIC_VERSIONS_LIST_RESPONSE,
+  stubFetchResponseFunction,
+  VERSION_ENTRY_ELEMENT_NAME
+} from "../../unit/compas/CompasSclDataServiceResponses.js";
 import CompasVersionsPlugin from "../../../src/compas-editors/CompasVersions.js";
 
 describe('compas-versions-plugin', () => {
+  const FETCH_FUNCTION = 'fetchData';
   const docId = '380b5e70-4753-4b59-b5b4-d51ceb26a30c';
 
   customElements.define(
@@ -19,9 +25,10 @@ describe('compas-versions-plugin', () => {
     beforeEach(async () => {
       element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
 
-      stub = sinon.stub(element, 'fetchData').callsFake(() => {
-        // Should not be called.
-      });
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
+        () => {
+          // Should not be called.
+        });
 
       await element;
       await waitUntil(() => element.scls !== undefined);
@@ -43,9 +50,10 @@ describe('compas-versions-plugin', () => {
       element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
       element.docId = docId;
 
-      stub = sinon.stub(element, 'fetchData').callsFake(() => {
-        // Do nothing, so loading... will be displayed.
-      });
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
+        () => {
+          // Do nothing, so loading... will be displayed.
+        });
 
       await element;
     });
@@ -65,9 +73,10 @@ describe('compas-versions-plugin', () => {
       element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
       element.docId = docId;
 
-      stub = sinon.stub(element, 'fetchData').callsFake(() => {
-        element.scls = [];
-      });
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
+        (result: Element[]) => {
+          element.scls = result;
+        });
 
       await element;
       await waitUntil(() => element.scls !== undefined);
@@ -89,24 +98,10 @@ describe('compas-versions-plugin', () => {
       element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
       element.docId = docId;
 
-      stub = sinon.stub(element, 'fetchData').callsFake(() => {
-        const response = `
-             <ListResponse xmlns="https://www.lfenergy.org/compas/SclDataService">
-                <Item>
-                    <Id>3b572a56-51cc-479b-97fd-e404ebf9ae67</Id>
-                    <Name>demo_station1</Name>
-                    <Version>1.0.0</Version>
-                </Item>
-                <Item>
-                    <Id>3b572a56-51cc-479b-97fd-e404ebf9ae67</Id>
-                    <Name>demo_station1</Name>
-                    <Version>2.0.0</Version>
-                </Item>
-             </ListResponse>`;
-        const parser = new DOMParser();
-        const document = parser.parseFromString(response, "text/xml");
-        element.scls = Array.from(document.querySelectorAll('*|Item') ?? [])
-      });
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, BASIC_VERSIONS_LIST_RESPONSE, VERSION_ENTRY_ELEMENT_NAME,
+        (result: Element[]) => {
+          element.scls = result;
+        });
 
       await element;
       await waitUntil(() => element.scls !== undefined);

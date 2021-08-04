@@ -103,8 +103,13 @@ function openScl(docName: string, docId: string, version: string) {
   return function () {
     const type = getTypeFromDocName(docName);
     CompasSclDataService().getSclDocumentVersion(type, docId, version)
-      .then(doc => {
-        updateDocumentInOpenSCD(doc);
+      .then(response => {
+        // Copy the SCL Result from the Response and create a new Document from it.
+        const sclElement = response.querySelectorAll("SCL").item(0);
+        const sclDocument = document.implementation.createDocument("", "", null);
+        sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+
+        updateDocumentInOpenSCD(sclDocument);
       });
 
     // Close the Restore Dialog.
