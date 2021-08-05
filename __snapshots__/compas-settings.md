@@ -19,6 +19,14 @@
   value="http://localhost:9091/compas-cim-mapping"
 >
 </mwc-textfield>
+<mwc-textfield
+  dialoginitialfocus=""
+  id="keycloakAuthUrl"
+  label="[compas.settings.keycloakAuthUrl]"
+  required=""
+  value="http://localhost:8089/auth/"
+>
+</mwc-textfield>
 <mwc-button style="--mdc-theme-primary: var(--mdc-theme-error)">
   [reset]
 </mwc-button>

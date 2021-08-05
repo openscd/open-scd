@@ -23,9 +23,26 @@
       aria-disabled="false"
       class="top"
       graphic="icon"
-      iconid="folder_open"
+      iconid="login"
       mwc-list-item=""
       tabindex="0"
+    >
+      <mwc-icon slot="graphic">
+        login
+      </mwc-icon>
+      <span>
+        Login
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
     >
       <mwc-icon slot="graphic">
         folder_open
@@ -404,6 +421,14 @@
 <div class="landing">
   <mwc-icon-button
     class="landing_icon"
+    icon="login"
+  >
+    <div class="landing_label">
+      Login
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
     icon="folder_open"
   >
     <div class="landing_label">
@@ -661,6 +686,22 @@
       role="separator"
     >
     </li>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/Login.js"
+    >
+      <mwc-icon slot="meta">
+        login
+      </mwc-icon>
+      Login
+    </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
       class="official"

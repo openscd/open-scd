@@ -29,6 +29,15 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Login',
+    src: '/src/menu/Login.js',
+    icon: 'login',
+    default: true,
+    kind: 'menu',
+    requireDoc: false,
+    position: 'top'
+  },
+  {
     name: 'Open project',
     src: '/src/menu/OpenProject.js',
     icon: 'folder_open',
