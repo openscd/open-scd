@@ -1,7 +1,8 @@
 import Keycloak from 'keycloak-js';
+import { CompasSettings } from '../../compas/CompasSettingsElement';
 
 const keycloakInstance = Keycloak({
-    url: 'http://localhost:8089/auth/',
+    url: CompasSettings().compasSettings.keycloakAuthUrl,
     realm: 'compas',
     clientId: 'openscd'
 });

@@ -370,6 +370,7 @@ export const de: Translations = {
       name: "CoMPAS Einstellungen",
       sclDataServiceUrl: "CoMPAS SCL Data Service URL",
       cimMappingServiceUrl: "CoMPAS CIM Mapping Service URL",
+      keycloakAuthUrl: "Keycloak Auth URL",
     }
   }
 };
