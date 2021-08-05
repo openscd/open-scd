@@ -1,7 +1,7 @@
 import {ChangeSet} from "./CompasChangeSet.js";
 import {CompasSettings} from "./CompasSettingsElement.js";
 
-export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService';
+export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1';
 
 export interface CreateRequestBody {
   sclName: string,
