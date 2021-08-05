@@ -53,9 +53,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
-export class OpenSCD extends Hosting(
-  Setting(Wizarding(Waiting(Plugging(Editing(Logging(LitElement))))))
-) {
+export class OpenSCD extends Hosting(Setting(Wizarding(Waiting(Plugging(Editing(Logging(LitElement))))))) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
   @property({ type: String })

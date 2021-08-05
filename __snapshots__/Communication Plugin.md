@@ -7,12 +7,12 @@
 ```html
 <h1>
   <span style="color: var(--base1)">
-    [communication.missing]
+    No subnetwork
   </span>
   <mwc-fab
     extended=""
     icon="add"
-    label="[subnetwork.wizard.title.add]"
+    label="Add subnetwork"
   >
   </mwc-fab>
 </h1>
