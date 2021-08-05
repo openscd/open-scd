@@ -2,7 +2,11 @@ import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon, {SinonStub} from 'sinon';
 
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
-import {BASIC_TYPE_LIST_RESPONSE, stubFetchResponseFunction} from "./CompasSclDataServiceResponses.js";
+import {
+  BASIC_TYPE_LIST_RESPONSE,
+  stubFetchResponseFunction,
+  TYPE_ENTRY_ELEMENT_NAME
+} from "./CompasSclDataServiceResponses.js";
 import {CompasScltypeRadiogroup} from "../../../src/compas/CompasScltypeRadiogroup.js";
 import "../../../src/compas/CompasScltypeRadiogroup.js";
 
@@ -16,7 +20,7 @@ describe('compas-scltype-radiogroup', () => {
     beforeEach(async () => {
       element = fixtureSync(html`<compas-scltype-radiogroup></compas-scltype-radiogroup>`);
 
-      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined,
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, TYPE_ENTRY_ELEMENT_NAME,
         () => {
           // Do nothing, so loading... will be displayed.
         });
@@ -38,7 +42,7 @@ describe('compas-scltype-radiogroup', () => {
     beforeEach(async () => {
       element = fixtureSync(html`<compas-scltype-radiogroup></compas-scltype-radiogroup>`);
 
-      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined,
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, TYPE_ENTRY_ELEMENT_NAME,
         (result: Element[]) => {
           element.sclTypes = result;
         });
@@ -62,7 +66,7 @@ describe('compas-scltype-radiogroup', () => {
     beforeEach(async () => {
       element = fixtureSync(html`<compas-scltype-radiogroup></compas-scltype-radiogroup>`);
 
-      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, BASIC_TYPE_LIST_RESPONSE,
+      stub = stubFetchResponseFunction(element, FETCH_FUNCTION, BASIC_TYPE_LIST_RESPONSE, TYPE_ENTRY_ELEMENT_NAME,
         (result: Element[]) => {
           element.sclTypes = result;
         });

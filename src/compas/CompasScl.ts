@@ -17,6 +17,10 @@ export class CompasScl extends LitElement {
   scls!: Element[];
 
   firstUpdated() {
+    this.fetchData();
+  }
+
+  fetchData() {
     CompasSclDataService().listScls(this.type)
       .then(xmlResponse => {
         this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])
@@ -28,8 +32,14 @@ export class CompasScl extends LitElement {
   }
 
   private async getSclDocument(id?: string): Promise<void> {
-    const doc = await CompasSclDataService().getSclDocument(this.type, id ?? '');
-    updateDocumentInOpenSCD(doc);
+    const response = await CompasSclDataService().getSclDocument(this.type, id ?? '');
+
+    // Copy the SCL Result from the Response and create a new Document from it.
+    const sclElement = response.querySelectorAll("SCL").item(0);
+    const sclDocument = document.implementation.createDocument("", "", null);
+    sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+
+    updateDocumentInOpenSCD(sclDocument);
   }
 
   render(): TemplateResult {

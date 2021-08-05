@@ -7,9 +7,11 @@ import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 
 export type CompasSettingsRecord = {
   sclDataServiceUrl: string;
+  cimMappingServiceUrl: string;
 };
 export const defaults: CompasSettingsRecord = {
-  sclDataServiceUrl: 'http://localhost:9090/compas-scl-data-service'
+  sclDataServiceUrl: 'http://localhost:9090/compas-scl-data-service',
+  cimMappingServiceUrl: 'http://localhost:9091/compas-cim-mapping'
 };
 
 export function CompasSettings() {
@@ -18,6 +20,7 @@ export function CompasSettings() {
     get compasSettings(): CompasSettingsRecord {
       return {
         sclDataServiceUrl: this.getCompasSetting('sclDataServiceUrl'),
+        cimMappingServiceUrl: this.getCompasSetting('cimMappingServiceUrl'),
       };
     },
 
@@ -45,8 +48,13 @@ export class CompasSettingsElement extends LitElement {
     return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="sclDataServiceUrl"]');
   }
 
+  getCimMappingServiceUrlField(): TextFieldBase {
+    return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="cimMappingServiceUrl"]');
+  }
+
   valid(): boolean {
-    return this.getSclDataServiceUrlField().checkValidity();
+    return this.getSclDataServiceUrlField().checkValidity()
+      && this.getCimMappingServiceUrlField().checkValidity();
   }
 
   save(): boolean {
@@ -56,6 +64,7 @@ export class CompasSettingsElement extends LitElement {
 
     // Update settings from TextField.
     CompasSettings().setCompasSetting('sclDataServiceUrl', this.getSclDataServiceUrlField().value);
+    CompasSettings().setCompasSetting('cimMappingServiceUrl', this.getCimMappingServiceUrlField().value);
     return true;
   }
 
@@ -77,6 +86,10 @@ export class CompasSettingsElement extends LitElement {
       <mwc-textfield dialogInitialFocus id="sclDataServiceUrl"
                      label="${translate('compas.settings.sclDataServiceUrl')}"
                      value="${this.compasSettings.sclDataServiceUrl}" required>
+      </mwc-textfield>
+      <mwc-textfield dialogInitialFocus id="cimMappingServiceUrl"
+                     label="${translate('compas.settings.cimMappingServiceUrl')}"
+                     value="${this.compasSettings.cimMappingServiceUrl}" required>
       </mwc-textfield>
 
       <mwc-button style="--mdc-theme-primary: var(--mdc-theme-error)"

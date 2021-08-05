@@ -365,7 +365,8 @@ export const en = {
     },
     settings: {
       name: "CoMPAS Settings",
-      sclDataServiceUrl: "CoMPAS SCL Data Service URL"
+      sclDataServiceUrl: "CoMPAS SCL Data Service URL",
+      cimMappingServiceUrl: "CoMPAS CIM Mapping Service URL",
     }
   }
 };
