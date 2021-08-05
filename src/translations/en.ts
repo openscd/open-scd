@@ -24,6 +24,14 @@ export const en = {
     lnClass: 'Logical node class',
     accessControl: 'Access control',
     transient: 'Transient data',
+    Val: 'Default value',
+    dchg: 'Triggre on data change',
+    qchg: 'Trigger on quality change',
+    dupd: 'Trigger on data update',
+    fixedOffs: 'Fixed offset',
+    securityEnabled: 'Security enabled',
+    DataSet: 'Dataset',
+    Communication: 'Communication',
   },
   settings: {
     title: 'Settings',
@@ -31,16 +39,29 @@ export const en = {
     languages: { de: 'German (Deutsch)', en: 'English' },
     dark: 'Dark theme',
     mode: 'Pro mode',
+    showieds: 'Show IEDs in substation editor',
   },
   menu: {
     title: 'Menu',
     viewLog: 'View log',
+  },
+  wizard: {
+    title: {
+      select: 'Select {{tagName}}',
+      edit: 'Edit {{tagName}}',
+      add: 'Add {{tagName}}',
+    },
   },
   openSCD: {
     loading: 'Loading project {{ name }}',
     loaded: '{{ name }} loaded',
     readError: 'Error reading {{ name }}',
     readAbort: 'Aborted reading {{ name }}',
+  },
+  zeroline: {
+    iedsloading: 'Loading IEDs...',
+    commmap: 'Communication mapping',
+    gsecontrol: 'Show all GOOSEs',
   },
   editing: {
     created: 'Added {{ name }}',
@@ -90,12 +111,22 @@ export const en = {
       srcHelper: 'The vendor supplied extension URL',
     },
   },
-  validate: {
-    title: 'Validate project',
-    valid: '{{ name }} validation successful',
-    invalid: '{{ name }} validation failed',
-    fatal: 'Fatal validation error',
-    loadError: 'Could not load schema {{ name }}',
+  validator: {
+    schema: {
+      title: 'Validate project',
+      valid: '{{ name }} validation successful',
+      invalid: '{{ name }} validation failed',
+      fatal: 'Fatal validation error',
+      loadError: 'Could not load schema {{ name }}',
+    },
+    templates: {
+      title: 'Validate templates',
+      mandatoryChild:
+        '{{ tag }} {{ id }} is missing mandatory child {{ childTag }} {{ childId }}',
+      missingCoDO: 'Control service related DA of type {{ type }} is missing',
+      missingCtlModelDef:
+        'Missing ctlModel definition. Cannot validate {{ childTag }} {{ childId }} within {{ tag }} {{ id }}',
+    },
   },
   substation: {
     name: 'Substation',
@@ -225,8 +256,11 @@ export const en = {
       title: {
         add: 'Add LNodeType',
         edit: 'Edit LNodeType',
+        select: 'Select Data Objects',
       },
     },
+    autoimport: 'Use LN class from OpenSCD template',
+    missinglnclass: 'Missing pre-defined LN class',
   },
   lnode: {
     wizard: {
@@ -293,15 +327,20 @@ export const en = {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',
     },
   },
+  gse: {
+    action: {
+      addaddress: 'Edit GSE ({{identity}})',
+    },
+  },
   subscriber: {
     title: 'Subscriber update',
     description: 'Subscriber update: ',
     nonewitems: 'no new IEDName elements to add',
     message: '{{updatenumber}} IEDName elements added to the project',
   },
-  commMap: {
+  commmap: {
     title: 'Communication mapping',
-    connectCB: 'Connect {{CbType}}',
+    connectCB: 'Connect {{cbType}}',
     connectToIED: 'Connect to {{iedName}}',
     sourceIED: 'Source IED',
     sinkIED: 'Sink IED',
@@ -331,6 +370,7 @@ export const en = {
   duplicate: 'Clone',
   connect: 'Connect',
   disconnect: 'Disconnect',
+  next: 'Next',
 
   compas: {
     loading: "Loading...",

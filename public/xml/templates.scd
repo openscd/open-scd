@@ -30,6 +30,7 @@
       <DO name="Pos" type="OpenSCD_DPCstatusOnly"/>
       <DO name="BlkOpn" type="OpenSCD_SPCstatusOnly"/>
       <DO name="BlkCls" type="OpenSCD_SPCstatusOnly"/>
+      <DO name="SwTyp" type="OpenSCD_ENSSwTyp"/>
     </LNodeType>
     <LNodeType lnClass="XCBR" id="OpenSCD_XCBR">
       <DO name="Mod" type="OpenSCD_ENCMod"/>
@@ -101,7 +102,7 @@
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
     </DOType>
-    <DOType cdc="ENS" id="OpenSCD_ENCMod">
+    <DOType cdc="ENC" id="OpenSCD_ENCMod">
       <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
@@ -123,6 +124,11 @@
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="HealthKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
+    </DOType>
+    <DOType cdc="ENS" id="OpenSCD_ENSSwTyp">
+      <DA fc="ST" dchg="true" name="stVal" bType="Enum" type="SwitchFunctionKind"/>
+      <DA fc="ST" qchg="true" name="q" bType="Quality"/>
+      <DA fc="ST" name="t" bType="Timestamp"/>
     </DOType>
     <DOType cdc="ACT" id="OpenSCD_ACTgeneral">
       <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>

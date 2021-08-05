@@ -94,29 +94,4 @@ describe('open-scd', () => {
     expect(element.src).to.be.a('string').and.equal(emptyBlobURL);
     expect(async () => await fetch(emptyBlobURL)).to.throw;
   });
-
-  /* it('generates error messages for invalid SCL file', async () => {
-    const invalidBlobURL = URL.createObjectURL(
-      new Blob([invalidSCL], {
-        type: 'application/xml',
-      })
-    );
-    element.setAttribute('src', invalidBlobURL);
-    await element.workDone;
-    await element.validated;
-
-    expect(element).property('history').to.have.length(4);
-    expect(element.doc?.querySelector('Bay[name="COUPLING_BAY"]')).to.exist;
-  }).timeout(10000);
-
-  it('generates no error messages for valid SCL file', async () => {
-    const validBlobURL = URL.createObjectURL(
-      new Blob([validSCL], {
-        type: 'application/xml',
-      })
-    );
-    element.setAttribute('src', validBlobURL);
-    await element.workDone;
-    await element.validated;
-  }); */
 }).timeout(4000);

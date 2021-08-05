@@ -132,15 +132,6 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
-    name: 'Communication Mapping',
-    src: '/src/menu/CommunicationMapping.js',
-    icon: 'sync_alt',
-    default: true,
-    kind: 'menu',
-    requireDoc: true,
-    position: 'middle'
-  },
-  {
     name: 'CoMPAS Settings',
     src: '/src/menu/CompasSettings.js',
     icon: 'settings',

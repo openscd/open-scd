@@ -13,11 +13,13 @@ export type Settings = {
   language: Language;
   theme: 'light' | 'dark';
   mode: 'safe' | 'pro';
+  showieds: 'on' | 'off';
 };
 export const defaults: Settings = {
   language: 'en',
   theme: 'light',
   mode: 'safe',
+  showieds: 'off',
 };
 
 /** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
@@ -33,6 +35,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         language: this.getSetting('language'),
         theme: this.getSetting('theme'),
         mode: this.getSetting('mode'),
+        showieds: this.getSetting('showieds'),
       };
     }
 
@@ -44,6 +47,8 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     darkThemeUI!: Switch;
     @query('#mode')
     modeUI!: Switch;
+    @query('#showieds')
+    showiedsUI!: Switch;
 
     private getSetting<T extends keyof Settings>(setting: T): Settings[T] {
       return (
@@ -69,6 +74,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         this.setSetting('language', <Language>this.languageUI.value);
         this.setSetting('theme', this.darkThemeUI.checked ? 'dark' : 'light');
         this.setSetting('mode', this.modeUI.checked ? 'pro' : 'safe');
+        this.setSetting('showieds', this.showiedsUI.checked ? 'on' : 'off');
         this.requestUpdate('settings');
       }
     }
@@ -119,6 +125,12 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
               <mwc-switch
                 id="mode"
                 ?checked=${this.settings.mode === 'pro'}
+              ></mwc-switch>
+            </mwc-formfield>
+            <mwc-formfield label="${translate('settings.showieds')}">
+              <mwc-switch
+                id="showieds"
+                ?checked=${this.settings.showieds === 'on'}
               ></mwc-switch>
             </mwc-formfield>
           </form>

@@ -119,7 +119,7 @@ function eNumValWizard(options: WizardOptions): Wizard {
                 old: {
                   parent: enumval.parentElement!,
                   element: enumval,
-                  reference: enumval.nextElementSibling,
+                  reference: enumval.nextSibling,
                 },
               })
             );
@@ -278,7 +278,7 @@ export function eNumTypeEditWizard(
         html`<mwc-button
           icon="delete"
           trailingIcon
-          label="${translate('delete')}"
+          label="${translate('remove')}"
           @click=${(e: MouseEvent) => {
             e.target!.dispatchEvent(newWizardEvent());
             e.target!.dispatchEvent(
@@ -286,7 +286,7 @@ export function eNumTypeEditWizard(
                 old: {
                   parent: enumtype.parentElement!,
                   element: enumtype,
-                  reference: enumtype.nextElementSibling,
+                  reference: enumtype.nextSibling,
                 },
               })
             );

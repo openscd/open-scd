@@ -1383,7 +1383,7 @@
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="Delete"
+      label="Remove"
       trailingicon=""
     >
     </mwc-button>

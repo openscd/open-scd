@@ -41,7 +41,7 @@ export const pluginIcons: Record<PluginKind | MenuPosition, string> = {
   bottom: 'play_circle',
 };
 
-function storeDefaultPlugins(): void {
+function resetPlugins(): void {
   localStorage.setItem(
     'plugins',
     JSON.stringify(
@@ -63,6 +63,7 @@ const menuOrder: (PluginKind | MenuPosition)[] = [
   'middle',
   'bottom',
 ];
+
 function menuCompare(a: Plugin, b: Plugin): -1 | 0 | 1 {
   if (a.kind === b.kind && a.position === b.position) return 0;
   const earlier = menuOrder.find(kind =>
@@ -113,22 +114,24 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     private get plugins(): Plugin[] {
       return this.storedPlugins
         .map(plugin => {
-          if (!plugin.official) return this.addContent(plugin);
+          if (!plugin.official) return plugin;
           const officialPlugin = officialPlugins.find(
             needle => needle.src === plugin.src
           );
-          return this.addContent(<Omit<Plugin, 'content'>>{
+          return <Plugin>{
             ...officialPlugin,
             ...plugin,
-          });
+          };
         })
         .sort(compareNeedsDoc)
         .sort(menuCompare);
     }
 
-    private get storedPlugins(): Omit<Plugin, 'content'>[] {
-      return <Omit<Plugin, 'content'>[]>(
-        JSON.parse(localStorage.getItem('plugins') ?? '[]')
+    private get storedPlugins(): Plugin[] {
+      return <Plugin[]>(
+        JSON.parse(localStorage.getItem('plugins') ?? '[]', (key, value) =>
+          value.src ? this.addContent(value) : value
+        )
       );
     }
 
@@ -147,10 +150,35 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       this.requestUpdate();
     }
 
+    private updatePlugins() {
+      const stored: (
+        | Plugin
+        | { src: string; installed: boolean; official: true }
+      )[] = this.storedPlugins;
+      const officialStored = stored.filter(p => p.official);
+      const newOfficial = officialPlugins
+        .filter(p => !officialStored.find(o => o.src === p.src))
+        .map(plugin => {
+          return {
+            src: plugin.src,
+            installed: plugin.default ?? false,
+            official: true as const,
+          };
+        });
+      const oldOfficial = officialStored.filter(
+        p => !officialPlugins.find(o => p.src === o.src)
+      );
+      const newPlugins = stored.filter(
+        p => !oldOfficial.find(o => p.src === o.src)
+      );
+      newOfficial.map(p => newPlugins.push(p));
+      localStorage.setItem('plugins', JSON.stringify(newPlugins));
+    }
+
     private addExternalPlugin(plugin: Omit<Plugin, 'content'>): void {
       if (this.storedPlugins.some(p => p.src === plugin.src)) return;
 
-      const newPlugins = this.storedPlugins;
+      const newPlugins: Omit<Plugin, 'content'>[] = this.storedPlugins;
       newPlugins.push(plugin);
       localStorage.setItem('plugins', JSON.stringify(newPlugins));
     }
@@ -218,8 +246,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
     constructor(...args: any[]) {
       super(...args);
 
-      if (localStorage.getItem('officialPlugins') === null)
-        storeDefaultPlugins();
+      this.updatePlugins();
       this.requestUpdate();
     }
 
@@ -403,7 +430,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             icon="refresh"
             label="${translate('reset')}"
             @click=${async () => {
-              storeDefaultPlugins();
+              resetPlugins();
               this.requestUpdate();
             }}
             style="--mdc-theme-primary: var(--mdc-theme-error)"

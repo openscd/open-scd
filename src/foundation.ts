@@ -3,10 +3,11 @@ import { directive, Part } from 'lit-html';
 
 import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
+import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
-import { TextField } from '@material/mwc-textfield'
 
 import { WizardTextField } from './wizard-textfield.js';
+import { WizardSelect } from './wizard-select.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
@@ -18,20 +19,20 @@ export type ComplexAction = {
 export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference: Element | null };
+  new: { parent: Element; element: Element; reference: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference: Element | null };
+  old: { parent: Element; element: Element; reference: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Reparents of `old.element` to `new.parent` before `new.reference`. */
 export interface Move {
-  old: { parent: Element; element: Element; reference: Element | null };
-  new: { parent: Element; reference: Element | null };
+  old: { parent: Element; element: Element; reference: Node | null };
+  new: { parent: Element; reference: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
@@ -135,13 +136,15 @@ export function newActionEvent<T extends EditorAction>(
   });
 }
 
-export const wizardInputSelector = 'wizard-textfield, ace-editor, mwc-textfield, mwc-select';
+export const wizardInputSelector =
+  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select';
 export type WizardInput =
   | WizardTextField
+  | TextField
   | (AceEditor & { checkValidity: () => boolean; label: string })
   // TODO(c-dinkel): extend component
-  | TextField
-  | Select;
+  | Select
+  | WizardSelect;
 
 export type WizardAction = EditorAction | (() => Wizard);
 
@@ -174,7 +177,8 @@ export function reportValidity(input: WizardInput): boolean {
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInput): string | null {
-  if (input instanceof WizardTextField) return input.maybeValue;
+  if (input instanceof WizardTextField || input instanceof WizardSelect)
+    return input.maybeValue;
   else return input.value ?? null;
 }
 
@@ -224,7 +228,7 @@ export function newWizardEvent(
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
 
-export type LogEntryType = 'info' | 'warning' | 'error' | 'action';
+export type LogEntryType = 'info' | 'warning' | 'error' | 'action' | 'reset';
 
 /** The basic information contained in each [[`LogEntry`]]. */
 interface LogDetailBase {
@@ -242,7 +246,11 @@ export interface InfoDetail extends LogDetailBase {
   cause?: LogEntry;
 }
 
-export type LogDetail = InfoDetail | CommitDetail;
+export interface ResetDetail {
+  kind: 'reset';
+}
+
+export type LogDetail = InfoDetail | CommitDetail | ResetDetail;
 export type LogEvent = CustomEvent<LogDetail>;
 export function newLogEvent(
   detail: LogDetail,
@@ -2493,6 +2501,15 @@ export function getVersion(element: Element): string {
   ).filter(item => !item.closest('Private'));
 
   return header[0].getAttribute('version') ?? '2003';
+}
+
+export function getChildElementsByTagName(
+  element: Element,
+  tag: string
+): Element[] {
+  return Array.from(element.children).filter(
+    element => element.tagName === tag
+  );
 }
 
 declare global {

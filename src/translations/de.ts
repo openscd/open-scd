@@ -26,6 +26,14 @@ export const de: Translations = {
     lnClass: 'Klasse logischer Knoten',
     accessControl: 'Zugriffskontrolle',
     transient: 'Datenpunkt transient',
+    Val: 'Standardwert',
+    dchg: 'Detenänderung ist Auslöser',
+    qchg: 'Qualitätsanderung ist Auslöser',
+    dupd: 'Datenupdate ist Auslöser',
+    fixedOffs: 'Fester Offset',
+    securityEnabled: 'Aktive Sicherungsmaßnahmen',
+    DataSet: 'Datensetz',
+    Communication: 'Kommunikation',
   },
   settings: {
     title: 'Einstellungen',
@@ -33,16 +41,29 @@ export const de: Translations = {
     languages: { de: 'Deutsch', en: 'Englisch (English)' },
     dark: 'Dunkles Design',
     mode: 'Profimodus',
+    showieds: 'Zeige IEDs im Substation-Editor',
   },
   menu: {
     title: 'Menü',
     viewLog: 'Protokoll anzeigen',
+  },
+  wizard: {
+    title: {
+      select: '{{tagName}} auswählen',
+      edit: '{{tagName}} bearbeiten',
+      add: '{{tagName}} hinzufügen',
+    },
   },
   openSCD: {
     loading: 'Lade Projekt {{ name }}',
     loaded: '{{ name }} geladen',
     readError: '{{ name }} Lesefehler',
     readAbort: '{{ name }} Leseabbruch',
+  },
+  zeroline: {
+    iedsloading: 'IEDs werden geladen...',
+    commmap: 'Kommunikationszuordnung',
+    gsecontrol: 'GOOSEs anzeigen',
   },
   editing: {
     created: '{{ name }} hinzugefügt',
@@ -59,12 +80,22 @@ export const de: Translations = {
         '{{ parent }} enthält bereits ein {{ child }} Kind namens "{{ name }}"',
     },
   },
-  validate: {
-    title: 'Projekt validieren',
-    valid: '{{ name }} erfolgreich validiert',
-    invalid: '{{ name }} Validierung fehlgeschlagen',
-    fatal: 'Fataler Validierungsfehler',
-    loadError: 'Konnte Schema {{ name }} nicht laden',
+  validator: {
+    schema: {
+      title: 'Projekt validieren',
+      valid: '{{ name }} erfolgreich validiert',
+      invalid: '{{ name }} Validierung fehlgeschlagen',
+      fatal: 'Fataler Validierungsfehler',
+      loadError: 'Konnte Schema {{ name }} nicht laden',
+    },
+    templates: {
+      title: 'Templates validieren',
+      mandatoryChild:
+        '{{ tag }} {{ id }} fehlt ein obligatorisches {{ childTag }}-Kind {{ childId }}',
+      missingCoDO: 'Control-Dienst Datenattribut vom Typ {{ type }} fehlt',
+      missingCtlModelDef:
+        'CtlModel Definition fehlt. Kann {{ childTag }} {{ childId }} in {{ tag }} {{ id }} nicht validieren.',
+    },
   },
   textfield: {
     required: 'Pflichtfeld',
@@ -228,8 +259,11 @@ export const de: Translations = {
       title: {
         add: 'LNodeType hinzufügen',
         edit: 'LNodeType bearbeiten',
+        select: 'Data Objects auswählen',
       },
     },
+    autoimport: 'Vordefinierte OpenSCD LN Klasse verwenden',
+    missinglnclass: 'Vordefinierte LN Klasse fehlt',
   },
   lnode: {
     wizard: {
@@ -296,15 +330,20 @@ export const de: Translations = {
       addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
     },
   },
+  gse: {
+    action: {
+      addaddress: 'GSE bearbeitet ({{identity}})',
+    },
+  },
   subscriber: {
     title: 'Subscriber Update',
     description: 'GOOSE Ziele aktualisieren: ',
     nonewitems: 'keine neuen IEDName Elemente notwendig',
     message: '{{updatenumber}} IEDName Element(e) hinzugefügt',
   },
-  commMap: {
+  commmap: {
     title: 'Kommunikationszuordnung',
-    connectCB: '{{CbType}} verbinden',
+    connectCB: '{{cbType}} verbinden',
     connectToIED: 'Verbinden mit {{iedName}}',
     sourceIED: 'Quellgerät',
     sinkIED: 'Zielgerät',
@@ -334,6 +373,7 @@ export const de: Translations = {
   duplicate: 'Klonen',
   connect: 'Verbinden',
   disconnect: 'Trennen',
+  next: 'Weiter',
 
   compas: {
     loading: "???",

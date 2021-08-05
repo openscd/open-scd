@@ -290,24 +290,6 @@
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      class="middle"
-      disabled=""
-      graphic="icon"
-      iconid="sync_alt"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        sync_alt
-      </mwc-icon>
-      <span>
-        Communication Mapping
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -883,22 +865,6 @@
       </mwc-icon>
       Update Substation
     </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="/src/menu/CommunicationMapping.js"
-    >
-      <mwc-icon slot="meta">
-        sync_alt
-      </mwc-icon>
-      Communication Mapping
-    </mwc-check-list-item>
     <li
       divider=""
       inset=""
@@ -1140,6 +1106,10 @@
     </mwc-formfield>
     <mwc-formfield label="Pro mode">
       <mwc-switch id="mode">
+      </mwc-switch>
+    </mwc-formfield>
+    <mwc-formfield label="Show IEDs in substation editor">
+      <mwc-switch id="showieds">
       </mwc-switch>
     </mwc-formfield>
   </form>

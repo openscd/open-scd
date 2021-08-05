@@ -7,6 +7,7 @@ import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Switch } from '@material/mwc-switch';
 
 describe('LNodeType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -35,7 +36,7 @@ describe('LNodeType wizards', () => {
     );
   });
 
-  describe('defines a lNodeTypeWizard', () => {
+  describe('defines a lNodeTypeHelperWizard', () => {
     let idField: WizardTextField;
     let primayAction: HTMLElement;
     let deleteButton: HTMLElement;
@@ -93,6 +94,7 @@ describe('LNodeType wizards', () => {
 
   describe('defines a createLNodeTypeWizard', () => {
     let selector: Select;
+    let autoimport: Switch;
     let idField: WizardTextField;
     let primayAction: HTMLElement;
     beforeEach(async () => {
@@ -104,12 +106,14 @@ describe('LNodeType wizards', () => {
       button.click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-      selector = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="values"]')
-      );
-      idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
-      );
+      selector = parent.wizardUI.dialog!.querySelector<Select>(
+        'mwc-select[label="lnClass"]'
+      )!;
+      autoimport =
+        parent.wizardUI.dialog!.querySelector<Switch>('#autoimport')!;
+      idField = parent.wizardUI.dialog!.querySelector<WizardTextField>(
+        'wizard-textfield[label="id"]'
+      )!;
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
@@ -120,23 +124,18 @@ describe('LNodeType wizards', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('allows to add empty LNodeTypes to the project', async () => {
+    it('only imports predefined LNodeType with autoimport', async () => {
       expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.not
         .exist;
+      selector.value = 'CSWI';
+      await parent.requestUpdate();
       idField.maybeValue = 'myGeneralLNodeType';
+      autoimport.checked = false;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.exist;
-    });
-    it('respects the sequence defined in the standard', async () => {
-      idField.maybeValue = 'myGeneralLNodeType';
-      await parent.requestUpdate();
-      primayAction.click();
-      await parent.updateComplete;
-      const element = doc.querySelector('LNodeType[id="myGeneralLNodeType"]');
-      expect(element?.nextElementSibling?.tagName).to.equal('LNodeType');
-      expect(element?.previousElementSibling).to.be.null;
+      expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.not
+        .exist;
     });
     it('recursevly add missing! subsequent DOType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
@@ -146,8 +145,11 @@ describe('LNodeType wizards', () => {
       expect(doc.querySelector('DOType[id="OpenSCD_LPLnoLD"]')).to.not.exist;
       expect(doc.querySelector('DOType[id="OpenSCD_SPSsimple"]')).to.not.exist;
       expect(doc.querySelector('DOType[id="OpenSCD_DPC"]')).to.not.exist;
-      selector.value = 'OpenSCD_CSWI';
+      await new Promise(resolve => setTimeout(resolve, 100)); //recursive call takes time
+      selector.value = 'CSWI';
+      await parent.requestUpdate(); // selector updates autoimport
       idField.maybeValue = 'myCSWI';
+      autoimport.checked = true;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
@@ -178,8 +180,10 @@ describe('LNodeType wizards', () => {
       expect(doc.querySelector('DAType[id="OpenSCD_Cancel"]')).to.not.exist;
       expect(doc.querySelector('DAType[id="OpenSCD_PulseConfig"]')).to.not
         .exist;
-      selector.value = 'OpenSCD_CSWI';
+      selector.value = 'CSWI';
+      await parent.requestUpdate(); // selector updates autoimport
       idField.maybeValue = 'myCSWI';
+      autoimport.checked = true;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
@@ -206,8 +210,10 @@ describe('LNodeType wizards', () => {
       expect(doc.querySelector('EnumType[id="CtlModelKind"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="HealthKind"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="OutputSignalKind"]')).to.not.exist;
-      selector.value = 'OpenSCD_CSWI';
+      selector.value = 'CSWI';
+      await parent.requestUpdate(); // selector updates autoimport
       idField.maybeValue = 'myCSWI';
+      autoimport.checked = true;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
@@ -228,6 +234,129 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('EnumType[id="OutputSignalKind"]').length
       ).to.equal(1);
     }).timeout(5000);
+    it('respects the sequence defined in the standard', async () => {
+      selector.value = 'CSWI';
+      await parent.requestUpdate(); // selector updates autoimport
+      idField.maybeValue = 'myGeneralLNodeType';
+      autoimport.checked = true;
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.updateComplete;
+      const element = doc.querySelector('LNodeType[id="myGeneralLNodeType"]');
+      expect(element?.nextElementSibling?.tagName).to.equal('LNodeType');
+      expect(element?.previousElementSibling).to.be.null;
+    }).timeout(5000);
+
+    describe('opens a createLNodeTypeHelperWizard', () => {
+      let saveButton: HTMLElement;
+      let beh: Select;
+      let enaOpn: Select;
+      let enaCls: Select;
+      let ens: Element;
+      let sps: Element;
+      let ensId: string;
+      let spsId: string;
+
+      beforeEach(async () => {
+        selector.value = 'CILO';
+        idField.maybeValue = 'myGeneralLNodeType';
+        await parent.updateComplete;
+        autoimport.checked = false;
+
+        (<HTMLElement>(
+          parent.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        )).click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        saveButton = parent.wizardUI.shadowRoot!.querySelector<HTMLElement>(
+          'mwc-button[slot="primaryAction"]'
+        )!;
+
+        beh = parent.wizardUI.shadowRoot!.querySelector<Select>(
+          'mwc-select:nth-child(2)'
+        )!;
+        enaOpn = parent.wizardUI.shadowRoot!.querySelector<Select>(
+          'mwc-select:nth-child(21)'
+        )!;
+        enaCls = parent.wizardUI.shadowRoot!.querySelector<Select>(
+          'mwc-select:nth-child(22)'
+        )!;
+
+        ens = doc.querySelector('DOType[cdc="ENS"]')!;
+        sps = doc.querySelector('DOType[cdc="SPS"]')!;
+        ensId = ens?.getAttribute('id') ?? '';
+        spsId = sps?.getAttribute('id') ?? '';
+      });
+
+      it('looks like the latest snapshot', () => {
+        expect(parent.wizardUI.dialog).to.equalSnapshot();
+      });
+
+      it('filters the type selection for each DO to fit the cdc', () => {
+        expect(beh.querySelectorAll('mwc-list-item').length).to.equal(
+          doc.querySelectorAll('DOType[cdc="ENS"]').length
+        );
+      });
+
+      it('requires all mandatory DOs to be defined', async () => {
+        beh.value = ensId;
+        await parent.updateComplete;
+        saveButton.click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(parent.wizardUI.dialog).to.exist;
+        expect(
+          doc.querySelector(
+            'LNodeType[id="myGeneralLNodeType"][lnClass="CILO"]'
+          )
+        ).to.not.exist;
+      });
+      it('adds new lnodetype with corrrect id and lnClass', async () => {
+        beh.value = ensId;
+        enaOpn.value = spsId;
+        enaCls.value = spsId;
+        await parent.updateComplete;
+        saveButton.click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(parent.wizardUI.dialog).to.not.exist;
+        expect(
+          doc.querySelector(
+            'LNodeType[id="myGeneralLNodeType"][lnClass="CILO"]'
+          )
+        ).to.exist;
+      });
+      it('adds selected DOs to new lnodetype', async () => {
+        beh.value = ensId;
+        enaOpn.value = spsId;
+        enaCls.value = spsId;
+        await parent.updateComplete;
+        saveButton.click();
+        await parent.updateComplete;
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        expect(
+          doc.querySelector(
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="Beh"][bType="Struct"][type="${ensId}"]`
+          )
+        ).to.exist;
+        expect(
+          doc.querySelector(
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaOpn"][bType="Struct"][type="${spsId}"]`
+          )
+        ).to.exist;
+        expect(
+          doc.querySelector(
+            `LNodeType[id="myGeneralLNodeType"][lnClass="CILO"] > DO[name="EnaCls"][bType="Struct"][type="${spsId}"]`
+          )
+        ).to.exist;
+      });
+    });
   });
 
   describe('defines a dOWizard to edit an existing DO', () => {

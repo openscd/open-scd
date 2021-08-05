@@ -32,6 +32,10 @@ import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
 
 import './filtered-list.js';
+import './wizard-dialog.js';
+import './wizard-textfield.js';
+import './wizard-select.js';
+import './finder-pane.js';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
 import { getTheme } from './themes.js';
@@ -84,12 +88,16 @@ export class OpenSCD extends Hosting(Setting(Wizarding(Waiting(Plugging(Editing(
     if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
     if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
     if (ctrlAnd('o'))
-      this.menuUI.querySelector<ListItem>('mwc-list-item.loader')?.click();
-    if (ctrlAnd('s'))
-      this.menuUI.querySelector<ListItem>('mwc-list-item.saver')?.click();
-    if (ctrlAnd('S'))
       this.menuUI
-        .querySelector<ListItem>('mwc-list-item.saver + mwc-list-item.saver')
+        .querySelector<ListItem>('mwc-list-item[iconid="folder_open"]')
+        ?.click();
+    if (ctrlAnd('O'))
+      this.menuUI
+        .querySelector<ListItem>('mwc-list-item[iconid="create_new_folder"]')
+        ?.click();
+    if (ctrlAnd('s'))
+      this.menuUI
+        .querySelector<ListItem>('mwc-list-item[iconid="save"]')
         ?.click();
     if (ctrlAnd('P')) this.pluginUI.show();
 
