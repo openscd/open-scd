@@ -31,7 +31,7 @@ export const BASIC_ITEM_LIST_RESPONSE = `
 
 export const VERSION_ENTRY_ELEMENT_NAME = 'Item';
 export const BASIC_VERSIONS_LIST_RESPONSE = `
-             <ListResponse xmlns="https://www.lfenergy.org/compas/SclDataService">
+             <ListResponse xmlns="${SDS_NAMESPACE}">
                 <Item>
                   <Id>3b572a56-51cc-479b-97fd-e404ebf9ae67</Id>
                   <Name>demo_station1</Name>

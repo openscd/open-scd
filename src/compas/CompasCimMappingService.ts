@@ -1,6 +1,6 @@
 import {CompasSettings} from "./CompasSettingsElement.js";
 
-export const CMS_NAMESPACE = 'https://www.lfenergy.org/compas/CimMappingService';
+export const CMS_NAMESPACE = 'https://www.lfenergy.org/compas/CimMappingService/v1';
 
 export interface CimData {
   name: string,
