@@ -196,6 +196,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             .doc=${this.doc}
             .docName=${this.docName}
             .docId=${this.docId}
+            .pluginId=${plugin.src}
           ></${loadedPlugins.get(plugin.src)}>`;
         },
       };
