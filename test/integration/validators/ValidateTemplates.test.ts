@@ -31,12 +31,17 @@ describe('ValidateTemplates plugin', () => {
       />
     `);
     element = <ValidateTemplates>parent.querySelector('validate-templates')!;
-  });
+    element.pluginId = 'validatetemplates';
 
-  it('generates error messages in the log', async () => {
-    await element.validate();
+    await element.validate('', 1);
     await parent.workDone;
-
-    expect(parent.history.length).to.equal(21);
+  });
+  it('generates issues in the diagnistics pane', async () => {
+    const issues = parent.diagnose.get('validatetemplates');
+    expect(issues?.length).to.equal(20);
   }).timeout(1000);
+  it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
+    await parent.requestUpdate();
+    expect(parent.diagnosticUI).to.equalSnapshot();
+  });
 });
