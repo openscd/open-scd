@@ -32,6 +32,13 @@ export const en = {
     securityEnabled: 'Security enabled',
     DataSet: 'Dataset',
     Communication: 'Communication',
+    buffered: 'Is report control block buffered?',
+    indexed: 'Index report control block instances?',
+    maxReport: 'Maximum client connections',
+    bufTime: 'Minimum time between two reports',
+    intgPd: 'Time delta between periodic reports',
+    OptFields: 'Optional fields',
+    TrgOps: 'Trigger options',
   },
   settings: {
     title: 'Settings',

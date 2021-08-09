@@ -34,6 +34,13 @@ export const de: Translations = {
     securityEnabled: 'Aktive Sicherungsmaßnahmen',
     DataSet: 'Datensetz',
     Communication: 'Kommunikation',
+    buffered: 'Report vom Typ "buffered"?',
+    indexed: 'Sollen Instancen indiziert werden?',
+    maxReport: 'Maximale verbindbare "Clients"',
+    bufTime: 'Zeit zwischen zwei Reports',
+    intgPd: 'Zeit zwischen zwei periodischen Reports',
+    OptFields: 'Optionalle Einstellungen',
+    TrgOps: 'Triggeroptionen',
   },
   settings: {
     title: 'Einstellungen',
