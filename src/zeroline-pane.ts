@@ -20,7 +20,8 @@ import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { IconButton } from '@material/mwc-icon-button';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
-import { gooseIcon } from './icons.js';
+import { gooseIcon, reportIcon } from './icons.js';
+import { selectReportControlWizard } from './wizards/reportcontrol.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -45,6 +46,7 @@ export class ZerolinePane extends LitElement {
   @query('#commmap') commmap!: IconButton;
   @query('#showieds') showieds!: IconButtonToggle;
   @query('#gsecontrol') gsecontrol!: IconButton;
+  @query('#reportcontrol') reportcontrol!: IconButton;
   @query('#createsubstation') createsubstation!: IconButton;
 
   openCommunicationMapping(): void {
@@ -60,6 +62,11 @@ export class ZerolinePane extends LitElement {
 
   openGseControlSelection(): void {
     const wizard = selectGseControlWizard(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  openReportControlSelection(): void {
+    const wizard = selectReportControlWizard(this.doc.documentElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -115,6 +122,13 @@ export class ZerolinePane extends LitElement {
               id="gsecontrol"
               @click="${() => this.openGseControlSelection()}"
               >${gooseIcon}</mwc-icon-button
+            ></abbr
+          >
+          <abbr title="${translate('zeroline.report')}"
+            ><mwc-icon-button
+              id="reportcontrol"
+              @click="${() => this.openReportControlSelection()}"
+              >${reportIcon}</mwc-icon-button
             ></abbr
           >
         </nav>

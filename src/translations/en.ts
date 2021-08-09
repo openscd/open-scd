@@ -70,6 +70,7 @@ export const en = {
     iedsloading: 'Loading IEDs...',
     commmap: 'Communication mapping',
     gsecontrol: 'Show all GOOSEs',
+    reportcontrol: 'Show all Reports',
   },
   editing: {
     created: 'Added {{ name }}',

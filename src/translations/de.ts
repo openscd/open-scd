@@ -72,6 +72,7 @@ export const de: Translations = {
     iedsloading: 'IEDs werden geladen...',
     commmap: 'Kommunikationszuordnung',
     gsecontrol: 'GOOSEs anzeigen',
+    reportcontrol: 'Reports zeigen',
   },
   editing: {
     created: '{{ name }} hinzugefügt',

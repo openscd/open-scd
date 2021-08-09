@@ -33,6 +33,10 @@
       <mwc-icon-button id="gsecontrol">
       </mwc-icon-button>
     </abbr>
+    <abbr title="[zeroline.report]">
+      <mwc-icon-button id="reportcontrol">
+      </mwc-icon-button>
+    </abbr>
   </nav>
 </h1>
 <section tabindex="0">
@@ -77,6 +81,10 @@
       <mwc-icon-button id="gsecontrol">
       </mwc-icon-button>
     </abbr>
+    <abbr title="[zeroline.report]">
+      <mwc-icon-button id="reportcontrol">
+      </mwc-icon-button>
+    </abbr>
   </nav>
 </h1>
 <section tabindex="0">
@@ -119,6 +127,10 @@
     </abbr>
     <abbr title="[zeroline.gsecontrol]">
       <mwc-icon-button id="gsecontrol">
+      </mwc-icon-button>
+    </abbr>
+    <abbr title="[zeroline.report]">
+      <mwc-icon-button id="reportcontrol">
       </mwc-icon-button>
     </abbr>
   </nav>
