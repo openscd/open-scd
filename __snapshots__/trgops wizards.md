@@ -126,10 +126,17 @@
     </wizard-select>
   </div>
   <mwc-button
-    dialogaction="close"
-    label="[cancel]"
+    icon=""
+    label="[back]"
     slot="secondaryAction"
-    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
   >
   </mwc-button>
 </mwc-dialog>

@@ -8,10 +8,6 @@ import {
 } from '../../../src/foundation.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import {
-  editOptFieldsWizard,
-  updateOptFieldsAction,
-} from '../../../src/wizards/optfields.js';
-import {
   editTrgOpsWizard,
   updateTrgOpsAction,
 } from '../../../src/wizards/trgopt.js';

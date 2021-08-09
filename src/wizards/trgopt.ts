@@ -4,11 +4,16 @@ import {
   cloneElement,
   EditorAction,
   getValue,
+  Update,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import {
+  editReportControlWizard,
+  openEditReportControlWizardAction,
+} from './reportcontrol.js';
 
 function updateIntPdAction(
   element: Element,
@@ -56,7 +61,15 @@ export function updateTrgOpsAction(element: Element): WizardActor {
       period === 'true' ? true : false
     );
 
-    return intPdAction ? [trgOptAction, intPdAction] : [trgOptAction];
+    const parent = intPdAction
+      ? (<Update>intPdAction).new.element!
+      : element.parentElement!;
+
+    const openEditReportCbWizard = () => editReportControlWizard(parent);
+
+    return intPdAction
+      ? [trgOptAction, intPdAction, openEditReportCbWizard]
+      : [trgOptAction, openEditReportCbWizard];
   };
 }
 
@@ -66,6 +79,16 @@ export function editTrgOpsWizard(element: Element): Wizard {
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
+      secondary: {
+        icon: '',
+        label: get('back'),
+        action: openEditReportControlWizardAction(element.parentElement!),
+      },
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: updateTrgOpsAction(element),
+      },
       content: trgOps.map(
         trgOp =>
           html`<wizard-select
