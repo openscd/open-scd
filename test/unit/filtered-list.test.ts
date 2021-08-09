@@ -71,13 +71,13 @@ describe('filtered-list', () => {
       expect(element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')).to
         .be.null;
     });
-    it('selects all check-list-items on checkAll click', async () => {
+    it('selects all enabled and visable check-list-items on checkAll click', async () => {
       (<HTMLElement>(
         element.shadowRoot!.querySelector('mwc-formfield>mwc-checkbox')
       )).click();
       await element.updateComplete;
       element.items
-        .filter(item => !item.disabled)
+        .filter(item => !item.disabled && !item.classList.contains('hidden'))
         .forEach(item => {
           expect(item).to.have.attribute('selected');
         });
