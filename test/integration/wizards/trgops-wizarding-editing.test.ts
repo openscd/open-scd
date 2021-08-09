@@ -1,10 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { WizardSelect } from '../../../src/wizard-select.js';
 
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { editOptFieldsWizard } from '../../../src/wizards/optfields.js';
-import { editTrgOpsWizard } from '../../../src/wizards/trgopt.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+
+import { editTrgOpsWizard } from '../../../src/wizards/trgopt.js';
 
 describe('trgops wizarding editing integration', () => {
   let reportCb: Element;

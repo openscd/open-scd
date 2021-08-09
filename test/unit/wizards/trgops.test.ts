@@ -79,7 +79,7 @@ describe('trgops wizards', () => {
       await input.requestUpdate();
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -94,7 +94,7 @@ describe('trgops wizards', () => {
       await input.requestUpdate();
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -109,7 +109,7 @@ describe('trgops wizards', () => {
       await input.requestUpdate();
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -122,7 +122,7 @@ describe('trgops wizards', () => {
       await input.requestUpdate();
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -138,7 +138,7 @@ describe('trgops wizards', () => {
       await input.requestUpdate();
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -153,7 +153,7 @@ describe('trgops wizards', () => {
       await input.requestUpdate();
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(2);
+      expect(actions.length).to.equal(3);
       expect(actions[0]).to.satisfy(isUpdate);
       expect(actions[1]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[1]).old.element;
@@ -169,7 +169,7 @@ describe('trgops wizards', () => {
       await input.requestUpdate();
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(2);
+      expect(actions.length).to.equal(3);
       expect(actions[0]).to.satisfy(isUpdate);
       expect(actions[1]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[1]).old.element;
@@ -193,7 +193,7 @@ describe('trgops wizards', () => {
 
       const editorAction = updateTrgOpsAction(trgOps);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(2);
+      expect(actions.length).to.equal(3);
       expect(actions[0]).to.satisfy(isUpdate);
       expect(actions[1]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[1]).old.element;
