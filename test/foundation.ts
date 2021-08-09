@@ -33,6 +33,7 @@ export const regExp = {
   tLNInst: /^[0-9]{0,12}$/,
   decimal: new RegExp(`^${patterns.decimal}$`),
   unsigned: new RegExp(`^${patterns.unsigned}$`),
+  unsingedint: new RegExp(`^${patterns.unsignedint}$`),
   tName: new RegExp(`^${patterns.normalizedString}$`),
   desc: new RegExp(`^${patterns.normalizedString}$`),
   IPv4: /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/,
@@ -50,4 +51,5 @@ export const inverseRegExp = {
   unsigned: /[^0-9.+]|.[^0-9.]/,
   decimal: /[^0-9.+-]|.[^0-9.]/,
   integer: /[^0-9+-]/,
+  unsingedint: /[^0-9+]/,
 };
