@@ -3,15 +3,18 @@ import { get } from 'lit-translate';
 import {
   cloneElement,
   getValue,
-  newWizardEvent,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import {
+  editReportControlWizard,
+  openEditReportControlWizardAction,
+} from './reportcontrol.js';
 
 export function updateOptFieldsAction(element: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
+  return (inputs: WizardInput[]): WizardAction[] => {
     const seqNum = getValue(inputs.find(i => i.label === 'seqNum')!);
     const timeStamp = getValue(inputs.find(i => i.label === 'timeStamp')!);
     const dataSet = getValue(inputs.find(i => i.label === 'dataSet')!);
@@ -43,7 +46,14 @@ export function updateOptFieldsAction(element: Element): WizardActor {
       configRef,
       bufOvfl,
     });
-    return [{ old: { element }, new: { element: newElement } }];
+
+    const parent = element.parentElement!;
+    const openEditReportCbWizard = () => editReportControlWizard(parent);
+
+    return [
+      { old: { element }, new: { element: newElement } },
+      openEditReportCbWizard,
+    ];
   };
 }
 
@@ -62,6 +72,16 @@ export function editOptFieldsWizard(element: Element): Wizard {
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
+      secondary: {
+        icon: '',
+        label: get('back'),
+        action: openEditReportControlWizardAction(element.parentElement!),
+      },
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: updateOptFieldsAction(element),
+      },
       content: optFields.map(
         optField =>
           html`<wizard-select

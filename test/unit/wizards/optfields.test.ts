@@ -77,7 +77,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -90,7 +90,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -104,7 +104,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -118,7 +118,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -132,7 +132,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -146,7 +146,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -160,7 +160,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -174,7 +174,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
@@ -187,7 +187,7 @@ describe('optfields wizards', () => {
       await input.requestUpdate();
       const editorAction = updateOptFieldsAction(optFields);
       const actions = editorAction(inputs, newWizard());
-      expect(actions.length).to.equal(1);
+      expect(actions.length).to.equal(2);
       expect(actions[0]).to.satisfy(isUpdate);
       const oldElement = (<Update>actions[0]).old.element;
       const newElement = (<Update>actions[0]).new.element;
