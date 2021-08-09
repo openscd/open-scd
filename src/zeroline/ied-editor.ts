@@ -7,12 +7,15 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
+
 import { newWizardEvent } from '../foundation.js';
-import { createClientLnWizard } from '../wizards/clientln.js';
+import { gooseIcon, reportIcon } from '../icons.js';
 
 import { Fab } from '@material/mwc-fab';
+
+import { createClientLnWizard } from '../wizards/clientln.js';
 import { selectGseControlWizard } from '../wizards/gsecontrol.js';
-import { gooseIcon } from '../icons.js';
+import { selectReportControlWizard } from '../wizards/reportcontrol.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('ied-editor')
@@ -26,6 +29,8 @@ export class IedEditor extends LitElement {
   }
 
   @query('#connectreport') connectReport!: Fab;
+  @query('#gsecontrol') gseControl!: Fab;
+  @query('#reportcontrol') reportControl!: Fab;
 
   openCommunicationMapping(): void {
     const sendingIeds = Array.from(
@@ -37,6 +42,11 @@ export class IedEditor extends LitElement {
 
   openGseControlSelection(): void {
     const wizard = selectGseControlWizard(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  openReportControlSelection(): void {
+    const wizard = selectReportControlWizard(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -54,11 +64,18 @@ export class IedEditor extends LitElement {
           icon="add_link"
         ></mwc-fab>
         <mwc-fab
-          id="connectreport"
+          id="gsecontrol"
           mini
           class="menu-item left"
           @click="${() => this.openGseControlSelection()}"
           ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></mwc-fab
+        >
+        <mwc-fab
+          id="reportcontrol"
+          mini
+          class="menu-item up"
+          @click="${() => this.openReportControlSelection()}"
+          ><mwc-icon slot="icon">${reportIcon}</mwc-icon></mwc-fab
         >
       </div>
       <h4>${this.name}</h4>
