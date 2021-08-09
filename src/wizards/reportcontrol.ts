@@ -1,10 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-
 import {
   cloneElement,
   createElement,
@@ -23,6 +19,10 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
+
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { editDataSetWizard } from './dataset.js';
 import { editOptFieldsWizard } from './optfields.js';
@@ -91,7 +91,7 @@ export function renderReportControlAttributes(
     html`<wizard-textfield
       label="max Clients"
       .maybeValue=${max}
-      helper="${translate('scl.max')}"
+      helper="${translate('scl.maxReport')}"
       nullable
       type="number"
       suffix="ms"
@@ -303,10 +303,8 @@ export function editReportControlWizard(element: Element): Wizard {
           : html``,
         optFields
           ? html`<mwc-button
-              id="editdataset"
-              label=${translate('wizard.title.edit', {
-                tagName: get('scl.OptFields'),
-              })}
+              id="editoptfields"
+              label=${get('scl.OptFields')}
               icon="edit"
               @click=${(e: MouseEvent) => {
                 if (dataSet) {
@@ -320,10 +318,8 @@ export function editReportControlWizard(element: Element): Wizard {
           : html``,
         trgOps
           ? html`<mwc-button
-              id="editdataset"
-              label=${translate('wizard.title.edit', {
-                tagName: get('scl.TrgOps'),
-              })}
+              id="edittrgops"
+              label=${get('scl.TrgOps')}
               icon="edit"
               @click=${(e: MouseEvent) => {
                 if (dataSet) {
