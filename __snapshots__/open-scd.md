@@ -482,7 +482,7 @@
   timeoutms="6000"
 >
   <mwc-button
-    icon="rule"
+    icon="history"
     slot="action"
   >
     Show
@@ -495,6 +495,23 @@
 </mwc-snackbar>
 <mwc-snackbar
   id="error"
+  labeltext="No errors"
+  timeoutms="10000"
+>
+  <mwc-button
+    icon="history"
+    slot="action"
+  >
+    Show
+  </mwc-button>
+  <mwc-icon-button
+    icon="close"
+    slot="dismiss"
+  >
+  </mwc-icon-button>
+</mwc-snackbar>
+<mwc-snackbar
+  id="issue"
   labeltext="No errors"
   timeoutms="10000"
 >

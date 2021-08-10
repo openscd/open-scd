@@ -1,7 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import { LoggingElement } from '../../src/Logging.js';
-import { CommitEntry, newLogEvent } from '../../src/foundation.js';
+import {
+  CommitEntry,
+  newIssueEvent,
+  newLogEvent,
+} from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
 import './mock-logger.js';
@@ -69,11 +73,30 @@ describe('LoggingElement', () => {
     expect(element.errorUI).to.have.property('open', true);
   });
 
+  it('shows a snackbar on an issue', () => {
+    expect(element.issueUI).to.have.property('open', false);
+    element.dispatchEvent(
+      newIssueEvent({
+        validatorId: 'val',
+        statusNumber: 1,
+        title: 'test issue',
+      })
+    );
+    expect(element.issueUI).to.have.property('open', true);
+  });
+
   it('opens the log dialog on snackbar "Show" button click', async () => {
     expect(element.logUI).to.have.property('open', false);
     await element.errorUI.querySelector('mwc-button')!.click();
     await element.updateComplete;
     expect(element.logUI).to.have.property('open', true);
+  });
+
+  it('opens the diagnostics dialog on issue snackbar "Show" button click', async () => {
+    expect(element.diagnosticUI).to.have.property('open', false);
+    await element.issueUI.querySelector('mwc-button')!.click();
+    await element.updateComplete;
+    expect(element.diagnosticUI).to.have.property('open', true);
   });
 
   describe('with an action logged', () => {
@@ -191,6 +214,130 @@ describe('LoggingElement', () => {
           it('cannot redo any further', () =>
             expect(element.redo()).to.be.false);
         });
+      });
+    });
+  });
+
+  describe('with an issue incomming', () => {
+    beforeEach(async () => {
+      element.dispatchEvent(
+        newIssueEvent({
+          validatorId: 'val',
+          statusNumber: 1,
+          title: 'test run 1',
+        })
+      );
+      element.requestUpdate();
+      await element.updateComplete;
+      element.requestUpdate();
+      await element.updateComplete;
+    });
+
+    it('saves the issue to diagnose', () => {
+      expect(element.diagnose.get('val')).to.exist;
+      const issue = element.diagnose.get('val')![0];
+      expect(issue.title).to.equal('test run 1');
+    });
+
+    it('does not contain issues from another validator', () =>
+      expect(element.diagnose.has('val1')).to.be.false);
+
+    describe('with a second issue comming in - new statusNumber, same validator', () => {
+      beforeEach(() => {
+        element.dispatchEvent(
+          newIssueEvent({
+            validatorId: 'val',
+            statusNumber: 2,
+            title: 'test run 2',
+          })
+        );
+      });
+
+      it('removes old issues', () => {
+        expect(element.diagnose.get('val')).to.exist;
+        expect(element.diagnose.get('val')!.length).to.equal(1);
+        const issue = element.diagnose.get('val')![0];
+        expect(issue.statusNumber).to.equal(2);
+        expect(issue.title).to.not.equal('test run 1');
+      });
+
+      it('saves a log message for the action', () => {
+        expect(element.diagnose.get('val')).to.exist;
+        expect(element.diagnose.get('val')!.length).to.equal(1);
+        const issue = element.diagnose.get('val')![0];
+        expect(issue.statusNumber).to.equal(2);
+        expect(issue.title).to.equal('test run 2');
+      });
+    });
+
+    describe('with a second issue comming in - same statusNumber, same validator', () => {
+      beforeEach(() => {
+        element.dispatchEvent(
+          newIssueEvent({
+            validatorId: 'val',
+            statusNumber: 1,
+            title: 'test issues 2',
+          })
+        );
+      });
+
+      it('adds issue to existing issues', () => {
+        expect(element.diagnose.get('val')).to.exist;
+        expect(element.diagnose.get('val')!.length).to.equal(2);
+        const issue = element.diagnose.get('val')![0];
+        expect(issue.statusNumber).to.equal(1);
+        expect(issue.title).to.equal('test run 1');
+        const issue2 = element.diagnose.get('val')![1];
+        expect(issue2.statusNumber).to.equal(1);
+        expect(issue2.title).to.not.equal('test issue 2');
+      });
+    });
+
+    describe('with a second issue comming in - outdated statusNumber, same validator', () => {
+      beforeEach(() => {
+        element.dispatchEvent(
+          newIssueEvent({
+            validatorId: 'val',
+            statusNumber: 0,
+            title: 'test issues 2',
+          })
+        );
+      });
+
+      it('ignores incomming the issue', () => {
+        expect(element.diagnose.get('val')).to.exist;
+        expect(element.diagnose.get('val')!.length).to.equal(1);
+        const issue = element.diagnose.get('val')![0];
+        expect(issue.statusNumber).to.equal(1);
+        expect(issue.title).to.equal('test run 1');
+      });
+    });
+
+    describe('with another issue comming in - new validator', () => {
+      beforeEach(() => {
+        element.dispatchEvent(
+          newIssueEvent({
+            validatorId: 'val2',
+            statusNumber: 3,
+            title: 'test run 3',
+          })
+        );
+      });
+
+      it('keeps old issues from the other validator', () => {
+        expect(element.diagnose.get('val')).to.exist;
+        expect(element.diagnose.get('val')!.length).to.equal(1);
+        const issue = element.diagnose.get('val')![0];
+        expect(issue.statusNumber).to.equal(1);
+        expect(issue.title).to.equal('test run 1');
+      });
+
+      it('in parallel saves the issues of the new validator', () => {
+        expect(element.diagnose.get('val2')).to.exist;
+        expect(element.diagnose.get('val2')!.length).to.equal(1);
+        const issue = element.diagnose.get('val2')![0];
+        expect(issue.statusNumber).to.equal(3);
+        expect(issue.title).to.equal('test run 3');
       });
     });
   });

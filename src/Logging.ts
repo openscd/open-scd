@@ -1,4 +1,10 @@
-import { html, property, query, TemplateResult } from 'lit-element';
+import {
+  html,
+  internalProperty,
+  property,
+  query,
+  TemplateResult,
+} from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { Dialog } from '@material/mwc-dialog';
@@ -50,12 +56,15 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     currentAction = -1;
     @property()
     diagnose = new Map<string, IssueDetail[]>();
+    @internalProperty()
+    lastIssue!: IssueDetail;
 
     @query('#log') logUI!: Dialog;
     @query('#diagnostic') diagnosticUI!: Dialog;
     @query('#error') errorUI!: Snackbar;
     @query('#warning') warningUI!: Snackbar;
     @query('#info') infoUI!: Snackbar;
+    @query('#issue') issueUI!: Snackbar;
 
     get canUndo(): boolean {
       return this.currentAction >= 0;
@@ -81,12 +90,17 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onIssue(de: IssueEvent): void {
       const issues = this.diagnose.get(de.detail.validatorId);
-      if (issues && issues[0].statusNumber === de.detail.statusNumber)
+      if (issues && issues[0].statusNumber > de.detail.statusNumber) return;
+      else if (issues && issues[0].statusNumber === de.detail.statusNumber)
         issues.push(de.detail);
       else if (issues && issues[0].statusNumber !== de.detail.statusNumber) {
         issues.length = 0;
         issues?.push(de.detail);
       } else this.diagnose.set(de.detail.validatorId, [de.detail]);
+
+      this.lastIssue = de.detail;
+      this.issueUI.close();
+      this.issueUI.show();
     }
 
     undo(): boolean {
@@ -352,7 +366,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         >
           <mwc-button
             slot="action"
-            icon="rule"
+            icon="history"
             @click=${() => this.logUI.show()}
             >${translate('log.snackbar.show')}</mwc-button
           >
@@ -369,8 +383,22 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         >
           <mwc-button
             slot="action"
-            icon="rule"
+            icon="history"
             @click=${() => this.logUI.show()}
+            >${translate('log.snackbar.show')}</mwc-button
+          >
+          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+        </mwc-snackbar>
+        <mwc-snackbar
+          id="issue"
+          timeoutMs="10000"
+          labelText="${this.lastIssue?.title ??
+          get('log.snackbar.placeholder')}"
+        >
+          <mwc-button
+            slot="action"
+            icon="rule"
+            @click=${() => this.diagnosticUI.show()}
             >${translate('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
