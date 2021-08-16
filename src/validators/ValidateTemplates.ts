@@ -33,22 +33,16 @@ function dispatch(
   statusNumber: number,
   validatorId: string
 ): void {
-  if ((<LogDetail>detail).kind)
-    document
-      .querySelector('open-scd')
-      ?.dispatchEvent(newLogEvent(<LogDetail>detail));
-  else {
-    const title = (<LogDetailBase>detail).title;
-    const message = (<LogDetailBase>detail).message;
-    document.querySelector('open-scd')?.dispatchEvent(
-      newIssueEvent({
-        validatorId,
-        statusNumber: statusNumber,
-        title,
-        message,
-      })
-    );
-  }
+  const title = (<LogDetailBase>detail).title;
+  const message = (<LogDetailBase>detail).message;
+  document.querySelector('open-scd')?.dispatchEvent(
+    newIssueEvent({
+      validatorId,
+      statusNumber: statusNumber,
+      title,
+      message,
+    })
+  );
 }
 
 async function validateCoOperStructure(
@@ -214,7 +208,6 @@ export async function validateControlCDC(
           childTag: 'ctlModel',
           childId: 'Val',
         }),
-        kind: 'warning',
         message: <string>(identity(dotype) || 'UNIDENTIFIABLE'),
       },
     ];
@@ -368,7 +361,6 @@ export async function validateDoCDCSetting(
           childTag: 'DO',
           childId: DO.getAttribute('name') || 'UNNAMED',
         }),
-        kind: 'warning',
         message: `${identity(lnodetype)}`,
       });
       continue;
