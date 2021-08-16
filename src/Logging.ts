@@ -25,6 +25,7 @@ import {
 } from './foundation.js';
 import { get, translate } from 'lit-translate';
 import { getFilterIcon, iconColors } from './icons.js';
+import { Plugin } from './Plugging.js';
 
 const icons = {
   info: 'info',
@@ -32,6 +33,13 @@ const icons = {
   error: 'report',
   action: 'history',
 };
+
+function getPluginName(src: string): string {
+  const name = JSON.parse(localStorage.getItem('plugins') ?? '[]').find(
+    (p: Plugin) => p.src === src
+  ).name;
+  return name || src;
+}
 
 /**
  * A mixin adding a `history` property to any `LitElement`, in which
@@ -55,7 +63,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     @property({ type: Number })
     currentAction = -1;
     @property()
-    diagnose = new Map<string, IssueDetail[]>();
+    diagnoses = new Map<string, IssueDetail[]>();
     @internalProperty()
     lastIssue!: IssueDetail;
 
@@ -89,14 +97,14 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onIssue(de: IssueEvent): void {
-      const issues = this.diagnose.get(de.detail.validatorId);
+      const issues = this.diagnoses.get(de.detail.validatorId);
       if (issues && issues[0].statusNumber > de.detail.statusNumber) return;
       else if (issues && issues[0].statusNumber === de.detail.statusNumber)
         issues.push(de.detail);
       else if (issues && issues[0].statusNumber !== de.detail.statusNumber) {
         issues.length = 0;
         issues?.push(de.detail);
-      } else this.diagnose.set(de.detail.validatorId, [de.detail]);
+      } else this.diagnoses.set(de.detail.validatorId, [de.detail]);
 
       this.lastIssue = de.detail;
       this.issueUI.close();
@@ -230,7 +238,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       if (issues.length === 0) return [html``];
       return [
         html`<mwc-list-item noninteractive
-          >${issues[0].validatorId}</mwc-list-item
+          >${getPluginName(issues[0].validatorId)}</mwc-list-item
         >`,
         html`<li divider padded role="separator"></li>`,
         ...issues.map(issue => this.renderIssueEntry(issue)),
@@ -240,7 +248,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     private renderIssues(): TemplateResult[] | TemplateResult {
       const issueItems: TemplateResult[] = [];
 
-      this.diagnose.forEach(issues => {
+      this.diagnoses.forEach(issues => {
         this.renderValidatorsIssues(issues).forEach(issueItem =>
           issueItems.push(issueItem)
         );

@@ -37,7 +37,7 @@ describe('ValidateTemplates plugin', () => {
     await parent.workDone;
   });
   it('generates issues in the diagnistics pane', async () => {
-    const issues = parent.diagnose.get('validatetemplates');
+    const issues = parent.diagnoses.get('validatetemplates');
     expect(issues?.length).to.equal(20);
   }).timeout(1000);
   it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {

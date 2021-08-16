@@ -42,7 +42,7 @@ describe('ValidateSchema plugin', () => {
       await element.validate('', 1);
       await parent.workDone;
 
-      const lastEntry = parent.diagnose.get('schemavalidator');
+      const lastEntry = parent.diagnoses.get('schemavalidator');
       expect(lastEntry).to.be.undefined;
     }).timeout(15000);
     it('zeroissues indiacation looks like the latest snapshot', async () => {
@@ -94,7 +94,7 @@ describe('ValidateSchema plugin', () => {
       await parent.workDone;
     });
     it('create issues in diagnose', async () => {
-      const issues = parent.diagnose.get('schemavalidator');
+      const issues = parent.diagnoses.get('schemavalidator');
       expect(issues).to.not.be.undefined;
     }).timeout(15000);
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
