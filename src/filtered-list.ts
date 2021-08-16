@@ -46,7 +46,7 @@ export class FilteredList extends List {
   private onCheckAll(): void {
     const select = !this.isAllSelected;
     this.items
-      .filter(item => !item.disabled)
+      .filter(item => !item.disabled && !item.classList.contains('hidden'))
       .forEach(item => (item.selected = select));
   }
 
