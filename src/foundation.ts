@@ -2364,7 +2364,7 @@ export function createElement(
   return element;
 }
 
-/** @returns a cloned Element based on old Element and new attrs */
+/** @returns a clone of `element` with attributes set to values from `attrs`. */
 export function cloneElement(
   element: Element,
   attrs: Record<string, string | null>
