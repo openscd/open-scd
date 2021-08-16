@@ -2,6 +2,7 @@ import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  cloneElement,
   Create,
   createElement,
   EditorAction,
@@ -47,7 +48,6 @@ function updateDoAction(element: Element): WizardActor {
         ? getValue(inputs.find(i => i.label === 'transient')!)
         : null;
 
-    const actions: EditorAction[] = [];
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc') &&
@@ -58,21 +58,15 @@ function updateDoAction(element: Element): WizardActor {
       return [];
     }
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    newElement.setAttribute('type', type);
-    if (accessControl === null) newElement.removeAttribute('accessControl');
-    else newElement.setAttribute('accessControl', accessControl);
-    if (transient === null) newElement.removeAttribute('transient');
-    else newElement.setAttribute('transient', transient);
-    actions.push({
-      old: { element },
-      new: { element: newElement },
+    const newElement = cloneElement(element, {
+      name,
+      desc,
+      type,
+      accessControl,
+      transient,
     });
 
-    return actions;
+    return [{ old: { element }, new: { element: newElement } }];
   };
 }
 
@@ -547,11 +541,7 @@ function updateLNodeTypeAction(element: Element): WizardActor {
     )
       return [];
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('id', id);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    newElement.setAttribute('lnClass', lnClass);
+    const newElement = cloneElement(element, { id, desc, lnClass });
 
     return [{ old: { element }, new: { element: newElement } }];
   };

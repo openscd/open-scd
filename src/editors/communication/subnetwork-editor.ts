@@ -21,6 +21,7 @@ import {
   compareNames,
   createElement,
   getReference,
+  cloneElement,
 } from '../../foundation.js';
 
 import { styles, WizardOptions, isCreateOptions } from './foundation.js';
@@ -64,10 +65,9 @@ function getBitRateAction(
       },
     };
 
-  const newBitRate = <Element>oldBitRate.cloneNode(false);
+  const newBitRate = cloneElement(oldBitRate, { multiplier });
   newBitRate.textContent = BitRate;
-  if (multiplier === null) newBitRate.removeAttribute('multiplier');
-  else newBitRate.setAttribute('multiplier', multiplier);
+
   return {
     old: { element: oldBitRate },
     new: { element: newBitRate },
@@ -92,12 +92,7 @@ export function updateSubNetworkAction(element: Element): WizardActor {
     ) {
       subNetworkAction = null;
     } else {
-      const newElement = <Element>element.cloneNode(false);
-      newElement.setAttribute('name', name);
-      if (desc === null) newElement.removeAttribute('desc');
-      else newElement.setAttribute('desc', desc);
-      if (type === null) newElement.removeAttribute('type');
-      else newElement.setAttribute('type', type);
+      const newElement = cloneElement(element, { name, desc, type });
       subNetworkAction = { old: { element }, new: { element: newElement } };
     }
 

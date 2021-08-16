@@ -1,6 +1,7 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 import {
+  cloneElement,
   getValue,
   identity,
   Wizard,
@@ -17,16 +18,10 @@ export function updateDataSetAction(element: Element): WizardActor {
     const oldName = element.getAttribute('name');
     if (name === oldName && desc === element.getAttribute('desc')) return [];
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
+    const newElement = cloneElement(element, { name, desc });
 
     const dataSetUpdateAction = [
-      {
-        old: { element },
-        new: { element: newElement },
-      },
+      { old: { element }, new: { element: newElement } },
     ];
 
     const cbUpdateAction =
@@ -36,8 +31,7 @@ export function updateDataSetAction(element: Element): WizardActor {
               `ReportControlBock[datSet=${oldName}], GSEControl[datSet=${oldName}],SampledValueControl[datSet=${oldName}] `
             ) ?? []
           ).map(cb => {
-            const newCb = <Element>cb.cloneNode(false);
-            newCb.setAttribute('datSet', name);
+            const newCb = cloneElement(element, { datSet: name });
             return { old: { element: cb }, new: { element: newCb } };
           })
         : [];

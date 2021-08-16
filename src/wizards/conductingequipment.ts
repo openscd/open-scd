@@ -1,7 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { updateNamingAction } from '../zeroline/foundation.js';
 import {
   createElement,
   EditorAction,
@@ -12,6 +11,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { updateNamingAction } from './foundation/actions.js';
 
 const types: Partial<Record<string, string>> = {
   // standard
