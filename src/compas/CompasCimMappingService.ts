@@ -1,4 +1,5 @@
 import {CompasSettings} from "./CompasSettingsElement.js";
+import {getJwtToken} from "../state/auth/KeycloakManager.js";
 
 export const CMS_NAMESPACE = 'https://www.lfenergy.org/compas/CimMappingService/v1';
 
@@ -23,6 +24,7 @@ export function CompasCimMappingService() {
       return fetch(cmsUrl, {
         method: 'POST',
         headers: {
+          'Authorization': 'Bearer ' + getJwtToken(),
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
