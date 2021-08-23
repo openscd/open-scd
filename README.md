@@ -33,6 +33,16 @@ docker run -it --rm -d -p 8080:80 --name compas-open-scd lfenergycompas/compas-o
 ```
 Now open a browser and go to "http://localhost:8080". OpenSCD is shown.
 
+### CoMPAS Service
+
+During development, it is sometimes handy to use running backend services, like CIM Mapping or SCL Data Service.
+The problem is that these services need an Authorization Header to work. Normally these are injected by a reverse proxy 
+or something like that. 
+
+There is a work-around and that is using the ModHeader Extension of the Browser (Chrome, Firefox, ...).
+With this extension the header 'Authorization' can be added with a value 'Bearer <access token>'. 
+The AccessToken can be retrieved from a running KeyCloak instance. 
+
 ## License
 
 The [IEC 61850](https://webstore.iec.ch/publication/63319) XSD and NSD code components used are
@@ -42,4 +52,3 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 &copy; 2020-2021 OMICRON electronics GmbH
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenscd%2Fopen-scd?ref=badge_large)
