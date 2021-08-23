@@ -1,5 +1,4 @@
 import {CompasSettings} from "./CompasSettingsElement.js";
-import {getJwtToken} from "../state/auth/KeycloakManager.js";
 import {ChangeSet} from "./CompasChangeSet.js";
 
 export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1';
@@ -23,10 +22,7 @@ export function CompasSclDataService() {
   return {
     listSclTypes(): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/common/v1/type/list';
-      return fetch(sclUrl, {
-        headers: {
-          'Authorization': 'Bearer ' + getJwtToken()
-        }})
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
@@ -45,40 +41,28 @@ export function CompasSclDataService() {
 
     listScls(type: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/list';
-      return fetch(sclUrl, {
-        headers: {
-          'Authorization': 'Bearer ' + getJwtToken()
-        }})
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
 
     listVersions(type: string, id: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + "/versions";
-      return fetch(sclUrl, {
-        headers: {
-          'Authorization': 'Bearer ' + getJwtToken()
-        }})
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
 
     getSclDocument(type: string, id: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
-      return fetch(sclUrl, {
-        headers: {
-          'Authorization': 'Bearer ' + getJwtToken()
-        }})
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
 
     getSclDocumentVersion(type: string, id: string, version: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/' + version;
-      return fetch(sclUrl, {
-        headers: {
-          'Authorization': 'Bearer ' + getJwtToken()
-        }})
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
@@ -88,7 +72,6 @@ export function CompasSclDataService() {
       return fetch(sclUrl, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + getJwtToken(),
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
@@ -106,7 +89,6 @@ export function CompasSclDataService() {
       return fetch(sclUrl, {
         method: 'PUT',
         headers: {
-          'Authorization': 'Bearer ' + getJwtToken(),
           'Content-Type': 'application/xml'
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
