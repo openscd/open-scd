@@ -1,5 +1,5 @@
-import {ChangeSet} from "./CompasChangeSet.js";
 import {CompasSettings} from "./CompasSettingsElement.js";
+import {ChangeSet} from "./CompasChangeSet.js";
 
 export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1';
 
@@ -21,7 +21,8 @@ export function CompasSclDataService() {
 
   return {
     listSclTypes(): Promise<Document> {
-      return fetch(getCompasSettings().sclDataServiceUrl + '/common/v1/type/list')
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/common/v1/type/list';
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
@@ -39,13 +40,15 @@ export function CompasSclDataService() {
     },
 
     listScls(type: string): Promise<Document> {
-      return fetch(getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/list')
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/list';
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
 
     listVersions(type: string, id: string): Promise<Document> {
-      return fetch(getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + "/versions")
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + "/versions";
+      return fetch(sclUrl)
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
