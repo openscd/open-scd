@@ -11,14 +11,10 @@ describe('NewProject loader', () => {
   beforeEach(async () => {
     parent = await fixture(html`
       <open-scd><new-project-plugin></new-project-plugin></open-scd>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
-        rel="stylesheet"
-      />
+
+      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet">
+      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet">
+      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet">
     `);
 
     element = <NewProjectPlugin>parent.querySelector('new-project-plugin')!;
