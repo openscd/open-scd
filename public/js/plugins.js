@@ -76,7 +76,7 @@ export const officialPlugins = [
   {
     name: 'Save CoMPAS',
     src: '/src/menu/SaveToCompas.js',
-    icon: 'folder_open',
+    icon: 'save',
     default: true,
     kind: 'menu',
     requireDoc: true,
