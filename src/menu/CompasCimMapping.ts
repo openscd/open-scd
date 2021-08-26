@@ -1,8 +1,9 @@
 import {css, html, LitElement, query, TemplateResult} from 'lit-element';
 
-import {newOpenDocEvent} from "../foundation.js";
-import {stripExtensionFromName} from "../compas/foundation.js";
-import {CimData, CompasCimMappingService} from "../compas/CompasCimMappingService.js";
+import {newLogEvent, newOpenDocEvent, newPendingStateEvent} from "../foundation.js";
+import {getOpenScdElement, stripExtensionFromName} from "../compas/foundation.js";
+import {CimData, CompasCimMappingService} from "../compas-services/CompasCimMappingService.js";
+import {get} from "lit-translate";
 
 export default class OpenProjectPlugin extends LitElement {
   @query('#cim-mapping-input') pluginFileUI!: HTMLInputElement;
@@ -20,7 +21,7 @@ export default class OpenProjectPlugin extends LitElement {
       cimData.push({name: cimName, doc: cimDocument})
     }
 
-    CompasCimMappingService().map({cimData: cimData}).then(response => {
+    await CompasCimMappingService().map({cimData: cimData}).then(response => {
       // We will use the first filename as the basis of the new filename.
       const sclName = stripExtensionFromName(cimData[0].name) + ".ssd";
 
@@ -29,9 +30,14 @@ export default class OpenProjectPlugin extends LitElement {
       const sclDocument = document.implementation.createDocument("", "", null);
       sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
 
-      document
-        .querySelector('open-scd')!
-        .dispatchEvent(newOpenDocEvent(sclDocument, sclName));
+      const openScd = getOpenScdElement();
+      openScd.dispatchEvent(newOpenDocEvent(sclDocument, sclName));
+    }).catch(() => {
+      const openScd = getOpenScdElement();
+      openScd.dispatchEvent(
+          newLogEvent({
+            kind: 'error',
+            title: get('compas.cim.mapError')}));
     });
     this.pluginFileUI.onchange = null;
   }
@@ -41,10 +47,10 @@ export default class OpenProjectPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<input @click=${(event: MouseEvent) =>
-      ((<HTMLInputElement>event.target).value = '')} @change=${
-      this.convertCimFile
-    } id="cim-mapping-input" accept=".xml" type="file" multiple></input>`;
+    return html`<input
+       @click=${(event: MouseEvent) => ((<HTMLInputElement>event.target).value = '')}
+       @change=${(event: MouseEvent) => getOpenScdElement().dispatchEvent(newPendingStateEvent(this.convertCimFile(event)))}
+       id="cim-mapping-input" accept=".xml" type="file" multiple></input>`;
   }
 
   static styles = css`

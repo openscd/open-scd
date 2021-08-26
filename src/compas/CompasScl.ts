@@ -4,9 +4,9 @@ import {get, translate} from "lit-translate";
 import {newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 
-import {CompasSclDataService, SDS_NAMESPACE} from "./CompasSclDataService.js";
+import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
-import {updateDocumentInOpenSCD} from "./foundation.js";
+import {getOpenScdElement, updateDocumentInOpenSCD} from "./foundation.js";
 
 @customElement('compas-scl-list')
 export class CompasScl extends LitElement {
@@ -28,7 +28,7 @@ export class CompasScl extends LitElement {
   }
 
   openScl(id?: string) {
-    this.dispatchEvent(newPendingStateEvent(this.getSclDocument(id)));
+    getOpenScdElement().dispatchEvent(newPendingStateEvent(this.getSclDocument(id)));
   }
 
   private async getSclDocument(id?: string): Promise<void> {

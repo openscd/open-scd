@@ -1,5 +1,6 @@
-import {newOpenDocEvent} from "../foundation.js";
 import {get} from "lit-translate";
+import {newOpenDocEvent} from "../foundation.js";
+import {OpenSCD} from "../open-scd.js";
 
 const FILE_EXTENSION_LENGTH = 3;
 
@@ -19,6 +20,10 @@ export function stripExtensionFromName(docName: string): string {
   return name
 }
 
+export function getOpenScdElement(): OpenSCD {
+  return <OpenSCD>document.querySelector('open-scd');
+}
+
 export function updateDocumentInOpenSCD(doc: Document): void {
   const id = (doc.querySelectorAll(':root > Header') ?? []).item(0).getAttribute('id') ?? '';
   const version = (doc.querySelectorAll(':root > Header') ?? []).item(0).getAttribute('version') ?? '';
@@ -31,7 +36,5 @@ export function updateDocumentInOpenSCD(doc: Document): void {
   }
   docName += '-' + version + '.' + type?.toLowerCase();
 
-  document
-    .querySelector('open-scd')!
-    .dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
+  getOpenScdElement().dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
 }

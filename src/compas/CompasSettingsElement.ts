@@ -2,8 +2,8 @@ import {css, customElement, html, LitElement, property, TemplateResult} from 'li
 import {get, translate} from 'lit-translate';
 
 import {newWizardEvent, Wizard, WizardInput} from '../foundation.js';
-import {OpenSCD} from "../open-scd.js";
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
+import {getOpenScdElement} from "./foundation.js";
 
 export type CompasSettingsRecord = {
   sclDataServiceUrl: string;
@@ -77,7 +77,7 @@ export class CompasSettingsElement extends LitElement {
 
   close(): void {
     // Close the Save Dialog.
-    const openScd = <OpenSCD>document.querySelector('open-scd');
+    const openScd = getOpenScdElement();
     openScd.dispatchEvent(newWizardEvent());
   }
 

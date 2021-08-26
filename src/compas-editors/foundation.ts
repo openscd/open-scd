@@ -1,4 +1,9 @@
 import {css} from "lit-element";
+import {OpenSCD} from "../open-scd.js";
+
+export function getOpenScdElement(): OpenSCD {
+  return <OpenSCD>document.querySelector('open-scd');
+}
 
 /** Common `CSS` styles used by Compas Editors subeditors */
 export const styles = css`

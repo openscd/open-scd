@@ -398,6 +398,9 @@ export const de: Translations = {
       updateError: '???',
       updateSuccess: '???',
     },
+    cim:  {
+      mapError: '???',
+    },
     versions: {
       title: '???',
       noVersions: "???",

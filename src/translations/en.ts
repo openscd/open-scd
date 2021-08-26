@@ -395,6 +395,9 @@ export const en = {
       updateError: 'Error updating SCL in CoMPAS!',
       updateSuccess: 'SCL updated in CoMPAS',
     },
+    cim:  {
+      mapError: 'Error creating SCL from CIM Files',
+    },
     versions: {
       title: 'CoMPAS Versions',
       noVersions: "No CoMPAS versions found",
