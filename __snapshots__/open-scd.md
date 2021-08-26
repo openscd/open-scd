@@ -110,12 +110,12 @@
       class="top"
       disabled=""
       graphic="icon"
-      iconid="folder_open"
+      iconid="save"
       mwc-list-item=""
       tabindex="-1"
     >
       <mwc-icon slot="graphic">
-        folder_open
+        save
       </mwc-icon>
       <span>
         Save CoMPAS
@@ -753,7 +753,7 @@
       value="/src/menu/SaveToCompas.js"
     >
       <mwc-icon slot="meta">
-        folder_open
+        save
       </mwc-icon>
       Save CoMPAS
     </mwc-check-list-item>
