@@ -1,5 +1,5 @@
-import {CompasSettings} from "./CompasSettingsElement.js";
-import {ChangeSet} from "./CompasChangeSet.js";
+import {CompasSettings} from "../compas/CompasSettingsElement.js";
+import {ChangeSet} from "../compas/CompasChangeSet.js";
 
 export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1';
 

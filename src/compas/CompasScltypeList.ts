@@ -2,7 +2,7 @@ import {customElement, html, LitElement, property, TemplateResult} from "lit-ele
 import {get, translate} from "lit-translate";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 import {newWizardEvent, Wizard, WizardActor} from '../foundation.js';
-import {CompasSclDataService, SDS_NAMESPACE} from "./CompasSclDataService.js";
+import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 import {listSclsWizard} from "./CompasScl.js";
 
 @customElement('compas-scltype-list')

@@ -1,12 +1,10 @@
 import {css, html, LitElement, property, TemplateResult} from 'lit-element';
 import {get, translate} from 'lit-translate';
-
-import {OpenSCD} from "../open-scd.js";
 import {newWizardEvent, Wizard} from "../foundation.js";
 
-import {CompasSclDataService, SDS_NAMESPACE} from "../compas/CompasSclDataService.js";
+import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 import {getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
-import { styles } from './foundation.js';
+import {getOpenScdElement, styles} from './foundation.js';
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -113,8 +111,7 @@ function openScl(docName: string, docId: string, version: string) {
       });
 
     // Close the Restore Dialog.
-    const openScd = <OpenSCD>document.querySelector('open-scd');
-    openScd.dispatchEvent(newWizardEvent());
+    getOpenScdElement().dispatchEvent(newWizardEvent());
 
     return [];
   }
