@@ -63,11 +63,11 @@ export class CompasSaveTo extends LitElement {
     const docType = this.getSclTypeRadioGroup().getSelectedValue() ?? '';
 
     await CompasSclDataService().addSclDocument(docType, {sclName: name, doc: doc})
-      .then(xmlResponse => {
+      .then(async xmlResponse => {
         const id = Array.from(xmlResponse.querySelectorAll('*|Id') ?? [])[0]
 
         // Retrieve the document to fetch server-side updates.
-        this.getSclDocument(docType, id.textContent ?? '');
+        await this.getSclDocument(docType, id.textContent ?? '');
 
         const openScd = getOpenScdElement();
         openScd.dispatchEvent(
@@ -93,15 +93,16 @@ export class CompasSaveTo extends LitElement {
     const docType = getTypeFromDocName(docName);
 
     await CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, doc: doc})
-      .then(() => {
+      .then(async () => {
         // Retrieve the document to fetch server-side updates.
-        this.getSclDocument(docType, docId);
+        await this.getSclDocument(docType, docId);
 
         const openScd = getOpenScdElement();
         openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
-            title: get('compas.saveTo.updateSuccess')}));
+            title: get('compas.saveTo.updateSuccess')
+          }));
 
         // Close the Save Dialog.
         openScd.dispatchEvent(newWizardEvent());
