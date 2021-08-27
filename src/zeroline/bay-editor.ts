@@ -8,13 +8,24 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { startMove, styles, cloneSubstationElement } from './foundation.js';
+import {
+  startMove,
+  styles,
+  cloneSubstationElement,
+  dragOver,
+  dragStart,
+  drop,
+  dragLeave,
+  dragEnd,
+} from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 
 import { wizards } from '../wizards/wizard-library.js';
 
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import './conducting-equipment-editor.js';
+import { IedEditor } from './ied-editor.js';
+import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
@@ -77,7 +88,10 @@ export class BayEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<h3>
+    return html`<h3
+      draggable="true"
+      @dragstart="${(e: DragEvent) => dragStart(this, e)}"
+    >
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.readonly
         ? html``
@@ -123,7 +137,15 @@ export class BayEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<section tabindex="0">
+    return html`<section
+      tabindex="0"
+      @dragover="${(e: DragEvent) =>
+        dragOver(this, e, ConductingEquipmentEditor, BayEditor)}"
+      @drop="${(e: DragEvent) =>
+        drop(this, e, ConductingEquipmentEditor, BayEditor)}"
+      @dragleave="${() => dragLeave(this)}"
+      @dragend="${() => dragEnd(this)}"
+    >
       ${this.renderHeader()}
       <div>
         ${this.renderIedContainer()}
@@ -133,9 +155,9 @@ export class BayEditor extends LitElement {
               ':root > Substation > VoltageLevel > Bay > ConductingEquipment'
             ) ?? []
           ).map(
-            voltageLevel =>
+            conductingEquipment =>
               html`<conducting-equipment-editor
-                .element=${voltageLevel}
+                .element=${conductingEquipment}
                 ?readonly=${this.readonly}
               ></conducting-equipment-editor>`
           )}

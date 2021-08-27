@@ -1353,10 +1353,10 @@ const sCLTags = [
 
 export type SCLTag = typeof sCLTags[number];
 
-const tagSet = new Set<string>(sCLTags);
+export const SCLTagSet = new Set<string>(sCLTags);
 
 function isSCLTag(tag: string): tag is SCLTag {
-  return tagSet.has(tag);
+  return SCLTagSet.has(tag);
 }
 
 const tBaseNameSequence = ['Text', 'Private'] as const;

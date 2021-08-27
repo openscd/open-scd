@@ -1,13 +1,11 @@
 import { css } from 'lit-element';
 
 import {
-  EditorAction,
-  getValue,
   newActionEvent,
-  WizardActor,
-  WizardInput,
   isPublic,
-  cloneElement,
+  identity,
+  SCLTagSet,
+  selector,
 } from '../foundation.js';
 
 import { BayEditor } from './bay-editor.js';
@@ -144,6 +142,80 @@ export function cloneSubstationElement(
   );
 }
 
+export function dragStart<E extends ElementEditor>(
+  editor: E,
+  event: DragEvent
+) {
+  editor.classList.add('moving');
+  event.dataTransfer?.setData(
+    editor.tagName,
+    identity(editor.element).toString()
+  );
+}
+
+export function dragOver<E extends ElementEditor>(
+  editor: E,
+  event: DragEvent,
+  ...allowedEditorTypes: (new () => ElementEditor)[]
+) {
+  const types = event.dataTransfer?.types;
+  if (
+    allowedEditorTypes.some(t => types?.includes(new t().tagName.toLowerCase()))
+  ) {
+    event.preventDefault();
+    editor.classList.add('dragOver');
+  }
+  event.stopPropagation();
+}
+
+export function dragLeave<E extends ElementEditor>(editor: E) {
+  editor.classList.remove('dragOver');
+}
+
+export function dragEnd<E extends ElementEditor>(editor: E) {
+  editor.classList.remove('moving');
+}
+
+export function drop<E extends ElementEditor>(
+  targetEditor: E,
+  event: DragEvent,
+  ...allowedEditorTypes: (new () => ElementEditor)[]
+) {
+  const tag = event.dataTransfer?.items[0].type!;
+  const identity = event.dataTransfer?.getData(tag)!;
+  const xmlTag = Array.from(SCLTagSet)
+    .reduce((acc, x) => acc.set(x.toLowerCase(), x), new Map())
+    .get(
+      // TODO: is there a better solution to convert an editor tag to a SCL tag?
+      tag.slice(0, tag.lastIndexOf('-')).replace('-', '')
+    );
+
+  if (xmlTag) {
+    const element = targetEditor.element.ownerDocument.querySelector(
+      selector(xmlTag, identity)
+    );
+    const sameType = targetEditor.element.tagName == xmlTag;
+
+    // if the element as the same type as the drop target it will be inserted before the target
+    // otherwsise it will just be appended to the drop target
+    const event = newActionEvent({
+      old: {
+        element: element!,
+        parent: element?.parentElement!,
+        reference: element?.nextSibling!,
+      },
+      new: {
+        parent: sameType
+          ? targetEditor.element.parentElement
+          : targetEditor.element,
+        reference: sameType ? targetEditor.element : null,
+      },
+    });
+    targetEditor.dispatchEvent(event);
+  }
+  event.stopPropagation();
+}
+
 /**
  * Moves the element edited by `editor` to the place before the next `Child`
  * editor selected or to the end of the next `Parent` editor selected by mouse
@@ -241,6 +313,10 @@ export const selectors = <Record<SubstationTag, string>>(
 export const styles = css`
   :host(.moving) section {
     opacity: 0.3;
+  }
+
+  :host(.dragOver) section {
+    outline: 1px dotted var(--mdc-theme-primary);
   }
 
   section {

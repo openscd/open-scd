@@ -12,12 +12,18 @@ import { wizards } from '../wizards/wizard-library.js';
 
 import {
   cloneSubstationElement,
-  selectors,
   startMove,
   styles,
+  dragOver,
+  drop,
+  selectors,
+  dragLeave,
+  dragEnd,
+  dragStart,
 } from './foundation.js';
 
 import './voltage-level-editor.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
 
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
@@ -86,7 +92,8 @@ export class SubstationEditor extends LitElement {
 
   renderHeader(): TemplateResult {
     return html`
-        <h1>
+        <h1 draggable="true" @dragstart="${(event: DragEvent) =>
+          dragStart(this, event)}">
           ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
           ${
             this.readonly
@@ -138,7 +145,15 @@ export class SubstationEditor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <section tabindex="0">
+      <section
+        tabindex="0"
+        @dragover="${(e: DragEvent) =>
+          dragOver(this, e, VoltageLevelEditor, SubstationEditor)}"
+        @drop="${(e: DragEvent) =>
+          drop(this, e, VoltageLevelEditor, SubstationEditor)}"
+        @dragleave="${() => dragLeave(this)}"
+        @dragend="${() => dragEnd(this)}"
+      >
         ${this.renderHeader()} ${this.renderIedContainer()}
         ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
           voltageLevel =>

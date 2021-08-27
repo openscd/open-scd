@@ -7,7 +7,14 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { startMove } from './foundation.js';
+import {
+  startMove,
+  dragStart,
+  dragEnd,
+  dragOver,
+  drop,
+  dragLeave,
+} from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 
 import {
@@ -81,7 +88,18 @@ export class ConductingEquipmentEditor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <div id="container" tabindex="0">
+      <div
+        id="container"
+        tabindex="0"
+        draggable="true"
+        @dragstart="${(e: DragEvent) => dragStart(this, e)}"
+        @dragover="${(e: DragEvent) =>
+          dragOver(this, e, BayEditor, ConductingEquipmentEditor)}"
+        @drop="${(e: DragEvent) =>
+          drop(this, e, BayEditor, ConductingEquipmentEditor)}"
+        @dragleave="${() => dragLeave(this)}"
+        @dragend="${() => dragEnd(this)}"
+      >
         ${typeIcon(this.element)}
         ${this.readonly
           ? html``

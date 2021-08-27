@@ -13,11 +13,17 @@ import {
   startMove,
   styles,
   cloneSubstationElement,
+  dragOver,
+  dragStart,
+  drop,
+  dragLeave,
+  dragEnd,
 } from './foundation.js';
 import './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { newActionEvent, newWizardEvent, selector } from '../foundation.js';
+import { BayEditor } from './bay-editor.js';
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
@@ -89,7 +95,10 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   renderHeader(): TemplateResult {
-    return html`<h2>
+    return html`<h2
+      draggable="true"
+      @dragstart="${(e: DragEvent) => dragStart(this, e)}"
+    >
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.voltage === null ? '' : html`(${this.voltage})`}
       ${this.readonly
@@ -137,7 +146,14 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<section tabindex="0">
+    return html`<section
+      tabindex="0"
+      @dragover="${(e: DragEvent) =>
+        dragOver(this, e, BayEditor, VoltageLevelEditor)}"
+      @drop="${(e: DragEvent) => drop(this, e, BayEditor, VoltageLevelEditor)}"
+      @dragleave="${() => dragLeave(this)}"
+      @dragend="${() => dragEnd(this)}"
+    >
       ${this.renderHeader()} ${this.renderIedContainer()}
       <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
