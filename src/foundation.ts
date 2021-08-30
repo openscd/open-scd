@@ -231,7 +231,7 @@ type InfoEntryKind = 'info' | 'warning' | 'error';
 export type LogEntryType = 'info' | 'warning' | 'error' | 'action' | 'reset';
 
 /** The basic information contained in each [[`LogEntry`]]. */
-interface LogDetailBase {
+export interface LogDetailBase {
   title: string;
   message?: string;
 }
@@ -257,6 +257,23 @@ export function newLogEvent(
   eventInitDict?: CustomEventInit<LogDetail>
 ): LogEvent {
   return new CustomEvent<LogDetail>('log', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { ...detail, ...eventInitDict?.detail },
+  });
+}
+
+export interface IssueDetail extends LogDetailBase {
+  validatorId: string;
+  statusNumber: number;
+}
+export type IssueEvent = CustomEvent<IssueDetail>;
+export function newIssueEvent(
+  detail: IssueDetail,
+  eventInitDict?: CustomEventInit<IssueDetail>
+): IssueEvent {
+  return new CustomEvent<IssueDetail>('issue', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
@@ -2533,5 +2550,6 @@ declare global {
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
     ['log']: LogEvent;
+    ['issue']: IssueEvent;
   }
 }

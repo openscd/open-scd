@@ -44,14 +44,14 @@ describe('open-scd', () => {
   it('opens the log on log icon click', async () => {
     expect(element.logUI).to.have.property('open', false);
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-icon-button[icon="rule"]')!
+      element.shadowRoot!.querySelector('mwc-icon-button[icon="history"]')!
     )).click();
     expect(element.logUI).to.have.property('open', true);
   });
 
   it('opens the log on log menu entry click', async () => {
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-list-item[iconid="rule"]')!
+      element.shadowRoot!.querySelector('mwc-list-item[iconid="history"]')!
     )).click();
     expect(element.logUI).to.have.property('open', true);
   });
@@ -60,6 +60,19 @@ describe('open-scd', () => {
     expect(element.logUI).to.have.property('open', false);
     await element.errorUI.querySelector('mwc-button')!.click();
     expect(element.logUI).to.have.property('open', true);
+  });
+
+  it('opens the diagnostics on daignostics menu entry click', async () => {
+    await (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-list-item[iconid="rule"]')!
+    )).click();
+    expect(element.diagnosticUI).to.have.property('open', true);
+  });
+
+  it('opens the diagnostics on snackbar button click', async () => {
+    expect(element.diagnosticUI).to.have.property('open', false);
+    await element.issueUI.querySelector('mwc-button')!.click();
+    expect(element.diagnosticUI).to.have.property('open', true);
   });
 
   it('renders a progress indicator on `waiting`', async () => {

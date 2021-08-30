@@ -88,6 +88,10 @@ export class OpenSCD extends Hosting(
     if (ctrlAnd('y')) this.redo();
     if (ctrlAnd('z')) this.undo();
     if (ctrlAnd('l')) this.logUI.open ? this.logUI.close() : this.logUI.show();
+    if (ctrlAnd('d'))
+      this.diagnosticUI.open
+        ? this.diagnosticUI.close()
+        : this.diagnosticUI.show();
     if (ctrlAnd('m')) this.menuUI.open = !this.menuUI.open;
     if (ctrlAnd('o'))
       this.menuUI

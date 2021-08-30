@@ -14,7 +14,7 @@ describe('ValidateSchema plugin', () => {
 
   describe('for valid SCL files', () => {
     beforeEach(async () => {
-      valid2007B4 = await fetch('/base/test/testfiles/valid2007B4.scd')
+      valid2007B4 = await fetch('/base/test/testfiles/valid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -31,9 +31,24 @@ describe('ValidateSchema plugin', () => {
         <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet">
       `);
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
+      element.pluginId = '/src/validators/ValidateSchema.js';
+      await element.requestUpdate();
     });
-    it('generates error messages in the log', async () => {
-      await element.validate();
+    it('does not create issues in diagnose', async () => {
+      await element.validate('', 1);
+      await parent.workDone;
+
+      const lastEntry = parent.diagnoses.get(
+        '/src/validators/ValidateSchema.js'
+      );
+      expect(lastEntry).to.be.undefined;
+    }).timeout(15000);
+    it('zeroissues indiacation looks like the latest snapshot', async () => {
+      await parent.requestUpdate();
+      expect(parent.diagnosticUI).to.equalSnapshot();
+    });
+    it('indicates successful schema validation in the log', async () => {
+      await element.validate('', 1);
       await parent.workDone;
 
       const lastEntry = <LogEntry>parent.history.pop();
@@ -62,15 +77,25 @@ describe('ValidateSchema plugin', () => {
       `);
 
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
-    });
-    it('generates error messages in the log', async () => {
+      element.pluginId = '/src/validators/ValidateSchema.js';
+      await element.requestUpdate();
+
       try {
-        await element.validate();
+        await element.validate('', 1);
       } catch (e) {
         e;
       }
       await parent.workDone;
-
+    });
+    it('create issues in diagnose', async () => {
+      const issues = parent.diagnoses.get('/src/validators/ValidateSchema.js');
+      expect(issues).to.not.be.undefined;
+    }).timeout(15000);
+    it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
+      await parent.requestUpdate();
+      expect(parent.diagnosticUI).to.equalSnapshot();
+    });
+    it('generates error messages in the log', async () => {
       const lastEntry = <LogEntry>parent.history.pop();
       expect(lastEntry.kind).to.equal('warning');
       expect(lastEntry.title).to.contain('validation failed');
