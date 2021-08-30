@@ -35,9 +35,14 @@ const icons = {
 };
 
 function getPluginName(src: string): string {
-  const name = JSON.parse(localStorage.getItem('plugins') ?? '[]').find(
-    (p: Plugin) => p.src === src
-  ).name;
+  const plugin = <Plugin>(
+    JSON.parse(localStorage.getItem('plugins') ?? '[]').find(
+      (p: Plugin) => p.src === src
+    )
+  );
+  if (!plugin) return src;
+
+  const name = plugin.name;
   return name || src;
 }
 
