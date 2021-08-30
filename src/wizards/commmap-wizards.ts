@@ -76,11 +76,6 @@ export function communicationMappingWizard(
       if (!connections.has(key)) connections.set(key, []);
       connections.get(key)?.push(element);
     });
-    if (controlBlocks.size === 0) {
-      const key = ' |  | ' + iedName;
-      if (!connections.has(key)) connections.set(key, []);
-      connections.get(key)?.push(element);
-    }
   });
 
   return [
