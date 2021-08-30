@@ -222,7 +222,7 @@ describe('LoggingElement', () => {
     beforeEach(async () => {
       element.dispatchEvent(
         newIssueEvent({
-          validatorId: 'val',
+          validatorId: '/src/validators/ValidateSchema.js',
           statusNumber: 1,
           title: 'test run 1',
         })
@@ -234,19 +234,23 @@ describe('LoggingElement', () => {
     });
 
     it('saves the issue to diagnose', () => {
-      expect(element.diagnoses.get('val')).to.exist;
-      const issue = element.diagnoses.get('val')![0];
+      expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
+        .exist;
+      const issue = element.diagnoses.get(
+        '/src/validators/ValidateSchema.js'
+      )![0];
       expect(issue.title).to.equal('test run 1');
     });
 
     it('does not contain issues from another validator', () =>
-      expect(element.diagnoses.has('val1')).to.be.false);
+      expect(element.diagnoses.has('/src/validators/ValidateTemplates.js')).to
+        .be.false);
 
     describe('with a second issue comming in - new statusNumber, same validator', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
-            validatorId: 'val',
+            validatorId: '/src/validators/ValidateSchema.js',
             statusNumber: 2,
             title: 'test run 2',
           })
@@ -254,17 +258,27 @@ describe('LoggingElement', () => {
       });
 
       it('removes old issues', () => {
-        expect(element.diagnoses.get('val')).to.exist;
-        expect(element.diagnoses.get('val')!.length).to.equal(1);
-        const issue = element.diagnoses.get('val')![0];
+        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
+          .exist;
+        expect(
+          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
+        ).to.equal(1);
+        const issue = element.diagnoses.get(
+          '/src/validators/ValidateSchema.js'
+        )![0];
         expect(issue.statusNumber).to.equal(2);
         expect(issue.title).to.not.equal('test run 1');
       });
 
       it('saves a log message for the action', () => {
-        expect(element.diagnoses.get('val')).to.exist;
-        expect(element.diagnoses.get('val')!.length).to.equal(1);
-        const issue = element.diagnoses.get('val')![0];
+        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
+          .exist;
+        expect(
+          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
+        ).to.equal(1);
+        const issue = element.diagnoses.get(
+          '/src/validators/ValidateSchema.js'
+        )![0];
         expect(issue.statusNumber).to.equal(2);
         expect(issue.title).to.equal('test run 2');
       });
@@ -274,7 +288,7 @@ describe('LoggingElement', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
-            validatorId: 'val',
+            validatorId: '/src/validators/ValidateSchema.js',
             statusNumber: 1,
             title: 'test issues 2',
           })
@@ -282,12 +296,19 @@ describe('LoggingElement', () => {
       });
 
       it('adds issue to existing issues', () => {
-        expect(element.diagnoses.get('val')).to.exist;
-        expect(element.diagnoses.get('val')!.length).to.equal(2);
-        const issue = element.diagnoses.get('val')![0];
+        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
+          .exist;
+        expect(
+          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
+        ).to.equal(2);
+        const issue = element.diagnoses.get(
+          '/src/validators/ValidateSchema.js'
+        )![0];
         expect(issue.statusNumber).to.equal(1);
         expect(issue.title).to.equal('test run 1');
-        const issue2 = element.diagnoses.get('val')![1];
+        const issue2 = element.diagnoses.get(
+          '/src/validators/ValidateSchema.js'
+        )![1];
         expect(issue2.statusNumber).to.equal(1);
         expect(issue2.title).to.not.equal('test issue 2');
       });
@@ -297,7 +318,7 @@ describe('LoggingElement', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
-            validatorId: 'val',
+            validatorId: '/src/validators/ValidateSchema.js',
             statusNumber: 0,
             title: 'test issues 2',
           })
@@ -305,9 +326,14 @@ describe('LoggingElement', () => {
       });
 
       it('ignores incomming the issue', () => {
-        expect(element.diagnoses.get('val')).to.exist;
-        expect(element.diagnoses.get('val')!.length).to.equal(1);
-        const issue = element.diagnoses.get('val')![0];
+        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
+          .exist;
+        expect(
+          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
+        ).to.equal(1);
+        const issue = element.diagnoses.get(
+          '/src/validators/ValidateSchema.js'
+        )![0];
         expect(issue.statusNumber).to.equal(1);
         expect(issue.title).to.equal('test run 1');
       });
@@ -317,7 +343,7 @@ describe('LoggingElement', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
-            validatorId: 'val2',
+            validatorId: '/src/validators/ValidateTemplates.js',
             statusNumber: 3,
             title: 'test run 3',
           })
@@ -325,17 +351,27 @@ describe('LoggingElement', () => {
       });
 
       it('keeps old issues from the other validator', () => {
-        expect(element.diagnoses.get('val')).to.exist;
-        expect(element.diagnoses.get('val')!.length).to.equal(1);
-        const issue = element.diagnoses.get('val')![0];
+        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
+          .exist;
+        expect(
+          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
+        ).to.equal(1);
+        const issue = element.diagnoses.get(
+          '/src/validators/ValidateSchema.js'
+        )![0];
         expect(issue.statusNumber).to.equal(1);
         expect(issue.title).to.equal('test run 1');
       });
 
       it('in parallel saves the issues of the new validator', () => {
-        expect(element.diagnoses.get('val2')).to.exist;
-        expect(element.diagnoses.get('val2')!.length).to.equal(1);
-        const issue = element.diagnoses.get('val2')![0];
+        expect(element.diagnoses.get('/src/validators/ValidateTemplates.js')).to
+          .exist;
+        expect(
+          element.diagnoses.get('/src/validators/ValidateTemplates.js')!.length
+        ).to.equal(1);
+        const issue = element.diagnoses.get(
+          '/src/validators/ValidateTemplates.js'
+        )![0];
         expect(issue.statusNumber).to.equal(3);
         expect(issue.title).to.equal('test run 3');
       });

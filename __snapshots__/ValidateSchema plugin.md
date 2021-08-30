@@ -56,7 +56,7 @@
       noninteractive=""
       tabindex="-1"
     >
-      schemavalidator
+      Validate project
     </mwc-list-item>
     <li
       divider=""

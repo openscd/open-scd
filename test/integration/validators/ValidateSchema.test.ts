@@ -35,14 +35,16 @@ describe('ValidateSchema plugin', () => {
         />
       `);
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
-      element.pluginId = 'schemavalidator';
+      element.pluginId = '/src/validators/ValidateSchema.js';
       await element.requestUpdate();
     });
     it('does not create issues in diagnose', async () => {
       await element.validate('', 1);
       await parent.workDone;
 
-      const lastEntry = parent.diagnoses.get('schemavalidator');
+      const lastEntry = parent.diagnoses.get(
+        '/src/validators/ValidateSchema.js'
+      );
       expect(lastEntry).to.be.undefined;
     }).timeout(15000);
     it('zeroissues indiacation looks like the latest snapshot', async () => {
@@ -83,7 +85,7 @@ describe('ValidateSchema plugin', () => {
       `);
 
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
-      element.pluginId = 'schemavalidator';
+      element.pluginId = '/src/validators/ValidateSchema.js';
       await element.requestUpdate();
 
       try {
@@ -94,7 +96,7 @@ describe('ValidateSchema plugin', () => {
       await parent.workDone;
     });
     it('create issues in diagnose', async () => {
-      const issues = parent.diagnoses.get('schemavalidator');
+      const issues = parent.diagnoses.get('/src/validators/ValidateSchema.js');
       expect(issues).to.not.be.undefined;
     }).timeout(15000);
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {

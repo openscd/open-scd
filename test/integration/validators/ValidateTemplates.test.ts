@@ -31,14 +31,14 @@ describe('ValidateTemplates plugin', () => {
       />
     `);
     element = <ValidateTemplates>parent.querySelector('validate-templates')!;
-    element.pluginId = 'validatetemplates';
+    element.pluginId = '/src/validators/ValidateTemplates.js';
 
     await element.validate('', 1);
     await parent.workDone;
   });
   it('generates issues in the diagnistics pane', async () => {
-    const issues = parent.diagnoses.get('validatetemplates');
-    expect(issues?.length).to.equal(20);
+    const issues = parent.diagnoses.get('/src/validators/ValidateTemplates.js');
+    expect(issues?.length).to.equal(21);
   }).timeout(1000);
   it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
     await parent.requestUpdate();

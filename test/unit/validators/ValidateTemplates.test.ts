@@ -140,7 +140,6 @@ describe('VelidateTemplate', () => {
       const element = doc.querySelector('DOType[id="Dummy.CSWI.Pos1"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect((<LogDetail>errors[0]).kind).to.equal('warning');
     });
   });
 });
