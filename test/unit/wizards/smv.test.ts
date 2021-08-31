@@ -69,6 +69,7 @@ describe('smv wizards', () => {
         .actions;
       expect(actions).to.be.empty;
     });
+
     it('update a SMV element when only MAC-Address attribute changed', async () => {
       const input = <WizardTextField>inputs[0];
       input.value = '01-0C-CD-04-00-11';
@@ -89,6 +90,7 @@ describe('smv wizards', () => {
         newElement.querySelector('P[type="MAC-Address"]')?.textContent?.trim()
       ).to.equal('01-0C-CD-04-00-11');
     });
+
     it('update a SMV element when only APPID attribute changed', async () => {
       const input = <WizardTextField>inputs[1];
       input.value = '014';
@@ -109,6 +111,7 @@ describe('smv wizards', () => {
         newElement.querySelector('P[type="APPID"]')?.textContent?.trim()
       ).to.equal('014');
     });
+
     it('update a SMV element when only VLAN-ID attribute changed', async () => {
       const input = <WizardTextField>inputs[2];
       input.value = '0F1';
@@ -129,6 +132,7 @@ describe('smv wizards', () => {
         newElement.querySelector('P[type="VLAN-ID"]')?.textContent?.trim()
       ).to.equal('0F1');
     });
+
     it('update a SMV element when only VLAN-PRIORITY attribute changed', async () => {
       const input = <WizardTextField>inputs[3];
       input.value = '7';
@@ -149,6 +153,7 @@ describe('smv wizards', () => {
         newElement.querySelector('P[type="VLAN-PRIORITY"]')?.textContent?.trim()
       ).to.equal('7');
     });
+
     it('does not return back to editSampledValueControlWizard when SMV does not have referenced SampledValueControl element', async () => {
       const smv = <Element>new DOMParser().parseFromString(
         `<SMV ldInst="MU01" cbName="MSVCB01">

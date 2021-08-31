@@ -1,7 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { editSmvWizard } from '../../../src/wizards/smv.js';
+
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+
+import { editSmvWizard } from '../../../src/wizards/smv.js';
 
 describe('smv wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -54,6 +56,7 @@ describe('smv wizarding editing integration', () => {
           ?.textContent?.trim()
       ).to.equal('01-0C-CD-04-00-22');
     });
+
     it('returns to editSampledValueControlWizard after update', async () => {
       macAddressField.value = '01-0C-CD-04-00-22';
       primaryAction.click();
@@ -67,6 +70,7 @@ describe('smv wizarding editing integration', () => {
         )).maybeValue
       ).to.equal('MSVCB01');
     });
+
     it('returns to editSampledValueControlWizard on secondary action', async () => {
       (<HTMLElement>(
         element.wizardUI.dialog?.querySelector(
