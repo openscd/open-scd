@@ -50,8 +50,9 @@ export function updateSmvOptsAction(element: Element): WizardActor {
     });
 
     const parent = element.parentElement!;
-    const openEditSmvCbWizard = () => editSampledValueControlWizard(parent);
+    if (!parent) return [{ old: { element }, new: { element: newElement } }];
 
+    const openEditSmvCbWizard = () => editSampledValueControlWizard(parent);
     return [
       { old: { element }, new: { element: newElement } },
       openEditSmvCbWizard,
