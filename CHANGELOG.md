@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/openscd/open-scd/compare/v0.6.0...v0.7.0) (2021-08-31)
+
+
+### Features
+
+* **Logging:** show validation issues in a seperate diagnostics pane ([#286](https://github.com/openscd/open-scd/issues/286)) ([f90039a](https://github.com/openscd/open-scd/commits/f90039a619bf5b79ec299c96b2ba91f30e1822ce))
+* make all fonts available offline ([#294](https://github.com/openscd/open-scd/issues/294)) ([ee932a3](https://github.com/openscd/open-scd/commits/ee932a3139d3c265670a62a02b1a3749e37b06a9))
+* **filtered-list:** select only visible items on checkAll ([#288](https://github.com/openscd/open-scd/issues/288)) ([db49745](https://github.com/openscd/open-scd/commits/db497452729ed2cff6d3c5aeffcd31d212c2ee58))
+* **gsecontrol:** edit GSEControl and its referenced elements ([#278](https://github.com/openscd/open-scd/issues/278)) ([b5b39c4](https://github.com/openscd/open-scd/commits/b5b39c4cee790c2e6dc6dc00e981111c12398574))
+* **templates:** add val manipulation capability ([#275](https://github.com/openscd/open-scd/issues/275)) ([259ce39](https://github.com/openscd/open-scd/commits/259ce39dea0ea61b2766dad30d1220a2f32f235a))
+
+
+### Bug Fixes
+
+* **ied-editor:** add tooltip with full IED name ([#291](https://github.com/openscd/open-scd/issues/291)) ([3ed474a](https://github.com/openscd/open-scd/commits/3ed474ae6a66936a102e9cccf671c204846675f8))
+* **package:** copy .nojekyll to build dir ([3bf9a3f](https://github.com/openscd/open-scd/commits/3bf9a3fce272631e64a7858a7c62b9bb2728ce67))
+
 ## [0.6.0](https://github.com/openscd/open-scd/compare/v0.5.0...v0.6.0) (2021-07-30)
 
 
