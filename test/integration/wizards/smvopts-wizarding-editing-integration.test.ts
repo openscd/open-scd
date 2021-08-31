@@ -1,10 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { WizardSelect } from '../../../src/wizard-select.js';
-
-import { editSmvOptsWizard } from '../../../src/wizards/smvopts.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-describe('smvopts wizarding editing', () => {
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
+
+import { editSmvOptsWizard } from '../../../src/wizards/smvopts.js';
+
+describe('smvopts wizarding editing integration', () => {
   let smvCb: Element;
   let element: MockWizardEditor;
 
@@ -19,7 +21,7 @@ describe('smvopts wizarding editing', () => {
     beforeEach(async () => {
       smvCb = <Element>(
         new DOMParser().parseFromString(
-          `<SampledValueControl name="myRpCB"><SmvOpts refreshTime="true" timestamp="true"></SmvOpts></SampledValueControl>`,
+          `<SampledValueControl name="mySmvCB"><SmvOpts refreshTime="true" timestamp="true"></SmvOpts></SampledValueControl>`,
           'application/xml'
         ).documentElement
       );
@@ -51,7 +53,8 @@ describe('smvopts wizarding editing', () => {
         'false'
       );
     });
-    /* it('returns to editReportControlWizard after update', async () => {
+
+    it('returns to editSampledValueControlWizard after update', async () => {
       refreshTime.value = 'false';
       primaryAction.click();
       await element.updateComplete;
@@ -62,9 +65,10 @@ describe('smvopts wizarding editing', () => {
             'wizard-textfield[label="name"]'
           )
         )).maybeValue
-      ).to.equal('myRpCB');
-    }); */
-    /* it('returns to editReportControlWizard after update', async () => {
+      ).to.equal('mySmvCB');
+    });
+
+    it('returns to editSampledValueControlWizard on secondary action', async () => {
       (<HTMLElement>(
         element.wizardUI.dialog?.querySelector(
           'mwc-button[slot="secondaryAction"]'
@@ -78,7 +82,7 @@ describe('smvopts wizarding editing', () => {
             'wizard-textfield[label="name"]'
           )
         )).maybeValue
-      ).to.equal('myRpCB');
-    }); */
+      ).to.equal('mySmvCB');
+    });
   });
 });

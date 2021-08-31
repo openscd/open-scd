@@ -6,13 +6,14 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
+
+import { MockWizard } from '../../mock-wizard.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
+
 import {
   editSmvOptsWizard,
   updateSmvOptsAction,
 } from '../../../src/wizards/smvopts.js';
-
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('smvopts wizards', () => {
   let element: MockWizard;
@@ -72,6 +73,7 @@ describe('smvopts wizards', () => {
       const actions = editorAction(inputs, element.wizardUI);
       expect(actions).to.be.empty;
     });
+
     it('update a SmvOpts element when only refreshTime attribute changed', async () => {
       const input = <WizardSelect>inputs[0];
       input.value = 'false';
@@ -85,6 +87,7 @@ describe('smvopts wizards', () => {
       expect(oldElement).to.have.attribute('refreshTime', 'true');
       expect(newElement).to.have.attribute('refreshTime', 'false');
     });
+
     it('remove a SmvOpts attribute refreshTime with nulled select', async () => {
       const input = <WizardSelect>inputs[0];
       input.nullSwitch?.click();
@@ -98,6 +101,7 @@ describe('smvopts wizards', () => {
       expect(oldElement).to.have.attribute('refreshTime', 'true');
       expect(newElement).to.not.have.attribute('dataSet');
     });
+
     it('update a SmvOpts element when only sampleSynchronized attribute changed', async () => {
       const input = <WizardSelect>inputs[1];
       input.nullSwitch?.click();
@@ -112,6 +116,7 @@ describe('smvopts wizards', () => {
       expect(oldElement).to.not.have.attribute('sampleSynchronized');
       expect(newElement).to.have.attribute('sampleSynchronized', 'true');
     });
+
     it('update a SmvOpts element when only sampleRate attribute changed', async () => {
       const input = <WizardSelect>inputs[2];
       input.nullSwitch?.click();
@@ -126,6 +131,7 @@ describe('smvopts wizards', () => {
       expect(oldElement).to.not.have.attribute('sampleRate');
       expect(newElement).to.have.attribute('sampleRate', 'true');
     });
+
     it('update a SmvOpts element when only dataSet attribute changed', async () => {
       const input = <WizardSelect>inputs[3];
       input.nullSwitch?.click();
@@ -140,6 +146,7 @@ describe('smvopts wizards', () => {
       expect(oldElement).to.not.have.attribute('dataSet');
       expect(newElement).to.have.attribute('dataSet', 'true');
     });
+
     it('update a SmvOpts element when only security attribute changed', async () => {
       const input = <WizardSelect>inputs[4];
       input.nullSwitch?.click();
@@ -154,6 +161,7 @@ describe('smvopts wizards', () => {
       expect(oldElement).to.not.have.attribute('security');
       expect(newElement).to.have.attribute('security', 'true');
     });
+
     it('update a SmvOpts element when only timestamp attribute changed', async () => {
       const input = <WizardSelect>inputs[5];
       input.value = 'false';
@@ -167,6 +175,7 @@ describe('smvopts wizards', () => {
       expect(oldElement).to.have.attribute('timestamp', 'true');
       expect(newElement).to.have.attribute('timestamp', 'false');
     });
+
     it('update a SmvOpts element when only synchSourceId attribute changed', async () => {
       const input = <WizardSelect>inputs[6];
       input.nullSwitch?.click();

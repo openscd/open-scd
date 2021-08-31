@@ -54,5 +54,34 @@ describe('smv wizarding editing integration', () => {
           ?.textContent?.trim()
       ).to.equal('01-0C-CD-04-00-22');
     });
+    it('returns to editSampledValueControlWizard after update', async () => {
+      macAddressField.value = '01-0C-CD-04-00-22';
+      primaryAction.click();
+      await element.updateComplete;
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      expect(
+        (<WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        )).maybeValue
+      ).to.equal('MSVCB01');
+    });
+    it('returns to editSampledValueControlWizard on secondary action', async () => {
+      (<HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="secondaryAction"]'
+        )
+      )).click();
+      await element.updateComplete;
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+      expect(
+        (<WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="name"]'
+          )
+        )).maybeValue
+      ).to.equal('MSVCB01');
+    });
   });
 });
