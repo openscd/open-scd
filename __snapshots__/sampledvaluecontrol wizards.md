@@ -354,6 +354,12 @@
       label="[scl.OptFields]"
     >
     </mwc-button>
+    <mwc-button
+      icon="edit"
+      id="editsmv"
+      label="[scl.Communication]"
+    >
+    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"

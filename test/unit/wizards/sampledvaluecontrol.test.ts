@@ -159,7 +159,7 @@ describe('sampledvaluecontrol wizards', () => {
   describe('editSampledValueControlWizard', () => {
     beforeEach(async () => {
       const wizard = editSampledValueControlWizard(
-        doc.querySelector('SampledValueControl')!
+        doc.querySelector('IED[name="IED3"] SampledValueControl')!
       );
       element.workflow.push(wizard);
       await element.requestUpdate();
