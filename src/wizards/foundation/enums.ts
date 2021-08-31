@@ -56,7 +56,7 @@ export const valKindEnum = ['Spec', 'Conf', 'RO', 'Set'];
 
 export const smpModEnum = ['SmpPerPeriod', 'SmpPerSec', 'SecPerSmp'];
 
-export const securityEnabledEnum = [
+export const securityEnableEnum = [
   'None',
   'Signature',
   'SignatureAndEncryption',

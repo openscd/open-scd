@@ -16,7 +16,7 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
-import { securityEnabledEnum, smpModEnum } from './foundation/enums.js';
+import { securityEnableEnum, smpModEnum } from './foundation/enums.js';
 
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
@@ -55,7 +55,7 @@ export function renderSampledValueControlAttributes(
   smpMod: string | null,
   smpRate: string | null,
   nofASDU: string | null,
-  securityEnabled: string | null
+  securityEnable: string | null
 ): TemplateResult[] {
   return [
     html`<wizard-textfield
@@ -106,29 +106,25 @@ export function renderSampledValueControlAttributes(
       label="smpRate"
       .maybeValue=${smpRate}
       helper="${translate('scl.smpRate')}"
-      nullable
       required
       type="number"
       min="0"
-      suffix="ms"
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="nofASDU"
       .maybeValue=${nofASDU}
       helper="${translate('scl.nofASDU')}"
-      nullable
       required
       type="number"
       min="0"
-      suffix="ms"
     ></wizard-textfield>`,
     html`<wizard-select
-      label="securityEnabled"
-      .maybeValue=${securityEnabled}
+      label="securityEnable"
+      .maybeValue=${securityEnable}
       nullable
       required
-      helper="${translate('scl.securityEnabled')}"
-      >${securityEnabledEnum.map(
+      helper="${translate('scl.securityEnable')}"
+      >${securityEnableEnum.map(
         option =>
           html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
       )}</wizard-select
@@ -136,7 +132,7 @@ export function renderSampledValueControlAttributes(
   ];
 }
 
-export function removeSmvControl(element: Element): Delete[] {
+export function removeSampledValueControl(element: Element): Delete[] {
   const dataSet = element.parentElement!.querySelector(
     `DataSet[name="${element.getAttribute('datSet')}"]`
   );
@@ -183,42 +179,50 @@ export function removeSmvControl(element: Element): Delete[] {
   return actions;
 }
 
-export function updateReportControlAction(element: Element): WizardActor {
+export function updateSampledValueControlAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
-    const buffered = getValue(inputs.find(i => i.label === 'buffered')!);
-    const rptID = getValue(inputs.find(i => i.label === 'rptID')!)!;
-    const indexed = getValue(inputs.find(i => i.label === 'indexed')!);
-    const bufTime = getValue(inputs.find(i => i.label === 'bufTime')!);
-    const intgPd = getValue(inputs.find(i => i.label === 'intgPd')!);
+    const multicast = getValue(inputs.find(i => i.label === 'multicast')!);
+    const smvID = getValue(inputs.find(i => i.label === 'smvID')!)!;
+    const smpMod = getValue(inputs.find(i => i.label === 'smpMod')!);
+    const smpRate = getValue(inputs.find(i => i.label === 'smpRate')!);
+    const nofASDU = getValue(inputs.find(i => i.label === 'nofASDU')!);
+    const securityEnable = getValue(
+      inputs.find(i => i.label === 'securityEnable')!
+    );
 
-    let reportControlAction: EditorAction | null;
+    let sampledValueControlAction: EditorAction | null;
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc') &&
-      buffered === element.getAttribute('buffered') &&
-      rptID === element.getAttribute('rptID') &&
-      indexed === element.getAttribute('indexed') &&
-      bufTime === element.getAttribute('bufTime') &&
-      intgPd === element.getAttribute('intgPd')
+      multicast === element.getAttribute('multicast') &&
+      smvID === element.getAttribute('smvID') &&
+      smpMod === element.getAttribute('smpMod') &&
+      smpRate === element.getAttribute('smpRate') &&
+      nofASDU === element.getAttribute('nofASDU') &&
+      securityEnable === element.getAttribute('securityEnable')
     ) {
-      reportControlAction = null;
+      sampledValueControlAction = null;
     } else {
       const newElement = cloneElement(element, {
         name,
         desc,
-        buffered,
-        rptID,
-        indexed,
-        bufTime,
-        intgPd,
+        multicast,
+        smvID,
+        smpMod,
+        smpRate,
+        nofASDU,
+        securityEnable,
       });
-      reportControlAction = { old: { element }, new: { element: newElement } };
+      sampledValueControlAction = {
+        old: { element },
+        new: { element: newElement },
+      };
     }
 
     const actions: EditorAction[] = [];
-    if (reportControlAction) actions.push(reportControlAction);
+    if (sampledValueControlAction) actions.push(sampledValueControlAction);
     return actions;
   };
 }
@@ -249,14 +253,14 @@ export function editSampledValueControlWizard(element: Element): Wizard {
       primary: {
         icon: 'save',
         label: get('save'),
-        action: updateReportControlAction(element),
+        action: updateSampledValueControlAction(element),
       },
       content: [
         html`<mwc-button
           label="${translate('remove')}"
           icon="delete"
           @click=${(e: MouseEvent) => {
-            const deleteActions = removeSmvControl(element);
+            const deleteActions = removeSampledValueControl(element);
             deleteActions.forEach(deleteAction =>
               e.target?.dispatchEvent(newActionEvent(deleteAction))
             );
