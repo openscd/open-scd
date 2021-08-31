@@ -226,8 +226,7 @@
     						<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
     						<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
     					</ReportControl>
-    					<SampledValueControl smvID="asdfads" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="GooseDataSet1">
-    						<SmvOpts/>
+    					<SampledValueControl smvID="asdfads" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01">
     					</SampledValueControl>
     				</LN0>
     				<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
@@ -354,7 +353,7 @@
                             <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
                         </DataSet>
     				<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
-    					<SmvOpts/>
+    					<SmvOpts synchSourceId="true"/>
     				</SampledValueControl>
     				</LN0>
                     <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />

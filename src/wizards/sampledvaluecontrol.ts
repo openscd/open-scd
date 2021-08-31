@@ -233,9 +233,9 @@ export function editSampledValueControlWizard(element: Element): Wizard {
   const multicast = element.getAttribute('multicast');
   const smvID = element.getAttribute('smvID');
 
-  const smpMod = element.getAttribute('smpMode');
+  const smpMod = element.getAttribute('smpMod');
 
-  const smpRate = element.getAttribute('bufTime');
+  const smpRate = element.getAttribute('smpRate');
   const nofASDU = element.getAttribute('nofASDU');
 
   const securityEnabled = element.getAttribute('securityEnabled');
@@ -311,7 +311,7 @@ export function editSampledValueControlWizard(element: Element): Wizard {
           : html``,
         sMV
           ? html`<mwc-button
-              id="editgse"
+              id="editsmv"
               label=${translate('scl.Communication')}
               icon="edit"
               @click="${(e: MouseEvent) => {

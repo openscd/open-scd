@@ -1,17 +1,19 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
+
 import {
-  Create,
-  isCreate,
   isDelete,
   isUpdate,
   Update,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
+import { inverseRegExp, regExp, regexString } from '../../foundation.js';
+
+import { MockWizard } from '../../mock-wizard.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { getRptEnableAction } from '../../../src/wizards/reportcontrol.js';
+
 import {
   editSampledValueControlWizard,
   removeSampledValueControl,
@@ -19,8 +21,6 @@ import {
   selectSampledValueControlWizard,
   updateSampledValueControlAction,
 } from '../../../src/wizards/sampledvaluecontrol.js';
-import { inverseRegExp, regExp, regexString } from '../../foundation.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('sampledvaluecontrol wizards', () => {
   let doc: XMLDocument;
@@ -300,6 +300,7 @@ describe('sampledvaluecontrol wizards', () => {
       const editorAction = updateSampledValueControlAction(sampledValueControl);
       expect(editorAction(inputs, newWizard())).to.be.empty;
     });
+
     it('update a SampledValueControl element when only name attribute changed', async () => {
       const input = <WizardTextField>inputs[0];
       input.value = 'myNewCbName';
@@ -312,6 +313,7 @@ describe('sampledvaluecontrol wizards', () => {
       expect(updateAction.old.element).to.have.attribute('name', 'myCbName');
       expect(updateAction.new.element).to.have.attribute('name', 'myNewCbName');
     });
+
     it('update a SampledValueControl element when only desc attribute changed', async () => {
       const input = <WizardTextField>inputs[1];
       input.nullSwitch?.click();
@@ -325,6 +327,7 @@ describe('sampledvaluecontrol wizards', () => {
       expect(updateAction.old.element).to.not.have.attribute('desc');
       expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
     });
+
     it('update a SampledValueControl element when smvID attribute changed', async () => {
       const input = <WizardTextField>inputs[3];
       input.value = 'myNewType/ID';
@@ -340,6 +343,7 @@ describe('sampledvaluecontrol wizards', () => {
         'myNewType/ID'
       );
     });
+
     it('update a SampledValueControl element when multicast attribute changed', async () => {
       const input = <WizardTextField>inputs[2];
       input.nullSwitch?.click();
@@ -353,6 +357,7 @@ describe('sampledvaluecontrol wizards', () => {
       expect(updateAction.old.element).to.have.attribute('multicast', 'true');
       expect(updateAction.new.element).to.have.attribute('multicast', 'false');
     });
+
     it('update a SampledValueControl element when smpMod attribute changed', async () => {
       const input = <WizardTextField>inputs[4];
       input.value = 'SmpPerSec';
@@ -368,6 +373,7 @@ describe('sampledvaluecontrol wizards', () => {
       );
       expect(updateAction.new.element).to.have.attribute('smpMod', 'SmpPerSec');
     });
+
     it('update a SampledValueControl element when smpRate attribute changed', async () => {
       const input = <WizardTextField>inputs[5];
       input.value = '256';
@@ -380,6 +386,7 @@ describe('sampledvaluecontrol wizards', () => {
       expect(updateAction.old.element).to.have.attribute('smpRate', '80');
       expect(updateAction.new.element).to.have.attribute('smpRate', '256');
     });
+
     it('update a SampledValueControl element when nofASDU attribute changed', async () => {
       const input = <WizardTextField>inputs[6];
       input.value = '8';
@@ -392,6 +399,7 @@ describe('sampledvaluecontrol wizards', () => {
       expect(updateAction.old.element).to.have.attribute('nofASDU', '1');
       expect(updateAction.new.element).to.have.attribute('nofASDU', '8');
     });
+
     it('update a SampledValueControl element when securityEnable attribute changed', async () => {
       const input = <WizardTextField>inputs[7];
       input.nullSwitch?.click();
