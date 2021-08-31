@@ -149,5 +149,23 @@ describe('smv wizards', () => {
         newElement.querySelector('P[type="VLAN-PRIORITY"]')?.textContent?.trim()
       ).to.equal('7');
     });
+    it('does not return back to editSampledValueControlWizard when SMV does not have referenced SampledValueControl element', async () => {
+      const smv = <Element>new DOMParser().parseFromString(
+        `<SMV ldInst="MU01" cbName="MSVCB01">
+          <Address>
+              <P type="MAC-Address">01-0C-CD-04-00-20</P>
+              <P type="VLAN-ID">004</P>
+              <P type="VLAN-PRIORITY">4</P>
+              <P type="APPID">4002</P>
+          </Address>
+        </SMV>`,
+        'application/xml'
+      ).documentElement;
+
+      const editorAction = updateSmvAction(smv);
+      const complexAction = editorAction(inputs, newWizard());
+      expect(complexAction.length).to.equal(1);
+      expect(complexAction[0]).to.not.satisfy(isSimple);
+    });
   });
 });
