@@ -9,6 +9,10 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import {
+  editSampledValueControlWizard,
+  openEditSampledValueControlWizardAction,
+} from './sampledvaluecontrol.js';
 
 export function updateSmvOptsAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): WizardAction[] => {
@@ -45,7 +49,13 @@ export function updateSmvOptsAction(element: Element): WizardActor {
       synchSourceId,
     });
 
-    return [{ old: { element }, new: { element: newElement } }];
+    const parent = element.parentElement!;
+    const openEditSmvCbWizard = () => editSampledValueControlWizard(parent);
+
+    return [
+      { old: { element }, new: { element: newElement } },
+      openEditSmvCbWizard,
+    ];
   };
 }
 
@@ -63,6 +73,12 @@ export function editSmvOptsWizard(element: Element): Wizard {
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
+      element,
+      secondary: {
+        icon: '',
+        label: 'back',
+        action: openEditSampledValueControlWizardAction(element.parentElement!),
+      },
       primary: {
         icon: 'save',
         label: get('save'),

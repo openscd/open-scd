@@ -39,6 +39,10 @@ export const en = {
     intgPd: 'Time delta between periodic reports',
     OptFields: 'Optional fields',
     TrgOps: 'Trigger options',
+    multicast: 'SMV acc. to IEC 61850 9-2',
+    smpMod: 'Sample mode',
+    smpRate: 'Sample rate',
+    nofASDU: 'Samples per paket',
   },
   settings: {
     title: 'Settings',

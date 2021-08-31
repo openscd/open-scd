@@ -41,6 +41,10 @@ export const de: Translations = {
     intgPd: 'Zeit zwischen zwei periodischen Reports',
     OptFields: 'Optionalle Einstellungen',
     TrgOps: 'Triggeroptionen',
+    multicast: 'SMV nach IEC 61850 9-2',
+    smpMod: 'Abtast-Art',
+    smpRate: 'Abtastrate',
+    nofASDU: 'Abtastpunkte pro Datenpacket',
   },
   settings: {
     title: 'Einstellungen',
