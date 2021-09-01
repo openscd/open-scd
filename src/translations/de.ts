@@ -118,6 +118,8 @@ export const de: Translations = {
     name: 'Daignoseübersicht',
     zeroissues: 'Es konnten keine Fehler in dem Projekt gefunden werden.',
     placeholder: 'Hier werden Validierungsfehler angezeigt.',
+    missingnsd:
+      'DataTypeTemplates können nicht validiert werden. Das Projekt muss die Version 2007B3 oder höher haben.',
   },
   plugins: {
     heading: 'Erweiterungen',

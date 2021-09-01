@@ -1,6 +1,8 @@
 # `ValidateTemplates plugin`
 
-#### `pushes issues to the diagnostics pane that look like the latest snapshot`
+## `with issues in the DataTypeTemplates section`
+
+####   `pushes issues to the diagnostics pane that look like the latest snapshot`
 
 ```html
 <mwc-dialog
@@ -357,6 +359,57 @@
         </span>
         <span slot="secondary">
           #Dummy.LPHD1.Sim.Cancelfalse
+        </span>
+      </mwc-list-item>
+    </abbr>
+  </filtered-list>
+  <mwc-button
+    dialogaction="close"
+    slot="primaryAction"
+  >
+    Close
+  </mwc-button>
+</mwc-dialog>
+
+```
+
+## `with schema version smaller "2007B3"`
+
+####   `pushes a specific issue to the diagnostics pane that look like the latest snapshot`
+
+```html
+<mwc-dialog
+  heading="Diagnostics"
+  id="diagnostic"
+>
+  <filtered-list
+    id="content"
+    wrapfocus=""
+  >
+    <mwc-list-item
+      aria-disabled="false"
+      noninteractive=""
+      tabindex="-1"
+    >
+      Validate Templates
+    </mwc-list-item>
+    <li
+      divider=""
+      padded=""
+      role="separator"
+    >
+    </li>
+    <abbr title="Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3
+">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        <span>
+          Cannot validate DataTypeTemplates. The version of the project must be higher than or equal to 2007B3
+        </span>
+        <span slot="secondary">
         </span>
       </mwc-list-item>
     </abbr>

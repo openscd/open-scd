@@ -7,6 +7,7 @@ import {
   newIssueEvent,
   newLogEvent,
 } from '../foundation.js';
+import { getSchema } from '../schemas.js';
 
 type ValidationResult = LogDetailBase | LogDetail;
 
@@ -427,6 +428,25 @@ export default class ValidateTemplates extends LitElement {
 
   async validate(identity: string, statusNumber: number): Promise<void> {
     const promises: Promise<void>[] = [];
+
+    const [version, revision, release] = [
+      this.doc.documentElement.getAttribute('version') ?? '',
+      this.doc.documentElement.getAttribute('revision') ?? '',
+      this.doc.documentElement.getAttribute('release') ?? '',
+    ];
+
+    if (version === '2003' || revision === 'A' || Number(release) < 3) {
+      document.querySelector('open-scd')?.dispatchEvent(
+        newIssueEvent({
+          validatorId: this.pluginId,
+          statusNumber: statusNumber,
+          title: get('diag.missingnsd'),
+          message: '',
+        })
+      );
+      return;
+    }
+
     for (const lnodetype of Array.from(
       this.doc.querySelectorAll('LNodeType')
     )) {
