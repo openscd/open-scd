@@ -72,4 +72,4 @@ Finally we are in a stage to create the `LNodeType` with lnClass `CSWI`.
 5. Click on `Next...`
 6. For the required data objects `Beh` and `Pos`. The wizard suggests the two `DOType` you just create and
 
-tada you have made it!! You wanna make sure what you did is not completely wrong give the `Validate Template` a shot.
+tada you have made it!! You wanna make sure what you did is not completely wrong give the [Validate Template](https://github.com/openscd/open-scd/wiki/ValidaTemplate) a shot.
