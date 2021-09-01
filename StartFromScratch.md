@@ -18,7 +18,7 @@ But before going into details let make s small experiment:
 
 ![grafik](https://user-images.githubusercontent.com/66802940/131665399-3b7ffd50-74f5-424a-b9a5-926eb71eb8be.png)
 
-The wizard does not let you to save it. Well the reason is that you have not defined the minimum required data objects. Those are highlighted red. This means whoever that you need to have at least on `DOType` that is meeting the requirement in your project already. In this case for example you need to have one `DOType` of the type `ENC`. In addition to that you the data object `Pos` is required.
+The wizard does not let you to save it. Well the reason is that you have not defined the minimum required data objects. Those are highlighted red. This means whoever that you need to have at least on `DOType` that is meeting the requirement in your project already. In this case for example you need to have one `DOType` of the type `ENS`. In addition to that you the data object `Pos` is required - `DPC`.
 
 Lets start with `Beh` first. This is of the CDC `ENS`. And if you look into the IEC 61850 7-3 and look for the `ENS` table, you will see that you need at least `stVal`, `q` and `t`. So let's create the `DOType` first.
 
