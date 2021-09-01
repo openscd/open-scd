@@ -123,8 +123,8 @@ export const en = {
   validator: {
     schema: {
       title: 'Validate project',
-      valid: '{{ name }} validation successful',
-      invalid: '{{ name }} validation failed',
+      valid: '{{ name }} schema validation successful',
+      invalid: '{{ name }} schema validation failed',
       fatal: 'Fatal validation error',
       loadError: 'Could not load schema {{ name }}',
     },

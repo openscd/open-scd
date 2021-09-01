@@ -85,8 +85,8 @@ export const de: Translations = {
   validator: {
     schema: {
       title: 'Projekt validieren',
-      valid: '{{ name }} erfolgreich validiert',
-      invalid: '{{ name }} Validierung fehlgeschlagen',
+      valid: '{{ name }} erfolgreich validiert gegen Schema',
+      invalid: '{{ name }} Schema-Validierung fehlgeschlagen',
       fatal: 'Fataler Validierungsfehler',
       loadError: 'Konnte Schema {{ name }} nicht laden',
     },
