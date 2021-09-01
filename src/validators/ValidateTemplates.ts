@@ -7,7 +7,6 @@ import {
   newIssueEvent,
   newLogEvent,
 } from '../foundation.js';
-import { getSchema } from '../schemas.js';
 
 type ValidationResult = LogDetailBase | LogDetail;
 
@@ -34,16 +33,23 @@ function dispatch(
   statusNumber: number,
   validatorId: string
 ): void {
+  const kind = (<LogDetail>detail).kind;
   const title = (<LogDetailBase>detail).title;
   const message = (<LogDetailBase>detail).message;
-  document.querySelector('open-scd')?.dispatchEvent(
-    newIssueEvent({
-      validatorId,
-      statusNumber: statusNumber,
-      title,
-      message,
-    })
-  );
+
+  if (kind)
+    document
+      .querySelector('open-scd')
+      ?.dispatchEvent(newLogEvent(<LogDetail>detail));
+  else
+    document.querySelector('open-scd')?.dispatchEvent(
+      newIssueEvent({
+        validatorId,
+        statusNumber: statusNumber,
+        title,
+        message,
+      })
+    );
 }
 
 async function validateCoOperStructure(
@@ -203,6 +209,7 @@ export async function validateControlCDC(
   } else if (ctlModel !== 'status-only') {
     return [
       {
+        kind: 'info',
         title: get('validator.templates.missingCtlModelDef', {
           tag: 'DOType',
           id: dotype.id || 'UNIDENTIFIABLE',

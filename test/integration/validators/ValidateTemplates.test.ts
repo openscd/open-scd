@@ -40,7 +40,7 @@ describe('ValidateTemplates plugin', () => {
       const issues = parent.diagnoses.get(
         '/src/validators/ValidateTemplates.js'
       );
-      expect(issues?.length).to.equal(21);
+      expect(issues?.length).to.equal(20);
     }).timeout(1000);
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();

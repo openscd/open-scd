@@ -42,22 +42,6 @@
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="Missing ctlModel definition. Cannot validate ctlModel Val within DOType Dummy.CSWI.Pos1
-#Dummy.CSWI.Pos1">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Missing ctlModel definition. Cannot validate ctlModel Val within DOType Dummy.CSWI.Pos1
-        </span>
-        <span slot="secondary">
-          #Dummy.CSWI.Pos1
-        </span>
-      </mwc-list-item>
-    </abbr>
     <abbr title="DOType LPH is missing mandatory child DO LPL
 #Dummy.XCBR1.NamPlt > NamPlt">
       <mwc-list-item
