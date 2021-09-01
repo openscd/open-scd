@@ -1,7 +1,5 @@
 Dear user of OpenSCD,
 
-You are about to enter the deepest rabbit holes of IEC 61850-6. Be sure to not get lost :).
-
 If you are looking at this section of the wiki your job is probably the definition of a data model. For most users this means the translation of an existing signal list to IEC 61850 data model references.
 
 The difference between a signal list and the data model defined in the IEC 61850, however, is that the data model is a hierarchical structure with the following levels:
