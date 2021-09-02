@@ -7,13 +7,13 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[dotype.wizard.title.add]"
+  heading="Add DOType"
   open=""
 >
   <div id="wizard-content">
     <mwc-select
       fixedmenuposition=""
-      helper="[dotype.wizard.enums]"
+      helper="Default enumerations"
       icon="playlist_add_check"
       label="values"
       outlined=""
@@ -357,7 +357,7 @@
     </mwc-select>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -367,7 +367,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -376,7 +376,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -384,7 +384,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="add"
-    label="[add]"
+    label="Add"
     slot="primaryAction"
     trailingicon=""
   >
@@ -400,20 +400,20 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[dotype.wizard.title.edit]"
+  heading="Edit DOType"
   open=""
 >
   <div id="wizard-content">
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[remove]"
+      label="Remove"
       trailingicon=""
     >
     </mwc-button>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -423,14 +423,14 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[scl.CDC]"
+      helper="Common data class"
       label="CDC"
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
@@ -438,14 +438,14 @@
     <section>
       <mwc-button
         icon="playlist_add"
-        label="[scl.DO]"
+        label="Data object"
         slot="graphic"
         trailingicon=""
       >
       </mwc-button>
       <mwc-button
         icon="playlist_add"
-        label="[scl.DA]"
+        label="Data attribute"
         slot="graphic"
         trailingicon=""
       >
@@ -666,7 +666,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -674,7 +674,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -690,20 +690,20 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[sdo.wizard.title.edit]"
+  heading="Edit SDO"
   open=""
 >
   <div id="wizard-content">
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[remove]"
+      label="Remove"
       trailingicon=""
     >
     </mwc-button>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       pattern="[a-z][0-9,A-Z,a-z]*"
       required=""
@@ -712,7 +712,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -720,7 +720,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
       required=""
     >
@@ -865,7 +865,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -873,7 +873,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -889,13 +889,13 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[sdo.wizard.title.add]"
+  heading="Add SDO"
   open=""
 >
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       pattern="[a-z][0-9,A-Z,a-z]*"
       required=""
@@ -904,7 +904,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -912,7 +912,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
       required=""
     >
@@ -1055,7 +1055,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -1063,7 +1063,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

@@ -11,7 +11,7 @@
   <mwc-fab
     extended=""
     icon="add"
-    label="[substation.wizard.title.add]"
+    label="Add substation"
   >
   </mwc-fab>
 </h1>

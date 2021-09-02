@@ -40,6 +40,23 @@
       aria-disabled="false"
       class="top"
       graphic="icon"
+      iconid="folder_open"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        folder_open
+      </mwc-icon>
+      <span>
+        Open CoMPAS
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
       iconid="create_new_folder"
       mwc-list-item=""
       tabindex="-1"
@@ -49,6 +66,23 @@
       </mwc-icon>
       <span>
         New project
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
+      iconid="input"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        input
+      </mwc-icon>
+      <span>
+        New project from CIM
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -67,6 +101,24 @@
       </mwc-icon>
       <span>
         Save project
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="top"
+      disabled=""
+      graphic="icon"
+      iconid="save"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        save
+      </mwc-icon>
+      <span>
+        Save CoMPAS
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
@@ -278,6 +330,23 @@
       aria-disabled="false"
       class="middle"
       graphic="icon"
+      iconid="settings"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        settings
+      </mwc-icon>
+      <span>
+        CoMPAS Settings
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="middle"
+      graphic="icon"
       iconid="help"
       mwc-list-item=""
       tabindex="-1"
@@ -364,10 +433,26 @@
   </mwc-icon-button>
   <mwc-icon-button
     class="landing_icon"
+    icon="folder_open"
+  >
+    <div class="landing_label">
+      Open CoMPAS
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
     icon="create_new_folder"
   >
     <div class="landing_label">
       New project
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="input"
+  >
+    <div class="landing_label">
+      New project from CIM
     </div>
   </mwc-icon-button>
 </div>
@@ -605,6 +690,22 @@
       </mwc-icon>
       Templates
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/compas-editors/CompasVersions.js"
+    >
+      <mwc-icon slot="meta">
+        copy_all
+      </mwc-icon>
+      CoMPAS Versions
+    </mwc-check-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
@@ -653,6 +754,22 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/menu/OpenCompas.js"
+    >
+      <mwc-icon slot="meta">
+        folder_open
+      </mwc-icon>
+      Open CoMPAS
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/menu/NewProject.js"
     >
       <mwc-icon slot="meta">
@@ -669,12 +786,44 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/menu/CompasCimMapping.js"
+    >
+      <mwc-icon slot="meta">
+        input
+      </mwc-icon>
+      New project from CIM
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/menu/SaveProject.js"
     >
       <mwc-icon slot="meta">
         save
       </mwc-icon>
       Save project
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/SaveToCompas.js"
+    >
+      <mwc-icon slot="meta">
+        save
+      </mwc-icon>
+      Save CoMPAS
     </mwc-check-list-item>
     <li
       divider=""
@@ -790,6 +939,22 @@
       role="separator"
     >
     </li>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasSettings.js"
+    >
+      <mwc-icon slot="meta">
+        settings
+      </mwc-icon>
+      CoMPAS Settings
+    </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
       class="official"

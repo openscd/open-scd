@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scl:SCL xmlns:sds="https://www.lfenergy.org/compas/SclDataService" xmlns:compas="https://www.lfenergy.org/compas/v1" xmlns:scl="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
+  <scl:Private type="compas_scl">
+    <compas:SclName>ied_utrecht_station235</compas:SclName>
+    <compas:SclFileType>CID</compas:SclFileType>
+  </scl:Private>
+  <scl:Header id="380b5e70-4753-4b59-b5b4-d51ceb26a30c" version="3.0.0" revision="Revision" toolID="toolID" nameStructure="IEDName"/>
+  <scl:IED name="IED_NAME">
+    <scl:AccessPoint name="AP_NAME">
+      <scl:Server>
+        <scl:Authentication/>
+        <scl:LDevice inst="LDPO">
+          <scl:LN0 lnClass="LLN0" inst="" lnType="LN2">
+            <scl:Inputs>
+              <scl:ExtRef intAddr="INTADDR" pDO="DO1" desc="DESC1"/>
+              <scl:ExtRef intAddr="INTADDR" pDO="DO2" desc="DESC2"/>
+            </scl:Inputs>
+          </scl:LN0>
+          <scl:LN lnClass="PIOC" inst="1" lnType="LN1">
+            <scl:Inputs>
+              <scl:ExtRef intAddr="INTADDR" pDO="DO1" desc="DESC1"/>
+              <scl:ExtRef intAddr="INTADDR" pDO="DO2" desc="DESC2"/>
+            </scl:Inputs>
+          </scl:LN>
+          <scl:LN lnClass="PIOC" inst="2" lnType="LN1">
+            <scl:Inputs>
+              <scl:ExtRef intAddr="INTADDR" pDO="DO1" desc="DESC1"/>
+              <scl:ExtRef intAddr="INTADDR" pDO="DO2" desc="DESC2"/>
+            </scl:Inputs>
+          </scl:LN>
+        </scl:LDevice>
+      </scl:Server>
+    </scl:AccessPoint>
+  </scl:IED>
+  <scl:DataTypeTemplates>
+    <scl:LNodeType lnClass="LLN0" id="LN2">
+      <scl:DO name="Beh" type="DO1" transient="false"/>
+      <scl:DO name="FACntRs" type="DO2" transient="true"/>
+      <scl:DO name="StrVal" type="DO3" transient="false"/>
+    </scl:LNodeType>
+    <scl:LNodeType lnClass="PIOC" id="LN1">
+      <scl:DO name="Beh" type="DO1" transient="false"/>
+      <scl:DO name="FACntRs" type="DO2" transient="true"/>
+      <scl:DO name="StrVal" type="DO3" transient="false"/>
+    </scl:LNodeType>
+    <scl:LNodeType lnClass="CSWI" id="LN3">
+      <scl:DO name="Mod" type="OpenSCD_ENCMod"/>
+      <scl:DO name="Beh" type="OpenSCD_ENSBeh"/>
+      <scl:DO name="Health" type="OpenSCD_ENSHealth"/>
+      <scl:DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
+      <scl:DO name="LocKey" type="OpenSCD_SPSsimple"/>
+      <scl:DO name="Loc" type="OpenSCD_SPSsimple"/>
+      <scl:DO name="Pos" type="OpenSCD_DPC"/>
+    </scl:LNodeType>
+    <scl:DOType cdc="WYE" id="DO1">
+      <scl:DA fc="DC" dchg="false" qchg="false" dupd="false" name="dataNs" bType="VisString255">
+        <scl:Val>IEC 61850-7-3:2007B</scl:Val>
+      </scl:DA>
+      <scl:DA fc="CF" dchg="true" qchg="false" dupd="false" name="smpRate" bType="INT32U"/>
+    </scl:DOType>
+    <scl:DOType cdc="WYE" id="DO2">
+      <scl:SDO name="phsBHar" type="DO4"/>
+      <scl:DA fc="CF" dchg="true" qchg="false" dupd="true" name="angRef" bType="Enum" type="PhaseAngleReferenceKind"/>
+    </scl:DOType>
+    <scl:DOType cdc="WYE" id="DO3">
+      <scl:SDO name="neutHar" type="DO4"/>
+      <scl:DA fc="CF" dchg="true" qchg="false" dupd="false" name="smpRate" bType="INT32U"/>
+      <scl:DA fc="ST" dchg="false" qchg="false" dupd="false" name="origin" bType="Struct" type="DA3"/>
+    </scl:DOType>
+    <scl:DOType cdc="WYE" id="DO4">
+      <scl:DA fc="DC" dchg="false" qchg="false" dupd="false" name="configRev" bType="VisString255" valKind="RO" valImport="false"/>
+    </scl:DOType>
+    <scl:DOType cdc="ENS" id="OpenSCD_ENCMod">
+      <scl:DA fc="ST" dchg="true" name="origin" bType="Enum" type="OpenSCD_Originator"/>
+      <scl:DA fc="ST" dchg="true" name="stVal" bType="Enum" type="BehaviourModeKind"/>
+      <scl:DA fc="ST" qchg="true" name="q" bType="Quality"/>
+      <scl:DA fc="ST" name="t" bType="Timestamp"/>
+      <scl:DA fc="CF" name="ctlModel" bType="Enum" type="CtlModelKind">
+        <scl:Val>sbo-with-enhanced-security</scl:Val>
+      </scl:DA>
+      <scl:DA fc="CF" name="sboTimeout" bType="INT32U">
+        <scl:Val>30000</scl:Val>
+      </scl:DA>
+      <scl:DA fc="CF" name="operTimeout" bType="INT32U">
+        <scl:Val>600</scl:Val>
+      </scl:DA>
+      <scl:DA fc="CO" name="SBOw" bType="Struct" type="OpenSCD_OpenSBOw"/>
+      <scl:DA fc="CO" name="Oper" bType="Struct" type="OpenSCD_OpenSBOw"/>
+      <scl:DA fc="CO" name="Cancel" bType="Struct" type="OpenSCD_Cancel"/>
+    </scl:DOType>
+    <scl:DOType cdc="ENS" id="OpenSCD_ENSBeh">
+      <scl:DA fc="ST" dchg="true" name="stVal" bType="Enum" type="BehaviourModeKind"/>
+      <scl:DA fc="ST" qchg="true" name="q" bType="Quality"/>
+      <scl:DA fc="ST" name="t" bType="Timestamp"/>
+    </scl:DOType>
+    <scl:DOType cdc="ENS" id="OpenSCD_ENSHealth">
+      <scl:DA fc="ST" dchg="true" name="stVal" bType="Enum" type="HealthKind"/>
+      <scl:DA fc="ST" qchg="true" name="q" bType="Quality"/>
+      <scl:DA fc="ST" name="t" bType="Timestamp"/>
+    </scl:DOType>
+    <scl:DOType cdc="LPL" id="OpenSCD_LPLnoLD">
+      <scl:DA fc="DC" name="vendor" bType="VisString255" valKind="RO"/>
+      <scl:DA fc="DC" name="swRev" bType="VisString255" valKind="RO"/>
+      <scl:DA fc="DC" name="d" bType="VisString255" valKind="RO"/>
+      <scl:DA fc="DC" name="configRev" bType="VisString255" valKind="RO"/>
+    </scl:DOType>
+    <scl:DOType cdc="SPS" id="OpenSCD_SPSsimple">
+      <scl:DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
+      <scl:DA fc="ST" qchg="true" name="q" bType="Quality"/>
+      <scl:DA fc="ST" name="t" bType="Timestamp"/>
+      <scl:DA fc="DC" name="d" bType="VisString255"/>
+    </scl:DOType>
+    <scl:DOType cdc="DPC" id="OpenSCD_DPC">
+      <scl:DA fc="ST" dchg="true" name="origin" bType="Enum" type="OpenSCD_Originator"/>
+      <scl:DA fc="ST" dchg="true" name="stVal" bType="Enum" type="BehaviourModeKind"/>
+      <scl:DA fc="ST" qchg="true" name="q" bType="Quality"/>
+      <scl:DA fc="ST" name="t" bType="Timestamp"/>
+      <scl:DA fc="CF" name="ctlModel" bType="Enum" type="CtlModelKind">
+        <scl:Val>sbo-with-enhanced-security</scl:Val>
+      </scl:DA>
+      <scl:DA fc="CF" name="sboTimeout" bType="INT32U">
+        <scl:Val>30000</scl:Val>
+      </scl:DA>
+      <scl:DA fc="CF" name="operTimeout" bType="INT32U">
+        <scl:Val>600</scl:Val>
+      </scl:DA>
+      <scl:DA fc="CO" name="pulseConfig" bType="Struct" type="OpenSCD_PulseConfig"/>
+      <scl:DA fc="CO" name="SBOw" bType="Struct" type="OpenSCD_OpenSBOw"/>
+      <scl:DA fc="CO" name="Oper" bType="Struct" type="OpenSCD_OpenSBOw"/>
+      <scl:DA fc="CO" name="Cancel" bType="Struct" type="OpenSCD_Cancel"/>
+    </scl:DOType>
+    <scl:DAType id="DA1">
+      <scl:BDA name="operTm" bType="Timestamp"/>
+      <scl:BDA name="origin" bType="Struct" type="DA3"/>
+      <scl:ProtNs type="8-MMS">IEC 61850-8-1:2003</scl:ProtNs>
+    </scl:DAType>
+    <scl:DAType id="DA2">
+      <scl:BDA name="T" bType="Timestamp"/>
+      <scl:BDA name="ctlVal" bType="Enum" type="RecCycModKind"/>
+      <scl:ProtNs type="8-MMS">IEC 61850-8-1:2003</scl:ProtNs>
+    </scl:DAType>
+    <scl:DAType id="DA3">
+      <scl:BDA name="Check" bType="Check"/>
+      <scl:BDA name="Test" bType="BOOLEAN"/>
+      <scl:ProtNs type="8-MMS">IEC 61850-8-1:2003</scl:ProtNs>
+    </scl:DAType>
+    <scl:DAType id="OpenSCD_Originator">
+      <scl:BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
+      <scl:BDA name="orIdent" bType="Octet64"/>
+    </scl:DAType>
+    <scl:DAType id="OpenSCD_OpenSBOw">
+      <scl:BDA name="ctlVal" bType="BOOLEAN"/>
+      <scl:BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <scl:BDA name="ctlNum" bType="INT8U"/>
+      <scl:BDA name="T" bType="Timestamp"/>
+      <scl:BDA name="Test" bType="BOOLEAN"/>
+      <scl:BDA name="Check" bType="Check"/>
+      <scl:ProtNs>IEC 61850-8-1:2003</scl:ProtNs>
+    </scl:DAType>
+    <scl:DAType id="OpenSCD_Cancel">
+      <scl:BDA name="ctlVal" bType="BOOLEAN"/>
+      <scl:BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <scl:BDA name="ctlNum" bType="INT8U"/>
+      <scl:BDA name="T" bType="Timestamp"/>
+      <scl:BDA name="Test" bType="BOOLEAN"/>
+      <scl:ProtNs type="8-MMS">IEC 61850-8-1:2003</scl:ProtNs>
+    </scl:DAType>
+    <scl:DAType id="OpenSCD_PulseConfig">
+      <scl:BDA name="cmdQual" bType="Enum" type="OutputSignalKind"/>
+      <scl:BDA name="onDur" bType="INT32U"/>
+      <scl:BDA name="offDur" bType="INT32U"/>
+      <scl:BDA name="numPls" bType="INT32U"/>
+    </scl:DAType>
+    <scl:EnumType id="RecCycModKind">
+      <scl:EnumVal ord="1">Completed</scl:EnumVal>
+      <scl:EnumVal ord="2">Cancelled</scl:EnumVal>
+      <scl:EnumVal ord="3">New adjustments</scl:EnumVal>
+      <scl:EnumVal ord="4">AnotherValue</scl:EnumVal>
+    </scl:EnumType>
+    <scl:EnumType id="PhaseAngleReferenceKind">
+      <scl:EnumVal ord="0">Va</scl:EnumVal>
+      <scl:EnumVal ord="1">Vb</scl:EnumVal>
+      <scl:EnumVal ord="2">Vc</scl:EnumVal>
+      <scl:EnumVal ord="3">Aa</scl:EnumVal>
+      <scl:EnumVal ord="4">Ab</scl:EnumVal>
+      <scl:EnumVal ord="5">Ac</scl:EnumVal>
+      <scl:EnumVal ord="6">Vab</scl:EnumVal>
+      <scl:EnumVal ord="7">Vbc</scl:EnumVal>
+      <scl:EnumVal ord="8">Vca</scl:EnumVal>
+      <scl:EnumVal ord="9">AnotherValue</scl:EnumVal>
+    </scl:EnumType>
+    <scl:EnumType id="OriginatorCategoryKind">
+      <scl:EnumVal ord="0">not-supported</scl:EnumVal>
+      <scl:EnumVal ord="1">bay-control</scl:EnumVal>
+      <scl:EnumVal ord="2">station-control</scl:EnumVal>
+      <scl:EnumVal ord="3">remote-control</scl:EnumVal>
+      <scl:EnumVal ord="4">automatic-bay</scl:EnumVal>
+      <scl:EnumVal ord="5">automatic-station</scl:EnumVal>
+      <scl:EnumVal ord="6">automatic-remote</scl:EnumVal>
+      <scl:EnumVal ord="7">maintenance</scl:EnumVal>
+      <scl:EnumVal ord="8">process</scl:EnumVal>
+    </scl:EnumType>
+    <scl:EnumType id="BehaviourModeKind">
+      <scl:EnumVal ord="1">on</scl:EnumVal>
+      <scl:EnumVal ord="2">blocked</scl:EnumVal>
+      <scl:EnumVal ord="3">test</scl:EnumVal>
+      <scl:EnumVal ord="4">test/blocked</scl:EnumVal>
+      <scl:EnumVal ord="5">off</scl:EnumVal>
+    </scl:EnumType>
+    <scl:EnumType id="CtlModelKind">
+      <scl:EnumVal ord="0">status-only</scl:EnumVal>
+      <scl:EnumVal ord="1">direct-with-normal-security</scl:EnumVal>
+      <scl:EnumVal ord="2">sbo-with-normal-security</scl:EnumVal>
+      <scl:EnumVal ord="3">direct-with-enhanced-security</scl:EnumVal>
+      <scl:EnumVal ord="4">sbo-with-enhanced-security</scl:EnumVal>
+    </scl:EnumType>
+    <scl:EnumType id="HealthKind">
+      <scl:EnumVal ord="1">Ok</scl:EnumVal>
+      <scl:EnumVal ord="2">Warning</scl:EnumVal>
+      <scl:EnumVal ord="3">Alarm</scl:EnumVal>
+    </scl:EnumType>
+    <scl:EnumType id="OutputSignalKind">
+      <scl:EnumVal ord="0">pulse</scl:EnumVal>
+      <scl:EnumVal ord="1">persistent</scl:EnumVal>
+      <scl:EnumVal ord="2">persistent-feedback</scl:EnumVal>
+    </scl:EnumType>
+  </scl:DataTypeTemplates>
+</scl:SCL>

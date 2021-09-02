@@ -3,6 +3,12 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('fetch', e => {
+  if ( e.request.url.match('^.*(/compas-scl-data-service/).*$')
+    || e.request.url.match('^.*(/compas-cim-mapping/).*$')
+    || e.request.url.match('^.*(/auth/).*$')
+     ) {
+    return false;
+  }
   e.respondWith(fetch(e.request));
 });
 
