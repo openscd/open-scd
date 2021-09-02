@@ -376,23 +376,24 @@ export const de: Translations = {
   next: 'Weiter',
 
   compas: {
-    loading: "???",
+    loading: '???',
     error: {
-      type: "???",
+      type: '???',
     },
     changeset: {
-      major: "???",
-      minor: "???",
-      patch: "???",
+      major: '???',
+      minor: '???',
+      patch: '???',
     },
     open: {
       listSclTypes: '???',
       noSclTypes: '???',
       listScls: '??? ({{ type }})',
-      noScls: "???",
+      noScls: '???',
     },
     saveTo: {
-      title: "???",
+      title: '???',
+      comment: '???',
       addError: '???',
       addSuccess: '???',
       updateError: '???',
@@ -410,10 +411,10 @@ export const de: Translations = {
       confirmButton: "???",
     },
     settings: {
-      name: "CoMPAS Einstellungen",
-      sclDataServiceUrl: "CoMPAS SCL Data Service URL",
-      cimMappingServiceUrl: "CoMPAS CIM Mapping Service URL",
-      keycloakAuthUrl: "Keycloak Auth URL",
+      name: 'CoMPAS Einstellungen',
+      sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
+      cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
+      keycloakAuthUrl: 'Keycloak Auth URL',
     }
   }
 };

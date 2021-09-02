@@ -5,11 +5,13 @@ export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1'
 
 export interface CreateRequestBody {
   sclName: string,
+  comment: string,
   doc: Document
 }
 
 export interface UpdateRequestBody {
   changeSet: ChangeSet,
+  comment: string,
   doc: Document
 }
 
@@ -77,6 +79,7 @@ export function CompasSclDataService() {
         body: `<?xml version="1.0" encoding="UTF-8"?>
                <sds:CreateRequest xmlns:sds="${SDS_NAMESPACE}">
                    <sds:Name>${body.sclName}</sds:Name>
+                   <sds:Comment>${body.comment}</sds:Comment>
                    ${new XMLSerializer().serializeToString(body.doc.documentElement)}
                </sds:CreateRequest>`
       })
@@ -93,8 +96,9 @@ export function CompasSclDataService() {
         },
         body: `<?xml version="1.0" encoding="UTF-8"?>
                <sds:UpdateRequest xmlns:sds="${SDS_NAMESPACE}">
-                    <sds:ChangeSet>${body.changeSet}</sds:ChangeSet>
-                    ${new XMLSerializer().serializeToString(body.doc.documentElement)}
+                   <sds:ChangeSet>${body.changeSet}</sds:ChangeSet>
+                   <sds:Comment>${body.comment}</sds:Comment>
+                   ${new XMLSerializer().serializeToString(body.doc.documentElement)}
                </sds:UpdateRequest>`
       })
     }

@@ -16,6 +16,7 @@ import {
 
 import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
+import {WizardTextField} from "../wizard-textfield";
 
 @customElement('compas-save-to')
 export class CompasSaveTo extends LitElement {
@@ -36,6 +37,10 @@ export class CompasSaveTo extends LitElement {
   getChangeSetRadiogroup(): CompasChangeSetRadiogroup {
     return (<CompasChangeSetRadiogroup>this.shadowRoot!
       .querySelector('compas-changeset-radiogroup'))
+  }
+
+  getCommentField() : WizardTextField {
+    return <WizardTextField>this.shadowRoot!.querySelector('wizard-textfield[id="comment"]');
   }
 
   valid(): boolean {
@@ -60,9 +65,10 @@ export class CompasSaveTo extends LitElement {
 
   private async addSclToCompas(wizard: Element, doc: XMLDocument): Promise<void> {
     const name = stripExtensionFromName(this.getNameField().value);
+    const comment = this.getCommentField().value;
     const docType = this.getSclTypeRadioGroup().getSelectedValue() ?? '';
 
-    await CompasSclDataService().addSclDocument(docType, {sclName: name, doc: doc})
+    await CompasSclDataService().addSclDocument(docType, {sclName: name, comment: comment, doc: doc})
       .then(async xmlResponse => {
         const id = Array.from(xmlResponse.querySelectorAll('*|Id') ?? [])[0]
 
@@ -90,9 +96,10 @@ export class CompasSaveTo extends LitElement {
 
   private async updateSclInCompas(wizard: Element, docId: string, docName: string, doc: XMLDocument): Promise<void> {
     const changeSet = this.getChangeSetRadiogroup().getSelectedValue();
+    const comment = this.getCommentField().value;
     const docType = getTypeFromDocName(docName);
 
-    await CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, doc: doc})
+    await CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, comment: comment, doc: doc})
       .then(async () => {
         // Retrieve the document to fetch server-side updates.
         await this.getSclDocument(docType, docId);
@@ -123,6 +130,16 @@ export class CompasSaveTo extends LitElement {
     }
   }
 
+  private renderCommentTextField() {
+    return html`
+        <wizard-textfield id="comment"
+                          label="${translate('compas.saveTo.comment')}"
+                          .maybeValue=${null}
+                          nullable>
+        </wizard-textfield>
+    `
+  }
+
   render(): TemplateResult {
     if (!this.docId) {
       return html`
@@ -131,11 +148,15 @@ export class CompasSaveTo extends LitElement {
         </mwc-textfield>
 
         <compas-scltype-radiogroup .value="${getTypeFromDocName(this.docName)}"></compas-scltype-radiogroup>
+
+        ${this.renderCommentTextField()}
       `;
     }
 
     return html `
       <compas-changeset-radiogroup></compas-changeset-radiogroup>
+
+      ${this.renderCommentTextField()}
     `;
   }
 }

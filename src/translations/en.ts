@@ -373,14 +373,14 @@ export const en = {
   next: 'Next',
 
   compas: {
-    loading: "Loading...",
+    loading: 'Loading...',
     error: {
-      type: "Unable to determine type from document name!",
+      type: 'Unable to determine type from document name!',
     },
     changeset: {
-      major: "Major change",
-      minor: "Minor change",
-      patch: "Patch change",
+      major: 'Major change',
+      minor: 'Minor change',
+      patch: 'Patch change',
     },
     open: {
       listSclTypes: 'Type of SCL',
@@ -390,6 +390,7 @@ export const en = {
     },
     saveTo: {
       title: 'Save to CoMPAS',
+      comment: 'Comment',
       addError: 'Error adding SCL to CoMPAS!',
       addSuccess: 'SCL added to CoMPAS.',
       updateError: 'Error updating SCL in CoMPAS!',
@@ -400,17 +401,17 @@ export const en = {
     },
     versions: {
       title: 'CoMPAS Versions',
-      noVersions: "No CoMPAS versions found",
-      noScls: "No versions found for this SCL in CoMPAS",
-      confirmTitle: "Restore?",
-      confirm: "Are you sure to restore previous version?",
-      confirmButton: "Confirm",
+      noVersions: 'No CoMPAS versions found',
+      noScls: 'No versions found for this SCL in CoMPAS',
+      confirmTitle: 'Restore?',
+      confirm: 'Are you sure to restore previous version?',
+      confirmButton: 'Confirm',
     },
     settings: {
-      name: "CoMPAS Settings",
-      sclDataServiceUrl: "CoMPAS SCL Data Service URL",
-      cimMappingServiceUrl: "CoMPAS CIM Mapping Service URL",
-      keycloakAuthUrl: "Keycloak Auth URL",
+      name: 'CoMPAS Settings',
+      sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
+      cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
+      keycloakAuthUrl: 'Keycloak Auth URL',
     }
   }
 };
