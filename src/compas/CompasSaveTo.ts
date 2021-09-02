@@ -1,6 +1,7 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get, translate} from "lit-translate";
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
+import {WizardTextField} from "../wizard-textfield.js";
 
 import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 
@@ -16,7 +17,6 @@ import {
 
 import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
-import {WizardTextField} from "../wizard-textfield";
 
 @customElement('compas-save-to')
 export class CompasSaveTo extends LitElement {
