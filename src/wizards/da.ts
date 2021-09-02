@@ -2,6 +2,7 @@ import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  cloneElement,
   createElement,
   EditorAction,
   getReference,
@@ -115,26 +116,19 @@ export function updateDaAction(element: Element): WizardActor {
     ) {
       daAction = null;
     } else {
-      const newElement = <Element>element.cloneNode(false);
-      newElement.setAttribute('name', name);
-      if (desc === null) newElement.removeAttribute('desc');
-      else newElement.setAttribute('desc', desc);
-      newElement.setAttribute('bType', bType);
-      if (type === null) newElement.removeAttribute('type');
-      else newElement.setAttribute('type', type);
-      if (sAddr === null) newElement.removeAttribute('sAddr');
-      else newElement.setAttribute('sAddr', sAddr);
-      if (valKind === null) newElement.removeAttribute('valKind');
-      else newElement.setAttribute('valKind', valKind);
-      if (valImport === null) newElement.removeAttribute('valImport');
-      else newElement.setAttribute('valImport', valImport);
-      newElement.setAttribute('fc', fc);
-      if (dchg === null) newElement.removeAttribute('dchg');
-      else newElement.setAttribute('dchg', dchg);
-      if (qchg === null) newElement.removeAttribute('qchg');
-      else newElement.setAttribute('qchg', qchg);
-      if (dupd === null) newElement.removeAttribute('dupd');
-      else newElement.setAttribute('dupd', dupd);
+      const newElement = cloneElement(element, {
+        name,
+        desc,
+        bType,
+        type,
+        sAddr,
+        valKind,
+        valImport,
+        fc,
+        dchg,
+        qchg,
+        dupd,
+      });
       daAction = { old: { element }, new: { element: newElement } };
     }
 

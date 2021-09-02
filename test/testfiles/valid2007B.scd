@@ -306,6 +306,7 @@
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
 			<DO name="Loc" type="Dummy.SPS" />
+			<DO name="SwTyp" type="Dummy.XSWI.SwTyp" />
 			<DO name="OpCnt" type="Dummy.XCBR1.OpCnt" />
 			<DO name="Pos" type="Dummy.XCBR1.Pos" />
 			<DO name="BlkOpn" type="Dummy.XCBR1.BlkOpn" />
@@ -325,7 +326,9 @@
 			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
 			<DA fc="OR" name="opOk" bType="BOOLEAN" />
 			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="CO" name="SBO" bType="ObjRef" />
@@ -335,6 +338,11 @@
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
 			<DA fc="ST" name="stVal" bType="Enum" type="Beh" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+		</DOType>
+		<DOType cdc="ENS" id="Dummy.XSWI.SwTyp">
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_SwitchFunctionKind" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 		</DOType>
@@ -365,7 +373,9 @@
 			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
 			<DA fc="OR" name="opOk" bType="BOOLEAN" />
 			<DA fc="OR" name="tOpOk" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
@@ -378,7 +388,9 @@
 			<DA fc="ST" name="stVal" bType="Dbpos" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos1">
@@ -389,12 +401,17 @@
 				<Val>sbo-with-enhanced-security</Val>
 			</DA>
 			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos2">
 			<DA fc="ST" name="stVal" bType="Dbpos" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="INS" id="Dummy.XCBR1.OpCnt">
@@ -411,7 +428,9 @@
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
-			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+				<Val>status-only</Val>
+			</DA>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="SPS" id="Dummy.SPS">
@@ -465,6 +484,12 @@
 			<EnumVal ord="2">Warning</EnumVal>
 			<EnumVal ord="3">Alarm</EnumVal>
 		</EnumType>
+		<EnumType id="Dummy_SwitchFunctionKind">
+      		<EnumVal ord="1">Load Break</EnumVal>
+      		<EnumVal ord="2">Disconnector</EnumVal>
+      		<EnumVal ord="3">Earthing Switch</EnumVal>
+      		<EnumVal ord="4">High Speed Earthing Switch</EnumVal>
+    	</EnumType>
 		<EnumType id="Dummy_orCategory">
 			<EnumVal ord="0">not-supported</EnumVal>
 			<EnumVal ord="1">bay-control</EnumVal>

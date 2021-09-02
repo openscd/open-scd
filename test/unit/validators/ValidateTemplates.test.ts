@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+import { LogDetail } from '../../../src/foundation.js';
 import {
   validateControlCDC,
   validateDoCDCSetting,
@@ -21,13 +22,11 @@ describe('VelidateTemplate', () => {
       const element = doc.querySelector('LNodeType[id="Dummy.CILO"]')!;
       const errors = await validateMandatoryDOs(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('return LogDetail array for missing mandatory DO e.g Pos', async () => {
       const element = doc.querySelector('LNodeType[id="Dummy.CSWI"]')!;
       const errors = await validateMandatoryDOs(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('returns empty array if LNodeType includes all mandatory DOs', async () => {
       const element = doc.querySelector('LNodeType[id="Dummy.GGIO1"]')!;
@@ -43,7 +42,6 @@ describe('VelidateTemplate', () => {
       const element = doc.querySelector('LNodeType[id="Dummy.GGIO1"]')!;
       const errors = await validateDoCDCSetting(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
   });
   describe('used on DOType element', () => {
@@ -61,19 +59,16 @@ describe('VelidateTemplate', () => {
       const element = doc.querySelector('DOType[id="Dummy.LLN0.Health"]')!;
       const errors = await validateMandatoryDAs(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('return LogDetail array for missing mandatory DA e.g stVal', async () => {
       const element = doc.querySelector('DOType[id="Dummy.XCBR1.Pos"]')!;
       const errors = await validateMandatoryDAs(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('return LogDetail array for missing mandatory DA e.g ctlModel', async () => {
       const element = doc.querySelector('DOType[id="Dummy.CSWI.Pos1"]')!;
       const errors = await validateMandatoryDAs(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
   });
   describe('used on DAType element', () => {
@@ -93,7 +88,6 @@ describe('VelidateTemplate', () => {
       )!;
       const errors = await validateMandatorySubDAs(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
   });
   describe('used on controlable data objects', () => {
@@ -106,25 +100,21 @@ describe('VelidateTemplate', () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC1"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('returns LogDetail array for missing SBO', async () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC2"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('returns LogDetail array for missing Oper', async () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC3"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('returns LogDetail array for missing Cancel', async () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC3"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('does not indicate false positive for status-only DOs', async () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC4"]')!;
@@ -135,25 +125,21 @@ describe('VelidateTemplate', () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC5"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('returns LogDetail array for missing DA within SBOw structure', async () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC6"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('returns LogDetail array for missing DA within Cancel structure', async () => {
       const element = doc.querySelector('DOType[id="Dummy.SPC7"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('error');
     });
     it('returns a warning if ctlModel definition is missing', async () => {
       const element = doc.querySelector('DOType[id="Dummy.CSWI.Pos1"]')!;
       const errors = await validateControlCDC(element);
       expect(errors.length).to.equal(1);
-      expect(errors[0].kind).to.equal('warning');
     });
   });
 });

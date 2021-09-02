@@ -6,6 +6,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import {
+  cloneElement,
   Delete,
   EditorAction,
   getValue,
@@ -165,22 +166,19 @@ export function updateGseControlAction(element: Element): WizardActor {
       desc === element.getAttribute('desc') &&
       type === element.getAttribute('type') &&
       appID === element.getAttribute('appID') &&
-      fixedOffs === element.getAttribute('numPhases') &&
+      fixedOffs === element.getAttribute('fixedOffs') &&
       securityEnabled === element.getAttribute('securityEnabled')
     )
       return [];
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    newElement.setAttribute('appID', appID);
-    if (type === null) newElement.removeAttribute('type');
-    else newElement.setAttribute('type', type);
-    if (fixedOffs === null) newElement.removeAttribute('fixedOffs');
-    else newElement.setAttribute('fixedOffs', fixedOffs);
-    if (securityEnabled === null) newElement.removeAttribute('securityEnabled');
-    else newElement.setAttribute('securityEnabled', securityEnabled);
+    const newElement = cloneElement(element, {
+      name,
+      desc,
+      type,
+      appID,
+      fixedOffs,
+      securityEnabled,
+    });
 
     return [{ old: { element }, new: { element: newElement } }];
   };

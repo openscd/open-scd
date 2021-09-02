@@ -2,6 +2,7 @@ import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  cloneElement,
   createElement,
   EditorAction,
   getMultiplier,
@@ -169,10 +170,9 @@ function getVoltageAction(
       },
     };
 
-  const newVoltage = <Element>oldVoltage.cloneNode(false);
+  const newVoltage = cloneElement(oldVoltage, { multiplier });
   newVoltage.textContent = Voltage;
-  if (multiplier === null) newVoltage.removeAttribute('multiplier');
-  else newVoltage.setAttribute('multiplier', multiplier);
+
   return {
     old: { element: oldVoltage },
     new: { element: newVoltage },
@@ -199,14 +199,12 @@ export function updateAction(element: Element): WizardActor {
     ) {
       voltageLevelAction = null;
     } else {
-      const newElement = <Element>element.cloneNode(false);
-      newElement.setAttribute('name', name);
-      if (desc === null) newElement.removeAttribute('desc');
-      else newElement.setAttribute('desc', desc);
-      if (nomFreq === null) newElement.removeAttribute('nomFreq');
-      else newElement.setAttribute('nomFreq', nomFreq);
-      if (numPhases === null) newElement.removeAttribute('numPhases');
-      else newElement.setAttribute('numPhases', numPhases);
+      const newElement = cloneElement(element, {
+        name,
+        desc,
+        nomFreq,
+        numPhases,
+      });
       voltageLevelAction = { old: { element }, new: { element: newElement } };
     }
 

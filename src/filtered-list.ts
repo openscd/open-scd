@@ -1,5 +1,6 @@
 import { List } from '@material/mwc-list';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
+import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { TextField } from '@material/mwc-textfield';
 import {
   css,
@@ -13,7 +14,7 @@ import {
 } from 'lit-element';
 
 @customElement('filtered-list')
-export class FilteredList extends List {
+export class FilteredList extends ListBase {
   @property({ type: String })
   searchFieldLabel!: string;
 
@@ -46,7 +47,7 @@ export class FilteredList extends List {
   private onCheckAll(): void {
     const select = !this.isAllSelected;
     this.items
-      .filter(item => !item.disabled)
+      .filter(item => !item.disabled && !item.classList.contains('hidden'))
       .forEach(item => (item.selected = select));
   }
 

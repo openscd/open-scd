@@ -10,8 +10,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
-import { updateNamingAction } from '../zeroline/foundation.js';
+import { updateNamingAction } from './foundation/actions.js';
 
 function render(name: string | null, desc: string | null): TemplateResult[] {
   return [

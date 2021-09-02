@@ -231,7 +231,7 @@ type InfoEntryKind = 'info' | 'warning' | 'error';
 export type LogEntryType = 'info' | 'warning' | 'error' | 'action' | 'reset';
 
 /** The basic information contained in each [[`LogEntry`]]. */
-interface LogDetailBase {
+export interface LogDetailBase {
   title: string;
   message?: string;
 }
@@ -257,6 +257,23 @@ export function newLogEvent(
   eventInitDict?: CustomEventInit<LogDetail>
 ): LogEvent {
   return new CustomEvent<LogDetail>('log', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { ...detail, ...eventInitDict?.detail },
+  });
+}
+
+export interface IssueDetail extends LogDetailBase {
+  validatorId: string;
+  statusNumber: number;
+}
+export type IssueEvent = CustomEvent<IssueDetail>;
+export function newIssueEvent(
+  detail: IssueDetail,
+  eventInitDict?: CustomEventInit<IssueDetail>
+): IssueEvent {
+  return new CustomEvent<IssueDetail>('issue', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
@@ -2364,6 +2381,19 @@ export function createElement(
   return element;
 }
 
+/** @returns a clone of `element` with attributes set to values from `attrs`. */
+export function cloneElement(
+  element: Element,
+  attrs: Record<string, string | null>
+): Element {
+  const newElement = <Element>element.cloneNode(false);
+  Object.entries(attrs).forEach(([name, value]) => {
+    if (value === null) newElement.removeAttribute(name);
+    else newElement.setAttribute(name, value);
+  });
+  return newElement;
+}
+
 /** A directive rendering its argument `rendered` only if `rendered !== {}`. */
 export const ifImplemented = directive(rendered => (part: Part) => {
   if (Object.keys(rendered).length) part.setValue(rendered);
@@ -2520,5 +2550,6 @@ declare global {
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
     ['log']: LogEvent;
+    ['issue']: IssueEvent;
   }
 }

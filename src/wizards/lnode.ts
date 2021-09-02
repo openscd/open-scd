@@ -16,6 +16,7 @@ import {
 } from '../foundation.js';
 
 import { List } from '@material/mwc-list';
+import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
@@ -157,7 +158,7 @@ function getListContainer(target: Element, selector: string): Element | null {
 }
 
 function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
-  if (!(evt.target instanceof List)) return;
+  if (!(evt.target instanceof ListBase)) return;
   const lnList = getListContainer(evt.target, '#lnList');
   if (lnList === null) return;
 

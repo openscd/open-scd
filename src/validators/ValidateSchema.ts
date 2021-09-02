@@ -1,7 +1,7 @@
 import { LitElement, property } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { newLogEvent } from '../foundation.js';
+import { newIssueEvent, newLogEvent } from '../foundation.js';
 
 import {
   getSchema,
@@ -22,7 +22,14 @@ export default class ValidateSchema extends LitElement {
   @property()
   docName!: string;
 
-  private async getValidator(xsd: string, xsdName: string): Promise<Validator> {
+  @property()
+  pluginId!: string;
+
+  private async getValidator(
+    xsd: string,
+    xsdName: string,
+    statusNumber: number
+  ): Promise<Validator> {
     if (!window.Worker) throw new Error(get('validator.schema.fatal'));
     if (validators[xsdName]) return validators[xsdName]!;
 
@@ -51,9 +58,10 @@ export default class ValidateSchema extends LitElement {
           const description = parts[1] ? parts[1] : parts[0];
           const qualifiedTag = parts[1] ? ' (' + parts[0] + ')' : '';
           document.querySelector('open-scd')!.dispatchEvent(
-            newLogEvent({
+            newIssueEvent({
               title: description,
-              kind: e.data.level > 1 ? 'error' : 'warning',
+              validatorId: this.pluginId,
+              statusNumber,
               message:
                 e.data.file +
                 ':' +
@@ -79,7 +87,7 @@ export default class ValidateSchema extends LitElement {
     });
   }
 
-  async validate(): Promise<void> {
+  async validate(indentity: string, statusNumber: number): Promise<void> {
     const fileName = this.docName;
     let version = '2007';
     let revision = 'B';
@@ -93,7 +101,8 @@ export default class ValidateSchema extends LitElement {
       ];
     const result = await this.getValidator(
       getSchema(version, revision, release),
-      'SCL' + version + revision + release + '.xsd'
+      'SCL' + version + revision + release + '.xsd',
+      statusNumber
     ).then(validator =>
       validator(new XMLSerializer().serializeToString(this.doc), fileName)
     );

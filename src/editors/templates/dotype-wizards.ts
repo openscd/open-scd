@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  cloneElement,
   Create,
   createElement,
   EditorAction,
@@ -49,15 +50,8 @@ function updateSDoAction(element: Element): WizardActor {
       return [];
     }
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    newElement.setAttribute('type', type);
-    actions.push({
-      old: { element },
-      new: { element: newElement },
-    });
+    const newElement = cloneElement(element, { name, desc, type });
+    actions.push({ old: { element }, new: { element: newElement } });
 
     return actions;
   };
@@ -297,11 +291,7 @@ function updateDOTypeAction(element: Element): WizardActor {
     )
       return [];
 
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('id', id);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    newElement.setAttribute('cdc', cdc);
+    const newElement = cloneElement(element, { id, desc, cdc });
 
     return [{ old: { element }, new: { element: newElement } }];
   };

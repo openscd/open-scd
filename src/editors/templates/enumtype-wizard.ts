@@ -2,6 +2,7 @@ import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  cloneElement,
   createElement,
   EditorAction,
   getReference,
@@ -80,10 +81,7 @@ function updateEnumValAction(element: Element): WizardActor {
     )
       return [];
 
-    const newElement = <Element>element.cloneNode(false);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-    newElement.setAttribute('ord', ord);
+    const newElement = cloneElement(element, { desc, ord });
     newElement.textContent = value;
 
     return [{ old: { element }, new: { element: newElement } }];

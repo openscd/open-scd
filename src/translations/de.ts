@@ -46,6 +46,7 @@ export const de: Translations = {
   menu: {
     title: 'Menü',
     viewLog: 'Protokoll anzeigen',
+    viewDiag: 'Daignose anzeigen',
   },
   wizard: {
     title: {
@@ -111,6 +112,11 @@ export const de: Translations = {
       show: 'Anzeigen',
       placeholder: 'Keine Fehler',
     },
+  },
+  diag: {
+    name: 'Daignoseübersicht',
+    zeroissues: 'Es konnten keine Fehler in dem Projekt gefunden werden.',
+    placeholder: 'Hier werden Validierungsfehler angezeigt.',
   },
   plugins: {
     heading: 'Erweiterungen',

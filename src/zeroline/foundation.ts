@@ -7,6 +7,7 @@ import {
   WizardActor,
   WizardInput,
   isPublic,
+  cloneElement,
 } from '../foundation.js';
 
 import { BayEditor } from './bay-editor.js';
@@ -103,27 +104,7 @@ export type ElementEditor = Element & {
   element: Element;
 };
 
-export function updateNamingAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): EditorAction[] => {
-    const name = getValue(inputs.find(i => i.label === 'name')!)!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
-    if (
-      name === element.getAttribute('name') &&
-      desc === element.getAttribute('desc')
-    )
-      return [];
-
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', name);
-    if (desc === null) newElement.removeAttribute('desc');
-    else newElement.setAttribute('desc', desc);
-
-    return [{ old: { element }, new: { element: newElement } }];
-  };
-}
-
-export function cloneElement(
+export function cloneSubstationElement(
   editor: BayEditor | VoltageLevelEditor | SubstationEditor
 ): void {
   const element: Element = editor.element;

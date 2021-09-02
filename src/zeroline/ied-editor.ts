@@ -43,7 +43,9 @@ export class IedEditor extends LitElement {
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
-        <mwc-icon class="icon">developer_board</mwc-icon>
+        <abbr title="${this.name}">
+          <mwc-icon class="icon">developer_board</mwc-icon></abbr
+        >
         <mwc-fab
           id="connectreport"
           mini

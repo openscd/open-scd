@@ -1,7 +1,13 @@
 import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { html, property, query, TemplateResult } from 'lit-element';
+import {
+  html,
+  internalProperty,
+  property,
+  query,
+  TemplateResult,
+} from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 import { Mixin, newPendingStateEvent, ValidateEvent } from './foundation.js';
@@ -21,7 +27,7 @@ interface MenuItem {
 }
 
 interface Validator {
-  validate: (identity: string) => Promise<void>;
+  validate: (identity: string, run: number) => Promise<void>;
 }
 
 interface MenuPlugin {
@@ -40,9 +46,11 @@ export function Hosting<
     /** The currently active editor tab. */
     @property({ type: Number })
     activeTab = 0;
-
     @property({ attribute: false })
     validated: Promise<unknown> = Promise.resolve();
+
+    @internalProperty()
+    statusNumber = 0;
 
     @query('#menu') menuUI!: Drawer;
 
@@ -126,7 +134,7 @@ export function Hosting<
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].lastElementChild
                   ))
-                )).validate('')
+                )).validate('', ++this.statusNumber)
               )
             );
           },
@@ -161,10 +169,17 @@ export function Hosting<
         },
         ...validators,
         {
-          icon: 'rule',
+          icon: 'history',
           name: 'menu.viewLog',
           actionItem: true,
           action: (): void => this.logUI.show(),
+          kind: 'static',
+        },
+        {
+          icon: 'rule',
+          name: 'menu.viewDiag',
+          actionItem: true,
+          action: (): void => this.diagnosticUI.show(),
           kind: 'static',
         },
         'divider',
@@ -196,7 +211,7 @@ export function Hosting<
             .map(item => {
               const promise = (<Validator>(
                 (<unknown>item.lastElementChild)
-              )).validate(e.detail.identity);
+              )).validate(e.detail.identity, ++this.statusNumber);
               return promise;
             })
         );

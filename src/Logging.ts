@@ -1,4 +1,10 @@
-import { html, property, query, TemplateResult } from 'lit-element';
+import {
+  html,
+  internalProperty,
+  property,
+  query,
+  TemplateResult,
+} from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { Dialog } from '@material/mwc-dialog';
@@ -8,6 +14,8 @@ import {
   CommitEntry,
   ifImplemented,
   invert,
+  IssueDetail,
+  IssueEvent,
   LitElementConstructor,
   LogEntry,
   LogEntryType,
@@ -17,6 +25,7 @@ import {
 } from './foundation.js';
 import { get, translate } from 'lit-translate';
 import { getFilterIcon, iconColors } from './icons.js';
+import { Plugin } from './Plugging.js';
 
 const icons = {
   info: 'info',
@@ -24,6 +33,18 @@ const icons = {
   error: 'report',
   action: 'history',
 };
+
+function getPluginName(src: string): string {
+  const plugin = <Plugin>(
+    JSON.parse(localStorage.getItem('plugins') ?? '[]').find(
+      (p: Plugin) => p.src === src
+    )
+  );
+  if (!plugin) return src;
+
+  const name = plugin.name;
+  return name || src;
+}
 
 /**
  * A mixin adding a `history` property to any `LitElement`, in which
@@ -46,11 +67,17 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     /** Index of the last [[`EditorAction`]] applied. */
     @property({ type: Number })
     currentAction = -1;
+    @property()
+    diagnoses = new Map<string, IssueDetail[]>();
+    @internalProperty()
+    lastIssue!: IssueDetail;
 
     @query('#log') logUI!: Dialog;
+    @query('#diagnostic') diagnosticUI!: Dialog;
     @query('#error') errorUI!: Snackbar;
     @query('#warning') warningUI!: Snackbar;
     @query('#info') infoUI!: Snackbar;
+    @query('#issue') issueUI!: Snackbar;
 
     get canUndo(): boolean {
       return this.currentAction >= 0;
@@ -72,6 +99,21 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         .findIndex(entry => entry.kind == 'action');
       if (index >= 0) index += this.currentAction + 1;
       return index;
+    }
+
+    private onIssue(de: IssueEvent): void {
+      const issues = this.diagnoses.get(de.detail.validatorId);
+      if (issues && issues[0].statusNumber > de.detail.statusNumber) return;
+      else if (issues && issues[0].statusNumber === de.detail.statusNumber)
+        issues.push(de.detail);
+      else if (issues && issues[0].statusNumber !== de.detail.statusNumber) {
+        issues.length = 0;
+        issues?.push(de.detail);
+      } else this.diagnoses.set(de.detail.validatorId, [de.detail]);
+
+      this.lastIssue = de.detail;
+      this.issueUI.close();
+      this.issueUI.show();
     }
 
     undo(): boolean {
@@ -146,6 +188,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.onLog = this.onLog.bind(this);
       this.addEventListener('log', this.onLog);
+      this.addEventListener('issue', this.onIssue);
     }
 
     renderLogEntry(
@@ -185,6 +228,47 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           <span>${translate('log.placeholder')}</span>
           <mwc-icon slot="graphic">info</mwc-icon>
         </mwc-list-item>`;
+    }
+
+    private renderIssueEntry(issue: IssueDetail): TemplateResult {
+      return html` <abbr title="${issue.title + '\n' + issue.message}"
+        ><mwc-list-item ?twoline=${!!issue.message}>
+          <span> ${issue.title}</span>
+          <span slot="secondary">${issue.message}</span>
+        </mwc-list-item></abbr
+      >`;
+    }
+
+    renderValidatorsIssues(issues: IssueDetail[]): TemplateResult[] {
+      if (issues.length === 0) return [html``];
+      return [
+        html`<mwc-list-item noninteractive
+          >${getPluginName(issues[0].validatorId)}</mwc-list-item
+        >`,
+        html`<li divider padded role="separator"></li>`,
+        ...issues.map(issue => this.renderIssueEntry(issue)),
+      ];
+    }
+
+    private renderIssues(): TemplateResult[] | TemplateResult {
+      const issueItems: TemplateResult[] = [];
+
+      this.diagnoses.forEach(issues => {
+        this.renderValidatorsIssues(issues).forEach(issueItem =>
+          issueItems.push(issueItem)
+        );
+      });
+
+      return issueItems.length
+        ? issueItems
+        : html`<mwc-list-item disabled graphic="icon">
+            <span
+              >${translate(
+                this.history.length ? 'diag.zeroissues' : 'diag.placeholder'
+              )}</span
+            >
+            <mwc-icon slot="graphic">info</mwc-icon>
+          </mwc-list-item>`;
     }
 
     private renderFilterButtons() {
@@ -264,6 +348,15 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           >
         </mwc-dialog>
 
+        <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
+          <filtered-list id="content" wrapFocus
+            >${this.renderIssues()}</filtered-list
+          >
+          <mwc-button slot="primaryAction" dialogaction="close"
+            >${translate('close')}</mwc-button
+          >
+        </mwc-dialog>
+
         <mwc-snackbar
           id="info"
           timeoutMs="4000"
@@ -286,7 +379,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         >
           <mwc-button
             slot="action"
-            icon="rule"
+            icon="history"
             @click=${() => this.logUI.show()}
             >${translate('log.snackbar.show')}</mwc-button
           >
@@ -303,8 +396,22 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         >
           <mwc-button
             slot="action"
-            icon="rule"
+            icon="history"
             @click=${() => this.logUI.show()}
+            >${translate('log.snackbar.show')}</mwc-button
+          >
+          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+        </mwc-snackbar>
+        <mwc-snackbar
+          id="issue"
+          timeoutMs="10000"
+          labelText="${this.lastIssue?.title ??
+          get('log.snackbar.placeholder')}"
+        >
+          <mwc-button
+            slot="action"
+            icon="rule"
+            @click=${() => this.diagnosticUI.show()}
             >${translate('log.snackbar.show')}</mwc-button
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>

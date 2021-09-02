@@ -22,6 +22,7 @@ import {
   getReference,
   SCLTag,
   getChildElementsByTagName,
+  cloneElement,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -502,6 +503,46 @@ describe('foundation', () => {
           ':root > Substation > VoltageLevel > Bay[name="COUPLING_BAY"] > LNode'
         ).length
       );
+    });
+  });
+
+  describe('cloneElement', () => {
+    let element: Element;
+    beforeEach(() => {
+      element = new DOMParser().parseFromString(
+        `<Element attr1="attrValue" ></Element>`,
+        'application/xml'
+      ).documentElement;
+    });
+    it('does not copy child nodes', () => {
+      const newElement = cloneElement(element, {});
+      expect(newElement.childNodes.length).to.equal(0);
+    });
+    it('creates a newElement with specified attrs', () => {
+      const attr1 = 'newAttr1';
+      const attr2 = 'newAttr2';
+      const newElement = cloneElement(element, { attr1, attr2 });
+      expect(newElement.attributes.length).to.equal(2);
+      expect(newElement).to.have.attribute('attr2', 'newAttr2');
+    });
+    it('leaves attr untouched if not part of attrs', () => {
+      const attr2 = 'newAttr2';
+      const newElement = cloneElement(element, { attr2 });
+      expect(newElement.attributes.length).to.equal(2);
+      expect(newElement).to.have.attribute('attr1', 'attrValue');
+    });
+    it('updates existing attr if part of attrs', () => {
+      const attr1 = 'newAttr1';
+      const newElement = cloneElement(element, { attr1 });
+      expect(newElement.attributes.length).to.equal(1);
+      expect(newElement).to.have.attribute('attr1', 'newAttr1');
+    });
+    it('removes existing attr if set to null', () => {
+      const attr1 = null;
+      const attr2 = 'newAttr2';
+      const newElement = cloneElement(element, { attr1, attr2 });
+      expect(newElement.attributes.length).to.equal(1);
+      expect(newElement).to.not.have.attribute('attr1');
     });
   });
 });
