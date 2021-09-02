@@ -87,7 +87,7 @@ export default class ValidateSchema extends LitElement {
     });
   }
 
-  async validate(indentity: string, statusNumber: number): Promise<void> {
+  async validate(statusNumber: number): Promise<void> {
     const fileName = this.docName;
     let version = '2007';
     let revision = 'B';
@@ -120,6 +120,13 @@ export default class ValidateSchema extends LitElement {
     document.querySelector('open-scd')!.dispatchEvent(
       newLogEvent({
         kind: 'info',
+        title: get('validator.schema.valid', { name: result.file }),
+      })
+    );
+    document.querySelector('open-scd')!.dispatchEvent(
+      newIssueEvent({
+        validatorId: this.pluginId,
+        statusNumber,
         title: get('validator.schema.valid', { name: result.file }),
       })
     );
