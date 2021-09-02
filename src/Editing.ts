@@ -236,6 +236,8 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
         );
       }
 
+      this.dispatchEvent(newValidateEvent());
+
       for (const element of event.composedPath())
         if (element instanceof LitElement) element.requestUpdate();
     }
