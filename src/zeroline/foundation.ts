@@ -157,11 +157,11 @@ export function dragStart<E extends ElementEditor>(
 export function dragOver<E extends ElementEditor>(
   editor: E,
   event: DragEvent,
-  ...allowedEditorTypes: SCLTag[]
+  ...allowedSCLTags: SCLTag[]
 ) {  
   const types = event.dataTransfer?.types;
   if (
-    allowedEditorTypes.some(t => types?.includes(t.toLowerCase()))
+    allowedSCLTags.some(t => types?.includes(t.toLowerCase()))
   ) {
     event.preventDefault();
     editor.classList.add('dragOver');
@@ -183,7 +183,7 @@ export function drop<E extends ElementEditor>(
 ) {
   const tag = event.dataTransfer?.items[0].type!;
   const identity = event.dataTransfer?.getData(tag)!;
-  
+
   // the manual search for the SCL tag is necessary as all types in the DragEvent dataTransfer get converted to lower case automatically 
   const xmlTag = Array.from(SCLTagSet).find(x => x.toLowerCase() == tag)
 
