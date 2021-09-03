@@ -94,9 +94,9 @@ export class ConductingEquipmentEditor extends LitElement {
         draggable="true"
         @dragstart="${(e: DragEvent) => dragStart(this, e)}"
         @dragover="${(e: DragEvent) =>
-          dragOver(this, e, BayEditor, ConductingEquipmentEditor)}"
+          dragOver(this, e, "Bay", "ConductingEquipment")}"
         @drop="${(e: DragEvent) =>
-          drop(this, e, BayEditor, ConductingEquipmentEditor)}"
+          drop(this, e)}"
         @dragleave="${() => dragLeave(this)}"
         @dragend="${() => dragEnd(this)}"
       >

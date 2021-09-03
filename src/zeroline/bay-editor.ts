@@ -24,7 +24,6 @@ import { wizards } from '../wizards/wizard-library.js';
 
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import './conducting-equipment-editor.js';
-import { IedEditor } from './ied-editor.js';
 import { ConductingEquipmentEditor } from './conducting-equipment-editor.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
@@ -140,9 +139,9 @@ export class BayEditor extends LitElement {
     return html`<section
       tabindex="0"
       @dragover="${(e: DragEvent) =>
-        dragOver(this, e, ConductingEquipmentEditor, BayEditor)}"
+        dragOver(this, e, "ConductingEquipment", "Bay")}"
       @drop="${(e: DragEvent) =>
-        drop(this, e, ConductingEquipmentEditor, BayEditor)}"
+        drop(this, e)}"
       @dragleave="${() => dragLeave(this)}"
       @dragend="${() => dragEnd(this)}"
     >

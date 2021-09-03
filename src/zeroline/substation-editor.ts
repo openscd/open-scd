@@ -148,9 +148,9 @@ export class SubstationEditor extends LitElement {
       <section
         tabindex="0"
         @dragover="${(e: DragEvent) =>
-          dragOver(this, e, VoltageLevelEditor, SubstationEditor)}"
+          dragOver(this, e, "VoltageLevel", "Substation")}"
         @drop="${(e: DragEvent) =>
-          drop(this, e, VoltageLevelEditor, SubstationEditor)}"
+          drop(this, e)}"
         @dragleave="${() => dragLeave(this)}"
         @dragend="${() => dragEnd(this)}"
       >

@@ -149,8 +149,8 @@ export class VoltageLevelEditor extends LitElement {
     return html`<section
       tabindex="0"
       @dragover="${(e: DragEvent) =>
-        dragOver(this, e, BayEditor, VoltageLevelEditor)}"
-      @drop="${(e: DragEvent) => drop(this, e, BayEditor, VoltageLevelEditor)}"
+        dragOver(this, e, "Bay", "VoltageLevel")}"
+      @drop="${(e: DragEvent) => drop(this, e)}"
       @dragleave="${() => dragLeave(this)}"
       @dragend="${() => dragEnd(this)}"
     >

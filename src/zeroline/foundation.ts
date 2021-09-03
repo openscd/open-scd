@@ -6,6 +6,7 @@ import {
   identity,
   SCLTagSet,
   selector,
+  SCLTag,
 } from '../foundation.js';
 
 import { BayEditor } from './bay-editor.js';
@@ -148,7 +149,7 @@ export function dragStart<E extends ElementEditor>(
 ) {
   editor.classList.add('moving');
   event.dataTransfer?.setData(
-    editor.tagName,
+    editor.element.tagName,
     identity(editor.element).toString()
   );
 }
@@ -156,11 +157,11 @@ export function dragStart<E extends ElementEditor>(
 export function dragOver<E extends ElementEditor>(
   editor: E,
   event: DragEvent,
-  ...allowedEditorTypes: (new () => ElementEditor)[]
-) {
+  ...allowedEditorTypes: SCLTag[]
+) {  
   const types = event.dataTransfer?.types;
   if (
-    allowedEditorTypes.some(t => types?.includes(new t().tagName.toLowerCase()))
+    allowedEditorTypes.some(t => types?.includes(t.toLowerCase()))
   ) {
     event.preventDefault();
     editor.classList.add('dragOver');
@@ -178,17 +179,13 @@ export function dragEnd<E extends ElementEditor>(editor: E) {
 
 export function drop<E extends ElementEditor>(
   targetEditor: E,
-  event: DragEvent,
-  ...allowedEditorTypes: (new () => ElementEditor)[]
+  event: DragEvent  
 ) {
   const tag = event.dataTransfer?.items[0].type!;
   const identity = event.dataTransfer?.getData(tag)!;
-  const xmlTag = Array.from(SCLTagSet)
-    .reduce((acc, x) => acc.set(x.toLowerCase(), x), new Map())
-    .get(
-      // TODO: is there a better solution to convert an editor tag to a SCL tag?
-      tag.slice(0, tag.lastIndexOf('-')).replace('-', '')
-    );
+  
+  // the manual search for the SCL tag is necessary as all types in the DragEvent dataTransfer get converted to lower case automatically 
+  const xmlTag = Array.from(SCLTagSet).find(x => x.toLowerCase() == tag)
 
   if (xmlTag) {
     const element = targetEditor.element.ownerDocument.querySelector(
