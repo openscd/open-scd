@@ -21,3 +21,4 @@
 ### DataTypeTemplates
 
 - [DataTypeTemplate editor](https://github.com/openscd/open-scd/wiki/DataTypeTemplate-editor)
+- [EnumType](https://github.com/openscd/open-scd/wiki/templates/EnumType)
