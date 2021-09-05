@@ -20,6 +20,7 @@
 
 ### DataTypeTemplates
 
+- [Data Attribute Type](https://github.com/openscd/open-scd/wiki/DataAttributeType)
 - [Data Object](https://github.com/openscd/open-scd/wiki/DataObject)
 - [EnumType](https://github.com/openscd/open-scd/wiki/EnumType)
 - [EnumVal](https://github.com/openscd/open-scd/wiki/EnumVal)
