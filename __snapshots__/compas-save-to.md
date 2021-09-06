@@ -15,6 +15,13 @@
 </mwc-textfield>
 <compas-scltype-radiogroup>
 </compas-scltype-radiogroup>
+<wizard-textfield
+  disabled=""
+  id="comment"
+  label="[compas.saveTo.comment]"
+  nullable=""
+>
+</wizard-textfield>
 
 ```
 
@@ -25,6 +32,13 @@
 ```html
 <compas-changeset-radiogroup>
 </compas-changeset-radiogroup>
+<wizard-textfield
+  disabled=""
+  id="comment"
+  label="[compas.saveTo.comment]"
+  nullable=""
+>
+</wizard-textfield>
 
 ```
 
