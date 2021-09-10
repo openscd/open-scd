@@ -94,9 +94,12 @@ export const de: Translations = {
       title: 'Templates validieren',
       mandatoryChild:
         '{{ tag }} {{ id }} fehlt ein obligatorisches {{ childTag }}-Kind {{ childId }}',
-      missingCoDO: 'Control-Dienst Datenattribut vom Typ {{ type }} fehlt',
-      missingCtlModelDef:
-        'CtlModel Definition fehlt. Kann {{ childTag }} {{ childId }} in {{ tag }} {{ id }} nicht validieren.',
+      missingAttribute:
+        'Das Attribut {{attr}} ist verpflichted und fehlt in {{element}}',
+      incorrectAttribute:
+        'Das Attribut {{attr}} in Element {{element}} folgt nicht der Definition.',
+      missingReference:
+        '{{tag}}:{{name}} hat ein ungültige Referenz - es fehlt der definierte Typ',
     },
   },
   textfield: {

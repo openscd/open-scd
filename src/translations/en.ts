@@ -132,9 +132,12 @@ export const en = {
       title: 'Validate templates',
       mandatoryChild:
         '{{ tag }} {{ id }} is missing mandatory child {{ childTag }} {{ childId }}',
-      missingCoDO: 'Control service related DA of type {{ type }} is missing',
-      missingCtlModelDef:
-        'Missing ctlModel definition. Cannot validate {{ childTag }} {{ childId }} within {{ tag }} {{ id }}',
+      missingAttribute:
+        'The attribute {{attr}} is required but missing in {{element}}',
+      incorrectAttribute:
+        'The attribute {{attr}} is incorrect in the element {{element}}.',
+      missingReference:
+        '{{tag}}:{{name}} has a invalid reference - type attribute cannot be connected to a template',
     },
   },
   substation: {
