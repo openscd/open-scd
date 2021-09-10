@@ -2,41 +2,16 @@ import { expect } from '@open-wc/testing';
 import { dOValidator } from '../../../../src/validators/templates/dosdo.js';
 
 describe('do or sdo validation', () => {
-  let typelessDo: Element;
-  let referencelessDo: Element;
+  let doc: XMLDocument;
   let missingNSDref: Element;
   let reference: Element;
 
   beforeEach(async () => {
-    typelessDo = new DOMParser()
-      .parseFromString(
-        `<LNodeType lnClass="LLN=" id="myID">
-            <DO name="Name" bType="Struct"/>
-        </LNodeType>`,
-        'application/xml'
-      )
-      .querySelector('DO')!;
+    doc = await fetch('/base/test/testfiles/validators/doandsdotestfile.scd')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    referencelessDo = new DOMParser()
-      .parseFromString(
-        `<LNodeType lnClass="LLN=" id="myID">
-            <DO name="Name" bType="Struct" type="refToNowhere"/>
-        </LNodeType>`,
-        'application/xml'
-      )
-      .querySelector('DO')!;
-
-    missingNSDref = new DOMParser()
-      .parseFromString(
-        `<DataTypeTemplates>
-            <LNodeType lnClass="LLN=" id="myID">
-                <DO name="Name" bType="Struct" type="refToSomewhere"/>
-            </LNodeType>
-            <DOType id="refToSomewhere" cdc="someWrongCDC"/>
-        <DataTypeTemplates>`,
-        'application/xml'
-      )
-      .querySelector('DO')!;
+    missingNSDref = doc.querySelector('LNodeType[id="missNSDref"] > DO')!;
 
     reference = new DOMParser()
       .parseFromString(
@@ -48,14 +23,30 @@ describe('do or sdo validation', () => {
       .querySelector('DataObject')!;
   });
 
-  it('return Issues when type attribute is missing', async () => {
+  it('return Issues when DO type attribute is missing', async () => {
+    const typelessDo = doc.querySelector('LNodeType[id="typelessDo"] > DO')!;
     const errors = await dOValidator(typelessDo);
     expect(errors.length).to.equal(1);
     expect(errors[0].title).to.contain('missingAttribute');
   });
 
-  it('return Issues when type reference is missing', async () => {
+  it('return Issues when DO type reference is missing', async () => {
+    const referencelessDo = doc.querySelector('LNodeType[id="relessDo"] > DO')!;
     const errors = await dOValidator(referencelessDo);
+    expect(errors.length).to.equal(1);
+    expect(errors[0].title).to.contain('missingReference');
+  });
+
+  it('return Issues when SDO type attribute is missing', async () => {
+    const typelessSDo = doc.querySelector('LNodeType[id="typelessSDo"] > SDO')!;
+    const errors = await dOValidator(typelessSDo);
+    expect(errors.length).to.equal(1);
+    expect(errors[0].title).to.contain('missingAttribute');
+  });
+
+  it('return Issues when SDO type reference is missing', async () => {
+    const reflessSDo = doc.querySelector('LNodeType[id="relessSDo"] > SDO')!;
+    const errors = await dOValidator(reflessSDo);
     expect(errors.length).to.equal(1);
     expect(errors[0].title).to.contain('missingReference');
   });
