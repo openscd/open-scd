@@ -19,9 +19,49 @@
         <LNodeType lnClass="LLN=" id="relessSDo">
             <SDO name="Name" bType="Struct" type="refToNowhere"/>
         </LNodeType>
-        <LNodeType lnClass="LLN=" id="missNSDref">
-                <DO name="Name" bType="Struct" type="refToSomewhere"/>
-            </LNodeType>
-            <DOType id="refToSomewhere" cdc="someWrongCDC"/>
-	</DataTypeTemplates>
+        <LNodeType lnClass="LLN=" id="correctDo">
+            <DO name="Name" bType="Struct" type="refToSomewhere"/>
+        </LNodeType>
+        <DOType id="refToSomewhere" cdc="someCDC"/>
+        <DOType id="missingType1" cdc="someCDC">
+            <DA name="name" bType="Struct" />
+        </DOType>
+        <DOType id="existingType1" cdc="someCDC">
+            <DA name="name" bType="Struct" type="refToSomewhereDa"/>
+        </DOType>
+        <DOType id="invalidReference1" cdc="someCDC">
+            <DA name="name" bType="Struct" type="refToNowwhere"/>
+        </DOType>
+        <DOType id="missingType2" cdc="someCDC">
+            <DA name="name" bType="Enum" />
+        </DOType>
+        <DOType id="existingType2" cdc="someCDC">
+            <DA name="name" bType="Enum" type="refToSomewhereEnum"/>
+        </DOType>
+        <DOType id="invalidReference2" cdc="someCDC">
+            <DA name="name" bType="Enum" type="refToNowwhere"/>
+        </DOType>
+        <DAType id="missingType1">
+            <BDA name="name" bType="Struct" />
+        </DAType>
+        <DAType id="existingType1">
+            <BDA name="name" bType="Struct" type="refToSomewhereDa"/>
+        </DAType>
+        <DAType id="invalidReference1">
+            <BDA name="name" bType="Struct" type="refToNowwhere"/>
+        </DAType>
+        <DAType id="missingType2">
+            <BDA name="name" bType="Enum" />
+        </DAType>
+        <DAType id="existingType2">
+            <BDA name="name" bType="Enum" type="refToSomewhereEnum"/>
+        </DAType>
+        <DAType id="invalidReference2">
+            <BDA name="name" bType="Enum" type="refToNowwhere"/>
+        </DAType>
+
+        <DAType id="refToSomewhereDa"/>
+        <EnumType id="refToSomewhereEnum"/>
+    </DataTypeTemplates>
+
 </SCL>
