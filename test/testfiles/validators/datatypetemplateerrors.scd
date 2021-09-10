@@ -453,12 +453,12 @@
             <BDA name="offset" bType="FLOAT32"/>
         </DAType>
         <DAType id="Dummy.RangeConfig">
-            <BDA name="hhLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="hLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="lLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="llLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="min" bType="Struct" valKind="RO" type="AnalogueValue_f"/>
-            <BDA name="max" bType="Struct" valKind="RO" type="AnalogueValue_f"/>
+            <BDA name="hhLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="hLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="lLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="llLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="min" bType="Struct" valKind="RO" type="Dummy.AnalogueValue_f"/>
+            <BDA name="max" bType="Struct" valKind="RO" type="Dummy.AnalogueValue_f"/>
         </DAType>
         <DAType id="Dummy.AnalogueValue_f">
             <BDA name="f" bType="FLOAT32"/>

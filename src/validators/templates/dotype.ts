@@ -1,6 +1,6 @@
 import { get } from 'lit-translate';
+
 import { identity, LogDetailBase } from '../../foundation.js';
-import { dOValidator } from './dosdo.js';
 import {
   getAdjacentClass,
   iec6185073,

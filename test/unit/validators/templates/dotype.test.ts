@@ -115,4 +115,12 @@ describe('dotype validator', () => {
     const errors = await dOTypeValidator(element);
     expect(errors.length).to.equal(0);
   });
+
+  it('does not indicate false positive for wrong ctlModel', async () => {
+    const element = doc.querySelector('DOType[id="Dummy.SPC4"]')!;
+    const val = element.querySelector('Val')!;
+    val.innerHTML = 'invalidCtlModel';
+    const errors = await dOTypeValidator(element);
+    expect(errors.length).to.equal(0);
+  });
 });

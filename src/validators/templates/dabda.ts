@@ -16,7 +16,7 @@ export async function dAValidator(element: Element): Promise<LogDetailBase[]> {
     ];
 
   const child = getTypeChild(element);
-  if (!child)
+  if (child === null)
     return [
       {
         title: get('validator.templates.missingReference', {

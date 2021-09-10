@@ -1,5 +1,6 @@
 import { LogDetailBase } from '../../foundation.js';
-import { dAValidator } from './daorbda.js';
+
+import { dAValidator } from './dabda.js';
 import { dATypeValidator } from './datype.js';
 import { dOValidator } from './dosdo.js';
 import { dOTypeValidator } from './dotype.js';
@@ -48,21 +49,26 @@ export function isTypeMissing(element: Element): boolean {
 
 export function getTypeChild(element: Element): Element | null | undefined {
   const isStruct = element.getAttribute('bType') === 'Struct';
-  const isEnum = element.getAttribute('bType') === 'Struct';
+  const isEnum = element.getAttribute('bType') === 'Enum';
   const isDo = element.tagName === 'DO' || element.tagName === 'SDO';
 
-  const referenceTag =
-    isStruct || isEnum
-      ? isStruct
-        ? isDo
-          ? 'DOType'
-          : 'DAType'
-        : 'EnumType'
-      : '';
+  const referenceTag = isDo
+    ? 'DOType'
+    : isStruct || isEnum
+    ? isStruct
+      ? 'DAType'
+      : 'EnumType'
+    : null;
 
-  return element
-    .closest('DataTypeTemplates')
-    ?.querySelector(`${referenceTag}[id="${element.getAttribute('type')}"]`);
+  if (!referenceTag) return undefined;
+
+  return (
+    element
+      .closest('DataTypeTemplates')
+      ?.querySelector(
+        `${referenceTag}[id="${element.getAttribute('type')}"]`
+      ) ?? null
+  );
 }
 
 export function getAdjacentClass(nsd: XMLDocument, base: string): Element[] {
