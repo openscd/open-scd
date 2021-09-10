@@ -6,6 +6,7 @@ import {
   iec6185073,
   iec6185074,
   iec6185081,
+  validateChildren,
 } from './foundation.js';
 
 async function getSpecificDataObject(
@@ -96,23 +97,6 @@ async function validateAttributes(
     ];
 
   return [];
-}
-
-async function validateChildren(dotype: Element): Promise<LogDetailBase[]> {
-  const issues: LogDetailBase[] = [];
-
-  const childDataAttributes = Array.from(dotype.querySelectorAll('DA'));
-  const childDataObjects = Array.from(dotype.querySelectorAll('SDO'));
-
-  //for (const childDataAttribute of childDataAttributes)
-
-  for (const childDataObject of childDataObjects) {
-    const childIssues = await dOValidator(childDataObject);
-    if (childIssues.length)
-      for (const childIssue of childIssues) issues.push(childIssue);
-  }
-
-  return issues;
 }
 
 async function missingMandatoryChildren(

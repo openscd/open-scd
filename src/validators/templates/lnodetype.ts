@@ -1,7 +1,10 @@
 import { get } from 'lit-translate';
 import { identity, LogDetailBase } from '../../foundation.js';
-import { dOValidator } from './dosdo.js';
-import { getAdjacentClass, iec6185074 } from './foundation.js';
+import {
+  getAdjacentClass,
+  iec6185074,
+  validateChildren,
+} from './foundation.js';
 
 async function getMandatoryDataObject(base: string): Promise<Element[]> {
   const lnodeclasses = getAdjacentClass(await iec6185074, base);
@@ -9,19 +12,6 @@ async function getMandatoryDataObject(base: string): Promise<Element[]> {
   return lnodeclasses.flatMap(lnodeclass =>
     Array.from(lnodeclass.querySelectorAll('DataObject[presCond="M"]'))
   );
-}
-
-async function validateChildren(lnodetype: Element): Promise<LogDetailBase[]> {
-  const issues: LogDetailBase[] = [];
-  const children = Array.from(lnodetype.children);
-
-  for (const child of children) {
-    const childIssues = await dOValidator(child);
-    if (childIssues.length)
-      for (const childIssue of childIssues) issues.push(childIssue);
-  }
-
-  return issues;
 }
 
 async function missingMandatoryChildren(
