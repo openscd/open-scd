@@ -1,4 +1,6 @@
 import { LogDetailBase } from '../../foundation.js';
+import { dAValidator } from './daorbda.js';
+import { dATypeValidator } from './datype.js';
 import { dOValidator } from './dosdo.js';
 import { dOTypeValidator } from './dotype.js';
 import { lNodeTypeValidator } from './lnodetype.js';
@@ -30,10 +32,81 @@ export const serviceCDCs = [
   'BAC',
 ];
 
+export function isTypeMissing(element: Element): boolean {
+  const tagName = element.tagName;
+  const isTypeMandatory =
+    tagName === 'DO' ||
+    tagName === 'SDO' ||
+    ((tagName === 'DA' || tagName === 'BDA') &&
+      (element.getAttribute('bType') === 'Enum' ||
+        element.getAttribute('bType') === 'Struct'));
+
+  const isTypeMissing = !element.getAttribute('type');
+
+  return isTypeMandatory && isTypeMissing;
+}
+
+export function getTypeChild(element: Element): Element | null | undefined {
+  const isStruct = element.getAttribute('bType') === 'Struct';
+  const isEnum = element.getAttribute('bType') === 'Struct';
+  const isDo = element.tagName === 'DO' || element.tagName === 'SDO';
+
+  const referenceTag =
+    isStruct || isEnum
+      ? isStruct
+        ? isDo
+          ? 'DOType'
+          : 'DAType'
+        : 'EnumType'
+      : '';
+
+  return element
+    .closest('DataTypeTemplates')
+    ?.querySelector(`${referenceTag}[id="${element.getAttribute('type')}"]`);
+}
+
+export function getAdjacentClass(nsd: XMLDocument, base: string): Element[] {
+  if (base === '') return [];
+  const adjacents = getAdjacentClass(
+    nsd,
+    nsd
+      .querySelector(`LNClass[name="${base}"], AbstractLNClass[name="${base}"]`)
+      ?.getAttribute('base') ?? ''
+  );
+  return Array.from(
+    nsd.querySelectorAll(
+      `LNClass[name="${base}"], AbstractLNClass[name="${base}"]`
+    )
+  ).concat(adjacents);
+}
+
+export async function validateChildren(
+  element: Element
+): Promise<LogDetailBase[]> {
+  const issues: LogDetailBase[] = [];
+
+  const children = Array.from(element.children);
+
+  for (const child of children) {
+    const validator = await tagValidator[child.tagName];
+    if (!validator) continue;
+
+    const childIssues = await validator(child);
+    if (childIssues.length)
+      for (const childIssue of childIssues) issues.push(childIssue);
+  }
+
+  return issues;
+}
+
 type ValidationFunction = (e: Element, r?: Element) => Promise<LogDetailBase[]>;
 
-export const tagValidator: Record<string, ValidationFunction[]> = {
-  DOType: [dOTypeValidator],
-  LNodeType: [lNodeTypeValidator],
-  DO: [dOValidator],
+export const tagValidator: Partial<Record<string, ValidationFunction>> = {
+  LNodeType: lNodeTypeValidator,
+  DOType: dOTypeValidator,
+  DAType: dATypeValidator,
+  DO: dOValidator,
+  SDO: dOValidator,
+  DA: dAValidator,
+  BDA: dAValidator,
 };
