@@ -1,8 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { defaultTranslateConfig } from 'lit-translate';
 import sinon, { SinonSpy } from 'sinon';
-
-import { loader } from '../../mock-loader.js';
 
 import { OpenSCD } from '../../../src/open-scd.js';
 
