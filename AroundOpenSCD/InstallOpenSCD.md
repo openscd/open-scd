@@ -1,12 +1,19 @@
+
+OpenSCD shall be an easy excisable tool. The technology allows you to use on any machine that can run a browser. In fact you can simply install it on any machine as a progressive web app - PWA. When you have access to world wide web we recommend to use the online version
+
+## Online
+There is no need to install. You simply have to go to `https://openscd.github.io`. The advantage of this option is that you get out of the box continues delivery. That means that any change we do to the software is immediately at your hands. 
+> NOTE: We are not collecting any data nor do you upload any data behind the scenes. So you don't have to worry about that. The internet connection in only required to check if you are up-to-date with the latest version and if not to load the missing elements.
+
+## Offline
+
 OpenSCD can be installed on computers with no World Wide Web connection. There are two approaches to do that.
 
 ***
-
 1. You still have access to a local network (intranet):
-Ask your IT colleagues and ask them to configure a web server in the intranet and load the version you want to e.g. [version 0.2.0](https://github.com/openscd/open-scd/releases/tag/v0.2.0) -> `open-scd.zip`
+Ask your IT colleagues and ask them to configure a web server in the intranet and load the version you want to e.g. [version 0.7.0](https://github.com/openscd/open-scd/releases/tag/v0.7.0) -> `open-scd.zip`
 
 ***
-
 
 2. You have no access to any network:
 You have to install a software that allows you to run a web server locally on your machine e.g [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
