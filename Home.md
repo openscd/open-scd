@@ -1,7 +1,7 @@
 This is an open repository of information on OpenSCD and IEC 61850-6. You are welcome to share your knowledge with the rest of the world at https://github.com/openscd/open-scd/wiki/Home/_edit 😄 . Welcome aboard!
 
 You can find information related to topics like
-- [Installation](https://github.com/openscd/open-scd/wiki/InstallOpenSCD)
+- [Installation](https://github.com/openscd/open-scd/wiki/Install OpenSCD)
 - [Project workflow](https://github.com/openscd/open-scd/wiki/Validators)
 - [Validators used in OpenSCD](https://github.com/openscd/open-scd/wiki/Validators)
 
