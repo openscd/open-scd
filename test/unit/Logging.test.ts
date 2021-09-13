@@ -79,7 +79,6 @@ describe('LoggingElement', () => {
     element.dispatchEvent(
       newIssueEvent({
         validatorId: 'val',
-        statusNumber: 1,
         title: 'test issue',
       })
     );
@@ -311,7 +310,6 @@ describe('LoggingElement', () => {
       element.dispatchEvent(
         newIssueEvent({
           validatorId: '/src/validators/ValidateSchema.js',
-          statusNumber: 1,
           title: 'test run 1',
         })
       );
@@ -334,105 +332,11 @@ describe('LoggingElement', () => {
       expect(element.diagnoses.has('/src/validators/ValidateTemplates.js')).to
         .be.false);
 
-    describe('with a second issue coming in - new statusNumber, same validator', () => {
-      beforeEach(() => {
-        element.dispatchEvent(
-          newIssueEvent({
-            validatorId: '/src/validators/ValidateSchema.js',
-            statusNumber: 2,
-            title: 'test run 2',
-          })
-        );
-      });
-
-      it('removes old issues', () => {
-        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
-          .exist;
-        expect(
-          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
-        ).to.equal(1);
-        const issue = element.diagnoses.get(
-          '/src/validators/ValidateSchema.js'
-        )![0];
-        expect(issue.statusNumber).to.equal(2);
-        expect(issue.title).to.not.equal('test run 1');
-      });
-
-      it('saves a log message for the action', () => {
-        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
-          .exist;
-        expect(
-          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
-        ).to.equal(1);
-        const issue = element.diagnoses.get(
-          '/src/validators/ValidateSchema.js'
-        )![0];
-        expect(issue.statusNumber).to.equal(2);
-        expect(issue.title).to.equal('test run 2');
-      });
-    });
-
-    describe('with a second issue coming in - same statusNumber, same validator', () => {
-      beforeEach(() => {
-        element.dispatchEvent(
-          newIssueEvent({
-            validatorId: '/src/validators/ValidateSchema.js',
-            statusNumber: 1,
-            title: 'test issues 2',
-          })
-        );
-      });
-
-      it('adds issue to existing issues', () => {
-        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
-          .exist;
-        expect(
-          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
-        ).to.equal(2);
-        const issue = element.diagnoses.get(
-          '/src/validators/ValidateSchema.js'
-        )![0];
-        expect(issue.statusNumber).to.equal(1);
-        expect(issue.title).to.equal('test run 1');
-        const issue2 = element.diagnoses.get(
-          '/src/validators/ValidateSchema.js'
-        )![1];
-        expect(issue2.statusNumber).to.equal(1);
-        expect(issue2.title).to.not.equal('test issue 2');
-      });
-    });
-
-    describe('with a second issue coming in - outdated statusNumber, same validator', () => {
-      beforeEach(() => {
-        element.dispatchEvent(
-          newIssueEvent({
-            validatorId: '/src/validators/ValidateSchema.js',
-            statusNumber: 0,
-            title: 'test issues 2',
-          })
-        );
-      });
-
-      it('ignores incoming the issue', () => {
-        expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
-          .exist;
-        expect(
-          element.diagnoses.get('/src/validators/ValidateSchema.js')!.length
-        ).to.equal(1);
-        const issue = element.diagnoses.get(
-          '/src/validators/ValidateSchema.js'
-        )![0];
-        expect(issue.statusNumber).to.equal(1);
-        expect(issue.title).to.equal('test run 1');
-      });
-    });
-
     describe('with another issue coming in - new validator', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
             validatorId: '/src/validators/ValidateTemplates.js',
-            statusNumber: 3,
             title: 'test run 3',
           })
         );
@@ -447,7 +351,6 @@ describe('LoggingElement', () => {
         const issue = element.diagnoses.get(
           '/src/validators/ValidateSchema.js'
         )![0];
-        expect(issue.statusNumber).to.equal(1);
         expect(issue.title).to.equal('test run 1');
       });
 
@@ -460,7 +363,6 @@ describe('LoggingElement', () => {
         const issue = element.diagnoses.get(
           '/src/validators/ValidateTemplates.js'
         )![0];
-        expect(issue.statusNumber).to.equal(3);
         expect(issue.title).to.equal('test run 3');
       });
     });
