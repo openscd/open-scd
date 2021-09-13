@@ -4,6 +4,11 @@
 - [Manage save project](https://github.com/openscd/open-scd/wiki/Manage-save-project)
 - [Merge two projects](https://github.com/openscd/open-scd/wiki/MergeFunctionality)
 
+# Validation of SCL files
+- [Validate Templates](https://github.com/openscd/open-scd/wiki/ValidateTemplate)
+
+## Schemavalidation
+
 # SCL manipulation with OpenSCD
 
 ## Substation
