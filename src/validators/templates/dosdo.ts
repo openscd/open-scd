@@ -10,7 +10,7 @@ export async function dOValidator(element: Element): Promise<LogDetailBase[]> {
           attr: 'type',
           element: element.tagName,
         }),
-        message: '',
+        message: `${identity(element)}`,
       },
     ];
 

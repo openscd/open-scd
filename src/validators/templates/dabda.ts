@@ -11,7 +11,7 @@ export async function dAValidator(element: Element): Promise<LogDetailBase[]> {
           attr: 'type',
           element: element.tagName,
         }),
-        message: '',
+        message: `${identity(element)}`,
       },
     ];
 
