@@ -158,13 +158,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onIssue(de: IssueEvent): void {
       const issues = this.diagnoses.get(de.detail.validatorId);
-      if (issues && issues[0].statusNumber > de.detail.statusNumber) return;
-      else if (issues && issues[0].statusNumber === de.detail.statusNumber)
-        issues.push(de.detail);
-      else if (issues && issues[0].statusNumber !== de.detail.statusNumber) {
-        issues.length = 0;
-        issues?.push(de.detail);
-      } else this.diagnoses.set(de.detail.validatorId, [de.detail]);
+
+      if (!issues) this.diagnoses.set(de.detail.validatorId, [de.detail]);
+      else issues?.push(de.detail);
 
       this.lastIssue = de.detail;
       this.issueUI.close();
@@ -318,11 +314,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return issueItems.length
         ? issueItems
         : html`<mwc-list-item disabled graphic="icon">
-            <span
-              >${translate(
-                this.history.length ? 'diag.zeroissues' : 'diag.placeholder'
-              )}</span
-            >
+            <span>${translate('diag.placeholder')}</span>
             <mwc-icon slot="graphic">info</mwc-icon>
           </mwc-list-item>`;
     }

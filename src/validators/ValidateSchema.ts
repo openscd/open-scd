@@ -25,11 +25,7 @@ export default class ValidateSchema extends LitElement {
   @property()
   pluginId!: string;
 
-  private async getValidator(
-    xsd: string,
-    xsdName: string,
-    statusNumber: number
-  ): Promise<Validator> {
+  private async getValidator(xsd: string, xsdName: string): Promise<Validator> {
     if (!window.Worker) throw new Error(get('validator.schema.fatal'));
     if (validators[xsdName]) return validators[xsdName]!;
 
@@ -61,7 +57,6 @@ export default class ValidateSchema extends LitElement {
             newIssueEvent({
               title: description,
               validatorId: this.pluginId,
-              statusNumber,
               message:
                 e.data.file +
                 ':' +
@@ -87,7 +82,7 @@ export default class ValidateSchema extends LitElement {
     });
   }
 
-  async validate(statusNumber: number): Promise<void> {
+  async validate(): Promise<void> {
     const fileName = this.docName;
     let version = '2007';
     let revision = 'B';
@@ -101,8 +96,7 @@ export default class ValidateSchema extends LitElement {
       ];
     const result = await this.getValidator(
       getSchema(version, revision, release),
-      'SCL' + version + revision + release + '.xsd',
-      statusNumber
+      'SCL' + version + revision + release + '.xsd'
     ).then(validator =>
       validator(new XMLSerializer().serializeToString(this.doc), fileName)
     );
@@ -126,7 +120,6 @@ export default class ValidateSchema extends LitElement {
     document.querySelector('open-scd')!.dispatchEvent(
       newIssueEvent({
         validatorId: this.pluginId,
-        statusNumber,
         title: get('validator.schema.valid', { name: result.file }),
       })
     );
