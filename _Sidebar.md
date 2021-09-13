@@ -2,7 +2,7 @@
 
 - [How to install OpenSCD offline](https://github.com/openscd/open-scd/wiki/How-to-install-OpenSCD-offline)
 - [Manage save project](https://github.com/openscd/open-scd/wiki/Manage-save-project)
-- [Merge two projects](https://github.com/openscd/open-scd/wiki/Merge-functionality)
+- [Merge two projects](https://github.com/openscd/open-scd/wiki/global/MergeFunctionality)
 
 ## SCL Sections
 
