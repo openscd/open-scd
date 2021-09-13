@@ -315,7 +315,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.not.exist;
       });
-      it('adds new lnodetype with corrrect id and lnClass', async () => {
+      it('adds new LNodeType with correct id and lnClass', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
         enaCls.value = spsId;
@@ -331,7 +331,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.exist;
       });
-      it('adds selected DOs to new lnodetype', async () => {
+      it('adds selected DOs to new LNodeType', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
         enaCls.value = spsId;
