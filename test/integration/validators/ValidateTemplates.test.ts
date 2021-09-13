@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { OpenSCD } from '../../../src/open-scd.js';
 import ValidateTemplates from '../../../src/validators/ValidateTemplates.js';
 
-describe('ValidateTemplates plugin', () => {
+describe('ValidateTemplates OpenSCD integration test ', () => {
   customElements.define('validate-templates', ValidateTemplates);
   let parent: OpenSCD;
   let element: ValidateTemplates;
@@ -33,14 +33,14 @@ describe('ValidateTemplates plugin', () => {
       element = <ValidateTemplates>parent.querySelector('validate-templates')!;
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
-      await element.validate('', 1);
+      await element.validate();
       await parent.workDone;
     });
     it('generates issues in the diagnistics pane', async () => {
       const issues = parent.diagnoses.get(
         '/src/validators/ValidateTemplates.js'
       );
-      expect(issues?.length).to.equal(20);
+      expect(issues?.length).to.equal(28);
     }).timeout(1000);
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
@@ -68,7 +68,7 @@ describe('ValidateTemplates plugin', () => {
       element = <ValidateTemplates>parent.querySelector('validate-templates')!;
       element.pluginId = '/src/validators/ValidateTemplates.js';
 
-      await element.validate('', 1);
+      await element.validate();
       await parent.workDone;
     });
     it('generates only one specific in the diagnostics pane', async () => {
