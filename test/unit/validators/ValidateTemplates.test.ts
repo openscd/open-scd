@@ -1,145 +1,142 @@
-import { expect } from '@open-wc/testing';
-import { LogDetail } from '../../../src/foundation.js';
-import {
-  validateControlCDC,
-  validateDoCDCSetting,
-  validateMandatoryDAs,
-  validateMandatoryDOs,
-  validateMandatorySubDAs,
+import { expect, fixture, html } from '@open-wc/testing';
+import { defaultTranslateConfig } from 'lit-translate';
+import sinon, { SinonSpy } from 'sinon';
+
+import { loader } from '../../mock-loader.js';
+
+import { OpenSCD } from '../../../src/open-scd.js';
+
+import ValidateTemplates, {
+  dispatch,
 } from '../../../src/validators/ValidateTemplates.js';
 
-describe('VelidateTemplate', () => {
-  let doc: XMLDocument;
+describe('ValidateTemplates', () => {
+  let logEvent: SinonSpy;
+  let issueEvent: SinonSpy;
+
   beforeEach(async () => {
-    doc = await fetch(
-      '/base/test/testfiles/validators/datatypetemplateerrors.scd'
-    )
-      .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    logEvent = sinon.spy();
+    issueEvent = sinon.spy();
+
+    window.addEventListener('log', logEvent);
+    window.addEventListener('issue', issueEvent);
   });
-  describe('used on LNodeType element', () => {
-    it('return LogDetail array for missing mandatory DO e.g Beh', async () => {
-      const element = doc.querySelector('LNodeType[id="Dummy.CILO"]')!;
-      const errors = await validateMandatoryDOs(element);
-      expect(errors.length).to.equal(1);
+  describe('dispatch', () => {
+    beforeEach(async () => {
+      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      await fixture(html`
+        <open-scd .doc=${doc}
+          ><validate-templates .doc=${doc}></validate-templates
+        ></open-scd>
+      `);
     });
-    it('return LogDetail array for missing mandatory DO e.g Pos', async () => {
-      const element = doc.querySelector('LNodeType[id="Dummy.CSWI"]')!;
-      const errors = await validateMandatoryDOs(element);
-      expect(errors.length).to.equal(1);
+    it('triggers as newIssuesEvent for detail not containing kind', () => {
+      const pluginId = '/src/validators/ValidateTemplates.js';
+      const detail = {
+        title: 'title',
+        message: 'message',
+      };
+      dispatch(detail, pluginId);
+      expect(issueEvent).to.have.been.called;
+      expect(logEvent).to.not.have.been.called;
+      expect(issueEvent.args[0][0].type).to.equal('issue');
+      expect(issueEvent.args[0][0].detail.validatorId).to.equal(
+        '/src/validators/ValidateTemplates.js'
+      );
+      expect(issueEvent.args[0][0].detail.message).to.equal('message');
+      expect(issueEvent.args[0][0].detail.title).to.equal('title');
     });
-    it('returns empty array if LNodeType includes all mandatory DOs', async () => {
-      const element = doc.querySelector('LNodeType[id="Dummy.GGIO1"]')!;
-      const errors = await validateMandatoryDOs(element);
-      expect(errors.length).to.equal(0);
+
+    it('triggers as newLogEvent for detail containing kind info', () => {
+      const pluginId = '/src/validators/ValidateTemplates.js';
+      const detail = {
+        kind: 'info',
+        title: 'title',
+        message: 'message',
+      };
+      dispatch(detail, pluginId);
+      expect(logEvent).to.have.been.called;
+      expect(issueEvent).to.not.have.been.called;
+      expect(logEvent.args[0][0].type).to.equal('log');
+      expect(logEvent.args[0][0].detail.kind).to.equal('info');
+      expect(logEvent.args[0][0].detail.message).to.equal('message');
+      expect(logEvent.args[0][0].detail.title).to.equal('title');
     });
-    it('returns empty array if element is not LNodeType', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.LLN0.Health"]')!;
-      const errors = await validateMandatoryDOs(element);
-      expect(errors.length).to.equal(0);
+
+    it('triggers as newLogEvent for detail containing kind warning', () => {
+      const pluginId = '/src/validators/ValidateTemplates.js';
+      const detail = {
+        kind: 'warning',
+        title: 'title',
+        message: 'message',
+      };
+      dispatch(detail, pluginId);
+      expect(logEvent).to.have.been.called;
+      expect(issueEvent).to.not.have.been.called;
+      expect(logEvent.args[0][0].type).to.equal('log');
+      expect(logEvent.args[0][0].detail.kind).to.equal('warning');
     });
-    it('return LogDetail array when LNodeTypes DO do not follow the CDC definition ', async () => {
-      const element = doc.querySelector('LNodeType[id="Dummy.GGIO1"]')!;
-      const errors = await validateDoCDCSetting(element);
-      expect(errors.length).to.equal(1);
+
+    it('triggers as newLogEvent for detail containing kind error', () => {
+      const pluginId = '/src/validators/ValidateTemplates.js';
+      const detail = {
+        kind: 'error',
+        title: 'title',
+        message: 'message',
+      };
+      dispatch(detail, pluginId);
+      expect(logEvent).to.have.been.called;
+      expect(issueEvent).to.not.have.been.called;
+      expect(logEvent.args[0][0].type).to.equal('log');
+      expect(logEvent.args[0][0].detail.kind).to.equal('error');
     });
   });
-  describe('used on DOType element', () => {
-    it('return empty array if element is not DOType', async () => {
-      const element = doc.querySelector('LNodeType')!;
-      const errors = await validateMandatoryDAs(element);
-      expect(errors.length).to.equal(0);
+
+  describe('validate', () => {
+    let element: ValidateTemplates;
+    beforeEach(async () => {
+      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      const parent: OpenSCD = await fixture(html`
+        <open-scd .doc=${doc}
+          ><validate-templates .doc=${doc}></validate-templates
+        ></open-scd>
+      `);
+
+      element = <ValidateTemplates>parent.querySelector('validate-templates')!;
     });
-    it('returns empty array if LNodeType includes all mandatory DOs', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.LPHD1.Sim"]')!;
-      const errors = await validateMandatoryDAs(element);
-      expect(errors.length).to.equal(0);
+
+    it('pushes only diag.zeroissues issue to diagnostics when no issues found', async () => {
+      await element.validate();
+      expect(issueEvent).to.have.been.calledOnce;
+      expect(issueEvent.args[0][0].detail.title).to.contain('No errors');
     });
-    it('return LogDetail array for missing mandatory DA e.g stVal', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.LLN0.Health"]')!;
-      const errors = await validateMandatoryDAs(element);
-      expect(errors.length).to.equal(1);
+
+    it('pushes only diag.missingnsd issue to diagnostics pane for SCL version < 2007B3', async () => {
+      element.doc.querySelector('SCL')?.setAttribute('version', '2003');
+      await element.validate();
+      expect(issueEvent).to.have.been.calledOnce;
+      expect(issueEvent.args[0][0].detail.title).to.contain('Cannot validate');
     });
-    it('return LogDetail array for missing mandatory DA e.g stVal', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.XCBR1.Pos"]')!;
-      const errors = await validateMandatoryDAs(element);
-      expect(errors.length).to.equal(1);
+
+    it('pushes only diag.missingnsd issue to diagnostics pane for SCL not having version information', async () => {
+      element.doc.querySelector('SCL')?.removeAttribute('version');
+      element.doc.querySelector('SCL')?.removeAttribute('revision');
+      await element.validate();
+      expect(issueEvent).to.have.been.calledOnce;
+      expect(issueEvent.args[0][0].detail.title).to.contain('Cannot validate');
     });
-    it('return LogDetail array for missing mandatory DA e.g ctlModel', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.CSWI.Pos1"]')!;
-      const errors = await validateMandatoryDAs(element);
-      expect(errors.length).to.equal(1);
-    });
-  });
-  describe('used on DAType element', () => {
-    it('return empty array if element is not DAType', async () => {
-      const element = doc.querySelector('DOType')!;
-      const errors = await validateMandatorySubDAs(element);
-      expect(errors.length).to.equal(0);
-    });
-    it('returns empty array if DAType includes all mandatory BDAs', async () => {
-      const element = doc.querySelector('DAType[id="Dummy.RangeConfig"]')!;
-      const errors = await validateMandatorySubDAs(element);
-      expect(errors.length).to.equal(0);
-    });
-    it('return LogDetail array for missing mandatory BDA e.g scaledOffset', async () => {
-      const element = doc.querySelector(
-        'DAType[id="Dummy.ScaledValueConfig"]'
-      )!;
-      const errors = await validateMandatorySubDAs(element);
-      expect(errors.length).to.equal(1);
-    });
-  });
-  describe('used on controlable data objects', () => {
-    it('returns empty array for non-controlable data objects', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.LPHD1.PhyNam"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(0);
-    });
-    it('returns LogDetail array for missing SBOw', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC1"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
-    });
-    it('returns LogDetail array for missing SBO', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC2"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
-    });
-    it('returns LogDetail array for missing Oper', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC3"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
-    });
-    it('returns LogDetail array for missing Cancel', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC3"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
-    });
-    it('does not indicate false positive for status-only DOs', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC4"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(0);
-    });
-    it('returns LogDetail array for missing DA within Oper structure', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC5"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
-    });
-    it('returns LogDetail array for missing DA within SBOw structure', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC6"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
-    });
-    it('returns LogDetail array for missing DA within Cancel structure', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.SPC7"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
-    });
-    it('returns a warning if ctlModel definition is missing', async () => {
-      const element = doc.querySelector('DOType[id="Dummy.CSWI.Pos1"]')!;
-      const errors = await validateControlCDC(element);
-      expect(errors.length).to.equal(1);
+
+    it('does not trigger anything for SCL missing DataTypeTemplates', async () => {
+      const data = element.doc.querySelector('DataTypeTemplates')!;
+      element.doc.querySelector('SCL')?.removeChild(data);
+      await element.validate();
+      expect(issueEvent).to.not.have.been.calledOnce;
     });
   });
 });

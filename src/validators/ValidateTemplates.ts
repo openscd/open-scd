@@ -10,7 +10,7 @@ import { validateChildren } from './templates/foundation.js';
 
 type ValidationResult = LogDetailBase | LogDetail;
 
-function dispatch(detail: ValidationResult, validatorId: string): void {
+export function dispatch(detail: ValidationResult, validatorId: string): void {
   const kind = (<LogDetail>detail).kind;
   const title = (<LogDetailBase>detail).title;
   const message = (<LogDetailBase>detail).message;
@@ -47,7 +47,7 @@ export default class ValidateTemplates extends LitElement {
       this.doc.documentElement.getAttribute('release') ?? '',
     ];
 
-    if (version === '2003' || revision === 'A' || Number(release) < 3) {
+    if (!(version === '2007' && revision === 'B' && Number(release) > 3)) {
       document.querySelector('open-scd')?.dispatchEvent(
         newIssueEvent({
           validatorId: this.pluginId,
