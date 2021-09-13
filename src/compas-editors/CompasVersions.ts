@@ -36,6 +36,14 @@ export default class CompasVersionsPlugin extends LitElement {
     this.dispatchEvent(newWizardEvent(confirmRestoreCompasWizard(this.docName, this.docId, version)))
   }
 
+  private getElementbyName(parent: Element, namespace: string, tagName: string): Element | null {
+    const elements = parent.getElementsByTagNameNS(namespace, tagName);
+    if (elements.length > 0) {
+      return elements.item(0);
+    }
+    return null;
+  }
+
   render(): TemplateResult {
     if (!this.scls) {
       return html `
@@ -58,11 +66,12 @@ export default class CompasVersionsPlugin extends LitElement {
           <h1>${translate('compas.versions.title')}</h1>
           <mwc-list>
             ${this.scls.map( item => {
-                let name = item.getElementsByTagNameNS(SDS_NAMESPACE, "Name").item(0)!.textContent ?? '';
-                if (name === '') {
-                  name = item.getElementsByTagNameNS(SDS_NAMESPACE, "Id").item(0)!.textContent ?? '';
+                let element = this.getElementbyName(item, SDS_NAMESPACE, "Name");
+                if (element === null) {
+                  element = this.getElementbyName(item, SDS_NAMESPACE, "Id");
                 }
-                const version = item.getElementsByTagNameNS(SDS_NAMESPACE, "Version").item(0)!.textContent ?? '';
+                const name = element!.textContent ?? '';
+                const version = this.getElementbyName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
                 return html`<mwc-list-item tabindex="0"
                                         @click=${() => {
                                           this.confirmRestoreCompas(version);
@@ -97,18 +106,22 @@ export default class CompasVersionsPlugin extends LitElement {
   `;
 }
 
+function fetchScl(type: string, docId: string, version: string) {
+  CompasSclDataService().getSclDocumentVersion(type, docId, version)
+    .then(response => {
+      // Copy the SCL Result from the Response and create a new Document from it.
+      const sclElement = response.querySelectorAll("SCL").item(0);
+      const sclDocument = document.implementation.createDocument("", "", null);
+      sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+
+      updateDocumentInOpenSCD(sclDocument);
+    });
+}
+
 function openScl(docName: string, docId: string, version: string) {
   return function () {
     const type = getTypeFromDocName(docName);
-    CompasSclDataService().getSclDocumentVersion(type, docId, version)
-      .then(response => {
-        // Copy the SCL Result from the Response and create a new Document from it.
-        const sclElement = response.querySelectorAll("SCL").item(0);
-        const sclDocument = document.implementation.createDocument("", "", null);
-        sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
-
-        updateDocumentInOpenSCD(sclDocument);
-      });
+    fetchScl(type, docId, version);
 
     // Close the Restore Dialog.
     getOpenScdElement().dispatchEvent(newWizardEvent());

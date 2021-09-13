@@ -82,6 +82,13 @@
       >
         demo_station1 (2.0.0)
       </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+      >
+        3b572a56-51cc-479b-97fd-e404ebf9ae67 (2.1.0)
+      </mwc-list-item>
     </mwc-list>
   </section>
 </div>
