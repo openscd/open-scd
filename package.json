@@ -65,7 +65,7 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
     "build": "npm run test && npm run build:notest && cp .nojekyll build/",
-    "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
+    "build:notest": "npm run doc && snowpack build",
     "start": "snowpack dev"
   },
   "devDependencies": {
@@ -97,8 +97,7 @@
     "typedoc": "^0.21.5",
     "typedoc-plugin-markdown": "^3.10.4",
     "typescript": "4.3.5",
-    "web-component-analyzer": "^1.1.6",
-    "workbox-cli": "^6.2.4"
+    "web-component-analyzer": "^1.1.6"
   },
   "eslintConfig": {
     "extends": [
