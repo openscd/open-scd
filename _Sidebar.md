@@ -24,7 +24,7 @@
 ## IED
 
 - [Connect Report Control Blocks with ClientLN](https://github.com/openscd/open-scd/wiki/ClientLN)
-- [Importing IEDs](https://github.com/openscd/open-scd/wiki/Importing-IEDs)
+- [Importing IEDs](https://github.com/openscd/open-scd/wiki/Import-IEDs)
 - [Update subscriber info in SCL](https://github.com/openscd/open-scd/wiki/Update-subscriber-info)
 
 ## DataTypeTemplates
