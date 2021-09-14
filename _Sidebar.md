@@ -1,15 +1,19 @@
 # Around OpenSCD
 
-- [How to install OpenSCD offline](https://github.com/openscd/open-scd/wiki/How-to-install-OpenSCD-offline)
-- [Manage save project](https://github.com/openscd/open-scd/wiki/Manage-save-project)
-- [Merge two projects](https://github.com/openscd/open-scd/wiki/MergeFunctionality)
+- [Install OpenSCD](https://github.com/openscd/open-scd/wiki/Install-OpenSCD)
+
+
+# Information workflow with project
+- [Project management](https://github.com/openscd/open-scd/wiki/Project-management)
 
 # Validation of SCL files
-- [Validate Templates](https://github.com/openscd/open-scd/wiki/ValidateTemplate)
-
-## Schemavalidation
+- [Validate Templates](https://github.com/openscd/open-scd/wiki/Merge-functionality)
+- [XML editor]() - **pro mode**
 
 # SCL manipulation with OpenSCD
+
+## Cross section functionality
+- [Merge two projects](https://github.com/openscd/open-scd/wiki/MergeFunctionality)
 
 ## Substation
 
@@ -26,6 +30,11 @@
 ## DataTypeTemplates
 
 ### Use template library
+
+- [Add LNodeType](https://github.com/openscd/open-scd/wiki/AddLNodeTypeFromOpenSCDTemplates.md)
+- [Add DOType]()
+- [Add DAType]()
+- [Add EnumType]()
 
 ### Manipulate existing elements
 
