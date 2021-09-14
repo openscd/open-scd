@@ -3,6 +3,7 @@ import sinon, {SinonStub} from "sinon";
 
 import {Editing} from '../../../src/Editing.js';
 import {Wizarding} from '../../../src/Wizarding.js';
+
 import {
   BASIC_VERSIONS_LIST_RESPONSE,
   stubFetchResponseFunction,
@@ -23,7 +24,8 @@ describe('compas-versions-plugin', () => {
 
   describe('no-compas-document', () => {
     beforeEach(async () => {
-      element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
+      element = fixtureSync(html`
+        <compas-versions-plugin></compas-versions-plugin>`);
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
         () => {
@@ -47,7 +49,8 @@ describe('compas-versions-plugin', () => {
 
   describe('show-loading', () => {
     beforeEach(async () => {
-      element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
+      element = fixtureSync(html`
+        <compas-versions-plugin></compas-versions-plugin>`);
       element.docId = docId;
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
@@ -70,7 +73,8 @@ describe('compas-versions-plugin', () => {
 
   describe('no-items-in-list', () => {
     beforeEach(async () => {
-      element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
+      element = fixtureSync(html`
+        <compas-versions-plugin></compas-versions-plugin>`);
       element.docId = docId;
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, undefined, VERSION_ENTRY_ELEMENT_NAME,
@@ -95,7 +99,8 @@ describe('compas-versions-plugin', () => {
 
   describe('items-in-list', () => {
     beforeEach(async () => {
-      element = fixtureSync(html`<compas-versions-plugin></compas-versions-plugin>`);
+      element = fixtureSync(html`
+        <compas-versions-plugin></compas-versions-plugin>`);
       element.docId = docId;
 
       stub = stubFetchResponseFunction(element, FETCH_FUNCTION, BASIC_VERSIONS_LIST_RESPONSE, VERSION_ENTRY_ELEMENT_NAME,
@@ -111,9 +116,9 @@ describe('compas-versions-plugin', () => {
       sinon.restore();
     });
 
-    it('has 2 item entries', () => {
+    it('has 3 item entries', () => {
       expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item'))
-        .to.have.length(2)
+        .to.have.length(3)
     });
 
     it('looks like the latest snapshot', async () => {

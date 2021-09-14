@@ -42,6 +42,10 @@ export const BASIC_VERSIONS_LIST_RESPONSE = `
                   <Name>demo_station1</Name>
                   <Version>2.0.0</Version>
                 </Item>
+                <Item>
+                  <Id>3b572a56-51cc-479b-97fd-e404ebf9ae67</Id>
+                  <Version>2.1.0</Version>
+                </Item>
              </ListResponse>`;
 
 export function stubFetchResponseFunction(element: any,
