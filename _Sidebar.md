@@ -3,7 +3,7 @@
 - [Install OpenSCD](https://github.com/openscd/open-scd/wiki/Install-OpenSCD)
 
 
-# Information workflow with project
+# Information workflow in the project
 - [Project management](https://github.com/openscd/open-scd/wiki/Project-management)
 
 # Validation of SCL files
@@ -11,7 +11,6 @@
 - [XML editor]() - **pro mode**
 
 # SCL manipulation with OpenSCD
-
 ## Cross section functionality
 - [Merge two projects](https://github.com/openscd/open-scd/wiki/MergeFunctionality)
 
