@@ -13,8 +13,8 @@ As all information in **OpenSCD** are saved to SCL files and not some proprietar
 > NOTE: You can open any kind of SCL type.
 
 ### Import information from other SCL files
-See more information in [Import IEDs](https://github.com/openscd/open-scd/wiki/ImportIEDs)
+See more information in [Import IEDs](https://github.com/openscd/open-scd/wiki/Import-IEDs)
 
 ### Save project
 
-See more information in [Save project to SCL](https://github.com/openscd/open-scd/wiki/Manage-save-project)
+See more information in [Save project to SCL](https://github.com/openscd/open-scd/wiki/Save-project)
