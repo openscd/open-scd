@@ -1,2 +1,0 @@
-Here you can find a help page describing how to [install OpenSCD offline](https://github.com/openscd/open-scd/wiki/How-to-install-OpenSCD-offline) and
-pages related to **Project Management** explaining how to [save an SCL file](https://github.com/openscd/open-scd/wiki/Manage-save-project) and [merge an SCL file](https://github.com/openscd/open-scd/wiki/Merge-functionality) into an already opened project.
