@@ -13,7 +13,7 @@
 # SCL manipulation with OpenSCD
 ## Cross section functionality
 - [Merge two projects](https://github.com/openscd/open-scd/wiki/Merge-functionality)
-- [XML editor]() - **pro mode**
+- [XML editor](https://github.com/openscd/open-scd/wiki/XML-code-editor) - **pro mode**
 
 ## Substation
 
