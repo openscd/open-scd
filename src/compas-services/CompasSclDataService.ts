@@ -69,6 +69,16 @@ export function CompasSclDataService() {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     },
 
+    deleteSclDocumentVersion(type: string, id: string, version: string): Promise<Response> {
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/' + version;
+      return fetch(sclUrl, {method: 'DELETE'});
+    },
+
+    deleteSclDocument(type: string, id: string): Promise<Response> {
+      const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
+      return fetch(sclUrl, {method: 'DELETE'});
+    },
+
     addSclDocument(type: string, body: CreateRequestBody): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase();
       return fetch(sclUrl, {
