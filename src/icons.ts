@@ -44,6 +44,7 @@ const pathsSVG = {
   warning: svg`<path d="M0 0h24v24H0z" fill="none"></path><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="currentColor"></path>`,
   error: svg`<path d="M0 0h24v24H0V0z" fill="none"></path>
   <path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM19 14.9L14.9 19H9.1L5 14.9V9.1L9.1 5h5.8L19 9.1v5.8z" fill="currentColor"></path><path d="M11 7h2v7h-2z" fill="currentColor"></path><circle cx="12" cy="16" r="1" fill="currentColor"></circle>`,
+  sclhistory: svg`<path xmlns="http://www.w3.org/2000/svg" d="M14.17,5L19,9.83V19H5V5L14.17,5L14.17,5 M14.17,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9.83 c0-0.53-0.21-1.04-0.59-1.41l-4.83-4.83C15.21,3.21,14.7,3,14.17,3L14.17,3z M7,15h10v2H7V15z M7,11h10v2H7V11z M7,7h7v2H7V7z"/>`,
 };
 
 export const iconColors = {
@@ -51,10 +52,11 @@ export const iconColors = {
   warning: '--yellow',
   error: '--red',
   action: '--blue',
+  sclhistory: '--cyan',
 };
 
 export function getFilterIcon(
-  type: 'action' | 'info' | 'warning' | 'error' | 'reset',
+  type: 'action' | 'info' | 'warning' | 'error' | 'reset' | 'sclhistory',
   state: boolean
 ): TemplateResult {
   if (type === 'reset') return html``;
@@ -517,8 +519,8 @@ export const generalConductingEquipmentIcon = html`<svg
   />
 
   <path
-    d=" M 7.5 17.5 
-    L 12 13 
+    d=" M 7.5 17.5
+    L 12 13
     Z"
     fill="transparent"
     stroke="currentColor"
@@ -528,7 +530,7 @@ export const generalConductingEquipmentIcon = html`<svg
   />
   <path
     d="	M 11 7
-      L 10 8				
+      L 10 8
       C 5 13, 11 20, 17 15
       L 18 14
       Z"
@@ -538,7 +540,7 @@ export const generalConductingEquipmentIcon = html`<svg
   />
   <path
     d=" M 13 9
-    L 16 6 
+    L 16 6
     Z"
     fill="transparent"
     stroke="currentColor"
@@ -548,7 +550,7 @@ export const generalConductingEquipmentIcon = html`<svg
   />
   <path
     d=" M 16 12
-    L 19 9 
+    L 19 9
     Z"
     fill="transparent"
     stroke="currentColor"

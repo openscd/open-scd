@@ -395,6 +395,11 @@
     on=""
   >
   </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle
+    id="sclhistoryfilter"
+    on=""
+  >
+  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""

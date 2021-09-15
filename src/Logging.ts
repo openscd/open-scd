@@ -11,7 +11,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
 import {
-  CommitEntry,
+  CommitEntry, SclHistoryEntry,
   ifImplemented,
   invert,
   IssueDetail,
@@ -21,7 +21,7 @@ import {
   LogEntryType,
   LogEvent,
   Mixin,
-  newActionEvent,
+  newActionEvent, OpenDocEvent,
 } from './foundation.js';
 import { get, translate } from 'lit-translate';
 import { getFilterIcon, iconColors } from './icons.js';
@@ -32,6 +32,7 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
+  sclhistory: 'text_snippet',
 };
 
 function getPluginName(src: string): string {
@@ -161,10 +162,11 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           warning: this.warningUI,
           info: this.infoUI,
           action: this.infoUI,
+          sclhistory: null,
         }[le.detail.kind];
 
-        ui.close();
-        ui.show();
+        ui?.close();
+        ui?.show();
       }
       if (le.detail.kind == 'error') {
         this.errorUI.close(); // hack to reset timeout
@@ -180,6 +182,48 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       super.performUpdate();
     }
 
+    private convertToDate(when: string | null): Date | null {
+      const convertedTime = new Date(when ?? '');
+      if (!isNaN(convertedTime.getTime())) {
+        return convertedTime;
+      }
+      return null;
+    }
+
+    private createMessage(who: string | null, why: string | null): string | undefined {
+      let message = who;
+      if (message !== null && why !== null) {
+        message += " : " + why;
+      } else if (why !== null) {
+        message = why;
+      }
+      return message??undefined;
+    }
+
+    private createSclHistoryEntry(who: string | null, what: string | null,
+                                  why: string | null, when: string | null): SclHistoryEntry {
+      return {
+        kind: 'sclhistory',
+        title: what??'',
+        message: this.createMessage(who, why),
+        time: this.convertToDate(when)
+      }
+    }
+
+    private async onLoadHistoryFromDoc(event: OpenDocEvent) {
+      const doc = event.detail.doc;
+
+      Array.from(doc.querySelectorAll(':root > Header > History > Hitem'))
+        .forEach(historyItem => {
+          this.history.push(
+            this.createSclHistoryEntry(
+              historyItem.getAttribute('who'),
+              historyItem.getAttribute('what'),
+              historyItem.getAttribute('why'),
+              historyItem.getAttribute('when')));
+        });
+    }
+
     constructor(...args: any[]) {
       super(...args);
 
@@ -189,6 +233,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       this.onLog = this.onLog.bind(this);
       this.addEventListener('log', this.onLog);
       this.addEventListener('issue', this.onIssue);
+      this.addEventListener('open-doc', this.onLoadHistoryFromDoc);
     }
 
     renderLogEntry(
@@ -205,7 +250,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         >
           <span>
             <!-- FIXME: replace tt with mwc-chip asap -->
-            <tt>${entry.time.toLocaleTimeString()}</tt>
+            <tt>${entry.time?.toLocaleString()}</tt>
             ${entry.title}</span
           >
           <span slot="secondary">${entry.message}</span>
@@ -297,10 +342,14 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           #log > mwc-icon-button-toggle:nth-child(4) {
             right: 158px;
           }
+          #log > mwc-icon-button-toggle:nth-child(5) {
+            right: 206px;
+          }
           #content mwc-list-item.info,
           #content mwc-list-item.warning,
           #content mwc-list-item.error,
-          #content mwc-list-item.action {
+          #content mwc-list-item.action,
+          #content mwc-list-item.sclhistory {
             display: none;
           }
           #infofilter[on] ~ #content mwc-list-item.info {
@@ -313,6 +362,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             display: flex;
           }
           #actionfilter[on] ~ #content mwc-list-item.action {
+            display: flex;
+          }
+          #sclhistoryfilter[on] ~ #content mwc-list-item.sclhistory {
             display: flex;
           }
 

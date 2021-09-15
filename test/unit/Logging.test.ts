@@ -4,7 +4,7 @@ import { LoggingElement } from '../../src/Logging.js';
 import {
   CommitEntry,
   newIssueEvent,
-  newLogEvent,
+  newLogEvent, newOpenDocEvent,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -218,6 +218,55 @@ describe('LoggingElement', () => {
     });
   });
 
+  describe('when loading file with history items', () => {
+    beforeEach(async () => {
+      const doc = await fetch('/base/test/testfiles/history.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      element.dispatchEvent(
+        newOpenDocEvent(doc, "history.scd")
+      );
+      await element.requestUpdate();
+    });
+
+    it('has 4 items in the history list', () => {
+      expect(element.history.length).to.be.equal(4);
+    });
+
+    it('expect the correct values of the first line (with valid when and no why)', () => {
+      expect(element.history.length).to.be.equal(4);
+      expect(element.history[0].kind).to.be.equal('sclhistory');
+      expect(element.history[0].title).to.satisfy((msg: string) => msg.startsWith('SCD created from CIM File(s):'));
+      expect(element.history[0].message).to.be.equal('Test User 1');
+      expect(element.history[0].time).to.be.not.null;
+    });
+
+    it('expect the correct values of the thrid line (with no when and no why)', () => {
+      expect(element.history.length).to.be.equal(4);
+      expect(element.history[2].kind).to.be.equal('sclhistory');
+      expect(element.history[2].title).to.satisfy((msg: string) => msg.startsWith('SCD updated, '));
+      expect(element.history[2].message).to.be.equal('Test User 1');
+      expect(element.history[2].time).to.be.null;
+    });
+
+    it('expect the correct values of the last line (with invalid when, but valid why)', () => {
+      expect(element.history.length).to.be.equal(4);
+      expect(element.history[3].kind).to.be.equal('sclhistory');
+      expect(element.history[3].title).to.satisfy((msg: string) => msg.startsWith('SCD updated, '));
+      expect(element.history[3].message).to.be.equal('Test User 1 : Small correction in substation');
+      expect(element.history[3].time).to.be.null;
+    });
+
+    it('can reset its history', async () => {
+      element.dispatchEvent(
+        newLogEvent({kind: 'reset'})
+      );
+      await element.requestUpdate();
+      expect(element).property('history').to.be.empty;
+    });
+  });
+
   describe('with an issue incomming', () => {
     beforeEach(async () => {
       element.dispatchEvent(
@@ -284,7 +333,7 @@ describe('LoggingElement', () => {
       });
     });
 
-    describe('with a second issue comming in - same statusNumber, same validator', () => {
+    describe('with a second issue coming in - same statusNumber, same validator', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
@@ -314,7 +363,7 @@ describe('LoggingElement', () => {
       });
     });
 
-    describe('with a second issue comming in - outdated statusNumber, same validator', () => {
+    describe('with a second issue coming in - outdated statusNumber, same validator', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
@@ -325,7 +374,7 @@ describe('LoggingElement', () => {
         );
       });
 
-      it('ignores incomming the issue', () => {
+      it('ignores incoming the issue', () => {
         expect(element.diagnoses.get('/src/validators/ValidateSchema.js')).to
           .exist;
         expect(
@@ -339,7 +388,7 @@ describe('LoggingElement', () => {
       });
     });
 
-    describe('with another issue comming in - new validator', () => {
+    describe('with another issue coming in - new validator', () => {
       beforeEach(() => {
         element.dispatchEvent(
           newIssueEvent({
