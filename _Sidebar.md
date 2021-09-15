@@ -29,11 +29,11 @@
 
 ## DataTypeTemplates
 
-[Some basic remarks](https://github.com/openscd/open-scd/wiki/DataTypeTemplates.md)
+[Some basic remarks](https://github.com/openscd/open-scd/wiki/DataTypeTemplates)
 
 ### Use template library
 
-- [Add LNodeType](https://github.com/openscd/open-scd/wiki/AddLNodeTypeFromOpenSCDTemplates.md)
+- [Add LNodeType](https://github.com/openscd/open-scd/wiki/AddLNodeTypeFromOpenSCDTemplates)
 - [Add DOType]()
 - [Add DAType]()
 - [Add EnumType]()

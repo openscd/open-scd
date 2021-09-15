@@ -10,5 +10,5 @@ as well as features that allow you to manipulate or add specific information to 
 - [Substation section](https://github.com/openscd/open-scd/wiki/Substation)
 - [Communication section](https://github.com/openscd/open-scd/wiki/Communication)
 - [IED section](https://github.com/openscd/open-scd/wiki/IED)
-- [DataTypeTemplate section](https://github.com/openscd/open-scd/wiki/DataTypeTemaplates)
+- [DataTypeTemplate section](https://github.com/openscd/open-scd/wiki/DataTypeTemplates)
 - [Global SCL manipulation capability](https://github.com/openscd/open-scd/wiki/Global-SCL-manipulation)
