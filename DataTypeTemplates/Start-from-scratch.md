@@ -15,7 +15,7 @@ But before going into details let make a small experiment:
 
 ![grafik](https://user-images.githubusercontent.com/66802940/131665399-3b7ffd50-74f5-424a-b9a5-926eb71eb8be.png)
 
-The wizard does not let you to save it. Well the reason is that you have not defined the minimum required data objects. Those are highlighted red. When you try to add something here your are disappointed again, as the list is empty. The reason is that **OpenSCD** tries to find a ``DOType` that fits the definition of the `DO` but cannot find any as there are no `DOType`s yet in the project.
+The wizard does not let you to save it. Well the reason is that you have not defined the minimum required data objects. Those are highlighted red. When you try to add something here your are disappointed again, as the list is empty. The reason is that **OpenSCD** tries to find a `DOType` that fits the definition of the `DO` but cannot find any as there are no `DOType`s yet in the project.
 
  In this case for example you need to have one `DOType` of the type `ENS`. In addition to that the data object `Pos` is required - `DPC`.
 
