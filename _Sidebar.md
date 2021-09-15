@@ -29,6 +29,8 @@
 
 ## DataTypeTemplates
 
+[Some basic remarks](https://github.com/openscd/open-scd/wiki/DataTypeTemplates.md)
+
 ### Use template library
 
 - [Add LNodeType](https://github.com/openscd/open-scd/wiki/AddLNodeTypeFromOpenSCDTemplates.md)
