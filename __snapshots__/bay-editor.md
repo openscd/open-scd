@@ -4,7 +4,7 @@
 
 ```html
 <section tabindex="0">
-  <h3>
+  <h3 draggable="true">
     COUPLING_BAY — Bay
     <abbr title="[add]">
       <mwc-icon-button icon="playlist_add">
@@ -57,7 +57,7 @@
 
 ```html
 <section tabindex="0">
-  <h3>
+  <h3 draggable="true">
     COUPLING_BAY — Bay
   </h3>
   <div>

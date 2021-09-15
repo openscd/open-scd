@@ -4,7 +4,7 @@
 
 ```html
 <section tabindex="0">
-  <h2>
+  <h2 draggable="true">
     E1 — Voltage Level
       (110.0 kV)
     <abbr title="[add]">
@@ -50,7 +50,7 @@
 
 ```html
 <section tabindex="0">
-  <h2>
+  <h2 draggable="true">
     E1 — Voltage Level
       (110.0 kV)
   </h2>

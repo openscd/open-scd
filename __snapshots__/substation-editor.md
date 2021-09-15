@@ -4,7 +4,7 @@
 
 ```html
 <section tabindex="0">
-  <h1>
+  <h1 draggable="true">
     AA1 — Substation
     <abbr title="[add]">
       <mwc-icon-button icon="playlist_add">
@@ -47,7 +47,7 @@
 
 ```html
 <section tabindex="0">
-  <h1>
+  <h1 draggable="true">
     AA1 — Substation
   </h1>
   <voltage-level-editor readonly="">

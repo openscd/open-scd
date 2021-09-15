@@ -4,6 +4,7 @@
 
 ```html
 <div
+  draggable="true"
   id="container"
   tabindex="0"
 >
@@ -44,6 +45,7 @@
 
 ```html
 <div
+  draggable="true"
   id="container"
   tabindex="0"
 >
