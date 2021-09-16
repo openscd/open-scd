@@ -89,7 +89,11 @@ export default class CompasVersionsPlugin extends LitElement {
                 if (items.length - 1 === index) {
                   return html`<mwc-list-item tabindex="0" graphic="control">
                                 ${name} (${version})
-                                <span slot="graphic" style="width: 90px"></span>
+                                <span slot="graphic" style="width: 90px">
+                                  <mwc-icon @click=${() => {
+                                              this.confirmRestoreCompas(version);
+                                            }}>restore</mwc-icon>
+                                </span>
                               </mwc-list-item>`
                 }
                 return html`<mwc-list-item tabindex="0"

@@ -121,6 +121,9 @@
           slot="graphic"
           style="width: 90px"
         >
+          <mwc-icon>
+            restore
+          </mwc-icon>
         </span>
       </mwc-list-item>
     </mwc-list>
