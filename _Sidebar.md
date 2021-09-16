@@ -19,10 +19,10 @@
 - [DataTypeTemplates](https://github.com/openscd/open-scd/wiki/DataTypeTemplates)
 
 - [Start from template](https://github.com/openscd/open-scd/wiki/Start-from-template)
-- [Add LNodeType](https://github.com/openscd/open-scd/wiki/Add-LNodeType-from-templates)
-- [Add DOType]()
-- [Add DAType]()
-- [Add EnumType]()
+- [Add LNodeType from template](https://github.com/openscd/open-scd/wiki/Add-LNodeType-from-templates)
+- [Add DOType from template](https://github.com/openscd/open-scd/wiki/Add-DOType-from-templates)
+- [Add DAType from template](https://github.com/openscd/open-scd/wiki/Add-DAType-from-templates)
+- [Add EnumType from template](https://github.com/openscd/open-scd/wiki/Add-EnumType-from-templates)
 
 - [Start from scratch](https://github.com/openscd/open-scd/wiki/Start-from-scratch)
 

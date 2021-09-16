@@ -11,6 +11,9 @@ It becomes even more complicated dealing with `DOType` and `LNodeType`. The comp
 
 You can add all types from the template database:
 - [LNodeType](https://github.com/openscd/open-scd/wiki/Add-LNodeType-from-templates)
+- [DOType](https://github.com/openscd/open-scd/wiki/Add-DOType-from-templates)
+- [DAType](https://github.com/openscd/open-scd/wiki/Add-DAType-from-templates)
+- [EnumType](https://github.com/openscd/open-scd/wiki/Add-EnumType-from-templates)
 
 However, we suggest you to start from the `LNodeType`. This will automatically add a valid element into your project, you cannot make so many mistakes along the way and you have the minimum element in your `DataTypeTemplates` section. 
 
