@@ -9,11 +9,14 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
-import { translate } from 'lit-translate';
+import { get, translate } from 'lit-translate';
 import { Mixin, newPendingStateEvent, ValidateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
+
+import { UserInfoEvent } from './foundation.js';
+import { TextFieldBase } from '@material/mwc-textfield/mwc-textfield-base';
 
 interface MenuItem {
   icon: string;
@@ -200,6 +203,14 @@ export function Hosting<
       ];
     }
 
+    getNameField() : TextFieldBase {
+      return <TextFieldBase>this.shadowRoot!.querySelector('span[id="userField"]');
+    }
+
+    private onUserInfo(event: UserInfoEvent) {
+      this.getNameField().textContent = get('userinfo.loggedInAs', {name: event.detail.name});
+    }
+
     constructor(...args: any[]) {
       super(...args);
 
@@ -216,6 +227,8 @@ export function Hosting<
             })
         );
       });
+
+      this.addEventListener('userinfo', this.onUserInfo);
     }
 
     renderMenuItem(me: MenuItem | 'divider'): TemplateResult {
@@ -288,6 +301,7 @@ export function Hosting<
               @click=${() => (this.menuUI.open = true)}
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
+            <span id="userField" slot="actionItems"></span>
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
               ? html`<mwc-tab-bar

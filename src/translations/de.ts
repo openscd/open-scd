@@ -360,6 +360,9 @@ export const de: Translations = {
   code: {
     log: 'Element im XML Editor angepasst:  {{id}}',
   },
+  userinfo: {
+    loggedInAs: '???'
+  },
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',

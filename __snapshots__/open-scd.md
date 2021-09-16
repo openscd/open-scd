@@ -394,6 +394,11 @@
       slot="title"
     >
     </div>
+    <span
+      id="userField"
+      slot="actionItems"
+    >
+    </span>
     <mwc-icon-button
       disabled=""
       icon="undo"
