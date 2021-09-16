@@ -11,7 +11,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
 import {
-  CommitEntry, SclHistoryEntry,
+  CommitEntry, SclhistoryEntry,
   ifImplemented,
   invert,
   IssueDetail,
@@ -32,7 +32,7 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
-  sclhistory: `info`,
+  sclhistory: 'info',
 };
 
 function getPluginName(src: string): string {
@@ -201,7 +201,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private createSclHistoryEntry(who: string | null, what: string | null,
-                                  why: string | null, when: string | null): SclHistoryEntry {
+                                  why: string | null, when: string | null): SclhistoryEntry {
       return {
         kind: 'sclhistory',
         title: what??'',

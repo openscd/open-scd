@@ -246,7 +246,7 @@ export interface InfoDetail extends LogDetailBase {
   cause?: LogEntry;
 }
 /** A [[`LogEntry`]] create from the HItem Line (History) of the SCD File */
-export interface SclHistoryDetail extends LogDetailBase {
+export interface SclhistoryDetail extends LogDetailBase {
   kind: 'sclhistory';
 }
 
@@ -254,7 +254,7 @@ export interface ResetDetail {
   kind: 'reset';
 }
 
-export type LogDetail = InfoDetail | CommitDetail | ResetDetail | SclHistoryDetail;
+export type LogDetail = InfoDetail | CommitDetail | ResetDetail | SclhistoryDetail;
 export type LogEvent = CustomEvent<LogDetail>;
 export function newLogEvent(
   detail: LogDetail,
@@ -292,9 +292,9 @@ interface Timestamped {
 
 export type CommitEntry = Timestamped & CommitDetail;
 export type InfoEntry = Timestamped & InfoDetail;
-export type SclHistoryEntry = Timestamped & SclHistoryDetail;
+export type SclhistoryEntry = Timestamped & SclhistoryDetail;
 
-export type LogEntry = InfoEntry | CommitEntry | SclHistoryEntry;
+export type LogEntry = InfoEntry | CommitEntry | SclhistoryEntry;
 
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {
