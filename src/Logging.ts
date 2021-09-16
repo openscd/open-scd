@@ -32,7 +32,7 @@ const icons = {
   warning: 'warning',
   error: 'report',
   action: 'history',
-  sclhistory: 'text_snippet',
+  sclhistory: `info`,
 };
 
 function getPluginName(src: string): string {
