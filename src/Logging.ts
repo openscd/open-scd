@@ -318,13 +318,10 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
     private renderFilterButtons() {
       return (<LogEntryType[]>Object.keys(icons)).map(
-        kind => {
-          const defaultDisplayed = (kind !== 'sclhistory');
-          return html`<mwc-icon-button-toggle id="${kind}filter" ?on=${defaultDisplayed}
-                      > ${getFilterIcon(kind, false)}
+        kind => html`<mwc-icon-button-toggle id="${kind}filter" ?on=${(kind !== 'sclhistory')}
+                     > ${getFilterIcon(kind, false)}
                         ${getFilterIcon(kind, true)}</mwc-icon-button-toggle
-                      >`
-        }
+                     >`
       );
     }
 
