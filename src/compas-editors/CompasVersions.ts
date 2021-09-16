@@ -97,7 +97,6 @@ export default class CompasVersionsPlugin extends LitElement {
                               </mwc-list-item>`
                 }
                 return html`<mwc-list-item tabindex="0"
-                                           hasMeta
                                            graphic="control">
                                 ${name} (${version})
                                 <span slot="graphic" style="width: 90px">

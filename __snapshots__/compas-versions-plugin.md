@@ -73,7 +73,6 @@
       <mwc-list-item
         aria-disabled="false"
         graphic="control"
-        hasmeta=""
         mwc-list-item=""
         tabindex="0"
       >
@@ -93,7 +92,6 @@
       <mwc-list-item
         aria-disabled="false"
         graphic="control"
-        hasmeta=""
         mwc-list-item=""
         tabindex="-1"
       >
