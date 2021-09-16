@@ -10,7 +10,7 @@ For the `DAType` this becomes a bit more complicated. Here the child element mig
 It becomes even more complicated dealing with `DOType` and `LNodeType`. The complexity and the theoretical possibilities grow here as well. What does this mean for OpenSCD? We cannot provide any possible combination for every data defined within the namespace of the IEC&#8239;61850. This would just create a insanely big XML file that makes it difficult to navigate trough it. What is does give is a most common most general type that is used by most users. 
 
 You can add all types from the template database:
-- [LNodeType]()
+- [LNodeType](https://github.com/openscd/open-scd/wiki/Add-LNodeType-from-templates)
 
 However, we suggest you to start from the `LNodeType`. This will automatically add a valid element into your project, you cannot make so many mistakes along the way and you have the minimum element in your `DataTypeTemplates` section. 
 
