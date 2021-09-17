@@ -16,19 +16,20 @@
 - [Update subscriber info in SCL](https://github.com/openscd/open-scd/wiki/Update-subscriber-info)
 
 
-- [DataTypeTemplates](https://github.com/openscd/open-scd/wiki/DataTypeTemplates)
+ ## 1. [DataTypeTemplates](https://github.com/openscd/open-scd/wiki/DataTypeTemplates)
 
-- [Start from template](https://github.com/openscd/open-scd/wiki/Start-from-template)
-- [Add LNodeType from template](https://github.com/openscd/open-scd/wiki/Add-LNodeType-from-templates)
-- [Add DOType from template](https://github.com/openscd/open-scd/wiki/Add-DOType-from-templates)
-- [Add DAType from template](https://github.com/openscd/open-scd/wiki/Add-DAType-from-templates)
-- [Add EnumType from template](https://github.com/openscd/open-scd/wiki/Add-EnumType-from-templates)
+### 1.1 [Start from template](https://github.com/openscd/open-scd/wiki/Start-from-template)
+#### 1.1.1 [Add LNodeType from template](https://github.com/openscd/open-scd/wiki/Add-LNodeType-from-templates)
+#### 1.1.2 [Add DOType from template](https://github.com/openscd/open-scd/wiki/Add-DOType-from-templates)
+#### 1.1.3 [Add DAType from template](https://github.com/openscd/open-scd/wiki/Add-DAType-from-templates)
+#### 1.1.4 [Add EnumType from template](https://github.com/openscd/open-scd/wiki/Add-EnumType-from-templates)
 
-- [Start from scratch](https://github.com/openscd/open-scd/wiki/Start-from-scratch)
+### 1.2 [Start from scratch](https://github.com/openscd/open-scd/wiki/Start-from-scratch)
+
+#### 1.2.1 [EnumType](https://github.com/openscd/open-scd/wiki/EnumType)
+#### 1.2.2 [EnumVal](https://github.com/openscd/open-scd/wiki/EnumVal)
 
 
 - [Data Object](https://github.com/openscd/open-scd/wiki/DataObject)
 - [Data Attribute Type](https://github.com/openscd/open-scd/wiki/DataAttributeType)
 - [Data Attribute Type](https://github.com/openscd/open-scd/wiki/DataAttributeType)
-- [EnumType](https://github.com/openscd/open-scd/wiki/EnumType)
-- [EnumVal](https://github.com/openscd/open-scd/wiki/EnumVal)
