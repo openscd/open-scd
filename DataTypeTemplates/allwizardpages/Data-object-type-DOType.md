@@ -39,14 +39,15 @@ An black `DOType` is added to the project, that in a lot of cases is invalid so 
 
 1. **id***: make sure that id is unique in the whole project. 
 2. **desc**: user-defined description field
+3. **cdc***: common data class definition acc. to IEC 61850-7-3
 3. List of all child `DA` of `DO`. The item shows the `id` as well as the type - `bType`. When the type starts with **#** than the `DA` is either a constructed attribute or an enumeration. `SDO` are always constructed data and are referencing to a `DOType` itself. 
 
 
 &nbsp;
 
-**Remove EnumType**
+**Remove DOType**
 
-1. Open the `DAType` you want to remove  **Edit DAType** 
+1. Open the `DOType` you want to remove  **Edit DOType** 
 2. Click on **Remove** button
 
 

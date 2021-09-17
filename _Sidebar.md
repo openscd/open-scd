@@ -31,6 +31,7 @@
 #### 1.3.5 [Data object type ](https://github.com/openscd/open-scd/wiki/Data-object-type-DOType)
 #### 1.3.6 [Data object child DA](https://github.com/openscd/open-scd/wiki/Data-object-type-child-DA)
 #### 1.3.7 [Data object child SDO](https://github.com/openscd/open-scd/wiki/Data-object-type-child-SDO)
+#### 1.3.8 [logical node type](https://github.com/openscd/open-scd/wiki/Logical-node-type-LNodeType)
+#### 1.3.9 [Logical node type child DO](https://github.com/openscd/open-scd/wiki/Logical-node-type-child-DO)
 
-- [Data Object](https://github.com/openscd/open-scd/wiki/DataObject)
 
