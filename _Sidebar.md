@@ -17,21 +17,17 @@
 
 
  ## 1. [DataTypeTemplates](https://github.com/openscd/open-scd/wiki/DataTypeTemplates)
-
 ### 1.1 [Start from template](https://github.com/openscd/open-scd/wiki/Start-from-template)
 #### 1.1.1 [Add LNodeType from template](https://github.com/openscd/open-scd/wiki/Add-LNodeType-from-templates)
 #### 1.1.2 [Add DOType from template](https://github.com/openscd/open-scd/wiki/Add-DOType-from-templates)
 #### 1.1.3 [Add DAType from template](https://github.com/openscd/open-scd/wiki/Add-DAType-from-templates)
 #### 1.1.4 [Add EnumType from template](https://github.com/openscd/open-scd/wiki/Add-EnumType-from-templates)
-
 ### 1.2 [Start from scratch](https://github.com/openscd/open-scd/wiki/Start-from-scratch)
-
 ### 1.3 [Wizard pages in template editor](https://github.com/openscd/open-scd/wiki/All-template-editor-wizards)
-
-#### 1.3.1 [EnumType](https://github.com/openscd/open-scd/wiki/Enumeration-EnumType)
-#### 1.3.2 [EnumVal](https://github.com/openscd/open-scd/wiki/Enumeration-EnumVal)
-
+#### 1.3.1 [Enumeration type](https://github.com/openscd/open-scd/wiki/Enumeration-EnumType)
+#### 1.3.2 [Enumeration Value](https://github.com/openscd/open-scd/wiki/Enumeration-EnumVal)
+#### 1.3.3 [Data Attribute type](https://github.com/openscd/open-scd/wiki/Data-attribute-type-DAType)
+#### 1.3.4 [Data attribute BDA](https://github.com/openscd/open-scd/wiki/Data-attribute-type-child-BDA)
 
 - [Data Object](https://github.com/openscd/open-scd/wiki/DataObject)
-- [Data Attribute Type](https://github.com/openscd/open-scd/wiki/DataAttributeType)
-- [Data Attribute Type](https://github.com/openscd/open-scd/wiki/DataAttributeType)
+

@@ -1,4 +1,3 @@
-# Importing IEDs
 Importing IEDs is a key feature for any system configuration, regardless if is follows the so-called `bottom-up` or `top-down` approach. 
 
 To import IEDs to the project
