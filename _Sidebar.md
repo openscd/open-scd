@@ -6,7 +6,7 @@
 ### 2.2 [Save project](https://github.com/openscd/open-scd/wiki/Save-project)
 
 ## 3. [Validators](https://github.com/openscd/open-scd/wiki/Validators)
-### 3.1 [Validate Templates](https://github.com/openscd/open-scd/wiki/Validate-templates)
+### 3.1 [Validate Templates](https://github.com/openscd/open-scd/wiki/Validate-template)
 ### 3.2 [Validate Schema](https://github.com/openscd/open-scd/wiki/Validate-schema)
 
 ## 4. [Global SCL manipulation functionality](https://github.com/openscd/open-scd/wiki/Global-SCL-manipulation)
@@ -39,4 +39,5 @@
 #### 7.3.8 [logical node type](https://github.com/openscd/open-scd/wiki/Logical-node-type-LNodeType)
 #### 7.3.9 [Logical node type child DO](https://github.com/openscd/open-scd/wiki/Logical-node-type-child-DO)
 
+## 8. [Communication section](https://github.com/openscd/open-scd/wiki/Comminication)
 

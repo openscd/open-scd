@@ -19,7 +19,13 @@ If this option is disabled you have to start the precess [from scratch](https://
 
 In addition to that you can read/manipulate any element and their attributes using the wizards for
 
-- [LNodeType](https://github.com/openscd/open-scd/wiki/LNodeType)
-- [DOType](https://github.com/openscd/open-scd/wiki/DOType)
-- [DAType](https://github.com/openscd/open-scd/wiki/DAType)
-- [EnumType](https://github.com/openscd/open-scd/wiki/EnumType)
+[LNodeType](https://github.com/openscd/open-scd/wiki/Logical-node-type-LNodeType)
+[DO](https://github.com/openscd/open-scd/wiki/Logical-node-type-child-DO)
+[DOType](https://github.com/openscd/open-scd/wiki/Data-object-type-DOType)
+[SDO](https://github.com/openscd/open-scd/wiki/Data-object-type-child-SDO)
+[DA](https://github.com/openscd/open-scd/wiki/Data-object-type-child-DA)
+[DAType](https://github.com/openscd/open-scd/wiki/Data-attribute-type-DAType)
+[BDA](https://github.com/openscd/open-scd/wiki/Data-attribute-type-child-BDA)
+[EnumType](https://github.com/openscd/open-scd/wiki/Enumeration-EnumType)
+[EnumVal](https://github.com/openscd/open-scd/wiki/Enumeration-EnumVal)
+
