@@ -28,6 +28,9 @@
 #### 1.3.2 [Enumeration Value](https://github.com/openscd/open-scd/wiki/Enumeration-EnumVal)
 #### 1.3.3 [Data Attribute type](https://github.com/openscd/open-scd/wiki/Data-attribute-type-DAType)
 #### 1.3.4 [Data attribute BDA](https://github.com/openscd/open-scd/wiki/Data-attribute-type-child-BDA)
+#### 1.3.5 [Data object type ](https://github.com/openscd/open-scd/wiki/Data-object-type-DOType)
+#### 1.3.6 [Data object child DA](https://github.com/openscd/open-scd/wiki/Data-object-type-child-DA)
+#### 1.3.7 [Data object child SDO](https://github.com/openscd/open-scd/wiki/Data-object-type-child-SDO)
 
 - [Data Object](https://github.com/openscd/open-scd/wiki/DataObject)
 
