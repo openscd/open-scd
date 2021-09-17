@@ -21,3 +21,7 @@
 ### DataTypeTemplates
 
 - [DataTypeTemplate editor](https://github.com/openscd/open-scd/wiki/DataTypeTemplate-editor)
+
+## CoMPASS
+
+- [CoMPAS Versions Editor](https://github.com/openscd/open-scd/wiki/CoMPAS-Versions-Editor)

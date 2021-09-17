@@ -66,28 +66,63 @@
   <section tabindex="0">
     <h1>
       [compas.versions.title]
+      <mwc-icon-button icon="delete_forever">
+      </mwc-icon-button>
     </h1>
     <mwc-list>
       <mwc-list-item
         aria-disabled="false"
+        graphic="control"
         mwc-list-item=""
         tabindex="0"
       >
         demo_station1 (1.0.0)
+        <span
+          slot="graphic"
+          style="width: 90px"
+        >
+          <mwc-icon>
+            restore
+          </mwc-icon>
+          <mwc-icon>
+            delete
+          </mwc-icon>
+        </span>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
+        graphic="control"
         mwc-list-item=""
         tabindex="-1"
       >
         demo_station1 (2.0.0)
+        <span
+          slot="graphic"
+          style="width: 90px"
+        >
+          <mwc-icon>
+            restore
+          </mwc-icon>
+          <mwc-icon>
+            delete
+          </mwc-icon>
+        </span>
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
+        graphic="control"
         mwc-list-item=""
         tabindex="-1"
       >
         3b572a56-51cc-479b-97fd-e404ebf9ae67 (2.1.0)
+        <span
+          slot="graphic"
+          style="width: 90px"
+        >
+          <mwc-icon>
+            restore
+          </mwc-icon>
+        </span>
       </mwc-list-item>
     </mwc-list>
   </section>
