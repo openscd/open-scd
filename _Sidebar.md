@@ -39,5 +39,5 @@
 #### 7.3.8 [logical node type](https://github.com/openscd/open-scd/wiki/Logical-node-type-LNodeType)
 #### 7.3.9 [Logical node type child DO](https://github.com/openscd/open-scd/wiki/Logical-node-type-child-DO)
 
-## 8. [Communication section](https://github.com/openscd/open-scd/wiki/Comminication)
+## 8. [Communication section](https://github.com/openscd/open-scd/wiki/Communication)
 
