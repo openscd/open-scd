@@ -228,7 +228,13 @@ export function newWizardEvent(
 
 type InfoEntryKind = 'info' | 'warning' | 'error';
 
-export type LogEntryType = 'info' | 'warning' | 'error' | 'action' | 'reset';
+export type LogEntryType =
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'action'
+  | 'reset'
+  | 'sclhistory';
 
 /** The basic information contained in each [[`LogEntry`]]. */
 export interface LogDetailBase {
@@ -244,6 +250,10 @@ export interface CommitDetail extends LogDetailBase {
 export interface InfoDetail extends LogDetailBase {
   kind: InfoEntryKind;
   cause?: LogEntry;
+}
+/** A [[`LogEntry`]] create from the HItem Line (History) of the SCD File */
+export interface SclhistoryDetail extends LogDetailBase {
+  kind: 'sclhistory';
 }
 
 export interface ResetDetail {
@@ -283,13 +293,14 @@ export function newIssueEvent(
 
 /** [[`LogEntry`]]s are timestamped upon being committed to the `history`. */
 interface Timestamped {
-  time: Date;
+  time: Date | null;
 }
 
 export type CommitEntry = Timestamped & CommitDetail;
 export type InfoEntry = Timestamped & InfoDetail;
+export type SclhistoryEntry = Timestamped & SclhistoryDetail;
 
-export type LogEntry = InfoEntry | CommitEntry;
+export type LogEntry = InfoEntry | CommitEntry | SclhistoryEntry;
 
 /** Represents some work pending completion, upon which `promise` resolves. */
 export interface PendingStateDetail {
