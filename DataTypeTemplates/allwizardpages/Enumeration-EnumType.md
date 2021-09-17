@@ -1,4 +1,3 @@
-# Enumeration template (EnumType)
 
 With OpenSCD you can either add enumerations that are defined in the standard, or create your own user-defined `EnumType`. 
 
@@ -6,35 +5,37 @@ With OpenSCD you can either add enumerations that are defined in the standard, o
 
 <img align="right" src="https://user-images.githubusercontent.com/66802940/132067945-0039b2be-7ad6-4834-a2a6-ac83cd3faa3d.png" alt="alt text" width="250">
 
-## Add EnumType
+**Add EnumType**
+
+1. Navigate to the `EnumType` list and click on **Add EnumType**
+2. Select the in the **values** field the `EnumType` you want to add
 
 *Settings*: 
-1. `id`*: make sure that id is unique in the whole project. 
-2. `desc`: user-defined description field
+1. **id***: make sure that id is unique in the whole project. 
+2. **desc**: user-defined description field
 
-### From IEC 61850
+
+*From IEC 61850*
 
 OpenSCD templates contains all enumerations from IEC&#8239;61850&#x2011;7&#x2011;4 and IEC&#8239;61850&#x2011;7&#x2011;3. The correct `EnumType` with all possible `EnumVal` child elements are added to the project. 
 
-## User-defined 
+*User-defined* 
 
-Do defined a user-defined from scratch open **Add EnumType** wizard and make sure to NOT select the value. 
+Do defined a user-defined from scratch open **Add EnumType** wizard and make sure to NOT select the value. Be careful with this option as this add a blanc `EnumType`.
 
 &nbsp;
 
 <img align="right" src="https://user-images.githubusercontent.com/66802940/132069240-5b7cf7ba-15ea-49d0-8bbf-a48027c3252b.png" alt="alt text" width="250">
 
-## Edit EnumType
+**Edit EnumType**
+
+1. Vavigate to the `EnumType` list in the **Template editor** and click on the `EnumType` you want to edit 
 
 *Settings*:
 
-1. `id`*: make sure that id is unique in the whole project. 
-2. `desc`: user-defined description field
+1. **id***: make sure that id is unique in the whole project. 
+2. **desc**: user-defined description field
 3. List of all child `EnumVal` with its `ord` attribute and its inner text.
-
-> **NOTE**: You can edit each of the `EnumVal` by clicking on the respective list item
-
-> **CHECKS**: Duplicate `id` is covered by schema validator. 
 
 *Example*:
 ```
@@ -49,7 +50,7 @@ Do defined a user-defined from scratch open **Add EnumType** wizard and make sur
 
 &nbsp;
 
-## Remove EnumType
+**Remove EnumType**
 
 1. Open the `EnumType` you want to remove  **Edit EnumType** 
 2. Click on **Remove** button

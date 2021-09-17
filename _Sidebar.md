@@ -26,8 +26,10 @@
 
 ### 1.2 [Start from scratch](https://github.com/openscd/open-scd/wiki/Start-from-scratch)
 
-#### 1.2.1 [EnumType](https://github.com/openscd/open-scd/wiki/EnumType)
-#### 1.2.2 [EnumVal](https://github.com/openscd/open-scd/wiki/EnumVal)
+### 1.3 [Wizard pages in template editor](https://github.com/openscd/open-scd/wiki/All-template-editor-wizards)
+
+#### 1.3.1 [EnumType](https://github.com/openscd/open-scd/wiki/Enumeration-EnumType)
+#### 1.3.2 [EnumVal](https://github.com/openscd/open-scd/wiki/Enumeration-EnumVal)
 
 
 - [Data Object](https://github.com/openscd/open-scd/wiki/DataObject)
