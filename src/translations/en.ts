@@ -357,6 +357,9 @@ export const en = {
   code: {
     log: 'Changed element in XML editor: {{id}}',
   },
+  userinfo: {
+    loggedInAs: 'Logged in as {{name}}'
+  },
   add: 'Add',
   new: 'New',
   remove: 'Remove',
