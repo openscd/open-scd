@@ -17,6 +17,7 @@ import { SettingElement } from './Setting.js';
 
 import { UserInfoEvent } from './foundation.js';
 import { TextFieldBase } from '@material/mwc-textfield/mwc-textfield-base';
+import { string } from 'fast-check';
 
 interface MenuItem {
   icon: string;
@@ -51,6 +52,9 @@ export function Hosting<
     activeTab = 0;
     @property({ attribute: false })
     validated: Promise<unknown> = Promise.resolve();
+
+    @property({ type: string})
+    username: string | undefined;
 
     @internalProperty()
     statusNumber = 0;
@@ -203,12 +207,8 @@ export function Hosting<
       ];
     }
 
-    getNameField() : TextFieldBase {
-      return <TextFieldBase>this.shadowRoot!.querySelector('span[id="userField"]');
-    }
-
     private onUserInfo(event: UserInfoEvent) {
-      this.getNameField().textContent = get('userinfo.loggedInAs', {name: event.detail.name});
+      this.username = event.detail.name;
     }
 
     constructor(...args: any[]) {
@@ -301,7 +301,9 @@ export function Hosting<
               @click=${() => (this.menuUI.open = true)}
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
-            <span id="userField" slot="actionItems"></span>
+            ${this.username != undefined
+              ? html`<span id="userField" slot="actionItems">${translate('userinfo.loggedInAs', {name: this.username})}</span>`
+              : ``}
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
               ? html`<mwc-tab-bar
