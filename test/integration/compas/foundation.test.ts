@@ -29,6 +29,8 @@ describe('compas-foundation', () => {
   });
 
   it('when UserInfoEvent event is dispatched, the username is shown in OpenSCD', async () => {
+    expect(element.shadowRoot!.querySelector('span[id="userField"]')).to.be.null;
+    
     element.dispatchEvent(newUserInfoEvent("Henk"));
     await element.updateComplete;
 
