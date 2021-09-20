@@ -9,14 +9,13 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { until } from 'lit-html/directives/until';
-import { get, translate } from 'lit-translate';
+import { translate } from 'lit-translate';
 import { Mixin, newPendingStateEvent, ValidateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
 
 import { UserInfoEvent } from './foundation.js';
-import { TextFieldBase } from '@material/mwc-textfield/mwc-textfield-base';
 import { string } from 'fast-check';
 
 interface MenuItem {
