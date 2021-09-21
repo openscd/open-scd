@@ -301,7 +301,9 @@ export function Hosting<
             ></mwc-icon-button>
             <div slot="title" id="title">${this.docName}</div>
             ${this.username != undefined
-              ? html`<span id="userField" slot="actionItems">${translate('userinfo.loggedInAs', {name: this.username})}</span>`
+              ? html`<span id="userField" slot="actionItems" style="font-family:Roboto" >
+                      ${translate('userinfo.loggedInAs', {name: this.username})}
+                      </span>`
               : ``}
             ${this.menu.map(this.renderActionItem)}
             ${this.doc
