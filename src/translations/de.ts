@@ -388,6 +388,8 @@ export const de: Translations = {
     loading: '???',
     error: {
       type: '???',
+      server: '???',
+      serverDetails: '{{type}}: {{message}}',
     },
     changeset: {
       major: '???',
@@ -403,13 +405,8 @@ export const de: Translations = {
     saveTo: {
       title: '???',
       comment: '???',
-      addError: '???',
       addSuccess: '???',
-      updateError: '???',
       updateSuccess: '???',
-    },
-    cim:  {
-      mapError: '???',
     },
     versions: {
       title: '???',

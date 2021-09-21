@@ -1,4 +1,5 @@
 import {CompasSettings} from "../compas/CompasSettingsElement.js";
+import {handleError, handleResponse, parseXml} from "./foundation.js";
 
 export const CMS_NAMESPACE = 'https://www.lfenergy.org/compas/CimMappingService/v1';
 
@@ -35,9 +36,9 @@ export function CompasCimMappingService() {
                     </cms:CimData>`;
                 }) }
                </cms:MapRequest>`
-      })
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+      }).catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     },
   }
 }

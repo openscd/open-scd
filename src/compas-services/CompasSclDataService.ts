@@ -1,5 +1,6 @@
 import {CompasSettings} from "../compas/CompasSettingsElement.js";
 import {ChangeSet} from "../compas/CompasChangeSet.js";
+import {handleError, handleResponse, parseXml} from "./foundation.js";
 
 export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1';
 
@@ -25,8 +26,9 @@ export function CompasSclDataService() {
     listSclTypes(): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/common/v1/type/list';
       return fetch(sclUrl)
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+        .catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     },
 
     listSclTypesAndOrder(): Promise<Element[]> {
@@ -44,39 +46,47 @@ export function CompasSclDataService() {
     listScls(type: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/list';
       return fetch(sclUrl)
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+        .catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     },
 
     listVersions(type: string, id: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + "/versions";
       return fetch(sclUrl)
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+        .catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     },
 
     getSclDocument(type: string, id: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
       return fetch(sclUrl)
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+        .catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     },
 
     getSclDocumentVersion(type: string, id: string, version: string): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/' + version;
       return fetch(sclUrl)
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+        .catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     },
 
-    deleteSclDocumentVersion(type: string, id: string, version: string): Promise<Response> {
+    deleteSclDocumentVersion(type: string, id: string, version: string): Promise<string> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id + '/' + version;
-      return fetch(sclUrl, {method: 'DELETE'});
+      return fetch(sclUrl, {method: 'DELETE'})
+        .catch(handleError)
+        .then(handleResponse);
     },
 
-    deleteSclDocument(type: string, id: string): Promise<Response> {
+    deleteSclDocument(type: string, id: string): Promise<string> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
-      return fetch(sclUrl, {method: 'DELETE'});
+      return fetch(sclUrl, {method: 'DELETE'})
+        .catch(handleError)
+        .then(handleResponse);
     },
 
     addSclDocument(type: string, body: CreateRequestBody): Promise<Document> {
@@ -92,12 +102,12 @@ export function CompasSclDataService() {
                    <sds:Comment>${body.comment}</sds:Comment>
                    ${new XMLSerializer().serializeToString(body.doc.documentElement)}
                </sds:CreateRequest>`
-      })
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'))
+      }).catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     },
 
-    updateSclDocument(type: string, id: string, body: UpdateRequestBody): Promise<Response> {
+    updateSclDocument(type: string, id: string, body: UpdateRequestBody): Promise<string> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
       return fetch(sclUrl, {
         method: 'PUT',
@@ -110,7 +120,8 @@ export function CompasSclDataService() {
                    <sds:Comment>${body.comment}</sds:Comment>
                    ${new XMLSerializer().serializeToString(body.doc.documentElement)}
                </sds:UpdateRequest>`
-      })
+      }).catch(handleError)
+        .then(handleResponse);
     }
   }
 }

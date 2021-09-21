@@ -5,6 +5,7 @@ import {newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
+import {createLogEvent} from "../compas-services/foundation.js";
 import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
 import {getOpenScdElement, updateDocumentInOpenSCD} from "./foundation.js";
 
@@ -25,6 +26,7 @@ export class CompasScl extends LitElement {
       .then(xmlResponse => {
         this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])
       })
+      .catch(createLogEvent)
   }
 
   openScl(id?: string) {
@@ -32,14 +34,18 @@ export class CompasScl extends LitElement {
   }
 
   private async getSclDocument(id?: string): Promise<void> {
-    const response = await CompasSclDataService().getSclDocument(this.type, id ?? '');
+    const response = await CompasSclDataService()
+      .getSclDocument(this.type, id ?? '')
+      .catch(createLogEvent);
 
-    // Copy the SCL Result from the Response and create a new Document from it.
-    const sclElement = response.querySelectorAll("SCL").item(0);
-    const sclDocument = document.implementation.createDocument("", "", null);
-    sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+    if (response instanceof Document) {
+      // Copy the SCL Result from the Response and create a new Document from it.
+      const sclElement = response.querySelectorAll("SCL").item(0);
+      const sclDocument = document.implementation.createDocument("", "", null);
+      sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
 
-    updateDocumentInOpenSCD(sclDocument);
+      updateDocumentInOpenSCD(sclDocument);
+    }
   }
 
   render(): TemplateResult {

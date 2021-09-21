@@ -3,6 +3,7 @@ import {get, translate} from 'lit-translate';
 import {newLogEvent, newWizardEvent, Wizard} from "../foundation.js";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
+import {createLogEvent} from "../compas-services/foundation.js";
 import {getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
 import {getOpenScdElement, styles} from './foundation.js';
 
@@ -29,7 +30,8 @@ export default class CompasVersionsPlugin extends LitElement {
     CompasSclDataService().listVersions(type, this.docId)
       .then(xmlResponse => {
         this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])
-      });
+      })
+      .catch(createLogEvent);
   }
 
   confirmRestoreCompas(version: string): void {
@@ -136,29 +138,27 @@ export default class CompasVersionsPlugin extends LitElement {
   `;
 }
 
-function fetchScl(type: string, docId: string, version: string) {
-  CompasSclDataService().getSclDocumentVersion(type, docId, version)
-    .then(response => {
-      // Copy the SCL Result from the Response and create a new Document from it.
-      const sclElement = response.querySelectorAll("SCL").item(0);
-      const sclDocument = document.implementation.createDocument("", "", null);
-      sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
-
-      updateDocumentInOpenSCD(sclDocument);
-    });
-}
-
 function openScl(docName: string, docId: string, version: string) {
   return function () {
-    const type = getTypeFromDocName(docName);
-    fetchScl(type, docId, version);
-
     const openScd = getOpenScdElement();
-    openScd.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('compas.versions.restoreVersionSuccess', {version : version})
-      }));
+    const type = getTypeFromDocName(docName);
+
+    CompasSclDataService().getSclDocumentVersion(type, docId, version)
+      .then(response => {
+        // Copy the SCL Result from the Response and create a new Document from it.
+        const sclElement = response.querySelectorAll("SCL").item(0);
+        const sclDocument = document.implementation.createDocument("", "", null);
+        sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+
+        updateDocumentInOpenSCD(sclDocument);
+
+        openScd.dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: get('compas.versions.restoreVersionSuccess', {version : version})
+          }));
+      })
+      .catch(createLogEvent);
 
     // Close the Restore Dialog.
     openScd.dispatchEvent(newWizardEvent());
@@ -169,16 +169,20 @@ function openScl(docName: string, docId: string, version: string) {
 
 function deleteScl(docName: string, docId: string) {
   return function () {
-    const type = getTypeFromDocName(docName);
-    CompasSclDataService().deleteSclDocument(type, docId);
-
     const openScd = getOpenScdElement();
-    openScd.docId = '';
-    openScd.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('compas.versions.deleteSuccess')
-      }));
+    const type = getTypeFromDocName(docName);
+
+    CompasSclDataService()
+      .deleteSclDocument(type, docId)
+      .then (() => {
+        openScd.docId = '';
+        openScd.dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: get('compas.versions.deleteSuccess')
+          }));
+      })
+      .catch(createLogEvent);
 
     // Close the Restore Dialog.
     openScd.dispatchEvent(newWizardEvent());
@@ -189,15 +193,19 @@ function deleteScl(docName: string, docId: string) {
 
 function deleteSclVersion(docName: string, docId: string, version: string) {
   return function () {
-    const type = getTypeFromDocName(docName);
-    CompasSclDataService().deleteSclDocumentVersion(type, docId, version);
-
     const openScd = getOpenScdElement();
-    openScd.dispatchEvent(
-      newLogEvent({
-        kind: 'info',
-        title: get('compas.versions.deleteVersionSuccess', {version : version})
-      }));
+    const type = getTypeFromDocName(docName);
+
+    CompasSclDataService()
+      .deleteSclDocumentVersion(type, docId, version)
+      .then(() => {
+        openScd.dispatchEvent(
+          newLogEvent({
+            kind: 'info',
+            title: get('compas.versions.deleteVersionSuccess', {version : version})
+          }));
+      })
+      .catch(createLogEvent);
 
     // Close the Restore Dialog.
     openScd.dispatchEvent(newWizardEvent());

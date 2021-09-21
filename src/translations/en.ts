@@ -385,6 +385,8 @@ export const en = {
     loading: 'Loading...',
     error: {
       type: 'Unable to determine type from document name!',
+      server: 'Error communicating with CoMPAS Server',
+      serverDetails: '{{type}}: {{message}}',
     },
     changeset: {
       major: 'Major change',
@@ -400,13 +402,8 @@ export const en = {
     saveTo: {
       title: 'Save to CoMPAS',
       comment: 'Comment',
-      addError: 'Error adding SCL to CoMPAS!',
       addSuccess: 'SCL added to CoMPAS.',
-      updateError: 'Error updating SCL in CoMPAS!',
       updateSuccess: 'SCL updated in CoMPAS',
-    },
-    cim:  {
-      mapError: 'Error creating SCL from CIM Files',
     },
     versions: {
       title: 'CoMPAS Versions',
