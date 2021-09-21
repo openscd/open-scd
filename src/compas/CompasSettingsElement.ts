@@ -9,12 +9,9 @@ export type CompasSettingsRecord = {
   sclDataServiceUrl: string;
   cimMappingServiceUrl: string;
 };
-export const defaults: CompasSettingsRecord = {
-  sclDataServiceUrl: '/compas-scl-data-service',
-  cimMappingServiceUrl: '/compas-cim-mapping',
-};
 
 export function CompasSettings() {
+  
   return {
     /** Current [[`CompasSettings`]] in `localStorage`, default to [[`defaults`]]. */
     get compasSettings(): CompasSettingsRecord {
@@ -24,6 +21,13 @@ export function CompasSettings() {
       };
     },
 
+    get defaultSettings(): CompasSettingsRecord {
+      return {
+        sclDataServiceUrl: '/compas-scl-data-service',
+        cimMappingServiceUrl: '/compas-cim-mapping'
+      }
+    },
+
     /** Update the `value` of `setting`, storing to `localStorage`. */
     setCompasSetting<T extends keyof CompasSettingsRecord>(setting: T, value: CompasSettingsRecord[T]): void {
       localStorage.setItem(setting, <string>(<unknown>value));
@@ -31,7 +35,7 @@ export function CompasSettings() {
 
     getCompasSetting<T extends keyof CompasSettingsRecord>(setting: T): CompasSettingsRecord[T] {
       return (
-        <CompasSettingsRecord[T] | null>localStorage.getItem(setting) ?? defaults[setting]
+        <CompasSettingsRecord[T] | null>localStorage.getItem(setting) ?? this.defaultSettings[setting]
       );
     }
   }
