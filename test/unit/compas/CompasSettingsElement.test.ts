@@ -1,7 +1,7 @@
 import {expect, fixture, html} from '@open-wc/testing';
 
 import "../../../src/compas/CompasSettingsElement.js";
-import {CompasSettings, CompasSettingsElement, defaults} from "../../../src/compas/CompasSettingsElement.js";
+import {CompasSettings, CompasSettingsElement} from "../../../src/compas/CompasSettingsElement.js";
 
 describe('compas-settings', () => {
   let element: CompasSettingsElement;
@@ -17,7 +17,7 @@ describe('compas-settings', () => {
   });
 
   it('initially has default settings', () => {
-    expect(element).to.have.deep.property('compasSettings', defaults);
+    expect(element).to.have.deep.property('compasSettings', CompasSettings().defaultSettings);
   });
 
   it('stores settings to localStorage', () => {
@@ -53,7 +53,7 @@ describe('compas-settings', () => {
     await element.getSclDataServiceUrlField().updateComplete;
 
     expect(element.save()).to.be.false;
-    expect(element).to.have.deep.property('compasSettings', defaults);
+    expect(element).to.have.deep.property('compasSettings', CompasSettings().defaultSettings);
   });
 
   it('save will not be done when invalid value (CIM Mapping Service)', async () => {
@@ -62,7 +62,7 @@ describe('compas-settings', () => {
     await element.getCimMappingServiceUrlField().updateComplete;
 
     expect(element.save()).to.be.false;
-    expect(element).to.have.deep.property('compasSettings', defaults);
+    expect(element).to.have.deep.property('compasSettings', CompasSettings().defaultSettings);
   });
 
   it('resets settings to default on reset button click', async () => {
@@ -70,9 +70,9 @@ describe('compas-settings', () => {
     CompasSettings().setCompasSetting('sclDataServiceUrl', 'http://localhost:9091/compas-scl-data-service');
     CompasSettings().setCompasSetting('cimMappingServiceUrl', 'http://localhost:9092/compas-cim-mapping');
 
-    expect(element).to.not.have.deep.property('compasSettings', defaults);
+    expect(element).to.not.have.deep.property('compasSettings', CompasSettings().defaultSettings);
     expect(element.reset()).to.be.true;
-    expect(element).to.have.deep.property('compasSettings', defaults);
+    expect(element).to.have.deep.property('compasSettings', CompasSettings().defaultSettings);
   });
 
   it('looks like the latest snapshot', async () => {
