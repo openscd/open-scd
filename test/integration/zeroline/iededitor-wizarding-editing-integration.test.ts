@@ -39,7 +39,7 @@ describe('ied-editor wizarding editing integration', () => {
     );
   });
 
-  it('opens selectReportControlWizard for the complete SCL file', async () => {
+  it('opens selectReportControlWizard for the IED element', async () => {
     iededitor.reportControl.click();
     await parent.updateComplete;
     expect(parent.wizardUI.dialog).to.exist;

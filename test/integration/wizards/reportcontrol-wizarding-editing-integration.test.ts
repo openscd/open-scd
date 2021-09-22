@@ -56,7 +56,7 @@ describe('reportcontrol wizarding editing integration', () => {
     });
   });
 
-  describe('editGseControlWizard', () => {
+  describe('editReportControlWizard', () => {
     let nameField: WizardTextField;
     let primaryAction: HTMLElement;
     let reportControl: Element;
@@ -81,9 +81,14 @@ describe('reportcontrol wizarding editing integration', () => {
       });
 
       it('edits name attribute on primary action', async () => {
+        const parentLn = reportControl.parentElement;
+        const oldName =  reportControl.getAttribute('name');
+
         nameField.value = 'myNewName';
-        primaryAction.click();
-        expect(reportControl.getAttribute('name')).to.not.equal('myNewName');
+        await primaryAction.click();
+
+        expect(parentLn?.querySelector(`ReportControl[name="${oldName}"]`)).to.not.exist;
+        expect(parentLn?.querySelector(`ReportControl[name="myNewName"]`)).to.exist;
       });
 
       it('opens editDataSetWizard on edit dataset button click', async () => {
@@ -101,13 +106,12 @@ describe('reportcontrol wizarding editing integration', () => {
           )
         );
         await nameField.updateComplete;
-        expect(nameField.value).to.equal(
-          doc
-            .querySelectorAll('IED[name="IED2"] LN[lnClass="XSWI"] DataSet')[0]
-            .getAttribute('name')
-        );
-      });
 
+        const dataSet = reportControl.parentElement?.querySelector(`DataSet[name="${reportControl.getAttribute('datSet')}"]`);
+        expect(dataSet).to.exist;
+        expect(nameField.value).to.equal(dataSet?.getAttribute('name'));
+      });
+      
       it('opens a editOptFieldsWizard on edit OptFields button click', async () => {
         const editOptFieldsButton = <Button>(
           element.wizardUI.dialog!.querySelector(
