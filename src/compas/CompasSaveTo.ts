@@ -8,13 +8,8 @@ import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} 
 import {CompasChangeSetRadiogroup} from "./CompasChangeSet.js";
 import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
-import {
-  getOpenScdElement,
-  getTypeFromDocName,
-  stripExtensionFromName,
-  updateDocumentInOpenSCD
-} from "./foundation.js";
-
+import {createLogEvent} from "../compas-services/foundation.js";
+import {getOpenScdElement, getTypeFromDocName, stripExtensionFromName, updateDocumentInOpenSCD} from "./foundation.js";
 import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
 
@@ -60,7 +55,8 @@ export class CompasSaveTo extends LitElement {
         sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
 
         updateDocumentInOpenSCD(sclDocument);
-      });
+      })
+      .catch(createLogEvent);
   }
 
   private async addSclToCompas(wizard: Element, doc: XMLDocument): Promise<void> {
@@ -84,14 +80,8 @@ export class CompasSaveTo extends LitElement {
 
         // Close the Save Dialog.
         openScd.dispatchEvent(newWizardEvent());
-      }).catch(() => {
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'error',
-            title: get('compas.saveTo.addError')
-          }));
-    });
+      })
+      .catch(createLogEvent);
   }
 
   private async updateSclInCompas(wizard: Element, docId: string, docName: string, doc: XMLDocument): Promise<void> {
@@ -113,13 +103,8 @@ export class CompasSaveTo extends LitElement {
 
         // Close the Save Dialog.
         openScd.dispatchEvent(newWizardEvent());
-      }).catch(() => {
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'error',
-            title: get('compas.saveTo.updateError')}));
-      });
+      })
+      .catch(createLogEvent);
   }
 
   async saveToCompas(wizard: Element, docId: string, docName: string, doc: XMLDocument): Promise<void> {

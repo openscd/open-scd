@@ -1,9 +1,10 @@
 import {css, html, LitElement, query, TemplateResult} from 'lit-element';
 
-import {newLogEvent, newOpenDocEvent, newPendingStateEvent} from "../foundation.js";
+import {newOpenDocEvent, newPendingStateEvent} from "../foundation.js";
 import {getOpenScdElement, stripExtensionFromName} from "../compas/foundation.js";
+
 import {CimData, CompasCimMappingService} from "../compas-services/CompasCimMappingService.js";
-import {get} from "lit-translate";
+import {createLogEvent} from "../compas-services/foundation.js";
 
 export default class OpenProjectPlugin extends LitElement {
   @query('#cim-mapping-input') pluginFileUI!: HTMLInputElement;
@@ -32,13 +33,8 @@ export default class OpenProjectPlugin extends LitElement {
 
       const openScd = getOpenScdElement();
       openScd.dispatchEvent(newOpenDocEvent(sclDocument, sclName));
-    }).catch(() => {
-      const openScd = getOpenScdElement();
-      openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'error',
-            title: get('compas.cim.mapError')}));
-    });
+    })
+      .catch(createLogEvent);
     this.pluginFileUI.onchange = null;
   }
 

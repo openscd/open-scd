@@ -1,7 +1,10 @@
 import {get} from "lit-translate";
-import { CompasUserInfoService } from "../compas-services/CompasUserInfoService.js";
+
 import {newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
 import {OpenSCD} from "../open-scd.js";
+
+import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
+import {createLogEvent} from "../compas-services/foundation.js";
 
 const FILE_EXTENSION_LENGTH = 3;
 
@@ -42,10 +45,11 @@ export function updateDocumentInOpenSCD(doc: Document): void {
 
 export async function showOptionalUserInfo(): Promise<void> {
   await CompasUserInfoService().getCompasUserInfo()
-  .then(response => {
-    const name = response.querySelectorAll("Name").item(0)?.textContent;
-    if (name != null)
-      getOpenScdElement().dispatchEvent(newUserInfoEvent(name));
-  });
+    .then(response => {
+      const name = response.querySelectorAll("Name").item(0)?.textContent;
+      if (name != null)
+        getOpenScdElement().dispatchEvent(newUserInfoEvent(name));
+    })
+    .catch(createLogEvent);
 }
 showOptionalUserInfo();

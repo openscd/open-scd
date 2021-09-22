@@ -1,4 +1,5 @@
 import {CompasSettings} from "../compas/CompasSettingsElement.js";
+import {handleError, handleResponse, parseXml} from "./foundation.js";
 
 export function CompasUserInfoService() {
 
@@ -10,8 +11,9 @@ export function CompasUserInfoService() {
     getCompasUserInfo(): Promise<Document> {
       const userInfoUrl = getCompasSettings().sclDataServiceUrl + '/common/v1/userinfo';
       return fetch(userInfoUrl)
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+        .catch(handleError)
+        .then(handleResponse)
+        .then(parseXml);
     }
   }
 }
