@@ -3,14 +3,22 @@ import {get} from "lit-translate";
 import {OpenSCD} from "../open-scd.js";
 import {newLogEvent} from "../foundation.js";
 
+export const NOT_FOUND_ERROR = 'NotFoundError';
+export const APPLICATION_ERROR = 'ApplicationError';
+export const SERVER_ERROR = 'ServerError';
+
+export function getOpenScdElement(): OpenSCD {
+  return <OpenSCD>document.querySelector('open-scd');
+}
+
 export function handleResponse(response: Response): Promise<string> {
   if (!response.ok) {
-    let type = 'ApplicationError';
+    let type = APPLICATION_ERROR;
     if (response.status === 404) {
-      type = 'NotFoundError';
+      type = NOT_FOUND_ERROR;
     } else if (response.status >= 500)
     {
-      type = 'ServerError';
+      type = SERVER_ERROR;
     }
     return Promise.reject({type: type, status: response.status, message: response.statusText});
   }
@@ -22,7 +30,7 @@ export function parseXml(textContent: string): Promise<Document> {
 }
 
 export function handleError(error: Error): Promise<never> {
-  return Promise.reject({type: 'ServerError', message: error.message});
+  return Promise.reject({type: SERVER_ERROR, message: error.message});
 }
 
 export function createLogEvent(reason: any): void {
@@ -31,8 +39,7 @@ export function createLogEvent(reason: any): void {
     message += " (" + reason.status + ")";
   }
 
-  const openScd = <OpenSCD>document.querySelector('open-scd');
-  openScd.dispatchEvent(
+  getOpenScdElement().dispatchEvent(
     newLogEvent({
       kind: 'error',
       title: get('compas.error.server'),

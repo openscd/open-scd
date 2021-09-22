@@ -8,7 +8,7 @@ import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} 
 import {CompasChangeSetRadiogroup} from "./CompasChangeSet.js";
 import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
-import {createLogEvent} from "../compas-services/foundation.js";
+import {createLogEvent, NOT_FOUND_ERROR} from "../compas-services/foundation.js";
 import {getOpenScdElement, getTypeFromDocName, stripExtensionFromName, updateDocumentInOpenSCD} from "./foundation.js";
 import './CompasChangeSet.js';
 import './CompasScltypeRadiogroup.js';
@@ -19,6 +19,30 @@ export class CompasSaveTo extends LitElement {
   docName!: string;
   @property({type: String})
   docId!: string;
+
+  @property({type: Boolean})
+  existInCompas?: boolean;
+
+  firstUpdated(): void {
+    this.checkExistInCompas();
+  }
+
+  checkExistInCompas(): void {
+    if (this.docId) {
+      const docType = getTypeFromDocName(this.docName);
+      // Use the versions call to check if any exist, because then the document also exists
+      // And it safes bandwidth not to retrieve the whole document.
+      CompasSclDataService().listVersions(docType, this.docId)
+        .then(() => this.existInCompas = true)
+        .catch(reason => {
+          if (reason.type && reason.type === NOT_FOUND_ERROR) {
+            this.existInCompas = false;
+          }
+        });
+    } else {
+      this.existInCompas = false;
+    }
+  }
 
   getNameField() : TextFieldBase {
     return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="name"]');
@@ -39,7 +63,7 @@ export class CompasSaveTo extends LitElement {
   }
 
   valid(): boolean {
-    if (!this.docId) {
+    if (!this.existInCompas) {
       return this.getNameField().checkValidity()
         && this.getSclTypeRadioGroup().valid();
     }
@@ -108,7 +132,7 @@ export class CompasSaveTo extends LitElement {
   }
 
   async saveToCompas(wizard: Element, docId: string, docName: string, doc: XMLDocument): Promise<void> {
-    if (!docId) {
+    if (!this.existInCompas) {
       await this.addSclToCompas(wizard, doc);
     } else {
       await this.updateSclInCompas(wizard, docId, docName, doc);
@@ -126,7 +150,14 @@ export class CompasSaveTo extends LitElement {
   }
 
   render(): TemplateResult {
-    if (!this.docId) {
+    if (this.existInCompas === undefined) {
+      return html `
+        <mwc-list>
+          <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
+        </mwc-list>`
+    }
+
+    if (!this.existInCompas) {
       return html`
         <mwc-textfield dialogInitialFocus id="name" label="${translate('scl.name')}"
                        value="${this.docName}" required>
@@ -137,8 +168,7 @@ export class CompasSaveTo extends LitElement {
         ${this.renderCommentTextField()}
       `;
     }
-
-    return html `
+    return html`
       <compas-changeset-radiogroup></compas-changeset-radiogroup>
 
       ${this.renderCommentTextField()}

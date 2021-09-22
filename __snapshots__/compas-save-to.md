@@ -1,5 +1,22 @@
 # `compas-save-to`
 
+## `still determining if document exists in CoMPAS`
+
+####   `looks like the latest snapshot`
+
+```html
+<mwc-list>
+  <mwc-list-item
+    aria-disabled="false"
+    mwc-list-item=""
+    tabindex="0"
+  >
+    [compas.loading]
+  </mwc-list-item>
+</mwc-list>
+
+```
+
 ## `new document in compas`
 
 ####   `looks like the latest snapshot`
@@ -22,7 +39,6 @@
   nullable=""
 >
 </wizard-textfield>
-
 ```
 
 ## `existing document in compas`
@@ -39,6 +55,21 @@
   nullable=""
 >
 </wizard-textfield>
+```
 
+## `loading from compas`
+
+####   `looks like the latest snapshot`
+
+```html
+<mwc-list>
+  <mwc-list-item
+    aria-disabled="false"
+    mwc-list-item=""
+    tabindex="0"
+  >
+    [compas.loading]
+  </mwc-list-item>
+</mwc-list>
 ```
 
