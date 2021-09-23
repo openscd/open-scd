@@ -17,7 +17,7 @@ export default class CompasVersionsPlugin extends LitElement {
   @property()
   scls!: Element[];
 
-  firstUpdated() {
+  firstUpdated(): void {
     if (!this.docId) {
       this.scls = [];
     } else {
@@ -25,13 +25,12 @@ export default class CompasVersionsPlugin extends LitElement {
     }
   }
 
-  fetchData() {
+  fetchData(): void {
     const type = getTypeFromDocName(this.docName);
     CompasSclDataService().listVersions(type, this.docId)
       .then(xmlResponse => {
         this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])
-      })
-      .catch(createLogEvent);
+      });
   }
 
   confirmRestoreCompas(version: string): void {

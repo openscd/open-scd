@@ -17,19 +17,18 @@ export class CompasScl extends LitElement {
   @property()
   scls!: Element[];
 
-  firstUpdated() {
+  firstUpdated(): void {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData(): void {
     CompasSclDataService().listScls(this.type)
       .then(xmlResponse => {
         this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? [])
-      })
-      .catch(createLogEvent)
+      });
   }
 
-  openScl(id?: string) {
+  openScl(id?: string): void {
     getOpenScdElement().dispatchEvent(newPendingStateEvent(this.getSclDocument(id)));
   }
 
