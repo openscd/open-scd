@@ -25,10 +25,10 @@
         mwc-list-item=""
         role="option"
         tabindex="0"
-        value="OpenSCD_SPSsimple"
+        value="OpenSCD_ACD_general"
       >
         <span>
-          SPSsimple
+          ACD_general
         </span>
         <span slot="meta">
           4
@@ -41,10 +41,26 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_SPCstatusOnly"
+        value="OpenSCD_ACD_threephase"
       >
         <span>
-          SPCstatusOnly
+          ACD_threephase
+        </span>
+        <span slot="meta">
+          10
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ACT_general_control"
+      >
+        <span>
+          ACT_general_control
         </span>
         <span slot="meta">
           4
@@ -57,10 +73,186 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_DPCstatusOnly"
+        value="OpenSCD_ACT_threephase_control"
       >
         <span>
-          DPCstatusOnly
+          ACT_threephase_control
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ACT_general"
+      >
+        <span>
+          ACT_general
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_APC_VolSpt_ATCC"
+      >
+        <span>
+          APC_VolSpt_ATCC
+        </span>
+        <span slot="meta">
+          8
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ASG_ATrg_TCTR"
+      >
+        <span>
+          ASG_ATrg_TCTR
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ASG_HzRtg_TCTR"
+      >
+        <span>
+          ASG_HzRtg_TCTR
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ASG_VRtg_TVTR"
+      >
+        <span>
+          ASG_VRtg_TVTR
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_BAC_BndCtrChg_ATCC"
+      >
+        <span>
+          BAC_BndCtrChg_ATCC
+        </span>
+        <span slot="meta">
+          9
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_BSC_TapChg_ATCC"
+      >
+        <span>
+          BSC_TapChg_ATCC
+        </span>
+        <span slot="meta">
+          8
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_BSC_TapChg_YLTC"
+      >
+        <span>
+          BSC_TapChg_YLTC
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_CMV_db_i_MagAndAng"
+      >
+        <span>
+          CMV_db_i_MagAndAng
+        </span>
+        <span slot="meta">
+          13
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_DEL"
+      >
+        <span>
+          DEL
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_DEL_wRef"
+      >
+        <span>
+          DEL_wRef
         </span>
         <span slot="meta">
           4
@@ -73,10 +265,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_DPSsimple"
+        value="OpenSCD_DPC_statusonly"
       >
         <span>
-          DPSsimple
+          DPC_statusonly
         </span>
         <span slot="meta">
           4
@@ -105,10 +297,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_INSsimple"
+        value="OpenSCD_DPSsimple"
       >
         <span>
-          INSsimple
+          DPSsimple
         </span>
         <span slot="meta">
           4
@@ -121,10 +313,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ENSBeh"
+        value="OpenSCD_ENS_Beh"
       >
         <span>
-          ENSBeh
+          ENS_Beh
         </span>
         <span slot="meta">
           3
@@ -137,10 +329,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ENCMod"
+        value="OpenSCD_ENC_Mod"
       >
         <span>
-          ENCMod
+          ENC_Mod
         </span>
         <span slot="meta">
           10
@@ -153,10 +345,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ENSHealth"
+        value="OpenSCD_ENS_Health"
       >
         <span>
-          ENSHealth
+          ENS_Health
         </span>
         <span slot="meta">
           3
@@ -169,10 +361,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ENSSwTyp"
+        value="OpenSCD_ENS_SwTyp"
       >
         <span>
-          ENSSwTyp
+          ENS_SwTyp
         </span>
         <span slot="meta">
           3
@@ -185,26 +377,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ACTgeneral"
+        value="OpenSCD_INS_simple"
       >
         <span>
-          ACTgeneral
-        </span>
-        <span slot="meta">
-          3
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_ACDgeneral"
-      >
-        <span>
-          ACDgeneral
+          INS_simple
         </span>
         <span slot="meta">
           4
@@ -217,42 +393,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_SEC"
+        value="OpenSCD_ISC_TapPos_ATCC"
       >
         <span>
-          SEC
-        </span>
-        <span slot="meta">
-          3
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_BCR"
-      >
-        <span>
-          BCR
-        </span>
-        <span slot="meta">
-          9
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_HST1D"
-      >
-        <span>
-          HST1D
+          ISC_TapPos_ATCC
         </span>
         <span slot="meta">
           8
@@ -265,74 +409,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_HST2D"
+        value="OpenSCD_ISC_TapPos_YLTC"
       >
         <span>
-          HST2D
-        </span>
-        <span slot="meta">
-          10
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_VSS"
-      >
-        <span>
-          VSS
-        </span>
-        <span slot="meta">
-          4
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_ORS"
-      >
-        <span>
-          ORS
-        </span>
-        <span slot="meta">
-          4
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_TCS"
-      >
-        <span>
-          TCS
-        </span>
-        <span slot="meta">
-          4
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_MVinst"
-      >
-        <span>
-          MVinst
+          ISC_TapPos_YLTC
         </span>
         <span slot="meta">
           5
@@ -345,13 +425,189 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_LPLnoLD"
+        value="OpenSCD_LPL_noLD"
       >
         <span>
-          LPLnoLD
+          LPL_noLD
         </span>
         <span slot="meta">
           4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_MV_db_int"
+      >
+        <span>
+          MV_db_int
+        </span>
+        <span slot="meta">
+          9
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_MV_int"
+      >
+        <span>
+          MV_int
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_MV_db_float"
+      >
+        <span>
+          MV_db_float
+        </span>
+        <span slot="meta">
+          8
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_MV_float"
+      >
+        <span>
+          MV_float
+        </span>
+        <span slot="meta">
+          3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_SAV_AmpSv_TCTR"
+      >
+        <span>
+          SAV_AmpSv_TCTR
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_SAV_VolSv_TVTR"
+      >
+        <span>
+          SAV_VolSv_TVTR
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_SPC_statusonly"
+      >
+        <span>
+          SPC_statusonly
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_SPC_Auto_ATCC"
+      >
+        <span>
+          SPC_Auto_ATCC
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_SPC_LocSta"
+      >
+        <span>
+          SPC_LocSta
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_SPS_simple"
+      >
+        <span>
+          SPS_simple
+        </span>
+        <span slot="meta">
+          4
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_WYE_phases"
+      >
+        <span>
+          WYE_phases
+        </span>
+        <span slot="meta">
+          3
         </span>
       </mwc-list-item>
     </mwc-select>
