@@ -53,7 +53,7 @@
       <DO name="SelOpn" type="OpenSCD_SPS_simple"/>
       <DO name="SelCls" type="OpenSCD_SPS_simple"/>
     </LNodeType>
-    <LNodeType lnClass="CSWI" id="OpenSCD_CSWI_PB_threephase" desc="Switch control: single phase">
+    <LNodeType lnClass="CSWI" id="OpenSCD_CSWI_PB_singlephase" desc="Switch control: single phase">
       <DO name="Mod" type="OpenSCD_ENC_Mod"/>
       <DO name="Beh" type="OpenSCD_ENS_Beh"/>
       <DO name="Health" type="OpenSCD_ENS_Health"/>
@@ -178,7 +178,7 @@
       <DO name="LocKey" type="OpenSCD_SPS_simple"/>
       <DO name="Loc" type="OpenSCD_SPS_simple"/>
       <DO name="OpCnt" type="OpenSCD_INS_simple"/>
-      <DO name="Pos" type="OpenSCD_DPC_statusOnly"/>
+      <DO name="Pos" type="OpenSCD_DPC_statusonly"/>
       <DO name="BlkOpn" type="OpenSCD_SPC_statusonly"/>
       <DO name="BlkCls" type="OpenSCD_SPC_statusonly"/>
     </LNodeType>
@@ -228,9 +228,9 @@
     <DOType cdc="ACD" id="OpenSCD_ACD_threephase">
       <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
       <DA name="dirGeneral" bType="Enum" dchg="true" type="FaultDirectionKind" fc="ST"/>
-      <DA name="phsA" bType="BOOELAN" dchg="true" fc="ST"/>
-      <DA name="phsB" bType="BOOELAN" dchg="true" fc="ST"/>
-      <DA name="phsC" bType="BOOELAN" dchg="true" fc="ST"/>
+      <DA name="phsA" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsB" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsC" bType="BOOLEAN" dchg="true" fc="ST"/>
       <DA name="dirPhsA" bType="Enum" dchg="true" type="PhaseFaultDirectionKind" fc="ST"/>
       <DA name="dirPhsB" bType="Enum" dchg="true" type="PhaseFaultDirectionKind" fc="ST"/>
       <DA name="dirPhsC" bType="Enum" dchg="true" type="PhaseFaultDirectionKind" fc="ST"/>
@@ -238,16 +238,16 @@
       <DA name="t" bType="Timestamp" fc="ST" />
     </DOType>
     <DOType cdc="ACT" id="OpenSCD_ACT_general_control">
-      <DA name="general" bType="BOOELAN" dchg="true" fc="ST"/>
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="originSrc" bType="Struct" type="OpenSCD_Originator" fc="ST"/>
     </DOType>
     <DOType cdc="ACT" id="OpenSCD_ACT_threephase_control">
-      <DA name="general" bType="BOOELAN" dchg="true" fc="ST"/>
-      <DA name="phsA" bType="BOOELAN" dchg="true" fc="ST"/>
-      <DA name="phsB" bType="BOOELAN" dchg="true" fc="ST"/>
-      <DA name="phsC" bType="BOOELAN" dchg="true" fc="ST"/>
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsA" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsB" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsC" bType="BOOLEAN" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="originSrc" bType="Struct" type="OpenSCD_Originator" fc="ST"/>
@@ -261,6 +261,7 @@
       <DA name="mxVal" bType="Struct" dchg="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
       <DA name="q" bType="Quality" qchg="true"  fc="MX"/>
       <DA name="t" bType="Timestamp"  fc="MX"/>
+      <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
       <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_FLOAT32" fc="CO"/>
       <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_FLOAT32" fc="CO"/>
       <DA name="operTimeout" bType="INT32U" fc="CF">
@@ -271,18 +272,21 @@
       </DA>
     </DOType>
     <DOType cdc="ASG" id="OpenSCD_ASG_ATrg_TCTR">
+      <DA name="setMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="SP"/>
       <DA name="units" bType="Struct" dchg="true" type="OpenSCD_Unit_A" fc="CF"/>
       <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST" />
       <DA name="t" bType="Timestamp" fc="ST" />
     </DOType>
     <DOType cdc="ASG" id="OpenSCD_ASG_HzRtg_TCTR">
+      <DA name="setMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="SP"/>
       <DA name="units" bType="Struct" dchg="true" type="OpenSCD_Unit_Hz" fc="CF"/>
       <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST" />
       <DA name="t" bType="Timestamp" fc="ST" />
     </DOType>
     <DOType cdc="ASG" id="OpenSCD_ASG_VRtg_TVTR">
+      <DA name="setMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="SP"/>
       <DA name="units" bType="Struct" dchg="true" type="OpenSCD_Unit_V" fc="CF"/>
       <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST" />
@@ -293,6 +297,7 @@
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
       <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
       <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_StepControlKind" fc="CO"/>
       <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_StepControlKind" fc="CO"/>
       <DA name="operTimeout" bType="INT32U" fc="CF">
@@ -307,7 +312,7 @@
       <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
-      <DA name="Oper" bType="Struct" type="OpenSCD_Cancel_StepControlKind" fc="CO"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_StepControlKind" fc="CO"/>
       <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_StepControlKind" fc="CO"/>
       <DA name="operTimeout" bType="INT32U" fc="CF">
         <Val>6000</Val>
@@ -438,7 +443,7 @@
       </DA>
     </DOType>
     <DOType cdc="ISC" id="OpenSCD_ISC_TapPos_YLTC">
-      <DA name="valWTr" bType="Struct" dchg="true" type="ValWithTrans" fc="ST"/>
+      <DA name="valWTr" bType="Struct" dchg="true" type="OpenSCD_ValWithTrans" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
@@ -551,7 +556,7 @@
       <BDA name="i" bType="INT32"/>
     </DAType>
     <DAType id="OpenSCD_Cancel_SPC">
-      <BDA name="ctlVal" bType="BOOELEAN"/>
+      <BDA name="ctlVal" bType="BOOLEAN"/>
       <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
       <BDA name="ctlNum" bType="INT8U"/>
       <BDA name="T" bType="Timestamp"/>
