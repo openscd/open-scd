@@ -2,6 +2,7 @@ import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate } from 'lit-translate';
 
 import {
+  createElement,
   getReference,
   identity,
   newActionEvent,
@@ -125,7 +126,7 @@ export default class TemplatesPlugin extends LitElement {
         newActionEvent({
           new: {
             parent: this.doc.documentElement,
-            element: this.doc.createElement('DataTypeTemplates'),
+            element: createElement(this.doc, 'DataTypeTemplates', {}),
             reference: getReference(
               this.doc.documentElement,
               'DataTypeTemplates'
