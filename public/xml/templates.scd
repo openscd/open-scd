@@ -428,8 +428,8 @@
       <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
-      <DA name="Oper" bType="Struct" type="" fc="CO"/>
-      <DA name="Cancel" bType="Struct" type="" fc="CO"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_INT8" fc="CO"/>
+      <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_INT8" fc="CO"/>
       <DA name="operTimeout" bType="INT32U" fc="CF">
         <Val>6000</Val>
       </DA>
@@ -438,7 +438,7 @@
       </DA>
     </DOType>
     <DOType cdc="ISC" id="OpenSCD_ISC_TapPos_YLTC">
-      <DA name="valWTr" bType="Struct" dchg="true" type="" fc="ST"/>
+      <DA name="valWTr" bType="Struct" dchg="true" type="ValWithTrans" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
@@ -453,26 +453,26 @@
       <DA fc="DC" name="configRev" bType="VisString255" valKind="RO"/>
     </DOType>
     <DOType cdc="MV" id="OpenSCD_MV_db_int">
-      <DA name="instMag" bType="Struct" type="" fc="MX"/>
-      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="" fc="MX"/>
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
       <DA name="db" bType="INT32U" dchg="true" fc="CF"/>
       <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
       <DA name="zeroDb" bType="INT32U" dchg="true" fc="CF"/>
       <DA name="zeroDbRef " bType="FLOAT32" dchg="true" fc="CF"/>
-      <DA name="sVC" bType="Struct" dchg="true" type="" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
     </DOType>
     <DOType cdc="MV" id="OpenSCD_MV_int">
-      <DA name="instMag" bType="Struct" type="" fc="MX"/>
-      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="" fc="MX"/>
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
-      <DA name="sVC" bType="Struct" dchg="true" type="" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
     </DOType>
     <DOType cdc="MV" id="OpenSCD_MV_db_float">
-      <DA name="instMag" bType="Struct" type="" fc="MX"/>
-      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="" fc="MX"/>
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
       <DA name="db" bType="INT32U" dchg="true" fc="CF"/>
@@ -481,7 +481,7 @@
       <DA name="zeroDbRef " bType="FLOAT32" dchg="true" fc="CF"/>
     </DOType>
     <DOType cdc="MV" id="OpenSCD_MV_float">
-      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="" fc="MX"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
     </DOType>
@@ -590,6 +590,14 @@
       <BDA name="Test" bType="BOOLEAN"/>
       <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
+    <DAType id="OpenSCD_Cancel_INT8">
+      <BDA name="ctlVal" bType="INT8"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
     <DAType id="OpenSCD_CalendarTime">
       <BDA name="occ" bType="INT16U"/>
       <BDA name="occType" bType="Enum" type="OccurrenceKind"/>
@@ -648,6 +656,15 @@
     </DAType>
     <DAType id="OpenSCD_OperSBOw_BehaviourModeKind">
       <BDA name="ctlVal" bType="Enum" type="BehaviourModeKind"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <BDA name="Check" bType="Check"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_OperSBOw_INT8">
+      <BDA name="ctlVal" bType="INT8"/>
       <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
       <BDA name="ctlNum" bType="INT8U"/>
       <BDA name="T" bType="Timestamp"/>
