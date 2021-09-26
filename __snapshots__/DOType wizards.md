@@ -265,6 +265,22 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="OpenSCD_DPL"
+      >
+        <span>
+          DPL
+        </span>
+        <span slot="meta">
+          8
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="OpenSCD_DPC_statusonly"
       >
         <span>
@@ -336,6 +352,22 @@
         </span>
         <span slot="meta">
           10
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ENC_Mod_statusonly"
+      >
+        <span>
+          ENC_Mod_statusonly
+        </span>
+        <span slot="meta">
+          5
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -425,6 +457,22 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
+        value="OpenSCD_LPL_LD"
+      >
+        <span>
+          LPL_LD
+        </span>
+        <span slot="meta">
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
         value="OpenSCD_LPL_noLD"
       >
         <span>
@@ -496,6 +544,22 @@
         </span>
         <span slot="meta">
           3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ORG_GrRef"
+      >
+        <span>
+          ORG_GrRef
+        </span>
+        <span slot="meta">
+          1
         </span>
       </mwc-list-item>
       <mwc-list-item

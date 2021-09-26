@@ -310,6 +310,69 @@
         style="min-width:200px"
         tabindex="-1"
         twoline=""
+        value="#OpenSCD_LLN0_refLD"
+      >
+        <span>
+          LLN0
+        </span>
+        <span slot="secondary">
+          Logical device LN: referenced
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_LLN0_mainLD"
+      >
+        <span>
+          LLN0
+        </span>
+        <span slot="secondary">
+          Logical device LN: parent
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_LPHD"
+      >
+        <span>
+          LPHD
+        </span>
+        <span slot="secondary">
+          Physical device
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
         value="#OpenSCD_MMXU"
       >
         <span>

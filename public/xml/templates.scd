@@ -78,6 +78,31 @@
       <DO name="EnaOpn" type="OpenSCD_SPS_simple"/>
       <DO name="EnaCls" type="OpenSCD_SPS_simple"/>
     </LNodeType>
+    <LNodeType lnClass="LLN0" id="OpenSCD_LLN0_refLD" desc="Logical device LN: referenced">
+      <DO name="Mod" type="OpenSCD_ENC_Mod_statusonly"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_LD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="GrRef" type="OpenSCD_ORG_GrRef"/>
+    </LNodeType>
+    <LNodeType lnClass="LLN0" id="OpenSCD_LLN0_mainLD" desc="Logical device LN: parent">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_LD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+    </LNodeType>
+    <LNodeType lnClass="LPHD" id="OpenSCD_LPHD" desc="Physical device">
+      <DO name="PhyNam" type="OpenSCD_DPL"/>
+      <DO name="PhyHealth" type="OpenSCD_ENS_Health"/>
+      <DO name="Proxy" type="OpenSCD_SPS_simple"/>
+      <DO name="PwrUp" type="OpenSCD_SPS_simple"/>
+      <DO name="Sim" type="OpenSCD_SPC_LocSta"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+    </LNodeType>
     <LNodeType lnClass="MMXU" id="OpenSCD_MMXU" desc="Three phase measurement">
       <DO name="Mod" type="OpenSCD_ENC_Mod"/>
       <DO name="Beh" type="OpenSCD_ENS_Beh"/>
@@ -356,6 +381,16 @@
       <SDO name="phsCA" type="OpenSCD_CMV_db_i_MagAndAng"/>
       <DA name="angRef" bType="Struct" dchg="true" fc="CF"/>
     </DOType>
+    <DOType cdc="DPL" id="OpenSCD_DPL">
+      <DA name="vendor" bType="VisString255" fc="DC"/>
+      <DA name="hwRev" bType="VisString255" fc="DC"/>
+      <DA name="swRev" bType="VisString255" fc="DC"/>
+      <DA name="serNum" bType="VisString255" fc="DC"/>
+      <DA name="model" bType="VisString255" fc="DC"/>
+      <DA name="location" bType="VisString255" fc="DC"/>
+      <DA name="owner" bType="VisString255" fc="DC"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
     <DOType cdc="DPC" id="OpenSCD_DPC_statusonly">
       <DA name="stVal" bType="Dbpos" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
@@ -412,6 +447,15 @@
       <DA name="Oper" bType="Struct" fc="CO" type="OpenSCD_OperSBOw_BehaviourModeKind"/>
       <DA name="Cancel" bType="Struct" fc="CO" type="OpenSCD_Cancel_BehaviourModeKind"/>
     </DOType>
+    <DOType cdc="ENC" id="OpenSCD_ENC_Mod_statusonly">
+      <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="ctlModel" bType="Enum" fc="CF" type="OpenSCD_StatusOnly">
+        <Val>status-only</Val>
+      </DA>
+    </DOType>
     <DOType cdc="ENS" id="OpenSCD_ENS_Health">
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="HealthKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
@@ -451,11 +495,20 @@
         <Val>status-only</Val>
       </DA>
     </DOType>
+    <DOType cdc="LPL" id="OpenSCD_LPL_LD">
+      <DA name="vendor" bType="VisString255" fc="DC"/>
+      <DA name="swRev" bType="VisString255" fc="DC"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+      <DA name="configRev" bType="VisString255" fc="DC" />
+      <DA name="ldNs" bType="VisString255" fc="EX">
+        <Val>IEC 61850-7-4:2007B4</Val>
+      </DA>
+    </DOType>
     <DOType cdc="LPL" id="OpenSCD_LPL_noLD">
-      <DA fc="DC" name="vendor" bType="VisString255" valKind="RO"/>
-      <DA fc="DC" name="swRev" bType="VisString255" valKind="RO"/>
-      <DA fc="DC" name="d" bType="VisString255" valKind="RO"/>
-      <DA fc="DC" name="configRev" bType="VisString255" valKind="RO"/>
+      <DA name="vendor" bType="VisString255"  fc="DC"/>
+      <DA name="swRev" bType="VisString255" fc="DC"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+      <DA name="configRev" bType="VisString255" fc="DC"/>
     </DOType>
     <DOType cdc="MV" id="OpenSCD_MV_db_int">
       <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
@@ -489,6 +542,9 @@
       <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
+    </DOType>
+    <DOType cdc="ORG" id="OpenSCD_ORG_GrRef">
+      <DA name="setSrcRef" bType="ObjRef" dchg="true" fc="SP"/>
     </DOType>
     <DOType cdc="SAV" id="OpenSCD_SAV_AmpSv_TCTR">
       <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
