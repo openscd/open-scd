@@ -3,7 +3,7 @@ All top-down projects start here. You can define your data model in a green fiel
 The difference between a signal list and the data model defined in the IEC&#8239;61850 is, that the data model is hierarchically structured into the following levels:
 
 1. Logical node
-2. Data object  
+2. Data object
 3. Data attribute
 4. (Enumeration)
 
@@ -13,7 +13,7 @@ This is why this process is so hard for beginners to wrap their mind around. To 
 
 The template database is nothing else than a pre-define data model. Here a lot and a growing number of logical node classes are defined with its proper references to `DOType`, `DAType` and `EnumType`.
 
-You can see, if OpenSCD does have a template for a logical node class you need in the **Add LNodeType** wizard. Select the class you need and see if the option **Use LN class from OpenSCD template** is available. For more detail please refer to [start from templates](https://github.com/openscd/open-scd/wiki/Start-from-template)
+You can see, if OpenSCD does have a template for a logical node class you need in the **Add LNodeType** wizard (_Pre-defined lnClasses from templates_). For more detail please refer to [start from templates](https://github.com/openscd/open-scd/wiki/Start-from-template)
 
 If this option is disabled you have to start the precess [from scratch](https://github.com/openscd/open-scd/wiki/Start-from-scratch)
 
@@ -28,4 +28,3 @@ In addition to that you can read/manipulate any element and their attributes usi
 - [BDA](https://github.com/openscd/open-scd/wiki/Data-attribute-type-child-BDA)
 - [EnumType](https://github.com/openscd/open-scd/wiki/Enumeration-EnumType)
 - [EnumVal](https://github.com/openscd/open-scd/wiki/Enumeration-EnumVal)
-
