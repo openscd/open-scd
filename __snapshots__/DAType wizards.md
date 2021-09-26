@@ -25,42 +25,10 @@
         mwc-list-item=""
         role="option"
         tabindex="0"
-        value="OpenSCD_Originator"
+        value="OpenSCD_AnalogueValue_FLOAT32"
       >
         <span>
-          Originator
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_RangeConfig"
-      >
-        <span>
-          RangeConfig
-        </span>
-        <span slot="meta">
-          7
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_ValWOTrans"
-      >
-        <span>
-          ValWOTrans
+          AnalogueValue_FLOAT32
         </span>
         <span slot="meta">
           1
@@ -73,26 +41,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ValWithTrans"
+        value="OpenSCD_AnalogueValue_INT32"
       >
         <span>
-          ValWithTrans
-        </span>
-        <span slot="meta">
-          2
-        </span>
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        graphic="icon"
-        hasmeta=""
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="OpenSCD_UnitwoMultiplier"
-      >
-        <span>
-          UnitwoMultiplier
+          AnalogueValue_INT32
         </span>
         <span slot="meta">
           1
@@ -105,13 +57,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_UnitwithMultiplier"
+        value="OpenSCD_Cancel_SPC"
       >
         <span>
-          UnitwithMultiplier
+          Cancel_SPC
         </span>
         <span slot="meta">
-          2
+          5
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -121,13 +73,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_PulseConfig"
+        value="OpenSCD_Cancel_Dbpos"
       >
         <span>
-          PulseConfig
+          Cancel_Dbpos
         </span>
         <span slot="meta">
-          4
+          5
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -137,13 +89,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_VectorIwithAngle"
+        value="OpenSCD_Cancel_FLOAT32"
       >
         <span>
-          VectorIwithAngle
+          Cancel_FLOAT32
         </span>
         <span slot="meta">
-          2
+          5
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -153,13 +105,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_VectorFwoAngle"
+        value="OpenSCD_Cancel_StepControlKind"
       >
         <span>
-          VectorFwoAngle
+          Cancel_StepControlKind
         </span>
         <span slot="meta">
-          2
+          5
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -169,13 +121,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_VectorIwithAngle"
+        value="OpenSCD_Cancel_BehaviourModeKind"
       >
         <span>
-          VectorIwithAngle
+          Cancel_BehaviourModeKind
         </span>
         <span slot="meta">
-          1
+          5
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -185,13 +137,29 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_VectorFwoAngle"
+        value="OpenSCD_Cancel_INT8"
       >
         <span>
-          VectorFwoAngle
+          Cancel_INT8
         </span>
         <span slot="meta">
-          1
+          5
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_CalendarTime"
+      >
+        <span>
+          CalendarTime
+        </span>
+        <span slot="meta">
+          8
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -221,6 +189,118 @@
       >
         <span>
           Cell1D
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_OperSBOw_SPC"
+      >
+        <span>
+          OperSBOw_SPC
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_OperSBOw_Dbpos"
+      >
+        <span>
+          OperSBOw_Dbpos
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_OperSBOw_FLOAT32"
+      >
+        <span>
+          OperSBOw_FLOAT32
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_OperSBOw_StepControlKind"
+      >
+        <span>
+          OperSBOw_StepControlKind
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_OperSBOw_BehaviourModeKind"
+      >
+        <span>
+          OperSBOw_BehaviourModeKind
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_OperSBOw_INT8"
+      >
+        <span>
+          OperSBOw_INT8
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Originator"
+      >
+        <span>
+          Originator
         </span>
         <span slot="meta">
           2
@@ -265,13 +345,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_CalendarTime"
+        value="OpenSCD_PulseConfig"
       >
         <span>
-          CalendarTime
+          PulseConfig
         </span>
         <span slot="meta">
-          8
+          4
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -281,10 +361,26 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_AnalogueValueInteger32andFloat32"
+        value="OpenSCD_RangeConfig"
       >
         <span>
-          AnalogueValueInteger32andFloat32
+          RangeConfig
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ScaledValueConfig_AmpSv"
+      >
+        <span>
+          ScaledValueConfig_AmpSv
         </span>
         <span slot="meta">
           2
@@ -297,10 +393,26 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_AnalogueValueFloat32"
+        value="OpenSCD_ScaledValueConfig_VolSv"
       >
         <span>
-          AnalogueValueFloat32
+          ScaledValueConfig_VolSv
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Unit_A"
+      >
+        <span>
+          Unit_A
         </span>
         <span slot="meta">
           1
@@ -313,10 +425,10 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_AnalogueValueInteger32"
+        value="OpenSCD_Unit_V"
       >
         <span>
-          AnalogueValueInteger32
+          Unit_V
         </span>
         <span slot="meta">
           1
@@ -329,7 +441,103 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_ScaledValueConfig"
+        value="OpenSCD_Unit_Hz"
+      >
+        <span>
+          Unit_Hz
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_ValWithTrans_wo_transInd"
+      >
+        <span>
+          ValWithTrans_wo_transInd
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Vector_I_w_Ang"
+      >
+        <span>
+          Vector_I_w_Ang
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Vector_F_w_Ang"
+      >
+        <span>
+          Vector_F_w_Ang
+        </span>
+        <span slot="meta">
+          2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Vector_I_wo_Ang"
+      >
+        <span>
+          Vector_I_wo_Ang
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="OpenSCD_Vector_F_wo_Ang"
+      >
+        <span>
+          Vector_F_wo_Ang
+        </span>
+        <span slot="meta">
+          1
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="ScaledValueConfig"
       >
         <span>
           ScaledValueConfig
@@ -345,13 +553,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_OpenSBOw"
+        value="Unit"
       >
         <span>
-          OpenSBOw
+          Unit
         </span>
         <span slot="meta">
-          6
+          2
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -361,13 +569,13 @@
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="OpenSCD_Cancel"
+        value="OpenSCD_ValWithTrans"
       >
         <span>
-          Cancel
+          ValWithTrans
         </span>
         <span slot="meta">
-          5
+          2
         </span>
       </mwc-list-item>
     </mwc-select>

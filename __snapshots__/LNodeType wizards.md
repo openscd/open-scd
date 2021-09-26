@@ -165,12 +165,477 @@
     >
       <mwc-list-item
         aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        Pre-defined lnClasses from templates
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
         role="option"
         style="min-width:200px"
         tabindex="0"
+        twoline=""
+        value="#OpenSCD_ATCC_noPB"
+      >
+        <span>
+          ATCC
+        </span>
+        <span slot="secondary">
+          Auto Tap changer controller: no process bus(PB)
+        </span>
+        <span slot="meta">
+          11
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_ATCC_PB"
+      >
+        <span>
+          ATCC
+        </span>
+        <span slot="secondary">
+          Auto Tap changer controller: process bus
+        </span>
+        <span slot="meta">
+          14
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_CSWI_noPB"
+      >
+        <span>
+          CSWI
+        </span>
+        <span slot="secondary">
+          Switch control: no process bus(PB)
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_CSWI_PB_threephase"
+      >
+        <span>
+          CSWI
+        </span>
+        <span slot="secondary">
+          Switch control: three phase
+        </span>
+        <span slot="meta">
+          11
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_CSWI_PB_singlephase"
+      >
+        <span>
+          CSWI
+        </span>
+        <span slot="secondary">
+          Switch control: single phase
+        </span>
+        <span slot="meta">
+          15
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_CILO"
+      >
+        <span>
+          CILO
+        </span>
+        <span slot="secondary">
+          Interlocking
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_LLN0_refLD"
+      >
+        <span>
+          LLN0
+        </span>
+        <span slot="secondary">
+          Logical device LN: referenced
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_LLN0_mainLD"
+      >
+        <span>
+          LLN0
+        </span>
+        <span slot="secondary">
+          Logical device LN: parent
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_LPHD"
+      >
+        <span>
+          LPHD
+        </span>
+        <span slot="secondary">
+          Physical device
+        </span>
+        <span slot="meta">
+          6
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_MMXU"
+      >
+        <span>
+          MMXU
+        </span>
+        <span slot="secondary">
+          Three phase measurement
+        </span>
+        <span slot="meta">
+          14
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_PTRC_general"
+      >
+        <span>
+          PTRC
+        </span>
+        <span slot="secondary">
+          Trip conditioning: General trip signal
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_RSYC"
+      >
+        <span>
+          RSYC
+        </span>
+        <span slot="secondary">
+          Synchronism check
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_TCTR"
+      >
+        <span>
+          TCTR
+        </span>
+        <span slot="secondary">
+          Current transformer
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_TVTR"
+      >
+        <span>
+          TVTR
+        </span>
+        <span slot="secondary">
+          Voltage transformer
+        </span>
+        <span slot="meta">
+          7
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_XSWI_noPB"
+      >
+        <span>
+          XSWI
+        </span>
+        <span slot="secondary">
+          Switch: no process bus(PB)
+        </span>
+        <span slot="meta">
+          11
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_XSWI_PB_threephase"
+      >
+        <span>
+          XSWI
+        </span>
+        <span slot="secondary">
+          Switch: three phase represenation
+        </span>
+        <span slot="meta">
+          12
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_XSWI_PB_onephase"
+      >
+        <span>
+          XSWI
+        </span>
+        <span slot="secondary">
+          Switch: one phase represenation
+        </span>
+        <span slot="meta">
+          11
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_XCBR_noPB"
+      >
+        <span>
+          XCBR
+        </span>
+        <span slot="secondary">
+          Circuit Breaker: no process bus(PB)
+        </span>
+        <span slot="meta">
+          10
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_XCBR_PB_onephase"
+      >
+        <span>
+          XCBR
+        </span>
+        <span slot="secondary">
+          Circuit Breaker: one phase representation
+        </span>
+        <span slot="meta">
+          10
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_XCBR_PB_threephase"
+      >
+        <span>
+          XCBR
+        </span>
+        <span slot="secondary">
+          Circuit Breaker: three phase representation
+        </span>
+        <span slot="meta">
+          11
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
+        twoline=""
+        value="#OpenSCD_YLTC"
+      >
+        <span>
+          YLTC
+        </span>
+        <span slot="secondary">
+          Tap changer
+        </span>
+        <span slot="meta">
+          10
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        noninteractive=""
+        tabindex="-1"
+      >
+        Empty lnClasses from IEC 61850-7-4
+      </mwc-list-item>
+      <li
+        divider=""
+        role="separator"
+      >
+      </li>
+      <mwc-list-item
+        aria-disabled="false"
+        graphic="icon"
+        hasmeta=""
+        mwc-list-item=""
+        role="option"
+        style="min-width:200px"
+        tabindex="-1"
         value="LPHD"
       >
         <span>
@@ -2969,12 +3434,6 @@
         </span>
       </mwc-list-item>
     </mwc-select>
-    <mwc-formfield style="display:none">
-      <mwc-switch id="autoimport">
-      </mwc-switch>
-      <mwc-formfield>
-      </mwc-formfield>
-    </mwc-formfield>
     <wizard-textfield
       helper="[scl.id]"
       label="id"
@@ -3303,7 +3762,7 @@
   </mwc-button>
   <mwc-button
     dialoginitialfocus=""
-    icon="save"
+    icon=""
     label="[save]"
     slot="primaryAction"
     trailingicon=""
