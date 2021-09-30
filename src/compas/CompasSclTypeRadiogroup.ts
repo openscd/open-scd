@@ -5,7 +5,7 @@ import {translate} from "lit-translate";
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 
 @customElement('compas-scltype-radiogroup')
-export class CompasScltypeRadiogroup extends LitElement {
+export class CompasSclTypeRadiogroup extends LitElement {
   @property({type: String})
   value = '';
 

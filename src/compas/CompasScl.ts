@@ -6,7 +6,7 @@ import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
+import {compasSclTypeListWizardActor} from "./CompasSclTypeList.js";
 import {getOpenScdElement, updateDocumentInOpenSCD} from "./foundation.js";
 
 @customElement('compas-scl-list')

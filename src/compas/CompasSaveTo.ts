@@ -6,12 +6,12 @@ import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} 
 
 import {CompasExistsIn} from "./CompasExistsIn.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";
-import {CompasScltypeRadiogroup} from "./CompasScltypeRadiogroup.js";
+import {CompasSclTypeRadiogroup} from "./CompasSclTypeRadiogroup.js";
 import {CompasCommentElement} from "./CompasComment.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
 import {getOpenScdElement, getTypeFromDocName, reloadSclDocument, stripExtensionFromName} from "./foundation.js";
-import './CompasScltypeRadiogroup.js';
+import './CompasSclTypeRadiogroup.js';
 
 @customElement('compas-save-to')
 export class CompasSaveTo  extends CompasExistsIn(LitElement) {
@@ -19,8 +19,8 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
     return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="name"]');
   }
 
-  getSclTypeRadioGroup() : CompasScltypeRadiogroup {
-    return (<CompasScltypeRadiogroup>this.shadowRoot!
+  getSclTypeRadioGroup() : CompasSclTypeRadiogroup {
+    return (<CompasSclTypeRadiogroup>this.shadowRoot!
       .querySelector('compas-scltype-radiogroup'))
   }
 

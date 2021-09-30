@@ -8,7 +8,7 @@ import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclD
 import {listSclsWizard} from "./CompasScl.js";
 
 @customElement('compas-scltype-list')
-export class CompasScltypeList extends LitElement {
+export class CompasSclTypeList extends LitElement {
   @property()
   sclTypes!: Element[];
 

@@ -7,13 +7,13 @@ import {
   stubFetchResponseFunction,
   TYPE_ENTRY_ELEMENT_NAME
 } from "./CompasSclDataServiceResponses.js";
-import {CompasScltypeRadiogroup} from "../../../src/compas/CompasScltypeRadiogroup.js";
-import "../../../src/compas/CompasScltypeRadiogroup.js";
+import {CompasSclTypeRadiogroup} from "../../../src/compas/CompasSclTypeRadiogroup.js";
+import "../../../src/compas/CompasSclTypeRadiogroup.js";
 
 describe('compas-scltype-radiogroup', () => {
   const FETCH_FUNCTION = 'fetchData';
 
-  let element: CompasScltypeRadiogroup;
+  let element: CompasSclTypeRadiogroup;
   let stub: SinonStub;
 
   describe('show-loading', () => {

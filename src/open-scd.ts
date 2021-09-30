@@ -40,7 +40,7 @@ import './finder-pane.js';
 import './compas/CompasChangeSetRadiogroup.js';
 import './compas/CompasComment.js';
 import './compas/CompasLoading.js';
-import './compas/CompasScltypeList.js';
+import './compas/CompasSclTypeList.js';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
 import { getTheme } from './themes.js';
