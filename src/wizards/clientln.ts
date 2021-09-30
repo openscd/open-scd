@@ -3,9 +3,7 @@ import { get } from 'lit-translate';
 
 import {
   createElement,
-  getReference,
   identity,
-  newWizardEvent,
   pathParts,
   selector,
   Wizard,
@@ -16,7 +14,6 @@ import {
 
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { openCommunicationMappingWizard } from './commmap-wizards.js';
 import { clientIcon } from '../icons.js';
@@ -159,10 +156,6 @@ function addClientLnAction(doc: XMLDocument): WizardActor {
             new: {
               parent: cb.querySelector('RptEnabled')!,
               element,
-              reference: getReference(
-                cb.querySelector('RptEnabled')!,
-                'ClientLN'
-              ),
             },
           });
         }
