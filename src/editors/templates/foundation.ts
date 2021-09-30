@@ -98,7 +98,6 @@ export function addReferencedDataTypes(
       new: {
         parent,
         element: <Element>adjacent.cloneNode(true),
-        reference: getReference(parent, <SCLTag>adjacent.tagName),
       },
     });
   });

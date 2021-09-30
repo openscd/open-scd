@@ -358,7 +358,6 @@ function addPredefinedLNodeType(
     new: {
       parent,
       element: newLNodeType,
-      reference: getReference(parent, 'LNodeType'),
     },
   });
 
