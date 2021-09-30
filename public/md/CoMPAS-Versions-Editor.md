@@ -8,6 +8,10 @@ In the CoMPAS Editor the different versions of an SCL XML File are shown that ar
 - <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>: 
   Remove a specific version from CoMPAS.<br/>
   By pressing the icon and confirming the action that specific version will be removed from CoMPAS.
+- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M13 11h-2v3H8v2h3v3h2v-3h3v-2h-3zm1-9H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>:
+  Add version from filesystem.<br/>
+  By pressing the icon you can select an XML SCL File from your local system to become the latest version for current SCL XML File loaded from CoMPAS.<br/>
+  Remark: The full XML will be replaced, including the history and CoMPAS Extensions, like filename.
 - <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.12 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"/></svg>:
   Remove the SCL XML File completely from CoMPAS, all versions.<br/>
   By pressing the icon and confirming the action all versions will be removed from CoMPAS.
