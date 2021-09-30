@@ -271,13 +271,13 @@ describe('LNodeType wizards', () => {
         )!;
 
         beh = parent.wizardUI.shadowRoot!.querySelector<Select>(
-          'mwc-select:nth-child(2)'
+          'wizard-select:nth-child(2)'
         )!;
         enaOpn = parent.wizardUI.shadowRoot!.querySelector<Select>(
-          'mwc-select:nth-child(21)'
+          'wizard-select:nth-child(21)'
         )!;
         enaCls = parent.wizardUI.shadowRoot!.querySelector<Select>(
-          'mwc-select:nth-child(22)'
+          'wizard-select:nth-child(22)'
         )!;
 
         ens = doc.querySelector('DOType[cdc="ENS"]')!;

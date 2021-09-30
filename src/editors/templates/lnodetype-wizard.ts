@@ -34,7 +34,7 @@ import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { Switch } from '@material/mwc-switch';
+import { WizardSelect } from '../../wizard-select.js';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -255,8 +255,8 @@ function getAllDataObjects(nsd74: XMLDocument, base: string): Element[] {
 function createNewLNodeType(parent: Element, element: Element): WizardActor {
   return (_: WizardInput[], wizard: Element): EditorAction[] => {
     const selected = Array.from(
-      wizard.shadowRoot!.querySelectorAll('mwc-select')
-    ).filter(select => select.value);
+      wizard.shadowRoot!.querySelectorAll<WizardSelect>('wizard-select')
+    ).filter(select => select.maybeValue);
 
     const actions: Create[] = [];
 
@@ -325,17 +325,19 @@ function createLNodeTypeHelperWizard(
             .querySelectorAll(`DOType[cdc="${DO.getAttribute('type')}"]`)
         ).sort(doComparator(name));
 
-        return html`<mwc-select
+        return html`<wizard-select
           fixedMenuPosition
           naturalMenuWidth
           label="${name}"
           ?required=${presCond === 'M'}
+          ?nullable=${presCond !== 'M'}
+          .maybeValue=${null}
           >${validDOTypes.map(
             doType =>
               html`<mwc-list-item value="${doType.getAttribute('id')}"
                 >${doType.getAttribute('id')}</mwc-list-item
               >`
-          )}</mwc-select
+          )}</wizard-select
         >`;
       }),
     },
