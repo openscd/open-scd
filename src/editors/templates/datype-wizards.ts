@@ -4,13 +4,11 @@ import { get, translate } from 'lit-translate';
 import {
   Create,
   EditorAction,
-  getReference,
   getValue,
   identity,
   newActionEvent,
   newWizardEvent,
   patterns,
-  SCLTag,
   selector,
   Wizard,
   WizardActor,
@@ -167,7 +165,6 @@ function addPredefinedDAType(
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 

@@ -7,14 +7,12 @@ import {
   createElement,
   EditorAction,
   getChildElementsByTagName,
-  getReference,
   getValue,
   identity,
   isPublic,
   newActionEvent,
   newWizardEvent,
   patterns,
-  SCLTag,
   selector,
   Wizard,
   WizardActor,
@@ -97,7 +95,6 @@ function createDoAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
@@ -271,7 +268,6 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
         new: {
           parent: element,
           element: DO,
-          reference: getReference(element, <SCLTag>DO.tagName),
         },
       });
     });
@@ -280,7 +276,6 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 

@@ -5,7 +5,6 @@ import {
   newWizardEvent,
   newActionEvent,
   createElement,
-  getReference,
 } from '../foundation.js';
 
 import { selectors, styles } from './communication/foundation.js';
@@ -25,7 +24,6 @@ export default class CommunicationPlugin extends LitElement {
         new: {
           parent: this.doc.documentElement,
           element: createElement(this.doc, 'Communication', {}),
-          reference: getReference(this.doc.documentElement, 'Communication'),
         },
       })
     );

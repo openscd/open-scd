@@ -6,13 +6,11 @@ import {
   Create,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   identity,
   isPublic,
   newActionEvent,
   newWizardEvent,
-  SCLTag,
   selector,
   Wizard,
   WizardActor,
@@ -74,7 +72,6 @@ function createSDoAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
@@ -216,7 +213,6 @@ function addPredefinedDOType(
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
