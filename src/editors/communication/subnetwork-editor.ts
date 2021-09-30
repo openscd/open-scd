@@ -20,7 +20,6 @@ import {
   patterns,
   compareNames,
   createElement,
-  getReference,
   cloneElement,
 } from '../../foundation.js';
 
@@ -149,7 +148,6 @@ export function createSubNetworkAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'SubNetwork'),
       },
     };
 

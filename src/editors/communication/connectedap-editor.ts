@@ -24,7 +24,6 @@ import {
   getValue,
   createElement,
   ComplexAction,
-  getReference,
 } from '../../foundation.js';
 
 import {
@@ -114,7 +113,6 @@ function createConnectedApAction(parent: Element): WizardActor {
               iedName: value.iedName,
               apName: value.apName,
             }),
-            reference: getReference(parent, 'ConnectedAP'),
           },
         }
     );
@@ -225,7 +223,6 @@ export function editConnectedApAction(parent: Element): WizardActor {
         new: {
           parent: parent,
           element: newAddress,
-          reference: getReference(parent, 'Address'),
         },
       });
 

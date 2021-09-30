@@ -6,7 +6,6 @@ import {
   Create,
   createElement,
   Delete,
-  getReference,
   getValue,
   WizardInput,
 } from '../foundation.js';
@@ -108,7 +107,6 @@ export function updateAddress(
       new: {
         parent: parent,
         element: newAddress,
-        reference: getReference(parent, 'Address'),
       },
     });
 
