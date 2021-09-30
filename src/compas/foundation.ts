@@ -19,7 +19,8 @@ export function getTypeFromDocName(docName: string): string {
 export function stripExtensionFromName(docName: string): string {
   let name = docName;
   // Check if the name includes a file extension, if the case remove it.
-  if (name.lastIndexOf(".") == name.length - (FILE_EXTENSION_LENGTH + 1)) {
+  if (name.length > FILE_EXTENSION_LENGTH &&
+       name.lastIndexOf(".") == name.length - (FILE_EXTENSION_LENGTH + 1)) {
     name = name.substring(0, name.lastIndexOf("."));
   }
   return name
