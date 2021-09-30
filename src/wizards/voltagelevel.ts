@@ -6,7 +6,6 @@ import {
   createElement,
   EditorAction,
   getMultiplier,
-  getReference,
   getValue,
   patterns,
   Wizard,
@@ -111,7 +110,6 @@ export function createAction(parent: Element): WizardActor {
         new: {
           parent,
           element,
-          reference: getReference(parent, 'VoltageLevel'),
         },
       },
     ];

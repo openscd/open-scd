@@ -8,7 +8,6 @@ import {
   compareNames,
   createElement,
   EditorAction,
-  getReference,
   Wizard,
   WizardActor,
   WizardInput,
@@ -205,7 +204,6 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
       new: {
         parent: substation,
         element: voltageLevel,
-        reference: getReference(substation, 'VoltageLevel'),
       },
     });
 

@@ -4,7 +4,6 @@ import { get, translate } from 'lit-translate';
 import {
   createElement,
   EditorAction,
-  getReference,
   getValue,
   newWizardEvent,
   Wizard,
@@ -58,7 +57,6 @@ export function createAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'Substation'),
       },
     };
 
