@@ -1,8 +1,13 @@
-import {CompasSettings} from "../compas/CompasSettingsElement.js";
-import {ChangeSet} from "../compas/CompasChangeSet.js";
+import {CompasSettings} from "../compas/CompasSettings.js";
 import {handleError, handleResponse, parseXml} from "./foundation.js";
 
 export const SDS_NAMESPACE = 'https://www.lfenergy.org/compas/SclDataService/v1';
+
+export enum ChangeSet {
+  MAJOR = "MAJOR",
+  MINOR = "MINOR",
+  PATCH = "PATCH",
+}
 
 export interface CreateRequestBody {
   sclName: string,

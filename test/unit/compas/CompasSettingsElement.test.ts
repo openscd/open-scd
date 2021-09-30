@@ -1,7 +1,7 @@
 import {expect, fixture, html} from '@open-wc/testing';
 
-import "../../../src/compas/CompasSettingsElement.js";
-import {CompasSettings, CompasSettingsElement} from "../../../src/compas/CompasSettingsElement.js";
+import "../../../src/compas/CompasSettings.js";
+import {CompasSettings, CompasSettingsElement} from "../../../src/compas/CompasSettings.js";
 
 describe('compas-settings', () => {
   let element: CompasSettingsElement;

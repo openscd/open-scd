@@ -3,6 +3,7 @@ import {get} from "lit-translate";
 import {newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
 import {OpenSCD} from "../open-scd.js";
 
+import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
 
@@ -27,6 +28,20 @@ export function stripExtensionFromName(docName: string): string {
 export function getOpenScdElement(): OpenSCD {
   return <OpenSCD>document.querySelector('open-scd');
 }
+
+export async function reloadSclDocument(type: string, id: string): Promise<void>{
+  await CompasSclDataService().getSclDocument(type, id)
+    .then(response => {
+      // Copy the SCL Result from the Response and create a new Document from it.
+      const sclElement = response.querySelectorAll("SCL").item(0);
+      const sclDocument = document.implementation.createDocument("", "", null);
+      sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+
+      updateDocumentInOpenSCD(sclDocument);
+    })
+    .catch(createLogEvent);
+}
+
 
 export function updateDocumentInOpenSCD(doc: Document): void {
   const id = (doc.querySelectorAll(':root > Header') ?? []).item(0).getAttribute('id') ?? '';

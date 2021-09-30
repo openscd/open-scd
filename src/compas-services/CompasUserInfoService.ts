@@ -1,4 +1,4 @@
-import {CompasSettings} from "../compas/CompasSettingsElement.js";
+import {CompasSettings} from "../compas/CompasSettings.js";
 import {handleError, handleResponse, parseXml} from "./foundation.js";
 
 export function CompasUserInfoService() {

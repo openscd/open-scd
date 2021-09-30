@@ -386,6 +386,8 @@ export const de: Translations = {
 
   compas: {
     loading: '???',
+    notExists: '???',
+    comment: '???',
     error: {
       type: '???',
       server: '???',
@@ -404,8 +406,13 @@ export const de: Translations = {
     },
     saveTo: {
       title: '???',
-      comment: '???',
       addSuccess: '???',
+      updateSuccess: '???',
+    },
+    uploadVersion: {
+      title: '???',
+      selectButton: '???...',
+      filename: '???',
       updateSuccess: '???',
     },
     versions: {

@@ -1,19 +1,16 @@
 import {customElement, html, LitElement, TemplateResult} from "lit-element";
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
-import {get} from "lit-translate";
+import {translate} from "lit-translate";
 
-export enum ChangeSet {
-  MAJOR = "MAJOR",
-  MINOR = "MINOR",
-  PATCH = "PATCH",
-}
+import {ChangeSet} from "../compas-services/CompasSclDataService.js";
+
 type ChangeSetDetail = {
-  description: string
+  translationKey: string
 }
 const changeSetDetails = new Map<ChangeSet, ChangeSetDetail>([
-  [ChangeSet.MAJOR, {description: get('compas.changeset.major')}],
-  [ChangeSet.MINOR, {description: get('compas.changeset.minor')}],
-  [ChangeSet.PATCH, {description: get('compas.changeset.patch')}]
+  [ChangeSet.MAJOR, {translationKey: 'compas.changeset.major'}],
+  [ChangeSet.MINOR, {translationKey: 'compas.changeset.minor'}],
+  [ChangeSet.PATCH, {translationKey: 'compas.changeset.patch'}]
 ])
 
 @customElement('compas-changeset-radiogroup')
@@ -39,7 +36,9 @@ export class CompasChangeSetRadiogroup extends LitElement {
       <mwc-list activatable>
         ${Object.values(ChangeSet)
                 .map((key) =>
-                  html `<mwc-radio-list-item value="${key}" left>${changeSetDetails.get(key)!.description}</mwc-radio-list-item>`
+                  html `<mwc-radio-list-item value="${key}" left>
+                          ${translate(changeSetDetails.get(key)!.translationKey)}
+                        </mwc-radio-list-item>`
                 )}
       </mwc-list>
     `

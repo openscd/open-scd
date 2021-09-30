@@ -5,15 +5,8 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-list>
-  <mwc-list-item
-    aria-disabled="false"
-    mwc-list-item=""
-    tabindex="0"
-  >
-    [compas.loading]
-  </mwc-list-item>
-</mwc-list>
+<compas-loading>
+</compas-loading>
 
 ```
 
@@ -32,13 +25,8 @@
 </mwc-textfield>
 <compas-scltype-radiogroup>
 </compas-scltype-radiogroup>
-<wizard-textfield
-  disabled=""
-  id="comment"
-  label="[compas.saveTo.comment]"
-  nullable=""
->
-</wizard-textfield>
+<compas-comment>
+</compas-comment>
 
 ```
 
@@ -49,13 +37,8 @@
 ```html
 <compas-changeset-radiogroup>
 </compas-changeset-radiogroup>
-<wizard-textfield
-  disabled=""
-  id="comment"
-  label="[compas.saveTo.comment]"
-  nullable=""
->
-</wizard-textfield>
+<compas-comment>
+</compas-comment>
 
 ```
 

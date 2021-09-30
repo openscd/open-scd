@@ -28,9 +28,8 @@ export class CompasScltypeList extends LitElement {
   render(): TemplateResult {
       if (!this.sclTypes) {
         return html `
-          <mwc-list>
-            <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
-          </mwc-list>`
+          <compas-loading></compas-loading>
+        `
       }
 
       if (this.sclTypes.length <= 0) {

@@ -1,4 +1,4 @@
-import {CompasSettings} from "../compas/CompasSettingsElement.js";
+import {CompasSettings} from "../compas/CompasSettings.js";
 import {handleError, handleResponse, parseXml} from "./foundation.js";
 
 export const CMS_NAMESPACE = 'https://www.lfenergy.org/compas/CimMappingService/v1';
