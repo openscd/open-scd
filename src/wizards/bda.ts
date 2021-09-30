@@ -5,12 +5,10 @@ import {
   cloneElement,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   isPublic,
   newActionEvent,
   newWizardEvent,
-  SCLTag,
   Wizard,
   WizardActor,
   WizardInput,
@@ -186,7 +184,6 @@ export function createBDaAction(parent: Element): WizardActor {
         new: {
           parent,
           element,
-          reference: getReference(parent, <SCLTag>element.tagName),
         },
       },
     ];

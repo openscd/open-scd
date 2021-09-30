@@ -5,10 +5,8 @@ import {
   cloneElement,
   Create,
   EditorAction,
-  getReference,
   getValue,
   isPublic,
-  SCLTag,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
