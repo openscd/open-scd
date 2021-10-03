@@ -96,7 +96,7 @@ describe('editor-container', () => {
     let wizardEvent: SinonSpy;
     beforeEach(async () => {
       element.addOptions = ['Substation', 'Text'];
-      element.addElementAction = (tagName: string) => {
+      element.addElementAction = () => {
         return [{ title: 'wizard' }];
       };
       await element.updateComplete;
@@ -109,7 +109,7 @@ describe('editor-container', () => {
       expect(wizardEvent).to.have.been.called;
     });
     it('does not trigger wizard action with undefined wizard', async () => {
-      element.addElementAction = (tagName: string) => {
+      element.addElementAction = () => {
         return undefined;
       };
       await element.updateComplete;

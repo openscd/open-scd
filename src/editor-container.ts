@@ -10,8 +10,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { newWizardEvent, SCLTag, tags, Wizard } from './foundation.js';
-import { emptyWizard, wizards } from './wizards/wizard-library.js';
+import { newWizardEvent, Wizard } from './foundation.js';
 
 @customElement('editor-container')
 export class EditorContainer extends LitElement {
@@ -76,7 +75,7 @@ export class EditorContainer extends LitElement {
         : html``}
       ${Array.from(this.children).some(child => child.tagName === 'MWC-FAB')
         ? html`<mwc-icon-button id="more" icon="more_vert"></mwc-icon-button>`
-        : html``}<slot
+        : html``}<slot name="header"
         ><style>
 
           ${this.addOptions.length
@@ -117,6 +116,7 @@ export class EditorContainer extends LitElement {
       tabindex="0"
     >
       ${this.renderHeader()}
+      <slot name="container"></slot>
     </section>`;
   }
 
@@ -135,6 +135,7 @@ export class EditorContainer extends LitElement {
       transition: all 200ms linear;
       outline-style: solid;
       margin: 8px 12px 16px;
+      outline-width: 0px;
       opacity: 1;
     }
 
