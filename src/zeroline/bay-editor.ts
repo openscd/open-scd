@@ -8,8 +8,18 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { startMove, styles, cloneSubstationElement } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import {
+  startMove,
+  styles,
+  cloneSubstationElement,
+  getExistingCreateOptions,
+  getCreateWizard,
+} from './foundation.js';
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+} from '../foundation.js';
 
 import { wizards } from '../wizards/wizard-library.js';
 
@@ -24,13 +34,12 @@ export class BayEditor extends LitElement {
   @property({ type: Boolean })
   readonly = false;
 
-  @property({ type: String })
-  get name(): string {
-    return this.element.getAttribute('name') ?? '';
-  }
-  @property({ type: String })
-  get desc(): string | null {
-    return this.element.getAttribute('desc') ?? null;
+  @property()
+  get header(): string {
+    const name = this.element.getAttribute('name') ?? '';
+    const desc = this.element.getAttribute('desc');
+
+    return `${name} ${desc === null ? '' : '-'} ${desc}`;
   }
 
   @property({ attribute: false })
@@ -40,11 +49,6 @@ export class BayEditor extends LitElement {
 
   openEditWizard(): void {
     const wizard = wizards['Bay'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  openConductingEquipmentWizard(): void {
-    const wizard = wizards['ConductingEquipment'].create(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -70,86 +74,68 @@ export class BayEditor extends LitElement {
   renderIedContainer(): TemplateResult {
     const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
-      ? html`<div id="iedcontainer">
+      ? html`<div slot="container" id="iedcontainer">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
         </div>`
       : html``;
   }
 
-  renderHeader(): TemplateResult {
-    return html`<h3>
-      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-      ${this.readonly
-        ? html``
-        : html`<abbr title="${translate('add')}">
-              <mwc-icon-button
-                icon="playlist_add"
-                @click=${() => this.openConductingEquipmentWizard()}
-              ></mwc-icon-button>
-            </abbr>
-            <nav>
-              <abbr title="${translate('lnode.tooltip')}">
-                <mwc-icon-button
-                  icon="account_tree"
-                  @click="${() => this.openLNodeWizard()}"
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('duplicate')}">
-                <mwc-icon-button
-                  icon="content_copy"
-                  @click=${() => cloneSubstationElement(this)}
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('edit')}">
-                <mwc-icon-button
-                  icon="edit"
-                  @click=${() => this.openEditWizard()}
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('move')}">
-                <mwc-icon-button
-                  icon="forward"
-                  @click=${() => startMove(this, BayEditor, VoltageLevelEditor)}
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('remove')}">
-                <mwc-icon-button
-                  icon="delete"
-                  @click=${() => this.remove()}
-                ></mwc-icon-button>
-              </abbr>
-            </nav>`}
-    </h3>`;
-  }
-
   render(): TemplateResult {
-    return html`<section tabindex="0">
-      ${this.renderHeader()}
-      <div>
-        ${this.renderIedContainer()}
-        <div id="ceContainer">
-          ${Array.from(
-            this.element?.querySelectorAll(
-              ':root > Substation > VoltageLevel > Bay > ConductingEquipment'
-            ) ?? []
-          ).map(
-            voltageLevel =>
-              html`<conducting-equipment-editor
-                .element=${voltageLevel}
-                ?readonly=${this.readonly}
-              ></conducting-equipment-editor>`
-          )}
-        </div>
+    return html`<editor-container
+      header="${this.header}"
+      .addOptions=${getExistingCreateOptions(this.element)}
+      colorTheme="primary"
+      level="high"
+      .addElementAction=${getCreateWizard(this.element)}
+      marginless
+    >
+      <abbr slot="header" title="${translate('lnode.tooltip')}">
+        <mwc-icon-button
+          icon="account_tree"
+          @click="${() => this.openLNodeWizard()}"
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('duplicate')}">
+        <mwc-icon-button
+          icon="content_copy"
+          @click=${() => cloneSubstationElement(this)}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('move')}">
+        <mwc-icon-button
+          icon="forward"
+          @click=${() => startMove(this, BayEditor, VoltageLevelEditor)}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button>
+      </abbr>
+      ${this.renderIedContainer()}
+      <div slot="container" id="ceContainer">
+        ${Array.from(
+          getChildElementsByTagName(this.element, 'ConductingEquipment')
+        ).map(
+          voltageLevel =>
+            html`<conducting-equipment-editor
+              .element=${voltageLevel}
+              ?readonly=${this.readonly}
+            ></conducting-equipment-editor>`
+        )}
       </div>
-    </section> `;
+    </editor-container> `;
   }
 
   static styles = css`
     ${styles}
-
-    section {
-      margin: 0px;
-    }
 
     #ceContainer {
       display: grid;
