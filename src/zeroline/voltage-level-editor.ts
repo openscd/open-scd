@@ -11,13 +11,17 @@ import { translate } from 'lit-translate';
 import {
   selectors,
   startMove,
-  styles,
   cloneSubstationElement,
+  getExistingCreateOptions,
+  getCreateWizard,
+  styles,
 } from './foundation.js';
-import './bay-editor.js';
+import { newActionEvent, newWizardEvent } from '../foundation.js';
+
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+
+import './bay-editor.js';
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
@@ -28,14 +32,6 @@ export class VoltageLevelEditor extends LitElement {
   readonly = false;
 
   @property()
-  get name(): string {
-    return this.element.getAttribute('name') ?? '';
-  }
-  @property()
-  get desc(): string | null {
-    return this.element.getAttribute('desc') ?? null;
-  }
-  @property()
   get voltage(): string | null {
     const V = this.element.querySelector(selectors.VoltageLevel + ' > Voltage');
     if (V === null) return null;
@@ -43,6 +39,14 @@ export class VoltageLevelEditor extends LitElement {
     const m = V.getAttribute('multiplier');
     const u = m === null ? 'V' : ' ' + m + 'V';
     return v ? v + u : null;
+  }
+  @property({ type: String })
+  get header(): string {
+    const name = this.element.getAttribute('name') ?? '';
+    const desc = this.element.getAttribute('desc');
+
+    return `${name} ${desc === null ? '' : '-'} ${desc}
+    ${this.voltage === null ? '' : `(${this.voltage})`}`;
   }
 
   @property({ attribute: false })
@@ -52,11 +56,6 @@ export class VoltageLevelEditor extends LitElement {
 
   openEditWizard(): void {
     const wizard = wizards['VoltageLevel'].edit(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
-  }
-
-  openBayWizard(): void {
-    const wizard = wizards['Bay'].create(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -82,64 +81,53 @@ export class VoltageLevelEditor extends LitElement {
   renderIedContainer(): TemplateResult {
     const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
-      ? html`<div id="iedcontainer">
+      ? html`<div id="iedcontainer" slot="container">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
         </div>`
       : html``;
   }
 
-  renderHeader(): TemplateResult {
-    return html`<h2>
-      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-      ${this.voltage === null ? '' : html`(${this.voltage})`}
-      ${this.readonly
-        ? html``
-        : html`<abbr title="${translate('add')}">
-              <mwc-icon-button
-                icon="playlist_add"
-                @click=${() => this.openBayWizard()}
-              ></mwc-icon-button>
-            </abbr>
-            <nav>
-              <abbr title="${translate('lnode.tooltip')}">
-                <mwc-icon-button
-                  icon="account_tree"
-                  @click=${() => this.openLNodeWizard()}
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('duplicate')}">
-                <mwc-icon-button
-                  icon="content_copy"
-                  @click=${() => cloneSubstationElement(this)}
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('edit')}">
-                <mwc-icon-button
-                  icon="edit"
-                  @click=${() => this.openEditWizard()}
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('move')}">
-                <mwc-icon-button
-                  icon="forward"
-                  @click=${() =>
-                    startMove(this, VoltageLevelEditor, SubstationEditor)}
-                ></mwc-icon-button>
-              </abbr>
-              <abbr title="${translate('remove')}">
-                <mwc-icon-button
-                  icon="delete"
-                  @click=${() => this.remove()}
-                ></mwc-icon-button>
-              </abbr>
-            </nav>`}
-    </h2>`;
-  }
-
   render(): TemplateResult {
-    return html`<section tabindex="0">
-      ${this.renderHeader()} ${this.renderIedContainer()}
-      <div id="bayContainer">
+    return html`<editor-container
+      header="${this.header}"
+      .addOptions=${getExistingCreateOptions(this.element)}
+      colorTheme="primary"
+      level="mid"
+      contrasted
+      .addElementAction=${getCreateWizard(this.element)}
+    >
+      <abbr slot="header" title="${translate('lnode.tooltip')}">
+        <mwc-icon-button
+          icon="account_tree"
+          @click=${() => this.openLNodeWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('duplicate')}">
+        <mwc-icon-button
+          icon="content_copy"
+          @click=${() => cloneSubstationElement(this)}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('move')}">
+        <mwc-icon-button
+          icon="forward"
+          @click=${() => startMove(this, VoltageLevelEditor, SubstationEditor)}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button>
+      </abbr>
+      ${this.renderIedContainer()}
+      <div id="bayContainer" slot="container">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
           bay => html`<bay-editor
             .element=${bay}
@@ -148,15 +136,11 @@ export class VoltageLevelEditor extends LitElement {
           ></bay-editor>`
         )}
       </div>
-    </section>`;
+    </editor-container>`;
   }
 
   static styles = css`
     ${styles}
-
-    section {
-      background-color: var(--mdc-theme-on-primary);
-    }
 
     #bayContainer {
       display: grid;
