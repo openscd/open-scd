@@ -23,7 +23,11 @@ export class EditorContainer extends LitElement {
   @property({ type: String })
   colorTheme: 'primary' | 'secondary' = 'primary';
   @property({ type: Boolean })
+  contrasted = false;
+  @property({ type: Boolean })
   highlighted = false;
+  @property({ type: Boolean })
+  marginless = false;
 
   @property()
   addElementAction: (tagName: string) => Wizard | undefined = () => {
@@ -112,6 +116,8 @@ export class EditorContainer extends LitElement {
     return html`<section
       class="container ${this.colorTheme} ${this.highlighted
         ? 'highlighted'
+        : ''} ${this.contrasted ? 'contrasted' : ''} ${this.marginless
+        ? 'marginless'
         : ''}"
       tabindex="0"
     >
@@ -149,6 +155,14 @@ export class EditorContainer extends LitElement {
 
     .highlighted {
       outline-width: 2px;
+    }
+
+    .contrasted {
+      background-color: var(--mdc-theme-on-primary);
+    }
+
+    .marginless {
+      margin: 0px;
     }
 
     .container:focus {
