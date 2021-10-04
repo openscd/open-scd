@@ -110,9 +110,9 @@ describe('substation-editor wizarding editing integration', () => {
       element = parent.querySelector('substation-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="playlist_add"]'
-        )
+        element?.shadowRoot
+          ?.querySelector('editor-container')
+          ?.shadowRoot?.querySelector('mwc-list-item[value="VoltageLevel"]')
       )).click();
       await parent.updateComplete;
 
