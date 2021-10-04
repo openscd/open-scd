@@ -89,8 +89,6 @@ describe('substation-editor wizarding editing integration', () => {
     let element: SubstationEditor | null;
 
     let nameField: WizardTextField;
-    let descField: WizardTextField;
-    let secondaryAction: HTMLElement;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
@@ -119,9 +117,7 @@ describe('substation-editor wizarding editing integration', () => {
       nameField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
       );
-      descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
-      );
+
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
