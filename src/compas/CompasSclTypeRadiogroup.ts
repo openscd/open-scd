@@ -5,7 +5,7 @@ import {translate} from "lit-translate";
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 
 @customElement('compas-scltype-radiogroup')
-export class CompasScltypeRadiogroup extends LitElement {
+export class CompasSclTypeRadiogroup extends LitElement {
   @property({type: String})
   value = '';
 
@@ -40,9 +40,8 @@ export class CompasScltypeRadiogroup extends LitElement {
   render(): TemplateResult {
     if (!this.sclTypes) {
       return html `
-        <mwc-list>
-          <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
-        </mwc-list>`
+        <compas-loading></compas-loading>
+      `
     }
 
     if (this.sclTypes.length <= 0) {

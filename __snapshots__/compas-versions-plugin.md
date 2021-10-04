@@ -26,11 +26,8 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<h1>
-  <span style="color: var(--base1)">
-    [compas.loading]
-  </span>
-</h1>
+<compas-loading>
+</compas-loading>
 <wizard-dialog>
 </wizard-dialog>
 
@@ -66,6 +63,8 @@
   <section tabindex="0">
     <h1>
       [compas.versions.title]
+      <mwc-icon-button icon="note_add">
+      </mwc-icon-button>
       <mwc-icon-button icon="delete_forever">
       </mwc-icon-button>
     </h1>

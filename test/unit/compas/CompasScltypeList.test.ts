@@ -7,13 +7,13 @@ import {
   stubFetchResponseFunction,
   TYPE_ENTRY_ELEMENT_NAME
 } from "./CompasSclDataServiceResponses.js";
-import {CompasScltypeList} from "../../../src/compas/CompasScltypeList.js";
-import "../../../src/compas/CompasScltypeList.js";
+import {CompasSclTypeList} from "../../../src/compas/CompasSclTypeList.js";
+import "../../../src/compas/CompasSclTypeList.js";
 
 describe('compas-scltype-list', () => {
   const FETCH_FUNCTION = 'fetchData';
 
-  let element: CompasScltypeList;
+  let element: CompasSclTypeList;
   let stub: SinonStub;
 
   describe('show-loading', () => {

@@ -19,9 +19,14 @@ describe('compas-foundation', () => {
     expect(stripExtensionFromName(name)).to.be.equal(name);
   });
 
-  it('when name is passed with extenions the same name is returned', () => {
+  it('when name is passed with extenions the stripped name is returned', () => {
     const name = 'just-some-station';
     const extension = 'scd';
     expect(stripExtensionFromName(name + '.' + extension)).to.be.equal(name);
+  });
+
+  it('when name is passed with length 3 the same name is returned', () => {
+    const name = 'sml';
+    expect(stripExtensionFromName(name)).to.be.equal(name);
   });
 });

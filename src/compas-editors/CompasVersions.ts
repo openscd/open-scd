@@ -6,6 +6,7 @@ import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclD
 import {createLogEvent} from "../compas-services/foundation.js";
 import {getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
 import {getOpenScdElement, styles} from './foundation.js';
+import {addVersionToCompasWizard} from "../compas/CompasUploadVersion.js";
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -33,12 +34,16 @@ export default class CompasVersionsPlugin extends LitElement {
       });
   }
 
-  confirmRestoreCompas(version: string): void {
-    this.dispatchEvent(newWizardEvent(confirmRestoreCompasWizard(this.docName, this.docId, version)))
-  }
-
   confirmDeleteCompas(): void {
     this.dispatchEvent(newWizardEvent(confirmDeleteCompasWizard(this.docName, this.docId)))
+  }
+
+  addVersionCompasToCompas(): void {
+    this.dispatchEvent(newWizardEvent(addVersionToCompasWizard({docId: this.docId, docName: this.docName})))
+  }
+
+  confirmRestoreVersionCompas(version: string): void {
+    this.dispatchEvent(newWizardEvent(confirmRestoreVersionCompasWizard(this.docName, this.docId, version)))
   }
 
   confirmDeleteVersionCompas(version: string): void {
@@ -56,9 +61,8 @@ export default class CompasVersionsPlugin extends LitElement {
   render(): TemplateResult {
     if (!this.scls) {
       return html `
-        <h1>
-          <span style="color: var(--base1)">${translate("compas.loading")}</span>
-        </h1>`
+        <compas-loading></compas-loading>
+      `
     }
 
     if (this.scls?.length <= 0) {
@@ -74,6 +78,10 @@ export default class CompasVersionsPlugin extends LitElement {
         <section tabindex="0">
           <h1>
             ${translate('compas.versions.title')}
+            <mwc-icon-button icon="note_add"
+                             @click=${() => {
+                               this.addVersionCompasToCompas();
+                             }}></mwc-icon-button>
             <mwc-icon-button icon="delete_forever"
                              @click=${() => {
                                this.confirmDeleteCompas();
@@ -92,7 +100,7 @@ export default class CompasVersionsPlugin extends LitElement {
                                 ${name} (${version})
                                 <span slot="graphic" style="width: 90px">
                                   <mwc-icon @click=${() => {
-                                              this.confirmRestoreCompas(version);
+                                              this.confirmRestoreVersionCompas(version);
                                             }}>restore</mwc-icon>
                                 </span>
                               </mwc-list-item>`
@@ -102,7 +110,7 @@ export default class CompasVersionsPlugin extends LitElement {
                                 ${name} (${version})
                                 <span slot="graphic" style="width: 90px">
                                   <mwc-icon @click=${() => {
-                                              this.confirmRestoreCompas(version);
+                                              this.confirmRestoreVersionCompas(version);
                                             }}>restore</mwc-icon>
                                   <mwc-icon @click=${() => {
                                               this.confirmDeleteVersionCompas(version);
@@ -213,22 +221,6 @@ function deleteSclVersion(docName: string, docId: string, version: string) {
   }
 }
 
-function confirmRestoreCompasWizard(docName: string, docId: string, version: string): Wizard {
-  return [
-    {
-      title: get('compas.versions.confirmRestoreTitle'),
-      primary: {
-        icon: '',
-        label: get('compas.versions.confirmButton'),
-        action: openScl(docName, docId, version),
-      },
-      content: [
-        html`<span>${translate('compas.versions.confirmRestore', {version : version})}</span>`,
-      ],
-    },
-  ];
-}
-
 function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
   return [
     {
@@ -240,6 +232,22 @@ function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
       },
       content: [
         html`<span>${translate('compas.versions.confirmDelete')}</span>`,
+      ],
+    },
+  ];
+}
+
+function confirmRestoreVersionCompasWizard(docName: string, docId: string, version: string): Wizard {
+  return [
+    {
+      title: get('compas.versions.confirmRestoreTitle'),
+      primary: {
+        icon: '',
+        label: get('compas.versions.confirmButton'),
+        action: openScl(docName, docId, version),
+      },
+      content: [
+        html`<span>${translate('compas.versions.confirmRestore', {version : version})}</span>`,
       ],
     },
   ];

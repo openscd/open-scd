@@ -6,7 +6,7 @@ import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {compasSclTypeListWizardActor} from "./CompasScltypeList.js";
+import {compasSclTypeListWizardActor} from "./CompasSclTypeList.js";
 import {getOpenScdElement, updateDocumentInOpenSCD} from "./foundation.js";
 
 @customElement('compas-scl-list')
@@ -50,9 +50,8 @@ export class CompasScl extends LitElement {
   render(): TemplateResult {
     if (!this.scls) {
       return html `
-        <mwc-list>
-          <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
-        </mwc-list>`
+        <compas-loading></compas-loading>
+      `
     }
     if (this.scls?.length <= 0) {
       return html `

@@ -8,7 +8,7 @@ import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclD
 import {listSclsWizard} from "./CompasScl.js";
 
 @customElement('compas-scltype-list')
-export class CompasScltypeList extends LitElement {
+export class CompasSclTypeList extends LitElement {
   @property()
   sclTypes!: Element[];
 
@@ -28,9 +28,8 @@ export class CompasScltypeList extends LitElement {
   render(): TemplateResult {
       if (!this.sclTypes) {
         return html `
-          <mwc-list>
-            <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
-          </mwc-list>`
+          <compas-loading></compas-loading>
+        `
       }
 
       if (this.sclTypes.length <= 0) {

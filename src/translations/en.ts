@@ -383,6 +383,8 @@ export const en = {
 
   compas: {
     loading: 'Loading...',
+    notExists: 'SCl Document no longer exists in CoMPAS!',
+    comment: 'Comment',
     error: {
       type: 'Unable to determine type from document name!',
       server: 'Error communicating with CoMPAS Server',
@@ -401,9 +403,14 @@ export const en = {
     },
     saveTo: {
       title: 'Save to CoMPAS',
-      comment: 'Comment',
       addSuccess: 'SCL added to CoMPAS.',
       updateSuccess: 'SCL updated in CoMPAS',
+    },
+    uploadVersion: {
+      title: 'Upload new version to CoMPAS',
+      selectButton: 'Select file...',
+      filename: 'Filename',
+      updateSuccess: 'SCL uploaded in CoMPAS',
     },
     versions: {
       title: 'CoMPAS Versions',

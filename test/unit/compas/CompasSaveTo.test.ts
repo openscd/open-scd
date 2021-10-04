@@ -1,11 +1,13 @@
 import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon from "sinon";
 
-import "../../../src/compas/CompasSaveTo.js";
+import {CompasExistsInElement} from "../../../src/compas/CompasExistsIn.js";
 import {CompasSaveTo} from "../../../src/compas/CompasSaveTo.js";
 
+import "../../../src/compas/CompasSaveTo.js";
+
 describe('compas-save-to', () => {
-  let element: CompasSaveTo;
+  let element: CompasSaveTo & CompasExistsInElement;
   const docName = 'station123.scd';
   const docId = '6a45ae97-5605-44f8-b4e6-25305bc6c036';
 
