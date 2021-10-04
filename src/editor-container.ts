@@ -12,25 +12,39 @@ import {
 } from 'lit-element';
 import { newWizardEvent, Wizard } from './foundation.js';
 
+/**
+ * A responsive container for nested elements with header and
+ * create new child functionality.
+ */
 @customElement('editor-container')
 export class EditorContainer extends LitElement {
+  /**  */
   @property({ type: String })
   header = '';
+  /** Selectable child tagName */
   @property({ type: Array })
-  addOptions: string[] = [];
+  childTags: string[] = [];
+  /** Sets the header type h1, h2 or h3 */
   @property({ type: String })
   level: 'high' | 'mid' | 'low' = 'mid';
+  /** Sets the focused header color */
   @property({ type: String })
   colorTheme: 'primary' | 'secondary' = 'primary';
+  /** Whether different background color shall be used */
   @property({ type: Boolean })
   contrasted = false;
+  /** Wether outline shall be permanent */
   @property({ type: Boolean })
   highlighted = false;
+  /** Whether the container does not have margins*/
   @property({ type: Boolean })
   marginless = false;
-
+  /**
+   * Function that allows to connect child tagName with Wizard.
+   * E.g. with help of wizard-library
+   */
   @property()
-  addElementAction: (tagName: string) => Wizard | undefined = () => {
+  getChildCreateWizard: (tagName: string) => Wizard | undefined = () => {
     return undefined;
   };
 
@@ -39,8 +53,13 @@ export class EditorContainer extends LitElement {
   @query('#header') headerContainer!: HTMLElement;
   @query('#more') moreVert?: IconButton;
 
-  renderAddButtons(): TemplateResult[] {
-    return this.addOptions.map(
+  async firstUpdated(): Promise<void> {
+    await super.updateComplete;
+    if (this.addMenu) this.addMenu.anchor = this.headerContainer;
+  }
+
+  private renderAddButtons(): TemplateResult[] {
+    return this.childTags.map(
       child =>
         html`<mwc-list-item graphic="icon" value="${child}"
           ><span>${child}</span
@@ -49,7 +68,7 @@ export class EditorContainer extends LitElement {
     );
   }
 
-  styleFabButtonTransform(): TemplateResult[] {
+  private styleFabButtonTransform(): TemplateResult[] {
     let transform = 0;
     return Array.from(this.children).map((child, i) => {
       if (child.tagName === 'MWC-FAB')
@@ -59,8 +78,8 @@ export class EditorContainer extends LitElement {
     });
   }
 
-  renderHeaderBody(): TemplateResult {
-    return html`${this.addOptions.length
+  private renderHeaderBody(): TemplateResult {
+    return html`${this.childTags.length
         ? html`<mwc-icon-button
               icon="playlist_add"
               @click=${() => (this.addMenu.open = true)}
@@ -71,7 +90,7 @@ export class EditorContainer extends LitElement {
               menuCorner="END"
               @selected=${(e: Event) => {
                 const tagName = (<ListItem>(<Menu>e.target).selected).value;
-                const wizard = this.addElementAction(tagName);
+                const wizard = this.getChildCreateWizard(tagName);
                 if (wizard) this.dispatchEvent(newWizardEvent(wizard));
               }}
               >${this.renderAddButtons()}
@@ -82,7 +101,7 @@ export class EditorContainer extends LitElement {
         : html``}<slot name="header"
         ><style>
 
-          ${this.addOptions.length
+          ${this.childTags.length
             ? html`::slotted(mwc-fab) {right: 48px;}`
             : html`::slotted(mwc-fab) {right: 0px;}`}
             ${this.styleFabButtonTransform()}
@@ -90,19 +109,19 @@ export class EditorContainer extends LitElement {
       >`;
   }
 
-  renderLevel1(): TemplateResult {
+  private renderLevel1(): TemplateResult {
     return html`<h1>${this.header} ${this.renderHeaderBody()}</h1>`;
   }
 
-  renderLevel2(): TemplateResult {
+  private renderLevel2(): TemplateResult {
     return html`<h2>${this.header} ${this.renderHeaderBody()}</h2>`;
   }
 
-  renderLevel3(): TemplateResult {
+  private renderLevel3(): TemplateResult {
     return html`<h3>${this.header} ${this.renderHeaderBody()}</h3>`;
   }
 
-  renderHeader(): TemplateResult {
+  private renderHeader(): TemplateResult {
     return html`<div id="header">
       ${this.level === 'high'
         ? this.renderLevel1()
@@ -124,11 +143,6 @@ export class EditorContainer extends LitElement {
       ${this.renderHeader()}
       <slot name="container"></slot>
     </section>`;
-  }
-
-  async firstUpdated(): Promise<void> {
-    await super.updateComplete;
-    if (this.addMenu) this.addMenu.anchor = this.headerContainer;
   }
 
   static styles = css`

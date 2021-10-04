@@ -61,7 +61,7 @@ describe('editor-container', () => {
 
   describe('with existing addOptions', () => {
     beforeEach(async () => {
-      element.addOptions = ['Substation', 'Text'];
+      element.childTags = ['Substation', 'Text'];
       await element.updateComplete;
     });
     it('render add icon and add menu with existing addOptions', async () => {
@@ -80,7 +80,7 @@ describe('editor-container', () => {
   describe('with missing add action', () => {
     let wizardEvent: SinonSpy;
     beforeEach(async () => {
-      element.addOptions = ['Substation', 'Text'];
+      element.childTags = ['Substation', 'Text'];
       await element.updateComplete;
 
       wizardEvent = sinon.spy();
@@ -95,8 +95,8 @@ describe('editor-container', () => {
   describe('with existing add action', () => {
     let wizardEvent: SinonSpy;
     beforeEach(async () => {
-      element.addOptions = ['Substation', 'Text'];
-      element.addElementAction = () => {
+      element.childTags = ['Substation', 'Text'];
+      element.getChildCreateWizard = () => {
         return [{ title: 'wizard' }];
       };
       await element.updateComplete;
@@ -109,7 +109,7 @@ describe('editor-container', () => {
       expect(wizardEvent).to.have.been.called;
     });
     it('does not trigger wizard action with undefined wizard', async () => {
-      element.addElementAction = () => {
+      element.getChildCreateWizard = () => {
         return undefined;
       };
       await element.updateComplete;

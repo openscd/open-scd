@@ -83,10 +83,10 @@ export class SubstationEditor extends LitElement {
     return html`
         <editor-container
           header="${this.header}"
-          .addOptions=${getExistingCreateOptions(this.element)}
+          .childTags=${getExistingCreateOptions(this.element)}
           colorTheme="primary"
           level="high"
-          .addElementAction=${getCreateWizard(this.element)}
+          .getChildCreateWizard=${getCreateWizard(this.element)}
           >
           ${this.renderIedContainer()}
           <abbr slot="header" title="${translate('lnode.tooltip')}">

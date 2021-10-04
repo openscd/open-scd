@@ -90,11 +90,11 @@ export class VoltageLevelEditor extends LitElement {
   render(): TemplateResult {
     return html`<editor-container
       header="${this.header}"
-      .addOptions=${getExistingCreateOptions(this.element)}
+      .childTags=${getExistingCreateOptions(this.element)}
       colorTheme="primary"
       level="mid"
       contrasted
-      .addElementAction=${getCreateWizard(this.element)}
+      .getChildCreateWizard=${getCreateWizard(this.element)}
     >
       <abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
