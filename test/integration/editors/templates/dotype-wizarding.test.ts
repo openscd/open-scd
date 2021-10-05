@@ -38,6 +38,7 @@ describe('DOType wizards', () => {
   describe('defines a createDOTypeWizard', () => {
     let selector: Select;
     let idField: WizardTextField;
+    let cdcField: WizardTextField;
     let primayAction: HTMLElement;
     beforeEach(async () => {
       const button = <HTMLElement>(
@@ -54,6 +55,9 @@ describe('DOType wizards', () => {
       idField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
       );
+      cdcField = <WizardTextField>(
+        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="cdc"]')
+      );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
           'mwc-button[slot="primaryAction"]'
@@ -67,6 +71,7 @@ describe('DOType wizards', () => {
     it('allows to add empty DOTypes to the project', async () => {
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
       idField.maybeValue = 'myGeneralDOType';
+      cdcField.maybeValue = 'SPS';
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
@@ -74,6 +79,7 @@ describe('DOType wizards', () => {
     });
     it('respects the sequence defined in the standard', async () => {
       idField.maybeValue = 'myGeneralDOType';
+      cdcField.maybeValue = 'SPS';
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
