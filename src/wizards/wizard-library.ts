@@ -11,6 +11,13 @@ import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
 } from './voltagelevel.js';
+import {
+  createEqFunctionWizard,
+  createEqSubFunctionWizard,
+  createFunctionWizard,
+  createSubFunctionWizard,
+  editXxxFunctionWizard,
+} from './xxxfunction.js';
 
 type SclElementWizard = (element: Element) => Wizard | undefined;
 
@@ -170,12 +177,12 @@ export const wizards: Record<
     create: emptyWizard,
   },
   EqFunction: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editXxxFunctionWizard,
+    create: createEqFunctionWizard,
   },
   EqSubFunction: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editXxxFunctionWizard,
+    create: createEqSubFunctionWizard,
   },
   ExtRef: {
     edit: emptyWizard,
@@ -190,8 +197,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Function: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editXxxFunctionWizard,
+    create: createFunctionWizard,
   },
   GeneralEquipment: {
     edit: emptyWizard,
@@ -458,8 +465,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   SubFunction: {
-    edit: emptyWizard,
-    create: emptyWizard,
+    edit: editXxxFunctionWizard,
+    create: createSubFunctionWizard,
   },
   SubNetwork: {
     edit: emptyWizard,
