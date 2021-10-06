@@ -383,7 +383,7 @@ export const en = {
 
   compas: {
     loading: 'Loading...',
-    notExists: 'SCl Document no longer exists in CoMPAS!',
+    notExists: 'Project no longer exists in CoMPAS!',
     comment: 'Comment',
     error: {
       type: 'Unable to determine type from document name!',
@@ -403,35 +403,47 @@ export const en = {
     },
     saveTo: {
       title: 'Save to CoMPAS',
-      addSuccess: 'SCL added to CoMPAS.',
-      updateSuccess: 'SCL updated in CoMPAS',
+      addSuccess: 'Project added to CoMPAS.',
+      updateSuccess: 'Project updated in CoMPAS',
     },
     uploadVersion: {
-      title: 'Upload new version to CoMPAS',
+      title: 'Upload new version of project to CoMPAS',
       selectButton: 'Select file...',
       filename: 'Filename',
-      updateSuccess: 'SCL uploaded in CoMPAS',
+      updateSuccess: 'Project uploaded in CoMPAS',
     },
     versions: {
       title: 'CoMPAS Versions',
-      noVersions: 'No CoMPAS versions found',
-      noScls: 'No versions found for this SCL in CoMPAS',
+      noScls: 'No versions found for this project in CoMPAS',
       confirmRestoreTitle: 'Restore version?',
       confirmRestore: 'Are you sure to restore version {{version}}?',
-      restoreVersionSuccess: 'Restored version {{version}}',
-      confirmDeleteTitle: 'Delete SCL?',
+      restoreVersionSuccess: 'Restored version {{version}} of project',
+      confirmDeleteTitle: 'Delete project?',
       confirmDelete: 'Are you sure to delete all version(s)?',
-      deleteSuccess: 'Removed SCL from CoMPAS',
+      deleteSuccess: 'Removed project from CoMPAS',
       confirmDeleteVersionTitle: 'Delete version?',
       confirmDeleteVersion: 'Are you sure to delete version {{version}}?',
-      deleteVersionSuccess: 'Removed version {{version}} from CoMPAS',
+      deleteVersionSuccess: 'Removed version {{version}} of project from CoMPAS',
       confirmButton: 'Confirm',
     },
     settings: {
       name: 'CoMPAS Settings',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
-      keycloakAuthUrl: 'Keycloak Auth URL',
+    },
+    session: {
+      headingExpiring: 'Your session is about to expire!',
+      explainExpiring: 'Because of inactivity ({{expiringSessionWarning}} minutes), your session with the CoMPAS Systems is about to expire. <br>' +
+        'If you want to continue working press the button \'Continue\'. Otherwise the session will expire in {{timeTillExpire}} minutes.',
+      continue: 'Continue',
+      headingExpired: 'Your session is expired!',
+      explainExpiredWithProject: 'Because of inactivity ({{expiredSessionMessage}} minutes), your session with the CoMPAS Systems is expired. <br>' +
+        'To continue working you need to reload the browser to login again, but modifications to the project are lost. <br>' +
+        'To prevent this you can first save the project to your local filesystem using the button \'Save project\'. <br>' +
+        'After loading the original project from CoMPAS you can add this file as new version using the tab \'CoMPAS Versions\'.',
+      explainExpiredWithoutProject: 'Because of inactivity ({{expiredSessionMessage}} minutes), your session with the CoMPAS Systems is expired. <br>' +
+        'To continue working you need to reload the browser to login again.',
+      saveProject: 'Save project',
     }
   }
 };
