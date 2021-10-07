@@ -4,7 +4,8 @@ import {Dialog} from "@material/mwc-dialog";
 
 import {saveDocumentToFile} from "../file.js";
 import {getOpenScdElement} from "./foundation.js";
-import {CompasUserInfoService} from "../compas-services/CompasUserInfoService";
+
+import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
 
 @customElement('compas-session-expiring-dialog')
 export class CompasSessionExpiringDialogElement extends LitElement {
@@ -151,19 +152,17 @@ export function renderCompasSessionDialogs(doc: Document | null, docName: string
 }
 
 let pingTimer: NodeJS.Timeout | null = null;
-let pingScheduled = false;
 
 async function executeKeepAlivePing() {
   await CompasUserInfoService().ping()
-    .finally(() => pingScheduled = false)
+    .finally(() => pingTimer = null)
 }
 
 function schedulePing() {
-  if (!pingTimer || !pingScheduled) {
+  if (!pingTimer) {
     // Every minute we will send a Ping to the CoMPAS Services while the user is still active.
     // This to keep the connection alive so long the user is working.
     pingTimer = setTimeout(executeKeepAlivePing, (60 * 1000));
-    pingScheduled = true;
   }
 }
 
@@ -177,7 +176,7 @@ function showExpiredSessionMessage() {
   unregisterEvents();
 }
 
-function resetTimer() {
+export function resetTimer() {
   CompasSessionExpiringDialogElement.getElement().resetTimer();
   CompasSessionExpiredDialogElement.getElement().resetTimer();
   schedulePing();
@@ -191,7 +190,6 @@ function unregisterEvents() {
 function registerEvents() {
   window.addEventListener('click', resetTimer);
   window.addEventListener('keydown', resetTimer);
-  resetTimer();
 }
 
 export function setSessionTimeouts(sessionWarning: number, sessionExpires: number): void {
@@ -201,5 +199,6 @@ export function setSessionTimeouts(sessionWarning: number, sessionExpires: numbe
   CompasSessionExpiringDialogElement.getElement().expiringSessionWarning = expiringSessionWarning;
   CompasSessionExpiringDialogElement.getElement().expiredSessionMessage = expiredSessionMessage;
   CompasSessionExpiredDialogElement.getElement().expiredSessionMessage = expiredSessionMessage;
+  resetTimer();
   registerEvents();
 }
