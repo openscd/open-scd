@@ -72,8 +72,9 @@ export class EditorContainer extends LitElement {
     let transform = 0;
     return Array.from(this.children).map((child, i) => {
       if (child.tagName === 'MWC-FAB')
-        return html`#more:focus-within ~ ::slotted(mwc-fab:nth-child(${i + 1}))
-        { transform: translate(0, ${++transform * 48}px); }`;
+        return html`#morevert:focus-within >
+        ::slotted(mwc-fab:nth-child(${i + 1})) { transform: translate(0,
+        ${++transform * 48}px); }`;
       return html``;
     });
   }
@@ -97,16 +98,16 @@ export class EditorContainer extends LitElement {
             </mwc-menu>`
         : html``}
       ${Array.from(this.children).some(child => child.tagName === 'MWC-FAB')
-        ? html`<mwc-icon-button id="more" icon="more_vert"></mwc-icon-button>`
-        : html``}<slot name="header"
-        ><style>
-
-          ${this.childTags.length
-            ? html`::slotted(mwc-fab) {right: 48px;}`
-            : html`::slotted(mwc-fab) {right: 0px;}`}
-            ${this.styleFabButtonTransform()}
-        </style></slot
-      >`;
+        ? html`<div id="morevert">
+            <mwc-icon-button icon="more_vert"></mwc-icon-button>
+            <slot name="morevert"></slot>
+          </div>`
+        : html``}<style>
+        ${this.childTags.length
+          ? html`::slotted(mwc-fab) {right: 48px;}`
+          : html`::slotted(mwc-fab) {right: 0px;}`}
+          ${this.styleFabButtonTransform()}</style
+      ><slot name="header"></slot>`;
   }
 
   private renderLevel1(): TemplateResult {
@@ -155,6 +156,7 @@ export class EditorContainer extends LitElement {
       transition: all 200ms linear;
       outline-style: solid;
       margin: 8px 12px 16px;
+      padding: 0.02px; /*Dirty hack to force outline around content with margin*/
       outline-width: 0px;
       opacity: 1;
     }
@@ -238,6 +240,10 @@ export class EditorContainer extends LitElement {
       float: right;
     }
 
+    #morevert {
+      float: right;
+    }
+
     #header {
       position: relative;
     }
@@ -257,7 +263,7 @@ export class EditorContainer extends LitElement {
         opacity 200ms linear;
     }
 
-    #more:focus-within ~ ::slotted(mwc-fab) {
+    #morevert:focus-within > ::slotted(mwc-fab) {
       transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 250ms linear;
       pointer-events: auto;
