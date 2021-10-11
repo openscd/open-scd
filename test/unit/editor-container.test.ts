@@ -19,6 +19,7 @@ describe('editor-container', () => {
 
   it('renders more vert option with existing mwc-fab children', async () => {
     const fabChild = element.ownerDocument.createElement('mwc-fab');
+    fabChild.setAttribute('slot', 'morevert');
     element.appendChild(fabChild);
     await element.requestUpdate();
     expect(element.moreVert).to.exist;

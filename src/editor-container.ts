@@ -51,7 +51,7 @@ export class EditorContainer extends LitElement {
   @query('mwc-icon-button[icon="playlist_add"]') addIcon?: IconButton;
   @query('#menu') addMenu!: Menu;
   @query('#header') headerContainer!: HTMLElement;
-  @query('#more') moreVert?: IconButton;
+  @query('#morevert > mwc-icon-button') moreVert?: IconButton;
 
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
