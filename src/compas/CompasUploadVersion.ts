@@ -4,7 +4,7 @@ import {get, translate} from "lit-translate";
 import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 
 import {CompasExistsIn} from "./CompasExistsIn.js";
-import {ChangeSet, CompasSclDataService} from "../compas-services/CompasSclDataService.js";
+import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
 import {getOpenScdElement, getTypeFromDocName, reloadSclDocument} from "./foundation.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";

@@ -41,6 +41,7 @@ import './compas/CompasChangeSetRadiogroup.js';
 import './compas/CompasComment.js';
 import './compas/CompasLoading.js';
 import './compas/CompasSclTypeList.js';
+import './compas/CompasSession.js';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
 import { getTheme } from './themes.js';
@@ -52,6 +53,8 @@ import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
+
+import {renderCompasSessionDialogs} from "./compas/CompasSession.js";
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
@@ -121,7 +124,7 @@ export class OpenSCD extends Hosting(Setting(Wizarding(Waiting(Plugging(Editing(
   }
 
   render(): TemplateResult {
-    return html` ${super.render()} ${getTheme(this.settings.theme)} `;
+    return html` ${super.render()} ${getTheme(this.settings.theme)} ${renderCompasSessionDialogs(this.doc, this.docName)}`;
   }
 
   static styles = css`
