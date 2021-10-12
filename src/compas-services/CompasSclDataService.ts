@@ -105,14 +105,14 @@ export function CompasSclDataService() {
                <sds:CreateRequest xmlns:sds="${SDS_NAMESPACE}">
                    <sds:Name>${body.sclName}</sds:Name>
                    <sds:Comment>${body.comment}</sds:Comment>
-                   ${new XMLSerializer().serializeToString(body.doc.documentElement)}
+                   <sds:SclData><![CDATA[${new XMLSerializer().serializeToString(body.doc.documentElement)}]]></sds:SclData>
                </sds:CreateRequest>`
       }).catch(handleError)
         .then(handleResponse)
         .then(parseXml);
     },
 
-    updateSclDocument(type: string, id: string, body: UpdateRequestBody): Promise<string> {
+    updateSclDocument(type: string, id: string, body: UpdateRequestBody): Promise<Document> {
       const sclUrl = getCompasSettings().sclDataServiceUrl + '/scl/v1/' + type?.toUpperCase() + '/' + id;
       return fetch(sclUrl, {
         method: 'PUT',
@@ -123,10 +123,11 @@ export function CompasSclDataService() {
                <sds:UpdateRequest xmlns:sds="${SDS_NAMESPACE}">
                    <sds:ChangeSet>${body.changeSet}</sds:ChangeSet>
                    <sds:Comment>${body.comment}</sds:Comment>
-                   ${new XMLSerializer().serializeToString(body.doc.documentElement)}
+                   <sds:SclData><![CDATA[${new XMLSerializer().serializeToString(body.doc.documentElement)}]]></sds:SclData>
                </sds:UpdateRequest>`
       }).catch(handleError)
-        .then(handleResponse);
+        .then(handleResponse)
+        .then(parseXml);
     }
   }
 }

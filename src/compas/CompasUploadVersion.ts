@@ -4,9 +4,9 @@ import {get, translate} from "lit-translate";
 import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
 
 import {CompasExistsIn} from "./CompasExistsIn.js";
-import {ChangeSet, CompasSclDataService} from "../compas-services/CompasSclDataService.js";
+import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {getOpenScdElement, getTypeFromDocName, reloadSclDocument} from "./foundation.js";
+import {getOpenScdElement, getTypeFromDocName, updateDocumentInOpenSCD} from "./foundation.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";
 import {CompasCommentElement} from "./CompasComment.js";
 
@@ -47,9 +47,10 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
 
     await CompasSclDataService().updateSclDocument(docType.toUpperCase(), this.docId,
       {changeSet: changeSet!, comment: comment, doc: doc})
-      .then(async () => {
-        // Retrieve the document to fetch server-side updates.
-        await reloadSclDocument(docType, this.docId);
+      .then(response => {
+        const sclData = response.querySelectorAll("SclData").item(0).textContent;
+        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
+        updateDocumentInOpenSCD(sclDocument);
 
         const openScd = getOpenScdElement();
         openScd.dispatchEvent(

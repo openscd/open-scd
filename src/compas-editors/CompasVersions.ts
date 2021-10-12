@@ -153,9 +153,8 @@ function openScl(docName: string, docId: string, version: string) {
     CompasSclDataService().getSclDocumentVersion(type, docId, version)
       .then(response => {
         // Copy the SCL Result from the Response and create a new Document from it.
-        const sclElement = response.querySelectorAll("SCL").item(0);
-        const sclDocument = document.implementation.createDocument("", "", null);
-        sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+        const sclData = response.querySelectorAll("SclData").item(0).textContent;
+        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
 
         updateDocumentInOpenSCD(sclDocument);
 
