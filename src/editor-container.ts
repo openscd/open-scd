@@ -43,7 +43,7 @@ export class EditorContainer extends LitElement {
   highlighted = false;
   /** Whether the container does not have margins*/
   @property({ type: Boolean })
-  marginless = false;
+  nomargin = false;
 
   @internalProperty()
   get childTags(): SCLTag[] {
@@ -163,8 +163,8 @@ export class EditorContainer extends LitElement {
     return html`<section
       class="container ${this.colorTheme} ${this.highlighted
         ? 'highlighted'
-        : ''} ${this.contrasted ? 'contrasted' : ''} ${this.marginless
-        ? 'marginless'
+        : ''} ${this.contrasted ? 'contrasted' : ''} ${this.nomargin
+        ? 'nomargin'
         : ''}"
       tabindex="0"
     >
@@ -204,7 +204,7 @@ export class EditorContainer extends LitElement {
       background-color: var(--mdc-theme-on-primary);
     }
 
-    .marginless {
+    .nomargin {
       margin: 0px;
     }
 

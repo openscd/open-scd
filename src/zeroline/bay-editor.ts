@@ -71,7 +71,7 @@ export class BayEditor extends LitElement {
       .element=${this.element}
       colorTheme="primary"
       level="low"
-      marginless
+      nomargin
     >
       <abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button

@@ -6,7 +6,7 @@
 <editor-container
   colortheme="primary"
   level="low"
-  marginless=""
+  nomargin=""
 >
   <abbr
     slot="header"
@@ -70,7 +70,7 @@
 <editor-container
   colortheme="primary"
   level="low"
-  marginless=""
+  nomargin=""
 >
   <abbr
     slot="header"
