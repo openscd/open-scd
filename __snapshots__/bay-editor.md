@@ -6,7 +6,7 @@
 <editor-container
   colortheme="primary"
   header="COUPLING_BAY - Bay"
-  level="high"
+  level="low"
   marginless=""
 >
   <abbr
@@ -71,7 +71,7 @@
 <editor-container
   colortheme="primary"
   header="COUPLING_BAY - Bay"
-  level="high"
+  level="low"
   marginless=""
 >
   <abbr

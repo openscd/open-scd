@@ -79,7 +79,7 @@ export class BayEditor extends LitElement {
       .element=${this.element}
       header="${this.header}"
       colorTheme="primary"
-      level="high"
+      level="low"
       marginless
     >
       <abbr slot="header" title="${translate('lnode.tooltip')}">
