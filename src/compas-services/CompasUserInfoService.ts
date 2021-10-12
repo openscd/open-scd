@@ -14,6 +14,13 @@ export function CompasUserInfoService() {
         .catch(handleError)
         .then(handleResponse)
         .then(parseXml);
+    },
+
+    ping(): Promise<string> {
+      const pingUrl = getCompasSettings().sclDataServiceUrl + '/q/health/ready';
+      return fetch(pingUrl)
+        .catch(handleError)
+        .then(handleResponse);
     }
   }
 }

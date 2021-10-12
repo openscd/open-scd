@@ -12,7 +12,6 @@ export const officialPlugins = [
     icon: 'settings_ethernet',
     default: true,
     kind: 'editor',
-
   },
   {
     name: 'Templates',

@@ -6,6 +6,7 @@ import {OpenSCD} from "../open-scd.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
+import {setSessionTimeouts} from "./CompasSession.js";
 
 const FILE_EXTENSION_LENGTH = 3;
 
@@ -45,13 +46,21 @@ export function updateDocumentInOpenSCD(doc: Document): void {
   getOpenScdElement().dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
 }
 
-export async function showOptionalUserInfo(): Promise<void> {
+export async function retrieveUserInfo(): Promise<void> {
   await CompasUserInfoService().getCompasUserInfo()
     .then(response => {
       const name = response.querySelectorAll("Name").item(0)?.textContent;
-      if (name != null)
+      if (name != null) {
         getOpenScdElement().dispatchEvent(newUserInfoEvent(name));
+      }
+
+      const sessionWarning = response.querySelectorAll("SessionWarning").item(0)?.textContent??"15";
+      const sessionExpires = response.querySelectorAll("SessionExpires").item(0)?.textContent??"10";
+      setSessionTimeouts(parseInt(sessionWarning), parseInt(sessionExpires));
     })
-    .catch(createLogEvent);
+    .catch(reason => {
+      createLogEvent(reason);
+      setSessionTimeouts(10, 15);
+    });
 }
-showOptionalUserInfo();
+retrieveUserInfo();

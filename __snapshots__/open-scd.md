@@ -1203,6 +1203,10 @@
     Save
   </mwc-button>
 </mwc-dialog>
+<compas-session-expiring-dialog>
+</compas-session-expiring-dialog>
+<compas-session-expired-dialog>
+</compas-session-expired-dialog>
 
 ```
 
