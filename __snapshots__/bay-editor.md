@@ -4,7 +4,6 @@
 
 ```html
 <editor-container
-  colortheme="primary"
   level="low"
   nomargin=""
 >
@@ -68,7 +67,6 @@
 
 ```html
 <editor-container
-  colortheme="primary"
   level="low"
   nomargin=""
 >

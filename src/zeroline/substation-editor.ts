@@ -73,7 +73,6 @@ export class SubstationEditor extends LitElement {
     return html`
         <editor-container
           .element=${this.element}
-          colorTheme="primary"
           level="high"
           >
           ${this.renderIedContainer()}

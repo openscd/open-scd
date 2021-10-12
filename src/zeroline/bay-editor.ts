@@ -67,12 +67,7 @@ export class BayEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<editor-container
-      .element=${this.element}
-      colorTheme="primary"
-      level="low"
-      nomargin
-    >
+    return html`<editor-container .element=${this.element} level="low" nomargin>
       <abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"

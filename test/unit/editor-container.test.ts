@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import sinon, { expectation, SinonSpy } from 'sinon';
+import sinon, { SinonSpy } from 'sinon';
 
 import '../../src/editor-container.js';
 import { EditorContainer } from '../../src/editor-container.js';

@@ -89,8 +89,6 @@ export class VoltageLevelEditor extends LitElement {
     return html`<editor-container
       .element=${this.element}
       header="${this.header}"
-      colorTheme="primary"
-      level="mid"
       contrasted
     >
       <abbr slot="header" title="${translate('lnode.tooltip')}">

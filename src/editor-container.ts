@@ -34,7 +34,7 @@ export class EditorContainer extends LitElement {
   level: 'high' | 'mid' | 'low' = 'mid';
   /** Sets the focused header color */
   @property({ type: String })
-  colorTheme: 'primary' | 'secondary' = 'primary';
+  theme: 'primary' | 'secondary' = 'primary';
   /** Whether different background color shall be used */
   @property({ type: Boolean })
   contrasted = false;
@@ -65,6 +65,7 @@ export class EditorContainer extends LitElement {
   @query('#menu') addMenu!: Menu;
   @query('#header') headerContainer!: HTMLElement;
   @query('#morevert > mwc-icon-button') moreVert?: IconButton;
+  @query('.container') container!: HTMLElement;
 
   private openCreateWizard(tagName: string): void {
     const wizard = wizards[<SCLTag>tagName].create(this.element!);
@@ -161,7 +162,7 @@ export class EditorContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<section
-      class="container ${this.colorTheme} ${this.highlighted
+      class="container ${this.theme} ${this.highlighted
         ? 'highlighted'
         : ''} ${this.contrasted ? 'contrasted' : ''} ${this.nomargin
         ? 'nomargin'

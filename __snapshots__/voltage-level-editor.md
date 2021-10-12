@@ -4,11 +4,9 @@
 
 ```html
 <editor-container
-  colortheme="primary"
   contrasted=""
   header="E1 - Voltage Level
     (110.0 kV)"
-  level="mid"
 >
   <abbr
     slot="header"
@@ -64,11 +62,9 @@
 
 ```html
 <editor-container
-  colortheme="primary"
   contrasted=""
   header="E1 - Voltage Level
     (110.0 kV)"
-  level="mid"
 >
   <abbr
     slot="header"
