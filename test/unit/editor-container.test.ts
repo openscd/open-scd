@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import sinon, { SinonSpy } from 'sinon';
+import sinon, { expectation, SinonSpy } from 'sinon';
 
 import '../../src/editor-container.js';
 import { EditorContainer } from '../../src/editor-container.js';
@@ -60,12 +60,24 @@ describe('editor-container', () => {
     expect(element.addIcon).to.not.exist;
   });
 
-  describe('with existing addOptions', () => {
+  describe('with existing element definition', () => {
+    const substation = <Element>(
+      new DOMParser().parseFromString(
+        `<Substation name="subst"></Substation>`,
+        'application/xml'
+      ).documentElement
+    );
+
+    let wizardEvent: SinonSpy;
     beforeEach(async () => {
-      element.childTags = ['Substation', 'Text'];
+      element.element = substation;
       await element.updateComplete;
+
+      wizardEvent = sinon.spy();
+      window.addEventListener('wizard', wizardEvent);
     });
-    it('render add icon and add menu with existing addOptions', async () => {
+
+    it('render add icon and add menu', async () => {
       expect(element.addMenu).to.exist;
       expect(element.addIcon).to.exist;
     });
@@ -76,46 +88,16 @@ describe('editor-container', () => {
       await element.requestUpdate();
       expect(element.addMenu.open).to.be.true;
     });
-  });
 
-  describe('with missing add action', () => {
-    let wizardEvent: SinonSpy;
-    beforeEach(async () => {
-      element.childTags = ['Substation', 'Text'];
-      await element.updateComplete;
-
-      wizardEvent = sinon.spy();
-      window.addEventListener('wizard', wizardEvent);
+    it('renders only children with existing create wizard', () => {
+      expect(element.addMenu.querySelectorAll('mwc-list-item').length).to.equal(
+        2
+      );
     });
-    it('does not trigger wizard action', async () => {
-      element.addMenu.querySelector('mwc-list-item')?.click();
-      expect(wizardEvent).to.not.have.been.called;
-    });
-  });
 
-  describe('with existing add action', () => {
-    let wizardEvent: SinonSpy;
-    beforeEach(async () => {
-      element.childTags = ['Substation', 'Text'];
-      element.getChildCreateWizard = () => {
-        return [{ title: 'wizard' }];
-      };
-      await element.updateComplete;
-
-      wizardEvent = sinon.spy();
-      window.addEventListener('wizard', wizardEvent);
-    });
     it('does trigger wizard action with valid existing wizard', async () => {
       element.addMenu.querySelector('mwc-list-item')?.click();
       expect(wizardEvent).to.have.been.called;
-    });
-    it('does not trigger wizard action with undefined wizard', async () => {
-      element.getChildCreateWizard = () => {
-        return undefined;
-      };
-      await element.updateComplete;
-      element.addMenu.querySelector('mwc-list-item')?.click();
-      expect(wizardEvent).to.not.have.been.called;
     });
   });
 });

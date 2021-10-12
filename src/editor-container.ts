@@ -1,16 +1,20 @@
-import { IconButton } from '@material/mwc-icon-button';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Menu } from '@material/mwc-menu';
 import {
   css,
   customElement,
   html,
+  internalProperty,
   LitElement,
   property,
   query,
   TemplateResult,
 } from 'lit-element';
-import { newWizardEvent, Wizard } from './foundation.js';
+
+import { newWizardEvent, SCLTag, tags, Wizard } from './foundation.js';
+
+import { Menu } from '@material/mwc-menu';
+import { IconButton } from '@material/mwc-icon-button';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { emptyWizard, wizards } from './wizards/wizard-library.js';
 
 /**
  * A responsive container for nested elements with header and
@@ -18,12 +22,11 @@ import { newWizardEvent, Wizard } from './foundation.js';
  */
 @customElement('editor-container')
 export class EditorContainer extends LitElement {
-  /**  */
+  /** The visualized `Element`. */
+  @property()
+  element: Element | null = null;
   @property({ type: String })
   header = '';
-  /** Selectable child tagName */
-  @property({ type: Array })
-  childTags: string[] = [];
   /** Sets the header type h1, h2 or h3 */
   @property({ type: String })
   level: 'high' | 'mid' | 'low' = 'mid';
@@ -39,19 +42,25 @@ export class EditorContainer extends LitElement {
   /** Whether the container does not have margins*/
   @property({ type: Boolean })
   marginless = false;
-  /**
-   * Function that allows to connect child tagName with Wizard.
-   * E.g. with help of wizard-library
-   */
-  @property()
-  getChildCreateWizard: (tagName: string) => Wizard | undefined = () => {
-    return undefined;
-  };
+  @internalProperty()
+  get childTags(): SCLTag[] {
+    if (!this.element) return [];
+
+    return tags[<SCLTag>this.element.tagName].children.filter(
+      child => wizards[child].create !== emptyWizard
+    );
+  }
 
   @query('mwc-icon-button[icon="playlist_add"]') addIcon?: IconButton;
   @query('#menu') addMenu!: Menu;
   @query('#header') headerContainer!: HTMLElement;
   @query('#morevert > mwc-icon-button') moreVert?: IconButton;
+
+  private openCreateWizard(tagName: string): void {
+    const wizard = wizards[<SCLTag>tagName].create(this.element!);
+
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
@@ -91,8 +100,7 @@ export class EditorContainer extends LitElement {
               menuCorner="END"
               @selected=${(e: Event) => {
                 const tagName = (<ListItem>(<Menu>e.target).selected).value;
-                const wizard = this.getChildCreateWizard(tagName);
-                if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+                this.openCreateWizard(tagName);
               }}
               >${this.renderAddButtons()}
             </mwc-menu>`

@@ -8,13 +8,7 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import {
-  startMove,
-  styles,
-  cloneSubstationElement,
-  getExistingCreateOptions,
-  getCreateWizard,
-} from './foundation.js';
+import { startMove, styles, cloneSubstationElement } from './foundation.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
@@ -82,11 +76,10 @@ export class BayEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<editor-container
+      .element=${this.element}
       header="${this.header}"
-      .childTags=${getExistingCreateOptions(this.element)}
       colorTheme="primary"
       level="high"
-      .getChildCreateWizard=${getCreateWizard(this.element)}
       marginless
     >
       <abbr slot="header" title="${translate('lnode.tooltip')}">

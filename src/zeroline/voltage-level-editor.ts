@@ -12,8 +12,6 @@ import {
   selectors,
   startMove,
   cloneSubstationElement,
-  getExistingCreateOptions,
-  getCreateWizard,
   styles,
 } from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
@@ -89,12 +87,11 @@ export class VoltageLevelEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<editor-container
+      .element=${this.element}
       header="${this.header}"
-      .childTags=${getExistingCreateOptions(this.element)}
       colorTheme="primary"
       level="mid"
       contrasted
-      .getChildCreateWizard=${getCreateWizard(this.element)}
     >
       <abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button

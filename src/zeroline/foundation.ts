@@ -13,22 +13,6 @@ import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 
-export function getCreateWizard(
-  element: Element
-): (tagName: string) => Wizard | undefined {
-  return (tagName: string) => {
-    if (!tagName || !(tagName as SCLTag)) return;
-
-    return wizards[<SCLTag>tagName].create(element);
-  };
-}
-
-export function getExistingCreateOptions(element: Element): string[] {
-  const allChildren = tags[<SCLTag>element.tagName].children ?? [];
-
-  return allChildren.filter(child => wizards[child].create !== emptyWizard);
-}
-
 function containsReference(element: Element, iedName: string): boolean {
   return Array.from(element.getElementsByTagName('LNode'))
     .filter(isPublic)

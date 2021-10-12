@@ -7,17 +7,16 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
-import { newActionEvent, newWizardEvent, SCLTag, tags } from '../foundation.js';
-import { wizards } from '../wizards/wizard-library.js';
 
+import { newActionEvent, newWizardEvent } from '../foundation.js';
 import {
   cloneSubstationElement,
-  getCreateWizard,
-  getExistingCreateOptions,
   selectors,
   startMove,
   styles,
 } from './foundation.js';
+
+import { wizards } from '../wizards/wizard-library.js';
 
 import './voltage-level-editor.js';
 import '../editor-container.js';
@@ -82,11 +81,10 @@ export class SubstationEditor extends LitElement {
   render(): TemplateResult {
     return html`
         <editor-container
+          .element=${this.element}
           header="${this.header}"
-          .childTags=${getExistingCreateOptions(this.element)}
           colorTheme="primary"
           level="high"
-          .getChildCreateWizard=${getCreateWizard(this.element)}
           >
           ${this.renderIedContainer()}
           <abbr slot="header" title="${translate('lnode.tooltip')}">
