@@ -5,7 +5,6 @@
 ```html
 <editor-container
   colortheme="primary"
-  header="COUPLING_BAY - Bay"
   level="low"
   marginless=""
 >
@@ -70,7 +69,6 @@
 ```html
 <editor-container
   colortheme="primary"
-  header="COUPLING_BAY - Bay"
   level="low"
   marginless=""
 >

@@ -9,12 +9,13 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { newWizardEvent, SCLTag, tags, Wizard } from './foundation.js';
+import { newWizardEvent, SCLTag, tags } from './foundation.js';
+
+import { emptyWizard, wizards } from './wizards/wizard-library.js';
 
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { emptyWizard, wizards } from './wizards/wizard-library.js';
 
 /**
  * A responsive container for nested elements with header and
@@ -25,6 +26,7 @@ export class EditorContainer extends LitElement {
   /** The visualized `Element`. */
   @property()
   element: Element | null = null;
+  /**Overwrites default header text*/
   @property({ type: String })
   header = '';
   /** Sets the header type h1, h2 or h3 */
@@ -42,6 +44,7 @@ export class EditorContainer extends LitElement {
   /** Whether the container does not have margins*/
   @property({ type: Boolean })
   marginless = false;
+
   @internalProperty()
   get childTags(): SCLTag[] {
     if (!this.element) return [];
@@ -49,6 +52,13 @@ export class EditorContainer extends LitElement {
     return tags[<SCLTag>this.element.tagName].children.filter(
       child => wizards[child].create !== emptyWizard
     );
+  }
+  @internalProperty()
+  get defaultHeader(): string {
+    const name = this.element?.getAttribute('name') ?? '';
+    const desc = this.element?.getAttribute('desc');
+
+    return `${name}${desc ? ` - ${desc}` : ''}`;
   }
 
   @query('mwc-icon-button[icon="playlist_add"]') addIcon?: IconButton;
@@ -119,15 +129,24 @@ export class EditorContainer extends LitElement {
   }
 
   private renderLevel1(): TemplateResult {
-    return html`<h1>${this.header} ${this.renderHeaderBody()}</h1>`;
+    return html`<h1>
+      ${this.header !== '' ? this.header : this.defaultHeader}
+      ${this.renderHeaderBody()}
+    </h1>`;
   }
 
   private renderLevel2(): TemplateResult {
-    return html`<h2>${this.header} ${this.renderHeaderBody()}</h2>`;
+    return html`<h2>
+      ${this.header !== '' ? this.header : this.defaultHeader}
+      ${this.renderHeaderBody()}
+    </h2>`;
   }
 
   private renderLevel3(): TemplateResult {
-    return html`<h3>${this.header} ${this.renderHeaderBody()}</h3>`;
+    return html`<h3>
+      ${this.header !== '' ? this.header : this.defaultHeader}
+      ${this.renderHeaderBody()}
+    </h3>`;
   }
 
   private renderHeader(): TemplateResult {

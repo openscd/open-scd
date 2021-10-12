@@ -28,14 +28,6 @@ export class BayEditor extends LitElement {
   @property({ type: Boolean })
   readonly = false;
 
-  @property()
-  get header(): string {
-    const name = this.element.getAttribute('name') ?? '';
-    const desc = this.element.getAttribute('desc');
-
-    return `${name} ${desc === null ? '' : '-'} ${desc}`;
-  }
-
   @property({ attribute: false })
   getAttachedIeds?: (element: Element) => Element[] = () => {
     return [];
@@ -77,7 +69,6 @@ export class BayEditor extends LitElement {
   render(): TemplateResult {
     return html`<editor-container
       .element=${this.element}
-      header="${this.header}"
       colorTheme="primary"
       level="low"
       marginless

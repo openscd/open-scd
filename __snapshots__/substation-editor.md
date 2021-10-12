@@ -5,7 +5,6 @@
 ```html
 <editor-container
   colortheme="primary"
-  header="AA1 - Substation"
   level="high"
 >
   <abbr
@@ -58,7 +57,6 @@
 ```html
 <editor-container
   colortheme="primary"
-  header="AA1 - Substation"
   level="high"
 >
   <abbr

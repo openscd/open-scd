@@ -30,15 +30,6 @@ export class SubstationEditor extends LitElement {
   @property({ type: Boolean })
   readonly = false;
 
-  /** [[element | `element.name`]] */
-  @property({ type: String })
-  get header(): string {
-    const name = this.element.getAttribute('name') ?? '';
-    const desc = this.element.getAttribute('desc');
-
-    return `${name} ${desc === null ? '' : '-'} ${desc}`;
-  }
-
   @property({ attribute: false })
   getAttachedIeds?: (element: Element) => Element[] = () => {
     return [];
@@ -82,7 +73,6 @@ export class SubstationEditor extends LitElement {
     return html`
         <editor-container
           .element=${this.element}
-          header="${this.header}"
           colorTheme="primary"
           level="high"
           >

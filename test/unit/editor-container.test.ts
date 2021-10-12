@@ -6,6 +6,12 @@ import { EditorContainer } from '../../src/editor-container.js';
 
 describe('editor-container', () => {
   let element: EditorContainer;
+  const substation = <Element>(
+    new DOMParser().parseFromString(
+      `<Substation name="name" desc="desc"></Substation>`,
+      'application/xml'
+    ).documentElement
+  );
   beforeEach(async () => {
     element = await fixture(
       html`<editor-container header="test header"></editor-container>`
@@ -55,7 +61,28 @@ describe('editor-container', () => {
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
   });
 
-  it('does not render add icon and add menu with missing addOptions', () => {
+  it('does not render header text with missing element and header text', () => {
+    expect(element.defaultHeader).to.equal('');
+  });
+
+  it('header property overwrites default header text', async () => {
+    element.element = substation;
+    element.requestUpdate();
+    expect(
+      element.headerContainer.querySelector('h2')?.innerText.trim()
+    ).to.equal('test header');
+  });
+
+  it('renders default header text with missing header property', async () => {
+    element.header = '';
+    element.element = substation;
+    await element.requestUpdate();
+    expect(
+      element.headerContainer.querySelector('h2')?.innerText.trim()
+    ).to.equal('name - desc');
+  });
+
+  it('does not render add icon and add menu with missing element', () => {
     expect(element.addMenu).to.not.exist;
     expect(element.addIcon).to.not.exist;
   });
