@@ -1,7 +1,7 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get, translate} from "lit-translate";
 
-import {newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
+import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
@@ -39,9 +39,14 @@ export class CompasScl extends LitElement {
 
     if (response instanceof Document) {
       // Copy the SCL Result from the Response and create a new Document from it.
-      const sclElement = response.querySelectorAll("SCL").item(0);
-      const sclDocument = document.implementation.createDocument("", "", null);
-      sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
+      const sclData = response.querySelectorAll("SclData").item(0).textContent;
+      const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
+
+      const openScd = getOpenScdElement();
+      openScd.dispatchEvent(
+        newLogEvent({
+          kind: 'reset'
+        }));
 
       updateDocumentInOpenSCD(sclDocument);
     }

@@ -10,7 +10,7 @@ import {CompasSclTypeRadiogroup} from "./CompasSclTypeRadiogroup.js";
 import {CompasCommentElement} from "./CompasComment.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {getOpenScdElement, getTypeFromDocName, reloadSclDocument, stripExtensionFromName} from "./foundation.js";
+import {getOpenScdElement, getTypeFromDocName, stripExtensionFromName, updateDocumentInOpenSCD} from "./foundation.js";
 import './CompasSclTypeRadiogroup.js';
 
 @customElement('compas-save-to')
@@ -47,11 +47,11 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
     const docType = this.getSclTypeRadioGroup().getSelectedValue() ?? '';
 
     await CompasSclDataService().addSclDocument(docType, {sclName: name, comment: comment, doc: doc})
-      .then(async xmlResponse => {
-        const id = Array.from(xmlResponse.querySelectorAll('*|Id') ?? [])[0]
+      .then(response => {
+        const sclData = response.querySelectorAll("SclData").item(0).textContent;
+        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
 
-        // Retrieve the document to fetch server-side updates.
-        await reloadSclDocument(docType, id.textContent ?? '');
+        updateDocumentInOpenSCD(sclDocument);
 
         const openScd = getOpenScdElement();
         openScd.dispatchEvent(
@@ -72,9 +72,10 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
     const docType = getTypeFromDocName(docName);
 
     await CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, comment: comment, doc: doc})
-      .then(async () => {
-        // Retrieve the document to fetch server-side updates.
-        await reloadSclDocument(docType, docId);
+      .then(response => {
+        const sclData = response.querySelectorAll("SclData").item(0).textContent;
+        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
+        updateDocumentInOpenSCD(sclDocument);
 
         const openScd = getOpenScdElement();
         openScd.dispatchEvent(

@@ -32,7 +32,7 @@ export function CompasCimMappingService() {
                   return `
                     <cms:CimData>
                         <cms:Name>${cimData.name}</cms:Name>
-                        ${new XMLSerializer().serializeToString(cimData.doc.documentElement)}
+                        <cms:RdfData><![CDATA[${new XMLSerializer().serializeToString(cimData.doc.documentElement)}]]></cms:RdfData>
                     </cms:CimData>`;
                 }) }
                </cms:MapRequest>`
