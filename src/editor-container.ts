@@ -8,6 +8,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 
 import { newWizardEvent, SCLTag, tags } from './foundation.js';
 
@@ -16,6 +17,14 @@ import { emptyWizard, wizards } from './wizards/wizard-library.js';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+
+function childTags(element: Element | null | undefined): SCLTag[] {
+  if (!element) return [];
+
+  return tags[<SCLTag>element.tagName].children.filter(
+    child => wizards[child].create !== emptyWizard
+  );
+}
 
 /**
  * A responsive container for nested elements with header and
@@ -33,8 +42,8 @@ export class EditorContainer extends LitElement {
   @property({ type: String })
   level: 'high' | 'mid' | 'low' = 'mid';
   /** Sets the focused header color */
-  @property({ type: String })
-  theme: 'primary' | 'secondary' = 'primary';
+  @property({ type: Boolean })
+  secondary = false;
   /** Whether different background color shall be used */
   @property({ type: Boolean })
   contrasted = false;
@@ -45,14 +54,6 @@ export class EditorContainer extends LitElement {
   @property({ type: Boolean })
   nomargin = false;
 
-  @internalProperty()
-  get childTags(): SCLTag[] {
-    if (!this.element) return [];
-
-    return tags[<SCLTag>this.element.tagName].children.filter(
-      child => wizards[child].create !== emptyWizard
-    );
-  }
   @internalProperty()
   get defaultHeader(): string {
     const name = this.element?.getAttribute('name') ?? '';
@@ -79,11 +80,10 @@ export class EditorContainer extends LitElement {
   }
 
   private renderAddButtons(): TemplateResult[] {
-    return this.childTags.map(
+    return childTags(this.element).map(
       child =>
-        html`<mwc-list-item graphic="icon" value="${child}"
-          ><span>${child}</span
-          ><mwc-icon slot="graphic">playlist_add</mwc-icon></mwc-list-item
+        html`<mwc-list-item value="${child}"
+          ><span>${child}</span></mwc-list-item
         >`
     );
   }
@@ -100,7 +100,7 @@ export class EditorContainer extends LitElement {
   }
 
   private renderHeaderBody(): TemplateResult {
-    return html`${this.childTags.length
+    return html`${childTags(this.element).length
         ? html`<mwc-icon-button
               icon="playlist_add"
               @click=${() => (this.addMenu.open = true)}
@@ -122,11 +122,12 @@ export class EditorContainer extends LitElement {
             <slot name="morevert"></slot>
           </div>`
         : html``}<style>
-        ${this.childTags.length
+        ${childTags(this.element).length
           ? html`::slotted(mwc-fab) {right: 48px;}`
           : html`::slotted(mwc-fab) {right: 0px;}`}
-          ${this.styleFabButtonTransform()}</style
-      ><slot name="header"></slot>`;
+          ${this.styleFabButtonTransform()}
+      </style>
+      <nav><slot name="header"></slot></nav>`;
   }
 
   private renderLevel1(): TemplateResult {
@@ -162,11 +163,13 @@ export class EditorContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<section
-      class="container ${this.theme} ${this.highlighted
-        ? 'highlighted'
-        : ''} ${this.contrasted ? 'contrasted' : ''} ${this.nomargin
-        ? 'nomargin'
-        : ''}"
+      class="${classMap({
+        container: true,
+        secondary: this.secondary,
+        highlighted: this.highlighted,
+        contrasted: this.contrasted,
+        nomargin: this.nomargin,
+      })}"
       tabindex="0"
     >
       ${this.renderHeader()}
@@ -186,11 +189,8 @@ export class EditorContainer extends LitElement {
       margin: 8px 12px 16px;
       padding: 0.02px; /*Dirty hack to force outline around content with margin*/
       outline-width: 0px;
-      opacity: 1;
-    }
-
-    .container.primary {
       outline-color: var(--mdc-theme-primary);
+      opacity: 1;
     }
 
     .container.secondary {
@@ -226,9 +226,9 @@ export class EditorContainer extends LitElement {
       transition: background-color 200ms linear;
     }
 
-    .container.primary:focus-within h1,
-    .container.primary:focus-within h2,
-    .container.primary:focus-within h3 {
+    .container:focus-within h1,
+    .container:focus-within h2,
+    .container:focus-within h3 {
       background-color: var(--mdc-theme-primary);
     }
 
@@ -259,6 +259,12 @@ export class EditorContainer extends LitElement {
     h1 > ::slotted(abbr),
     h2 > ::slotted(abbr),
     h3 > ::slotted(abbr) {
+      float: right;
+    }
+
+    h1 > nav,
+    h2 > nav,
+    h3 > nav {
       float: right;
     }
 
