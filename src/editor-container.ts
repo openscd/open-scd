@@ -38,9 +38,9 @@ export class EditorContainer extends LitElement {
   /**Overwrites default header text*/
   @property({ type: String })
   header = '';
-  /** Sets the header type h1, h2 or h3 */
-  @property({ type: String })
-  level: 'high' | 'mid' | 'low' = 'mid';
+  /** Sets the header type h1, h2, h3, h4, h5 or h6 */
+  @property({ type: Number })
+  level: 1 | 2 | 3 | 4 | 5 | 6 = 1;
   /** Sets the focused header color */
   @property({ type: Boolean })
   secondary = false;
@@ -77,6 +77,18 @@ export class EditorContainer extends LitElement {
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
     if (this.addMenu) this.addMenu.anchor = this.headerContainer;
+    const parentEditorContainer =
+      <EditorContainer>(
+        (<ShadowRoot>this.parentNode).host?.closest('editor-container')
+      ) ?? null;
+
+    if (!parentEditorContainer) return;
+
+    this.level = <1 | 2 | 3 | 4 | 5 | 6>(
+      Math.min(parentEditorContainer.level + 1, 6)
+    );
+
+    this.contrasted = !parentEditorContainer.contrasted;
   }
 
   private renderAddButtons(): TemplateResult[] {
@@ -100,7 +112,8 @@ export class EditorContainer extends LitElement {
   }
 
   private renderHeaderBody(): TemplateResult {
-    return html`${childTags(this.element).length
+    return html`${this.header !== '' ? this.header : this.defaultHeader}
+      ${childTags(this.element).length
         ? html`<mwc-icon-button
               icon="playlist_add"
               @click=${() => (this.addMenu.open = true)}
@@ -130,35 +143,30 @@ export class EditorContainer extends LitElement {
       <nav><slot name="header"></slot></nav>`;
   }
 
-  private renderLevel1(): TemplateResult {
-    return html`<h1>
-      ${this.header !== '' ? this.header : this.defaultHeader}
-      ${this.renderHeaderBody()}
-    </h1>`;
-  }
-
-  private renderLevel2(): TemplateResult {
-    return html`<h2>
-      ${this.header !== '' ? this.header : this.defaultHeader}
-      ${this.renderHeaderBody()}
-    </h2>`;
-  }
-
-  private renderLevel3(): TemplateResult {
-    return html`<h3>
-      ${this.header !== '' ? this.header : this.defaultHeader}
-      ${this.renderHeaderBody()}
-    </h3>`;
-  }
-
   private renderHeader(): TemplateResult {
-    return html`<div id="header">
-      ${this.level === 'high'
-        ? this.renderLevel1()
-        : this.level === 'mid'
-        ? this.renderLevel2()
-        : this.renderLevel3()}
-    </div>`;
+    let header = html``;
+
+    switch (this.level) {
+      case 1:
+        header = html`<h1>${this.renderHeaderBody()}</h1>`;
+        break;
+      case 2:
+        header = html`<h2>${this.renderHeaderBody()}</h2>`;
+        break;
+      case 3:
+        header = html`<h3>${this.renderHeaderBody()}</h3>`;
+        break;
+      case 4:
+        header = html`<h4>${this.renderHeaderBody()}</h4>`;
+        break;
+      case 5:
+        header = html`<h5>${this.renderHeaderBody()}</h5>`;
+        break;
+      case 6:
+        header = html`<h6>${this.renderHeaderBody()}</h6>`;
+    }
+
+    return html`<div id="header">${header}</div>`;
   }
 
   render(): TemplateResult {

@@ -3,10 +3,7 @@
 #### `looks like the latest snapshot`
 
 ```html
-<editor-container
-  level="low"
-  nomargin=""
->
+<editor-container nomargin="">
   <abbr
     slot="header"
     title="[lnode.tooltip]"
@@ -66,10 +63,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<editor-container
-  level="low"
-  nomargin=""
->
+<editor-container nomargin="">
   <abbr
     slot="header"
     title="[lnode.tooltip]"

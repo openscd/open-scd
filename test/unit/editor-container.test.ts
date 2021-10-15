@@ -3,6 +3,7 @@ import sinon, { SinonSpy } from 'sinon';
 
 import '../../src/editor-container.js';
 import { EditorContainer } from '../../src/editor-container.js';
+import { BayEditor } from '../../src/zeroline/bay-editor.js';
 
 describe('editor-container', () => {
   let element: EditorContainer;
@@ -31,34 +32,79 @@ describe('editor-container', () => {
     expect(element.moreVert).to.exist;
   });
 
-  it('renders the header as <h2> per default', () => {
-    expect(element.shadowRoot?.querySelector('h2')).to.exist;
-    expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
+  it('renders the header as <h1> per default', () => {
+    expect(element.shadowRoot?.querySelector('h1')).to.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
-  it('renders the header as <h1> with level high', async () => {
-    element.level = 'high';
+  it('renders the header as <h1> with level 1', async () => {
+    element.level = 1;
     await element.updateComplete;
     expect(element.shadowRoot?.querySelector('h1')).to.exist;
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
-  it('renders the header as <h2> with level mid', async () => {
-    element.level = 'mid';
+  it('renders the header as <h2> with level 2', async () => {
+    element.level = 2;
     await element.updateComplete;
     expect(element.shadowRoot?.querySelector('h2')).to.exist;
     expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
   });
 
-  it('renders the header as <h3> with level low', async () => {
-    element.level = 'low';
+  it('renders the header as <h3> with level 3', async () => {
+    element.level = 3;
     await element.updateComplete;
     expect(element.shadowRoot?.querySelector('h3')).to.exist;
     expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
     expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
+  });
+
+  it('renders the header as <h4> with level 4', async () => {
+    element.level = 4;
+    await element.updateComplete;
+    expect(element.shadowRoot?.querySelector('h4')).to.exist;
+    expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
+  });
+
+  it('renders the header as <h5> with level 5', async () => {
+    element.level = 5;
+    await element.updateComplete;
+    expect(element.shadowRoot?.querySelector('h5')).to.exist;
+    expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
+  });
+
+  it('renders the header as <h6> with level 6', async () => {
+    element.level = 6;
+    await element.updateComplete;
+    expect(element.shadowRoot?.querySelector('h6')).to.exist;
+    expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
   });
 
   it('does not render header text with missing element and header text', () => {
@@ -69,7 +115,7 @@ describe('editor-container', () => {
     element.element = substation;
     element.requestUpdate();
     expect(
-      element.headerContainer.querySelector('h2')?.innerText.trim()
+      element.headerContainer.querySelector('h1')?.innerText.trim()
     ).to.equal('test header');
   });
 
@@ -78,7 +124,7 @@ describe('editor-container', () => {
     element.element = substation;
     await element.requestUpdate();
     expect(
-      element.headerContainer.querySelector('h2')?.innerText.trim()
+      element.headerContainer.querySelector('h1')?.innerText.trim()
     ).to.equal('name - desc');
   });
 
@@ -125,6 +171,74 @@ describe('editor-container', () => {
     it('does trigger wizard action with valid existing wizard', async () => {
       element.addMenu.querySelector('mwc-list-item')?.click();
       expect(wizardEvent).to.have.been.called;
+    });
+  });
+
+  describe('with existing parent editor-container', () => {
+    let parent: EditorContainer;
+    const bay = <Element>(
+      new DOMParser().parseFromString(
+        `<Bay name="name" desc="desc"></Bay>`,
+        'application/xml'
+      ).documentElement
+    );
+    beforeEach(async () => {
+      parent = await fixture(
+        `<editor-container header="parent header"><bay-editor .element=${bay} slot="container"></bay-editor></editor-container>`
+      );
+
+      element = parent
+        .querySelector('bay-editor')!
+        .shadowRoot!.querySelector<EditorContainer>('editor-container')!;
+      await element.updateComplete;
+    });
+
+    it('negated the default contrasted property of the parent', () => {
+      expect(element.contrasted).to.be.true;
+    });
+
+    it('only negates on first update', async () => {
+      parent.contrasted = true;
+      await parent.requestUpdate();
+
+      expect(element.contrasted).to.be.true;
+    });
+
+    it('increments the default level property of the parent', () => {
+      expect(element.level).to.equal(2);
+    });
+
+    it('only increments on first update', async () => {
+      parent.level = 3;
+      await parent.requestUpdate();
+
+      expect(element.level).to.equal(2);
+    });
+
+    it('negated the set contrasted property of the parent', async () => {
+      parent = await fixture(
+        `<editor-container contrasted header="parent header"><bay-editor .element=${bay} slot="container"></bay-editor></editor-container>`
+      );
+
+      element = parent
+        .querySelector('bay-editor')!
+        .shadowRoot!.querySelector<EditorContainer>('editor-container')!;
+      await element.updateComplete;
+
+      expect(element.contrasted).to.be.false;
+    });
+
+    it('makes sure maximum level is 6', async () => {
+      parent = await fixture(
+        `<editor-container level="6" header="parent header"><bay-editor .element=${bay} slot="container"></bay-editor></editor-container>`
+      );
+
+      element = parent
+        .querySelector('bay-editor')!
+        .shadowRoot!.querySelector<EditorContainer>('editor-container')!;
+      await element.updateComplete;
+
+      expect(element.level).to.equal(6);
     });
   });
 });

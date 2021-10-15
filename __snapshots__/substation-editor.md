@@ -3,7 +3,7 @@
 #### `looks like the latest snapshot`
 
 ```html
-<editor-container level="high">
+<editor-container>
   <abbr
     slot="header"
     title="[lnode.tooltip]"
@@ -52,7 +52,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<editor-container level="high">
+<editor-container>
   <abbr
     slot="header"
     title="[lnode.tooltip]"

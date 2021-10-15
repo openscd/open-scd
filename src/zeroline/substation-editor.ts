@@ -73,7 +73,6 @@ export class SubstationEditor extends LitElement {
     return html`
         <editor-container
           .element=${this.element}
-          level="high"
           >
           ${this.renderIedContainer()}
           <abbr slot="header" title="${translate('lnode.tooltip')}">
