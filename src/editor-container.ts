@@ -88,14 +88,14 @@ export class EditorContainer extends LitElement {
     );
   }
 
-  private styleFabButtonTransform(): TemplateResult[] {
+  private styleFabButtonTransform(): string[] {
     let transform = 0;
     return Array.from(this.children).map((child, i) => {
       if (child.tagName === 'MWC-FAB')
-        return html`#morevert:focus-within >
+        return `#morevert:focus-within >
         ::slotted(mwc-fab:nth-child(${i + 1})) { transform: translate(0,
         ${++transform * 48}px); }`;
-      return html``;
+      return ``;
     });
   }
 
