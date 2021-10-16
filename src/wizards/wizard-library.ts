@@ -14,7 +14,7 @@ import {
 
 type SclElementWizard = (element: Element) => Wizard | undefined;
 
-function emptyWizard(): Wizard | undefined {
+export function emptyWizard(): Wizard | undefined {
   return;
 }
 

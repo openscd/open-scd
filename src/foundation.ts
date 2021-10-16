@@ -2545,9 +2545,10 @@ export function getVersion(element: Element): string {
 }
 
 export function getChildElementsByTagName(
-  element: Element,
-  tag: string
+  element: Element | null | undefined,
+  tag: string | null | undefined
 ): Element[] {
+  if (!element || !tag) return [];
   return Array.from(element.children).filter(
     element => element.tagName === tag
   );
