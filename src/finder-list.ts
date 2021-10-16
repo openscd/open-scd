@@ -84,6 +84,14 @@ export class FinderList extends LitElement {
   @property({ attribute: false })
   loaded: Promise<void> = Promise.resolve();
 
+  getTitle(path: string[]): string {
+    return path.join('/');
+  }
+
+  getDisplayString(entry: string): string {
+    return entry;
+  }
+
   @query('div')
   container!: Element;
 
@@ -116,7 +124,7 @@ export class FinderList extends LitElement {
   }
 
   async select(event: SingleSelectedEvent, path: Path): Promise<void> {
-    const clicked = (<ListItem>(<List>event.target).selected).text;
+    const clicked = (<ListItem>(<List>event.target).selected).value;
 
     if (this.multi) this.multiSelect(event, path, clicked);
     else this.singleSelect(event, path, clicked);
@@ -130,15 +138,16 @@ export class FinderList extends LitElement {
   renderDirectory(path: Path, entries: string[]): TemplateResult {
     return html`<filtered-list
       @selected=${(e: SingleSelectedEvent) => this.select(e, path)}
-      .searchFieldLabel="${path.join('/')}"
+      .searchFieldLabel="${this.getTitle(path)}"
     >
       ${entries.map(
         entry =>
           html`<mwc-list-item
+            value="${entry}"
             ?activated=${this.getPaths(path.length)
               .map(p => JSON.stringify(p))
               .includes(JSON.stringify(path.concat(entry)))}
-            >${entry}</mwc-list-item
+            >${this.getDisplayString(entry)}</mwc-list-item
           >`
       )}
     </filtered-list>`;
