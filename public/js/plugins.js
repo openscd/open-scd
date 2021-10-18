@@ -7,6 +7,14 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'SLD',
+    src: '/src/editors/Sld.js',
+    icon: 'edit',
+    default: true,
+    kind: 'editor',
+
+  },
+  {
     name: 'Communication',
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
