@@ -429,10 +429,10 @@ export const en = {
       confirmButton: 'Confirm',
       compareButton: 'Compare versions',
       selectTwoVersionsTitle: 'Select two versions?',
-      selectTwoVersionsMessage: 'Select maximum two versions to compare with each other. Currently {{size}} versions is/are selected.',
+      selectTwoVersionsMessage: 'Select maximum two versions to compare with each other. Currently selected: {{size}}.',
       compareCurrentButton: 'Compare version (current)',
       selectOneVersionsTitle: 'Select one version?',
-      selectOneVersionsMessage: 'Select maximum one version to compare the current project against. Currently {{size}} versions is/are selected.',
+      selectOneVersionsMessage: 'Select maximum one version to compare the current project against. Currently selected: {{size}}.',
     },
     compare: {
       title: 'Compare version {{leftVersion}} with version {{rightVersion}}',

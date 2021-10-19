@@ -55,10 +55,10 @@ export default class CompasVersionsPlugin extends LitElement {
 
   private getSelectedVersions(): Array<string> {
     const selectedVersions: Array<string> = [];
-    this.shadowRoot!.querySelectorAll('mwc-checkbox')
-      .forEach(checkbox => {
-        if (checkbox.checked) {
-          selectedVersions.push(checkbox.value);
+    this.shadowRoot!.querySelectorAll('mwc-check-list-item')
+      .forEach(checkListItem => {
+        if (checkListItem.selected) {
+          selectedVersions.push(checkListItem.value);
         }
       });
     return selectedVersions;
@@ -148,7 +148,7 @@ export default class CompasVersionsPlugin extends LitElement {
       <div id="containerCompasVersions">
         <section tabindex="0">
           <h1>${translate('compas.versions.title')}</h1>
-          <mwc-list>
+          <mwc-list multi>
             ${this.scls.map( (item, index, items) => {
                 let element = getElementByName(item, SDS_NAMESPACE, "Name");
                 if (element === null) {
@@ -157,22 +157,22 @@ export default class CompasVersionsPlugin extends LitElement {
                 const name = element!.textContent ?? '';
                 const version = getElementByName(item, SDS_NAMESPACE, "Version")!.textContent ?? '';
                 if (items.length - 1 === index) {
-                  return html`<mwc-list-item tabindex="0"
-                                             graphic="control">
+                  return html`<mwc-check-list-item value="${version}"
+                                                   tabindex="0"
+                                                   graphic="icon">
                                 ${name} (${version})
                                 <span slot="graphic">
-                                  <mwc-checkbox value="${version}"></mwc-checkbox>
                                   <mwc-icon @click=${() => {
                                               this.confirmRestoreVersionCompas(version);
                                             }}>restore</mwc-icon>
                                 </span>
-                              </mwc-list-item>`
+                              </mwc-check-list-item>`
                 }
-                return html`<mwc-list-item tabindex="0"
-                                           graphic="control">
+                return html`<mwc-check-list-item value="${version}"
+                                                 tabindex="0"
+                                                 graphic="icon">
                                 ${name} (${version})
                                 <span slot="graphic">
-                                  <mwc-checkbox value="${version}"></mwc-checkbox>
                                   <mwc-icon @click=${() => {
                                               this.confirmRestoreVersionCompas(version);
                                             }}>restore</mwc-icon>
@@ -180,7 +180,7 @@ export default class CompasVersionsPlugin extends LitElement {
                                               this.confirmDeleteVersionCompas(version);
                                             }}>delete</mwc-icon>
                                 </span>
-                            </mwc-list-item>`
+                            </mwc-check-list-item>`
             })}
           </mwc-list>
         </section>
@@ -212,21 +212,30 @@ export default class CompasVersionsPlugin extends LitElement {
       border-bottom: none;
     }
 
-    [mwc-list-item] {
-      --mdc-list-item-graphic-size: 60px;
-      --mdc-list-item-graphic-margin: 40px;
-    }
-
     #containerCompasVersions {
       padding: 8px 12px 16px;
       box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
     }
 
     @media (max-width: 387px) {
       #containerCompasVersions {
         grid-template-columns: repeat(auto-fit, minmax(196px, auto));
       }
+    }
+
+    mwc-check-list-item {
+      padding-left: 60px;
+    }
+
+    mwc-check-list-item > span {
+      width: 90px;
+      text-align: left;
+    }
+
+    mwc-fab {
+      float: right;
+      margin: 5px 5px 5px 5px
     }
   `;
 }

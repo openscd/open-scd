@@ -59,27 +59,35 @@
 ####   `looks like the latest snapshot`
 
 ```html
+<h1>
+  <nav>
+    <abbr title="[compas.versions.addVersionButton]">
+      <mwc-icon-button icon="playlist_add">
+      </mwc-icon-button>
+    </abbr>
+  </nav>
+  <nav>
+    <abbr title="[compas.versions.deleteProjectButton]">
+      <mwc-icon-button icon="delete_forever">
+      </mwc-icon-button>
+    </abbr>
+  </nav>
+</h1>
 <div id="containerCompasVersions">
   <section tabindex="0">
     <h1>
       [compas.versions.title]
-      <mwc-icon-button icon="note_add">
-      </mwc-icon-button>
-      <mwc-icon-button icon="delete_forever">
-      </mwc-icon-button>
     </h1>
-    <mwc-list>
-      <mwc-list-item
+    <mwc-list multi="">
+      <mwc-check-list-item
         aria-disabled="false"
-        graphic="control"
+        graphic="icon"
         mwc-list-item=""
         tabindex="0"
+        value="1.0.0"
       >
         demo_station1 (1.0.0)
-        <span
-          slot="graphic"
-          style="width: 90px"
-        >
+        <span slot="graphic">
           <mwc-icon>
             restore
           </mwc-icon>
@@ -87,18 +95,16 @@
             delete
           </mwc-icon>
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </mwc-check-list-item>
+      <mwc-check-list-item
         aria-disabled="false"
-        graphic="control"
+        graphic="icon"
         mwc-list-item=""
         tabindex="-1"
+        value="2.0.0"
       >
         demo_station1 (2.0.0)
-        <span
-          slot="graphic"
-          style="width: 90px"
-        >
+        <span slot="graphic">
           <mwc-icon>
             restore
           </mwc-icon>
@@ -106,25 +112,35 @@
             delete
           </mwc-icon>
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </mwc-check-list-item>
+      <mwc-check-list-item
         aria-disabled="false"
-        graphic="control"
+        graphic="icon"
         mwc-list-item=""
         tabindex="-1"
+        value="2.1.0"
       >
         3b572a56-51cc-479b-97fd-e404ebf9ae67 (2.1.0)
-        <span
-          slot="graphic"
-          style="width: 90px"
-        >
+        <span slot="graphic">
           <mwc-icon>
             restore
           </mwc-icon>
         </span>
-      </mwc-list-item>
+      </mwc-check-list-item>
     </mwc-list>
   </section>
+  <mwc-fab
+    extended=""
+    icon="compare"
+    label="[compas.versions.compareButton]"
+  >
+  </mwc-fab>
+  <mwc-fab
+    extended=""
+    icon="compare"
+    label="[compas.versions.compareCurrentButton]"
+  >
+  </mwc-fab>
 </div>
 <wizard-dialog>
 </wizard-dialog>
