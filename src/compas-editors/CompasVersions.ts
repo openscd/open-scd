@@ -8,6 +8,10 @@ import {getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.
 import {getElementByName, getOpenScdElement, styles} from './foundation.js';
 import {addVersionToCompasWizard} from "../compas/CompasUploadVersion.js";
 import {compareWizard} from "../compas/CompasCompareDialog.js";
+import {MultiSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
+
+// Save the selection for the current document.
+let selectedVersionsOnCompasVersionsEditor: Set<number> = new Set();
 
 /** An editor [[`plugin`]] for selecting the `Substation` section. */
 export default class CompasVersionsPlugin extends LitElement {
@@ -20,6 +24,18 @@ export default class CompasVersionsPlugin extends LitElement {
 
   @property()
   scls!: Element[];
+
+  constructor() {
+    super();
+
+    // Add event to get a notification when a new document is opened.
+    getOpenScdElement().addEventListener('open-doc', this.resetSelection);
+  }
+
+  resetSelection() {
+    // When a new document is loaded the selection will be reset.
+    selectedVersionsOnCompasVersionsEditor = new Set();
+  }
 
   firstUpdated(): void {
     if (!this.docId) {
@@ -55,11 +71,9 @@ export default class CompasVersionsPlugin extends LitElement {
 
   private getSelectedVersions(): Array<string> {
     const selectedVersions: Array<string> = [];
-    this.shadowRoot!.querySelectorAll('mwc-check-list-item')
-      .forEach(checkListItem => {
-        if (checkListItem.selected) {
-          selectedVersions.push(checkListItem.value);
-        }
+    const listItems = this.shadowRoot!.querySelectorAll('mwc-check-list-item');
+    selectedVersionsOnCompasVersionsEditor.forEach(index => {
+        selectedVersions.push(listItems.item(index).value);
       });
     return selectedVersions;
   }
@@ -148,7 +162,10 @@ export default class CompasVersionsPlugin extends LitElement {
       <div id="containerCompasVersions">
         <section tabindex="0">
           <h1>${translate('compas.versions.title')}</h1>
-          <mwc-list multi>
+          <mwc-list multi
+                    @selected=${(evt: MultiSelectedEvent) => {
+                      selectedVersionsOnCompasVersionsEditor = evt.detail.index;
+                    }}>
             ${this.scls.map( (item, index, items) => {
                 let element = getElementByName(item, SDS_NAMESPACE, "Name");
                 if (element === null) {
@@ -159,7 +176,8 @@ export default class CompasVersionsPlugin extends LitElement {
                 if (items.length - 1 === index) {
                   return html`<mwc-check-list-item value="${version}"
                                                    tabindex="0"
-                                                   graphic="icon">
+                                                   graphic="icon"
+                                                   .selected=${selectedVersionsOnCompasVersionsEditor.has(index)}>
                                 ${name} (${version})
                                 <span slot="graphic">
                                   <mwc-icon @click=${() => {
@@ -170,7 +188,8 @@ export default class CompasVersionsPlugin extends LitElement {
                 }
                 return html`<mwc-check-list-item value="${version}"
                                                  tabindex="0"
-                                                 graphic="icon">
+                                                 graphic="icon"
+                                                 .selected=${selectedVersionsOnCompasVersionsEditor.has(index)}>
                                 ${name} (${version})
                                 <span slot="graphic">
                                   <mwc-icon @click=${() => {
