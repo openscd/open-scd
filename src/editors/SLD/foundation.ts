@@ -1,3 +1,26 @@
+export type GraphNode = {
+  element: Element;
+  mass: number;
+  r: number;
+  xVelocity: number;
+  yVelocity: number;
+  xAcceleration: number;
+  yAcceleration: number;
+  y: number;
+  x: number;
+};
+
+export type GraphEdge = {
+  node1: Element;
+  node2: Element;
+  length: number;
+  stiffness: number;
+  xStart?: number;
+  yStart?: number;
+  xEnd?: number;
+  yEnd?: number;
+};
+
 function getTerminals(connectivityNode: Element): Element[] {
   const substation = connectivityNode.closest('Substation');
   if (!substation) return [];
@@ -41,7 +64,12 @@ function getDesitantion(terminal: Element): Element | null {
 
   const terminals = getTerminals(connNode);
 
-  if (terminals.length === 2) return terminals[terminals.indexOf(terminal)];
+  if (terminals.length === 2) {
+    const index = terminals.indexOf(terminal) === 0 ? 1 : 0;
+    const destinationTerminal = terminals[index];
+    const parent = destinationTerminal.parentElement;
+    return parent ? parent : null;
+  }
 
   if (terminals.length > 2) return connNode;
 
@@ -57,34 +85,101 @@ export function getEdges(root: Element): GraphEdge[] {
       const destination = getDesitantion(terminal);
       const source = terminal.parentElement;
       if (destination && source)
-        edges.push({ node1: source, node2: destination });
+        edges.push({
+          node1: source,
+          node2: destination,
+          length: 2.0,
+          stiffness: 20.0,
+        });
     });
 
   return edges;
 }
 
+function getxPosition(element: Element): number | undefined {
+  const x = element.getAttributeNS(
+    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    'x'
+  );
+
+  const xNum = x ? parseInt(x) : undefined;
+  if (!xNum) return xNum;
+
+  const parent = element.parentElement;
+  if (!parent) return xNum;
+
+  const parentPos = getxPosition(parent);
+  return parentPos ? xNum + parentPos : xNum;
+}
+
+function getyPosition(element: Element): number | undefined {
+  const y = element.getAttributeNS(
+    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    'y'
+  );
+
+  const yNum = y ? parseInt(y) : undefined;
+  if (!yNum) return yNum;
+
+  const parent = element.parentElement;
+  if (!parent) return yNum;
+
+  const parentPos = getyPosition(parent);
+  return parentPos ? yNum + parentPos : yNum;
+}
+
+function testElement(element: Element): boolean {
+  return (
+    element.tagName === 'Bay' ||
+    (element.tagName === 'ConductingEquipment' &&
+      element.getAttribute('name')!.includes('QB'))
+  );
+}
+
+function initNode(
+  element: Element,
+  initX: number,
+  initY: number,
+  initMass: number,
+  r: number
+): GraphNode {
+  const xPos = testElement(element) ? getxPosition(element) : undefined;
+  const yPos = testElement(element) ? getyPosition(element) : undefined;
+
+  const mass = xPos && yPos ? Infinity : initMass;
+  const x = xPos && yPos ? xPos : initX;
+  const y = xPos && yPos ? yPos : initY;
+
+  return {
+    element,
+    mass,
+    r,
+    xVelocity: 0,
+    yVelocity: 0,
+    xAcceleration: 0,
+    yAcceleration: 0,
+    x,
+    y,
+  };
+}
+
 export function getNodes(root: Element): GraphNode[] {
   const nodes: GraphNode[] = [];
 
-  let x = 10;
-  let y = 10;
+  let initX = 0;
+  let initY = 0;
+
   Array.from(root.getElementsByTagName('ConductingEquipment')).forEach(item =>
-    nodes.push({ element: item, fixed: false, x: x++, y: y })
+    nodes.push(initNode(item, initX++, initY++, 1.0, 2.0))
   );
 
-  x = 10;
-  y = 13;
   Array.from(root.getElementsByTagName('Bay'))
     .filter(
       bay =>
         bay.children.length === 1 &&
         bay.children[0].tagName === 'ConnectivityNode'
     )
-    .forEach(item =>
-      nodes.push({ element: item, fixed: false, x: x + 10, y: y++ })
-    );
-
-  x = 10;
+    .forEach(item => nodes.push(initNode(item, initX++, initY++, 1.0, 2.0)));
 
   Array.from(root.getElementsByTagName('ConnectivityNode'))
     .filter(
@@ -92,100 +187,9 @@ export function getNodes(root: Element): GraphNode[] {
         connectivityNode.getAttribute('name') !== 'grounded' &&
         numberConnections(connectivityNode) > 2
     )
-    .forEach(item =>
-      nodes.push({ element: item, fixed: false, x: x++, y: 20 })
-    );
+    .forEach(item => nodes.push(initNode(item, initX++, initY++, 0.1, 0.01)));
 
   return nodes;
-}
-
-export type GraphNode = {
-  element: Element;
-  fixed: boolean;
-  y: number;
-  x: number;
-};
-
-export type GraphEdge = {
-  node1: Element;
-  node2: Element;
-  xStart?: number;
-  yStart?: number;
-  xEnd?: number;
-  yEnd?: number;
-};
-
-function getDistance(n1: GraphNode, n2: GraphNode): number {
-  const dx = n2.x - n1.x;
-  const dy = n2.y - n1.y;
-  return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-}
-
-function calculateForce(
-  n1: GraphNode,
-  n2: GraphNode,
-  isConnected: boolean
-): number[] {
-  const distance = getDistance(n1, n2);
-  const xe = (n2.x - n1.x) / distance;
-  const ye = (n2.y - n1.y) / distance;
-
-  // Calculate forces based on Colomb
-  const r = 0.1; //
-  const xForceColomb = (r / Math.pow(distance, 2)) * xe;
-  const yForceColomb = (r / Math.pow(distance, 2)) * ye;
-
-  if (!isConnected) return [xForceColomb, yForceColomb];
-
-  // Calculate forces from Hook for connected two nodes
-  const s = 0.2; //
-  const l = 0.1; //
-  const xForceHook = s * (distance - l) * xe;
-  const yForceHook = s * (distance - l) * ye;
-
-  return [xForceColomb + xForceHook, yForceColomb + yForceHook];
-}
-
-export function doSpringEmbedded(nodes: GraphNode[], edges: GraphEdge[]): void {
-  const changerate = 0.001;
-
-  const xForces: number[] = [];
-  const yForces: number[] = [];
-
-  let iteration = 0;
-
-  while (iteration < 10000) {
-    // reset force arrays
-    xForces.length = 0;
-    yForces.length = 0;
-
-    for (const n1 of nodes) {
-      let sumxforce = 0;
-      let sumyforce = 0;
-      for (const n2 of nodes) {
-        const isConnected = edges.some(
-          edge =>
-            (edge.node1 === n1.element && edge.node2 === n2.element) ||
-            (edge.node1 === n2.element && edge.node2 === n1.element)
-        );
-        let [xforce, yforce] = [0, 0];
-        if (n1 !== n2) [xforce, yforce] = calculateForce(n1, n2, isConnected);
-
-        sumxforce = sumxforce + xforce;
-        sumyforce = sumyforce + yforce;
-      }
-
-      xForces.push(sumxforce);
-      yForces.push(sumyforce);
-    }
-
-    for (const n of nodes) {
-      n.x = n.x + changerate * xForces[nodes.indexOf(n)];
-      n.y = n.y + changerate * yForces[nodes.indexOf(n)];
-    }
-
-    iteration++;
-  }
 }
 
 export function updateEdges(nodes: GraphNode[], edges: GraphEdge[]): void {
