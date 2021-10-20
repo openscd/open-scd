@@ -132,13 +132,13 @@
   <mwc-fab
     extended=""
     icon="compare"
-    label="[compas.versions.compareButton]"
+    label="[compas.versions.compareCurrentButton]"
   >
   </mwc-fab>
   <mwc-fab
     extended=""
     icon="compare"
-    label="[compas.versions.compareCurrentButton]"
+    label="[compas.versions.compareButton]"
   >
   </mwc-fab>
 </div>

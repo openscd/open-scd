@@ -186,12 +186,12 @@ export default class CompasVersionsPlugin extends LitElement {
         </section>
         <mwc-fab extended
                  icon="compare"
-                 label="${translate('compas.versions.compareButton')}"
-                 @click=${this.compareVersions}></mwc-fab>
-        <mwc-fab extended
-                 icon="compare"
                  label="${translate('compas.versions.compareCurrentButton')}"
                  @click=${this.compareCurrentVersion}></mwc-fab>
+        <mwc-fab extended
+                 icon="compare"
+                 label="${translate('compas.versions.compareButton')}"
+                 @click=${this.compareVersions}></mwc-fab>
       </div>`
   }
 
