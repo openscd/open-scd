@@ -51,9 +51,12 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
         const sclData = response.querySelectorAll("SclData").item(0).textContent;
         const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
 
-        updateDocumentInOpenSCD(sclDocument);
-
         const openScd = getOpenScdElement();
+        openScd.dispatchEvent(
+          newLogEvent({
+            kind: 'reset'
+          }));
+        updateDocumentInOpenSCD(sclDocument);
         openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
@@ -75,9 +78,14 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
       .then(response => {
         const sclData = response.querySelectorAll("SclData").item(0).textContent;
         const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
-        updateDocumentInOpenSCD(sclDocument);
 
         const openScd = getOpenScdElement();
+        openScd.dispatchEvent(
+          newLogEvent({
+            kind: 'reset'
+          }));
+        updateDocumentInOpenSCD(sclDocument);
+
         openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',

@@ -117,15 +117,15 @@ describe('compas-versions-plugin', () => {
     });
 
     it('has 3 item entries', () => {
-      expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item'))
+      expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-check-list-item'))
         .to.have.length(3);
     });
 
     it('first entry has correct buttons', () => {
-      expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item').length)
+      expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-check-list-item').length)
         .to.be.greaterThan(1);
       // Retrieve the first item after checking that there are items.
-      const item = element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item')[0];
+      const item = element.shadowRoot!.querySelectorAll('mwc-list > mwc-check-list-item')[0];
       // There should be 2 buttons, first the restore, second the delete.
       expect(item.querySelectorAll('span > mwc-icon')).to.have.length(2);
       expect(item.querySelectorAll('span > mwc-icon')[0].textContent).to.be.equal('restore');
@@ -133,10 +133,10 @@ describe('compas-versions-plugin', () => {
     });
 
     it('last entry has one buttons', () => {
-      expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item'))
+      expect(element.shadowRoot!.querySelectorAll('mwc-list > mwc-check-list-item'))
         .to.have.length(3);
       // Retrieve the last item after checking that there are 3 items.
-      const item = element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item')[2];
+      const item = element.shadowRoot!.querySelectorAll('mwc-list > mwc-check-list-item')[2];
       // There should be 1 buttons, the restore button.
       expect(item.querySelectorAll('span > mwc-icon')).to.have.length(1);
       expect(item.querySelectorAll('span > mwc-icon')[0].textContent).to.be.equal('restore');
