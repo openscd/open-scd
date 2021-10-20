@@ -29,7 +29,10 @@ export default class CompasVersionsPlugin extends LitElement {
     super();
 
     // Add event to get a notification when a new document is opened.
-    getOpenScdElement().addEventListener('open-doc', this.resetSelection);
+    const openSCD = getOpenScdElement();
+    if (openSCD) {
+      openSCD.addEventListener('open-doc', this.resetSelection);
+    }
   }
 
   resetSelection() {
@@ -81,14 +84,13 @@ export default class CompasVersionsPlugin extends LitElement {
   async compareCurrentVersion(): Promise<void> {
     const selectedVersions = this.getSelectedVersions();
     if (selectedVersions.length === 1) {
-      const rightVersion = selectedVersions[0];
-
-      const leftScl = this.doc.documentElement;
-      const rightScl = await this.getVersion(rightVersion);
+      const oldVersion = selectedVersions[0];
+      const oldScl = await this.getVersion(oldVersion);
+      const newScl = this.doc.documentElement;
 
       this.dispatchEvent(newWizardEvent(
-        compareWizard(leftScl, rightScl,
-          {title: get('compas.compare.title', {leftVersion: 'current', rightVersion: rightVersion})})));
+        compareWizard(oldScl, newScl,
+          {title: get('compas.compare.title', {oldVersion: oldVersion, newVersion: 'current'})})));
     } else {
       this.dispatchEvent(newWizardEvent(
         showMessageWizard(get("compas.versions.selectOneVersionsTitle"),
@@ -99,15 +101,15 @@ export default class CompasVersionsPlugin extends LitElement {
   async compareVersions(): Promise<void> {
     const selectedVersions = this.getSelectedVersions();
     if (selectedVersions.length === 2) {
-      const leftVersion = selectedVersions[0];
-      const rightVersion = selectedVersions[1];
+      const oldVersion = selectedVersions[0];
+      const newVersion = selectedVersions[1];
 
-      const leftScl = await this.getVersion(leftVersion);
-      const rightScl = await this.getVersion(rightVersion);
+      const oldScl = await this.getVersion(oldVersion);
+      const newScl = await this.getVersion(newVersion);
 
       this.dispatchEvent(newWizardEvent(
-        compareWizard(leftScl, rightScl,
-          {title: get('compas.compare.title', {leftVersion: leftVersion, rightVersion: rightVersion})})));
+        compareWizard(oldScl, newScl,
+          {title: get('compas.compare.title', {oldVersion: oldVersion, newVersion: newVersion})})));
     } else {
       this.dispatchEvent(newWizardEvent(
         showMessageWizard(get("compas.versions.selectTwoVersionsTitle"),

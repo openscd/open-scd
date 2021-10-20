@@ -8,7 +8,6 @@ import {
   isEqual,
   isSame,
   newWizardEvent,
-  SimpleAction,
   Wizard,
   WizardActor
 } from "../foundation.js";
@@ -19,13 +18,13 @@ import {ListItem} from "@material/mwc-list/mwc-list-item";
 interface MergeOptions {
   title?: string;
   selected?: (diff: Diff<Element | string>) => boolean;
-  auto?: (sink: Element, source: Element) => boolean;
+  auto?: (oldValue: Element, newValue: Element) => boolean;
 }
 
 export type Diff<T> =
-  | { ours: T; theirs: null }
-  | { ours: null; theirs: T }
-  | { ours: T; theirs: T };
+  | { oldValue: T; newValue: null }
+  | { oldValue: null; newValue: T }
+  | { oldValue: T; newValue: T };
 
 function describe(element: Element): string {
   const id = identity(element);
@@ -36,8 +35,8 @@ function describe(element: Element): string {
 function compareWizardAction(
   attrDiffs: [string, Diff<string>][],
   childDiffs: Diff<Element>[],
-  sink: Element,
-  source: Element,
+  oldValue: Element,
+  newValue: Element,
   options?: MergeOptions
 ): WizardActor {
   return (_, wizard: Element): EditorAction[] => {
@@ -49,11 +48,11 @@ function compareWizardAction(
       .map(item => childDiffs[item.value as unknown as number]);
     if (selectedChildDiffs.length) {
       for (const diff of selectedChildDiffs)
-        if (diff.ours && diff.theirs) {
+        if (diff.oldValue && diff.newValue) {
           acted = true;
           wizard.dispatchEvent(
             newWizardEvent(
-              compareWizard(diff.ours, diff.theirs, {
+              compareWizard(diff.oldValue, diff.newValue, {
                 ...options,
                 title: undefined,
               })
@@ -70,9 +69,9 @@ function compareWizardAction(
       {
         actions: [],
         title: get('compas.compare.elementTitle', {
-          sink: describe(sink),
-          source: describe(source),
-          tag: sink.tagName,
+          oldValue: describe(oldValue),
+          newValue: describe(newValue),
+          tag: oldValue.tagName,
         }),
       },
     ];
@@ -80,65 +79,65 @@ function compareWizardAction(
 }
 
 export function compareWizard(
-  sink: Element,
-  source: Element,
+  oldElement: Element,
+  newElement: Element,
   options?: MergeOptions
 ): Wizard {
   const attrDiffs: [string, Diff<string>][] = [];
-  const ourText = sink.textContent ?? '';
-  const theirText = source.textContent ?? '';
+  const oldText = oldElement.textContent ?? '';
+  const newText = newElement.textContent ?? '';
 
-  if (sink.childElementCount === 0 &&
-    source.childElementCount === 0 &&
-    theirText !== ourText
+  if (oldElement.childElementCount === 0 &&
+    newElement.childElementCount === 0 &&
+    newText !== oldText
   ) {
-    attrDiffs.push(['value', {ours: ourText, theirs: theirText}]);
+    attrDiffs.push(['value', {oldValue: oldText, newValue: newText}]);
   }
 
-  const attributeNames = new Set(source.getAttributeNames().concat(sink.getAttributeNames()));
+  const attributeNames = new Set(newElement.getAttributeNames().concat(oldElement.getAttributeNames()));
 
   for (const name of attributeNames)
-    if (source.getAttribute(name) !== sink.getAttribute(name))
+    if (newElement.getAttribute(name) !== oldElement.getAttribute(name))
       attrDiffs.push([
         name,
         <Diff<string>>{
-          theirs: source.getAttribute(name),
-          ours: sink.getAttribute(name),
+          newValue: newElement.getAttribute(name),
+          oldValue: oldElement.getAttribute(name),
         },
       ]);
 
   const childDiffs: Diff<Element>[] = [];
-  const ourChildren = Array.from(sink.children);
-  const theirChildren = Array.from(source.children);
+  const ourChildren = Array.from(oldElement.children);
+  const theirChildren = Array.from(newElement.children);
 
-  theirChildren.forEach(theirs => {
+  theirChildren.forEach(newValue => {
     const twinIndex = ourChildren.findIndex(ourChild =>
-      isSame(theirs, ourChild)
+      isSame(newValue, ourChild)
     );
-    const ours = twinIndex > -1 ? ourChildren[twinIndex] : null;
+    const oldValue = twinIndex > -1 ? ourChildren[twinIndex] : null;
 
-    if (ours) ourChildren.splice(twinIndex, 1);
-    if (ours && isEqual(theirs, ours)) return;
+    if (oldValue) ourChildren.splice(twinIndex, 1);
+    if (oldValue && isEqual(newValue, oldValue)) return;
 
-    if (!ours || !isEqual(theirs, ours)) childDiffs.push({ theirs, ours });
+    if (!oldValue || !isEqual(newValue, oldValue)) childDiffs.push({ newValue, oldValue });
   });
 
-  ourChildren.forEach(ours => childDiffs.push({ theirs: null, ours }));
+  ourChildren.forEach(oldValue => childDiffs.push({ newValue: null, oldValue }));
 
   return [
     {
       title:
         options?.title ??
         get('compas.compare.elementTitle', {
-          sink: describe(sink),
-          source: describe(source),
-          tag: sink.tagName,
+          oldValue: describe(oldElement),
+          newValue: describe(newElement),
+          tag: oldElement.tagName,
         }),
       primary: {
         label: get('compas.compare.primaryButton'),
         icon: 'compare',
-        action: compareWizardAction(attrDiffs, childDiffs, sink, source, options),
-        auto: options?.auto?.(sink, source) ?? false,
+        action: compareWizardAction(attrDiffs, childDiffs, oldElement, newElement, options),
+        auto: options?.auto?.(oldElement, newElement) ?? false,
       },
       content: [
         html`
@@ -151,12 +150,12 @@ export function compareWizard(
                                     left
                                     hasMeta>
                       <span>${name}</span>
-                      <span slot="secondary">${diff.ours ?? ''}
-                        ${diff.ours && diff.theirs ? html`&cularr;` : ' '}
-                        ${diff.theirs ?? ''}</span>
+                      <span slot="secondary">${diff.oldValue ?? ''}
+                        ${diff.oldValue && diff.newValue ? html`&cularr;` : ' '}
+                        ${diff.newValue ?? ''}</span>
                       <mwc-icon slot="meta">
-                        ${diff.ours
-                          ? diff.theirs
+                        ${diff.oldValue
+                          ? diff.newValue
                             ? 'edit'
                             : 'delete'
                           : 'add'}</mwc-icon>
@@ -171,7 +170,7 @@ export function compareWizard(
                 childDiffs,
                 e => e,
                 (diff, index) => {
-                  if (diff.ours && diff.theirs) {
+                  if (diff.oldValue && diff.newValue) {
                     return html`
                       <mwc-check-list-item value=${index}
                                            class="child"
@@ -180,14 +179,14 @@ export function compareWizard(
                                            hasMeta
                                            .selected=${options?.selected?.(diff) ?? false}
                                            style="--mdc-checkbox-checked-color: var(--mdc-theme-
-                                                      ${diff.ours
-                                                        ? diff.theirs
+                                                      ${diff.oldValue
+                                                        ? diff.newValue
                                                           ? 'secondary'
                                                           : 'error'
                                                         : 'primary'});">
-                        <span>${diff.ours?.tagName ?? diff.theirs?.tagName}</span>
+                        <span>${diff.oldValue?.tagName ?? diff.newValue?.tagName}</span>
                         <span slot="secondary">
-                          ${describe(diff.ours)}&cularr;${describe(diff.theirs)}
+                          ${describe(diff.oldValue)}&cularr;${describe(diff.newValue)}
                         </span>
                         <mwc-icon slot="meta">compare</mwc-icon>
                       </mwc-check-list-item>`
@@ -196,12 +195,12 @@ export function compareWizard(
                     <mwc-list-item twoline
                                    left
                                    hasMeta>
-                      <span>${diff.ours?.tagName ?? diff.theirs?.tagName}</span>
+                      <span>${diff.oldValue?.tagName ?? diff.newValue?.tagName}</span>
                       <span slot="secondary">
-                        ${diff.ours ? describe(diff.ours) : describe(diff.theirs)}
+                        ${diff.oldValue ? describe(diff.oldValue) : describe(diff.newValue)}
                       </span>
                       <mwc-icon slot="meta">
-                        ${diff.ours ? 'delete' : 'add'}
+                        ${diff.oldValue ? 'delete' : 'add'}
                       </mwc-icon>
                     </mwc-list-item>`
                 }

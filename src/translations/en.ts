@@ -435,8 +435,8 @@ export const en = {
       selectOneVersionsMessage: 'Select maximum one version to compare the current project against. Currently selected: {{size}}.',
     },
     compare: {
-      title: 'Compare version {{leftVersion}} with version {{rightVersion}}',
-      elementTitle: 'Compare {{sink}} with {{source}} ({{tag}})',
+      title: 'Compare version {{oldVersion}} with version {{newVersion}}',
+      elementTitle: 'Compare {{oldValue}} with {{newValue}} ({{tag}})',
       primaryButton: 'Show details',
       children: 'Child elements',
     },
