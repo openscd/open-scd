@@ -361,9 +361,13 @@ export const de: Translations = {
   code: {
     log: 'Element im XML Editor angepasst:  {{id}}',
   },
+  userinfo: {
+    loggedInAs: '???'
+  },
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',
+  delete: 'Löschen',
   edit: 'Bearbeiten',
   move: 'Verschieben',
   create: 'Erstellen',
@@ -380,4 +384,65 @@ export const de: Translations = {
   connect: 'Verbinden',
   disconnect: 'Trennen',
   next: 'Weiter',
+
+  compas: {
+    loading: '???',
+    notExists: '???',
+    comment: '???',
+    error: {
+      type: '???',
+      server: '???',
+      serverDetails: '{{type}}: {{message}}',
+    },
+    changeset: {
+      major: '???',
+      minor: '???',
+      patch: '???',
+    },
+    open: {
+      listSclTypes: '???',
+      noSclTypes: '???',
+      listScls: '??? ({{ type }})',
+      noScls: '???',
+    },
+    saveTo: {
+      title: '???',
+      addSuccess: '???',
+      updateSuccess: '???',
+    },
+    uploadVersion: {
+      title: '???',
+      selectButton: '???...',
+      filename: '???',
+      updateSuccess: '???',
+    },
+    versions: {
+      title: '???',
+      noScls: "???",
+      confirmRestoreTitle: "???",
+      confirmRestore: "??? {{version}}?",
+      restoreVersionSuccess: '??? {{version}}',
+      confirmDeleteTitle: '???',
+      confirmDelete: '???',
+      deleteSuccess: '???',
+      confirmDeleteVersionTitle: '???',
+      confirmDeleteVersion: '??? {{version}}?',
+      deleteVersionSuccess: '??? {{version}}',
+      confirmButton: "???",
+    },
+    settings: {
+      name: 'CoMPAS Einstellungen',
+      sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
+      cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
+    },
+    session: {
+      headingExpiring: '???',
+      explainExpiring: '???',
+      continue: '???',
+      headingExpired: '???',
+      explainExpiredWithProject: '???',
+      explainExpiredWithoutProject: '???',
+      saveProject: '???',
+    }
+  }
 };

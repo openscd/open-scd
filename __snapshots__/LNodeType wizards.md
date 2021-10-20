@@ -7,20 +7,20 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[lnodetype.wizard.title.edit]"
+  heading="Edit LNodeType"
   open=""
 >
   <div id="wizard-content">
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[remove]"
+      label="Remove"
       trailingicon=""
     >
     </mwc-button>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -30,14 +30,14 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[scl.lnClass]"
+      helper="Logical Node Class"
       label="lnClass"
       pattern="[A-Z]{4,4}"
       required=""
@@ -45,7 +45,7 @@
     </wizard-textfield>
     <mwc-button
       icon="playlist_add"
-      label="[scl.DO]"
+      label="Data object"
       slot="graphic"
       trailingicon=""
     >
@@ -125,7 +125,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -133,7 +133,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -149,7 +149,7 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[lnodetype.wizard.title.add]"
+  heading="Add LNodeType"
   open=""
 >
   <div id="wizard-content">
@@ -3435,7 +3435,7 @@
       </mwc-list-item>
     </mwc-select>
     <wizard-textfield
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -3445,7 +3445,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -3454,7 +3454,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -3462,7 +3462,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[next]..."
+    label="Next..."
     slot="primaryAction"
     trailingicon=""
   >
@@ -3478,7 +3478,7 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[lnodetype.wizard.title.select]"
+  heading="Select Data Objects"
   open=""
 >
   <div id="wizard-content">
@@ -3755,7 +3755,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -3763,7 +3763,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -3779,20 +3779,20 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[do.wizard.title.edit]"
+  heading="Edit DO"
   open=""
 >
   <div id="wizard-content">
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[remove]"
+      label="Remove"
       trailingicon=""
     >
     </mwc-button>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       pattern="[A-Z][0-9,A-Z,a-z]*"
       required=""
@@ -3801,7 +3801,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -3809,7 +3809,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
       required=""
     >
@@ -3953,7 +3953,7 @@
     </mwc-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.accessControl]"
+      helper="Access control"
       label="accessControl"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -3961,7 +3961,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.transient]"
+      helper="Transient data"
       label="transient"
     >
       <mwc-list-item
@@ -3995,7 +3995,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -4003,7 +4003,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
@@ -4019,13 +4019,13 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[do.wizard.title.add]"
+  heading="Add DO"
   open=""
 >
   <div id="wizard-content">
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.name]"
+      helper="Name"
       label="name"
       pattern="[A-Z][0-9,A-Z,a-z]*"
       required=""
@@ -4034,7 +4034,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -4042,7 +4042,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.type]"
+      helper="Type"
       label="type"
       required=""
     >
@@ -4184,7 +4184,7 @@
     </mwc-select>
     <wizard-textfield
       disabled=""
-      helper="[scl.accessControl]"
+      helper="Access control"
       label="accessControl"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -4192,7 +4192,7 @@
     </wizard-textfield>
     <mwc-select
       fixedmenuposition=""
-      helper="[scl.transient]"
+      helper="Transient data"
       label="transient"
     >
       <mwc-list-item
@@ -4226,7 +4226,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -4234,7 +4234,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >

@@ -356,6 +356,23 @@ export function newOpenDocEvent(
   });
 }
 
+/** Represents user information from a backend. */
+export interface UserInfoDetail {
+  name: string;
+}
+export type UserInfoEvent = CustomEvent<UserInfoDetail>;
+export function newUserInfoEvent(
+  name: string,
+  eventInitDict?: CustomEventInit<Partial<ValidateDetail>>
+): UserInfoEvent {
+  return new CustomEvent<UserInfoDetail>('userinfo', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { name, ...eventInitDict?.detail },
+  });
+}
+
 /** @returns a reference to `element` with segments delimited by '/'. */
 // TODO(c-dinkel): replace with identity (FIXME)
 export function referencePath(element: Element): string {
@@ -2559,6 +2576,7 @@ declare global {
     ['pending-state']: PendingStateEvent;
     ['editor-action']: EditorActionEvent<EditorAction>;
     ['open-doc']: OpenDocEvent;
+    ['userinfo']: UserInfoEvent;
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
     ['log']: LogEvent;

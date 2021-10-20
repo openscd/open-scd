@@ -15,4 +15,5 @@ module.exports = {
   ],
   skipWaiting: true,
   inlineWorkboxRuntime: true,
+  cleanupOutdatedCaches: true,
 };

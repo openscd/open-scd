@@ -7,7 +7,7 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[datype.wizard.title.add]"
+  heading="Add DAType"
   open=""
 >
   <div id="wizard-content">
@@ -581,7 +581,7 @@
     </mwc-select>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="255"
       minlength="1"
@@ -591,7 +591,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -600,7 +600,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -608,7 +608,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon="add"
-    label="[add]"
+    label="Add"
     slot="primaryAction"
     trailingicon=""
   >
@@ -624,20 +624,20 @@
 ```html
 <mwc-dialog
   defaultaction="close"
-  heading="[datype.wizard.title.edit]"
+  heading="Edit DAType"
   open=""
 >
   <div id="wizard-content">
     <mwc-button
       fullwidth=""
       icon="delete"
-      label="[remove]"
+      label="Remove"
       trailingicon=""
     >
     </mwc-button>
     <wizard-textfield
       dialoginitialfocus=""
-      helper="[scl.id]"
+      helper="ID"
       label="id"
       maxlength="127"
       minlength="1"
@@ -647,7 +647,7 @@
     </wizard-textfield>
     <wizard-textfield
       disabled=""
-      helper="[scl.desc]"
+      helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
@@ -655,7 +655,7 @@
     </wizard-textfield>
     <mwc-button
       icon="playlist_add"
-      label="[scl.DA]"
+      label="Data attribute"
       slot="graphic"
       trailingicon=""
     >
@@ -749,7 +749,7 @@
   </div>
   <mwc-button
     dialogaction="close"
-    label="[cancel]"
+    label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
@@ -757,7 +757,7 @@
   <mwc-button
     dialoginitialfocus=""
     icon=""
-    label="[save]"
+    label="Save"
     slot="primaryAction"
     trailingicon=""
   >
