@@ -48,7 +48,7 @@ export class CompasSclTypeRadiogroup extends LitElement {
       return html `
         <mwc-list>
           <mwc-list-item>
-            ${translate("compas.open.noSclTypes")}
+            ${translate("compas.noSclTypes")}
           </mwc-list-item>
        </mwc-list>`
     }
@@ -57,8 +57,7 @@ export class CompasSclTypeRadiogroup extends LitElement {
         ${this.sclTypes.map( type => {
           const code = type.getElementsByTagNameNS(SDS_NAMESPACE, "Code").item(0)!.textContent ?? '';
           const description = type.getElementsByTagNameNS(SDS_NAMESPACE, "Description").item(0);
-          const selected = (code.toLowerCase() === this.value.toLowerCase());
-          return html`<mwc-radio-list-item value="${code ?? ''}" ?selected="${selected}" left>
+          return html`<mwc-radio-list-item value="${code ?? ''}" ?selected="${(code === this.value)}" left>
                               <span>${description} (${code})</span>
                       </mwc-radio-list-item>`;
         })}

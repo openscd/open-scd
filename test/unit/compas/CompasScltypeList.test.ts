@@ -85,16 +85,15 @@ describe('compas-scltype-list', () => {
     });
 
     it('selecting the first row will cause list scl method to be called', async () => {
-      const stubListSclMethod = sinon.stub(element, 'listScls').callsFake(() => {
-        // Do nothing, just to see the method is called.
-      });
+      const eventSpy = sinon.spy()
+      element.addEventListener('typeSelected', eventSpy);
 
       (<ListItem>(
         element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item')[0]
       )).click();
       await element.updateComplete;
 
-      sinon.assert.calledOnce(stubListSclMethod);
+      sinon.assert.calledOnce(eventSpy);
     });
 
     it('looks like the latest snapshot', async () => {

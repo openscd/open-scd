@@ -384,8 +384,11 @@ export const en = {
 
   compas: {
     loading: 'Loading...',
-    notExists: 'Project no longer exists in CoMPAS!',
     comment: 'Comment',
+    notExists: 'Project no longer exists in CoMPAS!',
+    noSclTypes: 'No types found in CoMPAS',
+    noScls: 'No projects found in CoMPAS',
+    noSclVersions: 'No versions found for this project in CoMPAS',
     error: {
       type: 'Unable to determine type from document name!',
       server: 'Error communicating with CoMPAS Server',
@@ -397,10 +400,9 @@ export const en = {
       patch: 'Patch change',
     },
     open: {
-      listSclTypes: 'Type of SCL',
-      noSclTypes: 'No types found',
-      listScls: 'List of SCL ({{ type }})',
-      noScls: 'No SCLs found',
+      title: 'Open project from CoMPAS',
+      listSclTypes: 'Select type of project',
+      listScls: 'Select project ({{ type }})',
     },
     saveTo: {
       title: 'Save to CoMPAS',
@@ -415,7 +417,6 @@ export const en = {
     },
     versions: {
       title: 'CoMPAS Versions',
-      noScls: 'No versions found for this project in CoMPAS',
       addVersionButton: 'Add version',
       confirmRestoreTitle: 'Restore version?',
       confirmRestore: 'Are you sure to restore version {{version}}?',

@@ -202,6 +202,7 @@ export interface WizardPage {
     icon: string;
     label: string;
     action: WizardActor;
+    style?: string;
   };
   initial?: boolean;
   element?: Element;

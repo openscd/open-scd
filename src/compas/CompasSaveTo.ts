@@ -11,6 +11,8 @@ import {CompasCommentElement} from "./CompasComment.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
 import {getOpenScdElement, getTypeFromDocName, stripExtensionFromName, updateDocumentInOpenSCD} from "./foundation.js";
+
+import './CompasChangeSetRadiogroup.js';
 import './CompasSclTypeRadiogroup.js';
 
 @customElement('compas-save-to')
@@ -41,16 +43,13 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
     return this.getChangeSetRadiogroup().valid();
   }
 
-  private async addSclToCompas(wizard: Element, doc: XMLDocument): Promise<void> {
+  private async addSclToCompas(doc: XMLDocument): Promise<void> {
     const name = stripExtensionFromName(this.getNameField().value);
     const comment = this.getCommentField().getValue();
     const docType = this.getSclTypeRadioGroup().getSelectedValue() ?? '';
 
     await CompasSclDataService().addSclDocument(docType, {sclName: name, comment: comment, doc: doc})
-      .then(response => {
-        const sclData = response.querySelectorAll("SclData").item(0).textContent;
-        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
-
+      .then(sclDocument => {
         const openScd = getOpenScdElement();
         openScd.dispatchEvent(
           newLogEvent({
@@ -69,16 +68,13 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
       .catch(createLogEvent);
   }
 
-  private async updateSclInCompas(wizard: Element, docId: string, docName: string, doc: XMLDocument): Promise<void> {
+  private async updateSclInCompas(docId: string, docName: string, doc: XMLDocument): Promise<void> {
     const changeSet = this.getChangeSetRadiogroup().getSelectedValue();
     const comment = this.getCommentField().getValue();
     const docType = getTypeFromDocName(docName);
 
-    await CompasSclDataService().updateSclDocument(docType.toUpperCase(), docId, {changeSet: changeSet!, comment: comment, doc: doc})
-      .then(response => {
-        const sclData = response.querySelectorAll("SclData").item(0).textContent;
-        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
-
+    await CompasSclDataService().updateSclDocument(docType, docId, {changeSet: changeSet!, comment: comment, doc: doc})
+      .then(sclDocument => {
         const openScd = getOpenScdElement();
         openScd.dispatchEvent(
           newLogEvent({
@@ -98,11 +94,11 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
       .catch(createLogEvent);
   }
 
-  async saveToCompas(wizard: Element, docId: string, docName: string, doc: XMLDocument): Promise<void> {
+  async saveToCompas(docId: string, docName: string, doc: XMLDocument): Promise<void> {
     if (!this.existInCompas) {
-      await this.addSclToCompas(wizard, doc);
+      await this.addSclToCompas(doc);
     } else {
-      await this.updateSclInCompas(wizard, docId, docName, doc);
+      await this.updateSclInCompas(docId, docName, doc);
     }
   }
 
@@ -130,23 +126,23 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
   }
 }
 
-function saveToCompas(docId: string, docName: string, doc: XMLDocument) {
-  return function (inputs: WizardInput[], wizard: Element) {
-    const compasSaveTo = <CompasSaveTo>wizard.shadowRoot!.querySelector('compas-save-to')
-    if (!doc || !compasSaveTo.valid()) {
-      return [];
-    }
-
-    getOpenScdElement().dispatchEvent(newPendingStateEvent(compasSaveTo.saveToCompas(wizard, docId, docName, doc)));
-    return [];
-  };
-}
-
 export interface SaveToCompasWizardOptions {
   docId: string,
   docName: string
 }
 export function saveToCompasWizard(doc: XMLDocument, saveToOptions: SaveToCompasWizardOptions): Wizard {
+  function saveToCompas(docId: string, docName: string, doc: XMLDocument) {
+    return function (inputs: WizardInput[], wizard: Element) {
+      const compasSaveTo = <CompasSaveTo>wizard.shadowRoot!.querySelector('compas-save-to')
+      if (!doc || !compasSaveTo.valid()) {
+        return [];
+      }
+
+      getOpenScdElement().dispatchEvent(newPendingStateEvent(compasSaveTo.saveToCompas(docId, docName, doc)));
+      return [];
+    };
+  }
+
   return [
     {
       title: get('compas.saveTo.title'),

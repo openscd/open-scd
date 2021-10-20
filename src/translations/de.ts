@@ -388,6 +388,9 @@ export const de: Translations = {
   compas: {
     loading: '???',
     notExists: '???',
+    noSclTypes: '???',
+    noScls: '???',
+    noSclVersions: "???",
     comment: '???',
     error: {
       type: '???',
@@ -400,10 +403,9 @@ export const de: Translations = {
       patch: '???',
     },
     open: {
+      title: '???',
       listSclTypes: '???',
-      noSclTypes: '???',
       listScls: '??? ({{ type }})',
-      noScls: '???',
     },
     saveTo: {
       title: '???',
@@ -418,7 +420,6 @@ export const de: Translations = {
     },
     versions: {
       title: '???',
-      noScls: "???",
       addVersionButton: '???',
       confirmRestoreTitle: "???",
       confirmRestore: "??? {{version}}?",

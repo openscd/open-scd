@@ -3,7 +3,6 @@ import {get} from "lit-translate";
 import {newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
 import {OpenSCD} from "../open-scd.js";
 
-import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
 import {setSessionTimeouts} from "./CompasSession.js";
@@ -12,7 +11,7 @@ const FILE_EXTENSION_LENGTH = 3;
 
 export function getTypeFromDocName(docName: string): string {
   if (docName.lastIndexOf(".") == docName.length - (FILE_EXTENSION_LENGTH + 1)) {
-    return docName.substring(docName.lastIndexOf(".") + 1);
+    return docName.substring(docName.lastIndexOf(".") + 1).toUpperCase();
   }
   throw new Error(get('compas.error.type'));
 }

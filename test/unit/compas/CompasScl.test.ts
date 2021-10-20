@@ -1,14 +1,11 @@
 import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
-
 import sinon, {SinonStub} from "sinon";
 import {ListItem} from "@material/mwc-list/mwc-list-item";
-import {
-  BASIC_ITEM_LIST_RESPONSE,
-  ITEM_ENTRY_ELEMENT_NAME,
-  stubFetchResponseFunction
-} from "./CompasSclDataServiceResponses.js";
-import "../../../src/compas/CompasScl.js";
+
+import {BASIC_ITEM_LIST_RESPONSE, ITEM_ENTRY_ELEMENT_NAME, stubFetchResponseFunction} from "./CompasSclDataServiceResponses.js";
 import {CompasScl} from "../../../src/compas/CompasScl.js";
+
+import "../../../src/compas/CompasScl.js";
 
 describe('compas-scl-list', () => {
   const FETCH_FUNCTION = 'fetchData';
@@ -85,16 +82,15 @@ describe('compas-scl-list', () => {
     });
 
     it('selecting the first row will cause open scl method to be called', async () => {
-      const stubListSclMethod = sinon.stub(element, 'openScl').callsFake(() => {
-        // Do nothing, just to see the method is called.
-      });
+      const eventSpy = sinon.spy()
+      element.addEventListener('sclSelected', eventSpy);
 
       (<ListItem>(
         element.shadowRoot!.querySelectorAll('mwc-list > mwc-list-item')[0]
       )).click();
       await element.updateComplete;
 
-      sinon.assert.calledOnce(stubListSclMethod);
+      sinon.assert.calledOnce(eventSpy);
     });
 
     it('looks like the latest snapshot', async () => {

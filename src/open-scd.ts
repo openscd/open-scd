@@ -37,10 +37,8 @@ import './wizard-textfield.js';
 import './wizard-select.js';
 import './finder-pane.js';
 
-import './compas/CompasChangeSetRadiogroup.js';
 import './compas/CompasComment.js';
 import './compas/CompasLoading.js';
-import './compas/CompasSclTypeList.js';
 import './compas/CompasSession.js';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
