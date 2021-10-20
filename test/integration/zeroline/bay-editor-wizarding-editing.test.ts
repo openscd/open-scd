@@ -114,9 +114,11 @@ describe('bay-editor wizarding editing integration', () => {
       element = parent.querySelector('bay-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="playlist_add"]'
-        )
+        element?.shadowRoot
+          ?.querySelector('editor-container')
+          ?.shadowRoot?.querySelector(
+            'mwc-list-item[value="ConductingEquipment"]'
+          )
       )).click();
       await parent.updateComplete;
 

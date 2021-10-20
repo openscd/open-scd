@@ -82,7 +82,7 @@ describe('DAType wizards', () => {
       expect(element?.nextElementSibling?.tagName).to.equal('DAType');
       expect(element?.previousElementSibling?.tagName).to.equal('DOType');
     });
-    it('recursevly add missing! subsequent EnumType elements', async () => {
+    it('recursively add missing! subsequent EnumType elements', async () => {
       expect(doc.querySelector('DAType[id="myOriginator"]')).to.not.exist;
       selector.value = 'OpenSCD_Originator';
       idField.maybeValue = 'myOriginator';
@@ -96,18 +96,19 @@ describe('DAType wizards', () => {
         doc.querySelectorAll('EnumType[id="OriginatorCategoryKind"]').length
       ).to.equal(1);
     });
-    it('recursevly add missing! subsequent DAType elements', async () => {
-      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValueFloat32"]')).to
+    it('recursively add missing! subsequent DAType elements', async () => {
+      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValue_FLOAT32"]')).to
         .not.exist;
       selector.value = 'OpenSCD_RangeConfig';
       idField.maybeValue = 'myOriginator';
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
-      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValueFloat32"]')).to
+      expect(doc.querySelector('DAType[id="OpenSCD_AnalogueValue_FLOAT32"]')).to
         .exist;
       expect(
-        doc.querySelectorAll('DAType[id="OpenSCD_AnalogueValueFloat32"]').length
+        doc.querySelectorAll('DAType[id="OpenSCD_AnalogueValue_FLOAT32"]')
+          .length
       ).to.equal(1);
     });
   });

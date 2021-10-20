@@ -480,6 +480,8 @@
     on=""
   >
   </mwc-icon-button-toggle>
+  <mwc-icon-button-toggle id="sclhistoryfilter">
+  </mwc-icon-button-toggle>
   <mwc-list
     id="content"
     wrapfocus=""

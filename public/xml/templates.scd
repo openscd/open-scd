@@ -2,75 +2,402 @@
 <SCL xmlns="http://www.iec.ch/61850/2003/SCL" version="2007" revision="B" release="4">
   <Header id="OpenSCD_DataTypeTemplates"/>
   <DataTypeTemplates>
-    <LNodeType lnClass="CSWI" id="OpenSCD_CSWI">
-      <DO name="Mod" type="OpenSCD_ENCMod"/>
-      <DO name="Beh" type="OpenSCD_ENSBeh"/>
-      <DO name="Health" type="OpenSCD_ENSHealth"/>
-      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
-      <DO name="LocKey" type="OpenSCD_SPSsimple"/>
-      <DO name="Loc" type="OpenSCD_SPSsimple"/>
+    <LNodeType lnClass="ATCC" id="OpenSCD_ATCC_noPB" desc="Auto Tap changer controller: no process bus(PB)">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="TapChg" type="OpenSCD_BSC_TapChg_ATCC"/>
+      <DO name="TapPos" type="OpenSCD_ISC_TapPos_ATCC"/>
+      <DO name="VolSpt" type="OpenSCD_APC_VolSpt_ATCC"/>
+      <DO name="BndCtrChg" type="OpenSCD_BAC_BndCtrChg_ATCC"/>
+      <DO name="Auto" type="OpenSCD_SPC_Auto_ATCC"/>
+    </LNodeType>
+    <LNodeType lnClass="ATCC" id="OpenSCD_ATCC_PB" desc="Auto Tap changer controller: process bus">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="TapChg" type="OpenSCD_BSC_TapChg_ATCC"/>
+      <DO name="TapPos" type="OpenSCD_ISC_TapPos_ATCC"/>
+      <DO name="VolSpt" type="OpenSCD_APC_VolSpt_ATCC"/>
+      <DO name="BndCtrChg" type="OpenSCD_BAC_BndCtrChg_ATCC"/>
+      <DO name="Auto" type="OpenSCD_SPC_Auto_ATCC"/>
+      <DO name="TapOpR" transient="true" type="OpenSCD_SPS_simple"/>
+      <DO name="TapOpL" transient="true" type="OpenSCD_SPS_simple"/>
+      <DO name="TapOpStop" transient="true" type="OpenSCD_SPS_simple"/>
+    </LNodeType>
+    <LNodeType lnClass="CSWI" id="OpenSCD_CSWI_noPB" desc="Switch control: no process bus(PB)">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
       <DO name="Pos" type="OpenSCD_DPC"/>
     </LNodeType>
-    <LNodeType lnClass="CILO" id="OpenSCD_CILO">
-      <DO name="Mod" type="OpenSCD_ENCMod"/>
-      <DO name="Beh" type="OpenSCD_ENSBeh"/>
-      <DO name="Health" type="OpenSCD_ENSHealth"/>
-      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
-      <DO name="EnaOpn" type="OpenSCD_SPSsimple"/>
-      <DO name="EnaCls" type="OpenSCD_SPSsimple"/>
+    <LNodeType lnClass="CSWI" id="OpenSCD_CSWI_PB_threephase" desc="Switch control: three phase">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="Pos" type="OpenSCD_DPC"/>
+      <DO name="OpOpn" transient="true" type="OpenSCD_ACT_general_control"/>
+      <DO name="OpCls" transient="true" type="OpenSCD_ACT_general_control"/>
+      <DO name="SelOpn" type="OpenSCD_SPS_simple"/>
+      <DO name="SelCls" type="OpenSCD_SPS_simple"/>
     </LNodeType>
-    <LNodeType lnClass="XSWI" id="OpenSCD_XSWI">
-      <DO name="Mod" type="OpenSCD_ENCMod"/>
-      <DO name="Beh" type="OpenSCD_ENSBeh"/>
-      <DO name="Health" type="OpenSCD_ENSHealth"/>
-      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
-      <DO name="LocKey" type="OpenSCD_SPSsimple"/>
-      <DO name="Loc" type="OpenSCD_SPSsimple"/>
-      <DO name="OpCnt" type="OpenSCD_INSsimple"/>
-      <DO name="Pos" type="OpenSCD_DPCstatusOnly"/>
-      <DO name="BlkOpn" type="OpenSCD_SPCstatusOnly"/>
-      <DO name="BlkCls" type="OpenSCD_SPCstatusOnly"/>
-      <DO name="SwTyp" type="OpenSCD_ENSSwTyp"/>
+    <LNodeType lnClass="CSWI" id="OpenSCD_CSWI_PB_singlephase" desc="Switch control: single phase">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="LocSta" type="OpenSCD_SPC_LocSta"/>
+      <DO name="Pos" type="OpenSCD_DPC"/>
+      <DO name="OpOpn" transient="true" type="OpenSCD_ACT_threephase_control"/>
+      <DO name="OpCls" transient="true" type="OpenSCD_ACT_threephase_control"/>
+      <DO name="SelOpn" type="OpenSCD_SPS_simple"/>
+      <DO name="SelCls" type="OpenSCD_SPS_simple"/>
+      <DO name="PosA" type="OpenSCD_DPC_statusonly"/>
+      <DO name="PosB" type="OpenSCD_DPC_statusonly"/>
+      <DO name="PosC" type="OpenSCD_DPC_statusonly"/>
     </LNodeType>
-    <LNodeType lnClass="XCBR" id="OpenSCD_XCBR">
-      <DO name="Mod" type="OpenSCD_ENCMod"/>
-      <DO name="Beh" type="OpenSCD_ENSBeh"/>
-      <DO name="Health" type="OpenSCD_ENSHealth"/>
-      <DO name="NamPlt" type="OpenSCD_LPLnoLD"/>
-      <DO name="LocKey" type="OpenSCD_SPSsimple"/>
-      <DO name="Loc" type="OpenSCD_SPSsimple"/>
-      <DO name="OpCnt" type="OpenSCD_INSsimple"/>
-      <DO name="Pos" type="OpenSCD_DPCstatusOnly"/>
-      <DO name="BlkOpn" type="OpenSCD_SPCstatusOnly"/>
-      <DO name="BlkCls" type="OpenSCD_SPCstatusOnly"/>
+    <LNodeType lnClass="CILO" id="OpenSCD_CILO" desc="Interlocking">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="EnaOpn" type="OpenSCD_SPS_simple"/>
+      <DO name="EnaCls" type="OpenSCD_SPS_simple"/>
     </LNodeType>
-    <DOType cdc="SPS" id="OpenSCD_SPSsimple">
-      <DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+    <LNodeType lnClass="LLN0" id="OpenSCD_LLN0_refLD" desc="Logical device LN: referenced">
+      <DO name="Mod" type="OpenSCD_ENC_Mod_statusonly"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_LD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="GrRef" type="OpenSCD_ORG_GrRef"/>
+    </LNodeType>
+    <LNodeType lnClass="LLN0" id="OpenSCD_LLN0_mainLD" desc="Logical device LN: parent">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_LD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+    </LNodeType>
+    <LNodeType lnClass="LPHD" id="OpenSCD_LPHD" desc="Physical device">
+      <DO name="PhyNam" type="OpenSCD_DPL"/>
+      <DO name="PhyHealth" type="OpenSCD_ENS_Health"/>
+      <DO name="Proxy" type="OpenSCD_SPS_simple"/>
+      <DO name="PwrUp" type="OpenSCD_SPS_simple"/>
+      <DO name="Sim" type="OpenSCD_SPC_LocSta"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+    </LNodeType>
+    <LNodeType lnClass="MMXU" id="OpenSCD_MMXU" desc="Three phase measurement">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="TotW" type="OpenSCD_MV_db_int"/>
+      <DO name="TotVAr" type="OpenSCD_MV_db_int"/>
+      <DO name="TotVA" type="OpenSCD_MV_db_int"/>
+      <DO name="Hz" type="OpenSCD_MV_db_int"/>
+      <DO name="PPV" type="OpenSCD_DEL"/>
+      <DO name="PhV" type="OpenSCD_WYE_phases"/>
+      <DO name="A" type="OpenSCD_WYE_phases"/>
+      <DO name="W" type="OpenSCD_WYE_phases"/>
+      <DO name="VAr" type="OpenSCD_WYE_phases"/>
+      <DO name="VA" type="OpenSCD_WYE_phases"/>
+    </LNodeType>
+    <LNodeType lnClass="PTRC" id="OpenSCD_PTRC_general" desc="Trip conditioning: General trip signal">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="Tr" type="OpenSCD_ACT_general"/>
+      <DO name="Op" transient="true" type="OpenSCD_ACT_general"/>
+      <DO name="Str" type="OpenSCD_ACD_general"/>
+    </LNodeType>
+    <LNodeType lnClass="RSYC" id="OpenSCD_RSYC" desc="Synchronism check">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="Rel" type="OpenSCD_SPS_simple" desc="Release signal"/>
+    </LNodeType>
+    <LNodeType lnClass="TCTR" id="OpenSCD_TCTR" desc="Current transformer">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="AmpSv" type="OpenSCD_SAV_AmpSv_TCTR"/>
+      <DO name="ARtg" type="OpenSCD_ASG_ATrg_TCTR"/>
+      <DO name="HzRtg" type="OpenSCD_ASG_HzRtg_TCTR"/>
+    </LNodeType>
+    <LNodeType lnClass="TVTR" id="OpenSCD_TVTR" desc="Voltage transformer">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="VolSv" type="OpenSCD_SAV_VolSv_TVTR"/>
+      <DO name="VRtg" type="OpenSCD_ASG_VRtg_TVTR"/>
+      <DO name="HzRtg" type="OpenSCD_ASG_HzRtg_TCTR"/>
+    </LNodeType>
+    <LNodeType lnClass="XSWI" id="OpenSCD_XSWI_noPB" desc="Switch: no process bus(PB)">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="OpCnt" type="OpenSCD_INS_simple"/>
+      <DO name="Pos" type="OpenSCD_DPC_statusonly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPC_statusonly"/>
+      <DO name="BlkCls" type="OpenSCD_SPC_statusonly"/>
+      <DO name="SwTyp" type="OpenSCD_ENS_SwTyp"/>
+    </LNodeType>
+    <LNodeType lnClass="XSWI" id="OpenSCD_XSWI_PB_threephase" desc="Switch: three phase represenation">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="OpCnt" type="OpenSCD_INS_simple"/>
+      <DO name="Pos" type="OpenSCD_DPC_statusonly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPC_statusonly"/>
+      <DO name="BlkCls" type="OpenSCD_SPC_statusonly"/>
+      <DO name="SwTyp" type="OpenSCD_ENS_SwTyp"/>
+      <DO name="Dsc" type="OpenSCD_SPS_simple"/>
+    </LNodeType>
+    <LNodeType lnClass="XSWI" id="OpenSCD_XSWI_PB_onephase" desc="Switch: one phase represenation">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="OpCnt" type="OpenSCD_INS_simple"/>
+      <DO name="Pos" type="OpenSCD_DPC_statusonly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPC_statusonly"/>
+      <DO name="BlkCls" type="OpenSCD_SPC_statusonly"/>
+      <DO name="SwTyp" type="OpenSCD_ENS_SwTyp"/>
+    </LNodeType>
+    <LNodeType lnClass="XCBR" id="OpenSCD_XCBR_noPB" desc="Circuit Breaker: no process bus(PB)">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="OpCnt" type="OpenSCD_INS_simple"/>
+      <DO name="Pos" type="OpenSCD_DPC_statusonly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPC_statusonly"/>
+      <DO name="BlkCls" type="OpenSCD_SPC_statusonly"/>
+    </LNodeType>
+    <LNodeType lnClass="XCBR" id="OpenSCD_XCBR_PB_onephase" desc="Circuit Breaker: one phase representation">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="OpCnt" type="OpenSCD_INS_simple"/>
+      <DO name="Pos" type="OpenSCD_DPC_statusonly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPC_statusonly"/>
+      <DO name="BlkCls" type="OpenSCD_SPC_statusonly"/>
+    </LNodeType>
+    <LNodeType lnClass="XCBR" id="OpenSCD_XCBR_PB_threephase" desc="Circuit Breaker: three phase representation">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="OpCnt" type="OpenSCD_INS_simple"/>
+      <DO name="Pos" type="OpenSCD_DPC_statusonly"/>
+      <DO name="BlkOpn" type="OpenSCD_SPC_statusonly"/>
+      <DO name="BlkCls" type="OpenSCD_SPC_statusonly"/>
+      <DO name="Dsc" type="OpenSCD_SPS_simple"/>
+    </LNodeType>
+    <LNodeType lnClass="YLTC" id="OpenSCD_YLTC" desc="Tap changer">
+      <DO name="Mod" type="OpenSCD_ENC_Mod"/>
+      <DO name="Beh" type="OpenSCD_ENS_Beh"/>
+      <DO name="Health" type="OpenSCD_ENS_Health"/>
+      <DO name="NamPlt" type="OpenSCD_LPL_noLD"/>
+      <DO name="LocKey" type="OpenSCD_SPS_simple"/>
+      <DO name="Loc" type="OpenSCD_SPS_simple"/>
+      <DO name="TapChg" type="OpenSCD_BSC_TapChg_YLTC"/>
+      <DO name="TapPos" type="OpenSCD_ISC_TapPos_YLTC"/>
+      <DO name="EndPosR" type="OpenSCD_SPS_simple"/>
+      <DO name="EndPosL" type="OpenSCD_SPS_simple"/>
+    </LNodeType>
+    <DOType cdc="ACD" id="OpenSCD_ACD_general">
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="dirGeneral" bType="Enum" dchg="true" type="FaultDirectionKind" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="ACD" id="OpenSCD_ACD_threephase">
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="dirGeneral" bType="Enum" dchg="true" type="FaultDirectionKind" fc="ST"/>
+      <DA name="phsA" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsB" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsC" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="dirPhsA" bType="Enum" dchg="true" type="PhaseFaultDirectionKind" fc="ST"/>
+      <DA name="dirPhsB" bType="Enum" dchg="true" type="PhaseFaultDirectionKind" fc="ST"/>
+      <DA name="dirPhsC" bType="Enum" dchg="true" type="PhaseFaultDirectionKind" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="ACT" id="OpenSCD_ACT_general_control">
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
-      <DA name="d" bType="VisString255" fc="DC"/>
+      <DA name="originSrc" bType="Struct" type="OpenSCD_Originator" fc="ST"/>
     </DOType>
-    <DOType cdc="SPC" id="OpenSCD_SPCstatusOnly">
-      <DA fc="ST" dchg="true" name="stVal" bType="BOOLEAN"/>
-      <DA fc="ST" qchg="true" name="q" bType="Quality"/>
-      <DA fc="ST" name="t" bType="Timestamp"/>
-      <DA fc="CF" dchg="true" name="ctlModel" bType="Enum" valKind="RO" type="OpenSCD_StatusOnly">
+    <DOType cdc="ACT" id="OpenSCD_ACT_threephase_control">
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsA" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsB" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="phsC" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="originSrc" bType="Struct" type="OpenSCD_Originator" fc="ST"/>
+    </DOType>
+    <DOType cdc="ACT" id="OpenSCD_ACT_general">
+      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="APC" id="OpenSCD_APC_VolSpt_ATCC">
+      <DA name="mxVal" bType="Struct" dchg="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true"  fc="MX"/>
+      <DA name="t" bType="Timestamp"  fc="MX"/>
+      <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_FLOAT32" fc="CO"/>
+      <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_FLOAT32" fc="CO"/>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>1000</Val>
+      </DA>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="CtlModelKind" fc="CF">
+        <Val>direct-with-enhanced-security</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="ASG" id="OpenSCD_ASG_ATrg_TCTR">
+      <DA name="setMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="SP"/>
+      <DA name="units" bType="Struct" dchg="true" type="OpenSCD_Unit_A" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="ASG" id="OpenSCD_ASG_HzRtg_TCTR">
+      <DA name="setMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="SP"/>
+      <DA name="units" bType="Struct" dchg="true" type="OpenSCD_Unit_Hz" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="ASG" id="OpenSCD_ASG_VRtg_TVTR">
+      <DA name="setMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="SP"/>
+      <DA name="units" bType="Struct" dchg="true" type="OpenSCD_Unit_V" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+    </DOType>
+    <DOType cdc="BAC" id="OpenSCD_BAC_BndCtrChg_ATCC">
+      <DA name="mxVal" bType="Struct" dchg="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true" fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_StepControlKind" fc="CO"/>
+      <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_StepControlKind" fc="CO"/>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>1000</Val>
+      </DA>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="CtlModelKind" fc="CF">
+        <Val>direct-with-enhanced-security</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="BSC" id="OpenSCD_BSC_TapChg_ATCC">
+      <DA name="valWTr" bType="Struct" dchg="true" type="OpenSCD_ValWithTrans" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_StepControlKind" fc="CO"/>
+      <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_StepControlKind" fc="CO"/>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>6000</Val>
+      </DA>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="CtlModelKind" fc="CF">
+        <Val>direct-with-enhanced-security</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="BSC" id="OpenSCD_BSC_TapChg_YLTC">
+      <DA name="valWTr" bType="Struct" dchg="true" type="OpenSCD_ValWithTrans" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="OpenSCD_StatusOnly" fc="CF">
         <Val>status-only</Val>
       </DA>
     </DOType>
-    <DOType cdc="DPC" id="OpenSCD_DPCstatusOnly">
-      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
+    <DOType cdc="CMV" id="OpenSCD_CMV_db_i_MagAndAng">
+      <DA name="instCVal" bType="Struct" type="OpenSCD_Vector_I_w_Ang" fc="MX"/>
+      <DA name="cVal" bType="Struct" dchg="true" type="OpenSCD_Vector_I_w_Ang" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true"  fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="units" bType="Struct" dchg="true" type="Unit" fc="CF"/>
+      <DA name="db" bType="INT32U" dchg="true" fc="CF"/>
+      <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="zeroDb" bType="INT32U" dchg="true" fc="CF"/>
+      <DA name="zeroDbRef " bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="dbAng" bType="INT32U" dchg="true" fc="CF"/>
+      <DA name="dbAngRef" bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="magSVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
+      <DA name="angSVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
+    </DOType>
+    <DOType cdc="DEL" id="OpenSCD_DEL">
+      <SDO name="phsAB" type="OpenSCD_CMV_db_i_MagAndAng"/>
+      <SDO name="phsBC" type="OpenSCD_CMV_db_i_MagAndAng"/>
+      <SDO name="phsCA" type="OpenSCD_CMV_db_i_MagAndAng"/>
+    </DOType>
+    <DOType cdc="DEL" id="OpenSCD_DEL_wRef">
+      <SDO name="phsAB" type="OpenSCD_CMV_db_i_MagAndAng"/>
+      <SDO name="phsBC" type="OpenSCD_CMV_db_i_MagAndAng"/>
+      <SDO name="phsCA" type="OpenSCD_CMV_db_i_MagAndAng"/>
+      <DA name="angRef" bType="Struct" dchg="true" fc="CF"/>
+    </DOType>
+    <DOType cdc="DPL" id="OpenSCD_DPL">
+      <DA name="vendor" bType="VisString255" fc="DC"/>
+      <DA name="hwRev" bType="VisString255" fc="DC"/>
+      <DA name="swRev" bType="VisString255" fc="DC"/>
+      <DA name="serNum" bType="VisString255" fc="DC"/>
+      <DA name="model" bType="VisString255" fc="DC"/>
+      <DA name="location" bType="VisString255" fc="DC"/>
+      <DA name="owner" bType="VisString255" fc="DC"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="DPC" id="OpenSCD_DPC_statusonly">
+      <DA name="stVal" bType="Dbpos" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="ctlModel" bType="Enum" fc="CF" type="OpenSCD_StatusOnly">
         <Val>status-only</Val>
       </DA>
-    </DOType>
-    <DOType cdc="DPS" id="OpenSCD_DPSsimple">
-      <DA name="stVal" bType="Dbpos" dchg="true" fc="ST"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
-      <DA name="t" bType="Timestamp" fc="ST"/>
-      <DA name="d" bType="VisString255" fc="DC"/>
     </DOType>
     <DOType cdc="DPC" id="OpenSCD_DPC">
       <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
@@ -87,22 +414,22 @@
         <Val>600</Val>
       </DA>
       <DA name="pulseConfig" bType="Struct" fc="CO" type="OpenSCD_PulseConfig"/>
-      <DA name="SBOw" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
-      <DA name="Oper" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
-      <DA name="Cancel" bType="Struct" fc="CO" type="OpenSCD_Cancel"/>
+      <DA name="SBOw" bType="Struct" fc="CO" type="OpenSCD_OperSBOw_Dbpos"/>
+      <DA name="Oper" bType="Struct" fc="CO" type="OpenSCD_OperSBOw_Dbpos"/>
+      <DA name="Cancel" bType="Struct" fc="CO" type="OpenSCD_Cancel_Dbpos"/>
     </DOType>
-    <DOType cdc="INS" id="OpenSCD_INSsimple">
-      <DA name="stVal" bType="INT32" dchg="true" fc="ST"/>
+    <DOType cdc="DPS" id="OpenSCD_DPSsimple">
+      <DA name="stVal" bType="Dbpos" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="d" bType="VisString255" fc="DC"/>
     </DOType>
-    <DOType cdc="ENS" id="OpenSCD_ENSBeh">
+    <DOType cdc="ENS" id="OpenSCD_ENS_Beh">
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
     </DOType>
-    <DOType cdc="ENC" id="OpenSCD_ENCMod">
+    <DOType cdc="ENC" id="OpenSCD_ENC_Mod">
       <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
@@ -116,165 +443,221 @@
       <DA name="operTimeout" bType="INT32U" fc="CF">
         <Val>600</Val>
       </DA>
-      <DA name="SBOw" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
-      <DA name="Oper" bType="Struct" fc="CO" type="OpenSCD_OpenSBOw"/>
-      <DA name="Cancel" bType="Struct" fc="CO" type="OpenSCD_Cancel"/>
+      <DA name="SBOw" bType="Struct" fc="CO" type="OpenSCD_OperSBOw_BehaviourModeKind"/>
+      <DA name="Oper" bType="Struct" fc="CO" type="OpenSCD_OperSBOw_BehaviourModeKind"/>
+      <DA name="Cancel" bType="Struct" fc="CO" type="OpenSCD_Cancel_BehaviourModeKind"/>
     </DOType>
-    <DOType cdc="ENS" id="OpenSCD_ENSHealth">
+    <DOType cdc="ENC" id="OpenSCD_ENC_Mod_statusonly">
+      <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
+      <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="ctlModel" bType="Enum" fc="CF" type="OpenSCD_StatusOnly">
+        <Val>status-only</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="ENS" id="OpenSCD_ENS_Health">
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="HealthKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
     </DOType>
-    <DOType cdc="ENS" id="OpenSCD_ENSSwTyp">
+    <DOType cdc="ENS" id="OpenSCD_ENS_SwTyp">
       <DA fc="ST" dchg="true" name="stVal" bType="Enum" type="SwitchFunctionKind"/>
       <DA fc="ST" qchg="true" name="q" bType="Quality"/>
       <DA fc="ST" name="t" bType="Timestamp"/>
     </DOType>
-    <DOType cdc="ACT" id="OpenSCD_ACTgeneral">
-      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST" />
-      <DA name="t" bType="Timestamp" fc="ST" />
-    </DOType>
-    <DOType cdc="ACD" id="OpenSCD_ACDgeneral">
-      <DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
-      <DA name="dirGeneral" bType="Enum" dchg="true" fc="ST" type="FaultDirectionKind"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST" />
-      <DA name="t" bType="Timestamp" fc="ST" />
-    </DOType>
-    <DOType cdc="SEC" id="OpenSCD_SEC">
-      <DA name="cnt" bType="INT32U" dchg="true" fc="ST"/>
-      <DA name="q" bType="Enum" fc="ST" type="SeverityKind"/>
-      <DA name="t" bType="Timestamp" fc="ST" />
-    </DOType>
-    <DOType cdc="BCR" id="OpenSCD_BCR">
-      <DA name="actVal" bType="INT64" dchg="true" fc="ST"/>
-      <DA name="frVal" bType="INT64" dchg="true" fc="ST"/>
-      <DA name="frTm" bType="Timestamp" fc="ST"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
-      <DA name="t" bType="Timestamp" fc="ST" />
-      <DA name="pulsQty" bType="FLOAT32" dchg="true" fc="CF"/>
-      <DA name="frEna" bType="BOOLEAN" dchg="true" fc="CF"/>
-      <DA name="frPd" bType="INT32" dchg="true" fc="CF"/>
-      <DA name="frRs" bType="INT32" dchg="true" fc="CF"/>
-    </DOType>
-    <DOType cdc="HST" id="OpenSCD_HST1D">
-      <DA name="hstVal" bType="INT32" dchg="true" dupd="true" fc="ST"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
-      <DA name="t" bType="Timestamp" fc="ST" />
-      <DA name="numPts" bType="INT16U" dchg="true" fc="CF"/>
-      <DA name="hstRangeC" bType="Struct" dchg="true" fc="CF" type="OpenSCD_Cell1D"/>
-      <DA name="xUnits" bType="Struct" dchg="true" fc="CF" type="OpenSCD_UnitwithMultiplier"/>
-      <DA name="maxPts" bType="INT16U" dchg="true" fc="CF"/>
-      <DA name="xD" bType="VisString255" fc="CF"/>
-    </DOType>
-    <DOType cdc="HST" id="OpenSCD_HST2D">
-      <DA name="hstVal" bType="INT32" dchg="true" dupd="true" fc="ST"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
-      <DA name="t" bType="Timestamp" fc="ST" />
-      <DA name="numPts" bType="INT16U" dchg="true" fc="CF"/>
-      <DA name="hstRangeC" bType="Struct" dchg="true" fc="CF" type="OpenSCD_Cell1D"/>
-      <DA name="xUnits" bType="Struct" dchg="true" fc="CF" type="OpenSCD_UnitwithMultiplier"/>
-      <DA name="yUnits" bType="Struct" dchg="true" fc="CF" type="OpenSCD_UnitwithMultiplier"/>
-      <DA name="maxPts" bType="INT16U" dchg="true" fc="CF"/>
-      <DA name="xD" bType="VisString255" fc="CF"/>
-      <DA name="yD" bType="VisString255" fc="CF"/>
-    </DOType>
-    <DOType cdc="VSS" id="OpenSCD_VSS">
-      <DA name="stVal" bType="VisString255" dchg="true" fc="ST"/>
+    <DOType cdc="INS" id="OpenSCD_INS_simple">
+      <DA name="stVal" bType="INT32" dchg="true" fc="ST"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="d" bType="VisString255" fc="DC"/>
     </DOType>
-    <DOType cdc="ORS" id="OpenSCD_ORS">
-      <DA name="stVal" bType="ObjRef" dchg="true" fc="ST"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+    <DOType cdc="ISC" id="OpenSCD_ISC_TapPos_ATCC">
+      <DA name="valWTr" bType="Struct" dchg="true" type="OpenSCD_ValWithTrans" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
-      <DA name="d" bType="VisString255" fc="DC"/>
+      <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_INT8" fc="CO"/>
+      <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_INT8" fc="CO"/>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>6000</Val>
+      </DA>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="CtlModelKind" fc="CF">
+        <Val>direct-with-enhanced-security</Val>
+      </DA>
     </DOType>
-    <DOType cdc="TCS" id="OpenSCD_TCS">
-      <DA name="stVal" bType="Timestamp" dchg="true" fc="ST"/>
-      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+    <DOType cdc="ISC" id="OpenSCD_ISC_TapPos_YLTC">
+      <DA name="valWTr" bType="Struct" dchg="true" type="OpenSCD_ValWithTrans" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
-      <DA name="d" bType="VisString255" fc="DC"/>
+      <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="OpenSCD_StatusOnly" fc="CF">
+        <Val>status-only</Val>
+      </DA>
     </DOType>
-    <DOType cdc="MV" id="OpenSCD_MVinst">
-      <DA name="instMag" bType="Struct" fc="MX" type="OpenSCD_AnalogueValueFloat32"/>
-      <DA name="mag" bType="Struct" dchg="true" dupd="true" fc="MX" type="OpenSCD_AnalogueValueFloat32"/>
+    <DOType cdc="LPL" id="OpenSCD_LPL_LD">
+      <DA name="vendor" bType="VisString255" fc="DC"/>
+      <DA name="swRev" bType="VisString255" fc="DC"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+      <DA name="configRev" bType="VisString255" fc="DC" />
+      <DA name="ldNs" bType="VisString255" fc="EX">
+        <Val>IEC 61850-7-4:2007B4</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="LPL" id="OpenSCD_LPL_noLD">
+      <DA name="vendor" bType="VisString255"  fc="DC"/>
+      <DA name="swRev" bType="VisString255" fc="DC"/>
+      <DA name="d" bType="VisString255" fc="DC"/>
+      <DA name="configRev" bType="VisString255" fc="DC"/>
+    </DOType>
+    <DOType cdc="MV" id="OpenSCD_MV_db_int">
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
       <DA name="q" bType="Quality" qchg="true" fc="MX"/>
       <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="db" bType="INT32U" dchg="true" fc="CF"/>
+      <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="zeroDb" bType="INT32U" dchg="true" fc="CF"/>
+      <DA name="zeroDbRef " bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
+    </DOType>
+    <DOType cdc="MV" id="OpenSCD_MV_int">
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true" fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="ScaledValueConfig" fc="CF"/>
+    </DOType>
+    <DOType cdc="MV" id="OpenSCD_MV_db_float">
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true" fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="db" bType="INT32U" dchg="true" fc="CF"/>
+      <DA name="dbRef" bType="FLOAT32" dchg="true" fc="CF"/>
+      <DA name="zeroDb" bType="INT32U" dchg="true" fc="CF"/>
+      <DA name="zeroDbRef " bType="FLOAT32" dchg="true" fc="CF"/>
+    </DOType>
+    <DOType cdc="MV" id="OpenSCD_MV_float">
+      <DA name="mag" bType="Struct" dchg="true" dupd="true" type="OpenSCD_AnalogueValue_FLOAT32" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true" fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+    </DOType>
+    <DOType cdc="ORG" id="OpenSCD_ORG_GrRef">
+      <DA name="setSrcRef" bType="ObjRef" dchg="true" fc="SP"/>
+    </DOType>
+    <DOType cdc="SAV" id="OpenSCD_SAV_AmpSv_TCTR">
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true" fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="units" bType="Struct" dchg="true" type="Unit" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="OpenSCD_ScaledValueConfig_AmpSv" fc="CF"/>
+    </DOType>
+    <DOType cdc="SAV" id="OpenSCD_SAV_VolSv_TVTR">
+      <DA name="instMag" bType="Struct" type="OpenSCD_AnalogueValue_INT32" fc="MX"/>
+      <DA name="q" bType="Quality" qchg="true" fc="MX"/>
+      <DA name="t" bType="Timestamp" fc="MX"/>
+      <DA name="units" bType="Struct" dchg="true" type="Unit" fc="CF"/>
+      <DA name="sVC" bType="Struct" dchg="true" type="OpenSCD_ScaledValueConfig_VolSv" fc="CF"/>
+    </DOType>
+    <DOType cdc="SPC" id="OpenSCD_SPC_statusonly">
+      <DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST" />
+      <DA name="t" bType="Timestamp" fc="ST" />
+      <DA name="ctlModel" bType="Enum" dchg="true" type="OpenSCD_StatusOnly" fc="CF">
+        <Val>status-only</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="SPC" id="OpenSCD_SPC_Auto_ATCC">
+      <DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_SPC" fc="CO"/>
+      <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_SPC" fc="CO"/>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>1000</Val>
+      </DA>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="CtlModelKind" fc="CF" >
+        <Val>direct-with-enhanced-security</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="SPC" id="OpenSCD_SPC_LocSta">
+      <DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="Oper" bType="Struct" type="OpenSCD_OperSBOw_SPC" fc="CO"/>
+      <DA name="Cancel" bType="Struct" type="OpenSCD_Cancel_SPC" fc="CO"/>
+      <DA name="operTimeout" bType="INT32U" fc="CF">
+        <Val>1000</Val>
+      </DA>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="CtlModelKind" fc="CF" >
+        <Val>direct-with-enhanced-security</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="SPS" id="OpenSCD_SPS_simple">
+      <DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true" fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
       <DA name="d" bType="VisString255" fc="DC"/>
     </DOType>
-    <DOType cdc="LPL" id="OpenSCD_LPLnoLD">
-      <DA fc="DC" name="vendor" bType="VisString255" valKind="RO"/>
-      <DA fc="DC" name="swRev" bType="VisString255" valKind="RO"/>
-      <DA fc="DC" name="d" bType="VisString255" valKind="RO"/>
-      <DA fc="DC" name="configRev" bType="VisString255" valKind="RO"/>
+    <DOType cdc="WYE" id="OpenSCD_WYE_phases">
+      <SDO name="phsA" type="OpenSCD_CMV_db_i_MagAndAng"/>
+      <SDO name="phsB" type="OpenSCD_CMV_db_i_MagAndAng"/>
+      <SDO name="phsC" type="OpenSCD_CMV_db_i_MagAndAng"/>
     </DOType>
-    <DAType id="OpenSCD_Originator">
-      <BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
-      <BDA name="orIdent" bType="Octet64"/>
+    <DAType id="OpenSCD_AnalogueValue_FLOAT32">
+      <BDA name="f" bType="FLOAT32"/>
     </DAType>
-    <DAType id="OpenSCD_RangeConfig">
-      <BDA name="hhLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-      <BDA name="hLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-      <BDA name="lLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-      <BDA name="llLim" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-      <BDA name="min" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-      <BDA name="max" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-      <BDA name="limDb" bType="INT32"/>
+    <DAType id="OpenSCD_AnalogueValue_INT32">
+      <BDA name="i" bType="INT32"/>
     </DAType>
-    <DAType id="OpenSCD_ValWOTrans">
-      <BDA name="posVal" bType="INT8"/>
+    <DAType id="OpenSCD_Cancel_SPC">
+      <BDA name="ctlVal" bType="BOOLEAN"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
-    <DAType id="OpenSCD_ValWithTrans">
-      <BDA name="posVal" bType="INT8"/>
-      <BDA name="transInd" bType="BOOLEAN"/>
+    <DAType id="OpenSCD_Cancel_Dbpos">
+      <BDA name="ctlVal" bType="Dbpos"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
-    <DAType id="OpenSCD_UnitwoMultiplier">
-      <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
+    <DAType id="OpenSCD_Cancel_FLOAT32">
+      <BDA name="ctlVal" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
-    <DAType id="OpenSCD_UnitwithMultiplier">
-      <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
-      <BDA name="multiplier" bType="Enum" type="MultiplierKind"/>
+    <DAType id="OpenSCD_Cancel_StepControlKind">
+      <BDA name="ctlVal" bType="Tcmd"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
-    <DAType id="OpenSCD_PulseConfig">
-      <BDA name="cmdQual" bType="Enum" type="OutputSignalKind"/>
-      <BDA name="onDur" bType="INT32U"/>
-      <BDA name="offDur" bType="INT32U"/>
-      <BDA name="numPls" bType="INT32U"/>
+    <DAType id="OpenSCD_Cancel_BehaviourModeKind">
+      <BDA name="ctlVal" bType="Enum" type="BehaviourModeKind"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
-    <DAType id="OpenSCD_VectorIwithAngle">
-      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
-      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
-    </DAType>
-    <DAType id="OpenSCD_VectorFwoAngle">
-      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
-    </DAType>
-    <DAType id="OpenSCD_VectorIwithAngle">
-      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueInteger32"/>
-    </DAType>
-    <DAType id="OpenSCD_VectorFwoAngle">
-      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
-    </DAType>
-    <DAType id="OpenSCD_Cell2D">
-      <BDA name="xStart" bType="FLOAT32"/>
-      <BDA name="xEnd" bType="FLOAT32"/>
-      <BDA name="yStart" bType="FLOAT32"/>
-      <BDA name="yEnd" bType="FLOAT32"/>
-    </DAType>
-    <DAType id="OpenSCD_Cell1D">
-      <BDA name="xStart" bType="FLOAT32"/>
-      <BDA name="xEnd" bType="FLOAT32"/>
-    </DAType>
-    <DAType id="OpenSCD_Point3D">
-      <BDA name="xVal" bType="FLOAT32"/>
-      <BDA name="yVal" bType="FLOAT32"/>
-      <BDA name="zVal" bType="FLOAT32"/>
-    </DAType>
-    <DAType id="OpenSCD_Point2D">
-      <BDA name="xVal" bType="FLOAT32"/>
-      <BDA name="yVal" bType="FLOAT32"/>
+    <DAType id="OpenSCD_Cancel_INT8">
+      <BDA name="ctlVal" bType="INT8"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
     <DAType id="OpenSCD_CalendarTime">
       <BDA name="occ" bType="INT16U"/>
@@ -286,36 +669,158 @@
       <BDA name="hr" bType="INT8U"/>
       <BDA name="mn" bType="INT8U"/>
     </DAType>
-    <DAType id="OpenSCD_AnalogueValueInteger32andFloat32">
-      <BDA name="f" bType="FLOAT32"/>
-      <BDA name="i" bType="INT32"/>
+    <DAType id="OpenSCD_Cell2D">
+      <BDA name="xStart" bType="FLOAT32"/>
+      <BDA name="xEnd" bType="FLOAT32"/>
+      <BDA name="yStart" bType="FLOAT32"/>
+      <BDA name="yEnd" bType="FLOAT32"/>
     </DAType>
-    <DAType id="OpenSCD_AnalogueValueFloat32">
-      <BDA name="f" bType="FLOAT32"/>
+    <DAType id="OpenSCD_Cell1D">
+      <BDA name="xStart" bType="FLOAT32"/>
+      <BDA name="xEnd" bType="FLOAT32"/>
     </DAType>
-    <DAType id="OpenSCD_AnalogueValueInteger32">
-      <BDA name="i" bType="INT32"/>
-    </DAType>
-    <DAType id="OpenSCD_ScaledValueConfig">
-      <BDA name="scaleFactor" bType="FLOAT32"/>
-      <BDA name="offset" bType="FLOAT32"/>
-    </DAType>
-    <DAType id="OpenSCD_OpenSBOw">
+    <DAType id="OpenSCD_OperSBOw_SPC">
       <BDA name="ctlVal" bType="BOOLEAN"/>
       <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
       <BDA name="ctlNum" bType="INT8U"/>
       <BDA name="T" bType="Timestamp"/>
       <BDA name="Test" bType="BOOLEAN"/>
       <BDA name="Check" bType="Check"/>
-      <ProtNs>IEC 61850-8-1:2003</ProtNs>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
-    <DAType id="OpenSCD_Cancel">
-      <BDA name="ctlVal" bType="BOOLEAN"/>
+    <DAType id="OpenSCD_OperSBOw_Dbpos">
+      <BDA name="ctlVal" bType="Dbpos"/>
       <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
       <BDA name="ctlNum" bType="INT8U"/>
       <BDA name="T" bType="Timestamp"/>
       <BDA name="Test" bType="BOOLEAN"/>
+      <BDA name="Check" bType="Check"/>
       <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_OperSBOw_FLOAT32">
+      <BDA name="ctlVal" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <BDA name="Check" bType="Check"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_OperSBOw_StepControlKind">
+      <BDA name="ctlVal" bType="Tcmd"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <BDA name="Check" bType="Check"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_OperSBOw_BehaviourModeKind">
+      <BDA name="ctlVal" bType="Enum" type="BehaviourModeKind"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <BDA name="Check" bType="Check"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_OperSBOw_INT8">
+      <BDA name="ctlVal" bType="INT8"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <BDA name="Check" bType="Check"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_Originator">
+      <BDA name="orCat" bType="Enum" type="OriginatorCategoryKind"/>
+      <BDA name="orIdent" bType="Octet64"/>
+    </DAType>
+    <DAType id="OpenSCD_Point3D">
+      <BDA name="xVal" bType="FLOAT32"/>
+      <BDA name="yVal" bType="FLOAT32"/>
+      <BDA name="zVal" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_Point2D">
+      <BDA name="xVal" bType="FLOAT32"/>
+      <BDA name="yVal" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_PulseConfig">
+      <BDA name="cmdQual" bType="Enum" type="OutputSignalKind"/>
+      <BDA name="onDur" bType="INT32U"/>
+      <BDA name="offDur" bType="INT32U"/>
+      <BDA name="numPls" bType="INT32U"/>
+    </DAType>
+    <DAType id="OpenSCD_RangeConfig">
+      <BDA name="hhLim" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="hLim" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="lLim" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="llLim" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="min" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="max" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="limDb" bType="INT32"/>
+    </DAType>
+    <DAType id="OpenSCD_ScaledValueConfig_AmpSv">
+      <BDA name="scaleFactor" bType="FLOAT32">
+        <Val>0.001</Val>
+      </BDA>
+      <BDA name="offset" bType="FLOAT32">
+        <Val>0</Val>
+      </BDA>
+    </DAType>
+    <DAType id="OpenSCD_ScaledValueConfig_VolSv">
+      <BDA name="scaleFactor" bType="FLOAT32">
+        <Val>0.01</Val>
+      </BDA>
+      <BDA name="offset" bType="FLOAT32">
+        <Val>0</Val>
+      </BDA>
+    </DAType>
+    <DAType id="OpenSCD_Unit_A">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind">
+        <Val>A</Val>
+      </BDA>
+    </DAType>
+    <DAType id="OpenSCD_Unit_V">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind">
+        <Val>A</Val>
+      </BDA>
+    </DAType>
+    <DAType id="OpenSCD_Unit_Hz">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind">
+        <Val>A</Val>
+      </BDA>
+    </DAType>
+    <DAType id="OpenSCD_ValWithTrans_wo_transInd">
+      <BDA name="posVal" bType="INT8"/>
+    </DAType>
+    <DAType id="OpenSCD_Vector_I_w_Ang">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValue_INT32"/>
+      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValue_INT32"/>
+    </DAType>
+    <DAType id="OpenSCD_Vector_F_w_Ang">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+      <BDA name="ang" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+    </DAType>
+    <DAType id="OpenSCD_Vector_I_wo_Ang">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValue_INT32"/>
+    </DAType>
+    <DAType id="OpenSCD_Vector_F_wo_Ang">
+      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValue_FLOAT32"/>
+    </DAType>
+
+    <DAType id="ScaledValueConfig">
+      <BDA name="scaleFactor" bType="FLOAT32"/>
+      <BDA name="offset" bType="FLOAT32"/>
+    </DAType>
+    <DAType id="Unit">
+      <BDA name="SIUnit" bType="Enum" type="SIUnitKind"/>
+      <BDA name="multiplier" bType="Enum" type="MultiplierKind"/>
+    </DAType>
+    <DAType id="OpenSCD_ValWithTrans">
+      <BDA name="posVal" bType="INT8"/>
+      <BDA name="transInd" bType="BOOLEAN"/>
     </DAType>
     <EnumType id="BehaviourModeKind">
       <EnumVal ord="1">on</EnumVal>
@@ -549,7 +1054,6 @@
       <EnumVal ord="86">Ohm/m</EnumVal>
       <EnumVal ord="87">percent/s</EnumVal>
     </EnumType>
-
     <EnumType id="SboClassKind">
       <EnumVal ord="0">operate-once</EnumVal>
       <EnumVal ord="1">operate-many</EnumVal>
