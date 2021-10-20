@@ -109,8 +109,6 @@ describe('LNodeType wizards', () => {
       selector = parent.wizardUI.dialog!.querySelector<Select>(
         'mwc-select[label="lnClass"]'
       )!;
-      autoimport =
-        parent.wizardUI.dialog!.querySelector<Switch>('#autoimport')!;
       idField = parent.wizardUI.dialog!.querySelector<WizardTextField>(
         'wizard-textfield[label="id"]'
       )!;
@@ -124,66 +122,58 @@ describe('LNodeType wizards', () => {
     it('looks like the latest snapshot', () => {
       expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
-    it('only imports predefined LNodeType with autoimport', async () => {
-      expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.not
-        .exist;
-      selector.value = 'CSWI';
-      await parent.requestUpdate();
-      idField.maybeValue = 'myGeneralLNodeType';
-      autoimport.checked = false;
-      await parent.requestUpdate();
-      primayAction.click();
-      await parent.updateComplete;
-      expect(doc.querySelector('LNodeType[id="myGeneralLNodeType"]')).to.not
-        .exist;
-    });
-    it('recursevly add missing! subsequent DOType elements', async () => {
+    it('recursively add missing! subsequent DOType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
-      expect(doc.querySelector('DOType[id="OpenSCD_ENCMod"]')).to.not.exist;
-      expect(doc.querySelector('DOType[id="OpenSCD_ENSBeh"]')).to.not.exist;
-      expect(doc.querySelector('DOType[id="OpenSCD_ENSHealth"]')).to.not.exist;
-      expect(doc.querySelector('DOType[id="OpenSCD_LPLnoLD"]')).to.not.exist;
-      expect(doc.querySelector('DOType[id="OpenSCD_SPSsimple"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_ENC_Mod"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_ENS_Beh"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_ENS_Health"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_LPL_noLD"]')).to.not.exist;
+      expect(doc.querySelector('DOType[id="OpenSCD_SPS_simple"]')).to.not.exist;
       expect(doc.querySelector('DOType[id="OpenSCD_DPC"]')).to.not.exist;
       await new Promise(resolve => setTimeout(resolve, 100)); //recursive call takes time
-      selector.value = 'CSWI';
+      selector.value = '#OpenSCD_CSWI_noPB';
       await parent.requestUpdate(); // selector updates autoimport
       idField.maybeValue = 'myCSWI';
-      autoimport.checked = true;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.exist;
       expect(
-        doc.querySelectorAll('DOType[id="OpenSCD_ENCMod"]').length
+        doc.querySelectorAll('DOType[id="OpenSCD_ENC_Mod"]').length
       ).to.equal(1);
       expect(
-        doc.querySelectorAll('DOType[id="OpenSCD_ENSBeh"]').length
+        doc.querySelectorAll('DOType[id="OpenSCD_ENS_Beh"]').length
       ).to.equal(1);
       expect(
-        doc.querySelectorAll('DOType[id="OpenSCD_ENSHealth"]').length
+        doc.querySelectorAll('DOType[id="OpenSCD_ENS_Health"]').length
       ).to.equal(1);
       expect(
-        doc.querySelectorAll('DOType[id="OpenSCD_LPLnoLD"]').length
+        doc.querySelectorAll('DOType[id="OpenSCD_LPL_noLD"]').length
       ).to.equal(1);
       expect(
-        doc.querySelectorAll('DOType[id="OpenSCD_SPSsimple"]').length
+        doc.querySelectorAll('DOType[id="OpenSCD_SPS_simple"]').length
       ).to.equal(1);
       expect(doc.querySelectorAll('DOType[id="OpenSCD_DPC"]').length).to.equal(
         1
       );
     }).timeout(5000);
-    it('recursevly add missing! subsequent DAType elements', async () => {
+    it('recursively add missing! subsequent DAType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('DAType[id="OpenSCD_Originator"]')).to.not.exist;
-      expect(doc.querySelector('DAType[id="OpenSCD_OpenSBOw"]')).to.not.exist;
-      expect(doc.querySelector('DAType[id="OpenSCD_Cancel"]')).to.not.exist;
+      expect(doc.querySelector('DAType[id="OpenSCD_OperSBOw_Dbpos"]')).to.not
+        .exist;
+      expect(doc.querySelector('DAType[id="OpenSCD_Cancel_Dbpos"]')).to.not
+        .exist;
+      expect(
+        doc.querySelector('DAType[id="OpenSCD_OperSBOw_BehaviourModeKind"]')
+      ).to.not.exist;
+      expect(doc.querySelector('DAType[id="OpenSCD_Cancel_BehaviourModeKind"]'))
+        .to.not.exist;
       expect(doc.querySelector('DAType[id="OpenSCD_PulseConfig"]')).to.not
         .exist;
-      selector.value = 'CSWI';
+      selector.value = '#OpenSCD_CSWI_noPB';
       await parent.requestUpdate(); // selector updates autoimport
       idField.maybeValue = 'myCSWI';
-      autoimport.checked = true;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
@@ -192,16 +182,24 @@ describe('LNodeType wizards', () => {
         doc.querySelectorAll('DAType[id="OpenSCD_Originator"]').length
       ).to.equal(1);
       expect(
-        doc.querySelectorAll('DAType[id="OpenSCD_OpenSBOw"]').length
+        doc.querySelectorAll('DAType[id="OpenSCD_OperSBOw_Dbpos"]').length
       ).to.equal(1);
       expect(
-        doc.querySelectorAll('DAType[id="OpenSCD_Cancel"]').length
+        doc.querySelectorAll('DAType[id="OpenSCD_Cancel_Dbpos"]').length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DAType[id="OpenSCD_OperSBOw_BehaviourModeKind"]')
+          .length
+      ).to.equal(1);
+      expect(
+        doc.querySelectorAll('DAType[id="OpenSCD_Cancel_BehaviourModeKind"]')
+          .length
       ).to.equal(1);
       expect(
         doc.querySelectorAll('DAType[id="OpenSCD_PulseConfig"]').length
       ).to.equal(1);
     }).timeout(5000);
-    it('recursevly add missing! subsequent EnumType elements', async () => {
+    it('recursively add missing! subsequent EnumType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="OriginatorCategoryKind"]')).to.not
         .exist;
@@ -210,10 +208,9 @@ describe('LNodeType wizards', () => {
       expect(doc.querySelector('EnumType[id="CtlModelKind"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="HealthKind"]')).to.not.exist;
       expect(doc.querySelector('EnumType[id="OutputSignalKind"]')).to.not.exist;
-      selector.value = 'CSWI';
+      selector.value = '#OpenSCD_CSWI_noPB';
       await parent.requestUpdate(); // selector updates autoimport
       idField.maybeValue = 'myCSWI';
-      autoimport.checked = true;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
@@ -235,10 +232,9 @@ describe('LNodeType wizards', () => {
       ).to.equal(1);
     }).timeout(5000);
     it('respects the sequence defined in the standard', async () => {
-      selector.value = 'CSWI';
+      selector.value = '#OpenSCD_CSWI_noPB';
       await parent.requestUpdate(); // selector updates autoimport
       idField.maybeValue = 'myGeneralLNodeType';
-      autoimport.checked = true;
       await parent.requestUpdate();
       primayAction.click();
       await parent.updateComplete;
@@ -261,7 +257,6 @@ describe('LNodeType wizards', () => {
         selector.value = 'CILO';
         idField.maybeValue = 'myGeneralLNodeType';
         await parent.updateComplete;
-        autoimport.checked = false;
 
         (<HTMLElement>(
           parent.wizardUI.dialog?.querySelector(
@@ -315,7 +310,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.not.exist;
       });
-      it('adds new lnodetype with corrrect id and lnClass', async () => {
+      it('adds new LNodeType with correct id and lnClass', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
         enaCls.value = spsId;
@@ -331,7 +326,7 @@ describe('LNodeType wizards', () => {
           )
         ).to.exist;
       });
-      it('adds selected DOs to new lnodetype', async () => {
+      it('adds selected DOs to new LNodeType', async () => {
         beh.value = ensId;
         enaOpn.value = spsId;
         enaCls.value = spsId;

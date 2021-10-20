@@ -6,6 +6,7 @@ import {
   Create,
   createElement,
   EditorAction,
+  getChildElementsByTagName,
   getReference,
   getValue,
   identity,
@@ -378,29 +379,25 @@ function startLNodeTypeCreate(
 
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
-    const lnClass = (<Select>inputs.find(i => i.label === 'lnClass'))?.selected
+    const value = (<Select>inputs.find(i => i.label === 'lnClass'))?.selected
       ?.value;
-    const templateLNodeType = templates.querySelector(
-      `LNodeType[lnClass="${lnClass}"]`
-    );
+    const templateLNodeType = value
+      ? templates.querySelector(selector('LNodeType', value))
+      : null;
 
-    const autoimport =
-      wizard.shadowRoot?.querySelector<Switch>('#autoimport')?.checked;
-
-    const newLNodeType =
-      templateLNodeType && autoimport
-        ? <Element>templateLNodeType!.cloneNode(true)
-        : createElement(parent.ownerDocument, 'LNodeType', {
-            lnClass: lnClass ?? '',
-          });
+    const newLNodeType = templateLNodeType
+      ? <Element>templateLNodeType!.cloneNode(true)
+      : createElement(parent.ownerDocument, 'LNodeType', {
+          lnClass: value ?? '',
+        });
 
     newLNodeType.setAttribute('id', id);
     if (desc) newLNodeType.setAttribute('desc', desc);
 
-    if (autoimport && templateLNodeType)
+    if (templateLNodeType)
       return addPredefinedLNodeType(parent, newLNodeType, templateLNodeType);
 
-    const allDo = getAllDataObjects(nsd74, lnClass!);
+    const allDo = getAllDataObjects(nsd74, value!);
     wizard.dispatchEvent(
       newWizardEvent(createLNodeTypeHelperWizard(parent, newLNodeType, allDo))
     );
@@ -411,52 +408,23 @@ function startLNodeTypeCreate(
 }
 
 function onLnClassChange(e: Event, templates: XMLDocument): void {
-  const lnClass = (<Select>e.target).selected?.value;
-  const autoimport = (<Select>e.target).parentElement!.querySelector<Switch>(
-    '#autoimport'
-  )!;
+  const identity = (<Select>e.target).selected?.value;
+  const lnodetype = identity
+    ? templates.querySelector(selector('LNodeType', identity))
+    : null;
 
   const primaryAction =
     (<Element>e.target)
       ?.closest('mwc-dialog')
       ?.querySelector('mwc-button[slot="primaryAction"]') ?? null;
 
-  autoimport.parentElement!.removeAttribute('style');
-
-  if (templates.querySelector(`LNodeType[lnClass="${lnClass}"]`)) {
-    autoimport.checked = true;
-    autoimport.disabled = false;
-    autoimport.parentElement!.setAttribute(
-      'label',
-      get('lnodetype.autoimport')
-    );
+  if (lnodetype) {
     primaryAction?.setAttribute('label', get('save'));
     primaryAction?.setAttribute('icon', 'save');
   } else {
-    autoimport.checked = false;
-    autoimport.disabled = true;
-    autoimport.parentElement!.setAttribute(
-      'label',
-      get('lnodetype.missinglnclass')
-    );
     primaryAction?.setAttribute('label', get('next') + '...');
     primaryAction?.setAttribute('icon', '');
   }
-}
-
-function toggleAutoimport(e: Event): void {
-  const autoimport = <Switch>e.target;
-  const primaryAction =
-    (<Element>e.target)
-      ?.closest('mwc-dialog')
-      ?.querySelector('mwc-button[slot="primaryAction"]') ?? null;
-
-  autoimport.checked
-    ? primaryAction?.setAttribute('label', get('save'))
-    : primaryAction?.setAttribute('label', get('next') + '...');
-  autoimport.checked
-    ? primaryAction?.setAttribute('icon', 'save')
-    : primaryAction?.setAttribute('icon', '');
 }
 
 export function createLNodeTypeWizard(
@@ -484,6 +452,33 @@ export function createLNodeTypeWizard(
           dialogInitialFocus
           @selected=${(e: Event) => onLnClassChange(e, templates)}
         >
+          <mwc-list-item noninteractive
+            >Pre-defined lnClasses from templates</mwc-list-item
+          >
+          <li divider role="separator"></li>
+          ${Array.from(templates.querySelectorAll('LNodeType')).map(
+            lnodetpye => {
+              const lnClass = lnodetpye.getAttribute('lnClass') ?? '';
+              const desc = lnodetpye.getAttribute('desc') ?? '';
+
+              return html`<mwc-list-item
+                twoline
+                style="min-width:200px"
+                graphic="icon"
+                hasMeta
+                value="${identity(lnodetpye)}"
+                ><span>${lnClass}</span>
+                <span slot="secondary">${desc}</span>
+                <span slot="meta"
+                  >${getChildElementsByTagName(lnodetpye, 'DO').length}</span
+                >
+              </mwc-list-item>`;
+            }
+          )}
+          <mwc-list-item noninteractive
+            >Empty lnClasses from IEC 61850-7-4</mwc-list-item
+          >
+          <li divider role="separator"></li>
           ${Array.from(nsd74.querySelectorAll('LNClasses > LNClass')).map(
             lnClass => {
               const className = lnClass.getAttribute('name') ?? '';
@@ -500,13 +495,6 @@ export function createLNodeTypeWizard(
             }
           )}
         </mwc-select>`,
-        html`<mwc-formfield style="display:none"
-          ><mwc-switch
-            id="autoimport"
-            @change=${(e: Event) => toggleAutoimport(e)}
-          ></mwc-switch
-          ><mwc-formfield></mwc-formfield
-        ></mwc-formfield>`,
         html`<wizard-textfield
           label="id"
           helper="${translate('scl.id')}"

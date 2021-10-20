@@ -1,1 +1,19 @@
-Here you may learn how to [Connect Report Control Blocks with ClientLN nodes](https://github.com/openscd/open-scd/wiki/Connect-Report-Control-Blocks-with-ClientLN), how to [Import IEDs](https://github.com/openscd/open-scd/wiki/Importing-IEDs) into a project, and how to [Update the GOOSE subscriber info in your SCL file](https://github.com/openscd/open-scd/wiki/Update-GOOSE-subscriber-info-in-SCL).
+Here you can learn how to configure `IED`s with **OpenSCD**. 
+
+
+## Create TEMPLATE IED
+t.b.d
+
+## Edit/create/delete control blocks
+
+- [GSEControl]() (GOOSE)
+- [SampledValueControl]() 
+- [ReportControl]()
+
+
+## Communication mappings
+- [Delete connections]()
+- [Create report connections](https://github.com/openscd/open-scd/wiki/ClientLN) (`ClientLN`)
+- [Create GOOSE connection]()
+- [Create Sampled Value connections]()
+- [Update the subscriber info](https://github.com/openscd/open-scd/wiki/Update-subscriber-info) (`IEDName`)

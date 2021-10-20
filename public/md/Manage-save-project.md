@@ -1,3 +1,0 @@
-One of the things that user might be different in OpenSCD compared to a desktop application is `Save project`. As OpenSCD runs in the browser we use the browser standard behavior to save files and in most browsers this means that the file is downloaded in the download folder on your machinedirectly. 
-
-HOWEVER, you can change this standard behavior. In Chrome and Chromium, this setting is called `Ask where to save each file before downloading`. 

@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/openscd/open-scd/compare/v0.7.0...v0.7.1) (2021-10-18)
+
+
+### Features
+
+* **editor-container:** add initial web-component ([3993bbd](https://github.com/openscd/open-scd/commits/3993bbd3aebbcfad969316dddc55d46c92ebcf3a))
+* **Logging:** show Hitem from SCL ([#315](https://github.com/openscd/open-scd/issues/315)) ([51c3662](https://github.com/openscd/open-scd/commits/51c3662657615986400640abe0d6ffd939742a3c))
+* **public/templates:** add logical node classes ([#320](https://github.com/openscd/open-scd/issues/320)) ([5d07886](https://github.com/openscd/open-scd/commits/5d0788643b6773a4bb62c182d59b9831535d3994))
+
+
+### Bug Fixes
+
+* **package.json:** license change ([e0d395f](https://github.com/openscd/open-scd/commits/e0d395fa00fbb2dd464cfe163ee68d01115ac311))
+* **translation:** improve capitalization add missing menu.new ([#307](https://github.com/openscd/open-scd/issues/307)) ([b5e2621](https://github.com/openscd/open-scd/commits/b5e2621e19858aa49d7d40c198fd54495e179051)), closes [#306](https://github.com/openscd/open-scd/issues/306)
+* **wizard/commap:** neglect ExtRef without valid source ([#298](https://github.com/openscd/open-scd/issues/298)) ([4881586](https://github.com/openscd/open-scd/commits/488158667a65713c229c7c676f136fe5ea0bfdad))
+* **zeroline/conducting-equipment:** spell correction ([#319](https://github.com/openscd/open-scd/issues/319)) ([9bb51ec](https://github.com/openscd/open-scd/commits/9bb51ecbe979c1a9029773fd4ff21745c832ab37))
+
 ## [0.7.0](https://github.com/openscd/open-scd/compare/v0.6.0...v0.7.0) (2021-08-31)
 
 

@@ -19,13 +19,13 @@ export const en = {
     sAddr: 'Short address',
     valKind: 'Value kind',
     valImport: 'Import value',
-    fc: 'Function contraint',
+    fc: 'Function constraint',
     LNodeType: 'Logical Node Type',
-    lnClass: 'Logical node class',
+    lnClass: 'Logical Node Class',
     accessControl: 'Access control',
     transient: 'Transient data',
     Val: 'Default value',
-    dchg: 'Triggre on data change',
+    dchg: 'Trigger on data change',
     qchg: 'Trigger on quality change',
     dupd: 'Trigger on data update',
     fixedOffs: 'Fixed offset',
@@ -42,6 +42,7 @@ export const en = {
     showieds: 'Show IEDs in substation editor',
   },
   menu: {
+    new: 'New project',
     title: 'Menu',
     viewLog: 'View log',
     viewDiag: 'View diagnostics',
@@ -283,7 +284,7 @@ export const en = {
     wizard: {
       primary: 'Guess content',
       title: 'Select control model (ctlModel)',
-      description: `IEDs often contain more controlable logical nodes than switch gear in the field. \n You can select the control model(s) used specific for switch gear.`,
+      description: `IEDs often contain more controllable logical nodes than switchgear in the field. \n You can select the control model(s) used specific for switchgear.`,
     },
   },
   merge: {

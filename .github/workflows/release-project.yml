@@ -41,5 +41,5 @@ jobs:
           push: true
           # Tag the images using the tagname and also latest.
           tags: |
-            lfenergycompas/compas-open-scd:${{ steps.extract_tagname.outputs.tagname }}
-            lfenergycompas/compas-open-scd:latest
+            lfenergy/compas-open-scd:${{ steps.extract_tagname.outputs.tagname }}
+            lfenergy/compas-open-scd:latest

@@ -195,9 +195,9 @@ describe('voltage-level-editor wizarding editing integration', () => {
       element = parent.querySelector('voltage-level-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="playlist_add"]'
-        )
+        element?.shadowRoot
+          ?.querySelector('editor-container')
+          ?.shadowRoot?.querySelector('mwc-list-item[value="Bay"]')
       )).click();
       await parent.updateComplete;
 

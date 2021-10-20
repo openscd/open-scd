@@ -661,7 +661,7 @@
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="Function contraint"
+      helper="Function constraint"
       label="fc"
       required=""
     >
@@ -1470,7 +1470,7 @@
     </wizard-textfield>
     <wizard-select
       fixedmenuposition=""
-      helper="Function contraint"
+      helper="Function constraint"
       label="fc"
       required=""
     >

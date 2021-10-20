@@ -173,7 +173,7 @@ export function selectExtRefsWizard(
       title: cbId + ' - ' + iedName,
       primary: {
         icon: 'delete',
-        label: get('disconnect'), // FIXME: translate
+        label: get('disconnect'),
         action: disconnect(sinkExtRefs),
       },
       secondary: {
