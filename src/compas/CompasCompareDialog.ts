@@ -186,7 +186,9 @@ export function compareWizard(
                                                         : 'primary'});">
                         <span>${diff.oldValue?.tagName ?? diff.newValue?.tagName}</span>
                         <span slot="secondary">
-                          ${describe(diff.oldValue)}&cularr;${describe(diff.newValue)}
+                          ${describe(diff.oldValue)}
+                          ${describe(diff.oldValue) && describe(diff.newValue) ? html`&cularr;` : html``}
+                          ${describe(diff.newValue)}
                         </span>
                         <mwc-icon slot="meta">compare</mwc-icon>
                       </mwc-check-list-item>`
