@@ -2,7 +2,7 @@ import {customElement, html, LitElement, TemplateResult} from "lit-element";
 import {get, translate} from "lit-translate";
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 
-import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
+import {newLogEvent, newWizardEvent} from "../foundation.js";
 
 import {CompasExistsIn} from "./CompasExistsIn.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";
@@ -50,12 +50,9 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
 
     await CompasSclDataService().addSclDocument(docType, {sclName: name, comment: comment, doc: doc})
       .then(sclDocument => {
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'reset'
-          }));
         updateDocumentInOpenSCD(sclDocument);
+
+        const openScd = getOpenScdElement();
         openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
@@ -75,13 +72,9 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
 
     await CompasSclDataService().updateSclDocument(docType, docId, {changeSet: changeSet!, comment: comment, doc: doc})
       .then(sclDocument => {
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'reset'
-          }));
         updateDocumentInOpenSCD(sclDocument);
 
+        const openScd = getOpenScdElement();
         openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',
@@ -125,37 +118,3 @@ export class CompasSaveTo  extends CompasExistsIn(LitElement) {
     `;
   }
 }
-
-export interface SaveToCompasWizardOptions {
-  docId: string,
-  docName: string
-}
-export function saveToCompasWizard(doc: XMLDocument, saveToOptions: SaveToCompasWizardOptions): Wizard {
-  function saveToCompas(docId: string, docName: string, doc: XMLDocument) {
-    return function (inputs: WizardInput[], wizard: Element) {
-      const compasSaveTo = <CompasSaveTo>wizard.shadowRoot!.querySelector('compas-save-to')
-      if (!doc || !compasSaveTo.valid()) {
-        return [];
-      }
-
-      getOpenScdElement().dispatchEvent(newPendingStateEvent(compasSaveTo.saveToCompas(docId, docName, doc)));
-      return [];
-    };
-  }
-
-  return [
-    {
-      title: get('compas.saveTo.title'),
-      primary: {
-        icon: 'save',
-        label: get('save'),
-        action: saveToCompas(saveToOptions.docId, saveToOptions.docName, doc),
-      },
-      content: [
-        html `
-          <compas-save-to .docName="${saveToOptions.docName}" .docId="${saveToOptions.docId}"/>
-        ` ],
-    },
-  ];
-}
-

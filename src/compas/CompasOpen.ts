@@ -29,7 +29,7 @@ export function newDocRetrievedEvent(
   });
 }
 
-@customElement('open-compas')
+@customElement('compas-open')
 export default class CompasOpenElement extends LitElement {
   @property()
   selectedType: string | undefined;

@@ -38,7 +38,7 @@ export const officialPlugins = [
   },
   {
     name: 'Open CoMPAS',
-    src: '/src/menu/OpenCompas.js',
+    src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
     default: true,
     kind: 'menu',
@@ -74,7 +74,7 @@ export const officialPlugins = [
   },
   {
     name: 'Save CoMPAS',
-    src: '/src/menu/SaveToCompas.js',
+    src: '/src/menu/CompasSaveTo.js',
     icon: 'save',
     default: true,
     kind: 'menu',

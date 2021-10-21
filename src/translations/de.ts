@@ -446,7 +446,7 @@ export const de: Translations = {
       children: 'Kindelemente',
     },
     settings: {
-      name: 'CoMPAS Einstellungen',
+      title: 'CoMPAS Einstellungen',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
     },

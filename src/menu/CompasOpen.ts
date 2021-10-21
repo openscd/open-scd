@@ -1,13 +1,14 @@
 import {html, LitElement} from 'lit-element';
-import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 import {get} from "lit-translate";
 
+import {newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
+
 import CompasOpenElement, {DocRetrievedEvent} from "../compas/CompasOpen.js";
-import {getOpenScdElement, updateDocumentInOpenSCD} from "../compas/foundation.js";
+import {updateDocumentInOpenSCD} from "../compas/foundation.js";
 
 import "../compas/CompasOpen.js";
 
-export default class OpenCompasPlugin extends LitElement {
+export default class CompasOpenMenuPlugin extends LitElement {
   async run(): Promise<void> {
     this.dispatchEvent(newWizardEvent(openCompasWizard()));
   }
@@ -15,12 +16,6 @@ export default class OpenCompasPlugin extends LitElement {
 
 function openCompasWizard(): Wizard {
   async function openDoc(element: Element, sclDocument: Document): Promise<void> {
-    const openScd = getOpenScdElement();
-    openScd.dispatchEvent(
-      newLogEvent({
-        kind: 'reset'
-      }));
-
     updateDocumentInOpenSCD(sclDocument);
 
     element.dispatchEvent(newWizardEvent());
@@ -44,11 +39,13 @@ function openCompasWizard(): Wizard {
         style: '--mdc-theme-primary: var(--mdc-theme-error)'
       },
       content: [
-        html`<open-compas @docRetrieved=${(evt: DocRetrievedEvent) => {
+        html`<compas-open @docRetrieved=${(evt: DocRetrievedEvent) => {
                                           const element = evt.detail.element;
                                           const doc = evt.detail.doc;
                                           element.dispatchEvent(newPendingStateEvent(openDoc(element, doc)));
-                                        }}/>`,
+                                        }}>
+             </compas-open>
+        `,
       ],
     },
   ];

@@ -16,7 +16,7 @@ describe('compas-foundation', () => {
   });
 
   it('when loaded the document should be on open-scd component', async () => {
-    let doc = await fetch('/base/test/testfiles/compas/test-scd.cid')
+    const doc = await fetch('/base/test/testfiles/compas/test-scd.cid')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -30,7 +30,7 @@ describe('compas-foundation', () => {
 
   it('when UserInfoEvent event is dispatched, the username is shown in OpenSCD', async () => {
     expect(element.shadowRoot!.querySelector('span[id="userField"]')).to.be.null;
-    
+
     element.dispatchEvent(newUserInfoEvent("Henk"));
     await element.updateComplete;
 

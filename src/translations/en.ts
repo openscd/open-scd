@@ -443,7 +443,7 @@ export const en = {
       children: 'Child elements',
     },
     settings: {
-      name: 'CoMPAS Settings',
+      title: 'CoMPAS Settings',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
     },

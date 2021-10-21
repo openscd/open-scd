@@ -50,13 +50,9 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
     await CompasSclDataService().updateSclDocument(docType, this.docId,
       {changeSet: changeSet!, comment: comment, doc: doc})
       .then(sclDocument => {
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'reset'
-          }));
         updateDocumentInOpenSCD(sclDocument);
 
+        const openScd = getOpenScdElement();
         openScd.dispatchEvent(
           newLogEvent({
             kind: 'info',

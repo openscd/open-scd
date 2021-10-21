@@ -1,6 +1,6 @@
 import {get} from "lit-translate";
 
-import {newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
+import {newLogEvent, newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
 import {OpenSCD} from "../open-scd.js";
 
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
@@ -42,7 +42,9 @@ export function updateDocumentInOpenSCD(doc: Document): void {
   }
   docName += '-' + version + '.' + type?.toLowerCase();
 
-  getOpenScdElement().dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
+  const openScd = getOpenScdElement();
+  openScd.dispatchEvent(newLogEvent({kind: 'reset'}));
+  openScd.dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
 }
 
 export async function retrieveUserInfo(): Promise<void> {
