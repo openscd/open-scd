@@ -29,15 +29,6 @@ export const officialPlugins = [
   },
   {
     name: 'Open project',
-    src: '/src/menu/OpenProject.js',
-    icon: 'folder_open',
-    default: true,
-    kind: 'menu',
-    requireDoc: false,
-    position: 'top'
-  },
-  {
-    name: 'Open CoMPAS',
     src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
     default: true,
@@ -55,7 +46,7 @@ export const officialPlugins = [
     position: 'top'
   },
   {
-    name: 'New project from CIM',
+    name: 'Project from CIM',
     src: '/src/menu/CompasCimMapping.js',
     icon: 'input',
     default: true,

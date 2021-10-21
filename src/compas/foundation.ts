@@ -30,17 +30,20 @@ export function getOpenScdElement(): OpenSCD {
   return <OpenSCD>document.querySelector('open-scd');
 }
 
-export function updateDocumentInOpenSCD(doc: Document): void {
-  const id = (doc.querySelectorAll(':root > Header') ?? []).item(0).getAttribute('id') ?? '';
-  const version = (doc.querySelectorAll(':root > Header') ?? []).item(0).getAttribute('version') ?? '';
-  const name = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclName') ?? []).item(0).textContent ?? '';
-  const type = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclFileType') ?? []).item(0).textContent ?? '';
+export function updateDocumentInOpenSCD(doc: Document, docName?: string): void {
+  const id = (doc.querySelectorAll(':root > Header') ?? []).item(0)?.getAttribute('id') ?? '';
 
-  let docName = name;
-  if (docName === '') {
-    docName = id;
+  if (!docName) {
+    const version = (doc.querySelectorAll(':root > Header') ?? []).item(0)?.getAttribute('version') ?? '';
+    const name = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclName') ?? []).item(0)?.textContent ?? '';
+    const type = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclFileType') ?? []).item(0)?.textContent ?? '';
+
+    docName = name;
+    if (docName === '') {
+      docName = id;
+    }
+    docName += '-' + version + '.' + type?.toLowerCase();
   }
-  docName += '-' + version + '.' + type?.toLowerCase();
 
   const openScd = getOpenScdElement();
   openScd.dispatchEvent(newLogEvent({kind: 'reset'}));

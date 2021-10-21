@@ -6,7 +6,7 @@ export class CompasLoadingElement extends LitElement {
   render(): TemplateResult {
     return html`
       <mwc-list>
-        <mwc-list-item>${translate("compas.loading")}</mwc-list-item>
+        <mwc-list-item><i>${translate("compas.loading")}</i></mwc-list-item>
       </mwc-list>
     `
   }

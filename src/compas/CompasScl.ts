@@ -46,7 +46,7 @@ export class CompasScl extends LitElement {
     if (this.scls?.length <= 0) {
       return html `
         <mwc-list>
-          <mwc-list-item>${translate("compas.noScls")}</mwc-list-item>
+          <mwc-list-item><i>${translate("compas.noScls")}</i></mwc-list-item>
         </mwc-list>`
     }
     return html`

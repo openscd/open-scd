@@ -400,9 +400,11 @@ export const en = {
       patch: 'Patch change',
     },
     open: {
-      title: 'Open project from CoMPAS',
+      title: 'Open project',
       listSclTypes: 'Select type of project',
       listScls: 'Select project ({{ type }})',
+      selectFileButton: 'Open file...',
+      otherTypeButton: 'Other type...',
     },
     saveTo: {
       title: 'Save to CoMPAS',

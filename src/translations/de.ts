@@ -406,6 +406,8 @@ export const de: Translations = {
       title: '???',
       listSclTypes: '???',
       listScls: '??? ({{ type }})',
+      selectFileButton: '???',
+      otherTypeButton: '???',
     },
     saveTo: {
       title: '???',

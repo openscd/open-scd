@@ -42,9 +42,7 @@ export class CompasSclTypeList extends LitElement {
       if (this.sclTypes.length <= 0) {
         return html `
           <mwc-list>
-            <mwc-list-item>
-              ${translate("compas.noSclTypes")}
-            </mwc-list-item>
+            <mwc-list-item><i>${translate("compas.noSclTypes")}</i></mwc-list-item>
          </mwc-list>`
       }
 
