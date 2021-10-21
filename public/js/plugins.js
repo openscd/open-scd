@@ -105,7 +105,7 @@ export const officialPlugins = [
   },
   {
     name: 'Update Substation',
-    src: '/src/menu/UpdateSubstation.js',
+    src: '/src/menu/CompasUpdateSubstation.js',
     icon: 'merge_type',
     default: true,
     kind: 'menu',

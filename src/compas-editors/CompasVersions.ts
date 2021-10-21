@@ -306,11 +306,7 @@ function confirmRestoreVersionCompasWizard(docName: string, docId: string, versi
       const type = getTypeFromDocName(docName);
 
       CompasSclDataService().getSclDocumentVersion(type, docId, version)
-        .then(response => {
-          // Copy the SCL Result from the Response and create a new Document from it.
-          const sclData = response.querySelectorAll("SclData").item(0).textContent;
-          const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
-
+        .then(sclDocument => {
           updateDocumentInOpenSCD(sclDocument);
 
           openScd.dispatchEvent(

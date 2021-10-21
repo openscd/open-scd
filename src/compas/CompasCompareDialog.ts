@@ -40,7 +40,6 @@ function compareWizardAction(
   options?: MergeOptions
 ): WizardActor {
   return (_, wizard: Element): EditorAction[] => {
-    let acted = false;
     const checkList = wizard.shadowRoot!.querySelector('mwc-list')!;
 
     const selectedChildDiffs = (<ListItem[]>checkList.selected)
@@ -49,7 +48,6 @@ function compareWizardAction(
     if (selectedChildDiffs.length) {
       for (const diff of selectedChildDiffs)
         if (diff.oldValue && diff.newValue) {
-          acted = true;
           wizard.dispatchEvent(
             newWizardEvent(
               compareWizard(diff.oldValue, diff.newValue, {
@@ -59,10 +57,6 @@ function compareWizardAction(
             )
           );
         }
-    }
-
-    if (!acted) {
-      wizard.dispatchEvent(newWizardEvent());
     }
 
     return [

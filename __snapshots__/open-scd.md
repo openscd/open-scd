@@ -853,7 +853,7 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/UpdateSubstation.js"
+      value="/src/menu/CompasUpdateSubstation.js"
     >
       <mwc-icon slot="meta">
         merge_type

@@ -78,7 +78,8 @@ export function CompasSclDataService() {
       return fetch(sclUrl)
         .catch(handleError)
         .then(handleResponse)
-        .then(parseXml);
+        .then(parseXml)
+        .then(extractSclFromResponse);
     },
 
     deleteSclDocumentVersion(type: string, id: string, version: string): Promise<string> {

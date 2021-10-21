@@ -416,6 +416,9 @@ export const en = {
       addSuccess: 'Project added to CoMPAS.',
       updateSuccess: 'Project updated in CoMPAS',
     },
+    updateSubstation: {
+      title: 'Update substation',
+    },
     uploadVersion: {
       title: 'Upload new version of project to CoMPAS',
       selectButton: 'Select file...',
@@ -446,7 +449,7 @@ export const en = {
     compare: {
       title: 'Compare version {{oldVersion}} with version {{newVersion}}',
       elementTitle: 'Compare {{oldValue}} with {{newValue}} ({{tag}})',
-      primaryButton: 'Show details',
+      primaryButton: 'Continue...',
       children: 'Child elements',
     },
     settings: {

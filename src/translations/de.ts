@@ -419,6 +419,9 @@ export const de: Translations = {
       addSuccess: '???',
       updateSuccess: '???',
     },
+    updateSubstation: {
+      title: '???',
+    },
     uploadVersion: {
       title: '???',
       selectButton: '???...',
