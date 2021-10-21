@@ -47,7 +47,7 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
     const text = await file.text();
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
-    await CompasSclDataService().updateSclDocument(docType, this.docId,
+    await CompasSclDataService().updateSclDocument(docType, this.docId!,
       {changeSet: changeSet!, comment: comment, doc: doc})
       .then(sclDocument => {
         updateDocumentInOpenSCD(sclDocument);

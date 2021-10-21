@@ -38,6 +38,7 @@ import './wizard-select.js';
 import './finder-pane.js';
 
 import './compas/CompasComment.js';
+import './compas/CompasDivider.js';
 import './compas/CompasLoading.js';
 import './compas/CompasSession.js';
 
@@ -122,7 +123,11 @@ export class OpenSCD extends Hosting(Setting(Wizarding(Waiting(Plugging(Editing(
   }
 
   render(): TemplateResult {
-    return html` ${super.render()} ${getTheme(this.settings.theme)} ${renderCompasSessionDialogs(this.doc, this.docName)}`;
+    return html`
+      ${super.render()}
+      ${getTheme(this.settings.theme)}
+      ${renderCompasSessionDialogs(this.doc, this.docName)}
+    `;
   }
 
   static styles = css`

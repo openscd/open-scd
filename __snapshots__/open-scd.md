@@ -88,24 +88,6 @@
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      class="top"
-      disabled=""
-      graphic="icon"
-      iconid="save"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        save
-      </mwc-icon>
-      <span>
-        Save CoMPAS
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -763,28 +745,12 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/SaveProject.js"
+      value="/src/menu/CompasSave.js"
     >
       <mwc-icon slot="meta">
         save
       </mwc-icon>
       Save project
-    </mwc-check-list-item>
-    <mwc-check-list-item
-      aria-disabled="false"
-      class="official"
-      graphic="control"
-      hasmeta=""
-      left=""
-      mwc-list-item=""
-      selected=""
-      tabindex="-1"
-      value="/src/menu/CompasSaveTo.js"
-    >
-      <mwc-icon slot="meta">
-        save
-      </mwc-icon>
-      Save CoMPAS
     </mwc-check-list-item>
     <li
       divider=""

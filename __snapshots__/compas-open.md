@@ -5,9 +5,11 @@
 ####   `looks like the latest snapshot`
 
 ```html
+<compas-divider>
+</compas-divider>
 <section>
   <h3>
-    Local
+    [compas.open.localTitle]
   </h3>
   <input
     accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd"
@@ -19,9 +21,11 @@
   <mwc-button label="[compas.open.selectFileButton]">
   </mwc-button>
 </section>
+<compas-divider>
+</compas-divider>
 <section>
   <h3>
-    CoMPAS
+    [compas.open.compasTitle]
   </h3>
   <p>
     [compas.open.listSclTypes]
@@ -37,9 +41,11 @@
 ####   `looks like the latest snapshot`
 
 ```html
+<compas-divider>
+</compas-divider>
 <section>
   <h3>
-    Local
+    [compas.open.localTitle]
   </h3>
   <input
     accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd"
@@ -51,9 +57,11 @@
   <mwc-button label="[compas.open.selectFileButton]">
   </mwc-button>
 </section>
+<compas-divider>
+</compas-divider>
 <section>
   <h3>
-    CoMPAS
+    [compas.open.compasTitle]
   </h3>
   <p>
     [compas.open.listScls]

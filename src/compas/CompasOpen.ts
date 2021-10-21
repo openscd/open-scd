@@ -106,12 +106,14 @@ export default class CompasOpenElement extends LitElement {
 
   render(): TemplateResult {
     return html `
+      <compas-divider></compas-divider>
       <section>
-        <h3>Local</h3>
+        <h3>${translate('compas.open.localTitle')}</h3>
         ${this.renderFileSelect()}
       </section>
+      <compas-divider></compas-divider>
       <section>
-        <h3>CoMPAS</h3>
+        <h3>${translate('compas.open.compasTitle')}</h3>
         ${(this.selectedType) ? this.renderSclList() : this.renderSclTypeList()}
       </section>
     `

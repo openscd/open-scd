@@ -56,16 +56,7 @@ export const officialPlugins = [
   },
   {
     name: 'Save project',
-    src: '/src/menu/SaveProject.js',
-    icon: 'save',
-    default: true,
-    kind: 'menu',
-    requireDoc: true,
-    position: 'top'
-  },
-  {
-    name: 'Save CoMPAS',
-    src: '/src/menu/CompasSaveTo.js',
+    src: '/src/menu/CompasSave.js',
     icon: 'save',
     default: true,
     kind: 'menu',

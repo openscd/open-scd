@@ -404,13 +404,18 @@ export const de: Translations = {
     },
     open: {
       title: '???',
+      localTitle: '???',
+      selectFileButton: '???',
+      compasTitle: 'CoMPAS',
       listSclTypes: '???',
       listScls: '??? ({{ type }})',
-      selectFileButton: '???',
       otherTypeButton: '???',
     },
-    saveTo: {
+    save: {
       title: '???',
+      localTitle: '???',
+      saveFileButton: '???',
+      compasTitle: 'CoMPAS',
       addSuccess: '???',
       updateSuccess: '???',
     },

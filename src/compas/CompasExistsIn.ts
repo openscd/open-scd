@@ -11,9 +11,9 @@ export type CompasExistsInElement = Mixin<typeof CompasExistsIn>;
 export function CompasExistsIn<TBase extends LitElementConstructor>(Base: TBase) {
   class CompasExistsInElement extends Base {
     @property({type: String})
-    docId!: string;
-    @property({type: String})
     docName!: string;
+    @property({type: String})
+    docId?: string;
     @property({type: Boolean})
     existInCompas?: boolean;
 
@@ -21,8 +21,8 @@ export function CompasExistsIn<TBase extends LitElementConstructor>(Base: TBase)
       this.checkExistInCompas();
     }
 
-    callService(docType: string) {
-      return CompasSclDataService().listVersions(docType, this.docId);
+    callService(docType: string, docId: string) {
+      return CompasSclDataService().listVersions(docType, docId);
     }
 
     checkExistInCompas(): void {
@@ -30,7 +30,7 @@ export function CompasExistsIn<TBase extends LitElementConstructor>(Base: TBase)
         // Use the versions call to check if any exist, because then the document also exists
         // And it safes bandwidth not to retrieve the whole document.
         const docType = getTypeFromDocName(this.docName);
-        this.callService(docType)
+        this.callService(docType, this.docId)
           .then(() => this.existInCompas = true)
           .catch(reason => {
             if (reason.type && reason.type === NOT_FOUND_ERROR) {

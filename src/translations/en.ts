@@ -401,13 +401,18 @@ export const en = {
     },
     open: {
       title: 'Open project',
+      localTitle: 'Local',
+      selectFileButton: 'Open file...',
+      compasTitle: 'CoMPAS',
       listSclTypes: 'Select type of project',
       listScls: 'Select project ({{ type }})',
-      selectFileButton: 'Open file...',
       otherTypeButton: 'Other type...',
     },
-    saveTo: {
-      title: 'Save to CoMPAS',
+    save: {
+      title: 'Save project',
+      localTitle: 'Local',
+      saveFileButton: 'Save to file...',
+      compasTitle: 'CoMPAS',
       addSuccess: 'Project added to CoMPAS.',
       updateSuccess: 'Project updated in CoMPAS',
     },

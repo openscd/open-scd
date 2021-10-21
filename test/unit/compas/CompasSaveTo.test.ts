@@ -2,19 +2,19 @@ import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon from "sinon";
 
 import {CompasExistsInElement} from "../../../src/compas/CompasExistsIn.js";
-import {CompasSaveTo} from "../../../src/compas/CompasSaveTo.js";
+import {CompasSaveElement} from "../../../src/compas/CompasSave.js";
 
-import "../../../src/compas/CompasSaveTo.js";
+import "../../../src/compas/CompasSave.js";
 
-describe('compas-save-to', () => {
-  let element: CompasSaveTo & CompasExistsInElement;
+describe('compas-save', () => {
+  let element: CompasSaveElement & CompasExistsInElement;
   const docName = 'station123.scd';
   const docId = '6a45ae97-5605-44f8-b4e6-25305bc6c036';
 
   describe('still determining if document exists in CoMPAS', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<compas-save-to .docName="${docName}" .docId="${docId}"></compas-save-to>`
+        html`<compas-save .docName="${docName}" .docId="${docId}"></compas-save>`
       );
 
       sinon.stub(element, 'checkExistInCompas').callsFake(() => {
@@ -33,7 +33,7 @@ describe('compas-save-to', () => {
   describe('new document in compas', () => {
     beforeEach(async () => {
       element = fixtureSync(
-          html`<compas-save-to .docName="${docName}"></compas-save-to>`
+          html`<compas-save .docName="${docName}"></compas-save>`
       );
 
       sinon.stub(element, 'checkExistInCompas').callsFake(() => {
@@ -53,7 +53,7 @@ describe('compas-save-to', () => {
   describe('existing document in compas', () => {
     beforeEach(async () => {
       element = fixtureSync(
-        html`<compas-save-to .docName="${docName}" .docId="${docId}"></compas-save-to>`
+        html`<compas-save .docName="${docName}" .docId="${docId}"></compas-save>`
       );
 
       sinon.stub(element, 'checkExistInCompas').callsFake(() => {
