@@ -7,7 +7,7 @@
 		</History>
 	</Header>
 	<Substation name="AA1" desc="Substation">
-        <Function name="myFunc"/>
+        <Function name="myFunc" desc="myDesc" type="myFuncType"/>
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
             <Function name="voltLvName">
