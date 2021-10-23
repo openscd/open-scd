@@ -4,20 +4,23 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { startMove, styles, cloneSubstationElement } from './foundation.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
-
+import { startMove, styles, cloneSubstationElement } from './foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 import { VoltageLevelEditor } from './voltage-level-editor.js';
+
+import { IconButton } from '@material/mwc-icon-button';
+
 import './conducting-equipment-editor.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
@@ -32,6 +35,12 @@ export class BayEditor extends LitElement {
   getAttachedIeds?: (element: Element) => Element[] = () => {
     return [];
   };
+
+  @query('mwc-icon-button[icon="account_tree"]') lnodeButton!: IconButton;
+  @query('mwc-icon-button[icon="content_copy"]') copyButton!: IconButton;
+  @query('mwc-icon-button[icon="edit"]') editButton!: IconButton;
+  @query('mwc-icon-button[icon="delete"]') removeButton!: IconButton;
+  @query('mwc-icon-button[icon="forward"]') moveButton!: IconButton;
 
   openEditWizard(): void {
     const wizard = wizards['Bay'].edit(this.element);
@@ -66,9 +75,8 @@ export class BayEditor extends LitElement {
       : html``;
   }
 
-  render(): TemplateResult {
-    return html`<editor-container .element=${this.element} nomargin>
-      <abbr slot="header" title="${translate('lnode.tooltip')}">
+  renderActionButtons(): TemplateResult {
+    return html`<abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"
           @click="${() => this.openLNodeWizard()}"
@@ -97,8 +105,12 @@ export class BayEditor extends LitElement {
           icon="delete"
           @click=${() => this.remove()}
         ></mwc-icon-button>
-      </abbr>
-      ${this.renderIedContainer()}
+      </abbr>`;
+  }
+
+  render(): TemplateResult {
+    return html`<editor-container .element=${this.element} nomargin>
+      ${this.renderActionButtons()} ${this.renderIedContainer()}
       <div slot="container" id="ceContainer">
         ${Array.from(
           getChildElementsByTagName(this.element, 'ConductingEquipment')

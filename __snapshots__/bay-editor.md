@@ -58,7 +58,7 @@
 
 ```
 
-## `with readonly property`
+## `with ied connected to the bay`
 
 ####   `looks like the latest snapshot`
 
@@ -100,18 +100,25 @@
     </mwc-icon-button>
   </abbr>
   <div
+    id="iedcontainer"
+    slot="container"
+  >
+    <ied-editor>
+    </ied-editor>
+  </div>
+  <div
     id="ceContainer"
     slot="container"
   >
-    <conducting-equipment-editor readonly="">
+    <conducting-equipment-editor>
     </conducting-equipment-editor>
-    <conducting-equipment-editor readonly="">
+    <conducting-equipment-editor>
     </conducting-equipment-editor>
-    <conducting-equipment-editor readonly="">
+    <conducting-equipment-editor>
     </conducting-equipment-editor>
-    <conducting-equipment-editor readonly="">
+    <conducting-equipment-editor>
     </conducting-equipment-editor>
-    <conducting-equipment-editor readonly="">
+    <conducting-equipment-editor>
     </conducting-equipment-editor>
   </div>
 </editor-container>
