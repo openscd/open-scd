@@ -19,6 +19,7 @@ import {
   startMove,
   cloneSubstationElement,
   styles,
+  renderFunctions,
 } from './foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
@@ -136,7 +137,8 @@ export class VoltageLevelEditor extends LitElement {
       .element=${this.element}
       header="${this.header}"
     >
-      ${this.renderActionsButtons()} ${this.renderIedContainer()}
+      ${this.renderActionsButtons()}
+      ${this.renderIedContainer()}${renderFunctions(this.element)}
       <div id="bayContainer" slot="container">
         ${getChildElementsByTagName(this.element, 'Bay').map(
           bay => html`<bay-editor
