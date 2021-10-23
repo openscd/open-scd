@@ -76,7 +76,7 @@ export class EditorContainer extends LitElement {
 
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
-    if (this.addMenu) this.addMenu.anchor = this.headerContainer;
+
     const parentEditorContainer =
       <EditorContainer>(
         (<ShadowRoot>this.parentNode).host?.closest('editor-container')
@@ -120,6 +120,7 @@ export class EditorContainer extends LitElement {
             ></mwc-icon-button>
             <mwc-menu
               id="menu"
+              .anchor=${this.headerContainer ?? null}
               corner="TOP_RIGHT"
               menuCorner="END"
               @selected=${(e: Event) => {
@@ -229,26 +230,38 @@ export class EditorContainer extends LitElement {
 
     .container:focus-within h1,
     .container:focus-within h2,
-    .container:focus-within h3 {
+    .container:focus-within h3,
+    .container:focus-within h4,
+    .container:focus-within h5,
+    .container:focus-within h6 {
       color: var(--mdc-theme-surface);
       transition: background-color 200ms linear;
     }
 
     .container:focus-within h1,
     .container:focus-within h2,
-    .container:focus-within h3 {
+    .container:focus-within h3,
+    .container:focus-within h4,
+    .container:focus-within h5,
+    .container:focus-within h6 {
       background-color: var(--mdc-theme-primary);
     }
 
     .container.secondary:focus-within h1,
     .container.secondary:focus-within h2,
-    .container.secondary:focus-within h3 {
+    .container.secondary:focus-within h3,
+    .container.secondary:focus-within h4,
+    .container.secondary:focus-within h5,
+    .container.secondary:focus-within h6 {
       background-color: var(--mdc-theme-secondary);
     }
 
     h1,
     h2,
-    h3 {
+    h3,
+    h4,
+    h5,
+    h6 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
@@ -264,21 +277,33 @@ export class EditorContainer extends LitElement {
     h1 > ::slotted(mwc-icon-button),
     h2 > ::slotted(mwc-icon-button),
     h3 > ::slotted(mwc-icon-button),
+    h4 > ::slotted(mwc-icon-button),
+    h5 > ::slotted(mwc-icon-button),
+    h6 > ::slotted(mwc-icon-button),
     h1 > ::slotted(abbr),
     h2 > ::slotted(abbr),
-    h3 > ::slotted(abbr) {
+    h3 > ::slotted(abbr),
+    h4 > ::slotted(abbr),
+    h5 > ::slotted(abbr),
+    h6 > ::slotted(abbr) {
       float: right;
     }
 
     h1 > nav,
     h2 > nav,
-    h3 > nav {
+    h3 > nav,
+    h4 > nav,
+    h5 > nav,
+    h6 > nav {
       float: right;
     }
 
     h1 > mwc-icon-button,
     h2 > mwc-icon-button,
-    h3 > mwc-icon-button {
+    h3 > mwc-icon-button,
+    h4 > mwc-icon-button,
+    h5 > mwc-icon-button,
+    h6 > mwc-icon-button {
       float: right;
     }
 
