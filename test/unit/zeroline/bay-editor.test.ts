@@ -24,6 +24,9 @@ describe('bay-editor', () => {
       )
     );
 
+    localStorage.setItem('showfunctions', 'off');
+    await element.requestUpdate();
+
     wizardEvent = sinon.spy();
     window.addEventListener('wizard', wizardEvent);
     editorAction = sinon.spy();
@@ -64,6 +67,22 @@ describe('bay-editor', () => {
   describe('with ied connected to the bay', () => {
     beforeEach(async () => {
       element.getAttachedIeds = getAttachedIeds(doc);
+      localStorage.setItem('showfunctions', 'off');
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', () => {
+      expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
+
+  describe('with function filter deactivated shows connected Function`s in the Bay', () => {
+    beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/wizards/functions.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      element.element = doc.querySelector('Bay')!;
+      localStorage.setItem('showfunctions', 'on');
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', () => {

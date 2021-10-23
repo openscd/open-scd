@@ -26,10 +26,14 @@ describe('voltage-level-editor', () => {
       )
     );
 
+    localStorage.setItem('showfunctions', 'off');
+
     wizardEvent = sinon.spy();
     window.addEventListener('wizard', wizardEvent);
     editorAction = sinon.spy();
     window.addEventListener('editor-action', editorAction);
+
+    await element.requestUpdate();
   });
 
   it('looks like the latest snapshot', () => {
@@ -66,6 +70,22 @@ describe('voltage-level-editor', () => {
   describe('with ied connected to the voltage level', () => {
     beforeEach(async () => {
       element.getAttachedIeds = getAttachedIeds(doc);
+      localStorage.setItem('showfunctions', 'off');
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', () => {
+      expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
+
+  describe('with function filter deactivated shows connected Function`s in the VoltageLevel', () => {
+    beforeEach(async () => {
+      doc = await fetch('/base/test/testfiles/wizards/functions.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      element.element = doc.querySelector('Substation')!;
+      localStorage.setItem('showfunctions', 'on');
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', () => {
