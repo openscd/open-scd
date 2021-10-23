@@ -11,10 +11,14 @@
 		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
 			<Voltage unit="V" multiplier="k">110.0</Voltage>
             <Function name="voltLvName">
-                <SubFunction name="mySubFunc"/> 
+                <SubFunction name="mySubFunc">
+					<SubFunction name="mySubSubFunction"/>
+				</SubFunction> 
             </Function>
 			<Bay name="COUPLING_BAY" desc="Bay">
-				<Function name="bayName"/>
+				<Function name="bayName">
+					<SubFunction name="myBaySubFunc" desc="myDesc" type="myBaySubFuncType"/>
+				<Function>
                 <ConductingEquipment>
                     <EqFunction name="myEqFunc">
                         <EqSubFunction name="myEqSubFunc"/> 
