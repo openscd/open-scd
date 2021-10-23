@@ -47,7 +47,7 @@
 
 ```
 
-## `with readonly property`
+## `with ied connected to the substation`
 
 ####   `looks like the latest snapshot`
 
@@ -88,15 +88,16 @@
     <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
-  <voltage-level-editor
-    readonly=""
+  <div
+    id="iedcontainer"
     slot="container"
   >
+    <ied-editor>
+    </ied-editor>
+  </div>
+  <voltage-level-editor slot="container">
   </voltage-level-editor>
-  <voltage-level-editor
-    readonly=""
-    slot="container"
-  >
+  <voltage-level-editor slot="container">
   </voltage-level-editor>
 </editor-container>
 
