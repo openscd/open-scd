@@ -164,7 +164,7 @@ describe('editor-container', () => {
 
     it('renders only children with existing create wizard', () => {
       expect(element.addMenu.querySelectorAll('mwc-list-item').length).to.equal(
-        2
+        3
       );
     });
 
