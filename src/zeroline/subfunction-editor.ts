@@ -8,14 +8,11 @@ import {
   query,
 } from 'lit-element';
 
-import {
-  getChildElementsByTagName,
-  newActionEvent,
-  newWizardEvent,
-} from '../foundation.js';
+import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 import { Fab } from '@material/mwc-fab';
+import { renderSubFunctions } from './foundation.js';
 
 @customElement('subfunction-editor')
 export class SubFunctionEditor extends LitElement {
@@ -50,22 +47,11 @@ export class SubFunctionEditor extends LitElement {
     );
   }
 
-  renderSubFunctions(): TemplateResult[] {
-    const subfunctions = getChildElementsByTagName(this.element, 'SubFunction');
-    return subfunctions.map(
-      subfunction =>
-        html`<subfunction-editor
-          slot="container"
-          .element=${subfunction}
-        ></subfunction-editor>`
-    );
-  }
-
   renderActionButtons(): TemplateResult {
     return html`
-      <mwc-fab icon="edit" slot="morevert" @click=${() =>
+      <mwc-fab mini icon="edit" slot="morevert" @click=${() =>
         this.openEditWizard()}></mwc-fab>
-      <mwc-fab icon="delete" slot="morevert" @click=${() =>
+      <mwc-fab mini icon="delete" slot="morevert" @click=${() =>
         this.remove()}></mwc-fab>
     </abbr> `;
   }
@@ -75,7 +61,9 @@ export class SubFunctionEditor extends LitElement {
       .element=${this.element}
       .header=${this.header}
       secondary
-      >${this.renderActionButtons()}${this.renderSubFunctions()}</editor-container
+      >${this.renderActionButtons()}${renderSubFunctions(
+        this.element
+      )}</editor-container
     >`;
   }
 }

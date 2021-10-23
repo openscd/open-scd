@@ -21,6 +21,10 @@
     slot="morevert"
   >
   </mwc-fab>
+  <div slot="container">
+    <subfunction-editor>
+    </subfunction-editor>
+  </div>
 </editor-container>
 
 ```

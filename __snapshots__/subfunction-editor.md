@@ -6,16 +6,20 @@
 <editor-container secondary="">
   <mwc-fab
     icon="edit"
+    mini=""
     slot="morevert"
   >
   </mwc-fab>
   <mwc-fab
     icon="delete"
+    mini=""
     slot="morevert"
   >
   </mwc-fab>
-  <subfunction-editor slot="container">
-  </subfunction-editor>
+  <div slot="container">
+    <subfunction-editor>
+    </subfunction-editor>
+  </div>
 </editor-container>
 
 ```

@@ -12,6 +12,7 @@ import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 import { Fab } from '@material/mwc-fab';
+import { renderSubFunctions } from './foundation.js';
 
 @customElement('function-editor')
 export class FunctionEditor extends LitElement {
@@ -70,7 +71,9 @@ export class FunctionEditor extends LitElement {
       secondary
       nomargin
       highlighted
-      >${this.renderActionButtons()}</editor-container
+      >${this.renderActionButtons()}${renderSubFunctions(
+        this.element
+      )}</editor-container
     >`;
   }
 }
