@@ -16,8 +16,6 @@ import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import './zeroline/function-editor.js';
 import './zeroline/subfunction-editor.js';
-import './zeroline/eqfunction-editor.js';
-import './zeroline/eqsubfunction-editor.js';
 
 import { Settings } from './Setting.js';
 import { wizards } from './wizards/wizard-library.js';
