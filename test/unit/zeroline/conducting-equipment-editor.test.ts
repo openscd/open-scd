@@ -1,4 +1,6 @@
 import { fixture, html, expect } from '@open-wc/testing';
+import sinon, { SinonSpy } from 'sinon';
+import { isCreate, isDelete } from '../../../src/foundation.js';
 
 import '../../../src/zeroline/conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from '../../../src/zeroline/conducting-equipment-editor.js';
@@ -6,6 +8,9 @@ import { ConductingEquipmentEditor } from '../../../src/zeroline/conducting-equi
 describe('conducting-equipment-editor', () => {
   let element: ConductingEquipmentEditor;
   let validSCL: XMLDocument;
+
+  let wizardEvent: SinonSpy;
+  let editorAction: SinonSpy;
 
   beforeEach(async () => {
     validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
@@ -18,19 +23,35 @@ describe('conducting-equipment-editor', () => {
         ></conducting-equipment-editor>`
       )
     );
+
+    wizardEvent = sinon.spy();
+    window.addEventListener('wizard', wizardEvent);
+    editorAction = sinon.spy();
+    window.addEventListener('editor-action', editorAction);
   });
 
   it('looks like the latest snapshot', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  describe('with readonly property', () => {
-    beforeEach(async () => {
-      element.readonly = true;
-      await element.requestUpdate();
-    });
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
-    });
+  it('removes the ConductingEquipment element on remove button click', async () => {
+    element.removeButton.click();
+    expect(editorAction).to.have.been.called;
+    expect(editorAction.args[0][0].detail.action).to.satisfy(isDelete);
+  });
+
+  it('triggers a edit wizard action on edit button click', async () => {
+    element.editButton.click();
+    expect(wizardEvent).to.have.been.called;
+  });
+
+  it('triggers a lnode wizard action on edit button click', async () => {
+    element.lnodeButton.click();
+    expect(wizardEvent).to.have.been.called;
+  });
+
+  it('reduces opacity of the conducting-equipment-editor on move button click', async () => {
+    element.moveButton.click();
+    expect(element.classList.contains('moving')).to.be.true;
   });
 });

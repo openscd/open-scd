@@ -4,11 +4,13 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 
-import { startMove } from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { startMove } from './foundation.js';
+import { wizards } from '../wizards/wizard-library.js';
 
 import {
   circuitBreakerIcon,
@@ -20,7 +22,8 @@ import {
 } from '../icons.js';
 
 import { BayEditor } from './bay-editor.js';
-import { wizards } from '../wizards/wizard-library.js';
+
+import { IconButton } from '@material/mwc-icon-button';
 
 function typeStr(condEq: Element): string {
   return condEq.getAttribute('type') === 'DIS' &&
@@ -55,6 +58,11 @@ export class ConductingEquipmentEditor extends LitElement {
     return this.element.getAttribute('name') ?? '';
   }
 
+  @query('mwc-fab[icon="account_tree"]') lnodeButton!: IconButton;
+  @query('mwc-fab[icon="edit"]') editButton!: IconButton;
+  @query('mwc-fab[icon="delete"]') removeButton!: IconButton;
+  @query('mwc-fab[icon="forward"]') moveButton!: IconButton;
+
   openEditWizard(): void {
     const wizard = wizards['ConductingEquipment'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -79,37 +87,37 @@ export class ConductingEquipmentEditor extends LitElement {
       );
   }
 
+  renderActionButtons(): TemplateResult {
+    return html`<mwc-fab
+        mini
+        class="menu-item left"
+        @click="${() => this.openLNodeWizard()}"
+        icon="account_tree"
+      ></mwc-fab>
+      <mwc-fab
+        mini
+        class="menu-item up"
+        icon="edit"
+        @click="${() => this.openEditWizard()}}"
+      ></mwc-fab>
+      <mwc-fab
+        mini
+        class="menu-item right"
+        @click="${() => startMove(this, ConductingEquipmentEditor, BayEditor)}"
+        icon="forward"
+      ></mwc-fab>
+      <mwc-fab
+        mini
+        class="menu-item down"
+        icon="delete"
+        @click="${() => this.remove()}}"
+      ></mwc-fab>`;
+  }
+
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
-        ${typeIcon(this.element)}
-        ${this.readonly
-          ? html``
-          : html`<mwc-fab
-                mini
-                class="menu-item left"
-                @click="${() => this.openLNodeWizard()}"
-                icon="account_tree"
-              ></mwc-fab>
-              <mwc-fab
-                mini
-                class="menu-item up"
-                icon="edit"
-                @click="${() => this.openEditWizard()}}"
-              ></mwc-fab>
-              <mwc-fab
-                mini
-                class="menu-item right"
-                @click="${() =>
-                  startMove(this, ConductingEquipmentEditor, BayEditor)}"
-                icon="forward"
-              ></mwc-fab>
-              <mwc-fab
-                mini
-                class="menu-item down"
-                icon="delete"
-                @click="${() => this.remove()}}"
-              ></mwc-fab>`}
+        ${typeIcon(this.element)}${this.renderActionButtons()}
       </div>
       <h4>${this.name}</h4>
     `;

@@ -38,19 +38,3 @@
 
 ```
 
-## `with readonly property`
-
-####   `looks like the latest snapshot`
-
-```html
-<div
-  id="container"
-  tabindex="0"
->
-</div>
-<h4>
-  QA1
-</h4>
-
-```
-
