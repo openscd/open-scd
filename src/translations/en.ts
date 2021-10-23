@@ -63,6 +63,8 @@ export const en = {
   zeroline: {
     iedsloading: 'Loading IEDs...',
     commmap: 'Communication mapping',
+    showieds: 'Filter IED type elements',
+    showfunctions: 'Filter function type elements',
     gsecontrol: 'Show all GOOSEs',
   },
   editing: {

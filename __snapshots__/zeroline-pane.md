@@ -14,11 +14,19 @@
     </abbr>
   </nav>
   <nav>
-    <abbr title="[zeroline.commmap]">
+    <abbr title="[zeroline.showieds]">
       <mwc-icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
+      >
+      </mwc-icon-button-toggle>
+    </abbr>
+    <abbr title="[zeroline.showfunctions]">
+      <mwc-icon-button-toggle
+        id="showfunctions"
+        officon="layers_clear"
+        onicon="layers"
       >
       </mwc-icon-button-toggle>
     </abbr>
@@ -58,11 +66,19 @@
     </abbr>
   </nav>
   <nav>
-    <abbr title="[zeroline.commmap]">
+    <abbr title="[zeroline.showieds]">
       <mwc-icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
+      >
+      </mwc-icon-button-toggle>
+    </abbr>
+    <abbr title="[zeroline.showfunctions]">
+      <mwc-icon-button-toggle
+        id="showfunctions"
+        officon="layers_clear"
+        onicon="layers"
       >
       </mwc-icon-button-toggle>
     </abbr>
@@ -102,11 +118,19 @@
     </abbr>
   </nav>
   <nav>
-    <abbr title="[zeroline.commmap]">
+    <abbr title="[zeroline.showieds]">
       <mwc-icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
+      >
+      </mwc-icon-button-toggle>
+    </abbr>
+    <abbr title="[zeroline.showfunctions]">
+      <mwc-icon-button-toggle
+        id="showfunctions"
+        officon="layers_clear"
+        onicon="layers"
       >
       </mwc-icon-button-toggle>
     </abbr>

@@ -10,10 +10,15 @@ import {
 import { translate } from 'lit-translate';
 
 import { isPublic, newWizardEvent } from './foundation.js';
-import { getAttachedIeds } from './zeroline/foundation.js';
+import { getAttachedIeds, shouldShowFunctions } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
+import './zeroline/function-editor.js';
+import './zeroline/subfunction-editor.js';
+import './zeroline/eqfunction-editor.js';
+import './zeroline/eqsubfunction-editor.js';
+
 import { Settings } from './Setting.js';
 import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
@@ -28,6 +33,10 @@ function shouldShowIEDs(): boolean {
 
 function setShowIEDs(value: Settings['showieds']) {
   localStorage.setItem('showieds', value);
+}
+
+function setShowFunctions(value: 'on' | 'off') {
+  localStorage.setItem('showfunctions', value);
 }
 
 /** [[`Zeroline`]] pane for displaying `Substation` and/or `IED` sections. */
@@ -69,6 +78,12 @@ export class ZerolinePane extends LitElement {
     this.requestUpdate();
   }
 
+  toggleShowFunctions(): void {
+    if (shouldShowFunctions()) setShowFunctions('off');
+    else setShowFunctions('on');
+    this.requestUpdate();
+  }
+
   renderIedContainer(): TemplateResult {
     this.getAttachedIeds = shouldShowIEDs()
       ? getAttachedIeds(this.doc)
@@ -94,13 +109,22 @@ export class ZerolinePane extends LitElement {
           </abbr>
         </nav>
         <nav>
-          <abbr title="${translate('zeroline.commmap')}">
+          <abbr title="${translate('zeroline.showieds')}">
             <mwc-icon-button-toggle
               ?on=${shouldShowIEDs()}
               @click=${() => this.toggleShowIEDs()}
               id="showieds"
               onIcon="developer_board"
               offIcon="developer_board_off"
+            ></mwc-icon-button-toggle>
+          </abbr>
+          <abbr title="${translate('zeroline.showfunctions')}">
+            <mwc-icon-button-toggle
+              ?on=${shouldShowFunctions()}
+              @click=${() => this.toggleShowFunctions()}
+              id="showfunctions"
+              onIcon="layers"
+              offIcon="layers_clear"
             ></mwc-icon-button-toggle>
           </abbr>
           <abbr title="${translate('zeroline.commmap')}">

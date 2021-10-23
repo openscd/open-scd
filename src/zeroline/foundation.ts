@@ -1,17 +1,39 @@
-import { css } from 'lit-element';
+import { css, html, TemplateResult } from 'lit-element';
 
 import {
   newActionEvent,
   isPublic,
-  SCLTag,
-  Wizard,
-  tags,
+  getChildElementsByTagName,
 } from '../foundation.js';
-import { emptyWizard, wizards } from '../wizards/wizard-library.js';
 
 import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
+
+export function shouldShowFunctions(): boolean {
+  return localStorage.getItem('showfunctions') === 'on';
+}
+
+export function renderFunctions(element: Element): TemplateResult {
+  if (!shouldShowFunctions()) return html``;
+
+  const functions = getChildElementsByTagName(element, 'Function');
+  return html`<div id="funcContainer" slot="container">
+    ${functions.map(
+      fUnction => html`<function-editor .element=${fUnction}></function-editor>`
+    )}
+  </div>`;
+}
+
+export function renderSubFunctions(element: Element): TemplateResult {
+  const subfunctions = getChildElementsByTagName(element, 'SubFunction');
+  return html`<div slot="container">
+    ${subfunctions.map(
+      subfunction =>
+        html`<subfunction-editor .element=${subfunction}></subfunction-editor>`
+    )}
+  </div>`;
+}
 
 function containsReference(element: Element, iedName: string): boolean {
   return Array.from(element.getElementsByTagName('LNode'))
@@ -238,6 +260,10 @@ export const selectors = <Record<SubstationTag, string>>(
 
 /** Common `CSS` styles used by substation subeditors */
 export const styles = css`
+  :host(.moving) editor-container {
+    opacity: 0.3;
+  }
+
   abbr {
     text-decoration: none;
     border-bottom: none;
@@ -249,5 +275,19 @@ export const styles = css`
     padding: 8px 12px 16px;
     box-sizing: border-box;
     grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+  }
+
+  #funcContainer {
+    display: grid;
+    grid-gap: 12px;
+    padding: 8px 12px 16px;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(292px, auto));
+  }
+
+  @media (max-width: 387px) {
+    #funcContainer {
+      grid-template-columns: repeat(auto-fit, minmax(196px, auto));
+    }
   }
 `;

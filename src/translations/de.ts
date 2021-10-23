@@ -65,6 +65,8 @@ export const de: Translations = {
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
     commmap: 'Kommunikationszuordnung',
+    showieds: 'IEDs in der Ansicht filtern',
+    showfunctions: 'Funktionselemente in der Ansicht filtern',
     gsecontrol: 'GOOSEs anzeigen',
   },
   editing: {
