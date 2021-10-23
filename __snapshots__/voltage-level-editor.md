@@ -53,7 +53,7 @@
 
 ```
 
-## `with readonly property`
+## `with ied connected to the voltage level`
 
 ####   `looks like the latest snapshot`
 
@@ -96,12 +96,19 @@
     </mwc-icon-button>
   </abbr>
   <div
+    id="iedcontainer"
+    slot="container"
+  >
+    <ied-editor>
+    </ied-editor>
+  </div>
+  <div
     id="bayContainer"
     slot="container"
   >
-    <bay-editor readonly="">
+    <bay-editor>
     </bay-editor>
-    <bay-editor readonly="">
+    <bay-editor>
     </bay-editor>
   </div>
 </editor-container>

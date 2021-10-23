@@ -5,19 +5,26 @@ import {
   html,
   property,
   css,
+  query,
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import {
+  getChildElementsByTagName,
+  newActionEvent,
+  newWizardEvent,
+} from '../foundation.js';
 import {
   selectors,
   startMove,
   cloneSubstationElement,
   styles,
 } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { wizards } from '../wizards/wizard-library.js';
 
 import { SubstationEditor } from './substation-editor.js';
-import { wizards } from '../wizards/wizard-library.js';
+
+import { IconButton } from '@material/mwc-icon-button';
 
 import './bay-editor.js';
 
@@ -52,6 +59,12 @@ export class VoltageLevelEditor extends LitElement {
     return [];
   };
 
+  @query('mwc-icon-button[icon="account_tree"]') lnodeButton!: IconButton;
+  @query('mwc-icon-button[icon="content_copy"]') copyButton!: IconButton;
+  @query('mwc-icon-button[icon="edit"]') editButton!: IconButton;
+  @query('mwc-icon-button[icon="delete"]') removeButton!: IconButton;
+  @query('mwc-icon-button[icon="forward"]') moveButton!: IconButton;
+
   openEditWizard(): void {
     const wizard = wizards['VoltageLevel'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -85,12 +98,8 @@ export class VoltageLevelEditor extends LitElement {
       : html``;
   }
 
-  render(): TemplateResult {
-    return html`<editor-container
-      .element=${this.element}
-      header="${this.header}"
-    >
-      <abbr slot="header" title="${translate('lnode.tooltip')}">
+  renderActionsButtons(): TemplateResult {
+    return html`<abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"
           @click=${() => this.openLNodeWizard()}
@@ -119,10 +128,17 @@ export class VoltageLevelEditor extends LitElement {
           icon="delete"
           @click=${() => this.remove()}
         ></mwc-icon-button>
-      </abbr>
-      ${this.renderIedContainer()}
+      </abbr>`;
+  }
+
+  render(): TemplateResult {
+    return html`<editor-container
+      .element=${this.element}
+      header="${this.header}"
+    >
+      ${this.renderActionsButtons()} ${this.renderIedContainer()}
       <div id="bayContainer" slot="container">
-        ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
+        ${getChildElementsByTagName(this.element, 'Bay').map(
           bay => html`<bay-editor
             .element=${bay}
             .getAttachedIeds=${this.getAttachedIeds}
