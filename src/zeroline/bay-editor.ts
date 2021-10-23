@@ -14,7 +14,12 @@ import {
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
-import { startMove, styles, cloneSubstationElement } from './foundation.js';
+import {
+  startMove,
+  styles,
+  cloneSubstationElement,
+  renderFunctions,
+} from './foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 import { VoltageLevelEditor } from './voltage-level-editor.js';
@@ -110,7 +115,8 @@ export class BayEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<editor-container .element=${this.element} nomargin>
-      ${this.renderActionButtons()} ${this.renderIedContainer()}
+      ${this.renderActionButtons()}
+      ${this.renderIedContainer()}${renderFunctions(this.element)}
       <div slot="container" id="ceContainer">
         ${Array.from(
           getChildElementsByTagName(this.element, 'ConductingEquipment')
