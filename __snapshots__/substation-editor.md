@@ -103,3 +103,57 @@
 
 ```
 
+## ``with function filter deactivated shows connected Function`s in the Substation``
+
+####   `looks like the latest snapshot`
+
+```html
+<editor-container>
+  <abbr
+    slot="header"
+    title="[lnode.tooltip]"
+  >
+    <mwc-icon-button icon="account_tree">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="header"
+    title="[duplicate]"
+  >
+    <mwc-icon-button icon="content_copy">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="header"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="header"
+    title="[move]"
+  >
+    <mwc-icon-button icon="forward">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="header"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <div
+    id="funcContainer"
+    slot="container"
+  >
+    <function-editor>
+    </function-editor>
+  </div>
+  <voltage-level-editor slot="container">
+  </voltage-level-editor>
+</editor-container>
+
+```
+

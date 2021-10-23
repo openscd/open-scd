@@ -12,6 +12,7 @@ import { translate } from 'lit-translate';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
 import {
   cloneSubstationElement,
+  renderFunctions,
   selectors,
   startMove,
   styles,
@@ -112,7 +113,9 @@ export class SubstationEditor extends LitElement {
 
   render(): TemplateResult {
     return html`<editor-container .element=${this.element}
-      >${this.renderActionButtons()}${this.renderIedContainer()}
+      >${this.renderActionButtons()}${this.renderIedContainer()}${renderFunctions(
+        this.element
+      )}
       ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
         voltageLevel =>
           html`<voltage-level-editor
