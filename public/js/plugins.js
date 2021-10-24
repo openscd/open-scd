@@ -29,16 +29,7 @@ export const officialPlugins = [
   },
   {
     name: 'Open project',
-    src: '/src/menu/OpenProject.js',
-    icon: 'folder_open',
-    default: true,
-    kind: 'menu',
-    requireDoc: false,
-    position: 'top'
-  },
-  {
-    name: 'Open CoMPAS',
-    src: '/src/menu/OpenCompas.js',
+    src: '/src/menu/CompasOpen.js',
     icon: 'folder_open',
     default: true,
     kind: 'menu',
@@ -55,7 +46,7 @@ export const officialPlugins = [
     position: 'top'
   },
   {
-    name: 'New project from CIM',
+    name: 'Project from CIM',
     src: '/src/menu/CompasCimMapping.js',
     icon: 'input',
     default: true,
@@ -65,16 +56,7 @@ export const officialPlugins = [
   },
   {
     name: 'Save project',
-    src: '/src/menu/SaveProject.js',
-    icon: 'save',
-    default: true,
-    kind: 'menu',
-    requireDoc: true,
-    position: 'top'
-  },
-  {
-    name: 'Save CoMPAS',
-    src: '/src/menu/SaveToCompas.js',
+    src: '/src/menu/CompasSave.js',
     icon: 'save',
     default: true,
     kind: 'menu',
@@ -123,7 +105,7 @@ export const officialPlugins = [
   },
   {
     name: 'Update Substation',
-    src: '/src/menu/UpdateSubstation.js',
+    src: '/src/menu/CompasUpdateSubstation.js',
     icon: 'merge_type',
     default: true,
     kind: 'menu',

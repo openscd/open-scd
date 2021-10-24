@@ -388,6 +388,9 @@ export const de: Translations = {
   compas: {
     loading: '???',
     notExists: '???',
+    noSclTypes: '???',
+    noScls: '???',
+    noSclVersions: "???",
     comment: '???',
     error: {
       type: '???',
@@ -400,15 +403,24 @@ export const de: Translations = {
       patch: '???',
     },
     open: {
-      listSclTypes: '???',
-      noSclTypes: '???',
-      listScls: '??? ({{ type }})',
-      noScls: '???',
-    },
-    saveTo: {
       title: '???',
+      localTitle: '???',
+      selectFileButton: '???',
+      compasTitle: 'CoMPAS',
+      listSclTypes: '???',
+      listScls: '??? ({{ type }})',
+      otherTypeButton: '???',
+    },
+    save: {
+      title: '???',
+      localTitle: '???',
+      saveFileButton: '???',
+      compasTitle: 'CoMPAS',
       addSuccess: '???',
       updateSuccess: '???',
+    },
+    updateSubstation: {
+      title: '???',
     },
     uploadVersion: {
       title: '???',
@@ -418,7 +430,6 @@ export const de: Translations = {
     },
     versions: {
       title: '???',
-      noScls: "???",
       addVersionButton: '???',
       confirmRestoreTitle: "???",
       confirmRestore: "??? {{version}}?",
@@ -445,7 +456,7 @@ export const de: Translations = {
       children: 'Kindelemente',
     },
     settings: {
-      name: 'CoMPAS Einstellungen',
+      title: 'CoMPAS Einstellungen',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
     },

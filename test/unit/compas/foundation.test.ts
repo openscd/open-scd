@@ -11,7 +11,7 @@ describe('compas-foundation', () => {
   it('when retrieve type from nameand name has a extension, the extension will be the type', () => {
     const name = 'just-some-station';
     const extension = 'scd';
-    expect(getTypeFromDocName(name + '.' + extension)).to.be.equal(extension);
+    expect(getTypeFromDocName(name + '.' + extension)).to.be.equal(extension.toUpperCase());
   });
 
   it('when name is passed without extenions the same name is returned', () => {

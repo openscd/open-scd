@@ -1,13 +1,22 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {get, translate} from "lit-translate";
-
-import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard} from "../foundation.js";
-import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
+import {translate} from "lit-translate";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
-import {createLogEvent} from "../compas-services/foundation.js";
-import {compasSclTypeListWizardActor} from "./CompasSclTypeList.js";
-import {getOpenScdElement, updateDocumentInOpenSCD} from "./foundation.js";
+
+/* Event that will be used when a SCL is selected from a list of SCL Documents. */
+export interface SclSelectedDetail {
+  docId: string;
+}
+export type SclSelectedEvent = CustomEvent<SclSelectedDetail>;
+export function newSclSelectedEvent(
+  docId: string
+): SclSelectedEvent {
+  return new CustomEvent<SclSelectedDetail>('sclSelected', {
+    bubbles: true,
+    composed: true,
+    detail: { docId },
+  });
+}
 
 @customElement('compas-scl-list')
 export class CompasScl extends LitElement {
@@ -28,30 +37,6 @@ export class CompasScl extends LitElement {
       });
   }
 
-  openScl(id?: string): void {
-    getOpenScdElement().dispatchEvent(newPendingStateEvent(this.getSclDocument(id)));
-  }
-
-  private async getSclDocument(id?: string): Promise<void> {
-    const response = await CompasSclDataService()
-      .getSclDocument(this.type, id ?? '')
-      .catch(createLogEvent);
-
-    if (response instanceof Document) {
-      // Copy the SCL Result from the Response and create a new Document from it.
-      const sclData = response.querySelectorAll("SclData").item(0).textContent;
-      const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
-
-      const openScd = getOpenScdElement();
-      openScd.dispatchEvent(
-        newLogEvent({
-          kind: 'reset'
-        }));
-
-      updateDocumentInOpenSCD(sclDocument);
-    }
-  }
-
   render(): TemplateResult {
     if (!this.scls) {
       return html `
@@ -61,7 +46,7 @@ export class CompasScl extends LitElement {
     if (this.scls?.length <= 0) {
       return html `
         <mwc-list>
-          <mwc-list-item>${translate("compas.open.noScls")}</mwc-list-item>
+          <mwc-list-item><i>${translate("compas.noScls")}</i></mwc-list-item>
         </mwc-list>`
     }
     return html`
@@ -74,29 +59,10 @@ export class CompasScl extends LitElement {
             }
             const version = item.getElementsByTagNameNS(SDS_NAMESPACE, "Version").item(0);
             return html`<mwc-list-item tabindex="0"
-                          @click=${(evt: SingleSelectedEvent) => {
-                            this.openScl(id);
-                            evt.target!.dispatchEvent(newWizardEvent());
-                          }}>
+                                       @click=${() => this.dispatchEvent(newSclSelectedEvent(id))}>
                             ${name} (${version})
                         </mwc-list-item>`
           })}
       </mwc-list>`
   }
-}
-
-export function listSclsWizard(type: string): Wizard {
-  return [
-    {
-      title: get('compas.open.listScls', {type: type}),
-      secondary: {
-        icon: '',
-        label: get('cancel'),
-        action: compasSclTypeListWizardActor(),
-      },
-      content: [
-        html`<compas-scl-list .type="${type}"/>`,
-      ],
-    },
-  ];
 }

@@ -394,6 +394,7 @@
     icon=""
     label="[back]"
     slot="secondaryAction"
+    style=""
   >
   </mwc-button>
   <mwc-button

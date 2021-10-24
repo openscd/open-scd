@@ -10,6 +10,8 @@ import {getOpenScdElement, getTypeFromDocName, updateDocumentInOpenSCD} from "./
 import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";
 import {CompasCommentElement} from "./CompasComment.js";
 
+import './CompasChangeSetRadiogroup.js';
+
 @customElement('compas-upload-version')
 export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
   getSclFileField() : HTMLInputElement {
@@ -45,11 +47,9 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
     const text = await file.text();
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
-    await CompasSclDataService().updateSclDocument(docType.toUpperCase(), this.docId,
+    await CompasSclDataService().updateSclDocument(docType, this.docId!,
       {changeSet: changeSet!, comment: comment, doc: doc})
-      .then(response => {
-        const sclData = response.querySelectorAll("SclData").item(0).textContent;
-        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
+      .then(sclDocument => {
         updateDocumentInOpenSCD(sclDocument);
 
         const openScd = getOpenScdElement();
@@ -76,12 +76,13 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
       return html `
         <mwc-list>
           <mwc-list-item>${translate("compas.notExists")}</mwc-list-item>
-        </mwc-list>`
+        </mwc-list>
+      `
     }
 
     const docType = getTypeFromDocName(this.docName);
     return html`
-      <input id="scl-file" accept=".${docType}" type="file" hidden required
+      <input id="scl-file" accept=".${docType.toLowerCase()}" type="file" hidden required
              @change=${() => {
                const file = this.getSclFileField()?.files?.item(0);
                const input = this.getSclFilenameField();
@@ -106,23 +107,23 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
   }
 }
 
-function uploadToCompas() {
-  return function (inputs: WizardInput[], wizard: Element) {
-    const compasAddTo = <CompasUploadVersionElement>wizard.shadowRoot!.querySelector('compas-upload-version')
-    if (!compasAddTo.valid()) {
-      return [];
-    }
-
-    getOpenScdElement().dispatchEvent(newPendingStateEvent(compasAddTo.updateDocumentInCompas()));
-    return [];
-  };
-}
-
 export interface AddToCompasWizardOptions {
   docId: string,
   docName: string
 }
 export function addVersionToCompasWizard(saveToOptions: AddToCompasWizardOptions): Wizard {
+  function uploadToCompas() {
+    return function (inputs: WizardInput[], wizard: Element) {
+      const compasAddTo = <CompasUploadVersionElement>wizard.shadowRoot!.querySelector('compas-upload-version')
+      if (!compasAddTo.valid()) {
+        return [];
+      }
+
+      getOpenScdElement().dispatchEvent(newPendingStateEvent(compasAddTo.updateDocumentInCompas()));
+      return [];
+    };
+  }
+
   return [
     {
       title: get('compas.uploadVersion.title'),

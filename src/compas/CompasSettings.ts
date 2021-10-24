@@ -1,7 +1,7 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from 'lit-element';
-import {get, translate} from 'lit-translate';
+import {translate} from 'lit-translate';
 
-import {newWizardEvent, Wizard, WizardInput} from '../foundation.js';
+import {newWizardEvent} from '../foundation.js';
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 import {getOpenScdElement} from "./foundation.js";
 
@@ -11,7 +11,6 @@ export type CompasSettingsRecord = {
 };
 
 export function CompasSettings() {
-  
   return {
     /** Current [[`CompasSettings`]] in `localStorage`, default to [[`defaults`]]. */
     get compasSettings(): CompasSettingsRecord {
@@ -118,28 +117,3 @@ export class CompasSettingsElement extends LitElement {
   `
 }
 
-export function saveAction() {
-  return function (inputs: WizardInput[], wizard: Element) {
-    const compasSettingsElement = <CompasSettingsElement>wizard.shadowRoot!.querySelector('compas-settings')
-    if (compasSettingsElement.save()) {
-      compasSettingsElement.close();
-    }
-    return [];
-  };
-}
-
-export function compasSettingWizard(): Wizard {
-  return [
-    {
-      title: get('compas.settings.name'),
-      primary: {
-        icon: 'save',
-        label: get('save'),
-        action: saveAction(),
-      },
-      content: [
-        html`<compas-settings></compas-settings>`,
-      ],
-    },
-  ];
-}

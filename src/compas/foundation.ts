@@ -1,9 +1,8 @@
 import {get} from "lit-translate";
 
-import {newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
+import {newLogEvent, newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
 import {OpenSCD} from "../open-scd.js";
 
-import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
 import {setSessionTimeouts} from "./CompasSession.js";
@@ -12,7 +11,7 @@ const FILE_EXTENSION_LENGTH = 3;
 
 export function getTypeFromDocName(docName: string): string {
   if (docName.lastIndexOf(".") == docName.length - (FILE_EXTENSION_LENGTH + 1)) {
-    return docName.substring(docName.lastIndexOf(".") + 1);
+    return docName.substring(docName.lastIndexOf(".") + 1).toUpperCase();
   }
   throw new Error(get('compas.error.type'));
 }
@@ -31,19 +30,24 @@ export function getOpenScdElement(): OpenSCD {
   return <OpenSCD>document.querySelector('open-scd');
 }
 
-export function updateDocumentInOpenSCD(doc: Document): void {
-  const id = (doc.querySelectorAll(':root > Header') ?? []).item(0).getAttribute('id') ?? '';
-  const version = (doc.querySelectorAll(':root > Header') ?? []).item(0).getAttribute('version') ?? '';
-  const name = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclName') ?? []).item(0).textContent ?? '';
-  const type = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclFileType') ?? []).item(0).textContent ?? '';
+export function updateDocumentInOpenSCD(doc: Document, docName?: string): void {
+  const id = (doc.querySelectorAll(':root > Header') ?? []).item(0)?.getAttribute('id') ?? '';
 
-  let docName = name;
-  if (docName === '') {
-    docName = id;
+  if (!docName) {
+    const version = (doc.querySelectorAll(':root > Header') ?? []).item(0)?.getAttribute('version') ?? '';
+    const name = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclName') ?? []).item(0)?.textContent ?? '';
+    const type = (doc.querySelectorAll(':root > Private[type="compas_scl"] > SclFileType') ?? []).item(0)?.textContent ?? '';
+
+    docName = name;
+    if (docName === '') {
+      docName = id;
+    }
+    docName += '-' + version + '.' + type?.toLowerCase();
   }
-  docName += '-' + version + '.' + type?.toLowerCase();
 
-  getOpenScdElement().dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
+  const openScd = getOpenScdElement();
+  openScd.dispatchEvent(newLogEvent({kind: 'reset'}));
+  openScd.dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
 }
 
 export async function retrieveUserInfo(): Promise<void> {

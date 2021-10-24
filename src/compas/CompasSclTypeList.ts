@@ -1,11 +1,22 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
-import {get, translate} from "lit-translate";
-import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
-
-import {newWizardEvent, Wizard, WizardActor} from '../foundation.js';
+import {translate} from "lit-translate";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
-import {listSclsWizard} from "./CompasScl.js";
+
+/* Event that will be used when a SCL Type is selected from a list of types. */
+export interface TypeSelectedDetail {
+  type: string;
+}
+export type TypeSelectedEvent = CustomEvent<TypeSelectedDetail>;
+export function newTypeSelectedEvent(
+  type: string
+): TypeSelectedEvent {
+  return new CustomEvent<TypeSelectedDetail>('typeSelected', {
+    bubbles: true,
+    composed: true,
+    detail: { type },
+  });
+}
 
 @customElement('compas-scltype-list')
 export class CompasSclTypeList extends LitElement {
@@ -21,10 +32,6 @@ export class CompasSclTypeList extends LitElement {
       .then(types => this.sclTypes = types);
   }
 
-  listScls(type: string): void {
-    this.dispatchEvent(newWizardEvent(listSclsWizard(type)));
-  }
-
   render(): TemplateResult {
       if (!this.sclTypes) {
         return html `
@@ -35,41 +42,20 @@ export class CompasSclTypeList extends LitElement {
       if (this.sclTypes.length <= 0) {
         return html `
           <mwc-list>
-            <mwc-list-item>
-              ${translate("compas.open.noSclTypes")}
-            </mwc-list-item>
+            <mwc-list-item><i>${translate("compas.noSclTypes")}</i></mwc-list-item>
          </mwc-list>`
       }
+
       return html`
         <mwc-list>
           ${this.sclTypes.map( type => {
               const code = type.getElementsByTagNameNS(SDS_NAMESPACE, "Code").item(0);
               const description = type.getElementsByTagNameNS(SDS_NAMESPACE, "Description").item(0);
-              return html`<mwc-list-item
-                            @click=${(evt: SingleSelectedEvent) => {
-                              evt.target!.dispatchEvent(newWizardEvent());
-                              this.listScls(code!.textContent ?? '');
-                            }}
-                            tabindex="0"
-                          >
+              return html`<mwc-list-item tabindex="0"
+                                         @click=${() => this.dispatchEvent(newTypeSelectedEvent(code!.textContent ?? ''))}>
                             <span>${description} (${code})</span>
                           </mwc-list-item>`;
             })}
         </mwc-list>`
      }
-}
-
-export function compasSclTypeListWizardActor(): WizardActor {
-  return () => [() => compasSclTypeListWizard()];
-}
-
-export function compasSclTypeListWizard(): Wizard {
-  return [
-    {
-      title: get('compas.open.listSclTypes'),
-      content: [
-        html`<compas-scltype-list/>`,
-      ],
-    },
-  ];
 }

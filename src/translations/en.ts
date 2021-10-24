@@ -384,8 +384,11 @@ export const en = {
 
   compas: {
     loading: 'Loading...',
-    notExists: 'Project no longer exists in CoMPAS!',
     comment: 'Comment',
+    notExists: 'Project no longer exists in CoMPAS!',
+    noSclTypes: 'No types found in CoMPAS',
+    noScls: 'No projects found in CoMPAS',
+    noSclVersions: 'No versions found for this project in CoMPAS',
     error: {
       type: 'Unable to determine type from document name!',
       server: 'Error communicating with CoMPAS Server',
@@ -397,15 +400,24 @@ export const en = {
       patch: 'Patch change',
     },
     open: {
-      listSclTypes: 'Type of SCL',
-      noSclTypes: 'No types found',
-      listScls: 'List of SCL ({{ type }})',
-      noScls: 'No SCLs found',
+      title: 'Open project',
+      localTitle: 'Local',
+      selectFileButton: 'Open file...',
+      compasTitle: 'CoMPAS',
+      listSclTypes: 'Select type of project',
+      listScls: 'Select project ({{ type }})',
+      otherTypeButton: 'Other type...',
     },
-    saveTo: {
-      title: 'Save to CoMPAS',
+    save: {
+      title: 'Save project',
+      localTitle: 'Local',
+      saveFileButton: 'Save to file...',
+      compasTitle: 'CoMPAS',
       addSuccess: 'Project added to CoMPAS.',
       updateSuccess: 'Project updated in CoMPAS',
+    },
+    updateSubstation: {
+      title: 'Update substation',
     },
     uploadVersion: {
       title: 'Upload new version of project to CoMPAS',
@@ -415,7 +427,6 @@ export const en = {
     },
     versions: {
       title: 'CoMPAS Versions',
-      noScls: 'No versions found for this project in CoMPAS',
       addVersionButton: 'Add version',
       confirmRestoreTitle: 'Restore version?',
       confirmRestore: 'Are you sure to restore version {{version}}?',
@@ -438,11 +449,11 @@ export const en = {
     compare: {
       title: 'Compare version {{oldVersion}} with version {{newVersion}}',
       elementTitle: 'Compare {{oldValue}} with {{newValue}} ({{tag}})',
-      primaryButton: 'Show details',
+      primaryButton: 'Continue...',
       children: 'Child elements',
     },
     settings: {
-      name: 'CoMPAS Settings',
+      title: 'CoMPAS Settings',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
     },

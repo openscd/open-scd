@@ -9,7 +9,9 @@
     mwc-list-item=""
     tabindex="0"
   >
-    [compas.loading]
+    <i>
+      [compas.loading]
+    </i>
   </mwc-list-item>
 </mwc-list>
 

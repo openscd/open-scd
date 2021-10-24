@@ -21,7 +21,9 @@
     mwc-list-item=""
     tabindex="0"
   >
-    [compas.open.noScls]
+    <i>
+      [compas.noScls]
+    </i>
   </mwc-list-item>
 </mwc-list>
 

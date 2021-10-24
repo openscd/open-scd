@@ -119,10 +119,8 @@ export default class CompasVersionsPlugin extends LitElement {
 
   private async getVersion(version: string) {
     const type = getTypeFromDocName(this.docName);
-    return await CompasSclDataService().getSclDocumentVersion(type, this.docId, version)
-      .then(response => {
-        const sclData = response.querySelectorAll("SclData").item(0).textContent;
-        const sclDocument = new DOMParser().parseFromString(sclData ?? '', 'application/xml');
+    return CompasSclDataService().getSclDocumentVersion(type, this.docId, version)
+      .then(sclDocument => {
         return Promise.resolve(sclDocument.documentElement);
       });
   }
@@ -138,7 +136,7 @@ export default class CompasVersionsPlugin extends LitElement {
       return html `
         <mwc-list>
           <mwc-list-item>
-            <span style="color: var(--base1)">${translate('compas.versions.noScls')}</span>
+            <span style="color: var(--base1)">${translate('compas.noSclVersions')}</span>
           </mwc-list-item>
         </mwc-list>`
     }
@@ -261,82 +259,31 @@ export default class CompasVersionsPlugin extends LitElement {
   `;
 }
 
-function openScl(docName: string, docId: string, version: string) {
-  return function () {
-    const openScd = getOpenScdElement();
-    const type = getTypeFromDocName(docName);
-
-    CompasSclDataService().getSclDocumentVersion(type, docId, version)
-      .then(response => {
-        // Copy the SCL Result from the Response and create a new Document from it.
-        const sclData = response.querySelectorAll("SclData").item(0).textContent;
-        const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
-
-        updateDocumentInOpenSCD(sclDocument);
-
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: get('compas.versions.restoreVersionSuccess', {version : version})
-          }));
-      })
-      .catch(createLogEvent);
-
-    // Close the Restore Dialog.
-    openScd.dispatchEvent(newWizardEvent());
-
-    return [];
-  }
-}
-
-function deleteScl(docName: string, docId: string) {
-  return function () {
-    const openScd = getOpenScdElement();
-    const type = getTypeFromDocName(docName);
-
-    CompasSclDataService()
-      .deleteSclDocument(type, docId)
-      .then (() => {
-        openScd.docId = '';
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: get('compas.versions.deleteSuccess')
-          }));
-      })
-      .catch(createLogEvent);
-
-    // Close the Restore Dialog.
-    openScd.dispatchEvent(newWizardEvent());
-
-    return [];
-  }
-}
-
-function deleteSclVersion(docName: string, docId: string, version: string) {
-  return function () {
-    const openScd = getOpenScdElement();
-    const type = getTypeFromDocName(docName);
-
-    CompasSclDataService()
-      .deleteSclDocumentVersion(type, docId, version)
-      .then(() => {
-        openScd.dispatchEvent(
-          newLogEvent({
-            kind: 'info',
-            title: get('compas.versions.deleteVersionSuccess', {version : version})
-          }));
-      })
-      .catch(createLogEvent);
-
-    // Close the Restore Dialog.
-    openScd.dispatchEvent(newWizardEvent());
-
-    return [];
-  }
-}
-
 function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
+  function deleteScl(docName: string, docId: string) {
+    return function () {
+      const openScd = getOpenScdElement();
+      const type = getTypeFromDocName(docName);
+
+      CompasSclDataService()
+        .deleteSclDocument(type, docId)
+        .then (() => {
+          openScd.docId = '';
+          openScd.dispatchEvent(
+            newLogEvent({
+              kind: 'info',
+              title: get('compas.versions.deleteSuccess')
+            }));
+        })
+        .catch(createLogEvent);
+
+      // Close the Restore Dialog.
+      openScd.dispatchEvent(newWizardEvent());
+
+      return [];
+    }
+  }
+
   return [
     {
       title: get('compas.versions.confirmDeleteTitle'),
@@ -353,6 +300,30 @@ function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
 }
 
 function confirmRestoreVersionCompasWizard(docName: string, docId: string, version: string): Wizard {
+  function openScl(docName: string, docId: string, version: string) {
+    return function () {
+      const openScd = getOpenScdElement();
+      const type = getTypeFromDocName(docName);
+
+      CompasSclDataService().getSclDocumentVersion(type, docId, version)
+        .then(sclDocument => {
+          updateDocumentInOpenSCD(sclDocument);
+
+          openScd.dispatchEvent(
+            newLogEvent({
+              kind: 'info',
+              title: get('compas.versions.restoreVersionSuccess', {version : version})
+            }));
+        })
+        .catch(createLogEvent);
+
+      // Close the Restore Dialog.
+      openScd.dispatchEvent(newWizardEvent());
+
+      return [];
+    }
+  }
+
   return [
     {
       title: get('compas.versions.confirmRestoreTitle'),
@@ -369,6 +340,29 @@ function confirmRestoreVersionCompasWizard(docName: string, docId: string, versi
 }
 
 function confirmDeleteVersionCompasWizard(docName: string, docId: string, version: string): Wizard {
+  function deleteSclVersion(docName: string, docId: string, version: string) {
+    return function () {
+      const openScd = getOpenScdElement();
+      const type = getTypeFromDocName(docName);
+
+      CompasSclDataService()
+        .deleteSclDocumentVersion(type, docId, version)
+        .then(() => {
+          openScd.dispatchEvent(
+            newLogEvent({
+              kind: 'info',
+              title: get('compas.versions.deleteVersionSuccess', {version : version})
+            }));
+        })
+        .catch(createLogEvent);
+
+      // Close the Restore Dialog.
+      openScd.dispatchEvent(newWizardEvent());
+
+      return [];
+    }
+  }
+
   return [
     {
       title: get('compas.versions.confirmDeleteVersionTitle'),

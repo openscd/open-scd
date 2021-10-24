@@ -12,7 +12,7 @@
     tabindex="0"
   >
     <span style="color: var(--base1)">
-      [compas.versions.noScls]
+      [compas.noSclVersions]
     </span>
   </mwc-list-item>
 </mwc-list>
@@ -45,7 +45,7 @@
     tabindex="0"
   >
     <span style="color: var(--base1)">
-      [compas.versions.noScls]
+      [compas.noSclVersions]
     </span>
   </mwc-list-item>
 </mwc-list>
