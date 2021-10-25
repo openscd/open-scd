@@ -21,6 +21,32 @@ export type GraphEdge = {
   yEnd?: number;
 };
 
+export interface Point {
+  x: number | undefined;
+  y: number | undefined;
+}
+
+export interface SldElement {
+  element: Element;
+  pos: Point;
+}
+
+export function getPosition(element: Element): (number | undefined)[] {
+  const xAttr = element.getAttributeNS(
+    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    'x'
+  );
+  const yAttr = element.getAttributeNS(
+    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    'y'
+  );
+
+  return [
+    xAttr ? parseInt(xAttr) : undefined,
+    yAttr ? parseInt(yAttr) : undefined,
+  ];
+}
+
 function getTerminals(connectivityNode: Element): Element[] {
   const substation = connectivityNode.closest('Substation');
   if (!substation) return [];

@@ -50,6 +50,8 @@ import { Wizarding } from './Wizarding.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
+import './zeroline/conducting-equipment-editor.js';
+
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
 @customElement('open-scd')

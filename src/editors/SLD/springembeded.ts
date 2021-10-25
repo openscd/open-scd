@@ -21,11 +21,11 @@ function applyCoulombsLaw(nodes: GraphNode[]): void {
         const xforce = (xe * n2.r) / (magnitude * magnitude * 0.5);
         const yforce = (ye * n2.r) / (magnitude * magnitude * 0.5);
 
-        n1.xAcceleration = n1.xAcceleration - xforce / n1.mass;
-        n2.xAcceleration = n2.xAcceleration + xforce / n2.mass;
+        n1.xAcceleration = n1.xAcceleration - (xforce / n1.mass) * 0.9;
+        n2.xAcceleration = n2.xAcceleration + (xforce / n2.mass) * 0.9;
 
-        n1.yAcceleration = n1.yAcceleration - yforce / n1.mass;
-        n2.yAcceleration = n2.yAcceleration + yforce / n2.mass;
+        n1.yAcceleration = n1.yAcceleration - (yforce / n1.mass) * 0.9;
+        n2.yAcceleration = n2.yAcceleration + (yforce / n2.mass) * 0.9;
       }
     }
   }
@@ -47,11 +47,11 @@ function applyHookesLaw(nodes: GraphNode[], edges: GraphEdge[]): void {
     const xforce = xe * (edge.stiffness * displacement * 0.5);
     const yforce = ye * (edge.stiffness * displacement * 0.5);
 
-    n1.xAcceleration = n1.xAcceleration - xforce / n1.mass;
-    n2.xAcceleration = n2.xAcceleration + xforce / n2.mass;
+    n1.xAcceleration = n1.xAcceleration - (xforce / n1.mass) * 0.9;
+    n2.xAcceleration = n2.xAcceleration + (xforce / n2.mass) * 0.9;
 
-    n1.yAcceleration = n1.yAcceleration - yforce / n1.mass;
-    n2.yAcceleration = n2.yAcceleration + yforce / n2.mass;
+    n1.yAcceleration = n1.yAcceleration - (yforce / n1.mass) * 0.9;
+    n2.yAcceleration = n2.yAcceleration + (yforce / n2.mass) * 0.9;
   }
 }
 
@@ -144,8 +144,8 @@ function isStable(nodes: GraphNode[]): boolean {
 
 export function doSpringy(nodes: GraphNode[], edges: GraphEdge[]): void {
   let i;
-  for (i = 0; i < 500; i++) {
-    const e = 0.1 * Math.exp(-i / 10);
+  for (i = 0; i < 2000; i++) {
+    const e = 0.05;
     applyCoulombsLaw(nodes);
     applyHookesLaw(nodes, edges);
     adjustRotation(nodes, edges);
