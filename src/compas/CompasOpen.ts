@@ -14,20 +14,18 @@ import './CompasScl.js';
 
 /* Event that will be used when a SCL Document is retrieved. */
 export interface DocRetrievedDetail {
-  element: Element,
   doc: Document,
   docName?: string,
 }
 export type DocRetrievedEvent = CustomEvent<DocRetrievedDetail>;
 export function newDocRetrievedEvent(
-  element: Element,
   doc: Document,
   docName?: string,
 ): DocRetrievedEvent {
   return new CustomEvent<DocRetrievedDetail>('docRetrieved', {
     bubbles: true,
     composed: true,
-    detail: { element, doc, docName },
+    detail: { doc, docName },
   });
 }
 
@@ -44,7 +42,7 @@ export default class CompasOpenElement extends LitElement {
       .getSclDocument(this.selectedType ?? '', id ?? '')
       .catch(createLogEvent);
     if (sclDocument instanceof Document) {
-      this.dispatchEvent(newDocRetrievedEvent(this, sclDocument));
+      this.dispatchEvent(newDocRetrievedEvent(sclDocument));
     }
   }
 
@@ -56,7 +54,7 @@ export default class CompasOpenElement extends LitElement {
     const docName = file.name;
     const doc = new DOMParser().parseFromString(text, 'application/xml');
 
-    this.dispatchEvent(newDocRetrievedEvent(this, doc, docName));
+    this.dispatchEvent(newDocRetrievedEvent(doc, docName));
     this.sclFileUI.onchange = null;
   }
 

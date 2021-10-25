@@ -79,7 +79,7 @@ export const officialPlugins = [
   },
   {
     name: 'Import IEDs',
-    src: '/src/menu/ImportIEDs.js',
+    src: '/src/menu/CompasImportIEDs.js',
     icon: 'snippet_folder',
     default: true,
     kind: 'menu',
@@ -96,7 +96,7 @@ export const officialPlugins = [
   },
   {
     name: 'Merge Project',
-    src: '/src/menu/Merge.js',
+    src: '/src/menu/CompasMerge.js',
     icon: 'merge_type',
     default: true,
     kind: 'menu',

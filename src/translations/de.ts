@@ -422,6 +422,12 @@ export const de: Translations = {
     updateSubstation: {
       title: '???',
     },
+    importIEDS: {
+      title: '???',
+    },
+    merge: {
+      title: '???',
+    },
     uploadVersion: {
       title: '???',
       selectButton: '???...',

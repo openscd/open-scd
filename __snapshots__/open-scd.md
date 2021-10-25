@@ -805,7 +805,7 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/ImportIEDs.js"
+      value="/src/menu/CompasImportIEDs.js"
     >
       <mwc-icon slot="meta">
         snippet_folder

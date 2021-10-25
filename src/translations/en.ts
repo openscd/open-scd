@@ -419,6 +419,12 @@ export const en = {
     updateSubstation: {
       title: 'Update substation',
     },
+    importIEDS: {
+      title: 'Import IED\'s',
+    },
+    merge: {
+      title: 'Merge project',
+    },
     uploadVersion: {
       title: 'Upload new version of project to CoMPAS',
       selectButton: 'Select file...',
