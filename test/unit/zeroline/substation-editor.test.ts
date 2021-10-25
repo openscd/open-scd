@@ -60,6 +60,7 @@ describe('substation-editor', () => {
   it('reduces opacity of the substation-editor on move button click', async () => {
     element.moveButton.click();
     expect(element.classList.contains('moving')).to.be.true;
+    element.moveButton.click(); // move waits for the second click
   });
 
   describe('with ied connected to the substation', () => {

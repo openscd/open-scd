@@ -62,6 +62,7 @@ describe('bay-editor', () => {
   it('reduces opacity of the bay-editor on move button click', async () => {
     element.moveButton.click();
     expect(element.classList.contains('moving')).to.be.true;
+    element.moveButton.click(); // move waits for the second click
   });
 
   describe('with ied connected to the bay', () => {

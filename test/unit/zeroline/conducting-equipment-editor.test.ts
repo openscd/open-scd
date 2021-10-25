@@ -1,25 +1,25 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
-import { isCreate, isDelete } from '../../../src/foundation.js';
+import { isDelete } from '../../../src/foundation.js';
 
 import '../../../src/zeroline/conducting-equipment-editor.js';
 import { ConductingEquipmentEditor } from '../../../src/zeroline/conducting-equipment-editor.js';
 
 describe('conducting-equipment-editor', () => {
   let element: ConductingEquipmentEditor;
-  let validSCL: XMLDocument;
+  let doc: XMLDocument;
 
   let wizardEvent: SinonSpy;
   let editorAction: SinonSpy;
 
   beforeEach(async () => {
-    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+    doc = await fetch('/base/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = <ConductingEquipmentEditor>(
       await fixture(
         html`<conducting-equipment-editor
-          .element=${validSCL.querySelector('ConductingEquipment')}
+          .element=${doc.querySelector('ConductingEquipment')}
         ></conducting-equipment-editor>`
       )
     );
@@ -53,5 +53,6 @@ describe('conducting-equipment-editor', () => {
   it('reduces opacity of the conducting-equipment-editor on move button click', async () => {
     element.moveButton.click();
     expect(element.classList.contains('moving')).to.be.true;
+    element.moveButton.click(); // move waits for the second click
   });
 });
