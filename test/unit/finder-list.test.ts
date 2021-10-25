@@ -23,6 +23,14 @@ const entries: Record<string, string[]> = {
   e4: ['e2', 'e1'],
 };
 
+function getTitle(path: Path): string {
+  return `Testing ${path[path.length - 1]}`;
+}
+
+function getDisplayString(entry: string, path: string[]) {
+  return 'Testing ' + path.length + ' ' + entry;
+}
+
 async function read(path: Path): Promise<Directory> {
   const dir = path[path.length - 1];
   return {
@@ -86,6 +94,30 @@ describe('finder-list', () => {
         .property('container')
         .property('children')
         .to.have.lengthOf(pathA.length));
+
+    describe('when provided with .getTitle and .getDisplayString methods', () => {
+      beforeEach(async () => {
+        element.getDisplayString = getDisplayString;
+        element.getTitle = getTitle;
+        element.requestUpdate();
+        await element.updateComplete;
+      });
+
+      it('overrides filtered-list searchFieldLabels using .getTitle', () => {
+        expect(element.container.querySelector('filtered-list'))
+          .property('searchFieldLabel')
+          .to.satisfy((l: string) => l.startsWith('Testing '));
+      });
+
+      it('overrides list-item text content using .getDisplayString', () => {
+        expect(element.container.querySelector('mwc-list-item'))
+          .property('text')
+          .to.satisfy((t: string) => t.startsWith('Testing '));
+      });
+
+      it('looks like its latest snapshot', () =>
+        expect(element).shadowDom.to.equalSnapshot());
+    });
 
     describe('when an item in the last column is selected', () => {
       const parent = pathA[pathA.length - 1];

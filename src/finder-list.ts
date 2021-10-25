@@ -88,7 +88,7 @@ export class FinderList extends LitElement {
     return path.join('/');
   }
 
-  getDisplayString(entry: string): string {
+  getDisplayString(entry: string, path: string[]): string {
     return entry;
   }
 
@@ -143,7 +143,7 @@ export class FinderList extends LitElement {
   renderDirectory(path: Path, entries: string[]): TemplateResult {
     return html`<filtered-list
       @selected=${(e: SingleSelectedEvent) => this.select(e, path)}
-      .searchFieldLabel="${this.getTitle(path)}"
+      searchFieldLabel="${this.getTitle(path)}"
     >
       ${entries.map(
         entry =>
@@ -152,7 +152,7 @@ export class FinderList extends LitElement {
             ?activated=${this.getPaths(path.length)
               .map(p => JSON.stringify(p))
               .includes(JSON.stringify(path.concat(entry)))}
-            >${this.getDisplayString(entry)}</mwc-list-item
+            >${this.getDisplayString(entry, path)}</mwc-list-item
           >`
       )}
     </filtered-list>`;
