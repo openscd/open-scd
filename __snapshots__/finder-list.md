@@ -13,12 +13,16 @@
       e2
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e1"
       >
         e1
       </mwc-list-item>
@@ -29,15 +33,22 @@
       e1
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e4"
       >
         e4
       </mwc-list-item>
@@ -48,12 +59,16 @@
       e4
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e1"
       >
         e1
       </mwc-list-item>
@@ -64,13 +79,22 @@
       e1
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e4"
+      >
         e4
       </mwc-list-item>
     </filtered-list>
@@ -93,10 +117,14 @@
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e3"
       >
         e3
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
@@ -123,10 +151,16 @@
       e2
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
@@ -150,6 +184,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
+        value="e3"
       >
         e3
       </mwc-list-item>
@@ -158,6 +193,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e1"
       >
         e1
       </mwc-list-item>
@@ -170,6 +206,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
+        value="e2"
       >
         e2
       </mwc-list-item>
@@ -177,6 +214,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e3"
       >
         e3
       </mwc-list-item>
@@ -185,6 +223,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e4"
       >
         e4
       </mwc-list-item>
@@ -204,6 +243,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
+        value="e2"
       >
         e2
       </mwc-list-item>
@@ -211,6 +251,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e3"
       >
         e3
       </mwc-list-item>
@@ -219,6 +260,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e4"
       >
         e4
       </mwc-list-item>
@@ -231,6 +273,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
+        value="e2"
       >
         e2
       </mwc-list-item>
@@ -238,6 +281,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e1"
       >
         e1
       </mwc-list-item>
@@ -257,6 +301,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
+        value="e2"
       >
         e2
       </mwc-list-item>
@@ -264,6 +309,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e1"
       >
         e1
       </mwc-list-item>
@@ -276,6 +322,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
+        value="e2"
       >
         e2
       </mwc-list-item>
@@ -283,6 +330,7 @@
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
+        value="e1"
       >
         e1
       </mwc-list-item>
@@ -311,12 +359,14 @@
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e3"
       >
         e3
       </mwc-list-item>
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e1"
       >
         e1
       </mwc-list-item>
@@ -325,15 +375,22 @@
       e1
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e4"
       >
         e4
       </mwc-list-item>
@@ -349,15 +406,22 @@
       e1
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e4"
       >
         e4
       </mwc-list-item>
@@ -371,10 +435,16 @@
       e4
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
@@ -389,10 +459,16 @@
       e4
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
@@ -405,10 +481,16 @@
       e4
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
@@ -433,10 +515,16 @@
       e2
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
@@ -444,15 +532,22 @@
       e1
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
       <mwc-list-item
         activated=""
         mwc-list-item=""
+        value="e4"
       >
         e4
       </mwc-list-item>
@@ -468,10 +563,16 @@
       e2
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e3"
+      >
         e3
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
@@ -479,10 +580,16 @@
       e4
     </h2>
     <filtered-list>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e2"
+      >
         e2
       </mwc-list-item>
-      <mwc-list-item mwc-list-item="">
+      <mwc-list-item
+        mwc-list-item=""
+        value="e1"
+      >
         e1
       </mwc-list-item>
     </filtered-list>
