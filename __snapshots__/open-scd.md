@@ -837,7 +837,7 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/Merge.js"
+      value="/src/menu/CompasMerge.js"
     >
       <mwc-icon slot="meta">
         merge_type
