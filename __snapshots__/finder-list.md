@@ -286,11 +286,6 @@
         e1
       </mwc-list-item>
     </filtered-list>
-    <h2>
-      e3
-    </h2>
-    <filtered-list>
-    </filtered-list>
   </div>
   <div class="column">
     <h2>
@@ -313,32 +308,6 @@
       >
         e1
       </mwc-list-item>
-    </filtered-list>
-    <h2>
-      e4
-    </h2>
-    <filtered-list>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="0"
-        value="e2"
-      >
-        e2
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        value="e1"
-      >
-        e1
-      </mwc-list-item>
-    </filtered-list>
-    <h2>
-      e3
-    </h2>
-    <filtered-list>
     </filtered-list>
   </div>
 </div>
@@ -448,11 +417,6 @@
         e1
       </mwc-list-item>
     </filtered-list>
-    <h2>
-      e3
-    </h2>
-    <filtered-list>
-    </filtered-list>
   </div>
   <div class="column">
     <h2>
@@ -471,33 +435,6 @@
       >
         e1
       </mwc-list-item>
-    </filtered-list>
-    <h2>
-      e3
-    </h2>
-    <filtered-list>
-    </filtered-list>
-    <h2>
-      e4
-    </h2>
-    <filtered-list>
-      <mwc-list-item
-        mwc-list-item=""
-        value="e2"
-      >
-        e2
-      </mwc-list-item>
-      <mwc-list-item
-        mwc-list-item=""
-        value="e1"
-      >
-        e1
-      </mwc-list-item>
-    </filtered-list>
-    <h2>
-      e3
-    </h2>
-    <filtered-list>
     </filtered-list>
   </div>
 </div>
@@ -560,23 +497,6 @@
   </div>
   <div class="column">
     <h2>
-      e2
-    </h2>
-    <filtered-list>
-      <mwc-list-item
-        mwc-list-item=""
-        value="e3"
-      >
-        e3
-      </mwc-list-item>
-      <mwc-list-item
-        mwc-list-item=""
-        value="e1"
-      >
-        e1
-      </mwc-list-item>
-    </filtered-list>
-    <h2>
       e4
     </h2>
     <filtered-list>
@@ -592,11 +512,6 @@
       >
         e1
       </mwc-list-item>
-    </filtered-list>
-    <h2>
-      e3
-    </h2>
-    <filtered-list>
     </filtered-list>
   </div>
 </div>

@@ -95,9 +95,11 @@ export class FinderList extends LitElement {
   @query('div')
   container!: Element;
 
-  getPaths(depth: number = this.depth - 1): Path[] {
+  private getPaths(depth?: number): Path[] {
     let paths: Path[] = Object.keys(this.selection).map(key => [key]);
-    while (depth-- > 0) {
+
+    let i = depth ?? this.depth - 1;
+    while (i-- > 0) {
       paths = paths.flatMap(path => {
         let dir = this.selection;
         for (const entry of path) dir = dir[entry]; // recursive descent
@@ -105,7 +107,10 @@ export class FinderList extends LitElement {
         return newPaths.length === 0 ? [path] : newPaths;
       });
     }
-    return paths;
+
+    return depth === undefined
+      ? paths
+      : paths.filter(path => path.length > depth);
   }
 
   multiSelect(event: SingleSelectedEvent, path: Path, clicked: string): void {

@@ -2,6 +2,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { expect, fixture, html } from '@open-wc/testing';
 import '../../src/finder-list.js';
 import { Directory, FinderList, Path } from '../../src/finder-list.js';
+import { depth } from '../../src/foundation.js';
 
 const pathA = ['e2', 'e1', 'e4'];
 const pathB = ['e1', 'e4'];
@@ -43,8 +44,6 @@ describe('finder-list', () => {
 
   it('translates given .paths into a .selection tree', () => {
     element.paths = paths;
-    console.log(paths, selection);
-    console.warn(element.paths, element.selection);
     expect(element.selection).to.deep.equal(selection);
   });
 
@@ -162,7 +161,6 @@ describe('finder-list', () => {
 
     describe('when the selected item in the first column is deselected', () => {
       beforeEach(async () => {
-        console.log(items[1]);
         items[1].click();
         await element.updateComplete;
       });
@@ -190,11 +188,22 @@ describe('finder-list', () => {
       );
     });
 
-    it('displays one list of children per element of the longest path', () =>
+    it('displays one column per element of the longest path', () =>
       expect(element)
         .property('container')
         .property('children')
         .to.have.lengthOf(Math.max(...paths.map(p => p.length))));
+
+    it('displays one header and one list of entries per maximum length path in the last column', () =>
+      expect(element)
+        .property('container')
+        .property('lastElementChild')
+        .property('children')
+        .to.have.lengthOf(
+          2 *
+            paths.filter(path => path.length === depth(element.selection))
+              .length
+        ));
 
     it('looks like its latest snapshot', () =>
       expect(element).shadowDom.to.equalSnapshot());
@@ -230,10 +239,8 @@ describe('finder-list', () => {
 
     describe('when a selected item in the first column is deselected', () => {
       beforeEach(async () => {
-        console.log(items[1]);
         items[1].click();
         await element.updateComplete;
-        console.warn(element.container.querySelector('.column:nth-child(2)'));
       });
 
       it('removes the deselected directory from the second column', () =>
