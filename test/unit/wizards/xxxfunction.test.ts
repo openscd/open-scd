@@ -54,7 +54,7 @@ describe('function type wizards', () => {
   describe('allows to updates Function element', () => {
     const func = <Element>(
       new DOMParser().parseFromString(
-        `<Function name="myFunc"></Function>`,
+        `<Function name="myFunc" desc="myDesc" type="myFuncType"></Function>`,
         'application/xml'
       ).documentElement
     );
@@ -99,30 +99,28 @@ describe('function type wizards', () => {
 
     it('update a Function element when only desc attribute changed', async () => {
       const input = <WizardTextField>inputs[1];
-      input.nullSwitch?.click();
-      input.value = 'myDesc';
+      input.value = 'myNewDesc';
       await input.requestUpdate();
       const editorAction = updateXxxFunctionAction(func);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
       const updateAction = <Update>updateActions[0];
-      expect(updateAction.old.element).to.not.have.attribute('desc');
-      expect(updateAction.new.element).to.have.attribute('desc', 'myDesc');
+      expect(updateAction.old.element).to.have.attribute('desc', 'myDesc');
+      expect(updateAction.new.element).to.have.attribute('desc', 'myNewDesc');
     });
 
     it('update a Function element when only type attribute changed', async () => {
       const input = <WizardTextField>inputs[2];
-      input.nullSwitch?.click();
-      input.value = 'myType';
+      input.value = 'myNewType';
       await input.requestUpdate();
       const editorAction = updateXxxFunctionAction(func);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
       expect(updateActions[0]).to.satisfy(isUpdate);
       const updateAction = <Update>updateActions[0];
-      expect(updateAction.old.element).to.not.have.attribute('type');
-      expect(updateAction.new.element).to.have.attribute('type', 'myType');
+      expect(updateAction.old.element).to.have.attribute('type', 'myFuncType');
+      expect(updateAction.new.element).to.have.attribute('type', 'myNewType');
     });
   });
 
