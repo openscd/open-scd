@@ -51,7 +51,10 @@ export class SubstationSld extends LitElement {
         ${this.busbars.map(
           busbar =>
             html`<div class="busbar">
-              ${busbar.element.getAttribute('name')}
+              <svg width="100%">
+                <text x="0" y="20" fill="black">${busbar.element.getAttribute('name')}</text>
+                <line x1="0" y1="0" x2="100%" y2="0" style="stroke:black;stroke-width:5"/>
+              </svg>
             </div>`
         )}
       </div>
