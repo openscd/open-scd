@@ -15,13 +15,14 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { depth } from './foundation.js';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 export type Selection = { [name: string]: Selection };
 
 export type Path = string[];
 export interface Directory {
   path: Path;
-  header: TemplateResult;
+  header?: TemplateResult;
   entries: string[];
 }
 
@@ -161,18 +162,17 @@ export class FinderList extends LitElement {
   async renderColumn(column: number): Promise<TemplateResult> {
     const paths = this.getPaths(column);
 
-    const lists: TemplateResult[] = paths
-      .map(path => this.read(path))
-      .map(
-        dir =>
-          html`${until(
-            dir.then(
-              ({ path, entries, header }) =>
-                html`${header} ${this.renderDirectory(path, entries)}`
-            ),
-            html`<h2>${translate('loading')}</h2>`
-          )}`
-      );
+    const dirs = paths.map(path => this.read(path));
+    const lists: TemplateResult[] = [];
+
+    for await (const { header, entries, path } of dirs) {
+      if (header || entries.length > 0)
+        lists.push(
+          html`${ifDefined(header)} ${this.renderDirectory(path, entries)}`
+        );
+    }
+
+    if (lists.length === 0) return html``;
     return html`<div class="column">${lists}</div>`;
   }
 

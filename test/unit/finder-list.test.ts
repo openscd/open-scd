@@ -21,6 +21,7 @@ const entries: Record<string, string[]> = {
   e2: ['e3', 'e1'],
   e3: [],
   e4: ['e2', 'e1'],
+  e5: [],
 };
 
 function getTitle(path: Path): string {
@@ -35,7 +36,7 @@ async function read(path: Path): Promise<Directory> {
   const dir = path[path.length - 1];
   return {
     path,
-    header: html`<h2>${dir}</h2>`,
+    header: dir === 'e5' ? undefined : html`<h2>${dir}</h2>`,
     entries: entries[dir] ?? [],
   };
 }
@@ -77,6 +78,18 @@ describe('finder-list', () => {
     expect(element.path).to.deep.equal([]);
   });
 
+  describe('given a one-element .path with no header or entries', () => {
+    beforeEach(async () => {
+      element = await fixture(
+        html`<finder-list .path=${['e5']} .read=${read}></finder-list>`
+      );
+      await element.loaded;
+    });
+
+    it('displays no columns', async () =>
+      expect(element).property('container').property('children').to.be.empty);
+  });
+
   describe('given a .path and a .read method', () => {
     let items: ListItem[];
 
@@ -84,12 +97,13 @@ describe('finder-list', () => {
       element = await fixture(
         html`<finder-list .path=${pathA} .read=${read}></finder-list>`
       );
+      await element.loaded;
       items = Array.from(
         element.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
       );
     });
 
-    it('displays one list per path element', () =>
+    it('displays one column per path element', () =>
       expect(element)
         .property('container')
         .property('children')
@@ -101,6 +115,7 @@ describe('finder-list', () => {
         element.getTitle = getTitle;
         element.requestUpdate();
         await element.updateComplete;
+        await element.loaded;
       });
 
       it('overrides filtered-list searchFieldLabels using .getTitle', () => {
@@ -127,6 +142,7 @@ describe('finder-list', () => {
       beforeEach(async () => {
         items[items.length - 1].click();
         await element.updateComplete;
+        await element.loaded;
       });
 
       it('appends a new column to the container', () =>
@@ -163,6 +179,7 @@ describe('finder-list', () => {
       beforeEach(async () => {
         items[0].click();
         await element.updateComplete;
+        await element.loaded;
       });
 
       it('replaces all but the first column with a new column', () =>
@@ -195,6 +212,7 @@ describe('finder-list', () => {
       beforeEach(async () => {
         items[1].click();
         await element.updateComplete;
+        await element.loaded;
       });
 
       it('renders only the first column', () =>
@@ -215,6 +233,7 @@ describe('finder-list', () => {
       element = await fixture(
         html`<finder-list .paths=${paths} .read=${read} multi></finder-list>`
       );
+      await element.loaded;
       items = Array.from(
         element.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
       );
@@ -248,6 +267,7 @@ describe('finder-list', () => {
       beforeEach(async () => {
         items[0].click();
         await element.updateComplete;
+        await element.loaded;
       });
 
       it("adds the selected directory's header to the second column", () =>
@@ -273,6 +293,7 @@ describe('finder-list', () => {
       beforeEach(async () => {
         items[1].click();
         await element.updateComplete;
+        await element.loaded;
       });
 
       it('removes the deselected directory from the second column', () =>
