@@ -85,10 +85,10 @@ export const de: Translations = {
   validator: {
     schema: {
       title: 'Projekt validieren',
-      valid: '{{ name }} erfolgreich validiert gegen Schema',
+      valid: '{{ name }} erfolgreich validiert gegen XML-Schema',
       invalid: '{{ name }} Schema-Validierung fehlgeschlagen',
       fatal: 'Fataler Validierungsfehler',
-      loadError: 'Konnte Schema {{ name }} nicht laden',
+      loadError: 'Konnte XML-Schema {{ name }} nicht laden',
     },
     templates: {
       title: 'Templates validieren',
@@ -99,7 +99,7 @@ export const de: Translations = {
       incorrectAttribute:
         'Das Attribut {{attr}} in Element {{element}} folgt nicht der Definition.',
       missingReference:
-        '{{tag}}:{{name}} hat ein ungültige Referenz - es fehlt der definierte Typ',
+        '{{tag}} "{{name}}" hat eine ungültige Referenz - es fehlt der definierte Typ',
     },
   },
   textfield: {

@@ -123,10 +123,10 @@ export const en = {
   validator: {
     schema: {
       title: 'Validate project',
-      valid: '{{ name }} schema validation successful',
-      invalid: '{{ name }} schema validation failed',
+      valid: '{{ name }} XML schema validation successful',
+      invalid: '{{ name }} XML schema validation failed',
       fatal: 'Fatal validation error',
-      loadError: 'Could not load schema {{ name }}',
+      loadError: 'Could not load XML schema {{ name }}',
     },
     templates: {
       title: 'Validate templates',
