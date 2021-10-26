@@ -73,7 +73,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     @property()
     diagnoses = new Map<string, IssueDetail[]>();
     @internalProperty()
-    lastIssue!: IssueDetail;
+    latestIssue!: IssueDetail;
 
     @query('#log') logUI!: Dialog;
     @query('#diagnostic') diagnosticUI!: Dialog;
@@ -162,7 +162,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       if (!issues) this.diagnoses.set(de.detail.validatorId, [de.detail]);
       else issues?.push(de.detail);
 
-      this.lastIssue = de.detail;
+      this.latestIssue = de.detail;
       this.issueUI.close();
       this.issueUI.show();
     }
@@ -462,7 +462,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="issue"
           timeoutMs="10000"
-          labelText="${this.lastIssue?.title ??
+          labelText="${this.latestIssue?.title ??
           get('log.snackbar.placeholder')}"
         >
           <mwc-button
