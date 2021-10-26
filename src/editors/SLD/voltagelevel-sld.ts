@@ -51,9 +51,9 @@ export class SubstationSld extends LitElement {
         ${this.busbars.map(
           busbar =>
             html`<div class="busbar">
-              <svg width="100%">
+              <svg>
                 <text x="0" y="20" fill="black">${busbar.element.getAttribute('name')}</text>
-                <line x1="0" y1="0" x2="100%" y2="0" style="stroke:black;stroke-width:5"/>
+                <line x1="0" y1="0" x2="100%" y2="0"/>
               </svg>
             </div>`
         )}
@@ -85,6 +85,15 @@ export class SubstationSld extends LitElement {
 
     .busbar {
       grid-template-columns: repeat(1, 1fr);
+    }
+
+    .busbar svg {
+      width: 100%;
+    }
+
+    .busbar svg line {
+      stroke: black;
+      stroke-width: 5;
     }
 
     .container.bay {
