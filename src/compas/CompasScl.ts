@@ -57,7 +57,7 @@ export class CompasScl extends LitElement {
             if (name === '') {
               name = id;
             }
-            const version = item.getElementsByTagNameNS(SDS_NAMESPACE, "Version").item(0);
+            const version = item.getElementsByTagNameNS(SDS_NAMESPACE, "Version").item(0)!.textContent ?? '';
             return html`<mwc-list-item tabindex="0"
                                        @click=${() => this.dispatchEvent(newSclSelectedEvent(id))}>
                             ${name} (${version})
