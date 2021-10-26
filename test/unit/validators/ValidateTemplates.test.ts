@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import { registerTranslateConfig, use } from 'lit-translate';
 import sinon, { SinonSpy } from 'sinon';
 
 import { OpenSCD } from '../../../src/open-scd.js';
@@ -136,4 +137,11 @@ describe('ValidateTemplates', () => {
       expect(issueEvent).to.not.have.been.calledOnce;
     });
   });
+}).afterAll(async () => {
+  registerTranslateConfig({
+    loader: () => Promise.resolve({}),
+    empty: key => `[${key}]`,
+    translationCache: {},
+  });
+  use('none');
 });
