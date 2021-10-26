@@ -47,12 +47,12 @@ export function getPosition(element: Element): (number | undefined)[] {
   ];
 }
 
-function getTerminals(connectivityNode: Element): Element[] {
-  const substation = connectivityNode.closest('Substation');
+function getTerminals(connectivityNode: Element | null | undefined): Element[] {
+  const substation = connectivityNode?.closest('Substation');
   if (!substation) return [];
 
-  const path = connectivityNode.getAttribute('pathName') ?? '';
-  const name = connectivityNode.getAttribute('name');
+  const path = connectivityNode?.getAttribute('pathName') ?? '';
+  const name = connectivityNode?.getAttribute('name');
   const [substationName, voltageLevelName, bayName, _] = path.split('/');
 
   return Array.from(substation.getElementsByTagName('Terminal')).filter(
@@ -72,7 +72,7 @@ function numberConnections(connectivityNode: Element): number {
   return getTerminals(connectivityNode).length;
 }
 
-function getDesitantion(terminal: Element): Element | null {
+function getDestination(terminal: Element): Element | null | undefined {
   const root = terminal.closest('Substation');
   const path = terminal.getAttribute('connectivityNode');
 
@@ -108,7 +108,7 @@ export function getEdges(root: Element): GraphEdge[] {
   Array.from(root.getElementsByTagName('Terminal'))
     .filter(terminal => terminal.getAttribute('cNodeName') !== 'grounded')
     .forEach(terminal => {
-      const destination = getDesitantion(terminal);
+      const destination = getDestination(terminal);
       const source = terminal.parentElement;
       if (destination && source)
         edges.push({

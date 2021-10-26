@@ -584,6 +584,22 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/editors/Sld.js"
+    >
+      <mwc-icon slot="meta">
+        edit
+      </mwc-icon>
+      SLD
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/editors/Communication.js"
     >
       <mwc-icon slot="meta">
