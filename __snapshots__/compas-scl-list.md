@@ -40,22 +40,14 @@
     mwc-list-item=""
     tabindex="0"
   >
-    Station-Utrecht-0001 (
-    <version>
-      2.1.0
-    </version>
-    )
+    Station-Utrecht-0001 (2.1.0)
   </mwc-list-item>
   <mwc-list-item
     aria-disabled="false"
     mwc-list-item=""
     tabindex="-1"
   >
-    Station-Utrecht-0002 (
-    <version>
-      1.3.0
-    </version>
-    )
+    Station-Utrecht-0002 (1.3.0)
   </mwc-list-item>
 </mwc-list>
 

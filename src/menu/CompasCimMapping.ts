@@ -43,10 +43,11 @@ export default class OpenProjectPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<input
-       @click=${(event: MouseEvent) => ((<HTMLInputElement>event.target).value = '')}
-       @change=${(event: MouseEvent) => getOpenScdElement().dispatchEvent(newPendingStateEvent(this.convertCimFile(event)))}
-       id="cim-mapping-input" accept=".xml" type="file" multiple></input>`;
+    return html`<input @click=${(event: MouseEvent) => ((<HTMLInputElement>event.target).value = '')}
+                       @change=${(event: MouseEvent) =>
+                         getOpenScdElement().dispatchEvent(newPendingStateEvent(this.convertCimFile(event)))}
+                       id="cim-mapping-input" accept=".xml" type="file" multiple>
+    `;
   }
 
   static styles = css`

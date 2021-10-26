@@ -44,9 +44,8 @@ function saveToCompasWizard(doc: XMLDocument, saveToOptions: SaveToCompasWizardO
         action: saveToCompas(),
       },
       content: [
-        html `
-          <compas-save .doc="${doc}" .docName="${saveToOptions.docName}" .docId="${saveToOptions.docId}">
-          </compas-save>
+        html `<compas-save .doc="${doc}" .docName="${saveToOptions.docName}" .docId="${saveToOptions.docId}">
+              </compas-save>
         ` ],
     },
   ];

@@ -9,30 +9,33 @@ import {updateDocumentInOpenSCD} from "../compas/foundation.js";
 import "../compas/CompasOpen.js";
 
 export default class CompasOpenMenuPlugin extends LitElement {
+  parent!: HTMLElement;
+
+  private openCompasWizard(parent: HTMLElement): Wizard {
+    async function openDoc(parent: Element, event: DocRetrievedEvent): Promise<void> {
+      updateDocumentInOpenSCD(event.detail.doc, event.detail.docName);
+      parent.dispatchEvent(newWizardEvent());
+    }
+
+    return [
+      {
+        title: get('compas.open.title'),
+        content: [
+          html`<compas-open @docRetrieved=${(event: DocRetrievedEvent) => {
+                                             parent.dispatchEvent(newPendingStateEvent(openDoc(parent, event)));
+                                           }}>
+               </compas-open>
+          `,
+        ],
+      },
+    ];
+  }
+
+  firstUpdated(): void {
+    this.parent = this.parentElement!;
+  }
+
   async run(): Promise<void> {
-    this.dispatchEvent(newWizardEvent(openCompasWizard()));
+    this.dispatchEvent(newWizardEvent(this.openCompasWizard(this.parent)));
   }
-}
-
-function openCompasWizard(): Wizard {
-  async function openDoc(element: Element, sclDocument: Document, docName?: string): Promise<void> {
-    updateDocumentInOpenSCD(sclDocument, docName);
-    element.dispatchEvent(newWizardEvent());
-  }
-
-  return [
-    {
-      title: get('compas.open.title'),
-      content: [
-        html`<compas-open @docRetrieved=${(evt: DocRetrievedEvent) => {
-                                          const element = evt.detail.element;
-                                          const doc = evt.detail.doc;
-                                          const docName = evt.detail.docName;
-                                          element.dispatchEvent(newPendingStateEvent(openDoc(element, doc, docName)));
-                                        }}>
-             </compas-open>
-        `,
-      ],
-    },
-  ];
 }
