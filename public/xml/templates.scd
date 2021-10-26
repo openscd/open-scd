@@ -429,7 +429,7 @@
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
     </DOType>
-    <DOType cdc="ENC" id="OpenSCD_ENCMod">
+    <DOType cdc="ENC" id="OpenSCD_ENC_Mod">
       <DA name="origin" bType="Struct" dchg="true" fc="ST" type="OpenSCD_Originator"/>
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
@@ -486,10 +486,14 @@
         <Val>direct-with-enhanced-security</Val>
       </DA>
     </DOType>
-    <DOType cdc="SEC" id="OpenSCD_SEC">
-      <DA name="cnt" bType="INT32U" dchg="true" fc="ST"/>
-      <DA name="sev" bType="Enum" fc="ST" type="SeverityKind"/>
-      <DA name="t" bType="Timestamp" fc="ST" />
+    <DOType cdc="ISC" id="OpenSCD_ISC_TapPos_YLTC">
+      <DA name="valWTr" bType="Struct" dchg="true" type="OpenSCD_ValWithTrans" fc="ST"/>
+      <DA name="q" bType="Quality" qchg="true"  fc="ST"/>
+      <DA name="t" bType="Timestamp" fc="ST"/>
+      <DA name="persistent" bType="BOOLEAN" dchg="true" fc="CF"/>
+      <DA name="ctlModel" bType="Enum" dchg="true" type="OpenSCD_StatusOnly" fc="CF">
+        <Val>status-only</Val>
+      </DA>
     </DOType>
     <DOType cdc="LPL" id="OpenSCD_LPL_LD">
       <DA name="vendor" bType="VisString255" fc="DC"/>
@@ -639,8 +643,31 @@
       <BDA name="Test" bType="BOOLEAN"/>
       <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
     </DAType>
-    <DAType id="OpenSCD_VectorFwoAngle">
-      <BDA name="mag" bType="Struct" type="OpenSCD_AnalogueValueFloat32"/>
+    <DAType id="OpenSCD_Cancel_BehaviourModeKind">
+      <BDA name="ctlVal" bType="Enum" type="BehaviourModeKind"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_Cancel_INT8">
+      <BDA name="ctlVal" bType="INT8"/>
+      <BDA name="origin" bType="Struct" type="OpenSCD_Originator"/>
+      <BDA name="ctlNum" bType="INT8U"/>
+      <BDA name="T" bType="Timestamp"/>
+      <BDA name="Test" bType="BOOLEAN"/>
+      <ProtNs type="8-MMS">IEC 61850-8-1:2003</ProtNs>
+    </DAType>
+    <DAType id="OpenSCD_CalendarTime">
+      <BDA name="occ" bType="INT16U"/>
+      <BDA name="occType" bType="Enum" type="OccurrenceKind"/>
+      <BDA name="occPer" bType="Enum" type="PeriodKind"/>
+      <BDA name="weekDay" bType="Enum" type="WeekdayKind"/>
+      <BDA name="month" bType="Enum" type="MonthKind"/>
+      <BDA name="day" bType="INT8U"/>
+      <BDA name="hr" bType="INT8U"/>
+      <BDA name="mn" bType="INT8U"/>
     </DAType>
     <DAType id="OpenSCD_Cell2D">
       <BDA name="xStart" bType="FLOAT32"/>
