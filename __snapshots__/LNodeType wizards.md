@@ -3482,10 +3482,12 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-select
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="NamPlt"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3505,8 +3507,8 @@
       >
         Dummy.XCBR1.NamPlt
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
       fixedmenuposition=""
       label="Beh"
       naturalmenuwidth=""
@@ -3530,11 +3532,13 @@
       >
         Dummy.LLN0.Health
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="Health"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3554,11 +3558,13 @@
       >
         Dummy.LLN0.Beh
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="Mir"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3569,11 +3575,13 @@
       >
         Dummy.SPS
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="Mod"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3584,17 +3592,21 @@
       >
         Dummy.LLN0.Mod
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="InRef"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcExp"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3605,11 +3617,13 @@
       >
         Dummy.SPS
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcNxtTmms"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3620,11 +3634,13 @@
       >
         Dummy.XCBR1.OpCnt
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcStr"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3644,65 +3660,85 @@
       >
         Dummy.XCBR1.BlkOpn
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcMth"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcMod"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcIntvTyp"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcIntvPer"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="NumSubIntv"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcRfTyp"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcRfPer"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="ClcSrc"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="InSyn"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="Blk"
       naturalmenuwidth=""
+      nullable=""
     >
       <mwc-list-item
         aria-disabled="false"
@@ -3713,14 +3749,16 @@
       >
         Dummy.SPS
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
+      disabled=""
       fixedmenuposition=""
       label="BlkRef"
       naturalmenuwidth=""
+      nullable=""
     >
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
       fixedmenuposition=""
       label="EnaOpn"
       naturalmenuwidth=""
@@ -3735,8 +3773,8 @@
       >
         Dummy.SPS
       </mwc-list-item>
-    </mwc-select>
-    <mwc-select
+    </wizard-select>
+    <wizard-select
       fixedmenuposition=""
       label="EnaCls"
       naturalmenuwidth=""
@@ -3751,7 +3789,7 @@
       >
         Dummy.SPS
       </mwc-list-item>
-    </mwc-select>
+    </wizard-select>
   </div>
   <mwc-button
     dialogaction="close"
