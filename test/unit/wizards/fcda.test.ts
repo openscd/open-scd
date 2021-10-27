@@ -1,38 +1,42 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import {
-  Create,
-  identity,
-  isCreate,
-  WizardAction,
-  WizardActor,
-} from '../../../src/foundation.js';
+import sinon, { SinonSpy } from 'sinon';
 
-import { Directory } from '../../../src/finder-list.js';
+import { isCreate } from '../../../src/foundation.js';
 
-import {
-  createFCDAsAction,
-  createFCDAWizard,
-  getReader,
-} from '../../../src/wizards/fcda.js';
+import { FinderList } from '../../../src/finder-list.js';
+import { createFCDAWizard } from '../../../src/wizards/fcda.js';
 
 import { MockWizard } from '../../mock-wizard.js';
 
-describe('functional constrained data (attribute) - FCDA', () => {
+describe('create wizard for FCDA element', () => {
   let doc: XMLDocument;
   let element: MockWizard;
+  let finder: FinderList;
+  let primaryAction: HTMLElement;
+  let actionEvent: SinonSpy;
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
     doc = await fetch('/base/test/testfiles/wizards/fcda.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    actionEvent = sinon.spy();
+    window.addEventListener('editor-action', actionEvent);
   });
 
-  describe('create wizard', () => {
+  describe('with a valid SCL file', () => {
     beforeEach(async () => {
       const wizard = createFCDAWizard(doc.querySelector('DataSet')!);
       element.workflow.push(wizard!);
       await element.requestUpdate();
+      finder =
+        element.wizardUI.dialog!.querySelector<FinderList>('finder-list')!;
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
     });
 
     it('looks like the last snapshot', () => {
@@ -42,242 +46,186 @@ describe('functional constrained data (attribute) - FCDA', () => {
     it('returns undefined wizard for parents without Server', () =>
       expect(createFCDAWizard(doc.querySelector('AccessPoint')!)).to.be
         .undefined);
-  });
-
-  describe('uses a specific finder-list .read', () => {
-    let reader: (path: string[]) => Promise<Directory>;
-    beforeEach(() => {
-      reader = getReader(doc.querySelector('Server')!);
-    });
 
     it('indicates error in case children cannot be determined', async () => {
-      const path = ['some wrong path'];
-      const dir = await reader(path);
-      expect(dir.header?.strings[0]).to.equal('<p>');
-      expect(dir.entries).to.be.empty;
+      finder.paths = [['some wrong path']];
+      await element.requestUpdate();
+      await finder.loaded;
+      expect(
+        element.wizardUI.dialog
+          ?.querySelector('finder-list')
+          ?.shadowRoot?.querySelector('p')?.innerText
+      ).to.equal('[error]');
     });
 
-    it('sets header to undefined', async () => {
+    describe('with a specific path', () => {
       const path = [
-        `Server: ${<string>identity(doc.querySelector('Server')!)}`,
+        'Server: IED1>P1',
+        'LDevice: IED1>>CircuitBreaker_CB1',
+        'LN0: IED1>>CircuitBreaker_CB1',
+        'DO: #Dummy.LLN0>Beh',
+        'DA: #Dummy.LLN0.Beh>stVal',
       ];
-      const dir = await reader(path);
-      expect(dir.header).to.be.undefined;
+
+      beforeEach(async () => {
+        finder.paths = [path];
+        await element.requestUpdate();
+        await primaryAction.click();
+      });
+
+      it('returns a non empty create action on primary action click', () => {
+        expect(actionEvent).to.have.been.called;
+        expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
+      });
+
+      it('returns a create action that follows the definition of a FCDA', () => {
+        const newElement = <Element>(
+          actionEvent.args[0][0].detail.action.new.element
+        );
+        expect(newElement).to.have.attribute('iedName', 'IED1');
+        expect(newElement).to.have.attribute('ldInst', 'CircuitBreaker_CB1');
+        expect(newElement).to.have.attribute('prefix', '');
+        expect(newElement).to.have.attribute('lnClass', 'LLN0');
+        expect(newElement).to.have.attribute('lnInst', '');
+        expect(newElement).to.have.attribute('doName', 'Beh');
+        expect(newElement).to.have.attribute('daName', 'stVal');
+        expect(newElement).to.have.attribute('fc', 'ST');
+      });
     });
-    it('shows children for non leaf nodes', async () => {
+
+    describe('with a more complex path including SDOs and BDAs', () => {
       const path = [
-        `Server: ${<string>identity(doc.querySelector('Server')!)}`,
+        'Server: IED1>P1',
+        'LDevice: IED1>>Meas',
+        'LN: IED1>>Meas>My MMXU 1',
+        'DO: #Dummy.MMXU>A',
+        'SDO: #OpenSCD_WYE_phases>phsA',
+        'DA: #OpenSCD_CMV_db_i_MagAndAng>cVal',
+        'BDA: #OpenSCD_Vector_I_w_Ang>mag',
+        'BDA: #OpenSCD_AnalogueValue_INT32>i',
       ];
-      const dir = await reader(path);
-      expect(dir.header).to.be.undefined;
-      expect(dir.entries).to.not.be.empty;
-    });
-    it('shows children non for leaf SDO', async () => {
-      const path = ['SDO: #OpenSCD_WYE_phases>phsA'];
-      const dir = await reader(path);
-      expect(dir.header).to.be.undefined;
-      expect(dir.entries).to.not.be.empty;
-    });
-    it('shows children for non leaf BDA', async () => {
-      const path = ['BDA: #OpenSCD_Vector_I_w_Ang>mag'];
-      const dir = await reader(path);
-      expect(dir.header).to.be.undefined;
-      expect(dir.entries).to.not.be.empty;
-    });
-    it('does not show children for leaf BDA', async () => {
-      const path = ['BDA: #OpenSCD_AnalogueValue_INT32>i'];
-      const dir = await reader(path);
-      expect(dir.header).to.be.undefined;
-      expect(dir.entries).to.be.empty;
-    });
-    it('does not show children for leaf DA', async () => {
-      const path = ['DA: #Dummy.XCBR1.Pos>stVal'];
-      const dir = await reader(path);
-      expect(dir.header).to.be.undefined;
-      expect(dir.entries).to.be.empty;
-    });
-  });
 
-  describe('create action for selected FCDAs', () => {
-    let actor: WizardActor = (): WizardAction[] => {
-      return [];
-    };
-
-    let actions: WizardAction[] = [];
-
-    const pathA = [
-      'Server: IED1>P1',
-      'LDevice: IED1>>CircuitBreaker_CB1',
-      'LN0: IED1>>CircuitBreaker_CB1',
-      'DO: #Dummy.LLN0>Beh',
-      'DA: #Dummy.LLN0.Beh>stVal',
-    ];
-
-    const pathB = [
-      'Server: IED1>P1',
-      'LDevice: IED1>>Meas',
-      'LN: IED1>>Meas>My MMXU 1',
-      'DO: #Dummy.MMXU>A',
-      'SDO: #OpenSCD_WYE_phases>phsA',
-      'DA: #OpenSCD_CMV_db_i_MagAndAng>cVal',
-      'BDA: #OpenSCD_Vector_I_w_Ang>mag',
-      'BDA: #OpenSCD_AnalogueValue_INT32>i',
-    ];
-
-    const pathC = [
-      'Server: IED1>P1',
-      'LDevice: IED1>>CircuitBreaker_CB1',
-      'LN: IED1>>CircuitBreaker_CB1> XCBR 1',
-      'DO: #Dummy.XCBR1>Pos',
-      'DA: #Dummy.XCBR1.Pos>stVal',
-    ];
-
-    beforeEach(async () => {
-      actor = createFCDAsAction(doc.querySelector('Server')!);
-    });
-
-    describe('with path A', () => {
       beforeEach(async () => {
-        const finder = html`<finder-list
-          multi
-          .paths=${[pathA]}
-        ></finder-list>`;
-        const wizard = [{ title: '', content: [finder] }];
-        element.workflow.push(wizard);
+        finder.paths = [path];
         await element.requestUpdate();
-        actions = actor([], element.wizardUI);
+        await primaryAction.click();
       });
 
-      it('returns a non empty create action', async () => {
-        expect(actions).to.not.be.empty;
-        expect(actions.length).to.equal(1);
-        expect(actions[0]).to.satisfy(isCreate);
+      it('returns a non empty create action on primary action click', () => {
+        expect(actionEvent).to.have.been.called;
+        expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
       });
 
-      it('returns a create action that follows the definition of a FCDA', async () => {
-        expect(actions[0]).to.satisfy(isCreate);
-        const createAction = <Create>actions[0];
-        expect(createAction.new.element).to.have.attribute('iedName', 'IED1');
-        expect(createAction.new.element).to.have.attribute(
-          'ldInst',
-          'CircuitBreaker_CB1'
+      it('returns a create action that follows the definition of a FCDA', () => {
+        const newElement = <Element>(
+          actionEvent.args[0][0].detail.action.new.element
         );
-        expect(createAction.new.element).to.have.attribute('prefix', '');
-        expect(createAction.new.element).to.have.attribute('lnClass', 'LLN0');
-        expect(createAction.new.element).to.have.attribute('lnInst', '');
-        expect(createAction.new.element).to.have.attribute('doName', 'Beh');
-        expect(createAction.new.element).to.have.attribute('daName', 'stVal');
-        expect(createAction.new.element).to.have.attribute('fc', 'ST');
-      });
-
-      it('does not create FCDA for non leaf nodes', async () => {
-        const slicePath = pathA.slice(0, 2);
-        const finder = html`<finder-list
-          multi
-          .paths=${[slicePath]}
-        ></finder-list>`;
-        const wizard = [{ title: '', content: [finder] }];
-        element.workflow.length = 0;
-        element.workflow.push(wizard);
-        await element.requestUpdate();
-        const actions = actor([], element.wizardUI);
-        expect(actions).to.be.empty;
-      });
-
-      it('does not create FCDA for invalid LN id', async () => {
-        const invalidPath = [...pathA];
-        invalidPath[2] = 'LN: some wrong identity';
-        const finder = html`<finder-list
-          multi
-          .paths=${[invalidPath]}
-        ></finder-list>`;
-        const wizard = [{ title: '', content: [finder] }];
-        element.workflow.length = 0;
-        element.workflow.push(wizard);
-        await element.requestUpdate();
-        const actions = actor([], element.wizardUI);
-        expect(actions).to.be.empty;
-      });
-
-      it('does not create FCDA for invalid LN tag', async () => {
-        const invalidPath = [...pathA];
-        invalidPath[2] = 'Ln: IED1>>CircuitBreaker_CB1';
-        const finder = html`<finder-list
-          multi
-          .paths=${[invalidPath]}
-        ></finder-list>`;
-        const wizard = [{ title: '', content: [finder] }];
-        element.workflow.length = 0;
-        element.workflow.push(wizard);
-        await element.requestUpdate();
-        const actions = actor([], element.wizardUI);
-        expect(actions).to.be.empty;
-      });
-
-      it('does not create FCDA for invalid DO or DA definition', async () => {
-        const invalidPath = [...pathA];
-        invalidPath[3] = 'DO: some wrong DO id';
-        const finder = html`<finder-list
-          multi
-          .paths=${[invalidPath]}
-        ></finder-list>`;
-        const wizard = [{ title: '', content: [finder] }];
-        element.workflow.length = 0;
-        element.workflow.push(wizard);
-        await element.requestUpdate();
-        const actions = actor([], element.wizardUI);
-        expect(actions).to.be.empty;
+        expect(newElement).to.have.attribute('iedName', 'IED1');
+        expect(newElement).to.have.attribute('ldInst', 'Meas');
+        expect(newElement).to.have.attribute('prefix', 'My');
+        expect(newElement).to.have.attribute('lnClass', 'MMXU');
+        expect(newElement).to.have.attribute('lnInst', '1');
+        expect(newElement).to.have.attribute('doName', 'A.phsA');
+        expect(newElement).to.have.attribute('daName', 'cVal.mag.i');
+        expect(newElement).to.have.attribute('fc', 'MX');
       });
     });
 
-    describe('with path B', () => {
+    describe('with path being non leaf node', () => {
+      const path = [
+        'Server: IED1>P1',
+        'LDevice: IED1>>Meas',
+        'LN: IED1>>Meas>My MMXU 1',
+        'DO: #Dummy.MMXU>A',
+        'SDO: #OpenSCD_WYE_phases>phsA',
+        'DA: #OpenSCD_CMV_db_i_MagAndAng>cVal',
+        'BDA: #OpenSCD_Vector_I_w_Ang>mag',
+      ];
+
       beforeEach(async () => {
-        const finder = html`<finder-list
-          multi
-          .paths=${[pathB]}
-        ></finder-list>`;
-        const wizard = [{ title: '', content: [finder] }];
-        element.workflow.push(wizard);
+        finder.paths = [path];
         await element.requestUpdate();
-        actions = actor([], element.wizardUI);
+        await primaryAction.click();
       });
 
-      it('returns a non empty create action', async () => {
-        expect(actions).to.not.be.empty;
-        expect(actions.length).to.equal(1);
-        expect(actions[0]).to.satisfy(isCreate);
-      });
-
-      it('returns a create action that follows the definition of a FCDA', async () => {
-        expect(actions[0]).to.satisfy(isCreate);
-        const createAction = <Create>actions[0];
-        expect(createAction.new.element).to.have.attribute('iedName', 'IED1');
-        expect(createAction.new.element).to.have.attribute('ldInst', 'Meas');
-        expect(createAction.new.element).to.have.attribute('prefix', 'My');
-        expect(createAction.new.element).to.have.attribute('lnClass', 'MMXU');
-        expect(createAction.new.element).to.have.attribute('lnInst', '1');
-        expect(createAction.new.element).to.have.attribute('doName', 'A.phsA');
-        expect(createAction.new.element).to.have.attribute(
-          'daName',
-          'cVal.mag.i'
-        );
-        expect(createAction.new.element).to.have.attribute('fc', 'MX');
-      });
+      it('returns a non empty create action on primary action click', () =>
+        expect(actionEvent).to.not.have.been.called);
     });
 
-    describe('with path C', () => {
-      it('does not create FCDA with missing fc', async () => {
-        const finder = html`<finder-list
-          multi
-          .paths=${[pathC]}
-        ></finder-list>`;
-        const wizard = [{ title: '', content: [finder] }];
-        element.workflow.length = 0;
-        element.workflow.push(wizard);
+    describe('with a incorrect logical node definition in the path', () => {
+      const path = [
+        'Server: IED1>P1',
+        'LDevice: IED1>>Meas',
+        'Ln: IED1>>Meas>My MMXU 1',
+        'DO: #Dummy.LLN0>Beh',
+        'DA: #Dummy.LLN0.Beh>stVal',
+      ];
+
+      beforeEach(async () => {
+        finder.paths = [path];
         await element.requestUpdate();
-        const actions = actor([], element.wizardUI);
-        expect(actions).to.be.empty;
+        await primaryAction.click();
       });
+
+      it('does not return a empty action on primary action click', () =>
+        expect(actionEvent).to.not.have.been.called);
+    });
+
+    describe('with a incorrect logical node identity in the path', () => {
+      const path = [
+        'Server: IED1>P1',
+        'LDevice: IED1>>CircuitBreaker_CB1',
+        'LN0: some wrong identity',
+        'DO: #Dummy.LLN0>Beh',
+        'DA: #Dummy.LLN0.Beh>stVal',
+      ];
+
+      beforeEach(async () => {
+        finder.paths = [path];
+        await element.requestUpdate();
+        await primaryAction.click();
+      });
+
+      it('does not return a empty action on primary action click', () =>
+        expect(actionEvent).to.not.have.been.called);
+    });
+
+    describe('with a incorrect DO definition in the path', () => {
+      const path = [
+        'Server: IED1>P1',
+        'LDevice: IED1>>CircuitBreaker_CB1',
+        'LN0: IED1>>CircuitBreaker_CB1',
+        'DO: some wrong identity',
+        'DA: #Dummy.LLN0.Beh>stVal',
+      ];
+
+      beforeEach(async () => {
+        finder.paths = [path];
+        await element.requestUpdate();
+        await primaryAction.click();
+      });
+
+      it('does not return a empty action on primary action click', () =>
+        expect(actionEvent).to.not.have.been.called);
+    });
+
+    describe('with a missing fc definition in the DA in the SCL file', () => {
+      const path = [
+        'Server: IED1>P1',
+        'LDevice: IED1>>CircuitBreaker_CB1',
+        'LN: IED1>>CircuitBreaker_CB1> XCBR 1',
+        'DO: #Dummy.XCBR1>Pos',
+        'DA: #Dummy.XCBR1.Pos>stVal',
+      ];
+
+      beforeEach(async () => {
+        finder.paths = [path];
+        await element.requestUpdate();
+        await primaryAction.click();
+      });
+
+      it('does not return a empty action on primary action click', () =>
+        expect(actionEvent).to.not.have.been.called);
     });
   });
 });

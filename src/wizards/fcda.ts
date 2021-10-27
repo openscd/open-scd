@@ -1,6 +1,5 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
-import { Directory, FinderList } from '../finder-list.js';
 
 import {
   createElement,
@@ -12,6 +11,8 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { getChildren } from './foundation/functions.js';
+
+import { Directory, FinderList } from '../finder-list.js';
 
 function newFCDA(parent: Element, path: string[]): Element | undefined {
   const [leafTag, leafId] = path[path.length - 1].split(': ');
@@ -69,7 +70,7 @@ function newFCDA(parent: Element, path: string[]): Element | undefined {
   });
 }
 
-export function createFCDAsAction(parent: Element): WizardActor {
+function createFCDAsAction(parent: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
     const finder = wizard.shadowRoot!.querySelector<FinderList>('finder-list');
     const paths = finder?.paths ?? [];
@@ -97,9 +98,7 @@ function getDisplayString(entry: string): string {
   return entry.replace(/^.*>/, '').trim();
 }
 
-export function getReader(
-  server: Element
-): (path: string[]) => Promise<Directory> {
+function getReader(server: Element): (path: string[]) => Promise<Directory> {
   return async (path: string[]) => {
     const [tagName, id] = path[path.length - 1]?.split(': ', 2);
     const element = server.ownerDocument.querySelector(selector(tagName, id));

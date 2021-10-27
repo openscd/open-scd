@@ -1,6 +1,6 @@
-# `functional constrained data (attribute) - FCDA`
+# `create wizard for FCDA element`
 
-## `create wizard`
+## `with a valid SCL file`
 
 ####   `looks like the last snapshot`
 
