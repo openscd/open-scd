@@ -1,14 +1,17 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
+
 import {
   cloneElement,
   getValue,
   identity,
+  newWizardEvent,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { wizards } from './wizard-library.js';
 
 export function updateDataSetAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): WizardAction[] => {
@@ -69,6 +72,17 @@ export function editDataSetWizard(element: Element): Wizard {
           required
         >
         </wizard-textfield>`,
+        html`<mwc-button
+          icon="add"
+          label="${translate('wizard.title.add', { tagName: 'FCDA' })}"
+          @click=${(e: Event) => {
+            const wizard = wizards['FCDA'].create(element);
+            if (wizard) {
+              e.target?.dispatchEvent(newWizardEvent(wizard));
+              e.target?.dispatchEvent(newWizardEvent());
+            }
+          }}
+        ></mwc-button>`,
         html`<filtered-list multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
