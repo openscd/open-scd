@@ -77,6 +77,22 @@ describe('DOType wizards', () => {
       await parent.updateComplete;
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.exist;
     });
+    it('allows to define CDC only for empty DOType creation', async () => {
+      await cdcField.updateComplete;
+      expect(cdcField.disabled).to.not.be.true;
+      selector.value = 'OpenSCD_ENS_Health';
+      await cdcField.requestUpdate();
+      expect(cdcField.disabled).to.be.true;
+    });
+    it('requires CDC definition for empty DOTypes', async () => {
+      expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
+      idField.maybeValue = 'myGeneralDOType';
+      cdcField.maybeValue = null;
+      await parent.requestUpdate();
+      primayAction.click();
+      await parent.updateComplete;
+      expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
+    });
     it('respects the sequence defined in the standard', async () => {
       idField.maybeValue = 'myGeneralDOType';
       cdcField.maybeValue = 'SPS';
