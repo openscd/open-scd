@@ -1,7 +1,3 @@
-import { List } from '@material/mwc-list';
-import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
-import { ListBase } from '@material/mwc-list/mwc-list-base';
-import { TextField } from '@material/mwc-textfield';
 import {
   css,
   customElement,
@@ -12,11 +8,17 @@ import {
   TemplateResult,
   unsafeCSS,
 } from 'lit-element';
+import { translate } from 'lit-translate';
+
+import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
+import { List } from '@material/mwc-list';
+import { ListBase } from '@material/mwc-list/mwc-list-base';
+import { TextField } from '@material/mwc-textfield';
 
 @customElement('filtered-list')
 export class FilteredList extends ListBase {
   @property({ type: String })
-  searchFieldLabel!: string;
+  searchFieldLabel?: string;
 
   @property({ type: Boolean })
   disableCheckAll = false;
@@ -96,12 +98,14 @@ export class FilteredList extends ListBase {
 
   render(): TemplateResult {
     return html`<div id="tfcontainer">
-        <mwc-textfield
-          label="${this.searchFieldLabel ?? ''}"
-          iconTrailing="search"
-          outlined
-          @input=${() => this.onFilterInput()}
-        ></mwc-textfield>
+        <abbr title="${this.searchFieldLabel ?? translate('filter')}"
+          ><mwc-textfield
+            label="${this.searchFieldLabel ?? ''}"
+            iconTrailing="search"
+            outlined
+            @input=${() => this.onFilterInput()}
+          ></mwc-textfield
+        ></abbr>
         ${this.renderCheckAll()}
       </div>
       ${super.render()}`;
@@ -119,8 +123,11 @@ export class FilteredList extends ListBase {
       display: none;
     }
 
+    abbr {
+      margin: 8px;
+    }
+
     mwc-textfield {
-      margin: 10px;
       width: 100%;
       --mdc-shape-small: 28px;
     }
