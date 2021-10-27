@@ -1,5 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { LogEntry } from '../../../src/foundation.js';
+
+import { IssueDetail, LogEntry } from '../../../src/foundation.js';
 
 import { OpenSCD } from '../../../src/open-scd.js';
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
@@ -26,31 +27,37 @@ describe('ValidateSchema plugin', () => {
           ></validate-schema
         ></open-scd>
 
-        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet">
-        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet">
-        <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet">
+        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+        <link
+          href="public/google/icons/material-icons-outlined.css"
+          rel="stylesheet"
+        />
       `);
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
       element.pluginId = '/src/validators/ValidateSchema.js';
       await element.requestUpdate();
     });
-    it('does not create issues in diagnose', async () => {
-      await element.validate('', 1);
-      await parent.workDone;
 
-      const lastEntry = parent.diagnoses.get(
-        '/src/validators/ValidateSchema.js'
-      );
-      expect(lastEntry).to.be.undefined;
-    }).timeout(15000);
-    it('zeroissues indiacation looks like the latest snapshot', async () => {
+    it('zeroissues indication looks like the latest snapshot', async () => {
       await parent.requestUpdate();
       expect(parent.diagnosticUI).to.equalSnapshot();
     });
-    it('indicates successful schema validation in the log', async () => {
-      await element.validate('', 1);
+
+    it('indicates successful schema validation in the diagnoses pane', async () => {
+      await element.validate();
       await parent.workDone;
 
+      const lastEntry = <IssueDetail[]>(
+        parent.diagnoses.get('/src/validators/ValidateSchema.js')
+      );
+      expect(lastEntry.length).to.equal(1);
+      expect(lastEntry[0].title).to.contain('validation successful');
+    }).timeout(15000);
+
+    it('indicates successful schema validation in the log', async () => {
+      await element.validate();
+      await parent.workDone;
       const lastEntry = <LogEntry>parent.history.pop();
       expect(lastEntry.kind).to.equal('info');
       expect(lastEntry.title).to.contain('validation successful');
@@ -71,9 +78,12 @@ describe('ValidateSchema plugin', () => {
           ></validate-schema
         ></open-scd>
 
-        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet">
-        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet">
-        <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet">
+        <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+        <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+        <link
+          href="public/google/icons/material-icons-outlined.css"
+          rel="stylesheet"
+        />
       `);
 
       element = <ValidateSchema>parent.querySelector('validate-schema')!;
@@ -81,7 +91,7 @@ describe('ValidateSchema plugin', () => {
       await element.requestUpdate();
 
       try {
-        await element.validate('', 1);
+        await element.validate();
       } catch (e) {
         e;
       }
@@ -91,10 +101,12 @@ describe('ValidateSchema plugin', () => {
       const issues = parent.diagnoses.get('/src/validators/ValidateSchema.js');
       expect(issues).to.not.be.undefined;
     }).timeout(15000);
+
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
       expect(parent.diagnosticUI).to.equalSnapshot();
     });
+
     it('generates error messages in the log', async () => {
       const lastEntry = <LogEntry>parent.history.pop();
       expect(lastEntry.kind).to.equal('warning');

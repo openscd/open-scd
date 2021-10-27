@@ -2,7 +2,7 @@
 
 ## `for valid SCL files`
 
-####   `zeroissues indiacation looks like the latest snapshot`
+####   `zeroissues indication looks like the latest snapshot`
 
 ```html
 <mwc-dialog

@@ -1,4 +1,4 @@
-# `ValidateTemplates plugin`
+# `ValidateTemplates OpenSCD integration test `
 
 ## `with issues in the DataTypeTemplates section`
 
@@ -26,246 +26,6 @@
       role="separator"
     >
     </li>
-    <abbr title="Control service related DA of type Oper is missing
-#Dummy.SPC3">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Control service related DA of type Oper is missing
-        </span>
-        <span slot="secondary">
-          #Dummy.SPC3
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DOType LPH is missing mandatory child DO LPL
-#Dummy.XCBR1.NamPlt > NamPlt">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DOType LPH is missing mandatory child DO LPL
-        </span>
-        <span slot="secondary">
-          #Dummy.XCBR1.NamPlt > NamPlt
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DOType LPH is missing mandatory child DO LPL
-#Dummy.XCBR1.NamPlt > NamPlt">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DOType LPH is missing mandatory child DO LPL
-        </span>
-        <span slot="secondary">
-          #Dummy.XCBR1.NamPlt > NamPlt
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DOType LPH is missing mandatory child DO LPL
-#Dummy.XCBR1.NamPlt > NamPlt">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DOType LPH is missing mandatory child DO LPL
-        </span>
-        <span slot="secondary">
-          #Dummy.XCBR1.NamPlt > NamPlt
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DOType LPH is missing mandatory child DO LPL
-#Dummy.XCBR1.NamPlt > NamPlt">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DOType LPH is missing mandatory child DO LPL
-        </span>
-        <span slot="secondary">
-          #Dummy.XCBR1.NamPlt > NamPlt
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DOType LPH is missing mandatory child DO LPL
-#Dummy.XCBR1.NamPlt > NamPlt">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DOType LPH is missing mandatory child DO LPL
-        </span>
-        <span slot="secondary">
-          #Dummy.XCBR1.NamPlt > NamPlt
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DOType LPH is missing mandatory child DO LPL
-#Dummy.XCBR1.NamPlt > NamPlt">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DOType LPH is missing mandatory child DO LPL
-        </span>
-        <span slot="secondary">
-          #Dummy.XCBR1.NamPlt > NamPlt
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="Common Data Class ENS is missing mandatory child DA stVal
-#Dummy.LLN0.Health">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Common Data Class ENS is missing mandatory child DA stVal
-        </span>
-        <span slot="secondary">
-          #Dummy.LLN0.Health
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="Control service related DA of type SBO is missing
-#Dummy.SPC2">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Control service related DA of type SBO is missing
-        </span>
-        <span slot="secondary">
-          #Dummy.SPC2
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="Control service related DA of type SBOw is missing
-#Dummy.SPC1">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Control service related DA of type SBOw is missing
-        </span>
-        <span slot="secondary">
-          #Dummy.SPC1
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="Control service related DA of type Cancel is missing
-#Dummy.SPC8">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Control service related DA of type Cancel is missing
-        </span>
-        <span slot="secondary">
-          #Dummy.SPC8
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DAType Dummy.LPHD1.Sim.Operfalse is missing mandatory child BDA ctlNum
-#Dummy.LPHD1.Sim.Operfalse">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DAType Dummy.LPHD1.Sim.Operfalse is missing mandatory child BDA ctlNum
-        </span>
-        <span slot="secondary">
-          #Dummy.LPHD1.Sim.Operfalse
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="Common Data Class DPC is missing mandatory child DA t
-#Dummy.XCBR1.Pos">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Common Data Class DPC is missing mandatory child DA t
-        </span>
-        <span slot="secondary">
-          #Dummy.XCBR1.Pos
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="Common Data Class DPC is missing mandatory child DA ctlModel
-#Dummy.CSWI.Pos1">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          Common Data Class DPC is missing mandatory child DA ctlModel
-        </span>
-        <span slot="secondary">
-          #Dummy.CSWI.Pos1
-        </span>
-      </mwc-list-item>
-    </abbr>
-    <abbr title="DAType Dummy.ScaledValueConfig is missing mandatory child DA scaleFactor
-[object Element]">
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        twoline=""
-      >
-        <span>
-          DAType Dummy.ScaledValueConfig is missing mandatory child DA scaleFactor
-        </span>
-        <span slot="secondary">
-          [object Element]
-        </span>
-      </mwc-list-item>
-    </abbr>
     <abbr title="lnClass CSWI is missing mandatory child DO Pos
 #Dummy.CSWI > Pos">
       <mwc-list-item
@@ -314,8 +74,8 @@
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="SBOw Dummy.LPHD1.Sim.SBOwfalse is missing mandatory child BDA origin
-#Dummy.LPHD1.Sim.SBOwfalse">
+    <abbr title="The attribute type is required but missing in DO
+#Dummy.invalidChild>NamPlt">
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
@@ -323,15 +83,15 @@
         twoline=""
       >
         <span>
-          SBOw Dummy.LPHD1.Sim.SBOwfalse is missing mandatory child BDA origin
+          The attribute type is required but missing in DO
         </span>
         <span slot="secondary">
-          #Dummy.LPHD1.Sim.SBOwfalse
+          #Dummy.invalidChild>NamPlt
         </span>
       </mwc-list-item>
     </abbr>
-    <abbr title="DAType Dummy.LPHD1.Sim.Cancelfalse is missing mandatory child BDA ctlVal
-#Dummy.LPHD1.Sim.Cancelfalse">
+    <abbr title="The attribute lnClass is required but missing in LNodeType
+#Dummy.MissingLnClass">
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
@@ -339,10 +99,378 @@
         twoline=""
       >
         <span>
-          DAType Dummy.LPHD1.Sim.Cancelfalse is missing mandatory child BDA ctlVal
+          The attribute lnClass is required but missing in LNodeType
         </span>
         <span slot="secondary">
-          #Dummy.LPHD1.Sim.Cancelfalse
+          #Dummy.MissingLnClass
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DO:stVal has a invalid reference - type attribute cannot be connected to a template
+#Dummy.LLN0.Mod>stVal">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DO:stVal has a invalid reference - type attribute cannot be connected to a template
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Mod>stVal
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DO:stVal has a invalid reference - type attribute cannot be connected to a template
+#Dummy.LLN0.Beh>stVal">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DO:stVal has a invalid reference - type attribute cannot be connected to a template
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Beh>stVal
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Common Data Class ENS is missing mandatory child DA stVal
+#Dummy.LLN0.Health">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          Common Data Class ENS is missing mandatory child DA stVal
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Health
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Common Data Class SPC is missing mandatory child DA SBO
+#Dummy.SPC2">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          Common Data Class SPC is missing mandatory child DA SBO
+        </span>
+        <span slot="secondary">
+          #Dummy.SPC2
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Common Data Class SPC is missing mandatory child DA SBOw
+#Dummy.SPC1">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          Common Data Class SPC is missing mandatory child DA SBOw
+        </span>
+        <span slot="secondary">
+          #Dummy.SPC1
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Common Data Class SPC is missing mandatory child DA Cancel
+#Dummy.SPC8">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          Common Data Class SPC is missing mandatory child DA Cancel
+        </span>
+        <span slot="secondary">
+          #Dummy.SPC8
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Common Data Class SPC is missing mandatory child DA Oper
+#Dummy.SPC3">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          Common Data Class SPC is missing mandatory child DA Oper
+        </span>
+        <span slot="secondary">
+          #Dummy.SPC3
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Common Data Class DPC is missing mandatory child DA t
+#Dummy.XCBR1.Pos">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          Common Data Class DPC is missing mandatory child DA t
+        </span>
+        <span slot="secondary">
+          #Dummy.XCBR1.Pos
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="Common Data Class DPC is missing mandatory child DA ctlModel
+#Dummy.CSWI.Pos1">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          Common Data Class DPC is missing mandatory child DA ctlModel
+        </span>
+        <span slot="secondary">
+          #Dummy.CSWI.Pos1
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="The attribute cdc is incorrect in the element DOType.
+#Dummy.XCBR1.badNamPlt">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          The attribute cdc is incorrect in the element DOType.
+        </span>
+        <span slot="secondary">
+          #Dummy.XCBR1.badNamPlt
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="The attribute cdc is required but missing in DOType
+#Dummy.MissingCDC">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          The attribute cdc is required but missing in DOType
+        </span>
+        <span slot="secondary">
+          #Dummy.MissingCDC
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="The attribute type is required but missing in DA
+#Dummy.MissingType>SBOw">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          The attribute type is required but missing in DA
+        </span>
+        <span slot="secondary">
+          #Dummy.MissingType>SBOw
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="The attribute type is required but missing in DA
+#Dummy.MissingType>Oper">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          The attribute type is required but missing in DA
+        </span>
+        <span slot="secondary">
+          #Dummy.MissingType>Oper
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="The attribute type is required but missing in DA
+#Dummy.MissingType>Cancel">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          The attribute type is required but missing in DA
+        </span>
+        <span slot="secondary">
+          #Dummy.MissingType>Cancel
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="The attribute type is required but missing in SDO
+#Dummy.badWYE>phsA">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          The attribute type is required but missing in SDO
+        </span>
+        <span slot="secondary">
+          #Dummy.badWYE>phsA
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+#Dummy.LLN0.Mod.SBOw>ctlVal">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Mod.SBOw>ctlVal
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+#Dummy.LLN0.Mod.Cancel>ctlVal">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DO:ctlVal has a invalid reference - type attribute cannot be connected to a template
+        </span>
+        <span slot="secondary">
+          #Dummy.LLN0.Mod.Cancel>ctlVal
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DAType Dummy.Operfalse is missing mandatory child BDA ctlNum
+#Dummy.Operfalse">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DAType Dummy.Operfalse is missing mandatory child BDA ctlNum
+        </span>
+        <span slot="secondary">
+          #Dummy.Operfalse
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DAType Dummy.SBOwfalse is missing mandatory child BDA origin
+#Dummy.SBOwfalse">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DAType Dummy.SBOwfalse is missing mandatory child BDA origin
+        </span>
+        <span slot="secondary">
+          #Dummy.SBOwfalse
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DAType Dummy.Cancelfalse is missing mandatory child BDA ctlVal
+#Dummy.Cancelfalse">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DAType Dummy.Cancelfalse is missing mandatory child BDA ctlVal
+        </span>
+        <span slot="secondary">
+          #Dummy.Cancelfalse
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DAType Dummy.ScaledValueConfig is missing mandatory child BDA scaleFactor
+#Dummy.ScaledValueConfig">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DAType Dummy.ScaledValueConfig is missing mandatory child BDA scaleFactor
+        </span>
+        <span slot="secondary">
+          #Dummy.ScaledValueConfig
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DO:SIUnit has a invalid reference - type attribute cannot be connected to a template
+#Dummy.unit>SIUnit">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DO:SIUnit has a invalid reference - type attribute cannot be connected to a template
+        </span>
+        <span slot="secondary">
+          #Dummy.unit>SIUnit
+        </span>
+      </mwc-list-item>
+    </abbr>
+    <abbr title="DO:multiplier has a invalid reference - type attribute cannot be connected to a template
+#Dummy.unit>multiplier">
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+      >
+        <span>
+          DO:multiplier has a invalid reference - type attribute cannot be connected to a template
+        </span>
+        <span slot="secondary">
+          #Dummy.unit>multiplier
         </span>
       </mwc-list-item>
     </abbr>

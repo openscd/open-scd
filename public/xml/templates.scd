@@ -400,7 +400,7 @@
       </DA>
     </DOType>
     <DOType cdc="DPC" id="OpenSCD_DPC">
-      <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
+      <DA name="origin" bType="Struct" dchg="true" fc="ST" type="OpenSCD_Originator"/>
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
@@ -430,7 +430,7 @@
       <DA name="t" bType="Timestamp" fc="ST"/>
     </DOType>
     <DOType cdc="ENC" id="OpenSCD_ENC_Mod">
-      <DA name="origin" bType="Enum" dchg="true" fc="ST" type="OpenSCD_Originator"/>
+      <DA name="origin" bType="Struct" dchg="true" fc="ST" type="OpenSCD_Originator"/>
       <DA name="stVal" bType="Enum" dchg="true" fc="ST" type="BehaviourModeKind"/>
       <DA name="q" bType="Quality" qchg="true" fc="ST"/>
       <DA name="t" bType="Timestamp" fc="ST"/>
