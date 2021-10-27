@@ -224,7 +224,7 @@ function addPredefinedDOType(
   };
 }
 
-function selectValue(e: Event, templates: Document): void {
+function onSelectTemplateDOType(e: Event, templates: Document): void {
   const cdcUI = <Select>(
     (<Select>e.target).parentElement!.querySelector(
       'wizard-textfield[label="cdc"]'
@@ -259,7 +259,7 @@ export function createDOTypeWizard(
           icon="playlist_add_check"
           label="values"
           helper="${translate('dotype.wizard.enums')}"
-          @selected=${(e: Event) => selectValue(e, templates)}
+          @selected=${(e: Event) => onSelectTemplateDOType(e, templates)}
         >
           ${Array.from(templates.querySelectorAll('DOType')).map(
             datype =>
