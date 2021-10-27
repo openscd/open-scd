@@ -76,7 +76,11 @@ export class BaySld extends LitElement {
   @query('#svg') svg!: HTMLElement;
 
   firstUpdated(): void {
-    this.drawConnection(this.sldelements[0], this.sldelements[1]);
+    this.drawConnection(this.sldelements[0], this.sldelements[2]);
+    this.drawConnection(this.sldelements[1], this.sldelements[2]);
+    this.drawConnection(this.sldelements[2], this.sldelements[3]);
+    this.drawConnection(this.sldelements[3], this.sldelements[4]);
+    this.drawConnection(this.sldelements[3], this.sldelements[5]);
   }
 
   drawConnection(e1: SldElement, e2: SldElement): void {
@@ -95,7 +99,7 @@ export class BaySld extends LitElement {
 
     const path = OrthogonalConnector.route({
       pointA: { shape: shapeA, side: 'bottom', distance: 0.5 },
-      pointB: { shape: shapeB, side: 'bottom', distance: 0.5 },
+      pointB: { shape: shapeB, side: 'top', distance: 0.5 },
       shapeMargin: 10,
       globalBoundsMargin: 25,
       globalBounds: {
@@ -106,7 +110,7 @@ export class BaySld extends LitElement {
       },
     });
 
-    const line = document.createElement('path');
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     let d = '';
     path.forEach(({ x, y }, index) => {
       if (index === 0) {
@@ -153,7 +157,9 @@ export class BaySld extends LitElement {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="svg"
-          viewBox="0 0 ${(2 * this.xMax - 2) * 50} ${(2 * this.yMax - 2) * 50}"
+          width=${(2 * this.xMax - 1) * 50}
+          height=${(2 * this.yMax - 1) * 50}
+          viewBox="0 0 ${(2 * this.xMax - 1) * 50} ${(2 * this.yMax - 1) * 50}"
         ></svg>
       </div>
     </section>`;
@@ -199,6 +205,10 @@ export class BaySld extends LitElement {
     }
 
     #canvas {
+      position: absolute;
+    }
+
+    #svg {
       position: absolute;
     }
   `;

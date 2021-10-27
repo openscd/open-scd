@@ -45,18 +45,10 @@ export class SubstationSld extends LitElement {
     return html`<section class="container">
       <div class="container bay"></div>
       <div
-        class="container busbar"
+        class="container"
         style="grid-template-rows: repeat(${this.busbars.length},50px);"
       >
-        ${this.busbars.map(
-          busbar =>
-            html`<div class="busbar">
-              <svg>
-                <text x="0" y="20" fill="black">${busbar.element.getAttribute('name')}</text>
-                <line x1="0" y1="0" x2="100%" y2="0"/>
-              </svg>
-            </div>`
-        )}
+        ${this.busbars.map(busbar => html`<busbar-sld .busBarName=${busbar.element.getAttribute('name')}></busbar-sld>`)}
       </div>
       <div class="container bay">
         ${this.feeders.map(
@@ -81,19 +73,6 @@ export class SubstationSld extends LitElement {
     .container:focus-within {
       outline: 2px solid var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
-    }
-
-    .busbar {
-      grid-template-columns: repeat(1, 1fr);
-    }
-
-    .busbar svg {
-      width: 100%;
-    }
-
-    .busbar svg line {
-      stroke: black;
-      stroke-width: 5;
     }
 
     .container.bay {
