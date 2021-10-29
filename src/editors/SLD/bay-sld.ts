@@ -9,16 +9,23 @@ import {
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
-import { getPosition, SldElement } from './foundation.js';
+import { getPosition, Point, SldElement } from './foundation.js';
 import { OrthogonalConnector } from './ortho-connector.js';
 
 @customElement('bay-sld')
 export class BaySld extends LitElement {
   @property()
   element!: Element;
+
+  // Is this Bay builded down or up?
   @property({ type: Boolean })
   downer = false;
 
+  @query('#svg') svg!: HTMLElement;
+
+  /*
+   * Get all the unconnected Nodes of this particular Bay.
+   */
   @property()
   get unconnectedElements(): Element[] {
     return getChildElementsByTagName(
@@ -32,27 +39,12 @@ export class BaySld extends LitElement {
     );
   }
 
-  get xMax(): number {
-    const posXx = <number[]>(
-      this.sldelements
-        .filter(sldelement => sldelement.pos.x)
-        .map(sldelement => sldelement.pos.x)
-    );
-    return Math.max(...posXx, 2);
-  }
-
-  get yMax(): number {
-    const posYs = <number[]>(
-      this.sldelements
-        .filter(sldelement => sldelement.pos.y)
-        .map(sldelement => sldelement.pos.y)
-    );
-    return Math.max(...posYs, 2);
-  }
-
+  /*
+   * Get all the Equipment Nodes of this particular Bay.
+   */
   @property()
-  get sldelements(): SldElement[] {
-    const sldelements: SldElement[] = [];
+  get equipmentElements(): SldElement[] {
+    const elements: SldElement[] = [];
 
     Array.from(this.element.children)
       .filter(
@@ -61,38 +53,86 @@ export class BaySld extends LitElement {
             terminal => terminal.getAttribute('cNodeName') !== 'grounded'
           ).length !== 0
       )
-      .filter(child => {
-        const [x, y] = getPosition(child);
-        return x && y;
-      })
       .forEach(child => {
         const [x, y] = getPosition(child);
-        sldelements.push({ element: child, pos: { x, y } });
+        elements.push({ element: child, pos: { x, y } });
+      });
+
+    return elements;
+  }
+
+  /*
+   * Get all the Connectivity Nodes of this particular Bay.
+   */
+  @property()
+  get connectivityNodeElements(): SldElement[] {
+    const sldelements: SldElement[] = [];
+
+    Array.from(getChildElementsByTagName(this.element, 'ConnectivityNode'))
+      .forEach(child => {
+        const pathName = child.getAttribute('pathName');
+        let nrOfConnections = 0;
+        let totalX = 0;
+        let totalY = 0;
+
+        getChildElementsByTagName(this.element, 'ConductingEquipment')
+        .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${pathName}"]`) != null)
+        .forEach(equipment => {
+          nrOfConnections++;
+          const x = equipment?.getAttribute('sxy:x');
+          const y = equipment?.getAttribute('sxy:y');
+
+          if (x != null && y != null) {
+            totalX += parseInt(x);
+            totalY += parseInt(y);
+          }
+        })
+
+        const [x, y] = [Math.round(totalX / nrOfConnections), Math.round(totalY / nrOfConnections)];
+        sldelements.push({ element: child, pos: {x, y} });
       });
 
     return sldelements;
   }
 
-  @query('#svg') svg!: HTMLElement;
-
-  firstUpdated(): void {
-    this.drawConnection(this.sldelements[0], this.sldelements[2]);
-    this.drawConnection(this.sldelements[1], this.sldelements[2]);
-    this.drawConnection(this.sldelements[2], this.sldelements[3]);
-    this.drawConnection(this.sldelements[3], this.sldelements[4]);
-    this.drawConnection(this.sldelements[3], this.sldelements[5]);
+  /*
+   * The max x and y of this particular bay.
+   */
+  get xMax(): number {
+    const posXx = <number[]>(
+      this.equipmentElements
+        .filter(sldelement => sldelement.pos.x)
+        .map(sldelement => sldelement.pos.x)
+    );
+    return Math.max(...posXx, 2);
   }
 
-  drawConnection(e1: SldElement, e2: SldElement): void {
+  get yMax(): number {
+    const posYs = <number[]>(
+      this.equipmentElements
+        .filter(sldelement => sldelement.pos.y)
+        .map(sldelement => sldelement.pos.y)
+    );
+    return Math.max(...posYs, 2);
+  }
+
+  firstUpdated(): void {
+    // this.drawConnection(this.sldelements[0], this.sldelements[2]);
+  }
+
+  /*
+   * Draw an auto-route from 1 Point to another.
+   */
+  drawConnection(e1: Point, e2: Point): void {
     const shapeA = {
-      left: (2 * e1.pos.x! - 2) * 50,
-      top: (2 * e1.pos.y! - 2) * 50,
+      left: (2 * e1.x! - 2) * 50,
+      top: (2 * e1.y! - 2) * 50,
       width: 50,
       height: 50,
     };
     const shapeB = {
-      left: (2 * e2.pos.x! - 2) * 50,
-      top: (2 * e2.pos.y! - 2) * 50,
+      left: (2 * e2.x! - 2) * 50,
+      top: (2 * e2.y! - 2) * 50,
       width: 50,
       height: 50,
     };
@@ -143,16 +183,26 @@ export class BaySld extends LitElement {
           ? this.yMax
           : -this.yMax}, 50px)"
       >
-        ${this.sldelements.map(
-          sldelement =>
+        ${this.equipmentElements.map(
+          element =>
             html`<conducting-equipment-editor
-              .element=${sldelement.element}
+              .element=${element.element}
               class="element"
-              style="grid-column:${sldelement.pos.x};grid-row:${this.downer
-                ? sldelement.pos.y
-                : -sldelement.pos.y!};"
+              style="grid-column:${element.pos.x};grid-row:${this.downer
+                ? element.pos.y
+                : -element.pos.y!};"
             >
             </conducting-equipment-editor>`
+        )}
+        ${this.connectivityNodeElements.map(
+          element =>
+            html`<connectivity-node-sld
+              .element=${element.element}
+              style="grid-column:${element.pos.x};grid-row:${this.downer
+                ? element.pos.y
+                : -element.pos.y!};"
+            >
+            </connectivity-node-sld>`
         )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
