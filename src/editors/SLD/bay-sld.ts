@@ -117,7 +117,19 @@ export class BaySld extends LitElement {
   }
 
   firstUpdated(): void {
-    // this.drawConnection(this.sldelements[0], this.sldelements[2]);
+    this.connectivityNodeElements.forEach(cn => {
+      const pathName = cn.element.getAttribute('pathName');
+      this.equipmentElements
+      .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+      .forEach(element => {
+        // All connected Conducting Equipments are here
+        if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
+          this.drawConnection(cn.pos, element.pos)
+        } else {
+          this.drawConnection(element.pos, cn.pos)
+        }
+      });
+    });
   }
 
   /*

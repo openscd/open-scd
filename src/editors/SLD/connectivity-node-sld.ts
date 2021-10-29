@@ -18,7 +18,7 @@ export class ConnectivityNodeSld extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<div>CN</div>
+    return html`<div></div>
       <h4>${this.name}</h4>`;
   }
 
