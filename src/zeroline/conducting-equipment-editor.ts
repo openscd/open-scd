@@ -12,6 +12,7 @@ import { newActionEvent, newWizardEvent } from '../foundation.js';
 
 import {
   circuitBreakerIcon,
+  connectivityNodeIcon,
   currentTransformerIcon,
   disconnectorIcon,
   earthSwitchIcon,
@@ -22,11 +23,19 @@ import {
 import { BayEditor } from './bay-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
 
-function typeStr(condEq: Element): string {
-  return condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
-    ? 'ERS'
-    : condEq.getAttribute('type') ?? '';
+/*
+ * Retrieve the type of the given element.
+ * Because not all elements have a type attribute, some extra logic is needed for 'calculating' the type.
+ */
+function getType(element: Element): string {
+  if (element.getAttribute('type') === 'DIS' &&
+    element.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded') {
+    return 'ERS';
+  } else if (element.tagName == 'ConnectivityNode') {
+    return 'CN';
+  } else {
+    return element.getAttribute('type') ?? '';
+  }
 }
 
 const typeIcons: Partial<Record<string, TemplateResult>> = {
@@ -35,10 +44,11 @@ const typeIcons: Partial<Record<string, TemplateResult>> = {
   CTR: currentTransformerIcon,
   VTR: voltageTransformerIcon,
   ERS: earthSwitchIcon,
+  CN: connectivityNodeIcon
 };
 
 export function typeIcon(condEq: Element): TemplateResult {
-  return typeIcons[typeStr(condEq)] ?? generalConductingEquipmentIcon;
+  return typeIcons[getType(condEq)] ?? generalConductingEquipmentIcon;
 }
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */

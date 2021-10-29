@@ -15,7 +15,6 @@ import './SLD/substation-sld.js';
 import './SLD/voltagelevel-sld.js';
 import './SLD/bay-sld.js';
 import './SLD/busbar-sld.js';
-import './SLD/connectivity-node-sld.js';
 
 export default class SldPlugin extends LitElement {
   @property()

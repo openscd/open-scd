@@ -454,6 +454,17 @@ export const voltageTransformerIcon = html`<svg
   />
 </svg>`;
 
+export const connectivityNodeIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="20px"
+  height="20px"
+  viewBox="0 0 20 20"
+  stroke-width="1"
+  stroke="black"
+  fill="none">
+    <circle cx="10" cy="10" r="6"/>
+</svg>`;
+
 export const earthSwitchIcon = html`<svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 25 25"

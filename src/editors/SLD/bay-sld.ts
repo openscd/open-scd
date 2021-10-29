@@ -208,7 +208,7 @@ export class BaySld extends LitElement {
         )}
         ${this.connectivityNodeElements.map(
           element =>
-            html`<connectivity-node-sld
+            html`<conducting-equipment-editor
               .element=${element.element}
               style="grid-column:${element.pos.x};grid-row:${this.downer
                 ? element.pos.y
