@@ -5,7 +5,7 @@ import {
   createConductingEquipmentWizard,
   editConductingEquipmentWizard,
 } from './conductingequipment.js';
-import { createFCDAWizard } from './fcda.js';
+import { createFCDAsWizard } from './fcda.js';
 import { lNodeWizard } from './lnode.js';
 import { createSubstationWizard, substationEditWizard } from './substation.js';
 import {
@@ -184,7 +184,7 @@ export const wizards: Record<
   },
   FCDA: {
     edit: emptyWizard,
-    create: createFCDAWizard,
+    create: createFCDAsWizard,
   },
   FileHandling: {
     edit: emptyWizard,

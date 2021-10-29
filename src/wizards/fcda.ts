@@ -116,7 +116,7 @@ function getReader(server: Element): (path: string[]) => Promise<Directory> {
   };
 }
 
-export function createFCDAWizard(parent: Element): Wizard | undefined {
+export function createFCDAsWizard(parent: Element): Wizard | undefined {
   const server = parent.closest('Server');
   if (!server) return;
 

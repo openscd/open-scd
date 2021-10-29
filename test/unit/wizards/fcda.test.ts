@@ -4,7 +4,7 @@ import sinon, { SinonSpy } from 'sinon';
 import { isCreate } from '../../../src/foundation.js';
 
 import { FinderList } from '../../../src/finder-list.js';
-import { createFCDAWizard } from '../../../src/wizards/fcda.js';
+import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
 
 import { MockWizard } from '../../mock-wizard.js';
 
@@ -27,7 +27,7 @@ describe('create wizard for FCDA element', () => {
 
   describe('with a valid SCL file', () => {
     beforeEach(async () => {
-      const wizard = createFCDAWizard(doc.querySelector('DataSet')!);
+      const wizard = createFCDAsWizard(doc.querySelector('DataSet')!);
       element.workflow.push(wizard!);
       await element.requestUpdate();
       finder =
@@ -44,7 +44,7 @@ describe('create wizard for FCDA element', () => {
     });
 
     it('returns undefined wizard for parents without Server', () =>
-      expect(createFCDAWizard(doc.querySelector('AccessPoint')!)).to.be
+      expect(createFCDAsWizard(doc.querySelector('AccessPoint')!)).to.be
         .undefined);
 
     it('indicates error in case children cannot be determined', async () => {

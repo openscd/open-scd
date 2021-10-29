@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import { FinderList } from '../../../src/finder-list.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { createFCDAWizard } from '../../../src/wizards/fcda.js';
+import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
 
 describe('FCDA editing wizarding integration', () => {
   let doc: XMLDocument;
@@ -17,7 +17,7 @@ describe('FCDA editing wizarding integration', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    const wizard = createFCDAWizard(doc.querySelector('DataSet')!);
+    const wizard = createFCDAsWizard(doc.querySelector('DataSet')!);
     element.workflow.push(wizard!);
     await element.requestUpdate();
 
