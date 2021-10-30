@@ -24,4 +24,4 @@ jobs:
           branch: main
           folder: build
           repository-name: JakobVogelsang/openscdtest.github.io
-          token: ${{ secrets.DEPLOY_KEY }}
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
