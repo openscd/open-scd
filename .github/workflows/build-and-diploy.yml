@@ -23,4 +23,4 @@ jobs:
         with:
           branch: main
           folder: build
-          repositoryName: JakobVogelsang/openscdtest.github.io
+          repository-name: JakobVogelsang/openscdtest.github.io
