@@ -214,7 +214,7 @@ export class BaySld extends LitElement {
                 ? element.pos.y
                 : -element.pos.y!};"
             >
-            </connectivity-node-sld>`
+            </conducting-equipment-editor>`
         )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -272,6 +272,7 @@ export class BaySld extends LitElement {
 
     #svg {
       position: absolute;
+      z-index: -5;
     }
   `;
 }
