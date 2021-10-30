@@ -8,7 +8,7 @@ export const de: Translations = {
     ord: 'Rang',
     value: 'Wert',
     EnumVal: 'Enum Wert',
-    EnumType: 'Enum Typ',
+    EnumType: 'Enum Type',
     DA: 'Datenattribut',
     DO: 'Datenobjekt',
     DAType: 'Datenattribut Typ',
