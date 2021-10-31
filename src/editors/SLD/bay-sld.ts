@@ -208,13 +208,13 @@ export class BaySld extends LitElement {
         )}
         ${this.connectivityNodeElements.map(
           element =>
-            html`<conducting-equipment-editor
+            html`<connectivity-node-editor
               .element=${element.element}
               style="grid-column:${element.pos.x};grid-row:${this.downer
                 ? element.pos.y
                 : -element.pos.y!};"
             >
-            </conducting-equipment-editor>`
+            </connectivity-node-editor>`
         )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
