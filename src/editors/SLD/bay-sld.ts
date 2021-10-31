@@ -219,9 +219,9 @@ export class BaySld extends LitElement {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="svg"
-          width=${(2 * this.xMax - 1) * 50}
-          height=${(2 * this.yMax - 1) * 50}
-          viewBox="0 0 ${(2 * this.xMax - 1) * 50} ${(2 * this.yMax - 1) * 50}"
+          width=${(2 * this.xMax) * 50}
+          height=${(2 * this.yMax) * 50}
+          viewBox="0 0 ${(2 * this.xMax) * 50} ${(2 * this.yMax) * 50}"
         ></svg>
       </div>
     </section>`;
