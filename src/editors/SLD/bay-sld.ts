@@ -259,8 +259,8 @@ export class BaySld extends LitElement {
     .element {
       width: 50px;
       height: 50px;
-      outline: solid;
     }
+
     .element:hover {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;

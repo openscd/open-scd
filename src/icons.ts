@@ -460,9 +460,9 @@ export const connectivityNodeIcon = html`<svg
   height="20px"
   viewBox="0 0 20 20"
   stroke-width="1"
-  stroke="black"
+  stroke="currentColor"
   fill="none">
-    <circle cx="10" cy="10" r="6"/>
+    <circle cx="10" cy="10" r="3"/>
 </svg>`;
 
 export const earthSwitchIcon = html`<svg
