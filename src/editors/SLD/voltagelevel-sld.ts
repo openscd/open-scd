@@ -46,7 +46,7 @@ export class SubstationSld extends LitElement {
       <div class="container bay"></div>
       <div
         class="container"
-        style="grid-template-rows: repeat(${this.busbars.length},50px);"
+        style="grid-template-rows: repeat(${this.busbars.length},64px);"
       >
         ${this.busbars.map(busbar => html`<busbar-sld .busBarName=${busbar.element.getAttribute('name')}></busbar-sld>`)}
       </div>
@@ -61,8 +61,8 @@ export class SubstationSld extends LitElement {
   static styles = css`
     .container {
       display: grid;
-      grip-gap: 50px;
-      padding: 50px;
+      grip-gap: 64px;
+      padding: 64px;
     }
 
     .container:hover {

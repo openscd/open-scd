@@ -137,16 +137,16 @@ export class BaySld extends LitElement {
    */
   drawConnection(e1: Point, e2: Point): void {
     const shapeA = {
-      left: (2 * e1.x! - 2) * 50,
-      top: (2 * e1.y! - 2) * 50,
-      width: 50,
-      height: 50,
+      left: (2 * e1.x! - 2) * 64,
+      top: (2 * e1.y! - 2) * 64,
+      width: 64,
+      height: 64,
     };
     const shapeB = {
-      left: (2 * e2.x! - 2) * 50,
-      top: (2 * e2.y! - 2) * 50,
-      width: 50,
-      height: 50,
+      left: (2 * e2.x! - 2) * 64,
+      top: (2 * e2.y! - 2) * 64,
+      width: 64,
+      height: 64,
     };
 
     const path = OrthogonalConnector.route({
@@ -191,9 +191,9 @@ export class BaySld extends LitElement {
       <div
         class="sldcontainer"
         style="grid-template-columns: repeat(${this
-          .xMax}, 50px);grid-template-rows: repeat(${this.downer
+          .xMax}, 64px);grid-template-rows: repeat(${this.downer
           ? this.yMax
-          : -this.yMax}, 50px)"
+          : -this.yMax}, 64px)"
       >
         ${this.equipmentElements.map(
           element =>
@@ -219,9 +219,9 @@ export class BaySld extends LitElement {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="svg"
-          width=${(2 * this.xMax) * 50}
-          height=${(2 * this.yMax) * 50}
-          viewBox="0 0 ${(2 * this.xMax) * 50} ${(2 * this.yMax) * 50}"
+          width=${(2 * this.xMax) * 64}
+          height=${(2 * this.yMax) * 64}
+          viewBox="0 0 ${(2 * this.xMax) * 64} ${(2 * this.yMax) * 64}"
         ></svg>
       </div>
     </section>`;
@@ -230,8 +230,8 @@ export class BaySld extends LitElement {
   static styles = css`
     .container {
       display: grid;
-      grid-gap: 50px;
-      padding: 50px;
+      grid-gap: 64px;
+      padding: 64px;
     }
 
     .container:hover {
@@ -246,19 +246,19 @@ export class BaySld extends LitElement {
 
     .unconnectedcontainer {
       display: grid;
-      grid-gap: 50px;
+      grid-gap: 64px;
       box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
+      grid-template-columns: repeat(auto-fit, minmax(64px, 64px));
     }
 
     .sldcontainer {
       display: grid;
-      grid-gap: 50px;
+      grid-gap: 64px;
     }
 
     .element {
-      width: 50px;
-      height: 50px;
+      width: 64px;
+      height: 64px;
     }
 
     .element:hover {
