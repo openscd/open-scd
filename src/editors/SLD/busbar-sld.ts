@@ -6,6 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { busBarIcon } from '../../icons';
 
 @customElement('busbar-sld')
 export class BusBasSld extends LitElement {
@@ -14,10 +15,8 @@ export class BusBasSld extends LitElement {
 
   render(): TemplateResult {
     return html`<div class="busbar">
-      <svg>
-        <text x="0" y="20" fill="black">${this.busBarName}</text>
-        <line x1="0" y1="0" x2="100%" y2="0"/>
-      </svg>
+      <h4>${this.busBarName}</h4>
+      ${busBarIcon}
     </div>`;
   }
 
@@ -30,9 +29,17 @@ export class BusBasSld extends LitElement {
       width: 100%;
     }
 
-    .busbar svg line {
-      stroke: black;
-      stroke-width: 5;
+    h4 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
+      opacity: 1;
+      transition: opacity 200ms linear;
+      text-align: left;
     }
   `;
 }

@@ -465,6 +465,17 @@ export const connectivityNodeIcon = html`<svg
     <circle cx="10" cy="10" r="3"/>
 </svg>`;
 
+export const busBarIcon = html`<svg>
+  <line
+    x1="0"
+    y1="0"
+    x2="100%"
+    y2="0"
+    stroke="currentColor"
+    stroke-width="3"
+  />
+</svg>`;
+
 export const earthSwitchIcon = html`<svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 25 25"
