@@ -1,6 +1,13 @@
 name: Build Project
 
-on: push
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+  pull_request:
+    branches:
+      - 'main'
 
 jobs:
   build:
@@ -9,16 +16,27 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+
+      - name: Test application with npm
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          npm ci
+          npm run-script test
+
       - name: Build application with npm
+        if: ${{ github.event_name == 'pull_request' }}
         run: |
           npm ci
           npm run-script build
       - name: Build docker image
+        if: ${{ github.event_name == 'pull_request' }}
         uses: docker/build-push-action@v2
         with:
           # Set the context to use the current directory and not execute it's own git checkout.

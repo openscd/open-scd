@@ -60,8 +60,8 @@ export function parseXml(textContent: string): Promise<Document> {
 
 export function extractSclFromResponse(response: Document): Promise<Document> {
   // Extract the SCL Result from the Response and create a new Document from it.
-  const sclData = response.querySelectorAll("SclData").item(0).textContent;
-  const sclDocument = new DOMParser().parseFromString(sclData??'', 'application/xml');
+  const sclData = response.querySelectorAll("SclData").item(0).textContent ?? '';
+  const sclDocument = new DOMParser().parseFromString(sclData, 'application/xml');
   return Promise.resolve(sclDocument);
 }
 

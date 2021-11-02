@@ -41,14 +41,7 @@
     tabindex="0"
   >
     <span>
-      <description>
-        System Exchange Description
-      </description>
-      (
-      <code>
-        SED
-      </code>
-      )
+      System Exchange Description (SED)
     </span>
   </mwc-list-item>
   <mwc-list-item
@@ -57,14 +50,7 @@
     tabindex="-1"
   >
     <span>
-      <description>
-        Substation Specification Description
-      </description>
-      (
-      <code>
-        SSD
-      </code>
-      )
+      Substation Specification Description (SSD)
     </span>
   </mwc-list-item>
 </mwc-list>

@@ -49,10 +49,10 @@ export class CompasSclTypeList extends LitElement {
       return html`
         <mwc-list>
           ${this.sclTypes.map( type => {
-              const code = type.getElementsByTagNameNS(SDS_NAMESPACE, "Code").item(0);
-              const description = type.getElementsByTagNameNS(SDS_NAMESPACE, "Description").item(0);
+              const code = type.getElementsByTagNameNS(SDS_NAMESPACE, "Code").item(0)!.textContent ?? '';
+              const description = type.getElementsByTagNameNS(SDS_NAMESPACE, "Description").item(0)!.textContent ?? '';
               return html`<mwc-list-item tabindex="0"
-                                         @click=${() => this.dispatchEvent(newTypeSelectedEvent(code!.textContent ?? ''))}>
+                                         @click=${() => this.dispatchEvent(newTypeSelectedEvent(code))}>
                             <span>${description} (${code})</span>
                           </mwc-list-item>`;
             })}

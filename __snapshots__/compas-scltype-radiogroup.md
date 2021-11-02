@@ -44,10 +44,7 @@
     value="SED"
   >
     <span>
-      <description>
-        System Exchange Description
-      </description>
-      (SED)
+      System Exchange Description (SED)
     </span>
   </mwc-radio-list-item>
   <mwc-radio-list-item
@@ -59,10 +56,7 @@
     value="SSD"
   >
     <span>
-      <description>
-        Substation Specification Description
-      </description>
-      (SSD)
+      Substation Specification Description (SSD)
     </span>
   </mwc-radio-list-item>
 </mwc-list>
