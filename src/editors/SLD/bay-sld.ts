@@ -12,6 +12,9 @@ import { getChildElementsByTagName } from '../../foundation.js';
 import { getPosition, Point, SldElement } from './foundation.js';
 import { OrthogonalConnector } from './ortho-connector.js';
 
+/**
+ * SLD component of a Bay component.
+ */
 @customElement('bay-sld')
 export class BaySld extends LitElement {
   @property()
@@ -21,9 +24,9 @@ export class BaySld extends LitElement {
   @property({ type: Boolean })
   downer = false;
 
-  @query('#svg') svg!: HTMLElement;
+  @query('#bayRoutingSvg') bayRoutingSvg!: HTMLElement;
 
-  /*
+  /**
    * Get all the unconnected Nodes of this particular Bay.
    */
   @property()
@@ -39,7 +42,7 @@ export class BaySld extends LitElement {
     );
   }
 
-  /*
+  /**
    * Get all the Equipment Nodes of this particular Bay.
    */
   @property()
@@ -61,7 +64,7 @@ export class BaySld extends LitElement {
     return elements;
   }
 
-  /*
+  /**
    * Get all the Connectivity Nodes of this particular Bay.
    */
   @property()
@@ -95,8 +98,8 @@ export class BaySld extends LitElement {
     return sldelements;
   }
 
-  /*
-   * The max x and y of this particular bay.
+  /**
+   * The max x and y of this particular Bay.
    */
   get xMax(): number {
     const posXx = <number[]>(
@@ -117,6 +120,9 @@ export class BaySld extends LitElement {
   }
 
   firstUpdated(): void {
+    /*
+     * Drawing routes between ConnectivityNodes and ConductingEquipments.
+     */
     this.connectivityNodeElements.forEach(cn => {
       const pathName = cn.element.getAttribute('pathName');
       this.equipmentElements
@@ -132,8 +138,8 @@ export class BaySld extends LitElement {
     });
   }
 
-  /*
-   * Draw an auto-route from 1 Point to another.
+  /**
+   * Draw a route from 1 Point to another.
    */
   drawConnection(e1: Point, e2: Point): void {
     const shapeA = {
@@ -177,7 +183,7 @@ export class BaySld extends LitElement {
     line.setAttribute('stroke', 'currentColor');
     line.setAttribute('stroke-width', '1.5');
 
-    this.svg.appendChild(line);
+    this.bayRoutingSvg.appendChild(line);
   }
 
   render(): TemplateResult {
@@ -210,6 +216,7 @@ export class BaySld extends LitElement {
           element =>
             html`<connectivity-node-editor
               .element=${element.element}
+              class="element"
               style="grid-column:${element.pos.x};grid-row:${this.downer
                 ? element.pos.y
                 : -element.pos.y!};"
@@ -218,7 +225,7 @@ export class BaySld extends LitElement {
         )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          id="svg"
+          id="bayRoutingSvg"
           width=${(2 * this.xMax) * 64}
           height=${(2 * this.yMax) * 64}
           viewBox="0 0 ${(2 * this.xMax) * 64} ${(2 * this.yMax) * 64}"
@@ -270,7 +277,7 @@ export class BaySld extends LitElement {
       position: absolute;
     }
 
-    #svg {
+    #bayRoutingSvg {
       position: absolute;
       z-index: -5;
     }

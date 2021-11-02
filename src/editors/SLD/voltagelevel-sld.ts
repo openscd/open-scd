@@ -10,31 +10,45 @@ import {
 import { getChildElementsByTagName } from '../../foundation.js';
 import { getPosition, SldElement } from './foundation.js';
 
-function isBusBar(bay: Element): boolean {
-  return (
-    bay.children.length === 1 && bay.children[0].tagName === 'ConnectivityNode'
-  );
-}
-
+/**
+ * SLD component of a VoltageLevel component.
+ */
 @customElement('voltagelevel-sld')
-export class SubstationSld extends LitElement {
+export class VoltageLevelSld extends LitElement {
   @property()
   element!: Element;
+
+  /**
+   * Checking of a Bay is a BusBar or not.
+   * @param bay The bay to check.
+   * @returns Is the Bay a BusBar or not.
+   */
+  isBusBar(bay: Element): boolean {
+    return (
+      bay.children.length === 1 && bay.children[0].tagName === 'ConnectivityNode'
+    );
+  }
+
+  /**
+   * Get all the BusBars from the VoltageLevel element.
+   */
   @property()
-  @property()
-  get busbars(): SldElement[] {
+  get busBars(): SldElement[] {
     return getChildElementsByTagName(this.element, 'Bay')
-      .filter(bay => isBusBar(bay))
+      .filter(bay => this.isBusBar(bay))
       .map(bay => {
         const [x, y] = getPosition(bay);
         return { element: bay, pos: { x, y } };
       });
   }
 
+  /**
+   * Get all the regular Bays from the VoltageLevel element.
+   */
   @property()
-  get feeders(): SldElement[] {
+  get bays(): SldElement[] {
     return getChildElementsByTagName(this.element, 'Bay')
-      .filter(bay => !isBusBar(bay))
+      .filter(bay => !this.isBusBar(bay))
       .map(bay => {
         const [x, y] = getPosition(bay);
         return { element: bay, pos: { x, y } };
@@ -46,13 +60,19 @@ export class SubstationSld extends LitElement {
       <div class="container bay"></div>
       <div
         class="container"
-        style="grid-template-rows: repeat(${this.busbars.length},64px);"
+        style="grid-template-rows: repeat(${this.busBars.length},64px);"
       >
-        ${this.busbars.map(busbar => html`<busbar-sld .busBarName=${busbar.element.getAttribute('name')}></busbar-sld>`)}
+        ${this.busBars.map(busbar => html`<busbar-sld
+          .element=${busbar.element}>
+        </busbar-sld>`)}
       </div>
       <div class="container bay">
-        ${this.feeders.map(
-          feeder => html`<bay-sld .element=${feeder.element} downer></bay-sld>`
+        ${this.bays.map(
+          feeder => html`<bay-sld
+            .element=${feeder.element}
+            downer
+          >
+          </bay-sld>`
         )}
       </div>
     </section>`;

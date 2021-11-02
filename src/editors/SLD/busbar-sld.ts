@@ -8,14 +8,17 @@ import {
 } from 'lit-element';
 import { busBarIcon } from '../../icons';
 
+/**
+ * SLD component of a BusBar component.
+ */
 @customElement('busbar-sld')
 export class BusBasSld extends LitElement {
   @property()
-  busBarName!: String;
+  element!: Element;
 
   render(): TemplateResult {
     return html`<div class="busbar">
-      <h4>${this.busBarName}</h4>
+      <h4>${this.element.getAttribute('name')}</h4>
       ${busBarIcon}
     </div>`;
   }
