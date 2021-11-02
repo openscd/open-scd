@@ -9,8 +9,7 @@ import {
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
-import { getPosition, Point, SldElement } from './foundation.js';
-import { OrthogonalConnector } from './ortho-connector.js';
+import { drawConnection, getPosition, Point, SldElement } from './foundation.js';
 
 /**
  * SLD component of a Bay component.
@@ -130,60 +129,12 @@ export class BaySld extends LitElement {
       .forEach(element => {
         // All connected Conducting Equipments are here
         if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
-          this.drawConnection(cn.pos, element.pos)
+          drawConnection(cn.pos, element.pos, this.bayRoutingSvg)
         } else {
-          this.drawConnection(element.pos, cn.pos)
+          drawConnection(element.pos, cn.pos, this.bayRoutingSvg)
         }
       });
     });
-  }
-
-  /**
-   * Draw a route from 1 Point to another.
-   */
-  drawConnection(e1: Point, e2: Point): void {
-    const shapeA = {
-      left: (2 * e1.x! - 2) * 64,
-      top: (2 * e1.y! - 2) * 64,
-      width: 64,
-      height: 64,
-    };
-    const shapeB = {
-      left: (2 * e2.x! - 2) * 64,
-      top: (2 * e2.y! - 2) * 64,
-      width: 64,
-      height: 64,
-    };
-
-    const path = OrthogonalConnector.route({
-      pointA: { shape: shapeA, side: 'bottom', distance: 0.5 },
-      pointB: { shape: shapeB, side: 'top', distance: 0.5 },
-      shapeMargin: 10,
-      globalBoundsMargin: 25,
-      globalBounds: {
-        left: 0,
-        top: 0,
-        width: 10000,
-        height: 10000,
-      },
-    });
-
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    let d = '';
-    path.forEach(({ x, y }, index) => {
-      if (index === 0) {
-        d = d + `M ${x} ${y}`;
-      } else {
-        d = d + ` L ${x} ${y}`;
-      }
-    });
-
-    line.setAttribute('d', d);
-    line.setAttribute('fill', 'transparent');
-    line.setAttribute('stroke', 'currentColor');
-    line.setAttribute('stroke-width', '1.5');
-
-    this.bayRoutingSvg.appendChild(line);
   }
 
   render(): TemplateResult {

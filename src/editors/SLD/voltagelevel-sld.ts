@@ -4,11 +4,12 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
-import { getPosition, SldElement } from './foundation.js';
+import { drawConnection, getPosition, isBusBar, SldElement } from './foundation.js';
 
 /**
  * SLD component of a VoltageLevel component.
@@ -17,17 +18,8 @@ import { getPosition, SldElement } from './foundation.js';
 export class VoltageLevelSld extends LitElement {
   @property()
   element!: Element;
-
-  /**
-   * Checking of a Bay is a BusBar or not.
-   * @param bay The bay to check.
-   * @returns Is the Bay a BusBar or not.
-   */
-  isBusBar(bay: Element): boolean {
-    return (
-      bay.children.length === 1 && bay.children[0].tagName === 'ConnectivityNode'
-    );
-  }
+  
+  @query('#routingSvg') routingSvg!: HTMLElement;
 
   /**
    * Get all the BusBars from the VoltageLevel element.
@@ -35,7 +27,7 @@ export class VoltageLevelSld extends LitElement {
   @property()
   get busBars(): SldElement[] {
     return getChildElementsByTagName(this.element, 'Bay')
-      .filter(bay => this.isBusBar(bay))
+      .filter(bay => isBusBar(bay))
       .map(bay => {
         const [x, y] = getPosition(bay);
         return { element: bay, pos: { x, y } };
@@ -48,7 +40,7 @@ export class VoltageLevelSld extends LitElement {
   @property()
   get bays(): SldElement[] {
     return getChildElementsByTagName(this.element, 'Bay')
-      .filter(bay => !this.isBusBar(bay))
+      .filter(bay => !isBusBar(bay))
       .map(bay => {
         const [x, y] = getPosition(bay);
         return { element: bay, pos: { x, y } };

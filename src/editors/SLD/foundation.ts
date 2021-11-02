@@ -1,3 +1,5 @@
+import { OrthogonalConnector } from "./ortho-connector";
+
 export type GraphNode = {
   element: Element;
   mass: number;
@@ -230,4 +232,65 @@ export function updateEdges(nodes: GraphNode[], edges: GraphEdge[]): void {
       edge.yEnd = node2?.y;
     }
   });
+}
+/**
+ * Checking of a Bay is a BusBar or not.
+ * @param bay The bay to check.
+ * @returns Is the Bay a BusBar or not.
+ */
+export function isBusBar(bay: Element): boolean {
+  return (
+    bay.children.length === 1 && bay.children[0].tagName === 'ConnectivityNode'
+  );
+}
+
+/**
+ * Draw a connection from the first point to the second point.
+ * @param firstPoint The first point of this connection.
+ * @param secondPoint The second point of this connection.
+ * @param svgToDrawOn The SVG to draw the route on.
+ */
+export function drawConnection(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement): void {
+  const shapeA = {
+    left: (2 * firstPoint.x! - 2) * 64,
+    top: (2 * firstPoint.y! - 2) * 64,
+    width: 64,
+    height: 64,
+  };
+  const shapeB = {
+    left: (2 * secondPoint.x! - 2) * 64,
+    top: (2 * secondPoint.y! - 2) * 64,
+    width: 64,
+    height: 64,
+  };
+
+  const path = OrthogonalConnector.route({
+    pointA: { shape: shapeA, side: 'bottom', distance: 0.5 },
+    pointB: { shape: shapeB, side: 'top', distance: 0.5 },
+    shapeMargin: 10,
+    globalBoundsMargin: 25,
+    globalBounds: {
+      left: 0,
+      top: 0,
+      width: 10000,
+      height: 10000,
+    },
+  });
+
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  let d = '';
+  path.forEach(({ x, y }, index) => {
+    if (index === 0) {
+      d = d + `M ${x} ${y}`;
+    } else {
+      d = d + ` L ${x} ${y}`;
+    }
+  });
+
+  line.setAttribute('d', d);
+  line.setAttribute('fill', 'transparent');
+  line.setAttribute('stroke', 'currentColor');
+  line.setAttribute('stroke-width', '1.5');
+
+  svgToDrawOn.appendChild(line);
 }

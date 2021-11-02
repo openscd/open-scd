@@ -4,6 +4,7 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 
@@ -20,6 +21,21 @@ export class SubstationSld extends LitElement {
     return Array.from(this.element.getElementsByTagName('VoltageLevel'));
   }
 
+  // firstUpdated(): void {
+  //   this.busBars.forEach(busbar => {
+  //     const pathName = busbar.element.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
+  //     this.bays.forEach(bay => {
+  //       Array.from(bay.element.getElementsByTagName('ConductingEquipment'))
+  //       .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+  //       .forEach(eq => {
+  //         const [x, y] = getPosition(eq);
+  //         console.log(busbar);
+  //         drawConnection(busbar.pos,{x,y}, this.routingSvg);
+  //       })
+  //     })
+  //   })
+  // }
+
   render(): TemplateResult {
     return html`<section class="container">
       <div>
@@ -29,14 +45,14 @@ export class SubstationSld extends LitElement {
               .element=${voltagelevel}>
             </voltageLevel-sld>`
         )}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="substationRoutingSvg"
-          width=100%
-          height=100%
-          viewBox="0 0 100 100"
-        ></svg>
       </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="routingSvg"
+        width=100%
+        height=100%
+        viewBox="0 0 100 100"
+      ></svg>
     </section>`;
   }
 
@@ -55,7 +71,7 @@ export class SubstationSld extends LitElement {
       display: flex;
     }
 
-    #substationRoutingSvg {
+    #routingSvg {
       display: flex;
       position: absolute;
       z-index: -5;
