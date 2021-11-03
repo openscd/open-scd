@@ -7,52 +7,58 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
+import { getPosition } from './foundation';
+import { VoltageLevelSld } from './voltagelevel-sld';
 
 /**
  * SLD component of a Substation component.
  */
 @customElement('substation-sld')
 export class SubstationSld extends LitElement {
+
+  /**
+   * Property holding the Substation XML element.
+   */
   @property()
   element!: Element;
+  
+  /**
+   * Holding a reference to the Substation SVG to draw routes between elements on.
+   */
+  @query('#svg') svg!: HTMLElement;
 
   @property()
   get voltageLevels(): Element[] {
     return Array.from(this.element.getElementsByTagName('VoltageLevel'));
   }
-
-  // firstUpdated(): void {
-  //   this.busBars.forEach(busbar => {
-  //     const pathName = busbar.element.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
-  //     this.bays.forEach(bay => {
-  //       Array.from(bay.element.getElementsByTagName('ConductingEquipment'))
-  //       .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
-  //       .forEach(eq => {
-  //         const [x, y] = getPosition(eq);
-  //         console.log(busbar);
-  //         drawConnection(busbar.pos,{x,y}, this.routingSvg);
-  //       })
-  //     })
-  //   })
-  // }
+  
+  firstUpdated(): void {
+    // Pass the Substation SVG to all VoltageLevels
+    this.shadowRoot!.querySelectorAll("voltagelevel-sld").forEach(voltageLevel => {
+      const castedSldElement = <VoltageLevelSld>(voltageLevel);
+      castedSldElement.svg = this.svg;
+    });
+  }
 
   render(): TemplateResult {
-    return html`<section class="container">
-      <div>
+    return html`<section>
+      <div style="grid-template-columns: repeat(100, 64px);grid-template-rows: repeat(100, 64px)">
         ${this.voltageLevels.map(
-          voltagelevel =>
-            html`<voltageLevel-sld
-              .element=${voltagelevel}>
-            </voltageLevel-sld>`
-        )}
+          voltagelevel => {
+            const [x, y] = getPosition(voltagelevel);
+            return html`<voltagelevel-sld
+              .element=${voltagelevel}
+              style="grid-column:${x};grid-row:${y};">
+            </voltagelevel-sld>`
+          })}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          id="svg"
+          width=2000
+          height=2000
+          viewBox="0 0 2000 2000"
+        ></svg>
       </div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        id="routingSvg"
-        width=100%
-        height=100%
-        viewBox="0 0 100 100"
-      ></svg>
     </section>`;
   }
 
@@ -68,13 +74,38 @@ export class SubstationSld extends LitElement {
     }
 
     div {
-      display: flex;
+      display: grid;
+      padding: 64px;
     }
 
-    #routingSvg {
-      display: flex;
+    #svg {
       position: absolute;
       z-index: -5;
     }
   `;
+
+  /**
+   * 
+    // this.voltageLevels.forEach(voltageLevel => {
+    //   getChildElementsByTagName(voltageLevel, 'Bay')
+    //   .filter(bay => isBusBar(bay))
+    //   .forEach(busbar => {
+    //     const pathName = busbar.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
+        
+    //     getChildElementsByTagName(voltageLevel, 'Bay')
+    //     .filter(bay => !isBusBar(bay))
+    //     .forEach(bay => {
+    //       Array.from(bay.getElementsByTagName('ConductingEquipment'))
+    //       .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+    //       .forEach(eq => {
+    //         const [x, y] = getPosition(eq);
+    //         console.log({x, y})
+
+    //         drawConnection({x: parseInt(busbar.getAttribute('sxy:x')!), y: parseInt(busbar.getAttribute('sxy:y')!)}, {x, y}, this.routingSvg);
+    //       })
+    //     })
+    //   })
+    // })
+    // drawConnection({x:4, y:1}, {x:4, y:3}, this.routingSvg)
+   */
 }

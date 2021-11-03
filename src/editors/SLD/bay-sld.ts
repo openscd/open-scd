@@ -16,14 +16,24 @@ import { drawConnection, getPosition, Point, SldElement } from './foundation.js'
  */
 @customElement('bay-sld')
 export class BaySld extends LitElement {
+
+  /**
+   * Property holding the Bay XML element.
+   */
   @property()
   element!: Element;
 
-  // Is this Bay builded down or up?
+  /**
+   * True if this Bay is built up downwards.
+   */
   @property({ type: Boolean })
-  downer = false;
-
-  @query('#bayRoutingSvg') bayRoutingSvg!: HTMLElement;
+  downer = true;
+  
+  /**
+   * Holding a reference to the Substation SVG to draw routes between elements on.
+   */
+  @property()
+  svg!: HTMLElement;
 
   /**
    * Get all the unconnected Nodes of this particular Bay.
@@ -119,39 +129,44 @@ export class BaySld extends LitElement {
   }
 
   firstUpdated(): void {
-    /*
-     * Drawing routes between ConnectivityNodes and ConductingEquipments.
-     */
-    this.connectivityNodeElements.forEach(cn => {
-      const pathName = cn.element.getAttribute('pathName');
-      this.equipmentElements
-      .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
-      .forEach(element => {
-        // All connected Conducting Equipments are here
-        if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
-          drawConnection(cn.pos, element.pos, this.bayRoutingSvg)
-        } else {
-          drawConnection(element.pos, cn.pos, this.bayRoutingSvg)
-        }
-      });
-    });
+    // this.connectivityNodeElements.forEach(cn => {
+    //   const pathName = cn.element.getAttribute('pathName');
+    //   this.equipmentElements
+    //   .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+    //   .forEach(element => {
+    //     // All connected Conducting Equipments are here
+    //     if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
+    //       drawConnection(cn.pos, element.pos, this.svg)
+    //     } else {
+    //       drawConnection(element.pos, cn.pos, this.svg)
+    //     }
+    //   });
+    // });
   }
 
-  render(): TemplateResult {
-    return html`<section class="container" index="0">
-      <div class="unconnectedcontainer">
+  /**
+        <!--
+        <div class="unconnectedcontainer">
         ${this.unconnectedElements.map(
           element =>
             html`<div class="element">${element.getAttribute('name')}</div>`
         )}
-      </div>
-      <div
-        class="sldcontainer"
-        style="grid-template-columns: repeat(${this
-          .xMax}, 64px);grid-template-rows: repeat(${this.downer
-          ? this.yMax
-          : -this.yMax}, 64px)"
-      >
+        </div>
+        -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          id="bayRoutingSvg"
+          width=${(2 * this.xMax) * 64}
+          height=${(2 * this.yMax) * 64}
+          viewBox="0 0 ${(2 * this.xMax) * 64} ${(2 * this.yMax) * 64}"
+        ></svg>
+        
+   */
+
+  render(): TemplateResult {
+    return html`<section>
+      <div style="grid-template-columns: repeat(100, 64px);grid-template-rows: repeat(100, 64px)">
         ${this.equipmentElements.map(
           element =>
             html`<conducting-equipment-editor
@@ -174,34 +189,12 @@ export class BaySld extends LitElement {
             >
             </connectivity-node-editor>`
         )}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="bayRoutingSvg"
-          width=${(2 * this.xMax) * 64}
-          height=${(2 * this.yMax) * 64}
-          viewBox="0 0 ${(2 * this.xMax) * 64} ${(2 * this.yMax) * 64}"
-        ></svg>
+
       </div>
     </section>`;
   }
 
   static styles = css`
-    .container {
-      display: grid;
-      grid-gap: 64px;
-      padding: 64px;
-    }
-
-    .container:hover {
-      outline: 2px dashed var(--mdc-theme-primary);
-      transition: transform 200ms linear, box-shadow 250ms linear;
-    }
-
-    .container:focus-within {
-      outline: 2px solid var(--mdc-theme-primary);
-      transition: transform 200ms linear, box-shadow 250ms linear;
-    }
-
     .unconnectedcontainer {
       display: grid;
       grid-gap: 64px;
@@ -209,9 +202,8 @@ export class BaySld extends LitElement {
       grid-template-columns: repeat(auto-fit, minmax(64px, 64px));
     }
 
-    .sldcontainer {
+    div {
       display: grid;
-      grid-gap: 64px;
     }
 
     .element {
@@ -223,14 +215,22 @@ export class BaySld extends LitElement {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
     }
-
-    #canvas {
-      position: absolute;
-    }
-
-    #bayRoutingSvg {
-      position: absolute;
-      z-index: -5;
-    }
   `;
+
+  /**
+   * 
+    this.connectivityNodeElements.forEach(cn => {
+      const pathName = cn.element.getAttribute('pathName');
+      this.equipmentElements
+      .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+      .forEach(element => {
+        // All connected Conducting Equipments are here
+        if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
+          drawConnection(cn.pos, element.pos, this.bayRoutingSvg)
+        } else {
+          drawConnection(element.pos, cn.pos, this.bayRoutingSvg)
+        }
+      });
+    });
+   */
 }

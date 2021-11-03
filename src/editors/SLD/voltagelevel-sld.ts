@@ -9,6 +9,7 @@ import {
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
+import { BaySld } from './bay-sld.js';
 import { drawConnection, getPosition, isBusBar, SldElement } from './foundation.js';
 
 /**
@@ -16,10 +17,18 @@ import { drawConnection, getPosition, isBusBar, SldElement } from './foundation.
  */
 @customElement('voltagelevel-sld')
 export class VoltageLevelSld extends LitElement {
+
+  /**
+   * Property holding the VoltageLevel XML element.
+   */
   @property()
   element!: Element;
   
-  @query('#routingSvg') routingSvg!: HTMLElement;
+  /**
+   * Holding a reference to the Substation SVG to draw routes between elements on.
+   */
+  @property()
+  svg!: HTMLElement;
 
   /**
    * Get all the BusBars from the VoltageLevel element.
@@ -47,21 +56,27 @@ export class VoltageLevelSld extends LitElement {
       });
   }
 
+  firstUpdated(): void {
+    // Pass the Substation SVG to all Bays
+    this.shadowRoot!.querySelectorAll("bay-sld").forEach(bay => {
+      const castedSldElement = <BaySld>(bay);
+      castedSldElement.svg = this.svg;
+    });
+  }
+
   render(): TemplateResult {
-    return html`<section class="container">
-      <div class="container bay"></div>
-      <div
-        class="container"
-        style="grid-template-rows: repeat(${this.busBars.length},64px);"
-      >
-        ${this.busBars.map(busbar => html`<busbar-sld
-          .element=${busbar.element}>
-        </busbar-sld>`)}
-      </div>
-      <div class="container bay">
-        ${this.bays.map(
-          feeder => html`<bay-sld
-            .element=${feeder.element}
+    return html`<section>
+      <div style="grid-template-columns: repeat(100, 64px);grid-template-rows: repeat(100, 64px)">
+        ${this.busBars.map(busbar =>
+          html`<busbar-sld
+            .element=${busbar.element}
+            style="grid-column:${busbar.pos.x};grid-row:${busbar.pos.y};">
+            </busbar-sld>`
+        )}
+        ${this.bays.map(bay => 
+          html`<bay-sld
+            .element=${bay.element}
+            style="grid-column:${bay.pos.x!};grid-row:${bay.pos.y!};">
             downer
           >
           </bay-sld>`
@@ -71,12 +86,6 @@ export class VoltageLevelSld extends LitElement {
   }
 
   static styles = css`
-    .container {
-      display: grid;
-      grip-gap: 64px;
-      padding: 64px;
-    }
-
     .container:hover {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
@@ -87,8 +96,8 @@ export class VoltageLevelSld extends LitElement {
       transition: transform 200ms linear, box-shadow 250ms linear;
     }
 
-    .container.bay {
-      display: flex;
+    div {
+      display: grid;
     }
   `;
 }
