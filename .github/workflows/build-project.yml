@@ -19,6 +19,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set up Docker Buildx
+        id: buildx
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: docker/setup-buildx-action@v1
+      - name: Cache Docker Register
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile') }}
+
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
