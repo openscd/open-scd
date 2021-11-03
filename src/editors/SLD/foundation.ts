@@ -33,7 +33,14 @@ export interface SldElement {
   pos: Point;
 }
 
-export function getPosition(element: Element): (number | undefined)[] {
+/**
+ * Defining specific method for getting the element's full offset.
+ */
+export interface ElementPosition {
+  get fullOffset(): Point
+}
+
+export function getPosition(element: Element): Point {
   const xAttr = element.getAttributeNS(
     'http://www.iec.ch/61850/2003/SCLcoordinates',
     'x'
@@ -43,10 +50,10 @@ export function getPosition(element: Element): (number | undefined)[] {
     'y'
   );
 
-  return [
-    xAttr ? parseInt(xAttr) : undefined,
-    yAttr ? parseInt(yAttr) : undefined,
-  ];
+  return {
+    x: xAttr ? parseInt(xAttr) : undefined,
+    y: yAttr ? parseInt(yAttr) : undefined,
+  }
 }
 
 function getTerminals(connectivityNode: Element | null | undefined): Element[] {
@@ -250,16 +257,24 @@ export function isBusBar(bay: Element): boolean {
  * @param secondPoint The second point of this connection.
  * @param svgToDrawOn The SVG to draw the route on.
  */
-export function drawConnection(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement): void {
+export function drawConnection(firstPoint: Point, secondPoint: Point, fullOffset: Point, svgToDrawOn: HTMLElement): void {
+  console.log('tekenen!');
+  console.log(firstPoint.x!)
+  console.log(firstPoint.y!)
+  console.log(secondPoint.x!)
+  console.log(secondPoint.y!)
+  console.log(fullOffset.x!)
+  console.log(fullOffset.y!)
+
   const shapeA = {
-    left: (2 * firstPoint.x! - 2) * 64,
-    top: (2 * firstPoint.y! - 2) * 64,
+    left: (firstPoint.x! + fullOffset.x!) * 64,
+    top: (firstPoint.y! + fullOffset.y!) * 64,
     width: 64,
     height: 64,
   };
   const shapeB = {
-    left: (2 * secondPoint.x! - 2) * 64,
-    top: (2 * secondPoint.y! - 2) * 64,
+    left: (secondPoint.x! + fullOffset.x!) * 64,
+    top: (secondPoint.y! + fullOffset.y!) * 64,
     width: 64,
     height: 64,
   };

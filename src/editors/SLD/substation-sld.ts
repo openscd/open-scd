@@ -27,17 +27,13 @@ export class SubstationSld extends LitElement {
    */
   @query('#svg') svg!: HTMLElement;
 
-  @property()
   get voltageLevels(): Element[] {
     return Array.from(this.element.getElementsByTagName('VoltageLevel'));
   }
   
   firstUpdated(): void {
     // Pass the Substation SVG to all VoltageLevels
-    this.shadowRoot!.querySelectorAll("voltagelevel-sld").forEach(voltageLevel => {
-      const castedSldElement = <VoltageLevelSld>(voltageLevel);
-      castedSldElement.svg = this.svg;
-    });
+    this.shadowRoot!.querySelectorAll("voltagelevel-sld").forEach(voltageLevel => (<VoltageLevelSld>(voltageLevel)).svg = this.svg);
   }
 
   render(): TemplateResult {
@@ -45,7 +41,7 @@ export class SubstationSld extends LitElement {
       <div style="grid-template-columns: repeat(100, 64px);grid-template-rows: repeat(100, 64px)">
         ${this.voltageLevels.map(
           voltagelevel => {
-            const [x, y] = getPosition(voltagelevel);
+            const {x, y} = getPosition(voltagelevel);
             return html`<voltagelevel-sld
               .element=${voltagelevel}
               style="grid-column:${x};grid-row:${y};">

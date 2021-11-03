@@ -459,10 +459,10 @@ export const connectivityNodeIcon = html`<svg
   width="20px"
   height="20px"
   viewBox="0 0 20 20"
-  stroke-width="1"
+  stroke-width="0.5"
   stroke="currentColor"
   fill="none">
-    <circle cx="10" cy="10" r="3"/>
+    <circle cx="10" cy="10" r="2"/>
 </svg>`;
 
 export const busBarIcon = html`<svg>

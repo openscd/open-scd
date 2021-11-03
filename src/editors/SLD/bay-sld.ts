@@ -9,25 +9,19 @@ import {
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
-import { drawConnection, getPosition, Point, SldElement } from './foundation.js';
+import { drawConnection, ElementPosition, getPosition, Point, SldElement } from './foundation.js';
 
 /**
  * SLD component of a Bay component.
  */
 @customElement('bay-sld')
-export class BaySld extends LitElement {
+export class BaySld extends LitElement implements ElementPosition {
 
   /**
    * Property holding the Bay XML element.
    */
   @property()
   element!: Element;
-
-  /**
-   * True if this Bay is built up downwards.
-   */
-  @property({ type: Boolean })
-  downer = true;
   
   /**
    * Holding a reference to the Substation SVG to draw routes between elements on.
@@ -35,10 +29,24 @@ export class BaySld extends LitElement {
   @property()
   svg!: HTMLElement;
 
+  @property()
+  fullParentOffset!: Point
+
+  get fullOffset(): Point {
+    const {x, y} = getPosition(this.element);
+    // Extract 1 because SLD is 1-based, grid is 0-based.
+    // Also, add offset from parent.
+    return {x: (x! - 1) + this.fullParentOffset.x!, y: (y! - 1) + this.fullParentOffset.y!};
+  }
+
+  /**
+   * True if this Bay is built up downwards.
+   */
+  downer = true;
+
   /**
    * Get all the unconnected Nodes of this particular Bay.
    */
-  @property()
   get unconnectedElements(): Element[] {
     return getChildElementsByTagName(
       this.element,
@@ -54,7 +62,6 @@ export class BaySld extends LitElement {
   /**
    * Get all the Equipment Nodes of this particular Bay.
    */
-  @property()
   get equipmentElements(): SldElement[] {
     const elements: SldElement[] = [];
 
@@ -66,7 +73,7 @@ export class BaySld extends LitElement {
           ).length !== 0
       )
       .forEach(child => {
-        const [x, y] = getPosition(child);
+        const {x, y} = getPosition(child);
         elements.push({ element: child, pos: { x, y } });
       });
 
@@ -76,7 +83,6 @@ export class BaySld extends LitElement {
   /**
    * Get all the Connectivity Nodes of this particular Bay.
    */
-  @property()
   get connectivityNodeElements(): SldElement[] {
     const sldelements: SldElement[] = [];
 
@@ -129,19 +135,18 @@ export class BaySld extends LitElement {
   }
 
   firstUpdated(): void {
-    // this.connectivityNodeElements.forEach(cn => {
-    //   const pathName = cn.element.getAttribute('pathName');
-    //   this.equipmentElements
-    //   .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
-    //   .forEach(element => {
-    //     // All connected Conducting Equipments are here
-    //     if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
-    //       drawConnection(cn.pos, element.pos, this.svg)
-    //     } else {
-    //       drawConnection(element.pos, cn.pos, this.svg)
-    //     }
-    //   });
-    // });
+    this.connectivityNodeElements.forEach(cn => {
+      const pathName = cn.element.getAttribute('pathName');
+      this.equipmentElements
+      .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+      .forEach(element => {
+        if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
+          // drawConnection(cn.pos, element.pos, this.fullOffset, this.svg)
+        } else {
+          // drawConnection(element.pos, cn.pos, this.fullOffset, this.svg)
+        }
+      });
+    });
   }
 
   /**
