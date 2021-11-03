@@ -132,7 +132,7 @@ export default class CompasVersionsPlugin extends LitElement {
       `
     }
 
-    if (this.scls?.length <= 0) {
+    if (this.scls.length <= 0) {
       return html `
         <mwc-list>
           <mwc-list-item>
