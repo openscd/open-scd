@@ -1,4 +1,4 @@
-import { css, html, TemplateResult } from 'lit-element';
+import { css, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import {
@@ -7,6 +7,7 @@ import {
   EditorAction,
   getReference,
   getValue,
+  html,
   isPublic,
   SCLTag,
   WizardActor,

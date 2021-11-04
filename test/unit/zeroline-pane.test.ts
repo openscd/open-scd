@@ -1,4 +1,5 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
+import { html } from '../../src/foundation.js';
 import {
   attachedIeds,
   getAttachedIeds,

@@ -1,6 +1,6 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
-import { newPendingStateEvent } from '../../src/foundation.js';
+import { html, newPendingStateEvent } from '../../src/foundation.js';
 import { WaitingElement } from '../../src/Waiting.js';
 
 import './mock-waiter.js';

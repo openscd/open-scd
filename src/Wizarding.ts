@@ -1,5 +1,6 @@
-import { html, internalProperty, TemplateResult, query } from 'lit-element';
+import { internalProperty, TemplateResult, query } from 'lit-element';
 import {
+  html,
   ifImplemented,
   LitElementConstructor,
   Mixin,

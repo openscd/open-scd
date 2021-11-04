@@ -5,13 +5,13 @@ import { TextField } from '@material/mwc-textfield';
 import {
   css,
   customElement,
-  html,
   internalProperty,
   property,
   query,
   TemplateResult,
   unsafeCSS,
 } from 'lit-element';
+import { html } from './foundation.js';
 
 @customElement('filtered-list')
 export class FilteredList extends ListBase {

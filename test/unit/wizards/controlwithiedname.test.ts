@@ -1,8 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import { List } from '@material/mwc-list';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
+import { html } from '../../../src/foundation.js';
 
 describe('selectExtRefWizard', () => {
   let doc: Document;

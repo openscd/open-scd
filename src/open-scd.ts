@@ -1,7 +1,6 @@
 import {
   css,
   customElement,
-  html,
   LitElement,
   property,
   TemplateResult,
@@ -37,7 +36,7 @@ import './wizard-textfield.js';
 import './wizard-select.js';
 import './finder-pane.js';
 
-import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';
+import { html, newOpenDocEvent, newPendingStateEvent } from './foundation.js';
 import { getTheme } from './themes.js';
 
 import { Editing } from './Editing.js';

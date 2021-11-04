@@ -1,9 +1,10 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import fc from 'fast-check';
 import { typePattern } from '../../../src/editors/communication/p-types.js';
 import {
   Create,
   Delete,
+  html,
   isCreate,
   isDelete,
   Wizard,

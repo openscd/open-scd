@@ -1,9 +1,10 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import { PluggingElement } from '../../src/Plugging.js';
 
 import './mock-plugger.js';
 import { TextField } from '@material/mwc-textfield';
+import { html } from '../../src/foundation.js';
 
 describe('PluggingElement', () => {
   let element: PluggingElement;

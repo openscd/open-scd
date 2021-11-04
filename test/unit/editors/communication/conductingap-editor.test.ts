@@ -1,7 +1,8 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/communication/connectedap-editor.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
+import { html } from '../../../../src/foundation.js';
 
 describe('connectedap-editor', () => {
   let element: ConnectedAPEditor;

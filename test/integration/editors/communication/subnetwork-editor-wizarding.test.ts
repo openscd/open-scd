@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
 import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
@@ -7,6 +7,7 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 import '../../../mock-wizard.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { html } from '../../../../src/foundation.js';
 
 describe('subnetwork-editor wizarding integration', () => {
   describe('edit/add Subnetwork wizard', () => {

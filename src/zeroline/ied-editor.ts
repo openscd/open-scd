@@ -1,13 +1,12 @@
 import {
   css,
   customElement,
-  html,
   LitElement,
   property,
   query,
   TemplateResult,
 } from 'lit-element';
-import { newWizardEvent } from '../foundation.js';
+import { html, newWizardEvent } from '../foundation.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
 
 import { Fab } from '@material/mwc-fab';

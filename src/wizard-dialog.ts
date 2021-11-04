@@ -6,7 +6,6 @@ import {
   property,
   internalProperty,
   TemplateResult,
-  html,
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
@@ -29,6 +28,7 @@ import {
   Delete,
   Create,
   identity,
+  html,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {

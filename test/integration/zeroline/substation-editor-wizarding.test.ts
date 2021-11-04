@@ -1,9 +1,10 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 import { regExp, regexString } from '../../foundation.js';
 
 import '../../mock-wizard.js';
 import { WizardingElement } from '../../../src/Wizarding.js';
+import { html } from '../../../src/foundation.js';
 
 describe('substation-editor wizarding integration', () => {
   let doc: XMLDocument;

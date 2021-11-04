@@ -1,8 +1,5 @@
-import { html as litHtml, query, TemplateResult } from 'lit-element';
+import { query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
-import wrapHtml from 'carehtml';
-
-const html = wrapHtml(litHtml);
 
 import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
@@ -10,7 +7,7 @@ import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
-import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
+import { html, ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';

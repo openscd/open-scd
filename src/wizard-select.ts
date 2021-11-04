@@ -1,6 +1,5 @@
 import {
   customElement,
-  html,
   internalProperty,
   property,
   query,
@@ -10,6 +9,7 @@ import { get } from 'lit-translate';
 
 import { Switch } from '@material/mwc-switch';
 import { Select } from '@material/mwc-select';
+import { html } from './foundation.js';
 
 /** A potentially `nullable` `Select`.
  *

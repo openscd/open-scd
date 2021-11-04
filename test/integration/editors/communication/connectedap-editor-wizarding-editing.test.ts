@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 import '../../../../src/editors/communication/connectedap-editor.js';
@@ -7,6 +7,7 @@ import { EditingElement } from '../../../../src/Editing.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { html } from '../../../../src/foundation.js';
 
 describe('connectedap-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

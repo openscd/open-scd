@@ -1,9 +1,10 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import '../../mock-wizard.js';
 import { Editing } from '../../../src/Editing.js';
 import Substation from '../../../src/editors/Substation.js';
 import { Wizarding, WizardingElement } from '../../../src/Wizarding.js';
+import { html } from '../../../src/foundation.js';
 
 describe('Substation Plugin', () => {
   customElements.define('substation-plugin', Wizarding(Editing(Substation)));

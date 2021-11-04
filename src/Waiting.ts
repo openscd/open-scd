@@ -1,4 +1,4 @@
-import { html, property, TemplateResult } from 'lit-element';
+import { property, TemplateResult } from 'lit-element';
 
 import {
   LitElementConstructor,
@@ -6,6 +6,7 @@ import {
   PendingStateDetail,
   ifImplemented,
   newLogEvent,
+  html,
 } from './foundation.js';
 
 /** Mixin implementing

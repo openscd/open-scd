@@ -1,6 +1,6 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { WizardInput, isCreate, isUpdate, html } from '../../../src/foundation.js';
 
 import '../../../src/wizard-textfield.js';
 import { createAction } from '../../../src/wizards/bay.js';

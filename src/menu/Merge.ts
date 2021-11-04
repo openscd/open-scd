@@ -1,6 +1,6 @@
-import { css, html, LitElement, query, TemplateResult } from 'lit-element';
+import { css, LitElement, query, TemplateResult } from 'lit-element';
 
-import { newWizardEvent } from '../foundation.js';
+import { html, newWizardEvent } from '../foundation.js';
 import { mergeWizard } from '../wizards.js';
 
 export default class MergePlugin extends LitElement {

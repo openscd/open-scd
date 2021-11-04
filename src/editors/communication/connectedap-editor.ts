@@ -2,7 +2,6 @@ import {
   LitElement,
   TemplateResult,
   customElement,
-  html,
   property,
   css,
 } from 'lit-element';
@@ -25,6 +24,7 @@ import {
   createElement,
   ComplexAction,
   getReference,
+  html,
 } from '../../foundation.js';
 
 import {

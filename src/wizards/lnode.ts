@@ -1,4 +1,4 @@
-import { html, render, TemplateResult } from 'lit-html';
+import { render, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
@@ -6,6 +6,7 @@ import {
   EditorAction,
   getChildElementsByTagName,
   getReference,
+  html,
   identity,
   isPublic,
   referencePath,

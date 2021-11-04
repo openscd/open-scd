@@ -1,4 +1,5 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
+import { html } from '../../../src/foundation.js';
 
 import NewProjectPlugin from '../../../src/menu/NewProject.js';
 import { OpenSCD } from '../../../src/open-scd.js';

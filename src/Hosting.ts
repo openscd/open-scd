@@ -1,10 +1,10 @@
 import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { html, property, query, TemplateResult } from 'lit-element';
+import { property, query, TemplateResult } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
-import { Mixin, newPendingStateEvent } from './foundation.js';
+import { html, Mixin, newPendingStateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';

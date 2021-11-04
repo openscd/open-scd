@@ -1,7 +1,6 @@
 import {
   css,
   customElement,
-  html,
   LitElement,
   property,
   query,
@@ -13,6 +12,7 @@ import { translate } from 'lit-translate';
 import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { html } from './foundation.js';
 
 export interface Directory {
   content: TemplateResult;

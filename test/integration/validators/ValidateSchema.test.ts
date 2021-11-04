@@ -1,6 +1,6 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
-import { IssueDetail, LogEntry } from '../../../src/foundation.js';
+import { html, IssueDetail, LogEntry } from '../../../src/foundation.js';
 
 import { OpenSCD } from '../../../src/open-scd.js';
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';

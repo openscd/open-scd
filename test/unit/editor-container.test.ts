@@ -1,8 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
 import '../../src/editor-container.js';
 import { EditorContainer } from '../../src/editor-container.js';
+import { html } from '../../src/foundation.js';
 import { BayEditor } from '../../src/zeroline/bay-editor.js';
 
 describe('editor-container', () => {

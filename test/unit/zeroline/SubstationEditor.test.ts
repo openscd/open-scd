@@ -1,6 +1,6 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { WizardInput, isCreate, isUpdate, html } from '../../../src/foundation.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 import { createAction } from '../../../src/wizards/substation.js';
 

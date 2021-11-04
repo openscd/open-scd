@@ -1,4 +1,3 @@
-import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
@@ -9,6 +8,7 @@ import {
   getChildElementsByTagName,
   getReference,
   getValue,
+  html,
   identity,
   isPublic,
   newActionEvent,

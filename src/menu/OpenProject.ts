@@ -1,6 +1,6 @@
-import { css, html, LitElement, query, TemplateResult } from 'lit-element';
+import { css, LitElement, query, TemplateResult } from 'lit-element';
 
-import { newLogEvent, newOpenDocEvent } from '../foundation.js';
+import { html, newLogEvent, newOpenDocEvent } from '../foundation.js';
 
 export default class OpenProjectPlugin extends LitElement {
   @query('#open-plugin-input') pluginFileUI!: HTMLInputElement;

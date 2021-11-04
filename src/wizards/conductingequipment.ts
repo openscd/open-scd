@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-element';
+import { TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
@@ -6,6 +6,7 @@ import {
   EditorAction,
   getReference,
   getValue,
+  html,
   isPublic,
   Wizard,
   WizardActor,

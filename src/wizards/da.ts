@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-html';
+import { TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
@@ -7,6 +7,7 @@ import {
   EditorAction,
   getReference,
   getValue,
+  html,
   isPublic,
   newActionEvent,
   newWizardEvent,

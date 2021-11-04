@@ -1,4 +1,5 @@
-import { html, TemplateResult } from 'lit-element';
+import { TemplateResult } from 'lit-element';
+import { html } from './foundation.js';
 import { Settings } from './Setting.js';
 
 export function getTheme(theme: Settings['theme']): TemplateResult {

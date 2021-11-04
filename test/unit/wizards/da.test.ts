@@ -1,8 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import { MockWizard } from '../../mock-wizard.js';
 
 import {
   Create,
+  html,
   isCreate,
   isUpdate,
   Update,

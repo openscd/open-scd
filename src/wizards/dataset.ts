@@ -1,8 +1,8 @@
-import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 import {
   cloneElement,
   getValue,
+  html,
   identity,
   Wizard,
   WizardAction,

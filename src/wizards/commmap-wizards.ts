@@ -1,9 +1,9 @@
-import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import {
   findControlBlocks,
+  html,
   identity,
   isPublic,
   newWizardEvent,

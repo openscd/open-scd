@@ -1,8 +1,9 @@
-import { css, html, LitElement, query, TemplateResult } from 'lit-element';
+import { css, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
   crossProduct,
+  html,
   identity,
   newWizardEvent,
   SCLTag,

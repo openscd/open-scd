@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-element';
+import { TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
@@ -10,6 +10,7 @@ import {
   Delete,
   EditorAction,
   getValue,
+  html,
   identity,
   isPublic,
   newActionEvent,

@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
@@ -9,6 +9,7 @@ import { lNodeWizard } from '../../../../src/wizards/lnode.js';
 
 import '../../../mock-wizard.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+import { html } from '../../../../src/foundation.js';
 
 describe('lnodewizard', () => {
   let element: MockWizardEditor;

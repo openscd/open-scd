@@ -1,11 +1,11 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import { Button } from '@material/mwc-button';
 
 import '../../src/wizard-textfield.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
-import { EditorAction, WizardInput } from '../../src/foundation.js';
+import { EditorAction, html, WizardInput } from '../../src/foundation.js';
 
 import './mock-editor.js';
 

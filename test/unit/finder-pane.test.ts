@@ -1,6 +1,7 @@
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import { Directory, FinderPane } from '../../src/finder-pane.js';
+import { html } from '../../src/foundation.js';
 
 const path = ['e2', 'e1', 'e4'];
 
