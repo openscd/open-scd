@@ -80,7 +80,7 @@ export class SubstationSld extends LitElement implements ElementPosition {
       padding: 64px;
     }
 
-    #svg {
+    svg {
       position: absolute;
       z-index: -5;
     }

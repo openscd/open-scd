@@ -16,23 +16,27 @@ export class BusBasSld extends LitElement {
   @property()
   element!: Element;
 
+  /**
+   * True if this Bay is built up downwards.
+   */
+  @property()
+  downer = false;
+
   render(): TemplateResult {
-    return html`<div class="busbar">
+    return html`<div>
       <h4>${this.element.getAttribute('name')}</h4>
       ${busBarIcon}
     </div>`;
   }
 
   static styles = css`
-    .busbar {
-      grid-template-columns: repeat(1, 1fr);
-    }
-
     div {
+      grid-template-columns: repeat(1, 1fr);
       width: 100%;
+      height: 64px;
     }
 
-    .busbar svg {
+    div svg {
       width: 100%;
     }
 

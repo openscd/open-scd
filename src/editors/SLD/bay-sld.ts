@@ -46,7 +46,8 @@ export class BaySld extends LitElement implements ElementPosition {
   /**
    * True if this Bay is built up downwards.
    */
-  downer = true;
+  @property()
+  downer = false;
 
   /**
    * Get all the unconnected Nodes of this particular Bay.

@@ -126,6 +126,7 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
         ${this.busBars.map(busbar =>
           html`<busbar-sld
             .element=${busbar.element}
+            .downer=${true}
             style="grid-column-start:${busbar.pos.x};grid-column-end:${this.fullVoltageLevelX};grid-row:${busbar.pos.y};">
             </busbar-sld>`
         )}
@@ -133,8 +134,8 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
           html`<bay-sld
             .element=${bay.element}
             .fullParentOffset=${this.fullOffset}
-            style="grid-column:${bay.pos.x!};grid-row:${bay.pos.y!};">
-            downer
+            style="grid-column:${bay.pos.x!};grid-row:${bay.pos.y!};"
+            .downer=${true}
           >
           </bay-sld>`
         )}

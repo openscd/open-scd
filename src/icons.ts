@@ -472,7 +472,7 @@ export const busBarIcon = html`<svg>
     x2="100%"
     y2="0"
     stroke="currentColor"
-    stroke-width="3"
+    stroke-width="4"
   />
 </svg>`;
 
