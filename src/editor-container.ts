@@ -195,7 +195,7 @@ export class EditorContainer extends LitElement {
       transition: all 200ms linear;
       outline-style: solid;
       margin: 8px 12px 16px;
-      padding: 0.02px; /*Dirty hack to force outline around content with margin*/
+      overflow: hidden;
       outline-width: 0px;
       outline-color: var(--mdc-theme-primary);
       opacity: 1;
@@ -215,6 +215,7 @@ export class EditorContainer extends LitElement {
 
     .nomargin {
       margin: 0px;
+      overflow: visible;
     }
 
     .container:focus {
