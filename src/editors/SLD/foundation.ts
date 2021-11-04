@@ -252,29 +252,22 @@ export function isBusBar(bay: Element): boolean {
 }
 
 /**
- * Draw a connection from the first point to the second point.
+ * Draw a route from the first point to the second point.
  * @param firstPoint The first point of this connection.
  * @param secondPoint The second point of this connection.
  * @param svgToDrawOn The SVG to draw the route on.
  */
-export function drawConnection(firstPoint: Point, secondPoint: Point, fullOffset: Point, svgToDrawOn: HTMLElement): void {
-  // Convert the 1-based coordinates to 0-based
-  const firstPointX = firstPoint.x! -1;
-  const firstPointY = firstPoint.y! -1;
-
-  const secondPointX = secondPoint.x! -1;
-  const secondPointY = secondPoint.y! -1;
-
+export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement): void {
   const shapeA = {
-    left: (firstPointX + fullOffset.x!) * 64,
-    top: (firstPointY + fullOffset.y!) * 64,
+    left: firstPoint.x! * 64,
+    top: firstPoint.y! * 64,
     width: 64,
     height: 64,
   };
 
   const shapeB = {
-    left: (secondPointX + fullOffset.x!) * 64,
-    top: (secondPointY + fullOffset.y!) * 64,
+    left: secondPoint.x! * 64,
+    top: secondPoint.y! * 64,
     width: 64,
     height: 64,
   };

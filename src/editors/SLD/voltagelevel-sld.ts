@@ -84,6 +84,34 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
   firstUpdated(): void {
     // Pass the Substation SVG to all Bays
     this.shadowRoot!.querySelectorAll("bay-sld").forEach(bay => (<BaySld>(bay)).svg = this.svg);
+    //   this.busBars.forEach(busbar => {
+    //   const pathName = busbar.element.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
+
+    //   this.bays.forEach(bay => {
+    //     Array.from(bay.element.getElementsByTagName('ConductingEquipment'))
+    //     .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+    //     .forEach(eq => {
+
+    //       const busbarX = (busbar.pos.x! - 1) + this.fullOffset.x!;
+    //       const busbarY = (busbar.pos.y! - 1) + this.fullOffset.y!;
+
+    //       const {x, y} = getPosition(eq);
+
+    //       const eqX = (x! - 1);
+    //       const eqY = (y! - 1) + 7;
+
+    //       console.log('Connect Busbar ' + busbar.element.getAttribute('name') + ' ' + busbarX + ',' + busbarY)
+    //       console.log('to')
+    //       console.log('Equipment ' + eq.getAttribute('name') + ' ' + eqX + ',' + eqY)
+
+    //       // if (busbarY != null && eqY != null && (busbarY > eqY)) {
+    //       //   drawConnection({x: eqX, y: eqY}, {x: busbarX, y: busbarY}, this.svg)
+    //       // } else {
+    //       //   drawConnection({x: busbarX, y: busbarY}, {x: eqX, y: eqY}, this.svg)
+    //       // }
+    //     })
+    //   })
+    // })
   }
 
   render(): TemplateResult {

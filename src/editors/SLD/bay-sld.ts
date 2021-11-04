@@ -9,7 +9,7 @@ import {
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
-import { drawConnection, ElementPosition, getPosition, Point, SldElement } from './foundation.js';
+import { drawRoute, ElementPosition, getPosition, Point, SldElement } from './foundation.js';
 
 /**
  * SLD component of a Bay component.
@@ -140,10 +140,15 @@ export class BaySld extends LitElement implements ElementPosition {
       this.equipmentElements
       .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
       .forEach(element => {
-        if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
-          drawConnection(cn.pos, element.pos, this.fullOffset, this.svg)
+        const cnX = (cn.pos.x! - 1) + this.fullOffset.x!;
+        const cnY = (cn.pos.y! - 1) + this.fullOffset.y!;
+        const elementX = (element.pos.x! - 1) + this.fullOffset.x!;
+        const elementY = (element.pos.y! - 1) + this.fullOffset.y!;
+
+        if ((elementY > cnY)) {
+          drawRoute({x: cnX, y: cnY}, {x: elementX, y: elementY}, this.svg)
         } else {
-          drawConnection(element.pos, cn.pos, this.fullOffset, this.svg)
+          drawRoute({x: elementX, y: elementY}, {x: cnX, y: cnY}, this.svg)
         }
       });
     });
