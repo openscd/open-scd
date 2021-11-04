@@ -10,7 +10,7 @@ import {
 
 import { getChildElementsByTagName } from '../../foundation.js';
 import { BaySld } from './bay-sld.js';
-import { ElementPosition, getPosition, isBusBar, Point, SldElement } from './foundation.js';
+import { drawRoute, ElementPosition, getPosition, isBusBar, Point, SldElement } from './foundation.js';
 
 /**
  * SLD component of a VoltageLevel component.
@@ -84,34 +84,40 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
   firstUpdated(): void {
     // Pass the Substation SVG to all Bays
     this.shadowRoot!.querySelectorAll("bay-sld").forEach(bay => (<BaySld>(bay)).svg = this.svg);
-    //   this.busBars.forEach(busbar => {
-    //   const pathName = busbar.element.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
+    this.busBars.forEach(busbar => {
+      const pathName = busbar.element.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
 
-    //   this.bays.forEach(bay => {
-    //     Array.from(bay.element.getElementsByTagName('ConductingEquipment'))
-    //     .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
-    //     .forEach(eq => {
+      this.bays.forEach(bay => {
+        // Get the Bay offset.
+        let bayOffsetX: number | undefined;
+        let bayOffsetY: number | undefined;
 
-    //       const busbarX = (busbar.pos.x! - 1) + this.fullOffset.x!;
-    //       const busbarY = (busbar.pos.y! - 1) + this.fullOffset.y!;
+        Array.from(this.shadowRoot!.querySelectorAll("bay-sld"))
+          .filter(a => (<BaySld>(a)).name == bay.element.getAttribute('name'))
+          .forEach(b => {
+            const casted = (<BaySld>(b));
+            bayOffsetX = casted.fullOffset.x;
+            bayOffsetY = casted.fullOffset.y;
+          });
 
-    //       const {x, y} = getPosition(eq);
+        Array.from(bay.element.getElementsByTagName('ConductingEquipment'))
+          .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+          .forEach(eq => {
 
-    //       const eqX = (x! - 1);
-    //       const eqY = (y! - 1) + 7;
+          const busbarX = (busbar.pos.x! - 1) + this.fullOffset.x!;
+          const busbarY = (busbar.pos.y! - 1) + this.fullOffset.y!;
 
-    //       console.log('Connect Busbar ' + busbar.element.getAttribute('name') + ' ' + busbarX + ',' + busbarY)
-    //       console.log('to')
-    //       console.log('Equipment ' + eq.getAttribute('name') + ' ' + eqX + ',' + eqY)
+          const eqX = (getPosition(eq).x! - 1) + bayOffsetX!;
+          const eqY = (getPosition(eq).y! - 1) + bayOffsetY!;
 
-    //       // if (busbarY != null && eqY != null && (busbarY > eqY)) {
-    //       //   drawConnection({x: eqX, y: eqY}, {x: busbarX, y: busbarY}, this.svg)
-    //       // } else {
-    //       //   drawConnection({x: busbarX, y: busbarY}, {x: eqX, y: eqY}, this.svg)
-    //       // }
-    //     })
-    //   })
-    // })
+          if (busbarY != null && eqY != null && (busbarY > eqY)) {
+            drawRoute({x: eqX, y: eqY}, {x: eqX, y: busbarY}, this.svg)
+          } else {
+            drawRoute({x: eqX, y: busbarY}, {x: eqX, y: eqY}, this.svg)
+          }
+        })
+      })
+    })
   }
 
   render(): TemplateResult {

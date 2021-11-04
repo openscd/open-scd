@@ -22,6 +22,10 @@ export class BaySld extends LitElement implements ElementPosition {
    */
   @property()
   element!: Element;
+
+  get name() {
+    return this.element.getAttribute('name');
+  }
   
   /**
    * Holding a reference to the Substation SVG to draw routes between elements on.
