@@ -97,12 +97,12 @@ export class BaySld extends LitElement implements ElementPosition {
         .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${pathName}"]`) != null)
         .forEach(equipment => {
           nrOfConnections++;
-          const x = equipment?.getAttribute('sxy:x');
-          const y = equipment?.getAttribute('sxy:y');
+
+          const {x, y} = getPosition(equipment)
 
           if (x != null && y != null) {
-            totalX += parseInt(x);
-            totalY += parseInt(y);
+            totalX += x;
+            totalY += y;
           }
         })
 
@@ -141,9 +141,9 @@ export class BaySld extends LitElement implements ElementPosition {
       .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
       .forEach(element => {
         if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
-          // drawConnection(cn.pos, element.pos, this.fullOffset, this.svg)
+          drawConnection(cn.pos, element.pos, this.fullOffset, this.svg)
         } else {
-          // drawConnection(element.pos, cn.pos, this.fullOffset, this.svg)
+          drawConnection(element.pos, cn.pos, this.fullOffset, this.svg)
         }
       });
     });
@@ -158,15 +158,6 @@ export class BaySld extends LitElement implements ElementPosition {
         )}
         </div>
         -->
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="bayRoutingSvg"
-          width=${(2 * this.xMax) * 64}
-          height=${(2 * this.yMax) * 64}
-          viewBox="0 0 ${(2 * this.xMax) * 64} ${(2 * this.yMax) * 64}"
-        ></svg>
-        
    */
 
   render(): TemplateResult {
@@ -221,21 +212,4 @@ export class BaySld extends LitElement implements ElementPosition {
       transition: transform 200ms linear, box-shadow 250ms linear;
     }
   `;
-
-  /**
-   * 
-    this.connectivityNodeElements.forEach(cn => {
-      const pathName = cn.element.getAttribute('pathName');
-      this.equipmentElements
-      .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
-      .forEach(element => {
-        // All connected Conducting Equipments are here
-        if (element.pos.y != null && cn.pos.y != null && (element.pos.y > cn.pos.y)) {
-          drawConnection(cn.pos, element.pos, this.bayRoutingSvg)
-        } else {
-          drawConnection(element.pos, cn.pos, this.bayRoutingSvg)
-        }
-      });
-    });
-   */
 }

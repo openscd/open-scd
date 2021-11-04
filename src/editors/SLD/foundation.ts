@@ -258,23 +258,23 @@ export function isBusBar(bay: Element): boolean {
  * @param svgToDrawOn The SVG to draw the route on.
  */
 export function drawConnection(firstPoint: Point, secondPoint: Point, fullOffset: Point, svgToDrawOn: HTMLElement): void {
-  console.log('tekenen!');
-  console.log(firstPoint.x!)
-  console.log(firstPoint.y!)
-  console.log(secondPoint.x!)
-  console.log(secondPoint.y!)
-  console.log(fullOffset.x!)
-  console.log(fullOffset.y!)
+  // Convert the 1-based coordinates to 0-based
+  const firstPointX = firstPoint.x! -1;
+  const firstPointY = firstPoint.y! -1;
+
+  const secondPointX = secondPoint.x! -1;
+  const secondPointY = secondPoint.y! -1;
 
   const shapeA = {
-    left: (firstPoint.x! + fullOffset.x!) * 64,
-    top: (firstPoint.y! + fullOffset.y!) * 64,
+    left: (firstPointX + fullOffset.x!) * 64,
+    top: (firstPointY + fullOffset.y!) * 64,
     width: 64,
     height: 64,
   };
+
   const shapeB = {
-    left: (secondPoint.x! + fullOffset.x!) * 64,
-    top: (secondPoint.y! + fullOffset.y!) * 64,
+    left: (secondPointX + fullOffset.x!) * 64,
+    top: (secondPointY + fullOffset.y!) * 64,
     width: 64,
     height: 64,
   };
@@ -282,8 +282,8 @@ export function drawConnection(firstPoint: Point, secondPoint: Point, fullOffset
   const path = OrthogonalConnector.route({
     pointA: { shape: shapeA, side: 'bottom', distance: 0.5 },
     pointB: { shape: shapeB, side: 'top', distance: 0.5 },
-    shapeMargin: 10,
-    globalBoundsMargin: 25,
+    shapeMargin: 0,
+    globalBoundsMargin: 5,
     globalBounds: {
       left: 0,
       top: 0,
@@ -305,7 +305,7 @@ export function drawConnection(firstPoint: Point, secondPoint: Point, fullOffset
   line.setAttribute('d', d);
   line.setAttribute('fill', 'transparent');
   line.setAttribute('stroke', 'currentColor');
-  line.setAttribute('stroke-width', '1.5');
+  line.setAttribute('stroke-width', '1');
 
   svgToDrawOn.appendChild(line);
 }

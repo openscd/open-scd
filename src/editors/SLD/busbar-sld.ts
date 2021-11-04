@@ -28,6 +28,10 @@ export class BusBasSld extends LitElement {
       grid-template-columns: repeat(1, 1fr);
     }
 
+    div {
+      width: 100%;
+    }
+
     .busbar svg {
       width: 100%;
     }

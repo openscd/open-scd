@@ -7,14 +7,14 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { getPosition } from './foundation';
+import { ElementPosition, getPosition, Point } from './foundation';
 import { VoltageLevelSld } from './voltagelevel-sld';
 
 /**
  * SLD component of a Substation component.
  */
 @customElement('substation-sld')
-export class SubstationSld extends LitElement {
+export class SubstationSld extends LitElement implements ElementPosition {
 
   /**
    * Property holding the Substation XML element.
@@ -26,6 +26,11 @@ export class SubstationSld extends LitElement {
    * Holding a reference to the Substation SVG to draw routes between elements on.
    */
   @query('#svg') svg!: HTMLElement;
+
+  get fullOffset(): Point {
+    // Substations don't have a position.
+    return {x: 0, y: 0};
+  }
 
   get voltageLevels(): Element[] {
     return Array.from(this.element.getElementsByTagName('VoltageLevel'));
@@ -44,6 +49,7 @@ export class SubstationSld extends LitElement {
             const {x, y} = getPosition(voltagelevel);
             return html`<voltagelevel-sld
               .element=${voltagelevel}
+              .fullParentOffset=${this.fullOffset}
               style="grid-column:${x};grid-row:${y};">
             </voltagelevel-sld>`
           })}

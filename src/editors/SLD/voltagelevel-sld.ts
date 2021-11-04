@@ -16,7 +16,7 @@ import { ElementPosition, getPosition, isBusBar, Point, SldElement } from './fou
  * SLD component of a VoltageLevel component.
  */
 @customElement('voltagelevel-sld')
-export class VoltageLevelSld extends LitElement implements ElementPosition{
+export class VoltageLevelSld extends LitElement implements ElementPosition {
 
   /**
    * Property holding the VoltageLevel XML element.
@@ -29,6 +29,9 @@ export class VoltageLevelSld extends LitElement implements ElementPosition{
    */
   @property()
   svg!: HTMLElement;
+
+  @property()
+  fullParentOffset!: Point
 
   get fullOffset(): Point {
     const {x, y} = getPosition(this.element);
@@ -61,6 +64,23 @@ export class VoltageLevelSld extends LitElement implements ElementPosition{
       });
   }
 
+  /**
+   * Calculate the full X coordinates of this VoltageLevel.
+   */
+  get fullVoltageLevelX(): number {
+    let highestNumber = 0;
+    Array.from(this.bays).forEach(bay => highestNumber = Math.max(highestNumber, bay.pos.x!))
+
+    Array.from(this.bays).filter(bay => bay.pos.x! == highestNumber)
+      .forEach(bay => {
+        let bayMaxX = 0;
+        bay.element.querySelectorAll('ConductingEquipment')
+        .forEach(equipment => bayMaxX = Math.max(bayMaxX, getPosition(equipment).x!))
+        highestNumber = highestNumber + bayMaxX;
+      })
+    return highestNumber;
+  }
+
   firstUpdated(): void {
     // Pass the Substation SVG to all Bays
     this.shadowRoot!.querySelectorAll("bay-sld").forEach(bay => (<BaySld>(bay)).svg = this.svg);
@@ -72,7 +92,7 @@ export class VoltageLevelSld extends LitElement implements ElementPosition{
         ${this.busBars.map(busbar =>
           html`<busbar-sld
             .element=${busbar.element}
-            style="grid-column:${busbar.pos.x};grid-row:${busbar.pos.y};">
+            style="grid-column-start:${busbar.pos.x};grid-column-end:${this.fullVoltageLevelX};grid-row:${busbar.pos.y};">
             </busbar-sld>`
         )}
         ${this.bays.map(bay => 
