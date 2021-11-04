@@ -1,7 +1,6 @@
 import {
   css,
   customElement,
-  html,
   internalProperty,
   LitElement,
   property,
@@ -10,7 +9,7 @@ import {
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
-import { newWizardEvent, SCLTag, tags } from './foundation.js';
+import { html, newWizardEvent, SCLTag, tags } from './foundation.js';
 
 import { emptyWizard, wizards } from './wizards/wizard-library.js';
 

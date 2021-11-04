@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import { registerTranslateConfig, use } from 'lit-translate';
 
@@ -6,6 +6,7 @@ import { Button } from '@material/mwc-button';
 
 import { SettingElement, defaults } from '../../src/Setting.js';
 import './mock-setter.js';
+import { html } from '../../src/foundation.js';
 
 describe('SettingElement', () => {
   let element: SettingElement;

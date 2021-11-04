@@ -1,7 +1,8 @@
 import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import { FilteredList } from '../../../src/filtered-list.js';
+import { html } from '../../../src/foundation.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {

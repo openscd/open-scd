@@ -1,7 +1,7 @@
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import { LitElement, TemplateResult, property, css } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { newWizardEvent } from '../foundation.js';
+import { html, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 import '../zeroline-pane.js';

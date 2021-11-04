@@ -1,7 +1,8 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import fc from 'fast-check';
 import {
   Create,
+  html,
   isCreate,
   isDelete,
   isUpdate,

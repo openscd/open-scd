@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import {
   getSinkReferences,
   getSourceReferences,
@@ -6,6 +6,7 @@ import {
 
 import { MockWizard } from '../../mock-wizard.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
+import { html } from '../../../src/foundation.js';
 
 describe('communication mapping wizard', () => {
   let doc: Document;

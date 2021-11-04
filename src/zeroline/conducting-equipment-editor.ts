@@ -1,14 +1,13 @@
 import {
   css,
   customElement,
-  html,
   LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
 
 import { startMove } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { html, newActionEvent, newWizardEvent } from '../foundation.js';
 
 import {
   circuitBreakerIcon,

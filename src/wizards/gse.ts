@@ -1,4 +1,3 @@
-import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
 import {
@@ -6,6 +5,7 @@ import {
   createElement,
   EditorAction,
   getValue,
+  html,
   identity,
   SimpleAction,
   Wizard,

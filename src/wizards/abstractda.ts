@@ -1,7 +1,7 @@
-import { html, render, TemplateResult } from 'lit-html';
+import { render, TemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
-import { createElement, EditorAction } from '../foundation.js';
+import { createElement, EditorAction, html } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 

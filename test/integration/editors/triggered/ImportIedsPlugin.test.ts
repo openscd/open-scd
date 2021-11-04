@@ -1,10 +1,11 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import ImportingIedPlugin from '../../../../src/menu/ImportIEDs.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import { OpenSCD } from '../../../../src/open-scd.js';
 
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
+import { html } from '../../../../src/foundation.js';
 
 describe('ImportIedsPlugin', () => {
   customElements.define('import-ieds-plugin', ImportingIedPlugin);

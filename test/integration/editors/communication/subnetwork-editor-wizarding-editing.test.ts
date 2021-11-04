@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 import { EditingElement } from '../../../../src/Editing.js';
@@ -7,6 +7,7 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { html } from '../../../../src/foundation.js';
 
 describe('subnetwork-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 import fc, { integer, ipV4, nat } from 'fast-check';
 
 import { regexString, regExp, ipV6, ipV6SubNet } from '../../../foundation.js';
@@ -7,6 +7,7 @@ import '../../../mock-wizard.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
 
 import '../../../../src/editors/communication/connectedap-editor.js';
+import { html } from '../../../../src/foundation.js';
 
 describe('conductingap-editor wizarding integration', () => {
   describe('for schema 2003 (Edition1) projects', () => {

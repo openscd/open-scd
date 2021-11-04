@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-html';
+import { TemplateResult } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate } from 'lit-translate';
 
@@ -8,6 +8,7 @@ import {
   Delete,
   getReference,
   getValue,
+  html,
   WizardInput,
 } from '../foundation.js';
 import {

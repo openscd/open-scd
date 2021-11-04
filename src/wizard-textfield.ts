@@ -1,6 +1,5 @@
 import {
   customElement,
-  html,
   internalProperty,
   property,
   query,
@@ -13,6 +12,7 @@ import { Menu } from '@material/mwc-menu';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
+import { html } from './foundation.js';
 
 /** A potentially `nullable` `TextField` that allows for selection of an SI
  * `multiplier` if an SI `unit` is given.

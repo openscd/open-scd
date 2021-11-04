@@ -1,5 +1,6 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import { FilteredList } from '../../src/filtered-list.js';
+import { html } from '../../src/foundation.js';
 
 describe('filtered-list', () => {
   let element: FilteredList;

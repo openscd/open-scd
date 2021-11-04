@@ -1,8 +1,8 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import { EditingElement } from '../../src/Editing.js';
 import { mockSCD } from './mock-document.js';
-import { newActionEvent } from '../../src/foundation.js';
+import { html, newActionEvent } from '../../src/foundation.js';
 import './mock-editor.js';
 
 describe('EditingElement', () => {

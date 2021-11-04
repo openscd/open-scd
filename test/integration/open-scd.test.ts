@@ -1,8 +1,9 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
+import { html } from '../../src/foundation.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;

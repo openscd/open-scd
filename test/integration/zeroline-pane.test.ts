@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import { MockWizardEditor } from '../mock-wizard-editor.js';
 
@@ -8,6 +8,7 @@ import { ZerolinePane } from '../../src/zeroline-pane.js';
 import { IconButton } from '@material/mwc-icon-button';
 import { TextField } from '@material/mwc-textfield';
 import { WizardTextField } from '../../src/wizard-textfield.js';
+import { html } from '../../src/foundation.js';
 
 describe('zeroline-pane wizarding editing integration', () => {
   let doc: XMLDocument;

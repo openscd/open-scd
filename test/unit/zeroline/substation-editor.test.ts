@@ -1,4 +1,5 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
+import { html } from '../../../src/foundation.js';
 
 import '../../../src/zeroline/substation-editor.js';
 import { SubstationEditor } from '../../../src/zeroline/substation-editor.js';

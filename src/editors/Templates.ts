@@ -1,9 +1,10 @@
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import { LitElement, TemplateResult, property, css } from 'lit-element';
 import { translate } from 'lit-translate';
 
 import {
   createElement,
   getReference,
+  html,
   identity,
   newActionEvent,
   newWizardEvent,

@@ -1,4 +1,3 @@
-import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
@@ -9,6 +8,7 @@ import {
   createElement,
   EditorAction,
   getReference,
+  html,
   Wizard,
   WizardActor,
   WizardInput,

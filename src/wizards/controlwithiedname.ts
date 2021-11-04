@@ -1,9 +1,9 @@
-import { html } from 'lit-element';
 import { get } from 'lit-translate';
 import {
   createElement,
   EditorAction,
   findControlBlocks,
+  html,
   identity,
   Wizard,
   WizardAction,

@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import {
   ComplexAction,
@@ -24,6 +24,7 @@ import {
   getChildElementsByTagName,
   cloneElement,
   depth,
+  html,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';

@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-html';
+import { TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
@@ -8,6 +8,7 @@ import {
   getMultiplier,
   getReference,
   getValue,
+  html,
   patterns,
   Wizard,
   WizardActor,

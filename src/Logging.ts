@@ -1,5 +1,4 @@
 import {
-  html,
   internalProperty,
   property,
   query,
@@ -12,6 +11,7 @@ import { Snackbar } from '@material/mwc-snackbar';
 
 import {
   CommitEntry,
+  html,
   ifImplemented,
   invert,
   IssueDetail,

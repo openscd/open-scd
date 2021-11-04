@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import {
   WizardInput,
@@ -6,6 +6,7 @@ import {
   isDelete,
   isSimple,
   ComplexAction,
+  html,
 } from '../../../../src/foundation.js';
 
 import { editConnectedApAction } from '../../../../src/editors/communication/connectedap-editor.js';

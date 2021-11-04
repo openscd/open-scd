@@ -1,11 +1,12 @@
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { css, html, LitElement, query, TemplateResult } from 'lit-element';
+import { css, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 import {
   createElement,
   EditorAction,
   getReference,
+  html,
   identity,
   newActionEvent,
   newLogEvent,

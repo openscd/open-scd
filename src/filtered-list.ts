@@ -1,7 +1,6 @@
 import {
   css,
   customElement,
-  html,
   internalProperty,
   property,
   query,
@@ -14,6 +13,7 @@ import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { TextField } from '@material/mwc-textfield';
+import { html } from './foundation.js';
 
 @customElement('filtered-list')
 export class FilteredList extends ListBase {

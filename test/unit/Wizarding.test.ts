@@ -1,6 +1,6 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
-import { newWizardEvent } from '../../src/foundation.js';
+import { html, newWizardEvent } from '../../src/foundation.js';
 import { WizardingElement } from '../../src/Wizarding.js';
 
 import '../mock-wizard.js';

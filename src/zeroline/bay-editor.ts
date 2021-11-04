@@ -1,7 +1,6 @@
 import {
   css,
   customElement,
-  html,
   LitElement,
   property,
   TemplateResult,
@@ -11,6 +10,7 @@ import { translate } from 'lit-translate';
 import { startMove, styles, cloneSubstationElement } from './foundation.js';
 import {
   getChildElementsByTagName,
+  html,
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';

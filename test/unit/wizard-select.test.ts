@@ -1,4 +1,5 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
+import { html } from '../../src/foundation.js';
 
 import '../../src/wizard-select.js';
 import { WizardSelect } from '../../src/wizard-select.js';

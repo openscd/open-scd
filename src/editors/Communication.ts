@@ -1,4 +1,4 @@
-import { LitElement, html, TemplateResult, property, css } from 'lit-element';
+import { LitElement, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
 import {
@@ -6,6 +6,7 @@ import {
   newActionEvent,
   createElement,
   getReference,
+  html,
 } from '../foundation.js';
 
 import { selectors, styles } from './communication/foundation.js';

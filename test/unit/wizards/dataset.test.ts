@@ -1,9 +1,10 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
 import {
   Delete,
   isDelete,
+  html,
   isUpdate,
   Update,
   Wizard,

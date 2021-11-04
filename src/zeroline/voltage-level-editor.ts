@@ -2,7 +2,6 @@ import {
   LitElement,
   TemplateResult,
   customElement,
-  html,
   property,
   css,
 } from 'lit-element';
@@ -14,7 +13,7 @@ import {
   cloneSubstationElement,
   styles,
 } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { html, newActionEvent, newWizardEvent } from '../foundation.js';
 
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';

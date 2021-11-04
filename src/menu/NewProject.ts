@@ -1,10 +1,11 @@
-import { html, LitElement } from 'lit-element';
+import { LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
   EditorAction,
+  html,
   newLogEvent,
   newOpenDocEvent,
   newWizardEvent,

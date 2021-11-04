@@ -1,6 +1,7 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import { registerTranslateConfig, use } from 'lit-translate';
 import sinon, { SinonSpy } from 'sinon';
+import { html } from '../../../src/foundation.js';
 
 import { OpenSCD } from '../../../src/open-scd.js';
 

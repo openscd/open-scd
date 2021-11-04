@@ -1,4 +1,5 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
+import { html } from '../../../src/foundation.js';
 
 import '../../../src/zeroline/bay-editor.js';
 import { BayEditor } from '../../../src/zeroline/bay-editor.js';

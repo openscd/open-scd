@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import '../../mock-wizard-editor.js';
 
@@ -6,6 +6,7 @@ import { EditingElement } from '../../../src/Editing.js';
 import { VoltageLevelEditor } from '../../../src/zeroline/voltage-level-editor.js';
 import { WizardingElement } from '../../../src/Wizarding.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { html } from '../../../src/foundation.js';
 
 describe('voltage-level-editor wizarding editing integration', () => {
   describe('edit wizard', () => {

@@ -1,8 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import { LoggingElement } from '../../src/Logging.js';
 import {
   CommitEntry,
+  html,
   newIssueEvent,
   newLogEvent,
   newOpenDocEvent,

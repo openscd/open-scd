@@ -1,10 +1,10 @@
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { html } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { get, translate } from 'lit-translate';
 
 import {
   EditorAction,
+  html,
   identity,
   isEqual,
   isSame,

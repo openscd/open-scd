@@ -1,7 +1,8 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/communication/subnetwork-editor.js';
 import { SubNetworkEditor } from '../../../../src/editors/communication/subnetwork-editor.js';
+import { html } from '../../../../src/foundation.js';
 
 describe('subnetwork-editor', () => {
   let element: SubNetworkEditor;

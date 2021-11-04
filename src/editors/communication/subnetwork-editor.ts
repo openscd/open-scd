@@ -2,7 +2,6 @@ import {
   LitElement,
   TemplateResult,
   customElement,
-  html,
   property,
   css,
 } from 'lit-element';
@@ -22,6 +21,7 @@ import {
   createElement,
   getReference,
   cloneElement,
+  html,
 } from '../../foundation.js';
 
 import { styles, WizardOptions, isCreateOptions } from './foundation.js';

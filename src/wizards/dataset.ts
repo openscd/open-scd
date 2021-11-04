@@ -1,10 +1,10 @@
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
-import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
   cloneElement,
   getValue,
+  html,
   identity,
   newWizardEvent,
   selector,

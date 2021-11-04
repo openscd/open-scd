@@ -1,6 +1,5 @@
 import {
   LitElement,
-  html,
   TemplateResult,
   property,
   customElement,
@@ -9,7 +8,7 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { isPublic, newWizardEvent } from './foundation.js';
+import { html, isPublic, newWizardEvent } from './foundation.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';

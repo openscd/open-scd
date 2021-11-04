@@ -1,8 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import {
   ComplexAction,
   Create,
   Delete,
+  html,
   isCreate,
   isDelete,
   isSimple,

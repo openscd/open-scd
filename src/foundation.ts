@@ -1,5 +1,6 @@
-import { LitElement, TemplateResult } from 'lit-element';
+import { html as litHtml, LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
+import wrapHtml from 'carehtml';
 
 import { List } from '@material/mwc-list';
 import { Select } from '@material/mwc-select';
@@ -9,6 +10,7 @@ import AceEditor from 'ace-custom-element';
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 
+export const html = wrapHtml(litHtml);
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];

@@ -1,10 +1,11 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
 import '../../mock-wizard.js';
 import { WizardingElement } from '../../../src/Wizarding.js';
 
 import { regexString, regExp, inverseRegExp } from '../../foundation.js';
+import { html } from '../../../src/foundation.js';
 
 describe('voltage-level-editor wizarding integration', () => {
   let doc: XMLDocument;

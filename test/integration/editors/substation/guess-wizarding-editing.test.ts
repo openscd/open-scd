@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
 import '../../../mock-wizard.js';
@@ -10,6 +10,7 @@ import { EditingElement } from '../../../../src/Editing.js';
 import { MockWizard } from '../../../mock-wizard.js';
 import { guessVoltageLevel } from '../../../../src/editors/substation/guess-wizard.js';
 import { WizardingElement } from '../../../../src/Wizarding.js';
+import { html } from '../../../../src/foundation.js';
 
 describe('guess-wizard-integration', () => {
   let element: MockWizard;
