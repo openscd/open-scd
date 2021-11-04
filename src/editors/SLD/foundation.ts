@@ -240,16 +240,6 @@ export function updateEdges(nodes: GraphNode[], edges: GraphEdge[]): void {
     }
   });
 }
-/**
- * Checking of a Bay is a BusBar or not.
- * @param bay The bay to check.
- * @returns Is the Bay a BusBar or not.
- */
-export function isBusBar(bay: Element): boolean {
-  return (
-    bay.children.length === 1 && bay.children[0].tagName === 'ConnectivityNode'
-  );
-}
 
 /**
  * Draw a route from the first point to the second point.

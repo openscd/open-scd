@@ -85,29 +85,4 @@ export class SubstationSld extends LitElement implements ElementPosition {
       z-index: -5;
     }
   `;
-
-  /**
-   * 
-    // this.voltageLevels.forEach(voltageLevel => {
-    //   getChildElementsByTagName(voltageLevel, 'Bay')
-    //   .filter(bay => isBusBar(bay))
-    //   .forEach(busbar => {
-    //     const pathName = busbar.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
-        
-    //     getChildElementsByTagName(voltageLevel, 'Bay')
-    //     .filter(bay => !isBusBar(bay))
-    //     .forEach(bay => {
-    //       Array.from(bay.getElementsByTagName('ConductingEquipment'))
-    //       .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
-    //       .forEach(eq => {
-    //         const [x, y] = getPosition(eq);
-    //         console.log({x, y})
-
-    //         drawConnection({x: parseInt(busbar.getAttribute('sxy:x')!), y: parseInt(busbar.getAttribute('sxy:y')!)}, {x, y}, this.routingSvg);
-    //       })
-    //     })
-    //   })
-    // })
-    // drawConnection({x:4, y:1}, {x:4, y:3}, this.routingSvg)
-   */
 }

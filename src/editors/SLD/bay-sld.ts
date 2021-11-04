@@ -4,7 +4,6 @@ import {
   html,
   LitElement,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 
@@ -139,7 +138,10 @@ export class BaySld extends LitElement implements ElementPosition {
     return Math.max(...posYs, 2);
   }
 
-  firstUpdated(): void {
+  /**
+   * Draw all the routes of all the ConnectivityNodes in this Bay.
+   */
+  drawConnectivityNodeConnections(): void {
     this.connectivityNodeElements.forEach(cn => {
       const pathName = cn.element.getAttribute('pathName');
       this.equipmentElements
@@ -159,15 +161,19 @@ export class BaySld extends LitElement implements ElementPosition {
     });
   }
 
+  firstUpdated(): void {
+    this.drawConnectivityNodeConnections();
+  }
+
   /**
-        <!--
-        <div class="unconnectedcontainer">
-        ${this.unconnectedElements.map(
-          element =>
-            html`<div class="element">${element.getAttribute('name')}</div>`
-        )}
-        </div>
-        -->
+    <!--
+    <div class="unconnectedcontainer">
+    ${this.unconnectedElements.map(
+      element =>
+        html`<div class="element">${element.getAttribute('name')}</div>`
+    )}
+    </div>
+    -->
    */
 
   render(): TemplateResult {

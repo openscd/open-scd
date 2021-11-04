@@ -4,13 +4,12 @@ import {
   html,
   LitElement,
   property,
-  query,
   TemplateResult,
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
 import { BaySld } from './bay-sld.js';
-import { drawRoute, ElementPosition, getPosition, isBusBar, Point, SldElement } from './foundation.js';
+import { drawRoute, ElementPosition, getPosition, Point, SldElement } from './foundation.js';
 
 /**
  * SLD component of a VoltageLevel component.
@@ -39,13 +38,24 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
     // Also, add offset from parent.
     return {x: x! - 1, y: y! - 1};
   }
+  
+  /**
+   * Checking of a Bay is a BusBar or not.
+   * @param bay The bay to check.
+   * @returns Is the Bay a BusBar or not.
+   */
+  isBusBar(bay: Element): boolean {
+    return (
+      bay.children.length === 1 && bay.children[0].tagName === 'ConnectivityNode'
+    );
+  }
 
   /**
    * Get all the BusBars from the VoltageLevel element.
    */
   get busBars(): SldElement[] {
     return getChildElementsByTagName(this.element, 'Bay')
-      .filter(bay => isBusBar(bay))
+      .filter(bay => this.isBusBar(bay))
       .map(bay => {
         const {x, y} = getPosition(bay);
         return { element: bay, pos: { x, y } };
@@ -57,7 +67,7 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
    */
   get bays(): SldElement[] {
     return getChildElementsByTagName(this.element, 'Bay')
-      .filter(bay => !isBusBar(bay))
+      .filter(bay => !this.isBusBar(bay))
       .map(bay => {
         const {x, y} = getPosition(bay);
         return { element: bay, pos: { x, y } };
@@ -67,23 +77,33 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
   /**
    * Calculate the full X coordinates of this VoltageLevel.
    */
-  get fullVoltageLevelX(): number {
-    let highestNumber = 0;
-    Array.from(this.bays).forEach(bay => highestNumber = Math.max(highestNumber, bay.pos.x!))
+  get biggestVoltageLevelXCoordinate(): number {
+    let finalX = 0;
+    // Get the x of the last bay (basically the 'biggest' x)
+    Array.from(this.bays).forEach(bay => finalX = Math.max(finalX, bay.pos.x!))
 
-    Array.from(this.bays).filter(bay => bay.pos.x! == highestNumber)
+    /**
+     * Because the width of the last bay is also needed, look up the bay
+     * and find the ConductingEquipment containing the biggest x coordinate.
+     * 
+     * TODO: Make more elegant.
+     */
+    Array.from(this.bays)
+      .filter(bay => bay.pos.x! == finalX)
       .forEach(bay => {
         let bayMaxX = 0;
         bay.element.querySelectorAll('ConductingEquipment')
         .forEach(equipment => bayMaxX = Math.max(bayMaxX, getPosition(equipment).x!))
-        highestNumber = highestNumber + bayMaxX;
+        finalX += bayMaxX;
       })
-    return highestNumber;
+
+    return finalX;
   }
 
-  firstUpdated(): void {
-    // Pass the Substation SVG to all Bays
-    this.shadowRoot!.querySelectorAll("bay-sld").forEach(bay => (<BaySld>(bay)).svg = this.svg);
+  /**
+   * Draw all the routes of all the BusBars in this VoltageLevel.
+   */
+  drawBusBarConnections(): void {
     this.busBars.forEach(busbar => {
       const pathName = busbar.element.getElementsByTagName('ConnectivityNode')[0].getAttribute('pathName');
 
@@ -120,6 +140,13 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
     })
   }
 
+  firstUpdated(): void {
+    // Pass the Substation SVG to all Bays
+    this.shadowRoot!.querySelectorAll("bay-sld").forEach(bay => (<BaySld>(bay)).svg = this.svg);
+
+    this.drawBusBarConnections();
+  }
+
   render(): TemplateResult {
     return html`<section>
       <div style="grid-template-columns: repeat(100, 64px);grid-template-rows: repeat(100, 64px)">
@@ -127,7 +154,7 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
           html`<busbar-sld
             .element=${busbar.element}
             .downer=${true}
-            style="grid-column-start:${busbar.pos.x};grid-column-end:${this.fullVoltageLevelX};grid-row:${busbar.pos.y};">
+            style="grid-column-start:${busbar.pos.x};grid-column-end:${this.biggestVoltageLevelXCoordinate};grid-row:${busbar.pos.y};">
             </busbar-sld>`
         )}
         ${this.bays.map(bay => 
