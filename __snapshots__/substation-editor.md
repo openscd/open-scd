@@ -39,9 +39,9 @@
     <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
-  <voltage-level-editor slot="container">
+  <voltage-level-editor>
   </voltage-level-editor>
-  <voltage-level-editor slot="container">
+  <voltage-level-editor>
   </voltage-level-editor>
 </editor-container>
 
@@ -88,15 +88,9 @@
     <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
-  <voltage-level-editor
-    readonly=""
-    slot="container"
-  >
+  <voltage-level-editor readonly="">
   </voltage-level-editor>
-  <voltage-level-editor
-    readonly=""
-    slot="container"
-  >
+  <voltage-level-editor readonly="">
   </voltage-level-editor>
 </editor-container>
 

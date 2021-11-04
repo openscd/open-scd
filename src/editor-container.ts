@@ -181,7 +181,7 @@ export class EditorContainer extends LitElement {
       tabindex="0"
     >
       ${this.renderHeader()}
-      <slot name="container"></slot>
+      <slot></slot>
     </section>`;
   }
 

@@ -39,10 +39,7 @@
     <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
-  <div
-    id="ceContainer"
-    slot="container"
-  >
+  <div id="ceContainer">
     <conducting-equipment-editor>
     </conducting-equipment-editor>
     <conducting-equipment-editor>
@@ -99,10 +96,7 @@
     <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
-  <div
-    id="ceContainer"
-    slot="container"
-  >
+  <div id="ceContainer">
     <conducting-equipment-editor readonly="">
     </conducting-equipment-editor>
     <conducting-equipment-editor readonly="">

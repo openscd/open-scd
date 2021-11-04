@@ -184,7 +184,7 @@ describe('editor-container', () => {
     );
     beforeEach(async () => {
       parent = await fixture(
-        `<editor-container header="parent header"><bay-editor .element=${bay} slot="container"></bay-editor></editor-container>`
+        `<editor-container header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
       );
 
       element = parent
@@ -217,7 +217,7 @@ describe('editor-container', () => {
 
     it('negated the set contrasted property of the parent', async () => {
       parent = await fixture(
-        `<editor-container contrasted header="parent header"><bay-editor .element=${bay} slot="container"></bay-editor></editor-container>`
+        `<editor-container contrasted header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
       );
 
       element = parent
@@ -230,7 +230,7 @@ describe('editor-container', () => {
 
     it('makes sure maximum level is 6', async () => {
       parent = await fixture(
-        `<editor-container level="6" header="parent header"><bay-editor .element=${bay} slot="container"></bay-editor></editor-container>`
+        `<editor-container level="6" header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
       );
 
       element = parent
