@@ -592,7 +592,7 @@ function fCDASelector(tagName: SCLTag, identity: string): string {
   const [ldInst, prefix, lnClass, lnInst] = childIdentity.split(/[ /.]/);
 
   const matchDoDa = childIdentity.match(
-    /.([A-Z][a-z0-9.]*) ([A-Za-z0-9.]*) \(/
+    /.([A-Z][A-Za-z0-9.]*) ([A-Za-z0-9.]*) \(/
   );
   const doName = matchDoDa && matchDoDa[1] ? matchDoDa[1] : '';
   const daName = matchDoDa && matchDoDa[2] ? matchDoDa[2] : '';
