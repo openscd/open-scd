@@ -35,6 +35,7 @@
         aria-disabled="false"
         graphic="control"
         mwc-list-item=""
+        selected=""
         tabindex="0"
         value="IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos stVal (ST)"
       >
@@ -44,6 +45,7 @@
         aria-disabled="false"
         graphic="control"
         mwc-list-item=""
+        selected=""
         tabindex="-1"
         value="IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.Pos q (ST)"
       >

@@ -86,7 +86,7 @@ export function editDataSetWizard(element: Element): Wizard {
         html`<filtered-list multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
-              html`<mwc-check-list-item value="${identity(fcda)}"
+              html`<mwc-check-list-item selected value="${identity(fcda)}"
                 >${(<string>identity(fcda)).split('>')[4]}</mwc-check-list-item
               >`
           )}</filtered-list
