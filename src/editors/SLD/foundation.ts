@@ -34,10 +34,20 @@ export interface SldElement {
 }
 
 /**
- * Defining specific method for getting the element's full offset.
+ * Class containing properties/functions for exchanging X/Y offsets. 
  */
-export interface ElementPosition {
-  get fullOffset(): Point
+export interface XYPosition {
+  /**
+   * Full X and Y offset of the parent of this element (0-based).
+   * Should be set by the parent of this element.
+   */
+  fullParentOffset: Point
+
+  /**
+   * Full X and Y offset of this element (0-based).
+   * Should be implemented with the 'fullParentOffset' property
+   */
+  get myOwnFullOffset(): Point;
 }
 
 export function getPosition(element: Element): Point {

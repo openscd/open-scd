@@ -8,13 +8,13 @@ import {
 } from 'lit-element';
 
 import { getChildElementsByTagName } from '../../foundation.js';
-import { drawRoute, ElementPosition, getPosition, Point, SldElement } from './foundation.js';
+import { drawRoute, XYPosition, getPosition, Point, SldElement } from './foundation.js';
 
 /**
  * SLD component of a Bay component.
  */
 @customElement('bay-sld')
-export class BaySld extends LitElement implements ElementPosition {
+export class BaySld extends LitElement implements XYPosition {
 
   /**
    * Property holding the Bay XML element.
@@ -32,15 +32,18 @@ export class BaySld extends LitElement implements ElementPosition {
   @property()
   svg!: HTMLElement;
 
+  /**
+   * Overridden from XYPosition
+   */
+  // --------------------------
   @property()
   fullParentOffset!: Point
 
-  get fullOffset(): Point {
+  get myOwnFullOffset(): Point {
     const {x, y} = getPosition(this.element);
-    // Extract 1 because SLD is 1-based, grid is 0-based.
-    // Also, add offset from parent.
     return {x: (x! - 1) + this.fullParentOffset.x!, y: (y! - 1) + this.fullParentOffset.y!};
   }
+  // --------------------------
 
   /**
    * True if this Bay is built up downwards.
@@ -147,10 +150,10 @@ export class BaySld extends LitElement implements ElementPosition {
       this.equipmentElements
       .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
       .forEach(element => {
-        const cnX = (cn.pos.x! - 1) + this.fullOffset.x!;
-        const cnY = (cn.pos.y! - 1) + this.fullOffset.y!;
-        const elementX = (element.pos.x! - 1) + this.fullOffset.x!;
-        const elementY = (element.pos.y! - 1) + this.fullOffset.y!;
+        const cnX = (cn.pos.x! - 1) + this.myOwnFullOffset.x!;
+        const cnY = (cn.pos.y! - 1) + this.myOwnFullOffset.y!;
+        const elementX = (element.pos.x! - 1) + this.myOwnFullOffset.x!;
+        const elementY = (element.pos.y! - 1) + this.myOwnFullOffset.y!;
 
         if ((elementY > cnY)) {
           drawRoute({x: cnX, y: cnY}, {x: elementX, y: elementY}, this.svg)

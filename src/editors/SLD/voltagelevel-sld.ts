@@ -9,13 +9,13 @@ import {
 
 import { getChildElementsByTagName } from '../../foundation.js';
 import { BaySld } from './bay-sld.js';
-import { drawRoute, ElementPosition, getPosition, Point, SldElement } from './foundation.js';
+import { drawRoute, XYPosition, getPosition, Point, SldElement } from './foundation.js';
 
 /**
  * SLD component of a VoltageLevel component.
  */
 @customElement('voltagelevel-sld')
-export class VoltageLevelSld extends LitElement implements ElementPosition {
+export class VoltageLevelSld extends LitElement implements XYPosition {
 
   /**
    * Property holding the VoltageLevel XML element.
@@ -29,15 +29,19 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
   @property()
   svg!: HTMLElement;
 
+  /**
+   * Overridden from XYPosition
+   */
+  // --------------------------
   @property()
   fullParentOffset!: Point
 
-  get fullOffset(): Point {
+  get myOwnFullOffset(): Point {
+    // Substation doesn't have a position, so not used it.
     const {x, y} = getPosition(this.element);
-    // Extract 1 because SLD is 1-based, grid is 0-based.
-    // Also, add offset from parent.
     return {x: x! - 1, y: y! - 1};
   }
+  // --------------------------
   
   /**
    * Checking of a Bay is a BusBar or not.
@@ -116,16 +120,16 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
           .filter(a => (<BaySld>(a)).name == bay.element.getAttribute('name'))
           .forEach(b => {
             const casted = (<BaySld>(b));
-            bayOffsetX = casted.fullOffset.x;
-            bayOffsetY = casted.fullOffset.y;
+            bayOffsetX = casted.myOwnFullOffset.x;
+            bayOffsetY = casted.myOwnFullOffset.y;
           });
 
         Array.from(bay.element.getElementsByTagName('ConductingEquipment'))
           .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
           .forEach(eq => {
 
-          const busbarX = (busbar.pos.x! - 1) + this.fullOffset.x!;
-          const busbarY = (busbar.pos.y! - 1) + this.fullOffset.y!;
+          const busbarX = (busbar.pos.x! - 1) + this.myOwnFullOffset.x!;
+          const busbarY = (busbar.pos.y! - 1) + this.myOwnFullOffset.y!;
 
           const eqX = (getPosition(eq).x! - 1) + bayOffsetX!;
           const eqY = (getPosition(eq).y! - 1) + bayOffsetY!;
@@ -160,7 +164,7 @@ export class VoltageLevelSld extends LitElement implements ElementPosition {
         ${this.bays.map(bay => 
           html`<bay-sld
             .element=${bay.element}
-            .fullParentOffset=${this.fullOffset}
+            .fullParentOffset=${this.myOwnFullOffset}
             style="grid-column:${bay.pos.x!};grid-row:${bay.pos.y!};"
             .downer=${true}
           >
