@@ -76,7 +76,9 @@ export class EditorContainer extends LitElement {
 
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
+
     if (this.addMenu) this.addMenu.anchor = this.headerContainer;
+
     const parentEditorContainer =
       <EditorContainer>(
         (<ShadowRoot>this.parentNode).host?.closest('editor-container')
@@ -124,6 +126,7 @@ export class EditorContainer extends LitElement {
               id="menu"
               corner="TOP_RIGHT"
               menuCorner="END"
+              .anchor=${this.headerContainer}
               @selected=${(e: Event) => {
                 const tagName = (<ListItem>(<Menu>e.target).selected).value;
                 this.openCreateWizard(tagName);
