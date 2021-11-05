@@ -4,12 +4,14 @@
 
 ```html
 <div id="tfcontainer">
-  <mwc-textfield
-    icontrailing="search"
-    label=""
-    outlined=""
-  >
-  </mwc-textfield>
+  <abbr title="[filter]">
+    <mwc-textfield
+      icontrailing="search"
+      label=""
+      outlined=""
+    >
+    </mwc-textfield>
+  </abbr>
   <mwc-formfield class="checkall">
     <mwc-checkbox>
     </mwc-checkbox>

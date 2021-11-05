@@ -23,6 +23,7 @@ import {
   SCLTag,
   getChildElementsByTagName,
   cloneElement,
+  depth,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -544,5 +545,33 @@ describe('foundation', () => {
       expect(newElement.attributes.length).to.equal(1);
       expect(newElement).to.not.have.attribute('attr1');
     });
+  });
+
+  describe('depth', () => {
+    const circular = { a: { b: {} }, c: {} };
+    circular.a.b = circular;
+
+    const fiveDeep: unknown = [
+      'first level',
+      2,
+      {
+        a: 'second level',
+        b: 2,
+        c: [
+          'third level',
+          { a: 'fourth level', b: 2, c: { a: 'fifth level!' } },
+        ],
+      },
+      'test',
+    ];
+
+    it("returns the given object's or array's depth", () =>
+      expect(depth(<Record<string, unknown>>fiveDeep)).to.equal(5));
+
+    it('returns zero if given something other than an object or array', () =>
+      expect(depth(<Record<string, unknown>>(<unknown>'test'))).to.equal(0));
+
+    it('returns Infinity if given a circularly defined object or array', () =>
+      expect(depth(circular)).to.not.be.finite);
   });
 });

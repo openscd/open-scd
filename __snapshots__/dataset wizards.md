@@ -1,6 +1,6 @@
 # `dataset wizards`
 
-## `editDataSetWizard`
+## `include a dataset edit wizard`
 
 ####   `looks like the latest snapshot`
 
@@ -25,6 +25,11 @@
       required=""
     >
     </wizard-textfield>
+    <mwc-button
+      icon="add"
+      label="[wizard.title.add]"
+    >
+    </mwc-button>
     <filtered-list multi="">
       <mwc-check-list-item
         aria-disabled="false"
