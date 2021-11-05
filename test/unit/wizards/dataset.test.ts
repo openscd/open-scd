@@ -1,4 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import sinon, { SinonSpy } from 'sinon';
 
 import {
   isUpdate,
@@ -18,6 +19,7 @@ import { MockWizard } from '../../mock-wizard.js';
 describe('dataset wizards', () => {
   let doc: XMLDocument;
   let element: MockWizard;
+  let wizardEvent: SinonSpy;
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
@@ -26,17 +28,28 @@ describe('dataset wizards', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
-  describe('editDataSetWizard', () => {
+  describe('include a dataset edit wizard', () => {
     beforeEach(async () => {
       const wizard = editDataSetWizard(
         doc.querySelector('IED[name="IED2"] DataSet[name="GooseDataSet1"]')!
       );
       element.workflow.push(wizard);
       await element.requestUpdate();
+
+      wizardEvent = sinon.spy();
+      window.addEventListener('wizard', wizardEvent);
     });
-    it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
-    }).timeout(5000);
+
+    it('looks like the latest snapshot', async () =>
+      expect(element.wizardUI.dialog).to.equalSnapshot()).timeout(5000);
+
+    it('allows to add a new FCDA on add FCDA button click', async () => {
+      const addButton = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector('mwc-button[icon="add"]')
+      );
+      await addButton.click();
+      expect(wizardEvent).to.be.calledTwice;
+    });
   });
 
   describe('updateDataSetAction', () => {
@@ -88,6 +101,7 @@ describe('dataset wizards', () => {
         );
       });
     });
+
     describe('with connected DataSet', () => {
       beforeEach(async () => {
         dataSet = doc.querySelector(
