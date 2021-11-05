@@ -251,6 +251,7 @@
 						<DataSet name="GooseDataSet1">
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" fc="ST"/>
 							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" fc="ST"/>
+							<FCDA ldInst="CBSW" prefix="" lnClass="XSWI" lnInst="2" doName="OpSlc.dsd" daName="sasd.ads.asd" fc="ST"/>
 						</DataSet>
 						<GSEControl type="GOOSE" appID="0002" fixedOffs="false" confRev="1" name="GCB" datSet="GooseDataSet1">
 						</GSEControl>

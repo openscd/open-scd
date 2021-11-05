@@ -51,6 +51,16 @@
       >
         CBSW/ XSWI 2.Pos q (ST)
       </mwc-check-list-item>
+      <mwc-check-list-item
+        aria-disabled="false"
+        graphic="control"
+        mwc-list-item=""
+        selected=""
+        tabindex="-1"
+        value="IED2>>CBSW>GooseDataSet1>CBSW/ XSWI 2.OpSlc.dsd sasd.ads.asd (ST)"
+      >
+        CBSW/ XSWI 2.OpSlc.dsd sasd.ads.asd (ST)
+      </mwc-check-list-item>
     </filtered-list>
   </div>
   <mwc-button
