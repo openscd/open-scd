@@ -56,6 +56,7 @@ export class SubstationSld extends LitElement implements XYPosition {
             return html`<voltagelevel-sld
               .element=${voltagelevel}
               .fullParentOffset=${this.myOwnFullOffset}
+              .downer=${true}
               style="grid-column:${x};grid-row:${y};">
             </voltagelevel-sld>`
           })}

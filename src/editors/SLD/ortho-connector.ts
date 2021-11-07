@@ -9,7 +9,7 @@
 
 type BasicCardinalPoint = 'n' | 'e' | 's' | 'w';
 type Direction = 'v' | 'h';
-type Side = 'top' | 'right' | 'bottom' | 'left';
+export type Side = 'top' | 'right' | 'bottom' | 'left';
 type BendDirection = BasicCardinalPoint | 'unknown' | 'none';
 
 /**

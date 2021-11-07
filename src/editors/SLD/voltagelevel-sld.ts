@@ -30,6 +30,12 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
   svg!: HTMLElement;
 
   /**
+   * True if this VoltageLevel is built up downwards.
+   */
+  @property()
+  downer = false;
+
+  /**
    * Overridden from XYPosition
    */
   // --------------------------
@@ -157,7 +163,7 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
         ${this.busBars.map(busbar =>
           html`<busbar-sld
             .element=${busbar.element}
-            .downer=${true}
+            .downer=${this.downer}
             style="grid-column-start:${busbar.pos.x};grid-column-end:${this.biggestVoltageLevelXCoordinate};grid-row:${busbar.pos.y};">
             </busbar-sld>`
         )}
@@ -166,7 +172,7 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
             .element=${bay.element}
             .fullParentOffset=${this.myOwnFullOffset}
             style="grid-column:${bay.pos.x!};grid-row:${bay.pos.y!};"
-            .downer=${true}
+            .downer=${this.downer}
           >
           </bay-sld>`
         )}

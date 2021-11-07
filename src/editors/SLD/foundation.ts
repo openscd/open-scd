@@ -1,4 +1,4 @@
-import { OrthogonalConnector } from "./ortho-connector";
+import { OrthogonalConnector, Side } from "./ortho-connector";
 
 export type GraphNode = {
   element: Element;
@@ -31,6 +31,11 @@ export interface Point {
 export interface SldElement {
   element: Element;
   pos: Point;
+}
+
+interface PointSides {
+  firstPointSide: Side;
+  secondPointSide: Side;
 }
 
 /**
@@ -251,10 +256,37 @@ export function updateEdges(nodes: GraphNode[], edges: GraphEdge[]): void {
   });
 }
 
+function getDirections(firstPoint: Point, secondPoint: Point): PointSides {
+  // If points are underneath each other..
+  if (firstPoint.x! == secondPoint.x!) {
+    // Determine which one stands on top.
+    if (firstPoint.y! < secondPoint.y!) {
+      return {firstPointSide: 'bottom', secondPointSide: 'top'};
+    } else {
+      return {firstPointSide: 'top', secondPointSide: 'bottom'};
+    }
+  } else {
+    if (firstPoint.y! <= secondPoint.y!) {
+      if (firstPoint.x! < secondPoint.x!) {
+        return {firstPointSide: 'right', secondPointSide: 'left'};
+      } else {
+        return {firstPointSide: 'left', secondPointSide: 'right'};
+      }
+    } else {
+      if (firstPoint.x! < secondPoint.x!) {
+        return {firstPointSide: 'left', secondPointSide: 'right'};
+      } else {
+        return {firstPointSide: 'right', secondPointSide: 'left'};
+      }
+    }
+  }
+}
+
 /**
  * Draw a route from the first point to the second point.
  * @param firstPoint The first point of this connection.
  * @param secondPoint The second point of this connection.
+ * @param downer Is this part drawn up or down?
  * @param svgToDrawOn The SVG to draw the route on.
  */
 export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement): void {
@@ -272,9 +304,12 @@ export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HT
     height: 64,
   };
 
+  // Get the preferred sides.
+  const {firstPointSide, secondPointSide} = getDirections(firstPoint, secondPoint);
+
   const path = OrthogonalConnector.route({
-    pointA: { shape: shapeA, side: 'bottom', distance: 0.5 },
-    pointB: { shape: shapeB, side: 'top', distance: 0.5 },
+    pointA: { shape: shapeA, side: firstPointSide, distance: 0.5 },
+    pointB: { shape: shapeB, side: secondPointSide, distance: 0.5 },
     shapeMargin: 0,
     globalBoundsMargin: 5,
     globalBounds: {
