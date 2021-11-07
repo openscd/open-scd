@@ -465,7 +465,7 @@ export const connectivityNodeIcon = html`<svg
     <circle cx="10" cy="10" r="2"/>
 </svg>`;
 
-export const busBarIcon = html`<svg>
+export const busBarIcon = html`<svg height="2">
   <line
     x1="0"
     y1="0"
