@@ -1,3 +1,4 @@
+import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
@@ -6,6 +7,8 @@ import {
   getValue,
   identity,
   newWizardEvent,
+  selector,
+  Update,
   Wizard,
   WizardAction,
   WizardActor,
@@ -13,33 +16,58 @@ import {
 } from '../foundation.js';
 import { wizards } from './wizard-library.js';
 
-export function updateDataSetAction(element: Element): WizardActor {
-  return (inputs: WizardInput[]): WizardAction[] => {
+function updateDataSetAction(element: Element): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
-
     const oldName = element.getAttribute('name');
-    if (name === oldName && desc === element.getAttribute('desc')) return [];
 
-    const newElement = cloneElement(element, { name, desc });
+    const dataSetUpdateAction: Update[] = [];
+    if (!(name === oldName && desc === element.getAttribute('desc'))) {
+      const newElement = cloneElement(element, { name, desc });
 
-    const dataSetUpdateAction = [
-      { old: { element }, new: { element: newElement } },
-    ];
+      dataSetUpdateAction.push({
+        old: { element },
+        new: { element: newElement },
+      });
+    }
 
-    const cbUpdateAction =
+    const controlBlockUpdateActions =
       name !== oldName
         ? Array.from(
             element.parentElement?.querySelectorAll(
               `ReportControlBock[datSet=${oldName}], GSEControl[datSet=${oldName}],SampledValueControl[datSet=${oldName}] `
             ) ?? []
           ).map(cb => {
-            const newCb = cloneElement(element, { datSet: name });
+            const newCb = cloneElement(cb, { datSet: name });
             return { old: { element: cb }, new: { element: newCb } };
           })
         : [];
 
-    return dataSetUpdateAction.concat(cbUpdateAction);
+    const fCDARemoveActions = Array.from(
+      wizard.shadowRoot!.querySelectorAll(
+        'filtered-list > mwc-check-list-item:not([selected])'
+      )
+    )
+      .map(listItem =>
+        element.querySelector(selector('FCDA', (<CheckListItem>listItem).value))
+      )
+      .filter(fcda => fcda)
+      .map(fcda => {
+        return {
+          old: {
+            parent: element,
+            element: fcda!,
+            reference: fcda!.nextSibling,
+          },
+        };
+      });
+
+    return [
+      ...fCDARemoveActions,
+      ...dataSetUpdateAction,
+      ...controlBlockUpdateActions,
+    ];
   };
 }
 
@@ -86,7 +114,7 @@ export function editDataSetWizard(element: Element): Wizard {
         html`<filtered-list multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
-              html`<mwc-check-list-item value="${identity(fcda)}"
+              html`<mwc-check-list-item selected value="${identity(fcda)}"
                 >${(<string>identity(fcda)).split('>')[4]}</mwc-check-list-item
               >`
           )}</filtered-list
