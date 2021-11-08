@@ -311,7 +311,7 @@ export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HT
     pointA: { shape: shapeA, side: firstPointSide, distance: 0.5 },
     pointB: { shape: shapeB, side: secondPointSide, distance: 0.5 },
     shapeMargin: 0,
-    globalBoundsMargin: 5,
+    globalBoundsMargin: 0,
     globalBounds: {
       left: 0,
       top: 0,
