@@ -79,7 +79,7 @@ export class VoltageLevelEditor extends LitElement {
   renderIedContainer(): TemplateResult {
     const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
-      ? html`<div id="iedcontainer" slot="container">
+      ? html`<div id="iedcontainer">
           ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
         </div>`
       : html``;
@@ -121,7 +121,7 @@ export class VoltageLevelEditor extends LitElement {
         ></mwc-icon-button>
       </abbr>
       ${this.renderIedContainer()}
-      <div id="bayContainer" slot="container">
+      <div id="bayContainer">
         ${Array.from(this.element?.querySelectorAll(selectors.Bay) ?? []).map(
           bay => html`<bay-editor
             .element=${bay}

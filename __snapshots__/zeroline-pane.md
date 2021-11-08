@@ -35,7 +35,7 @@
     </abbr>
   </nav>
 </h1>
-<section tabindex="0">
+<section>
   <substation-editor>
   </substation-editor>
   <substation-editor>
@@ -79,7 +79,7 @@
     </abbr>
   </nav>
 </h1>
-<section tabindex="0">
+<section>
   <substation-editor readonly="">
   </substation-editor>
   <substation-editor readonly="">
@@ -123,7 +123,7 @@
     </abbr>
   </nav>
 </h1>
-<section tabindex="0">
+<section>
   <substation-editor>
   </substation-editor>
   <substation-editor>

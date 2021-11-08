@@ -76,7 +76,9 @@ export class EditorContainer extends LitElement {
 
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
+
     if (this.addMenu) this.addMenu.anchor = this.headerContainer;
+
     const parentEditorContainer =
       <EditorContainer>(
         (<ShadowRoot>this.parentNode).host?.closest('editor-container')
@@ -89,6 +91,8 @@ export class EditorContainer extends LitElement {
     );
 
     this.contrasted = !parentEditorContainer.contrasted;
+
+    this.tabIndex = 0;
   }
 
   private renderAddButtons(): TemplateResult[] {
@@ -122,6 +126,7 @@ export class EditorContainer extends LitElement {
               id="menu"
               corner="TOP_RIGHT"
               menuCorner="END"
+              .anchor=${this.headerContainer}
               @selected=${(e: Event) => {
                 const tagName = (<ListItem>(<Menu>e.target).selected).value;
                 this.openCreateWizard(tagName);
@@ -178,15 +183,14 @@ export class EditorContainer extends LitElement {
         contrasted: this.contrasted,
         nomargin: this.nomargin,
       })}"
-      tabindex="0"
     >
       ${this.renderHeader()}
-      <slot name="container"></slot>
+      <slot></slot>
     </section>`;
   }
 
   static styles = css`
-    :host(.moving) section {
+    :host(.moving) .container {
       opacity: 0.3;
     }
 
@@ -195,7 +199,7 @@ export class EditorContainer extends LitElement {
       transition: all 200ms linear;
       outline-style: solid;
       margin: 8px 12px 16px;
-      padding: 0.02px; /*Dirty hack to force outline around content with margin*/
+      overflow: hidden;
       outline-width: 0px;
       outline-color: var(--mdc-theme-primary);
       opacity: 1;
@@ -215,34 +219,31 @@ export class EditorContainer extends LitElement {
 
     .nomargin {
       margin: 0px;
+      overflow: visible;
     }
 
-    .container:focus {
+    :host {
+      outline: none;
+    }
+
+    :host(:focus-within) .container {
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    }
-
-    .container:focus-within {
       outline-width: 2px;
       transition: all 250ms linear;
     }
 
-    .container:focus-within h1,
-    .container:focus-within h2,
-    .container:focus-within h3 {
+    :host(:focus-within) h1,
+    :host(:focus-within) h2,
+    :host(:focus-within) h3 {
       color: var(--mdc-theme-surface);
       transition: background-color 200ms linear;
-    }
-
-    .container:focus-within h1,
-    .container:focus-within h2,
-    .container:focus-within h3 {
       background-color: var(--mdc-theme-primary);
     }
 
-    .container.secondary:focus-within h1,
-    .container.secondary:focus-within h2,
-    .container.secondary:focus-within h3 {
+    :host(:focus-within) .container.secondary h1,
+    :host(:focus-within) .container.secondary h2,
+    :host(:focus-within) .container.secondary h3 {
       background-color: var(--mdc-theme-secondary);
     }
 

@@ -40,10 +40,7 @@
     <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
-  <div
-    id="bayContainer"
-    slot="container"
-  >
+  <div id="bayContainer">
     <bay-editor>
     </bay-editor>
     <bay-editor>
@@ -95,10 +92,7 @@
     <mwc-icon-button icon="delete">
     </mwc-icon-button>
   </abbr>
-  <div
-    id="bayContainer"
-    slot="container"
-  >
+  <div id="bayContainer">
     <bay-editor readonly="">
     </bay-editor>
     <bay-editor readonly="">
