@@ -21,7 +21,7 @@ export class BusBasSld extends LitElement {
    * True if this Bay is built up downwards.
    */
   @property()
-  downer = false;
+  downer: boolean = false;
 
   render(): TemplateResult {
     return html`<div>

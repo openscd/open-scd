@@ -33,6 +33,12 @@ export class BaySld extends LitElement implements XYPosition {
   svg!: HTMLElement;
 
   /**
+   * True if this Bay is built up downwards.
+   */
+  @property()
+  downer: boolean = false;
+
+  /**
    * Overridden from XYPosition
    */
   // --------------------------
@@ -44,12 +50,6 @@ export class BaySld extends LitElement implements XYPosition {
     return {x: (x! - 1) + this.fullParentOffset.x!, y: (y! - 1) + this.fullParentOffset.y!};
   }
   // --------------------------
-
-  /**
-   * True if this Bay is built up downwards.
-   */
-  @property()
-  downer = false;
 
   /**
    * Get all the unconnected Nodes of this particular Bay.

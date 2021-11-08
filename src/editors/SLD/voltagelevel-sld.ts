@@ -33,7 +33,7 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
    * True if this VoltageLevel is built up downwards.
    */
   @property()
-  downer = false;
+  downer: boolean = false;
 
   /**
    * Overridden from XYPosition
