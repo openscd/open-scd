@@ -36,6 +36,12 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
   downer: boolean = false;
 
   /**
+   * The space multiplyer of elements within a single bay.
+   */
+  @property()
+  baySpaceMultiply: number = 1;
+
+  /**
    * Overridden from XYPosition
    */
   // --------------------------
@@ -95,8 +101,6 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
     /**
      * Because the width of the last bay is also needed, look up the bay
      * and find the ConductingEquipment containing the biggest x coordinate.
-     * 
-     * TODO: Make more elegant.
      */
     Array.from(this.bays)
       .filter(bay => bay.pos.x! == finalX)
@@ -104,7 +108,8 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
         let bayMaxX = 0;
         bay.element.querySelectorAll('ConductingEquipment')
         .forEach(equipment => bayMaxX = Math.max(bayMaxX, getPosition(equipment).x!))
-        finalX += bayMaxX;
+        // Also extend the max X coordinate with a multiplyer.
+        finalX += bayMaxX * this.baySpaceMultiply;
       })
 
     return finalX;
@@ -137,8 +142,8 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
           const busbarX = (busbar.pos.x! - 1) + this.myOwnFullOffset.x!;
           const busbarY = (busbar.pos.y! - 1) + this.myOwnFullOffset.y!;
 
-          const eqX = (getPosition(eq).x! - 1) + bayOffsetX!;
-          const eqY = (getPosition(eq).y! - 1) + bayOffsetY!;
+          const eqX = (getPosition(eq).x! * this.baySpaceMultiply - 1) + bayOffsetX!;
+          const eqY = (getPosition(eq).y! * this.baySpaceMultiply - 1) + bayOffsetY!;
 
           if (busbarY != null && eqY != null && (busbarY > eqY)) {
             drawRoute({x: eqX, y: eqY}, {x: eqX, y: busbarY}, this.svg)
@@ -171,8 +176,9 @@ export class VoltageLevelSld extends LitElement implements XYPosition {
           html`<bay-sld
             .element=${bay.element}
             .fullParentOffset=${this.myOwnFullOffset}
-            style="grid-column:${bay.pos.x!};grid-row:${bay.pos.y!};"
             .downer=${this.downer}
+            .baySpaceMultiply=${this.baySpaceMultiply}
+            style="grid-column:${bay.pos.x!};grid-row:${bay.pos.y!};"
           >
           </bay-sld>`
         )}

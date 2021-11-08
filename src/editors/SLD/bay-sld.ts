@@ -39,6 +39,12 @@ export class BaySld extends LitElement implements XYPosition {
   downer: boolean = false;
 
   /**
+   * The space multiplyer of elements within a single bay.
+   */
+  @property()
+  baySpaceMultiply: number = 1;
+
+  /**
    * Overridden from XYPosition
    */
   // --------------------------
@@ -121,28 +127,7 @@ export class BaySld extends LitElement implements XYPosition {
   }
 
   /**
-   * The max x and y of this particular Bay.
-   */
-  get xMax(): number {
-    const posXx = <number[]>(
-      this.equipmentElements
-        .filter(sldelement => sldelement.pos.x)
-        .map(sldelement => sldelement.pos.x)
-    );
-    return Math.max(...posXx, 2);
-  }
-
-  get yMax(): number {
-    const posYs = <number[]>(
-      this.equipmentElements
-        .filter(sldelement => sldelement.pos.y)
-        .map(sldelement => sldelement.pos.y)
-    );
-    return Math.max(...posYs, 2);
-  }
-
-  /**
-   * Draw all the routes of all the ConnectivityNodes in this Bay.
+   * Draw all the ConnectivityNode routes in this Bay.
    */
   drawConnectivityNodeConnections(): void {
     this.connectivityNodeElements.forEach(cn => {
@@ -150,10 +135,11 @@ export class BaySld extends LitElement implements XYPosition {
       this.equipmentElements
       .filter(element => element.element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
       .forEach(element => {
-        const cnX = (cn.pos.x! - 1) + this.myOwnFullOffset.x!;
-        const cnY = (cn.pos.y! - 1) + this.myOwnFullOffset.y!;
-        const elementX = (element.pos.x! - 1) + this.myOwnFullOffset.x!;
-        const elementY = (element.pos.y! - 1) + this.myOwnFullOffset.y!;
+        const cnX = (cn.pos.x! * this.baySpaceMultiply - 1) + this.myOwnFullOffset.x!;
+        const cnY = (cn.pos.y! * this.baySpaceMultiply - 1) + this.myOwnFullOffset.y!;
+
+        const elementX = (element.pos.x! * this.baySpaceMultiply - 1) + this.myOwnFullOffset.x!;
+        const elementY = (element.pos.y! * this.baySpaceMultiply - 1) + this.myOwnFullOffset.y!;
 
         if ((elementY > cnY)) {
           drawRoute({x: cnX, y: cnY}, {x: elementX, y: elementY}, this.svg)
@@ -166,6 +152,10 @@ export class BaySld extends LitElement implements XYPosition {
 
   firstUpdated(): void {
     this.drawConnectivityNodeConnections();
+  }
+
+  getElementPositionAdjustedWithMultiplyer(xYposition: number) {
+    return xYposition * this.baySpaceMultiply;
   }
 
   /**
@@ -187,9 +177,9 @@ export class BaySld extends LitElement implements XYPosition {
             html`<conducting-equipment-editor
               .element=${element.element}
               class="element"
-              style="grid-column:${element.pos.x};grid-row:${this.downer
-                ? element.pos.y
-                : -element.pos.y!};"
+              style="grid-column:${this.getElementPositionAdjustedWithMultiplyer(element.pos.x!)};grid-row:${this.downer
+                ? this.getElementPositionAdjustedWithMultiplyer(element.pos.y!)
+                : this.getElementPositionAdjustedWithMultiplyer(-element.pos.y!)};"
             >
             </conducting-equipment-editor>`
         )}
@@ -198,9 +188,9 @@ export class BaySld extends LitElement implements XYPosition {
             html`<connectivity-node-editor
               .element=${element.element}
               class="element"
-              style="grid-column:${element.pos.x};grid-row:${this.downer
-                ? element.pos.y
-                : -element.pos.y!};"
+              style="grid-column:${this.getElementPositionAdjustedWithMultiplyer(element.pos.x!)};grid-row:${this.downer
+                ? this.getElementPositionAdjustedWithMultiplyer(element.pos.y!)
+                : this.getElementPositionAdjustedWithMultiplyer(-element.pos.y!)};"
             >
             </connectivity-node-editor>`
         )}

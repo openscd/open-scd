@@ -28,6 +28,12 @@ export class SubstationSld extends LitElement implements XYPosition {
   @query('#svg') svg!: HTMLElement;
 
   /**
+   * The space multiplyer of elements within a single bay.
+   */
+  @property()
+  baySpaceMultiply: number = 2;
+
+  /**
    * Overridden from XYPosition
    */
   // --------------------------
@@ -57,6 +63,7 @@ export class SubstationSld extends LitElement implements XYPosition {
               .element=${voltagelevel}
               .fullParentOffset=${this.myOwnFullOffset}
               .downer=${true}
+              .baySpaceMultiply=${this.baySpaceMultiply}
               style="grid-column:${x};grid-row:${y};">
             </voltagelevel-sld>`
           })}
