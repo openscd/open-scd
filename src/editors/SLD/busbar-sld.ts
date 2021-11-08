@@ -23,18 +23,19 @@ export class BusBasSld extends LitElement {
   @property()
   downer: boolean = false;
 
+  /**
+   * The 'justify-content' draws all elements within the div from bottom up ('flex-end')
+   * or top down ('flex-start).
+   * This depends if the busbar is drawn up or down.
+   */
   render(): TemplateResult {
-    return html`<div>
+    return html`<div
+      style="justify-content: ${this.downer ? css`flex-end;` : css`flex-start`}">
       ${this.downer ? html`<h4>${this.element.getAttribute('name')}</h4>
       ${busBarIcon}` : html`${busBarIcon}<h4>${this.element.getAttribute('name')}</h4>`}
     </div>`;
   }
 
-  /**
-   * TODO: Always assumes going down.
-   * justify-content: flex-end; draws everything at bottom.
-   * justify-content: flex-start; draws everything on top. 
-   */
   static styles = css`
     div {
       grid-template-columns: repeat(1, 1fr);
