@@ -70,7 +70,7 @@ export function handleError(error: Error): Promise<never> {
 }
 
 export function isNotFoundError(reason: any): boolean {
-  return (reason.type && reason.type === NOT_FOUND_ERROR);
+  return (reason.type !== undefined && reason.type === NOT_FOUND_ERROR);
 }
 
 export function createLogEvent(reason: any): void {
