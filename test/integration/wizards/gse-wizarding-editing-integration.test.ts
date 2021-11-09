@@ -31,7 +31,7 @@ describe('gse wizarding editing integration', () => {
         )
       );
       minTimeField = element.wizardUI.dialog!.querySelector(
-        'wizard-textfield[label="MinTime"]'
+        'wizard-text-field[label="MinTime"]'
       )!;
       await minTimeField.updateComplete;
     });

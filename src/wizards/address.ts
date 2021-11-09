@@ -11,6 +11,7 @@ import {
   html,
   WizardInput,
 } from '../foundation.js';
+import { WizardTextField } from '../wizard-textfield.js';
 import {
   pTypesGSESMV,
   typeNullable,
@@ -30,14 +31,14 @@ export function renderGseSmvAddress(parent: Element): TemplateResult[] {
     </mwc-formfield>`,
     html`${pTypesGSESMV.map(
       ptype =>
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="${ptype}"
           .maybeValue=${parent
             .querySelector(`Address > P[type="${ptype}"]`)
             ?.innerHTML.trim() ?? null}
           ?nullable=${typeNullable[ptype]}
           pattern="${ifDefined(typePattern[ptype])}"
-        ></wizard-textfield>`
+        ></${WizardTextField}>`
     )}`,
   ];
 }

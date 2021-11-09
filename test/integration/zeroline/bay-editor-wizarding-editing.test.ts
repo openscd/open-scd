@@ -38,10 +38,10 @@ describe('bay-editor wizarding editing integration', () => {
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -124,7 +124,7 @@ describe('bay-editor wizarding editing integration', () => {
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')

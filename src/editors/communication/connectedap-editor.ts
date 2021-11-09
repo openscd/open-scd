@@ -35,6 +35,7 @@ import {
 } from './p-types.js';
 
 import { selectors } from './foundation.js';
+import { WizardTextField } from '../../wizard-textfield.js';
 
 /** Data needed to uniquely identify an `AccessPoint` */
 interface apAttributes {
@@ -255,7 +256,7 @@ function editConnectedApWizard(element: Element): Wizard {
             ></mwc-checkbox> </mwc-formfield
           >${getTypes(element).map(
             ptype =>
-              html`<wizard-textfield
+              html`<${WizardTextField}
                 label="${ptype}"
                 pattern="${ifDefined(typePattern[ptype])}"
                 ?nullable=${typeNullable[ptype]}
@@ -263,7 +264,7 @@ function editConnectedApWizard(element: Element): Wizard {
                   `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
                 )?.innerHTML ?? null}
                 maxLength="${ifDefined(typeMaxLength[ptype])}"
-              ></wizard-textfield>`
+              ></${WizardTextField}>`
           )}`,
       ],
     },

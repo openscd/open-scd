@@ -1,13 +1,12 @@
 import { fixture, expect } from '@open-wc/testing';
 import { html } from '../../src/foundation.js';
 
-import '../../src/wizard-textfield.js';
 import { WizardTextField } from '../../src/wizard-textfield.js';
 
 describe('wizard-textfield', () => {
   let element: WizardTextField;
   beforeEach(async () => {
-    element = await fixture(html`<wizard-textfield></wizard-textfield>`);
+    element = await fixture(html`<${WizardTextField}></${WizardTextField}>`);
   });
 
   it('does not render a null value switch', () =>

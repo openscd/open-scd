@@ -12,6 +12,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { WizardTextField } from '../wizard-textfield.js';
 import { updateNamingAction } from './foundation/actions.js';
 
 const types: Partial<Record<string, string>> = {
@@ -93,7 +94,7 @@ function render(
 ): TemplateResult[] {
   return [
     renderTypeSelector(option, type),
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="name"
       .maybeValue=${name}
       helper="${translate('conductingequipment.wizard.nameHelper')}"
@@ -101,13 +102,13 @@ function render(
       validationMessage="${translate('textfield.required')}"
       dialogInitialFocus
       .reservedValues=${reservedNames}
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="desc"
       .maybeValue=${desc}
       nullable
       helper="${translate('conductingequipment.wizard.descHelper')}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
   ];
 }
 

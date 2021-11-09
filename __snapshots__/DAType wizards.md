@@ -579,7 +579,7 @@
         </span>
       </mwc-list-item>
     </mwc-select>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"
       label="id"
@@ -588,15 +588,15 @@
       pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[𐀀\-󯿿]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"
@@ -635,7 +635,7 @@
       trailingicon=""
     >
     </mwc-button>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"
       label="id"
@@ -644,15 +644,15 @@
       pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[𐀀\-󯿿]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <mwc-button
       icon="playlist_add"
       label="[scl.DA]"

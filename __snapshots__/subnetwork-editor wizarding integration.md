@@ -11,28 +11,28 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[subnetwork.wizard.nameHelper]"
       label="name"
       required=""
       validationmessage="[textfield.required]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="[subnetwork.wizard.descHelper]"
       label="desc"
       nullable=""
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="[subnetwork.wizard.typeHelper]"
       label="type"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="[subnetwork.wizard.bitrateHelper]"
       label="BitRate"
       nullable=""
@@ -41,7 +41,7 @@
       unit="b/s"
       validationmessage="[textfield.nonempty]"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

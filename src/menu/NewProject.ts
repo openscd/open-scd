@@ -13,6 +13,7 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { newEmptySCD, SupportedVersion } from '../schemas.js';
+import { WizardTextField } from '../wizard-textfield.js';
 
 export default class NewProjectPlugin extends LitElement {
   private createNewProject(
@@ -49,13 +50,13 @@ export default class NewProjectPlugin extends LitElement {
           action: (inputs, wizard) => this.createNewProject(inputs, wizard),
         },
         content: [
-          html`<wizard-textfield
+          html`<${WizardTextField}
               id="srcName"
               label="name"
               value="project.scd"
               required
               dialogInitialFocus
-            ></wizard-textfield>
+            ></${WizardTextField}>
             <mwc-list activatable>
               <mwc-radio-list-item left value="2003"
                 >Edition 1 (Schema 1.7)</mwc-radio-list-item

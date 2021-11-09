@@ -16,6 +16,7 @@ import {
 import { renderGseSmvAddress, updateAddress } from './address.js';
 
 import { Checkbox } from '@material/mwc-checkbox';
+import { WizardTextField } from '../wizard-textfield.js';
 
 export function getMTimeAction(
   type: 'MinTime' | 'MaxTime',
@@ -121,20 +122,20 @@ export function editGseWizard(element: Element): Wizard {
       },
       content: [
         ...renderGseSmvAddress(element),
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="MinTime"
           .maybeValue=${minTime}
           nullable
           suffix="ms"
           type="number"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="MaxTime"
           .maybeValue=${maxTime}
           nullable
           suffix="ms"
           type="number"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
       ],
     },
   ];

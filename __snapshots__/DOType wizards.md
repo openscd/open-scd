@@ -675,7 +675,7 @@
         </span>
       </mwc-list-item>
     </mwc-select>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"
       label="id"
@@ -684,22 +684,22 @@
       pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[𐀀\-󯿿]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="[scl.cdc]"
       label="cdc"
       pattern="(SPS)|(DPS)|(INS)|(ENS)|(ACT)|(ACD)|(SEC)|(BCR)|(HST)|(VSS)|(MV)|(CMV)|(SAV)|(WYE)|(DEL)|(SEQ)|(HMV)|(HWYE)|(HDEL)|(SPC)|(DPC)|(INC)|(ENC)|(BSC)|(ISC)|(APC)|(BAC)|(SPG)|(ING)|(ENG)|(ORG)|(TSG)|(CUG)|(VSG)|(ASG)|(CURVE)|(CSG)|(DPL)|(LPL)|(CSD)|(CST)|(BTS)|(UTS)|(LTS)|(GTS)|(MTS)|(NTS)|(STS)|(CTS)|(OTS)|(VSD)"
       required=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"
@@ -738,7 +738,7 @@
       trailingicon=""
     >
     </mwc-button>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"
       label="id"
@@ -747,21 +747,21 @@
       pattern="([:_A-Za-z]|[À-Ö]|[Ø-ö]|[ø-˿]|[Ͱ-ͽ]|[Ϳ-῿]|[‌-‍]|[⁰-↏]|[Ⰰ-⿯]|[、-퟿]|[豈-﷏]|[ﷰ-�]|[𐀀\-󯿿]|[.0-9-]|·|[̀-ͯ]|[‿-⁀])+"
       required=""
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="[scl.CDC]"
       label="CDC"
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <section>
       <mwc-button
         icon="playlist_add"
@@ -1028,7 +1028,7 @@
       trailingicon=""
     >
     </mwc-button>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
@@ -1036,15 +1036,15 @@
       required=""
     >
       >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <mwc-select
       fixedmenuposition=""
       helper="[scl.type]"
@@ -1220,7 +1220,7 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
@@ -1228,15 +1228,15 @@
       required=""
     >
       >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <mwc-select
       fixedmenuposition=""
       helper="[scl.type]"

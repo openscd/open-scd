@@ -32,7 +32,7 @@ describe('dataset wizards', () => {
         )
       );
       nameField = element.wizardUI.dialog!.querySelector(
-        'wizard-textfield[label="name"]'
+        'wizard-text-field[label="name"]'
       )!;
       await nameField.updateComplete;
     });

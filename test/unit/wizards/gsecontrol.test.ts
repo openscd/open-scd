@@ -61,7 +61,7 @@ describe('gsecontrol wizards', () => {
       element.workflow.push(wizard);
       await element.requestUpdate();
       nameTextField = element.wizardUI.dialog!.querySelector<WizardTextField>(
-        'wizard-textfield[label="name"]'
+        'wizard-text-field[label="name"]'
       )!;
     });
     it('looks like the latest snapshot', async () => {

@@ -10,6 +10,7 @@ import {
   createSubNetworkAction,
   updateSubNetworkAction,
 } from '../../../../src/editors/communication/subnetwork-editor.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('SubNetworkEditor', () => {
   describe('with no nulled properties', () => {
@@ -29,7 +30,7 @@ describe('SubNetworkEditor', () => {
           label =>
             <Promise<WizardInput>>(
               fixture(
-                html`<wizard-textfield label=${label}></wizard-textfield>`
+                html`<${WizardTextField} label=${label}></${WizardTextField}>`
               )
             )
         )
@@ -168,7 +169,7 @@ describe('SubNetworkEditor', () => {
           label =>
             <Promise<WizardInput>>(
               fixture(
-                html`<wizard-textfield label=${label}></wizard-textfield>`
+                html`<${WizardTextField} label=${label}></${WizardTextField}>`
               )
             )
         )
@@ -186,14 +187,14 @@ describe('SubNetworkEditor', () => {
             'application/xml'
           ).documentElement;
 
-          inputs[3] = await fixture(html`<wizard-textfield
+          inputs[3] = await fixture(html`<${WizardTextField}
             label="BitRate"
             nullable
             .maybeValue="${null}"
             unit="b/s"
             .multipliers=${[null, 'M']}
             .multiplier="M"
-          ></wizard-textfield>`);
+          ></${WizardTextField}>`);
         });
 
         it('returns a WizardAction which returns two EditorActions', () => {

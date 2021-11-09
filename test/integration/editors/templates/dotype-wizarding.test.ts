@@ -54,10 +54,10 @@ describe('DOType wizards', () => {
         parent.wizardUI.dialog?.querySelector('mwc-select[label="values"]')
       );
       idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       cdcField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="cdc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="cdc"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -146,7 +146,7 @@ describe('DOType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); //recursive call takes time
       idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -211,7 +211,7 @@ describe('DOType wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -295,10 +295,10 @@ describe('DOType wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')

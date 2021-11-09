@@ -53,7 +53,7 @@ describe('DAType wizards', () => {
         parent.wizardUI.dialog?.querySelector('mwc-select[label="values"]')
       );
       idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -126,7 +126,7 @@ describe('DAType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

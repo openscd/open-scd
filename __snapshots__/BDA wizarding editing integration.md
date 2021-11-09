@@ -18,7 +18,7 @@
       trailingicon=""
     >
     </mwc-button>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="Name"
       label="name"
@@ -27,15 +27,15 @@
       required=""
     >
       >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       fixedmenuposition=""
       helper="Basic type"
@@ -470,14 +470,14 @@
         Dummy_orCategory
       </mwc-list-item>
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       disabled=""
       helper="Short address"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       disabled=""
       fixedmenuposition=""
@@ -607,14 +607,14 @@
         off
       </mwc-list-item>
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       disabled=""
       helper="Default value"
       label="Val"
       nullable=""
       style="display: none;"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"
@@ -646,7 +646,7 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="Name"
       label="name"
@@ -655,15 +655,15 @@
       required=""
     >
       >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="Description"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       fixedmenuposition=""
       helper="Basic type"
@@ -1082,14 +1082,14 @@
         Dummy_orCategory
       </mwc-list-item>
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       disabled=""
       helper="Short address"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       disabled=""
       fixedmenuposition=""
@@ -1169,13 +1169,13 @@
       nullable=""
     >
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       disabled=""
       helper="Default value"
       label="Val"
       nullable=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

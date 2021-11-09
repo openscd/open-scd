@@ -10,6 +10,7 @@ import {
 } from '../../../../src/foundation.js';
 
 import { editConnectedApAction } from '../../../../src/editors/communication/connectedap-editor.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('ConnectedAPEditor', () => {
   describe('has a editorAction that', () => {
@@ -30,7 +31,7 @@ describe('ConnectedAPEditor', () => {
             label =>
               <Promise<WizardInput>>(
                 fixture(
-                  html`<wizard-textfield label=${label}></wizard-textfield>`
+                  html`<${WizardTextField} label=${label}></${WizardTextField}>`
                 )
               )
           )
@@ -110,7 +111,7 @@ describe('ConnectedAPEditor', () => {
             label =>
               <Promise<WizardInput>>(
                 fixture(
-                  html`<wizard-textfield label=${label}></wizard-textfield>`
+                  html`<${WizardTextField} label=${label}></${WizardTextField}>`
                 )
               )
           )
