@@ -70,53 +70,47 @@ export class SubstationEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`
-        <editor-container
-          .element=${this.element}
-          >
-          ${this.renderIedContainer()}
-          <abbr slot="header" title="${translate('lnode.tooltip')}">
-            <mwc-icon-button
-              icon="account_tree"
-              @click=${() => this.openLNodeWizard()}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr slot="header" title="${translate('duplicate')}">
-            <mwc-icon-button
-              icon="content_copy"
-              @click=${() => cloneSubstationElement(this)}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr slot="header" title="${translate('edit')}">
-            <mwc-icon-button
-              icon="edit"
-              @click=${() => this.openEditWizard()}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr slot="header" title="${translate('move')}">
-            <mwc-icon-button
-              icon="forward"
-              @click=${() =>
-                startMove(this, SubstationEditor, SubstationEditor)}
-            ></mwc-icon-button>
-          </abbr>
-          <abbr slot="header" title="${translate('remove')}">
-            <mwc-icon-button
-              icon="delete"
-              @click=${() => this.remove()}
-            ></mwc-icon-button> </abbr
-        >${Array.from(
-          this.element.querySelectorAll(selectors.VoltageLevel)
-        ).map(
-          voltageLevel =>
-            html`<voltage-level-editor
-              .element=${voltageLevel}
-              .getAttachedIeds=${this.getAttachedIeds}
-              ?readonly=${this.readonly}
-            ></voltage-level-editor>`
-        )}</editor-container>
-      </section>
-    `;
+    return html`<editor-container .element=${this.element}>
+      <abbr slot="header" title="${translate('lnode.tooltip')}">
+        <mwc-icon-button
+          icon="account_tree"
+          @click=${() => this.openLNodeWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('duplicate')}">
+        <mwc-icon-button
+          icon="content_copy"
+          @click=${() => cloneSubstationElement(this)}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('move')}">
+        <mwc-icon-button
+          icon="forward"
+          @click=${() => startMove(this, SubstationEditor, SubstationEditor)}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="header" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button
+      ></abbr>
+      ${this.renderIedContainer()}
+      ${Array.from(this.element.querySelectorAll(selectors.VoltageLevel)).map(
+        voltageLevel =>
+          html`<voltage-level-editor
+            .element=${voltageLevel}
+            .getAttachedIeds=${this.getAttachedIeds}
+            ?readonly=${this.readonly}
+          ></voltage-level-editor>`
+      )}</editor-container
+    >`;
   }
 
   static styles = css`

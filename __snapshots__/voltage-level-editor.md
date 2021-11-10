@@ -3,8 +3,11 @@
 #### `looks like the latest snapshot`
 
 ```html
-<editor-container header="E1 - Voltage Level
-    (110.0 kV)">
+<editor-container
+  header="E1 - Voltage Level
+    (110.0 kV)"
+  tabindex="0"
+>
   <abbr
     slot="header"
     title="[lnode.tooltip]"
@@ -55,8 +58,11 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<editor-container header="E1 - Voltage Level
-    (110.0 kV)">
+<editor-container
+  header="E1 - Voltage Level
+    (110.0 kV)"
+  tabindex="0"
+>
   <abbr
     slot="header"
     title="[lnode.tooltip]"

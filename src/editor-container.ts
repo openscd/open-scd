@@ -77,6 +77,8 @@ export class EditorContainer extends LitElement {
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
 
+    this.tabIndex = 0;
+
     if (this.addMenu) this.addMenu.anchor = this.headerContainer;
 
     const parentEditorContainer =
@@ -91,8 +93,6 @@ export class EditorContainer extends LitElement {
     );
 
     this.contrasted = !parentEditorContainer.contrasted;
-
-    this.tabIndex = 0;
   }
 
   private renderAddButtons(): TemplateResult[] {
@@ -199,7 +199,7 @@ export class EditorContainer extends LitElement {
       transition: all 200ms linear;
       outline-style: solid;
       margin: 8px 12px 16px;
-      overflow: hidden;
+      padding: 0.05px;
       outline-width: 0px;
       outline-color: var(--mdc-theme-primary);
       opacity: 1;
@@ -219,7 +219,6 @@ export class EditorContainer extends LitElement {
 
     .nomargin {
       margin: 0px;
-      overflow: visible;
     }
 
     :host {
