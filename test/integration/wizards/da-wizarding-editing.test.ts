@@ -57,7 +57,7 @@ describe('DA wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -143,13 +143,13 @@ describe('DA wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       sAddrField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="sAddr"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="sAddr"]')
       );
       bTypeSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="bType"]')

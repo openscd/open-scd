@@ -139,7 +139,7 @@ export function newActionEvent<T extends EditorAction>(
 }
 
 export const wizardInputSelector =
-  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select';
+  'wizard-text-field, mwc-textfield, ace-editor, mwc-select,wizard-select';
 export type WizardInput =
   | WizardTextField
   | TextField

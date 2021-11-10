@@ -28,6 +28,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
+import { WizardTextField } from '../../wizard-textfield.js';
 
 export function editDaTypeWizard(
   dATypeIdentity: string,
@@ -67,7 +68,7 @@ export function editDaTypeWizard(
           }}
           fullwidth
         ></mwc-button> `,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${id}
@@ -76,14 +77,14 @@ export function editDaTypeWizard(
           minlength="1"
           pattern="${patterns.nmToken}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
         html`<mwc-button
             slot="graphic"
             icon="playlist_add"
@@ -210,7 +211,7 @@ export function createDATypeWizard(
               </mwc-list-item>`
           )}
         </mwc-select>`,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${''}
@@ -219,14 +220,14 @@ export function createDATypeWizard(
           minlength="1"
           pattern="${patterns.nmToken}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
       ],
     },
   ];

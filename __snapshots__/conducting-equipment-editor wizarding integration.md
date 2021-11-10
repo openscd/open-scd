@@ -25,20 +25,20 @@
         Circuit Breaker
       </mwc-list-item>
     </mwc-select>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="Conducting equipment name"
       label="name"
       required=""
       validationmessage="Required"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="Conducting equipment description"
       label="desc"
       nullable=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

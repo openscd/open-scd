@@ -40,17 +40,17 @@ describe('subnetwork-editor wizarding editing integration', () => {
       )).click();
       await parent.updateComplete;
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       typeField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="type"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="type"]')
       );
       bitRateField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="BitRate"]'
+          'wizard-text-field[label="BitRate"]'
         )
       );
       primaryAction = <HTMLElement>(

@@ -11,7 +11,7 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
@@ -20,15 +20,15 @@
       required=""
     >
       >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       fixedmenuposition=""
       helper="[scl.bType]"
@@ -421,14 +421,14 @@
         Dummy_orCategory
       </mwc-list-item>
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       disabled=""
       helper="[scl.sAddr]"
       label="sAddr"
       nullable=""
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       disabled=""
       fixedmenuposition=""
@@ -501,12 +501,12 @@
       nullable=""
     >
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       helper="[scl.Val]"
       label="Val"
       nullable=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

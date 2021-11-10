@@ -15,6 +15,7 @@ import {
 import { updateNamingAction } from './foundation/actions.js';
 
 import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
+import { WizardTextField } from '../wizard-textfield.js';
 
 function render(
   name: string,
@@ -22,20 +23,20 @@ function render(
   guessable: boolean
 ): TemplateResult[] {
   return [
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="name"
       .maybeValue=${name}
       helper="${translate('substation.wizard.nameHelper')}"
       required
       validationMessage="${translate('textfield.required')}"
       dialogInitialFocus
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="desc"
       .maybeValue=${desc}
       nullable
       helper="${translate('substation.wizard.descHelper')}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
     guessable
       ? html`<mwc-formfield label="${translate('guess.wizard.primary')}">
           <mwc-checkbox></mwc-checkbox>

@@ -14,6 +14,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { WizardTextField } from '../wizard-textfield.js';
 
 const initial = {
   nomFreq: '50',
@@ -31,21 +32,21 @@ function render(
   multiplier: string | null
 ): TemplateResult[] {
   return [
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="name"
       .maybeValue=${name}
       helper="${translate('voltagelevel.wizard.nameHelper')}"
       required
       validationMessage="${translate('textfield.required')}"
       dialogInitialFocus
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="desc"
       .maybeValue=${desc}
       nullable
       helper="${translate('voltagelevel.wizard.descHelper')}"
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="nomFreq"
       .maybeValue=${nomFreq}
       nullable
@@ -54,8 +55,8 @@ function render(
       required
       validationMessage="${translate('textfield.nonempty')}"
       pattern="${patterns.unsigned}"
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="numPhases"
       .maybeValue=${numPhases}
       nullable
@@ -66,8 +67,8 @@ function render(
       type="number"
       min="1"
       max="255"
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="Voltage"
       .maybeValue=${Voltage}
       nullable
@@ -78,7 +79,7 @@ function render(
       required
       validationMessage="${translate('textfield.nonempty')}"
       pattern="${patterns.decimal}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
   ];
 }
 

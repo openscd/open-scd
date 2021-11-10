@@ -15,90 +15,90 @@
       <mwc-checkbox id="instType">
       </mwc-checkbox>
     </mwc-formfield>
-    <wizard-textfield
+    <wizard-text-field
       label="IP"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="IP-SUBNET"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="IP-GATEWAY"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-TSEL"
       maxlength="8"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-SSEL"
       maxlength="16"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-PSEL"
       maxlength="16"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-AP-Title"
       nullable=""
       pattern="[0-9,]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-AP-Invoke"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-AE-Qualifier"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-AE-Invoke"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-NSAP"
       maxlength="40"
       nullable=""
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"
@@ -134,132 +134,132 @@
       <mwc-checkbox id="instType">
       </mwc-checkbox>
     </mwc-formfield>
-    <wizard-textfield
+    <wizard-text-field
       label="IP"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="IP-SUBNET"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="IP-GATEWAY"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-TSEL"
       maxlength="8"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-SSEL"
       maxlength="16"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-PSEL"
       maxlength="16"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-AP-Title"
       nullable=""
       pattern="[0-9,]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-AP-Invoke"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-AE-Qualifier"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-AE-Invoke"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-NSAP"
       maxlength="40"
       nullable=""
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="SNTP-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="MMS-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="DNSName"
       nullable=""
       pattern="\S*"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="UDP-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="TCP-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="C37-118-IP-Port"
       nullable=""
       pattern="102[5-9]|10[3-9][0-9]|1[1-9][0-9][0-9]|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"
@@ -295,189 +295,189 @@
       <mwc-checkbox id="instType">
       </mwc-checkbox>
     </mwc-formfield>
-    <wizard-textfield
+    <wizard-text-field
       label="IP"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="IP-SUBNET"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="IP-GATEWAY"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-TSEL"
       maxlength="8"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-SSEL"
       maxlength="16"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-PSEL"
       maxlength="16"
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-AP-Title"
       nullable=""
       pattern="[0-9,]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-AP-Invoke"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="OSI-AE-Qualifier"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-AE-Invoke"
       maxlength="5"
       nullable=""
       pattern="[0-9]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="OSI-NSAP"
       maxlength="40"
       nullable=""
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="SNTP-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="MMS-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="DNSName"
       nullable=""
       pattern="\S*"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="UDP-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="TCP-Port"
       nullable=""
       pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="C37-118-IP-Port"
       nullable=""
       pattern="102[5-9]|10[3-9][0-9]|1[1-9][0-9][0-9]|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IPv6"
       nullable=""
       pattern="([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IPv6-SUBNET"
       nullable=""
       pattern="/[1-9]|/[1-9][0-9]|/1[0-1][0-9]|/12[0-7]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IPv6-GATEWAY"
       nullable=""
       pattern="([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IPv6FlowLabel"
       nullable=""
       pattern="[0-9a-fA-F]{1,5}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IPv6ClassOfTraffic"
       nullable=""
       pattern="[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IPv6-IGMPv3Src"
       nullable=""
       pattern="([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IP-IGMPv3Sr"
       nullable=""
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       label="IP-ClassOfTraffic"
       maxlength="2"
       nullable=""
       pattern="[0-9A-F]+"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

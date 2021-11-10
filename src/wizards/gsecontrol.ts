@@ -24,6 +24,7 @@ import { maxLength, patterns } from './foundation/limits.js';
 
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
+import { WizardTextField } from '../wizard-textfield.js';
 
 function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
@@ -48,7 +49,7 @@ export function renderGseAttributes(
   securityEnabled: string | null
 ): TemplateResult[] {
   return [
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="name"
       .maybeValue=${name}
       helper="${translate('scl.name')}"
@@ -57,13 +58,13 @@ export function renderGseAttributes(
       pattern="${patterns.asciName}"
       maxLength="${maxLength.cbName}"
       dialogInitialFocus
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="desc"
       .maybeValue=${desc}
       nullable
       helper="${translate('scl.desc')}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
     html`<wizard-select
       label="type"
       .maybeValue=${type}
@@ -74,13 +75,13 @@ export function renderGseAttributes(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
     >`,
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="appID"
       .maybeValue=${appID}
       helper="${translate('scl.id')}"
       required
       validationMessage="${translate('textfield.nonempty')}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
     html`<wizard-select
       label="fixedOffs"
       .maybeValue=${fixedOffs}

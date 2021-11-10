@@ -11,20 +11,20 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       helper="[scl.name]"
       label="name"
       required=""
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       required=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <filtered-list multi="">
       <mwc-check-list-item
         aria-disabled="false"

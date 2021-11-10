@@ -78,7 +78,7 @@ function selectBType(
 
   const textfieldValOptionUI = <WizardTextField>(
     (<Select>e.target).parentElement!.querySelector(
-      'wizard-textfield[label="Val"]'
+      'wizard-text-field[label="Val"]'
     )!
   );
   if (bTypeSelected === 'Enum' || bTypeSelected === 'Struct')
@@ -103,7 +103,7 @@ export function wizardContent(
   data: Element
 ): TemplateResult[] {
   return [
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="name"
       .maybeValue=${name}
       helper="${translate('scl.name')}"
@@ -112,15 +112,15 @@ export function wizardContent(
       maxLength="${maxLength.abstracDaName}"
       dialogInitialFocus
     >
-      ></wizard-textfield
+      ></${WizardTextField}
     >`,
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="desc"
       helper="${translate('scl.desc')}"
       .maybeValue=${desc}
       nullable
       pattern="${patterns.normalizedString}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
     html`<wizard-select
       fixedMenuPosition
       label="bType"
@@ -150,13 +150,13 @@ export function wizardContent(
           >`
       )}</wizard-select
     >`,
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="sAddr"
       .maybeValue=${sAddr}
       helper="${translate('scl.sAddr')}"
       nullable
       pattern="${patterns.normalizedString}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
     html`<wizard-select
       label="valKind"
       .maybeValue=${valKind}
@@ -199,12 +199,12 @@ export function wizardContent(
           >`
       )}</wizard-select
     >`,
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="Val"
       .maybeValue=${Val}
       helper="${translate('scl.Val')}"
       nullable
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
   ];
 }
 

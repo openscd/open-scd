@@ -35,6 +35,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { WizardSelect } from '../../wizard-select.js';
+import { WizardTextField } from '../../wizard-textfield.js';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -178,7 +179,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
       primary: { icon: '', label: get('save'), action },
       content: [
         deleteButton,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="name"
           .maybeValue=${name}
           helper="${translate('scl.name')}"
@@ -186,15 +187,15 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
           pattern="${patterns.alphanumericFirstUpperCase}"
           dialogInitialFocus
         >
-          ></wizard-textfield
+          ></${WizardTextField}
         >`,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
         html`<mwc-select
           fixedMenuPosition
           label="type"
@@ -209,13 +210,13 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
               >`
           )}</mwc-select
         >`,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="accessControl"
           helper="${translate('scl.accessControl')}"
           .maybeValue=${accessControl}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
         html`<mwc-select
           fixedMenuPosition
           label="transient"
@@ -497,7 +498,7 @@ export function createLNodeTypeWizard(
             }
           )}
         </mwc-select>`,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${''}
@@ -505,14 +506,14 @@ export function createLNodeTypeWizard(
           maxlength="127"
           minlength="1"
           pattern="${patterns.nmToken}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
       ],
     },
   ];
@@ -572,7 +573,7 @@ export function lNodeTypeWizard(
           }}
           fullwidth
         ></mwc-button> `,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${lnodetype.getAttribute('id')}
@@ -581,21 +582,21 @@ export function lNodeTypeWizard(
           minlength="1"
           pattern="${patterns.nmToken}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${lnodetype.getAttribute('desc')}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="lnClass"
           helper="${translate('scl.lnClass')}"
           .maybeValue=${lnodetype.getAttribute('lnClass')}
           required
           pattern="${patterns.lnClass}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
         html` <mwc-button
           slot="graphic"
           icon="playlist_add"

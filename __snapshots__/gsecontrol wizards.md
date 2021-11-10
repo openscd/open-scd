@@ -78,7 +78,7 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
@@ -87,14 +87,14 @@
       required=""
       validationmessage="[textfield.required]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       helper="[scl.type]"
       label="type"
@@ -118,13 +118,13 @@
         GSSE
       </mwc-list-item>
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       helper="[scl.id]"
       label="appID"
       required=""
       validationmessage="[textfield.nonempty]"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       disabled=""
       helper="[scl.fixedOffs]"
@@ -209,7 +209,7 @@
       label="[remove]"
     >
     </mwc-button>
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.name]"
       label="name"
@@ -218,14 +218,14 @@
       required=""
       validationmessage="[textfield.required]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       helper="[scl.type]"
       label="type"
@@ -249,13 +249,13 @@
         GSSE
       </mwc-list-item>
     </wizard-select>
-    <wizard-textfield
+    <wizard-text-field
       helper="[scl.id]"
       label="appID"
       required=""
       validationmessage="[textfield.nonempty]"
     >
-    </wizard-textfield>
+    </wizard-text-field>
     <wizard-select
       helper="[scl.fixedOffs]"
       label="fixedOffs"

@@ -53,7 +53,7 @@ describe('EnumType wizards', () => {
         parent.wizardUI.dialog?.querySelector('mwc-select[label="values"]')
       );
       idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -112,7 +112,7 @@ describe('EnumType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -180,13 +180,13 @@ describe('EnumType wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       ordField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="ord"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="ord"]')
       );
       valueField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="value"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="value"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -282,13 +282,13 @@ describe('EnumType wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       ordField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="ord"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="ord"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       valueField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="value"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="value"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

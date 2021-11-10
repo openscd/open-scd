@@ -9,6 +9,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { WizardTextField } from '../wizard-textfield.js';
 
 export function updateDataSetAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): WizardAction[] => {
@@ -54,21 +55,21 @@ export function editDataSetWizard(element: Element): Wizard {
         action: updateDataSetAction(element),
       },
       content: [
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="name"
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
         >
-        </wizard-textfield>`,
-        html`<wizard-textfield
+        </${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           .maybeValue=${desc}
           helper="${translate('scl.desc')}"
           nullable
           required
         >
-        </wizard-textfield>`,
+        </${WizardTextField}>`,
         html`<filtered-list multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>

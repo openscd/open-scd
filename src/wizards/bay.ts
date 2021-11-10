@@ -11,24 +11,25 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { WizardTextField } from '../wizard-textfield.js';
 import { updateNamingAction } from './foundation/actions.js';
 
 function render(name: string | null, desc: string | null): TemplateResult[] {
   return [
-    html`<wizard-textfield
+    html`<${WizardTextField}
       label="name"
       .maybeValue=${name}
       helper="${translate('bay.wizard.nameHelper')}"
       required
       validationMessage="${translate('textfield.required')}"
       dialogInitialFocus
-    ></wizard-textfield>`,
-    html`<wizard-textfield
+    ></${WizardTextField}>`,
+    html`<${WizardTextField}
       label="desc"
       .maybeValue=${desc}
       nullable
       helper="${translate('bay.wizard.descHelper')}"
-    ></wizard-textfield>`,
+    ></${WizardTextField}>`,
   ];
 }
 
