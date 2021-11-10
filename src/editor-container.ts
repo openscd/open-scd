@@ -77,6 +77,8 @@ export class EditorContainer extends LitElement {
   async firstUpdated(): Promise<void> {
     await super.updateComplete;
 
+    this.tabIndex = 0;
+
     if (this.addMenu) this.addMenu.anchor = this.headerContainer;
 
     const parentEditorContainer =
@@ -91,8 +93,6 @@ export class EditorContainer extends LitElement {
     );
 
     this.contrasted = !parentEditorContainer.contrasted;
-
-    this.tabIndex = 0;
   }
 
   private renderAddButtons(): TemplateResult[] {
