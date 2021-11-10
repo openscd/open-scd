@@ -1,7 +1,6 @@
 import { fixture, expect } from '@open-wc/testing';
 import { html } from '../../src/foundation.js';
 
-import '../../src/wizard-select.js';
 import { WizardSelect } from '../../src/wizard-select.js';
 
 describe('wizard-select', () => {
@@ -9,10 +8,10 @@ describe('wizard-select', () => {
   const items = ['one', 'two', 'three'];
   beforeEach(async () => {
     element = await fixture(
-      html`<wizard-select
+      html`<${WizardSelect}
         >${items.map(
           item => html`<mwc-list-item value="${item}">${item}</mwc-list-item>`
-        )}</wizard-select
+        )}</${WizardSelect}
       >`
     );
   });

@@ -16,6 +16,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
+import { WizardSelect } from '../wizard-select.js';
 
 import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
@@ -27,7 +28,7 @@ export function renderDa(
   dupd: string | null
 ): TemplateResult[] {
   return [
-    html`<wizard-select
+    html`<${WizardSelect}
       label="fc"
       .maybeValue=${fc}
       helper="${translate('scl.fc')}"
@@ -36,9 +37,9 @@ export function renderDa(
       >${functionalConstraintEnum.map(
         fcOption =>
           html`<mwc-list-item value="${fcOption}">${fcOption}</mwc-list-item>`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="dchg"
       .maybeValue=${dchg}
       helper="${translate('scl.valImport')}"
@@ -48,9 +49,9 @@ export function renderDa(
       >${['true', 'false'].map(
         option =>
           html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="qchg"
       .maybeValue=${qchg}
       helper="${translate('scl.valImport')}"
@@ -60,9 +61,9 @@ export function renderDa(
       >${['true', 'false'].map(
         option =>
           html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="dupd"
       .maybeValue=${dupd}
       helper="${translate('scl.valImport')}"
@@ -72,7 +73,7 @@ export function renderDa(
       >${['true', 'false'].map(
         option =>
           html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
   ];
 }

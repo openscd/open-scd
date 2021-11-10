@@ -326,7 +326,7 @@ function createLNodeTypeHelperWizard(
             .querySelectorAll(`DOType[cdc="${DO.getAttribute('type')}"]`)
         ).sort(doComparator(name));
 
-        return html`<wizard-select
+        return html`<${WizardSelect}
           fixedMenuPosition
           naturalMenuWidth
           label="${name}"
@@ -338,7 +338,7 @@ function createLNodeTypeHelperWizard(
               html`<mwc-list-item value="${doType.getAttribute('id')}"
                 >${doType.getAttribute('id')}</mwc-list-item
               >`
-          )}</wizard-select
+          )}</${WizardSelect}
         >`;
       }),
     },
