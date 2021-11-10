@@ -199,7 +199,7 @@ export class EditorContainer extends LitElement {
       transition: all 200ms linear;
       outline-style: solid;
       margin: 8px 12px 16px;
-      overflow: hidden;
+      padding: 0.05px;
       outline-width: 0px;
       outline-color: var(--mdc-theme-primary);
       opacity: 1;
@@ -219,7 +219,6 @@ export class EditorContainer extends LitElement {
 
     .nomargin {
       margin: 0px;
-      overflow: visible;
     }
 
     :host {
