@@ -65,7 +65,8 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major",
     "build": "npm run test && npm run build:notest && cp .nojekyll build/",
-    "build:notest": "npm run doc && snowpack build && workbox generateSW workbox-config.cjs",
+    "build:notest": "npm run doc && npm run build:only",
+    "build:only": "snowpack build && workbox generateSW workbox-config.cjs",
     "start": "snowpack dev"
   },
   "devDependencies": {
@@ -128,18 +129,28 @@
     ]
   },
   "snowpack": {
+    "buildOptions": {
+      "clean": true
+    },
     "exclude": [
       "**/node_modules/**/*",
-      "**/*.@(spec|test).@(js|mjs)",
-      "test/**/*",
-      "out-tsc/**/*",
       ".editorconfig",
       ".eslintrc.cjs",
-      ".gitignore",
       ".travis.yml",
-      "karma.conf.cjs",
-      "package*",
-      "tsconfig.json"
+      "**/karma.conf.cjs",
+      "**/Dockerfile",
+      "**/package*.json",
+      "**/tsconfig.json",
+      "**/workbox-config.cjs",
+      "**/*.@(spec|test).@(js|mjs)",
+      "**/__snapshots__/**/*",
+      "**/coverage/**/*",
+      "**/out-tsc/**/*",
+      "**/test/**/*",
+      ".gitignore",
+      "**/.git/**",
+      "**/.github/**",
+      "**/.idea/**"
     ],
     "plugins": [
       "@snowpack/plugin-typescript"
