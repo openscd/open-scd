@@ -29,6 +29,7 @@ import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Select } from '@material/mwc-select';
+import { WizardTextField } from '../../wizard-textfield.js';
 
 function nextOrd(parent: Element): string {
   const maxOrd = Math.max(
@@ -145,28 +146,28 @@ function eNumValWizard(options: WizardOptions): Wizard {
       },
       content: [
         deleteButton,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="ord"
           helper="${translate('scl.ord')}"
           .maybeValue=${ord}
           required
           type="number"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="value"
           helper="${translate('scl.value')}"
           .maybeValue=${value}
           pattern="${patterns.normalizedString}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           id="evDesc"
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
       ],
     },
   ];
@@ -234,7 +235,7 @@ export function createEnumTypeWizard(
               </mwc-list-item>`
           )}
         </mwc-select>`,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${''}
@@ -243,14 +244,14 @@ export function createEnumTypeWizard(
           minlength="1"
           pattern="${patterns.nmToken}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
       ],
     },
   ];
@@ -291,7 +292,7 @@ export function eNumTypeEditWizard(
           }}
           fullwidth
         ></mwc-button> `,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${enumtype.getAttribute('id')}
@@ -300,14 +301,14 @@ export function eNumTypeEditWizard(
           minlength="1"
           pattern="${patterns.nmToken}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${enumtype.getAttribute('desc')}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
         html`<mwc-button
             slot="graphic"
             icon="playlist_add"

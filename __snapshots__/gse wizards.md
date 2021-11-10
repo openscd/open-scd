@@ -15,42 +15,42 @@
       <mwc-checkbox id="instType">
       </mwc-checkbox>
     </mwc-formfield>
-    <wizard-textfield
+    <wizard-text-field
       label="MAC-Address"
       pattern="([0-9A-F]{2}-){5}[0-9A-F]{2}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="APPID"
       pattern="[0-9A-F]{4}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="MinTime"
       nullable=""
       suffix="ms"
       type="number"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       label="MaxTime"
       nullable=""
       suffix="ms"
       type="number"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

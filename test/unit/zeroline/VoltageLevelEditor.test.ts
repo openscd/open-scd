@@ -6,6 +6,7 @@ import {
   isDelete,
   html,
 } from '../../../src/foundation.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 import {
   createAction,
@@ -30,7 +31,7 @@ describe('VoltageLevelEditor', () => {
           label =>
             <Promise<WizardInput>>(
               fixture(
-                html`<wizard-textfield label=${label}></wizard-textfield>`
+                html`<${WizardTextField} label=${label}></${WizardTextField}>`
               )
             )
         )
@@ -161,7 +162,7 @@ describe('VoltageLevelEditor', () => {
           label =>
             <Promise<WizardInput>>(
               fixture(
-                html`<wizard-textfield label=${label}></wizard-textfield>`
+                html`<${WizardTextField} label=${label}></${WizardTextField}>`
               )
             )
         )
@@ -179,14 +180,14 @@ describe('VoltageLevelEditor', () => {
             'application/xml'
           ).documentElement;
 
-          inputs[4] = await fixture(html`<wizard-textfield
+          inputs[4] = await fixture(html`<${WizardTextField}
             label="Voltage"
             nullable
             .maybeValue="${null}"
             unit="V"
             .multipliers=${[null, 'G', 'M', 'k', '', 'm']}
             multiplier="k"
-          ></wizard-textfield>`);
+          ></${WizardTextField}>`);
         });
 
         it('returns a WizardAction which returns two EditorActions', () => {

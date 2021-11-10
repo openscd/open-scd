@@ -9,20 +9,20 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="Substation name"
       label="name"
       required=""
       validationmessage="Required"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="Substation description"
       label="desc"
       nullable=""
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

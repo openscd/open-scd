@@ -42,24 +42,24 @@ describe('voltage-level-editor wizarding editing integration', () => {
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       nomFreqField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="nomFreq"]'
+          'wizard-text-field[label="nomFreq"]'
         )
       );
       numPhasesField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="numPhases"]'
+          'wizard-text-field[label="numPhases"]'
         )
       );
       voltageField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="Voltage"]'
+          'wizard-text-field[label="Voltage"]'
         )
       );
       secondaryAction = <HTMLElement>(
@@ -203,7 +203,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       await parent.updateComplete;
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

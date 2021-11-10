@@ -2,34 +2,22 @@
 
 ## `include a dataset edit wizard`
 
-####   `looks like the latest snapshot`
+#### `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
-  defaultaction="close"
-  heading="[wizard.title.edit]"
-  open=""
->
+<mwc-dialog defaultaction="close" heading="[wizard.title.edit]" open="">
   <div id="wizard-content">
-    <wizard-textfield
-      helper="[scl.name]"
-      label="name"
-      required=""
-    >
-    </wizard-textfield>
-    <wizard-textfield
+    <wizard-text-field helper="[scl.name]" label="name" required="">
+    </wizard-text-field>
+    <wizard-text-field
       disabled=""
       helper="[scl.desc]"
       label="desc"
       nullable=""
       required=""
     >
-    </wizard-textfield>
-    <mwc-button
-      icon="add"
-      label="[wizard.title.add]"
-    >
-    </mwc-button>
+    </wizard-text-field>
+    <mwc-button icon="add" label="[wizard.title.add]"> </mwc-button>
     <filtered-list multi="">
       <mwc-check-list-item
         aria-disabled="false"
@@ -79,6 +67,4 @@
   >
   </mwc-button>
 </mwc-dialog>
-
 ```
-

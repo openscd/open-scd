@@ -40,7 +40,7 @@ describe('connectedap-editor wizarding editing integration', () => {
       )).click();
       await parent.updateComplete;
       ipField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="IP"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="IP"]')
       );
       secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

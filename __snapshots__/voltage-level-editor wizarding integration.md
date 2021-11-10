@@ -9,21 +9,21 @@
   open=""
 >
   <div id="wizard-content">
-    <wizard-textfield
+    <wizard-text-field
       dialoginitialfocus=""
       helper="Voltage level name"
       label="name"
       required=""
       validationmessage="Required"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="Voltage level description"
       label="desc"
       nullable=""
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="Nominal frequency"
       label="nomFreq"
       nullable=""
@@ -32,8 +32,8 @@
       suffix="Hz"
       validationmessage="Must not be empty"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="Number of phases"
       label="numPhases"
       max="255"
@@ -44,8 +44,8 @@
       type="number"
       validationmessage="Must not be empty"
     >
-    </wizard-textfield>
-    <wizard-textfield
+    </wizard-text-field>
+    <wizard-text-field
       helper="Nominal voltage"
       label="Voltage"
       nullable=""
@@ -54,7 +54,7 @@
       unit="V"
       validationmessage="Must not be empty"
     >
-    </wizard-textfield>
+    </wizard-text-field>
   </div>
   <mwc-button
     dialogaction="close"

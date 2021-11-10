@@ -53,7 +53,7 @@ describe('zeroline-pane wizarding editing integration', () => {
     );
     await primaryAction.updateComplete;
     const nameField = <WizardTextField>(
-      parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
     );
     nameField.value = 'newSubstation';
     await nameField.updateComplete;

@@ -34,6 +34,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { List } from '@material/mwc-list';
 import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 import { patterns } from '../../wizards/foundation/limits.js';
+import { WizardTextField } from '../../wizard-textfield.js';
 
 function updateSDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -139,7 +140,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
       primary: { icon: '', label: get('save'), action },
       content: [
         deleteButton,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="name"
           .maybeValue=${name}
           helper="${translate('scl.name')}"
@@ -147,15 +148,15 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           pattern="${patterns.tRestrName1stL}"
           dialogInitialFocus
         >
-          ></wizard-textfield
+          ></${WizardTextField}
         >`,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${desc}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
         html`<mwc-select
           fixedMenuPosition
           label="type"
@@ -227,7 +228,7 @@ function addPredefinedDOType(
 function onSelectTemplateDOType(e: Event, templates: Document): void {
   const cdcUI = <Select>(
     (<Select>e.target).parentElement!.querySelector(
-      'wizard-textfield[label="cdc"]'
+      'wizard-text-field[label="cdc"]'
     )!
   );
 
@@ -276,7 +277,7 @@ export function createDOTypeWizard(
               </mwc-list-item>`
           )}
         </mwc-select>`,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${''}
@@ -285,20 +286,20 @@ export function createDOTypeWizard(
           minlength="1"
           pattern="${patterns.nmToken}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="cdc"
           helper="${translate('scl.cdc')}"
           required
           pattern="${patterns.cdc}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
       ],
     },
   ];
@@ -358,7 +359,7 @@ export function dOTypeWizard(
           }}
           fullwidth
         ></mwc-button> `,
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
           .maybeValue=${dotype.getAttribute('id')}
@@ -367,20 +368,20 @@ export function dOTypeWizard(
           minlength="1"
           pattern="${patterns.nmToken}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           helper="${translate('scl.desc')}"
           .maybeValue=${dotype.getAttribute('desc')}
           nullable
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="CDC"
           helper="${translate('scl.CDC')}"
           .maybeValue=${dotype.getAttribute('cdc')}
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
         html`<section>
           <mwc-button
             slot="graphic"

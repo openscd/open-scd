@@ -1,6 +1,7 @@
 import { fixture, expect } from '@open-wc/testing';
 
 import { WizardInput, isCreate, isUpdate, html } from '../../../src/foundation.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { createAction } from '../../../src/wizards/conductingequipment.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 
@@ -20,7 +21,7 @@ describe('ConductingEquipmentEditor', () => {
       ['name', 'desc', 'type'].map(
         label =>
           <Promise<WizardInput>>(
-            fixture(html`<wizard-textfield label=${label}></wizard-textfield>`)
+            fixture(html`<${WizardTextField} label=${label}></${WizardTextField}>`)
           )
       )
     );

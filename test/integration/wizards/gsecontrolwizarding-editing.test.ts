@@ -46,7 +46,7 @@ describe('gsecontrol wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       await element.wizardUI.dialog?.updateComplete;
       const nameField = <WizardTextField>(
-        element.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        element.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       await nameField.updateComplete;
       expect(nameField.value).to.equal(
@@ -67,7 +67,7 @@ describe('gsecontrol wizarding editing integration', () => {
         element.workflow.push(wizard);
         await element.requestUpdate();
         nameField = element.wizardUI.dialog!.querySelector(
-          'wizard-textfield[label="name"]'
+          'wizard-text-field[label="name"]'
         )!;
         primaryAction = <HTMLElement>(
           element.wizardUI.dialog?.querySelector(
@@ -100,7 +100,7 @@ describe('gsecontrol wizarding editing integration', () => {
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
         const nameField = <WizardTextField>(
           element.wizardUI.dialog?.querySelector(
-            'wizard-textfield[label="name"]'
+            'wizard-text-field[label="name"]'
           )
         );
         await nameField.updateComplete;
@@ -120,7 +120,7 @@ describe('gsecontrol wizarding editing integration', () => {
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
         const macField = <WizardTextField>(
           element.wizardUI.dialog?.querySelector(
-            'wizard-textfield[label="MAC-Address"]'
+            'wizard-text-field[label="MAC-Address"]'
           )
         );
         await macField.updateComplete;

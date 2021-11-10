@@ -2,12 +2,12 @@ import { fixture, expect } from '@open-wc/testing';
 
 import { Button } from '@material/mwc-button';
 
-import '../../src/wizard-textfield.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
 import { EditorAction, html, WizardInput } from '../../src/foundation.js';
 
 import './mock-editor.js';
+import { WizardTextField } from '../../src/wizard-textfield.js';
 
 describe('wizard-dialog', () => {
   let element: WizardDialog;
@@ -31,19 +31,19 @@ describe('wizard-dialog', () => {
         {
           title: 'Page 1',
           content: [
-            html`<wizard-textfield
+            html`<${WizardTextField}
               label="Test textfield 1"
-            ></wizard-textfield>`,
+            ></${WizardTextField}>`,
           ],
           secondary: { icon: 'add', action: () => [], label: 'Test secondary' },
         },
         {
           title: 'Page 2',
           content: [
-            html`<wizard-textfield
+            html`<${WizardTextField}
               type="email"
               label="Test textfield 2"
-            ></wizard-textfield>`,
+            ></${WizardTextField}>`,
           ],
         },
         {
@@ -84,7 +84,7 @@ describe('wizard-dialog', () => {
     describe('with invalid inputs', () => {
       beforeEach(async () => {
         element.dialogs[1].querySelector<WizardInput>(
-          'wizard-textfield'
+          'wizard-text-field'
         )!.value = 'Peter';
         await element.updateComplete;
       });

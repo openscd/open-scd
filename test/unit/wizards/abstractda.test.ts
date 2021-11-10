@@ -99,7 +99,7 @@ describe('abstractda wizards', () => {
       element.workflow.push(wizard);
       await element.requestUpdate();
       nameTextField = element.wizardUI.dialog!.querySelector<WizardTextField>(
-        'wizard-textfield[label="name"]'
+        'wizard-text-field[label="name"]'
       )!;
       bTypeSelect = element.wizardUI.dialog!.querySelector<WizardSelect>(
         'wizard-select[label="bType"]'
@@ -108,7 +108,7 @@ describe('abstractda wizards', () => {
         'wizard-select[label="Val"]'
       )!;
       valTextField = element.wizardUI.dialog!.querySelector<WizardTextField>(
-        'wizard-textfield[label="Val"]'
+        'wizard-text-field[label="Val"]'
       )!;
       typeSelect = element.wizardUI.dialog!.querySelector<WizardSelect>(
         'wizard-select[label="type"]'

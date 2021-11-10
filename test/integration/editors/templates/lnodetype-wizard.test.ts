@@ -49,7 +49,7 @@ describe('LNodeType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); //recursive call takes time
       idField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="id"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -111,7 +111,7 @@ describe('LNodeType wizards', () => {
         'mwc-select[label="lnClass"]'
       )!;
       idField = parent.wizardUI.dialog!.querySelector<WizardTextField>(
-        'wizard-textfield[label="id"]'
+        'wizard-text-field[label="id"]'
       )!;
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -379,14 +379,14 @@ describe('LNodeType wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       accessControlField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="accessControl"]'
+          'wizard-text-field[label="accessControl"]'
         )
       );
       typeSelect = <Select>(
@@ -500,14 +500,14 @@ describe('LNodeType wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       nameField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       descField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-textfield[label="desc"]')
+        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       accessControlField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-textfield[label="accessControl"]'
+          'wizard-text-field[label="accessControl"]'
         )
       );
       typeSelect = <Select>(

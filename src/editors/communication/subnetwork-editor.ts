@@ -28,6 +28,7 @@ import { styles, WizardOptions, isCreateOptions } from './foundation.js';
 
 import './connectedap-editor.js';
 import { createConnectedApWizard } from './connectedap-editor.js';
+import { WizardTextField } from '../../wizard-textfield.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {
@@ -209,28 +210,28 @@ export function subNetworkWizard(options: WizardOptions): Wizard {
         action: action,
       },
       content: [
-        html`<wizard-textfield
+        html`<${WizardTextField}
           label="name"
           .maybeValue=${name}
           helper="${translate('subnetwork.wizard.nameHelper')}"
           required
           validationMessage="${translate('textfield.required')}"
           dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="desc"
           .maybeValue=${desc}
           nullable
           helper="${translate('subnetwork.wizard.descHelper')}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}>`,
+        html`<${WizardTextField}
           label="type"
           .maybeValue=${type}
           nullable
           helper="${translate('subnetwork.wizard.typeHelper')}"
           pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
+        ></${WizardTextField}field>`,
+        html`<${WizardTextField}
           label="BitRate"
           .maybeValue=${BitRate}
           nullable
@@ -241,7 +242,7 @@ export function subNetworkWizard(options: WizardOptions): Wizard {
           required
           validationMessage="${translate('textfield.nonempty')}"
           pattern="${patterns.decimal}"
-        ></wizard-textfield>`,
+        ></${WizardTextField}>`,
       ],
     },
   ];
