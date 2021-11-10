@@ -153,16 +153,16 @@ export function renderCompasSessionDialogs(doc: Document | null, docName: string
 
 let pingTimer: NodeJS.Timeout | null = null;
 
-async function executeKeepAlivePing() {
-  await CompasUserInfoService().ping()
-    .finally(() => pingTimer = null)
+function resetKeepAlivePing() {
+  pingTimer = null;
 }
 
 function schedulePing() {
-  if (!pingTimer) {
+  if (pingTimer === null) {
     // Every minute we will send a Ping to the CoMPAS Services while the user is still active.
     // This to keep the connection alive so long the user is working.
-    pingTimer = setTimeout(executeKeepAlivePing, (60 * 1000));
+    CompasUserInfoService().ping().finally(() => console.debug('Ping executed.'))
+    pingTimer = setTimeout(resetKeepAlivePing, (60 * 1000));
   }
 }
 
