@@ -584,6 +584,22 @@
       mwc-list-item=""
       selected=""
       tabindex="-1"
+      value="/src/editors/SingleLineDiagram.js"
+    >
+      <mwc-icon slot="meta">
+        edit
+      </mwc-icon>
+      Single Line Diagram
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
       value="/src/editors/Communication.js"
     >
       <mwc-icon slot="meta">
