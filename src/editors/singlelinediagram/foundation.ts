@@ -119,3 +119,18 @@ export function getParentElementName(childElement: Element) {
     const parentElement = <Element>(childElement.parentElement);
     return getNameAttribute(parentElement);
 }
+
+/**
+ * Create a <g> element based on a single XML element.
+ * @param element The element.
+ * @returns The <g> element.
+ */
+export function createGElement(element: Element): SVGElement {
+    const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    finalElement.setAttribute('id', getNameAttribute(element)!);
+
+    const description = getDescriptionAttribute(element);
+    if (description) finalElement.setAttribute('desc', description);
+
+    return finalElement;
+}

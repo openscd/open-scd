@@ -1,6 +1,6 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
-import { getNameAttribute, getCoordinates, getDescriptionAttribute, getParentElementName, getPosition as getAbsolutePosition, SVG_GRID_SIZE, isBusBar, getPositionWithoutCoordinatedElement } from "./singlelinediagram/foundation";
+import { getNameAttribute, getCoordinates, getParentElementName, getPosition as getAbsolutePosition, SVG_GRID_SIZE, isBusBar, getPositionWithoutCoordinatedElement, createGElement, Point } from "./singlelinediagram/foundation";
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -19,11 +19,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
     drawVoltageLevels() {
         this.doc.querySelectorAll('VoltageLevel').forEach(voltageLevel => {
-            const voltageLevelElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            voltageLevelElement.setAttribute('id', getNameAttribute(voltageLevel)!);
-
-            const description = getDescriptionAttribute(voltageLevel);
-            if (description) voltageLevelElement.setAttribute('desc', description);
+            const voltageLevelElement = createGElement(voltageLevel);
 
             // Set the position of the VoltageLevel.
             const {x, y} = getCoordinates(voltageLevel);
@@ -41,16 +37,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
         Array.from(this.doc.querySelectorAll('Bay'))
         .filter(bay => !isBusBar(bay))
         .forEach(bay => {
-            const bayElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            bayElement.setAttribute('id', getNameAttribute(bay)!);
-
-            const description = getDescriptionAttribute(bay);
-            if (description) bayElement.setAttribute('desc', description);
+            const bayElement = createGElement(bay);
 
             // Set the position of the VoltageLevel.
-            const {x, y} = getCoordinates(bay);
-            bayElement.setAttribute('x', `${x}`);
-            bayElement.setAttribute('y', `${y}`);
+            const coordinates = getCoordinates(bay);
+            bayElement.setAttribute('x', `${coordinates.x}`);
+            bayElement.setAttribute('y', `${coordinates.y}`);
             
             this.svg.querySelectorAll(`g[id=${getParentElementName(bay)}]`)
                 .forEach(voltageLevel => voltageLevel.appendChild(bayElement))
@@ -65,18 +57,21 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 terminal => terminal.getAttribute('cNodeName') !== 'grounded'
               ).length !== 0
             ).forEach(eq => {
-                const eqElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                const eqElement = createGElement(eq);
 
                 // Set the position of the Equipment.
                 const coordinates = getCoordinates(eq);
                 eqElement.setAttribute('x', `${coordinates.x}`)
                 eqElement.setAttribute('y', `${coordinates.y}`);
 
+                // Define a temporary icon
+                const eqIcon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 const positionOnSvg = getAbsolutePosition(eq);
-                eqElement.setAttribute('cx', `${positionOnSvg.x}`);
-                eqElement.setAttribute('cy', `${positionOnSvg.y}`);
+                eqIcon.setAttribute('cx', `${positionOnSvg.x}`);
+                eqIcon.setAttribute('cy', `${positionOnSvg.y}`);
+                eqIcon.setAttribute('r', '6');
 
-                eqElement.setAttribute('r', '6');
+                eqElement.appendChild(eqIcon);
             
                 this.svg.querySelectorAll(`g[id="${getParentElementName(eq)}"]`)
                     .forEach(bay => bay.appendChild(eqElement))
@@ -88,35 +83,25 @@ export default class SingleLineDiagramPlugin extends LitElement {
         .filter(bay => !isBusBar(bay))
         .forEach(bay => {
             bay.querySelectorAll('ConnectivityNode')
-            .forEach(connectivityNode => {
-                const pathName = connectivityNode.getAttribute('pathName');
-                let nrOfConnections = 0;
-                let totalX = 0;
-                let totalY = 0;
-    
-                Array.from(this.doc.querySelectorAll('ConductingEquipment'))
-                    .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${pathName}"]`) != null)
-                    .forEach(equipment => {
-                        nrOfConnections++;
-        
-                        const {x, y} = getCoordinates(equipment)
-        
-                        totalX += x!;
-                        totalY += y!;
-                    })
+            .forEach(cNode => {
+                const cNodeElement = createGElement(cNode);
 
-                const calculatedPosition = {x: Math.round(totalX / nrOfConnections), y: Math.round(totalY / nrOfConnections)};
-    
-                const connectivityNodeElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                const coordinates = this.calculateConnectivityNodeCoordinates(cNode.getAttribute('pathName')!);
+                cNodeElement.setAttribute('x', `${coordinates.x}`)
+                cNodeElement.setAttribute('y', `${coordinates.y}`);
 
-                const position = getPositionWithoutCoordinatedElement(connectivityNode, {x: calculatedPosition.x, y: calculatedPosition.y});
-                connectivityNodeElement.setAttribute('cx', `${position.x}`);
-                connectivityNodeElement.setAttribute('cy', `${position.y}`);
+                const position = getPositionWithoutCoordinatedElement(cNode, {x: coordinates.x, y: coordinates.y});
+
+                // Define a temporary icon
+                const cNodeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                cNodeIcon.setAttribute('cx', `${position.x}`);
+                cNodeIcon.setAttribute('cy', `${position.y}`);
+                cNodeIcon.setAttribute('r', '3');
+
+                cNodeElement.appendChild(cNodeIcon);
     
-                connectivityNodeElement.setAttribute('r', '3');
-    
-                this.svg.querySelectorAll(`g[id="${getParentElementName(connectivityNode)}"]`)
-                        .forEach(bay => bay.appendChild(connectivityNodeElement))
+                this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
+                        .forEach(bay => bay.appendChild(cNodeElement))
                 });
         });
     }
@@ -124,22 +109,29 @@ export default class SingleLineDiagramPlugin extends LitElement {
     drawBusBars() {
         Array.from(this.doc.querySelectorAll('Bay'))
         .filter(bay => isBusBar(bay))
-        .forEach(bay => {
-            const lineElement = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            lineElement.setAttribute('name', getNameAttribute(bay)!);
+        .forEach(busBar => {
+            const busBarElement = createGElement(busBar);
 
-            // Styling
-            lineElement.setAttribute('stroke-width', '6');
-            lineElement.setAttribute('stroke', 'currentColor');
+            const coordinates = getCoordinates(busBar);
+            busBarElement.setAttribute('x', `${coordinates.x}`)
+            busBarElement.setAttribute('y', `${coordinates.y}`);
 
-            const position = getAbsolutePosition(bay);
-            lineElement.setAttribute('x1', `${position.x}`);
-            lineElement.setAttribute('y1', `${position.y}`);
-            lineElement.setAttribute('x2', `${this.biggestVoltageLevelXCoordinate * SVG_GRID_SIZE}`);
-            lineElement.setAttribute('y2', `${position.y}`);
+            // Define a temporary icon
+            const busBarIcon = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            busBarIcon.setAttribute('name', getNameAttribute(busBar)!);
+            busBarIcon.setAttribute('stroke-width', '6');
+            busBarIcon.setAttribute('stroke', 'currentColor');
+
+            const position = getAbsolutePosition(busBar);
+            busBarIcon.setAttribute('x1', `${position.x}`);
+            busBarIcon.setAttribute('y1', `${position.y}`);
+            busBarIcon.setAttribute('x2', `${this.biggestVoltageLevelXCoordinate * SVG_GRID_SIZE}`);
+            busBarIcon.setAttribute('y2', `${position.y}`);
+
+            busBarElement.appendChild(busBarIcon);
             
-            this.svg.querySelectorAll(`g[id=${getParentElementName(bay)}]`)
-                .forEach(voltageLevel => voltageLevel.appendChild(lineElement))
+            this.svg.querySelectorAll(`g[id=${getParentElementName(busBar)}]`)
+                .forEach(voltageLevel => voltageLevel.appendChild(busBarElement))
         });
     }
 
@@ -154,30 +146,55 @@ export default class SingleLineDiagramPlugin extends LitElement {
         this.drawBusBars();
     }
 
-      /**
-   * Calculate the full X coordinates of this VoltageLevel.
-   */
-  get biggestVoltageLevelXCoordinate(): number {
-    let finalX = 0;
-    // Get the x of the last bay (basically the 'biggest' x)
-    Array.from(this.doc.querySelectorAll('Bay')).forEach(bay => finalX = Math.max(finalX, getAbsolutePosition(bay).x!))
+    /**
+     * Calculate the full X coordinates of this VoltageLevel.
+     */
+    get biggestVoltageLevelXCoordinate(): number {
+        let finalX = 0;
+        // Get the x of the last bay (basically the 'biggest' x)
+        Array.from(this.doc.querySelectorAll('Bay')).forEach(bay => finalX = Math.max(finalX, getAbsolutePosition(bay).x!))
+
+        /**
+         * Because the width of the last bay is also needed, look up the bay
+         * and find the ConductingEquipment containing the biggest x coordinate.
+         */
+        Array.from(this.doc.querySelectorAll('Bay'))
+        .filter(bay => getAbsolutePosition(bay).x! == finalX)
+        .forEach(bay => {
+            let bayMaxX = 0;
+            bay.querySelectorAll('ConductingEquipment')
+            .forEach(equipment => bayMaxX = Math.max(bayMaxX, getAbsolutePosition(equipment).x!))
+            // Also extend the max X coordinate with a multiplyer.
+            finalX += bayMaxX;
+        })
+
+        return finalX;
+    }
 
     /**
-     * Because the width of the last bay is also needed, look up the bay
-     * and find the ConductingEquipment containing the biggest x coordinate.
+     * Calculate the X and Y coordinate of a Connectivity Node.
+     * By using the path name, all connected equipments can be found, and their X and Y coordinates can be used.
+     * @param cnPathName The pathName of the Connectivity Node to calculate.
+     * @returns Calculated position.
      */
-    Array.from(this.doc.querySelectorAll('Bay'))
-      .filter(bay => getAbsolutePosition(bay).x! == finalX)
-      .forEach(bay => {
-        let bayMaxX = 0;
-        bay.querySelectorAll('ConductingEquipment')
-        .forEach(equipment => bayMaxX = Math.max(bayMaxX, getAbsolutePosition(equipment).x!))
-        // Also extend the max X coordinate with a multiplyer.
-        finalX += bayMaxX;
-      })
+    calculateConnectivityNodeCoordinates(cnPathName: string): Point {
+        let nrOfConnections = 0;
+        let totalX = 0;
+        let totalY = 0;
 
-    return finalX;
-  }
+        Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+            .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${cnPathName}"]`) != null)
+            .forEach(equipment => {
+                nrOfConnections++;
+
+                const {x, y} = getCoordinates(equipment)
+
+                totalX += x!;
+                totalY += y!;
+            })
+
+        return {x: Math.round(totalX / nrOfConnections), y: Math.round(totalY / nrOfConnections)};
+    }
   
     firstUpdated(): void {
       panzoom(this.container);
@@ -198,9 +215,5 @@ export default class SingleLineDiagramPlugin extends LitElement {
         </div>`;
     }
 
-    static styles = css`
-        svg {
-            position: absolute;
-        }
-    `;
+    static styles = css``;
 }
