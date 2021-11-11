@@ -25,6 +25,7 @@ import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 import { WizardTextField } from '../wizard-textfield.js';
+import { WizardSelect } from '../wizard-select.js';
 
 function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
@@ -65,7 +66,7 @@ export function renderGseAttributes(
       nullable
       helper="${translate('scl.desc')}"
     ></${WizardTextField}>`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="type"
       .maybeValue=${type}
       helper="${translate('scl.type')}"
@@ -73,7 +74,7 @@ export function renderGseAttributes(
       required
       >${['GOOSE', 'GSSE'].map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
     html`<${WizardTextField}
       label="appID"
@@ -82,7 +83,7 @@ export function renderGseAttributes(
       required
       validationMessage="${translate('textfield.nonempty')}"
     ></${WizardTextField}>`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="fixedOffs"
       .maybeValue=${fixedOffs}
       nullable
@@ -90,9 +91,9 @@ export function renderGseAttributes(
       helper="${translate('scl.fixedOffs')}"
       >${['true', 'false'].map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="securityEnabled"
       .maybeValue=${securityEnabled}
       nullable
@@ -100,7 +101,7 @@ export function renderGseAttributes(
       helper="${translate('scl.securityEnabled')}"
       >${['None', 'Signature', 'SignatureAndEncryption'].map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
   ];
 }

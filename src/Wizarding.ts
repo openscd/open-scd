@@ -8,7 +8,6 @@ import {
   WizardEvent,
 } from './foundation.js';
 
-import './wizard-dialog.js';
 import { WizardDialog } from './wizard-dialog.js';
 
 /** `LitElement` mixin that adds a `workflow` property which [[`Wizard`]]s are
@@ -50,7 +49,7 @@ export function Wizarding<TBase extends LitElementConstructor>(Base: TBase) {
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
-        <wizard-dialog .wizard=${this.workflow[0] ?? []}></wizard-dialog>`;
+        <${WizardDialog} .wizard=${this.workflow[0] ?? []}></${WizardDialog}>`;
     }
   }
 

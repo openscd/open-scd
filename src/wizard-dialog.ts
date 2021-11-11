@@ -73,7 +73,6 @@ function codeAction(element: Element): WizardActor {
 
 /** A wizard style dialog consisting of several pages commiting some
  * [[`EditorAction`]] on completion and aborting on dismissal. */
-@customElement('wizard-dialog')
 export class WizardDialog extends LitElement {
   /** The [[`Wizard`]] implemented by this dialog. */
   @property({ type: Array })

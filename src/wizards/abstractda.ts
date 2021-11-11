@@ -121,7 +121,7 @@ export function wizardContent(
       nullable
       pattern="${patterns.normalizedString}"
     ></${WizardTextField}>`,
-    html`<wizard-select
+    html`<${WizardSelect}
       fixedMenuPosition
       label="bType"
       .value=${bType}
@@ -133,9 +133,9 @@ export function wizardContent(
           html`<mwc-list-item value="${redefinedBType}"
             >${redefinedBType}</mwc-list-item
           >`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="type"
       .maybeValue=${type}
       helper="${translate('scl.type')}"
@@ -148,7 +148,7 @@ export function wizardContent(
             value=${dataType.id}
             >${dataType.id}</mwc-list-item
           >`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
     html`<${WizardTextField}
       label="sAddr"
@@ -157,7 +157,7 @@ export function wizardContent(
       nullable
       pattern="${patterns.normalizedString}"
     ></${WizardTextField}>`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="valKind"
       .maybeValue=${valKind}
       helper="${translate('scl.valKind')}"
@@ -169,9 +169,9 @@ export function wizardContent(
           html`<mwc-list-item value="${valKindOption}"
             >${valKindOption}</mwc-list-item
           >`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="valImport"
       .maybeValue=${valImport}
       helper="${translate('scl.valImport')}"
@@ -183,9 +183,9 @@ export function wizardContent(
           html`<mwc-list-item value="${valImportOption}"
             >${valImportOption}</mwc-list-item
           >`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
-    html`<wizard-select
+    html`<${WizardSelect}
       label="Val"
       .maybeValue=${Val}
       helper="${translate('scl.Val')}"
@@ -197,7 +197,7 @@ export function wizardContent(
           html`<mwc-list-item value="${enumVal.textContent?.trim() ?? ''}"
             >${enumVal.textContent?.trim()}</mwc-list-item
           >`
-      )}</wizard-select
+      )}</${WizardSelect}
     >`,
     html`<${WizardTextField}
       label="Val"

@@ -14,7 +14,6 @@ import { html } from './foundation.js';
 /** A potentially `nullable` `Select`.
  *
  * NB: Use `maybeValue: string | null` instead of `value` if `nullable`!*/
-@customElement('wizard-select')
 export class WizardSelect extends Select {
   /** Whether [[`maybeValue`]] may be `null` */
   @property({ type: Boolean })

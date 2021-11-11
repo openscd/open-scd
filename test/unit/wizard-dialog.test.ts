@@ -2,7 +2,6 @@ import { fixture, expect } from '@open-wc/testing';
 
 import { Button } from '@material/mwc-button';
 
-import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
 import { EditorAction, html, WizardInput } from '../../src/foundation.js';
 
@@ -12,7 +11,7 @@ import { WizardTextField } from '../../src/wizard-textfield.js';
 describe('wizard-dialog', () => {
   let element: WizardDialog;
   beforeEach(async () => {
-    element = await fixture(html`<wizard-dialog></wizard-dialog>`);
+    element = await fixture(html`<${WizardDialog}></${WizardDialog}>`);
   });
 
   describe('with an empty wizard property', () => {
@@ -200,7 +199,7 @@ describe('wizard-dialog', () => {
 
       beforeEach(async () => {
         element = await fixture(
-          html`<mock-editor><wizard-dialog></wizard-dialog></mock-editor>`
+          html`<mock-editor><${WizardDialog}></${WizardDialog}></mock-editor>`
         ).then(elm => elm.querySelector<WizardDialog>('wizard-dialog')!);
         localStorage.setItem('mode', 'pro');
         element.requestUpdate();
