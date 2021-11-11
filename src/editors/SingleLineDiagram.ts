@@ -1,7 +1,7 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
 import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE } from "./singlelinediagram/drawing";
-import { getNameAttribute, getCoordinates, isBusBar, Point } from "./singlelinediagram/foundation";
+import { getNameAttribute, getCoordinates, isBusBar, Point, calculateConnectivityNodeCoordinates } from "./singlelinediagram/foundation";
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -87,7 +87,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             .forEach(cNode => {
                 const cNodeElement = createGElement(cNode);
 
-                const coordinates = this.calculateConnectivityNodeCoordinates(cNode.getAttribute('pathName')!);
+                const coordinates = calculateConnectivityNodeCoordinates(this.doc, cNode.getAttribute('pathName')!);
                 cNodeElement.setAttribute('x', `${coordinates.x}`)
                 cNodeElement.setAttribute('y', `${coordinates.y}`);
 
@@ -171,31 +171,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
         })
 
         return finalX;
-    }
-
-    /**
-     * Calculate the X and Y coordinate of a Connectivity Node.
-     * By using the path name, all connected equipments can be found, and their X and Y coordinates can be used.
-     * @param cnPathName The pathName of the Connectivity Node to calculate.
-     * @returns Calculated position.
-     */
-    calculateConnectivityNodeCoordinates(cnPathName: string): Point {
-        let nrOfConnections = 0;
-        let totalX = 0;
-        let totalY = 0;
-
-        Array.from(this.doc.querySelectorAll('ConductingEquipment'))
-            .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${cnPathName}"]`) != null)
-            .forEach(equipment => {
-                nrOfConnections++;
-
-                const {x, y} = getCoordinates(equipment)
-
-                totalX += x!;
-                totalY += y!;
-            })
-
-        return {x: Math.round(totalX / nrOfConnections), y: Math.round(totalY / nrOfConnections)};
     }
   
     firstUpdated(): void {
