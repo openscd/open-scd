@@ -1,6 +1,5 @@
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { expect, fixture } from '@open-wc/testing';
-import '../../src/finder-list.js';
 import { Directory, FinderList, Path } from '../../src/finder-list.js';
 import { depth, html } from '../../src/foundation.js';
 
@@ -45,7 +44,7 @@ describe('finder-list', () => {
   let element: FinderList;
 
   beforeEach(async () => {
-    element = await fixture(html`<finder-list></finder-list>`);
+    element = await fixture(html`<${FinderList}></${FinderList}>`);
   });
 
   it('displays nothing with default properties', () =>
@@ -81,7 +80,7 @@ describe('finder-list', () => {
   describe('given a one-element .path with no header or entries', () => {
     beforeEach(async () => {
       element = await fixture(
-        html`<finder-list .path=${['e5']} .read=${read}></finder-list>`
+        html`<${FinderList} .path=${['e5']} .read=${read}></${FinderList}>`
       );
       await element.loaded;
     });
@@ -95,7 +94,7 @@ describe('finder-list', () => {
 
     beforeEach(async () => {
       element = await fixture(
-        html`<finder-list .path=${pathA} .read=${read}></finder-list>`
+        html`<${FinderList} .path=${pathA} .read=${read}></${FinderList}>`
       );
       await element.loaded;
       items = Array.from(
@@ -231,7 +230,7 @@ describe('finder-list', () => {
 
     beforeEach(async () => {
       element = await fixture(
-        html`<finder-list .paths=${paths} .read=${read} multi></finder-list>`
+        html`<${FinderList} .paths=${paths} .read=${read} multi></${FinderList}>`
       );
       await element.loaded;
       items = Array.from(

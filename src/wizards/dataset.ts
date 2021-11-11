@@ -16,6 +16,7 @@ import {
 } from '../foundation.js';
 import { wizards } from './wizard-library.js';
 import { WizardTextField } from '../wizard-textfield.js';
+import { FilteredList } from '../filtered-list.js';
 
 function updateDataSetAction(element: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
@@ -112,13 +113,13 @@ export function editDataSetWizard(element: Element): Wizard {
             }
           }}
         ></mwc-button>`,
-        html`<filtered-list multi
+        html`<${FilteredList} multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
               html`<mwc-check-list-item selected value="${identity(fcda)}"
                 >${(<string>identity(fcda)).split('>')[4]}</mwc-check-list-item
               >`
-          )}</filtered-list
+          )}</${FilteredList}
         >`,
       ],
     },

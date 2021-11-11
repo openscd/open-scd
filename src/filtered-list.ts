@@ -15,7 +15,6 @@ import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { TextField } from '@material/mwc-textfield';
 import { html } from './foundation.js';
 
-@customElement('filtered-list')
 export class FilteredList extends ListBase {
   @property({ type: String })
   searchFieldLabel?: string;

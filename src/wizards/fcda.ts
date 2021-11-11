@@ -129,13 +129,13 @@ export function createFCDAsWizard(parent: Element): Wizard | undefined {
         action: createFCDAsAction(parent),
       },
       content: [
-        html`<finder-list
+        html`<${FinderList}
           multi
           .paths=${[['Server: ' + identity(server)]]}
           .read=${getReader(server)}
           .getDisplayString=${getDisplayString}
           .getTitle=${(path: string[]) => path[path.length - 1]}
-        ></finder-list>`,
+        ></${FinderList}>`,
       ],
     },
   ];

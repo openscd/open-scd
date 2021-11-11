@@ -15,6 +15,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { depth, html } from './foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { FilteredList } from './filtered-list.js';
 
 export type Selection = { [name: string]: Selection };
 
@@ -35,7 +36,6 @@ const waitingList = html`<div class="column">
   >
 </div>`;
 
-@customElement('finder-list')
 export class FinderList extends LitElement {
   @property({ type: Object })
   selection: Selection = {};
@@ -141,7 +141,7 @@ export class FinderList extends LitElement {
   }
 
   renderDirectory(path: Path, entries: string[]): TemplateResult {
-    return html`<filtered-list
+    return html`<${FilteredList}
       @selected=${(e: SingleSelectedEvent) => this.select(e, path)}
       searchFieldLabel="${this.getTitle(path)}"
     >
@@ -155,7 +155,7 @@ export class FinderList extends LitElement {
             >${this.getDisplayString(entry, path)}</mwc-list-item
           >`
       )}
-    </filtered-list>`;
+    </${FilteredList}>`;
   }
 
   async renderColumn(column: number): Promise<TemplateResult> {

@@ -20,6 +20,7 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import { openCommunicationMappingWizard } from './commmap-wizards.js';
 import { clientIcon } from '../icons.js';
+import { FilteredList } from '../filtered-list.js';
 
 function getPath(identity: string | number): string {
   if (typeof identity !== 'string') return '';
@@ -218,7 +219,7 @@ export function createClientLnWizard(
           class="wrapper"
           style="display: grid; grid-template-columns: 1fr 1fr;"
         >
-          <filtered-list
+          <${FilteredList}
             id="sourcelist"
             multi
             searchFieldLabel="${get('scl.Report')}"
@@ -240,8 +241,8 @@ export function createClientLnWizard(
                         : item.numberClientLNs}</span
                     ></mwc-check-list-item
                   >`
-              )}</filtered-list
-          ><filtered-list
+              )}</${FilteredList}
+          ><${FilteredList}
             multi
             id="sinklist"
             activatable
@@ -267,7 +268,7 @@ export function createClientLnWizard(
                   <span>LLN0</span>
                   <span slot="secondary">${identity(ln0)}</span>
                 </mwc-check-list-item>`
-            )}</filtered-list
+            )}</${FilteredList}
           >
         </div>`,
       ],
@@ -321,7 +322,7 @@ export function selectClientLNsWizard(
         action: openCommunicationMappingWizard(root),
       },
       content: [
-        html`<filtered-list multi
+        html`<${FilteredList} multi
           >${clientLns.map(clientLN => {
             const ln =
               (clientLN.getAttribute('prefix') ?? '') +
@@ -332,7 +333,7 @@ export function selectClientLNsWizard(
               <span>${ln}</span>
               <mwc-icon slot="graphic">${clientIcon}</mwc-icon>
             </mwc-check-list-item> `;
-          })}</filtered-list
+          })}</${FilteredList}
         >`,
       ],
     },

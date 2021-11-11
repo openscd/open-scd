@@ -36,6 +36,7 @@ import {
 
 import { selectors } from './foundation.js';
 import { WizardTextField } from '../../wizard-textfield.js';
+import { FilteredList } from '../../filtered-list.js';
 
 /** Data needed to uniquely identify an `AccessPoint` */
 interface apAttributes {
@@ -152,7 +153,7 @@ function renderWizardPage(element: Element): TemplateResult {
     .sort(compareListItemConnection);
 
   if (accPointDescription.length)
-    return html` <filtered-list id="apList" multi
+    return html` <${FilteredList} id="apList" multi
       >${accPointDescription.map(
         item => html`<mwc-check-list-item
           value="${JSON.stringify(item.value)}"
@@ -164,7 +165,7 @@ function renderWizardPage(element: Element): TemplateResult {
           ></mwc-check-list-item
         >`
       )}
-    </filtered-list>`;
+    </${FilteredList}>`;
 
   return html`<mwc-list-item disabled graphic="icon">
     <span>${translate('lnode.wizard.placeholder')}</span>

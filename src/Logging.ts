@@ -28,6 +28,7 @@ import {
 import { get, translate } from 'lit-translate';
 import { getFilterIcon, iconColors } from './icons.js';
 import { Plugin } from './Plugging.js';
+import { FilteredList } from './filtered-list.js';
 
 const icons = {
   info: 'info',
@@ -406,8 +407,8 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </mwc-dialog>
 
         <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
-          <filtered-list id="content" wrapFocus
-            >${this.renderIssues()}</filtered-list
+          <${FilteredList} id="content" wrapFocus
+            >${this.renderIssues()}</${FilteredList}
           >
           <mwc-button slot="primaryAction" dialogaction="close"
             >${translate('close')}</mwc-button
