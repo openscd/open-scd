@@ -57,3 +57,28 @@ export function isBusBar(element: Element): boolean {
         element.children.length === 1 && element.children[0].tagName === 'ConnectivityNode'
     );
 }
+
+/**
+ * Calculate the X and Y coordinate of a Connectivity Node.
+ * By using the path name, all connected equipments can be found, and their X and Y coordinates can be used.
+ * @param cnPathName The pathName of the Connectivity Node to calculate.
+ * @returns Calculated position.
+ */
+export function calculateConnectivityNodeCoordinates(doc: XMLDocument, cnPathName: string): Point {
+    let nrOfConnections = 0;
+    let totalX = 0;
+    let totalY = 0;
+
+    Array.from(doc.querySelectorAll('ConductingEquipment'))
+        .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${cnPathName}"]`) != null)
+        .forEach(equipment => {
+            nrOfConnections++;
+
+            const {x, y} = getCoordinates(equipment)
+
+            totalX += x!;
+            totalY += y!;
+        })
+
+    return {x: Math.round(totalX / nrOfConnections), y: Math.round(totalY / nrOfConnections)};
+}
