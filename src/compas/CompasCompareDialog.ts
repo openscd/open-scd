@@ -1,24 +1,13 @@
-import {html} from "lit-element";
+import {html, TemplateResult} from "lit-element";
 import {repeat} from "lit-html/directives/repeat";
 import {get, translate} from "lit-translate";
 
-import {
-  EditorAction,
-  identity,
-  isEqual,
-  isSame,
-  newWizardEvent,
-  Wizard,
-  WizardActor
-} from "../foundation.js";
+import {identity, isSame, newWizardEvent, Wizard} from "../foundation.js";
 
-import "../compas/CompasCompareDialog.js";
-import {ListItem} from "@material/mwc-list/mwc-list-item";
+import {getOpenScdElement} from "./foundation.js";
 
-interface MergeOptions {
-  title?: string;
-  selected?: (diff: Diff<Element | string>) => boolean;
-  auto?: (oldValue: Element, newValue: Element) => boolean;
+interface CompareOptions {
+  title: string;
 }
 
 export type Diff<T> =
@@ -28,59 +17,18 @@ export type Diff<T> =
 
 function describe(element: Element): string {
   const id = identity(element);
-
-  return typeof id === 'string' ? id.replace(/^>/, '') : get('unidentifiable');
+  return typeof id === 'string' ? id : get('unidentifiable');
 }
 
-function compareWizardAction(
-  attrDiffs: [string, Diff<string>][],
-  childDiffs: Diff<Element>[],
-  oldValue: Element,
-  newValue: Element,
-  options?: MergeOptions
-): WizardActor {
-  return (_, wizard: Element): EditorAction[] => {
-    const checkList = wizard.shadowRoot!.querySelector('mwc-list')!;
-
-    const selectedChildDiffs = (<ListItem[]>checkList.selected)
-      .filter(item => item.classList.contains('child'))
-      .map(item => childDiffs[item.value as unknown as number]);
-    if (selectedChildDiffs.length) {
-      for (const diff of selectedChildDiffs)
-        if (diff.oldValue && diff.newValue) {
-          wizard.dispatchEvent(
-            newWizardEvent(
-              compareWizard(diff.oldValue, diff.newValue, {
-                ...options,
-                title: undefined,
-              })
-            )
-          );
-        }
-    }
-
-    return [
-      {
-        actions: [],
-        title: get('compas.compare.elementTitle', {
-          oldValue: describe(oldValue),
-          newValue: describe(newValue),
-          tag: oldValue.tagName,
-        }),
-      },
-    ];
-  };
-}
-
-export function compareWizard(
+export function diffSclAttributes(
   oldElement: Element,
-  newElement: Element,
-  options?: MergeOptions
-): Wizard {
+  newElement: Element
+): [string, Diff<string>][] {
   const attrDiffs: [string, Diff<string>][] = [];
+
+  // First check if there is any text inside the element and there should be no child elements.
   const oldText = oldElement.textContent ?? '';
   const newText = newElement.textContent ?? '';
-
   if (oldElement.childElementCount === 0 &&
     newElement.childElementCount === 0 &&
     newText !== oldText
@@ -88,10 +36,10 @@ export function compareWizard(
     attrDiffs.push(['value', {oldValue: oldText, newValue: newText}]);
   }
 
+  // Next check if there are any difference between attributes.
   const attributeNames = new Set(newElement.getAttributeNames().concat(oldElement.getAttributeNames()));
-
-  for (const name of attributeNames)
-    if (newElement.getAttribute(name) !== oldElement.getAttribute(name))
+  for (const name of attributeNames) {
+    if (newElement.getAttribute(name) !== oldElement.getAttribute(name)) {
       attrDiffs.push([
         name,
         <Diff<string>>{
@@ -99,50 +47,83 @@ export function compareWizard(
           oldValue: oldElement.getAttribute(name),
         },
       ]);
+    }
+  }
+  return attrDiffs;
+}
 
+export function diffSclChilds(
+  oldElement: Element,
+  newElement: Element
+): Diff<Element>[] {
   const childDiffs: Diff<Element>[] = [];
-  const ourChildren = Array.from(oldElement.children);
-  const theirChildren = Array.from(newElement.children);
+  const oldChildren = Array.from(oldElement.children);
+  const newChildren = Array.from(newElement.children);
 
-  theirChildren.forEach(newValue => {
-    const twinIndex = ourChildren.findIndex(ourChild =>
-      isSame(newValue, ourChild)
-    );
-    const oldValue = twinIndex > -1 ? ourChildren[twinIndex] : null;
+  newChildren.forEach(newValue => {
+    if (!newValue.closest('Private')) {
+      const twinIndex = oldChildren.findIndex(ourChild => isSame(newValue, ourChild));
+      const oldValue = twinIndex > -1 ? oldChildren[twinIndex] : null;
 
-    if (oldValue) ourChildren.splice(twinIndex, 1);
-    if (oldValue && isEqual(newValue, oldValue)) return;
+      if (oldValue) {
+        oldChildren.splice(twinIndex, 1);
+        childDiffs.push({newValue, oldValue})
+      } else {
+        childDiffs.push({newValue: newValue, oldValue: null})
+      }
+    }
+  });
+  oldChildren.forEach(oldValue => {
+    if (!oldValue.closest('Private')) {
+      childDiffs.push({newValue: null, oldValue});
+    }
+  });
+  return childDiffs;
+}
 
-    if (!oldValue || !isEqual(newValue, oldValue)) childDiffs.push({ newValue, oldValue });
+export function renderDiff(
+  oldElement: Element,
+  newElement: Element
+): TemplateResult {
+  // Determine the ID from the current tag. These can be numbers or strings.
+  let idTitle = identity(oldElement).toString();
+  if (idTitle && idTitle !== '' && idTitle !== 'NaN') {
+    idTitle = '(' + idTitle + ')';
+  } else {
+    idTitle = '';
+  }
+
+  // First get all differences in attributes and text for the current 2 elements.
+  const attrDiffs: [string, Diff<string>][] = diffSclAttributes(oldElement, newElement);
+  // Next check which elements are added, deleted or in both elements.
+  const childDiffs: Diff<Element>[] = diffSclChilds(oldElement, newElement);
+
+  const childAddedOrDeleted: Diff<Element>[] = [];
+  const childToCompare: Diff<Element>[] = [];
+  childDiffs.forEach(diff => {
+    if (!diff.oldValue || !diff.newValue) {
+      childAddedOrDeleted.push(diff);
+    } else {
+      childToCompare.push(diff);
+    }
   });
 
-  ourChildren.forEach(oldValue => childDiffs.push({ newValue: null, oldValue }));
-
-  return [
-    {
-      title:
-        options?.title ??
-        get('compas.compare.elementTitle', {
-          oldValue: describe(oldElement),
-          newValue: describe(newElement),
-          tag: oldElement.tagName,
-        }),
-      primary: {
-        label: get('compas.compare.primaryButton'),
-        icon: 'compare',
-        action: compareWizardAction(attrDiffs, childDiffs, oldElement, newElement, options),
-        auto: options?.auto?.(oldElement, newElement) ?? false,
-      },
-      content: [
-        html`
+  return html`
+    ${(attrDiffs.length || childAddedOrDeleted.length)
+      ? html `
           <mwc-list multi>
+            ${attrDiffs.length
+              ? html`<mwc-list-item noninteractive>${translate('compas.compare.attributes')} ${oldElement.tagName} ${idTitle}</mwc-list-item>
+                     <li padded divider role="separator"></li>`
+              : ''}
             ${repeat(
-              attrDiffs,
-              e => e,
-              ([name, diff]) =>
-                html`<mwc-list-item twoline
-                                    left
-                                    hasMeta>
+                attrDiffs,
+                e => e,
+                ([name, diff]) =>
+                  html`
+                    <mwc-list-item twoline
+                                   left
+                                   hasMeta>
                       <span>${name}</span>
                       <span slot="secondary">${diff.oldValue ?? ''}
                         ${diff.oldValue && diff.newValue ? html`&cularr;` : ' '}
@@ -154,54 +135,62 @@ export function compareWizard(
                             : 'delete'
                           : 'add'}</mwc-icon>
                     </mwc-list-item>`
-            )}
-
-            ${childDiffs.length
-              ? html`<mwc-list-item noninteractive>${translate('compas.compare.children')}</mwc-list-item>
+              )}
+            ${childAddedOrDeleted.length
+              ? html`<mwc-list-item noninteractive>${translate('compas.compare.children')} ${oldElement.tagName} ${idTitle}</mwc-list-item>
                      <li padded divider role="separator"></li>`
               : ''}
             ${repeat(
-                childDiffs,
+                childAddedOrDeleted,
                 e => e,
-                (diff, index) => {
-                  if (diff.oldValue && diff.newValue) {
-                    return html`
-                      <mwc-check-list-item value=${index}
-                                           class="child"
-                                           twoline
-                                           left
-                                           hasMeta
-                                           .selected=${options?.selected?.(diff) ?? false}
-                                           style="--mdc-checkbox-checked-color: var(--mdc-theme-
-                                                      ${diff.oldValue
-                                                        ? diff.newValue
-                                                          ? 'secondary'
-                                                          : 'error'
-                                                        : 'primary'});">
-                        <span>${diff.oldValue?.tagName ?? diff.newValue?.tagName}</span>
-                        <span slot="secondary">
-                          ${describe(diff.oldValue)}
-                          ${describe(diff.oldValue) && describe(diff.newValue) ? html`&cularr;` : html``}
-                          ${describe(diff.newValue)}
-                        </span>
-                        <mwc-icon slot="meta">compare</mwc-icon>
-                      </mwc-check-list-item>`
-                  }
-                  return html`
+                (diff) =>
+                  html`
                     <mwc-list-item twoline
                                    left
                                    hasMeta>
                       <span>${diff.oldValue?.tagName ?? diff.newValue?.tagName}</span>
                       <span slot="secondary">
-                        ${diff.oldValue ? describe(diff.oldValue) : describe(diff.newValue)}
-                      </span>
+                          ${diff.oldValue ? describe(diff.oldValue) : describe(diff.newValue)}
+                        </span>
                       <mwc-icon slot="meta">
                         ${diff.oldValue ? 'delete' : 'add'}
                       </mwc-icon>
                     </mwc-list-item>`
-                }
               )}
-          </mwc-list>`,
+          </mwc-list>`
+      : ''}
+
+    ${repeat(
+      childToCompare,
+        e => e,
+        (diff) => {
+          return html`${renderDiff(diff.oldValue!, diff.newValue!)}`
+        }
+      )}`;
+}
+
+export function compareWizard(
+  oldElement: Element,
+  newElement: Element,
+  options: CompareOptions
+): Wizard {
+  function close() {
+    return function () {
+      getOpenScdElement().dispatchEvent(newWizardEvent())
+      return [];
+    };
+  }
+
+  return [
+    {
+      title: options.title,
+      secondary: {
+        icon: '',
+        label: get('close'),
+        action: close(),
+      },
+      content: [
+        html `${renderDiff(oldElement, newElement)}`
       ],
     },
   ];

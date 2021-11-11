@@ -454,9 +454,8 @@ export const en = {
     },
     compare: {
       title: 'Compare version {{oldVersion}} with version {{newVersion}}',
-      elementTitle: 'Compare {{oldValue}} with {{newValue}} ({{tag}})',
-      primaryButton: 'Continue...',
-      children: 'Child elements',
+      attributes: 'Attributes from',
+      children: 'Child elements from',
     },
     settings: {
       title: 'CoMPAS Settings',

@@ -49,22 +49,3 @@ export function updateDocumentInOpenSCD(doc: Document, docName?: string): void {
   openScd.dispatchEvent(newLogEvent({kind: 'reset'}));
   openScd.dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
 }
-
-export async function retrieveUserInfo(): Promise<void> {
-  await CompasUserInfoService().getCompasUserInfo()
-    .then(response => {
-      const name = response.querySelectorAll("Name").item(0)?.textContent;
-      if (name != null) {
-        getOpenScdElement().dispatchEvent(newUserInfoEvent(name));
-      }
-
-      const sessionWarning = response.querySelectorAll("SessionWarning").item(0)?.textContent??"15";
-      const sessionExpires = response.querySelectorAll("SessionExpires").item(0)?.textContent??"10";
-      setSessionTimeouts(parseInt(sessionWarning), parseInt(sessionExpires));
-    })
-    .catch(reason => {
-      createLogEvent(reason);
-      setSessionTimeouts(10, 15);
-    });
-}
-retrieveUserInfo();

@@ -6,6 +6,8 @@ import {saveDocumentToFile} from "../file.js";
 import {getOpenScdElement} from "./foundation.js";
 
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
+import {newUserInfoEvent} from "../foundation";
+import {createLogEvent} from "../compas-services/foundation";
 
 @customElement('compas-session-expiring-dialog')
 export class CompasSessionExpiringDialogElement extends LitElement {
@@ -154,6 +156,7 @@ export function renderCompasSessionDialogs(doc: Document | null, docName: string
 let pingTimer: NodeJS.Timeout | null = null;
 
 function resetKeepAlivePing() {
+  // Set timer on null, so next time the ping will be executed again if the user interacts with OpenSCD.
   pingTimer = null;
 }
 
@@ -176,7 +179,7 @@ function showExpiredSessionMessage() {
   unregisterEvents();
 }
 
-export function resetTimer() {
+export function resetTimer(): void {
   CompasSessionExpiringDialogElement.getElement().resetTimer();
   CompasSessionExpiredDialogElement.getElement().resetTimer();
   schedulePing();
@@ -202,3 +205,22 @@ export function setSessionTimeouts(sessionWarning: number, sessionExpires: numbe
   resetTimer();
   registerEvents();
 }
+
+export async function retrieveUserInfo(): Promise<void> {
+  await CompasUserInfoService().getCompasUserInfo()
+    .then(response => {
+      const name = response.querySelectorAll("Name").item(0)?.textContent;
+      if (name != null) {
+        getOpenScdElement().dispatchEvent(newUserInfoEvent(name));
+      }
+
+      const sessionWarning = response.querySelectorAll("SessionWarning").item(0)?.textContent??"15";
+      const sessionExpires = response.querySelectorAll("SessionExpires").item(0)?.textContent??"10";
+      setSessionTimeouts(parseInt(sessionWarning), parseInt(sessionExpires));
+    })
+    .catch(reason => {
+      createLogEvent(reason);
+      setSessionTimeouts(10, 15);
+    });
+}
+retrieveUserInfo();
