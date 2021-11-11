@@ -6,7 +6,7 @@ import marked from 'marked';
 import { html, newWizardEvent, Wizard } from '../foundation.js';
 import { openSCDIcon } from '../icons.js';
 
-import { Directory } from '../finder-pane.js';
+import { Directory, FinderPane } from '../finder-pane.js';
 
 function aboutBox(version: string) {
   return html`<div>
@@ -64,10 +64,10 @@ export function aboutBoxWizard(): Wizard {
     {
       title: 'Help',
       content: [
-        html`<finder-pane
+        html`<${FinderPane}
           .path=${['Home']}
           .getChildren=${getLinkedPages}
-        ></finder-pane>`,
+        ></${FinderPane}>`,
       ],
     },
   ];

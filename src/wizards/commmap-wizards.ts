@@ -14,6 +14,7 @@ import {
 import { selectClientLNsWizard } from './clientln.js';
 import { selectExtRefsWizard } from './controlwithiedname.js';
 import { controlBlockIcons } from '../icons.js';
+import { FilteredList } from '../filtered-list.js';
 
 export function openCommunicationMappingWizard(
   root: XMLDocument | Element
@@ -82,7 +83,7 @@ export function communicationMappingWizard(
     {
       title: get('commmap.title'),
       content: [
-        html`<filtered-list
+        html`<${FilteredList}
           >${Array.from(connections.keys()).map(key => {
             const elements = connections.get(key)!;
             const [cbId, cbTag, sinkIED] = key.split(' | ');
@@ -117,7 +118,7 @@ export function communicationMappingWizard(
               >
               <mwc-icon slot="graphic">${controlBlockIcons[cbTag]}</mwc-icon>
             </mwc-list-item>`;
-          })}</filtered-list
+          })}</${FilteredList}
         >`,
       ],
     },

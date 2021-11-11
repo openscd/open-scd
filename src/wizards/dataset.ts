@@ -1,4 +1,5 @@
 import { get, translate } from 'lit-translate';
+import { FilteredList } from '../filtered-list.js';
 import {
   cloneElement,
   getValue,
@@ -70,13 +71,13 @@ export function editDataSetWizard(element: Element): Wizard {
           required
         >
         </${WizardTextField}>`,
-        html`<filtered-list multi
+        html`<${FilteredList} multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
               html`<mwc-check-list-item value="${identity(fcda)}"
                 >${(<string>identity(fcda)).split('>')[4]}</mwc-check-list-item
               >`
-          )}</filtered-list
+          )}</${FilteredList}
         >`,
       ],
     },

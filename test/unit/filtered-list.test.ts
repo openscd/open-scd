@@ -12,14 +12,14 @@ describe('filtered-list', () => {
   ];
   beforeEach(async () => {
     element = await fixture(
-      html`<filtered-list multi
+      html`<${FilteredList} multi
         >${Array.from(listItems).map(
           item =>
             html`<mwc-check-list-item twoline ?disabled=${item.disabled}
               ><span>${item.prim}</span
               ><span slot="secondary">${item.sec}</span></mwc-check-list-item
             >`
-        )}</filtered-list
+        )}</${FilteredList}
       >`
     );
   });

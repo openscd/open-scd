@@ -33,6 +33,7 @@ import {
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { FilteredList } from '../filtered-list.js';
 
 const templates = fetch('public/xml/templates.scd')
   .then(response => response.text())
@@ -164,7 +165,7 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <filtered-list
+          <${FilteredList}
             id="lnodetypelist"
             @selected=${(e: SingleSelectedEvent) =>
               this.openLNodeTypeWizard(
@@ -190,7 +191,7 @@ export default class TemplatesPlugin extends LitElement {
               ></mwc-list-item
             >`
             )}
-          </filtered-list>
+          </${FilteredList}>
         </section>
         <section tabindex="0">
           <h1>
@@ -204,7 +205,7 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <filtered-list
+          <${FilteredList}
             id="dotypelist"
             @selected=${(e: SingleSelectedEvent) =>
               this.openDOTypeWizard(
@@ -229,7 +230,7 @@ export default class TemplatesPlugin extends LitElement {
                   ></mwc-list-item
                 >`
             )}
-          </filtered-list>
+          </${FilteredList}>
         </section>
         <section tabindex="0">
           <h1>
@@ -243,7 +244,7 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <filtered-list
+          <${FilteredList}
             id="datypelist"
             @selected=${(e: SingleSelectedEvent) =>
               this.openDATypeWizard(
@@ -265,7 +266,7 @@ export default class TemplatesPlugin extends LitElement {
                   ></mwc-list-item
                 >`
             )}
-          </filtered-list>
+          </${FilteredList}>
         </section>
         <section tabindex="0">
           <h1>
@@ -279,7 +280,7 @@ export default class TemplatesPlugin extends LitElement {
               </abbr>
             </nav>
           </h1>
-          <filtered-list
+          <${FilteredList}
             id="enumtypelist"
             @selected=${(e: SingleSelectedEvent) =>
               this.openEnumTypeWizard(
@@ -302,7 +303,7 @@ export default class TemplatesPlugin extends LitElement {
                   ></mwc-list-item
                 >`
             )}
-          </filtered-list>
+          </${FilteredList}>
         </section>
       </div>
     `;

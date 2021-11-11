@@ -13,6 +13,7 @@ import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { html } from './foundation.js';
+import { FilteredList } from './filtered-list.js';
 
 export interface Directory {
   content: TemplateResult;
@@ -27,7 +28,6 @@ const waitingList = html`<mwc-list
   ></mwc-list
 >`;
 
-@customElement('finder-pane')
 export class FinderPane extends LitElement {
   @property({ type: Array })
   path: string[] = [];
@@ -78,10 +78,10 @@ export class FinderPane extends LitElement {
       return html`<section>
         ${progeny.content}
         ${children.length
-          ? html`<filtered-list
+          ? html`<${FilteredList}
               @selected=${(e: SingleSelectedEvent) => this.select(e, index)}
               searchFieldLabel="${parent || '/'}"
-              >${children}</filtered-list
+              >${children}</${FilteredList}
             >`
           : html``}
       </section>`;

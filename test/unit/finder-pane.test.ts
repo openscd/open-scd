@@ -23,7 +23,7 @@ describe('finder-pane', () => {
   let element: FinderPane;
 
   beforeEach(async () => {
-    element = await fixture(html`<finder-pane></finder-pane>`);
+    element = await fixture(html`<${FinderPane}></${FinderPane}>`);
   });
 
   it('displays nothing with default properties', () =>
@@ -34,10 +34,10 @@ describe('finder-pane', () => {
 
     beforeEach(async () => {
       element = await fixture(
-        html`<finder-pane
+        html`<${FinderPane}
           .path=${path}
           .getChildren=${getChildren}
-        ></finder-pane>`
+        ></${FinderPane}>`
       );
       items = Array.from(
         element.shadowRoot?.querySelectorAll('mwc-list-item') ?? []

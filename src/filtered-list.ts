@@ -13,7 +13,6 @@ import {
 } from 'lit-element';
 import { html } from './foundation.js';
 
-@customElement('filtered-list')
 export class FilteredList extends ListBase {
   @property({ type: String })
   searchFieldLabel!: string;
