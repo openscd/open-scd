@@ -1,6 +1,6 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
-import { createGElement, getAbsolutePosition, getParentElementName, getPositionWithoutCoordinatedElement, SVG_GRID_SIZE } from "./singlelinediagram/drawing";
+import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE } from "./singlelinediagram/drawing";
 import { getNameAttribute, getCoordinates, isBusBar, Point } from "./singlelinediagram/foundation";
 
 /**
@@ -91,7 +91,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 cNodeElement.setAttribute('x', `${coordinates.x}`)
                 cNodeElement.setAttribute('y', `${coordinates.y}`);
 
-                const position = getPositionWithoutCoordinatedElement(cNode, {x: coordinates.x, y: coordinates.y});
+                const position = getAbsolutePositionWithoutCoordinatedElement(cNode, {x: coordinates.x, y: coordinates.y});
 
                 // Define a temporary icon
                 const cNodeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');

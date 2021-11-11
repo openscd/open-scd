@@ -36,7 +36,7 @@ import { getCoordinates, getDescriptionAttribute, getNameAttribute, Point } from
     }
 }
 
-export function getPositionWithoutCoordinatedElement(element: Element, point: Point): Point {
+export function getAbsolutePositionWithoutCoordinatedElement(element: Element, point: Point): Point {
     switch (element.parentElement!.tagName) {
         case 'Bay': {
             const bayPosition = getCoordinates(element.parentElement!);
