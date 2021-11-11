@@ -1,6 +1,7 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
-import { getNameAttribute, getCoordinates, getParentElementName, getPosition as getAbsolutePosition, SVG_GRID_SIZE, isBusBar, getPositionWithoutCoordinatedElement, createGElement, Point } from "./singlelinediagram/foundation";
+import { createGElement, getAbsolutePosition, getParentElementName, getPositionWithoutCoordinatedElement, SVG_GRID_SIZE } from "./singlelinediagram/drawing";
+import { getNameAttribute, getCoordinates, isBusBar, Point } from "./singlelinediagram/foundation";
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -122,6 +123,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             busBarIcon.setAttribute('stroke-width', '6');
             busBarIcon.setAttribute('stroke', 'currentColor');
 
+            // TODO: Need smoother solution, don't want to use SVG_GRID_SIZE here.
             const position = getAbsolutePosition(busBar);
             busBarIcon.setAttribute('x1', `${position.x}`);
             busBarIcon.setAttribute('y1', `${position.y}`);
