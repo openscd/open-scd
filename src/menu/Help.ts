@@ -6,7 +6,7 @@ import marked from 'marked';
 import { html, newWizardEvent, Wizard } from '../foundation.js';
 import { openSCDIcon } from '../icons.js';
 
-import { Directory } from '../finder-list.js';
+import { Directory, FinderList } from '../finder-list.js';
 
 function aboutBox(version: string) {
   return html`<div>
@@ -64,10 +64,10 @@ export function aboutBoxWizard(): Wizard {
     {
       title: 'Help',
       content: [
-        html`<finder-list
+        html`<${FinderList}
           .path=${['Home']}
           .read=${getLinkedPages}
-        ></finder-list>`,
+        ></${FinderList}>`,
       ],
     },
   ];

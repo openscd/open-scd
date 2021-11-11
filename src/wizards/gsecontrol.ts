@@ -26,6 +26,7 @@ import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 import { WizardTextField } from '../wizard-textfield.js';
 import { WizardSelect } from '../wizard-select.js';
+import { FilteredList } from '../filtered-list.js';
 
 function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
@@ -272,7 +273,7 @@ export function selectGseControlWizard(element: Element): Wizard {
     {
       title: get('wizard.title.select', { tagName: 'GSEcontrol' }),
       content: [
-        html`<filtered-list
+        html`<${FilteredList}
           @selected=${(e: SingleSelectedEvent) => {
             const gseControlIndentity = (<ListItem>(<List>e.target).selected)
               .value;
@@ -294,7 +295,7 @@ export function selectGseControlWizard(element: Element): Wizard {
                   >${identity(gseControl)}</span
                 ></mwc-list-item
               >`
-          )}</filtered-list
+          )}</${FilteredList}
         >`,
       ],
     },

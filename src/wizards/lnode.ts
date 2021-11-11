@@ -20,6 +20,7 @@ import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { FilteredList } from '../filtered-list.js';
 
 /** Description of a `ListItem` representing an `IED` or `LN[0]` */
 interface ItemDescription {
@@ -230,7 +231,7 @@ function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
 function renderIEDPage(element: Element): TemplateResult {
   const doc = element.ownerDocument;
   if (doc.querySelectorAll(':root > IED').length > 0)
-    return html`<filtered-list
+    return html`<${FilteredList}
       disableCheckAll
       multi
       id="iedList"
@@ -258,7 +259,7 @@ function renderIEDPage(element: Element): TemplateResult {
               ?selected=${item.selected}
               >${item.iedName}</mwc-check-list-item
             >`
-        )}</filtered-list
+        )}</${FilteredList}
     >`;
   else
     return html`<mwc-list-item noninteractive graphic="icon">
@@ -286,7 +287,7 @@ export function lNodeWizard(element: Element): Wizard {
         label: get('save'),
         action: lNodeWizardAction(element),
       },
-      content: [html`<filtered-list multi id="lnList"></filtered-list>`],
+      content: [html`<${FilteredList} multi id="lnList"></${FilteredList}>`],
     },
   ];
 }

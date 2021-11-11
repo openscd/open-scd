@@ -18,6 +18,7 @@ import {
   getSourceReferences,
   openCommunicationMappingWizard,
 } from './commmap-wizards.js';
+import { FilteredList } from '../filtered-list.js';
 
 function findIEDNameTarget(iedName: Element): Element | null {
   const name = iedName.textContent ?? '';
@@ -182,7 +183,7 @@ export function selectExtRefsWizard(
         action: openCommunicationMappingWizard(root),
       },
       content: [
-        html`<filtered-list multi
+        html`<${FilteredList} multi
           >${sinkExtRefs.map(extRef => {
             const reference =
               (extRef.getAttribute('prefix') ?? '') +
@@ -200,7 +201,7 @@ export function selectExtRefsWizard(
               >
               <mwc-icon slot="graphic">${inputIcon}</mwc-icon>
             </mwc-check-list-item> `;
-          })}</filtered-list
+          })}</${FilteredList}
         >`,
       ],
     },
