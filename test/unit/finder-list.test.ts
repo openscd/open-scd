@@ -1,8 +1,8 @@
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import '../../src/finder-list.js';
 import { Directory, FinderList, Path } from '../../src/finder-list.js';
-import { depth } from '../../src/foundation.js';
+import { depth, html } from '../../src/foundation.js';
 
 const pathA = ['e2', 'e1', 'e4'];
 const pathB = ['e1', 'e4'];

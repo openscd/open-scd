@@ -1,7 +1,7 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
-import { isCreate } from '../../../src/foundation.js';
+import { isCreate, html } from '../../../src/foundation.js';
 
 import { FinderList } from '../../../src/finder-list.js';
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
