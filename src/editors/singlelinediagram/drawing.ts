@@ -4,7 +4,7 @@ import { getCoordinates, getDescriptionAttribute, getNameAttribute, Point } from
 /**
  * Default 'grid size' of our SVG.
  */
- export const SVG_GRID_SIZE = 64;
+ export const SVG_GRID_SIZE = 128;
 
 /**
  * Defining the sides of route drawing of the two points

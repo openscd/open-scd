@@ -137,7 +137,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             const position = getAbsolutePosition(busBar);
             busBarIcon.setAttribute('x1', `${position.x}`);
             busBarIcon.setAttribute('y1', `${position.y}`);
-            busBarIcon.setAttribute('x2', `${this.biggestVoltageLevelXCoordinate * SVG_GRID_SIZE}`);
+            busBarIcon.setAttribute('x2', `${this.biggestVoltageLevelXCoordinate}`);
             busBarIcon.setAttribute('y2', `${position.y}`);
 
             busBarElement.appendChild(busBarIcon);
@@ -204,25 +204,22 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
 
     /**
-     * Calculate the full X coordinates of this VoltageLevel.
+     * Calculate the absolute X coordinate for the bus bar.
      */
     get biggestVoltageLevelXCoordinate(): number {
+        let biggestXOfBay = 0;
         let finalX = 0;
-        // Get the x of the last bay (basically the 'biggest' x)
-        Array.from(this.doc.querySelectorAll('Bay')).forEach(bay => finalX = Math.max(finalX, getAbsolutePosition(bay).x!))
+        
+        // First get the Bay with the 'biggest' x (otherwise all bays/elements are being processed)
+        Array.from(this.doc.querySelectorAll('Bay')).forEach(bay => biggestXOfBay = Math.max(biggestXOfBay, getCoordinates(bay).x!))
 
-        /**
-         * Because the width of the last bay is also needed, look up the bay
-         * and find the ConductingEquipment containing the biggest x coordinate.
-         */
+        // Then, get the 'biggest' x available in this particular bay.
         Array.from(this.doc.querySelectorAll('Bay'))
-        .filter(bay => getAbsolutePosition(bay).x! == finalX)
+        .filter(bay => getCoordinates(bay).x! == biggestXOfBay)
         .forEach(bay => {
-            let bayMaxX = 0;
+            // Also, an extra SVG_GRID_SIZE is added for making it a bit longer.
             bay.querySelectorAll('ConductingEquipment')
-            .forEach(equipment => bayMaxX = Math.max(bayMaxX, getAbsolutePosition(equipment).x!))
-            // Also extend the max X coordinate with a multiplyer.
-            finalX += bayMaxX;
+                .forEach(equipment => finalX = Math.max(finalX, getAbsolutePosition(equipment).x! + SVG_GRID_SIZE))
         })
 
         return finalX;
@@ -240,8 +237,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
             <div id="panzoom">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     id="svg"
-                    width="2000"
-                    height="2000">
+                    width="5000%"
+                    height="5000">
                 </svg>
             </div>
         </div>`;
