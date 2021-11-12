@@ -71,7 +71,7 @@
         value="ExtRef | IED1>>Disconnectors>DC CSWI 1>IED2 CBSW/ XSWI 2 Pos q@01-0C-CD-01-00-01,0001,5,GOOSERCV_BIN.3.I2,400,0,GOOSERCV_BIN,Dynamic"
       >
         <span>
-          GOOSERCV_BIN.3.I2
+          some desc-GOOSERCV_BIN.3.I2
         </span>
         <span slot="secondary">
           ExtRef | IED1>>Disconnectors>DC CSWI 1>IED2 CBSW/ XSWI 2 Pos q@01-0C-CD-01-00-01,0001,5,GOOSERCV_BIN.3.I2,400,0,GOOSERCV_BIN,Dynamic

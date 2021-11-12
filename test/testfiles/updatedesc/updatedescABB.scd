@@ -15,7 +15,7 @@
 					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI">
 						<Inputs>
 							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="stVal" intAddr="01-0C-CD-01-00-01,0001,5,GOOSERCV_BIN.3.I1,400,0,GOOSERCV_BIN,Dynamic"/>
-							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" intAddr="01-0C-CD-01-00-01,0001,5,GOOSERCV_BIN.3.I2,400,0,GOOSERCV_BIN,Dynamic"/>
+							<ExtRef iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2" doName="Pos" daName="q" intAddr="01-0C-CD-01-00-01,0001,5,GOOSERCV_BIN.3.I2,400,0,GOOSERCV_BIN,Dynamic" desc="some desc"/>
 						</Inputs>
 					</LN>
 					<LN lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
