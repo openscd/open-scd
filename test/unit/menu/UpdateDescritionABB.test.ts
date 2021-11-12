@@ -7,7 +7,9 @@ import { MockWizard } from '../../mock-wizard.js';
 import { ComplexAction, isSimple, isUpdate } from '../../../src/foundation.js';
 
 describe('Update method for desc attributes in ABB IEDs', () => {
-  customElements.define('update-description-abb', UpdateDescriptionAbb);
+  if (customElements.get('update-description-abb') === undefined)
+    customElements.define('update-description-abb', UpdateDescriptionAbb);
+
   let parent: MockWizard;
   let element: UpdateDescriptionAbb;
 
