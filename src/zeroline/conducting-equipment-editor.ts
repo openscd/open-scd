@@ -7,39 +7,11 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { startMove } from './foundation.js';
+import { startMove, getIcon } from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
-
-import {
-  circuitBreakerIcon,
-  currentTransformerIcon,
-  disconnectorIcon,
-  earthSwitchIcon,
-  generalConductingEquipmentIcon,
-  voltageTransformerIcon,
-} from '../icons.js';
 
 import { BayEditor } from './bay-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
-
-function typeStr(condEq: Element): string {
-  return condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
-    ? 'ERS'
-    : condEq.getAttribute('type') ?? '';
-}
-
-const typeIcons: Partial<Record<string, TemplateResult>> = {
-  CBR: circuitBreakerIcon,
-  DIS: disconnectorIcon,
-  CTR: currentTransformerIcon,
-  VTR: voltageTransformerIcon,
-  ERS: earthSwitchIcon,
-};
-
-export function typeIcon(condEq: Element): TemplateResult {
-  return typeIcons[typeStr(condEq)] ?? generalConductingEquipmentIcon;
-}
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('conducting-equipment-editor')
@@ -82,7 +54,7 @@ export class ConductingEquipmentEditor extends LitElement {
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
-        ${typeIcon(this.element)}
+        ${getIcon(this.element)}
         ${this.readonly
           ? html``
           : html`<mwc-fab

@@ -1,5 +1,6 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
+import { getIcon } from "../zeroline/foundation";
 import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement } from "./singlelinediagram/drawing";
 import { getNameAttribute, getCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
@@ -78,6 +79,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 const coordinates = getCoordinates(eq);
                 eqElement.setAttribute('x', `${coordinates.x}`)
                 eqElement.setAttribute('y', `${coordinates.y}`);
+
+                // Get the correct icon.
+                const icon = getIcon(eq);
+                const parsedIcon = new DOMParser().parseFromString(icon.strings[0], 'application/xml');
+                console.log(parsedIcon)
 
                 // Define a temporary icon
                 const eqIcon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
