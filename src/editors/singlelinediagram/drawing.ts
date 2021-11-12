@@ -80,6 +80,7 @@ export function getParentElementName(childElement: Element) {
 export function createGElement(element: Element): SVGElement {
     const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     finalElement.setAttribute('id', getNameAttribute(element)!);
+    finalElement.setAttribute('type', element.tagName);
 
     const description = getDescriptionAttribute(element);
     if (description) finalElement.setAttribute('desc', description);
@@ -96,17 +97,17 @@ export function createGElement(element: Element): SVGElement {
  */
  export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement): void {
     const shapeA = {
-      left: firstPoint.x! * 64,
-      top: firstPoint.y! * 64,
-      width: 64,
-      height: 64,
+      left: firstPoint.x!,
+      top: firstPoint.y!,
+      width: 1,
+      height: 1,
     };
   
     const shapeB = {
-      left: secondPoint.x! * 64,
-      top: secondPoint.y! * 64,
-      width: 64,
-      height: 64,
+      left: secondPoint.x!,
+      top: secondPoint.y!,
+      width: 1,
+      height: 1,
     };
   
     // Get the preferred sides.
