@@ -89,6 +89,20 @@ export function createGElement(element: Element): SVGElement {
 }
 
 /**
+ * Create a basic text element.
+ * @param element The base element which is needing this text element.
+ * @returns The text element.
+ */
+export function createTextElement(element: Element) {
+    const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+
+    finalElement.textContent = getNameAttribute(element)!;
+    finalElement.setAttribute('style', 'font: 20px sans-serif;');
+
+    return finalElement;
+}
+
+/**
  * Draw a route from the first point to the second point.
  * @param firstPoint The first point of this connection.
  * @param secondPoint The second point of this connection.

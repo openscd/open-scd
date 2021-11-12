@@ -1,6 +1,6 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
-import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute } from "./singlelinediagram/drawing";
+import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement } from "./singlelinediagram/drawing";
 import { getNameAttribute, getCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
@@ -128,19 +128,24 @@ export default class SingleLineDiagramPlugin extends LitElement {
             busBarElement.setAttribute('x', `${coordinates.x}`)
             busBarElement.setAttribute('y', `${coordinates.y}`);
 
-            // Define a temporary icon
             const busBarIcon = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             busBarIcon.setAttribute('name', getNameAttribute(busBar)!);
             busBarIcon.setAttribute('stroke-width', '6');
             busBarIcon.setAttribute('stroke', 'currentColor');
 
-            // TODO: Need smoother solution, don't want to use SVG_GRID_SIZE here.
+            // Adjust the position.
             const position = getAbsolutePosition(busBar);
             busBarIcon.setAttribute('x1', `${position.x}`);
             busBarIcon.setAttribute('y1', `${position.y}`);
             busBarIcon.setAttribute('x2', `${this.biggestVoltageLevelXCoordinate}`);
             busBarIcon.setAttribute('y2', `${position.y}`);
 
+            // Add the name.
+            const textElement = createTextElement(busBar);
+            textElement.setAttribute('x', `${position.x}`);
+            textElement.setAttribute('y', `${position.y! - 10}`);
+
+            busBarElement.appendChild(textElement);
             busBarElement.appendChild(busBarIcon);
             
             this.svg.querySelectorAll(`g[id=${getParentElementName(busBar)}]`)
