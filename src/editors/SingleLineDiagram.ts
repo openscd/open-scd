@@ -1,6 +1,6 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
-import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE } from "./singlelinediagram/drawing";
+import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute } from "./singlelinediagram/drawing";
 import { getNameAttribute, getCoordinates, isBusBar, Point, calculateConnectivityNodeCoordinates } from "./singlelinediagram/foundation";
 
 /**
@@ -138,6 +138,33 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
 
     /**
+     * Draw all the ConnectivityNode routes in this Bay.
+     */
+    drawConnectivityNodeConnections(): void {
+        Array.from(this.doc.querySelectorAll('Bay'))
+            .filter(bay => !isBusBar(bay))
+            .forEach(bay => {
+                bay.querySelectorAll('ConnectivityNode')
+                .forEach(cn => {
+                    const position = calculateConnectivityNodeCoordinates(this.doc, cn.getAttribute('pathName')!);
+                    const cnPosition = getAbsolutePositionWithoutCoordinatedElement(cn, {x: position.x, y: position.y});
+
+                    Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+                        .filter(element => element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`))
+                        .forEach(element => {
+                            const elementPosition = getAbsolutePosition(element);
+
+                            if (elementPosition.y! > cnPosition.y!) {
+                                drawRoute(cnPosition, elementPosition, this.svg);
+                            } else {
+                                drawRoute(elementPosition, cnPosition, this.svg);
+                            }
+                        });
+                });
+            });
+    }
+
+    /**
      * Draw all the Substation elements.
      */
     drawSubstationElements() {
@@ -177,6 +204,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
       panzoom(this.container);
 
       this.drawSubstationElements();
+
+      this.drawConnectivityNodeConnections();
     }
 
     render(): TemplateResult {
