@@ -80,6 +80,14 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
+    name: 'Update desc (ABB)',
+    src: '/src/menu/UpdateDescriptionABB.js',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
     name: 'Merge Project',
     src: '/src/menu/Merge.js',
     icon: 'merge_type',
