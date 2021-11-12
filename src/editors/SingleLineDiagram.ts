@@ -238,7 +238,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             <div id="panzoom">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     id="svg"
-                    width="5000%"
+                    width="5000"
                     height="5000">
                 </svg>
             </div>
