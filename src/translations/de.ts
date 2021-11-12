@@ -48,6 +48,7 @@ export const de: Translations = {
     title: 'Menü',
     viewLog: 'Protokoll anzeigen',
     viewDiag: 'Daignose anzeigen',
+    updatedesc: 'Signalbeschreibungen zu {{manufacturer}} IEDs hinzugefügt',
   },
   wizard: {
     title: {

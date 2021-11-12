@@ -41,7 +41,12 @@ function addDescriptionAction(doc: XMLDocument): WizardActor {
     });
 
     return [
-      { title: 'Add Descriptions (desc attribute) to ABB IEDs', actions },
+      {
+        title: get('menu.updatedesc', {
+          manufacturer: 'ABB',
+        }),
+        actions,
+      },
     ];
   };
 }

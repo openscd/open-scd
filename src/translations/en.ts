@@ -46,6 +46,7 @@ export const en = {
     title: 'Menu',
     viewLog: 'View log',
     viewDiag: 'View diagnostics',
+    updatedesc: 'Add signal descriptions to {{manufacturer}} IEDs',
   },
   wizard: {
     title: {
