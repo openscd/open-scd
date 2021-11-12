@@ -1,7 +1,7 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
 import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute } from "./singlelinediagram/drawing";
-import { getNameAttribute, getCoordinates, isBusBar, Point, calculateConnectivityNodeCoordinates } from "./singlelinediagram/foundation";
+import { getNameAttribute, getCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -95,11 +95,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
     drawConnectivityNodes(): void {
         this.bays.forEach(bay => {
-            bay.querySelectorAll('ConnectivityNode')
+            Array.from(bay.querySelectorAll('ConnectivityNode'))
+            .filter(cNode => getConnectedTerminals(cNode).length > 0)
             .forEach(cNode => {
                 const cNodeElement = createGElement(cNode);
 
-                const coordinates = calculateConnectivityNodeCoordinates(this.doc, cNode.getAttribute('pathName')!);
+                const coordinates = calculateConnectivityNodeCoordinates(this.doc, getPathNameAttribute(cNode)!);
                 cNodeElement.setAttribute('x', `${coordinates.x}`)
                 cNodeElement.setAttribute('y', `${coordinates.y}`);
 
@@ -151,7 +152,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         this.bays.forEach(bay => {
             bay.querySelectorAll('ConnectivityNode')
             .forEach(cn => {
-                const position = calculateConnectivityNodeCoordinates(this.doc, cn.getAttribute('pathName')!);
+                const position = calculateConnectivityNodeCoordinates(this.doc, getPathNameAttribute(cn)!);
                 const cnPosition = getAbsolutePositionWithoutCoordinatedElement(cn, {x: position.x, y: position.y});
 
                 Array.from(this.doc.querySelectorAll('ConductingEquipment'))
@@ -171,7 +172,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
     drawBusBarConnections() {
         this.busBars.forEach(busBar => {
-            const pathName = busBar.children[0].getAttribute('pathName');
+            const pathName = getPathNameAttribute(busBar.children[0]);
             const busBarPosition = getAbsolutePosition(busBar);
 
             Array.from(this.doc.querySelectorAll('ConductingEquipment'))

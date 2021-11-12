@@ -27,6 +27,16 @@ export function getDescriptionAttribute(element: Element): string | undefined {
 }
 
 /**
+ * Extract the 'pathName' attribute from the given XML element.
+ * @param element The element to extract path name from.
+ * @returns the name, or a '-' if there is no path name.
+ */
+export function getPathNameAttribute(element: Element): string | undefined {
+    const name = element.getAttribute('pathName');
+    return name ? name : undefined;
+}
+
+/**
  * Get the coordaintes of a XML element (x and y coordinates).
  * @param element The element to extract coordinates from.
  * @returns A point containing the coordinares.
@@ -82,3 +92,25 @@ export function calculateConnectivityNodeCoordinates(doc: XMLDocument, cnPathNam
 
     return {x: Math.round(totalX / nrOfConnections), y: Math.round(totalY / nrOfConnections)};
 }
+
+/**
+ * Get all the connected terminals to a given element.
+ * @param element The element to check.
+ * @returns All connected terminals.
+ */
+export function getConnectedTerminals(element: Element): Element[] {
+    const substation = element?.closest('Substation');
+    if (!substation) return [];
+  
+    const path = getPathNameAttribute(element) ?? '';
+    const [substationName, voltageLevelName, bayName, _] = path.split('/');
+  
+    return Array.from(substation.getElementsByTagName('Terminal')).filter(
+      terminal =>
+        terminal.getAttribute('connectivityNode') === path &&
+        terminal.getAttribute('substationName') === substationName &&
+        terminal.getAttribute('voltageLevelName') === voltageLevelName &&
+        terminal.getAttribute('bayName') === bayName &&
+        terminal.getAttribute('cNodeName') === getNameAttribute(element)
+    );
+  }
