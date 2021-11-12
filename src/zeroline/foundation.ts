@@ -1,4 +1,4 @@
-import { css } from 'lit-element';
+import { css, TemplateResult } from 'lit-element';
 
 import {
   newActionEvent,
@@ -7,6 +7,7 @@ import {
   Wizard,
   tags,
 } from '../foundation.js';
+import { circuitBreakerIcon, disconnectorIcon, currentTransformerIcon, voltageTransformerIcon, earthSwitchIcon, generalConductingEquipmentIcon } from '../icons.js';
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
 
 import { BayEditor } from './bay-editor.js';
@@ -213,6 +214,30 @@ export function startMove<E extends ElementEditor, P extends ElementEditor>(
   window.addEventListener('click', moveToTarget, true);
   window.addEventListener('keydown', moveToTarget, true);
 }
+
+/**
+ * Get the correct icon for a specific Conducting Equipment.
+ * @param condEq The Conducting Equipment to search the icon for.
+ * @returns The icon.
+ */
+export function getIcon(condEq: Element): TemplateResult {
+  return typeIcons[typeStr(condEq)] ?? generalConductingEquipmentIcon;
+}
+
+function typeStr(condEq: Element): string {
+  return condEq.getAttribute('type') === 'DIS' &&
+    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
+    ? 'ERS'
+    : condEq.getAttribute('type') ?? '';
+}
+
+const typeIcons: Partial<Record<string, TemplateResult>> = {
+  CBR: circuitBreakerIcon,
+  DIS: disconnectorIcon,
+  CTR: currentTransformerIcon,
+  VTR: voltageTransformerIcon,
+  ERS: earthSwitchIcon,
+};
 
 // Substation element hierarchy
 const substationPath = [
