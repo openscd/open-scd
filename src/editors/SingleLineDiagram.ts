@@ -18,7 +18,23 @@ export default class SingleLineDiagramPlugin extends LitElement {
     // The main canvas to draw everything on.
     @query('#svg') svg!: HTMLElement;
 
-    drawVoltageLevels() {
+    /**
+     * Get all the BusBars from the document.
+     */
+    get busBars() {
+        return Array.from(this.doc.querySelectorAll('Bay'))
+        .filter(bay => isBusBar(bay));
+    }
+
+    /**
+     * Get all the bays from the document.
+     */
+    get bays() {
+        return Array.from(this.doc.querySelectorAll('Bay'))
+        .filter(bay => !isBusBar(bay));
+    }
+
+    drawVoltageLevels(): void {
         this.doc.querySelectorAll('VoltageLevel').forEach(voltageLevel => {
             const voltageLevelElement = createGElement(voltageLevel);
 
@@ -34,10 +50,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
         })
     }
 
-    drawBays() {
-        Array.from(this.doc.querySelectorAll('Bay'))
-        .filter(bay => !isBusBar(bay))
-        .forEach(bay => {
+    drawBays(): void {
+        this.bays.forEach(bay => {
             const bayElement = createGElement(bay);
 
             // Set the position of the VoltageLevel.
@@ -50,7 +64,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         })
     }
 
-    drawConductingEquipments() {
+    drawConductingEquipments(): void {
         Array.from(this.doc.querySelectorAll('ConductingEquipment'))
             .filter(
             child =>
@@ -79,10 +93,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
             })
     }
 
-    drawConnectivityNodes() {
-        Array.from(this.doc.querySelectorAll('Bay'))
-        .filter(bay => !isBusBar(bay))
-        .forEach(bay => {
+    drawConnectivityNodes(): void {
+        this.bays.forEach(bay => {
             bay.querySelectorAll('ConnectivityNode')
             .forEach(cNode => {
                 const cNodeElement = createGElement(cNode);
@@ -107,10 +119,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
         });
     }
 
-    drawBusBars() {
-        Array.from(this.doc.querySelectorAll('Bay'))
-        .filter(bay => isBusBar(bay))
-        .forEach(busBar => {
+    drawBusBars(): void {
+        this.busBars.forEach(busBar => {
             const busBarElement = createGElement(busBar);
 
             const coordinates = getCoordinates(busBar);
@@ -137,31 +147,46 @@ export default class SingleLineDiagramPlugin extends LitElement {
         });
     }
 
-    /**
-     * Draw all the ConnectivityNode routes in this Bay.
-     */
     drawConnectivityNodeConnections(): void {
-        Array.from(this.doc.querySelectorAll('Bay'))
-            .filter(bay => !isBusBar(bay))
-            .forEach(bay => {
-                bay.querySelectorAll('ConnectivityNode')
-                .forEach(cn => {
-                    const position = calculateConnectivityNodeCoordinates(this.doc, cn.getAttribute('pathName')!);
-                    const cnPosition = getAbsolutePositionWithoutCoordinatedElement(cn, {x: position.x, y: position.y});
+        this.bays.forEach(bay => {
+            bay.querySelectorAll('ConnectivityNode')
+            .forEach(cn => {
+                const position = calculateConnectivityNodeCoordinates(this.doc, cn.getAttribute('pathName')!);
+                const cnPosition = getAbsolutePositionWithoutCoordinatedElement(cn, {x: position.x, y: position.y});
 
-                    Array.from(this.doc.querySelectorAll('ConductingEquipment'))
-                        .filter(element => element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`))
-                        .forEach(element => {
-                            const elementPosition = getAbsolutePosition(element);
+                Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+                    .filter(element => element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`))
+                    .forEach(element => {
+                        const elementPosition = getAbsolutePosition(element);
 
-                            if (elementPosition.y! > cnPosition.y!) {
-                                drawRoute(cnPosition, elementPosition, this.svg);
-                            } else {
-                                drawRoute(elementPosition, cnPosition, this.svg);
-                            }
-                        });
-                });
+                        if (elementPosition.y! > cnPosition.y!) {
+                            drawRoute(cnPosition, elementPosition, this.svg);
+                        } else {
+                            drawRoute(elementPosition, cnPosition, this.svg);
+                        }
+                    });
             });
+        });
+    }
+
+    drawBusBarConnections() {
+        this.busBars.forEach(busBar => {
+            const pathName = busBar.children[0].getAttribute('pathName');
+            const busBarPosition = getAbsolutePosition(busBar);
+
+            Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+                .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+                .forEach(eq => {
+                    const eqPosition = getAbsolutePosition(eq);
+
+                    // The X coordinate of 
+                    if (busBarPosition.y! > eqPosition.y!) {
+                        drawRoute(eqPosition, {x: eqPosition.x, y: busBarPosition.y}, this.svg);
+                    } else {
+                        drawRoute({x: eqPosition.x, y: busBarPosition.y}, eqPosition, this.svg);
+                    }
+                });
+        });
     }
 
     /**
@@ -173,6 +198,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
         this.drawConductingEquipments();
         this.drawConnectivityNodes();
         this.drawBusBars();
+
+        this.drawConnectivityNodeConnections();
+        this.drawBusBarConnections();
     }
 
     /**
@@ -204,8 +232,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
       panzoom(this.container);
 
       this.drawSubstationElements();
-
-      this.drawConnectivityNodeConnections();
     }
 
     render(): TemplateResult {
