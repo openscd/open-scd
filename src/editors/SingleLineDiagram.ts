@@ -240,9 +240,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
   
     firstUpdated(): void {
-      panzoom(this.container);
-
-      this.drawSubstationElements();
+        panzoom(this.container);
+        this.drawSubstationElements();
     }
 
     render(): TemplateResult {
