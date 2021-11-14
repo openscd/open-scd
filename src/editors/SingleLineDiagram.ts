@@ -81,10 +81,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 eqElement.setAttribute('y', `${coordinates.y}`);
 
                 // Get the correct icon.
-                const icon = getIcon(eq);
                 const position = getAbsolutePosition(eq);
-
-                const parsedIcon = new DOMParser().parseFromString(icon.strings[0], 'application/xml');
+                const parsedIcon = new DOMParser().parseFromString(getIcon(eq).strings[0], 'application/xml');
 
                 parsedIcon.querySelectorAll('svg').forEach(svg => {
                     svg.removeAttribute('viewBox');
@@ -92,6 +90,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
                     svg.setAttribute('y', position.y + '')
                     eqElement.appendChild(svg)
                 });
+    
+                // Add the name.
+                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 30}));
             
                 this.svg.querySelectorAll(`g[id="${getParentElementName(eq)}"]`)
                     .forEach(bay => bay.appendChild(eqElement))
@@ -110,9 +111,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 cNodeElement.setAttribute('y', `${coordinates.y}`);
 
                 const position = getAbsolutePositionWithoutCoordinatedElement(cNode, {x: coordinates.x, y: coordinates.y});
-                const icon = getIcon(cNode);
-
-                const parsedIcon = new DOMParser().parseFromString(icon.strings[0], 'application/xml');
+                const parsedIcon = new DOMParser().parseFromString(getIcon(cNode).strings[0], 'application/xml');
 
                 parsedIcon.querySelectorAll('svg').forEach(svg => {
                     svg.removeAttribute('viewBox');
@@ -121,6 +120,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
                     cNodeElement.appendChild(svg)
                 });
     
+                // Add the name.
+                cNodeElement.appendChild(createTextElement(cNode, {x: position.x! - 10, y: position.y! + 30}));
+
                 this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
                         .forEach(bay => bay.appendChild(cNodeElement))
                 });
@@ -137,7 +139,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
             const busBarIcon = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             busBarIcon.setAttribute('name', getNameAttribute(busBar)!);
-            busBarIcon.setAttribute('stroke-width', '6');
+            busBarIcon.setAttribute('stroke-width', '4');
             busBarIcon.setAttribute('stroke', 'currentColor');
 
             // Adjust the position.
@@ -146,14 +148,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
             busBarIcon.setAttribute('y1', `${position.y}`);
             busBarIcon.setAttribute('x2', `${this.biggestVoltageLevelXCoordinate}`);
             busBarIcon.setAttribute('y2', `${position.y}`);
+            busBarElement.appendChild(busBarIcon);
 
             // Add the name.
-            const textElement = createTextElement(busBar);
-            textElement.setAttribute('x', `${position.x}`);
-            textElement.setAttribute('y', `${position.y! - 10}`);
-
-            busBarElement.appendChild(textElement);
-            busBarElement.appendChild(busBarIcon);
+            busBarElement.appendChild(createTextElement(busBar, {x: position.x, y: position.y! - 10}));
             
             this.svg.querySelectorAll(`g[id=${getParentElementName(busBar)}]`)
                 .forEach(voltageLevel => voltageLevel.appendChild(busBarElement))
