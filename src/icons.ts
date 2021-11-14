@@ -560,6 +560,17 @@ export const generalConductingEquipmentIcon = html`<svg
   />
 </svg>`;
 
+export const connectivityNodeIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="25px"
+  height="25px"
+  viewBox="0 0 25 25"
+  stroke-width="1.5"
+  stroke="currentColor"
+  fill="none">
+    <circle cx="10" cy="10" r="7"/>
+</svg>`;
+
 export const openSCDIcon = html` <svg
   xmlns="http://www.w3.org/2000/svg"
   style="width:100px;height:100px"
