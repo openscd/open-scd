@@ -19,6 +19,7 @@ import { wizards } from '../wizards/wizard-library.js';
 
 import './voltage-level-editor.js';
 import { EditorContainer } from '../editor-container.js';
+import { IedEditor } from './ied-editor.js';
 
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
@@ -63,7 +64,9 @@ export class SubstationEditor extends LitElement {
     const ieds = this.getAttachedIeds?.(this.element) ?? [];
     return ieds?.length
       ? html`<div id="iedcontainer">
-          ${ieds.map(ied => html`<ied-editor .element=${ied}></ied-editor>`)}
+          ${ieds.map(
+            ied => html`<${IedEditor} .element=${ied}></${IedEditor}>`
+          )}
         </div>`
       : html``;
   }
