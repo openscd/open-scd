@@ -2,7 +2,7 @@ import { css, html, LitElement, property, query, TemplateResult } from "lit-elem
 import panzoom from "panzoom";
 import { getIcon } from "../zeroline/foundation";
 import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE } from "./singlelinediagram/drawing";
-import { getNameAttribute, getCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
+import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -40,7 +40,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             const voltageLevelElement = createGElement(voltageLevel);
 
             // Set the position of the VoltageLevel.
-            const {x, y} = getCoordinates(voltageLevel);
+            const {x, y} = getSCLCoordinates(voltageLevel);
             voltageLevelElement.setAttribute('x', `${x}`)
             voltageLevelElement.setAttribute('y', `${y}`)
 
@@ -56,7 +56,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             const bayElement = createGElement(bay);
 
             // Set the position of the VoltageLevel.
-            const coordinates = getCoordinates(bay);
+            const coordinates = getSCLCoordinates(bay);
             bayElement.setAttribute('x', `${coordinates.x}`);
             bayElement.setAttribute('y', `${coordinates.y}`);
             
@@ -76,7 +76,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 const eqElement = createGElement(eq);
 
                 // Set the position of the Equipment.
-                const coordinates = getCoordinates(eq);
+                const coordinates = getSCLCoordinates(eq);
                 eqElement.setAttribute('x', `${coordinates.x}`)
                 eqElement.setAttribute('y', `${coordinates.y}`);
 
@@ -133,7 +133,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         this.busBars.forEach(busBar => {
             const busBarElement = createGElement(busBar);
 
-            const coordinates = getCoordinates(busBar);
+            const coordinates = getSCLCoordinates(busBar);
             busBarElement.setAttribute('x', `${coordinates.x}`)
             busBarElement.setAttribute('y', `${coordinates.y}`);
 
@@ -225,11 +225,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
         let finalX = 0;
         
         // First get the Bay with the 'biggest' x (otherwise all bays/elements are being processed)
-        Array.from(this.doc.querySelectorAll('Bay')).forEach(bay => biggestXOfBay = Math.max(biggestXOfBay, getCoordinates(bay).x!))
+        Array.from(this.doc.querySelectorAll('Bay')).forEach(bay => biggestXOfBay = Math.max(biggestXOfBay, getSCLCoordinates(bay).x!))
 
         // Then, get the 'biggest' x available in this particular bay.
         Array.from(this.doc.querySelectorAll('Bay'))
-        .filter(bay => getCoordinates(bay).x! == biggestXOfBay)
+        .filter(bay => getSCLCoordinates(bay).x! == biggestXOfBay)
         .forEach(bay => {
             // Also, an extra SVG_GRID_SIZE is added for making it a bit longer.
             bay.querySelectorAll('ConductingEquipment')

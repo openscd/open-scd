@@ -1,5 +1,5 @@
 import { OrthogonalConnector, Side } from "../../../public/js/ortho-connector";
-import { getCoordinates, getDescriptionAttribute, getNameAttribute, Point } from "./foundation";
+import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, Point } from "./foundation";
 
 /**
  * Default 'grid size' of our SVG.
@@ -37,17 +37,17 @@ interface Shape {
  export function getAbsolutePosition(element: Element): Point {
     switch (element.parentElement!.tagName) {
         case 'Bay': {
-            const bayPosition = getCoordinates(element.parentElement!);
-            const voltageLevelPosition = getCoordinates(element.parentElement!.parentElement!);
-            const elementPosition = getCoordinates(element);
+            const bayPosition = getSCLCoordinates(element.parentElement!);
+            const voltageLevelPosition = getSCLCoordinates(element.parentElement!.parentElement!);
+            const elementPosition = getSCLCoordinates(element);
             return {
                 x: (bayPosition.x! + voltageLevelPosition.x! + elementPosition.x!) * SVG_GRID_SIZE,
                 y: (bayPosition.y! + voltageLevelPosition.y! + elementPosition.y!) * SVG_GRID_SIZE
             }
         }
         case 'VoltageLevel': {
-            const voltageLevelPosition = getCoordinates(element.parentElement!.parentElement!);
-            const elementPosition = getCoordinates(element);
+            const voltageLevelPosition = getSCLCoordinates(element.parentElement!.parentElement!);
+            const elementPosition = getSCLCoordinates(element);
             return {
                 x: (voltageLevelPosition.x! + elementPosition.x!) * SVG_GRID_SIZE,
                 y: (voltageLevelPosition.y! + elementPosition.y!) * SVG_GRID_SIZE
@@ -62,8 +62,8 @@ interface Shape {
 export function getAbsolutePositionWithoutCoordinatedElement(element: Element, point: Point): Point {
     switch (element.parentElement!.tagName) {
         case 'Bay': {
-            const bayPosition = getCoordinates(element.parentElement!);
-            const voltageLevelPosition = getCoordinates(element.parentElement!.parentElement!);
+            const bayPosition = getSCLCoordinates(element.parentElement!);
+            const voltageLevelPosition = getSCLCoordinates(element.parentElement!.parentElement!);
             return {
                 x: (bayPosition.x! + voltageLevelPosition.x! + point.x!) * SVG_GRID_SIZE,
                 y: (bayPosition.y! + voltageLevelPosition.y! + point.y!) * SVG_GRID_SIZE
