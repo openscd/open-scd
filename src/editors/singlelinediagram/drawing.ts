@@ -4,7 +4,12 @@ import { getCoordinates, getDescriptionAttribute, getNameAttribute, Point } from
 /**
  * Default 'grid size' of our SVG.
  */
- export const SVG_GRID_SIZE = 128;
+ export const SVG_GRID_SIZE = 64;
+
+ /**
+  * The default element size of an SCL element.
+  */
+ export const DEFAULT_ELEMENT_SIZE = 25;
 
 /**
  * Defining the sides of route drawing of the two points
@@ -13,7 +18,15 @@ import { getCoordinates, getDescriptionAttribute, getNameAttribute, Point } from
 interface PointSides {
     firstPointSide: Side;
     secondPointSide: Side;
-  }
+}
+
+/**
+ * Interface defining height and width for a shape drawing routes.
+ */
+interface Shape {
+    height: number;
+    width: number;
+}
  
 /**
  * Get the full position of an element (multiplied with an offset for the SVG).
@@ -106,22 +119,25 @@ export function createTextElement(element: Element) {
  * Draw a route from the first point to the second point.
  * @param firstPoint The first point of this connection.
  * @param secondPoint The second point of this connection.
- * @param downer Is this part drawn up or down?
  * @param svgToDrawOn The SVG to draw the route on.
+ * @param shape A custom shape defining custom height and width of the shapes.
  */
- export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement): void {
+ export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement, shape?: Shape): void {
+    if (shape) {
+
+    }
     const shapeA = {
       left: firstPoint.x!,
       top: firstPoint.y!,
-      width: 1,
-      height: 1,
+      width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
+      height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
     };
   
     const shapeB = {
       left: secondPoint.x!,
       top: secondPoint.y!,
-      width: 1,
-      height: 1,
+      width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
+      height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
     };
   
     // Get the preferred sides.

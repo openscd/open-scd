@@ -3,13 +3,8 @@ import { css, TemplateResult } from 'lit-element';
 import {
   newActionEvent,
   isPublic,
-  SCLTag,
-  Wizard,
-  tags,
 } from '../foundation.js';
-import { circuitBreakerIcon, disconnectorIcon, currentTransformerIcon, voltageTransformerIcon, earthSwitchIcon, generalConductingEquipmentIcon } from '../icons.js';
-import { emptyWizard, wizards } from '../wizards/wizard-library.js';
-
+import { circuitBreakerIcon, disconnectorIcon, currentTransformerIcon, voltageTransformerIcon, earthSwitchIcon, generalConductingEquipmentIcon, connectivityNodeIcon } from '../icons.js';
 import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
@@ -225,10 +220,14 @@ export function getIcon(condEq: Element): TemplateResult {
 }
 
 function typeStr(condEq: Element): string {
-  return condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
-    ? 'ERS'
-    : condEq.getAttribute('type') ?? '';
+  if (condEq.getAttribute('type') === 'DIS' &&
+    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded') {
+    return 'ERS';
+  } else if (condEq.tagName == 'ConnectivityNode') {
+    return 'CN';
+  } else {
+    return condEq.getAttribute('type') ?? '';
+  }
 }
 
 const typeIcons: Partial<Record<string, TemplateResult>> = {
@@ -237,6 +236,7 @@ const typeIcons: Partial<Record<string, TemplateResult>> = {
   CTR: currentTransformerIcon,
   VTR: voltageTransformerIcon,
   ERS: earthSwitchIcon,
+  CN: connectivityNodeIcon
 };
 
 // Substation element hierarchy

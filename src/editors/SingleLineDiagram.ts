@@ -1,7 +1,7 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
 import { getIcon } from "../zeroline/foundation";
-import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement } from "./singlelinediagram/drawing";
+import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE } from "./singlelinediagram/drawing";
 import { getNameAttribute, getCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
@@ -82,17 +82,16 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
                 // Get the correct icon.
                 const icon = getIcon(eq);
+                const position = getAbsolutePosition(eq);
+
                 const parsedIcon = new DOMParser().parseFromString(icon.strings[0], 'application/xml');
-                console.log(parsedIcon)
 
-                // Define a temporary icon
-                const eqIcon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                const positionOnSvg = getAbsolutePosition(eq);
-                eqIcon.setAttribute('cx', `${positionOnSvg.x}`);
-                eqIcon.setAttribute('cy', `${positionOnSvg.y}`);
-                eqIcon.setAttribute('r', '6');
-
-                eqElement.appendChild(eqIcon);
+                parsedIcon.querySelectorAll('svg').forEach(svg => {
+                    svg.removeAttribute('viewBox');
+                    svg.setAttribute('x', position.x + '')
+                    svg.setAttribute('y', position.y + '')
+                    eqElement.appendChild(svg)
+                });
             
                 this.svg.querySelectorAll(`g[id="${getParentElementName(eq)}"]`)
                     .forEach(bay => bay.appendChild(eqElement))
@@ -111,14 +110,16 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 cNodeElement.setAttribute('y', `${coordinates.y}`);
 
                 const position = getAbsolutePositionWithoutCoordinatedElement(cNode, {x: coordinates.x, y: coordinates.y});
+                const icon = getIcon(cNode);
 
-                // Define a temporary icon
-                const cNodeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                cNodeIcon.setAttribute('cx', `${position.x}`);
-                cNodeIcon.setAttribute('cy', `${position.y}`);
-                cNodeIcon.setAttribute('r', '3');
+                const parsedIcon = new DOMParser().parseFromString(icon.strings[0], 'application/xml');
 
-                cNodeElement.appendChild(cNodeIcon);
+                parsedIcon.querySelectorAll('svg').forEach(svg => {
+                    svg.removeAttribute('viewBox');
+                    svg.setAttribute('x', position.x! + 2 + '')
+                    svg.setAttribute('y', position.y! + 2 + '')
+                    cNodeElement.appendChild(svg)
+                });
     
                 this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
                         .forEach(bay => bay.appendChild(cNodeElement))
@@ -191,11 +192,14 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 .forEach(eq => {
                     const eqPosition = getAbsolutePosition(eq);
 
+                    // Height of busbar shape should be 1, because it's smaller.
+                    const customShape = {width: DEFAULT_ELEMENT_SIZE, height: 1}
+
                     // The X coordinate of 
                     if (busBarPosition.y! > eqPosition.y!) {
-                        drawRoute(eqPosition, {x: eqPosition.x, y: busBarPosition.y}, this.svg);
+                        drawRoute(eqPosition, {x: eqPosition.x, y: busBarPosition.y}, this.svg, customShape);
                     } else {
-                        drawRoute({x: eqPosition.x, y: busBarPosition.y}, eqPosition, this.svg);
+                        drawRoute({x: eqPosition.x, y: busBarPosition.y}, eqPosition, this.svg, customShape);
                     }
                 });
         });
