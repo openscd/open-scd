@@ -18,7 +18,7 @@ import {
 import { wizards } from '../wizards/wizard-library.js';
 
 import './voltage-level-editor.js';
-import '../editor-container.js';
+import { EditorContainer } from '../editor-container.js';
 
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
@@ -69,7 +69,7 @@ export class SubstationEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<editor-container .element=${this.element}>
+    return html`<${EditorContainer} .element=${this.element}>
       <abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"
@@ -108,7 +108,7 @@ export class SubstationEditor extends LitElement {
             .getAttachedIeds=${this.getAttachedIeds}
             ?readonly=${this.readonly}
           ></voltage-level-editor>`
-      )}</editor-container
+      )}</${EditorContainer}
     >`;
   }
 

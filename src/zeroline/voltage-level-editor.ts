@@ -19,6 +19,7 @@ import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 import './bay-editor.js';
+import { EditorContainer } from '../editor-container.js';
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
@@ -85,7 +86,7 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<editor-container
+    return html`<${EditorContainer}
       .element=${this.element}
       header="${this.header}"
     >
@@ -129,7 +130,7 @@ export class VoltageLevelEditor extends LitElement {
           ></bay-editor>`
         )}
       </div>
-    </editor-container>`;
+    </${EditorContainer}>`;
   }
 
   static styles = css`

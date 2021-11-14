@@ -19,6 +19,7 @@ import { wizards } from '../wizards/wizard-library.js';
 
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import './conducting-equipment-editor.js';
+import { EditorContainer } from '../editor-container.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
@@ -67,7 +68,7 @@ export class BayEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<editor-container .element=${this.element} nomargin>
+    return html`<${EditorContainer} .element=${this.element} nomargin>
       <abbr slot="header" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"
@@ -110,7 +111,7 @@ export class BayEditor extends LitElement {
             ></conducting-equipment-editor>`
         )}
       </div>
-    </editor-container> `;
+    </${EditorContainer}> `;
   }
 
   static styles = css`

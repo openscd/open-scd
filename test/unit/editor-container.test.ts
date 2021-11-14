@@ -1,10 +1,8 @@
 import { expect, fixture } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
-import '../../src/editor-container.js';
 import { EditorContainer } from '../../src/editor-container.js';
 import { html } from '../../src/foundation.js';
-import { BayEditor } from '../../src/zeroline/bay-editor.js';
 
 describe('editor-container', () => {
   let element: EditorContainer;
@@ -16,7 +14,7 @@ describe('editor-container', () => {
   );
   beforeEach(async () => {
     element = await fixture(
-      html`<editor-container header="test header"></editor-container>`
+      html`<${EditorContainer} header="test header"></${EditorContainer}>`
     );
     await element.updateComplete;
   });
@@ -185,7 +183,7 @@ describe('editor-container', () => {
     );
     beforeEach(async () => {
       parent = await fixture(
-        `<editor-container header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
+        html`<${EditorContainer} header="parent header"><bay-editor .element=${bay}></bay-editor></${EditorContainer}>`
       );
 
       element = parent
@@ -218,7 +216,7 @@ describe('editor-container', () => {
 
     it('negated the set contrasted property of the parent', async () => {
       parent = await fixture(
-        `<editor-container contrasted header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
+        html`<${EditorContainer} contrasted header="parent header"><bay-editor .element=${bay}></bay-editor></${EditorContainer}>`
       );
 
       element = parent
@@ -231,7 +229,7 @@ describe('editor-container', () => {
 
     it('makes sure maximum level is 6', async () => {
       parent = await fixture(
-        `<editor-container level="6" header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
+        html`<${EditorContainer} level="6" header="parent header"><bay-editor .element=${bay}></bay-editor></${EditorContainer}>`
       );
 
       element = parent

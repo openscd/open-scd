@@ -29,7 +29,6 @@ function childTags(element: Element | null | undefined): SCLTag[] {
  * A responsive container for nested elements with header and
  * create new child functionality.
  */
-@customElement('editor-container')
 export class EditorContainer extends LitElement {
   /** The visualized `Element`. */
   @property()
