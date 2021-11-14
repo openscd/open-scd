@@ -104,13 +104,17 @@ export function createGElement(element: Element): SVGElement {
 /**
  * Create a basic text element.
  * @param element The base element which is needing this text element.
+ * @param coordinates The x and y coordinates of this text elements.
  * @returns The text element.
  */
-export function createTextElement(element: Element) {
+export function createTextElement(element: Element, coordinates: Point) {
     const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 
     finalElement.textContent = getNameAttribute(element)!;
-    finalElement.setAttribute('style', 'font: 20px sans-serif;');
+    finalElement.setAttribute('style', 'font-family: Roboto, sans-serif; font-weight: 300; font-size: small');
+
+    finalElement.setAttribute('x', `${coordinates.x}`);
+    finalElement.setAttribute('y', `${coordinates.y}`);
 
     return finalElement;
 }
