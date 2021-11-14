@@ -1,5 +1,6 @@
 import { expect, fixture } from '@open-wc/testing';
 import { html } from '../../src/foundation.js';
+import { ZerolinePane } from '../../src/zeroline-pane.js';
 import {
   attachedIeds,
   getAttachedIeds,
@@ -38,10 +39,10 @@ describe('zeroline-pane', () => {
 
   it('per default looks like the latest snapshot', async () => {
     const element = await fixture(
-      html`<zeroline-pane
+      html`<${ZerolinePane}
         .doc=${doc}
         .getAttachedIeds="${undefined}"
-      ></zeroline-pane>`
+      ></${ZerolinePane}>`
     );
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
@@ -51,11 +52,11 @@ describe('zeroline-pane', () => {
 
   it('readonly looks like the latest snapshot', async () => {
     const element = await fixture(
-      html`<zeroline-pane
+      html`<${ZerolinePane}
         .doc=${doc}
         .readonly=${true}
         .getAttachedIeds="${undefined}"
-      ></zeroline-pane>`
+      ></${ZerolinePane}>`
     );
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
@@ -65,10 +66,10 @@ describe('zeroline-pane', () => {
 
   it('showieds looks like the latest snapshot', async () => {
     const element = await fixture(
-      html`<zeroline-pane
+      html`<${ZerolinePane}
         .doc=${doc}
         .getAttachedIeds=${getAttachedIeds(doc)}
-      ></zeroline-pane>`
+      ></${ZerolinePane}>`
     );
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
