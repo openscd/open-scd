@@ -1,4 +1,5 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
+import panzoom from "panzoom";
 import { getIcon } from "../zeroline/foundation";
 import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE } from "./singlelinediagram/drawing";
 import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
@@ -91,7 +92,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 });
     
                 // Add the name.
-                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 30}, 'small'));
+                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 30}, 'x-small'));
             
                 this.svg.querySelectorAll(`g[id="${getParentElementName(eq)}"]`)
                     .forEach(bay => bay.appendChild(eqElement))
@@ -120,7 +121,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 });
     
                 // Add the name.
-                cNodeElement.appendChild(createTextElement(cNode, {x: position.x! - 10, y: position.y! + 30}, 'small'));
+                cNodeElement.appendChild(createTextElement(cNode, {x: position.x! - 10, y: position.y! + 30}, 'x-small'));
 
                 this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
                         .forEach(bay => bay.appendChild(cNodeElement))
@@ -150,7 +151,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             busBarElement.appendChild(busBarIcon);
 
             // Add the name.
-            busBarElement.appendChild(createTextElement(busBar, {x: position.x, y: position.y! - 10}, 'large'));
+            busBarElement.appendChild(createTextElement(busBar, {x: position.x, y: position.y! - 10}, 'small'));
             
             this.svg.querySelectorAll(`g[id=${getParentElementName(busBar)}]`)
                 .forEach(voltageLevel => voltageLevel.appendChild(busBarElement))
