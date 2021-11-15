@@ -565,10 +565,10 @@ export const connectivityNodeIcon = html`<svg
   width="25px"
   height="25px"
   viewBox="0 0 25 25"
-  stroke-width="1.5"
+  stroke-width="1"
   stroke="currentColor"
   fill="none">
-    <circle cx="10" cy="10" r="7"/>
+    <circle cx="10" cy="10" r="6"/>
 </svg>`;
 
 export const openSCDIcon = html` <svg
