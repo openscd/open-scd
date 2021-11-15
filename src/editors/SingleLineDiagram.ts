@@ -1,7 +1,8 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
+import { Side } from "../../public/js/ortho-connector";
 import { getIcon } from "../zeroline/foundation";
-import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithCustomCoordinates, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE } from "./singlelinediagram/drawing";
+import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithCustomCoordinates, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE, createTerminalElement } from "./singlelinediagram/drawing";
 import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
@@ -92,7 +93,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 });
     
                 // Add the name.
-                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 30}, 'x-small'));
+                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 40}, 'x-small'));
             
                 this.svg.querySelectorAll(`g[id="${getParentElementName(eq)}"]`)
                     .forEach(bay => bay.appendChild(eqElement))
@@ -166,12 +167,21 @@ export default class SingleLineDiagramPlugin extends LitElement {
                     .filter(element => element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`))
                     .forEach(element => {
                         const elementPosition = getAbsolutePosition(element);
+                        const terminalElement = element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`);
+
+                        let sideToDrawTerminalOn: Side;
 
                         if (elementPosition.y! > cnPosition.y!) {
-                            drawRoute(cnPosition, elementPosition, this.svg);
+                            const sidesOfRoutes = drawRoute(cnPosition, elementPosition, this.svg);
+                            sideToDrawTerminalOn = sidesOfRoutes.secondPointSide;
                         } else {
-                            drawRoute(elementPosition, cnPosition, this.svg);
+                            const sidesOfRoutes = drawRoute(elementPosition, cnPosition, this.svg);
+                            sideToDrawTerminalOn = sidesOfRoutes.firstPointSide;
                         }
+
+                        const terminal = createTerminalElement(elementPosition, sideToDrawTerminalOn, terminalElement!);
+                        this.svg.querySelectorAll(`g[id="${getNameAttribute(bay)}"] > g[id="${getNameAttribute(element)}"]`)
+                            .forEach(eq => eq.appendChild(terminal))
                     });
             });
         });
@@ -186,16 +196,25 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
                 .forEach(eq => {
                     const eqPosition = getAbsolutePosition(eq);
+                    const terminalElement = eq.querySelector(`Terminal[connectivityNode="${pathName}"]`);
+
+                    let sideToDrawTerminalOn: Side;
 
                     // Height of busbar shape should be 1, because it's smaller.
                     const customShape = {width: DEFAULT_ELEMENT_SIZE, height: 1}
 
                     // The X coordinate of 
                     if (busBarPosition.y! > eqPosition.y!) {
-                        drawRoute(eqPosition, {x: eqPosition.x, y: busBarPosition.y}, this.svg, customShape);
+                        const sidesOfRoutes = drawRoute(eqPosition, {x: eqPosition.x, y: busBarPosition.y}, this.svg, customShape);
+                        sideToDrawTerminalOn = sidesOfRoutes.firstPointSide;
                     } else {
-                        drawRoute({x: eqPosition.x, y: busBarPosition.y}, eqPosition, this.svg, customShape);
+                        const sidesOfRoutes = drawRoute({x: eqPosition.x, y: busBarPosition.y}, eqPosition, this.svg, customShape);
+                        sideToDrawTerminalOn = sidesOfRoutes.secondPointSide;
                     }
+
+                    const terminal = createTerminalElement(eqPosition, sideToDrawTerminalOn, terminalElement!);
+                    this.svg.querySelectorAll(`g[id="${getNameAttribute(eq.parentElement!)}"] > g[id="${getNameAttribute(eq)}"]`)
+                        .forEach(eq => eq.appendChild(terminal))
                 });
         });
     }

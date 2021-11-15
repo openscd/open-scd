@@ -11,6 +11,11 @@ import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, Point } f
   */
  export const DEFAULT_ELEMENT_SIZE = 25;
 
+ /**
+  * Offset of a terminal next to an element.
+  */
+ const TERMINAL_OFFSET = 6;
+
 /**
  * Defining the sides of route drawing of the two points
  * at the end of a route.
@@ -126,16 +131,43 @@ export function createTextElement(element: Element, coordinates: Point, textSize
 }
 
 /**
+ * Create a Terminal element.
+ * @param elementPosition The position of the element belonging to the terminal/
+ * @param sideToDraw The side of the element the terminal must be drawn on.
+ * @param terminalElement The terminal element to extract information from.
+ * @returns A group element containing terminal elements.
+ */
+export function createTerminalElement(elementPosition: Point, sideToDraw: Side, terminalElement: Element) {
+    const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    finalElement.setAttribute('id', getNameAttribute(terminalElement)!);
+    finalElement.setAttribute('type', terminalElement.tagName);
+
+    const pointToDrawTerminalOn = getCorrectSideCoordinatesForTerminal(elementPosition, sideToDraw);
+
+    const terminal = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    terminal.setAttribute('id', `${getNameAttribute(terminalElement!)}`);
+    terminal.setAttribute('cx', `${pointToDrawTerminalOn.x}`);
+    terminal.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
+    terminal.setAttribute('r', '2');
+
+    // Also add a text element.
+    const text = createTextElement(terminalElement, {x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5}, 'xx-small');
+
+    finalElement.appendChild(terminal);
+    finalElement.appendChild(text);
+
+    return finalElement;
+}
+
+/**
  * Draw a route from the first point to the second point.
  * @param firstPoint The first point of this connection.
  * @param secondPoint The second point of this connection.
  * @param svgToDrawOn The SVG to draw the route on.
  * @param shape A custom shape defining custom height and width of the shapes.
+ * @returns The sides where the routes are being drawn next to both points.
  */
- export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement, shape?: Shape): void {
-    if (shape) {
-
-    }
+ export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement, shape?: Shape): PointSides {
     const shapeA = {
       left: firstPoint.x!,
       top: firstPoint.y!,
@@ -151,11 +183,11 @@ export function createTextElement(element: Element, coordinates: Point, textSize
     };
   
     // Get the preferred sides.
-    const {firstPointSide, secondPointSide} = getDirections(firstPoint, secondPoint);
+    const sides = getDirections(firstPoint, secondPoint);
   
     const path = OrthogonalConnector.route({
-      pointA: { shape: shapeA, side: firstPointSide, distance: 0.5 },
-      pointB: { shape: shapeB, side: secondPointSide, distance: 0.5 },
+      pointA: { shape: shapeA, side: sides.firstPointSide, distance: 0.5 },
+      pointB: { shape: shapeB, side: sides.secondPointSide, distance: 0.5 },
       shapeMargin: 0,
       globalBoundsMargin: 0,
       globalBounds: {
@@ -170,7 +202,7 @@ export function createTextElement(element: Element, coordinates: Point, textSize
     let d = '';
     path.forEach(({ x, y }, index) => {
       if (index === 0) {
-        d = d + `M ${x} ${y}`;
+        d = d + ` M ${x} ${y}`;
       } else {
         d = d + ` L ${x} ${y}`;
       }
@@ -182,6 +214,8 @@ export function createTextElement(element: Element, coordinates: Point, textSize
     line.setAttribute('stroke-width', '1');
   
     svgToDrawOn.appendChild(line);
+
+    return sides;
 }
 
 /**
@@ -213,6 +247,51 @@ function getDirections(firstPoint: Point, secondPoint: Point): PointSides {
             } else {
                 return {firstPointSide: 'right', secondPointSide: 'left'};
             }
+        }
+    }
+}
+
+/**
+ * Get correct coordinates for placing a Terminal next to an element.
+ * @param Point The absolute position of the element to have terminals next to it.
+ * @param side On which side does the terminal needs to be placed.
+ */
+function getCorrectSideCoordinatesForTerminal(absolutePosition: Point, side: Side): Point {
+    switch (side) {
+        case "top": {
+            const x = absolutePosition.x;
+            const y = absolutePosition.y;
+            return {
+                x: x! + (DEFAULT_ELEMENT_SIZE / 2),
+                y: y! - TERMINAL_OFFSET
+            };
+        }
+        case "bottom": {
+            const x = absolutePosition.x;
+            const y = absolutePosition.y;
+            return {
+                x: x! + (DEFAULT_ELEMENT_SIZE / 2),
+                y: y! + (DEFAULT_ELEMENT_SIZE + TERMINAL_OFFSET)
+            };
+        }
+        case "left": {
+            const x = absolutePosition.x;
+            const y = absolutePosition.y;
+            return {
+                x: x! - TERMINAL_OFFSET,
+                y: y! + (DEFAULT_ELEMENT_SIZE / 2)
+            };
+        }
+        case "right": {
+            const x = absolutePosition.x;
+            const y = absolutePosition.y;
+            return {
+                x: x! + (DEFAULT_ELEMENT_SIZE + TERMINAL_OFFSET),
+                y: y! + (DEFAULT_ELEMENT_SIZE / 2)
+            };
+        }
+        default: {
+            return absolutePosition;
         }
     }
 }
