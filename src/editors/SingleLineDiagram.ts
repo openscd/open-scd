@@ -91,7 +91,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 });
     
                 // Add the name.
-                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 30}));
+                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 30}, 'small'));
             
                 this.svg.querySelectorAll(`g[id="${getParentElementName(eq)}"]`)
                     .forEach(bay => bay.appendChild(eqElement))
@@ -120,7 +120,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 });
     
                 // Add the name.
-                cNodeElement.appendChild(createTextElement(cNode, {x: position.x! - 10, y: position.y! + 30}));
+                cNodeElement.appendChild(createTextElement(cNode, {x: position.x! - 10, y: position.y! + 30}, 'small'));
 
                 this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
                         .forEach(bay => bay.appendChild(cNodeElement))
@@ -150,7 +150,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             busBarElement.appendChild(busBarIcon);
 
             // Add the name.
-            busBarElement.appendChild(createTextElement(busBar, {x: position.x, y: position.y! - 10}));
+            busBarElement.appendChild(createTextElement(busBar, {x: position.x, y: position.y! - 10}, 'large'));
             
             this.svg.querySelectorAll(`g[id=${getParentElementName(busBar)}]`)
                 .forEach(voltageLevel => voltageLevel.appendChild(busBarElement))
