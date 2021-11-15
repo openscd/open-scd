@@ -1,5 +1,4 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
-import panzoom from "panzoom";
 import { getIcon } from "../zeroline/foundation";
 import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE } from "./singlelinediagram/drawing";
 import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
@@ -240,7 +239,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
   
     firstUpdated(): void {
-        panzoom(this.container);
+        // panzoom(this.container);
         this.drawSubstationElements();
     }
 
