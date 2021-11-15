@@ -119,9 +119,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
                     svg.setAttribute('y', position.y! + 2 + '')
                     cNodeElement.appendChild(svg)
                 });
-    
-                // Add the name.
-                cNodeElement.appendChild(createTextElement(cNode, {x: position.x! - 10, y: position.y! + 30}, 'x-small'));
 
                 this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
                         .forEach(bay => bay.appendChild(cNodeElement))
