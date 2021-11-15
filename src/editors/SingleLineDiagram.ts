@@ -1,7 +1,7 @@
 import { css, html, LitElement, property, query, TemplateResult } from "lit-element";
 import panzoom from "panzoom";
 import { getIcon } from "../zeroline/foundation";
-import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithoutCoordinatedElement, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE } from "./singlelinediagram/drawing";
+import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithCustomCoordinates, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE } from "./singlelinediagram/drawing";
 import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
@@ -110,7 +110,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 cNodeElement.setAttribute('x', `${coordinates.x}`)
                 cNodeElement.setAttribute('y', `${coordinates.y}`);
 
-                const position = getAbsolutePositionWithoutCoordinatedElement(cNode, {x: coordinates.x, y: coordinates.y});
+                const position = getAbsolutePositionWithCustomCoordinates(cNode, {x: coordinates.x, y: coordinates.y});
                 const parsedIcon = new DOMParser().parseFromString(getIcon(cNode).strings[0], 'application/xml');
 
                 parsedIcon.querySelectorAll('svg').forEach(svg => {
@@ -160,7 +160,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             bay.querySelectorAll('ConnectivityNode')
             .forEach(cn => {
                 const position = calculateConnectivityNodeCoordinates(this.doc, getPathNameAttribute(cn)!);
-                const cnPosition = getAbsolutePositionWithoutCoordinatedElement(cn, {x: position.x, y: position.y});
+                const cnPosition = getAbsolutePositionWithCustomCoordinates(cn, {x: position.x, y: position.y});
 
                 Array.from(this.doc.querySelectorAll('ConductingEquipment'))
                     .filter(element => element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`))

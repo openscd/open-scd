@@ -46,7 +46,7 @@ interface Shape {
             }
         }
         case 'VoltageLevel': {
-            const voltageLevelPosition = getSCLCoordinates(element.parentElement!.parentElement!);
+            const voltageLevelPosition = getSCLCoordinates(element.parentElement!);
             const elementPosition = getSCLCoordinates(element);
             return {
                 x: (voltageLevelPosition.x! + elementPosition.x!) * SVG_GRID_SIZE,
@@ -59,7 +59,13 @@ interface Shape {
     }
 }
 
-export function getAbsolutePositionWithoutCoordinatedElement(element: Element, point: Point): Point {
+/**
+ * Get the absolute position for an element, given with custom coordinates.
+ * @param element The element to calculate the position for.
+ * @param point The custom coordinates.
+ * @returns The absolute position.
+ */
+export function getAbsolutePositionWithCustomCoordinates(element: Element, point: Point): Point {
     switch (element.parentElement!.tagName) {
         case 'Bay': {
             const bayPosition = getSCLCoordinates(element.parentElement!);
