@@ -14,7 +14,6 @@ import { selectGseControlWizard } from '../wizards/gsecontrol.js';
 import { gooseIcon } from '../icons.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
-@customElement('ied-editor')
 export class IedEditor extends LitElement {
   @property({ type: Element })
   element!: Element;

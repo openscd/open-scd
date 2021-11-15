@@ -30,7 +30,6 @@ function setShowIEDs(value: Settings['showieds']) {
 }
 
 /** [[`Zeroline`]] pane for displaying `Substation` and/or `IED` sections. */
-@customElement('zeroline-pane')
 export class ZerolinePane extends LitElement {
   /** The document being edited as provided to editor by [[`Zeroline`]]. */
   @property({ attribute: false })

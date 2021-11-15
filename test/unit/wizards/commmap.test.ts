@@ -20,7 +20,7 @@ describe('communication mapping wizard', () => {
 
     parent = await fixture(
       html`<mock-wizard
-        ><zeroline-pane .doc=${doc}></zeroline-pane
+        ><${ZerolinePane} .doc=${doc}></${ZerolinePane}
       ></mock-wizard>`
     );
 

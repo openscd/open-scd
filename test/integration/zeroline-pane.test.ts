@@ -20,12 +20,10 @@ describe('zeroline-pane wizarding editing integration', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    parent = <MockWizardEditor>(
-      await fixture(
-        html`<mock-wizard-editor
-          ><zeroline-pane .doc=${doc}></zeroline-pane
+    parent = <MockWizardEditor>await fixture(
+      html`<mock-wizard-editor
+          ><${ZerolinePane} .doc=${doc}></${ZerolinePane}
         ></mock-wizard-editor>`
-      )
     );
     zeroline = <ZerolinePane>parent.querySelector('zeroline-pane');
     await parent.updateComplete;

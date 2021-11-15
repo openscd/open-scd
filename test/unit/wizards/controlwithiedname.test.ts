@@ -18,7 +18,7 @@ describe('selectExtRefWizard', () => {
 
     parent = await fixture(
       html`<mock-wizard-editor
-        ><zeroline-pane .doc=${doc}></zeroline-pane
+        ><${ZerolinePane} .doc=${doc}></${ZerolinePane}
       ></mock-wizard-editor>`
     );
 

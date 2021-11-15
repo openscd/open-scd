@@ -3,8 +3,7 @@ import { get } from 'lit-translate';
 
 import { html, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
-
-import '../zeroline-pane.js';
+import { ZerolinePane } from '../zeroline-pane.js';
 
 /** An editor [[`plugin`]] for editing the `Substation` section. */
 export default class SubstationPlugin extends LitElement {
@@ -19,17 +18,19 @@ export default class SubstationPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html` <zeroline-pane .doc=${this.doc}></zeroline-pane>
-      ${!this.doc?.querySelector(':root > Substation')
-        ? html`<h1>
-            <mwc-fab
-              extended
-              icon="add"
-              label="${get('substation.wizard.title.add')}"
-              @click=${() => this.openCreateSubstationWizard()}
-            ></mwc-fab>
-          </h1>`
-        : html``}`;
+    return html` <${ZerolinePane} .doc=${this.doc}></${ZerolinePane}>
+      ${
+        !this.doc?.querySelector(':root > Substation')
+          ? html`<h1>
+              <mwc-fab
+                extended
+                icon="add"
+                label="${get('substation.wizard.title.add')}"
+                @click=${() => this.openCreateSubstationWizard()}
+              ></mwc-fab>
+            </h1>`
+          : html``
+      }`;
   }
 
   static styles = css`
