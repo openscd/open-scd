@@ -151,7 +151,10 @@ export function createTerminalElement(elementPosition: Point, sideToDraw: Side, 
     terminal.setAttribute('r', '2');
 
     // Also add a text element.
-    const text = createTextElement(terminalElement, {x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5}, 'xx-small');
+    const textElementPosition = (sideToDraw == 'bottom' || sideToDraw == 'top') ?
+        {x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 5} :
+        {x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5};
+    const text = createTextElement(terminalElement, textElementPosition, 'xx-small');
 
     finalElement.appendChild(terminal);
     finalElement.appendChild(text);
