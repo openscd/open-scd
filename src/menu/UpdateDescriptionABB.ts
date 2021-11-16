@@ -107,8 +107,8 @@ export default class UpdateDescriptionAbb extends LitElement {
 
   /** Entry point for this plug-in */
   async run(): Promise<void> {
-    const items = Array.from(this.doc.querySelectorAll('IED')).flatMap(ied =>
-      addDescriptionToABB(ied)
+    const items = Array.from(this.doc.querySelectorAll(':root > IED')).flatMap(
+      ied => addDescriptionToABB(ied)
     );
 
     this.dispatchEvent(newWizardEvent(createLogWizard(this.doc, items)));
