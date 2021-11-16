@@ -113,15 +113,33 @@ export function createGElement(element: Element): SVGElement {
 }
 
 /**
+ * Create a Voltage Level <g> element.
+ * @param voltageLevel The Voltage Level from the SCL document to use.
+ * @returns A Voltage Level <g> element.
+ */
+export function createVoltageLevelElement(voltageLevel: Element) {
+    return createGElement(voltageLevel);
+}
+
+/**
+ * Create a Bay <g> element.
+ * @param voltageLevel The Bay from the SCL document to use.
+ * @returns A Bay <g> element.
+ */
+export function createBayElement(bay: Element) {
+    return createGElement(bay);
+}
+
+/**
  * Create a basic text element.
- * @param element The base element which is needing this text element.
+ * @param element The text which is needing this text element.
  * @param coordinates The x and y coordinates of this text elements.
  * @returns The text element.
  */
-export function createTextElement(element: Element, coordinates: Point, textSize: string) {
+export function createTextElement(textContent: string, coordinates: Point, textSize: string) {
     const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 
-    finalElement.textContent = getNameAttribute(element)!;
+    finalElement.textContent = textContent;
     finalElement.setAttribute('style', `font-family: Roboto, sans-serif; font-weight: 300; font-size: ${textSize}`);
 
     finalElement.setAttribute('x', `${coordinates.x}`);
@@ -138,28 +156,61 @@ export function createTextElement(element: Element, coordinates: Point, textSize
  * @returns A group element containing terminal elements.
  */
 export function createTerminalElement(elementPosition: Point, sideToDraw: Side, terminalElement: Element) {
-    const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    finalElement.setAttribute('id', getNameAttribute(terminalElement)!);
-    finalElement.setAttribute('type', terminalElement.tagName);
+    const groupElement = createGElement(terminalElement);
 
+    const terminalName = getNameAttribute(terminalElement)!;
     const pointToDrawTerminalOn = getCorrectSideCoordinatesForTerminal(elementPosition, sideToDraw);
 
-    const terminal = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    terminal.setAttribute('id', `${getNameAttribute(terminalElement!)}`);
-    terminal.setAttribute('cx', `${pointToDrawTerminalOn.x}`);
-    terminal.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
-    terminal.setAttribute('r', '2');
+    // TODO: Add this to the icons.ts file.
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    icon.setAttribute('id', `${terminalName}`);
+    icon.setAttribute('cx', `${pointToDrawTerminalOn.x}`);
+    icon.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
+    icon.setAttribute('r', '2');
 
     // Also add a text element.
     const textElementPosition = (sideToDraw == 'bottom' || sideToDraw == 'top') ?
         {x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 5} :
         {x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5};
-    const text = createTextElement(terminalElement, textElementPosition, 'xx-small');
+    const text = createTextElement(terminalName, textElementPosition, 'xx-small');
 
-    finalElement.appendChild(terminal);
-    finalElement.appendChild(text);
+    groupElement.appendChild(icon);
+    groupElement.appendChild(text);
 
-    return finalElement;
+    return groupElement;
+}
+
+/**
+ * Create a Bus Bar element.
+ * @param busBarName The name of the busbar
+ * @param elementPosition The absolute position of the bus bar to place.
+ * @param biggestVoltageLevelXCoordinate The biggest of the VoltageLevel the bus bar is in,
+ *      so the method can decide how long the bus bar should be.
+ * @returns The Bus Bar element.
+ */
+export function createBusBarElement(busBarElement: Element, biggestVoltageLevelXCoordinate: number) {
+    const groupElement = createGElement(busBarElement);
+
+    const busBarName = getNameAttribute(busBarElement)!
+    const absolutePosition = getAbsolutePosition(busBarElement);
+
+    // TODO: Add this to the icons.ts file.
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    icon.setAttribute('name', getNameAttribute(busBarElement)!);
+    icon.setAttribute('stroke-width', '4');
+    icon.setAttribute('stroke', 'currentColor');
+
+    icon.setAttribute('x1', `${absolutePosition.x}`);
+    icon.setAttribute('y1', `${absolutePosition.y}`);
+    icon.setAttribute('x2', `${biggestVoltageLevelXCoordinate}`);
+    icon.setAttribute('y2', `${absolutePosition.y}`);
+
+    groupElement.appendChild(icon);
+
+    const text = createTextElement(busBarName, {x: absolutePosition.x, y: absolutePosition.y! - 10}, 'small');
+    groupElement.appendChild(text);
+
+    return groupElement;
 }
 
 /**

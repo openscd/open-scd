@@ -2,7 +2,7 @@ import { css, html, LitElement, property, query, TemplateResult } from "lit-elem
 import panzoom from "panzoom";
 import { Side } from "../../public/js/ortho-connector";
 import { getIcon } from "../zeroline/foundation";
-import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithCustomCoordinates, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE, createTerminalElement } from "./singlelinediagram/drawing";
+import { createGElement, getAbsolutePosition, getParentElementName, getAbsolutePositionWithCustomCoordinates, SVG_GRID_SIZE, drawRoute, createTextElement, DEFAULT_ELEMENT_SIZE, createTerminalElement, createBusBarElement, createVoltageLevelElement, createBayElement } from "./singlelinediagram/sld-drawing";
 import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
@@ -36,31 +36,23 @@ export default class SingleLineDiagramPlugin extends LitElement {
         .filter(bay => !isBusBar(bay));
     }
 
+    /**
+     * Get all the VoltageLevels from the SCL document.
+     */
+    get voltageLevels() {
+        return Array.from(this.doc.querySelectorAll('VoltageLevel'));
+    }
+
     drawVoltageLevels(): void {
-        this.doc.querySelectorAll('VoltageLevel').forEach(voltageLevel => {
-            const voltageLevelElement = createGElement(voltageLevel);
-
-            // Set the position of the VoltageLevel.
-            const {x, y} = getSCLCoordinates(voltageLevel);
-            voltageLevelElement.setAttribute('x', `${x}`)
-            voltageLevelElement.setAttribute('y', `${y}`)
-
-            // Styling
-            voltageLevelElement.setAttribute('fill', 'currentColor');
-            
+        this.voltageLevels.forEach(voltageLevel => {
+            const voltageLevelElement = createVoltageLevelElement(voltageLevel);
             this.svg.appendChild(voltageLevelElement);
         })
     }
 
     drawBays(): void {
         this.bays.forEach(bay => {
-            const bayElement = createGElement(bay);
-
-            // Set the position of the VoltageLevel.
-            const coordinates = getSCLCoordinates(bay);
-            bayElement.setAttribute('x', `${coordinates.x}`);
-            bayElement.setAttribute('y', `${coordinates.y}`);
-            
+            const bayElement = createBayElement(bay);
             this.svg.querySelectorAll(`g[id=${getParentElementName(bay)}]`)
                 .forEach(voltageLevel => voltageLevel.appendChild(bayElement))
         })
@@ -93,31 +85,30 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 });
     
                 // Add the name.
-                eqElement.appendChild(createTextElement(eq, {x: position.x! - 15, y: position.y! + 30}, 'x-small'));
+                eqElement.appendChild(createTextElement(getNameAttribute(eq)!, {x: position.x! - 15, y: position.y! + 30}, 'x-small'));
             
                 this.svg.querySelectorAll(`g[id="${getParentElementName(eq)}"]`)
                     .forEach(bay => bay.appendChild(eqElement))
             })
     }
 
+    /**
+     * Draw all available Connectivity Nodes of this SCL document.
+     */
     drawConnectivityNodes(): void {
         this.bays.forEach(bay => {
             Array.from(bay.querySelectorAll('ConnectivityNode'))
             .filter(cNode => getConnectedTerminals(cNode).length > 0)
             .forEach(cNode => {
                 const cNodeElement = createGElement(cNode);
+                const absolutePosition = getAbsolutePositionWithCustomCoordinates(cNode, calculateConnectivityNodeCoordinates(this.doc, getPathNameAttribute(cNode)!));
 
-                const coordinates = calculateConnectivityNodeCoordinates(this.doc, getPathNameAttribute(cNode)!);
-                cNodeElement.setAttribute('x', `${coordinates.x}`)
-                cNodeElement.setAttribute('y', `${coordinates.y}`);
-
-                const position = getAbsolutePositionWithCustomCoordinates(cNode, {x: coordinates.x, y: coordinates.y});
                 const parsedIcon = new DOMParser().parseFromString(getIcon(cNode).strings[0], 'application/xml');
 
                 parsedIcon.querySelectorAll('svg').forEach(svg => {
                     svg.removeAttribute('viewBox');
-                    svg.setAttribute('x', position.x! + 2 + '')
-                    svg.setAttribute('y', position.y! + 2 + '')
+                    svg.setAttribute('x', absolutePosition.x! + 2 + '')
+                    svg.setAttribute('y', absolutePosition.y! + 2 + '')
                     cNodeElement.appendChild(svg)
                 });
 
@@ -127,29 +118,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
         });
     }
 
+    /**
+     * Draw all available Bus Bars of this SCL document.
+     */
     drawBusBars(): void {
         this.busBars.forEach(busBar => {
-            const busBarElement = createGElement(busBar);
-
-            const coordinates = getSCLCoordinates(busBar);
-            busBarElement.setAttribute('x', `${coordinates.x}`)
-            busBarElement.setAttribute('y', `${coordinates.y}`);
-
-            const busBarIcon = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            busBarIcon.setAttribute('name', getNameAttribute(busBar)!);
-            busBarIcon.setAttribute('stroke-width', '4');
-            busBarIcon.setAttribute('stroke', 'currentColor');
-
-            // Adjust the position.
-            const position = getAbsolutePosition(busBar);
-            busBarIcon.setAttribute('x1', `${position.x}`);
-            busBarIcon.setAttribute('y1', `${position.y}`);
-            busBarIcon.setAttribute('x2', `${this.biggestVoltageLevelXCoordinate}`);
-            busBarIcon.setAttribute('y2', `${position.y}`);
-            busBarElement.appendChild(busBarIcon);
-
-            // Add the name.
-            busBarElement.appendChild(createTextElement(busBar, {x: position.x, y: position.y! - 10}, 'small'));
+            const busBarElement = createBusBarElement(busBar, this.biggestVoltageLevelXCoordinate);
             
             this.svg.querySelectorAll(`g[id=${getParentElementName(busBar)}]`)
                 .forEach(voltageLevel => voltageLevel.appendChild(busBarElement))
