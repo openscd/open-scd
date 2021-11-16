@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, getPathNameAttribute, isBusBar, getConnectedTerminals, calculateConnectivityNodeCoordinates } from "../../../../src/editors/singlelinediagram/foundation";
+import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, getPathNameAttribute, isBusBar, getConnectedTerminals, calculateConnectivityNodeSclCoordinates } from "../../../../src/editors/singlelinediagram/foundation";
 
 describe('Single Line Diagram foundation', () => {
     let doc: Document;
@@ -67,7 +67,7 @@ describe('Single Line Diagram foundation', () => {
         it('calculates the x and y coordinates of an element without defined coordinates,' +
             'based on the coordinates of connected elements.', () => {
             const element = doc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]');
-            expect(calculateConnectivityNodeCoordinates(doc, getPathNameAttribute(element!)!)).to.eql({x: 2, y: 2});
+            expect(calculateConnectivityNodeSclCoordinates(doc, getPathNameAttribute(element!)!)).to.eql({x: 2, y: 2});
         });
     });
 });
