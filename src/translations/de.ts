@@ -457,8 +457,7 @@ export const de: Translations = {
     },
     compare: {
       title: '???',
-      elementTitle: '???',
-      primaryButton: '???',
+      attributes: 'Attribute',
       children: 'Kindelemente',
     },
     settings: {
