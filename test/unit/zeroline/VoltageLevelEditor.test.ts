@@ -5,9 +5,9 @@ import {
   isUpdate,
   isDelete,
   html,
+  Dialog,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { Dialog } from '@material/mwc-dialog';
 
 import {
   createAction,

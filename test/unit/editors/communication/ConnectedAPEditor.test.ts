@@ -7,11 +7,11 @@ import {
   isSimple,
   ComplexAction,
   html,
+  Dialog,
 } from '../../../../src/foundation.js';
 
 import { editConnectedApAction } from '../../../../src/editors/communication/connectedap-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { Dialog } from '@material/mwc-dialog';
 
 describe('ConnectedAPEditor', () => {
   describe('has a editorAction that', () => {

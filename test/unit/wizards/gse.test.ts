@@ -1,9 +1,9 @@
-import { Dialog } from '@material/mwc-dialog';
 import { expect, fixture } from '@open-wc/testing';
 import {
   ComplexAction,
   Create,
   Delete,
+  Dialog,
   html,
   isCreate,
   isDelete,

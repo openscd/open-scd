@@ -3,6 +3,7 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import {
   Create,
+  Dialog,
   html,
   isCreate,
   isUpdate,
@@ -17,7 +18,6 @@ import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 import { createBDaAction, updateBDaAction } from '../../../src/wizards/bda.js';
-import { Dialog } from '@material/mwc-dialog';
 
 describe('bda wizards', () => {
   describe('updateBDaAction', () => {

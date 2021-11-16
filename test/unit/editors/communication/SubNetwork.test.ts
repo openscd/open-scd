@@ -5,13 +5,13 @@ import {
   isUpdate,
   isDelete,
   html,
+  Dialog,
 } from '../../../../src/foundation.js';
 import {
   createSubNetworkAction,
   updateSubNetworkAction,
 } from '../../../../src/editors/communication/subnetwork-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { Dialog } from '@material/mwc-dialog';
 
 describe('SubNetworkEditor', () => {
   describe('with no nulled properties', () => {

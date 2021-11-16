@@ -1,7 +1,7 @@
-import { Dialog } from '@material/mwc-dialog';
 import { expect, fixture } from '@open-wc/testing';
 import fc from 'fast-check';
 import {
+  Dialog,
   html,
   isDelete,
   isUpdate,

@@ -1,7 +1,12 @@
-import { Dialog } from '@material/mwc-dialog';
 import { fixture, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate, html } from '../../../src/foundation.js';
+import {
+  WizardInput,
+  isCreate,
+  isUpdate,
+  html,
+  Dialog,
+} from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 import { createAction } from '../../../src/wizards/substation.js';
@@ -22,7 +27,9 @@ describe('SubstationEditor', () => {
       ['name', 'desc'].map(
         label =>
           <Promise<WizardInput>>(
-            fixture(html`<${WizardTextField} label=${label}></${WizardTextField}>`)
+            fixture(
+              html`<${WizardTextField} label=${label}></${WizardTextField}>`
+            )
           )
       )
     );

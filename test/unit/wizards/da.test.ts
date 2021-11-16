@@ -3,6 +3,7 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import {
   Create,
+  Dialog,
   html,
   isCreate,
   isUpdate,
@@ -22,7 +23,6 @@ import {
   updateDaAction,
 } from '../../../src/wizards/da.js';
 import { createBDaAction } from '../../../src/wizards/bda.js';
-import { Dialog } from '@material/mwc-dialog';
 
 describe('da wizards', () => {
   describe('updateDaAction', () => {

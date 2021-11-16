@@ -9,7 +9,6 @@ import {
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
 
 import 'ace-custom-element';
@@ -29,6 +28,7 @@ import {
   Create,
   identity,
   html,
+  Dialog,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
@@ -187,74 +187,84 @@ export class WizardDialog extends LitElement {
       heading=${page.title}
       @closed=${this.onClosed}
     >
-      ${page.element && localStorage.getItem('mode') === 'pro'
-        ? html`<mwc-icon-button-toggle
-            onicon="code"
-            officon="code_off"
-            @click=${() => this.requestUpdate()}
-          ></mwc-icon-button-toggle>`
-        : ''}
+      ${
+        page.element && localStorage.getItem('mode') === 'pro'
+          ? html`<mwc-icon-button-toggle
+              onicon="code"
+              officon="code_off"
+              @click=${() => this.requestUpdate()}
+            ></mwc-icon-button-toggle>`
+          : ''
+      }
       <div id="wizard-content">
-        ${this.code && page.element
-          ? html`<ace-editor
-              base-path="/public/ace"
-              wrap
-              soft-tabs
-              style="width: 80vw; height: calc(100vh - 240px);"
-              theme="ace/theme/solarized_${localStorage.getItem('theme')}"
-              mode="ace/mode/xml"
-              value="${new XMLSerializer().serializeToString(page.element)}"
-            ></ace-editor>`
-          : page.content}
+        ${
+          this.code && page.element
+            ? html`<ace-editor
+                base-path="/public/ace"
+                wrap
+                soft-tabs
+                style="width: 80vw; height: calc(100vh - 240px);"
+                theme="ace/theme/solarized_${localStorage.getItem('theme')}"
+                mode="ace/mode/xml"
+                value="${new XMLSerializer().serializeToString(page.element)}"
+              ></ace-editor>`
+            : page.content
+        }
       </div>
-      ${index > 0
-        ? html`<mwc-button
-            slot="secondaryAction"
-            dialogAction="prev"
-            icon="navigate_before"
-            label=${this.wizard?.[index - 1].title}
-          ></mwc-button>`
-        : html``}
-      ${page.secondary
-        ? html`<mwc-button
-            slot="secondaryAction"
-            @click=${() => this.act(page.secondary?.action, false)}
-            icon="${page.secondary.icon}"
-            label="${page.secondary.label}"
-          ></mwc-button>`
-        : html`<mwc-button
-            slot="secondaryAction"
-            dialogAction="close"
-            label="${translate('cancel')}"
-            style="--mdc-theme-primary: var(--mdc-theme-error)"
-          ></mwc-button>`}
-      ${this.code && page.element
-        ? html`<mwc-button
-            slot="primaryAction"
-            @click=${() => this.act(codeAction(page.element!))}
-            icon="code"
-            label="${translate('save')}"
-            trailingIcon
-            dialogInitialFocus
-          ></mwc-button>`
-        : page.primary
-        ? html`<mwc-button
-            slot="primaryAction"
-            @click=${() => this.act(page.primary?.action)}
-            icon="${page.primary.icon}"
-            label="${page.primary.label}"
-            trailingIcon
-            dialogInitialFocus
-          ></mwc-button>`
-        : index + 1 < (this.wizard?.length ?? 0)
-        ? html`<mwc-button
-            slot="primaryAction"
-            dialogAction="next"
-            icon="navigate_next"
-            label=${this.wizard?.[index + 1].title}
-            trailingicon
-          ></mwc-button>`
-        : html``}
+      ${
+        index > 0
+          ? html`<mwc-button
+              slot="secondaryAction"
+              dialogAction="prev"
+              icon="navigate_before"
+              label=${this.wizard?.[index - 1].title}
+            ></mwc-button>`
+          : html``
+      }
+      ${
+        page.secondary
+          ? html`<mwc-button
+              slot="secondaryAction"
+              @click=${() => this.act(page.secondary?.action, false)}
+              icon="${page.secondary.icon}"
+              label="${page.secondary.label}"
+            ></mwc-button>`
+          : html`<mwc-button
+              slot="secondaryAction"
+              dialogAction="close"
+              label="${translate('cancel')}"
+              style="--mdc-theme-primary: var(--mdc-theme-error)"
+            ></mwc-button>`
+      }
+      ${
+        this.code && page.element
+          ? html`<mwc-button
+              slot="primaryAction"
+              @click=${() => this.act(codeAction(page.element!))}
+              icon="code"
+              label="${translate('save')}"
+              trailingIcon
+              dialogInitialFocus
+            ></mwc-button>`
+          : page.primary
+          ? html`<mwc-button
+              slot="primaryAction"
+              @click=${() => this.act(page.primary?.action)}
+              icon="${page.primary.icon}"
+              label="${page.primary.label}"
+              trailingIcon
+              dialogInitialFocus
+            ></mwc-button>`
+          : index + 1 < (this.wizard?.length ?? 0)
+          ? html`<mwc-button
+              slot="primaryAction"
+              dialogAction="next"
+              icon="navigate_next"
+              label=${this.wizard?.[index + 1].title}
+              trailingicon
+            ></mwc-button>`
+          : html``
+      }
     </${Dialog}>`;
   }
 
