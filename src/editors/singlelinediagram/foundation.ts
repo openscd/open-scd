@@ -74,13 +74,13 @@ export function isBusBar(element: Element): boolean {
  * @returns All connected terminals.
  */
 export function getConnectedTerminals(element: Element): Element[] {
-    const substation = element?.closest('Substation');
-    if (!substation) return [];
+    const substationElement = element?.closest('Substation');
+    if (!substationElement) return [];
   
     const path = getPathNameAttribute(element) ?? '';
     const [substationName, voltageLevelName, bayName, _] = path.split('/');
   
-    return Array.from(substation.getElementsByTagName('Terminal')).filter(
+    return Array.from(substationElement.getElementsByTagName('Terminal')).filter(
       terminal =>
         terminal.getAttribute('connectivityNode') === path &&
         terminal.getAttribute('substationName') === substationName &&
@@ -100,13 +100,16 @@ export function getConnectedTerminals(element: Element): Element[] {
  * @param cNodePathName The pathName of the Connectivity Node to calculate the SCL x and y coordinates.
  * @returns The calculated SCL x and y coordinates for this Connectivty Node.
  */
-export function calculateConnectivityNodeSclCoordinates(doc: XMLDocument, cNodePathName: string): Point {
+export function calculateConnectivityNodeSclCoordinates(cNodeElement: Element): Point {
+    const substationElement = cNodeElement.closest('Substation');
+    const pathName = getPathNameAttribute(cNodeElement);
+
     let nrOfConnections = 0;
     let totalX = 0;
     let totalY = 0;
 
-    Array.from(doc.querySelectorAll('ConductingEquipment'))
-        .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${cNodePathName}"]`) != null)
+    Array.from(substationElement!.querySelectorAll('ConductingEquipment'))
+        .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${pathName}"]`) != null)
         .forEach(equipment => {
             nrOfConnections++;
 

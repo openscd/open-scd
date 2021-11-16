@@ -14,12 +14,20 @@ describe('Single Line Diagram foundation', () => {
             const element = doc.querySelector('Bay[desc="Feld A"]');
             expect(getNameAttribute(element!)).to.eql('Bay A');
         });
+        it('returns undefined for an element without a name.', () => {
+            const element = doc.querySelector('VoltageLevel[name="J1"] > Voltage');
+            expect(getNameAttribute(element!)).to.be.undefined;
+        });
     });
 
     describe('defines a getDescriptionAttribute function that', () => {
         it('returns the correct description for an element.', () => {
             const element = doc.querySelector('Bay[name="Bay A"]');
             expect(getDescriptionAttribute(element!)).to.eql('Feld A');
+        });
+        it('returns undefined for an element without a description.', () => {
+            const element = doc.querySelector('VoltageLevel[name="J1"] > Voltage');
+            expect(getDescriptionAttribute(element!)).to.be.undefined;
         });
     });
 
@@ -28,6 +36,10 @@ describe('Single Line Diagram foundation', () => {
             const element = doc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]');
             expect(getPathNameAttribute(element!)).to.eql('AA1/J1/Bay A/L1');
         });
+        it('returns undefined for an element without a pathName.', () => {
+            const element = doc.querySelector('VoltageLevel[name="J1"] > Voltage');
+            expect(getPathNameAttribute(element!)).to.be.undefined;
+        });
     });
 
     describe('defines a getSCLCoordinates function that', () => {
@@ -35,7 +47,7 @@ describe('Single Line Diagram foundation', () => {
             const element = doc.querySelector('Bay[name="Bay A"] > ConductingEquipment[name="QB1"]');
             expect(getSCLCoordinates(element!)).to.eql({x: 1, y: 1});
         });
-        it('returns 0,0 coordinates for an element that hasn\'t got any coordinates.', () => {
+        it('returns {x: 0, y: 0} coordinates for an element that hasn\'t got any coordinates.', () => {
             const element = doc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]');
             expect(getSCLCoordinates(element!)).to.eql({x: 0, y: 0});
         });
@@ -67,7 +79,7 @@ describe('Single Line Diagram foundation', () => {
         it('calculates the x and y coordinates of an element without defined coordinates,' +
             'based on the coordinates of connected elements.', () => {
             const element = doc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]');
-            expect(calculateConnectivityNodeSclCoordinates(doc, getPathNameAttribute(element!)!)).to.eql({x: 2, y: 2});
+            expect(calculateConnectivityNodeSclCoordinates(element!)).to.eql({x: 2, y: 2});
         });
     });
 });

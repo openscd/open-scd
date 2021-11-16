@@ -91,7 +91,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             Array.from(bay.querySelectorAll('ConnectivityNode'))
                 .filter(cNode => getConnectedTerminals(cNode).length > 0)
                 .forEach(cNode => {
-                    const cNodePosition = calculateConnectivityNodeSclCoordinates(this.doc, getPathNameAttribute(cNode)!);
+                    const cNodePosition = calculateConnectivityNodeSclCoordinates(cNode);
                     const cNodeElement = createConnectivityNodeElement(cNode, cNodePosition);
 
                     this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
@@ -115,15 +115,15 @@ export default class SingleLineDiagramPlugin extends LitElement {
     drawConnectivityNodeConnections(): void {
         this.bays.forEach(bay => {
             bay.querySelectorAll('ConnectivityNode')
-                .forEach(cn => {
-                    const position = calculateConnectivityNodeSclCoordinates(this.doc, getPathNameAttribute(cn)!);
-                    const cnPosition = getAbsolutePositionWithCustomCoordinates(cn, { x: position.x, y: position.y });
+                .forEach(cNode => {
+                    const position = calculateConnectivityNodeSclCoordinates(cNode);
+                    const cnPosition = getAbsolutePositionWithCustomCoordinates(cNode, position);
 
                     Array.from(this.doc.querySelectorAll('ConductingEquipment'))
-                        .filter(element => element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`))
+                        .filter(element => element.querySelector(`Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`))
                         .forEach(element => {
                             const elementPosition = getAbsolutePosition(element);
-                            const terminalElement = element.querySelector(`Terminal[connectivityNode="${cn.getAttribute('pathName')}"]`);
+                            const terminalElement = element.querySelector(`Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`);
 
                             let sideToDrawTerminalOn: Side;
 
