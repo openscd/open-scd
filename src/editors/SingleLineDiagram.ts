@@ -2,7 +2,7 @@ import { css, html, LitElement, property, query, TemplateResult } from "lit-elem
 import panzoom from "panzoom";
 import { Side } from "../../public/js/ortho-connector";
 import { getAbsolutePosition, getParentElementName, getAbsolutePositionWithCustomCoordinates, SVG_GRID_SIZE, drawRoute, DEFAULT_ELEMENT_SIZE, createTerminalElement, createBusBarElement, createVoltageLevelElement, createBayElement, createConductingEquipmentElement, createConnectivityNodeElement } from "./singlelinediagram/sld-drawing";
-import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
+import { getNameAttribute, getSCLCoordinates, isBusBar, calculateConnectivityNodeSclCoordinates, getConnectedTerminals, getPathNameAttribute } from "./singlelinediagram/foundation";
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -91,7 +91,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             Array.from(bay.querySelectorAll('ConnectivityNode'))
                 .filter(cNode => getConnectedTerminals(cNode).length > 0)
                 .forEach(cNode => {
-                    const cNodePosition = calculateConnectivityNodeCoordinates(this.doc, getPathNameAttribute(cNode)!);
+                    const cNodePosition = calculateConnectivityNodeSclCoordinates(this.doc, getPathNameAttribute(cNode)!);
                     const cNodeElement = createConnectivityNodeElement(cNode, cNodePosition);
 
                     this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
@@ -116,7 +116,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         this.bays.forEach(bay => {
             bay.querySelectorAll('ConnectivityNode')
                 .forEach(cn => {
-                    const position = calculateConnectivityNodeCoordinates(this.doc, getPathNameAttribute(cn)!);
+                    const position = calculateConnectivityNodeSclCoordinates(this.doc, getPathNameAttribute(cn)!);
                     const cnPosition = getAbsolutePositionWithCustomCoordinates(cn, { x: position.x, y: position.y });
 
                     Array.from(this.doc.querySelectorAll('ConductingEquipment'))

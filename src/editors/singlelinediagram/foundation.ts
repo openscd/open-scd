@@ -91,18 +91,22 @@ export function getConnectedTerminals(element: Element): Element[] {
 }
 
 /**
- * Calculate the X and Y coordinate of a Connectivity Node.
- * By using the path name, all connected equipments can be found, and their X and Y coordinates can be used.
- * @param cnPathName The pathName of the Connectivity Node to calculate.
- * @returns Calculated position.
+ * Calculate the SCL x and y coordinate of a Connectivity Node.
+ * The algorithm is as follow:
+ * - Get all elements that are connected to this Connectivity Node.
+ * - Extract the SCL x and y coordinates of these Connectivity Nodes and add them up.
+ * - Divide the final x and y numbers by the number of connected elements. This way, you get an so-called average.
+ * @param doc The full SCL document to scan for connected elements.
+ * @param cNodePathName The pathName of the Connectivity Node to calculate the SCL x and y coordinates.
+ * @returns The calculated SCL x and y coordinates for this Connectivty Node.
  */
-export function calculateConnectivityNodeCoordinates(doc: XMLDocument, cnPathName: string): Point {
+export function calculateConnectivityNodeSclCoordinates(doc: XMLDocument, cNodePathName: string): Point {
     let nrOfConnections = 0;
     let totalX = 0;
     let totalY = 0;
 
     Array.from(doc.querySelectorAll('ConductingEquipment'))
-        .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${cnPathName}"]`) != null)
+        .filter(equipment => equipment.querySelector(`Terminal[connectivityNode="${cNodePathName}"]`) != null)
         .forEach(equipment => {
             nrOfConnections++;
 

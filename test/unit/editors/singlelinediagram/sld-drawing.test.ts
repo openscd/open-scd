@@ -1,6 +1,6 @@
 import { expect } from "@open-wc/testing";
 import { getAbsolutePosition, getAbsolutePositionWithCustomCoordinates, getParentElementName, SVG_GRID_SIZE } from "../../../../src/editors/singlelinediagram/sld-drawing";
-import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, getPathNameAttribute, isBusBar, getConnectedTerminals, calculateConnectivityNodeCoordinates } from "../../../../src/editors/singlelinediagram/foundation";
+import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, getPathNameAttribute, isBusBar, getConnectedTerminals, calculateConnectivityNodeSclCoordinates } from "../../../../src/editors/singlelinediagram/foundation";
 
 describe('Single Line Diagram drawing', () => {
     let doc: Document;
