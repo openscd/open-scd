@@ -384,7 +384,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             right: 14px;
           }
         </style>
-        <mwc-dialog id="log" heading="${translate('log.name')}">
+        <${Dialog} id="log" heading="${translate('log.name')}">
           ${this.renderFilterButtons()}
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button
@@ -404,16 +404,16 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           <mwc-button slot="primaryAction" dialogaction="close"
             >${translate('close')}</mwc-button
           >
-        </mwc-dialog>
+        </${Dialog}>
 
-        <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
+        <${Dialog} id="diagnostic" heading="${translate('diag.name')}">
           <${FilteredList} id="content" wrapFocus
             >${this.renderIssues()}</${FilteredList}
           >
           <mwc-button slot="primaryAction" dialogaction="close"
             >${translate('close')}</mwc-button
           >
-        </mwc-dialog>
+        </${Dialog}>
 
         <mwc-snackbar
           id="info"

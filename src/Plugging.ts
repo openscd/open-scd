@@ -250,7 +250,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
 
     renderDownloadUI(): TemplateResult {
       return html`
-        <mwc-dialog
+        <${Dialog}
           id="pluginAdd"
           heading="${translate('plugins.add.heading')}"
         >
@@ -339,7 +339,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             trailingIcon
             @click=${() => this.handleAddPlugin()}
           ></mwc-button>
-        </mwc-dialog>
+        </${Dialog}>
       `;
     }
 
@@ -368,7 +368,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
 
     renderPluginUI(): TemplateResult {
       return html`
-        <mwc-dialog
+        <${Dialog}
           stacked
           id="pluginManager"
           heading="${translate('plugins.heading')}"
@@ -443,7 +443,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             @click=${() => this.pluginDownloadUI.show()}
           >
           </mwc-button>
-        </mwc-dialog>
+        </${Dialog}>
       `;
     }
 

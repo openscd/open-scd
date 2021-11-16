@@ -17,6 +17,7 @@ import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 import { createBDaAction, updateBDaAction } from '../../../src/wizards/bda.js';
+import { Dialog } from '@material/mwc-dialog';
 
 describe('bda wizards', () => {
   describe('updateBDaAction', () => {
@@ -38,7 +39,7 @@ describe('bda wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };
@@ -184,7 +185,7 @@ describe('bda wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };

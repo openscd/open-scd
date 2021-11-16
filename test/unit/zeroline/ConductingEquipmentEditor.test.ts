@@ -1,3 +1,4 @@
+import { Dialog } from '@material/mwc-dialog';
 import { fixture, expect } from '@open-wc/testing';
 
 import { WizardInput, isCreate, isUpdate, html } from '../../../src/foundation.js';
@@ -10,7 +11,7 @@ describe('ConductingEquipmentEditor', () => {
     return;
   };
   const newWizard = (done = noOp) => {
-    const element = document.createElement('mwc-dialog');
+    const element = <Dialog>document.createElement('c-dialog');
     element.close = done;
     return element;
   };

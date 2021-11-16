@@ -81,7 +81,7 @@ export class WizardDialog extends LitElement {
   @internalProperty()
   pageIndex = 0;
 
-  @queryAll('mwc-dialog')
+  @queryAll('c-dialog')
   dialogs!: NodeListOf<Dialog>;
   @queryAll(wizardInputSelector)
   inputs!: NodeListOf<WizardInput>;
@@ -181,7 +181,7 @@ export class WizardDialog extends LitElement {
   }
 
   renderPage(page: WizardPage, index: number): TemplateResult {
-    return html`<mwc-dialog
+    return html`<${Dialog}
       defaultAction="close"
       ?open=${index === this.pageIndex}
       heading=${page.title}
@@ -255,7 +255,7 @@ export class WizardDialog extends LitElement {
             trailingicon
           ></mwc-button>`
         : html``}
-    </mwc-dialog>`;
+    </${Dialog}>`;
   }
 
   render(): TemplateResult {
@@ -263,18 +263,18 @@ export class WizardDialog extends LitElement {
   }
 
   static styles = css`
-    mwc-dialog {
+    c-dialog {
       --mdc-dialog-max-width: 92vw;
     }
 
-    mwc-dialog > mwc-icon-button-toggle {
+    c-dialog > mwc-icon-button-toggle {
       position: absolute;
       top: 8px;
       right: 14px;
       color: var(--base00);
     }
 
-    mwc-dialog > mwc-icon-button-toggle[on] {
+    c-dialog > mwc-icon-button-toggle[on] {
       color: var(--mdc-theme-primary);
     }
 

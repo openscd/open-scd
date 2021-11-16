@@ -1,3 +1,4 @@
+import { Dialog } from '@material/mwc-dialog';
 import { expect, fixture } from '@open-wc/testing';
 import {
   ComplexAction,
@@ -53,7 +54,7 @@ describe('gse wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };

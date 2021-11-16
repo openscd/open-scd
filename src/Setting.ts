@@ -93,7 +93,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
-        <mwc-dialog
+        <${Dialog}
           id="settings"
           heading="${translate('settings.title')}"
           @closing=${this.onClosing}
@@ -152,7 +152,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           >
             ${translate('save')}
           </mwc-button>
-        </mwc-dialog>`;
+        </${Dialog}>`;
     }
   }
 

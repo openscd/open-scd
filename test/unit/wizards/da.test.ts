@@ -22,6 +22,7 @@ import {
   updateDaAction,
 } from '../../../src/wizards/da.js';
 import { createBDaAction } from '../../../src/wizards/bda.js';
+import { Dialog } from '@material/mwc-dialog';
 
 describe('da wizards', () => {
   describe('updateDaAction', () => {
@@ -43,7 +44,7 @@ describe('da wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };
@@ -243,7 +244,7 @@ describe('da wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };
