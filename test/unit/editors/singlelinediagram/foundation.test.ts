@@ -81,5 +81,9 @@ describe('Single Line Diagram foundation', () => {
             const element = doc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]');
             expect(calculateConnectivityNodeSclCoordinates(element!)).to.eql({x: 2, y: 2});
         });
+        it('returns a default {x:0, y:0} for elements that aren\'t Connectivity Nodes', () => {
+            const element = doc.querySelector('Bay[name="Bay A"] > ConductingEquipment[name="QB1"]');
+            expect(calculateConnectivityNodeSclCoordinates(element!)).to.eql({x: 0, y: 0});
+        });
     });
 });

@@ -212,7 +212,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
 
     firstUpdated(): void {
-        // panzoom(this.container);
+        panzoom(this.container);
         this.drawSubstationElements();
     }
 
