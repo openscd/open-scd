@@ -101,6 +101,9 @@ export function getConnectedTerminals(element: Element): Element[] {
  * @returns The calculated SCL x and y coordinates for this Connectivty Node.
  */
 export function calculateConnectivityNodeSclCoordinates(cNodeElement: Element): Point {
+    // If element is not a Connectivity Node, return default {x: 0, y: 0}
+    if (cNodeElement.tagName != 'ConnectivityNode') return {x: 0, y: 0}
+
     const substationElement = cNodeElement.closest('Substation');
     const pathName = getPathNameAttribute(cNodeElement);
 
