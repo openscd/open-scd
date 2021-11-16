@@ -48,7 +48,6 @@ export const de: Translations = {
     title: 'Menü',
     viewLog: 'Protokoll anzeigen',
     viewDiag: 'Daignose anzeigen',
-    updatedesc: 'Signalbeschreibungen zu {{manufacturer}} IEDs hinzugefügt',
   },
   wizard: {
     title: {
@@ -366,6 +365,9 @@ export const de: Translations = {
   },
   code: {
     log: 'Element im XML Editor angepasst:  {{id}}',
+  },
+  updatedesc: {
+    abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
   },
   add: 'Hinzufügen',
   new: 'Neu',

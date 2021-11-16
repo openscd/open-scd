@@ -42,9 +42,7 @@ function addDescriptionAction(doc: XMLDocument): WizardActor {
 
     return [
       {
-        title: get('menu.updatedesc', {
-          manufacturer: 'ABB',
-        }),
+        title: get('updatedesc.abb'),
         actions,
       },
     ];

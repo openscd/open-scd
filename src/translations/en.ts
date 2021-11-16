@@ -46,7 +46,6 @@ export const en = {
     title: 'Menu',
     viewLog: 'View log',
     viewDiag: 'View diagnostics',
-    updatedesc: 'Add signal descriptions to {{manufacturer}} IEDs',
   },
   wizard: {
     title: {
@@ -363,6 +362,9 @@ export const en = {
   },
   code: {
     log: 'Changed element in XML editor: {{id}}',
+  },
+  updatedesc: {
+    abb: 'Added signal descriptions to ABB IEDs',
   },
   add: 'Add',
   new: 'New',
