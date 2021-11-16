@@ -1,4 +1,5 @@
 import { OrthogonalConnector, Side } from "../../../public/js/ortho-connector";
+import { getIcon } from "../../zeroline/foundation";
 import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, Point } from "./foundation";
 
 /**
@@ -21,8 +22,8 @@ import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, Point } f
  * at the end of a route.
  */
 interface PointSides {
-    firstPointSide: Side;
-    secondPointSide: Side;
+    pointASide: Side;
+    pointBSide: Side;
 }
 
 /**
@@ -101,13 +102,19 @@ export function getParentElementName(childElement: Element) {
  * @param element The element.
  * @returns The <g> element.
  */
-export function createGElement(element: Element): SVGElement {
+export function createGroupElement(element: Element): SVGElement {
     const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     finalElement.setAttribute('id', getNameAttribute(element)!);
     finalElement.setAttribute('type', element.tagName);
 
     const description = getDescriptionAttribute(element);
     if (description) finalElement.setAttribute('desc', description);
+
+    // Setting the X and Y coordinates of this <g> element.
+    // It's not actually used, it's more informative.
+    const coordinates = getSCLCoordinates(element);
+    finalElement.setAttribute('sxy:x', `${coordinates.x}`)
+    finalElement.setAttribute('sxy:y', `${coordinates.y}`);
 
     return finalElement;
 }
@@ -117,8 +124,8 @@ export function createGElement(element: Element): SVGElement {
  * @param voltageLevel The Voltage Level from the SCL document to use.
  * @returns A Voltage Level <g> element.
  */
-export function createVoltageLevelElement(voltageLevel: Element) {
-    return createGElement(voltageLevel);
+export function createVoltageLevelElement(voltageLevel: Element): SVGElement {
+    return createGroupElement(voltageLevel);
 }
 
 /**
@@ -126,17 +133,17 @@ export function createVoltageLevelElement(voltageLevel: Element) {
  * @param voltageLevel The Bay from the SCL document to use.
  * @returns A Bay <g> element.
  */
-export function createBayElement(bay: Element) {
-    return createGElement(bay);
+export function createBayElement(bay: Element): SVGElement {
+    return createGroupElement(bay);
 }
 
 /**
  * Create a basic text element.
  * @param element The text which is needing this text element.
  * @param coordinates The x and y coordinates of this text elements.
- * @returns The text element.
+ * @returns The text SVG element.
  */
-export function createTextElement(textContent: string, coordinates: Point, textSize: string) {
+export function createTextElement(textContent: string, coordinates: Point, textSize: string): SVGElement {
     const finalElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 
     finalElement.textContent = textContent;
@@ -153,13 +160,13 @@ export function createTextElement(textContent: string, coordinates: Point, textS
  * @param elementPosition The position of the element belonging to the terminal/
  * @param sideToDraw The side of the element the terminal must be drawn on.
  * @param terminalElement The terminal element to extract information from.
- * @returns A group element containing terminal elements.
+ * @returns The terminal SVG element.
  */
-export function createTerminalElement(elementPosition: Point, sideToDraw: Side, terminalElement: Element) {
-    const groupElement = createGElement(terminalElement);
+export function createTerminalElement(elementPosition: Point, sideToDraw: Side, terminalElement: Element): SVGElement {
+    const groupElement = createGroupElement(terminalElement);
 
     const terminalName = getNameAttribute(terminalElement)!;
-    const pointToDrawTerminalOn = getCorrectSideCoordinatesForTerminal(elementPosition, sideToDraw);
+    const pointToDrawTerminalOn = getAbsolutePositionTerminal(elementPosition, sideToDraw);
 
     // TODO: Add this to the icons.ts file.
     const icon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -182,14 +189,13 @@ export function createTerminalElement(elementPosition: Point, sideToDraw: Side, 
 
 /**
  * Create a Bus Bar element.
- * @param busBarName The name of the busbar
- * @param elementPosition The absolute position of the bus bar to place.
+ * @param busBarElement The Bus Bar SCL Element.
  * @param biggestVoltageLevelXCoordinate The biggest of the VoltageLevel the bus bar is in,
  *      so the method can decide how long the bus bar should be.
- * @returns The Bus Bar element.
+ * @returns The Bus Bar SVG element.
  */
-export function createBusBarElement(busBarElement: Element, biggestVoltageLevelXCoordinate: number) {
-    const groupElement = createGElement(busBarElement);
+export function createBusBarElement(busBarElement: Element, biggestVoltageLevelXCoordinate: number): SVGElement {
+    const groupElement = createGroupElement(busBarElement);
 
     const busBarName = getNameAttribute(busBarElement)!
     const absolutePosition = getAbsolutePosition(busBarElement);
@@ -214,34 +220,78 @@ export function createBusBarElement(busBarElement: Element, biggestVoltageLevelX
 }
 
 /**
+ * Create a Conducting Equipment element.
+ * @param equipmentElement The name of the busbar
+ * @returns The Conducting Equipment SVG element.
+ */
+export function createConductingEquipmentElement(equipmentElement: Element): SVGElement {
+    const groupElement = createGroupElement(equipmentElement);
+
+    const position = getAbsolutePosition(equipmentElement);
+    const parsedIcon = new DOMParser().parseFromString(getIcon(equipmentElement).strings[0], 'application/xml');
+    parsedIcon.querySelectorAll('svg').forEach(svg => {
+        svg.removeAttribute('viewBox'); // viewBox is not needed here, we can delete it.
+        svg.setAttribute('x', position.x + '')
+        svg.setAttribute('y', position.y + '')
+        groupElement.appendChild(svg)
+    });
+
+    const text = createTextElement(getNameAttribute(equipmentElement)!, {x: position.x! - 15, y: position.y! + 30}, 'x-small');
+    groupElement.appendChild(text);
+
+    return groupElement;
+}
+
+/**
+ * Create a Connectivity Node element.
+ * @param cNodeElement The name of the busbar
+ * @param cNodeSclPosition The SCL position of the Connectivity Node.
+ * @returns The Connectivity Node SVG element.
+ */
+export function createConnectivityNodeElement(cNodeElement: Element, cNodeSclPosition: Point): SVGElement {
+    const groupElement = createGroupElement(cNodeElement);
+    const absolutePosition = getAbsolutePositionWithCustomCoordinates(cNodeElement, cNodeSclPosition);
+
+    const parsedIcon = new DOMParser().parseFromString(getIcon(cNodeElement).strings[0], 'application/xml');
+    parsedIcon.querySelectorAll('svg').forEach(svg => {
+        svg.removeAttribute('viewBox'); // viewBox is not needed here, we can delete it.
+        svg.setAttribute('x', absolutePosition.x! + 2 + '')
+        svg.setAttribute('y', absolutePosition.y! + 2 + '')
+        groupElement.appendChild(svg)
+    });
+
+    return groupElement;
+}
+
+/**
  * Draw a route from the first point to the second point.
- * @param firstPoint The first point of this connection.
- * @param secondPoint The second point of this connection.
+ * @param pointA The first point of this connection.
+ * @param pointB The second point of this connection.
  * @param svgToDrawOn The SVG to draw the route on.
  * @param shape A custom shape defining custom height and width of the shapes.
  * @returns The sides where the routes are being drawn next to both points.
  */
- export function drawRoute(firstPoint: Point, secondPoint: Point, svgToDrawOn: HTMLElement, shape?: Shape): PointSides {
+ export function drawRoute(pointA: Point, pointB: Point, svgToDrawOn: HTMLElement, shape?: Shape): PointSides {
     const shapeA = {
-      left: firstPoint.x!,
-      top: firstPoint.y!,
+      left: pointA.x!,
+      top: pointA.y!,
       width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
       height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
     };
   
     const shapeB = {
-      left: secondPoint.x!,
-      top: secondPoint.y!,
+      left: pointB.x!,
+      top: pointB.y!,
       width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
       height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
     };
   
     // Get the preferred sides.
-    const sides = getDirections(firstPoint, secondPoint);
+    const sides = getDirections(pointA, pointB);
   
     const path = OrthogonalConnector.route({
-      pointA: { shape: shapeA, side: sides.firstPointSide, distance: 0.5 },
-      pointB: { shape: shapeB, side: sides.secondPointSide, distance: 0.5 },
+      pointA: { shape: shapeA, side: sides.pointASide, distance: 0.5 },
+      pointB: { shape: shapeB, side: sides.pointBSide, distance: 0.5 },
       shapeMargin: 0,
       globalBoundsMargin: 0,
       globalBounds: {
@@ -275,77 +325,75 @@ export function createBusBarElement(busBarElement: Element, biggestVoltageLevelX
 /**
  * Small simple algorithm deciding on which side the route should be drawn
  * of two ends of a route.
- * @param firstPoint The first point (end) of a route.
- * @param secondPoint The second point (end) of a route.
- * @returns The sides.
+ * @param pointA The first point (end) of a route.
+ * @param pointB The second point (end) of a route.
+ * @returns The of both points .
  */
-function getDirections(firstPoint: Point, secondPoint: Point): PointSides {
-    // If points are underneath each other..
-    if (firstPoint.x! == secondPoint.x!) {
-        // Determine which one stands on top.
-        if (firstPoint.y! < secondPoint.y!) {
-            return {firstPointSide: 'bottom', secondPointSide: 'top'};
+function getDirections(pointA: Point, pointB: Point): PointSides {
+    if (pointA.x! == pointB.x!) {
+        if (pointA.y! < pointB.y!) {
+            return {pointASide: 'bottom', pointBSide: 'top'};
         } else {
-            return {firstPointSide: 'top', secondPointSide: 'bottom'};
+            return {pointASide: 'top', pointBSide: 'bottom'};
         }
     } else {
-        if (firstPoint.y! <= secondPoint.y!) {
-            if (firstPoint.x! < secondPoint.x!) {
-                return {firstPointSide: 'right', secondPointSide: 'left'};
+        if (pointA.y! <= pointB.y!) {
+            if (pointA.x! < pointB.x!) {
+                return {pointASide: 'right', pointBSide: 'left'};
             } else {
-                return {firstPointSide: 'left', secondPointSide: 'right'};
+                return {pointASide: 'left', pointBSide: 'right'};
             }
         } else {
-            if (firstPoint.x! < secondPoint.x!) {
-                return {firstPointSide: 'left', secondPointSide: 'right'};
+            if (pointA.x! < pointB.x!) {
+                return {pointASide: 'left', pointBSide: 'right'};
             } else {
-                return {firstPointSide: 'right', secondPointSide: 'left'};
+                return {pointASide: 'right', pointBSide: 'left'};
             }
         }
     }
 }
 
 /**
- * Get correct coordinates for placing a Terminal next to an element.
- * @param Point The absolute position of the element to have terminals next to it.
- * @param side On which side does the terminal needs to be placed.
+ * Get the absolute position for a Terminal, next to another point (based on the TERMINAL_OFFSET).
+ * @param terminalParentPosition The absolute position of the element which is the parent of the terminal.
+ * @param side On which side does the terminal needs to be placed relative to the given point.
  */
-function getCorrectSideCoordinatesForTerminal(absolutePosition: Point, side: Side): Point {
+function getAbsolutePositionTerminal(terminalParentPosition: Point, side: Side): Point {
     switch (side) {
         case "top": {
-            const x = absolutePosition.x;
-            const y = absolutePosition.y;
+            const x = terminalParentPosition.x;
+            const y = terminalParentPosition.y;
             return {
                 x: x! + (DEFAULT_ELEMENT_SIZE / 2),
                 y: y! - TERMINAL_OFFSET
             };
         }
         case "bottom": {
-            const x = absolutePosition.x;
-            const y = absolutePosition.y;
+            const x = terminalParentPosition.x;
+            const y = terminalParentPosition.y;
             return {
                 x: x! + (DEFAULT_ELEMENT_SIZE / 2),
                 y: y! + (DEFAULT_ELEMENT_SIZE + TERMINAL_OFFSET)
             };
         }
         case "left": {
-            const x = absolutePosition.x;
-            const y = absolutePosition.y;
+            const x = terminalParentPosition.x;
+            const y = terminalParentPosition.y;
             return {
                 x: x! - TERMINAL_OFFSET,
                 y: y! + (DEFAULT_ELEMENT_SIZE / 2)
             };
         }
         case "right": {
-            const x = absolutePosition.x;
-            const y = absolutePosition.y;
+            const x = terminalParentPosition.x;
+            const y = terminalParentPosition.y;
             return {
                 x: x! + (DEFAULT_ELEMENT_SIZE + TERMINAL_OFFSET),
                 y: y! + (DEFAULT_ELEMENT_SIZE / 2)
             };
         }
         default: {
-            return absolutePosition;
+            return terminalParentPosition;
         }
     }
 }
