@@ -10,7 +10,7 @@ export const officialPlugins = [
     name: 'Single Line Diagram',
     src: '/src/editors/SingleLineDiagram.js',
     icon: 'edit',
-    default: true,
+    default: false,
     kind: 'editor',
   },
   {

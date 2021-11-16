@@ -582,7 +582,6 @@
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/SingleLineDiagram.js"
     >
