@@ -60,8 +60,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
     drawBays(): void {
         this.bays.forEach(bay => {
             const bayElement = createBayElement(bay);
-            this.svg.querySelectorAll(`g[id=${getParentElementName(bay)}]`)
-                .forEach(voltageLevel => voltageLevel.appendChild(bayElement))
+
+            this.addElementToGroup(bayElement, getParentElementName(bay)!);
         })
     }
 
@@ -78,8 +78,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             ).forEach(equipment => {
                 const eqElement = createConductingEquipmentElement(equipment);
 
-                this.svg.querySelectorAll(`g[id="${getParentElementName(equipment)}"]`)
-                    .forEach(bay => bay.appendChild(eqElement))
+                this.addElementToGroup(eqElement, getParentElementName(equipment)!);
             })
     }
 
@@ -94,8 +93,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                     const cNodePosition = calculateConnectivityNodeSclCoordinates(cNode);
                     const cNodeElement = createConnectivityNodeElement(cNode, cNodePosition);
 
-                    this.svg.querySelectorAll(`g[id="${getParentElementName(cNode)}"]`)
-                        .forEach(bay => bay.appendChild(cNodeElement))
+                    this.addElementToGroup(cNodeElement, getParentElementName(cNode)!);
                 });
         });
     }
@@ -107,8 +105,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         this.busBars.forEach(busBar => {
             const busBarElement = createBusBarElement(busBar, this.biggestVoltageLevelXCoordinate);
 
-            this.svg.querySelectorAll(`g[id=${getParentElementName(busBar)}]`)
-                .forEach(voltageLevel => voltageLevel.appendChild(busBarElement))
+            this.addElementToGroup(busBarElement, getParentElementName(busBar)!);
         });
     }
 
@@ -149,10 +146,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
             const busBarPosition = getAbsolutePosition(busBar);
 
             Array.from(this.doc.querySelectorAll('ConductingEquipment'))
-                .filter(eq => eq.querySelector(`Terminal[connectivityNode="${pathName}"]`))
-                .forEach(eq => {
-                    const eqPosition = getAbsolutePosition(eq);
-                    const terminalElement = eq.querySelector(`Terminal[connectivityNode="${pathName}"]`);
+                .filter(element => element.querySelector(`Terminal[connectivityNode="${pathName}"]`))
+                .forEach(element => {
+                    const eqPosition = getAbsolutePosition(element);
+                    const terminalElement = element.querySelector(`Terminal[connectivityNode="${pathName}"]`);
 
                     let sideToDrawTerminalOn: Side;
 
@@ -169,7 +166,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                     }
 
                     const terminal = createTerminalElement(eqPosition, sideToDrawTerminalOn, terminalElement!);
-                    this.svg.querySelectorAll(`g[id="${getNameAttribute(eq.parentElement!)}"] > g[id="${getNameAttribute(eq)}"]`)
+                    this.svg.querySelectorAll(`g[id="${getNameAttribute(element.parentElement!)}"] > g[id="${getNameAttribute(element)}"]`)
                         .forEach(eq => eq.appendChild(terminal))
                 });
         });
@@ -209,6 +206,16 @@ export default class SingleLineDiagramPlugin extends LitElement {
             })
 
         return finalX;
+    }
+
+    /**
+     * Add an element to a specific <g> element.
+     * @param elementToAdd The element to add.
+     * @param groupName The name of the group
+     */
+    addElementToGroup(elementToAdd: Element, groupName: string): void {
+        this.svg.querySelectorAll(`g[id="${groupName}"]`)
+                    .forEach(group => group.appendChild(elementToAdd))
     }
 
     firstUpdated(): void {
