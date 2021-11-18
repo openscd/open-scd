@@ -4,10 +4,9 @@ import '../../mock-wizard-editor.js';
 
 import { BayEditor } from '../../../src/zeroline/bay-editor.js';
 import { EditingElement } from '../../../src/Editing.js';
-import { Select } from '@material/mwc-select';
 import { WizardingElement } from '../../../src/Wizarding.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { html } from '../../../src/foundation.js';
+import { html, Select } from '../../../src/foundation.js';
 
 describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
@@ -127,7 +126,7 @@ describe('bay-editor wizarding editing integration', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="type"]')
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

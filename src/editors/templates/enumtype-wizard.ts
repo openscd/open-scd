@@ -14,6 +14,7 @@ import {
   newWizardEvent,
   patterns,
   SCLTag,
+  Select,
   selector,
   Wizard,
   WizardActor,
@@ -29,7 +30,6 @@ import {
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../wizard-textfield.js';
 
 function nextOrd(parent: Element): string {
@@ -218,7 +218,7 @@ export function createEnumTypeWizard(
         action: createAction(parent, templates),
       },
       content: [
-        html`<mwc-select
+        html`<${Select}
           style="--mdc-menu-max-height: 196px;"
           outlined
           icon="playlist_add_check"
@@ -235,7 +235,7 @@ export function createEnumTypeWizard(
                 <span slot="meta">${e.querySelectorAll('EnumVal').length}</span>
               </mwc-list-item>`
           )}
-        </mwc-select>`,
+        </${Select}>`,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"

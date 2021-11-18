@@ -7,6 +7,7 @@ import {
   ifImplemented,
   newLogEvent,
   html,
+  CircularProgressFourColor,
 } from './foundation.js';
 
 /** Mixin implementing
@@ -41,10 +42,10 @@ export function Waiting<TBase extends LitElementConstructor>(Base: TBase) {
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
-        <mwc-circular-progress-four-color
+        <${CircularProgressFourColor}
           .closed=${!this.waiting}
           indeterminate
-        ></mwc-circular-progress-four-color>`;
+        ></${CircularProgressFourColor}>`;
     }
   }
 

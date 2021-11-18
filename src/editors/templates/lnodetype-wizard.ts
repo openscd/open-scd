@@ -16,6 +16,7 @@ import {
   newWizardEvent,
   patterns,
   SCLTag,
+  Select,
   selector,
   Wizard,
   WizardActor,
@@ -33,7 +34,6 @@ import {
 
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { WizardSelect } from '../../wizard-select.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -197,7 +197,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
           nullable
           pattern="${patterns.normalizedString}"
         ></${WizardTextField}>`,
-        html`<mwc-select
+        html`<${Select}
           fixedMenuPosition
           label="type"
           required
@@ -209,7 +209,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
                 ?selected=${dataType.id === type}
                 >${dataType.id}</mwc-list-item
               >`
-          )}</mwc-select
+          )}</${Select}
         >`,
         html`<${WizardTextField}
           label="accessControl"
@@ -218,11 +218,11 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
           nullable
           pattern="${patterns.normalizedString}"
         ></${WizardTextField}>`,
-        html`<mwc-select
+        html`<${Select}
           fixedMenuPosition
           label="transient"
           helper="${translate('scl.transient')}"
-          >${transientList}</mwc-select
+          >${transientList}</${Select}
         >`,
       ],
     },
@@ -445,7 +445,7 @@ export function createLNodeTypeWizard(
         action: startLNodeTypeCreate(parent, templates, nsd74),
       },
       content: [
-        html`<mwc-select
+        html`<${Select}
           id="lnclassnamelist"
           fixedMenuPosition
           outlined
@@ -498,7 +498,7 @@ export function createLNodeTypeWizard(
               </mwc-list-item>`;
             }
           )}
-        </mwc-select>`,
+        </${Select}>`,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"

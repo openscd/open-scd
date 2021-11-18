@@ -6,8 +6,6 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import '@material/mwc-checkbox';
-import '@material/mwc-circular-progress-four-color';
 import '@material/mwc-drawer';
 import '@material/mwc-fab';
 import '@material/mwc-formfield';
@@ -20,7 +18,6 @@ import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 import '@material/mwc-menu';
-import '@material/mwc-select';
 import '@material/mwc-snackbar';
 import '@material/mwc-switch';
 import '@material/mwc-tab';
@@ -140,7 +137,7 @@ export class OpenSCD extends Hosting(
       margin-top: 16px;
     }
 
-    mwc-circular-progress-four-color {
+    c-circularprogressfourcolor {
       position: fixed;
       top: 50%;
       left: 50%;

@@ -3,6 +3,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate } from 'lit-translate';
 
 import {
+  Checkbox,
   Create,
   createElement,
   Delete,
@@ -27,7 +28,7 @@ export function renderGseSmvAddress(parent: Element): TemplateResult[] {
     html`<mwc-formfield
       label="${translate('connectedap.wizard.addschemainsttype')}"
     >
-      <mwc-checkbox id="instType" ?checked="${hasInstType}"></mwc-checkbox>
+      <${Checkbox} id="instType" ?checked="${hasInstType}"></${Checkbox}>
     </mwc-formfield>`,
     html`${pTypesGSESMV.map(
       ptype =>

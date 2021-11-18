@@ -2,7 +2,6 @@ import { query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
-import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
@@ -14,6 +13,7 @@ import {
   ifImplemented,
   LitElementConstructor,
   Mixin,
+  Select,
 } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -294,13 +294,13 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 >
                   <mwc-switch id="requireDoc" checked></mwc-switch>
                 </mwc-formfield>
-                <mwc-select id="menuPosition" value="middle" fixedMenuPosition
+                <${Select} id="menuPosition" value="middle" fixedMenuPosition
                   >${Object.values(menuPosition).map(
                     menutype =>
                       html`<mwc-list-item value="${menutype}"
                         >${translate('plugins.' + menutype)}</mwc-list-item
                       >`
-                  )}</mwc-select
+                  )}</${Select}
                 >
               </div>
               <style>

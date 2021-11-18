@@ -9,7 +9,7 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-select
+    <c-select
       disabled=""
       helper="Conducting equipment type"
       label="type"
@@ -24,7 +24,7 @@
       >
         Circuit Breaker
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
     <wizard-text-field
       dialoginitialfocus=""
       helper="Conducting equipment name"

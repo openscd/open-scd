@@ -13,8 +13,8 @@
     </mwc-textfield>
   </abbr>
   <mwc-formfield class="checkall">
-    <mwc-checkbox>
-    </mwc-checkbox>
+    <c-checkbox>
+    </c-checkbox>
   </mwc-formfield>
 </div>
 <ul

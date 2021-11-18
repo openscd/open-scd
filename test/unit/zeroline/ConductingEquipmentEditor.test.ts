@@ -6,6 +6,7 @@ import {
   isUpdate,
   html,
   Dialog,
+  Select,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { createAction } from '../../../src/wizards/conductingequipment.js';
@@ -34,7 +35,7 @@ describe('ConductingEquipmentEditor', () => {
       )
     );
     inputs[2] = await fixture(
-      html`<mwc-select value="CBR" label="type">"Circuit Breaker"</mwc-select>`
+      html`<${Select} value="CBR" label="type">"Circuit Breaker"</${Select}>`
     );
   });
 

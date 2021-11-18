@@ -885,7 +885,7 @@
           >
           </mwc-switch>
         </mwc-formfield>
-        <mwc-select
+        <c-select
           fixedmenuposition=""
           id="menuPosition"
           value="middle"
@@ -920,7 +920,7 @@
           >
             bottom
           </mwc-list-item>
-        </mwc-select>
+        </c-select>
       </div>
       <mwc-radio-list-item
         aria-disabled="false"
@@ -962,13 +962,13 @@
   >
   </c-button>
 </c-dialog>
-<mwc-circular-progress-four-color
+<circular-progress-four-color
   closed=""
   density="0"
   indeterminate=""
   progress="0"
 >
-</mwc-circular-progress-four-color>
+</circular-progress-four-color>
 <wizard-dialog>
 </wizard-dialog>
 <c-dialog
@@ -976,7 +976,7 @@
   id="settings"
 >
   <form>
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       icon="language"
       id="language"
@@ -1004,7 +1004,7 @@
       >
         German (Deutsch)
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
     <mwc-formfield label="Dark theme">
       <mwc-switch id="dark">
       </mwc-switch>

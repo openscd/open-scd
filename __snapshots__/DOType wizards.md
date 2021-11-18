@@ -11,7 +11,7 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="[dotype.wizard.enums]"
       icon="playlist_add_check"
@@ -674,7 +674,7 @@
           3
         </span>
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
     <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"
@@ -1045,7 +1045,7 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-text-field>
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="[scl.type]"
       label="type"
@@ -1188,7 +1188,7 @@
       >
         Dummy.CMV
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
   </div>
   <c-button
     dialogaction="close"
@@ -1237,7 +1237,7 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-text-field>
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="[scl.type]"
       label="type"
@@ -1378,7 +1378,7 @@
       >
         Dummy.CMV
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
   </div>
   <c-button
     dialogaction="close"

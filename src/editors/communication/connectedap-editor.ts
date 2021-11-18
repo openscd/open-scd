@@ -8,7 +8,6 @@ import {
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
-import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
@@ -25,6 +24,7 @@ import {
   ComplexAction,
   getReference,
   html,
+  Checkbox,
 } from '../../foundation.js';
 
 import {
@@ -249,12 +249,12 @@ function editConnectedApWizard(element: Element): Wizard {
         html`<mwc-formfield
             label="${translate('connectedap.wizard.addschemainsttype')}"
           >
-            <mwc-checkbox
+            <${Checkbox}
               id="instType"
               ?checked="${Array.from(
                 element.querySelectorAll(selectors.Address + ' > P')
               ).filter(pType => pType.getAttribute('xsi:type')).length > 0}"
-            ></mwc-checkbox> </mwc-formfield
+            ></${Checkbox}> </mwc-formfield
           >${getTypes(element).map(
             ptype =>
               html`<${WizardTextField}

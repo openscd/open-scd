@@ -8,6 +8,7 @@ import {
   getValue,
   html,
   isPublic,
+  Select,
   Wizard,
   WizardActor,
   WizardInput,
@@ -64,7 +65,7 @@ function renderTypeSelector(
   type: string
 ): TemplateResult {
   return option === 'create'
-    ? html`<mwc-select
+    ? html`<${Select}
         style="--mdc-menu-max-height: 196px;"
         required
         label="type"
@@ -74,15 +75,15 @@ function renderTypeSelector(
         ${Object.keys(types).map(
           v => html`<mwc-list-item value="${v}">${types[v]}</mwc-list-item>`
         )}
-      </mwc-select>`
-    : html`<mwc-select
+      </${Select}>`
+    : html`<${Select}
         label="type"
         helper="${translate('conductingequipment.wizard.typeHelper')}"
         validationMessage="${translate('textfield.required')}"
         disabled
       >
         <mwc-list-item selected value="0">${type}</mwc-list-item>
-      </mwc-select>`;
+      </${Select}>`;
 }
 
 function render(
