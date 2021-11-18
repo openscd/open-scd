@@ -5,7 +5,7 @@
 ####   `zeroissues indication looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   heading="Diagnostics"
   id="diagnostic"
 >
@@ -34,7 +34,7 @@
   >
     Close
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
@@ -43,7 +43,7 @@
 ####   `pushes issues to the diagnostics pane that look like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   heading="Diagnostics"
   id="diagnostic"
 >
@@ -103,7 +103,7 @@ invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003
   >
     Close
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
