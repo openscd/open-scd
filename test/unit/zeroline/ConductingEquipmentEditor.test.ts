@@ -1,6 +1,12 @@
 import { fixture, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate, html } from '../../../src/foundation.js';
+import {
+  WizardInput,
+  isCreate,
+  isUpdate,
+  html,
+  Dialog,
+} from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { createAction } from '../../../src/wizards/conductingequipment.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
@@ -10,7 +16,7 @@ describe('ConductingEquipmentEditor', () => {
     return;
   };
   const newWizard = (done = noOp) => {
-    const element = document.createElement('mwc-dialog');
+    const element = <Dialog>document.createElement('c-dialog');
     element.close = done;
     return element;
   };
@@ -21,7 +27,9 @@ describe('ConductingEquipmentEditor', () => {
       ['name', 'desc', 'type'].map(
         label =>
           <Promise<WizardInput>>(
-            fixture(html`<${WizardTextField} label=${label}></${WizardTextField}>`)
+            fixture(
+              html`<${WizardTextField} label=${label}></${WizardTextField}>`
+            )
           )
       )
     );

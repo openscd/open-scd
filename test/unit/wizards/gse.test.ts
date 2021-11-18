@@ -3,6 +3,7 @@ import {
   ComplexAction,
   Create,
   Delete,
+  Dialog,
   html,
   isCreate,
   isDelete,
@@ -53,7 +54,7 @@ describe('gse wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };

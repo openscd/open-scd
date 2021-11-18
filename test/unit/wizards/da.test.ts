@@ -3,6 +3,7 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import {
   Create,
+  Dialog,
   html,
   isCreate,
   isUpdate,
@@ -43,7 +44,7 @@ describe('da wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };
@@ -243,7 +244,7 @@ describe('da wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };

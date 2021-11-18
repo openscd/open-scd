@@ -1,6 +1,7 @@
 import { expect, fixture } from '@open-wc/testing';
 import fc from 'fast-check';
 import {
+  Dialog,
   html,
   isDelete,
   isUpdate,
@@ -198,7 +199,7 @@ describe('gsecontrol wizards', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };

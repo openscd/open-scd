@@ -5,7 +5,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="Edit DA"
   open=""
@@ -883,7 +883,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
@@ -892,7 +892,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="Edit DA"
   open=""
@@ -1689,7 +1689,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

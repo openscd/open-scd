@@ -11,6 +11,9 @@ import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 
 export const html = wrapHtml(litHtml);
+
+export { Dialog } from './foundation/components.js';
+
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];

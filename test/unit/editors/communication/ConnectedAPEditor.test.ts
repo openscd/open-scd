@@ -7,6 +7,7 @@ import {
   isSimple,
   ComplexAction,
   html,
+  Dialog,
 } from '../../../../src/foundation.js';
 
 import { editConnectedApAction } from '../../../../src/editors/communication/connectedap-editor.js';
@@ -19,7 +20,7 @@ describe('ConnectedAPEditor', () => {
         return;
       };
       const newWizard = (done = noOp) => {
-        const element = document.createElement('mwc-dialog');
+        const element = <Dialog>document.createElement('c-dialog');
         element.close = done;
         return element;
       };
@@ -99,7 +100,7 @@ describe('ConnectedAPEditor', () => {
         return;
       };
       const newWizard = (done = noOp) => {
-        const element = document.createElement('mwc-dialog');
+        const element = <Dialog>document.createElement('c-dialog');
         element.close = done;
         return element;
       };

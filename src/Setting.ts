@@ -1,11 +1,16 @@
 import { property, query, TemplateResult } from 'lit-element';
 import { registerTranslateConfig, translate, use } from 'lit-translate';
 
-import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
-import { html, ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
+import {
+  Dialog,
+  html,
+  ifImplemented,
+  LitElementConstructor,
+  Mixin,
+} from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 import { WizardDialog } from './wizard-dialog.js';
 
@@ -93,7 +98,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
-        <mwc-dialog
+        <${Dialog}
           id="settings"
           heading="${translate('settings.title')}"
           @closing=${this.onClosing}
@@ -152,7 +157,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           >
             ${translate('save')}
           </mwc-button>
-        </mwc-dialog>`;
+        </${Dialog}>`;
     }
   }
 

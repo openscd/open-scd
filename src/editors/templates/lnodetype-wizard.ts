@@ -418,7 +418,7 @@ function onLnClassChange(e: Event, templates: XMLDocument): void {
 
   const primaryAction =
     (<Element>e.target)
-      ?.closest('mwc-dialog')
+      ?.closest('c-dialog')
       ?.querySelector('mwc-button[slot="primaryAction"]') ?? null;
 
   if (lnodetype) {

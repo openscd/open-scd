@@ -371,7 +371,7 @@
     </div>
   </mwc-icon-button>
 </div>
-<mwc-dialog
+<c-dialog
   heading="Log"
   id="log"
 >
@@ -436,8 +436,8 @@
   >
     Close
   </mwc-button>
-</mwc-dialog>
-<mwc-dialog
+</c-dialog>
+<c-dialog
   heading="Diagnostics"
   id="diagnostic"
 >
@@ -466,7 +466,7 @@
   >
     Close
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 <mwc-snackbar
   id="info"
   labeltext="No errors"
@@ -529,7 +529,7 @@
   >
   </mwc-icon-button>
 </mwc-snackbar>
-<mwc-dialog
+<c-dialog
   heading="Extensions"
   id="pluginManager"
   stacked=""
@@ -824,8 +824,8 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
-<mwc-dialog
+</c-dialog>
+<c-dialog
   heading="Add custom extension"
   id="pluginAdd"
 >
@@ -961,7 +961,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 <mwc-circular-progress-four-color
   closed=""
   density="0"
@@ -971,7 +971,7 @@
 </mwc-circular-progress-four-color>
 <wizard-dialog>
 </wizard-dialog>
-<mwc-dialog
+<c-dialog
   heading="Settings"
   id="settings"
 >
@@ -1039,7 +1039,7 @@
   >
     Save
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

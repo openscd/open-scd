@@ -5,7 +5,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="[wizard.title.select]"
   open=""
@@ -63,7 +63,7 @@
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
@@ -72,7 +72,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="title"
   open=""
@@ -189,7 +189,7 @@
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
@@ -198,7 +198,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="[wizard.title.edit]"
   open=""
@@ -339,7 +339,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

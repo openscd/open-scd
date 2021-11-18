@@ -3,7 +3,7 @@
 #### `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="Edit conducting equipment"
   open=""
@@ -55,7 +55,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

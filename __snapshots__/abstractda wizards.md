@@ -5,7 +5,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="title"
   open=""
@@ -515,7 +515,7 @@
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

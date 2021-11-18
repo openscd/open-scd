@@ -1,6 +1,12 @@
 import { fixture, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate, html } from '../../../src/foundation.js';
+import {
+  WizardInput,
+  isCreate,
+  isUpdate,
+  html,
+  Dialog,
+} from '../../../src/foundation.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { createAction } from '../../../src/wizards/bay.js';
@@ -11,7 +17,7 @@ describe('BayEditor', () => {
     return;
   };
   const newWizard = (done = noOp) => {
-    const element = document.createElement('mwc-dialog');
+    const element = <Dialog>document.createElement('c-dialog');
     element.close = done;
     return element;
   };
@@ -22,7 +28,9 @@ describe('BayEditor', () => {
       ['name', 'desc'].map(
         label =>
           <Promise<WizardInput>>(
-            fixture(html`<${WizardTextField} label=${label}></${WizardTextField}>`)
+            fixture(
+              html`<${WizardTextField} label=${label}></${WizardTextField}>`
+            )
           )
       )
     );

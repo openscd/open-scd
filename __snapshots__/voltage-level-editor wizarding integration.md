@@ -3,7 +3,7 @@
 #### `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="Edit voltage level"
   open=""
@@ -71,7 +71,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

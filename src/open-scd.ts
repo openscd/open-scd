@@ -9,7 +9,6 @@ import {
 import '@material/mwc-button';
 import '@material/mwc-checkbox';
 import '@material/mwc-circular-progress-four-color';
-import '@material/mwc-dialog';
 import '@material/mwc-drawer';
 import '@material/mwc-fab';
 import '@material/mwc-formfield';
@@ -128,16 +127,16 @@ export class OpenSCD extends Hosting(
       display: none;
     }
 
-    mwc-dialog {
+    c-dialog {
       --mdc-dialog-max-width: 98vw;
     }
 
-    mwc-dialog > form {
+    c-dialog > form {
       display: flex;
       flex-direction: column;
     }
 
-    mwc-dialog > form > * {
+    c-dialog > form > * {
       display: block;
       margin-top: 16px;
     }

@@ -5,7 +5,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="[subnetwork.wizard.title.edit]"
   open=""
@@ -58,7 +58,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
@@ -67,7 +67,7 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="[connectedap.wizard.title.connect]"
   open=""
@@ -157,7 +157,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

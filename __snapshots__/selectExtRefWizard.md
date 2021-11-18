@@ -3,7 +3,7 @@
 #### `looks like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="IED3>>MU01>MSVCB01 - IED1"
   open=""
@@ -222,7 +222,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

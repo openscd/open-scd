@@ -5,7 +5,7 @@
 ####   `pushes issues to the diagnostics pane that look like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   heading="Diagnostics"
   id="diagnostic"
 >
@@ -481,7 +481,7 @@
   >
     Close
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
@@ -490,7 +490,7 @@
 ####   `pushes a specific issue to the diagnostics pane that look like the latest snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   heading="Diagnostics"
   id="diagnostic"
 >
@@ -532,7 +532,7 @@
   >
     Close
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 

@@ -5,6 +5,7 @@ import {
   isUpdate,
   isDelete,
   html,
+  Dialog,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
@@ -19,7 +20,7 @@ describe('VoltageLevelEditor', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };
@@ -150,7 +151,7 @@ describe('VoltageLevelEditor', () => {
       return;
     };
     const newWizard = (done = noOp) => {
-      const element = document.createElement('mwc-dialog');
+      const element = <Dialog>document.createElement('c-dialog');
       element.close = done;
       return element;
     };

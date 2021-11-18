@@ -1,16 +1,11 @@
-import {
-  internalProperty,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
+import { internalProperty, property, query, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
-import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
 import {
   CommitEntry,
+  Dialog,
   html,
   ifImplemented,
   invert,
@@ -384,7 +379,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             right: 14px;
           }
         </style>
-        <mwc-dialog id="log" heading="${translate('log.name')}">
+        <${Dialog} id="log" heading="${translate('log.name')}">
           ${this.renderFilterButtons()}
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
           <mwc-button
@@ -404,36 +399,40 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           <mwc-button slot="primaryAction" dialogaction="close"
             >${translate('close')}</mwc-button
           >
-        </mwc-dialog>
+        </${Dialog}>
 
-        <mwc-dialog id="diagnostic" heading="${translate('diag.name')}">
+        <${Dialog} id="diagnostic" heading="${translate('diag.name')}">
           <${FilteredList} id="content" wrapFocus
             >${this.renderIssues()}</${FilteredList}
           >
           <mwc-button slot="primaryAction" dialogaction="close"
             >${translate('close')}</mwc-button
           >
-        </mwc-dialog>
+        </${Dialog}>
 
         <mwc-snackbar
           id="info"
           timeoutMs="4000"
-          labelText="${this.history
-            .slice()
-            .reverse()
-            .find(le => le.kind === 'info' || le.kind === 'action')?.title ??
-          get('log.snackbar.placeholder')}"
+          labelText="${
+            this.history
+              .slice()
+              .reverse()
+              .find(le => le.kind === 'info' || le.kind === 'action')?.title ??
+            get('log.snackbar.placeholder')
+          }"
         >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>
         <mwc-snackbar
           id="warning"
           timeoutMs="6000"
-          labelText="${this.history
-            .slice()
-            .reverse()
-            .find(le => le.kind === 'warning')?.title ??
-          get('log.snackbar.placeholder')}"
+          labelText="${
+            this.history
+              .slice()
+              .reverse()
+              .find(le => le.kind === 'warning')?.title ??
+            get('log.snackbar.placeholder')
+          }"
         >
           <mwc-button
             slot="action"
@@ -446,11 +445,13 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="error"
           timeoutMs="10000"
-          labelText="${this.history
-            .slice()
-            .reverse()
-            .find(le => le.kind === 'error')?.title ??
-          get('log.snackbar.placeholder')}"
+          labelText="${
+            this.history
+              .slice()
+              .reverse()
+              .find(le => le.kind === 'error')?.title ??
+            get('log.snackbar.placeholder')
+          }"
         >
           <mwc-button
             slot="action"
@@ -463,8 +464,9 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="issue"
           timeoutMs="10000"
-          labelText="${this.latestIssue?.title ??
-          get('log.snackbar.placeholder')}"
+          labelText="${
+            this.latestIssue?.title ?? get('log.snackbar.placeholder')
+          }"
         >
           <mwc-button
             slot="action"

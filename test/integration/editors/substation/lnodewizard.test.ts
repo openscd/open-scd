@@ -28,9 +28,9 @@ describe('lnodewizard', () => {
     await element.requestUpdate();
   });
 
-  it('renders three wizard pages each in a mwc-dialog', async () => {
+  it('renders three wizard pages each in a c-dialog', async () => {
     expect(
-      element.wizardUI.shadowRoot?.querySelectorAll('mwc-dialog').length
+      element.wizardUI.shadowRoot?.querySelectorAll('c-dialog').length
     ).to.equal(2);
   });
 
@@ -38,7 +38,7 @@ describe('lnodewizard', () => {
     it('renders a list of available IEDs in a mwc-list with checked items', () => {
       expect(
         element.wizardUI.shadowRoot
-          ?.querySelector('mwc-dialog')
+          ?.querySelector('c-dialog')
           ?.querySelectorAll('mwc-check-list-item').length
       ).to.equal(doc.querySelectorAll('IED').length);
     });
@@ -55,7 +55,7 @@ describe('lnodewizard', () => {
       it('adds logical nodes of the selected IEDs', async () => {
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item').length
         ).to.equal(
           doc.querySelectorAll('IED[name="IED2"] LN0, IED[name="IED2"] LN')
@@ -66,7 +66,7 @@ describe('lnodewizard', () => {
       it('selects logical nodes connected to the substation element', async () => {
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item[selected]').length
         ).to.have.equal(3);
       });
@@ -74,7 +74,7 @@ describe('lnodewizard', () => {
       it('disables logical nodes connected to another substation', async () => {
         expect(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelectorAll('mwc-check-list-item[disabled]').length
         ).to.have.equal(1);
       });
@@ -87,13 +87,13 @@ describe('lnodewizard', () => {
         ).to.exist;
         (<List>(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelector('filtered-list')
         )).items[0].click();
         await element.updateComplete;
         (<HTMLElement>(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelector('mwc-button[slot="primaryAction"]')
         )).click();
         await element.updateComplete;
@@ -110,13 +110,13 @@ describe('lnodewizard', () => {
         ).to.not.exist;
         (<List>(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelector('filtered-list')
         )).items[3].click();
         await element.updateComplete;
         (<HTMLElement>(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelector('mwc-button[slot="primaryAction"]')
         )).click();
         await element.updateComplete;
@@ -132,13 +132,13 @@ describe('lnodewizard', () => {
         ).length;
         (<List>(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelector('filtered-list')
         )).items[3].click();
         await element.updateComplete;
         (<HTMLElement>(
           element.wizardUI.shadowRoot
-            ?.querySelector('mwc-dialog:nth-child(2)')
+            ?.querySelector('c-dialog:nth-child(2)')
             ?.querySelector('mwc-button[slot="primaryAction"]')
         )).click();
         await element.updateComplete;

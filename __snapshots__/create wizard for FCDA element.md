@@ -5,7 +5,7 @@
 ####   `looks like the last snapshot`
 
 ```html
-<mwc-dialog
+<c-dialog
   defaultaction="close"
   heading="[wizard.title.add]"
   open=""
@@ -29,7 +29,7 @@
     trailingicon=""
   >
   </mwc-button>
-</mwc-dialog>
+</c-dialog>
 
 ```
 
