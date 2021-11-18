@@ -1,10 +1,7 @@
 import {expect} from "@open-wc/testing";
 
 import {
-  isNotFoundError,
-  NOT_FOUND_ERROR,
   processErrorMessage,
-  SERVER_ERROR
 } from "../../../src/compas-services/foundation.js";
 
 const errorBody =
@@ -31,22 +28,6 @@ describe('compas-services-foundation', () => {
     const result = await processErrorMessage(response);
     expect(result).to.be.equal(expectedMessage);
 
-  })
-
-  it('when the error is caused by a status 404 then return true', () => {
-    const reason = {type: NOT_FOUND_ERROR};
-    const result = isNotFoundError(reason);
-    expect(result).to.be.true;
-  })
-  it('when the error is caused by other status then return false', () => {
-    const reason = {type: SERVER_ERROR};
-    const result = isNotFoundError(reason);
-    expect(result).to.be.false;
-  })
-  it('when no type of error found then return false', () => {
-    const reason = {};
-    const result = isNotFoundError(reason);
-    expect(result).to.be.false;
   })
 });
 
