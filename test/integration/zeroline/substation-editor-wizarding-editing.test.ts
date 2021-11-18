@@ -45,12 +45,12 @@ describe('substation-editor wizarding editing integration', () => {
       );
       secondaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="secondaryAction"]'
+          'c-button[slot="secondaryAction"]'
         )
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });
@@ -121,7 +121,7 @@ describe('substation-editor wizarding editing integration', () => {
 
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });

@@ -1350,21 +1350,21 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon="add"
     label="[add]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -1380,13 +1380,13 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-button
+    <c-button
       fullwidth=""
       icon="delete"
       label="[remove]"
       trailingicon=""
     >
-    </mwc-button>
+    </c-button>
     <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"
@@ -1405,12 +1405,12 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-text-field>
-    <mwc-button
+    <c-button
       icon="playlist_add"
       label="[scl.EnumVal]"
       slot="graphic"
     >
-    </mwc-button>
+    </c-button>
     <mwc-list style="margin-top: 0px;">
       <mwc-list-item
         aria-disabled="false"
@@ -1489,21 +1489,21 @@
       </mwc-list-item>
     </mwc-list>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -1519,13 +1519,13 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-button
+    <c-button
       fullwidth=""
       icon="delete"
       label="[delete]"
       trailingicon=""
     >
-    </mwc-button>
+    </c-button>
     <wizard-text-field
       helper="[scl.ord]"
       label="ord"
@@ -1550,21 +1550,21 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="Save"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -1604,21 +1604,21 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="Save"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

@@ -3,7 +3,9 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { Snackbar } from '@material/mwc-snackbar';
 
+
 import {
+  Button,
   CommitEntry,
   Dialog,
   html,
@@ -382,22 +384,22 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <${Dialog} id="log" heading="${translate('log.name')}">
           ${this.renderFilterButtons()}
           <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
-          <mwc-button
+          <${Button}
             icon="undo"
             label="${translate('undo')}"
             ?disabled=${!this.canUndo}
             @click=${this.undo}
             slot="secondaryAction"
-          ></mwc-button>
-          <mwc-button
+          ></${Button}>
+          <${Button}
             icon="redo"
             label="${translate('redo')}"
             ?disabled=${!this.canRedo}
             @click=${this.redo}
             slot="secondaryAction"
-          ></mwc-button>
-          <mwc-button slot="primaryAction" dialogaction="close"
-            >${translate('close')}</mwc-button
+          ></${Button}>
+          <${Button} slot="primaryAction" dialogaction="close"
+            >${translate('close')}</${Button}
           >
         </${Dialog}>
 
@@ -405,8 +407,8 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           <${FilteredList} id="content" wrapFocus
             >${this.renderIssues()}</${FilteredList}
           >
-          <mwc-button slot="primaryAction" dialogaction="close"
-            >${translate('close')}</mwc-button
+          <${Button} slot="primaryAction" dialogaction="close"
+            >${translate('close')}</${Button}
           >
         </${Dialog}>
 
@@ -434,11 +436,11 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             get('log.snackbar.placeholder')
           }"
         >
-          <mwc-button
+          <${Button}
             slot="action"
             icon="history"
             @click=${() => this.logUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${translate('log.snackbar.show')}</${Button}
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>
@@ -453,11 +455,11 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             get('log.snackbar.placeholder')
           }"
         >
-          <mwc-button
+          <${Button}
             slot="action"
             icon="history"
             @click=${() => this.logUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${translate('log.snackbar.show')}</${Button}
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>
@@ -468,11 +470,11 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             this.latestIssue?.title ?? get('log.snackbar.placeholder')
           }"
         >
-          <mwc-button
+          <${Button}
             slot="action"
             icon="rule"
             @click=${() => this.diagnosticUI.show()}
-            >${translate('log.snackbar.show')}</mwc-button
+            >${translate('log.snackbar.show')}</${Button}
           >
           <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
         </mwc-snackbar>`;

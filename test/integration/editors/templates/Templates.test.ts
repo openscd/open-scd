@@ -112,7 +112,7 @@ describe('Templates Plugin', () => {
       await parent.updateComplete;
       (<HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       )).click();
       await parent.updateComplete;

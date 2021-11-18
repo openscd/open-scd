@@ -1,6 +1,7 @@
 import { get, translate } from 'lit-translate';
 
 import {
+  Button,
   cloneElement,
   createElement,
   EditorAction,
@@ -107,7 +108,7 @@ function eNumValWizard(options: WizardOptions): Wizard {
         enumval.getAttribute('ord'),
         enumval.getAttribute('desc'),
         enumval.textContent,
-        html`<mwc-button
+        html`<${Button}
           icon="delete"
           trailingIcon
           label=${translate('delete')}
@@ -124,7 +125,7 @@ function eNumValWizard(options: WizardOptions): Wizard {
             );
           }}
           fullwidth
-        ></mwc-button>`,
+        ></${Button}>`,
       ]
     : [
         get('enum-val.wizard.title.add'),
@@ -274,7 +275,7 @@ export function eNumTypeEditWizard(
         action: updateIDNamingAction(enumtype),
       },
       content: [
-        html`<mwc-button
+        html`<${Button}
           icon="delete"
           trailingIcon
           label="${translate('remove')}"
@@ -291,7 +292,7 @@ export function eNumTypeEditWizard(
             );
           }}
           fullwidth
-        ></mwc-button> `,
+        ></${Button}> `,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
@@ -309,7 +310,7 @@ export function eNumTypeEditWizard(
           nullable
           pattern="${patterns.normalizedString}"
         ></${WizardTextField}>`,
-        html`<mwc-button
+        html`<${Button}
             slot="graphic"
             icon="playlist_add"
             label="${translate('scl.EnumVal')}"
@@ -320,7 +321,7 @@ export function eNumTypeEditWizard(
               if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
               e.target!.dispatchEvent(newWizardEvent());
             }}
-          ></mwc-button>
+          ></${Button}>
           <mwc-list
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {

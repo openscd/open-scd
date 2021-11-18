@@ -11,6 +11,7 @@ import { get, translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
 
+
 import 'ace-custom-element';
 import './wizard-textfield.js';
 import {
@@ -29,6 +30,7 @@ import {
   identity,
   html,
   Dialog,
+  Button,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
@@ -211,60 +213,54 @@ export class WizardDialog extends LitElement {
             : page.content
         }
       </div>
-      ${
-        index > 0
-          ? html`<mwc-button
-              slot="secondaryAction"
-              dialogAction="prev"
-              icon="navigate_before"
-              label=${this.wizard?.[index - 1].title}
-            ></mwc-button>`
-          : html``
-      }
-      ${
-        page.secondary
-          ? html`<mwc-button
-              slot="secondaryAction"
-              @click=${() => this.act(page.secondary?.action, false)}
-              icon="${page.secondary.icon}"
-              label="${page.secondary.label}"
-            ></mwc-button>`
-          : html`<mwc-button
-              slot="secondaryAction"
-              dialogAction="close"
-              label="${translate('cancel')}"
-              style="--mdc-theme-primary: var(--mdc-theme-error)"
-            ></mwc-button>`
-      }
-      ${
-        this.code && page.element
-          ? html`<mwc-button
-              slot="primaryAction"
-              @click=${() => this.act(codeAction(page.element!))}
-              icon="code"
-              label="${translate('save')}"
-              trailingIcon
-              dialogInitialFocus
-            ></mwc-button>`
-          : page.primary
-          ? html`<mwc-button
-              slot="primaryAction"
-              @click=${() => this.act(page.primary?.action)}
-              icon="${page.primary.icon}"
-              label="${page.primary.label}"
-              trailingIcon
-              dialogInitialFocus
-            ></mwc-button>`
-          : index + 1 < (this.wizard?.length ?? 0)
-          ? html`<mwc-button
-              slot="primaryAction"
-              dialogAction="next"
-              icon="navigate_next"
-              label=${this.wizard?.[index + 1].title}
-              trailingicon
-            ></mwc-button>`
-          : html``
-      }
+      ${index > 0
+        ? html`<${Button}
+            slot="secondaryAction"
+            dialogAction="prev"
+            icon="navigate_before"
+            label=${this.wizard?.[index - 1].title}
+          ></${Button}>`
+        : html``}
+      ${page.secondary
+        ? html`<${Button}
+            slot="secondaryAction"
+            @click=${() => this.act(page.secondary?.action, false)}
+            icon="${page.secondary.icon}"
+            label="${page.secondary.label}"
+          ></${Button}>`
+        : html`<${Button}
+            slot="secondaryAction"
+            dialogAction="close"
+            label="${translate('cancel')}"
+            style="--mdc-theme-primary: var(--mdc-theme-error)"
+          ></${Button}>`}
+      ${this.code && page.element
+        ? html`<${Button}
+            slot="primaryAction"
+            @click=${() => this.act(codeAction(page.element!))}
+            icon="code"
+            label="${translate('save')}"
+            trailingIcon
+            dialogInitialFocus
+          ></${Button}>`
+        : page.primary
+        ? html`<${Button}
+            slot="primaryAction"
+            @click=${() => this.act(page.primary?.action)}
+            icon="${page.primary.icon}"
+            label="${page.primary.label}"
+            trailingIcon
+            dialogInitialFocus
+          ></${Button}>`
+        : index + 1 < (this.wizard?.length ?? 0)
+        ? html`<${Button}
+            slot="primaryAction"
+            dialogAction="next"
+            icon="navigate_next"
+            label=${this.wizard?.[index + 1].title}
+            trailingicon
+          ></${Button}>`
+        : html``}
     </${Dialog}>`;
   }
 

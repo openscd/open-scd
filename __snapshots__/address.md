@@ -38,13 +38,13 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

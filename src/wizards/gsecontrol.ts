@@ -5,7 +5,9 @@ import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
+
 import {
+  Button,
   cloneElement,
   Delete,
   EditorAction,
@@ -212,7 +214,7 @@ export function editGseControlWizard(element: Element): Wizard {
         action: updateGseControlAction(element),
       },
       content: [
-        html`<mwc-button
+        html`<${Button}
           label="${translate('remove')}"
           icon="delete"
           @click=${(e: MouseEvent) => {
@@ -222,7 +224,7 @@ export function editGseControlWizard(element: Element): Wizard {
             );
             e.target?.dispatchEvent(newWizardEvent());
           }}
-        ></mwc-button>`,
+        ></${Button}>`,
         ...renderGseAttributes(
           name,
           desc,
@@ -232,7 +234,7 @@ export function editGseControlWizard(element: Element): Wizard {
           securityEnabled
         ),
         dataSet
-          ? html`<mwc-button
+          ? html`<${Button}
               id="editdataset"
               label=${translate('wizard.title.edit', {
                 tagName: get('scl.DataSet'),
@@ -246,10 +248,10 @@ export function editGseControlWizard(element: Element): Wizard {
                   );
                 }
               }}
-            ></mwc-button>`
+            ></${Button}>`
           : html``,
         gSE
-          ? html`<mwc-button
+          ? html`<${Button}
               id="editgse"
               label=${translate('scl.Communication')}
               icon="edit"
@@ -257,7 +259,7 @@ export function editGseControlWizard(element: Element): Wizard {
                 e.target?.dispatchEvent(newWizardEvent());
                 e.target?.dispatchEvent(newWizardEvent(editGseWizard(gSE)));
               }}}"
-            ></mwc-button>`
+            ></${Button}>`
           : html``,
       ],
     },

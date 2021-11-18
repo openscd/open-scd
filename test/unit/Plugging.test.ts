@@ -40,10 +40,10 @@ describe('PluggingElement', () => {
       );
 
       resetAction = <HTMLElement>(
-        element.pluginUI.querySelector('mwc-button[slot="secondaryAction"]')
+        element.pluginUI.querySelector('c-button[slot="secondaryAction"]')
       );
       primaryAction = <HTMLElement>(
-        element.pluginUI.querySelector('mwc-button[slot="primaryAction"]')
+        element.pluginUI.querySelector('c-button[slot="primaryAction"]')
       );
     });
 
@@ -94,7 +94,7 @@ describe('PluggingElement', () => {
       );
       primaryAction = <HTMLElement>(
         element.pluginDownloadUI.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       element.pluginDownloadUI.show();

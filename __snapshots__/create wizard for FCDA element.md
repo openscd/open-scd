@@ -14,21 +14,21 @@
     <finder-list multi="">
     </finder-list>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon="add"
     label="add"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

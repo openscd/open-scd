@@ -5,6 +5,7 @@ import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
 import {
+  Button,
   Dialog,
   html,
   ifImplemented,
@@ -139,24 +140,24 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
               ></mwc-switch>
             </mwc-formfield>
           </form>
-          <mwc-button slot="secondaryAction" dialogAction="close">
+          <${Button} slot="secondaryAction" dialogAction="close">
             ${translate('cancel')}
-          </mwc-button>
-          <mwc-button
+          </${Button}>
+          <${Button}
             style="--mdc-theme-primary: var(--mdc-theme-error)"
             slot="secondaryAction"
             dialogAction="reset"
           >
             ${translate('reset')}
-          </mwc-button>
-          <mwc-button
+          </${Button}>
+          <${Button}
             icon="save"
             trailingIcon
             slot="primaryAction"
             dialogAction="save"
           >
             ${translate('save')}
-          </mwc-button>
+          </${Button}>
         </${Dialog}>`;
     }
   }

@@ -11,13 +11,13 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-button
+    <c-button
       fullwidth=""
       icon="delete"
       label="Remove"
       trailingicon=""
     >
-    </mwc-button>
+    </c-button>
     <wizard-text-field
       dialoginitialfocus=""
       helper="Name"
@@ -616,21 +616,21 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="Save"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -1177,21 +1177,21 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="Save"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

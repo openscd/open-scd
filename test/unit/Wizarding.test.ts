@@ -38,7 +38,7 @@ describe('WizardingElement', () => {
       await (<HTMLElement>(
         element
           .shadowRoot!.querySelector('wizard-dialog')!
-          .shadowRoot!.querySelector('mwc-button[dialogAction="close"]')
+          .shadowRoot!.querySelector('c-button[dialogAction="close"]')
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       expect(element).property('workflow').to.be.empty;

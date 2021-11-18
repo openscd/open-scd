@@ -53,11 +53,11 @@ describe('LNodeType wizards', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
       );
     });
 
@@ -115,7 +115,7 @@ describe('LNodeType wizards', () => {
       )!;
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });
@@ -261,14 +261,14 @@ describe('LNodeType wizards', () => {
 
         (<HTMLElement>(
           parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
+            'c-button[slot="primaryAction"]'
           )
         )).click();
         await parent.updateComplete;
         await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
         saveButton = parent.wizardUI.shadowRoot!.querySelector<HTMLElement>(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )!;
 
         beh = parent.wizardUI.shadowRoot!.querySelector<Select>(
@@ -397,11 +397,11 @@ describe('LNodeType wizards', () => {
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
       );
     });
 
@@ -493,7 +493,7 @@ describe('LNodeType wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI.dialog?.querySelectorAll(
-          'mwc-button[icon="playlist_add"]'
+          'c-button[icon="playlist_add"]'
         )[0]
       )).click();
       await parent.requestUpdate();
@@ -518,7 +518,7 @@ describe('LNodeType wizards', () => {
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });

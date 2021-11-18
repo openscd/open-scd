@@ -1,6 +1,7 @@
 import { get, translate } from 'lit-translate';
 
 import {
+  Button,
   Create,
   EditorAction,
   getReference,
@@ -50,7 +51,7 @@ export function editDaTypeWizard(
         action: updateIDNamingAction(datype),
       },
       content: [
-        html`<mwc-button
+        html`<${Button}
           icon="delete"
           trailingIcon
           label="${translate('remove')}"
@@ -67,7 +68,7 @@ export function editDaTypeWizard(
             );
           }}
           fullwidth
-        ></mwc-button> `,
+        ></${Button}> `,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
@@ -85,7 +86,7 @@ export function editDaTypeWizard(
           nullable
           pattern="${patterns.normalizedString}"
         ></${WizardTextField}>`,
-        html`<mwc-button
+        html`<${Button}
             slot="graphic"
             icon="playlist_add"
             trailingIcon
@@ -97,7 +98,7 @@ export function editDaTypeWizard(
                 );
               e.target!.dispatchEvent(newWizardEvent());
             }}
-          ></mwc-button>
+          ></${Button}>
           <mwc-list
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {

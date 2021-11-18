@@ -61,11 +61,11 @@ describe('DA wizarding editing integration', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
       );
     });
 
@@ -136,7 +136,7 @@ describe('DA wizarding editing integration', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI.dialog?.querySelectorAll(
-          'mwc-button[icon="playlist_add"]'
+          'c-button[icon="playlist_add"]'
         )[1]
       )).click();
       await parent.requestUpdate();
@@ -170,7 +170,7 @@ describe('DA wizarding editing integration', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });

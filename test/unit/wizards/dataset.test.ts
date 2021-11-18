@@ -48,7 +48,7 @@ describe('dataset wizards', () => {
 
     it('allows to add a new FCDA on add FCDA button click', async () => {
       const addButton = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector('mwc-button[icon="add"]')
+        element.wizardUI.dialog?.querySelector('c-button[icon="add"]')
       );
       await addButton.click();
       expect(wizardEvent).to.be.calledTwice;
@@ -76,7 +76,7 @@ describe('dataset wizards', () => {
 
         primaryAction = <HTMLElement>(
           element.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
+            'c-button[slot="primaryAction"]'
           )
         );
       });
@@ -129,7 +129,7 @@ describe('dataset wizards', () => {
 
         primaryAction = <HTMLElement>(
           element.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
+            'c-button[slot="primaryAction"]'
           )
         );
 

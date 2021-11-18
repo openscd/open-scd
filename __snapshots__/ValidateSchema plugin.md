@@ -28,12 +28,12 @@
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
-  <mwc-button
+  <c-button
     dialogaction="close"
     slot="primaryAction"
   >
     Close
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -97,12 +97,12 @@ invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003
       </mwc-list-item>
     </abbr>
   </filtered-list>
-  <mwc-button
+  <c-button
     dialogaction="close"
     slot="primaryAction"
   >
     Close
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

@@ -1,6 +1,7 @@
 import { get, translate } from 'lit-translate';
 
 import {
+  Button,
   cloneElement,
   Create,
   createElement,
@@ -99,7 +100,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
         get('sdo.wizard.title.edit'),
         updateSDoAction(sdo),
         sdo.getAttribute('type'),
-        html`<mwc-button
+        html`<${Button}
           icon="delete"
           trailingIcon
           label="${translate('remove')}"
@@ -116,7 +117,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
             );
           }}
           fullwidth
-        ></mwc-button> `,
+        ></${Button}> `,
         sdo.getAttribute('name'),
         sdo.getAttribute('desc'),
       ]
@@ -341,7 +342,7 @@ export function dOTypeWizard(
         action: updateDOTypeAction(dotype),
       },
       content: [
-        html`<mwc-button
+        html`<${Button}
           icon="delete"
           trailingIcon
           label="${translate('remove')}"
@@ -358,7 +359,7 @@ export function dOTypeWizard(
             );
           }}
           fullwidth
-        ></mwc-button> `,
+        ></${Button}> `,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
@@ -383,7 +384,7 @@ export function dOTypeWizard(
           pattern="${patterns.normalizedString}"
         ></${WizardTextField}>`,
         html`<section>
-          <mwc-button
+          <${Button}
             slot="graphic"
             icon="playlist_add"
             trailingIcon
@@ -395,8 +396,8 @@ export function dOTypeWizard(
               if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
               e.target!.dispatchEvent(newWizardEvent());
             }}
-          ></mwc-button>
-          <mwc-button
+          ></${Button}>
+          <${Button}
             slot="graphic"
             icon="playlist_add"
             trailingIcon
@@ -406,7 +407,7 @@ export function dOTypeWizard(
                 e.target!.dispatchEvent(newWizardEvent(createDaWizard(dotype)));
               e.target!.dispatchEvent(newWizardEvent());
             }}
-          ></mwc-button>
+          ></${Button}>
         </section>`,
         html`
           <mwc-list

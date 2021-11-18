@@ -56,21 +56,21 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="Cancel"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon="edit"
     label="Save"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

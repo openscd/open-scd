@@ -1,9 +1,7 @@
 import { fixture, expect } from '@open-wc/testing';
 
-import { Button } from '@material/mwc-button';
-
 import { WizardDialog } from '../../src/wizard-dialog.js';
-import { EditorAction, html, WizardInput } from '../../src/foundation.js';
+import { Button, EditorAction, html, WizardInput } from '../../src/foundation.js';
 
 import './mock-editor.js';
 import { WizardTextField } from '../../src/wizard-textfield.js';
@@ -61,7 +59,7 @@ describe('wizard-dialog', () => {
 
     it('advances to the second page on next button click', async () => {
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-button[dialogaction="next"]')
+        element.shadowRoot!.querySelector('c-button[dialogaction="next"]')
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       await element.updateComplete;
@@ -73,7 +71,7 @@ describe('wizard-dialog', () => {
       await element.updateComplete;
       expect(element.dialog).to.have.property('heading', 'Page 2');
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-button[dialogaction="prev"]')
+        element.shadowRoot!.querySelector('c-button[dialogaction="prev"]')
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       await element.updateComplete;
@@ -171,7 +169,7 @@ describe('wizard-dialog', () => {
       ];
       await element.updateComplete;
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-button[slot="primaryAction"]')
+        element.shadowRoot!.querySelector('c-button[slot="primaryAction"]')
       )).click();
       expect(element.wizard[0].primary).to.not.exist;
     });
@@ -189,7 +187,7 @@ describe('wizard-dialog', () => {
       ];
       await element.updateComplete;
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-button[slot="primaryAction"]')
+        element.shadowRoot!.querySelector('c-button[slot="primaryAction"]')
       )).click();
       expect(element.wizard[0].primary).to.exist;
     });
@@ -246,7 +244,7 @@ describe('wizard-dialog', () => {
             ?.setAttribute('value', '<success></success>');
           await element.updateComplete;
           element.dialog
-            ?.querySelector<Button>('mwc-button[slot="primaryAction"]')!
+            ?.querySelector<Button>('c-button[slot="primaryAction"]')!
             .click();
           await element.updateComplete;
           expect(host.firstElementChild).to.have.property('tagName', 'success');

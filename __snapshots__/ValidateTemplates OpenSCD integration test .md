@@ -475,12 +475,12 @@
       </mwc-list-item>
     </abbr>
   </filtered-list>
-  <mwc-button
+  <c-button
     dialogaction="close"
     slot="primaryAction"
   >
     Close
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -526,12 +526,12 @@
       </mwc-list-item>
     </abbr>
   </filtered-list>
-  <mwc-button
+  <c-button
     dialogaction="close"
     slot="primaryAction"
   >
     Close
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

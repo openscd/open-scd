@@ -1,7 +1,9 @@
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
+
 import { get, translate } from 'lit-translate';
 
 import {
+  Button,
   cloneElement,
   getValue,
   html,
@@ -102,7 +104,7 @@ export function editDataSetWizard(element: Element): Wizard {
           required
         >
         </${WizardTextField}>`,
-        html`<mwc-button
+        html`<${Button}
           icon="add"
           label="${translate('wizard.title.add', { tagName: 'FCDA' })}"
           @click=${(e: Event) => {
@@ -112,7 +114,7 @@ export function editDataSetWizard(element: Element): Wizard {
               e.target?.dispatchEvent(newWizardEvent());
             }
           }}
-        ></mwc-button>`,
+        ></${Button}>`,
         html`<${FilteredList} multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>

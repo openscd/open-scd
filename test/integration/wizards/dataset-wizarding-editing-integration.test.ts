@@ -28,7 +28,7 @@ describe('dataset wizards', () => {
       await element.requestUpdate();
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       nameField = element.wizardUI.dialog!.querySelector(

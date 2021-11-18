@@ -208,20 +208,20 @@
       </mwc-check-list-item>
     </filtered-list>
   </div>
-  <mwc-button
+  <c-button
     icon=""
     label="[back]"
     slot="secondaryAction"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon="delete"
     label="[disconnect]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

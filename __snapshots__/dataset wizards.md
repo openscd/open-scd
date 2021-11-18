@@ -25,11 +25,11 @@
       required=""
     >
     </wizard-text-field>
-    <mwc-button
+    <c-button
       icon="add"
       label="[wizard.title.add]"
     >
-    </mwc-button>
+    </c-button>
     <filtered-list multi="">
       <mwc-check-list-item
         aria-disabled="false"
@@ -63,21 +63,21 @@
       </mwc-check-list-item>
     </filtered-list>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon="save"
     label="[edit]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

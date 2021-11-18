@@ -55,14 +55,14 @@ describe('subnetwork-editor wizarding editing integration', () => {
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });
     it('closes on secondary action', async () => {
       await (<HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="secondaryAction"]'
+          'c-button[slot="secondaryAction"]'
         )
       )).click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -214,7 +214,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
 
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });

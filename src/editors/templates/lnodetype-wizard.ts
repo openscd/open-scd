@@ -1,6 +1,7 @@
 import { get, translate } from 'lit-translate';
 
 import {
+  Button,
   cloneElement,
   Create,
   createElement,
@@ -131,7 +132,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         get('do.wizard.title.edit'),
         updateDoAction(DO),
         DO.getAttribute('type'),
-        html`<mwc-button
+        html`<${Button}
           icon="delete"
           trailingIcon
           label="${translate('remove')}"
@@ -148,7 +149,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
             );
           }}
           fullwidth
-        ></mwc-button> `,
+        ></${Button}> `,
         DO.getAttribute('name'),
         DO.getAttribute('desc'),
         DO.getAttribute('accessControl'),
@@ -419,7 +420,7 @@ function onLnClassChange(e: Event, templates: XMLDocument): void {
   const primaryAction =
     (<Element>e.target)
       ?.closest('c-dialog')
-      ?.querySelector('mwc-button[slot="primaryAction"]') ?? null;
+      ?.querySelector('c-button[slot="primaryAction"]') ?? null;
 
   if (lnodetype) {
     primaryAction?.setAttribute('label', get('save'));
@@ -555,7 +556,7 @@ export function lNodeTypeWizard(
         action: updateLNodeTypeAction(lnodetype),
       },
       content: [
-        html`<mwc-button
+        html`<${Button}
           icon="delete"
           trailingIcon
           label="${translate('remove')}"
@@ -572,7 +573,7 @@ export function lNodeTypeWizard(
             );
           }}
           fullwidth
-        ></mwc-button> `,
+        ></${Button}> `,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"
@@ -597,7 +598,7 @@ export function lNodeTypeWizard(
           required
           pattern="${patterns.lnClass}"
         ></${WizardTextField}>`,
-        html` <mwc-button
+        html` <${Button}
           slot="graphic"
           icon="playlist_add"
           trailingIcon
@@ -609,7 +610,7 @@ export function lNodeTypeWizard(
             if (wizard) e.target!.dispatchEvent(newWizardEvent(wizard));
             e.target!.dispatchEvent(newWizardEvent());
           }}
-        ></mwc-button>`,
+        ></${Button}>`,
         html`
           <mwc-list
             style="margin-top: 0px;"

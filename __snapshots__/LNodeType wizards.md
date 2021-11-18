@@ -11,13 +11,13 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-button
+    <c-button
       fullwidth=""
       icon="delete"
       label="[remove]"
       trailingicon=""
     >
-    </mwc-button>
+    </c-button>
     <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"
@@ -43,13 +43,13 @@
       required=""
     >
     </wizard-text-field>
-    <mwc-button
+    <c-button
       icon="playlist_add"
       label="[scl.DO]"
       slot="graphic"
       trailingicon=""
     >
-    </mwc-button>
+    </c-button>
     <mwc-list style="margin-top: 0px;">
       <mwc-list-item
         aria-disabled="false"
@@ -123,21 +123,21 @@
       </mwc-list-item>
     </mwc-list>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -3452,21 +3452,21 @@
     >
     </wizard-text-field>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="[next]..."
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -3791,21 +3791,21 @@
       </mwc-list-item>
     </wizard-select>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -3821,13 +3821,13 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-button
+    <c-button
       fullwidth=""
       icon="delete"
       label="[remove]"
       trailingicon=""
     >
-    </mwc-button>
+    </c-button>
     <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.name]"
@@ -4031,21 +4031,21 @@
       </mwc-list-item>
     </mwc-select>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -4262,21 +4262,21 @@
       </mwc-list-item>
     </mwc-select>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

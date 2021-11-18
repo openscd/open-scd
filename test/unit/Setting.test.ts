@@ -2,11 +2,9 @@ import { fixture, expect } from '@open-wc/testing';
 
 import { registerTranslateConfig, use } from 'lit-translate';
 
-import { Button } from '@material/mwc-button';
-
 import { SettingElement, defaults } from '../../src/Setting.js';
 import './mock-setter.js';
-import { html } from '../../src/foundation.js';
+import { Button, html } from '../../src/foundation.js';
 
 describe('SettingElement', () => {
   let element: SettingElement;
@@ -33,7 +31,7 @@ describe('SettingElement', () => {
     element.darkThemeUI.checked = true;
     await element.darkThemeUI.updateComplete;
     await (<Button>(
-      element.settingsUI.querySelector('mwc-button[dialogAction="save"]')
+      element.settingsUI.querySelector('c-button[dialogAction="save"]')
     )).click();
     expect(element.settings).to.have.property('theme', 'dark');
   });
@@ -44,7 +42,7 @@ describe('SettingElement', () => {
     element.setSetting('language', 'de');
     expect(element).to.not.have.deep.property('settings', defaults);
     (<Button>(
-      element.settingsUI.querySelector('mwc-button[dialogAction="reset"]')
+      element.settingsUI.querySelector('c-button[dialogAction="reset"]')
     )).click();
     expect(element).to.have.deep.property('settings', defaults);
   });

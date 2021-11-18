@@ -45,7 +45,7 @@ describe('clientln wizards', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       primaryAction = parent.wizardUI.dialog!.querySelector<HTMLElement>(
-        'mwc-button[slot="primaryAction"]'
+        'c-button[slot="primaryAction"]'
       )!;
       reportCbs =
         parent.wizardUI.dialog!.querySelector<List>('#sourcelist')!.items;
@@ -202,7 +202,7 @@ describe('clientln wizards', () => {
       await parent.updateComplete;
       (<HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       )).click();
       await parent.updateComplete;
