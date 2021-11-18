@@ -2,7 +2,6 @@ import { LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 import {
   createElement,
-  getReference,
   getVersion,
   newActionEvent,
   SimpleAction,
@@ -139,7 +138,6 @@ export function createMissingIEDNameSubscriberInfo(
         new: {
           parent: controlBlock,
           element: iedName!,
-          reference: getReference(controlBlock, 'IEDName'),
         },
       });
     });

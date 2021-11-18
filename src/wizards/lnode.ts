@@ -5,7 +5,6 @@ import {
   createElement,
   EditorAction,
   getChildElementsByTagName,
-  getReference,
   identity,
   isPublic,
   referencePath,
@@ -91,7 +90,6 @@ function createAction(parent: Element, anyln: Element): EditorAction {
     new: {
       parent,
       element,
-      reference: getReference(parent, 'LNode'),
     },
   };
 }

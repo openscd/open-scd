@@ -19,20 +19,20 @@ export type ComplexAction = {
 export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference: Node | null };
+  new: { parent: Element; element: Element; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference: Node | null };
+  old: { parent: Element; element: Element; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Reparents of `old.element` to `new.parent` before `new.reference`. */
 export interface Move {
-  old: { parent: Element; element: Element; reference: Node | null };
-  new: { parent: Element; reference: Node | null };
+  old: { parent: Element; element: Element; reference?: Node | null };
+  new: { parent: Element; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
@@ -48,15 +48,13 @@ export function isCreate(action: EditorAction): action is Create {
   return (
     (action as Update).old === undefined &&
     (action as Create).new?.parent !== undefined &&
-    (action as Create).new?.element !== undefined &&
-    (action as Create).new?.reference !== undefined
+    (action as Create).new?.element !== undefined
   );
 }
 export function isDelete(action: EditorAction): action is Delete {
   return (
     (action as Delete).old?.parent !== undefined &&
     (action as Delete).old?.element !== undefined &&
-    (action as Delete).old?.reference !== undefined &&
     (action as Update).new === undefined
   );
 }
@@ -64,10 +62,8 @@ export function isMove(action: EditorAction): action is Move {
   return (
     (action as Move).old?.parent !== undefined &&
     (action as Move).old?.element !== undefined &&
-    (action as Move).old?.reference !== undefined &&
     (action as Move).new?.parent !== undefined &&
-    (action as Update).new?.element == undefined &&
-    (action as Move).new?.reference !== undefined
+    (action as Update).new?.element == undefined
   );
 }
 export function isUpdate(action: EditorAction): action is Update {

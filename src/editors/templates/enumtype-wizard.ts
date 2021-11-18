@@ -5,14 +5,12 @@ import {
   cloneElement,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   identity,
   isPublic,
   newActionEvent,
   newWizardEvent,
   patterns,
-  SCLTag,
   selector,
   Wizard,
   WizardActor,
@@ -57,7 +55,6 @@ function createEnumValAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'EnumVal'),
       },
     };
 
@@ -195,7 +192,6 @@ function createAction(parent: Element, templates: XMLDocument): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     };
 

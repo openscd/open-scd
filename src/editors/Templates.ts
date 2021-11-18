@@ -3,7 +3,6 @@ import { translate } from 'lit-translate';
 
 import {
   createElement,
-  getReference,
   identity,
   newActionEvent,
   newWizardEvent,
@@ -127,10 +126,6 @@ export default class TemplatesPlugin extends LitElement {
           new: {
             parent: this.doc.documentElement,
             element: createElement(this.doc, 'DataTypeTemplates', {}),
-            reference: getReference(
-              this.doc.documentElement,
-              'DataTypeTemplates'
-            ),
           },
         })
       );

@@ -6,6 +6,7 @@ import {
   Delete,
   EditorAction,
   EditorActionEvent,
+  getReference,
   isCreate,
   isDelete,
   isMove,
@@ -17,6 +18,7 @@ import {
   newLogEvent,
   newValidateEvent,
   OpenDocEvent,
+  SCLTag,
   SimpleAction,
   Update,
 } from './foundation.js';
@@ -72,6 +74,12 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private onCreate(action: Create) {
       if (!this.checkCreateValidity(action)) return false;
 
+      if (action.new.reference === undefined)
+        action.new.reference = getReference(
+          action.new.parent,
+          <SCLTag>action.new.element.tagName
+        );
+
       action.new.parent.insertBefore(action.new.element, action.new.reference);
       return true;
     }
@@ -89,6 +97,9 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private onDelete(action: Delete) {
+      if (!action.old.reference)
+        action.old.reference = action.old.element.nextSibling;
+
       action.old.element.remove();
       return true;
     }
@@ -137,6 +148,15 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onMove(action: Move) {
       if (!this.checkMoveValidity(action)) return false;
+
+      if (!action.old.reference)
+        action.old.reference = action.old.element.nextSibling;
+
+      if (action.new.reference === undefined)
+        action.new.reference = getReference(
+          action.new.parent,
+          <SCLTag>action.old.element.tagName
+        );
 
       action.new.parent.insertBefore(action.old.element, action.new.reference);
       return true;
