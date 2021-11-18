@@ -3,7 +3,6 @@ import {property} from "lit-element";
 import {LitElementConstructor, Mixin} from "../foundation.js";
 
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
-import {isNotFoundError, NOT_FOUND_ERROR} from "../compas-services/foundation.js";
 import {getTypeFromDocName} from "./foundation.js";
 
 export type CompasExistsInElement = Mixin<typeof CompasExistsIn>;
@@ -32,10 +31,8 @@ export function CompasExistsIn<TBase extends LitElementConstructor>(Base: TBase)
         const docType = getTypeFromDocName(this.docName);
         this.callService(docType, this.docId)
           .then(() => this.existInCompas = true)
-          .catch(reason => {
-            if (isNotFoundError(reason)) {
-              this.existInCompas = false;
-            }
+          .catch(() => {
+            this.existInCompas = false;
           });
       } else {
         this.existInCompas = false;

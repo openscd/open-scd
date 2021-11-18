@@ -3,7 +3,7 @@ import {get, translate} from 'lit-translate';
 import {newLogEvent, newWizardEvent, Wizard} from "../foundation.js";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
-import {createLogEvent, isNotFoundError, NOT_FOUND_ERROR} from "../compas-services/foundation.js";
+import {createLogEvent} from "../compas-services/foundation.js";
 import {getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
 import {getElementByName, getOpenScdElement, styles} from './foundation.js';
 import {addVersionToCompasWizard} from "../compas/CompasUploadVersion.js";
@@ -54,10 +54,8 @@ export default class CompasVersionsPlugin extends LitElement {
       .then(xmlResponse => {
         this.scls = Array.from(xmlResponse.querySelectorAll('Item') ?? []);
       })
-      .catch(reason => {
-        if (isNotFoundError(reason)) {
-          this.scls = [];
-        }
+      .catch(() => {
+        this.scls = [];
       });
   }
 

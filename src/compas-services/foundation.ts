@@ -69,10 +69,6 @@ export function handleError(error: Error): Promise<never> {
   return Promise.reject({type: SERVER_ERROR, message: error.message});
 }
 
-export function isNotFoundError(reason: any): boolean {
-  return (reason.type !== undefined && reason.type === NOT_FOUND_ERROR);
-}
-
 export function createLogEvent(reason: any): void {
   let message = reason.message;
   if (reason.status) {
