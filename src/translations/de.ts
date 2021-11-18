@@ -366,6 +366,9 @@ export const de: Translations = {
   code: {
     log: 'Element im XML Editor angepasst:  {{id}}',
   },
+  updatedesc: {
+    abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
+  },
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',
