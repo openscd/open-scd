@@ -2,6 +2,7 @@ import { expect, fixture } from '@open-wc/testing';
 
 import { LoggingElement } from '../../src/Logging.js';
 import {
+  Button,
   CommitEntry,
   html,
   newIssueEvent,
@@ -88,14 +89,14 @@ describe('LoggingElement', () => {
 
   it('opens the log dialog on snackbar "Show" button click', async () => {
     expect(element.logUI).to.have.property('open', false);
-    await element.errorUI.querySelector('mwc-button')!.click();
+    await element.errorUI.querySelector<Button>('c-button')!.click();
     await element.updateComplete;
     expect(element.logUI).to.have.property('open', true);
   });
 
   it('opens the diagnostics dialog on issue snackbar "Show" button click', async () => {
     expect(element.diagnosticUI).to.have.property('open', false);
-    await element.issueUI.querySelector('mwc-button')!.click();
+    await element.issueUI.querySelector<Button>('c-button')!.click();
     await element.updateComplete;
     expect(element.diagnosticUI).to.have.property('open', true);
   });

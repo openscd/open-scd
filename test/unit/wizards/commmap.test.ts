@@ -37,7 +37,7 @@ describe('communication mapping wizard', () => {
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(
       parent.wizardUI.dialog!.querySelector(
-        'mwc-button[slot="secondaryAction"]'
+        'c-button[slot="secondaryAction"]'
       )
     )).click();
     await parent.updateComplete;

@@ -47,7 +47,7 @@ describe('zeroline-pane wizarding editing integration', () => {
     zeroline.createsubstation.click();
     await parent.updateComplete;
     const primaryAction = <IconButton>(
-      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     );
     await primaryAction.updateComplete;
     const nameField = <WizardTextField>(

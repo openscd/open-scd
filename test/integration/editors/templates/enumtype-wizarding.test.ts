@@ -57,7 +57,7 @@ describe('EnumType wizards', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });
@@ -116,11 +116,11 @@ describe('EnumType wizards', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
       );
     });
 
@@ -190,11 +190,11 @@ describe('EnumType wizards', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
       );
     });
 
@@ -276,7 +276,7 @@ describe('EnumType wizards', () => {
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="playlist_add"]')
+        parent.wizardUI.dialog?.querySelector('c-button[icon="playlist_add"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -292,7 +292,7 @@ describe('EnumType wizards', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });

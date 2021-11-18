@@ -1,7 +1,9 @@
 import { TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+
 import {
+  Button,
   cloneElement,
   createElement,
   EditorAction,
@@ -167,7 +169,7 @@ export function editDAWizard(element: Element): Wizard {
   const qchg = element.getAttribute('qchg');
   const dupd = element.getAttribute('dupd');
 
-  const deleteButton = html`<mwc-button
+  const deleteButton = html`<${Button}
     icon="delete"
     trailingIcon
     label="${translate('remove')}"
@@ -184,7 +186,7 @@ export function editDAWizard(element: Element): Wizard {
       );
     }}
     fullwidth
-  ></mwc-button>`;
+  ></${Button}>`;
 
   const types = Array.from(doc.querySelectorAll('DAType, EnumType'))
     .filter(isPublic)

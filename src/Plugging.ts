@@ -6,7 +6,9 @@ import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
+
 import {
+  Button,
   Dialog,
   html,
   ifImplemented,
@@ -332,18 +334,18 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
               id="pluginSrcInput"
             ></mwc-textfield>
           </div>
-          <mwc-button
+          <${Button}
             slot="secondaryAction"
             dialogAction="close"
             label="${translate('cancel')}"
-          ></mwc-button>
-          <mwc-button
+          ></${Button}>
+          <${Button}
             slot="primaryAction"
             icon="add"
             label="${translate('add')}"
             trailingIcon
             @click=${() => this.handleAddPlugin()}
-          ></mwc-button>
+          ></${Button}>
         </${Dialog}>
       `;
     }
@@ -428,7 +430,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
               )
             )}
           </mwc-list>
-          <mwc-button
+          <${Button}
             slot="secondaryAction"
             icon="refresh"
             label="${translate('reset')}"
@@ -438,8 +440,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             }}
             style="--mdc-theme-primary: var(--mdc-theme-error)"
           >
-          </mwc-button>
-          <mwc-button
+          </${Button}>
+          <${Button}
             raised
             trailingIcon
             slot="primaryAction"
@@ -447,7 +449,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             label="${translate('add')}&hellip;"
             @click=${() => this.pluginDownloadUI.show()}
           >
-          </mwc-button>
+          </${Button}>
         </${Dialog}>
       `;
     }

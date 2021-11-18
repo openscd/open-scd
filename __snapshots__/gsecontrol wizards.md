@@ -56,13 +56,13 @@
       </mwc-list-item>
     </filtered-list>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -182,13 +182,13 @@
       </mwc-list-item>
     </wizard-select>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```
@@ -204,11 +204,11 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-button
+    <c-button
       icon="delete"
       label="[remove]"
     >
-    </mwc-button>
+    </c-button>
     <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.name]"
@@ -311,34 +311,34 @@
         SignatureAndEncryption
       </mwc-list-item>
     </wizard-select>
-    <mwc-button
+    <c-button
       icon="edit"
       id="editdataset"
       label="[wizard.title.edit]"
     >
-    </mwc-button>
-    <mwc-button
+    </c-button>
+    <c-button
       icon="edit"
       id="editgse"
       label="[scl.Communication]"
     >
-    </mwc-button>
+    </c-button>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="[cancel]"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

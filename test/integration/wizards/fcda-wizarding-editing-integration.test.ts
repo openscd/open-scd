@@ -24,7 +24,7 @@ describe('FCDA editing wizarding integration', () => {
 
     finder = element.wizardUI.dialog!.querySelector<FinderList>('finder-list')!;
     primaryAction = <HTMLElement>(
-      element.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      element.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     );
   });
 

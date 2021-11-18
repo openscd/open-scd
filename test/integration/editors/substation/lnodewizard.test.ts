@@ -94,7 +94,7 @@ describe('lnodewizard', () => {
         (<HTMLElement>(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelector('mwc-button[slot="primaryAction"]')
+            ?.querySelector('c-button[slot="primaryAction"]')
         )).click();
         await element.updateComplete;
         expect(
@@ -117,7 +117,7 @@ describe('lnodewizard', () => {
         (<HTMLElement>(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelector('mwc-button[slot="primaryAction"]')
+            ?.querySelector('c-button[slot="primaryAction"]')
         )).click();
         await element.updateComplete;
         expect(
@@ -139,7 +139,7 @@ describe('lnodewizard', () => {
         (<HTMLElement>(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelector('mwc-button[slot="primaryAction"]')
+            ?.querySelector('c-button[slot="primaryAction"]')
         )).click();
         await element.updateComplete;
         expect(

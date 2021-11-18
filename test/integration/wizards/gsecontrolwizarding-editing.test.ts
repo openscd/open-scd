@@ -1,8 +1,7 @@
-import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { expect, fixture } from '@open-wc/testing';
 import { FilteredList } from '../../../src/filtered-list.js';
-import { html } from '../../../src/foundation.js';
+import { Button, html } from '../../../src/foundation.js';
 
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
@@ -71,7 +70,7 @@ describe('gsecontrol wizarding editing integration', () => {
         )!;
         primaryAction = <HTMLElement>(
           element.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
+            'c-button[slot="primaryAction"]'
           )
         );
         await nameField.updateComplete;
@@ -92,7 +91,7 @@ describe('gsecontrol wizarding editing integration', () => {
       it('opens editDataSetWizard on edit dataset button click', async () => {
         const editDataSetButton = <Button>(
           element.wizardUI.dialog!.querySelector(
-            'mwc-button[id="editdataset"]'
+            'c-button[id="editdataset"]'
           )!
         );
         await editDataSetButton.updateComplete;
@@ -111,7 +110,7 @@ describe('gsecontrol wizarding editing integration', () => {
 
       it('opens a editGseWizard on edit GSE button click', async () => {
         const editGseButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[id="editgse"]')!
+          element.wizardUI.dialog!.querySelector('c-button[id="editgse"]')!
         );
         expect(editGseButton).to.exist;
 
@@ -138,7 +137,7 @@ describe('gsecontrol wizarding editing integration', () => {
         ).to.exist;
         expect(doc.querySelector('GSE[cbName="GCB"]')).to.exist;
         const deleteButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[icon="delete"]')!
+          element.wizardUI.dialog!.querySelector('c-button[icon="delete"]')!
         );
         await deleteButton.updateComplete;
         deleteButton.click();
@@ -162,7 +161,7 @@ describe('gsecontrol wizarding editing integration', () => {
       it('does not show edit DataSet button', async () => {
         const editGseButton = <Button>(
           element.wizardUI.dialog!.querySelector(
-            'mwc-button[id="editdataset"]'
+            'c-button[id="editdataset"]'
           )!
         );
         expect(editGseButton).to.not.exist;
@@ -181,7 +180,7 @@ describe('gsecontrol wizarding editing integration', () => {
 
       it('does not show edit DataSet button', async () => {
         const editGseButton = <Button>(
-          element.wizardUI.dialog!.querySelector('mwc-button[id="editgse"]')!
+          element.wizardUI.dialog!.querySelector('c-button[id="editgse"]')!
         );
         expect(editGseButton).to.not.exist;
       });

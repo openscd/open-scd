@@ -162,7 +162,7 @@ describe('ImportIedsPlugin', () => {
 
       (<HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       )).click();
       await parent.updateComplete;

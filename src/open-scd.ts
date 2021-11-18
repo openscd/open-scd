@@ -6,7 +6,6 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import '@material/mwc-button';
 import '@material/mwc-checkbox';
 import '@material/mwc-circular-progress-four-color';
 import '@material/mwc-drawer';

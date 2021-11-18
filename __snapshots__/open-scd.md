@@ -416,26 +416,26 @@
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>
-  <mwc-button
+  <c-button
     disabled=""
     icon="undo"
     label="Undo"
     slot="secondaryAction"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     disabled=""
     icon="redo"
     label="Redo"
     slot="secondaryAction"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialogaction="close"
     slot="primaryAction"
   >
     Close
-  </mwc-button>
+  </c-button>
 </c-dialog>
 <c-dialog
   heading="Diagnostics"
@@ -460,12 +460,12 @@
       </mwc-icon>
     </mwc-list-item>
   </filtered-list>
-  <mwc-button
+  <c-button
     dialogaction="close"
     slot="primaryAction"
   >
     Close
-  </mwc-button>
+  </c-button>
 </c-dialog>
 <mwc-snackbar
   id="info"
@@ -483,12 +483,12 @@
   labeltext="No errors"
   timeoutms="6000"
 >
-  <mwc-button
+  <c-button
     icon="history"
     slot="action"
   >
     Show
-  </mwc-button>
+  </c-button>
   <mwc-icon-button
     icon="close"
     slot="dismiss"
@@ -500,12 +500,12 @@
   labeltext="No errors"
   timeoutms="10000"
 >
-  <mwc-button
+  <c-button
     icon="history"
     slot="action"
   >
     Show
-  </mwc-button>
+  </c-button>
   <mwc-icon-button
     icon="close"
     slot="dismiss"
@@ -517,12 +517,12 @@
   labeltext="No errors"
   timeoutms="10000"
 >
-  <mwc-button
+  <c-button
     icon="rule"
     slot="action"
   >
     Show
-  </mwc-button>
+  </c-button>
   <mwc-icon-button
     icon="close"
     slot="dismiss"
@@ -809,21 +809,21 @@
       Help
     </mwc-check-list-item>
   </mwc-list>
-  <mwc-button
+  <c-button
     icon="refresh"
     label="Reset"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     icon="library_add"
     label="Add…"
     raised=""
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 <c-dialog
   heading="Add custom extension"
@@ -948,19 +948,19 @@
     >
     </mwc-textfield>
   </div>
-  <mwc-button
+  <c-button
     dialogaction="close"
     label="Cancel"
     slot="secondaryAction"
   >
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     icon="add"
     label="Add"
     slot="primaryAction"
     trailingicon=""
   >
-  </mwc-button>
+  </c-button>
 </c-dialog>
 <mwc-circular-progress-four-color
   closed=""
@@ -1018,27 +1018,27 @@
       </mwc-switch>
     </mwc-formfield>
   </form>
-  <mwc-button
+  <c-button
     dialogaction="close"
     slot="secondaryAction"
   >
     Cancel
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialogaction="reset"
     slot="secondaryAction"
     style="--mdc-theme-primary: var(--mdc-theme-error)"
   >
     Reset
-  </mwc-button>
-  <mwc-button
+  </c-button>
+  <c-button
     dialogaction="save"
     icon="save"
     slot="primaryAction"
     trailingicon=""
   >
     Save
-  </mwc-button>
+  </c-button>
 </c-dialog>
 
 ```

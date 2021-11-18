@@ -93,7 +93,7 @@ describe('guess-wizarding-editing-integration', () => {
     //FIXME: hack as default selected attribute does not work in Karma.
     await element.requestUpdate();
     (<HTMLElement>(
-      element.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      element.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     )).click();
     await element.requestUpdate();
   });

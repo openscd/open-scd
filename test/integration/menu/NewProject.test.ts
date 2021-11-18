@@ -27,7 +27,7 @@ describe('NewProject loader', () => {
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(
       parent.wizardUI.shadowRoot!.querySelector(
-        'mwc-button[slot="primaryAction"]'
+        'c-button[slot="primaryAction"]'
       )
     )).click();
     expect(parent.doc?.querySelector('Header')).to.exist;
@@ -59,7 +59,7 @@ describe('NewProject loader', () => {
 
     (<HTMLElement>(
       parent.wizardUI.shadowRoot!.querySelector(
-        'mwc-button[slot="primaryAction"]'
+        'c-button[slot="primaryAction"]'
       )
     )).click();
 
@@ -90,7 +90,7 @@ describe('NewProject loader', () => {
     await parent.updateComplete;
     (<HTMLElement>(
       parent.wizardUI.shadowRoot!.querySelector(
-        'mwc-button[slot="primaryAction"]'
+        'c-button[slot="primaryAction"]'
       )
     )).click();
     expect(parent.doc?.querySelector('Header')).to.exist;

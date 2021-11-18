@@ -34,7 +34,7 @@ describe('create wizard for FCDA element', () => {
         element.wizardUI.dialog!.querySelector<FinderList>('finder-list')!;
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });

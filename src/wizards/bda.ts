@@ -1,6 +1,8 @@
 import { get, translate } from 'lit-translate';
 
+
 import {
+  Button,
   cloneElement,
   createElement,
   EditorAction,
@@ -81,7 +83,7 @@ export function updateBDaAction(element: Element): WizardActor {
 export function editBDAWizard(element: Element): Wizard {
   const doc = element.ownerDocument;
   const type = element.getAttribute('type');
-  const deleteButton = html`<mwc-button
+  const deleteButton = html`<${Button}
     icon="delete"
     trailingIcon
     label="${translate('remove')}"
@@ -98,7 +100,7 @@ export function editBDAWizard(element: Element): Wizard {
       );
     }}
     fullwidth
-  ></mwc-button>`;
+  ></${Button}>`;
   const name = element.getAttribute('name');
   const desc = element.getAttribute('desc');
   const bType = element.getAttribute('bType') ?? '';

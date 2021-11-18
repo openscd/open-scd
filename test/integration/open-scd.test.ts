@@ -3,7 +3,7 @@ import { fixture, expect } from '@open-wc/testing';
 import { OpenSCD } from '../../src/open-scd.js';
 import '../../src/open-scd.js';
 import { newEmptySCD } from '../../src/schemas.js';
-import { html } from '../../src/foundation.js';
+import { Button, html } from '../../src/foundation.js';
 
 describe('open-scd', () => {
   let element: OpenSCD;
@@ -59,7 +59,7 @@ describe('open-scd', () => {
 
   it('opens the log on snackbar button click', async () => {
     expect(element.logUI).to.have.property('open', false);
-    await element.errorUI.querySelector('mwc-button')!.click();
+    await element.errorUI.querySelector<Button>('c-button')!.click();
     expect(element.logUI).to.have.property('open', true);
   });
 
@@ -72,7 +72,7 @@ describe('open-scd', () => {
 
   it('opens the diagnostics on snackbar button click', async () => {
     expect(element.diagnosticUI).to.have.property('open', false);
-    await element.issueUI.querySelector('mwc-button')!.click();
+    await element.issueUI.querySelector<Button>('c-button')!.click();
     expect(element.diagnosticUI).to.have.property('open', true);
   });
 

@@ -27,7 +27,7 @@ describe('gse wizarding editing integration', () => {
       await element.requestUpdate();
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       minTimeField = element.wizardUI.dialog!.querySelector(

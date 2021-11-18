@@ -59,7 +59,7 @@ describe('selectExtRefWizard', () => {
     )).items[2].click();
     await parent.updateComplete;
     (<HTMLElement>(
-      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     )).click();
     await parent.updateComplete;
     expect(
@@ -85,7 +85,7 @@ describe('selectExtRefWizard', () => {
     )).items[0].click();
     await parent.updateComplete;
     (<HTMLElement>(
-      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     )).click();
     await parent.updateComplete;
     expect(
@@ -124,7 +124,7 @@ describe('selectExtRefWizard', () => {
     )).items[3].click();
     await parent.updateComplete;
     (<HTMLElement>(
-      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     )).click();
     await parent.updateComplete;
     expect(
@@ -155,7 +155,7 @@ describe('selectExtRefWizard', () => {
     )).items[1].click();
     await parent.updateComplete;
     (<HTMLElement>(
-      parent.wizardUI.dialog?.querySelector('mwc-button[slot="primaryAction"]')
+      parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     )).click();
     await parent.updateComplete;
     expect(

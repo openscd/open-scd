@@ -57,7 +57,7 @@ describe('DAType wizards', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
     });
@@ -130,11 +130,11 @@ describe('DAType wizards', () => {
       );
       primayAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
+          'c-button[slot="primaryAction"]'
         )
       );
       deleteButton = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector('mwc-button[icon="delete"]')
+        parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
       );
     });
 
