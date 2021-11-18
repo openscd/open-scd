@@ -1,6 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { getAbsolutePosition, getAbsolutePositionWithCustomCoordinates, getParentElementName, SVG_GRID_SIZE } from "../../../../src/editors/singlelinediagram/sld-drawing";
-import { getSCLCoordinates, getDescriptionAttribute, getNameAttribute, getPathNameAttribute, isBusBar, getConnectedTerminals, calculateConnectivityNodeSclCoordinates } from "../../../../src/editors/singlelinediagram/foundation";
+import { adjustCircleIconElementWithAbsoluteCoordinates, adjustLineIconElementWithAbsoluteCoordinates, adjustPathIconElementWithAbsoluteCoordinates, getAbsolutePosition, getAbsolutePositionWithCustomCoordinates, getParentElementName, SVG_GRID_SIZE } from "../../../../src/editors/singlelinediagram/sld-drawing";
 
 describe('Single Line Diagram drawing', () => {
     let doc: Document;
@@ -54,6 +53,59 @@ describe('Single Line Diagram drawing', () => {
         it('returns undefined for an element without a parent.', () => {
             const element = doc.querySelector('Substation');
             expect(getParentElementName(element!)).to.be.undefined;
+        });
+    });
+
+    describe('defines a adjustCircleIconElementWithAbsoluteCoordinates function that', () => {
+        it('adjusts the coordinates of a SVGCircleElement using the given absolute position.', () => {
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', '5');
+            circle.setAttribute('cy', '2');
+
+            const absolutePosition = {x: 200, y: 300};
+
+            adjustCircleIconElementWithAbsoluteCoordinates(circle, absolutePosition);
+            expect(circle.getAttribute('cx')).to.eql('205');
+            expect(circle.getAttribute('cy')).to.eql('302');
+        });
+    });
+
+    describe('defines a adjustLineIconElementWithAbsoluteCoordinates function that', () => {
+        it('adjusts the coordinates of a SVGLineElement using the given absolute position.', () => {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', '5');
+            line.setAttribute('x2', '2');
+            line.setAttribute('y1', '54');
+            line.setAttribute('y2', '221');
+
+            const absolutePosition = {x: 1337, y: 404};
+
+            adjustLineIconElementWithAbsoluteCoordinates(line, absolutePosition);
+            expect(line.getAttribute('x1')).to.eql('1342');
+            expect(line.getAttribute('x2')).to.eql('1339');
+            expect(line.getAttribute('y1')).to.eql('458');
+            expect(line.getAttribute('y2')).to.eql('625');
+        });
+    });
+
+    describe('defines a adjustPathIconElementWithAbsoluteCoordinates function that', () => {
+        it('adjusts the coordinates of a SVGPathElement using the given absolute position.', () => {
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M 13 9 L 16 6 Z');
+
+            const absolutePosition = {x: 10, y: 20};
+
+            adjustPathIconElementWithAbsoluteCoordinates(path, absolutePosition);
+            expect(path.getAttribute('d')).to.equal('M 23 29 L 26 26 Z');
+        });
+        it('adjusts the coordinates of a more complex SVGPathElement containing commas, using the given absolute position.', () => {
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M 11 7 L 10 8 C 5 13 , 11 20 , 17 15 L 18 14 Z ');
+
+            const absolutePosition = {x: 43, y: 200};
+
+            adjustPathIconElementWithAbsoluteCoordinates(path, absolutePosition);
+            expect(path.getAttribute('d')).to.equal('M 54 207 L 53 208 C 48 213 , 54 220 , 60 215 L 61 214 Z');
         });
     });
 });
