@@ -12,7 +12,13 @@ import { Select } from './foundation/components.js';
 
 export const html = wrapHtml(litHtml);
 
-export { Dialog, Button, Checkbox, CircularProgressFourColor, Select } from './foundation/components.js';
+export {
+  Dialog,
+  Button,
+  Checkbox,
+  CircularProgressFourColor,
+  Select,
+} from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
@@ -168,7 +174,11 @@ export function isWizard(
 
 /** @returns the validity of `input` depending on type. */
 export function checkValidity(input: WizardInput): boolean {
-  if (input instanceof WizardTextField || input instanceof Select)
+  if (
+    input instanceof WizardTextField ||
+    input instanceof Select ||
+    input instanceof WizardSelect
+  )
     return input.checkValidity();
   else return true;
 }
