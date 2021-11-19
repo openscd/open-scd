@@ -12,8 +12,8 @@
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
-      <mwc-checkbox id="instType">
-      </mwc-checkbox>
+      <c-checkbox id="instType">
+      </c-checkbox>
     </mwc-formfield>
     <wizard-text-field
       label="MAC-Address"

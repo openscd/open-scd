@@ -12,6 +12,7 @@ import {
   newWizardEvent,
   patterns,
   SCLTag,
+  Select,
   selector,
   Wizard,
   WizardActor,
@@ -26,7 +27,6 @@ import {
 
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -190,7 +190,7 @@ export function createDATypeWizard(
         action: addPredefinedDAType(parent, templates),
       },
       content: [
-        html`<mwc-select
+        html`<${Select}
           fixedMenuPosition
           outlined
           icon="playlist_add_check"
@@ -211,7 +211,7 @@ export function createDATypeWizard(
                 >
               </mwc-list-item>`
           )}
-        </mwc-select>`,
+        </${Select}>`,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"

@@ -3,12 +3,11 @@ import { fixture, expect } from '@open-wc/testing';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Switch } from '@material/mwc-switch';
-import { html } from '../../../../src/foundation.js';
+import { html, Select } from '../../../../src/foundation.js';
 
 describe('LNodeType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -108,7 +107,7 @@ describe('LNodeType wizards', () => {
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       selector = parent.wizardUI.dialog!.querySelector<Select>(
-        'mwc-select[label="lnClass"]'
+        'c-select[label="lnClass"]'
       )!;
       idField = parent.wizardUI.dialog!.querySelector<WizardTextField>(
         'wizard-text-field[label="id"]'
@@ -390,10 +389,10 @@ describe('LNodeType wizards', () => {
         )
       );
       typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="type"]')
       );
       transientSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="transient"]')
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -511,10 +510,10 @@ describe('LNodeType wizards', () => {
         )
       );
       typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="type"]')
       );
       transientSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="transient"]')
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

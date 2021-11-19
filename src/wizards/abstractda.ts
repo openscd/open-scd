@@ -1,7 +1,7 @@
 import { render, TemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
-import { createElement, EditorAction, html } from '../foundation.js';
+import { createElement, EditorAction, html, Select } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 
@@ -10,7 +10,6 @@ import { WizardTextField } from '../wizard-textfield.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { Select } from '@material/mwc-select';
 
 function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
   const typeSelected = (<Select>e.target).selected?.value;

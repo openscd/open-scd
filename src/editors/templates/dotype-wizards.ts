@@ -14,6 +14,7 @@ import {
   newActionEvent,
   newWizardEvent,
   SCLTag,
+  Select,
   selector,
   Wizard,
   WizardActor,
@@ -29,7 +30,6 @@ import {
   WizardOptions,
 } from './foundation.js';
 
-import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { List } from '@material/mwc-list';
@@ -158,7 +158,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           nullable
           pattern="${patterns.normalizedString}"
         ></${WizardTextField}>`,
-        html`<mwc-select
+        html`<${Select}
           fixedMenuPosition
           label="type"
           required
@@ -170,7 +170,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
                 ?selected=${dataType.id === type}
                 >${dataType.id}</mwc-list-item
               >`
-          )}</mwc-select
+          )}</${Select}
         >`,
       ],
     },
@@ -255,7 +255,7 @@ export function createDOTypeWizard(
         action: addPredefinedDOType(parent, templates),
       },
       content: [
-        html`<mwc-select
+        html`<${Select}
           fixedMenuPosition
           outlined
           icon="playlist_add_check"
@@ -277,7 +277,7 @@ export function createDOTypeWizard(
                 >
               </mwc-list-item>`
           )}
-        </mwc-select>`,
+        </${Select}>`,
         html`<${WizardTextField}
           label="id"
           helper="${translate('scl.id')}"

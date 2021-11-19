@@ -3,16 +3,22 @@ import { directive, Part } from 'lit-html';
 import wrapHtml from 'carehtml';
 
 import { List } from '@material/mwc-list';
-import { Select } from '@material/mwc-select';
 import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
+import { Select } from './foundation/components.js';
 
 export const html = wrapHtml(litHtml);
 
-export { Dialog, Button } from './foundation/components.js';
+export {
+  Dialog,
+  Button,
+  Checkbox,
+  CircularProgressFourColor,
+  Select,
+} from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
@@ -142,7 +148,7 @@ export function newActionEvent<T extends EditorAction>(
 }
 
 export const wizardInputSelector =
-  'wizard-text-field, mwc-textfield, ace-editor, mwc-select,wizard-select';
+  'wizard-text-field, mwc-textfield, ace-editor, c-select,wizard-select';
 export type WizardInput =
   | WizardTextField
   | TextField
@@ -168,7 +174,11 @@ export function isWizard(
 
 /** @returns the validity of `input` depending on type. */
 export function checkValidity(input: WizardInput): boolean {
-  if (input instanceof WizardTextField || input instanceof Select)
+  if (
+    input instanceof WizardTextField ||
+    input instanceof Select ||
+    input instanceof WizardSelect
+  )
     return input.checkValidity();
   else return true;
 }

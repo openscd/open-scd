@@ -3,11 +3,10 @@ import { fixture, expect } from '@open-wc/testing';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { html } from '../../../../src/foundation.js';
+import { html, Select } from '../../../../src/foundation.js';
 
 describe('DOType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -51,7 +50,7 @@ describe('DOType wizards', () => {
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       selector = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="values"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="values"]')
       );
       idField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
@@ -222,7 +221,7 @@ describe('DOType wizards', () => {
         parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
       );
       typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="type"]')
       );
     });
 
@@ -301,7 +300,7 @@ describe('DOType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       typeSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
+        parent.wizardUI.dialog?.querySelector('c-select[label="type"]')
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(

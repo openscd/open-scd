@@ -11,7 +11,7 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="Default enumerations"
       icon="playlist_add_check"
@@ -578,7 +578,7 @@
           2
         </span>
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
     <wizard-text-field
       dialoginitialfocus=""
       helper="[scl.id]"

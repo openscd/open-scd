@@ -153,7 +153,7 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-select
+    <c-select
       dialoginitialfocus=""
       fixedmenuposition=""
       helper="Default logical nodes"
@@ -3433,7 +3433,7 @@
           23
         </span>
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
     <wizard-text-field
       helper="[scl.id]"
       label="id"
@@ -3845,7 +3845,7 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-text-field>
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="[scl.type]"
       label="type"
@@ -3988,7 +3988,7 @@
       >
         Dummy.CMV
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
     <wizard-text-field
       disabled=""
       helper="[scl.accessControl]"
@@ -3997,7 +3997,7 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-text-field>
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="[scl.transient]"
       label="transient"
@@ -4029,7 +4029,7 @@
       >
         false
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
   </div>
   <c-button
     dialogaction="close"
@@ -4078,7 +4078,7 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-text-field>
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="[scl.type]"
       label="type"
@@ -4219,7 +4219,7 @@
       >
         Dummy.CMV
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
     <wizard-text-field
       disabled=""
       helper="[scl.accessControl]"
@@ -4228,7 +4228,7 @@
       pattern="([ -~]|[]|[ -퟿]|[-�]|[𐀀\-􏿿])*"
     >
     </wizard-text-field>
-    <mwc-select
+    <c-select
       fixedmenuposition=""
       helper="[scl.transient]"
       label="transient"
@@ -4260,7 +4260,7 @@
       >
         false
       </mwc-list-item>
-    </mwc-select>
+    </c-select>
   </div>
   <c-button
     dialogaction="close"

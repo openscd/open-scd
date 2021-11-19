@@ -2,6 +2,7 @@ import { TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import {
+  Checkbox,
   createElement,
   EditorAction,
   getReference,
@@ -39,7 +40,7 @@ function render(
     ></${WizardTextField}>`,
     guessable
       ? html`<mwc-formfield label="${translate('guess.wizard.primary')}">
-          <mwc-checkbox></mwc-checkbox>
+          <${Checkbox}></${Checkbox}>
         </mwc-formfield>`
       : html``,
   ];

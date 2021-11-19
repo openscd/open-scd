@@ -1,7 +1,6 @@
 import { property, query, TemplateResult } from 'lit-element';
 import { registerTranslateConfig, translate, use } from 'lit-translate';
 
-import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
 import {
@@ -11,6 +10,7 @@ import {
   ifImplemented,
   LitElementConstructor,
   Mixin,
+  Select,
 } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 import { WizardDialog } from './wizard-dialog.js';
@@ -105,7 +105,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           @closing=${this.onClosing}
         >
           <form>
-            <mwc-select
+            <${Select}
               fixedMenuPosition
               id="language"
               icon="language"
@@ -120,7 +120,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
                     >${translate(`settings.languages.${lang}`)}</mwc-list-item
                   >`
               )}
-            </mwc-select>
+            </${Select}>
             <mwc-formfield label="${translate('settings.dark')}">
               <mwc-switch
                 id="dark"
