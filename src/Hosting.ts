@@ -1,10 +1,9 @@
-import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { property, query, TemplateResult } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
-import { html, Mixin, newPendingStateEvent } from './foundation.js';
+import { Drawer, html, Mixin, newPendingStateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
@@ -262,7 +261,7 @@ export function Hosting<
     }
 
     render(): TemplateResult {
-      return html` <mwc-drawer
+      return html` <${Drawer}
           class="mdc-theme--surface"
           hasheader
           type="modal"
@@ -300,7 +299,7 @@ export function Hosting<
                 </mwc-tab-bar>`
               : ``}
           </mwc-top-app-bar-fixed>
-        </mwc-drawer>
+        </${Drawer}>
 
         ${this.doc
           ? until(

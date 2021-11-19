@@ -12,10 +12,10 @@
     >
     </mwc-textfield>
   </abbr>
-  <mwc-formfield class="checkall">
+  <c-formfield class="checkall">
     <c-checkbox>
     </c-checkbox>
-  </mwc-formfield>
+  </c-formfield>
 </div>
 <ul
   class="mdc-deprecated-list"

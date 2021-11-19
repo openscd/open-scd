@@ -7,6 +7,7 @@ import {
   createElement,
   getReference,
   html,
+  Fab,
 } from '../foundation.js';
 
 import { selectors, styles } from './communication/foundation.js';
@@ -51,19 +52,19 @@ export default class CommunicationPlugin extends LitElement {
       return html`<h1>
         <span style="color: var(--base1)"
           >${translate('communication.missing')}</span
-        ><mwc-fab
+        ><${Fab}
           extended
           icon="add"
           label="${get('subnetwork.wizard.title.add')}"
           @click=${() => this.openCreateSubNetworkWizard()}
-        ></mwc-fab>
+        ></${Fab}>
       </h1>`;
-    return html`<mwc-fab
+    return html`<${Fab}
         extended
         icon="add"
         label="${get('subnetwork.wizard.title.add')}"
         @click=${() => this.openCreateSubNetworkWizard()}
-      ></mwc-fab
+      ></${Fab}
       >${Array.from(this.doc.querySelectorAll(selectors.SubNetwork) ?? []).map(
         subnetwork =>
           html`<subnetwork-editor .element=${subnetwork}></subnetwork-editor>`
@@ -73,7 +74,7 @@ export default class CommunicationPlugin extends LitElement {
   static styles = css`
     ${styles}
 
-    mwc-fab {
+    c-fab {
       position: fixed;
       bottom: 32px;
       right: 32px;

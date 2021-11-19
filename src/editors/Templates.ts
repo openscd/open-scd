@@ -3,6 +3,7 @@ import { translate } from 'lit-translate';
 
 import {
   createElement,
+  Fab,
   getReference,
   html,
   identity,
@@ -144,12 +145,12 @@ export default class TemplatesPlugin extends LitElement {
         <span style="color: var(--base1)"
           >${translate('templates.missing')}</span
         >
-        <mwc-fab
+        <${Fab}
           extended
           icon="add"
           label="${translate('templates.add')}"
           @click=${() => this.createDataTypeTemplates()}
-        ></mwc-fab>
+        ></${Fab}>
       </h1>`;
     return html`
       <div id="containerTemplates">
@@ -312,7 +313,7 @@ export default class TemplatesPlugin extends LitElement {
   static styles = css`
     ${styles}
 
-    mwc-fab {
+    c-fab {
       position: fixed;
       bottom: 32px;
       right: 32px;

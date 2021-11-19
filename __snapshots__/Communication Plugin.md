@@ -9,12 +9,12 @@
   <span style="color: var(--base1)">
     [communication.missing]
   </span>
-  <mwc-fab
+  <c-fab
     extended=""
     icon="add"
     label="[subnetwork.wizard.title.add]"
   >
-  </mwc-fab>
+  </c-fab>
 </h1>
 <wizard-dialog>
 </wizard-dialog>

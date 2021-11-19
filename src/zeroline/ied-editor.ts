@@ -6,10 +6,9 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { html, newWizardEvent } from '../foundation.js';
+import { Fab, html, newWizardEvent } from '../foundation.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
 
-import { Fab } from '@material/mwc-fab';
 import { selectGseControlWizard } from '../wizards/gsecontrol.js';
 import { gooseIcon } from '../icons.js';
 
@@ -44,19 +43,19 @@ export class IedEditor extends LitElement {
         <abbr title="${this.name}">
           <mwc-icon class="icon">developer_board</mwc-icon></abbr
         >
-        <mwc-fab
+        <${Fab}
           id="connectreport"
           mini
           class="menu-item right"
           @click="${() => this.openCommunicationMapping()}"
           icon="add_link"
-        ></mwc-fab>
-        <mwc-fab
+        ></${Fab}>
+        <${Fab}
           id="connectreport"
           mini
           class="menu-item left"
           @click="${() => this.openGseControlSelection()}"
-          ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></mwc-fab
+          ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></${Fab}
         >
       </div>
       <h4>${this.name}</h4>

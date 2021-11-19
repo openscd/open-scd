@@ -53,15 +53,15 @@ describe('Templates Plugin', () => {
       );
       await element.updateComplete;
     });
-    it('has a mwc-fab', () => {
-      expect(element.shadowRoot?.querySelector('mwc-fab')).to.exist;
+    it('has a c-fab', () => {
+      expect(element.shadowRoot?.querySelector('c-fab')).to.exist;
     });
     it('adding a DataTypeTemplates on click()', async () => {
       expect(doc.querySelector('DataTypeTemplates')).to.not.exist;
       (<HTMLElement>(
         parent
           ?.querySelector('templates-plugin')
-          ?.shadowRoot?.querySelector('mwc-fab')
+          ?.shadowRoot?.querySelector('c-fab')
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('DataTypeTemplates')).to.exist;

@@ -7,7 +7,7 @@ import {
 } from 'lit-element';
 
 import { startMove } from './foundation.js';
-import { html, newActionEvent, newWizardEvent } from '../foundation.js';
+import { Fab, html, newActionEvent, newWizardEvent } from '../foundation.js';
 
 import {
   circuitBreakerIcon,
@@ -84,31 +84,31 @@ export class ConductingEquipmentEditor extends LitElement {
         ${typeIcon(this.element)}
         ${this.readonly
           ? html``
-          : html`<mwc-fab
+          : html`<${Fab}
                 mini
                 class="menu-item left"
                 @click="${() => this.openLNodeWizard()}"
                 icon="account_tree"
-              ></mwc-fab>
-              <mwc-fab
+              ></${Fab}>
+              <${Fab}
                 mini
                 class="menu-item up"
                 icon="edit"
                 @click="${() => this.openEditWizard()}}"
-              ></mwc-fab>
-              <mwc-fab
+              ></${Fab}>
+              <${Fab}
                 mini
                 class="menu-item right"
                 @click="${() =>
                   startMove(this, ConductingEquipmentEditor, BayEditor)}"
                 icon="forward"
-              ></mwc-fab>
-              <mwc-fab
+              ></${Fab}>
+              <${Fab}
                 mini
                 class="menu-item down"
                 icon="delete"
                 @click="${() => this.remove()}}"
-              ></mwc-fab>`}
+              ></${Fab}>`}
       </div>
       <h4>${this.name}</h4>
     `;

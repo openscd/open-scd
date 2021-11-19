@@ -33,7 +33,7 @@ describe('conductingap-editor wizarding integration', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('connectedap-editor')
-          ?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
+          ?.shadowRoot?.querySelector('c-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
     });
@@ -249,7 +249,7 @@ describe('conductingap-editor wizarding integration', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('connectedap-editor')
-          ?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
+          ?.shadowRoot?.querySelector('c-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
     });
@@ -379,7 +379,7 @@ describe('conductingap-editor wizarding integration', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('connectedap-editor')
-          ?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
+          ?.shadowRoot?.querySelector('c-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
     });

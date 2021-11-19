@@ -8,12 +8,12 @@
 <zeroline-pane>
 </zeroline-pane>
 <h1>
-  <mwc-fab
+  <c-fab
     extended=""
     icon="add"
     label="[substation.wizard.title.add]"
   >
-  </mwc-fab>
+  </c-fab>
 </h1>
 <wizard-dialog>
 </wizard-dialog>

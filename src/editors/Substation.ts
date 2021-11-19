@@ -1,7 +1,7 @@
 import { LitElement, TemplateResult, property, css } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { html, newWizardEvent } from '../foundation.js';
+import { Fab, html, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 import { ZerolinePane } from '../zeroline-pane.js';
 
@@ -22,19 +22,19 @@ export default class SubstationPlugin extends LitElement {
       ${
         !this.doc?.querySelector(':root > Substation')
           ? html`<h1>
-              <mwc-fab
+              <${Fab}
                 extended
                 icon="add"
                 label="${get('substation.wizard.title.add')}"
                 @click=${() => this.openCreateSubstationWizard()}
-              ></mwc-fab>
+              ></${Fab}>
             </h1>`
           : html``
       }`;
   }
 
   static styles = css`
-    mwc-fab {
+    c-fab {
       position: fixed;
       bottom: 32px;
       right: 32px;
