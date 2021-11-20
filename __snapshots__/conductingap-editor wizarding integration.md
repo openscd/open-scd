@@ -11,10 +11,10 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+    <c-formfield label="[connectedap.wizard.addschemainsttype]">
       <c-checkbox id="instType">
       </c-checkbox>
-    </mwc-formfield>
+    </c-formfield>
     <wizard-text-field
       label="IP"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
@@ -130,10 +130,10 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+    <c-formfield label="[connectedap.wizard.addschemainsttype]">
       <c-checkbox id="instType">
       </c-checkbox>
-    </mwc-formfield>
+    </c-formfield>
     <wizard-text-field
       label="IP"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
@@ -291,10 +291,10 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+    <c-formfield label="[connectedap.wizard.addschemainsttype]">
       <c-checkbox id="instType">
       </c-checkbox>
-    </mwc-formfield>
+    </c-formfield>
     <wizard-text-field
       label="IP"
       pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"

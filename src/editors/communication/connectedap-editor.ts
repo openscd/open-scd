@@ -25,6 +25,8 @@ import {
   getReference,
   html,
   Checkbox,
+  Fab,
+  Formfield,
 } from '../../foundation.js';
 
 import {
@@ -246,7 +248,7 @@ function editConnectedApWizard(element: Element): Wizard {
         action: editConnectedApAction(element),
       },
       content: [
-        html`<mwc-formfield
+        html`<${Formfield}
             label="${translate('connectedap.wizard.addschemainsttype')}"
           >
             <${Checkbox}
@@ -254,7 +256,7 @@ function editConnectedApWizard(element: Element): Wizard {
               ?checked="${Array.from(
                 element.querySelectorAll(selectors.Address + ' > P')
               ).filter(pType => pType.getAttribute('xsi:type')).length > 0}"
-            ></${Checkbox}> </mwc-formfield
+            ></${Checkbox}> </${Formfield}
           >${getTypes(element).map(
             ptype =>
               html`<${WizardTextField}
@@ -304,18 +306,18 @@ export class ConnectedAPEditor extends LitElement {
     return html`
       <div id="container" tabindex="0">
         <mwc-icon class="fancy">settings_input_hdmi</mwc-icon>
-        <mwc-fab
+        <${Fab}
           mini
           class="menu-item left"
           icon="edit"
           @click="${() => this.openEditWizard()}"
-        ></mwc-fab>
-        <mwc-fab
+        ></${Fab}>
+        <${Fab}
           mini
           class="menu-item right"
           icon="delete"
           @click="${() => this.remove()}}"
-        ></mwc-fab>
+        ></${Fab}>
       </div>
       <h4>${this.apName}</h4>
     `;

@@ -105,9 +105,9 @@ export class EditorContainer extends LitElement {
   private styleFabButtonTransform(): string[] {
     let transform = 0;
     return Array.from(this.children).map((child, i) => {
-      if (child.tagName === 'MWC-FAB')
+      if (child.tagName === 'C-FAB')
         return `#morevert:focus-within >
-        ::slotted(mwc-fab:nth-child(${i + 1})) { transform: translate(0,
+        ::slotted(c-fab:nth-child(${i + 1})) { transform: translate(0,
         ${++transform * 48}px); }`;
       return ``;
     });
@@ -132,15 +132,15 @@ export class EditorContainer extends LitElement {
               >${this.renderAddButtons()}
             </mwc-menu>`
         : html``}
-      ${Array.from(this.children).some(child => child.tagName === 'MWC-FAB')
+      ${Array.from(this.children).some(child => child.tagName === 'C-FAB')
         ? html`<div id="morevert">
             <mwc-icon-button icon="more_vert"></mwc-icon-button>
             <slot name="morevert"></slot>
           </div>`
         : html``}<style>
         ${childTags(this.element).length
-          ? html`::slotted(mwc-fab) {right: 48px;}`
-          : html`::slotted(mwc-fab) {right: 0px;}`}
+          ? html`::slotted(c-fab) {right: 48px;}`
+          : html`::slotted(c-fab) {right: 0px;}`}
           ${this.styleFabButtonTransform()}
       </style>
       <nav><slot name="header"></slot></nav>`;
@@ -293,7 +293,7 @@ export class EditorContainer extends LitElement {
       border-bottom: none;
     }
 
-    ::slotted(mwc-fab) {
+    ::slotted(c-fab) {
       color: var(--mdc-theme-on-surface);
       opacity: 0;
       position: absolute;
@@ -303,7 +303,7 @@ export class EditorContainer extends LitElement {
         opacity 200ms linear;
     }
 
-    #morevert:focus-within > ::slotted(mwc-fab) {
+    #morevert:focus-within > ::slotted(c-fab) {
       transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 250ms linear;
       pointer-events: auto;

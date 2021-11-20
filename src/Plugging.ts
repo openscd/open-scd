@@ -9,6 +9,7 @@ import { TextField } from '@material/mwc-textfield';
 import {
   Button,
   Dialog,
+  Formfield,
   html,
   ifImplemented,
   LitElementConstructor,
@@ -288,12 +289,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 ></mwc-radio-list-item
               >
               <div id="menudetails">
-                <mwc-formfield
+                <${Formfield}
                   id="enabledefault"
                   label="${translate('plugins.requireDoc')}"
                 >
                   <mwc-switch id="requireDoc" checked></mwc-switch>
-                </mwc-formfield>
+                </${Formfield}>
                 <${Select} id="menuPosition" value="middle" fixedMenuPosition
                   >${Object.values(menuPosition).map(
                     menutype =>

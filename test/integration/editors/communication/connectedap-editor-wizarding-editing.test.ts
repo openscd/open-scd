@@ -36,7 +36,7 @@ describe('connectedap-editor wizarding editing integration', () => {
       );
       element = parent.querySelector('connectedap-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
+        element?.shadowRoot?.querySelector('c-fab[icon="edit"]')
       )).click();
       await parent.updateComplete;
       ipField = <WizardTextField>(
@@ -102,7 +102,7 @@ describe('connectedap-editor wizarding editing integration', () => {
       element = parent.querySelector('connectedap-editor');
       await parent.updateComplete;
       deleteButton = <HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-fab[icon="delete"]')
+        element?.shadowRoot?.querySelector('c-fab[icon="delete"]')
       );
     });
     it('removes ConnectedAP on delete button click', async () => {

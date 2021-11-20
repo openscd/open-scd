@@ -6,6 +6,7 @@ import { Switch } from '@material/mwc-switch';
 import {
   Button,
   Dialog,
+  Formfield,
   html,
   ifImplemented,
   LitElementConstructor,
@@ -121,24 +122,24 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
                   >`
               )}
             </${Select}>
-            <mwc-formfield label="${translate('settings.dark')}">
+            <${Formfield} label="${translate('settings.dark')}">
               <mwc-switch
                 id="dark"
                 ?checked=${this.settings.theme === 'dark'}
               ></mwc-switch>
-            </mwc-formfield>
-            <mwc-formfield label="${translate('settings.mode')}">
+            </${Formfield}>
+            <${Formfield} label="${translate('settings.mode')}">
               <mwc-switch
                 id="mode"
                 ?checked=${this.settings.mode === 'pro'}
               ></mwc-switch>
-            </mwc-formfield>
-            <mwc-formfield label="${translate('settings.showieds')}">
+            </${Formfield}>
+            <${Formfield} label="${translate('settings.showieds')}">
               <mwc-switch
                 id="showieds"
                 ?checked=${this.settings.showieds === 'on'}
               ></mwc-switch>
-            </mwc-formfield>
+            </${Formfield}>
           </form>
           <${Button} slot="secondaryAction" dialogAction="close">
             ${translate('cancel')}

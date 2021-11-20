@@ -19,12 +19,12 @@ describe('editor-container', () => {
     await element.updateComplete;
   });
 
-  it('does not render more vert option with missing mwc-fab children', () => {
+  it('does not render more vert option with missing c-fab children', () => {
     expect(element.moreVert).to.not.exist;
   });
 
-  it('renders more vert option with existing mwc-fab children', async () => {
-    const fabChild = element.ownerDocument.createElement('mwc-fab');
+  it('renders more vert option with existing c-fab children', async () => {
+    const fabChild = element.ownerDocument.createElement('c-fab');
     fabChild.setAttribute('slot', 'morevert');
     element.appendChild(fabChild);
     await element.requestUpdate();

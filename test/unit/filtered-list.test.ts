@@ -31,19 +31,19 @@ describe('filtered-list', () => {
   describe('has a check all checkbox that', () => {
     it('is indeterminate if one but not all check-list-items are selected', async () => {
       expect(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       ).to.not.have.attribute('indeterminate');
 
       element.items[0].click();
       await element.updateComplete;
 
       expect(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       ).to.have.attribute('indeterminate');
     });
     it('is selected if all check-list-items are selected', async () => {
       expect(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       ).to.not.have.attribute('checked');
       element.items
         .filter(item => !item.disabled)
@@ -53,28 +53,28 @@ describe('filtered-list', () => {
       await element.updateComplete;
 
       expect(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       ).to.have.attribute('checked');
     });
     it('is none of the above if no check-list-item is selected', () => {
       expect(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       ).to.not.have.attribute('checked');
       expect(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       ).to.not.have.attribute('indeterminate');
     });
     it('can be disabled with disableCheckAll property', async () => {
-      expect(element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')).to
+      expect(element.shadowRoot!.querySelector('c-formfield>c-checkbox')).to
         .not.be.null;
       element.disableCheckAll = true;
       await element.requestUpdate();
-      expect(element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')).to
+      expect(element.shadowRoot!.querySelector('c-formfield>c-checkbox')).to
         .be.null;
     });
     it('selects all enabled and visable check-list-items on checkAll click', async () => {
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       )).click();
       await element.updateComplete;
       element.items
@@ -85,17 +85,17 @@ describe('filtered-list', () => {
     });
     it('does not select disabled check-list-items on checkAll click', async () => {
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       )).click();
       await element.updateComplete;
       expect(element.items[3]).to.not.have.attribute('selected');
     });
     it('unselects all check-list-items on checkAll click', async () => {
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       )).click();
       (<HTMLElement>(
-        element.shadowRoot!.querySelector('mwc-formfield>c-checkbox')
+        element.shadowRoot!.querySelector('c-formfield>c-checkbox')
       )).click();
       await element.updateComplete;
       element.items

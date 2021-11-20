@@ -31,7 +31,7 @@ describe('open-scd', () => {
   });
 
   it('opens the menu on navigation icon click', async () => {
-    const menu = element.shadowRoot!.querySelector('mwc-drawer')!;
+    const menu = element.shadowRoot!.querySelector('c-drawer')!;
     expect(menu).property('open').to.be.false;
     const menuButton = <HTMLElement>(
       element.shadowRoot!.querySelector(

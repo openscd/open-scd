@@ -7,6 +7,7 @@ import {
   Create,
   createElement,
   Delete,
+  Formfield,
   getReference,
   getValue,
   html,
@@ -25,11 +26,11 @@ export function renderGseSmvAddress(parent: Element): TemplateResult[] {
   );
 
   return [
-    html`<mwc-formfield
+    html`<${Formfield}
       label="${translate('connectedap.wizard.addschemainsttype')}"
     >
       <${Checkbox} id="instType" ?checked="${hasInstType}"></${Checkbox}>
-    </mwc-formfield>`,
+    </${Formfield}>`,
     html`${pTypesGSESMV.map(
       ptype =>
         html`<${WizardTextField}

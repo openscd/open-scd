@@ -5,6 +5,7 @@ import {
   Checkbox,
   createElement,
   EditorAction,
+  Formfield,
   getReference,
   getValue,
   html,
@@ -39,9 +40,9 @@ function render(
       helper="${translate('substation.wizard.descHelper')}"
     ></${WizardTextField}>`,
     guessable
-      ? html`<mwc-formfield label="${translate('guess.wizard.primary')}">
+      ? html`<${Formfield} label="${translate('guess.wizard.primary')}">
           <${Checkbox}></${Checkbox}>
-        </mwc-formfield>`
+        </${Formfield}>`
       : html``,
   ];
 }

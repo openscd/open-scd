@@ -13,7 +13,7 @@ import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { TextField } from '@material/mwc-textfield';
-import { Checkbox, html } from './foundation.js';
+import { Checkbox, Formfield, html } from './foundation.js';
 
 export class FilteredList extends ListBase {
   @property({ type: String })
@@ -83,7 +83,7 @@ export class FilteredList extends ListBase {
 
   private renderCheckAll(): TemplateResult {
     return this.existCheckListItem && !this.disableCheckAll
-      ? html`<mwc-formfield class="checkall"
+      ? html`<${Formfield} class="checkall"
           ><${Checkbox}
             ?indeterminate=${!this.isAllSelected && this.isSomeSelected}
             ?checked=${this.isAllSelected}
@@ -91,7 +91,7 @@ export class FilteredList extends ListBase {
               this.onCheckAll();
             }}
           ></${Checkbox}
-        ></mwc-formfield>`
+        ></${Formfield}>`
       : html``;
   }
 
@@ -131,7 +131,7 @@ export class FilteredList extends ListBase {
       --mdc-shape-small: 28px;
     }
 
-    mwc-formfield.checkall {
+    c-formfield.checkall {
       padding-right: 8px;
     }
 

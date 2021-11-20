@@ -11,10 +11,10 @@
   open=""
 >
   <div id="wizard-content">
-    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+    <c-formfield label="[connectedap.wizard.addschemainsttype]">
       <c-checkbox id="instType">
       </c-checkbox>
-    </mwc-formfield>
+    </c-formfield>
     <wizard-text-field
       label="MAC-Address"
       pattern="([0-9A-F]{2}-){5}[0-9A-F]{2}"

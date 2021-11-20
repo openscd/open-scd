@@ -18,6 +18,9 @@ export {
   Checkbox,
   CircularProgressFourColor,
   Select,
+  Drawer,
+  Fab,
+  Formfield
 } from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;

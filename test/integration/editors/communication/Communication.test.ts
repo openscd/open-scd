@@ -59,13 +59,13 @@ describe('Communication Plugin', () => {
       fab = <HTMLElement>(
         parent
           ?.querySelector('communication-plugin')
-          ?.shadowRoot?.querySelector('mwc-fab')
+          ?.shadowRoot?.querySelector('c-fab')
       );
     });
-    it('has a mwc-fab', () => {
-      expect(element.shadowRoot?.querySelector('mwc-fab')).to.exist;
+    it('has a c-fab', () => {
+      expect(element.shadowRoot?.querySelector('c-fab')).to.exist;
     });
-    it('that opens a add subnetwork wizard on mwc-fab click', async () => {
+    it('that opens a add subnetwork wizard on c-fab click', async () => {
       expect(parent.wizardUI.dialogs.length).to.equal(0);
       fab.click();
       await parent.updateComplete;

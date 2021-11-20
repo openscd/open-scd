@@ -9,12 +9,12 @@
   <span style="color: var(--base1)">
     [templates.missing]
   </span>
-  <mwc-fab
+  <c-fab
     extended=""
     icon="add"
     label="[templates.add]"
   >
-  </mwc-fab>
+  </c-fab>
 </h1>
 <wizard-dialog>
 </wizard-dialog>

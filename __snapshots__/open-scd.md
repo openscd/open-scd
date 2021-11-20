@@ -3,7 +3,7 @@
 #### `looks like its snapshot`
 
 ```html
-<mwc-drawer
+<c-drawer
   class="mdc-theme--surface"
   hasheader=""
   id="menu"
@@ -352,7 +352,7 @@
     >
     </mwc-icon-button>
   </mwc-top-app-bar-fixed>
-</mwc-drawer>
+</c-drawer>
 <div class="landing">
   <mwc-icon-button
     class="landing_icon"
@@ -875,7 +875,7 @@
         </mwc-icon>
       </mwc-radio-list-item>
       <div id="menudetails">
-        <mwc-formfield
+        <c-formfield
           id="enabledefault"
           label="Requires loaded document"
         >
@@ -884,7 +884,7 @@
             id="requireDoc"
           >
           </mwc-switch>
-        </mwc-formfield>
+        </c-formfield>
         <c-select
           fixedmenuposition=""
           id="menuPosition"
@@ -1005,18 +1005,18 @@
         German (Deutsch)
       </mwc-list-item>
     </c-select>
-    <mwc-formfield label="Dark theme">
+    <c-formfield label="Dark theme">
       <mwc-switch id="dark">
       </mwc-switch>
-    </mwc-formfield>
-    <mwc-formfield label="Pro mode">
+    </c-formfield>
+    <c-formfield label="Pro mode">
       <mwc-switch id="mode">
       </mwc-switch>
-    </mwc-formfield>
-    <mwc-formfield label="Show IEDs in substation editor">
+    </c-formfield>
+    <c-formfield label="Show IEDs in substation editor">
       <mwc-switch id="showieds">
       </mwc-switch>
-    </mwc-formfield>
+    </c-formfield>
   </form>
   <c-button
     dialogaction="close"
