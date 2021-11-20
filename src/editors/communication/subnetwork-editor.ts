@@ -22,6 +22,7 @@ import {
   getReference,
   cloneElement,
   html,
+  IconButton,
 } from '../../foundation.js';
 
 import { styles, WizardOptions, isCreateOptions } from './foundation.js';
@@ -312,23 +313,23 @@ export class SubNetworkEditor extends LitElement {
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.renderSubNetworkSpecs()}
       <abbr title="${translate('add')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="playlist_add"
           @click="${() => this.openConnectedAPwizard()}"
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <nav>
         <abbr title="${translate('edit')}">
-          <mwc-icon-button
+          <${IconButton}
             icon="edit"
             @click=${() => this.openEditWizard()}
-          ></mwc-icon-button>
+          ></${IconButton}>
         </abbr>
         <abbr title="${translate('remove')}">
-          <mwc-icon-button
+          <${IconButton}
             icon="delete"
             @click=${() => this.remove()}
-          ></mwc-icon-button>
+          ></${IconButton}>
         </abbr>
       </nav>
     </h1>`;

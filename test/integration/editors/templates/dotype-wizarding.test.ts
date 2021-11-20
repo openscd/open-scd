@@ -43,7 +43,7 @@ describe('DOType wizards', () => {
     beforeEach(async () => {
       const button = <HTMLElement>(
         templates?.shadowRoot?.querySelectorAll(
-          'mwc-icon-button[icon="playlist_add"]'
+          'icon-button[icon="playlist_add"]'
         )[1]
       );
       button.click();
@@ -59,9 +59,7 @@ describe('DOType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="cdc"]')
       );
       primayAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
 
@@ -148,9 +146,7 @@ describe('DOType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
       deleteButton = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
@@ -213,9 +209,7 @@ describe('DOType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       primayAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
       deleteButton = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
@@ -303,9 +297,7 @@ describe('DOType wizards', () => {
         parent.wizardUI.dialog?.querySelector('c-select[label="type"]')
       );
       primaryAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
 

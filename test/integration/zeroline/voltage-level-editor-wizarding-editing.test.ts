@@ -37,7 +37,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       );
       element = parent.querySelector('voltage-level-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
 
@@ -68,9 +68,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
         )
       );
       primaryAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
     it('closes on secondary action', async () => {
@@ -206,9 +204,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="name"]')
       );
       primaryAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
     it('does not add bay if name attribute is not unique', async () => {
@@ -252,9 +248,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       element = parent.querySelector('voltage-level-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="account_tree"]'
-        )
+        element?.shadowRoot?.querySelector('icon-button[icon="account_tree"]')
       )).click();
       await parent.updateComplete;
     });
@@ -296,7 +290,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
         'E1'
       );
       (<HTMLElement>(
-        element2?.shadowRoot?.querySelector('mwc-icon-button[icon="forward"]')
+        element2?.shadowRoot?.querySelector('icon-button[icon="forward"]')
       )).click();
       await parent.updateComplete;
       (<HTMLElement>element).click();
@@ -329,7 +323,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     it('removes VoltageLevel on clicking delete button', async () => {
       expect(doc.querySelector('VoltageLevel[name="E1"]')).to.exist;
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        element?.shadowRoot?.querySelector('icon-button[icon="delete"]')
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('VoltageLevel[name="E1"]')).to.not.exist;
@@ -358,9 +352,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       await parent.updateComplete;
 
       copyContentButton = <HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="content_copy"]'
-        )
+        element?.shadowRoot?.querySelector('icon-button[icon="content_copy"]')
       );
     });
     it('duplicates VoltageLevel on clicking duplicate button', async () => {

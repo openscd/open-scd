@@ -13,7 +13,12 @@ import {
   cloneSubstationElement,
   styles,
 } from './foundation.js';
-import { html, newActionEvent, newWizardEvent } from '../foundation.js';
+import {
+  html,
+  IconButton,
+  newActionEvent,
+  newWizardEvent,
+} from '../foundation.js';
 
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
@@ -94,34 +99,34 @@ export class VoltageLevelEditor extends LitElement {
       header="${this.header}"
     >
       <abbr slot="header" title="${translate('lnode.tooltip')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="account_tree"
           @click=${() => this.openLNodeWizard()}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('duplicate')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="content_copy"
           @click=${() => cloneSubstationElement(this)}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('edit')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="edit"
           @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('move')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="forward"
           @click=${() => startMove(this, VoltageLevelEditor, SubstationEditor)}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('remove')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="delete"
           @click=${() => this.remove()}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       ${this.renderIedContainer()}
       <div id="bayContainer">

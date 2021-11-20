@@ -8,17 +8,17 @@
     StationBus — desc
       (8-MMS—100.0b/s)
     <abbr title="[add]">
-      <mwc-icon-button icon="playlist_add">
-      </mwc-icon-button>
+      <icon-button icon="playlist_add">
+      </icon-button>
     </abbr>
     <nav>
       <abbr title="[edit]">
-        <mwc-icon-button icon="edit">
-        </mwc-icon-button>
+        <icon-button icon="edit">
+        </icon-button>
       </abbr>
       <abbr title="[remove]">
-        <mwc-icon-button icon="delete">
-        </mwc-icon-button>
+        <icon-button icon="delete">
+        </icon-button>
       </abbr>
     </nav>
   </h1>

@@ -8,36 +8,36 @@
     slot="header"
     title="[lnode.tooltip]"
   >
-    <mwc-icon-button icon="account_tree">
-    </mwc-icon-button>
+    <icon-button icon="account_tree">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[duplicate]"
   >
-    <mwc-icon-button icon="content_copy">
-    </mwc-icon-button>
+    <icon-button icon="content_copy">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[edit]"
   >
-    <mwc-icon-button icon="edit">
-    </mwc-icon-button>
+    <icon-button icon="edit">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[move]"
   >
-    <mwc-icon-button icon="forward">
-    </mwc-icon-button>
+    <icon-button icon="forward">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[remove]"
   >
-    <mwc-icon-button icon="delete">
-    </mwc-icon-button>
+    <icon-button icon="delete">
+    </icon-button>
   </abbr>
   <voltage-level-editor>
   </voltage-level-editor>
@@ -57,36 +57,36 @@
     slot="header"
     title="[lnode.tooltip]"
   >
-    <mwc-icon-button icon="account_tree">
-    </mwc-icon-button>
+    <icon-button icon="account_tree">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[duplicate]"
   >
-    <mwc-icon-button icon="content_copy">
-    </mwc-icon-button>
+    <icon-button icon="content_copy">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[edit]"
   >
-    <mwc-icon-button icon="edit">
-    </mwc-icon-button>
+    <icon-button icon="edit">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[move]"
   >
-    <mwc-icon-button icon="forward">
-    </mwc-icon-button>
+    <icon-button icon="forward">
+    </icon-button>
   </abbr>
   <abbr
     slot="header"
     title="[remove]"
   >
-    <mwc-icon-button icon="delete">
-    </mwc-icon-button>
+    <icon-button icon="delete">
+    </icon-button>
   </abbr>
   <voltage-level-editor readonly="">
   </voltage-level-editor>

@@ -3,12 +3,12 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { Snackbar } from '@material/mwc-snackbar';
 
-
 import {
   Button,
   CommitEntry,
   Dialog,
   html,
+  IconButton,
   ifImplemented,
   invert,
   IssueDetail,
@@ -423,7 +423,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             get('log.snackbar.placeholder')
           }"
         >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>
         <mwc-snackbar
           id="warning"
@@ -442,7 +442,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             @click=${() => this.logUI.show()}
             >${translate('log.snackbar.show')}</${Button}
           >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>
         <mwc-snackbar
           id="error"
@@ -461,7 +461,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             @click=${() => this.logUI.show()}
             >${translate('log.snackbar.show')}</${Button}
           >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>
         <mwc-snackbar
           id="issue"
@@ -476,7 +476,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             @click=${() => this.diagnosticUI.show()}
             >${translate('log.snackbar.show')}</${Button}
           >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>`;
     }
   }

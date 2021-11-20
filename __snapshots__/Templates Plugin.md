@@ -32,8 +32,8 @@
       [scl.LNodeType]
       <nav>
         <abbr title="[add]">
-          <mwc-icon-button icon="playlist_add">
-          </mwc-icon-button>
+          <icon-button icon="playlist_add">
+          </icon-button>
         </abbr>
       </nav>
     </h1>
@@ -189,8 +189,8 @@
       [scl.DOType]
       <nav>
         <abbr title="[add]">
-          <mwc-icon-button icon="playlist_add">
-          </mwc-icon-button>
+          <icon-button icon="playlist_add">
+          </icon-button>
         </abbr>
       </nav>
     </h1>
@@ -436,8 +436,8 @@
       [scl.DAType]
       <nav>
         <abbr title="[add]">
-          <mwc-icon-button icon="playlist_add">
-          </mwc-icon-button>
+          <icon-button icon="playlist_add">
+          </icon-button>
         </abbr>
       </nav>
     </h1>
@@ -519,8 +519,8 @@
       [scl.EnumType]
       <nav>
         <abbr title="[add]">
-          <mwc-icon-button icon="playlist_add">
-          </mwc-icon-button>
+          <icon-button icon="playlist_add">
+          </icon-button>
         </abbr>
       </nav>
     </h1>

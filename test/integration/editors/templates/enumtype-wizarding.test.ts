@@ -42,7 +42,7 @@ describe('EnumType wizards', () => {
     beforeEach(async () => {
       const button = <HTMLElement>(
         templates?.shadowRoot?.querySelectorAll(
-          'mwc-icon-button[icon="playlist_add"]'
+          'icon-button[icon="playlist_add"]'
         )[3]
       );
       button.click();
@@ -55,9 +55,7 @@ describe('EnumType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
 
@@ -114,9 +112,7 @@ describe('EnumType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="id"]')
       );
       primayAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
       deleteButton = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
@@ -182,15 +178,15 @@ describe('EnumType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="ord"]')
       );
       valueField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="value"]')
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-text-field[label="value"]'
+        )
       );
       descField = <WizardTextField>(
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       primayAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
       deleteButton = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector('c-button[icon="delete"]')
@@ -287,12 +283,12 @@ describe('EnumType wizards', () => {
         parent.wizardUI.dialog?.querySelector('wizard-text-field[label="desc"]')
       );
       valueField = <WizardTextField>(
-        parent.wizardUI.dialog?.querySelector('wizard-text-field[label="value"]')
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-text-field[label="value"]'
+        )
       );
       primayAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
 

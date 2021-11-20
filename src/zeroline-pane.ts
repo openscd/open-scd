@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { html, isPublic, newWizardEvent } from './foundation.js';
+import { html, IconButton, isPublic, newWizardEvent } from './foundation.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
@@ -16,7 +16,7 @@ import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
 import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
-import { IconButton } from '@material/mwc-icon-button';
+
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { gooseIcon } from './icons.js';
@@ -84,11 +84,11 @@ export class ZerolinePane extends LitElement {
     return html` <h1>
         <nav>
           <abbr title="${translate('add')}">
-            <mwc-icon-button
+            <${IconButton}
               id="createsubstation"
               icon="playlist_add"
               @click=${() => this.openCreateSubstationWizard()}
-            ></mwc-icon-button>
+            ></${IconButton}>
           </abbr>
         </nav>
         <nav>
@@ -102,40 +102,42 @@ export class ZerolinePane extends LitElement {
             ></mwc-icon-button-toggle>
           </abbr>
           <abbr title="${translate('zeroline.commmap')}">
-            <mwc-icon-button
+            <${IconButton}
               id="commmap"
               icon="link"
               @click=${() => this.openCommunicationMapping()}
-            ></mwc-icon-button>
+            ></${IconButton}>
           </abbr>
           <abbr title="${translate('zeroline.gsecontrol')}"
-            ><mwc-icon-button
+            ><${IconButton}
               id="gsecontrol"
               @click="${() => this.openGseControlSelection()}"
-              >${gooseIcon}</mwc-icon-button
+              >${gooseIcon}</${IconButton}
             ></abbr
           >
         </nav>
       </h1>
       ${this.renderIedContainer()}
-      ${this.doc?.querySelector(':root > Substation')
-        ? html`<section>
-            ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
-              .filter(isPublic)
-              .map(
-                substation =>
-                  html`<substation-editor
-                    .element=${substation}
-                    .getAttachedIeds=${this.getAttachedIeds}
-                    ?readonly=${this.readonly}
-                  ></substation-editor>`
-              )}
-          </section>`
-        : html`<h1>
-            <span style="color: var(--base1)"
-              >${translate('substation.missing')}</span
-            >
-          </h1>`}`;
+      ${
+        this.doc?.querySelector(':root > Substation')
+          ? html`<section>
+              ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
+                .filter(isPublic)
+                .map(
+                  substation =>
+                    html`<substation-editor
+                      .element=${substation}
+                      .getAttachedIeds=${this.getAttachedIeds}
+                      ?readonly=${this.readonly}
+                    ></substation-editor>`
+                )}
+            </section>`
+          : html`<h1>
+              <span style="color: var(--base1)"
+                >${translate('substation.missing')}</span
+              >
+            </h1>`
+      }`;
   }
 
   static styles = css`
@@ -154,7 +156,7 @@ export class ZerolinePane extends LitElement {
     }
 
     h1 > nav,
-    h1 > abbr > mwc-icon-button {
+    h1 > abbr > icon-button {
       float: right;
     }
 

@@ -7,12 +7,11 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
-import { IconButton } from '@material/mwc-icon-button';
 import { Menu } from '@material/mwc-menu';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
-import { html } from './foundation.js';
+import { html, IconButton } from './foundation.js';
 
 /** A potentially `nullable` `TextField` that allows for selection of an SI
  * `multiplier` if an SI `unit` is given.
@@ -74,7 +73,7 @@ export class WizardTextField extends TextField {
 
   @query('mwc-switch') nullSwitch?: Switch;
   @query('mwc-menu') multiplierMenu?: Menu;
-  @query('mwc-icon-button') multiplierButton?: IconButton;
+  @query('icon-button') multiplierButton?: IconButton;
 
   private nulled: string | null = null;
 
@@ -119,12 +118,12 @@ export class WizardTextField extends TextField {
   renderUnitSelector(): TemplateResult {
     if (this.multipliers.length && this.unit)
       return html`<div style="position:relative;">
-        <mwc-icon-button
+        <${IconButton}
           style="margin:5px;"
           icon="more"
           ?disabled=${this.null}
           @click=${() => this.multiplierMenu?.show()}
-        ></mwc-icon-button>
+        ></${IconButton}>
         <mwc-menu
           @selected=${this.selectMultiplier}
           fixed

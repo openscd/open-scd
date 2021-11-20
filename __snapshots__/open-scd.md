@@ -314,62 +314,62 @@
     </mwc-list-item>
   </mwc-list>
   <mwc-top-app-bar-fixed slot="appContent">
-    <mwc-icon-button
+    <icon-button
       icon="menu"
       label="Menu"
       slot="navigationIcon"
     >
-    </mwc-icon-button>
+    </icon-button>
     <div
       id="title"
       slot="title"
     >
     </div>
-    <mwc-icon-button
+    <icon-button
       disabled=""
       icon="undo"
       label="undo"
       slot="actionItems"
     >
-    </mwc-icon-button>
-    <mwc-icon-button
+    </icon-button>
+    <icon-button
       disabled=""
       icon="redo"
       label="redo"
       slot="actionItems"
     >
-    </mwc-icon-button>
-    <mwc-icon-button
+    </icon-button>
+    <icon-button
       icon="history"
       label="menu.viewLog"
       slot="actionItems"
     >
-    </mwc-icon-button>
-    <mwc-icon-button
+    </icon-button>
+    <icon-button
       icon="rule"
       label="menu.viewDiag"
       slot="actionItems"
     >
-    </mwc-icon-button>
+    </icon-button>
   </mwc-top-app-bar-fixed>
 </c-drawer>
 <div class="landing">
-  <mwc-icon-button
+  <icon-button
     class="landing_icon"
     icon="folder_open"
   >
     <div class="landing_label">
       Open project
     </div>
-  </mwc-icon-button>
-  <mwc-icon-button
+  </icon-button>
+  <icon-button
     class="landing_icon"
     icon="create_new_folder"
   >
     <div class="landing_label">
       New project
     </div>
-  </mwc-icon-button>
+  </icon-button>
 </div>
 <c-dialog
   heading="Log"
@@ -472,11 +472,11 @@
   labeltext="No errors"
   timeoutms="4000"
 >
-  <mwc-icon-button
+  <icon-button
     icon="close"
     slot="dismiss"
   >
-  </mwc-icon-button>
+  </icon-button>
 </mwc-snackbar>
 <mwc-snackbar
   id="warning"
@@ -489,11 +489,11 @@
   >
     Show
   </c-button>
-  <mwc-icon-button
+  <icon-button
     icon="close"
     slot="dismiss"
   >
-  </mwc-icon-button>
+  </icon-button>
 </mwc-snackbar>
 <mwc-snackbar
   id="error"
@@ -506,11 +506,11 @@
   >
     Show
   </c-button>
-  <mwc-icon-button
+  <icon-button
     icon="close"
     slot="dismiss"
   >
-  </mwc-icon-button>
+  </icon-button>
 </mwc-snackbar>
 <mwc-snackbar
   id="issue"
@@ -523,11 +523,11 @@
   >
     Show
   </c-button>
-  <mwc-icon-button
+  <icon-button
     icon="close"
     slot="dismiss"
   >
-  </mwc-icon-button>
+  </icon-button>
 </mwc-snackbar>
 <c-dialog
   heading="Extensions"

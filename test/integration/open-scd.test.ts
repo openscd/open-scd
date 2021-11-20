@@ -20,9 +20,12 @@ describe('open-scd', () => {
     element = await fixture(html`
       <open-scd></open-scd>
 
-      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet">
-      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet">
-      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet">
+      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+      <link
+        href="public/google/icons/material-icons-outlined.css"
+        rel="stylesheet"
+      />
     `);
   });
 
@@ -34,9 +37,7 @@ describe('open-scd', () => {
     const menu = element.shadowRoot!.querySelector('c-drawer')!;
     expect(menu).property('open').to.be.false;
     const menuButton = <HTMLElement>(
-      element.shadowRoot!.querySelector(
-        'mwc-icon-button[slot="navigationIcon"]'
-      )
+      element.shadowRoot!.querySelector('icon-button[slot="navigationIcon"]')
     );
     await menuButton.click();
     expect(menu).property('open').to.be.true;
@@ -45,7 +46,7 @@ describe('open-scd', () => {
   it('opens the log on log icon click', async () => {
     expect(element.logUI).to.have.property('open', false);
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-icon-button[icon="history"]')!
+      element.shadowRoot!.querySelector('icon-button[icon="history"]')!
     )).click();
     expect(element.logUI).to.have.property('open', true);
   });

@@ -33,7 +33,7 @@ describe('substation-editor wizarding editing integration', () => {
       );
       element = parent.querySelector('substation-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
 
@@ -49,9 +49,7 @@ describe('substation-editor wizarding editing integration', () => {
         )
       );
       primaryAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
     it('closes on secondary action', async () => {
@@ -120,9 +118,7 @@ describe('substation-editor wizarding editing integration', () => {
       );
 
       primaryAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
     it('opens voltage level wizard ', async () => {
@@ -168,9 +164,7 @@ describe('substation-editor wizarding editing integration', () => {
       element = parent.querySelector('substation-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="account_tree"]'
-        )
+        element?.shadowRoot?.querySelector('icon-button[icon="account_tree"]')
       )).click();
       await parent.updateComplete;
     });
@@ -204,7 +198,7 @@ describe('substation-editor wizarding editing integration', () => {
     it('removes Substation on clicking delete button', async () => {
       expect(doc.querySelector('Substation')).to.exist;
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        element?.shadowRoot?.querySelector('icon-button[icon="delete"]')
       )).click();
       await parent.updateComplete;
       expect(doc.querySelector('Substation')).to.not.exist;

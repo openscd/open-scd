@@ -36,7 +36,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       );
       element = parent.querySelector('subnetwork-editor');
       await (<HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        element?.shadowRoot?.querySelector('icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
       nameField = <WizardTextField>(
@@ -54,9 +54,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
         )
       );
       primaryAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
     it('closes on secondary action', async () => {
@@ -167,7 +165,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       await parent.updateComplete;
 
       deleteButton = <HTMLElement>(
-        element?.shadowRoot?.querySelector('mwc-icon-button[icon="delete"]')
+        element?.shadowRoot?.querySelector('icon-button[icon="delete"]')
       );
     });
     it('removes SubNetwork on clicking delete button', async () => {
@@ -200,9 +198,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       element = parent.querySelector('subnetwork-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot?.querySelector(
-          'mwc-icon-button[icon="playlist_add"]'
-        )
+        element?.shadowRoot?.querySelector('icon-button[icon="playlist_add"]')
       )).click();
       await parent.updateComplete;
 
@@ -213,9 +209,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
       );
 
       primaryAction = <HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       );
     });
     it('add ConnectedAP on primary action', async () => {

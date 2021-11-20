@@ -26,7 +26,7 @@ describe('bay-editor wizarding integration', () => {
     (<HTMLElement>(
       parent
         ?.querySelector('bay-editor')
-        ?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+        ?.shadowRoot?.querySelector('icon-button[icon="edit"]')
     )).click();
     await parent.updateComplete;
   });

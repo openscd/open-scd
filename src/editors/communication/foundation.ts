@@ -92,9 +92,9 @@ export const styles = css`
   h1 > nav,
   h2 > nav,
   h3 > nav,
-  h1 > abbr > mwc-icon-button,
-  h2 > abbr > mwc-icon-button,
-  h3 > abbr > mwc-icon-button {
+  h1 > abbr > icon-button,
+  h2 > abbr > icon-button,
+  h3 > abbr > icon-button {
     float: right;
   }
 
