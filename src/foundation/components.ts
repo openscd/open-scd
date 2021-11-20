@@ -17,6 +17,7 @@ import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base.js';
 import { FabBase } from '@material/mwc-fab/mwc-fab-base.js';
 import { FormfieldBase } from '@material/mwc-formfield/mwc-formfield-base.js';
 import { IconButtonBase } from '@material/mwc-icon-button/mwc-icon-button-base.js';
+import { IconButtonToggleBase } from '@material/mwc-icon-button-toggle/mwc-icon-button-toggle-base.js';
 
 export class Dialog extends DialogBase {
   static styles = [dialogStyles];
@@ -51,5 +52,9 @@ export class Formfield extends FormfieldBase {
 }
 
 export class IconButton extends IconButtonBase {
+  static styles = [iconButtonStyles];
+}
+
+export class IconButtonToggle extends IconButtonToggleBase {
   static styles = [iconButtonStyles];
 }

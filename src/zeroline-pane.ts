@@ -8,7 +8,13 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { html, IconButton, isPublic, newWizardEvent } from './foundation.js';
+import {
+  html,
+  IconButton,
+  IconButtonToggle,
+  isPublic,
+  newWizardEvent,
+} from './foundation.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
 
 import './zeroline/substation-editor.js';
@@ -17,7 +23,6 @@ import { Settings } from './Setting.js';
 import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 
-import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { gooseIcon } from './icons.js';
 
@@ -93,13 +98,13 @@ export class ZerolinePane extends LitElement {
         </nav>
         <nav>
           <abbr title="${translate('zeroline.commmap')}">
-            <mwc-icon-button-toggle
+            <${IconButtonToggle}
               ?on=${shouldShowIEDs()}
               @click=${() => this.toggleShowIEDs()}
               id="showieds"
               onIcon="developer_board"
               offIcon="developer_board_off"
-            ></mwc-icon-button-toggle>
+            ></${IconButtonToggle}>
           </abbr>
           <abbr title="${translate('zeroline.commmap')}">
             <${IconButton}

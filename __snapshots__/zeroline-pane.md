@@ -15,12 +15,12 @@
   </nav>
   <nav>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button-toggle
+      <icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
       >
-      </mwc-icon-button-toggle>
+      </icon-button-toggle>
     </abbr>
     <abbr title="[zeroline.commmap]">
       <icon-button
@@ -59,12 +59,12 @@
   </nav>
   <nav>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button-toggle
+      <icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
       >
-      </mwc-icon-button-toggle>
+      </icon-button-toggle>
     </abbr>
     <abbr title="[zeroline.commmap]">
       <icon-button
@@ -103,12 +103,12 @@
   </nav>
   <nav>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button-toggle
+      <icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
       >
-      </mwc-icon-button-toggle>
+      </icon-button-toggle>
     </abbr>
     <abbr title="[zeroline.commmap]">
       <icon-button

@@ -22,6 +22,7 @@ export {
   Fab,
   Formfield,
   IconButton,
+  IconButtonToggle,
 } from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
