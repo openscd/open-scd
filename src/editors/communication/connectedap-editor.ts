@@ -8,7 +8,6 @@ import {
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
@@ -29,6 +28,7 @@ import {
   Formfield,
   ListItem,
   CheckListItem,
+  List,
 } from '../../foundation.js';
 
 import {

@@ -1,7 +1,6 @@
 import { query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
@@ -13,9 +12,11 @@ import {
   Formfield,
   html,
   ifImplemented,
+  List,
   ListItem,
   LitElementConstructor,
   Mixin,
+  RadioListItem,
   Select,
 } from './foundation.js';
 import { EditingElement } from './Editing.js';
@@ -273,8 +274,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
               required
               id="pluginNameInput"
             ></mwc-textfield>
-            <mwc-list id="pluginKindList">
-              <mwc-radio-list-item
+            <${List} id="pluginKindList">
+              <${RadioListItem}
                 id="editor"
                 value="editor"
                 hasMeta
@@ -282,12 +283,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 left
                 >${translate('plugins.editor')}<mwc-icon slot="meta"
                   >${pluginIcons['editor']}</mwc-icon
-                ></mwc-radio-list-item
+                ></${RadioListItem}
               >
-              <mwc-radio-list-item id="menu" value="menu" hasMeta left
+              <${RadioListItem} id="menu" value="menu" hasMeta left
                 >${translate('plugins.menu')}<mwc-icon slot="meta"
                   >${pluginIcons['menu']}</mwc-icon
-                ></mwc-radio-list-item
+                ></${RadioListItem}
               >
               <div id="menudetails">
                 <${Formfield}
@@ -321,12 +322,12 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                   max-width: 250px;
                 }
               </style>
-              <mwc-radio-list-item id="validator" value="validator" hasMeta left
+              <${RadioListItem} id="validator" value="validator" hasMeta left
                 >${translate('plugins.validator')}<mwc-icon slot="meta"
                   >${pluginIcons['validator']}</mwc-icon
-                ></mwc-radio-list-item
+                ></${RadioListItem}
               >
-            </mwc-list>
+            </${List}>
             <mwc-textfield
               label="${translate('plugins.add.src')}"
               helper="${translate('plugins.add.srcHelper')}"
@@ -382,7 +383,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           id="pluginManager"
           heading="${translate('plugins.heading')}"
         >
-          <mwc-list
+          <${List}
             id="pluginList"
             multi
             @selected=${(e: MultiSelectedEvent) =>
@@ -431,7 +432,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 p => p.kind === 'menu' && p.position === 'bottom'
               )
             )}
-          </mwc-list>
+          </${List}>
           <${Button}
             slot="secondaryAction"
             icon="refresh"

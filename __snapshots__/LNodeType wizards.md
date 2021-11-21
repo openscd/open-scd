@@ -50,7 +50,7 @@
       trailingicon=""
     >
     </c-button>
-    <mwc-list style="margin-top: 0px;">
+    <c-list style="margin-top: 0px;">
       <list-item
         aria-disabled="false"
         mwc-list-item=""
@@ -121,7 +121,7 @@
           #Dummy.CSWI.Pos1
         </span>
       </list-item>
-    </mwc-list>
+    </c-list>
   </div>
   <c-button
     dialogaction="close"

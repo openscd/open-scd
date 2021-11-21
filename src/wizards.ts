@@ -8,6 +8,7 @@ import {
   identity,
   isEqual,
   isSame,
+  List,
   ListItem,
   newWizardEvent,
   SimpleAction,
@@ -42,7 +43,7 @@ function mergeWizardAction(
 ): WizardActor {
   return (_, wizard: Element): EditorAction[] => {
     const actions: SimpleAction[] = [];
-    const checkList = wizard.shadowRoot!.querySelector('mwc-list')!;
+    const checkList = wizard.shadowRoot!.querySelector<List>('c-list')!;
 
     const selectedAttrDiffs = (<ListItem[]>checkList.selected)
       .filter(item => item.classList.contains('attr'))
@@ -172,7 +173,7 @@ export function mergeWizard(
       },
       content: [
         html`
-          <mwc-list multi>
+          <${List} multi>
             ${repeat(
               attrDiffs,
               e => e,
@@ -249,7 +250,7 @@ export function mergeWizard(
                   >
                 </${CheckListItem}>`
             )}
-          </mwc-list>
+          </${List}>
         `,
       ],
     },

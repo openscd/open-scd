@@ -9,10 +9,9 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { TextField } from '@material/mwc-textfield';
-import { Checkbox, CheckListItem, Formfield, html } from './foundation.js';
+import { Checkbox, CheckListItem, Formfield, html, List } from './foundation.js';
 
 export class FilteredList extends ListBase {
   @property({ type: String })

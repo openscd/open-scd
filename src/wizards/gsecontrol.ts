@@ -1,7 +1,6 @@
 import { TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 
@@ -14,6 +13,7 @@ import {
   html,
   identity,
   isPublic,
+  List,
   ListItem,
   newActionEvent,
   newWizardEvent,

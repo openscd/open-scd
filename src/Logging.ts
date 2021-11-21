@@ -14,6 +14,7 @@ import {
   invert,
   IssueDetail,
   IssueEvent,
+  List,
   ListItem,
   LitElementConstructor,
   LogEntry,
@@ -385,7 +386,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         </style>
         <${Dialog} id="log" heading="${translate('log.name')}">
           ${this.renderFilterButtons()}
-          <mwc-list id="content" wrapFocus>${this.renderHistory()}</mwc-list>
+          <${List} id="content" wrapFocus>${this.renderHistory()}</${List}>
           <${Button}
             icon="undo"
             label="${translate('undo')}"

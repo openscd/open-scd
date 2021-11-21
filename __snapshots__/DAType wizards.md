@@ -660,7 +660,7 @@
       trailingicon=""
     >
     </c-button>
-    <mwc-list style="margin-top: 0px;">
+    <c-list style="margin-top: 0px;">
       <list-item
         aria-disabled="false"
         mwc-list-item=""
@@ -745,7 +745,7 @@
           Check
         </span>
       </list-item>
-    </mwc-list>
+    </c-list>
   </div>
   <c-button
     dialogaction="close"

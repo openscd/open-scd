@@ -8,8 +8,6 @@ import {
 
 import '@material/mwc-icon';
 import '@material/mwc-linear-progress';
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-radio-list-item';
 import '@material/mwc-menu';
 import '@material/mwc-snackbar';
 import '@material/mwc-switch';

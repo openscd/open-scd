@@ -1,14 +1,12 @@
 import { expect, fixture } from '@open-wc/testing';
 
-import '@material/mwc-list/mwc-list';
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { lNodeWizard } from '../../../../src/wizards/lnode.js';
 
 import '../../../mock-wizard.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
-import { html } from '../../../../src/foundation.js';
+import { html, List } from '../../../../src/foundation.js';
 
 describe('lnodewizard', () => {
   let element: MockWizardEditor;
@@ -34,7 +32,7 @@ describe('lnodewizard', () => {
   });
 
   describe('the first page', () => {
-    it('renders a list of available IEDs in a mwc-list with checked items', () => {
+    it('renders a list of available IEDs in a c-list with checked items', () => {
       expect(
         element.wizardUI.shadowRoot
           ?.querySelector('c-dialog')

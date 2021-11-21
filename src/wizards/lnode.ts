@@ -10,6 +10,7 @@ import {
   html,
   identity,
   isPublic,
+  List,
   ListItem,
   referencePath,
   selector,
@@ -18,7 +19,6 @@ import {
   WizardInput,
 } from '../foundation.js';
 
-import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { FilteredList } from '../filtered-list.js';

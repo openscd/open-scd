@@ -9,7 +9,6 @@ import {
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 
 import 'ace-custom-element';
 import './wizard-textfield.js';
@@ -31,6 +30,7 @@ import {
   Dialog,
   Button,
   IconButtonToggle,
+  List,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
@@ -128,7 +128,7 @@ export class WizardDialog extends LitElement {
     if (action === undefined) return false;
     const wizardInputs = Array.from(this.inputs);
     const wizardList = <List | null>(
-      this.dialog?.querySelector('filtered-list,mwc-list')
+      this.dialog?.querySelector('filtered-list,c-list')
     );
     if (!this.checkValidity()) {
       this.pageIndex = this.firstInvalidPage;

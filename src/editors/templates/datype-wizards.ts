@@ -8,6 +8,7 @@ import {
   getValue,
   html,
   identity,
+  List,
   ListItem,
   newActionEvent,
   newWizardEvent,
@@ -26,7 +27,6 @@ import {
   updateIDNamingAction,
 } from './foundation.js';
 
-import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -99,7 +99,7 @@ export function editDaTypeWizard(
               e.target!.dispatchEvent(newWizardEvent());
             }}
           ></${Button}>
-          <mwc-list
+          <${List}
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {
               const bdaIdentity = (<ListItem>(<List>e.target).selected).value;
@@ -125,7 +125,7 @@ export function editDaTypeWizard(
                   ></${ListItem}
                 >`
             )}
-          </mwc-list> `,
+          </${List}> `,
       ],
     },
   ];

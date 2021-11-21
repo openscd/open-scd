@@ -10,6 +10,7 @@ import {
   html,
   identity,
   isPublic,
+  List,
   ListItem,
   newActionEvent,
   newWizardEvent,
@@ -28,7 +29,6 @@ import {
   WizardOptions,
 } from './foundation.js';
 
-import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { WizardTextField } from '../../wizard-textfield.js';
 
@@ -322,7 +322,7 @@ export function eNumTypeEditWizard(
               e.target!.dispatchEvent(newWizardEvent());
             }}
           ></${Button}>
-          <mwc-list
+          <${List}
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {
               const wizard = eNumValWizard({
@@ -345,7 +345,7 @@ export function eNumTypeEditWizard(
                     >${enumval.getAttribute('ord') ?? '-1'}</span
                   >
                 </${ListItem}>`
-            )}</mwc-list
+            )}</${List}
           > `,
       ],
     },

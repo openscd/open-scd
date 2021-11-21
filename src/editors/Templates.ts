@@ -8,6 +8,7 @@ import {
   html,
   IconButton,
   identity,
+  List,
   ListItem,
   newActionEvent,
   newWizardEvent,
@@ -33,7 +34,6 @@ import {
   lNodeTypeWizard,
 } from './templates/lnodetype-wizard.js';
 
-import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { FilteredList } from '../filtered-list.js';
 

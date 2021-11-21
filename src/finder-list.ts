@@ -9,10 +9,9 @@ import {
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import { depth, html, ListItem } from './foundation.js';
+import { depth, html, List, ListItem } from './foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { FilteredList } from './filtered-list.js';
 
@@ -26,12 +25,12 @@ export interface Directory {
 }
 
 const waitingList = html`<div class="column">
-  <mwc-list
+  <${List}
     ><${ListItem} noninteractive hasMeta
       >${translate('loading')}<mwc-icon slot="meta"
         >pending</mwc-icon
       ></${ListItem}
-    ></mwc-list
+    ></${List}
   >
 </div>`;
 
@@ -201,7 +200,7 @@ export class FinderList extends LitElement {
       width: max-content;
     }
 
-    section > mwc-list {
+    section > c-list {
       margin-top: 76px;
     }
 

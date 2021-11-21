@@ -3,9 +3,8 @@ import { expect, fixture } from '@open-wc/testing';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
 import { IedEditor } from '../../../src/zeroline/ied-editor.js';
-import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { html } from '../../../src/foundation.js';
+import { html, List } from '../../../src/foundation.js';
 
 describe('clientln wizards', () => {
   let doc: Document;

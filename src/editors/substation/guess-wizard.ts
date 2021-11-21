@@ -1,6 +1,5 @@
 import { get, translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
@@ -10,6 +9,7 @@ import {
   EditorAction,
   getReference,
   html,
+  List,
   Wizard,
   WizardActor,
   WizardInput,
@@ -227,7 +227,7 @@ export function guessVoltageLevel(doc: XMLDocument): Wizard {
       },
       content: [
         html`<p>${translate('guess.wizard.description')}</p>`,
-        html`<mwc-list multi id="ctlModelList"
+        html`<${List} multi id="ctlModelList"
           ><${CheckListItem} value="status-only"
             >status-only</${CheckListItem}
           ><${CheckListItem} value="direct-with-normal-security"
@@ -238,7 +238,7 @@ export function guessVoltageLevel(doc: XMLDocument): Wizard {
             >sbo-with-normal-security</${CheckListItem}
           ><${CheckListItem} selected value="sbo-with-enhanced-security"
             >sbo-with-enhanced-security</${CheckListItem}
-          ></mwc-list
+          ></${List}
         >`,
       ],
     },

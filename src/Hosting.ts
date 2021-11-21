@@ -1,4 +1,4 @@
-import { ActionDetail, List } from '@material/mwc-list';
+import { ActionDetail } from '@material/mwc-list';
 import { property, query, TemplateResult } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
@@ -6,6 +6,7 @@ import {
   Drawer,
   html,
   IconButton,
+  List,
   ListItem,
   Mixin,
   newPendingStateEvent,
@@ -215,7 +216,7 @@ export function Hosting<
 
         this.validated = Promise.allSettled(
           this.menuUI
-            .querySelector('mwc-list')!
+            .querySelector<List>('c-list')!
             .items.filter(item => item.className === 'validator')
             .map(item =>
               (<Validator>(<unknown>item.lastElementChild)).validate()
@@ -279,7 +280,7 @@ export function Hosting<
               ? html`<span slot="subtitle">${this.docName}</span>`
               : ''
           }
-          <mwc-list
+          <${List}
             wrapFocus
             @action=${(ae: CustomEvent<ActionDetail>) =>
               (<MenuItem>(
@@ -287,7 +288,7 @@ export function Hosting<
               ))?.action?.(ae)}
           >
             ${this.menu.map(this.renderMenuItem)}
-          </mwc-list>
+          </${List}>
 
           <mwc-top-app-bar-fixed slot="appContent">
             <${IconButton}
@@ -328,7 +329,7 @@ export function Hosting<
                             icon="${mi.icon}"
                             @click="${() =>
                               (<ListItem>(
-                                this.menuUI.querySelector('mwc-list')!.items[
+                                this.menuUI.querySelector<List>('c-list')!.items[
                                   index
                                 ]
                               )).click()}"

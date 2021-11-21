@@ -12,7 +12,7 @@
   <span slot="title">
     Menu
   </span>
-  <mwc-list wrapfocus="">
+  <c-list wrapfocus="">
     <li
       divider=""
       padded=""
@@ -312,7 +312,7 @@
         Extensions
       </span>
     </list-item>
-  </mwc-list>
+  </c-list>
   <mwc-top-app-bar-fixed slot="appContent">
     <icon-button
       icon="menu"
@@ -397,7 +397,7 @@
   </icon-button-toggle>
   <icon-button-toggle id="sclhistoryfilter">
   </icon-button-toggle>
-  <mwc-list
+  <c-list
     id="content"
     wrapfocus=""
   >
@@ -415,7 +415,7 @@
         info
       </mwc-icon>
     </list-item>
-  </mwc-list>
+  </c-list>
   <c-button
     disabled=""
     icon="undo"
@@ -534,7 +534,7 @@
   id="pluginManager"
   stacked=""
 >
-  <mwc-list
+  <c-list
     id="pluginList"
     multi=""
   >
@@ -808,7 +808,7 @@
       </mwc-icon>
       Help
     </check-list-item>
-  </mwc-list>
+  </c-list>
   <c-button
     icon="refresh"
     label="Reset"
@@ -841,8 +841,8 @@
       required=""
     >
     </mwc-textfield>
-    <mwc-list id="pluginKindList">
-      <mwc-radio-list-item
+    <c-list id="pluginKindList">
+      <radio-list-item
         aria-disabled="false"
         aria-selected="true"
         graphic="control"
@@ -858,8 +858,8 @@
         <mwc-icon slot="meta">
           tab
         </mwc-icon>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
+      </radio-list-item>
+      <radio-list-item
         aria-disabled="false"
         graphic="control"
         hasmeta=""
@@ -873,7 +873,7 @@
         <mwc-icon slot="meta">
           play_circle
         </mwc-icon>
-      </mwc-radio-list-item>
+      </radio-list-item>
       <div id="menudetails">
         <c-formfield
           id="enabledefault"
@@ -922,7 +922,7 @@
           </list-item>
         </c-select>
       </div>
-      <mwc-radio-list-item
+      <radio-list-item
         aria-disabled="false"
         graphic="control"
         hasmeta=""
@@ -936,8 +936,8 @@
         <mwc-icon slot="meta">
           rule_folder
         </mwc-icon>
-      </mwc-radio-list-item>
-    </mwc-list>
+      </radio-list-item>
+    </c-list>
     <mwc-textfield
       helper="The vendor supplied extension URL"
       id="pluginSrcInput"

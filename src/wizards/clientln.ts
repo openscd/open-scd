@@ -6,6 +6,7 @@ import {
   getReference,
   html,
   identity,
+  List,
   newWizardEvent,
   pathParts,
   selector,
@@ -15,7 +16,6 @@ import {
   WizardInput,
 } from '../foundation.js';
 
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 

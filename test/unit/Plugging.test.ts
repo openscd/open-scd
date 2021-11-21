@@ -101,12 +101,12 @@ describe('PluggingElement', () => {
       await element.pluginDownloadUI.updateComplete;
       menuKindOption = <HTMLElement>(
         element.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[id="menu"]'
+          '#pluginKindList > radio-list-item[id="menu"]'
         )
       );
       validatorKindOption = <HTMLElement>(
         element.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[id="validator"]'
+          '#pluginKindList > radio-list-item[id="validator"]'
         )
       );
     });

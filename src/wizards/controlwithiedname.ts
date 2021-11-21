@@ -6,13 +6,13 @@ import {
   findControlBlocks,
   html,
   identity,
+  List,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
 
-import { List } from '@material/mwc-list';
 
 import { inputIcon } from '../icons.js';
 import {

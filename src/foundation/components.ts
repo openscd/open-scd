@@ -9,6 +9,7 @@ import { styles as formFieldStyles } from '@material/mwc-formfield/mwc-formfield
 import { styles as iconButtonStyles } from '@material/mwc-icon-button/mwc-icon-button.css.js';
 import { styles as listItemStyles } from '@material/mwc-list/mwc-list-item.css.js';
 import { styles as checkListItemStyles } from '@material/mwc-list/mwc-control-list-item.css.js';
+import { styles as listStyles } from '@material/mwc-list/mwc-list.css.js';
 
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base.js';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base.js';
@@ -22,6 +23,8 @@ import { IconButtonBase } from '@material/mwc-icon-button/mwc-icon-button-base.j
 import { IconButtonToggleBase } from '@material/mwc-icon-button-toggle/mwc-icon-button-toggle-base.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
 import { CheckListItemBase } from '@material/mwc-list/mwc-check-list-item-base.js';
+import { RadioListItemBase } from '@material/mwc-list/mwc-radio-list-item-base.js';
+import { ListBase } from '@material/mwc-list/mwc-list-base.js';
 
 export class Dialog extends DialogBase {
   static styles = [dialogStyles];
@@ -69,4 +72,12 @@ export class ListItem extends ListItemBase {
 
 export class CheckListItem extends CheckListItemBase {
   static styles = [listItemStyles, checkListItemStyles];
+}
+
+export class RadioListItem extends RadioListItemBase {
+  static styles = [listItemStyles, checkListItemStyles];
+}
+
+export class List extends ListBase {
+  static styles = [listStyles];
 }

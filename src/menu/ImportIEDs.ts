@@ -1,4 +1,3 @@
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { css, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
@@ -10,6 +9,7 @@ import {
   getReference,
   html,
   identity,
+  List,
   newActionEvent,
   newLogEvent,
   newPendingStateEvent,

@@ -11,6 +11,7 @@ import {
   html,
   identity,
   isPublic,
+  List,
   ListItem,
   newActionEvent,
   newWizardEvent,
@@ -32,7 +33,6 @@ import {
 } from './foundation.js';
 
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { List } from '@material/mwc-list';
 import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 import { patterns } from '../../wizards/foundation/limits.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -410,7 +410,7 @@ export function dOTypeWizard(
           ></${Button}>
         </section>`,
         html`
-          <mwc-list
+          <${List}
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {
               const item = <ListItem>(<List>e.target).selected;
@@ -448,7 +448,7 @@ export function dOTypeWizard(
                   ></${ListItem}
                 >`
             )}
-          </mwc-list>
+          </${List}>
         `,
       ],
     },

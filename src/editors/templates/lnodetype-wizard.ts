@@ -12,6 +12,7 @@ import {
   html,
   identity,
   isPublic,
+  List,
   ListItem,
   newActionEvent,
   newWizardEvent,
@@ -33,7 +34,6 @@ import {
   WizardOptions,
 } from './foundation.js';
 
-import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { WizardSelect } from '../../wizard-select.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -612,7 +612,7 @@ export function lNodeTypeWizard(
           }}
         ></${Button}>`,
         html`
-          <mwc-list
+          <${List}
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {
               const wizard = dOWizard({
@@ -636,7 +636,7 @@ export function lNodeTypeWizard(
                   ></${ListItem}
                 >`
             )}
-          </mwc-list>
+          </${List}>
         `,
       ],
     },
