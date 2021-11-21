@@ -204,7 +204,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
 
       newConnectedAPItem = <ListItemBase>(
         parent.wizardUI.dialog!.querySelector(
-          'mwc-check-list-item:nth-child(1)'
+          'check-list-item:nth-child(1)'
         )
       );
 

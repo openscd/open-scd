@@ -1,15 +1,12 @@
 import { expect, fixture } from '@open-wc/testing';
 
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-list';
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { lNodeWizard } from '../../../../src/wizards/lnode.js';
 
 import '../../../mock-wizard.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
-import { html } from '../../../../src/foundation.js';
+import { html, List } from '../../../../src/foundation.js';
 
 describe('lnodewizard', () => {
   let element: MockWizardEditor;
@@ -35,11 +32,11 @@ describe('lnodewizard', () => {
   });
 
   describe('the first page', () => {
-    it('renders a list of available IEDs in a mwc-list with checked items', () => {
+    it('renders a list of available IEDs in a c-list with checked items', () => {
       expect(
         element.wizardUI.shadowRoot
           ?.querySelector('c-dialog')
-          ?.querySelectorAll('mwc-check-list-item').length
+          ?.querySelectorAll('check-list-item').length
       ).to.equal(doc.querySelectorAll('IED').length);
     });
 
@@ -56,7 +53,7 @@ describe('lnodewizard', () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelectorAll('mwc-check-list-item').length
+            ?.querySelectorAll('check-list-item').length
         ).to.equal(
           doc.querySelectorAll('IED[name="IED2"] LN0, IED[name="IED2"] LN')
             .length
@@ -67,7 +64,7 @@ describe('lnodewizard', () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelectorAll('mwc-check-list-item[selected]').length
+            ?.querySelectorAll('check-list-item[selected]').length
         ).to.have.equal(3);
       });
 
@@ -75,7 +72,7 @@ describe('lnodewizard', () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelectorAll('mwc-check-list-item[disabled]').length
+            ?.querySelectorAll('check-list-item[disabled]').length
         ).to.have.equal(1);
       });
     });

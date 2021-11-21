@@ -1,5 +1,5 @@
 import { fixture, expect } from '@open-wc/testing';
-import { html } from '../../src/foundation.js';
+import { html, ListItem } from '../../src/foundation.js';
 
 import { WizardSelect } from '../../src/wizard-select.js';
 
@@ -10,7 +10,7 @@ describe('wizard-select', () => {
     element = await fixture(
       html`<${WizardSelect}
         >${items.map(
-          item => html`<mwc-list-item value="${item}">${item}</mwc-list-item>`
+          item => html`<${ListItem} value="${item}">${item}</${ListItem}>`
         )}</${WizardSelect}
       >`
     );

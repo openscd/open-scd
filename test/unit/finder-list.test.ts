@@ -98,7 +98,7 @@ describe('finder-list', () => {
       );
       await element.loaded;
       items = Array.from(
-        element.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+        element.shadowRoot?.querySelectorAll('list-item') ?? []
       );
     });
 
@@ -124,7 +124,7 @@ describe('finder-list', () => {
       });
 
       it('overrides list-item text content using .getDisplayString', () => {
-        expect(element.container.querySelector('mwc-list-item'))
+        expect(element.container.querySelector('list-item'))
           .property('text')
           .to.satisfy((t: string) => t.startsWith('Testing '));
       });
@@ -234,7 +234,7 @@ describe('finder-list', () => {
       );
       await element.loaded;
       items = Array.from(
-        element.shadowRoot?.querySelectorAll('mwc-list-item') ?? []
+        element.shadowRoot?.querySelectorAll('list-item') ?? []
       );
     });
 

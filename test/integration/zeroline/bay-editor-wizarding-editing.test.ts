@@ -115,7 +115,7 @@ describe('bay-editor wizarding editing integration', () => {
         element?.shadowRoot
           ?.querySelector('editor-container')
           ?.shadowRoot?.querySelector(
-            'mwc-list-item[value="ConductingEquipment"]'
+            'list-item[value="ConductingEquipment"]'
           )
       )).click();
       await parent.updateComplete;

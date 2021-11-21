@@ -8,6 +8,8 @@ import {
   html,
   IconButton,
   identity,
+  List,
+  ListItem,
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
@@ -32,8 +34,6 @@ import {
   lNodeTypeWizard,
 } from './templates/lnodetype-wizard.js';
 
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { FilteredList } from '../filtered-list.js';
 
@@ -180,7 +180,7 @@ export default class TemplatesPlugin extends LitElement {
               ) ?? []
             ).map(
               lnodetype =>
-                html`<mwc-list-item
+                html`<${ListItem}
               twoline
               value="${identity(lnodetype)}"
               tabindex="0"
@@ -190,7 +190,7 @@ export default class TemplatesPlugin extends LitElement {
                 'lnClass'
               )}</span></span><span slot="meta"
                 >${lnodetype.querySelectorAll('DO').length}</span
-              ></mwc-list-item
+              ></${ListItem}
             >`
             )}
           </${FilteredList}>
@@ -219,7 +219,7 @@ export default class TemplatesPlugin extends LitElement {
                 []
             ).map(
               dotype =>
-                html`<mwc-list-item
+                html`<${ListItem}
                   twoline
                   value="${identity(dotype)}"
                   tabindex="0"
@@ -229,7 +229,7 @@ export default class TemplatesPlugin extends LitElement {
                     'cdc'
                   )}</span></span><span slot="meta"
                     >${dotype.querySelectorAll('SDO, DA').length}</span
-                  ></mwc-list-item
+                  ></${ListItem}
                 >`
             )}
           </${FilteredList}>
@@ -258,14 +258,14 @@ export default class TemplatesPlugin extends LitElement {
                 []
             ).map(
               datype =>
-                html`<mwc-list-item
+                html`<${ListItem}
                   value="${identity(datype)}"
                   tabindex="0"
                   hasMeta
                   ><span>${datype.getAttribute('id')}</span
                   ><span slot="meta"
                     >${datype.querySelectorAll('BDA').length}</span
-                  ></mwc-list-item
+                  ></${ListItem}
                 >`
             )}
           </${FilteredList}>
@@ -295,14 +295,14 @@ export default class TemplatesPlugin extends LitElement {
               ) ?? []
             ).map(
               enumtype =>
-                html`<mwc-list-item
+                html`<${ListItem}
                   value="${identity(enumtype)}"
                   tabindex="0"
                   hasMeta
                   ><span>${enumtype.getAttribute('id')}</span
                   ><span slot="meta"
                     >${enumtype.querySelectorAll('EnumVal').length}</span
-                  ></mwc-list-item
+                  ></${ListItem}
                 >`
             )}
           </${FilteredList}>

@@ -53,7 +53,7 @@ describe('NewProject loader', () => {
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(
-      parent.wizardUI.dialog!.querySelector('mwc-radio-list-item:nth-child(2)')
+      parent.wizardUI.dialog!.querySelector('radio-list-item:nth-child(2)')
     )).click();
     await element.updateComplete;
 
@@ -85,7 +85,7 @@ describe('NewProject loader', () => {
     await parent.updateComplete;
     await new Promise(resolve => setTimeout(resolve, 100)); // await animation
     (<HTMLElement>(
-      parent.wizardUI.dialog!.querySelector('mwc-radio-list-item:nth-child(1)')
+      parent.wizardUI.dialog!.querySelector('radio-list-item:nth-child(1)')
     )).click();
     await parent.updateComplete;
     (<HTMLElement>(

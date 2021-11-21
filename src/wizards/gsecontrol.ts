@@ -1,8 +1,6 @@
 import { TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 
@@ -15,6 +13,8 @@ import {
   html,
   identity,
   isPublic,
+  List,
+  ListItem,
   newActionEvent,
   newWizardEvent,
   selector,
@@ -76,7 +76,7 @@ export function renderGseAttributes(
       nullable
       required
       >${['GOOSE', 'GSSE'].map(
-        type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
+        type => html`<${ListItem} value="${type}">${type}</${ListItem}>`
       )}</${WizardSelect}
     >`,
     html`<${WizardTextField}
@@ -93,7 +93,7 @@ export function renderGseAttributes(
       required
       helper="${translate('scl.fixedOffs')}"
       >${['true', 'false'].map(
-        type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
+        type => html`<${ListItem} value="${type}">${type}</${ListItem}>`
       )}</${WizardSelect}
     >`,
     html`<${WizardSelect}
@@ -103,7 +103,7 @@ export function renderGseAttributes(
       required
       helper="${translate('scl.securityEnabled')}"
       >${['None', 'Signature', 'SignatureAndEncryption'].map(
-        type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
+        type => html`<${ListItem} value="${type}">${type}</${ListItem}>`
       )}</${WizardSelect}
     >`,
   ];
@@ -291,11 +291,11 @@ export function selectGseControlWizard(element: Element): Wizard {
           }}
           >${gseControls.map(
             gseControl =>
-              html`<mwc-list-item twoline value="${identity(gseControl)}"
+              html`<${ListItem} twoline value="${identity(gseControl)}"
                 ><span>${gseControl.getAttribute('name')}</span
                 ><span slot="secondary"
                   >${identity(gseControl)}</span
-                ></mwc-list-item
+                ></${ListItem}
               >`
           )}</${FilteredList}
         >`,

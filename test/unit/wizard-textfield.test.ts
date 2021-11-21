@@ -1,5 +1,5 @@
 import { fixture, expect } from '@open-wc/testing';
-import { html } from '../../src/foundation.js';
+import { html, ListItem } from '../../src/foundation.js';
 
 import { WizardTextField } from '../../src/wizard-textfield.js';
 
@@ -91,27 +91,27 @@ describe('wizard-textfield', () => {
 
       it('shows all multipliers in the multiplier menu', () => {
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').length
+          element.multiplierMenu!.querySelectorAll('list-item').length
         ).to.equal(5);
 
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').item(0)
+          element.multiplierMenu!.querySelectorAll<ListItem>('list-item').item(0)
             .innerText
         ).to.equal('G');
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').item(1)
+          element.multiplierMenu!.querySelectorAll<ListItem>('list-item').item(1)
             .innerText
         ).to.equal('M');
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').item(2)
+          element.multiplierMenu!.querySelectorAll<ListItem>('list-item').item(2)
             .innerText
         ).to.equal('k');
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').item(3)
+          element.multiplierMenu!.querySelectorAll<ListItem>('list-item').item(3)
             .innerText
         ).to.equal('');
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').item(4)
+          element.multiplierMenu!.querySelectorAll<ListItem>('list-item').item(4)
             .innerText
         ).to.equal('m');
       });
@@ -121,11 +121,11 @@ describe('wizard-textfield', () => {
         element.requestUpdate('multipliers');
         await element.updateComplete;
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').length
+          element.multiplierMenu!.querySelectorAll('list-item').length
         ).to.equal(6);
 
         expect(
-          element.multiplierMenu!.querySelectorAll('mwc-list-item').item(0)
+          element.multiplierMenu!.querySelectorAll<ListItem>('list-item').item(0)
             .innerText
         ).to.equal('[textfield.noMultiplier]');
       });

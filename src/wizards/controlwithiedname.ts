@@ -1,17 +1,18 @@
 import { get } from 'lit-translate';
 import {
+  CheckListItem,
   createElement,
   EditorAction,
   findControlBlocks,
   html,
   identity,
+  List,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
 
-import { List } from '@material/mwc-list';
 
 import { inputIcon } from '../icons.js';
 import {
@@ -194,13 +195,13 @@ export function selectExtRefsWizard(
               '.' +
               (extRef.getAttribute('daName') ?? '');
 
-            return html`<mwc-check-list-item graphic="icon" twoline>
+            return html`<${CheckListItem} graphic="icon" twoline>
               <span>${reference}</span>
               <span slot="secondary"
                 >${extRef.getAttribute('ldInst') ?? ''}</span
               >
               <mwc-icon slot="graphic">${inputIcon}</mwc-icon>
-            </mwc-check-list-item> `;
+            </${CheckListItem}> `;
           })}</${FilteredList}
         >`,
       ],

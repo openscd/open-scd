@@ -77,7 +77,7 @@
       id="apList"
       multi=""
     >
-      <mwc-check-list-item
+      <check-list-item
         aria-disabled="false"
         graphic="control"
         mwc-list-item=""
@@ -91,8 +91,8 @@
         <span slot="secondary">
           IED3
         </span>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         aria-disabled="true"
         disabled=""
         graphic="control"
@@ -107,8 +107,8 @@
         <span slot="secondary">
           IED1
         </span>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         aria-disabled="true"
         disabled=""
         graphic="control"
@@ -123,8 +123,8 @@
         <span slot="secondary">
           IED2
         </span>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         aria-disabled="true"
         disabled=""
         graphic="control"
@@ -139,7 +139,7 @@
         <span slot="secondary">
           IED3
         </span>
-      </mwc-check-list-item>
+      </check-list-item>
     </filtered-list>
   </div>
   <c-button

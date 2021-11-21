@@ -12,14 +12,14 @@
   <span slot="title">
     Menu
   </span>
-  <mwc-list wrapfocus="">
+  <c-list wrapfocus="">
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       class="top"
       graphic="icon"
@@ -35,8 +35,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="top"
       graphic="icon"
@@ -52,8 +52,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="top"
       disabled=""
@@ -70,14 +70,14 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       class="static"
       disabled=""
@@ -92,8 +92,8 @@
       <span>
         Undo
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="static"
       disabled=""
@@ -108,8 +108,8 @@
       <span>
         Redo
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="validator"
       disabled=""
@@ -126,8 +126,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="validator"
       disabled=""
@@ -144,8 +144,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -159,8 +159,8 @@
       <span>
         View log
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -174,14 +174,14 @@
       <span>
         View diagnostics
       </span>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -198,8 +198,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -216,8 +216,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -234,8 +234,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -252,14 +252,14 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -273,8 +273,8 @@
       <span>
         Settings
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="middle"
       graphic="icon"
@@ -290,14 +290,14 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -311,8 +311,8 @@
       <span>
         Extensions
       </span>
-    </mwc-list-item>
-  </mwc-list>
+    </list-item>
+  </c-list>
   <mwc-top-app-bar-fixed slot="appContent">
     <icon-button
       icon="menu"
@@ -397,11 +397,11 @@
   </icon-button-toggle>
   <icon-button-toggle id="sclhistoryfilter">
   </icon-button-toggle>
-  <mwc-list
+  <c-list
     id="content"
     wrapfocus=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       disabled=""
       graphic="icon"
@@ -414,8 +414,8 @@
       <mwc-icon slot="graphic">
         info
       </mwc-icon>
-    </mwc-list-item>
-  </mwc-list>
+    </list-item>
+  </c-list>
   <c-button
     disabled=""
     icon="undo"
@@ -445,7 +445,7 @@
     id="content"
     wrapfocus=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       disabled=""
       graphic="icon"
@@ -458,7 +458,7 @@
       <mwc-icon slot="graphic">
         info
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
   </filtered-list>
   <c-button
     dialogaction="close"
@@ -534,11 +534,11 @@
   id="pluginManager"
   stacked=""
 >
-  <mwc-list
+  <c-list
     id="pluginList"
     multi=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       graphic="avatar"
       noninteractive=""
@@ -553,13 +553,13 @@
       >
         tab
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -574,8 +574,8 @@
         margin
       </mwc-icon>
       Substation
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -590,8 +590,8 @@
         settings_ethernet
       </mwc-icon>
       Communication
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -606,8 +606,8 @@
         copy_all
       </mwc-icon>
       Templates
-    </mwc-check-list-item>
-    <mwc-list-item
+    </check-list-item>
+    <list-item
       aria-disabled="false"
       graphic="avatar"
       noninteractive=""
@@ -624,13 +624,13 @@
           play_circle
         </strong>
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -645,8 +645,8 @@
         folder_open
       </mwc-icon>
       Open project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -661,8 +661,8 @@
         create_new_folder
       </mwc-icon>
       New project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -677,14 +677,14 @@
         save
       </mwc-icon>
       Save project
-    </mwc-check-list-item>
+    </check-list-item>
     <li
       divider=""
       inset=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -699,8 +699,8 @@
         rule_folder
       </mwc-icon>
       Validate project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -715,14 +715,14 @@
         rule_folder
       </mwc-icon>
       Validate Templates
-    </mwc-check-list-item>
+    </check-list-item>
     <li
       divider=""
       inset=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -737,8 +737,8 @@
         snippet_folder
       </mwc-icon>
       Import IEDs
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -753,8 +753,8 @@
         play_circle
       </mwc-icon>
       Subscriber Update
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -769,8 +769,8 @@
         merge_type
       </mwc-icon>
       Merge Project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -785,14 +785,14 @@
         merge_type
       </mwc-icon>
       Update Substation
-    </mwc-check-list-item>
+    </check-list-item>
     <li
       divider=""
       inset=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -807,8 +807,8 @@
         help
       </mwc-icon>
       Help
-    </mwc-check-list-item>
-  </mwc-list>
+    </check-list-item>
+  </c-list>
   <c-button
     icon="refresh"
     label="Reset"
@@ -841,8 +841,8 @@
       required=""
     >
     </mwc-textfield>
-    <mwc-list id="pluginKindList">
-      <mwc-radio-list-item
+    <c-list id="pluginKindList">
+      <radio-list-item
         aria-disabled="false"
         aria-selected="true"
         graphic="control"
@@ -858,8 +858,8 @@
         <mwc-icon slot="meta">
           tab
         </mwc-icon>
-      </mwc-radio-list-item>
-      <mwc-radio-list-item
+      </radio-list-item>
+      <radio-list-item
         aria-disabled="false"
         graphic="control"
         hasmeta=""
@@ -873,7 +873,7 @@
         <mwc-icon slot="meta">
           play_circle
         </mwc-icon>
-      </mwc-radio-list-item>
+      </radio-list-item>
       <div id="menudetails">
         <c-formfield
           id="enabledefault"
@@ -890,7 +890,7 @@
           id="menuPosition"
           value="middle"
         >
-          <mwc-list-item
+          <list-item
             aria-disabled="false"
             mwc-list-item=""
             role="option"
@@ -898,8 +898,8 @@
             value="top"
           >
             top
-          </mwc-list-item>
-          <mwc-list-item
+          </list-item>
+          <list-item
             activated=""
             aria-disabled="false"
             aria-selected="true"
@@ -910,8 +910,8 @@
             value="middle"
           >
             middle
-          </mwc-list-item>
-          <mwc-list-item
+          </list-item>
+          <list-item
             aria-disabled="false"
             mwc-list-item=""
             role="option"
@@ -919,10 +919,10 @@
             value="bottom"
           >
             bottom
-          </mwc-list-item>
+          </list-item>
         </c-select>
       </div>
-      <mwc-radio-list-item
+      <radio-list-item
         aria-disabled="false"
         graphic="control"
         hasmeta=""
@@ -936,8 +936,8 @@
         <mwc-icon slot="meta">
           rule_folder
         </mwc-icon>
-      </mwc-radio-list-item>
-    </mwc-list>
+      </radio-list-item>
+    </c-list>
     <mwc-textfield
       helper="The vendor supplied extension URL"
       id="pluginSrcInput"
@@ -982,7 +982,7 @@
       id="language"
       label="Language"
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         aria-selected="true"
         graphic="icon"
@@ -993,8 +993,8 @@
         value="en"
       >
         English
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
@@ -1003,7 +1003,7 @@
         value="de"
       >
         German (Deutsch)
-      </mwc-list-item>
+      </list-item>
     </c-select>
     <c-formfield label="Dark theme">
       <mwc-switch id="dark">

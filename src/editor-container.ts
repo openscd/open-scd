@@ -12,6 +12,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import {
   html,
   IconButton,
+  ListItem,
   newWizardEvent,
   SCLTag,
   tags,
@@ -20,7 +21,6 @@ import {
 import { emptyWizard, wizards } from './wizards/wizard-library.js';
 
 import { Menu } from '@material/mwc-menu';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -101,8 +101,8 @@ export class EditorContainer extends LitElement {
   private renderAddButtons(): TemplateResult[] {
     return childTags(this.element).map(
       child =>
-        html`<mwc-list-item value="${child}"
-          ><span>${child}</span></mwc-list-item
+        html`<${ListItem} value="${child}"
+          ><span>${child}</span></${ListItem}
         >`
     );
   }

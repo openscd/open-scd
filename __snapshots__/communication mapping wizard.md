@@ -10,7 +10,7 @@
 >
   <div id="wizard-content">
     <filtered-list>
-      <mwc-list-item
+      <list-item
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
@@ -34,8 +34,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
@@ -59,8 +59,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
@@ -84,8 +84,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
@@ -109,8 +109,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
@@ -134,8 +134,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         graphic="icon"
         hasmeta=""
         mwc-list-item=""
@@ -159,7 +159,7 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-list-item>
+      </list-item>
     </filtered-list>
   </div>
   <c-button

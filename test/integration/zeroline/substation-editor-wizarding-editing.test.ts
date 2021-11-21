@@ -109,7 +109,7 @@ describe('substation-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot
           ?.querySelector('editor-container')
-          ?.shadowRoot?.querySelector('mwc-list-item[value="VoltageLevel"]')
+          ?.shadowRoot?.querySelector('list-item[value="VoltageLevel"]')
       )).click();
       await parent.updateComplete;
 

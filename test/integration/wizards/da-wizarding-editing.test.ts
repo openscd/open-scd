@@ -43,13 +43,13 @@ describe('DA wizarding editing integration', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        dOTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod"]')
+        dOTypeList.querySelector('list-item[value="#Dummy.LLN0.Mod"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI?.dialog?.querySelector(
-          'mwc-list-item[value="#Dummy.LLN0.Mod>stVal"]'
+          'list-item[value="#Dummy.LLN0.Mod>stVal"]'
         )
       )).click();
       await parent.requestUpdate();
@@ -129,7 +129,7 @@ describe('DA wizarding editing integration', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        dOTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod"]')
+        dOTypeList.querySelector('list-item[value="#Dummy.LLN0.Mod"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

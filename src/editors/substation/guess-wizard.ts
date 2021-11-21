@@ -1,14 +1,15 @@
 import { get, translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
+  CheckListItem,
   compareNames,
   createElement,
   EditorAction,
   getReference,
   html,
+  List,
   Wizard,
   WizardActor,
   WizardInput,
@@ -226,18 +227,18 @@ export function guessVoltageLevel(doc: XMLDocument): Wizard {
       },
       content: [
         html`<p>${translate('guess.wizard.description')}</p>`,
-        html`<mwc-list multi id="ctlModelList"
-          ><mwc-check-list-item value="status-only"
-            >status-only</mwc-check-list-item
-          ><mwc-check-list-item value="direct-with-normal-security"
-            >direct-with-normal-security</mwc-check-list-item
-          ><mwc-check-list-item value="direct-with-enhanced-security"
-            >direct-with-enhanced-security</mwc-check-list-item
-          ><mwc-check-list-item value="sbo-with-normal-security"
-            >sbo-with-normal-security</mwc-check-list-item
-          ><mwc-check-list-item selected value="sbo-with-enhanced-security"
-            >sbo-with-enhanced-security</mwc-check-list-item
-          ></mwc-list
+        html`<${List} multi id="ctlModelList"
+          ><${CheckListItem} value="status-only"
+            >status-only</${CheckListItem}
+          ><${CheckListItem} value="direct-with-normal-security"
+            >direct-with-normal-security</${CheckListItem}
+          ><${CheckListItem} value="direct-with-enhanced-security"
+            >direct-with-enhanced-security</${CheckListItem}
+          ><${CheckListItem} value="sbo-with-normal-security"
+            >sbo-with-normal-security</${CheckListItem}
+          ><${CheckListItem} selected value="sbo-with-enhanced-security"
+            >sbo-with-enhanced-security</${CheckListItem}
+          ></${List}
         >`,
       ],
     },

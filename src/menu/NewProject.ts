@@ -6,9 +6,11 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import {
   EditorAction,
   html,
+  List,
   newLogEvent,
   newOpenDocEvent,
   newWizardEvent,
+  RadioListItem,
   Wizard,
   WizardInput,
 } from '../foundation.js';
@@ -24,7 +26,7 @@ export default class NewProjectPlugin extends LitElement {
       ? inputs[0].value
       : inputs[0].value + '.scd';
     const version = <SupportedVersion>(
-      (<ListItemBase>wizard.shadowRoot!.querySelector('mwc-list')!.selected)
+      (<ListItemBase>wizard.shadowRoot!.querySelector<List>('c-list')!.selected)
         .value
     );
 
@@ -57,17 +59,17 @@ export default class NewProjectPlugin extends LitElement {
               required
               dialogInitialFocus
             ></${WizardTextField}>
-            <mwc-list activatable>
-              <mwc-radio-list-item left value="2003"
-                >Edition 1 (Schema 1.7)</mwc-radio-list-item
+            <${List} activatable>
+              <${RadioListItem} left value="2003"
+                >Edition 1 (Schema 1.7)</${RadioListItem}
               >
-              <mwc-radio-list-item left value="2007B"
-                >Edition 2 (Schema 3.1)</mwc-radio-list-item
+              <${RadioListItem} left value="2007B"
+                >Edition 2 (Schema 3.1)</${RadioListItem}
               >
-              <mwc-radio-list-item left selected value="2007B4"
-                >Edition 2.1 (2007B4)</mwc-radio-list-item
+              <${RadioListItem} left selected value="2007B4"
+                >Edition 2.1 (2007B4)</${RadioListItem}
               >
-            </mwc-list>`,
+            </${List}>`,
         ],
       },
     ];

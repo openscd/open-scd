@@ -2,13 +2,12 @@ import { html as litHtml, LitElement, TemplateResult } from 'lit-element';
 import { directive, Part } from 'lit-html';
 import wrapHtml from 'carehtml';
 
-import { List } from '@material/mwc-list';
 import { TextField } from '@material/mwc-textfield';
 import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
-import { Select } from './foundation/components.js';
+import { List, Select } from './foundation/components.js';
 
 export const html = wrapHtml(litHtml);
 
@@ -23,6 +22,10 @@ export {
   Formfield,
   IconButton,
   IconButtonToggle,
+  ListItem,
+  CheckListItem,
+  RadioListItem,
+  List
 } from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;

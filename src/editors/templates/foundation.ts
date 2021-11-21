@@ -9,6 +9,7 @@ import {
   getValue,
   html,
   isPublic,
+  ListItem,
   SCLTag,
   WizardActor,
   WizardInput,
@@ -112,10 +113,10 @@ export function buildListFromStringArray(
   selected: string | null
 ): TemplateResult[] {
   return list.map(
-    item => html`<mwc-list-item
+    item => html`<${ListItem}
       value=${ifDefined(item === null ? undefined : item)}
       ?selected=${item === selected}
-      >${item}</mwc-list-item
+      >${item}</${ListItem}
     >`
   );
 }

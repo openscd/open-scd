@@ -11,6 +11,8 @@ import {
   html,
   identity,
   isPublic,
+  List,
+  ListItem,
   newActionEvent,
   newWizardEvent,
   SCLTag,
@@ -31,8 +33,6 @@ import {
 } from './foundation.js';
 
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { List } from '@material/mwc-list';
 import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 import { patterns } from '../../wizards/foundation/limits.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -165,10 +165,10 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           helper="${translate('scl.type')}"
           >${types.map(
             dataType =>
-              html`<mwc-list-item
+              html`<${ListItem}
                 value=${dataType.id}
                 ?selected=${dataType.id === type}
-                >${dataType.id}</mwc-list-item
+                >${dataType.id}</${ListItem}
               >`
           )}</${Select}
         >`,
@@ -265,7 +265,7 @@ export function createDOTypeWizard(
         >
           ${Array.from(templates.querySelectorAll('DOType')).map(
             datype =>
-              html`<mwc-list-item
+              html`<${ListItem}
                 graphic="icon"
                 hasMeta
                 value="${datype.getAttribute('id') ?? ''}"
@@ -275,7 +275,7 @@ export function createDOTypeWizard(
                 <span slot="meta"
                   >${datype.querySelectorAll('SDO,DA').length}</span
                 >
-              </mwc-list-item>`
+              </${ListItem}>`
           )}
         </${Select}>`,
         html`<${WizardTextField}
@@ -410,7 +410,7 @@ export function dOTypeWizard(
           ></${Button}>
         </section>`,
         html`
-          <mwc-list
+          <${List}
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {
               const item = <ListItem>(<List>e.target).selected;
@@ -433,7 +433,7 @@ export function dOTypeWizard(
           >
             ${Array.from(dotype.querySelectorAll('SDO, DA')).map(
               daorsdo =>
-                html`<mwc-list-item
+                html`<${ListItem}
                   twoline
                   tabindex="0"
                   class="${daorsdo.tagName === 'DA' ? 'DA' : 'SDO'}"
@@ -445,10 +445,10 @@ export function dOTypeWizard(
                     daorsdo.getAttribute('bType') === 'Struct'
                       ? '#' + daorsdo.getAttribute('type')
                       : daorsdo.getAttribute('bType')}</span
-                  ></mwc-list-item
+                  ></${ListItem}
                 >`
             )}
-          </mwc-list>
+          </${List}>
         `,
       ],
     },

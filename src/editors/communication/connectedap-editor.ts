@@ -8,7 +8,6 @@ import {
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import {
@@ -27,6 +26,9 @@ import {
   Checkbox,
   Fab,
   Formfield,
+  ListItem,
+  CheckListItem,
+  List,
 } from '../../foundation.js';
 
 import {
@@ -157,22 +159,22 @@ function renderWizardPage(element: Element): TemplateResult {
   if (accPointDescription.length)
     return html` <${FilteredList} id="apList" multi
       >${accPointDescription.map(
-        item => html`<mwc-check-list-item
+        item => html`<${CheckListItem}
           value="${JSON.stringify(item.value)}"
           twoline
           ?disabled=${item.connected}
           ><span>${item.value.apName}</span
           ><span slot="secondary"
             >${item.value.iedName}</span
-          ></mwc-check-list-item
+          ></${CheckListItem}
         >`
       )}
     </${FilteredList}>`;
 
-  return html`<mwc-list-item disabled graphic="icon">
+  return html`<${ListItem} disabled graphic="icon">
     <span>${translate('lnode.wizard.placeholder')}</span>
     <mwc-icon slot="graphic">info</mwc-icon>
-  </mwc-list-item>`;
+  </${ListItem}>`;
 }
 
 /** @returns a Wizard for creating `element` `ConnectedAP`. */

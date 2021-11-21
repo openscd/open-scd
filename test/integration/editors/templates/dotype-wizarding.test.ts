@@ -138,7 +138,7 @@ describe('DOType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        dOTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod"]')
+        dOTypeList.querySelector('list-item[value="#Dummy.LLN0.Mod"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); //recursive call takes time
@@ -193,13 +193,13 @@ describe('DOType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        dOTypeList.querySelector('mwc-list-item[value="#Dummy.WYE"]')
+        dOTypeList.querySelector('list-item[value="#Dummy.WYE"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI?.dialog?.querySelector(
-          'mwc-list-item[value="#Dummy.WYE>phsA"]'
+          'list-item[value="#Dummy.WYE>phsA"]'
         )
       )).click();
       await parent.requestUpdate();
@@ -261,7 +261,7 @@ describe('DOType wizards', () => {
       ).to.be.true;
     });
     it('filters the type selector to DOTypes', async () => {
-      expect(typeSelect!.querySelectorAll('mwc-list-item').length).to.equal(
+      expect(typeSelect!.querySelectorAll('list-item').length).to.equal(
         doc.querySelectorAll('DOType').length
       );
     });
@@ -275,7 +275,7 @@ describe('DOType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        dOTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod"]')
+        dOTypeList.querySelector('list-item[value="#Dummy.LLN0.Mod"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

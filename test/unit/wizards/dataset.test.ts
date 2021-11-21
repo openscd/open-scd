@@ -135,13 +135,13 @@ describe('dataset wizards', () => {
 
         firstFCDA = <HTMLElement>(
           element.wizardUI.dialog?.querySelector(
-            'filtered-list>mwc-check-list-item'
+            'filtered-list>check-list-item'
           )
         );
 
         thirdFCDA = <HTMLElement>(
           element.wizardUI.dialog?.querySelector(
-            'filtered-list>mwc-check-list-item:nth-child(3)'
+            'filtered-list>check-list-item:nth-child(3)'
           )
         );
       });

@@ -6,6 +6,7 @@ import {
   html,
   identity,
   isPublic,
+  ListItem,
   newWizardEvent,
   selector,
   Wizard,
@@ -92,7 +93,7 @@ export function communicationMappingWizard(
             );
             const [_, sourceIED, controlBlock] = cbId.match(/^(.+)>>(.*)$/)!;
 
-            return html`<mwc-list-item
+            return html`<${ListItem}
               twoline
               graphic="icon"
               hasMeta
@@ -117,7 +118,7 @@ export function communicationMappingWizard(
                 >${connections.get(key)!.length}</span
               >
               <mwc-icon slot="graphic">${controlBlockIcons[cbTag]}</mwc-icon>
-            </mwc-list-item>`;
+            </${ListItem}>`;
           })}</${FilteredList}
         >`,
       ],

@@ -12,7 +12,7 @@
 >
   <div id="wizard-content">
     <filtered-list>
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
@@ -25,8 +25,8 @@
         <span slot="secondary">
           IED1>>CircuitBreaker_CB1>GCB
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -39,8 +39,8 @@
         <span slot="secondary">
           IED1>>CircuitBreaker_CB1>GCB2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -53,7 +53,7 @@
         <span slot="secondary">
           IED2>>CBSW>GCB
         </span>
-      </mwc-list-item>
+      </list-item>
     </filtered-list>
   </div>
   <c-button
@@ -101,22 +101,22 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="GOOSE"
       >
         GOOSE
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="GSSE"
       >
         GSSE
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-text-field
       helper="[scl.id]"
@@ -132,22 +132,22 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="true"
       >
         true
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="false"
       >
         false
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       disabled=""
@@ -156,30 +156,30 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="None"
       >
         None
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="Signature"
       >
         Signature
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="SignatureAndEncryption"
       >
         SignatureAndEncryption
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
   </div>
   <c-button
@@ -232,22 +232,22 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="GOOSE"
       >
         GOOSE
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="GSSE"
       >
         GSSE
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-text-field
       helper="[scl.id]"
@@ -262,22 +262,22 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="true"
       >
         true
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="false"
       >
         false
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       disabled=""
@@ -286,30 +286,30 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="None"
       >
         None
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="Signature"
       >
         Signature
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
         value="SignatureAndEncryption"
       >
         SignatureAndEncryption
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <c-button
       icon="edit"

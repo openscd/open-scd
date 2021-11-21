@@ -1,13 +1,15 @@
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { repeat } from 'lit-html/directives/repeat';
 import { get, translate } from 'lit-translate';
 
 import {
+  CheckListItem,
   EditorAction,
   html,
   identity,
   isEqual,
   isSame,
+  List,
+  ListItem,
   newWizardEvent,
   SimpleAction,
   Wizard,
@@ -41,7 +43,7 @@ function mergeWizardAction(
 ): WizardActor {
   return (_, wizard: Element): EditorAction[] => {
     const actions: SimpleAction[] = [];
-    const checkList = wizard.shadowRoot!.querySelector('mwc-list')!;
+    const checkList = wizard.shadowRoot!.querySelector<List>('c-list')!;
 
     const selectedAttrDiffs = (<ListItem[]>checkList.selected)
       .filter(item => item.classList.contains('attr'))
@@ -171,12 +173,12 @@ export function mergeWizard(
       },
       content: [
         html`
-          <mwc-list multi>
+          <${List} multi>
             ${repeat(
               attrDiffs,
               e => e,
               ([name, diff], index) =>
-                html`<mwc-check-list-item
+                html`<${CheckListItem}
                   value=${index}
                   class="attr"
                   twoline
@@ -203,11 +205,11 @@ export function mergeWizard(
                         : 'delete'
                       : 'add'}</mwc-icon
                   >
-                </mwc-check-list-item>`
+                </${CheckListItem}>`
             )}
             ${childDiffs.length
-              ? html`<mwc-list-item noninteractive
-                    >${translate('merge.children')}</mwc-list-item
+              ? html`<${ListItem} noninteractive
+                    >${translate('merge.children')}</${ListItem}
                   >
                   <li padded divider role="separator"></li>`
               : ''}
@@ -215,7 +217,7 @@ export function mergeWizard(
               childDiffs,
               e => e,
               (diff, index) =>
-                html`<mwc-check-list-item
+                html`<${CheckListItem}
                   value=${index}
                   class="child"
                   twoline
@@ -246,9 +248,9 @@ export function mergeWizard(
                         : 'delete'
                       : 'add'}</mwc-icon
                   >
-                </mwc-check-list-item>`
+                </${CheckListItem}>`
             )}
-          </mwc-list>
+          </${List}>
         `,
       ],
     },

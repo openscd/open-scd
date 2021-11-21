@@ -2,6 +2,7 @@ import { render, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  CheckListItem,
   createElement,
   EditorAction,
   getChildElementsByTagName,
@@ -9,6 +10,8 @@ import {
   html,
   identity,
   isPublic,
+  List,
+  ListItem,
   referencePath,
   selector,
   Wizard,
@@ -16,9 +19,7 @@ import {
   WizardInput,
 } from '../foundation.js';
 
-import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { FilteredList } from '../filtered-list.js';
 
@@ -200,7 +201,7 @@ function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
     .sort(compare);
 
   const lnTemplates = lnItems.map(item => {
-    return html`<mwc-check-list-item
+    return html`<${CheckListItem}
       ?selected=${item.selected}
       ?disabled=${item.disabled}
       value="${identity(item.element)}"
@@ -221,7 +222,7 @@ function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
         ${item.element.closest('LDevice')
           ? item.element.closest('LDevice')?.getAttribute('inst')
           : APldInst}</span
-      ></mwc-check-list-item
+      ></${CheckListItem}
     >`;
   });
 
@@ -254,18 +255,18 @@ function renderIEDPage(element: Element): TemplateResult {
         .sort(compare)
         .map(
           item =>
-            html`<mwc-check-list-item
+            html`<${CheckListItem}
               value="${item.iedName ?? ''}"
               ?selected=${item.selected}
-              >${item.iedName}</mwc-check-list-item
+              >${item.iedName}</${CheckListItem}
             >`
         )}</${FilteredList}
     >`;
   else
-    return html`<mwc-list-item noninteractive graphic="icon">
+    return html`<${ListItem} noninteractive graphic="icon">
       <span>${translate('lnode.wizard.placeholder')}</span>
       <mwc-icon slot="graphic">info</mwc-icon>
-    </mwc-list-item>`;
+    </${ListItem}>`;
 }
 
 /** @returns a Wizard for editing `element`'s `LNode` children. */

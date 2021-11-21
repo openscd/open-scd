@@ -1,9 +1,8 @@
 import { expect, fixture } from '@open-wc/testing';
 
-import { List } from '@material/mwc-list';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
-import { html } from '../../../src/foundation.js';
+import { html, List } from '../../../src/foundation.js';
 
 describe('selectExtRefWizard', () => {
   let doc: Document;
@@ -41,7 +40,7 @@ describe('selectExtRefWizard', () => {
     commMappings.items[3].click();
     await parent.updateComplete;
     expect(
-      parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
+      parent.wizardUI.dialog?.querySelectorAll('check-list-item').length
     ).to.equal(14);
   });
 

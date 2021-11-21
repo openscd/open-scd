@@ -35,7 +35,7 @@ describe('PluggingElement', () => {
       await element.pluginUI.updateComplete;
       firstEditorPlugin = <HTMLElement>(
         element.pluginList.querySelector(
-          'mwc-check-list-item:not([noninteractive])'
+          'check-list-item:not([noninteractive])'
         )
       );
 
@@ -101,12 +101,12 @@ describe('PluggingElement', () => {
       await element.pluginDownloadUI.updateComplete;
       menuKindOption = <HTMLElement>(
         element.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[id="menu"]'
+          '#pluginKindList > radio-list-item[id="menu"]'
         )
       );
       validatorKindOption = <HTMLElement>(
         element.pluginDownloadUI.querySelector(
-          '#pluginKindList > mwc-radio-list-item[id="validator"]'
+          '#pluginKindList > radio-list-item[id="validator"]'
         )
       );
     });

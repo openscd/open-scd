@@ -12,6 +12,8 @@ import {
   html,
   identity,
   isPublic,
+  List,
+  ListItem,
   newActionEvent,
   newWizardEvent,
   patterns,
@@ -32,8 +34,6 @@ import {
   WizardOptions,
 } from './foundation.js';
 
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { WizardSelect } from '../../wizard-select.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -204,10 +204,10 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
           helper="${translate('scl.type')}"
           >${types.map(
             dataType =>
-              html`<mwc-list-item
+              html`<${ListItem}
                 value=${dataType.id}
                 ?selected=${dataType.id === type}
-                >${dataType.id}</mwc-list-item
+                >${dataType.id}</${ListItem}
               >`
           )}</${Select}
         >`,
@@ -336,8 +336,8 @@ function createLNodeTypeHelperWizard(
           .maybeValue=${null}
           >${validDOTypes.map(
             doType =>
-              html`<mwc-list-item value="${doType.getAttribute('id')}"
-                >${doType.getAttribute('id')}</mwc-list-item
+              html`<${ListItem} value="${doType.getAttribute('id')}"
+                >${doType.getAttribute('id')}</${ListItem}
               >`
           )}</${WizardSelect}
         >`;
@@ -456,8 +456,8 @@ export function createLNodeTypeWizard(
           dialogInitialFocus
           @selected=${(e: Event) => onLnClassChange(e, templates)}
         >
-          <mwc-list-item noninteractive
-            >Pre-defined lnClasses from templates</mwc-list-item
+          <${ListItem} noninteractive
+            >Pre-defined lnClasses from templates</${ListItem}
           >
           <li divider role="separator"></li>
           ${Array.from(templates.querySelectorAll('LNodeType')).map(
@@ -465,7 +465,7 @@ export function createLNodeTypeWizard(
               const lnClass = lnodetpye.getAttribute('lnClass') ?? '';
               const desc = lnodetpye.getAttribute('desc') ?? '';
 
-              return html`<mwc-list-item
+              return html`<${ListItem}
                 twoline
                 style="min-width:200px"
                 graphic="icon"
@@ -476,17 +476,17 @@ export function createLNodeTypeWizard(
                 <span slot="meta"
                   >${getChildElementsByTagName(lnodetpye, 'DO').length}</span
                 >
-              </mwc-list-item>`;
+              </${ListItem}>`;
             }
           )}
-          <mwc-list-item noninteractive
-            >Empty lnClasses from IEC 61850-7-4</mwc-list-item
+          <${ListItem} noninteractive
+            >Empty lnClasses from IEC 61850-7-4</${ListItem}
           >
           <li divider role="separator"></li>
           ${Array.from(nsd74.querySelectorAll('LNClasses > LNClass')).map(
             lnClass => {
               const className = lnClass.getAttribute('name') ?? '';
-              return html`<mwc-list-item
+              return html`<${ListItem}
                 style="min-width:200px"
                 graphic="icon"
                 hasMeta
@@ -495,7 +495,7 @@ export function createLNodeTypeWizard(
                 <span slot="meta"
                   >${getAllDataObjects(nsd74, className).length}</span
                 >
-              </mwc-list-item>`;
+              </${ListItem}>`;
             }
           )}
         </${Select}>`,
@@ -612,7 +612,7 @@ export function lNodeTypeWizard(
           }}
         ></${Button}>`,
         html`
-          <mwc-list
+          <${List}
             style="margin-top: 0px;"
             @selected=${(e: SingleSelectedEvent) => {
               const wizard = dOWizard({
@@ -626,17 +626,17 @@ export function lNodeTypeWizard(
           >
             ${Array.from(lnodetype.querySelectorAll('DO')).map(
               doelement =>
-                html`<mwc-list-item
+                html`<${ListItem}
                   twoline
                   tabindex="0"
                   value="${identity(doelement)}"
                   ><span>${doelement.getAttribute('name')}</span
                   ><span slot="secondary"
                     >${'#' + doelement.getAttribute('type')}</span
-                  ></mwc-list-item
+                  ></${ListItem}
                 >`
             )}
-          </mwc-list>
+          </${List}>
         `,
       ],
     },

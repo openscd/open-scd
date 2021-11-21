@@ -20,7 +20,7 @@
         multi=""
         searchfieldlabel="[scl.Report]"
       >
-        <mwc-check-list-item
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           hasmeta=""
@@ -39,8 +39,8 @@
           <span slot="meta">
             4/5
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="true"
           disabled=""
           graphic="control"
@@ -60,8 +60,8 @@
           <span slot="meta">
             2/2
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           hasmeta=""
@@ -80,7 +80,7 @@
           <span slot="meta">
             0
           </span>
-        </mwc-check-list-item>
+        </check-list-item>
       </filtered-list>
       <filtered-list
         activatable=""
@@ -88,7 +88,7 @@
         multi=""
         searchfieldlabel="[scl.LN]"
       >
-        <mwc-check-list-item
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -102,13 +102,13 @@
           <span slot="secondary">
             IED1>P1
           </span>
-        </mwc-check-list-item>
+        </check-list-item>
         <li
           divider=""
           role="separator"
         >
         </li>
-        <mwc-check-list-item
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -122,8 +122,8 @@
           <span slot="secondary">
             IED1>>CircuitBreaker_CB1
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -137,8 +137,8 @@
           <span slot="secondary">
             IED1>>CircuitBreaker_CB1
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -152,8 +152,8 @@
           <span slot="secondary">
             IED1>>CircuitBreaker_CB1
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -167,8 +167,8 @@
           <span slot="secondary">
             IED1>>CircuitBreaker_CB1
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -182,8 +182,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -197,8 +197,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -212,8 +212,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -227,8 +227,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -242,8 +242,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -257,8 +257,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -272,8 +272,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -287,8 +287,8 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -302,8 +302,8 @@
           <span slot="secondary">
             IED1>>CircuitBreaker_CB1
           </span>
-        </mwc-check-list-item>
-        <mwc-check-list-item
+        </check-list-item>
+        <check-list-item
           aria-disabled="false"
           graphic="control"
           mwc-list-item=""
@@ -317,7 +317,7 @@
           <span slot="secondary">
             IED1>>Disconnectors
           </span>
-        </mwc-check-list-item>
+        </check-list-item>
       </filtered-list>
     </div>
   </div>
@@ -352,7 +352,7 @@
 >
   <div id="wizard-content">
     <filtered-list multi="">
-      <mwc-check-list-item
+      <check-list-item
         aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
@@ -363,8 +363,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
@@ -375,8 +375,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
@@ -387,7 +387,7 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
+      </check-list-item>
     </filtered-list>
   </div>
   <c-button

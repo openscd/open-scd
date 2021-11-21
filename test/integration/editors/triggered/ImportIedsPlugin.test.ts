@@ -4,8 +4,7 @@ import ImportingIedPlugin from '../../../../src/menu/ImportIEDs.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import { OpenSCD } from '../../../../src/open-scd.js';
 
-import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
-import { html } from '../../../../src/foundation.js';
+import { CheckListItem, html } from '../../../../src/foundation.js';
 
 describe('ImportIedsPlugin', () => {
   customElements.define('import-ieds-plugin', ImportingIedPlugin);
@@ -141,7 +140,7 @@ describe('ImportIedsPlugin', () => {
 
       expect(parent.wizardUI.dialog).to.exist;
       expect(
-        parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
+        parent.wizardUI.dialog?.querySelectorAll('check-list-item').length
       ).to.equal(3);
     });
     it('imports selected IED from Import IED wizard', async () => {
@@ -155,7 +154,7 @@ describe('ImportIedsPlugin', () => {
 
       (<CheckListItem>(
         parent.wizardUI.dialog!.querySelector(
-          'mwc-check-list-item:nth-child(2)'
+          'check-list-item:nth-child(2)'
         )
       )).setAttribute('selected', 'true');
       await parent.requestUpdate();

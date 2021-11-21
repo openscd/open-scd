@@ -1,10 +1,12 @@
 import { get } from 'lit-translate';
 
 import {
+  CheckListItem,
   createElement,
   getReference,
   html,
   identity,
+  List,
   newWizardEvent,
   pathParts,
   selector,
@@ -14,7 +16,6 @@ import {
   WizardInput,
 } from '../foundation.js';
 
-import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
@@ -227,7 +228,7 @@ export function createClientLnWizard(
               .sort((a, b) => b.numberClientLNs - a.numberClientLNs)
               .map(
                 item =>
-                  html`<mwc-check-list-item
+                  html`<${CheckListItem}
                     left
                     hasMeta
                     twoline
@@ -239,7 +240,7 @@ export function createClientLnWizard(
                       >${item.max
                         ? item.numberClientLNs + `/` + item.max
                         : item.numberClientLNs}</span
-                    ></mwc-check-list-item
+                    ></${CheckListItem}
                   >`
               )}</${FilteredList}
           ><${FilteredList}
@@ -249,25 +250,25 @@ export function createClientLnWizard(
             searchFieldLabel="${get('scl.LN')}"
             >${clientLns.map(
               ln =>
-                html`<mwc-check-list-item twoline value="${identity(ln)}">
+                html`<${CheckListItem} twoline value="${identity(ln)}">
                   <span>${getElement(identity(ln))}</span>
                   <span slot="secondary">${getPath(identity(ln))}</span>
-                </mwc-check-list-item>`
+                </${CheckListItem}>`
             )}
             <li divider role="separator"></li>
             ${serverLns.map(
               ln =>
-                html`<mwc-check-list-item twoline value="${identity(ln)}">
+                html`<${CheckListItem} twoline value="${identity(ln)}">
                   <span>${getElement(identity(ln))}</span>
                   <span slot="secondary">${getPath(identity(ln))}</span>
-                </mwc-check-list-item>`
+                </${CheckListItem}>`
             )}
             ${serverLn0s.map(
               ln0 =>
-                html`<mwc-check-list-item twoline value="${identity(ln0)}">
+                html`<${CheckListItem} twoline value="${identity(ln0)}">
                   <span>LLN0</span>
                   <span slot="secondary">${identity(ln0)}</span>
-                </mwc-check-list-item>`
+                </${CheckListItem}>`
             )}</${FilteredList}
           >
         </div>`,
@@ -329,10 +330,10 @@ export function selectClientLNsWizard(
               clientLN.getAttribute('lnClass') +
               (clientLN.getAttribute('lnInst') ?? '');
 
-            return html`<mwc-check-list-item graphic="icon">
+            return html`<${CheckListItem} graphic="icon">
               <span>${ln}</span>
               <mwc-icon slot="graphic">${clientIcon}</mwc-icon>
-            </mwc-check-list-item> `;
+            </${CheckListItem}> `;
           })}</${FilteredList}
         >`,
       ],

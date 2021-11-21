@@ -53,7 +53,7 @@ describe('open-scd', () => {
 
   it('opens the log on log menu entry click', async () => {
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-list-item[iconid="history"]')!
+      element.shadowRoot!.querySelector('list-item[iconid="history"]')!
     )).click();
     expect(element.logUI).to.have.property('open', true);
   });
@@ -66,7 +66,7 @@ describe('open-scd', () => {
 
   it('opens the diagnostics on daignostics menu entry click', async () => {
     await (<HTMLElement>(
-      element.shadowRoot!.querySelector('mwc-list-item[iconid="rule"]')!
+      element.shadowRoot!.querySelector('list-item[iconid="rule"]')!
     )).click();
     expect(element.diagnosticUI).to.have.property('open', true);
   });

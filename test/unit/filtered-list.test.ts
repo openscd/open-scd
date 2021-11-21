@@ -1,6 +1,6 @@
 import { expect, fixture } from '@open-wc/testing';
 import { FilteredList } from '../../src/filtered-list.js';
-import { Checkbox, html } from '../../src/foundation.js';
+import { Checkbox, CheckListItem, html } from '../../src/foundation.js';
 
 describe('filtered-list', () => {
   let element: FilteredList;
@@ -15,9 +15,9 @@ describe('filtered-list', () => {
       html`<${FilteredList} multi
         >${Array.from(listItems).map(
           item =>
-            html`<mwc-check-list-item twoline ?disabled=${item.disabled}
+            html`<${CheckListItem} twoline ?disabled=${item.disabled}
               ><span>${item.prim}</span
-              ><span slot="secondary">${item.sec}</span></mwc-check-list-item
+              ><span slot="secondary">${item.sec}</span></${CheckListItem}
             >`
         )}</${FilteredList}
       >`
@@ -118,7 +118,7 @@ describe('filtered-list', () => {
       expect(element.items[3].classList.contains('hidden')).to.be.true;
     });
 
-    it('filteres within twoline mwc-list-item', async () => {
+    it('filteres within twoline list-item', async () => {
       element.searchField.value = 'item2sec';
       element.onFilterInput();
       element.requestUpdate();
