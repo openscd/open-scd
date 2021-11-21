@@ -289,22 +289,10 @@ export function createConductingEquipmentElement(
     'application/xml'
   );
   parsedIcon.querySelectorAll('circle,path,line').forEach(icon => {
-    if (icon.tagName == 'circle') {
-      adjustCircleIconElementWithAbsoluteCoordinates(
-        <SVGCircleElement>icon,
-        absolutePosition
-      );
-    } else if (icon.tagName == 'line') {
-      adjustLineIconElementWithAbsoluteCoordinates(
-        <SVGLineElement>icon,
-        absolutePosition
-      );
-    } else if (icon.tagName == 'path') {
-      adjustPathIconElementWithAbsoluteCoordinates(
-        <SVGPathElement>icon,
-        absolutePosition
-      );
-    }
+    icon.setAttribute(
+      'transform',
+      `translate(${absolutePosition.x},${absolutePosition.y})`
+    );
     groupElement.appendChild(icon);
   });
 
@@ -339,7 +327,10 @@ export function createConnectivityNodeElement(
     'application/xml'
   );
   parsedIcon.querySelectorAll('circle').forEach(icon => {
-    adjustCircleIconElementWithAbsoluteCoordinates(icon, absolutePosition);
+    icon.setAttribute(
+      'transform',
+      `translate(${absolutePosition.x},${absolutePosition.y})`
+    );
     groupElement.appendChild(icon);
   });
 
@@ -487,92 +478,4 @@ function getAbsolutePositionTerminal(
       return terminalParentPosition;
     }
   }
-}
-
-/**
- * Adjust the x and y coordinates of a Circle element of an icon SVG,
- * to get the absolute coordinates for an SVG.
- * @param circle - The Circle element to adjust.
- * @param absolutePosition - The position being used for the adjustment.
- */
-export function adjustCircleIconElementWithAbsoluteCoordinates(
-  circle: SVGCircleElement,
-  absolutePosition: Point
-): void {
-  circle.setAttribute(
-    'cx',
-    Number(circle.getAttribute('cx')!) + absolutePosition.x! + ''
-  );
-  circle.setAttribute(
-    'cy',
-    Number(circle.getAttribute('cy')!) + absolutePosition.y! + ''
-  );
-}
-
-/**
- * Adjust the x1, x2, y1 and y2 coordinates of a Line element of an icon SVG,
- * to get the absolute coordinates for an SVG.
- * @param line - The Line element to adjust.
- * @param absolutePosition - The position being used for the adjustment.
- */
-export function adjustLineIconElementWithAbsoluteCoordinates(
-  line: SVGLineElement,
-  absolutePosition: Point
-): void {
-  line.setAttribute(
-    'x1',
-    Number(line.getAttribute('x1')!) + absolutePosition.x! + ''
-  );
-  line.setAttribute(
-    'y1',
-    Number(line.getAttribute('y1')!) + absolutePosition.y! + ''
-  );
-  line.setAttribute(
-    'x2',
-    Number(line.getAttribute('x2')!) + absolutePosition.x! + ''
-  );
-  line.setAttribute(
-    'y2',
-    Number(line.getAttribute('y2')!) + absolutePosition.y! + ''
-  );
-}
-
-/**
- * Adjust the d attribute of a Path element of an icon SVG,
- * to make it fit in the SVG.
- * Every number is being re-calculated.
- * @param path - The Path element to adjust.
- * @param absolutePosition - The position being used for the adjustment.
- */
-export function adjustPathIconElementWithAbsoluteCoordinates(
-  path: SVGPathElement,
-  absolutePosition: Point
-): void {
-  let previousIsNumber = false;
-  let pathReplacement = '';
-  // Split the string on spaces and ,
-  path
-    .getAttribute('d')
-    ?.split(/(,| )/g)
-    .forEach(pathElement => {
-      // If element is empty (so a space), skip it.
-      if (!pathElement.trim().length) return;
-
-      // If it's not a number, it's a letter which means it's not used for calculation.
-      if (isNaN(Number(pathElement))) {
-        pathReplacement += pathElement;
-      } else {
-        // If the previous element is a number, it means a 'y' coordinate should be used right now.
-        // Coordinates are always x,y based.
-        if (previousIsNumber) {
-          pathReplacement += Number(pathElement) + absolutePosition.y!;
-          previousIsNumber = false;
-        } else {
-          pathReplacement += Number(pathElement) + absolutePosition.x!;
-          previousIsNumber = true;
-        }
-      }
-      pathReplacement += ' ';
-    });
-  path.setAttribute('d', pathReplacement.trimEnd());
 }
