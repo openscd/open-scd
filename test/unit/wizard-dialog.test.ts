@@ -1,7 +1,13 @@
 import { fixture, expect } from '@open-wc/testing';
 
 import { WizardDialog } from '../../src/wizard-dialog.js';
-import { Button, EditorAction, html, WizardInput } from '../../src/foundation.js';
+import {
+  Button,
+  EditorAction,
+  html,
+  IconButtonToggle,
+  WizardInput,
+} from '../../src/foundation.js';
 
 import './mock-editor.js';
 import { WizardTextField } from '../../src/wizard-textfield.js';
@@ -223,7 +229,9 @@ describe('wizard-dialog', () => {
       it('looks like its snapshot', () => expect(element).to.equalSnapshot());
 
       it('switches to code editor view on code toggle button click', async () => {
-        element.dialog!.querySelector('mwc-icon-button-toggle')!.on = true;
+        (<IconButtonToggle>(
+          element.dialog!.querySelector('icon-button-toggle')
+        ))!.on = true;
         element.requestUpdate();
         await element.updateComplete;
         await element.dialog?.updateComplete;
@@ -232,7 +240,9 @@ describe('wizard-dialog', () => {
 
       describe('in code editor mode', () => {
         beforeEach(async () => {
-          element.dialog!.querySelector('mwc-icon-button-toggle')!.on = true;
+          (<IconButtonToggle>(
+            element.dialog!.querySelector('icon-button-toggle')
+          ))!.on = true;
           element.requestUpdate();
           await element.updateComplete;
           await element.dialog?.updateComplete;

@@ -89,9 +89,7 @@ describe('Templates Plugin', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('templates-plugin')
-          ?.shadowRoot?.querySelectorAll(
-            'mwc-icon-button[icon="playlist_add"]'
-          )[2]
+          ?.shadowRoot?.querySelectorAll('icon-button[icon="playlist_add"]')[2]
       )).click();
       await parent.updateComplete;
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -103,7 +101,7 @@ describe('Templates Plugin', () => {
         parent
           ?.querySelector('templates-plugin')
           ?.shadowRoot?.querySelector(
-            'section:last-child mwc-icon-button[icon="playlist_add"]'
+            'section:last-child icon-button[icon="playlist_add"]'
           )
       )).click();
       await parent.updateComplete;
@@ -111,9 +109,7 @@ describe('Templates Plugin', () => {
       parent.wizardUI.inputs[1].value = 'myID';
       await parent.updateComplete;
       (<HTMLElement>(
-        parent.wizardUI.dialog?.querySelector(
-          'c-button[slot="primaryAction"]'
-        )
+        parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
       )).click();
       await parent.updateComplete;
       expect(doc.querySelectorAll('EnumType').length).to.equal(5);

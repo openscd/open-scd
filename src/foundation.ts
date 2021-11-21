@@ -20,7 +20,9 @@ export {
   Select,
   Drawer,
   Fab,
-  Formfield
+  Formfield,
+  IconButton,
+  IconButtonToggle,
 } from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;

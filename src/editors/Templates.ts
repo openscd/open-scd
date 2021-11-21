@@ -6,6 +6,7 @@ import {
   Fab,
   getReference,
   html,
+  IconButton,
   identity,
   newActionEvent,
   newWizardEvent,
@@ -159,10 +160,10 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.LNodeType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button
+                <${IconButton}
                   icon="playlist_add"
                   @click=${() => this.openCreateLNodeTypeWizard()}
-                ></mwc-icon-button>
+                ></${IconButton}>
               </abbr>
             </nav>
           </h1>
@@ -199,10 +200,10 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.DOType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button
+                <${IconButton}
                   icon="playlist_add"
                   @click=${() => this.openCreateDOTypeWizard()}
-                ></mwc-icon-button>
+                ></${IconButton}>
               </abbr>
             </nav>
           </h1>
@@ -238,10 +239,10 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.DAType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button
+                <${IconButton}
                   icon="playlist_add"
                   @click=${() => this.openCreateDATypeWizard()}
-                ></mwc-icon-button>
+                ></${IconButton}>
               </abbr>
             </nav>
           </h1>
@@ -274,10 +275,10 @@ export default class TemplatesPlugin extends LitElement {
             ${translate('scl.EnumType')}
             <nav>
               <abbr title="${translate('add')}">
-                <mwc-icon-button
+                <${IconButton}
                   icon="playlist_add"
                   @click=${() => this.openCreateEnumWizard()}
-                ></mwc-icon-button>
+                ></${IconButton}>
               </abbr>
             </nav>
           </h1>

@@ -31,7 +31,7 @@ describe('subnetwork-editor wizarding integration', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('subnetwork-editor')
-          ?.shadowRoot?.querySelector('mwc-icon-button[icon="edit"]')
+          ?.shadowRoot?.querySelector('icon-button[icon="edit"]')
       )).click();
       await parent.updateComplete;
     });
@@ -128,7 +128,7 @@ describe('subnetwork-editor wizarding integration', () => {
       (<HTMLElement>(
         parent
           ?.querySelector('subnetwork-editor')
-          ?.shadowRoot?.querySelector('mwc-icon-button[icon="playlist_add"]')
+          ?.shadowRoot?.querySelector('icon-button[icon="playlist_add"]')
       )).click();
       await parent.updateComplete;
     });

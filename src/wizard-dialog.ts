@@ -11,7 +11,6 @@ import { get, translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
 
-
 import 'ace-custom-element';
 import './wizard-textfield.js';
 import {
@@ -31,6 +30,7 @@ import {
   html,
   Dialog,
   Button,
+  IconButtonToggle,
 } from './foundation.js';
 
 function dialogInputs(dialog?: Dialog): WizardInput[] {
@@ -95,8 +95,9 @@ export class WizardDialog extends LitElement {
 
   get code(): boolean {
     return (
-      (this.dialog?.querySelector('mwc-icon-button-toggle')?.on ?? false) &&
-      localStorage.getItem('mode') === 'pro'
+      (<IconButtonToggle>this.dialog?.querySelector('icon-button-toggle'))
+        ?.on ??
+      (false && localStorage.getItem('mode') === 'pro')
     );
   }
 
@@ -191,11 +192,11 @@ export class WizardDialog extends LitElement {
     >
       ${
         page.element && localStorage.getItem('mode') === 'pro'
-          ? html`<mwc-icon-button-toggle
+          ? html`<${IconButtonToggle}
               onicon="code"
               officon="code_off"
               @click=${() => this.requestUpdate()}
-            ></mwc-icon-button-toggle>`
+            ></${IconButtonToggle}>`
           : ''
       }
       <div id="wizard-content">
@@ -213,29 +214,34 @@ export class WizardDialog extends LitElement {
             : page.content
         }
       </div>
-      ${index > 0
-        ? html`<${Button}
+      ${
+        index > 0
+          ? html`<${Button}
             slot="secondaryAction"
             dialogAction="prev"
             icon="navigate_before"
             label=${this.wizard?.[index - 1].title}
           ></${Button}>`
-        : html``}
-      ${page.secondary
-        ? html`<${Button}
+          : html``
+      }
+      ${
+        page.secondary
+          ? html`<${Button}
             slot="secondaryAction"
             @click=${() => this.act(page.secondary?.action, false)}
             icon="${page.secondary.icon}"
             label="${page.secondary.label}"
           ></${Button}>`
-        : html`<${Button}
+          : html`<${Button}
             slot="secondaryAction"
             dialogAction="close"
             label="${translate('cancel')}"
             style="--mdc-theme-primary: var(--mdc-theme-error)"
-          ></${Button}>`}
-      ${this.code && page.element
-        ? html`<${Button}
+          ></${Button}>`
+      }
+      ${
+        this.code && page.element
+          ? html`<${Button}
             slot="primaryAction"
             @click=${() => this.act(codeAction(page.element!))}
             icon="code"
@@ -243,8 +249,8 @@ export class WizardDialog extends LitElement {
             trailingIcon
             dialogInitialFocus
           ></${Button}>`
-        : page.primary
-        ? html`<${Button}
+          : page.primary
+          ? html`<${Button}
             slot="primaryAction"
             @click=${() => this.act(page.primary?.action)}
             icon="${page.primary.icon}"
@@ -252,15 +258,16 @@ export class WizardDialog extends LitElement {
             trailingIcon
             dialogInitialFocus
           ></${Button}>`
-        : index + 1 < (this.wizard?.length ?? 0)
-        ? html`<${Button}
+          : index + 1 < (this.wizard?.length ?? 0)
+          ? html`<${Button}
             slot="primaryAction"
             dialogAction="next"
             icon="navigate_next"
             label=${this.wizard?.[index + 1].title}
             trailingicon
           ></${Button}>`
-        : html``}
+          : html``
+      }
     </${Dialog}>`;
   }
 
@@ -273,14 +280,14 @@ export class WizardDialog extends LitElement {
       --mdc-dialog-max-width: 92vw;
     }
 
-    c-dialog > mwc-icon-button-toggle {
+    c-dialog > icon-button-toggle {
       position: absolute;
       top: 8px;
       right: 14px;
       color: var(--base00);
     }
 
-    c-dialog > mwc-icon-button-toggle[on] {
+    c-dialog > icon-button-toggle[on] {
       color: var(--mdc-theme-primary);
     }
 

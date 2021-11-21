@@ -3,7 +3,13 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { property, query, TemplateResult } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
-import { Drawer, html, Mixin, newPendingStateEvent } from './foundation.js';
+import {
+  Drawer,
+  html,
+  IconButton,
+  Mixin,
+  newPendingStateEvent,
+} from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
@@ -245,13 +251,13 @@ export function Hosting<
 
     renderActionItem(me: MenuItem | 'divider'): TemplateResult {
       if (me !== 'divider' && me.actionItem)
-        return html`<mwc-icon-button
+        return html`<${IconButton}
           slot="actionItems"
           icon="${me.icon}"
           label="${me.name}"
           ?disabled=${me.disabled?.() || !me.action}
           @click=${me.action}
-        ></mwc-icon-button>`;
+        ></${IconButton}>`;
       else return html``;
     }
 
@@ -268,9 +274,11 @@ export function Hosting<
           id="menu"
         >
           <span slot="title">${translate('menu.title')}</span>
-          ${this.docName
-            ? html`<span slot="subtitle">${this.docName}</span>`
-            : ''}
+          ${
+            this.docName
+              ? html`<span slot="subtitle">${this.docName}</span>`
+              : ''
+          }
           <mwc-list
             wrapFocus
             @action=${(ae: CustomEvent<ActionDetail>) =>
@@ -282,52 +290,56 @@ export function Hosting<
           </mwc-list>
 
           <mwc-top-app-bar-fixed slot="appContent">
-            <mwc-icon-button
+            <${IconButton}
               icon="menu"
               label="Menu"
               slot="navigationIcon"
               @click=${() => (this.menuUI.open = true)}
-            ></mwc-icon-button>
+            ></${IconButton}>
             <div slot="title" id="title">${this.docName}</div>
             ${this.menu.map(this.renderActionItem)}
-            ${this.doc
-              ? html`<mwc-tab-bar
-                  @MDCTabBar:activated=${(e: CustomEvent) =>
-                    (this.activeTab = e.detail.index)}
-                >
-                  ${this.editors.map(this.renderEditorTab)}
-                </mwc-tab-bar>`
-              : ``}
+            ${
+              this.doc
+                ? html`<mwc-tab-bar
+                    @MDCTabBar:activated=${(e: CustomEvent) =>
+                      (this.activeTab = e.detail.index)}
+                  >
+                    ${this.editors.map(this.renderEditorTab)}
+                  </mwc-tab-bar>`
+                : ``
+            }
           </mwc-top-app-bar-fixed>
         </${Drawer}>
 
-        ${this.doc
-          ? until(
-              this.editors[this.activeTab] &&
-                this.editors[this.activeTab].content(),
-              html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-            )
-          : html`<div class="landing">
-              ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
-                (mi: MenuItem, index) =>
-                  mi.kind === 'top' && !mi.disabled?.()
-                    ? html`
-                        <mwc-icon-button
-                          class="landing_icon"
-                          icon="${mi.icon}"
-                          @click="${() =>
-                            (<ListItem>(
-                              this.menuUI.querySelector('mwc-list')!.items[
-                                index
-                              ]
-                            )).click()}"
-                        >
-                          <div class="landing_label">${mi.name}</div>
-                        </mwc-icon-button>
-                      `
-                    : html``
-              )}
-            </div>`}
+        ${
+          this.doc
+            ? until(
+                this.editors[this.activeTab] &&
+                  this.editors[this.activeTab].content(),
+                html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
+              )
+            : html`<div class="landing">
+                ${(<MenuItem[]>this.menu.filter(mi => mi !== 'divider')).map(
+                  (mi: MenuItem, index) =>
+                    mi.kind === 'top' && !mi.disabled?.()
+                      ? html`
+                          <${IconButton}
+                            class="landing_icon"
+                            icon="${mi.icon}"
+                            @click="${() =>
+                              (<ListItem>(
+                                this.menuUI.querySelector('mwc-list')!.items[
+                                  index
+                                ]
+                              )).click()}"
+                          >
+                            <div class="landing_label">${mi.name}</div>
+                          </${IconButton}>
+                        `
+                      : html``
+                )}
+              </div>`
+        }
         ${super.render()}`;
     }
   }

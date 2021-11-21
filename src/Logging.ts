@@ -3,12 +3,13 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { Snackbar } from '@material/mwc-snackbar';
 
-
 import {
   Button,
   CommitEntry,
   Dialog,
   html,
+  IconButton,
+  IconButtonToggle,
   ifImplemented,
   invert,
   IssueDetail,
@@ -319,11 +320,11 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
     private renderFilterButtons() {
       return (<LogEntryType[]>Object.keys(icons)).map(
-        kind => html`<mwc-icon-button-toggle
+        kind => html`<${IconButtonToggle}
           id="${kind}filter"
           ?on=${kind !== 'sclhistory'}
           >${getFilterIcon(kind, false)}
-          ${getFilterIcon(kind, true)}</mwc-icon-button-toggle
+          ${getFilterIcon(kind, true)}</${IconButtonToggle}
         >`
       );
     }
@@ -331,21 +332,21 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     render(): TemplateResult {
       return html`${ifImplemented(super.render())}
         <style>
-          #log > mwc-icon-button-toggle {
+          #log > icon-button-toggle {
             position: absolute;
             top: 8px;
             right: 14px;
           }
-          #log > mwc-icon-button-toggle:nth-child(2) {
+          #log > icon-button-toggle:nth-child(2) {
             right: 62px;
           }
-          #log > mwc-icon-button-toggle:nth-child(3) {
+          #log > icon-button-toggle:nth-child(3) {
             right: 110px;
           }
-          #log > mwc-icon-button-toggle:nth-child(4) {
+          #log > icon-button-toggle:nth-child(4) {
             right: 158px;
           }
-          #log > mwc-icon-button-toggle:nth-child(5) {
+          #log > icon-button-toggle:nth-child(5) {
             right: 206px;
           }
           #content mwc-list-item.info,
@@ -423,7 +424,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             get('log.snackbar.placeholder')
           }"
         >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>
         <mwc-snackbar
           id="warning"
@@ -442,7 +443,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             @click=${() => this.logUI.show()}
             >${translate('log.snackbar.show')}</${Button}
           >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>
         <mwc-snackbar
           id="error"
@@ -461,7 +462,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             @click=${() => this.logUI.show()}
             >${translate('log.snackbar.show')}</${Button}
           >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>
         <mwc-snackbar
           id="issue"
@@ -476,7 +477,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             @click=${() => this.diagnosticUI.show()}
             >${translate('log.snackbar.show')}</${Button}
           >
-          <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
+          <${IconButton} icon="close" slot="dismiss"></${IconButton}>
         </mwc-snackbar>`;
     }
   }

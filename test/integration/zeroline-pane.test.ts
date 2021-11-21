@@ -5,10 +5,9 @@ import { MockWizardEditor } from '../mock-wizard-editor.js';
 import { FilteredList } from '../../src/filtered-list.js';
 import { ZerolinePane } from '../../src/zeroline-pane.js';
 
-import { IconButton } from '@material/mwc-icon-button';
 import { TextField } from '@material/mwc-textfield';
 import { WizardTextField } from '../../src/wizard-textfield.js';
-import { html } from '../../src/foundation.js';
+import { Button, html } from '../../src/foundation.js';
 
 describe('zeroline-pane wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -46,7 +45,7 @@ describe('zeroline-pane wizarding editing integration', () => {
     expect(doc.querySelector('Substation[name="newSubstation"]')).to.not.exist;
     zeroline.createsubstation.click();
     await parent.updateComplete;
-    const primaryAction = <IconButton>(
+    const primaryAction = <Button>(
       parent.wizardUI.dialog?.querySelector('c-button[slot="primaryAction"]')
     );
     await primaryAction.updateComplete;

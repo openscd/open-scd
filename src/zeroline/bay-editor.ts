@@ -11,6 +11,7 @@ import { startMove, styles, cloneSubstationElement } from './foundation.js';
 import {
   getChildElementsByTagName,
   html,
+  IconButton,
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
@@ -73,34 +74,34 @@ export class BayEditor extends LitElement {
   render(): TemplateResult {
     return html`<${EditorContainer} .element=${this.element} nomargin>
       <abbr slot="header" title="${translate('lnode.tooltip')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="account_tree"
           @click="${() => this.openLNodeWizard()}"
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('duplicate')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="content_copy"
           @click=${() => cloneSubstationElement(this)}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('edit')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="edit"
           @click=${() => this.openEditWizard()}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('move')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="forward"
           @click=${() => startMove(this, BayEditor, VoltageLevelEditor)}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       <abbr slot="header" title="${translate('remove')}">
-        <mwc-icon-button
+        <${IconButton}
           icon="delete"
           @click=${() => this.remove()}
-        ></mwc-icon-button>
+        ></${IconButton}>
       </abbr>
       ${this.renderIedContainer()}
       <div id="ceContainer">

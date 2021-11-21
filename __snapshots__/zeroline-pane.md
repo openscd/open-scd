@@ -6,32 +6,32 @@
 <h1>
   <nav>
     <abbr title="[add]">
-      <mwc-icon-button
+      <icon-button
         icon="playlist_add"
         id="createsubstation"
       >
-      </mwc-icon-button>
+      </icon-button>
     </abbr>
   </nav>
   <nav>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button-toggle
+      <icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
       >
-      </mwc-icon-button-toggle>
+      </icon-button-toggle>
     </abbr>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button
+      <icon-button
         icon="link"
         id="commmap"
       >
-      </mwc-icon-button>
+      </icon-button>
     </abbr>
     <abbr title="[zeroline.gsecontrol]">
-      <mwc-icon-button id="gsecontrol">
-      </mwc-icon-button>
+      <icon-button id="gsecontrol">
+      </icon-button>
     </abbr>
   </nav>
 </h1>
@@ -50,32 +50,32 @@
 <h1>
   <nav>
     <abbr title="[add]">
-      <mwc-icon-button
+      <icon-button
         icon="playlist_add"
         id="createsubstation"
       >
-      </mwc-icon-button>
+      </icon-button>
     </abbr>
   </nav>
   <nav>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button-toggle
+      <icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
       >
-      </mwc-icon-button-toggle>
+      </icon-button-toggle>
     </abbr>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button
+      <icon-button
         icon="link"
         id="commmap"
       >
-      </mwc-icon-button>
+      </icon-button>
     </abbr>
     <abbr title="[zeroline.gsecontrol]">
-      <mwc-icon-button id="gsecontrol">
-      </mwc-icon-button>
+      <icon-button id="gsecontrol">
+      </icon-button>
     </abbr>
   </nav>
 </h1>
@@ -94,32 +94,32 @@
 <h1>
   <nav>
     <abbr title="[add]">
-      <mwc-icon-button
+      <icon-button
         icon="playlist_add"
         id="createsubstation"
       >
-      </mwc-icon-button>
+      </icon-button>
     </abbr>
   </nav>
   <nav>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button-toggle
+      <icon-button-toggle
         id="showieds"
         officon="developer_board_off"
         onicon="developer_board"
       >
-      </mwc-icon-button-toggle>
+      </icon-button-toggle>
     </abbr>
     <abbr title="[zeroline.commmap]">
-      <mwc-icon-button
+      <icon-button
         icon="link"
         id="commmap"
       >
-      </mwc-icon-button>
+      </icon-button>
     </abbr>
     <abbr title="[zeroline.gsecontrol]">
-      <mwc-icon-button id="gsecontrol">
-      </mwc-icon-button>
+      <icon-button id="gsecontrol">
+      </icon-button>
     </abbr>
   </nav>
 </h1>

@@ -9,12 +9,17 @@ import {
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
-import { html, newWizardEvent, SCLTag, tags } from './foundation.js';
+import {
+  html,
+  IconButton,
+  newWizardEvent,
+  SCLTag,
+  tags,
+} from './foundation.js';
 
 import { emptyWizard, wizards } from './wizards/wizard-library.js';
 
 import { Menu } from '@material/mwc-menu';
-import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
@@ -60,10 +65,10 @@ export class EditorContainer extends LitElement {
     return `${name}${desc ? ` - ${desc}` : ''}`;
   }
 
-  @query('mwc-icon-button[icon="playlist_add"]') addIcon?: IconButton;
+  @query('icon-button[icon="playlist_add"]') addIcon?: IconButton;
   @query('#menu') addMenu!: Menu;
   @query('#header') headerContainer!: HTMLElement;
-  @query('#morevert > mwc-icon-button') moreVert?: IconButton;
+  @query('#morevert > icon-button') moreVert?: IconButton;
   @query('.container') container!: HTMLElement;
 
   private openCreateWizard(tagName: string): void {
@@ -116,10 +121,10 @@ export class EditorContainer extends LitElement {
   private renderHeaderBody(): TemplateResult {
     return html`${this.header !== '' ? this.header : this.defaultHeader}
       ${childTags(this.element).length
-        ? html`<mwc-icon-button
+        ? html`<${IconButton}
               icon="playlist_add"
               @click=${() => (this.addMenu.open = true)}
-            ></mwc-icon-button>
+            ></${IconButton}>
             <mwc-menu
               id="menu"
               corner="TOP_RIGHT"
@@ -134,7 +139,7 @@ export class EditorContainer extends LitElement {
         : html``}
       ${Array.from(this.children).some(child => child.tagName === 'C-FAB')
         ? html`<div id="morevert">
-            <mwc-icon-button icon="more_vert"></mwc-icon-button>
+            <${IconButton} icon="more_vert"></${IconButton}>
             <slot name="morevert"></slot>
           </div>`
         : html``}<style>
@@ -259,9 +264,9 @@ export class EditorContainer extends LitElement {
       transition: background-color 150ms linear;
     }
 
-    h1 > ::slotted(mwc-icon-button),
-    h2 > ::slotted(mwc-icon-button),
-    h3 > ::slotted(mwc-icon-button),
+    h1 > ::slotted(icon-button),
+    h2 > ::slotted(icon-button),
+    h3 > ::slotted(icon-button),
     h1 > ::slotted(abbr),
     h2 > ::slotted(abbr),
     h3 > ::slotted(abbr) {
@@ -274,9 +279,9 @@ export class EditorContainer extends LitElement {
       float: right;
     }
 
-    h1 > mwc-icon-button,
-    h2 > mwc-icon-button,
-    h3 > mwc-icon-button {
+    h1 > icon-button,
+    h2 > icon-button,
+    h3 > icon-button {
       float: right;
     }
 

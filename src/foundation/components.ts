@@ -6,6 +6,8 @@ import { styles as selectStyles } from '@material/mwc-select/mwc-select.css.js';
 import { styles as drawerStyles } from '@material/mwc-drawer/mwc-drawer.css.js';
 import { styles as fabStyles } from '@material/mwc-fab/mwc-fab.css.js';
 import { styles as formFieldStyles } from '@material/mwc-formfield/mwc-formfield.css.js';
+import { styles as iconButtonStyles } from '@material/mwc-icon-button/mwc-icon-button.css.js';
+
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base.js';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base.js';
 import { CheckboxBase } from '@material/mwc-checkbox/mwc-checkbox-base.js';
@@ -14,6 +16,8 @@ import { SelectBase } from '@material/mwc-select/mwc-select-base.js';
 import { DrawerBase } from '@material/mwc-drawer/mwc-drawer-base.js';
 import { FabBase } from '@material/mwc-fab/mwc-fab-base.js';
 import { FormfieldBase } from '@material/mwc-formfield/mwc-formfield-base.js';
+import { IconButtonBase } from '@material/mwc-icon-button/mwc-icon-button-base.js';
+import { IconButtonToggleBase } from '@material/mwc-icon-button-toggle/mwc-icon-button-toggle-base.js';
 
 export class Dialog extends DialogBase {
   static styles = [dialogStyles];
@@ -47,4 +51,10 @@ export class Formfield extends FormfieldBase {
   static styles = [formFieldStyles];
 }
 
+export class IconButton extends IconButtonBase {
+  static styles = [iconButtonStyles];
+}
 
+export class IconButtonToggle extends IconButtonToggleBase {
+  static styles = [iconButtonStyles];
+}
