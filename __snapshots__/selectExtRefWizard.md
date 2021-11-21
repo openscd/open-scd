@@ -10,7 +10,7 @@
 >
   <div id="wizard-content">
     <filtered-list multi="">
-      <mwc-check-list-item
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -23,8 +23,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -37,8 +37,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -51,8 +51,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -65,8 +65,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -79,8 +79,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -93,8 +93,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -107,8 +107,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -121,8 +121,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -135,8 +135,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -149,8 +149,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -163,8 +163,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -177,8 +177,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -191,8 +191,8 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
-      <mwc-check-list-item
+      </check-list-item>
+      <check-list-item
         graphic="icon"
         mwc-list-item=""
         twoline=""
@@ -205,7 +205,7 @@
         </span>
         <mwc-icon slot="graphic">
         </mwc-icon>
-      </mwc-check-list-item>
+      </check-list-item>
     </filtered-list>
   </div>
   <c-button

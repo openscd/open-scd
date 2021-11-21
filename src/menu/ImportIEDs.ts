@@ -4,6 +4,7 @@ import { css, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 import { FilteredList } from '../filtered-list.js';
 import {
+  CheckListItem,
   createElement,
   EditorAction,
   getReference,
@@ -61,8 +62,8 @@ function importIedsWizard(importDoc: XMLDocument, doc: XMLDocument): Wizard {
         html`<${FilteredList} id="iedList" multi
           >${Array.from(importDoc.querySelectorAll(':root > IED')).map(
             ied =>
-              html`<mwc-check-list-item value="${identity(ied)}"
-                >${ied.getAttribute('name')}</mwc-check-list-item
+              html`<${CheckListItem} value="${identity(ied)}"
+                >${ied.getAttribute('name')}</${CheckListItem}
               >`
           )}</${FilteredList}
         >`,

@@ -559,7 +559,7 @@
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -574,8 +574,8 @@
         margin
       </mwc-icon>
       Substation
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -590,8 +590,8 @@
         settings_ethernet
       </mwc-icon>
       Communication
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -606,7 +606,7 @@
         copy_all
       </mwc-icon>
       Templates
-    </mwc-check-list-item>
+    </check-list-item>
     <list-item
       aria-disabled="false"
       graphic="avatar"
@@ -630,7 +630,7 @@
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -645,8 +645,8 @@
         folder_open
       </mwc-icon>
       Open project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -661,8 +661,8 @@
         create_new_folder
       </mwc-icon>
       New project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -677,14 +677,14 @@
         save
       </mwc-icon>
       Save project
-    </mwc-check-list-item>
+    </check-list-item>
     <li
       divider=""
       inset=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -699,8 +699,8 @@
         rule_folder
       </mwc-icon>
       Validate project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -715,14 +715,14 @@
         rule_folder
       </mwc-icon>
       Validate Templates
-    </mwc-check-list-item>
+    </check-list-item>
     <li
       divider=""
       inset=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -737,8 +737,8 @@
         snippet_folder
       </mwc-icon>
       Import IEDs
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -753,8 +753,8 @@
         play_circle
       </mwc-icon>
       Subscriber Update
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -769,8 +769,8 @@
         merge_type
       </mwc-icon>
       Merge Project
-    </mwc-check-list-item>
-    <mwc-check-list-item
+    </check-list-item>
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -785,14 +785,14 @@
         merge_type
       </mwc-icon>
       Update Substation
-    </mwc-check-list-item>
+    </check-list-item>
     <li
       divider=""
       inset=""
       role="separator"
     >
     </li>
-    <mwc-check-list-item
+    <check-list-item
       aria-disabled="false"
       class="official"
       graphic="control"
@@ -807,7 +807,7 @@
         help
       </mwc-icon>
       Help
-    </mwc-check-list-item>
+    </check-list-item>
   </mwc-list>
   <c-button
     icon="refresh"

@@ -2,6 +2,7 @@ import { render, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
 import {
+  CheckListItem,
   createElement,
   EditorAction,
   getChildElementsByTagName,
@@ -200,7 +201,7 @@ function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
     .sort(compare);
 
   const lnTemplates = lnItems.map(item => {
-    return html`<mwc-check-list-item
+    return html`<${CheckListItem}
       ?selected=${item.selected}
       ?disabled=${item.disabled}
       value="${identity(item.element)}"
@@ -221,7 +222,7 @@ function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
         ${item.element.closest('LDevice')
           ? item.element.closest('LDevice')?.getAttribute('inst')
           : APldInst}</span
-      ></mwc-check-list-item
+      ></${CheckListItem}
     >`;
   });
 
@@ -254,10 +255,10 @@ function renderIEDPage(element: Element): TemplateResult {
         .sort(compare)
         .map(
           item =>
-            html`<mwc-check-list-item
+            html`<${CheckListItem}
               value="${item.iedName ?? ''}"
               ?selected=${item.selected}
-              >${item.iedName}</mwc-check-list-item
+              >${item.iedName}</${CheckListItem}
             >`
         )}</${FilteredList}
     >`;

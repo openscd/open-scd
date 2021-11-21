@@ -3,7 +3,6 @@ import { expect, fixture } from '@open-wc/testing';
 import '../../../mock-wizard-editor.js';
 import '../../../mock-wizard.js';
 
-import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
 
 import { EditingElement } from '../../../../src/Editing.js';
@@ -30,42 +29,42 @@ describe('guess-wizard-integration', () => {
       expect(element.wizardUI.dialogs.length).to.equal(1);
       expect(
         element.wizardUI.dialog!.querySelectorAll(
-          '#ctlModelList > mwc-check-list-item'
+          '#ctlModelList > check-list-item'
         ).length
       ).to.equal(5);
     });
     it('the first one being status-only', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
-          '#ctlModelList > mwc-check-list-item:nth-child(1)'
+          '#ctlModelList > check-list-item:nth-child(1)'
         )?.innerHTML
       ).to.equal('status-only');
     });
     it('the second one being direct-with-normal-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
-          '#ctlModelList > mwc-check-list-item:nth-child(2)'
+          '#ctlModelList > check-list-item:nth-child(2)'
         )?.innerHTML
       ).to.equal('direct-with-normal-security');
     });
     it('the second one being direct-with-enhanced-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
-          '#ctlModelList > mwc-check-list-item:nth-child(3)'
+          '#ctlModelList > check-list-item:nth-child(3)'
         )?.innerHTML
       ).to.equal('direct-with-enhanced-security');
     });
     it('the second one being sbo-with-normal-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
-          '#ctlModelList > mwc-check-list-item:nth-child(4)'
+          '#ctlModelList > check-list-item:nth-child(4)'
         )?.innerHTML
       ).to.equal('sbo-with-normal-security');
     });
     it('the second one being sbo-with-enhanced-security', async () => {
       expect(
         element.wizardUI.dialog!.querySelector(
-          '#ctlModelList > mwc-check-list-item:nth-child(5)'
+          '#ctlModelList > check-list-item:nth-child(5)'
         )?.innerHTML
       ).to.equal('sbo-with-enhanced-security');
     });
@@ -87,7 +86,7 @@ describe('guess-wizarding-editing-integration', () => {
     await element.requestUpdate();
     (<HTMLElement>(
       element.wizardUI.dialog!.querySelector(
-        '#ctlModelList > mwc-check-list-item:nth-child(5)'
+        '#ctlModelList > check-list-item:nth-child(5)'
       )
     )).click();
     //FIXME: hack as default selected attribute does not work in Karma.

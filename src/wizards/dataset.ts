@@ -1,9 +1,8 @@
-import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
-
 import { get, translate } from 'lit-translate';
 
 import {
   Button,
+  CheckListItem,
   cloneElement,
   getValue,
   html,
@@ -50,7 +49,7 @@ function updateDataSetAction(element: Element): WizardActor {
 
     const fCDARemoveActions = Array.from(
       wizard.shadowRoot!.querySelectorAll(
-        'filtered-list > mwc-check-list-item:not([selected])'
+        'filtered-list > check-list-item:not([selected])'
       )
     )
       .map(listItem =>
@@ -118,8 +117,8 @@ export function editDataSetWizard(element: Element): Wizard {
         html`<${FilteredList} multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
-              html`<mwc-check-list-item selected value="${identity(fcda)}"
-                >${(<string>identity(fcda)).split('>')[4]}</mwc-check-list-item
+              html`<${CheckListItem} selected value="${identity(fcda)}"
+                >${(<string>identity(fcda)).split('>')[4]}</${CheckListItem}
               >`
           )}</${FilteredList}
         >`,

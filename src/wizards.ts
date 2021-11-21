@@ -2,6 +2,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { get, translate } from 'lit-translate';
 
 import {
+  CheckListItem,
   EditorAction,
   html,
   identity,
@@ -176,7 +177,7 @@ export function mergeWizard(
               attrDiffs,
               e => e,
               ([name, diff], index) =>
-                html`<mwc-check-list-item
+                html`<${CheckListItem}
                   value=${index}
                   class="attr"
                   twoline
@@ -203,7 +204,7 @@ export function mergeWizard(
                         : 'delete'
                       : 'add'}</mwc-icon
                   >
-                </mwc-check-list-item>`
+                </${CheckListItem}>`
             )}
             ${childDiffs.length
               ? html`<${ListItem} noninteractive
@@ -215,7 +216,7 @@ export function mergeWizard(
               childDiffs,
               e => e,
               (diff, index) =>
-                html`<mwc-check-list-item
+                html`<${CheckListItem}
                   value=${index}
                   class="child"
                   twoline
@@ -246,7 +247,7 @@ export function mergeWizard(
                         : 'delete'
                       : 'add'}</mwc-icon
                   >
-                </mwc-check-list-item>`
+                </${CheckListItem}>`
             )}
           </mwc-list>
         `,

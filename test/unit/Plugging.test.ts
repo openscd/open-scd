@@ -35,7 +35,7 @@ describe('PluggingElement', () => {
       await element.pluginUI.updateComplete;
       firstEditorPlugin = <HTMLElement>(
         element.pluginList.querySelector(
-          'mwc-check-list-item:not([noninteractive])'
+          'check-list-item:not([noninteractive])'
         )
       );
 

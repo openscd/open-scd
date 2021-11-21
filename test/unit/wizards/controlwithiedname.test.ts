@@ -41,7 +41,7 @@ describe('selectExtRefWizard', () => {
     commMappings.items[3].click();
     await parent.updateComplete;
     expect(
-      parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
+      parent.wizardUI.dialog?.querySelectorAll('check-list-item').length
     ).to.equal(14);
   });
 

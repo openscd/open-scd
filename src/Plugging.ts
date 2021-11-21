@@ -8,6 +8,7 @@ import { TextField } from '@material/mwc-textfield';
 
 import {
   Button,
+  CheckListItem,
   Dialog,
   Formfield,
   html,
@@ -358,7 +359,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
       return html`
         ${plugins.map(
           plugin =>
-            html`<mwc-check-list-item
+            html`<${CheckListItem}
               class="${plugin.official ? 'official' : 'external'}"
               value="${plugin.src}"
               ?selected=${plugin.installed}
@@ -369,7 +370,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
               >
               ${plugin.name}
-            </mwc-check-list-item>`
+            </${CheckListItem}>`
         )}
       `;
     }

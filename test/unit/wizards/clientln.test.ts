@@ -187,7 +187,7 @@ describe('clientln wizards', () => {
 
     it('filteres ClientLNs to one receiving IED', async () => {
       expect(
-        parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
+        parent.wizardUI.dialog?.querySelectorAll('check-list-item').length
       ).to.equal(
         doc.querySelectorAll(
           'IED[name="IED2"] ReportControl ClientLN[iedName="IED1"]'

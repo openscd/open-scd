@@ -8,6 +8,7 @@ import { styles as fabStyles } from '@material/mwc-fab/mwc-fab.css.js';
 import { styles as formFieldStyles } from '@material/mwc-formfield/mwc-formfield.css.js';
 import { styles as iconButtonStyles } from '@material/mwc-icon-button/mwc-icon-button.css.js';
 import { styles as listItemStyles } from '@material/mwc-list/mwc-list-item.css.js';
+import { styles as checkListItemStyles } from '@material/mwc-list/mwc-control-list-item.css.js';
 
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base.js';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base.js';
@@ -20,6 +21,7 @@ import { FormfieldBase } from '@material/mwc-formfield/mwc-formfield-base.js';
 import { IconButtonBase } from '@material/mwc-icon-button/mwc-icon-button-base.js';
 import { IconButtonToggleBase } from '@material/mwc-icon-button-toggle/mwc-icon-button-toggle-base.js';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
+import { CheckListItemBase } from '@material/mwc-list/mwc-check-list-item-base.js';
 
 export class Dialog extends DialogBase {
   static styles = [dialogStyles];
@@ -63,4 +65,8 @@ export class IconButtonToggle extends IconButtonToggleBase {
 
 export class ListItem extends ListItemBase {
   static styles = [listItemStyles];
+}
+
+export class CheckListItem extends CheckListItemBase {
+  static styles = [listItemStyles, checkListItemStyles];
 }

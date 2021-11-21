@@ -1,6 +1,5 @@
 import { expect, fixture } from '@open-wc/testing';
 
-import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-list/mwc-list';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -39,7 +38,7 @@ describe('lnodewizard', () => {
       expect(
         element.wizardUI.shadowRoot
           ?.querySelector('c-dialog')
-          ?.querySelectorAll('mwc-check-list-item').length
+          ?.querySelectorAll('check-list-item').length
       ).to.equal(doc.querySelectorAll('IED').length);
     });
 
@@ -56,7 +55,7 @@ describe('lnodewizard', () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelectorAll('mwc-check-list-item').length
+            ?.querySelectorAll('check-list-item').length
         ).to.equal(
           doc.querySelectorAll('IED[name="IED2"] LN0, IED[name="IED2"] LN')
             .length
@@ -67,7 +66,7 @@ describe('lnodewizard', () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelectorAll('mwc-check-list-item[selected]').length
+            ?.querySelectorAll('check-list-item[selected]').length
         ).to.have.equal(3);
       });
 
@@ -75,7 +74,7 @@ describe('lnodewizard', () => {
         expect(
           element.wizardUI.shadowRoot
             ?.querySelector('c-dialog:nth-child(2)')
-            ?.querySelectorAll('mwc-check-list-item[disabled]').length
+            ?.querySelectorAll('check-list-item[disabled]').length
         ).to.have.equal(1);
       });
     });

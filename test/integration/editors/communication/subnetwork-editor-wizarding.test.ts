@@ -7,7 +7,7 @@ import { WizardingElement } from '../../../../src/Wizarding.js';
 import '../../../mock-wizard.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { html } from '../../../../src/foundation.js';
+import { CheckListItem, html } from '../../../../src/foundation.js';
 
 describe('subnetwork-editor wizarding integration', () => {
   describe('edit/add Subnetwork wizard', () => {
@@ -139,13 +139,13 @@ describe('subnetwork-editor wizarding integration', () => {
       expect(parent.wizardUI.dialog).to.exist;
       expect(parent.wizardUI.dialogs.length).to.equal(1);
       expect(
-        parent.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
+        parent.wizardUI.dialog?.querySelectorAll('check-list-item').length
       ).to.equal(doc.querySelectorAll(':root > IED > AccessPoint').length);
     });
     it('only allows to select non-connected access points', async () => {
       expect(
         Array.from(
-          parent.wizardUI.dialog!.querySelectorAll('mwc-check-list-item')
+          parent.wizardUI.dialog!.querySelectorAll<CheckListItem>('check-list-item')
         ).filter(item => item.disabled).length
       ).to.equal(3);
     });
@@ -153,7 +153,7 @@ describe('subnetwork-editor wizarding integration', () => {
       expect(
         (<ListItemBase>(
           parent.wizardUI.dialog!.querySelector(
-            'mwc-check-list-item:nth-child(1)'
+            'check-list-item:nth-child(1)'
           )
         )).value
       ).to.equal('{"iedName":"IED3","apName":"P2"}');

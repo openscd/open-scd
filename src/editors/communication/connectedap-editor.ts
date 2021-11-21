@@ -28,6 +28,7 @@ import {
   Fab,
   Formfield,
   ListItem,
+  CheckListItem,
 } from '../../foundation.js';
 
 import {
@@ -158,14 +159,14 @@ function renderWizardPage(element: Element): TemplateResult {
   if (accPointDescription.length)
     return html` <${FilteredList} id="apList" multi
       >${accPointDescription.map(
-        item => html`<mwc-check-list-item
+        item => html`<${CheckListItem}
           value="${JSON.stringify(item.value)}"
           twoline
           ?disabled=${item.connected}
           ><span>${item.value.apName}</span
           ><span slot="secondary"
             >${item.value.iedName}</span
-          ></mwc-check-list-item
+          ></${CheckListItem}
         >`
       )}
     </${FilteredList}>`;
