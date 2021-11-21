@@ -120,6 +120,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   drawConnectivityNodes(): void {
     this.bays.forEach(bay => {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
+        .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .filter(cNode => getConnectedTerminals(cNode).length > 0)
         .forEach(cNode => {
           const cNodePosition = calculateConnectivityNodeSclCoordinates(cNode);
@@ -149,57 +150,59 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
   drawConnectivityNodeConnections(): void {
     this.bays.forEach(bay => {
-      bay.querySelectorAll('ConnectivityNode').forEach(cNode => {
-        const position = calculateConnectivityNodeSclCoordinates(cNode);
-        const cnPosition = getAbsolutePositionWithCustomCoordinates(
-          cNode,
-          position
-        );
+      Array.from(bay.querySelectorAll('ConnectivityNode'))
+        .filter(cNode => cNode.getAttribute('name') !== 'grounded')
+        .forEach(cNode => {
+          const position = calculateConnectivityNodeSclCoordinates(cNode);
+          const cnPosition = getAbsolutePositionWithCustomCoordinates(
+            cNode,
+            position
+          );
 
-        Array.from(this.doc.querySelectorAll('ConductingEquipment'))
-          .filter(element =>
-            element.querySelector(
-              `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
-            )
-          )
-          .forEach(element => {
-            const elementPosition = getAbsolutePosition(element);
-            const terminalElement = element.querySelector(
-              `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
-            );
-
-            let sideToDrawTerminalOn: Side;
-
-            if (elementPosition.y! > cnPosition.y!) {
-              const sidesOfRoutes = drawRoute(
-                cnPosition,
-                elementPosition,
-                this.svg
-              );
-              sideToDrawTerminalOn = sidesOfRoutes.pointBSide;
-            } else {
-              const sidesOfRoutes = drawRoute(
-                elementPosition,
-                cnPosition,
-                this.svg
-              );
-              sideToDrawTerminalOn = sidesOfRoutes.pointASide;
-            }
-
-            const terminal = createTerminalElement(
-              elementPosition,
-              sideToDrawTerminalOn,
-              terminalElement!
-            );
-            this.svg
-              .querySelectorAll(
-                `g[id="${getNameAttribute(bay)}"] > g[id="${getNameAttribute(
-                  element
-                )}"]`
+          Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+            .filter(element =>
+              element.querySelector(
+                `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
               )
-              .forEach(eq => eq.appendChild(terminal));
-          });
-      });
+            )
+            .forEach(element => {
+              const elementPosition = getAbsolutePosition(element);
+              const terminalElement = element.querySelector(
+                `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
+              );
+
+              let sideToDrawTerminalOn: Side;
+
+              if (elementPosition.y! > cnPosition.y!) {
+                const sidesOfRoutes = drawRoute(
+                  cnPosition,
+                  elementPosition,
+                  this.svg
+                );
+                sideToDrawTerminalOn = sidesOfRoutes.pointBSide;
+              } else {
+                const sidesOfRoutes = drawRoute(
+                  elementPosition,
+                  cnPosition,
+                  this.svg
+                );
+                sideToDrawTerminalOn = sidesOfRoutes.pointASide;
+              }
+
+              const terminal = createTerminalElement(
+                elementPosition,
+                sideToDrawTerminalOn,
+                terminalElement!
+              );
+              this.svg
+                .querySelectorAll(
+                  `g[id="${getNameAttribute(bay)}"] > g[id="${getNameAttribute(
+                    element
+                  )}"]`
+                )
+                .forEach(eq => eq.appendChild(terminal));
+            });
+        });
     });
   }
 
