@@ -42,7 +42,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   doc!: XMLDocument;
 
   // Container for giving the panzoom to.
-  @query('#panzoom') container!: HTMLElement;
+  @query('#panzoom') panzoomContainer!: HTMLElement;
 
   // The main canvas to draw everything on.
   @query('#svg') svg!: HTMLElement;
@@ -319,13 +319,13 @@ export default class SingleLineDiagramPlugin extends LitElement {
   }
 
   firstUpdated(): void {
-    panzoom(this.container);
+    panzoom(this.panzoomContainer);
     this.drawSubstationElements();
   }
 
   render(): TemplateResult {
     // TODO: Width and Height should be a percentage, not fixed height/width.
-    return html`<div class="container">
+    return html`<div class="sldContainer">
       <div id="panzoom">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -337,5 +337,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
     </div>`;
   }
 
-  static styles = css``;
+  static styles = css`
+    .sldContainer {
+      overflow: hidden;
+    }
+  `;
 }
