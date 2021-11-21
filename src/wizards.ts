@@ -1,4 +1,3 @@
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { repeat } from 'lit-html/directives/repeat';
 import { get, translate } from 'lit-translate';
 
@@ -8,6 +7,7 @@ import {
   identity,
   isEqual,
   isSame,
+  ListItem,
   newWizardEvent,
   SimpleAction,
   Wizard,
@@ -206,8 +206,8 @@ export function mergeWizard(
                 </mwc-check-list-item>`
             )}
             ${childDiffs.length
-              ? html`<mwc-list-item noninteractive
-                    >${translate('merge.children')}</mwc-list-item
+              ? html`<${ListItem} noninteractive
+                    >${translate('merge.children')}</${ListItem}
                   >
                   <li padded divider role="separator"></li>`
               : ''}

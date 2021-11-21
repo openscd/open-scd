@@ -53,7 +53,7 @@ describe('LoggingElement', () => {
     expect(element).to.have.property('nextAction', -1));
 
   it('renders a placeholder message', () =>
-    expect(element.logUI).to.contain('mwc-list-item[disabled]'));
+    expect(element.logUI).to.contain('list-item[disabled]'));
   // dirty hack: ask @open-wc/shadowDomDiff for contains support
 
   it('shows a snackbar on logging an info', () => {

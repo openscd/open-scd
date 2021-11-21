@@ -27,6 +27,7 @@ import {
   Checkbox,
   Fab,
   Formfield,
+  ListItem,
 } from '../../foundation.js';
 
 import {
@@ -169,10 +170,10 @@ function renderWizardPage(element: Element): TemplateResult {
       )}
     </${FilteredList}>`;
 
-  return html`<mwc-list-item disabled graphic="icon">
+  return html`<${ListItem} disabled graphic="icon">
     <span>${translate('lnode.wizard.placeholder')}</span>
     <mwc-icon slot="graphic">info</mwc-icon>
-  </mwc-list-item>`;
+  </${ListItem}>`;
 }
 
 /** @returns a Wizard for creating `element` `ConnectedAP`. */

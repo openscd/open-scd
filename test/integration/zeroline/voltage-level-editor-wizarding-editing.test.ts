@@ -196,7 +196,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       (<HTMLElement>(
         element?.shadowRoot
           ?.querySelector('editor-container')
-          ?.shadowRoot?.querySelector('mwc-list-item[value="Bay"]')
+          ?.shadowRoot?.querySelector('list-item[value="Bay"]')
       )).click();
       await parent.updateComplete;
 

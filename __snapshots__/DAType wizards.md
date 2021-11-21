@@ -18,7 +18,7 @@
       label="values"
       outlined=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -33,8 +33,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -49,8 +49,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -65,8 +65,8 @@
         <span slot="meta">
           5
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -81,8 +81,8 @@
         <span slot="meta">
           5
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -97,8 +97,8 @@
         <span slot="meta">
           5
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -113,8 +113,8 @@
         <span slot="meta">
           5
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -129,8 +129,8 @@
         <span slot="meta">
           5
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -145,8 +145,8 @@
         <span slot="meta">
           5
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -161,8 +161,8 @@
         <span slot="meta">
           8
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -177,8 +177,8 @@
         <span slot="meta">
           4
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -193,8 +193,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -209,8 +209,8 @@
         <span slot="meta">
           6
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -225,8 +225,8 @@
         <span slot="meta">
           6
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -241,8 +241,8 @@
         <span slot="meta">
           6
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -257,8 +257,8 @@
         <span slot="meta">
           6
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -273,8 +273,8 @@
         <span slot="meta">
           6
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -289,8 +289,8 @@
         <span slot="meta">
           6
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -305,8 +305,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -321,8 +321,8 @@
         <span slot="meta">
           3
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -337,8 +337,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -353,8 +353,8 @@
         <span slot="meta">
           4
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -369,8 +369,8 @@
         <span slot="meta">
           7
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -385,8 +385,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -401,8 +401,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -417,8 +417,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -433,8 +433,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -449,8 +449,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -465,8 +465,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -481,8 +481,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -497,8 +497,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -513,8 +513,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -529,8 +529,8 @@
         <span slot="meta">
           1
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -545,8 +545,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -561,8 +561,8 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         hasmeta=""
@@ -577,7 +577,7 @@
         <span slot="meta">
           2
         </span>
-      </mwc-list-item>
+      </list-item>
     </c-select>
     <wizard-text-field
       dialoginitialfocus=""
@@ -661,7 +661,7 @@
     >
     </c-button>
     <mwc-list style="margin-top: 0px;">
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="0"
@@ -674,8 +674,8 @@
         <span slot="secondary">
           #Dummy_Beh
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -688,8 +688,8 @@
         <span slot="secondary">
           #Dummy_origin
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -702,8 +702,8 @@
         <span slot="secondary">
           INT8U
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -716,8 +716,8 @@
         <span slot="secondary">
           Timestamp
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -730,8 +730,8 @@
         <span slot="secondary">
           BOOLEAN
         </span>
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -744,7 +744,7 @@
         <span slot="secondary">
           Check
         </span>
-      </mwc-list-item>
+      </list-item>
     </mwc-list>
   </div>
   <c-button

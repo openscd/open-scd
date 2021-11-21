@@ -14,6 +14,7 @@ import {
   invert,
   IssueDetail,
   IssueEvent,
+  ListItem,
   LitElementConstructor,
   LogEntry,
   LogEntryType,
@@ -248,7 +249,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       history: LogEntry[]
     ): TemplateResult {
       return html` <abbr title="${entry.title}">
-        <mwc-list-item
+        <${ListItem}
           class="${entry.kind}"
           graphic="icon"
           ?twoline=${!!entry.message}
@@ -267,7 +268,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             )})"
             >${icons[entry.kind]}</mwc-icon
           >
-        </mwc-list-item></abbr
+        </${ListItem}></abbr
       >`;
     }
 
@@ -275,26 +276,26 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       if (this.history.length > 0)
         return this.history.slice().reverse().map(this.renderLogEntry, this);
       else
-        return html`<mwc-list-item disabled graphic="icon">
+        return html`<${ListItem} disabled graphic="icon">
           <span>${translate('log.placeholder')}</span>
           <mwc-icon slot="graphic">info</mwc-icon>
-        </mwc-list-item>`;
+        </${ListItem}>`;
     }
 
     private renderIssueEntry(issue: IssueDetail): TemplateResult {
       return html` <abbr title="${issue.title + '\n' + issue.message}"
-        ><mwc-list-item ?twoline=${!!issue.message}>
+        ><${ListItem} ?twoline=${!!issue.message}>
           <span> ${issue.title}</span>
           <span slot="secondary">${issue.message}</span>
-        </mwc-list-item></abbr
+        </${ListItem}></abbr
       >`;
     }
 
     renderValidatorsIssues(issues: IssueDetail[]): TemplateResult[] {
       if (issues.length === 0) return [html``];
       return [
-        html`<mwc-list-item noninteractive
-          >${getPluginName(issues[0].validatorId)}</mwc-list-item
+        html`<${ListItem} noninteractive
+          >${getPluginName(issues[0].validatorId)}</${ListItem}
         >`,
         html`<li divider padded role="separator"></li>`,
         ...issues.map(issue => this.renderIssueEntry(issue)),
@@ -312,10 +313,10 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
       return issueItems.length
         ? issueItems
-        : html`<mwc-list-item disabled graphic="icon">
+        : html`<${ListItem} disabled graphic="icon">
             <span>${translate('diag.placeholder')}</span>
             <mwc-icon slot="graphic">info</mwc-icon>
-          </mwc-list-item>`;
+          </${ListItem}>`;
     }
 
     private renderFilterButtons() {
@@ -349,26 +350,26 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
           #log > icon-button-toggle:nth-child(5) {
             right: 206px;
           }
-          #content mwc-list-item.info,
-          #content mwc-list-item.warning,
-          #content mwc-list-item.error,
-          #content mwc-list-item.action,
-          #content mwc-list-item.sclhistory {
+          #content list-item.info,
+          #content list-item.warning,
+          #content list-item.error,
+          #content list-item.action,
+          #content list-item.sclhistory {
             display: none;
           }
-          #infofilter[on] ~ #content mwc-list-item.info {
+          #infofilter[on] ~ #content list-item.info {
             display: flex;
           }
-          #warningfilter[on] ~ #content mwc-list-item.warning {
+          #warningfilter[on] ~ #content list-item.warning {
             display: flex;
           }
-          #errorfilter[on] ~ #content mwc-list-item.error {
+          #errorfilter[on] ~ #content list-item.error {
             display: flex;
           }
-          #actionfilter[on] ~ #content mwc-list-item.action {
+          #actionfilter[on] ~ #content list-item.action {
             display: flex;
           }
-          #sclhistoryfilter[on] ~ #content mwc-list-item.sclhistory {
+          #sclhistoryfilter[on] ~ #content list-item.sclhistory {
             display: flex;
           }
 

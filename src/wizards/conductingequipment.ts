@@ -8,6 +8,7 @@ import {
   getValue,
   html,
   isPublic,
+  ListItem,
   Select,
   Wizard,
   WizardActor,
@@ -73,7 +74,7 @@ function renderTypeSelector(
         validationMessage="${translate('textfield.required')}"
       >
         ${Object.keys(types).map(
-          v => html`<mwc-list-item value="${v}">${types[v]}</mwc-list-item>`
+          v => html`<${ListItem} value="${v}">${types[v]}</${ListItem}>`
         )}
       </${Select}>`
     : html`<${Select}
@@ -82,7 +83,7 @@ function renderTypeSelector(
         validationMessage="${translate('textfield.required')}"
         disabled
       >
-        <mwc-list-item selected value="0">${type}</mwc-list-item>
+        <${ListItem} selected value="0">${type}</${ListItem}>
       </${Select}>`;
 }
 

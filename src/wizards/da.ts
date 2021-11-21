@@ -11,6 +11,7 @@ import {
   getValue,
   html,
   isPublic,
+  ListItem,
   newActionEvent,
   newWizardEvent,
   SCLTag,
@@ -38,7 +39,7 @@ export function renderDa(
       fixedMenuPosition
       >${functionalConstraintEnum.map(
         fcOption =>
-          html`<mwc-list-item value="${fcOption}">${fcOption}</mwc-list-item>`
+          html`<${ListItem} value="${fcOption}">${fcOption}</${ListItem}>`
       )}</${WizardSelect}
     >`,
     html`<${WizardSelect}
@@ -50,7 +51,7 @@ export function renderDa(
       fixedMenuPosition
       >${['true', 'false'].map(
         option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+          html`<${ListItem} value="${option}">${option}</${ListItem}>`
       )}</${WizardSelect}
     >`,
     html`<${WizardSelect}
@@ -62,7 +63,7 @@ export function renderDa(
       fixedMenuPosition
       >${['true', 'false'].map(
         option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+          html`<${ListItem} value="${option}">${option}</${ListItem}>`
       )}</${WizardSelect}
     >`,
     html`<${WizardSelect}
@@ -74,7 +75,7 @@ export function renderDa(
       fixedMenuPosition
       >${['true', 'false'].map(
         option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+          html`<${ListItem} value="${option}">${option}</${ListItem}>`
       )}</${WizardSelect}
     >`,
   ];

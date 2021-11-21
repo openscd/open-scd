@@ -11,9 +11,8 @@ import { translate } from 'lit-translate';
 
 import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import { depth, html } from './foundation.js';
+import { depth, html, ListItem } from './foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { FilteredList } from './filtered-list.js';
 
@@ -28,10 +27,10 @@ export interface Directory {
 
 const waitingList = html`<div class="column">
   <mwc-list
-    ><mwc-list-item noninteractive hasMeta
+    ><${ListItem} noninteractive hasMeta
       >${translate('loading')}<mwc-icon slot="meta"
         >pending</mwc-icon
-      ></mwc-list-item
+      ></${ListItem}
     ></mwc-list
   >
 </div>`;
@@ -147,12 +146,12 @@ export class FinderList extends LitElement {
     >
       ${entries.map(
         entry =>
-          html`<mwc-list-item
+          html`<${ListItem}
             value="${entry}"
             ?activated=${this.getPaths(path.length)
               .map(p => JSON.stringify(p))
               .includes(JSON.stringify(path.concat(entry)))}
-            >${this.getDisplayString(entry, path)}</mwc-list-item
+            >${this.getDisplayString(entry, path)}</${ListItem}
           >`
       )}
     </${FilteredList}>`;

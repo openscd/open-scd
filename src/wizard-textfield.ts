@@ -11,7 +11,7 @@ import { Menu } from '@material/mwc-menu';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
-import { html, IconButton } from './foundation.js';
+import { html, IconButton, ListItem } from './foundation.js';
 
 /** A potentially `nullable` `TextField` that allows for selection of an SI
  * `multiplier` if an SI `unit` is given.
@@ -137,10 +137,10 @@ export class WizardTextField extends TextField {
   renderMulplierList(): TemplateResult {
     return html`${this.multipliers.map(
       multiplier =>
-        html`<mwc-list-item ?selected=${multiplier === this.multiplier}
+        html`<${ListItem} ?selected=${multiplier === this.multiplier}
           >${multiplier === null
             ? translate('textfield.noMultiplier')
-            : multiplier}</mwc-list-item
+            : multiplier}</${ListItem}
         >`
     )}`;
   }

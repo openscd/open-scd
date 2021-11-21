@@ -42,7 +42,7 @@
       label="bType"
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -50,8 +50,8 @@
         value="BOOLEAN"
       >
         BOOLEAN
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -59,8 +59,8 @@
         value="INT8"
       >
         INT8
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -68,8 +68,8 @@
         value="INT16"
       >
         INT16
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -77,8 +77,8 @@
         value="INT24"
       >
         INT24
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -86,8 +86,8 @@
         value="INT32"
       >
         INT32
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -95,8 +95,8 @@
         value="INT64"
       >
         INT64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -104,8 +104,8 @@
         value="INT128"
       >
         INT128
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -113,8 +113,8 @@
         value="INT8U"
       >
         INT8U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -122,8 +122,8 @@
         value="INT16U"
       >
         INT16U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -131,8 +131,8 @@
         value="INT24U"
       >
         INT24U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -140,8 +140,8 @@
         value="INT32U"
       >
         INT32U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -149,8 +149,8 @@
         value="FLOAT32"
       >
         FLOAT32
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -158,8 +158,8 @@
         value="FLOAT64"
       >
         FLOAT64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         activated=""
         aria-disabled="false"
         aria-selected="true"
@@ -170,8 +170,8 @@
         value="Enum"
       >
         Enum
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -179,8 +179,8 @@
         value="Dbpos"
       >
         Dbpos
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -188,8 +188,8 @@
         value="Tcmd"
       >
         Tcmd
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -197,8 +197,8 @@
         value="Quality"
       >
         Quality
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -206,8 +206,8 @@
         value="Timestamp"
       >
         Timestamp
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -215,8 +215,8 @@
         value="VisString32"
       >
         VisString32
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -224,8 +224,8 @@
         value="VisString64"
       >
         VisString64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -233,8 +233,8 @@
         value="VisString65"
       >
         VisString65
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -242,8 +242,8 @@
         value="VisString129"
       >
         VisString129
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -251,8 +251,8 @@
         value="VisString255"
       >
         VisString255
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -260,8 +260,8 @@
         value="Octet64"
       >
         Octet64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -269,8 +269,8 @@
         value="Unicode255"
       >
         Unicode255
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -278,8 +278,8 @@
         value="Struct"
       >
         Struct
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -287,8 +287,8 @@
         value="EntryTime"
       >
         EntryTime
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -296,8 +296,8 @@
         value="Check"
       >
         Check
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -305,8 +305,8 @@
         value="ObjRef"
       >
         ObjRef
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -314,8 +314,8 @@
         value="Currency"
       >
         Currency
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -323,8 +323,8 @@
         value="PhyComAddr"
       >
         PhyComAddr
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -332,8 +332,8 @@
         value="TrgOps"
       >
         TrgOps
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -341,8 +341,8 @@
         value="OptFlds"
       >
         OptFlds
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -350,8 +350,8 @@
         value="SvOptFlds"
       >
         SvOptFlds
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -359,14 +359,14 @@
         value="EntryID"
       >
         EntryID
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       fixedmenuposition=""
       helper="Type"
       label="type"
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="true"
         class="Struct"
         disabled=""
@@ -377,8 +377,8 @@
         value="Dummy_origin"
       >
         Dummy_origin
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="true"
         class="Struct"
         disabled=""
@@ -389,8 +389,8 @@
         value="Dummy.LLN0.Mod.SBOw"
       >
         Dummy.LLN0.Mod.SBOw
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="true"
         class="Struct"
         disabled=""
@@ -401,8 +401,8 @@
         value="Dummy.LLN0.Mod.Cancel"
       >
         Dummy.LLN0.Mod.Cancel
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="true"
         class="Struct"
         disabled=""
@@ -413,8 +413,8 @@
         value="Dummy.LPHD1.Sim.SBOw"
       >
         Dummy.LPHD1.Sim.SBOw
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="true"
         class="Struct"
         disabled=""
@@ -425,8 +425,8 @@
         value="Dummy.LPHD1.Sim.Cancel"
       >
         Dummy.LPHD1.Sim.Cancel
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -435,8 +435,8 @@
         value="Dummy_ctlModel"
       >
         Dummy_ctlModel
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         activated=""
         aria-disabled="false"
         aria-selected="true"
@@ -448,8 +448,8 @@
         value="Dummy_Beh"
       >
         Dummy_Beh
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -458,8 +458,8 @@
         value="Dummy_Health"
       >
         Dummy_Health
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -468,7 +468,7 @@
         value="Dummy_orCategory"
       >
         Dummy_orCategory
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-text-field
       disabled=""
@@ -486,7 +486,7 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -494,8 +494,8 @@
         value="Spec"
       >
         Spec
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -503,8 +503,8 @@
         value="Conf"
       >
         Conf
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -512,8 +512,8 @@
         value="RO"
       >
         RO
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -521,7 +521,7 @@
         value="Set"
       >
         Set
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       disabled=""
@@ -531,7 +531,7 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -539,8 +539,8 @@
         value="true"
       >
         true
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -548,7 +548,7 @@
         value="false"
       >
         false
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       disabled=""
@@ -556,7 +556,7 @@
       label="Val"
       nullable=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         aria-selected="false"
         mwc-list-item=""
@@ -565,8 +565,8 @@
         value="on"
       >
         on
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         aria-selected="false"
         mwc-list-item=""
@@ -575,8 +575,8 @@
         value="blocked"
       >
         blocked
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         aria-selected="false"
         mwc-list-item=""
@@ -585,8 +585,8 @@
         value="test"
       >
         test
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         aria-selected="false"
         mwc-list-item=""
@@ -595,8 +595,8 @@
         value="test/blocked"
       >
         test/blocked
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         aria-selected="false"
         mwc-list-item=""
@@ -605,7 +605,7 @@
         value="off"
       >
         off
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-text-field
       disabled=""
@@ -670,7 +670,7 @@
       label="bType"
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -678,8 +678,8 @@
         value="BOOLEAN"
       >
         BOOLEAN
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -687,8 +687,8 @@
         value="INT8"
       >
         INT8
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -696,8 +696,8 @@
         value="INT16"
       >
         INT16
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -705,8 +705,8 @@
         value="INT24"
       >
         INT24
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -714,8 +714,8 @@
         value="INT32"
       >
         INT32
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -723,8 +723,8 @@
         value="INT64"
       >
         INT64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -732,8 +732,8 @@
         value="INT128"
       >
         INT128
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -741,8 +741,8 @@
         value="INT8U"
       >
         INT8U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -750,8 +750,8 @@
         value="INT16U"
       >
         INT16U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -759,8 +759,8 @@
         value="INT24U"
       >
         INT24U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -768,8 +768,8 @@
         value="INT32U"
       >
         INT32U
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -777,8 +777,8 @@
         value="FLOAT32"
       >
         FLOAT32
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -786,8 +786,8 @@
         value="FLOAT64"
       >
         FLOAT64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -795,8 +795,8 @@
         value="Enum"
       >
         Enum
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -804,8 +804,8 @@
         value="Dbpos"
       >
         Dbpos
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -813,8 +813,8 @@
         value="Tcmd"
       >
         Tcmd
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -822,8 +822,8 @@
         value="Quality"
       >
         Quality
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -831,8 +831,8 @@
         value="Timestamp"
       >
         Timestamp
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -840,8 +840,8 @@
         value="VisString32"
       >
         VisString32
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -849,8 +849,8 @@
         value="VisString64"
       >
         VisString64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -858,8 +858,8 @@
         value="VisString65"
       >
         VisString65
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -867,8 +867,8 @@
         value="VisString129"
       >
         VisString129
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -876,8 +876,8 @@
         value="VisString255"
       >
         VisString255
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -885,8 +885,8 @@
         value="Octet64"
       >
         Octet64
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -894,8 +894,8 @@
         value="Unicode255"
       >
         Unicode255
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -903,8 +903,8 @@
         value="Struct"
       >
         Struct
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -912,8 +912,8 @@
         value="EntryTime"
       >
         EntryTime
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -921,8 +921,8 @@
         value="Check"
       >
         Check
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -930,8 +930,8 @@
         value="ObjRef"
       >
         ObjRef
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -939,8 +939,8 @@
         value="Currency"
       >
         Currency
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -948,8 +948,8 @@
         value="PhyComAddr"
       >
         PhyComAddr
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -957,8 +957,8 @@
         value="TrgOps"
       >
         TrgOps
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -966,8 +966,8 @@
         value="OptFlds"
       >
         OptFlds
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -975,8 +975,8 @@
         value="SvOptFlds"
       >
         SvOptFlds
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -984,14 +984,14 @@
         value="EntryID"
       >
         EntryID
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       fixedmenuposition=""
       helper="Type"
       label="type"
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         class="Struct"
         mwc-list-item=""
@@ -1000,8 +1000,8 @@
         value="Dummy_origin"
       >
         Dummy_origin
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Struct"
         mwc-list-item=""
@@ -1010,8 +1010,8 @@
         value="Dummy.LLN0.Mod.SBOw"
       >
         Dummy.LLN0.Mod.SBOw
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Struct"
         mwc-list-item=""
@@ -1020,8 +1020,8 @@
         value="Dummy.LLN0.Mod.Cancel"
       >
         Dummy.LLN0.Mod.Cancel
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Struct"
         mwc-list-item=""
@@ -1030,8 +1030,8 @@
         value="Dummy.LPHD1.Sim.SBOw"
       >
         Dummy.LPHD1.Sim.SBOw
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Struct"
         mwc-list-item=""
@@ -1040,8 +1040,8 @@
         value="Dummy.LPHD1.Sim.Cancel"
       >
         Dummy.LPHD1.Sim.Cancel
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -1050,8 +1050,8 @@
         value="Dummy_ctlModel"
       >
         Dummy_ctlModel
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -1060,8 +1060,8 @@
         value="Dummy_Beh"
       >
         Dummy_Beh
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -1070,8 +1070,8 @@
         value="Dummy_Health"
       >
         Dummy_Health
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         class="Enum"
         mwc-list-item=""
@@ -1080,7 +1080,7 @@
         value="Dummy_orCategory"
       >
         Dummy_orCategory
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-text-field
       disabled=""
@@ -1098,7 +1098,7 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -1106,8 +1106,8 @@
         value="Spec"
       >
         Spec
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -1115,8 +1115,8 @@
         value="Conf"
       >
         Conf
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -1124,8 +1124,8 @@
         value="RO"
       >
         RO
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -1133,7 +1133,7 @@
         value="Set"
       >
         Set
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       disabled=""
@@ -1143,7 +1143,7 @@
       nullable=""
       required=""
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -1151,8 +1151,8 @@
         value="true"
       >
         true
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
@@ -1160,7 +1160,7 @@
         value="false"
       >
         false
-      </mwc-list-item>
+      </list-item>
     </wizard-select>
     <wizard-select
       disabled=""

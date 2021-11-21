@@ -10,6 +10,7 @@ import {
   html,
   identity,
   isPublic,
+  ListItem,
   newActionEvent,
   newWizardEvent,
   patterns,
@@ -28,7 +29,6 @@ import {
 } from './foundation.js';
 
 import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { WizardTextField } from '../../wizard-textfield.js';
 
@@ -227,13 +227,13 @@ export function createEnumTypeWizard(
         >
           ${Array.from(templates.querySelectorAll('EnumType')).map(
             e =>
-              html`<mwc-list-item
+              html`<${ListItem}
                 graphic="icon"
                 hasMeta
                 value="${e.getAttribute('id') ?? ''}"
                 ><span>${e.getAttribute('id')}</span>
                 <span slot="meta">${e.querySelectorAll('EnumVal').length}</span>
-              </mwc-list-item>`
+              </${ListItem}>`
           )}
         </${Select}>`,
         html`<${WizardTextField}
@@ -334,7 +334,7 @@ export function eNumTypeEditWizard(
             }}
             >${Array.from(enumtype.querySelectorAll('EnumVal')).map(
               enumval =>
-                html`<mwc-list-item
+                html`<${ListItem}
                   graphic="icon"
                   hasMeta
                   tabindex="0"
@@ -344,7 +344,7 @@ export function eNumTypeEditWizard(
                   <span slot="graphic"
                     >${enumval.getAttribute('ord') ?? '-1'}</span
                   >
-                </mwc-list-item>`
+                </${ListItem}>`
             )}</mwc-list
           > `,
       ],

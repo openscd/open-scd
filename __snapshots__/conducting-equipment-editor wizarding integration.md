@@ -15,7 +15,7 @@
       label="type"
       validationmessage="Required"
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         selected=""
@@ -23,7 +23,7 @@
         value="0"
       >
         Circuit Breaker
-      </mwc-list-item>
+      </list-item>
     </c-select>
     <wizard-text-field
       dialoginitialfocus=""

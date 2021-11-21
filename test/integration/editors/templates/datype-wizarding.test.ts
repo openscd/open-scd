@@ -118,7 +118,7 @@ describe('DAType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        dATypeList.querySelector('mwc-list-item[value="#Dummy.LLN0.Mod.SBOw"]')
+        dATypeList.querySelector('list-item[value="#Dummy.LLN0.Mod.SBOw"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

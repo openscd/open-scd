@@ -43,7 +43,7 @@ describe('LNodeType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        lNodeTypeList.querySelector('mwc-list-item[value="#Dummy.CSWI"]')
+        lNodeTypeList.querySelector('list-item[value="#Dummy.CSWI"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); //recursive call takes time
@@ -287,7 +287,7 @@ describe('LNodeType wizards', () => {
       });
 
       it('filters the type selection for each DO to fit the cdc', () => {
-        expect(beh.querySelectorAll('mwc-list-item').length).to.equal(
+        expect(beh.querySelectorAll('list-item').length).to.equal(
           doc.querySelectorAll('DOType[cdc="ENS"]').length
         );
       });
@@ -361,13 +361,13 @@ describe('LNodeType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        lNodeTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0"]')
+        lNodeTypeList.querySelector('list-item[value="#Dummy.LLN0"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI?.dialog?.querySelector(
-          'mwc-list-item[value="#Dummy.LLN0>Mod"]'
+          'list-item[value="#Dummy.LLN0>Mod"]'
         )
       )).click();
       await parent.requestUpdate();
@@ -464,7 +464,7 @@ describe('LNodeType wizards', () => {
       ).to.be.true;
     });
     it('filters the type selector to DOTypes', async () => {
-      expect(typeSelect!.querySelectorAll('mwc-list-item').length).to.equal(
+      expect(typeSelect!.querySelectorAll('list-item').length).to.equal(
         doc.querySelectorAll('DOType').length
       );
     });
@@ -480,7 +480,7 @@ describe('LNodeType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        lNodeTypeList.querySelector('mwc-list-item[value="#Dummy.LLN0"]')
+        lNodeTypeList.querySelector('list-item[value="#Dummy.LLN0"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

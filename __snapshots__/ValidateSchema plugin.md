@@ -13,7 +13,7 @@
     id="content"
     wrapfocus=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       disabled=""
       graphic="icon"
@@ -26,7 +26,7 @@
       <mwc-icon slot="graphic">
         info
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
   </filtered-list>
   <c-button
     dialogaction="close"
@@ -51,13 +51,13 @@
     id="content"
     wrapfocus=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       noninteractive=""
       tabindex="-1"
     >
       Validate project
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
@@ -66,7 +66,7 @@
     </li>
     <abbr title="The attribute 'name' is required but missing.
 invalid2007B:7 Substation name (Element '{http://www.iec.ch/61850/2003/SCL}Substation')">
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -78,11 +78,11 @@ invalid2007B:7 Substation name (Element '{http://www.iec.ch/61850/2003/SCL}Subst
         <span slot="secondary">
           invalid2007B:7 Substation name (Element '{http://www.iec.ch/61850/2003/SCL}Substation')
         </span>
-      </mwc-list-item>
+      </list-item>
     </abbr>
     <abbr title="Not all fields of key identity-constraint '{http://www.iec.ch/61850/2003/SCL}SubstationKey' evaluate to a node.
 invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003/SCL}SubstationKey' (Element '{http://www.iec.ch/61850/2003/SCL}Substation')">
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         mwc-list-item=""
         tabindex="-1"
@@ -94,7 +94,7 @@ invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003
         <span slot="secondary">
           invalid2007B:7 Substation key identity-constraint '{http://www.iec.ch/61850/2003/SCL}SubstationKey' (Element '{http://www.iec.ch/61850/2003/SCL}Substation')
         </span>
-      </mwc-list-item>
+      </list-item>
     </abbr>
   </filtered-list>
   <c-button

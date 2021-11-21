@@ -104,7 +104,7 @@ describe('EnumType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        eNumTypeList.querySelector('mwc-list-item[value="#Dummy_ctlModel"]')
+        eNumTypeList.querySelector('list-item[value="#Dummy_ctlModel"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
@@ -162,13 +162,13 @@ describe('EnumType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        eNumTypeList.querySelector('mwc-list-item[value="#Dummy_ctlModel"]')
+        eNumTypeList.querySelector('list-item[value="#Dummy_ctlModel"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
       (<HTMLElement>(
         parent.wizardUI?.dialog?.querySelector(
-          'mwc-list-item[value="#Dummy_ctlModel>1"]'
+          'list-item[value="#Dummy_ctlModel>1"]'
         )
       )).click();
       await parent.requestUpdate();
@@ -266,7 +266,7 @@ describe('EnumType wizards', () => {
 
     beforeEach(async () => {
       (<ListItem>(
-        eNumTypeList.querySelector('mwc-list-item[value="#Dummy_ctlModel"]')
+        eNumTypeList.querySelector('list-item[value="#Dummy_ctlModel"]')
       )).click();
       await parent.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation

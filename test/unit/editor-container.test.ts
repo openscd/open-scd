@@ -2,7 +2,7 @@ import { expect, fixture } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
 import { EditorContainer } from '../../src/editor-container.js';
-import { html } from '../../src/foundation.js';
+import { html, ListItem } from '../../src/foundation.js';
 
 describe('editor-container', () => {
   let element: EditorContainer;
@@ -162,13 +162,13 @@ describe('editor-container', () => {
     });
 
     it('renders only children with existing create wizard', () => {
-      expect(element.addMenu.querySelectorAll('mwc-list-item').length).to.equal(
+      expect(element.addMenu.querySelectorAll('list-item').length).to.equal(
         2
       );
     });
 
     it('does trigger wizard action with valid existing wizard', async () => {
-      element.addMenu.querySelector('mwc-list-item')?.click();
+      element.addMenu.querySelector<ListItem>('list-item')?.click();
       expect(wizardEvent).to.have.been.called;
     });
   });

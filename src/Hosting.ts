@@ -1,5 +1,4 @@
 import { ActionDetail, List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { property, query, TemplateResult } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
@@ -7,6 +6,7 @@ import {
   Drawer,
   html,
   IconButton,
+  ListItem,
   Mixin,
   newPendingStateEvent,
 } from './foundation.js';
@@ -229,7 +229,7 @@ export function Hosting<
       if (me === 'divider')
         return html`<li divider padded role="separator"></li>`;
       return html`
-        <mwc-list-item
+        <${ListItem}
           class="${me.kind}"
           iconid="${me.icon}"
           graphic="icon"
@@ -245,7 +245,7 @@ export function Hosting<
                 html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
               )
             : ''}
-        </mwc-list-item>
+        </${ListItem}>
       `;
     }
 

@@ -118,7 +118,7 @@ describe('filtered-list', () => {
       expect(element.items[3].classList.contains('hidden')).to.be.true;
     });
 
-    it('filteres within twoline mwc-list-item', async () => {
+    it('filteres within twoline list-item', async () => {
       element.searchField.value = 'item2sec';
       element.onFilterInput();
       element.requestUpdate();

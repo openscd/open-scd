@@ -8,6 +8,7 @@ import {
   getValue,
   html,
   identity,
+  ListItem,
   newActionEvent,
   newWizardEvent,
   patterns,
@@ -26,7 +27,6 @@ import {
 } from './foundation.js';
 
 import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
 import { WizardTextField } from '../../wizard-textfield.js';
@@ -112,7 +112,7 @@ export function editDaTypeWizard(
           >
             ${Array.from(datype.querySelectorAll('BDA')).map(
               bda =>
-                html`<mwc-list-item
+                html`<${ListItem}
                   twoline
                   tabindex="0"
                   value="${identity(bda)}"
@@ -122,7 +122,7 @@ export function editDaTypeWizard(
                     bda.getAttribute('bType') === 'Struct'
                       ? '#' + bda.getAttribute('type')
                       : bda.getAttribute('bType')}</span
-                  ></mwc-list-item
+                  ></${ListItem}
                 >`
             )}
           </mwc-list> `,
@@ -199,7 +199,7 @@ export function createDATypeWizard(
         >
           ${Array.from(templates.querySelectorAll('DAType')).map(
             datype =>
-              html`<mwc-list-item
+              html`<${ListItem}
                 graphic="icon"
                 hasMeta
                 value="${datype.getAttribute('id') ?? ''}"
@@ -209,7 +209,7 @@ export function createDATypeWizard(
                 <span slot="meta"
                   >${datype.querySelectorAll('BDA').length}</span
                 >
-              </mwc-list-item>`
+              </${ListItem}>`
           )}
         </${Select}>`,
         html`<${WizardTextField}

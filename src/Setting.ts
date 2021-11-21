@@ -9,6 +9,7 @@ import {
   Formfield,
   html,
   ifImplemented,
+  ListItem,
   LitElementConstructor,
   Mixin,
   Select,
@@ -114,11 +115,11 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
             >
               ${Object.keys(languages).map(
                 lang =>
-                  html`<mwc-list-item
+                  html`<${ListItem}
                     graphic="icon"
                     value="${lang}"
                     ?selected=${lang === this.settings.language}
-                    >${translate(`settings.languages.${lang}`)}</mwc-list-item
+                    >${translate(`settings.languages.${lang}`)}</${ListItem}
                   >`
               )}
             </${Select}>

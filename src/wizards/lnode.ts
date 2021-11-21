@@ -9,6 +9,7 @@ import {
   html,
   identity,
   isPublic,
+  ListItem,
   referencePath,
   selector,
   Wizard,
@@ -18,7 +19,6 @@ import {
 
 import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { FilteredList } from '../filtered-list.js';
 
@@ -262,10 +262,10 @@ function renderIEDPage(element: Element): TemplateResult {
         )}</${FilteredList}
     >`;
   else
-    return html`<mwc-list-item noninteractive graphic="icon">
+    return html`<${ListItem} noninteractive graphic="icon">
       <span>${translate('lnode.wizard.placeholder')}</span>
       <mwc-icon slot="graphic">info</mwc-icon>
-    </mwc-list-item>`;
+    </${ListItem}>`;
 }
 
 /** @returns a Wizard for editing `element`'s `LNode` children. */

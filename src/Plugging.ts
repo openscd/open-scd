@@ -12,13 +12,13 @@ import {
   Formfield,
   html,
   ifImplemented,
+  ListItem,
   LitElementConstructor,
   Mixin,
   Select,
 } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { officialPlugins } from '../public/js/plugins.js';
 
 type PluginKind = 'editor' | 'menu' | 'validator';
@@ -298,8 +298,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 <${Select} id="menuPosition" value="middle" fixedMenuPosition
                   >${Object.values(menuPosition).map(
                     menutype =>
-                      html`<mwc-list-item value="${menutype}"
-                        >${translate('plugins.' + menutype)}</mwc-list-item
+                      html`<${ListItem} value="${menutype}"
+                        >${translate('plugins.' + menutype)}</${ListItem}
                       >`
                   )}</${Select}
                 >
@@ -387,22 +387,22 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             @selected=${(e: MultiSelectedEvent) =>
               this.setPlugins(e.detail.index)}
           >
-            <mwc-list-item graphic="avatar" noninteractive
+            <${ListItem} graphic="avatar" noninteractive
               ><strong>${translate(`plugins.editor`)}</strong
               ><mwc-icon slot="graphic" class="inverted"
                 >${pluginIcons['editor']}</mwc-icon
-              ></mwc-list-item
+              ></${ListItem}
             >
             <li divider role="separator"></li>
             ${this.renderPluginKind(
               'editor',
               this.plugins.filter(p => p.kind === 'editor')
             )}
-            <mwc-list-item graphic="avatar" noninteractive
+            <${ListItem} graphic="avatar" noninteractive
               ><strong>${translate(`plugins.menu`)}</strong
               ><mwc-icon slot="graphic" class="inverted"
                 ><strong>${pluginIcons['menu']}</strong></mwc-icon
-              ></mwc-list-item
+              ></${ListItem}
             >
             <li divider role="separator"></li>
             ${this.renderPluginKind(

@@ -1,14 +1,13 @@
 import { render, TemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
-import { createElement, EditorAction, html, Select } from '../foundation.js';
+import { createElement, EditorAction, html, ListItem, Select } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
 import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 
 import { WizardSelect } from '../wizard-select.js';
 import { WizardTextField } from '../wizard-textfield.js';
 
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
@@ -25,10 +24,10 @@ function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
     data.querySelectorAll(`EnumType[id="${typeSelected}"] > EnumVal`)
   ).map(
     enumval =>
-      html`<mwc-list-item
+      html`<${ListItem}
         value="${enumval.textContent?.trim() ?? ''}"
         ?selected=${enumval.textContent?.trim() === Val}
-        >${enumval.textContent?.trim()}</mwc-list-item
+        >${enumval.textContent?.trim()}</${ListItem}
       >`
   );
 
@@ -129,8 +128,8 @@ export function wizardContent(
       @selected=${(e: SelectedEvent) => selectBType(e, bType, type)}
       >${predefinedBasicTypeEnum.map(
         redefinedBType =>
-          html`<mwc-list-item value="${redefinedBType}"
-            >${redefinedBType}</mwc-list-item
+          html`<${ListItem} value="${redefinedBType}"
+            >${redefinedBType}</${ListItem}
           >`
       )}</${WizardSelect}
     >`,
@@ -142,10 +141,10 @@ export function wizardContent(
       @selected=${(e: SelectedEvent) => selectType(e, data, Val)}
       >${types.map(
         dataType =>
-          html`<mwc-list-item
+          html`<${ListItem}
             class="${dataType.tagName === 'EnumType' ? 'Enum' : 'Struct'}"
             value=${dataType.id}
-            >${dataType.id}</mwc-list-item
+            >${dataType.id}</${ListItem}
           >`
       )}</${WizardSelect}
     >`,
@@ -165,8 +164,8 @@ export function wizardContent(
       fixedMenuPosition
       >${valKindEnum.map(
         valKindOption =>
-          html`<mwc-list-item value="${valKindOption}"
-            >${valKindOption}</mwc-list-item
+          html`<${ListItem} value="${valKindOption}"
+            >${valKindOption}</${ListItem}
           >`
       )}</${WizardSelect}
     >`,
@@ -179,8 +178,8 @@ export function wizardContent(
       fixedMenuPosition
       >${['true', 'false'].map(
         valImportOption =>
-          html`<mwc-list-item value="${valImportOption}"
-            >${valImportOption}</mwc-list-item
+          html`<${ListItem} value="${valImportOption}"
+            >${valImportOption}</${ListItem}
           >`
       )}</${WizardSelect}
     >`,
@@ -193,8 +192,8 @@ export function wizardContent(
         data.querySelectorAll(`EnumType > EnumVal[id="${type}"]`)
       ).map(
         enumVal =>
-          html`<mwc-list-item value="${enumVal.textContent?.trim() ?? ''}"
-            >${enumVal.textContent?.trim()}</mwc-list-item
+          html`<${ListItem} value="${enumVal.textContent?.trim() ?? ''}"
+            >${enumVal.textContent?.trim()}</${ListItem}
           >`
       )}</${WizardSelect}
     >`,

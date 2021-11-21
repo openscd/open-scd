@@ -19,7 +19,7 @@
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       class="top"
       graphic="icon"
@@ -35,8 +35,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="top"
       graphic="icon"
@@ -52,8 +52,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="top"
       disabled=""
@@ -70,14 +70,14 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       class="static"
       disabled=""
@@ -92,8 +92,8 @@
       <span>
         Undo
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="static"
       disabled=""
@@ -108,8 +108,8 @@
       <span>
         Redo
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="validator"
       disabled=""
@@ -126,8 +126,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="validator"
       disabled=""
@@ -144,8 +144,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -159,8 +159,8 @@
       <span>
         View log
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -174,14 +174,14 @@
       <span>
         View diagnostics
       </span>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -198,8 +198,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -216,8 +216,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -234,8 +234,8 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="true"
       class="middle"
       disabled=""
@@ -252,14 +252,14 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -273,8 +273,8 @@
       <span>
         Settings
       </span>
-    </mwc-list-item>
-    <mwc-list-item
+    </list-item>
+    <list-item
       aria-disabled="false"
       class="middle"
       graphic="icon"
@@ -290,14 +290,14 @@
       </span>
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       padded=""
       role="separator"
     >
     </li>
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       class="static"
       graphic="icon"
@@ -311,7 +311,7 @@
       <span>
         Extensions
       </span>
-    </mwc-list-item>
+    </list-item>
   </mwc-list>
   <mwc-top-app-bar-fixed slot="appContent">
     <icon-button
@@ -401,7 +401,7 @@
     id="content"
     wrapfocus=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       disabled=""
       graphic="icon"
@@ -414,7 +414,7 @@
       <mwc-icon slot="graphic">
         info
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
   </mwc-list>
   <c-button
     disabled=""
@@ -445,7 +445,7 @@
     id="content"
     wrapfocus=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="true"
       disabled=""
       graphic="icon"
@@ -458,7 +458,7 @@
       <mwc-icon slot="graphic">
         info
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
   </filtered-list>
   <c-button
     dialogaction="close"
@@ -538,7 +538,7 @@
     id="pluginList"
     multi=""
   >
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       graphic="avatar"
       noninteractive=""
@@ -553,7 +553,7 @@
       >
         tab
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       role="separator"
@@ -607,7 +607,7 @@
       </mwc-icon>
       Templates
     </mwc-check-list-item>
-    <mwc-list-item
+    <list-item
       aria-disabled="false"
       graphic="avatar"
       noninteractive=""
@@ -624,7 +624,7 @@
           play_circle
         </strong>
       </mwc-icon>
-    </mwc-list-item>
+    </list-item>
     <li
       divider=""
       role="separator"
@@ -890,7 +890,7 @@
           id="menuPosition"
           value="middle"
         >
-          <mwc-list-item
+          <list-item
             aria-disabled="false"
             mwc-list-item=""
             role="option"
@@ -898,8 +898,8 @@
             value="top"
           >
             top
-          </mwc-list-item>
-          <mwc-list-item
+          </list-item>
+          <list-item
             activated=""
             aria-disabled="false"
             aria-selected="true"
@@ -910,8 +910,8 @@
             value="middle"
           >
             middle
-          </mwc-list-item>
-          <mwc-list-item
+          </list-item>
+          <list-item
             aria-disabled="false"
             mwc-list-item=""
             role="option"
@@ -919,7 +919,7 @@
             value="bottom"
           >
             bottom
-          </mwc-list-item>
+          </list-item>
         </c-select>
       </div>
       <mwc-radio-list-item
@@ -982,7 +982,7 @@
       id="language"
       label="Language"
     >
-      <mwc-list-item
+      <list-item
         aria-disabled="false"
         aria-selected="true"
         graphic="icon"
@@ -993,8 +993,8 @@
         value="en"
       >
         English
-      </mwc-list-item>
-      <mwc-list-item
+      </list-item>
+      <list-item
         aria-disabled="false"
         graphic="icon"
         mwc-list-item=""
@@ -1003,7 +1003,7 @@
         value="de"
       >
         German (Deutsch)
-      </mwc-list-item>
+      </list-item>
     </c-select>
     <c-formfield label="Dark theme">
       <mwc-switch id="dark">
