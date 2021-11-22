@@ -25,7 +25,7 @@ export const DEFAULT_ELEMENT_SIZE = 25;
 /**
  * Offset of a terminal next to an element.
  */
-const TERMINAL_OFFSET = 6;
+const TERMINAL_OFFSET = 15;
 
 /**
  * Defining the sides of route drawing of the two points
@@ -224,8 +224,8 @@ export function createTerminalElement(
   // Also add a text element.
   const textElementPosition =
     sideToDraw == 'bottom' || sideToDraw == 'top'
-      ? { x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 5 }
-      : { x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5 };
+      ? { x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 10 }
+      : { x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 10 };
   const text = createTextElement(terminalName, textElementPosition, 'xx-small');
 
   groupElement.appendChild(icon);
@@ -345,24 +345,29 @@ export function createConnectivityNodeElement(
  * @param shape - A custom shape defining custom height and width of the shapes.
  * @returns The sides where the routes are being drawn next to both points.
  */
-export function drawRoute(
+export function drawRouteBetweenElements(
   pointA: Point,
   pointB: Point,
+  pointAShape: Shape,
+  pointBShape: Shape,
   svgToDrawOn: HTMLElement,
-  shape?: Shape
 ): PointSides {
+  /**
+   * The point on each side of the route should be in the middle of the element,
+   * so we have to do a little conversion of the 'left' and 'top' coordinate.
+   */
   const shapeA = {
-    left: pointA.x!,
-    top: pointA.y!,
-    width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
-    height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
+    left: pointA.x! + ((DEFAULT_ELEMENT_SIZE - pointAShape.width) / 2),
+    top: pointA.y! + ((DEFAULT_ELEMENT_SIZE - pointAShape.height) / 2),
+    width: pointAShape?.width,
+    height: pointAShape?.height,
   };
 
   const shapeB = {
-    left: pointB.x!,
-    top: pointB.y!,
-    width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
-    height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
+    left: pointB.x! + ((DEFAULT_ELEMENT_SIZE - pointBShape.width) / 2),
+    top: pointB.y! + ((DEFAULT_ELEMENT_SIZE - pointBShape.height) / 2),
+    width: pointBShape?.width,
+    height: pointBShape?.height,
   };
 
   // Get the preferred sides.
@@ -394,7 +399,7 @@ export function drawRoute(
   line.setAttribute('d', d);
   line.setAttribute('fill', 'transparent');
   line.setAttribute('stroke', 'currentColor');
-  line.setAttribute('stroke-width', '1');
+  line.setAttribute('stroke-width', '1.5');
 
   svgToDrawOn.appendChild(line);
 
@@ -478,4 +483,24 @@ function getAbsolutePositionTerminal(
       return terminalParentPosition;
     }
   }
+}
+
+/**
+ * Get the dimensions of a specific element within a specific bay.
+ * @param bayName The name of the bay.
+ * @param elementName The name of the element.
+ * @param svg The SVG to search on.
+ * @returns The shape (width and height) of the specific element.
+ */
+export function getElementDimensions(bayName: string, elementName: string, svg: HTMLElement): Shape {
+  let {height, width} = {height: 0, width: 0};
+
+  svg.querySelectorAll(
+    `g[id="${bayName}"] > g[id="${elementName}"]`
+  ).forEach(b => {
+    height = b.getBoundingClientRect().height;
+    width = b.getBoundingClientRect().width;
+  });
+
+  return {height, width};
 }
