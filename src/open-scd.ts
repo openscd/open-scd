@@ -7,7 +7,6 @@ import {
 } from 'lit-element';
 
 import '@material/mwc-linear-progress';
-import '@material/mwc-menu';
 import '@material/mwc-snackbar';
 import '@material/mwc-switch';
 import '@material/mwc-tab';

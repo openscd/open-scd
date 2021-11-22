@@ -26,7 +26,8 @@ export {
   CheckListItem,
   RadioListItem,
   List,
-  Icon
+  Icon,
+  Menu,
 } from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;

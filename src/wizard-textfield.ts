@@ -7,11 +7,10 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
-import { Menu } from '@material/mwc-menu';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
-import { html, IconButton, ListItem } from './foundation.js';
+import { html, IconButton, ListItem, Menu } from './foundation.js';
 
 /** A potentially `nullable` `TextField` that allows for selection of an SI
  * `multiplier` if an SI `unit` is given.
@@ -72,7 +71,7 @@ export class WizardTextField extends TextField {
   reservedValues: string[] = [];
 
   @query('mwc-switch') nullSwitch?: Switch;
-  @query('mwc-menu') multiplierMenu?: Menu;
+  @query('c-menu') multiplierMenu?: Menu;
   @query('icon-button') multiplierButton?: IconButton;
 
   private nulled: string | null = null;
@@ -124,11 +123,11 @@ export class WizardTextField extends TextField {
           ?disabled=${this.null}
           @click=${() => this.multiplierMenu?.show()}
         ></${IconButton}>
-        <mwc-menu
+        <${Menu}
           @selected=${this.selectMultiplier}
           fixed
           .anchor=${this.multiplierButton ?? null}
-          >${this.renderMulplierList()}</mwc-menu
+          >${this.renderMulplierList()}</${Menu}
         >
       </div>`;
     else return html``;
@@ -138,9 +137,11 @@ export class WizardTextField extends TextField {
     return html`${this.multipliers.map(
       multiplier =>
         html`<${ListItem} ?selected=${multiplier === this.multiplier}
-          >${multiplier === null
-            ? translate('textfield.noMultiplier')
-            : multiplier}</${ListItem}
+          >${
+            multiplier === null
+              ? translate('textfield.noMultiplier')
+              : multiplier
+          }</${ListItem}
         >`
     )}`;
   }
