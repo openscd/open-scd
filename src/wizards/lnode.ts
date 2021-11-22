@@ -8,6 +8,7 @@ import {
   getChildElementsByTagName,
   getReference,
   html,
+  Icon,
   identity,
   isPublic,
   List,
@@ -207,21 +208,26 @@ function onIEDSelect(evt: MultiSelectedEvent, parent: Element): void {
       value="${identity(item.element)}"
       twoline
       ><span
-        >${item.element.getAttribute('prefix') ??
-        ''}${item.element.getAttribute('lnClass')}${item.element.getAttribute(
-          'inst'
-        ) ?? ''}
-        ${item.disabled
-          ? html` <mwc-icon style="--mdc-icon-size: 1em;"
-                >account_tree</mwc-icon
+        >${
+          item.element.getAttribute('prefix') ?? ''
+        }${item.element.getAttribute('lnClass')}${
+      item.element.getAttribute('inst') ?? ''
+    }
+        ${
+          item.disabled
+            ? html` <${Icon} style="--mdc-icon-size: 1em;"
+                >account_tree</${Icon}
               >
               ${referencePath(getLNode(doc, item.element)!)}`
-          : ''}</span
+            : ''
+        }</span
       ><span slot="secondary"
         >${item.element.closest('IED')?.getAttribute('name') ?? ''} |
-        ${item.element.closest('LDevice')
-          ? item.element.closest('LDevice')?.getAttribute('inst')
-          : APldInst}</span
+        ${
+          item.element.closest('LDevice')
+            ? item.element.closest('LDevice')?.getAttribute('inst')
+            : APldInst
+        }</span
       ></${CheckListItem}
     >`;
   });
@@ -265,7 +271,7 @@ function renderIEDPage(element: Element): TemplateResult {
   else
     return html`<${ListItem} noninteractive graphic="icon">
       <span>${translate('lnode.wizard.placeholder')}</span>
-      <mwc-icon slot="graphic">info</mwc-icon>
+      <${Icon} slot="graphic">info</${Icon}>
     </${ListItem}>`;
 }
 

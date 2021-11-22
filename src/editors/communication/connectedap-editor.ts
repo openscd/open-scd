@@ -29,6 +29,7 @@ import {
   ListItem,
   CheckListItem,
   List,
+  Icon,
 } from '../../foundation.js';
 
 import {
@@ -173,7 +174,7 @@ function renderWizardPage(element: Element): TemplateResult {
 
   return html`<${ListItem} disabled graphic="icon">
     <span>${translate('lnode.wizard.placeholder')}</span>
-    <mwc-icon slot="graphic">info</mwc-icon>
+    <${Icon} slot="graphic">info</${Icon}>
   </${ListItem}>`;
 }
 
@@ -255,9 +256,11 @@ function editConnectedApWizard(element: Element): Wizard {
           >
             <${Checkbox}
               id="instType"
-              ?checked="${Array.from(
-                element.querySelectorAll(selectors.Address + ' > P')
-              ).filter(pType => pType.getAttribute('xsi:type')).length > 0}"
+              ?checked="${
+                Array.from(
+                  element.querySelectorAll(selectors.Address + ' > P')
+                ).filter(pType => pType.getAttribute('xsi:type')).length > 0
+              }"
             ></${Checkbox}> </${Formfield}
           >${getTypes(element).map(
             ptype =>
@@ -265,9 +268,11 @@ function editConnectedApWizard(element: Element): Wizard {
                 label="${ptype}"
                 pattern="${ifDefined(typePattern[ptype])}"
                 ?nullable=${typeNullable[ptype]}
-                .maybeValue=${element.querySelector(
-                  `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
-                )?.innerHTML ?? null}
+                .maybeValue=${
+                  element.querySelector(
+                    `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
+                  )?.innerHTML ?? null
+                }
                 maxLength="${ifDefined(typeMaxLength[ptype])}"
               ></${WizardTextField}>`
           )}`,
@@ -307,7 +312,7 @@ export class ConnectedAPEditor extends LitElement {
   render(): TemplateResult {
     return html`
       <div id="container" tabindex="0">
-        <mwc-icon class="fancy">settings_input_hdmi</mwc-icon>
+        <${Icon} class="fancy">settings_input_hdmi</${Icon}>
         <${Fab}
           mini
           class="menu-item left"

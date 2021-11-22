@@ -6,7 +6,6 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import '@material/mwc-icon';
 import '@material/mwc-linear-progress';
 import '@material/mwc-menu';
 import '@material/mwc-snackbar';
@@ -16,7 +15,12 @@ import '@material/mwc-tab-bar';
 import '@material/mwc-textfield';
 import '@material/mwc-top-app-bar-fixed';
 
-import { html, ListItem, newOpenDocEvent, newPendingStateEvent } from './foundation.js';
+import {
+  html,
+  ListItem,
+  newOpenDocEvent,
+  newPendingStateEvent,
+} from './foundation.js';
 import { getTheme } from './themes.js';
 
 import { Editing } from './Editing.js';
@@ -26,7 +30,6 @@ import { Plugging } from './Plugging.js';
 import { Setting } from './Setting.js';
 import { Waiting } from './Waiting.js';
 import { Wizarding } from './Wizarding.js';
-
 
 /** The `<open-scd>` custom element is the main entry point of the
  * Open Substation Configuration Designer. */
@@ -80,9 +83,7 @@ export class OpenSCD extends Hosting(
         .querySelector<ListItem>('list-item[iconid="create_new_folder"]')
         ?.click();
     if (ctrlAnd('s'))
-      this.menuUI
-        .querySelector<ListItem>('list-item[iconid="save"]')
-        ?.click();
+      this.menuUI.querySelector<ListItem>('list-item[iconid="save"]')?.click();
     if (ctrlAnd('P')) this.pluginUI.show();
 
     if (handled) e.preventDefault();

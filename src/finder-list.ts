@@ -11,7 +11,7 @@ import { translate } from 'lit-translate';
 
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
-import { depth, html, List, ListItem } from './foundation.js';
+import { depth, html, Icon, List, ListItem } from './foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { FilteredList } from './filtered-list.js';
 
@@ -27,8 +27,8 @@ export interface Directory {
 const waitingList = html`<div class="column">
   <${List}
     ><${ListItem} noninteractive hasMeta
-      >${translate('loading')}<mwc-icon slot="meta"
-        >pending</mwc-icon
+      >${translate('loading')}<${Icon} slot="meta"
+        >pending</${Icon}
       ></${ListItem}
     ></${List}
   >

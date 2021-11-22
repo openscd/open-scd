@@ -23,9 +23,9 @@
       <span>
         Issues found during validation will show up here
       </span>
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         info
-      </mwc-icon>
+      </c-icon>
     </list-item>
   </filtered-list>
   <c-button

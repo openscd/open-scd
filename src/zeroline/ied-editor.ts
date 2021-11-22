@@ -6,7 +6,7 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { Fab, html, newWizardEvent } from '../foundation.js';
+import { Fab, html, Icon, newWizardEvent } from '../foundation.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
 
 import { selectGseControlWizard } from '../wizards/gsecontrol.js';
@@ -41,7 +41,7 @@ export class IedEditor extends LitElement {
     return html`
       <div id="container" tabindex="0">
         <abbr title="${this.name}">
-          <mwc-icon class="icon">developer_board</mwc-icon></abbr
+          <${Icon} class="icon">developer_board</${Icon}></abbr
         >
         <${Fab}
           id="connectreport"
@@ -55,7 +55,7 @@ export class IedEditor extends LitElement {
           mini
           class="menu-item left"
           @click="${() => this.openGseControlSelection()}"
-          ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></${Fab}
+          ><${Icon} slot="icon">${gooseIcon}</${Icon}></${Fab}
         >
       </div>
       <h4>${this.name}</h4>

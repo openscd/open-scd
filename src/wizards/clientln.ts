@@ -5,6 +5,7 @@ import {
   createElement,
   getReference,
   html,
+  Icon,
   identity,
   List,
   newWizardEvent,
@@ -237,9 +238,11 @@ export function createClientLnWizard(
                     ><span>${getElement(item.identity)}</span
                     ><span slot="secondary">${getPath(item.identity)}</span
                     ><span slot="meta"
-                      >${item.max
-                        ? item.numberClientLNs + `/` + item.max
-                        : item.numberClientLNs}</span
+                      >${
+                        item.max
+                          ? item.numberClientLNs + `/` + item.max
+                          : item.numberClientLNs
+                      }</span
                     ></${CheckListItem}
                   >`
               )}</${FilteredList}
@@ -332,7 +335,7 @@ export function selectClientLNsWizard(
 
             return html`<${CheckListItem} graphic="icon">
               <span>${ln}</span>
-              <mwc-icon slot="graphic">${clientIcon}</mwc-icon>
+              <${Icon} slot="graphic">${clientIcon}</${Icon}>
             </${CheckListItem}> `;
           })}</${FilteredList}
         >`,

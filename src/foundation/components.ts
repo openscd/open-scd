@@ -1,3 +1,5 @@
+import { html, LitElement, TemplateResult } from 'lit-element';
+
 import { styles as dialogStyles } from '@material/mwc-dialog/mwc-dialog.css.js';
 import { styles as buttonStyles } from '@material/mwc-button/styles.css.js';
 import { styles as checkboxStyles } from '@material/mwc-checkbox/mwc-checkbox.css.js';
@@ -10,6 +12,7 @@ import { styles as iconButtonStyles } from '@material/mwc-icon-button/mwc-icon-b
 import { styles as listItemStyles } from '@material/mwc-list/mwc-list-item.css.js';
 import { styles as checkListItemStyles } from '@material/mwc-list/mwc-control-list-item.css.js';
 import { styles as listStyles } from '@material/mwc-list/mwc-list.css.js';
+import { styles as iconStyles } from '@material/mwc-icon/mwc-icon-host.css.js';
 
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base.js';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base.js';
@@ -80,4 +83,11 @@ export class RadioListItem extends RadioListItemBase {
 
 export class List extends ListBase {
   static styles = [listStyles];
+}
+
+export class Icon extends LitElement {
+  render(): TemplateResult {
+    return html`<slot></slot>`;
+  }
+  static styles = [iconStyles];
 }

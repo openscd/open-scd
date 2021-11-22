@@ -3,7 +3,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 import marked from 'marked';
 
-import { html, newWizardEvent, Wizard } from '../foundation.js';
+import { html, Icon, newWizardEvent, Wizard } from '../foundation.js';
 import { openSCDIcon } from '../icons.js';
 
 import { Directory, FinderList } from '../finder-list.js';
@@ -11,8 +11,8 @@ import { Directory, FinderList } from '../finder-list.js';
 function aboutBox(version: string) {
   return html`<div>
       <div style="display:flex">
-        <mwc-icon slot="graphic" style="--mdc-icon-size:25px"
-          >${openSCDIcon}</mwc-icon
+        <${Icon} slot="graphic" style="--mdc-icon-size:25px"
+          >${openSCDIcon}</${Icon}
         >
         <div style="padding:10px">
           <h2 style="margin-bottom:2px">OpenSCD</h2>
