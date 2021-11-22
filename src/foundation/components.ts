@@ -1,3 +1,5 @@
+import { html, LitElement, TemplateResult } from 'lit-element';
+
 import { styles as dialogStyles } from '@material/mwc-dialog/mwc-dialog.css.js';
 import { styles as buttonStyles } from '@material/mwc-button/styles.css.js';
 import { styles as checkboxStyles } from '@material/mwc-checkbox/mwc-checkbox.css.js';
@@ -10,6 +12,9 @@ import { styles as iconButtonStyles } from '@material/mwc-icon-button/mwc-icon-b
 import { styles as listItemStyles } from '@material/mwc-list/mwc-list-item.css.js';
 import { styles as checkListItemStyles } from '@material/mwc-list/mwc-control-list-item.css.js';
 import { styles as listStyles } from '@material/mwc-list/mwc-list.css.js';
+import { styles as iconStyles } from '@material/mwc-icon/mwc-icon-host.css.js';
+import { styles as menuStyles } from '@material/mwc-menu/mwc-menu.css.js';
+import { styles as switchStyles } from '@material/mwc-switch/mwc-switch.css.js';
 
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base.js';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base.js';
@@ -25,6 +30,8 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base.js';
 import { CheckListItemBase } from '@material/mwc-list/mwc-check-list-item-base.js';
 import { RadioListItemBase } from '@material/mwc-list/mwc-radio-list-item-base.js';
 import { ListBase } from '@material/mwc-list/mwc-list-base.js';
+import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
+import { SwitchBase } from '@material/mwc-switch/mwc-switch-base.js';
 
 export class Dialog extends DialogBase {
   static styles = [dialogStyles];
@@ -80,4 +87,19 @@ export class RadioListItem extends RadioListItemBase {
 
 export class List extends ListBase {
   static styles = [listStyles];
+}
+
+export class Icon extends LitElement {
+  render(): TemplateResult {
+    return html`<slot></slot>`;
+  }
+  static styles = [iconStyles];
+}
+
+export class Menu extends MenuBase {
+  static styles = [menuStyles];
+}
+
+export class Switch extends SwitchBase {
+  static styles = [switchStyles];
 }

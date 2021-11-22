@@ -8,6 +8,7 @@ import {
   CommitEntry,
   Dialog,
   html,
+  Icon,
   IconButton,
   IconButtonToggle,
   ifImplemented,
@@ -262,12 +263,12 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
             ${entry.title}</span
           >
           <span slot="secondary">${entry.message}</span>
-          <mwc-icon
+          <${Icon}
             slot="graphic"
             style="--mdc-theme-text-icon-on-background:var(${ifDefined(
               iconColors[entry.kind]
             )})"
-            >${icons[entry.kind]}</mwc-icon
+            >${icons[entry.kind]}</${Icon}
           >
         </${ListItem}></abbr
       >`;
@@ -279,7 +280,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       else
         return html`<${ListItem} disabled graphic="icon">
           <span>${translate('log.placeholder')}</span>
-          <mwc-icon slot="graphic">info</mwc-icon>
+          <${Icon} slot="graphic">info</${Icon}>
         </${ListItem}>`;
     }
 
@@ -316,7 +317,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         ? issueItems
         : html`<${ListItem} disabled graphic="icon">
             <span>${translate('diag.placeholder')}</span>
-            <mwc-icon slot="graphic">info</mwc-icon>
+            <${Icon} slot="graphic">info</${Icon}>
           </${ListItem}>`;
     }
 

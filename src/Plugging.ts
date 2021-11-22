@@ -1,9 +1,7 @@
 import { query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
-
 
 import {
   Button,
@@ -11,6 +9,7 @@ import {
   Dialog,
   Formfield,
   html,
+  Icon,
   ifImplemented,
   List,
   ListItem,
@@ -18,6 +17,7 @@ import {
   Mixin,
   RadioListItem,
   Select,
+  Switch,
 } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -281,13 +281,13 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 hasMeta
                 selected
                 left
-                >${translate('plugins.editor')}<mwc-icon slot="meta"
-                  >${pluginIcons['editor']}</mwc-icon
+                >${translate('plugins.editor')}<${Icon} slot="meta"
+                  >${pluginIcons['editor']}</${Icon}
                 ></${RadioListItem}
               >
               <${RadioListItem} id="menu" value="menu" hasMeta left
-                >${translate('plugins.menu')}<mwc-icon slot="meta"
-                  >${pluginIcons['menu']}</mwc-icon
+                >${translate('plugins.menu')}<${Icon} slot="meta"
+                  >${pluginIcons['menu']}</${Icon}
                 ></${RadioListItem}
               >
               <div id="menudetails">
@@ -295,7 +295,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                   id="enabledefault"
                   label="${translate('plugins.requireDoc')}"
                 >
-                  <mwc-switch id="requireDoc" checked></mwc-switch>
+                  <${Switch} id="requireDoc" checked></${Switch}>
                 </${Formfield}>
                 <${Select} id="menuPosition" value="middle" fixedMenuPosition
                   >${Object.values(menuPosition).map(
@@ -323,8 +323,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                 }
               </style>
               <${RadioListItem} id="validator" value="validator" hasMeta left
-                >${translate('plugins.validator')}<mwc-icon slot="meta"
-                  >${pluginIcons['validator']}</mwc-icon
+                >${translate('plugins.validator')}<${Icon} slot="meta"
+                  >${pluginIcons['validator']}</${Icon}
                 ></${RadioListItem}
               >
             </${List}>
@@ -367,8 +367,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
               hasMeta
               left
             >
-              <mwc-icon slot="meta"
-                >${plugin.icon || pluginIcons[plugin.kind]}</mwc-icon
+              <${Icon} slot="meta"
+                >${plugin.icon || pluginIcons[plugin.kind]}</${Icon}
               >
               ${plugin.name}
             </${CheckListItem}>`
@@ -391,8 +391,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
           >
             <${ListItem} graphic="avatar" noninteractive
               ><strong>${translate(`plugins.editor`)}</strong
-              ><mwc-icon slot="graphic" class="inverted"
-                >${pluginIcons['editor']}</mwc-icon
+              ><${Icon} slot="graphic" class="inverted"
+                >${pluginIcons['editor']}</${Icon}
               ></${ListItem}
             >
             <li divider role="separator"></li>
@@ -402,8 +402,8 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             )}
             <${ListItem} graphic="avatar" noninteractive
               ><strong>${translate(`plugins.menu`)}</strong
-              ><mwc-icon slot="graphic" class="inverted"
-                ><strong>${pluginIcons['menu']}</strong></mwc-icon
+              ><${Icon} slot="graphic" class="inverted"
+                ><strong>${pluginIcons['menu']}</strong></${Icon}
               ></${ListItem}
             >
             <li divider role="separator"></li>

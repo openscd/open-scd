@@ -21,8 +21,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -35,8 +35,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -49,8 +49,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -63,8 +63,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -77,8 +77,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -91,8 +91,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -105,8 +105,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -119,8 +119,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -133,8 +133,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -147,8 +147,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -161,8 +161,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -175,8 +175,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -189,8 +189,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         graphic="icon"
@@ -203,8 +203,8 @@
         <span slot="secondary">
           MU01
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
     </filtered-list>
   </div>

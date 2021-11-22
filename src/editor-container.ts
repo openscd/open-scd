@@ -13,14 +13,13 @@ import {
   html,
   IconButton,
   ListItem,
+  Menu,
   newWizardEvent,
   SCLTag,
   tags,
 } from './foundation.js';
 
 import { emptyWizard, wizards } from './wizards/wizard-library.js';
-
-import { Menu } from '@material/mwc-menu';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -125,7 +124,7 @@ export class EditorContainer extends LitElement {
               icon="playlist_add"
               @click=${() => (this.addMenu.open = true)}
             ></${IconButton}>
-            <mwc-menu
+            <${Menu}
               id="menu"
               corner="TOP_RIGHT"
               menuCorner="END"
@@ -135,7 +134,7 @@ export class EditorContainer extends LitElement {
                 this.openCreateWizard(tagName);
               }}
               >${this.renderAddButtons()}
-            </mwc-menu>`
+            </${Menu}>`
         : html``}
       ${Array.from(this.children).some(child => child.tagName === 'C-FAB')
         ? html`<div id="morevert">

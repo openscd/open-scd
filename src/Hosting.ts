@@ -5,6 +5,7 @@ import { translate } from 'lit-translate';
 import {
   Drawer,
   html,
+  Icon,
   IconButton,
   List,
   ListItem,
@@ -235,17 +236,23 @@ export function Hosting<
           iconid="${me.icon}"
           graphic="icon"
           .disabled=${me.disabled?.() || !me.action}
-          ><mwc-icon slot="graphic">${me.icon}</mwc-icon>
+          ><${Icon} slot="graphic">${me.icon}</${Icon}>
           <span>${translate(me.name)}</span>
-          ${me.hint
-            ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
-            : ''}
-          ${me.content
-            ? until(
-                me.content(),
-                html`<mwc-linear-progress indeterminate></mwc-linear-progress>`
-              )
-            : ''}
+          ${
+            me.hint
+              ? html`<span slot="secondary"><tt>${me.hint}</tt></span>`
+              : ''
+          }
+          ${
+            me.content
+              ? until(
+                  me.content(),
+                  html`<mwc-linear-progress
+                    indeterminate
+                  ></mwc-linear-progress>`
+                )
+              : ''
+          }
         </${ListItem}>
       `;
     }
@@ -329,9 +336,8 @@ export function Hosting<
                             icon="${mi.icon}"
                             @click="${() =>
                               (<ListItem>(
-                                this.menuUI.querySelector<List>('c-list')!.items[
-                                  index
-                                ]
+                                this.menuUI.querySelector<List>('c-list')!
+                                  .items[index]
                               )).click()}"
                           >
                             <div class="landing_label">${mi.name}</div>

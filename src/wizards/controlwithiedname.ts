@@ -5,6 +5,7 @@ import {
   EditorAction,
   findControlBlocks,
   html,
+  Icon,
   identity,
   List,
   Wizard,
@@ -12,7 +13,6 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
 
 import { inputIcon } from '../icons.js';
 import {
@@ -200,7 +200,7 @@ export function selectExtRefsWizard(
               <span slot="secondary"
                 >${extRef.getAttribute('ldInst') ?? ''}</span
               >
-              <mwc-icon slot="graphic">${inputIcon}</mwc-icon>
+              <${Icon} slot="graphic">${inputIcon}</${Icon}>
             </${CheckListItem}> `;
           })}</${FilteredList}
         >`,

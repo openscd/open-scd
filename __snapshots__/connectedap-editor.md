@@ -7,9 +7,9 @@
   id="container"
   tabindex="0"
 >
-  <mwc-icon class="fancy">
+  <c-icon class="fancy">
     settings_input_hdmi
-  </mwc-icon>
+  </c-icon>
   <c-fab
     class="left menu-item"
     icon="edit"

@@ -7,9 +7,8 @@ import {
 } from 'lit-element';
 import { get } from 'lit-translate';
 
-import { Switch } from '@material/mwc-switch';
 import { Select } from '@material/mwc-select';
-import { html } from './foundation.js';
+import { html, Switch } from './foundation.js';
 
 /** A potentially `nullable` `Select`.
  *
@@ -48,7 +47,7 @@ export class WizardSelect extends Select {
   @property({ type: Array })
   reservedValues: string[] = [];
 
-  @query('mwc-switch') nullSwitch?: Switch;
+  @query('c-switch') nullSwitch?: Switch;
 
   private nulled: string | null = null;
 
@@ -77,13 +76,13 @@ export class WizardSelect extends Select {
 
   renderSwitch(): TemplateResult {
     if (this.nullable) {
-      return html`<mwc-switch
+      return html`<${Switch}
         style="margin-left: 12px;"
         ?checked=${!this.null}
         @change=${() => {
           this.null = !this.nullSwitch!.checked;
         }}
-      ></mwc-switch>`;
+      ></${Switch}>`;
     }
     return html``;
   }

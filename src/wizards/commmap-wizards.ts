@@ -4,6 +4,7 @@ import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import {
   findControlBlocks,
   html,
+  Icon,
   identity,
   isPublic,
   ListItem,
@@ -110,14 +111,14 @@ export function communicationMappingWizard(
             >
               <span
                 >${sourceIED}
-                <mwc-icon style="--mdc-icon-size: 1em;">trending_flat</mwc-icon>
+                <${Icon} style="--mdc-icon-size: 1em;">trending_flat</${Icon}>
                 ${sinkIED}</span
               >
               <span slot="secondary">${controlBlock}</span>
               <span slot="meta" style="padding-left: 10px"
                 >${connections.get(key)!.length}</span
               >
-              <mwc-icon slot="graphic">${controlBlockIcons[cbTag]}</mwc-icon>
+              <${Icon} slot="graphic">${controlBlockIcons[cbTag]}</${Icon}>
             </${ListItem}>`;
           })}</${FilteredList}
         >`,

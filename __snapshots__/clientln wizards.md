@@ -361,8 +361,8 @@
         <span>
           DCCILO1
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         aria-disabled="false"
@@ -373,8 +373,8 @@
         <span>
           XCBR1
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
       <check-list-item
         aria-disabled="false"
@@ -385,8 +385,8 @@
         <span>
           LLN0
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </check-list-item>
     </filtered-list>
   </div>

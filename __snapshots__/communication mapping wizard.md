@@ -18,9 +18,9 @@
       >
         <span>
           IED1
-          <mwc-icon style="--mdc-icon-size: 1em;">
+          <c-icon style="--mdc-icon-size: 1em;">
             trending_flat
-          </mwc-icon>
+          </c-icon>
           IED3
         </span>
         <span slot="secondary">
@@ -32,8 +32,8 @@
         >
           2
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </list-item>
       <list-item
         graphic="icon"
@@ -43,9 +43,9 @@
       >
         <span>
           IED2
-          <mwc-icon style="--mdc-icon-size: 1em;">
+          <c-icon style="--mdc-icon-size: 1em;">
             trending_flat
-          </mwc-icon>
+          </c-icon>
           IED1
         </span>
         <span slot="secondary">
@@ -57,8 +57,8 @@
         >
           3
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </list-item>
       <list-item
         graphic="icon"
@@ -68,9 +68,9 @@
       >
         <span>
           IED2
-          <mwc-icon style="--mdc-icon-size: 1em;">
+          <c-icon style="--mdc-icon-size: 1em;">
             trending_flat
-          </mwc-icon>
+          </c-icon>
           IED3
         </span>
         <span slot="secondary">
@@ -82,8 +82,8 @@
         >
           1
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </list-item>
       <list-item
         graphic="icon"
@@ -93,9 +93,9 @@
       >
         <span>
           IED3
-          <mwc-icon style="--mdc-icon-size: 1em;">
+          <c-icon style="--mdc-icon-size: 1em;">
             trending_flat
-          </mwc-icon>
+          </c-icon>
           IED1
         </span>
         <span slot="secondary">
@@ -107,8 +107,8 @@
         >
           14
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </list-item>
       <list-item
         graphic="icon"
@@ -118,9 +118,9 @@
       >
         <span>
           IED2
-          <mwc-icon style="--mdc-icon-size: 1em;">
+          <c-icon style="--mdc-icon-size: 1em;">
             trending_flat
-          </mwc-icon>
+          </c-icon>
           IED1
         </span>
         <span slot="secondary">
@@ -132,8 +132,8 @@
         >
           2
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </list-item>
       <list-item
         graphic="icon"
@@ -143,9 +143,9 @@
       >
         <span>
           IED1
-          <mwc-icon style="--mdc-icon-size: 1em;">
+          <c-icon style="--mdc-icon-size: 1em;">
             trending_flat
-          </mwc-icon>
+          </c-icon>
           IED2
         </span>
         <span slot="secondary">
@@ -157,8 +157,8 @@
         >
           4
         </span>
-        <mwc-icon slot="graphic">
-        </mwc-icon>
+        <c-icon slot="graphic">
+        </c-icon>
       </list-item>
     </filtered-list>
   </div>

@@ -5,6 +5,7 @@ import {
   CheckListItem,
   EditorAction,
   html,
+  Icon,
   identity,
   isEqual,
   isSame,
@@ -186,11 +187,13 @@ export function mergeWizard(
                   hasMeta
                   .selected=${options?.selected?.(diff) ?? false}
                   .disabled=${options?.disabled?.(diff) ?? false}
-                  style="--mdc-checkbox-checked-color: var(--mdc-theme-${diff.ours
-                    ? diff.theirs
-                      ? 'secondary'
-                      : 'error'
-                    : 'primary'});"
+                  style="--mdc-checkbox-checked-color: var(--mdc-theme-${
+                    diff.ours
+                      ? diff.theirs
+                        ? 'secondary'
+                        : 'error'
+                      : 'primary'
+                  });"
                 >
                   <span>${name}</span>
                   <span slot="secondary"
@@ -198,21 +201,21 @@ export function mergeWizard(
                     ${diff.ours && diff.theirs ? html`&cularr;` : ' '}
                     ${diff.theirs ?? ''}</span
                   >
-                  <mwc-icon slot="meta"
-                    >${diff.ours
-                      ? diff.theirs
-                        ? 'edit'
-                        : 'delete'
-                      : 'add'}</mwc-icon
+                  <${Icon} slot="meta"
+                    >${
+                      diff.ours ? (diff.theirs ? 'edit' : 'delete') : 'add'
+                    }</${Icon}
                   >
                 </${CheckListItem}>`
             )}
-            ${childDiffs.length
-              ? html`<${ListItem} noninteractive
+            ${
+              childDiffs.length
+                ? html`<${ListItem} noninteractive
                     >${translate('merge.children')}</${ListItem}
                   >
                   <li padded divider role="separator"></li>`
-              : ''}
+                : ''
+            }
             ${repeat(
               childDiffs,
               e => e,
@@ -225,28 +228,34 @@ export function mergeWizard(
                   hasMeta
                   .selected=${options?.selected?.(diff) ?? false}
                   .disabled=${options?.disabled?.(diff) ?? false}
-                  style="--mdc-checkbox-checked-color: var(--mdc-theme-${diff.ours
-                    ? diff.theirs
-                      ? 'secondary'
-                      : 'error'
-                    : 'primary'});"
+                  style="--mdc-checkbox-checked-color: var(--mdc-theme-${
+                    diff.ours
+                      ? diff.theirs
+                        ? 'secondary'
+                        : 'error'
+                      : 'primary'
+                  });"
                 >
                   <span>${diff.ours?.tagName ?? diff.theirs?.tagName}</span>
                   <span slot="secondary"
                     >${diff.ours ? describe(diff.ours) : ''}
-                    ${diff.ours &&
-                    diff.theirs &&
-                    describe(diff.ours) + describe(diff.theirs)
-                      ? html`&cularr;`
-                      : ' '}
+                    ${
+                      diff.ours &&
+                      diff.theirs &&
+                      describe(diff.ours) + describe(diff.theirs)
+                        ? html`&cularr;`
+                        : ' '
+                    }
                     ${diff.theirs ? describe(diff.theirs) : ''}</span
                   >
-                  <mwc-icon slot="meta"
-                    >${diff.ours
-                      ? diff.theirs
-                        ? 'merge_type'
-                        : 'delete'
-                      : 'add'}</mwc-icon
+                  <${Icon} slot="meta"
+                    >${
+                      diff.ours
+                        ? diff.theirs
+                          ? 'merge_type'
+                          : 'delete'
+                        : 'add'
+                    }</${Icon}
                   >
                 </${CheckListItem}>`
             )}

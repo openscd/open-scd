@@ -27,9 +27,9 @@
       mwc-list-item=""
       tabindex="0"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         folder_open
-      </mwc-icon>
+      </c-icon>
       <span>
         Open project
       </span>
@@ -44,9 +44,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         create_new_folder
-      </mwc-icon>
+      </c-icon>
       <span>
         New project
       </span>
@@ -62,9 +62,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         save
-      </mwc-icon>
+      </c-icon>
       <span>
         Save project
       </span>
@@ -86,9 +86,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         undo
-      </mwc-icon>
+      </c-icon>
       <span>
         Undo
       </span>
@@ -102,9 +102,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         redo
-      </mwc-icon>
+      </c-icon>
       <span>
         Redo
       </span>
@@ -118,9 +118,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         rule_folder
-      </mwc-icon>
+      </c-icon>
       <span>
         Validate project
       </span>
@@ -136,9 +136,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         rule_folder
-      </mwc-icon>
+      </c-icon>
       <span>
         Validate Templates
       </span>
@@ -153,9 +153,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         history
-      </mwc-icon>
+      </c-icon>
       <span>
         View log
       </span>
@@ -168,9 +168,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         rule
-      </mwc-icon>
+      </c-icon>
       <span>
         View diagnostics
       </span>
@@ -190,9 +190,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         snippet_folder
-      </mwc-icon>
+      </c-icon>
       <span>
         Import IEDs
       </span>
@@ -208,9 +208,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         play_circle
-      </mwc-icon>
+      </c-icon>
       <span>
         Subscriber Update
       </span>
@@ -226,9 +226,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         merge_type
-      </mwc-icon>
+      </c-icon>
       <span>
         Merge Project
       </span>
@@ -244,9 +244,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         merge_type
-      </mwc-icon>
+      </c-icon>
       <span>
         Update Substation
       </span>
@@ -267,9 +267,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         settings
-      </mwc-icon>
+      </c-icon>
       <span>
         Settings
       </span>
@@ -282,9 +282,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         help
-      </mwc-icon>
+      </c-icon>
       <span>
         Help
       </span>
@@ -305,9 +305,9 @@
       mwc-list-item=""
       tabindex="-1"
     >
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         extension
-      </mwc-icon>
+      </c-icon>
       <span>
         Extensions
       </span>
@@ -411,9 +411,9 @@
       <span>
         Edits, errors, and other notifications will show up here.
       </span>
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         info
-      </mwc-icon>
+      </c-icon>
     </list-item>
   </c-list>
   <c-button
@@ -455,9 +455,9 @@
       <span>
         Issues found during validation will show up here
       </span>
-      <mwc-icon slot="graphic">
+      <c-icon slot="graphic">
         info
-      </mwc-icon>
+      </c-icon>
     </list-item>
   </filtered-list>
   <c-button
@@ -547,12 +547,12 @@
       <strong>
         Editor tab
       </strong>
-      <mwc-icon
+      <c-icon
         class="inverted"
         slot="graphic"
       >
         tab
-      </mwc-icon>
+      </c-icon>
     </list-item>
     <li
       divider=""
@@ -570,9 +570,9 @@
       tabindex="0"
       value="/src/editors/Substation.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         margin
-      </mwc-icon>
+      </c-icon>
       Substation
     </check-list-item>
     <check-list-item
@@ -586,9 +586,9 @@
       tabindex="-1"
       value="/src/editors/Communication.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         settings_ethernet
-      </mwc-icon>
+      </c-icon>
       Communication
     </check-list-item>
     <check-list-item
@@ -602,9 +602,9 @@
       tabindex="-1"
       value="/src/editors/Templates.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         copy_all
-      </mwc-icon>
+      </c-icon>
       Templates
     </check-list-item>
     <list-item
@@ -616,14 +616,14 @@
       <strong>
         Menu entry
       </strong>
-      <mwc-icon
+      <c-icon
         class="inverted"
         slot="graphic"
       >
         <strong>
           play_circle
         </strong>
-      </mwc-icon>
+      </c-icon>
     </list-item>
     <li
       divider=""
@@ -641,9 +641,9 @@
       tabindex="-1"
       value="/src/menu/OpenProject.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         folder_open
-      </mwc-icon>
+      </c-icon>
       Open project
     </check-list-item>
     <check-list-item
@@ -657,9 +657,9 @@
       tabindex="-1"
       value="/src/menu/NewProject.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         create_new_folder
-      </mwc-icon>
+      </c-icon>
       New project
     </check-list-item>
     <check-list-item
@@ -673,9 +673,9 @@
       tabindex="-1"
       value="/src/menu/SaveProject.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         save
-      </mwc-icon>
+      </c-icon>
       Save project
     </check-list-item>
     <li
@@ -695,9 +695,9 @@
       tabindex="-1"
       value="/src/validators/ValidateSchema.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         rule_folder
-      </mwc-icon>
+      </c-icon>
       Validate project
     </check-list-item>
     <check-list-item
@@ -711,9 +711,9 @@
       tabindex="-1"
       value="/src/validators/ValidateTemplates.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         rule_folder
-      </mwc-icon>
+      </c-icon>
       Validate Templates
     </check-list-item>
     <li
@@ -733,9 +733,9 @@
       tabindex="-1"
       value="/src/menu/ImportIEDs.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         snippet_folder
-      </mwc-icon>
+      </c-icon>
       Import IEDs
     </check-list-item>
     <check-list-item
@@ -749,9 +749,9 @@
       tabindex="-1"
       value="/src/menu/SubscriberInfo.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         play_circle
-      </mwc-icon>
+      </c-icon>
       Subscriber Update
     </check-list-item>
     <check-list-item
@@ -765,9 +765,9 @@
       tabindex="-1"
       value="/src/menu/Merge.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         merge_type
-      </mwc-icon>
+      </c-icon>
       Merge Project
     </check-list-item>
     <check-list-item
@@ -781,9 +781,9 @@
       tabindex="-1"
       value="/src/menu/UpdateSubstation.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         merge_type
-      </mwc-icon>
+      </c-icon>
       Update Substation
     </check-list-item>
     <li
@@ -803,9 +803,9 @@
       tabindex="-1"
       value="/src/menu/Help.js"
     >
-      <mwc-icon slot="meta">
+      <c-icon slot="meta">
         help
-      </mwc-icon>
+      </c-icon>
       Help
     </check-list-item>
   </c-list>
@@ -855,9 +855,9 @@
         value="editor"
       >
         Editor tab
-        <mwc-icon slot="meta">
+        <c-icon slot="meta">
           tab
-        </mwc-icon>
+        </c-icon>
       </radio-list-item>
       <radio-list-item
         aria-disabled="false"
@@ -870,20 +870,20 @@
         value="menu"
       >
         Menu entry
-        <mwc-icon slot="meta">
+        <c-icon slot="meta">
           play_circle
-        </mwc-icon>
+        </c-icon>
       </radio-list-item>
       <div id="menudetails">
         <c-formfield
           id="enabledefault"
           label="Requires loaded document"
         >
-          <mwc-switch
+          <c-switch
             checked=""
             id="requireDoc"
           >
-          </mwc-switch>
+          </c-switch>
         </c-formfield>
         <c-select
           fixedmenuposition=""
@@ -933,9 +933,9 @@
         value="validator"
       >
         Validator
-        <mwc-icon slot="meta">
+        <c-icon slot="meta">
           rule_folder
-        </mwc-icon>
+        </c-icon>
       </radio-list-item>
     </c-list>
     <mwc-textfield
@@ -1006,16 +1006,16 @@
       </list-item>
     </c-select>
     <c-formfield label="Dark theme">
-      <mwc-switch id="dark">
-      </mwc-switch>
+      <c-switch id="dark">
+      </c-switch>
     </c-formfield>
     <c-formfield label="Pro mode">
-      <mwc-switch id="mode">
-      </mwc-switch>
+      <c-switch id="mode">
+      </c-switch>
     </c-formfield>
     <c-formfield label="Show IEDs in substation editor">
-      <mwc-switch id="showieds">
-      </mwc-switch>
+      <c-switch id="showieds">
+      </c-switch>
     </c-formfield>
   </form>
   <c-button
