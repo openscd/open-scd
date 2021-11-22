@@ -170,16 +170,24 @@ export default class SingleLineDiagramPlugin extends LitElement {
             )
             .forEach(cEquipment => {
               const cEquipmentAbsolutePosition = getAbsolutePosition(cEquipment);
-              const cEquipmentDimensions = getElementDimensions(getNameAttribute(bay)!, getNameAttribute(cEquipment)!, this.svg);
 
               let sideToDrawTerminalOn: Side;
 
+              /**
+               * TODO: ConductingEquipment dimensions are just the defaults,
+               * retrieving dimensions the same way as for ConnectivityNode doesn't work.
+               * 
+               * Instead, just insert DEFAULT_ELEMENT_SIZE for height and width for ConductingEquipment.
+               */
               if (cEquipmentAbsolutePosition.y! > cNodeAbsolutePosition.y!) {
                 const sidesOfRoutes = drawRouteBetweenElements(
                   cNodeAbsolutePosition,
                   cEquipmentAbsolutePosition,
                   cNodeDimensions,
-                  cEquipmentDimensions,
+                  {
+                    height: DEFAULT_ELEMENT_SIZE,
+                    width: DEFAULT_ELEMENT_SIZE
+                  },
                   this.svg
                 );
                 sideToDrawTerminalOn = sidesOfRoutes.pointBSide;
@@ -187,7 +195,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 const sidesOfRoutes = drawRouteBetweenElements(
                   cEquipmentAbsolutePosition,
                   cNodeAbsolutePosition,
-                  cEquipmentDimensions,
+                  {
+                    height: DEFAULT_ELEMENT_SIZE,
+                    width: DEFAULT_ELEMENT_SIZE
+                  },
                   cNodeDimensions,
                   this.svg
                 );

@@ -25,7 +25,7 @@ export const DEFAULT_ELEMENT_SIZE = 25;
 /**
  * Offset of a terminal next to an element.
  */
-const TERMINAL_OFFSET = 15;
+const TERMINAL_OFFSET = 10;
 
 /**
  * Defining the sides of route drawing of the two points
