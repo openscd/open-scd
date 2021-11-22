@@ -224,8 +224,8 @@ export function createTerminalElement(
   // Also add a text element.
   const textElementPosition =
     sideToDraw == 'bottom' || sideToDraw == 'top'
-      ? { x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 10 }
-      : { x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 10 };
+      ? { x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 5 }
+      : { x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5 };
   const text = createTextElement(terminalName, textElementPosition, 'xx-small');
 
   groupElement.appendChild(icon);
