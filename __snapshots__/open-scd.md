@@ -879,11 +879,11 @@
           id="enabledefault"
           label="Requires loaded document"
         >
-          <mwc-switch
+          <c-switch
             checked=""
             id="requireDoc"
           >
-          </mwc-switch>
+          </c-switch>
         </c-formfield>
         <c-select
           fixedmenuposition=""
@@ -1006,16 +1006,16 @@
       </list-item>
     </c-select>
     <c-formfield label="Dark theme">
-      <mwc-switch id="dark">
-      </mwc-switch>
+      <c-switch id="dark">
+      </c-switch>
     </c-formfield>
     <c-formfield label="Pro mode">
-      <mwc-switch id="mode">
-      </mwc-switch>
+      <c-switch id="mode">
+      </c-switch>
     </c-formfield>
     <c-formfield label="Show IEDs in substation editor">
-      <mwc-switch id="showieds">
-      </mwc-switch>
+      <c-switch id="showieds">
+      </c-switch>
     </c-formfield>
   </form>
   <c-button

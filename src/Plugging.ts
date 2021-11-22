@@ -1,7 +1,6 @@
 import { query, TemplateResult } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
 import {
@@ -18,6 +17,7 @@ import {
   Mixin,
   RadioListItem,
   Select,
+  Switch,
 } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
@@ -295,7 +295,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
                   id="enabledefault"
                   label="${translate('plugins.requireDoc')}"
                 >
-                  <mwc-switch id="requireDoc" checked></mwc-switch>
+                  <${Switch} id="requireDoc" checked></${Switch}>
                 </${Formfield}>
                 <${Select} id="menuPosition" value="middle" fixedMenuPosition
                   >${Object.values(menuPosition).map(

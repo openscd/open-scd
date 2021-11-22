@@ -8,7 +8,6 @@ import {
 
 import '@material/mwc-linear-progress';
 import '@material/mwc-snackbar';
-import '@material/mwc-switch';
 import '@material/mwc-tab';
 import '@material/mwc-tab-bar';
 import '@material/mwc-textfield';

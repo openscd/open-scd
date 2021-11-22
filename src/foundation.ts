@@ -28,6 +28,7 @@ export {
   List,
   Icon,
   Menu,
+  Switch,
 } from './foundation/components.js';
 
 export type SimpleAction = Create | Update | Delete | Move;

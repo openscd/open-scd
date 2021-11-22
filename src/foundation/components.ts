@@ -14,6 +14,7 @@ import { styles as checkListItemStyles } from '@material/mwc-list/mwc-control-li
 import { styles as listStyles } from '@material/mwc-list/mwc-list.css.js';
 import { styles as iconStyles } from '@material/mwc-icon/mwc-icon-host.css.js';
 import { styles as menuStyles } from '@material/mwc-menu/mwc-menu.css.js';
+import { styles as switchStyles } from '@material/mwc-switch/mwc-switch.css.js';
 
 import { DialogBase } from '@material/mwc-dialog/mwc-dialog-base.js';
 import { ButtonBase } from '@material/mwc-button/mwc-button-base.js';
@@ -30,6 +31,7 @@ import { CheckListItemBase } from '@material/mwc-list/mwc-check-list-item-base.j
 import { RadioListItemBase } from '@material/mwc-list/mwc-radio-list-item-base.js';
 import { ListBase } from '@material/mwc-list/mwc-list-base.js';
 import { MenuBase } from '@material/mwc-menu/mwc-menu-base.js';
+import { SwitchBase } from '@material/mwc-switch/mwc-switch-base.js';
 
 export class Dialog extends DialogBase {
   static styles = [dialogStyles];
@@ -96,4 +98,8 @@ export class Icon extends LitElement {
 
 export class Menu extends MenuBase {
   static styles = [menuStyles];
+}
+
+export class Switch extends SwitchBase {
+  static styles = [switchStyles];
 }

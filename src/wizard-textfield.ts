@@ -8,9 +8,8 @@ import {
 import { translate, get } from 'lit-translate';
 
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
-import { html, IconButton, ListItem, Menu } from './foundation.js';
+import { html, IconButton, ListItem, Menu, Switch } from './foundation.js';
 
 /** A potentially `nullable` `TextField` that allows for selection of an SI
  * `multiplier` if an SI `unit` is given.
@@ -70,7 +69,7 @@ export class WizardTextField extends TextField {
   @property({ type: Array })
   reservedValues: string[] = [];
 
-  @query('mwc-switch') nullSwitch?: Switch;
+  @query('c-switch') nullSwitch?: Switch;
   @query('c-menu') multiplierMenu?: Menu;
   @query('icon-button') multiplierButton?: IconButton;
 
@@ -148,13 +147,13 @@ export class WizardTextField extends TextField {
 
   renderSwitch(): TemplateResult {
     if (this.nullable) {
-      return html`<mwc-switch
+      return html`<${Switch}
         style="margin-left: 12px;"
         ?checked=${!this.null}
         @change=${() => {
           this.null = !this.nullSwitch!.checked;
         }}
-      ></mwc-switch>`;
+      ></${Switch}>`;
     }
     return html``;
   }

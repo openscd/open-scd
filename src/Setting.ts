@@ -1,8 +1,6 @@
 import { property, query, TemplateResult } from 'lit-element';
 import { registerTranslateConfig, translate, use } from 'lit-translate';
 
-import { Switch } from '@material/mwc-switch';
-
 import {
   Button,
   Dialog,
@@ -13,6 +11,7 @@ import {
   LitElementConstructor,
   Mixin,
   Select,
+  Switch,
 } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 import { WizardDialog } from './wizard-dialog.js';
@@ -124,22 +123,22 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
               )}
             </${Select}>
             <${Formfield} label="${translate('settings.dark')}">
-              <mwc-switch
+              <${Switch}
                 id="dark"
                 ?checked=${this.settings.theme === 'dark'}
-              ></mwc-switch>
+              ></${Switch}>
             </${Formfield}>
             <${Formfield} label="${translate('settings.mode')}">
-              <mwc-switch
+              <${Switch}
                 id="mode"
                 ?checked=${this.settings.mode === 'pro'}
-              ></mwc-switch>
+              ></${Switch}>
             </${Formfield}>
             <${Formfield} label="${translate('settings.showieds')}">
-              <mwc-switch
+              <${Switch}
                 id="showieds"
                 ?checked=${this.settings.showieds === 'on'}
-              ></mwc-switch>
+              ></${Switch}>
             </${Formfield}>
           </form>
           <${Button} slot="secondaryAction" dialogAction="close">
