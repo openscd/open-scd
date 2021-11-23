@@ -3,8 +3,8 @@ import {
   Side,
 } from '../../../public/js/ortho-connector.js';
 import { identity } from '../../foundation.js';
-
 import { getIcon } from '../../zeroline/foundation.js';
+import { connectivityNodeIcon } from '../../icons.js';
 
 import {
   getSCLCoordinates,
@@ -333,7 +333,7 @@ export function createConnectivityNodeElement(
   );
 
   const parsedIcon = new DOMParser().parseFromString(
-    getIcon(cNodeElement).strings[0],
+    connectivityNodeIcon.strings[0],
     'application/xml'
   );
   parsedIcon.querySelectorAll('circle').forEach(icon => {
