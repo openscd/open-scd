@@ -2,6 +2,7 @@ import {
   OrthogonalConnector,
   Side,
 } from '../../../public/js/ortho-connector.js';
+import { identity } from '../../foundation.js';
 
 import { getIcon } from '../../zeroline/foundation.js';
 
@@ -132,8 +133,12 @@ export function createGroupElement(element: Element): SVGElement {
     'http://www.w3.org/2000/svg',
     'g'
   );
-  finalElement.tabIndex = 0;
-  finalElement.setAttribute('id', getNameAttribute(element)!);
+  finalElement.setAttribute(
+    'id',
+    typeof identity(element) === 'string'
+      ? <string>identity(element)
+      : 'unidentifiable'
+  );
   finalElement.setAttribute('type', element.tagName);
 
   const description = getDescriptionAttribute(element);
@@ -208,6 +213,11 @@ export function createTerminalElement(
 ): SVGElement {
   const groupElement = createGroupElement(terminalElement);
 
+  const terminalIdentity =
+    typeof identity(terminalElement) === 'string'
+      ? <string>identity(terminalElement)
+      : 'unidentifiable';
+
   const terminalName = getNameAttribute(terminalElement)!;
   const pointToDrawTerminalOn = getAbsolutePositionTerminal(
     elementPosition,
@@ -216,7 +226,7 @@ export function createTerminalElement(
 
   // TODO: Add this to the icons.ts file.
   const icon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  icon.setAttribute('id', `${terminalName}`);
+  icon.setAttribute('id', `${terminalIdentity}`);
   icon.setAttribute('cx', `${pointToDrawTerminalOn.x}`);
   icon.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
   icon.setAttribute('r', '2');
