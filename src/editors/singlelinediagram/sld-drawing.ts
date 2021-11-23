@@ -487,9 +487,9 @@ function getAbsolutePositionTerminal(
 
 /**
  * Get the dimensions of a specific element within a specific bay.
- * @param bayName The name of the bay.
- * @param elementName The name of the element.
- * @param svg The SVG to search on.
+ * @param bayName - The name of the bay.
+ * @param elementName - The name of the element.
+ * @param svg - The SVG to search on.
  * @returns The shape (width and height) of the specific element.
  */
 export function getElementDimensions(bayName: string, elementName: string, svg: HTMLElement): Shape {
