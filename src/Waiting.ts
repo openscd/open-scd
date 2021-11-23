@@ -1,11 +1,12 @@
 import { html, property, TemplateResult } from 'lit-element';
 
+import '@material/mwc-circular-progress-four-color';
+
 import {
   LitElementConstructor,
   Mixin,
   PendingStateDetail,
   ifImplemented,
-  newLogEvent,
 } from './foundation.js';
 
 /** Mixin implementing

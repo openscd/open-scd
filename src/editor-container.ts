@@ -10,13 +10,15 @@ import {
 } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
-import { newWizardEvent, SCLTag, tags } from './foundation.js';
-
-import { emptyWizard, wizards } from './wizards/wizard-library.js';
-
+import '@material/mwc-icon-button';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-menu';
 import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+
+import { newWizardEvent, SCLTag, tags } from './foundation.js';
+import { emptyWizard, wizards } from './wizards/wizard-library.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];

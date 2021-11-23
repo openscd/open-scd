@@ -2,6 +2,11 @@ import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list/mwc-check-list-item';
+
+import '../wizard-textfield.js';
+import '../filtered-list.js';
 import {
   cloneElement,
   getValue,

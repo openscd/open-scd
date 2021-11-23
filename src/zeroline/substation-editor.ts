@@ -8,18 +8,19 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-icon-button';
+
+import '../editor-container.js';
+import './ied-editor.js';
+import './voltage-level-editor.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { wizards } from '../wizards/wizard-library.js';
 import {
   cloneSubstationElement,
   selectors,
   startMove,
   styles,
 } from './foundation.js';
-
-import { wizards } from '../wizards/wizard-library.js';
-
-import './voltage-level-editor.js';
-import '../editor-container.js';
 
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')

@@ -8,6 +8,11 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-icon-button';
+
+import './bay-editor.js';
+import './ied-editor.js';
+import '../editor-container.js';
 import {
   selectors,
   startMove,
@@ -15,11 +20,8 @@ import {
   styles,
 } from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
-
 import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
-
-import './bay-editor.js';
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')

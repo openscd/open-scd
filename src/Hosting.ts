@@ -1,9 +1,18 @@
-import { Drawer } from '@material/mwc-drawer';
-import { ActionDetail, List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { html, property, query, TemplateResult } from 'lit-element';
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
+
+import '@material/mwc-drawer';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+import '@material/mwc-linear-progress';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+
+import { Drawer } from '@material/mwc-drawer';
+import { ActionDetail, List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+
 import { Mixin, newPendingStateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';

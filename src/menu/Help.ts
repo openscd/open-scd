@@ -1,11 +1,12 @@
 import { html, LitElement } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-
 import marked from 'marked';
 
+import '@material/mwc-icon';
+
+import '../finder-list.js';
 import { newWizardEvent, Wizard } from '../foundation.js';
 import { openSCDIcon } from '../icons.js';
-
 import { Directory } from '../finder-list.js';
 
 function aboutBox(version: string) {

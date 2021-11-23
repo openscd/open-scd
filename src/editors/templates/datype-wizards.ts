@@ -1,6 +1,15 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
 import {
   Create,
   EditorAction,
@@ -14,18 +23,13 @@ import {
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
+import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,
   unifyCreateActionArray,
   updateIDNamingAction,
 } from './foundation.js';
-
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { createBDAWizard, editBDAWizard } from '../../wizards/bda.js';
 
 export function editDaTypeWizard(
   dATypeIdentity: string,

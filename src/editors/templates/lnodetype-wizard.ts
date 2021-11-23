@@ -1,6 +1,18 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
+import '@material/mwc-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+
+import '../../wizard-textfield.js';
+import '../../wizard-select.js';
 import {
   cloneElement,
   Create,
@@ -18,6 +30,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
+import { WizardSelect } from '../../wizard-select.js';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,
@@ -27,12 +40,6 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
-
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { WizardSelect } from '../../wizard-select.js';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {

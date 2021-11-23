@@ -9,18 +9,20 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { isPublic, newWizardEvent } from './foundation.js';
-import { getAttachedIeds } from './zeroline/foundation.js';
+import '@material/mwc-icon-button';
+import '@material/mwc-icon-button-toggle';
+import { IconButton } from '@material/mwc-icon-button';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
-import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
-import { IconButton } from '@material/mwc-icon-button';
-import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
-import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { gooseIcon } from './icons.js';
+import { isPublic, newWizardEvent } from './foundation.js';
+import { selectGseControlWizard } from './wizards/gsecontrol.js';
+import { wizards } from './wizards/wizard-library.js';
+import { getAttachedIeds } from './zeroline/foundation.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';

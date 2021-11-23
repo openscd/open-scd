@@ -8,17 +8,19 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { startMove, styles, cloneSubstationElement } from './foundation.js';
+import '@material/mwc-icon-button';
+
+import '../editor-container.js';
+import './ied-editor.js';
+import './conducting-equipment-editor.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
-
 import { wizards } from '../wizards/wizard-library.js';
-
 import { VoltageLevelEditor } from './voltage-level-editor.js';
-import './conducting-equipment-editor.js';
+import { startMove, styles, cloneSubstationElement } from './foundation.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')

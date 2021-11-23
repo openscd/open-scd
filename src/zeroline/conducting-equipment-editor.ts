@@ -7,9 +7,9 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { startMove } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import '@material/mwc-fab';
 
+import { newActionEvent, newWizardEvent } from '../foundation.js';
 import {
   circuitBreakerIcon,
   currentTransformerIcon,
@@ -18,9 +18,9 @@ import {
   generalConductingEquipmentIcon,
   voltageTransformerIcon,
 } from '../icons.js';
-
-import { BayEditor } from './bay-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
+import { startMove } from './foundation.js';
+import { BayEditor } from './bay-editor.js';
 
 function typeStr(condEq: Element): string {
   return condEq.getAttribute('type') === 'DIS' &&

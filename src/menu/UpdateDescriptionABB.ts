@@ -1,6 +1,11 @@
 import { html, LitElement } from 'lit-element';
 import { get } from 'lit-translate';
 
+import '@material/mwc-list/mwc-check-list-item';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import '../filtered-list.js';
 import {
   cloneElement,
   identity,
@@ -13,9 +18,6 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 interface addDescItem {
   desc: string;

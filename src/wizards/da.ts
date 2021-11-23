@@ -1,6 +1,10 @@
 import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list/mwc-list-item';
+
+import '../wizard-select.js';
 import {
   cloneElement,
   createElement,
@@ -13,7 +17,6 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
 import { getValAction, wizardContent } from './abstractda.js';
 import { functionalConstraintEnum } from './foundation/enums.js';
 

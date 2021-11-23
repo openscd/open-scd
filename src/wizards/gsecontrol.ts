@@ -1,10 +1,16 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
+import '../filtered-list.js';
+import '../wizard-select.js';
+import '../wizard-textfield.js';
 import {
   cloneElement,
   Delete,
@@ -20,7 +26,6 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
-
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 
