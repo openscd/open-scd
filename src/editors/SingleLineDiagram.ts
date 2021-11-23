@@ -7,12 +7,13 @@ import {
   TemplateResult,
 } from 'lit-element';
 
+import { identity } from '../foundation.js';
+
 import panzoom from 'panzoom';
 
 import { Side } from '../../public/js/ortho-connector.js';
 import {
   getAbsolutePosition,
-  getParentElementName,
   getAbsolutePositionWithCustomCoordinates,
   SVG_GRID_SIZE,
   drawRoute,
@@ -25,7 +26,6 @@ import {
   createConnectivityNodeElement,
 } from './singlelinediagram/sld-drawing.js';
 import {
-  getNameAttribute,
   getSCLCoordinates,
   isBusBar,
   calculateConnectivityNodeSclCoordinates,
@@ -91,7 +91,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.bays.forEach(bay => {
       const bayElement = createBayElement(bay);
 
-      this.addElementToGroup(bayElement, getParentElementName(bay)!);
+      this.addElementToGroup(bayElement, identity(bay.parentElement));
     });
   }
 
@@ -110,7 +110,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
       .forEach(equipment => {
         const eqElement = createConductingEquipmentElement(equipment);
 
-        this.addElementToGroup(eqElement, getParentElementName(equipment)!);
+        this.addElementToGroup(eqElement, identity(equipment.parentElement));
       });
   }
 
@@ -129,7 +129,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             cNodePosition
           );
 
-          this.addElementToGroup(cNodeElement, getParentElementName(cNode)!);
+          this.addElementToGroup(cNodeElement, identity(cNode.parentElement));
         });
     });
   }
@@ -144,7 +144,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         this.biggestVoltageLevelXCoordinate
       );
 
-      this.addElementToGroup(busBarElement, getParentElementName(busBar)!);
+      this.addElementToGroup(busBarElement, identity(busBar.parentElement));
     });
   }
 
@@ -195,11 +195,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 terminalElement!
               );
               this.svg
-                .querySelectorAll(
-                  `g[id="${getNameAttribute(bay)}"] > g[id="${getNameAttribute(
-                    element
-                  )}"]`
-                )
+                .querySelectorAll(`g[id="${identity(element)}"]`)
                 .forEach(eq => eq.appendChild(terminal));
             });
         });
@@ -251,11 +247,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             terminalElement!
           );
           this.svg
-            .querySelectorAll(
-              `g[id="${getNameAttribute(
-                element.parentElement!
-              )}"] > g[id="${getNameAttribute(element)}"]`
-            )
+            .querySelectorAll(` g[id="${identity(element)}"]`)
             .forEach(eq => eq.appendChild(terminal));
         });
     });
@@ -310,11 +302,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Add an element to a specific <g> element.
    * @param elementToAdd - The element to add.
-   * @param groupName - The name of the group
+   * @param groupName - Identity sting if the element
    */
-  addElementToGroup(elementToAdd: Element, groupName: string): void {
+  addElementToGroup(elementToAdd: Element, identity: string | number): void {
     this.svg
-      .querySelectorAll(`g[id="${groupName}"]`)
+      .querySelectorAll(`g[id="${identity}"]`)
       .forEach(group => group.appendChild(elementToAdd));
   }
 
