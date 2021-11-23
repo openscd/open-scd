@@ -15,7 +15,7 @@ import {
   getParentElementName,
   getAbsolutePositionWithCustomCoordinates,
   SVG_GRID_SIZE,
-  drawRouteBetweenElements,
+  drawRouteBetweenElements as drawRoute,
   DEFAULT_ELEMENT_SIZE,
   createTerminalElement,
   createBusBarElement,
@@ -170,7 +170,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
             )
             .forEach(cEquipment => {
               const cEquipmentAbsolutePosition = getAbsolutePosition(cEquipment);
-
               let sideToDrawTerminalOn: Side;
 
               /**
@@ -180,7 +179,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                * Instead, just insert DEFAULT_ELEMENT_SIZE for height and width for ConductingEquipment.
                */
               if (cEquipmentAbsolutePosition.y! > cNodeAbsolutePosition.y!) {
-                const sidesOfRoutes = drawRouteBetweenElements(
+                const sidesOfRoutes = drawRoute(
                   cNodeAbsolutePosition,
                   cEquipmentAbsolutePosition,
                   cNodeDimensions,
@@ -192,7 +191,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 );
                 sideToDrawTerminalOn = sidesOfRoutes.pointBSide;
               } else {
-                const sidesOfRoutes = drawRouteBetweenElements(
+                const sidesOfRoutes = drawRoute(
                   cEquipmentAbsolutePosition,
                   cNodeAbsolutePosition,
                   {
@@ -249,10 +248,14 @@ export default class SingleLineDiagramPlugin extends LitElement {
           const customShape = { width: DEFAULT_ELEMENT_SIZE, height: 1 };
 
           if (busBarPosition.y! > cEquipmentAbsolutePosition.y!) {
-            const sidesOfRoutes = drawRouteBetweenElements(
+            const sidesOfRoutes = drawRoute(
               cEquipmentAbsolutePosition,
+              // The x of the busbar position should equal the x of the Conducting Equipment,
+              // so it will be a straight line.
               {
-                x: cEquipmentAbsolutePosition.x! - ((DEFAULT_ELEMENT_SIZE - customShape.width) / 2),
+                x: cEquipmentAbsolutePosition.x!,
+                // The drawRoute function draws the routes to the middle of the elements,
+                // for the Bus Bar the height is 1, so we extract the value that is added in the function.
                 y: busBarPosition.y! - ((DEFAULT_ELEMENT_SIZE - customShape.height) / 2)
               },
               customShape,
@@ -261,9 +264,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
             );
             sideToDrawTerminalOn = sidesOfRoutes.pointASide;
           } else {
-            const sidesOfRoutes = drawRouteBetweenElements(
+            const sidesOfRoutes = drawRoute(
               {
-                x: cEquipmentAbsolutePosition.x! - ((DEFAULT_ELEMENT_SIZE - customShape.width) / 2),
+                x: cEquipmentAbsolutePosition.x!,
                 y: busBarPosition.y! - ((DEFAULT_ELEMENT_SIZE - customShape.height) / 2)
               },
               cEquipmentAbsolutePosition,

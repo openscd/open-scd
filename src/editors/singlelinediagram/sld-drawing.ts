@@ -25,7 +25,7 @@ export const DEFAULT_ELEMENT_SIZE = 25;
 /**
  * Offset of a terminal next to an element.
  */
-const TERMINAL_OFFSET = 10;
+const TERMINAL_OFFSET = 6;
 
 /**
  * Defining the sides of route drawing of the two points
@@ -356,16 +356,19 @@ export function drawRouteBetweenElements(
    * The point on each side of the route should be in the middle of the element,
    * so we have to do a little conversion of the 'left' and 'top' coordinate.
    */
+  const positionMiddleOfA = convertRoutePointToMiddleOfElement(pointA, pointAShape);
+  const positionMiddleOfB = convertRoutePointToMiddleOfElement(pointB, pointBShape);
+
   const shapeA = {
-    left: pointA.x! + ((DEFAULT_ELEMENT_SIZE - pointAShape.width) / 2),
-    top: pointA.y! + ((DEFAULT_ELEMENT_SIZE - pointAShape.height) / 2),
+    left: positionMiddleOfA.x!,
+    top: positionMiddleOfA.y!,
     width: pointAShape?.width,
     height: pointAShape?.height,
   };
 
   const shapeB = {
-    left: pointB.x! + ((DEFAULT_ELEMENT_SIZE - pointBShape.width) / 2),
-    top: pointB.y! + ((DEFAULT_ELEMENT_SIZE - pointBShape.height) / 2),
+    left: positionMiddleOfB.x!,
+    top: positionMiddleOfB.y!,
     width: pointBShape?.width,
     height: pointBShape?.height,
   };
@@ -404,6 +407,26 @@ export function drawRouteBetweenElements(
   svgToDrawOn.appendChild(line);
 
   return sides;
+}
+
+/**
+ * Get the dimensions of a specific element within a specific bay.
+ * @param bayName - The name of the bay.
+ * @param elementName - The name of the element.
+ * @param svg - The SVG to search on.
+ * @returns The shape (width and height) of the specific element.
+ */
+ export function getElementDimensions(bayName: string, elementName: string, svg: HTMLElement): Shape {
+  let {height, width} = {height: 0, width: 0};
+
+  svg.querySelectorAll(
+    `g[id="${bayName}"] > g[id="${elementName}"]`
+  ).forEach(b => {
+    height = b.getBoundingClientRect().height;
+    width = b.getBoundingClientRect().width;
+  });
+
+  return {height, width};
 }
 
 /**
@@ -486,21 +509,14 @@ function getAbsolutePositionTerminal(
 }
 
 /**
- * Get the dimensions of a specific element within a specific bay.
- * @param bayName - The name of the bay.
- * @param elementName - The name of the element.
- * @param svg - The SVG to search on.
- * @returns The shape (width and height) of the specific element.
+ * Convert a top left coordinate to the middle of an element.
+ * @param point - The top left point of the element.
+ * @param shape - The shape of the element.
+ * @returns The point of the element in the middle.
  */
-export function getElementDimensions(bayName: string, elementName: string, svg: HTMLElement): Shape {
-  let {height, width} = {height: 0, width: 0};
-
-  svg.querySelectorAll(
-    `g[id="${bayName}"] > g[id="${elementName}"]`
-  ).forEach(b => {
-    height = b.getBoundingClientRect().height;
-    width = b.getBoundingClientRect().width;
-  });
-
-  return {height, width};
+function convertRoutePointToMiddleOfElement(point: Point, shape: Shape): Point {
+  return {
+    x: point.x! + ((DEFAULT_ELEMENT_SIZE - shape.width) / 2),
+    y: point.y! + ((DEFAULT_ELEMENT_SIZE - shape.height) / 2)
+  }
 }
