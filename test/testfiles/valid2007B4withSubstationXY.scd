@@ -7,6 +7,13 @@
 		</History>
 	</Header>
 	<Substation name="AA1" desc="Substation">
+		<PowerTransformer name="TA1" sxy:x="1" sxy:y="9" type="PTR">
+      		<TransformerWinding name="W1" type="PTW">
+        		<Terminal bayName="BusBar B" cNodeName="L1" name="T1" substationName="AA1" voltageLevelName="J1" connectivityNode="AA1/J1/BusBar B/L1"/>
+      		</TransformerWinding>
+      		<TransformerWinding name="W2" type="PTW">
+      		</TransformerWinding>
+    	</PowerTransformer>
         <VoltageLevel sxy:x="1" sxy:y="3" name="J1" desc="Voltage Level">
             <Private type="ABBPCMInternalObjRef">b80686f1-a514-477b-a83b-78f1cbe8a582</Private>
             <Voltage unit="V" multiplier="k">20</Voltage>
