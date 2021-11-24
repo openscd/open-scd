@@ -7,10 +7,12 @@ import { getIcon } from '../../zeroline/foundation.js';
 import { connectivityNodeIcon } from '../../icons.js';
 
 import {
-  getSCLCoordinates,
+  getRelativeCoordinates,
   getDescriptionAttribute,
   getNameAttribute,
   Point,
+  getAbsoluteCoordinates,
+  calculateConnectivityNodeCoordinates,
 } from './foundation.js';
 
 /**
@@ -52,63 +54,27 @@ interface Shape {
  * @returns A point containing the full x/y position.
  */
 export function getAbsolutePosition(element: Element): Point {
-  switch (element.parentElement!.tagName) {
-    case 'Bay': {
-      const bayPosition = getSCLCoordinates(element.parentElement!);
-      const voltageLevelPosition = getSCLCoordinates(
-        element.parentElement!.parentElement!
-      );
-      const elementPosition = getSCLCoordinates(element);
-      return {
-        x:
-          (bayPosition.x! + voltageLevelPosition.x! + elementPosition.x!) *
-          SVG_GRID_SIZE,
-        y:
-          (bayPosition.y! + voltageLevelPosition.y! + elementPosition.y!) *
-          SVG_GRID_SIZE,
-      };
-    }
-    case 'VoltageLevel': {
-      const voltageLevelPosition = getSCLCoordinates(element.parentElement!);
-      const elementPosition = getSCLCoordinates(element);
-      return {
-        x: (voltageLevelPosition.x! + elementPosition.x!) * SVG_GRID_SIZE,
-        y: (voltageLevelPosition.y! + elementPosition.y!) * SVG_GRID_SIZE,
-      };
-    }
-    default: {
-      return { x: 0, y: 0 };
-    }
-  }
+  const absoluteCoordinates = getAbsoluteCoordinates(element);
+  return {
+    x: absoluteCoordinates.x! * SVG_GRID_SIZE,
+    y: absoluteCoordinates.y! * SVG_GRID_SIZE,
+  };
 }
 
 /**
- * Get the absolute position for an element, given with custom coordinates.
- * @param element - The element to calculate the position for.
- * @param point - The custom coordinates.
- * @returns The absolute position.
+ * Get the full position of an ConnecitvityNode SCL element (multiplied with an offset for the SVG).
+ * @param connectivityNode - The SCL element ConnectivityNode to get the position for.
+ * @returns A point containing the full x/y position in px.
  */
-export function getAbsolutePositionWithCustomCoordinates(
-  element: Element,
-  point: Point
+export function getAbsolutePositionConnectivityNode(
+  connectivityNode: Element
 ): Point {
-  switch (element.parentElement!.tagName) {
-    case 'Bay': {
-      const bayPosition = getSCLCoordinates(element.parentElement!);
-      const voltageLevelPosition = getSCLCoordinates(
-        element.parentElement!.parentElement!
-      );
-      return {
-        x:
-          (bayPosition.x! + voltageLevelPosition.x! + point.x!) * SVG_GRID_SIZE,
-        y:
-          (bayPosition.y! + voltageLevelPosition.y! + point.y!) * SVG_GRID_SIZE,
-      };
-    }
-    default: {
-      return { x: 0, y: 0 };
-    }
-  }
+  const absoluteCoordinates =
+    calculateConnectivityNodeCoordinates(connectivityNode);
+  return {
+    x: absoluteCoordinates.x! * SVG_GRID_SIZE,
+    y: absoluteCoordinates.y! * SVG_GRID_SIZE,
+  };
 }
 
 /**
@@ -146,7 +112,7 @@ export function createGroupElement(element: Element): SVGElement {
 
   // Setting the X and Y coordinates of this <g> element.
   // It's not actually used, it's more informative.
-  const coordinates = getSCLCoordinates(element);
+  const coordinates = getRelativeCoordinates(element);
   finalElement.setAttribute('sxy:x', `${coordinates.x}`);
   finalElement.setAttribute('sxy:y', `${coordinates.y}`);
 
@@ -319,28 +285,21 @@ export function createConductingEquipmentElement(
 /**
  * Create a Connectivity Node element.
  * @param cNodeElement - The name of the busbar
- * @param cNodeSclPosition - The SCL position of the Connectivity Node.
+ * @param position - The SCL position of the Connectivity Node.
  * @returns The Connectivity Node SVG element.
  */
 export function createConnectivityNodeElement(
   cNodeElement: Element,
-  cNodeSclPosition: Point
+  position: Point
 ): SVGElement {
   const groupElement = createGroupElement(cNodeElement);
-  const absolutePosition = getAbsolutePositionWithCustomCoordinates(
-    cNodeElement,
-    cNodeSclPosition
-  );
 
   const parsedIcon = new DOMParser().parseFromString(
     connectivityNodeIcon.strings[0],
     'application/xml'
   );
   parsedIcon.querySelectorAll('circle').forEach(icon => {
-    icon.setAttribute(
-      'transform',
-      `translate(${absolutePosition.x},${absolutePosition.y})`
-    );
+    icon.setAttribute('transform', `translate(${position.x},${position.y})`);
     groupElement.appendChild(icon);
   });
 

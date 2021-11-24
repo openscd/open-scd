@@ -7,7 +7,6 @@
 		</History>
 	</Header>
 	<Substation name="AA1" desc="Substation">
-        <Private type="ABBPCMInternalObjRef">0f6c4a8e-0904-4f41-9b01-03444ba9efc7</Private>
         <VoltageLevel sxy:x="1" sxy:y="3" name="J1" desc="Voltage Level">
             <Private type="ABBPCMInternalObjRef">b80686f1-a514-477b-a83b-78f1cbe8a582</Private>
             <Voltage unit="V" multiplier="k">20</Voltage>
