@@ -14,7 +14,6 @@ import panzoom from 'panzoom';
 import { Side } from '../../public/js/ortho-connector.js';
 import {
   getAbsolutePosition,
-  getAbsolutePositionWithCustomCoordinates,
   SVG_GRID_SIZE,
   drawRoute,
   DEFAULT_ELEMENT_SIZE,
@@ -24,11 +23,10 @@ import {
   createBayElement,
   createConductingEquipmentElement,
   createConnectivityNodeElement,
+  getAbsolutePositionConnectivityNode,
 } from './singlelinediagram/sld-drawing.js';
 import {
-  getSCLCoordinates,
   isBusBar,
-  calculateConnectivityNodeSclCoordinates,
   getConnectedTerminals,
   getPathNameAttribute,
 } from './singlelinediagram/foundation.js';
@@ -123,7 +121,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .filter(cNode => getConnectedTerminals(cNode).length > 0)
         .forEach(cNode => {
-          const cNodePosition = calculateConnectivityNodeSclCoordinates(cNode);
+          const cNodePosition = getAbsolutePositionConnectivityNode(cNode);
           const cNodeElement = createConnectivityNodeElement(
             cNode,
             cNodePosition
@@ -153,11 +151,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .forEach(cNode => {
-          const position = calculateConnectivityNodeSclCoordinates(cNode);
-          const cnPosition = getAbsolutePositionWithCustomCoordinates(
-            cNode,
-            position
-          );
+          const cnPosition = getAbsolutePositionConnectivityNode(cNode);
 
           Array.from(this.doc.querySelectorAll('ConductingEquipment'))
             .filter(element =>
