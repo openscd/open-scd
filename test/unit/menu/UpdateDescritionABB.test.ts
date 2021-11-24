@@ -2,9 +2,10 @@ import { expect, fixture, html } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
 import '../../mock-wizard.js';
-import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 import { MockWizard } from '../../mock-wizard.js';
+
 import { ComplexAction, isSimple, isUpdate } from '../../../src/foundation.js';
+import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 
 describe('Update method for desc attributes in ABB IEDs', () => {
   if (customElements.get('update-description-abb') === undefined)

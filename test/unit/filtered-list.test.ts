@@ -1,4 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '@material/mwc-list/mwc-check-list-item';
+
+import '../../src/filtered-list.js';
 import { FilteredList } from '../../src/filtered-list.js';
 
 describe('filtered-list', () => {

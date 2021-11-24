@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+
 import { getLNode } from '../../../../src/wizards/lnode.js';
 
 describe('lnodewizard', () => {

@@ -1,5 +1,7 @@
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { expect, fixture, html } from '@open-wc/testing';
+
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+
 import '../../src/finder-list.js';
 import { Directory, FinderList, Path } from '../../src/finder-list.js';
 import { depth } from '../../src/foundation.js';

@@ -1,6 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { LoggingElement } from '../../src/Logging.js';
+import './mock-logger.js';
+import { MockAction } from './mock-actions.js';
+import { MockLogger } from './mock-logger.js';
+
 import {
   CommitEntry,
   newIssueEvent,
@@ -8,13 +11,10 @@ import {
   newOpenDocEvent,
 } from '../../src/foundation.js';
 
-import { MockAction } from './mock-actions.js';
-import './mock-logger.js';
-
 describe('LoggingElement', () => {
-  let element: LoggingElement;
+  let element: MockLogger;
   beforeEach(async () => {
-    element = <LoggingElement>await fixture(html`<mock-logger></mock-logger>`);
+    element = <MockLogger>await fixture(html`<mock-logger></mock-logger>`);
   });
 
   it('starts out with an empty history', () =>

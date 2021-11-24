@@ -1,7 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
 import { registerTranslateConfig, use } from 'lit-translate';
+
+import { expect, fixture, html } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
+import '../../../src/open-scd.js';
 import { OpenSCD } from '../../../src/open-scd.js';
 
 import ValidateTemplates, {
@@ -9,6 +11,9 @@ import ValidateTemplates, {
 } from '../../../src/validators/ValidateTemplates.js';
 
 describe('ValidateTemplates', () => {
+  if (customElements.get('validate-templates') === undefined)
+    customElements.define('validate-templates', ValidateTemplates);
+
   let logEvent: SinonSpy;
   let issueEvent: SinonSpy;
 

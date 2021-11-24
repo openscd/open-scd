@@ -1,5 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
@@ -7,14 +13,11 @@ import {
   isUpdate,
   Update,
 } from '../../../src/foundation.js';
-import { WizardSelect } from '../../../src/wizard-select.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   getValAction,
   wizardContent,
 } from '../../../src/wizards/abstractda.js';
 import { regExp, regexString } from '../../foundation.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('abstractda wizards', () => {
   describe('getValAction', () => {

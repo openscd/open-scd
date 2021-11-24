@@ -1,8 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { editDataSetWizard } from '../../../src/wizards/dataset.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 describe('dataset wizards', () => {
   let doc: XMLDocument;

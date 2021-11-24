@@ -1,10 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../../../src/open-scd.js';
 import { OpenSCD } from '../../../src/open-scd.js';
 import ValidateTemplates from '../../../src/validators/ValidateTemplates.js';
 
 describe('ValidateTemplates OpenSCD integration test ', () => {
-  customElements.define('validate-templates', ValidateTemplates);
+  if (customElements.get('validate-templates') === undefined)
+    customElements.define('validate-templates', ValidateTemplates);
+
   let parent: OpenSCD;
   let element: ValidateTemplates;
 

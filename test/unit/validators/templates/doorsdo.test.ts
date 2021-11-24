@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+
 import { dOValidator } from '../../../../src/validators/templates/dosdo.js';
 
 describe('do or sdo validator', () => {

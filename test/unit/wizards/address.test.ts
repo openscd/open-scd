@@ -1,6 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import fc from 'fast-check';
-import { typePattern } from '../../../src/editors/communication/p-types.js';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   Delete,
@@ -9,13 +13,10 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
-import { WizardSelect } from '../../../src/wizard-select.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   renderGseSmvAddress,
   updateAddress,
 } from '../../../src/wizards/address.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('address', () => {
   let doc: XMLDocument;

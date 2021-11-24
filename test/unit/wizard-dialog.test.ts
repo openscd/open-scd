@@ -1,13 +1,13 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
+import './mock-editor.js';
+
 import { Button } from '@material/mwc-button';
 
 import '../../src/wizard-textfield.js';
 import '../../src/wizard-dialog.js';
 import { WizardDialog } from '../../src/wizard-dialog.js';
 import { EditorAction, WizardInput } from '../../src/foundation.js';
-
-import './mock-editor.js';
 
 describe('wizard-dialog', () => {
   let element: WizardDialog;

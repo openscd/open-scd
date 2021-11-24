@@ -1,23 +1,22 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc, { integer, ipV4, nat } from 'fast-check';
 
-import { regexString, regExp, ipV6, ipV6SubNet } from '../../../foundation.js';
-
 import '../../../mock-wizard.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
+import { MockWizard } from '../../../mock-wizard.js';
 
 import '../../../../src/editors/communication/connectedap-editor.js';
+import { regexString, regExp, ipV6, ipV6SubNet } from '../../../foundation.js';
 
 describe('conductingap-editor wizarding integration', () => {
   describe('for schema 2003 (Edition1) projects', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><connectedap-editor
@@ -227,13 +226,13 @@ describe('conductingap-editor wizarding integration', () => {
   });
   describe('for schema 2007B (Edition2) projects', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><connectedap-editor
@@ -357,13 +356,13 @@ describe('conductingap-editor wizarding integration', () => {
   });
   describe('for schema 2007B4 (Edition2.1) projects', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><connectedap-editor

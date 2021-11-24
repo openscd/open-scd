@@ -1,17 +1,16 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../mock-wizard-editor.js';
-import '../../../../src/editors/communication/connectedap-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { EditingElement } from '../../../../src/Editing.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
+import '../../../../src/editors/communication/connectedap-editor.js';
 import { ConnectedAPEditor } from '../../../../src/editors/communication/connectedap-editor.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('connectedap-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: ConnectedAPEditor | null;
     let secondaryAction: HTMLElement;
     let primaryAction: HTMLElement;
@@ -21,7 +20,7 @@ describe('connectedap-editor wizarding editing integration', () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><connectedap-editor
@@ -79,7 +78,7 @@ describe('connectedap-editor wizarding editing integration', () => {
   });
   describe('remove action', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: ConnectedAPEditor | null;
     let deleteButton: HTMLElement;
 
@@ -87,7 +86,7 @@ describe('connectedap-editor wizarding editing integration', () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><connectedap-editor
