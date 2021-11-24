@@ -19,6 +19,7 @@ import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
+import './filtered-list.js';
 import {
   CommitEntry,
   ifImplemented,

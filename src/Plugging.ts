@@ -14,6 +14,7 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-radio-list-item';
 import '@material/mwc-select';
 import '@material/mwc-switch';
+import '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';

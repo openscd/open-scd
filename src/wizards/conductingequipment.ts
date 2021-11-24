@@ -1,11 +1,10 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import '@material/mwc-icon';
-import '@material/mwc-list';
-import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
 
-import '../filtered-list.js';
+import '../wizard-textfield.js';
 import {
   createElement,
   EditorAction,

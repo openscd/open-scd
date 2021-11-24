@@ -1,7 +1,6 @@
 import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
-import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';
 import '@material/mwc-icon';
 import { List } from '@material/mwc-list';

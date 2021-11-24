@@ -7,12 +7,6 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import '@material/mwc-linear-progress';
-import '@material/mwc-snackbar';
-import '@material/mwc-tab';
-import '@material/mwc-tab-bar';
-import '@material/mwc-textfield';
-import '@material/mwc-top-app-bar-fixed';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import { newOpenDocEvent, newPendingStateEvent } from './foundation.js';

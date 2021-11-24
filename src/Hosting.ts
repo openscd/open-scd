@@ -8,6 +8,9 @@ import '@material/mwc-icon-button';
 import '@material/mwc-linear-progress';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-tab';
+import '@material/mwc-tab-bar';
+import '@material/mwc-top-app-bar-fixed';
 
 import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';

@@ -1,15 +1,14 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-
 import '@material/mwc-button';
 import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../../wizard-textfield.js';
 import '../../wizard-select.js';

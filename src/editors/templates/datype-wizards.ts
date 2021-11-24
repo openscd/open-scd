@@ -10,6 +10,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
+import '../../wizard-textfield.js';
 import {
   Create,
   EditorAction,

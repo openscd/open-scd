@@ -2,7 +2,6 @@ import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
-import '@material/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
