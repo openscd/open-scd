@@ -1,6 +1,7 @@
 import { expect } from '@open-wc/testing';
 import {
   getAbsolutePosition,
+  getBusBarLength,
   getParentElementName,
   SVG_GRID_SIZE,
 } from '../../../../src/editors/singlelinediagram/sld-drawing.js';
@@ -66,6 +67,18 @@ describe('Single Line Diagram drawing', () => {
     it('returns undefined for an element without a parent.', () => {
       const element = doc.querySelector('Substation');
       expect(getParentElementName(element!)).to.be.undefined;
+    });
+  });
+
+  describe('defines a getBusBarLength function that', () => {
+    it('returns a correct length for the bus bar given voltage level as root', () => {
+      const element = doc.querySelector('VoltageLevel[name="J1"]') ?? doc;
+      expect(getBusBarLength(element)).to.eql(
+        18 * SVG_GRID_SIZE + SVG_GRID_SIZE
+      );
+    });
+    it('returns a correct length for the bus bar given XMLDocument as root', () => {
+      expect(getBusBarLength(doc)).to.eql(18 * SVG_GRID_SIZE + SVG_GRID_SIZE);
     });
   });
 });
