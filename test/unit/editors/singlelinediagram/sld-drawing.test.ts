@@ -1,5 +1,6 @@
 import { expect } from '@open-wc/testing';
 import {
+  createPowerTransformerElement,
   getAbsolutePosition,
   getBusBarLength,
   getParentElementName,
@@ -79,6 +80,13 @@ describe('Single Line Diagram drawing', () => {
     });
     it('returns a correct length for the bus bar given XMLDocument as root', () => {
       expect(getBusBarLength(doc)).to.eql(18 * SVG_GRID_SIZE + SVG_GRID_SIZE);
+    });
+  });
+
+  describe('creates a group element for every given PowerTransformer element that', () => {
+    it('looks like its latest snapshot', () => {
+      const pTrans = doc.querySelector('PowerTransformer')!;
+      expect(createPowerTransformerElement(pTrans)).to.equalSnapshot();
     });
   });
 });

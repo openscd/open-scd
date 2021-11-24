@@ -25,6 +25,7 @@ import {
   createConnectivityNodeElement,
   getAbsolutePositionConnectivityNode,
   getBusBarLength,
+  createPowerTransformerElement,
 } from './singlelinediagram/sld-drawing.js';
 import {
   isBusBar,
@@ -95,6 +96,27 @@ export default class SingleLineDiagramPlugin extends LitElement {
   }
 
   /**
+   * Draw all available `PowerTransformer`s of this SCL document.
+   * Should only be a <g> element.
+   */
+  drawPowerTransformers(): void {
+    Array.from(this.doc.querySelectorAll('PowerTransformer')).forEach(
+      powerTransformer => {
+        const powerTransformerElement =
+          createPowerTransformerElement(powerTransformer);
+
+        if (powerTransformer.parentElement?.tagName === 'Substation')
+          this.svg.appendChild(powerTransformerElement);
+        else
+          this.addElementToGroup(
+            powerTransformerElement,
+            identity(powerTransformer.parentElement)
+          );
+      }
+    );
+  }
+
+  /**
    * Draw all available Conducting Equipments of this SCL document.
    * Should only be a <g> element.
    */
@@ -154,7 +176,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
         .forEach(cNode => {
           const cnPosition = getAbsolutePositionConnectivityNode(cNode);
 
-          Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+          Array.from(
+            this.doc.querySelectorAll('ConductingEquipment, PowerTransformer')
+          )
             .filter(element =>
               element.querySelector(
                 `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
@@ -255,6 +279,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.drawVoltageLevels();
     this.drawBays();
     this.drawConductingEquipments();
+    this.drawPowerTransformers();
     this.drawConnectivityNodes();
     this.drawBusBars();
 

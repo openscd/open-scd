@@ -4,7 +4,10 @@ import {
 } from '../../../public/js/ortho-connector.js';
 import { identity } from '../../foundation.js';
 import { getIcon } from '../../zeroline/foundation.js';
-import { connectivityNodeIcon } from '../../icons.js';
+import {
+  connectivityNodeIcon,
+  powerTransformerTwoWindingIcon,
+} from '../../icons.js';
 
 import {
   getRelativeCoordinates,
@@ -94,7 +97,7 @@ export function getParentElementName(
  * @param element - The element.
  * @returns The <g> element.
  */
-export function createGroupElement(element: Element): SVGElement {
+function createGroupElement(element: Element): SVGElement {
   const finalElement = document.createElementNS(
     'http://www.w3.org/2000/svg',
     'g'
@@ -274,6 +277,39 @@ export function createConductingEquipmentElement(
 
   const text = createTextElement(
     getNameAttribute(equipmentElement)!,
+    { x: absolutePosition.x! - 15, y: absolutePosition.y! + 30 },
+    'x-small'
+  );
+  groupElement.appendChild(text);
+
+  return groupElement;
+}
+
+/**
+ * Create a PowerTransformer element.
+ * @param powerTransformerElement - The SCL PowerTransformer element
+ * @returns The Power Transformer SVG element.
+ */
+export function createPowerTransformerElement(
+  powerTransformerElement: Element
+): SVGElement {
+  const groupElement = createGroupElement(powerTransformerElement);
+
+  const absolutePosition = getAbsolutePosition(powerTransformerElement);
+  const parsedIcon = new DOMParser().parseFromString(
+    powerTransformerTwoWindingIcon.strings[0],
+    'application/xml'
+  );
+  parsedIcon.querySelectorAll('circle,path,line').forEach(icon => {
+    icon.setAttribute(
+      'transform',
+      `translate(${absolutePosition.x},${absolutePosition.y}) scale(1.5)`
+    );
+    groupElement.appendChild(icon);
+  });
+
+  const text = createTextElement(
+    getNameAttribute(powerTransformerElement)!,
     { x: absolutePosition.x! - 15, y: absolutePosition.y! + 30 },
     'x-small'
   );
