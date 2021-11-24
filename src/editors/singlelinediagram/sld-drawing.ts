@@ -448,3 +448,18 @@ function getAbsolutePositionTerminal(
     }
   }
 }
+
+/**
+ * Calculate length of the busbar that is depending on the most far right equipment
+ * @param root - Either the whole SCL file or the voltage level where the bus bar resides
+ * @returns - the length of the bus bar
+ */
+export function getBusBarLength(root: Element | XMLDocument): number {
+  return (
+    Math.max(
+      ...Array.from(
+        root.querySelectorAll('ConductingEquipment, PowerTransformer')
+      ).map(equipment => getAbsolutePosition(equipment).x!)
+    ) + SVG_GRID_SIZE
+  );
+}

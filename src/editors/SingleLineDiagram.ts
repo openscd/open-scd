@@ -24,6 +24,7 @@ import {
   createConductingEquipmentElement,
   createConnectivityNodeElement,
   getAbsolutePositionConnectivityNode,
+  getBusBarLength,
 } from './singlelinediagram/sld-drawing.js';
 import {
   isBusBar,
@@ -139,7 +140,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.busBars.forEach(busBar => {
       const busBarElement = createBusBarElement(
         busBar,
-        this.biggestVoltageLevelXCoordinate
+        getBusBarLength(busBar.parentElement ?? this.doc)
       );
 
       this.addElementToGroup(busBarElement, identity(busBar.parentElement));
@@ -259,38 +260,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
     this.drawConnectivityNodeConnections();
     this.drawBusBarConnections();
-  }
-
-  /**
-   * Calculate the absolute X coordinate for the bus bar.
-   */
-  get biggestVoltageLevelXCoordinate(): number {
-    let biggestXOfBay = 0;
-    let finalX = 0;
-
-    // First get the Bay with the 'biggest' x (otherwise all bays/elements are being processed)
-    Array.from(this.doc.querySelectorAll('Bay')).forEach(
-      bay =>
-        (biggestXOfBay = Math.max(biggestXOfBay, getSCLCoordinates(bay).x!))
-    );
-
-    // Then, get the 'biggest' x available in this particular bay.
-    Array.from(this.doc.querySelectorAll('Bay'))
-      .filter(bay => getSCLCoordinates(bay).x! == biggestXOfBay)
-      .forEach(bay => {
-        // Also, an extra SVG_GRID_SIZE is added for making it a bit longer.
-        bay
-          .querySelectorAll('ConductingEquipment')
-          .forEach(
-            equipment =>
-              (finalX = Math.max(
-                finalX,
-                getAbsolutePosition(equipment).x! + SVG_GRID_SIZE
-              ))
-          );
-      });
-
-    return finalX;
   }
 
   /**
