@@ -1,10 +1,14 @@
 import { css, TemplateResult } from 'lit-element';
 
+import { newActionEvent, isPublic } from '../foundation.js';
 import {
-  newActionEvent,
-  isPublic,
-} from '../foundation.js';
-import { circuitBreakerIcon, disconnectorIcon, currentTransformerIcon, voltageTransformerIcon, earthSwitchIcon, generalConductingEquipmentIcon, connectivityNodeIcon } from '../icons.js';
+  circuitBreakerIcon,
+  disconnectorIcon,
+  currentTransformerIcon,
+  voltageTransformerIcon,
+  earthSwitchIcon,
+  generalConductingEquipmentIcon,
+} from '../icons.js';
 import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
@@ -212,7 +216,7 @@ export function startMove<E extends ElementEditor, P extends ElementEditor>(
 
 /**
  * Get the correct icon for a specific Conducting Equipment.
- * @param condEq The Conducting Equipment to search the icon for.
+ * @param condEq - The Conducting Equipment to search the icon for.
  * @returns The icon.
  */
 export function getIcon(condEq: Element): TemplateResult {
@@ -220,11 +224,11 @@ export function getIcon(condEq: Element): TemplateResult {
 }
 
 function typeStr(condEq: Element): string {
-  if (condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded') {
+  if (
+    condEq.getAttribute('type') === 'DIS' &&
+    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
+  ) {
     return 'ERS';
-  } else if (condEq.tagName == 'ConnectivityNode') {
-    return 'CN';
   } else {
     return condEq.getAttribute('type') ?? '';
   }
@@ -236,7 +240,6 @@ const typeIcons: Partial<Record<string, TemplateResult>> = {
   CTR: currentTransformerIcon,
   VTR: voltageTransformerIcon,
   ERS: earthSwitchIcon,
-  CN: connectivityNodeIcon
 };
 
 // Substation element hierarchy

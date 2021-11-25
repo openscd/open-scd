@@ -7,13 +7,13 @@ import {
   TemplateResult,
 } from 'lit-element';
 
+import { identity } from '../foundation.js';
+
 import panzoom from 'panzoom';
 
 import { Side } from '../../public/js/ortho-connector.js';
 import {
   getAbsolutePosition,
-  getParentElementName,
-  getAbsolutePositionWithCustomCoordinates,
   SVG_GRID_SIZE,
   drawRoute,
   DEFAULT_ELEMENT_SIZE,
@@ -23,12 +23,12 @@ import {
   createBayElement,
   createConductingEquipmentElement,
   createConnectivityNodeElement,
+  getAbsolutePositionConnectivityNode,
+  getBusBarLength,
+  createPowerTransformerElement,
 } from './singlelinediagram/sld-drawing.js';
 import {
-  getNameAttribute,
-  getSCLCoordinates,
   isBusBar,
-  calculateConnectivityNodeSclCoordinates,
   getConnectedTerminals,
   getPathNameAttribute,
 } from './singlelinediagram/foundation.js';
@@ -91,8 +91,29 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.bays.forEach(bay => {
       const bayElement = createBayElement(bay);
 
-      this.addElementToGroup(bayElement, getParentElementName(bay)!);
+      this.addElementToGroup(bayElement, identity(bay.parentElement));
     });
+  }
+
+  /**
+   * Draw all available `PowerTransformer`s of this SCL document.
+   * Should only be a <g> element.
+   */
+  drawPowerTransformers(): void {
+    Array.from(this.doc.querySelectorAll('PowerTransformer')).forEach(
+      powerTransformer => {
+        const powerTransformerElement =
+          createPowerTransformerElement(powerTransformer);
+
+        if (powerTransformer.parentElement?.tagName === 'Substation')
+          this.svg.appendChild(powerTransformerElement);
+        else
+          this.addElementToGroup(
+            powerTransformerElement,
+            identity(powerTransformer.parentElement)
+          );
+      }
+    );
   }
 
   /**
@@ -110,7 +131,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
       .forEach(equipment => {
         const eqElement = createConductingEquipmentElement(equipment);
 
-        this.addElementToGroup(eqElement, getParentElementName(equipment)!);
+        this.addElementToGroup(eqElement, identity(equipment.parentElement));
       });
   }
 
@@ -123,13 +144,13 @@ export default class SingleLineDiagramPlugin extends LitElement {
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .filter(cNode => getConnectedTerminals(cNode).length > 0)
         .forEach(cNode => {
-          const cNodePosition = calculateConnectivityNodeSclCoordinates(cNode);
+          const cNodePosition = getAbsolutePositionConnectivityNode(cNode);
           const cNodeElement = createConnectivityNodeElement(
             cNode,
             cNodePosition
           );
 
-          this.addElementToGroup(cNodeElement, getParentElementName(cNode)!);
+          this.addElementToGroup(cNodeElement, identity(cNode.parentElement));
         });
     });
   }
@@ -141,10 +162,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.busBars.forEach(busBar => {
       const busBarElement = createBusBarElement(
         busBar,
-        this.biggestVoltageLevelXCoordinate
+        getBusBarLength(busBar.parentElement ?? this.doc)
       );
 
-      this.addElementToGroup(busBarElement, getParentElementName(busBar)!);
+      this.addElementToGroup(busBarElement, identity(busBar.parentElement));
     });
   }
 
@@ -153,13 +174,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .forEach(cNode => {
-          const position = calculateConnectivityNodeSclCoordinates(cNode);
-          const cnPosition = getAbsolutePositionWithCustomCoordinates(
-            cNode,
-            position
-          );
+          const cnPosition = getAbsolutePositionConnectivityNode(cNode);
 
-          Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+          Array.from(
+            this.doc.querySelectorAll('ConductingEquipment, PowerTransformer')
+          )
             .filter(element =>
               element.querySelector(
                 `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
@@ -195,11 +214,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 terminalElement!
               );
               this.svg
-                .querySelectorAll(
-                  `g[id="${getNameAttribute(bay)}"] > g[id="${getNameAttribute(
-                    element
-                  )}"]`
-                )
+                .querySelectorAll(`g[id="${identity(element)}"]`)
                 .forEach(eq => eq.appendChild(terminal));
             });
         });
@@ -251,11 +266,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             terminalElement!
           );
           this.svg
-            .querySelectorAll(
-              `g[id="${getNameAttribute(
-                element.parentElement!
-              )}"] > g[id="${getNameAttribute(element)}"]`
-            )
+            .querySelectorAll(` g[id="${identity(element)}"]`)
             .forEach(eq => eq.appendChild(terminal));
         });
     });
@@ -268,6 +279,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.drawVoltageLevels();
     this.drawBays();
     this.drawConductingEquipments();
+    this.drawPowerTransformers();
     this.drawConnectivityNodes();
     this.drawBusBars();
 
@@ -276,45 +288,13 @@ export default class SingleLineDiagramPlugin extends LitElement {
   }
 
   /**
-   * Calculate the absolute X coordinate for the bus bar.
-   */
-  get biggestVoltageLevelXCoordinate(): number {
-    let biggestXOfBay = 0;
-    let finalX = 0;
-
-    // First get the Bay with the 'biggest' x (otherwise all bays/elements are being processed)
-    Array.from(this.doc.querySelectorAll('Bay')).forEach(
-      bay =>
-        (biggestXOfBay = Math.max(biggestXOfBay, getSCLCoordinates(bay).x!))
-    );
-
-    // Then, get the 'biggest' x available in this particular bay.
-    Array.from(this.doc.querySelectorAll('Bay'))
-      .filter(bay => getSCLCoordinates(bay).x! == biggestXOfBay)
-      .forEach(bay => {
-        // Also, an extra SVG_GRID_SIZE is added for making it a bit longer.
-        bay
-          .querySelectorAll('ConductingEquipment')
-          .forEach(
-            equipment =>
-              (finalX = Math.max(
-                finalX,
-                getAbsolutePosition(equipment).x! + SVG_GRID_SIZE
-              ))
-          );
-      });
-
-    return finalX;
-  }
-
-  /**
    * Add an element to a specific <g> element.
    * @param elementToAdd - The element to add.
-   * @param groupName - The name of the group
+   * @param groupName - Identity sting if the element
    */
-  addElementToGroup(elementToAdd: Element, groupName: string): void {
+  addElementToGroup(elementToAdd: Element, identity: string | number): void {
     this.svg
-      .querySelectorAll(`g[id="${groupName}"]`)
+      .querySelectorAll(`g[id="${identity}"]`)
       .forEach(group => group.appendChild(elementToAdd));
   }
 
