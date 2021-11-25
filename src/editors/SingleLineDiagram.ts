@@ -14,8 +14,7 @@ import panzoom from 'panzoom';
 import { Side } from '../../public/js/ortho-connector.js';
 import {
   getAbsolutePosition,
-  SVG_GRID_SIZE,
-  drawRoute,
+  drawRouteBetweenElements,
   DEFAULT_ELEMENT_SIZE,
   createTerminalElement,
   createBusBarElement,
@@ -23,6 +22,7 @@ import {
   createBayElement,
   createConductingEquipmentElement,
   createConnectivityNodeElement,
+  getElementDimensions,
   getAbsolutePositionConnectivityNode,
   getBusBarLength,
   createPowerTransformerElement,
@@ -31,6 +31,7 @@ import {
   isBusBar,
   getConnectedTerminals,
   getPathNameAttribute,
+  getNameAttribute,
 } from './singlelinediagram/foundation.js';
 
 /**
@@ -174,47 +175,69 @@ export default class SingleLineDiagramPlugin extends LitElement {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .forEach(cNode => {
-          const cnPosition = getAbsolutePositionConnectivityNode(cNode);
+          // For each Connectivity Node, the routes must be drawn.
+          const cNodeAbsolutePosition = getAbsolutePositionConnectivityNode(cNode);
+          const cNodeDimensions = getElementDimensions(getNameAttribute(bay)!, getNameAttribute(cNode)!, this.svg);
 
-          Array.from(
-            this.doc.querySelectorAll('ConductingEquipment, PowerTransformer')
-          )
-            .filter(element =>
-              element.querySelector(
+          // Get all the connected Conducting Equipments to this specific Connectivity Node..
+          Array.from(this.doc.querySelectorAll('ConductingEquipment,PowerTransformer'))
+            .filter(cEquipment =>
+              cEquipment.querySelector(
                 `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
               )
             )
-            .forEach(element => {
-              const elementPosition = getAbsolutePosition(element);
-              const terminalElement = element.querySelector(
-                `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
-              );
-
+            .forEach(cEquipment => {
+              const cEquipmentAbsolutePosition = getAbsolutePosition(cEquipment);
               let sideToDrawTerminalOn: Side;
 
-              if (elementPosition.y! > cnPosition.y!) {
-                const sidesOfRoutes = drawRoute(
-                  cnPosition,
-                  elementPosition,
+              /**
+               * TODO: ConductingEquipment dimensions are just the defaults,
+               * retrieving dimensions the same way as for ConnectivityNode doesn't work.
+               * 
+               * Instead, just insert DEFAULT_ELEMENT_SIZE for height and width for ConductingEquipment.
+               */
+              if (cEquipmentAbsolutePosition.y! > cNodeAbsolutePosition.y!) {
+                const sidesOfRoutes = drawRouteBetweenElements(
+                  cNodeAbsolutePosition,
+                  cEquipmentAbsolutePosition,
+                  cNodeDimensions,
+                  {
+                    height: DEFAULT_ELEMENT_SIZE,
+                    width: DEFAULT_ELEMENT_SIZE
+                  },
                   this.svg
                 );
                 sideToDrawTerminalOn = sidesOfRoutes.pointBSide;
               } else {
-                const sidesOfRoutes = drawRoute(
-                  elementPosition,
-                  cnPosition,
+                const sidesOfRoutes = drawRouteBetweenElements(
+                  cEquipmentAbsolutePosition,
+                  cNodeAbsolutePosition,
+                  {
+                    height: DEFAULT_ELEMENT_SIZE,
+                    width: DEFAULT_ELEMENT_SIZE
+                  },
+                  cNodeDimensions,
                   this.svg
                 );
                 sideToDrawTerminalOn = sidesOfRoutes.pointASide;
               }
 
+              /**
+               * Add the terminal belonging to the connected Conducting Equipment.
+               */
+              const terminalElement = cEquipment.querySelector(
+                `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
+              );
+
+              // Create the Terminal SVG element and add it to the Conducting Equipment group.
               const terminal = createTerminalElement(
-                elementPosition,
+                cEquipmentAbsolutePosition,
                 sideToDrawTerminalOn,
                 terminalElement!
               );
+
               this.svg
-                .querySelectorAll(`g[id="${identity(element)}"]`)
+                .querySelectorAll(`g[id="${identity(cEquipment)}"]`)
                 .forEach(eq => eq.appendChild(terminal));
             });
         });
@@ -227,46 +250,62 @@ export default class SingleLineDiagramPlugin extends LitElement {
       const busBarPosition = getAbsolutePosition(busBar);
 
       Array.from(this.doc.querySelectorAll('ConductingEquipment'))
-        .filter(element =>
-          element.querySelector(`Terminal[connectivityNode="${pathName}"]`)
+        .filter(cEquipment =>
+          cEquipment.querySelector(`Terminal[connectivityNode="${pathName}"]`)
         )
-        .forEach(element => {
-          const eqPosition = getAbsolutePosition(element);
-          const terminalElement = element.querySelector(
-            `Terminal[connectivityNode="${pathName}"]`
-          );
+        .forEach(cEquipment => {
+          const cEquipmentAbsolutePosition = getAbsolutePosition(cEquipment);
 
           let sideToDrawTerminalOn: Side;
 
           // Height of busbar shape should be 1, because it's smaller.
           const customShape = { width: DEFAULT_ELEMENT_SIZE, height: 1 };
 
-          // The X coordinate of
-          if (busBarPosition.y! > eqPosition.y!) {
-            const sidesOfRoutes = drawRoute(
-              eqPosition,
-              { x: eqPosition.x, y: busBarPosition.y },
+          if (busBarPosition.y! > cEquipmentAbsolutePosition.y!) {
+            const sidesOfRoutes = drawRouteBetweenElements(
+              cEquipmentAbsolutePosition,
+              // The x of the busbar position should equal the x of the Conducting Equipment,
+              // so it will be a straight line.
+              {
+                x: cEquipmentAbsolutePosition.x!,
+                // The drawRoute function draws the routes to the middle of the elements,
+                // for the Bus Bar the height is 1, so we extract the value that is added in the function.
+                y: busBarPosition.y! - ((DEFAULT_ELEMENT_SIZE - customShape.height) / 2)
+              },
+              customShape,
+              customShape,
               this.svg,
-              customShape
             );
             sideToDrawTerminalOn = sidesOfRoutes.pointASide;
           } else {
-            const sidesOfRoutes = drawRoute(
-              { x: eqPosition.x, y: busBarPosition.y },
-              eqPosition,
+            const sidesOfRoutes = drawRouteBetweenElements(
+              {
+                x: cEquipmentAbsolutePosition.x!,
+                y: busBarPosition.y! - ((DEFAULT_ELEMENT_SIZE - customShape.height) / 2)
+              },
+              cEquipmentAbsolutePosition,
+              customShape,
+              customShape,
               this.svg,
-              customShape
             );
             sideToDrawTerminalOn = sidesOfRoutes.pointBSide;
           }
 
+          /**
+           * Add the terminal belonging to the connected Conducting Equipment.
+           */
+          const terminalElement = cEquipment.querySelector(
+            `Terminal[connectivityNode="${pathName}"]`
+          );
+          
           const terminal = createTerminalElement(
-            eqPosition,
+            cEquipmentAbsolutePosition,
             sideToDrawTerminalOn,
             terminalElement!
           );
+
           this.svg
-            .querySelectorAll(` g[id="${identity(element)}"]`)
+            .querySelectorAll(` g[id="${identity(cEquipment)}"]`)
             .forEach(eq => eq.appendChild(terminal));
         });
     });
