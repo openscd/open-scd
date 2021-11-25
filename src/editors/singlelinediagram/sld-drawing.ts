@@ -350,24 +350,32 @@ export function createConnectivityNodeElement(
  * @param shape - A custom shape defining custom height and width of the shapes.
  * @returns The sides where the routes are being drawn next to both points.
  */
-export function drawRoute(
+export function drawRouteBetweenElements(
   pointA: Point,
   pointB: Point,
+  pointAShape: Shape,
+  pointBShape: Shape,
   svgToDrawOn: HTMLElement,
-  shape?: Shape
 ): PointSides {
+  /**
+   * The point on each side of the route should be in the middle of the element,
+   * so we have to do a little conversion of the 'left' and 'top' coordinate.
+   */
+  const positionMiddleOfA = convertRoutePointToMiddleOfElement(pointA, pointAShape);
+  const positionMiddleOfB = convertRoutePointToMiddleOfElement(pointB, pointBShape);
+
   const shapeA = {
-    left: pointA.x!,
-    top: pointA.y!,
-    width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
-    height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
+    left: positionMiddleOfA.x!,
+    top: positionMiddleOfA.y!,
+    width: pointAShape?.width,
+    height: pointAShape?.height,
   };
 
   const shapeB = {
-    left: pointB.x!,
-    top: pointB.y!,
-    width: shape?.width ?? DEFAULT_ELEMENT_SIZE,
-    height: shape?.height ?? DEFAULT_ELEMENT_SIZE,
+    left: positionMiddleOfB.x!,
+    top: positionMiddleOfB.y!,
+    width: pointBShape?.width,
+    height: pointBShape?.height,
   };
 
   // Get the preferred sides.
@@ -399,11 +407,31 @@ export function drawRoute(
   line.setAttribute('d', d);
   line.setAttribute('fill', 'transparent');
   line.setAttribute('stroke', 'currentColor');
-  line.setAttribute('stroke-width', '1');
+  line.setAttribute('stroke-width', '1.5');
 
   svgToDrawOn.appendChild(line);
 
   return sides;
+}
+
+/**
+ * Get the dimensions of a specific element within a specific bay.
+ * @param bayName - The name of the bay.
+ * @param elementName - The name of the element.
+ * @param svg - The SVG to search on.
+ * @returns The shape (width and height) of the specific element.
+ */
+ export function getElementDimensions(bayName: string, elementName: string, svg: HTMLElement): Shape {
+  let {height, width} = {height: 0, width: 0};
+
+  svg.querySelectorAll(
+    `g[id="${bayName}"] > g[id="${elementName}"]`
+  ).forEach(b => {
+    height = b.getBoundingClientRect().height;
+    width = b.getBoundingClientRect().width;
+  });
+
+  return {height, width};
 }
 
 /**
@@ -486,7 +514,19 @@ function getAbsolutePositionTerminal(
 }
 
 /**
- * Calculate length of the busbar that is depending on the most far right equipment
+ * Convert a top left coordinate to the middle of an element.
+ * @param point - The top left point of the element.
+ * @param shape - The shape of the element.
+ * @returns The point of the element in the middle.
+ */
+function convertRoutePointToMiddleOfElement(point: Point, shape: Shape): Point {
+  return {
+    x: point.x! + ((DEFAULT_ELEMENT_SIZE - shape.width) / 2),
+    y: point.y! + ((DEFAULT_ELEMENT_SIZE - shape.height) / 2)
+  }
+}
+
+/* Calculate length of the busbar that is depending on the most far right equipment
  * @param root - Either the whole SCL file or the voltage level where the bus bar resides
  * @returns - the length of the bus bar
  */
