@@ -2,7 +2,7 @@ import {
   css,
   customElement,
   html,
-  internalProperty,
+  state,
   property,
   query,
   TemplateResult,
@@ -15,20 +15,24 @@ import { List } from '@material/mwc-list';
 import { ListBase } from '@material/mwc-list/mwc-list-base';
 import { TextField } from '@material/mwc-textfield';
 
+/**
+ * A mwc-list with mwc-textfield that filters the list items for given or separated terms
+ */
 @customElement('filtered-list')
 export class FilteredList extends ListBase {
+  /** search mwc-textfield label property */
   @property({ type: String })
   searchFieldLabel?: string;
-
+  /** Whether the check all option (checkbox next to search text field) is activated */
   @property({ type: Boolean })
   disableCheckAll = false;
 
-  @internalProperty()
+  @state()
   private get existCheckListItem(): boolean {
     return this.items.some(item => item instanceof CheckListItem);
   }
 
-  @internalProperty()
+  @state()
   private get isAllSelected(): boolean {
     return this.items
       .filter(item => !item.disabled)
@@ -36,7 +40,7 @@ export class FilteredList extends ListBase {
       .every(checkItem => checkItem.selected);
   }
 
-  @internalProperty()
+  @state()
   private get isSomeSelected(): boolean {
     return this.items
       .filter(item => !item.disabled)
@@ -124,7 +128,11 @@ export class FilteredList extends ListBase {
     }
 
     abbr {
+      display: flex;
+      flex: auto;
       margin: 8px;
+      text-decoration: none;
+      border-bottom: none;
     }
 
     mwc-textfield {
