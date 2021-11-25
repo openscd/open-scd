@@ -37,11 +37,11 @@ export function getPathNameAttribute(element: Element): string | undefined {
 }
 
 /**
- * Get the coordaintes of a XML element (x and y coordinates).
+ * Get the coordinates of a XML element (x and y coordinates).
  * @param element - The element to extract coordinates from.
- * @returns A point containing the coordinares.
+ * @returns A point containing the coordinates.
  */
-export function getSCLCoordinates(element: Element): Point {
+export function getRelativeCoordinates(element: Element): Point {
   const x = element.getAttributeNS(
     'http://www.iec.ch/61850/2003/SCLcoordinates',
     'x'
@@ -54,6 +54,23 @@ export function getSCLCoordinates(element: Element): Point {
   return {
     x: x ? parseInt(x) : 0,
     y: y ? parseInt(y) : 0,
+  };
+}
+
+/**
+ * Get the absolute (its own and all parents') coordinates of a SCL element (x and y coordinates)
+ * @param element - The element to extract coordinates from.
+ * @returns A point containing the coordinates.
+ */
+export function getAbsoluteCoordinates(element: Element): Point {
+  if (!element.parentElement || element.parentElement?.tagName === 'SCL')
+    return getRelativeCoordinates(element);
+
+  const absParent = getAbsoluteCoordinates(element.parentElement);
+  const relElement = getRelativeCoordinates(element);
+  return {
+    x: absParent.x! + relElement.x!,
+    y: absParent.y! + relElement.y!,
   };
 }
 
@@ -101,7 +118,7 @@ export function getConnectedTerminals(element: Element): Element[] {
  * @param cNodePathName - The pathName of the Connectivity Node to calculate the SCL x and y coordinates.
  * @returns The calculated SCL x and y coordinates for this Connectivity Node.
  */
-export function calculateConnectivityNodeSclCoordinates(
+export function calculateConnectivityNodeCoordinates(
   cNodeElement: Element
 ): Point {
   // If element is not a Connectivity Node, return default {x: 0, y: 0}
@@ -114,7 +131,9 @@ export function calculateConnectivityNodeSclCoordinates(
   let totalX = 0;
   let totalY = 0;
 
-  Array.from(substationElement!.querySelectorAll('ConductingEquipment'))
+  Array.from(
+    substationElement!.querySelectorAll('ConductingEquipment, PowerTransformer')
+  )
     .filter(
       equipment =>
         equipment.querySelector(`Terminal[connectivityNode="${pathName}"]`) !=
@@ -123,7 +142,7 @@ export function calculateConnectivityNodeSclCoordinates(
     .forEach(equipment => {
       nrOfConnections++;
 
-      const { x, y } = getSCLCoordinates(equipment);
+      const { x, y } = getAbsoluteCoordinates(equipment);
 
       totalX += x!;
       totalY += y!;

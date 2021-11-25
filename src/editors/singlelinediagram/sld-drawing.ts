@@ -2,14 +2,20 @@ import {
   OrthogonalConnector,
   Side,
 } from '../../../public/js/ortho-connector.js';
-
+import { identity } from '../../foundation.js';
 import { getIcon } from '../../zeroline/foundation.js';
+import {
+  connectivityNodeIcon,
+  powerTransformerTwoWindingIcon,
+} from '../../icons.js';
 
 import {
-  getSCLCoordinates,
+  getRelativeCoordinates,
   getDescriptionAttribute,
   getNameAttribute,
   Point,
+  getAbsoluteCoordinates,
+  calculateConnectivityNodeCoordinates,
 } from './foundation.js';
 
 /**
@@ -51,63 +57,27 @@ interface Shape {
  * @returns A point containing the full x/y position.
  */
 export function getAbsolutePosition(element: Element): Point {
-  switch (element.parentElement!.tagName) {
-    case 'Bay': {
-      const bayPosition = getSCLCoordinates(element.parentElement!);
-      const voltageLevelPosition = getSCLCoordinates(
-        element.parentElement!.parentElement!
-      );
-      const elementPosition = getSCLCoordinates(element);
-      return {
-        x:
-          (bayPosition.x! + voltageLevelPosition.x! + elementPosition.x!) *
-          SVG_GRID_SIZE,
-        y:
-          (bayPosition.y! + voltageLevelPosition.y! + elementPosition.y!) *
-          SVG_GRID_SIZE,
-      };
-    }
-    case 'VoltageLevel': {
-      const voltageLevelPosition = getSCLCoordinates(element.parentElement!);
-      const elementPosition = getSCLCoordinates(element);
-      return {
-        x: (voltageLevelPosition.x! + elementPosition.x!) * SVG_GRID_SIZE,
-        y: (voltageLevelPosition.y! + elementPosition.y!) * SVG_GRID_SIZE,
-      };
-    }
-    default: {
-      return { x: 0, y: 0 };
-    }
-  }
+  const absoluteCoordinates = getAbsoluteCoordinates(element);
+  return {
+    x: absoluteCoordinates.x! * SVG_GRID_SIZE,
+    y: absoluteCoordinates.y! * SVG_GRID_SIZE,
+  };
 }
 
 /**
- * Get the absolute position for an element, given with custom coordinates.
- * @param element - The element to calculate the position for.
- * @param point - The custom coordinates.
- * @returns The absolute position.
+ * Get the full position of an ConnecitvityNode SCL element (multiplied with an offset for the SVG).
+ * @param connectivityNode - The SCL element ConnectivityNode to get the position for.
+ * @returns A point containing the full x/y position in px.
  */
-export function getAbsolutePositionWithCustomCoordinates(
-  element: Element,
-  point: Point
+export function getAbsolutePositionConnectivityNode(
+  connectivityNode: Element
 ): Point {
-  switch (element.parentElement!.tagName) {
-    case 'Bay': {
-      const bayPosition = getSCLCoordinates(element.parentElement!);
-      const voltageLevelPosition = getSCLCoordinates(
-        element.parentElement!.parentElement!
-      );
-      return {
-        x:
-          (bayPosition.x! + voltageLevelPosition.x! + point.x!) * SVG_GRID_SIZE,
-        y:
-          (bayPosition.y! + voltageLevelPosition.y! + point.y!) * SVG_GRID_SIZE,
-      };
-    }
-    default: {
-      return { x: 0, y: 0 };
-    }
-  }
+  const absoluteCoordinates =
+    calculateConnectivityNodeCoordinates(connectivityNode);
+  return {
+    x: absoluteCoordinates.x! * SVG_GRID_SIZE,
+    y: absoluteCoordinates.y! * SVG_GRID_SIZE,
+  };
 }
 
 /**
@@ -127,13 +97,17 @@ export function getParentElementName(
  * @param element - The element.
  * @returns The <g> element.
  */
-export function createGroupElement(element: Element): SVGElement {
+function createGroupElement(element: Element): SVGElement {
   const finalElement = document.createElementNS(
     'http://www.w3.org/2000/svg',
     'g'
   );
-  finalElement.tabIndex = 0;
-  finalElement.setAttribute('id', getNameAttribute(element)!);
+  finalElement.setAttribute(
+    'id',
+    typeof identity(element) === 'string'
+      ? <string>identity(element)
+      : 'unidentifiable'
+  );
   finalElement.setAttribute('type', element.tagName);
 
   const description = getDescriptionAttribute(element);
@@ -141,7 +115,7 @@ export function createGroupElement(element: Element): SVGElement {
 
   // Setting the X and Y coordinates of this <g> element.
   // It's not actually used, it's more informative.
-  const coordinates = getSCLCoordinates(element);
+  const coordinates = getRelativeCoordinates(element);
   finalElement.setAttribute('sxy:x', `${coordinates.x}`);
   finalElement.setAttribute('sxy:y', `${coordinates.y}`);
 
@@ -208,6 +182,11 @@ export function createTerminalElement(
 ): SVGElement {
   const groupElement = createGroupElement(terminalElement);
 
+  const terminalIdentity =
+    typeof identity(terminalElement) === 'string'
+      ? <string>identity(terminalElement)
+      : 'unidentifiable';
+
   const terminalName = getNameAttribute(terminalElement)!;
   const pointToDrawTerminalOn = getAbsolutePositionTerminal(
     elementPosition,
@@ -216,7 +195,7 @@ export function createTerminalElement(
 
   // TODO: Add this to the icons.ts file.
   const icon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  icon.setAttribute('id', `${terminalName}`);
+  icon.setAttribute('id', `${terminalIdentity}`);
   icon.setAttribute('cx', `${pointToDrawTerminalOn.x}`);
   icon.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
   icon.setAttribute('r', '2');
@@ -307,30 +286,56 @@ export function createConductingEquipmentElement(
 }
 
 /**
+ * Create a PowerTransformer element.
+ * @param powerTransformerElement - The SCL PowerTransformer element
+ * @returns The Power Transformer SVG element.
+ */
+export function createPowerTransformerElement(
+  powerTransformerElement: Element
+): SVGElement {
+  const groupElement = createGroupElement(powerTransformerElement);
+
+  const absolutePosition = getAbsolutePosition(powerTransformerElement);
+  const parsedIcon = new DOMParser().parseFromString(
+    powerTransformerTwoWindingIcon.strings[0],
+    'application/xml'
+  );
+  parsedIcon.querySelectorAll('circle,path,line').forEach(icon => {
+    icon.setAttribute(
+      'transform',
+      `translate(${absolutePosition.x},${absolutePosition.y}) scale(1.5)`
+    );
+    groupElement.appendChild(icon);
+  });
+
+  const text = createTextElement(
+    getNameAttribute(powerTransformerElement)!,
+    { x: absolutePosition.x! - 15, y: absolutePosition.y! + 30 },
+    'x-small'
+  );
+  groupElement.appendChild(text);
+
+  return groupElement;
+}
+
+/**
  * Create a Connectivity Node element.
  * @param cNodeElement - The name of the busbar
- * @param cNodeSclPosition - The SCL position of the Connectivity Node.
+ * @param position - The SCL position of the Connectivity Node.
  * @returns The Connectivity Node SVG element.
  */
 export function createConnectivityNodeElement(
   cNodeElement: Element,
-  cNodeSclPosition: Point
+  position: Point
 ): SVGElement {
   const groupElement = createGroupElement(cNodeElement);
-  const absolutePosition = getAbsolutePositionWithCustomCoordinates(
-    cNodeElement,
-    cNodeSclPosition
-  );
 
   const parsedIcon = new DOMParser().parseFromString(
-    getIcon(cNodeElement).strings[0],
+    connectivityNodeIcon.strings[0],
     'application/xml'
   );
   parsedIcon.querySelectorAll('circle').forEach(icon => {
-    icon.setAttribute(
-      'transform',
-      `translate(${absolutePosition.x},${absolutePosition.y})`
-    );
+    icon.setAttribute('transform', `translate(${position.x},${position.y})`);
     groupElement.appendChild(icon);
   });
 
@@ -519,4 +524,18 @@ function convertRoutePointToMiddleOfElement(point: Point, shape: Shape): Point {
     x: point.x! + ((DEFAULT_ELEMENT_SIZE - shape.width) / 2),
     y: point.y! + ((DEFAULT_ELEMENT_SIZE - shape.height) / 2)
   }
+}
+
+/* Calculate length of the busbar that is depending on the most far right equipment
+ * @param root - Either the whole SCL file or the voltage level where the bus bar resides
+ * @returns - the length of the bus bar
+ */
+export function getBusBarLength(root: Element | XMLDocument): number {
+  return (
+    Math.max(
+      ...Array.from(
+        root.querySelectorAll('ConductingEquipment, PowerTransformer')
+      ).map(equipment => getAbsolutePosition(equipment).x!)
+    ) + SVG_GRID_SIZE
+  );
 }

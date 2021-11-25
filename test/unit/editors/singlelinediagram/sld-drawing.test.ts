@@ -1,7 +1,8 @@
 import { expect } from '@open-wc/testing';
 import {
+  createPowerTransformerElement,
   getAbsolutePosition,
-  getAbsolutePositionWithCustomCoordinates,
+  getBusBarLength,
   getParentElementName,
   SVG_GRID_SIZE,
 } from '../../../../src/editors/singlelinediagram/sld-drawing.js';
@@ -26,6 +27,7 @@ describe('Single Line Diagram drawing', () => {
         y: 10 * SVG_GRID_SIZE,
       });
     });
+
     it('returns the correct absolute position for an element with a VoltageLevel as parent.', () => {
       const element = doc.querySelector('Bay[name="BusBar A"]');
       // Absolute position of Busbar A should be x=(1 + 1), and y=(1 + 3), if looking at the coordinates of all the parents.
@@ -35,32 +37,24 @@ describe('Single Line Diagram drawing', () => {
         y: 4 * SVG_GRID_SIZE,
       });
     });
-    it('returns the default 0,0 position for elements without legal parent.', () => {
+
+    it('returns relative position elements without legal parent.', () => {
       const element = doc.querySelector('VoltageLevel[name="J1"]');
+      const copiedElement = <Element>element?.cloneNode();
 
-      expect(getAbsolutePosition(element!)).to.eql({ x: 0, y: 0 });
+      expect(getAbsolutePosition(copiedElement!)).to.eql({
+        x: 1 * SVG_GRID_SIZE,
+        y: 3 * SVG_GRID_SIZE,
+      });
     });
-  });
 
-  describe('defines a getAbsolutePositionWithCustomCoordinates function that', () => {
-    it('returns the correct absolute position for an element with custom SCL coordinates and a Bay as parent.', () => {
-      const element = doc.querySelector(
-        'Bay[name="Bay A"] > ConnectivityNode[name="L2"]'
-      );
-      const customPosition = { x: 5, y: 1 };
-      // Absolute position of L2 should be x=(1 + 1 + 5), and y=(3 + 6 + 1), if looking at the coordinates of all the parents.
-      // Times the SVG_GRID_SIZE to get the absolute position on the svg.
-      expect(
-        getAbsolutePositionWithCustomCoordinates(element!, customPosition)
-      ).to.eql({ x: 7 * SVG_GRID_SIZE, y: 10 * SVG_GRID_SIZE });
-    });
-    it('returns the default 0,0 position for elements without legal parent.', () => {
-      const element = doc.querySelector('VoltageLevel[name="J1"]');
-      const customPosition = { x: 15, y: 4 };
+    it('returns default for invalid elements.', () => {
+      const element = doc.querySelector('LDevice');
 
-      expect(
-        getAbsolutePositionWithCustomCoordinates(element!, customPosition)
-      ).to.eql({ x: 0, y: 0 });
+      expect(getAbsolutePosition(element!)).to.eql({
+        x: 0,
+        y: 0,
+      });
     });
   });
 
@@ -74,6 +68,25 @@ describe('Single Line Diagram drawing', () => {
     it('returns undefined for an element without a parent.', () => {
       const element = doc.querySelector('Substation');
       expect(getParentElementName(element!)).to.be.undefined;
+    });
+  });
+
+  describe('defines a getBusBarLength function that', () => {
+    it('returns a correct length for the bus bar given voltage level as root', () => {
+      const element = doc.querySelector('VoltageLevel[name="J1"]') ?? doc;
+      expect(getBusBarLength(element)).to.eql(
+        18 * SVG_GRID_SIZE + SVG_GRID_SIZE
+      );
+    });
+    it('returns a correct length for the bus bar given XMLDocument as root', () => {
+      expect(getBusBarLength(doc)).to.eql(18 * SVG_GRID_SIZE + SVG_GRID_SIZE);
+    });
+  });
+
+  describe('creates a group element for every given PowerTransformer element that', () => {
+    it('looks like its latest snapshot', () => {
+      const pTrans = doc.querySelector('PowerTransformer')!;
+      expect(createPowerTransformerElement(pTrans)).to.equalSnapshot();
     });
   });
 });
