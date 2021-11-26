@@ -20,6 +20,7 @@ import { SubstationEditor } from './substation-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 import './bay-editor.js';
+import '../action-pane.ts';
 
 /** [[`Substation`]] subeditor for a `VoltageLevel` element. */
 @customElement('voltage-level-editor')
@@ -86,35 +87,32 @@ export class VoltageLevelEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<editor-container
-      .element=${this.element}
-      header="${this.header}"
-    >
-      <abbr slot="header" title="${translate('lnode.tooltip')}">
+    return html`<action-pane label="${this.header}" icon="coronavirus">
+      <abbr slot="action" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"
           @click=${() => this.openLNodeWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('duplicate')}">
+      <abbr slot="action" title="${translate('duplicate')}">
         <mwc-icon-button
           icon="content_copy"
           @click=${() => cloneSubstationElement(this)}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('edit')}">
+      <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('move')}">
+      <abbr slot="action" title="${translate('move')}">
         <mwc-icon-button
           icon="forward"
           @click=${() => startMove(this, VoltageLevelEditor, SubstationEditor)}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('remove')}">
+      <abbr slot="action" title="${translate('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.remove()}
@@ -130,7 +128,7 @@ export class VoltageLevelEditor extends LitElement {
           ></bay-editor>`
         )}
       </div>
-    </editor-container>`;
+    </action-pane>`;
   }
 
   static styles = css`
@@ -139,7 +137,6 @@ export class VoltageLevelEditor extends LitElement {
     #bayContainer {
       display: grid;
       grid-gap: 12px;
-      padding: 8px 12px 16px;
       box-sizing: border-box;
       grid-template-columns: repeat(auto-fit, minmax(316px, auto));
     }

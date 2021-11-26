@@ -19,7 +19,7 @@ import {
 import { wizards } from '../wizards/wizard-library.js';
 
 import './voltage-level-editor.js';
-import '../editor-container.js';
+import '../action-pane.js';
 
 /** [[`Substation`]] plugin subeditor for editing `Substation` sections. */
 @customElement('substation-editor')
@@ -70,32 +70,35 @@ export class SubstationEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<editor-container .element=${this.element}>
-      <abbr slot="header" title="${translate('lnode.tooltip')}">
+    return html`<action-pane
+      label="${this.element.getAttribute('name') ?? 'UNNAMED SUBSTATION'}"
+      icon="more_vert"
+    >
+      <abbr slot="action" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"
           @click=${() => this.openLNodeWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('duplicate')}">
+      <abbr slot="action" title="${translate('duplicate')}">
         <mwc-icon-button
           icon="content_copy"
           @click=${() => cloneSubstationElement(this)}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('edit')}">
+      <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('move')}">
+      <abbr slot="action" title="${translate('move')}">
         <mwc-icon-button
           icon="forward"
           @click=${() => startMove(this, SubstationEditor, SubstationEditor)}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('remove')}">
+      <abbr slot="action" title="${translate('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.remove()}
@@ -109,7 +112,7 @@ export class SubstationEditor extends LitElement {
             .getAttachedIeds=${this.getAttachedIeds}
             ?readonly=${this.readonly}
           ></voltage-level-editor>`
-      )}</editor-container
+      )}</action-pane
     >`;
   }
 

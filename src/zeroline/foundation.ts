@@ -238,9 +238,17 @@ export const selectors = <Record<SubstationTag, string>>(
 
 /** Common `CSS` styles used by substation subeditors */
 export const styles = css`
+  :host {
+    transition: opacity 200ms linear;
+  }
+
   abbr {
     text-decoration: none;
     border-bottom: none;
+  }
+
+  .moving {
+    opacity: 0.3;
   }
 
   #iedcontainer {

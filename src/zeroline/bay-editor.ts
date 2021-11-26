@@ -19,6 +19,7 @@ import { wizards } from '../wizards/wizard-library.js';
 
 import { VoltageLevelEditor } from './voltage-level-editor.js';
 import './conducting-equipment-editor.js';
+import '../action-pane.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')
@@ -67,32 +68,36 @@ export class BayEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<editor-container .element=${this.element} nomargin>
-      <abbr slot="header" title="${translate('lnode.tooltip')}">
+    return html`<action-pane
+      icon="edit"
+      level="5"
+      label="${this.element.getAttribute('name') ?? 'UNNAMED BAY'}"
+    >
+      <abbr slot="action" title="${translate('lnode.tooltip')}">
         <mwc-icon-button
           icon="account_tree"
           @click="${() => this.openLNodeWizard()}"
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('duplicate')}">
+      <abbr slot="action" title="${translate('duplicate')}">
         <mwc-icon-button
           icon="content_copy"
           @click=${() => cloneSubstationElement(this)}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('edit')}">
+      <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"
           @click=${() => this.openEditWizard()}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('move')}">
+      <abbr slot="action" title="${translate('move')}">
         <mwc-icon-button
           icon="forward"
           @click=${() => startMove(this, BayEditor, VoltageLevelEditor)}
         ></mwc-icon-button>
       </abbr>
-      <abbr slot="header" title="${translate('remove')}">
+      <abbr slot="action" title="${translate('remove')}">
         <mwc-icon-button
           icon="delete"
           @click=${() => this.remove()}
@@ -110,7 +115,7 @@ export class BayEditor extends LitElement {
             ></conducting-equipment-editor>`
         )}
       </div>
-    </editor-container> `;
+    </action-pane> `;
   }
 
   static styles = css`
