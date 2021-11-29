@@ -114,7 +114,7 @@ export class ActionPane extends LitElement {
     :host(:focus-within) section {
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-      outline-width: 2px;
+      outline-width: 4px;
       transition: all 250ms linear;
     }
 
@@ -136,6 +136,7 @@ export class ActionPane extends LitElement {
       flex-direction: column;
       gap: 12px;
       padding: 8px 12px 16px;
+      clear: right;
     }
 
     .highlighted {
@@ -156,41 +157,15 @@ export class ActionPane extends LitElement {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      overflow: hidden;
+      overflow: visible;
       white-space: nowrap;
       text-overflow: ellipsis;
       margin: 0px;
-      line-height: 48px;
+      line-height: 52px;
       padding-left: 0.3em;
-      transition: background-color 150ms linear;
     }
 
-    :host(:focus-within) h1,
-    :host(:focus-within) h2,
-    :host(:focus-within) h3,
-    :host(:focus-within) h4,
-    :host(:focus-within) h5,
-    :host(:focus-within) h6 {
-      color: var(--mdc-theme-surface);
-      transition: background-color 200ms linear;
-      background-color: var(--mdc-theme-primary);
-    }
-
-    :host(:focus-within) section.secondary h1,
-    :host(:focus-within) section.secondary h2,
-    :host(:focus-within) section.secondary h3,
-    :host(:focus-within) section.secondary h4,
-    :host(:focus-within) section.secondary h5,
-    :host(:focus-within) section.secondary h6 {
-      background-color: var(--mdc-theme-secondary);
-    }
-
-    h1 > nav,
-    h2 > nav,
-    h3 > nav,
-    h4 > nav,
-    h5 > nav,
-    h6 > nav {
+    nav {
       float: right;
     }
 
