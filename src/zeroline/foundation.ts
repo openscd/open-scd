@@ -1,13 +1,6 @@
 import { css } from 'lit-element';
 
-import {
-  newActionEvent,
-  isPublic,
-  SCLTag,
-  Wizard,
-  tags,
-} from '../foundation.js';
-import { emptyWizard, wizards } from '../wizards/wizard-library.js';
+import { newActionEvent, isPublic } from '../foundation.js';
 
 import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
