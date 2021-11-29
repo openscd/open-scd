@@ -134,15 +134,9 @@ export function getAbsolutePositionTerminal(
   equipment: Element,
   direction: Direction
 ): Point {
-  const elementOffset =
-    equipment.tagName === 'ConnectivityNode' ? CNODE_SIZE : EQUIPMENT_SIZE;
+  const parentElementPosition = getAbsolutePosition(equipment);
 
-  const parentElementPosition =
-    equipment.tagName === 'ConnectivityNode'
-      ? getAbsolutePositionConnectivityNode(equipment)
-      : getAbsolutePosition(equipment);
-
-  return offsetTerminal(parentElementPosition, elementOffset, direction);
+  return offsetTerminal(parentElementPosition, EQUIPMENT_SIZE, direction);
 }
 
 /**
@@ -154,10 +148,9 @@ export function getConnectivityNodesDrawingPosition(
   cNode: Element,
   direction: Direction
 ): Point {
-  const elementOffset = CNODE_SIZE;
   const parentElementPosition = getAbsolutePositionConnectivityNode(cNode);
 
-  return offsetTerminal(parentElementPosition, elementOffset, direction);
+  return offsetTerminal(parentElementPosition, CNODE_SIZE, direction);
 }
 
 /**
@@ -394,7 +387,6 @@ export function createPowerTransformerElement(
  */
 export function createConnectivityNodeElement(
   cNodeElement: Element,
-  position: Point,
   clickAction: () => void
 ): SVGElement {
   const groupElement = createGroupElement(cNodeElement);
@@ -403,8 +395,13 @@ export function createConnectivityNodeElement(
     connectivityNodeIcon.strings[0],
     'application/xml'
   );
+
+  const absolutePosition = getAbsolutePositionConnectivityNode(cNodeElement);
   parsedIcon.querySelectorAll('circle').forEach(icon => {
-    icon.setAttribute('transform', `translate(${position.x},${position.y})`);
+    icon.setAttribute(
+      'transform',
+      `translate(${absolutePosition.x},${absolutePosition.y})`
+    );
     groupElement.appendChild(icon);
   });
 
@@ -449,7 +446,6 @@ export function drawCNodeConnections(
   // these elements are placed behind all other elements.
   // By doing it like this, all other elements are hoverable for example.
   svgToDrawOn.insertAdjacentElement('afterbegin', line);
-
 }
 
 /**

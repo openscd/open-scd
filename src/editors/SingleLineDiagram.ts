@@ -7,10 +7,9 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { identity, newWizardEvent, SCLTag } from '../foundation.js';
-
 import panzoom from 'panzoom';
 
+import { identity, newWizardEvent, SCLTag } from '../foundation.js';
 import {
   getAbsolutePosition,
   createTerminalElement,
@@ -19,7 +18,6 @@ import {
   createBayElement,
   createConductingEquipmentElement,
   createConnectivityNodeElement,
-  getAbsolutePositionConnectivityNode,
   getBusBarLength,
   createPowerTransformerElement,
   getAbsolutePositionBusBar,
@@ -27,6 +25,7 @@ import {
   getDirections,
   getAbsolutePositionTerminal,
   drawCNodeConnections,
+  getConnectivityNodesDrawingPosition,
 } from './singlelinediagram/sld-drawing.js';
 import {
   isBusBar,
@@ -40,19 +39,13 @@ import { wizards } from '../wizards/wizard-library.js';
  */
 export default class SingleLineDiagramPlugin extends LitElement {
   // The full given XML document.
-  @property()
+  @property({ attribute: false })
   doc!: XMLDocument;
-
-  // Container for giving the panzoom to.
-  @query('#panzoom') panzoomContainer!: HTMLElement;
-
-  // The main canvas to draw everything on.
-  @query('#svg') svg!: HTMLElement;
 
   /**
    * Get all the BusBars from the document.
    */
-  get busBars(): Element[] {
+  private get busBars(): Element[] {
     return Array.from(this.doc.querySelectorAll('Bay')).filter(bay =>
       isBusBar(bay)
     );
@@ -61,7 +54,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Get all the bays from the document.
    */
-  get bays(): Element[] {
+  private get bays(): Element[] {
     return Array.from(this.doc.querySelectorAll('Bay')).filter(
       bay => !isBusBar(bay)
     );
@@ -70,15 +63,34 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Get all the VoltageLevels from the SCL document.
    */
-  get voltageLevels(): Element[] {
+  private get voltageLevels(): Element[] {
     return Array.from(this.doc.querySelectorAll('VoltageLevel'));
+  }
+
+  // Container for giving the panzoom to.
+  @query('#panzoom') panzoomContainer!: HTMLElement;
+  // The main canvas to draw everything on.
+  @query('#svg') svg!: HTMLElement;
+
+  /**
+   * Add an element to a specific <g> element.
+   * @param elementToAdd - The element to add.
+   * @param groupName - Identity sting if the element
+   */
+  private addElementToGroup(
+    elementToAdd: Element,
+    identity: string | number
+  ): void {
+    this.svg
+      .querySelectorAll(`g[id="${identity}"]`)
+      .forEach(group => group.appendChild(elementToAdd));
   }
 
   /**
    * Draw all available Voltage Levels of this SCL document.
    * Should only be a <g> element.
    */
-  drawVoltageLevels(): void {
+  private drawVoltageLevels(): void {
     this.voltageLevels.forEach(voltageLevel => {
       const voltageLevelElement = createVoltageLevelElement(voltageLevel);
       this.svg.appendChild(voltageLevelElement);
@@ -89,7 +101,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Draw all available Bays of this SCL document.
    * Should only be a <g> element.
    */
-  drawBays(): void {
+  private drawBays(): void {
     this.bays.forEach(bay => {
       const bayElement = createBayElement(bay);
 
@@ -101,7 +113,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Draw all available `PowerTransformer`s of this SCL document.
    * Should only be a <g> element.
    */
-  drawPowerTransformers(): void {
+  private drawPowerTransformers(): void {
     Array.from(this.doc.querySelectorAll('PowerTransformer')).forEach(
       powerTransformer => {
         const powerTransformerElement =
@@ -122,7 +134,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Draw all available Conducting Equipments of this SCL document.
    * Should only be a <g> element.
    */
-  drawConductingEquipments(): void {
+  private drawConductingEquipments(): void {
     Array.from(this.doc.querySelectorAll('ConductingEquipment'))
       .filter(
         child =>
@@ -140,17 +152,14 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Draw all available Connectivity Nodes of this SCL document.
    */
-  drawConnectivityNodes(): void {
+  private drawConnectivityNodes(): void {
     this.bays.forEach(bay => {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .filter(cNode => getConnectedTerminals(cNode).length > 0)
         .forEach(cNode => {
-          const cNodePosition = getAbsolutePositionConnectivityNode(cNode);
-          const cNodeElement = createConnectivityNodeElement(
-            cNode,
-            cNodePosition,
-            () => this.openEditWizard(cNode)
+          const cNodeElement = createConnectivityNodeElement(cNode, () =>
+            this.openEditWizard(cNode)
           );
 
           this.addElementToGroup(cNodeElement, identity(cNode.parentElement));
@@ -161,7 +170,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Draw all available Bus Bars of this SCL document.
    */
-  drawBusBars(): void {
+  private drawBusBars(): void {
     this.busBars.forEach(busBar => {
       const busBarElement = createBusBarElement(
         busBar,
@@ -172,7 +181,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     });
   }
 
-  drawConnectivityNodeConnections(): void {
+  private drawConnectivityNodeConnections(): void {
     this.bays.forEach(bay => {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
@@ -193,7 +202,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 sides.startDirection
               );
 
-              const cNodePosition = getAbsolutePositionTerminal(
+              const cNodePosition = getConnectivityNodesDrawingPosition(
                 cNode,
                 sides.endDirection
               );
@@ -222,7 +231,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     });
   }
 
-  drawBusBarConnections(): void {
+  private drawBusBarConnections(): void {
     this.busBars.forEach(busBar => {
       const pathName = getPathNameAttribute(busBar.children[0]);
       const busBarPosition = getAbsolutePositionBusBar(busBar);
@@ -283,17 +292,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
     this.drawConnectivityNodeConnections();
     this.drawBusBarConnections();
-  }
-
-  /**
-   * Add an element to a specific <g> element.
-   * @param elementToAdd - The element to add.
-   * @param groupName - Identity sting if the element
-   */
-  addElementToGroup(elementToAdd: Element, identity: string | number): void {
-    this.svg
-      .querySelectorAll(`g[id="${identity}"]`)
-      .forEach(group => group.appendChild(elementToAdd));
   }
 
   /**

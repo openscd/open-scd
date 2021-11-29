@@ -4,15 +4,15 @@ export const snapshots = {};
 snapshots["Single Line Diagram drawing creates a group element for every given PowerTransformer element that looks like its latest snapshot"] = 
 `<g
   id="AA1>TA1"
-  sxy:x="1"
-  sxy:y="9"
+  sxy:x="2"
+  sxy:y="18"
   type="PowerTransformer"
 >
   <line
     stroke="currentColor"
     stroke-linecap="round"
     stroke-width="1.5"
-    transform="translate(64,576) scale(1.5)"
+    transform="translate(135,1159) scale(2)"
     x1="12.5"
     x2="12.5"
     y1="2"
@@ -27,7 +27,7 @@ snapshots["Single Line Diagram drawing creates a group element for every given P
     stroke="currentColor"
     stroke-linecap="round"
     stroke-width="1.5"
-    transform="translate(64,576) scale(1.5)"
+    transform="translate(135,1159) scale(2)"
   >
   </circle>
   <circle
@@ -38,14 +38,14 @@ snapshots["Single Line Diagram drawing creates a group element for every given P
     stroke="currentColor"
     stroke-linecap="round"
     stroke-width="1.5"
-    transform="translate(64,576) scale(1.5)"
+    transform="translate(135,1159) scale(2)"
   >
   </circle>
   <line
     stroke="currentColor"
     stroke-linecap="round"
     stroke-width="1.5"
-    transform="translate(64,576) scale(1.5)"
+    transform="translate(135,1159) scale(2)"
     x1="12.5"
     x2="12.5"
     y1="20"
@@ -54,8 +54,8 @@ snapshots["Single Line Diagram drawing creates a group element for every given P
   </line>
   <text
     style="font-family: Roboto, sans-serif; font-weight: 300; font-size: x-small"
-    x="49"
-    y="606"
+    x="120"
+    y="1189"
   >
     TA1
   </text>
