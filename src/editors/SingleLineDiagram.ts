@@ -149,10 +149,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
           const cNodePosition = getAbsolutePositionConnectivityNode(cNode);
           const cNodeElement = createConnectivityNodeElement(
             cNode,
-            cNodePosition
+            cNodePosition,
+            () => this.openEditWizard(cNode)
           );
-
-          cNodeElement.addEventListener('click', () => this.openEditWizard(cNode));
 
           this.addElementToGroup(cNodeElement, identity(cNode.parentElement));
         });
@@ -236,10 +235,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
               const terminal = createTerminalElement(
                 cEquipmentAbsolutePosition,
                 sideToDrawTerminalOn,
-                terminalElement!
+                terminalElement!,
+                () => this.openEditWizard(terminalElement!)
               );
-
-              terminal.addEventListener('click', () => this.openEditWizard(terminalElement!));
 
               this.svg
                 .querySelectorAll(`g[id="${identity(cEquipment)}"]`)
@@ -306,10 +304,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
           const terminal = createTerminalElement(
             cEquipmentAbsolutePosition,
             sideToDrawTerminalOn,
-            terminalElement!
+            terminalElement!,
+            () => this.openEditWizard(terminalElement!)
           );
-
-          terminal.addEventListener('click', () => this.openEditWizard(terminalElement!));
 
           this.svg
             .querySelectorAll(`g[id="${identity(cEquipment)}"]`)
@@ -344,6 +341,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
       .forEach(group => group.appendChild(elementToAdd));
   }
 
+  /**
+   * Open an Edit wizard for an element.
+   * @param element - The element to show the wizard for.
+   */
   openEditWizard(element: Element): void {
     const wizard = wizards[<SCLTag>(element.tagName)].edit(element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));

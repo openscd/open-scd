@@ -569,7 +569,7 @@ export const connectivityNodeIcon = html`<svg
     stroke-width="1"
     cx="12.5"
     cy="12.5"
-    r="5"
+    r="4"
   />
 </svg>`;
 
