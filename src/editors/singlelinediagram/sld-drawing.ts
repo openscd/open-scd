@@ -200,15 +200,7 @@ export function createTerminalElement(
   icon.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
   icon.setAttribute('r', '2');
 
-  // Also add a text element.
-  const textElementPosition =
-    sideToDraw == 'bottom' || sideToDraw == 'top'
-      ? { x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 5 }
-      : { x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5 };
-  const text = createTextElement(terminalName, textElementPosition, 'xx-small');
-
   groupElement.appendChild(icon);
-  groupElement.appendChild(text);
 
   return groupElement;
 }
@@ -409,7 +401,10 @@ export function drawRouteBetweenElements(
   line.setAttribute('stroke', 'currentColor');
   line.setAttribute('stroke-width', '1.5');
 
-  svgToDrawOn.appendChild(line);
+  // Inserting elements like this works kind of like z-index (not supported in SVG yet),
+  // these elements are placed behind all other elements.
+  // By doing it like this, all other elements are hoverable for example.
+  svgToDrawOn.insertAdjacentElement('afterbegin', line);
 
   return sides;
 }

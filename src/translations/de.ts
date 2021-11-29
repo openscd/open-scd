@@ -196,6 +196,29 @@ export const de: Translations = {
     },
     unknownType: 'Unbekannter Typ',
   },
+  connectivitynode: {
+    name: '????',
+    wizard: {
+      nameHelper: '????',
+      pathNameHelper: '????',
+      title: {
+        add: '????',
+        edit: '????',
+      },
+    },
+  },
+  terminal: {
+    name: '????',
+    wizard: {
+      nameHelper: '????',
+      connectivityNodeHelper: '????',
+      cNodeNameHelper: '????',
+      title: {
+        add: '????',
+        edit: '????',
+      },
+    },
+  },
   templates: {
     name: 'Data Type Templates',
     missing: 'DataTypeTemplates fehlen',
