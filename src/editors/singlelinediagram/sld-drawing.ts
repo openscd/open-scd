@@ -1,7 +1,3 @@
-import {
-  OrthogonalConnector,
-  Side,
-} from '../../../public/js/ortho-connector.js';
 import { identity } from '../../foundation.js';
 import { getIcon } from '../../zeroline/foundation.js';
 import {
@@ -17,63 +13,53 @@ import {
   getAbsoluteCoordinates,
   calculateConnectivityNodeCoordinates,
 } from './foundation.js';
+import { getOrthogonalPath } from './ortho-connector.js';
 
-/**
- * Default 'grid size' of our SVG.
- */
+/** Default 'grid size' of our SVG */
 export const SVG_GRID_SIZE = 64;
 
-/**
- * The default element size of an SCL element.
- */
-export const DEFAULT_ELEMENT_SIZE = 25;
+/** Size of SLC element ConductingEquipment or PowerTransformer */
+export const EQUIPMENT_SIZE = 50;
 
-/**
- * Offset of a terminal next to an element.
- */
+/** The size of SLC element ConnectivityNode */
+export const CNODE_SIZE = 25;
+
+/** Offset of a terminal next to its parent element */
 const TERMINAL_OFFSET = 6;
 
-/**
- * Defining the sides of route drawing of the two points
- * at the end of a route.
- */
-interface PointSides {
-  pointASide: Side;
-  pointBSide: Side;
-}
+type Direction = 'top' | 'right' | 'bottom' | 'left';
+/** Start and end direction of the route */
 
-/**
- * Interface defining height and width for a shape drawing routes.
- */
-interface Shape {
-  height: number;
-  width: number;
+export interface PointDirections {
+  startDirection: Direction;
+  endDirection: Direction;
 }
 
 /**
  * Get the full position of an element (multiplied with an offset for the SVG).
  * It's just a matter of adding all the position up of the element including it's parent(s).
- * @param element - The element to get the position for.
+ * @param element - The SCL element to get the position for.
  * @returns A point containing the full x/y position.
  */
 export function getAbsolutePosition(element: Element): Point {
   const absoluteCoordinates = getAbsoluteCoordinates(element);
   return {
-    x: absoluteCoordinates.x! * SVG_GRID_SIZE,
-    y: absoluteCoordinates.y! * SVG_GRID_SIZE,
+    x:
+      absoluteCoordinates.x! * SVG_GRID_SIZE +
+      (SVG_GRID_SIZE - EQUIPMENT_SIZE) / 2,
+    y:
+      absoluteCoordinates.y! * SVG_GRID_SIZE +
+      (SVG_GRID_SIZE - EQUIPMENT_SIZE) / 2,
   };
 }
 
 /**
- * Get the full position of an ConnecitvityNode SCL element (multiplied with an offset for the SVG).
- * @param connectivityNode - The SCL element ConnectivityNode to get the position for.
+ * Get the full position of an bus bar (multiplied with an offset for the SVG).
+ * @param busbar - The SCL element Bay to get the position for.
  * @returns A point containing the full x/y position in px.
  */
-export function getAbsolutePositionConnectivityNode(
-  connectivityNode: Element
-): Point {
-  const absoluteCoordinates =
-    calculateConnectivityNodeCoordinates(connectivityNode);
+export function getAbsolutePositionBusBar(busbar: Element): Point {
+  const absoluteCoordinates = getAbsoluteCoordinates(busbar);
   return {
     x: absoluteCoordinates.x! * SVG_GRID_SIZE,
     y: absoluteCoordinates.y! * SVG_GRID_SIZE,
@@ -81,15 +67,97 @@ export function getAbsolutePositionConnectivityNode(
 }
 
 /**
- * Get the name of the parent of given child element.
- * @param childElement - The child element.
- * @returns The name.
+ * Get the full position of an ConnectivityNode SCL element (multiplied with an offset for the SVG).
+ * @param connectivityNode - The SCL element ConnectivityNode to get the position for.
+ * @returns A point containing the full x/y position in px.
  */
-export function getParentElementName(
-  childElement: Element
-): string | undefined {
-  const parentElement = <Element>childElement.parentElement;
-  return getNameAttribute(parentElement);
+export function getAbsolutePositionConnectivityNode(element: Element): Point {
+  const absoluteCoordinates = calculateConnectivityNodeCoordinates(element);
+  return {
+    x:
+      absoluteCoordinates.x! * SVG_GRID_SIZE + (SVG_GRID_SIZE - CNODE_SIZE) / 2,
+    y:
+      absoluteCoordinates.y! * SVG_GRID_SIZE + (SVG_GRID_SIZE - CNODE_SIZE) / 2,
+  };
+}
+
+function offsetTerminal(
+  parentElementPosition: Point,
+  elementOffset: number,
+  direction: Direction
+): Point {
+  switch (direction) {
+    case 'top': {
+      const x = parentElementPosition.x;
+      const y = parentElementPosition.y;
+      return {
+        x: x! + elementOffset / 2,
+        y: y! - TERMINAL_OFFSET,
+      };
+    }
+    case 'bottom': {
+      const x = parentElementPosition.x;
+      const y = parentElementPosition.y;
+      return {
+        x: x! + elementOffset / 2,
+        y: y! + (elementOffset + TERMINAL_OFFSET),
+      };
+    }
+    case 'left': {
+      const x = parentElementPosition.x;
+      const y = parentElementPosition.y;
+      return {
+        x: x! - TERMINAL_OFFSET,
+        y: y! + elementOffset / 2,
+      };
+    }
+    case 'right': {
+      const x = parentElementPosition.x;
+      const y = parentElementPosition.y;
+      return {
+        x: x! + (elementOffset + TERMINAL_OFFSET),
+        y: y! + elementOffset / 2,
+      };
+    }
+    default: {
+      return parentElementPosition;
+    }
+  }
+}
+
+/**
+ * Get the absolute position in py for a equipments Terminal (based on the TERMINAL_OFFSET).
+ * @param equipment - The SCL elements ConductingEquipment or PowerTransformer.
+ * @param side - On which side does the terminal needs to be placed relative to the given point.
+ */
+export function getAbsolutePositionTerminal(
+  equipment: Element,
+  direction: Direction
+): Point {
+  const elementOffset =
+    equipment.tagName === 'ConnectivityNode' ? CNODE_SIZE : EQUIPMENT_SIZE;
+
+  const parentElementPosition =
+    equipment.tagName === 'ConnectivityNode'
+      ? getAbsolutePositionConnectivityNode(equipment)
+      : getAbsolutePosition(equipment);
+
+  return offsetTerminal(parentElementPosition, elementOffset, direction);
+}
+
+/**
+ * Get the absolute position in px for a SLC element ConnectivityNode drawing start/end (based on the TERMINAL_OFFSET).
+ * @param cNode - The SCL element ConnectivityNode
+ * @param direction - The direction of the connector from/to the ConnectivityNode
+ */
+export function getConnectivityNodesDrawingPosition(
+  cNode: Element,
+  direction: Direction
+): Point {
+  const elementOffset = CNODE_SIZE;
+  const parentElementPosition = getAbsolutePositionConnectivityNode(cNode);
+
+  return offsetTerminal(parentElementPosition, elementOffset, direction);
 }
 
 /**
@@ -141,9 +209,10 @@ export function createBayElement(bay: Element): SVGElement {
 }
 
 /**
- * Create a basic text element.
- * @param element - The text which is needing this text element.
- * @param coordinates - The x and y coordinates of this text elements.
+ * Create a basic caption.
+ * @param textContent - The content of the caption.
+ * @param coordinates - The x and y position in px to locate in drawing pane.
+ * @param textSize - The size of the caption
  * @returns The text SVG element.
  */
 export function createTextElement(
@@ -170,35 +239,35 @@ export function createTextElement(
 
 /**
  * Create a Terminal element.
- * @param elementPosition - The position of the element belonging to the terminal/
+ * @param terminal - The SCL element Terminal to draw
  * @param sideToDraw - The side of the element the terminal must be drawn on.
- * @param terminalElement - The terminal element to extract information from.
  * @param clickAction - The action to execute when the terminal is being clicked.
  * @returns The terminal SVG element.
  */
 export function createTerminalElement(
-  elementPosition: Point,
-  sideToDraw: Side,
-  terminalElement: Element,
+  terminal: Element,
+  sideToDraw: Direction,
   clickAction: () => void
 ): SVGElement {
-  const groupElement = createGroupElement(terminalElement);
+  const groupElement = createGroupElement(terminal);
 
   const terminalIdentity =
-    typeof identity(terminalElement) === 'string'
-      ? <string>identity(terminalElement)
+    typeof identity(terminal) === 'string'
+      ? <string>identity(terminal)
       : 'unidentifiable';
 
-  const pointToDrawTerminalOn = getAbsolutePositionTerminal(
-    elementPosition,
+  const parentEquipment = terminal.closest(
+    'ConductingEquipment, PowerTransformer'
+  );
+  const terminalPosition = getAbsolutePositionTerminal(
+    parentEquipment!,
     sideToDraw
   );
 
-  // TODO: Add this to the icons.ts file.
   const icon = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   icon.setAttribute('id', `${terminalIdentity}`);
-  icon.setAttribute('cx', `${pointToDrawTerminalOn.x}`);
-  icon.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
+  icon.setAttribute('cx', `${terminalPosition.x}`);
+  icon.setAttribute('cy', `${terminalPosition.y}`);
   icon.setAttribute('r', '2');
 
   groupElement.appendChild(icon);
@@ -209,20 +278,19 @@ export function createTerminalElement(
 }
 
 /**
- * Create a Bus Bar element.
+ * Create a bus bar element.
  * @param busBarElement - The Bus Bar SCL Element.
- * @param biggestVoltageLevelXCoordinate - The biggest of the VoltageLevel the bus bar is in,
- *      so the method can decide how long the bus bar should be.
+ * @param busbarLength - The length of the bus bar depending on the x coordinate of the most far out right equipment ()
  * @returns The Bus Bar SVG element.
  */
 export function createBusBarElement(
   busBarElement: Element,
-  biggestVoltageLevelXCoordinate: number
+  busbarLength: number
 ): SVGElement {
   const groupElement = createGroupElement(busBarElement);
 
   const busBarName = getNameAttribute(busBarElement)!;
-  const absolutePosition = getAbsolutePosition(busBarElement);
+  const absolutePosition = getAbsolutePositionBusBar(busBarElement);
 
   // TODO: Add this to the icons.ts file.
   const icon = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -232,7 +300,7 @@ export function createBusBarElement(
 
   icon.setAttribute('x1', `${absolutePosition.x}`);
   icon.setAttribute('y1', `${absolutePosition.y}`);
-  icon.setAttribute('x2', `${biggestVoltageLevelXCoordinate}`);
+  icon.setAttribute('x2', `${busbarLength}`);
   icon.setAttribute('y2', `${absolutePosition.y}`);
 
   groupElement.appendChild(icon);
@@ -249,7 +317,7 @@ export function createBusBarElement(
 
 /**
  * Create a Conducting Equipment element.
- * @param equipmentElement - The name of the busbar
+ * @param equipmentElement - The SCL element ConductingEquipment
  * @returns The Conducting Equipment SVG element.
  */
 export function createConductingEquipmentElement(
@@ -265,7 +333,9 @@ export function createConductingEquipmentElement(
   parsedIcon.querySelectorAll('circle,path,line').forEach(icon => {
     icon.setAttribute(
       'transform',
-      `translate(${absolutePosition.x},${absolutePosition.y})`
+      `translate(${absolutePosition.x},${absolutePosition.y}) scale(${
+        EQUIPMENT_SIZE / 25
+      })`
     );
     groupElement.appendChild(icon);
   });
@@ -282,7 +352,7 @@ export function createConductingEquipmentElement(
 
 /**
  * Create a PowerTransformer element.
- * @param powerTransformerElement - The SCL PowerTransformer element
+ * @param powerTransformerElement - The SCL element PowerTransformer
  * @returns The Power Transformer SVG element.
  */
 export function createPowerTransformerElement(
@@ -298,7 +368,9 @@ export function createPowerTransformerElement(
   parsedIcon.querySelectorAll('circle,path,line').forEach(icon => {
     icon.setAttribute(
       'transform',
-      `translate(${absolutePosition.x},${absolutePosition.y}) scale(1.5)`
+      `translate(${absolutePosition.x},${absolutePosition.y}) scale(${
+        EQUIPMENT_SIZE / 25
+      })`
     );
     groupElement.appendChild(icon);
   });
@@ -315,7 +387,7 @@ export function createPowerTransformerElement(
 
 /**
  * Create a Connectivity Node element.
- * @param cNodeElement - The name of the busbar
+ * @param cNodeElement - The SCL element ConnectivityNode
  * @param position - The SCL position of the Connectivity Node.
  * @param clickAction - The action to execute when the terminal is being clicked.
  * @returns The Connectivity Node SVG element.
@@ -342,56 +414,56 @@ export function createConnectivityNodeElement(
 }
 
 /**
- * Draw a route from the first point to the second point.
- * @param pointA - The first point of this connection.
- * @param pointB - The second point of this connection.
+ * Draw a route from ConnectivityNode to equipments Terminal (ConductingEquipment or PowerTransformer)
+ * @param cNodesTerminalPosition - The start position in px of the SCL element ConnectivityNode.
+ * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
  * @param svgToDrawOn - The SVG to draw the route on.
- * @param shape - A custom shape defining custom height and width of the shapes.
- * @returns The sides where the routes are being drawn next to both points.
  */
-export function drawRouteBetweenElements(
-  pointA: Point,
-  pointB: Point,
-  pointAShape: Shape,
-  pointBShape: Shape,
-  svgToDrawOn: HTMLElement,
-): PointSides {
-  /**
-   * The point on each side of the route should be in the middle of the element,
-   * so we have to do a little conversion of the 'left' and 'top' coordinate.
-   */
-  const positionMiddleOfA = convertRoutePointToMiddleOfElement(pointA, pointAShape);
-  const positionMiddleOfB = convertRoutePointToMiddleOfElement(pointB, pointBShape);
+export function drawCNodeConnections(
+  cNodesTerminalPosition: Point,
+  equipmentsTerminalPosition: Point,
+  svgToDrawOn: HTMLElement
+): void {
+  const path = getOrthogonalPath(
+    equipmentsTerminalPosition,
+    cNodesTerminalPosition,
+    SVG_GRID_SIZE
+  );
 
-  const shapeA = {
-    left: positionMiddleOfA.x!,
-    top: positionMiddleOfA.y!,
-    width: pointAShape?.width,
-    height: pointAShape?.height,
-  };
-
-  const shapeB = {
-    left: positionMiddleOfB.x!,
-    top: positionMiddleOfB.y!,
-    width: pointBShape?.width,
-    height: pointBShape?.height,
-  };
-
-  // Get the preferred sides.
-  const sides = getDirections(pointA, pointB);
-
-  const path = OrthogonalConnector.route({
-    pointA: { shape: shapeA, side: sides.pointASide, distance: 0.5 },
-    pointB: { shape: shapeB, side: sides.pointBSide, distance: 0.5 },
-    shapeMargin: 0,
-    globalBoundsMargin: 0,
-    globalBounds: {
-      left: 0,
-      top: 0,
-      width: 10000,
-      height: 10000,
-    },
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  let d = '';
+  path.forEach(({ x, y }, index) => {
+    if (index === 0) {
+      d = d + ` M ${x} ${y}`;
+    } else {
+      d = d + ` L ${x} ${y}`;
+    }
   });
+
+  line.setAttribute('d', d);
+  line.setAttribute('fill', 'transparent');
+  line.setAttribute('stroke', 'currentColor');
+  line.setAttribute('stroke-width', '1');
+
+  // Inserting elements like this works kind of like z-index (not supported in SVG yet),
+  // these elements are placed behind all other elements.
+  // By doing it like this, all other elements are hoverable for example.
+  svgToDrawOn.insertAdjacentElement('afterbegin', line);
+
+}
+
+/**
+ * Draw a route from the bus bar to elements terminal position.
+ * @param busbarsTerminalPosition - The start position in px the bus bar.
+ * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
+ * @param svgToDrawOn - The SVG to draw the route on.
+ */
+export function drawBusBarRoute(
+  busbarsTerminalPosition: Point,
+  equipmentsTerminalPosition: Point,
+  svgToDrawOn: HTMLElement
+): void {
+  const path = [busbarsTerminalPosition].concat([equipmentsTerminalPosition]);
 
   const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   let d = '';
@@ -408,124 +480,60 @@ export function drawRouteBetweenElements(
   line.setAttribute('stroke', 'currentColor');
   line.setAttribute('stroke-width', '1.5');
 
-  // Inserting elements like this works kind of like z-index (not supported in SVG yet),
-  // these elements are placed behind all other elements.
-  // By doing it like this, all other elements are hoverable for example.
-  svgToDrawOn.insertAdjacentElement('afterbegin', line);
-
-  return sides;
+  svgToDrawOn.appendChild(line);
 }
 
 /**
- * Get the dimensions of a specific element within a specific bay.
- * @param bayName - The name of the bay.
- * @param elementName - The name of the element.
- * @param svg - The SVG to search on.
- * @returns The shape (width and height) of the specific element.
+ * Small simple algorithm deciding on which direction the route should be drawn
+ * for a connection between elements Terminal and ConnectivityNode
+ * @param equipment - The SCL element ConductingEquipment or PowerTransformer the route starts from.
+ * @param cNode -  The SLC element ConnectivityNode the route ends with.
+ * @returns The sides of both points .
  */
- export function getElementDimensions(bayName: string, elementName: string, svg: HTMLElement): Shape {
-  let {height, width} = {height: 0, width: 0};
+export function getDirections(
+  equipment: Element,
+  cNode: Element
+): PointDirections {
+  const pointA = getAbsoluteCoordinates(equipment);
+  const pointB = calculateConnectivityNodeCoordinates(cNode);
 
-  svg.querySelectorAll(
-    `g[id="${bayName}"] > g[id="${elementName}"]`
-  ).forEach(b => {
-    height = b.getBoundingClientRect().height;
-    width = b.getBoundingClientRect().width;
-  });
+  if (pointA.y < pointB.y && pointA.x < pointB.x)
+    return { startDirection: 'bottom', endDirection: 'left' };
 
-  return {height, width};
+  if (pointA.y < pointB.y && pointA.x > pointB.x)
+    return { startDirection: 'bottom', endDirection: 'right' };
+
+  if (pointA.y < pointB.y && pointA.x === pointB.x)
+    return { startDirection: 'bottom', endDirection: 'top' };
+
+  if (pointA.y > pointB.y && pointA.x < pointB.x)
+    return { startDirection: 'top', endDirection: 'left' };
+
+  if (pointA.y > pointB.y && pointA.x > pointB.x)
+    return { startDirection: 'top', endDirection: 'right' };
+
+  if (pointA.y > pointB.y && pointA.x === pointB.x)
+    return { startDirection: 'top', endDirection: 'bottom' };
+
+  if (pointA.y === pointB.y && pointA.x > pointB.x)
+    return { startDirection: 'left', endDirection: 'right' };
+
+  if (pointA.y === pointB.y && pointA.x < pointB.x)
+    return { startDirection: 'right', endDirection: 'left' };
+
+  return { startDirection: 'bottom', endDirection: 'top' };
 }
 
 /**
- * Small simple algorithm deciding on which side the route should be drawn
- * of two ends of a route.
- * @param pointA - The first point (end) of a route.
- * @param pointB -  The second point (end) of a route.
- * @returns The of both points .
+ * Get the name of the parent of given child element.
+ * @param childElement - The child element.
+ * @returns The name.
  */
-function getDirections(pointA: Point, pointB: Point): PointSides {
-  if (pointA.x! == pointB.x!) {
-    if (pointA.y! < pointB.y!) {
-      return { pointASide: 'bottom', pointBSide: 'top' };
-    } else {
-      return { pointASide: 'top', pointBSide: 'bottom' };
-    }
-  } else {
-    if (pointA.y! <= pointB.y!) {
-      if (pointA.x! < pointB.x!) {
-        return { pointASide: 'right', pointBSide: 'left' };
-      } else {
-        return { pointASide: 'left', pointBSide: 'right' };
-      }
-    } else {
-      if (pointA.x! < pointB.x!) {
-        return { pointASide: 'left', pointBSide: 'right' };
-      } else {
-        return { pointASide: 'right', pointBSide: 'left' };
-      }
-    }
-  }
-}
-
-/**
- * Get the absolute position for a Terminal, next to another point (based on the TERMINAL_OFFSET).
- * @param terminalParentPosition - The absolute position of the element which is the parent of the terminal.
- * @param side - On which side does the terminal needs to be placed relative to the given point.
- */
-function getAbsolutePositionTerminal(
-  terminalParentPosition: Point,
-  side: Side
-): Point {
-  switch (side) {
-    case 'top': {
-      const x = terminalParentPosition.x;
-      const y = terminalParentPosition.y;
-      return {
-        x: x! + DEFAULT_ELEMENT_SIZE / 2,
-        y: y! - TERMINAL_OFFSET,
-      };
-    }
-    case 'bottom': {
-      const x = terminalParentPosition.x;
-      const y = terminalParentPosition.y;
-      return {
-        x: x! + DEFAULT_ELEMENT_SIZE / 2,
-        y: y! + (DEFAULT_ELEMENT_SIZE + TERMINAL_OFFSET),
-      };
-    }
-    case 'left': {
-      const x = terminalParentPosition.x;
-      const y = terminalParentPosition.y;
-      return {
-        x: x! - TERMINAL_OFFSET,
-        y: y! + DEFAULT_ELEMENT_SIZE / 2,
-      };
-    }
-    case 'right': {
-      const x = terminalParentPosition.x;
-      const y = terminalParentPosition.y;
-      return {
-        x: x! + (DEFAULT_ELEMENT_SIZE + TERMINAL_OFFSET),
-        y: y! + DEFAULT_ELEMENT_SIZE / 2,
-      };
-    }
-    default: {
-      return terminalParentPosition;
-    }
-  }
-}
-
-/**
- * Convert a top left coordinate to the middle of an element.
- * @param point - The top left point of the element.
- * @param shape - The shape of the element.
- * @returns The point of the element in the middle.
- */
-function convertRoutePointToMiddleOfElement(point: Point, shape: Shape): Point {
-  return {
-    x: point.x! + ((DEFAULT_ELEMENT_SIZE - shape.width) / 2),
-    y: point.y! + ((DEFAULT_ELEMENT_SIZE - shape.height) / 2)
-  }
+export function getParentElementName(
+  childElement: Element
+): string | undefined {
+  const parentElement = <Element>childElement.parentElement;
+  return getNameAttribute(parentElement);
 }
 
 /* Calculate length of the busbar that is depending on the most far right equipment
