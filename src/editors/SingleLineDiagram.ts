@@ -374,12 +374,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
       overflow: hidden;
     }
 
-    g[type='ConnectivityNode']:hover {
-      outline: 2px dashed var(--mdc-theme-primary);
-      transition: transform 200ms linear, box-shadow 250ms linear;
-    }
-
-    g[type='Terminal']:hover {
+    g[type='ConnectivityNode']:hover, g[type='Terminal']:hover {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
     }
