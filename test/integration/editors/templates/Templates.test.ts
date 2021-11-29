@@ -1,8 +1,11 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../../src/editors/Templates.js';
+import '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+
 import { Editing, EditingElement } from '../../../../src/Editing.js';
 import { Wizarding, WizardingElement } from '../../../../src/Wizarding.js';
+import TemplatesPlugin from '../../../../src/editors/Templates.js';
 
 describe('Templates Plugin', () => {
   customElements.define(
@@ -36,14 +39,14 @@ describe('Templates Plugin', () => {
 
   describe('with a doc loaded missing a datatypetemplates section', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/templates/missingdatatypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><templates-plugin .doc=${doc}></templates-plugin

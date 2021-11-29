@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+
 import { dATypeValidator } from '../../../../src/validators/templates/datype.js';
 
 describe('datype validator', () => {

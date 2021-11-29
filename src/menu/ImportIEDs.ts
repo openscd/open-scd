@@ -1,7 +1,11 @@
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { css, html, LitElement, query, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
+
+import '@material/mwc-list/mwc-check-list-item';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import '../filtered-list.js';
 import {
   createElement,
   EditorAction,

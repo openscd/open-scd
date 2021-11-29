@@ -1,8 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../mock-wizard-editor.js';
-import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
+import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 
 describe('Update method for desc attributes in ABB IEDs', () => {
   if (customElements.get('update-description-abb') === undefined)

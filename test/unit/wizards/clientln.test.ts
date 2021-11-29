@@ -1,10 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
-import { ZerolinePane } from '../../../src/zeroline-pane.js';
-import { IedEditor } from '../../../src/zeroline/ied-editor.js';
+
 import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+
+import '../../../src/zeroline-pane.js';
+import { IedEditor } from '../../../src/zeroline/ied-editor.js';
+import { ZerolinePane } from '../../../src/zeroline-pane.js';
 
 describe('clientln wizards', () => {
   let doc: Document;

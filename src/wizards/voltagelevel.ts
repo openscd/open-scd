@@ -1,6 +1,7 @@
 import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '../wizard-textfield.js';
 import {
   cloneElement,
   createElement,

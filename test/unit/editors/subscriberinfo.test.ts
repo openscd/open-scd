@@ -1,8 +1,7 @@
 import { expect } from '@open-wc/testing';
-import { ExecutionStatus } from 'fast-check';
-import { Create, isCreate, SimpleAction } from '../../../src/foundation.js';
 
 import { createMissingIEDNameSubscriberInfo } from '../../../src/menu/SubscriberInfo.js';
+import { Create, isCreate, SimpleAction } from '../../../src/foundation.js';
 
 describe('SubscriberInfo', () => {
   describe('for Edition2 and higher files', () => {

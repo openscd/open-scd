@@ -1,5 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   isDelete,
   isUpdate,
@@ -7,7 +12,6 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   editGseControlWizard,
   removeGseControl,
@@ -16,7 +20,6 @@ import {
   updateGseControlAction,
 } from '../../../src/wizards/gsecontrol.js';
 import { regExp, regexString } from '../../foundation.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('gsecontrol wizards', () => {
   let doc: XMLDocument;

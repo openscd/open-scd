@@ -1,14 +1,14 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
+import '@material/mwc-fab';
+
 import {
   newWizardEvent,
   newActionEvent,
   createElement,
 } from '../foundation.js';
-
 import { selectors, styles } from './communication/foundation.js';
-
 import './communication/subnetwork-editor.js';
 import { subNetworkWizard } from './communication/subnetwork-editor.js';
 

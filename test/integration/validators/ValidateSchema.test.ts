@@ -1,12 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { IssueDetail, LogEntry } from '../../../src/foundation.js';
-
+import '../../../src/open-scd.js';
 import { OpenSCD } from '../../../src/open-scd.js';
 import ValidateSchema from '../../../src/validators/ValidateSchema.js';
+import { IssueDetail, LogEntry } from '../../../src/foundation.js';
 
 describe('ValidateSchema plugin', () => {
-  customElements.define('validate-schema', ValidateSchema);
+  if (customElements.get('') === undefined)
+    customElements.define('validate-schema', ValidateSchema);
+
   let parent: OpenSCD;
   let element: ValidateSchema;
 

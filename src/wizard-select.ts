@@ -6,8 +6,8 @@ import {
   query,
   TemplateResult,
 } from 'lit-element';
-import { get } from 'lit-translate';
 
+import '@material/mwc-switch';
 import { Switch } from '@material/mwc-switch';
 import { Select } from '@material/mwc-select';
 

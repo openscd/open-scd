@@ -1,6 +1,9 @@
 import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
+import { Checkbox } from '@material/mwc-checkbox';
+
+import '../wizard-textfield.js';
 import {
   ComplexAction,
   createElement,
@@ -12,10 +15,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
 import { renderGseSmvAddress, updateAddress } from './address.js';
-
-import { Checkbox } from '@material/mwc-checkbox';
 
 export function getMTimeAction(
   type: 'MinTime' | 'MaxTime',

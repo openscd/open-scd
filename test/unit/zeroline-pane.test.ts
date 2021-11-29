@@ -1,4 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../src/zeroline-pane.js';
 import {
   attachedIeds,
   getAttachedIeds,

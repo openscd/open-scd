@@ -1,14 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import '@material/mwc-list/mwc-check-list-item';
-import '@material/mwc-list/mwc-list';
+import '../../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../../mock-wizard-editor.js';
+
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { lNodeWizard } from '../../../../src/wizards/lnode.js';
-
-import '../../../mock-wizard.js';
-import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
 describe('lnodewizard', () => {
   let element: MockWizardEditor;

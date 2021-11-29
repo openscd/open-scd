@@ -1,4 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   ComplexAction,
   Create,
@@ -11,13 +16,11 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   editGseWizard,
   getMTimeAction,
   updateGSEAction,
 } from '../../../src/wizards/gse.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('gse wizards', () => {
   let doc: XMLDocument;

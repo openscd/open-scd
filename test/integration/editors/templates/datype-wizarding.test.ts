@@ -1,12 +1,14 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../../src/editors/Templates.js';
+import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { Select } from '@material/mwc-select';
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
+
+import { FilteredList } from '../../../../src/filtered-list.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import TemplatesPlugin from '../../../../src/editors/Templates.js';
 
 describe('DAType wizards', () => {
   if (customElements.get('templates-editor') === undefined)

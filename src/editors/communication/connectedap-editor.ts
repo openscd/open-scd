@@ -9,10 +9,18 @@ import {
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
+import '@material/mwc-checkbox';
+import '@material/mwc-fab';
+import '@material/mwc-formfield';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-icon';
 import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
+import '../../wizard-textfield.js';
+import '../../filtered-list.js';
 import {
   EditorAction,
   newWizardEvent,
@@ -25,15 +33,13 @@ import {
   createElement,
   ComplexAction,
 } from '../../foundation.js';
-
+import { selectors } from './foundation.js';
 import {
   getTypes,
   typePattern,
   typeNullable,
   typeMaxLength,
 } from './p-types.js';
-
-import { selectors } from './foundation.js';
 
 /** Data needed to uniquely identify an `AccessPoint` */
 interface apAttributes {

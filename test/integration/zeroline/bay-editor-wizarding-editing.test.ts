@@ -1,17 +1,17 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
+import '../../../src/zeroline/bay-editor.js';
 import { BayEditor } from '../../../src/zeroline/bay-editor.js';
-import { EditingElement } from '../../../src/Editing.js';
 import { Select } from '@material/mwc-select';
-import { WizardingElement } from '../../../src/Wizarding.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('bay-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: BayEditor | null;
 
     let nameField: WizardTextField;
@@ -23,7 +23,7 @@ describe('bay-editor wizarding editing integration', () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
@@ -93,7 +93,7 @@ describe('bay-editor wizarding editing integration', () => {
 
   describe('open add conducting equipment wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: BayEditor | null;
 
     let nameField: WizardTextField;
@@ -104,7 +104,7 @@ describe('bay-editor wizarding editing integration', () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
@@ -159,14 +159,14 @@ describe('bay-editor wizarding editing integration', () => {
   });
   describe('open lnode wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: BayEditor | null;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><bay-editor .element=${doc.querySelector('Bay')}></bay-editor
@@ -192,7 +192,7 @@ describe('bay-editor wizarding editing integration', () => {
   });
   describe('move action', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: BayEditor | null;
     let element2: BayEditor | null;
 
@@ -200,7 +200,7 @@ describe('bay-editor wizarding editing integration', () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             >${Array.from(doc?.querySelectorAll('Bay') ?? []).map(
@@ -228,14 +228,14 @@ describe('bay-editor wizarding editing integration', () => {
   });
   describe('remove action', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: BayEditor | null;
 
     beforeEach(async () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><bay-editor
@@ -257,7 +257,7 @@ describe('bay-editor wizarding editing integration', () => {
   });
   describe('clone action', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: BayEditor | null;
     let copyContentButton: HTMLElement;
 
@@ -265,7 +265,7 @@ describe('bay-editor wizarding editing integration', () => {
       doc = await fetch('/base/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><bay-editor

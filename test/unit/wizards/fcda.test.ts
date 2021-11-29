@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
-import { isCreate } from '../../../src/foundation.js';
-
-import { FinderList } from '../../../src/finder-list.js';
-import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
-
+import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
+
+import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
+import { isCreate } from '../../../src/foundation.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('create wizard for FCDA element', () => {
   let doc: XMLDocument;

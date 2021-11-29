@@ -1,6 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { editDataSetWizard } from '../../../src/wizards/dataset.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Delete,
   isDelete,
@@ -9,11 +14,6 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
-
-import { editDataSetWizard } from '../../../src/wizards/dataset.js';
-
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('dataset wizards', () => {
   let doc: XMLDocument;

@@ -1,7 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { List } from '@material/mwc-list';
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
+import '../../../src/zeroline-pane.js';
+import { List } from '@material/mwc-list';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
 
 describe('selectExtRefWizard', () => {

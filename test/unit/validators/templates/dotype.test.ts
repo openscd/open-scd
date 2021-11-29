@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+
 import { dOTypeValidator } from '../../../../src/validators/templates/dotype.js';
 
 describe('dotype validator', () => {

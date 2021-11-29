@@ -1,20 +1,21 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import { regexString, regExp } from '../../foundation.js';
 import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
 
-import { WizardingElement } from '../../../src/Wizarding.js';
+import '../../../src/zeroline/conducting-equipment-editor.js';
+import { regexString, regExp } from '../../foundation.js';
 
 describe('conducting-equipment-editor wizarding integration', () => {
   let doc: XMLDocument;
-  let parent: WizardingElement;
+  let parent: MockWizard;
 
   beforeEach(async () => {
     doc = await fetch('/base/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    parent = <WizardingElement>(
+    parent = <MockWizard>(
       await fixture(
         html`<mock-wizard
           ><conducting-equipment-editor

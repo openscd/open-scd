@@ -1,6 +1,16 @@
 import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+import { Select } from '@material/mwc-select';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { List } from '@material/mwc-list';
+
+import '../../wizard-textfield.js';
 import {
   cloneElement,
   Create,
@@ -16,7 +26,8 @@ import {
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
-
+import { createDaWizard, editDAWizard } from '../../wizards/da.js';
+import { patterns } from '../../wizards/foundation/limits.js';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,
@@ -25,13 +36,6 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
-
-import { Select } from '@material/mwc-select';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { List } from '@material/mwc-list';
-import { createDaWizard, editDAWizard } from '../../wizards/da.js';
-import { patterns } from '../../wizards/foundation/limits.js';
 
 function updateSDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {

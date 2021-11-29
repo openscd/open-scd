@@ -1,10 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import '../../../src/zeroline-pane.js';
 import {
   getSinkReferences,
   getSourceReferences,
 } from '../../../src/wizards/commmap-wizards.js';
-
-import { MockWizard } from '../../mock-wizard.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
 
 describe('communication mapping wizard', () => {

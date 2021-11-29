@@ -1,9 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { FinderList } from '../../../src/finder-list.js';
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('FCDA editing wizarding integration', () => {
   let doc: XMLDocument;

@@ -1,7 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { editGseWizard } from '../../../src/wizards/gse.js';
+
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
+import { editGseWizard } from '../../../src/wizards/gse.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('gse wizarding editing integration', () => {
   let doc: XMLDocument;

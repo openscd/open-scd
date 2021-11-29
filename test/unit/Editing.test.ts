@@ -1,12 +1,12 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { EditingElement } from '../../src/Editing.js';
+import './mock-editor.js';
+import { MockEditor } from './mock-editor.js';
+
 import { newActionEvent } from '../../src/foundation.js';
 
-import './mock-editor.js';
-
 describe('EditingElement', () => {
-  let elm: EditingElement;
+  let elm: MockEditor;
   let parent: Element;
   let element: Element;
   let reference: Node | null;
@@ -15,7 +15,7 @@ describe('EditingElement', () => {
     const doc = await fetch('/base/test/testfiles/Editing.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    elm = <EditingElement>(
+    elm = <MockEditor>(
       await fixture(html`<mock-editor .doc=${doc}></mock-editor>`)
     );
 
