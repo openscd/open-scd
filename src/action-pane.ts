@@ -12,8 +12,6 @@ import '@material/mwc-icon';
 import { nothing } from 'lit-html';
 
 function closestTo<E extends Element>(node: Node, selector: string): E | null {
-  if (!node) return null;
-
   const closest =
     node.nodeType === Node.ELEMENT_NODE
       ? (<Element>node).closest<E>(selector)
@@ -56,10 +54,7 @@ export class ActionPane extends LitElement {
   async firstUpdated(): Promise<void> {
     this.tabIndex = 0;
 
-    const parentPane = this.parentNode
-      ? closestTo<ActionPane>(this.parentNode, 'action-pane')
-      : null;
-    console.log(parentPane?.level);
+    const parentPane = closestTo<ActionPane>(this.parentNode!, 'action-pane');
     if (parentPane) this.level = parentPane.level + 1;
 
     this.level = Math.floor(this.level);
