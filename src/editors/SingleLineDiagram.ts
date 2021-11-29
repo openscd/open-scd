@@ -146,7 +146,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .filter(cNode => getConnectedTerminals(cNode).length > 0)
         .forEach(cNode => {
-          console.log(cNode)
           const cNodePosition = getAbsolutePositionConnectivityNode(cNode);
           const cNodeElement = createConnectivityNodeElement(
             cNode,
