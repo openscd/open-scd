@@ -197,25 +197,25 @@ export const de: Translations = {
     unknownType: 'Unbekannter Typ',
   },
   connectivitynode: {
-    name: '????',
+    name: 'Verbindungsknoten',
     wizard: {
-      nameHelper: '????',
-      pathNameHelper: '????',
+      nameHelper: 'Verbindungsknoten Name',
+      pathNameHelper: 'Verbindungsknoten Beschreibung',
       title: {
-        add: '????',
-        edit: '????',
+        add: 'Verbindungsknoten hinzufügen',
+        edit: 'Verbindungsknoten bearbeiten',
       },
     },
   },
   terminal: {
-    name: '????',
+    name: 'Anschluss',
     wizard: {
-      nameHelper: '????',
-      connectivityNodeHelper: '????',
-      cNodeNameHelper: '????',
+      nameHelper: 'Anschluss Name',
+      connectivityNodeHelper: 'Anschluss Verbindungsknoten',
+      cNodeNameHelper: 'Anschluss Verbindungsknoten Name',
       title: {
-        add: '????',
-        edit: '????',
+        add: 'Anschlussknoten hinzufügen',
+        edit: 'Anschlussknoten bearbeiten',
       },
     },
   },
