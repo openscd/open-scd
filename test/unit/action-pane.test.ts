@@ -1,35 +1,21 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import sinon, { SinonSpy } from 'sinon';
 
-import '../../src/editor-container.js';
-import { EditorContainer } from '../../src/editor-container.js';
-import { BayEditor } from '../../src/zeroline/bay-editor.js';
+import '../../src/action-pane.js';
+import '../../src/zeroline/bay-editor.js';
+import { ActionPane } from '../../src/action-pane.js';
 
-describe('editor-container', () => {
-  let element: EditorContainer;
-  const substation = <Element>(
-    new DOMParser().parseFromString(
-      `<Substation name="name" desc="desc"></Substation>`,
-      'application/xml'
-    ).documentElement
-  );
+describe('action-pane', () => {
+  let element: ActionPane;
+
   beforeEach(async () => {
     element = await fixture(
-      html`<editor-container header="test header"></editor-container>`
+      html`<action-pane header="test header"></action-pane>`
     );
     await element.updateComplete;
   });
 
-  it('does not render more vert option with missing mwc-fab children', () => {
-    expect(element.moreVert).to.not.exist;
-  });
-
-  it('renders more vert option with existing mwc-fab children', async () => {
-    const fabChild = element.ownerDocument.createElement('mwc-fab');
-    fabChild.setAttribute('slot', 'morevert');
-    element.appendChild(fabChild);
-    await element.requestUpdate();
-    expect(element.moreVert).to.exist;
+  it('looks like the latest snapshot', () => {
+    expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('renders the header as <h1> per default', () => {
@@ -107,75 +93,63 @@ describe('editor-container', () => {
     expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
   });
 
-  it('does not render header text with missing element and header text', () => {
-    expect(element.defaultHeader).to.equal('');
+  it('renders the header as <h6> for levels > 6', async () => {
+    element.level = 7;
+    await element.updateComplete;
+    expect(element.shadowRoot?.querySelector('h6')).to.exist;
+    expect(element.shadowRoot?.querySelector('h1')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
   });
 
-  it('header property overwrites default header text', async () => {
-    element.element = substation;
-    element.requestUpdate();
+  it('renders the header as <h1> for levels < 1', async () => {
+    element.level = -1;
+    await element.updateComplete;
+    expect(element.shadowRoot?.querySelector('h1')).to.exist;
+    expect(element.shadowRoot?.querySelector('h2')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h3')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h4')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h5')).to.not.exist;
+    expect(element.shadowRoot?.querySelector('h6')).to.not.exist;
+  });
+
+  it('does not set contrasted class property with odd level', async () => {
+    element.level = 3;
+    await element.updateComplete;
+
     expect(
-      element.headerContainer.querySelector('h1')?.innerText.trim()
-    ).to.equal('test header');
+      element.shadowRoot
+        ?.querySelector('section')
+        ?.classList.contains('contrasted')
+    ).to.be.false;
   });
 
-  it('renders default header text with missing header property', async () => {
-    element.header = '';
-    element.element = substation;
-    await element.requestUpdate();
+  it('sets contrasted class property with even levels', async () => {
+    element.level = 4;
+    await element.updateComplete;
+
     expect(
-      element.headerContainer.querySelector('h1')?.innerText.trim()
-    ).to.equal('name - desc');
+      element.shadowRoot
+        ?.querySelector('section')
+        ?.classList.contains('contrasted')
+    ).to.be.true;
   });
 
-  it('does not render add icon and add menu with missing element', () => {
-    expect(element.addMenu).to.not.exist;
-    expect(element.addIcon).to.not.exist;
-  });
-
-  describe('with existing element definition', () => {
-    const substation = <Element>(
-      new DOMParser().parseFromString(
-        `<Substation name="subst"></Substation>`,
-        'application/xml'
-      ).documentElement
-    );
-
-    let wizardEvent: SinonSpy;
+  describe('with icon property set', () => {
     beforeEach(async () => {
-      element.element = substation;
+      element.icon = 'edit';
       await element.updateComplete;
-
-      wizardEvent = sinon.spy();
-      window.addEventListener('wizard', wizardEvent);
     });
 
-    it('render add icon and add menu', async () => {
-      expect(element.addMenu).to.exist;
-      expect(element.addIcon).to.exist;
-    });
-
-    it('opens menu on add icon click', async () => {
-      expect(element.addMenu.open).to.be.false;
-      element.addIcon?.click();
-      await element.requestUpdate();
-      expect(element.addMenu.open).to.be.true;
-    });
-
-    it('renders only children with existing create wizard', () => {
-      expect(element.addMenu.querySelectorAll('mwc-list-item').length).to.equal(
-        2
-      );
-    });
-
-    it('does trigger wizard action with valid existing wizard', async () => {
-      element.addMenu.querySelector('mwc-list-item')?.click();
-      expect(wizardEvent).to.have.been.called;
+    it('looks like the latest snapshot', () => {
+      expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
-  describe('with existing parent editor-container', () => {
-    let parent: EditorContainer;
+  describe('with existing parent action-pane', () => {
+    let parent: ActionPane;
     const bay = <Element>(
       new DOMParser().parseFromString(
         `<Bay name="name" desc="desc"></Bay>`,
@@ -184,24 +158,15 @@ describe('editor-container', () => {
     );
     beforeEach(async () => {
       parent = await fixture(
-        `<editor-container header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
+        html`<action-pane header="parent header"
+          ><bay-editor .element=${bay}></bay-editor
+        ></action-pane>`
       );
 
       element = parent
         .querySelector('bay-editor')!
-        .shadowRoot!.querySelector<EditorContainer>('editor-container')!;
+        .shadowRoot!.querySelector<ActionPane>('action-pane')!;
       await element.updateComplete;
-    });
-
-    it('negated the default contrasted property of the parent', () => {
-      expect(element.contrasted).to.be.true;
-    });
-
-    it('only negates on first update', async () => {
-      parent.contrasted = true;
-      await parent.requestUpdate();
-
-      expect(element.contrasted).to.be.true;
     });
 
     it('increments the default level property of the parent', () => {
@@ -213,32 +178,6 @@ describe('editor-container', () => {
       await parent.requestUpdate();
 
       expect(element.level).to.equal(2);
-    });
-
-    it('negated the set contrasted property of the parent', async () => {
-      parent = await fixture(
-        `<editor-container contrasted header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
-      );
-
-      element = parent
-        .querySelector('bay-editor')!
-        .shadowRoot!.querySelector<EditorContainer>('editor-container')!;
-      await element.updateComplete;
-
-      expect(element.contrasted).to.be.false;
-    });
-
-    it('makes sure maximum level is 6', async () => {
-      parent = await fixture(
-        `<editor-container level="6" header="parent header"><bay-editor .element=${bay}></bay-editor></editor-container>`
-      );
-
-      element = parent
-        .querySelector('bay-editor')!
-        .shadowRoot!.querySelector<EditorContainer>('editor-container')!;
-      await element.updateComplete;
-
-      expect(element.level).to.equal(6);
     });
   });
 });

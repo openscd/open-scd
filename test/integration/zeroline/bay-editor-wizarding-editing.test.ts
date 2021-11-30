@@ -90,6 +90,7 @@ describe('bay-editor wizarding editing integration', () => {
       expect(doc.querySelector('Bay')?.getAttribute('desc')).to.be.null;
     });
   });
+
   describe('open add conducting equipment wizard', () => {
     let doc: XMLDocument;
     let parent: WizardingElement & EditingElement;
@@ -114,11 +115,9 @@ describe('bay-editor wizarding editing integration', () => {
       element = parent.querySelector('bay-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot
-          ?.querySelector('editor-container')
-          ?.shadowRoot?.querySelector(
-            'mwc-list-item[value="ConductingEquipment"]'
-          )
+        element?.shadowRoot?.querySelector(
+          'mwc-list-item[value="ConductingEquipment"]'
+        )
       )).click();
       await parent.updateComplete;
 
