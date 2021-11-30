@@ -102,7 +102,7 @@ describe('Single Line Diagram foundation', () => {
           'Bay[name="Bay A"] > ConnectivityNode[name="L1"]'
         );
         expect(calculateConnectivityNodeCoordinates(element!)).to.eql({
-          x: Math.round((8 + 10 + 8) / 3),
+          x: Math.round((6 + 10 + 8) / 3),
           y: Math.round((20 + 20 + 24) / 3),
         });
       }

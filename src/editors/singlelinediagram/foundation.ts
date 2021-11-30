@@ -6,7 +6,7 @@ export interface Point {
   y: number;
 }
 
-/** Scope factor: the ConnectivityNode allocation algorithm works better with > 1*/
+/** Scope factor: the ConnectivityNode allocation algorithm works better with a scale factor which is bigger than 1. */
 const COORDINATES_SCALE_FACTOR = 2;
 
 /**
