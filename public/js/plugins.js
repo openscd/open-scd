@@ -7,6 +7,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Single Line Diagram',
+    src: '/src/editors/SingleLineDiagram.js',
+    icon: 'edit',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Communication',
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
