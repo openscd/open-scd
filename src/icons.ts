@@ -565,7 +565,7 @@ export const connectivityNodeIcon = html`<svg
 >
   <circle
     stroke="currentColor"
-    fill="none"
+    fill="currentColor"
     stroke-width="1"
     cx="12.5"
     cy="12.5"

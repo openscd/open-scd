@@ -173,12 +173,14 @@ export function createTextElement(
  * @param elementPosition - The position of the element belonging to the terminal/
  * @param sideToDraw - The side of the element the terminal must be drawn on.
  * @param terminalElement - The terminal element to extract information from.
+ * @param clickAction - The action to execute when the terminal is being clicked.
  * @returns The terminal SVG element.
  */
 export function createTerminalElement(
   elementPosition: Point,
   sideToDraw: Side,
-  terminalElement: Element
+  terminalElement: Element,
+  clickAction: () => void
 ): SVGElement {
   const groupElement = createGroupElement(terminalElement);
 
@@ -187,7 +189,6 @@ export function createTerminalElement(
       ? <string>identity(terminalElement)
       : 'unidentifiable';
 
-  const terminalName = getNameAttribute(terminalElement)!;
   const pointToDrawTerminalOn = getAbsolutePositionTerminal(
     elementPosition,
     sideToDraw
@@ -200,15 +201,9 @@ export function createTerminalElement(
   icon.setAttribute('cy', `${pointToDrawTerminalOn.y}`);
   icon.setAttribute('r', '2');
 
-  // Also add a text element.
-  const textElementPosition =
-    sideToDraw == 'bottom' || sideToDraw == 'top'
-      ? { x: pointToDrawTerminalOn.x! + 5, y: pointToDrawTerminalOn.y! + 5 }
-      : { x: pointToDrawTerminalOn.x! - 5, y: pointToDrawTerminalOn.y! - 5 };
-  const text = createTextElement(terminalName, textElementPosition, 'xx-small');
-
   groupElement.appendChild(icon);
-  groupElement.appendChild(text);
+
+  groupElement.addEventListener('click', clickAction);
 
   return groupElement;
 }
@@ -322,11 +317,13 @@ export function createPowerTransformerElement(
  * Create a Connectivity Node element.
  * @param cNodeElement - The name of the busbar
  * @param position - The SCL position of the Connectivity Node.
+ * @param clickAction - The action to execute when the terminal is being clicked.
  * @returns The Connectivity Node SVG element.
  */
 export function createConnectivityNodeElement(
   cNodeElement: Element,
-  position: Point
+  position: Point,
+  clickAction: () => void
 ): SVGElement {
   const groupElement = createGroupElement(cNodeElement);
 
@@ -338,6 +335,8 @@ export function createConnectivityNodeElement(
     icon.setAttribute('transform', `translate(${position.x},${position.y})`);
     groupElement.appendChild(icon);
   });
+
+  groupElement.addEventListener('click', clickAction);
 
   return groupElement;
 }
@@ -409,7 +408,10 @@ export function drawRouteBetweenElements(
   line.setAttribute('stroke', 'currentColor');
   line.setAttribute('stroke-width', '1.5');
 
-  svgToDrawOn.appendChild(line);
+  // Inserting elements like this works kind of like z-index (not supported in SVG yet),
+  // these elements are placed behind all other elements.
+  // By doing it like this, all other elements are hoverable for example.
+  svgToDrawOn.insertAdjacentElement('afterbegin', line);
 
   return sides;
 }

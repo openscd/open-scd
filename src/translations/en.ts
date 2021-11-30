@@ -193,6 +193,29 @@ export const en = {
     },
     unknownType: 'Unknown type',
   },
+  connectivitynode: {
+    name: 'Connectivity Node',
+    wizard: {
+      nameHelper: 'Connectivity node name',
+      pathNameHelper: 'Connectivity node pathname',
+      title: {
+        add: 'Add Connectivity node',
+        edit: 'Edit Connectivity node',
+      },
+    },
+  },
+  terminal: {
+    name: 'Terminal',
+    wizard: {
+      nameHelper: 'Terminal name',
+      connectivityNodeHelper: 'Terminal connectivity node',
+      cNodeNameHelper: 'Terminal connectivity node name',
+      title: {
+        add: 'Add Terminal',
+        edit: 'Edit Terminal',
+      },
+    },
+  },
   templates: {
     name: 'Data Type Templates',
     missing: 'DataTypeTemplates missing',

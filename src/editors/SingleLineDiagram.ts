@@ -7,7 +7,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { identity } from '../foundation.js';
+import { identity, newWizardEvent, SCLTag } from '../foundation.js';
 
 import panzoom from 'panzoom';
 
@@ -33,6 +33,7 @@ import {
   getPathNameAttribute,
   getNameAttribute,
 } from './singlelinediagram/foundation.js';
+import { wizards } from '../wizards/wizard-library.js';
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -148,7 +149,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
           const cNodePosition = getAbsolutePositionConnectivityNode(cNode);
           const cNodeElement = createConnectivityNodeElement(
             cNode,
-            cNodePosition
+            cNodePosition,
+            () => this.openEditWizard(cNode)
           );
 
           this.addElementToGroup(cNodeElement, identity(cNode.parentElement));
@@ -233,7 +235,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
               const terminal = createTerminalElement(
                 cEquipmentAbsolutePosition,
                 sideToDrawTerminalOn,
-                terminalElement!
+                terminalElement!,
+                () => this.openEditWizard(terminalElement!)
               );
 
               this.svg
@@ -301,11 +304,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
           const terminal = createTerminalElement(
             cEquipmentAbsolutePosition,
             sideToDrawTerminalOn,
-            terminalElement!
+            terminalElement!,
+            () => this.openEditWizard(terminalElement!)
           );
 
           this.svg
-            .querySelectorAll(` g[id="${identity(cEquipment)}"]`)
+            .querySelectorAll(`g[id="${identity(cEquipment)}"]`)
             .forEach(eq => eq.appendChild(terminal));
         });
     });
@@ -321,7 +325,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.drawPowerTransformers();
     this.drawConnectivityNodes();
     this.drawBusBars();
-
+    
     this.drawConnectivityNodeConnections();
     this.drawBusBarConnections();
   }
@@ -335,6 +339,15 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.svg
       .querySelectorAll(`g[id="${identity}"]`)
       .forEach(group => group.appendChild(elementToAdd));
+  }
+
+  /**
+   * Open an Edit wizard for an element.
+   * @param element - The element to show the wizard for.
+   */
+  openEditWizard(element: Element): void {
+    const wizard = wizards[<SCLTag>(element.tagName)].edit(element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   firstUpdated(): void {
@@ -359,6 +372,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
   static styles = css`
     .sldContainer {
       overflow: hidden;
+    }
+
+    g[type='ConnectivityNode']:hover, g[type='Terminal']:hover {
+      outline: 2px dashed var(--mdc-theme-primary);
+      transition: transform 200ms linear, box-shadow 250ms linear;
     }
   `;
 }
