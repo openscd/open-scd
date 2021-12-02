@@ -329,6 +329,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
       overflow: hidden;
     }
 
+    g {
+      pointer-events: bounding-box;
+    }
+
     g[type='ConnectivityNode']:hover,
     g[type='Terminal']:hover,
     g[type='ConductingEquipment']:hover {
