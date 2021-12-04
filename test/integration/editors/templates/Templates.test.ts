@@ -26,7 +26,7 @@ describe('Templates Plugin', () => {
   describe('with a doc loaded', () => {
     let doc: XMLDocument;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+      doc = await fetch('/test/testfiles/templates/datypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
@@ -42,7 +42,7 @@ describe('Templates Plugin', () => {
     let parent: MockWizardEditor;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/templates/missingdatatypes.scd')
+      doc = await fetch('/test/testfiles/templates/missingdatatypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -74,7 +74,7 @@ describe('Templates Plugin', () => {
     let parent: WizardingElement & EditingElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+      doc = await fetch('/test/testfiles/templates/datypes.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <WizardingElement & EditingElement>(

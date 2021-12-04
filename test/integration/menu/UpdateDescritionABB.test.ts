@@ -14,7 +14,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/updatedesc/updatedescABB.scd')
+    doc = await fetch('/test/testfiles/updatedesc/updatedescABB.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

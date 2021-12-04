@@ -21,7 +21,7 @@ describe('zeroline-pane', () => {
   let remainingIeds: Set<Element>;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/zeroline/iedalloctest.scd')
+    doc = await fetch('/test/testfiles/zeroline/iedalloctest.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

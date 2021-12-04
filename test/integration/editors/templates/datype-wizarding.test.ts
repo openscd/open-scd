@@ -27,7 +27,7 @@ describe('DAType wizards', () => {
 
     templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
 
-    doc = await fetch('/base/test/testfiles/templates/datypes.scd')
+    doc = await fetch('/test/testfiles/templates/datypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;

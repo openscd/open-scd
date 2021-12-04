@@ -8,7 +8,7 @@ describe('substation-editor', () => {
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
-    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = await fixture(html`<substation-editor

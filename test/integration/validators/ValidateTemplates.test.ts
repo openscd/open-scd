@@ -15,9 +15,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
 
   describe('with issues in the DataTypeTemplates section', () => {
     beforeEach(async () => {
-      doc = await fetch(
-        '/base/test/testfiles/validators/datatypetemplateerrors.scd'
-      )
+      doc = await fetch('/test/testfiles/validators/datatypetemplateerrors.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -52,7 +50,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
   });
   describe('with schema version smaller "2007B3"', () => {
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B.scd')
+      doc = await fetch('/test/testfiles/valid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

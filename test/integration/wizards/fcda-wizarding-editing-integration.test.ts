@@ -14,7 +14,7 @@ describe('FCDA editing wizarding integration', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
-    doc = await fetch('/base/test/testfiles/wizards/fcda.scd')
+    doc = await fetch('/test/testfiles/wizards/fcda.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

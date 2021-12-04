@@ -14,7 +14,7 @@ describe('selectExtRefWizard', () => {
   let commMappings: List;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/comm-map.scd')
+    doc = await fetch('/test/testfiles/comm-map.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

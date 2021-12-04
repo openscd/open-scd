@@ -12,7 +12,7 @@ describe('EditingElement', () => {
   let reference: Node | null;
 
   beforeEach(async () => {
-    const doc = await fetch('/base/test/testfiles/Editing.scd')
+    const doc = await fetch('/test/testfiles/Editing.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     elm = <MockEditor>(

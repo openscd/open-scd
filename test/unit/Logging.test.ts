@@ -220,7 +220,7 @@ describe('LoggingElement', () => {
 
   describe('when loading file with history items', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/history.scd')
+      const doc = await fetch('/test/testfiles/history.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

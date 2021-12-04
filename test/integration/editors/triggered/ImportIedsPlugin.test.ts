@@ -28,13 +28,13 @@ describe('ImportIedsPlugin', () => {
 
       element = <ImportingIedPlugin>parent.querySelector('import-ieds-plugin')!;
 
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
       await element.updateComplete;
 
-      importDoc = await fetch('/base/test/testfiles/importieds/valid.iid')
+      importDoc = await fetch('/test/testfiles/importieds/valid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -115,14 +115,14 @@ describe('ImportIedsPlugin', () => {
       expect(element.doc.querySelectorAll('IED').length).to.equal(3);
 
       const templateIED1 = await fetch(
-        '/base/test/testfiles/importieds/template.icd'
+        '/test/testfiles/importieds/template.icd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(templateIED1, doc);
 
       const templateIED2 = await fetch(
-        '/base/test/testfiles/importieds/template.icd'
+        '/test/testfiles/importieds/template.icd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -133,7 +133,7 @@ describe('ImportIedsPlugin', () => {
     });
     it('renders wizard for files containing more than one IED', async () => {
       const multipleIedDoc = await fetch(
-        '/base/test/testfiles/importieds/multipleied.scd'
+        '/test/testfiles/importieds/multipleied.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -148,7 +148,7 @@ describe('ImportIedsPlugin', () => {
     });
     it('imports selected IED from Import IED wizard', async () => {
       const multipleIedDoc = await fetch(
-        '/base/test/testfiles/importieds/multipleied.scd'
+        '/test/testfiles/importieds/multipleied.scd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
@@ -187,7 +187,7 @@ describe('ImportIedsPlugin', () => {
 
       element = <ImportingIedPlugin>parent.querySelector('import-ieds-plugin')!;
 
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
@@ -195,7 +195,7 @@ describe('ImportIedsPlugin', () => {
     });
 
     it('throws missing ied elements error', async () => {
-      importDoc = await fetch('/base/test/testfiles/importieds/invalid.iid')
+      importDoc = await fetch('/test/testfiles/importieds/invalid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(importDoc, doc);
@@ -204,7 +204,7 @@ describe('ImportIedsPlugin', () => {
       expect(parent.history[0].title).to.equal('No IED element in the file');
     });
     it('throws duplicate ied name error', async () => {
-      importDoc = await fetch('/base/test/testfiles/importieds/dublicate.iid')
+      importDoc = await fetch('/test/testfiles/importieds/dublicate.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(importDoc, doc);
@@ -215,7 +215,7 @@ describe('ImportIedsPlugin', () => {
       );
     });
     it('throws parser error', async () => {
-      importDoc = await fetch('/base/test/testfiles/importieds/parsererror.iid')
+      importDoc = await fetch('/test/testfiles/importieds/parsererror.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.prepareImport(importDoc, doc);

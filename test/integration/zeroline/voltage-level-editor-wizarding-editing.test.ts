@@ -22,7 +22,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -179,7 +179,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -233,7 +233,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let element: VoltageLevelEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -269,7 +269,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let element2: VoltageLevelEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -309,7 +309,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let element: VoltageLevelEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -339,7 +339,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let copyContentButton: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(

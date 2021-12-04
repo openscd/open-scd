@@ -21,7 +21,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -151,7 +151,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
     let deleteButton: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(
@@ -185,7 +185,7 @@ describe('subnetwork-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizardEditor>(

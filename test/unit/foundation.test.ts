@@ -42,12 +42,12 @@ describe('foundation', () => {
 
   beforeEach(async () => {
     scl1 = (
-      await fetch('/base/test/testfiles/valid2007B4.scd')
+      await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;
     scl2 = (
-      await fetch('/base/test/testfiles/valid2003.scd')
+      await fetch('/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;
@@ -428,7 +428,7 @@ describe('foundation', () => {
   describe('findControlBlocks', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/comm-map.scd')
+      doc = await fetch('/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -460,7 +460,7 @@ describe('foundation', () => {
   describe('findFCDAs', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/comm-map.scd')
+      doc = await fetch('/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -493,7 +493,7 @@ describe('foundation', () => {
   describe('getChildElementsByTagName', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/lnodewizard.scd')
+      doc = await fetch('/test/testfiles/lnodewizard.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });

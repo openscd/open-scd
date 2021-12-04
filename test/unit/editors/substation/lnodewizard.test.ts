@@ -6,7 +6,7 @@ describe('lnodewizard', () => {
   describe('defines a getLNode function that', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/lnodewizard.scd')
+      doc = await fetch('/test/testfiles/lnodewizard.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });

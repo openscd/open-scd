@@ -17,7 +17,7 @@ describe('create wizard for FCDA element', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch('/base/test/testfiles/wizards/fcda.scd')
+    doc = await fetch('/test/testfiles/wizards/fcda.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

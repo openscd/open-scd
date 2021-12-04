@@ -33,7 +33,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
 
   describe('working on SCL files without manufacturer ABB', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+      const doc = await fetch('/test/testfiles/validators/zeroissues.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
@@ -48,9 +48,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
 
   describe('working on SCL files containing manufacturer ABB', () => {
     beforeEach(async () => {
-      const doc = await fetch(
-        '/base/test/testfiles/updatedesc/updatedescABB.scd'
-      )
+      const doc = await fetch('/test/testfiles/updatedesc/updatedescABB.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;

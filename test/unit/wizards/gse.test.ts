@@ -28,7 +28,7 @@ describe('gse wizards', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

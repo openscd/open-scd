@@ -17,7 +17,7 @@ describe('ValidateSchema plugin', () => {
 
   describe('for valid SCL files', () => {
     beforeEach(async () => {
-      valid2007B4 = await fetch('/base/test/testfiles/valid2007B.scd')
+      valid2007B4 = await fetch('/test/testfiles/valid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -68,7 +68,7 @@ describe('ValidateSchema plugin', () => {
 
   describe('for invalid SCL files', () => {
     beforeEach(async () => {
-      invalid2007B = await fetch('/base/test/testfiles/invalid2007B.scd')
+      invalid2007B = await fetch('/test/testfiles/invalid2007B.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

@@ -29,7 +29,7 @@ describe('Communication Plugin', () => {
     let doc: XMLDocument;
     let element: Communication;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
@@ -47,7 +47,7 @@ describe('Communication Plugin', () => {
     let fab: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/missingCommunication.scd')
+      doc = await fetch('/test/testfiles/missingCommunication.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       parent = <MockWizard>(

@@ -9,7 +9,7 @@ describe('SubscriberInfo', () => {
     let actions: SimpleAction[];
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/subscriberinfo2007.scd')
+      doc = await fetch('/test/testfiles/subscriberinfo2007.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       actions = createMissingIEDNameSubscriberInfo(doc);
@@ -83,7 +83,7 @@ describe('SubscriberInfo', () => {
     let actions: SimpleAction[];
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/subscriberinfo2003.scd')
+      doc = await fetch('/test/testfiles/subscriberinfo2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       actions = createMissingIEDNameSubscriberInfo(doc);

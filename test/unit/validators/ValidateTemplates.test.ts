@@ -26,7 +26,7 @@ describe('ValidateTemplates', () => {
   });
   describe('dispatch', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+      const doc = await fetch('/test/testfiles/validators/zeroissues.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -101,7 +101,7 @@ describe('ValidateTemplates', () => {
   describe('validate', () => {
     let element: ValidateTemplates;
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+      const doc = await fetch('/test/testfiles/validators/zeroissues.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
