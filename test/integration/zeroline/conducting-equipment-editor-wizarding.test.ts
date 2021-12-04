@@ -32,8 +32,8 @@ describe('conducting-equipment-editor wizarding integration', () => {
     )).click();
     await parent.updateComplete;
   });
-  it('looks like the latest snapshot', () => {
-    expect(parent.wizardUI.dialog).to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
   it('the first input element only displaying the type', () => {
     expect(parent.wizardUI.inputs[0]).to.have.property('disabled', true);

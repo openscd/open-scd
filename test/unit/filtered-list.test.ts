@@ -27,8 +27,8 @@ describe('filtered-list', () => {
     );
   });
 
-  it('looks like its latest snapshot', () => {
-    expect(element).shadowDom.to.equalSnapshot();
+  it('looks like its latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   describe('has a check all checkbox that', () => {

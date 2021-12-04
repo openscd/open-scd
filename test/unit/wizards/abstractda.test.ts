@@ -117,8 +117,8 @@ describe('abstractda wizards', () => {
       )!;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('edits name attribute only for valid inputs', async () => {

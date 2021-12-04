@@ -62,8 +62,8 @@ describe('LNodeType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits LNodeType attributes id', async () => {
       expect(doc.querySelector('LNodeType[id="Dummy.CSWI"]')).to.exist;
@@ -121,8 +121,8 @@ describe('LNodeType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('recursively add missing! subsequent DOType elements', async () => {
       expect(doc.querySelector('LNodeType[id="myCSWI"]')).to.not.exist;
@@ -288,8 +288,8 @@ describe('LNodeType wizards', () => {
         spsId = sps?.getAttribute('id') ?? '';
       });
 
-      it('looks like the latest snapshot', () => {
-        expect(parent.wizardUI.dialog).to.equalSnapshot();
+      it('looks like the latest snapshot', async () => {
+        await expect(parent.wizardUI.dialog).to.equalSnapshot();
       });
 
       it('filters the type selection for each DO to fit the cdc', () => {
@@ -407,7 +407,7 @@ describe('LNodeType wizards', () => {
     });
 
     it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+      expect(parent.wizardUI.dialog).to;
     });
     it('edits DO attributes name', async () => {
       expect(doc.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]'))
@@ -524,8 +524,8 @@ describe('LNodeType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new DO element', async () => {
       expect(

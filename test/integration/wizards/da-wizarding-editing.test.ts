@@ -68,8 +68,8 @@ describe('DA wizarding editing integration', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits DA attributes name', async () => {
       expect(
@@ -174,8 +174,8 @@ describe('DA wizarding editing integration', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new DA element', async () => {
       expect(

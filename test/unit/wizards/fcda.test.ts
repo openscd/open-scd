@@ -39,8 +39,8 @@ describe('create wizard for FCDA element', () => {
       );
     });
 
-    it('looks like the last snapshot', () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the last snapshot', async () => {
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('returns undefined wizard for parents without Server', () =>

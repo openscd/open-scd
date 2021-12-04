@@ -58,7 +58,7 @@ describe('clientln wizards', () => {
     });
 
     it('looks like the latest snapshot', async () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
 
     it('add ClientLN referencing to logical nodes in AccessPoint', async () => {
@@ -184,8 +184,8 @@ describe('clientln wizards', () => {
       await parent.updateComplete;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('filteres ClientLNs to one receiving IED', async () => {

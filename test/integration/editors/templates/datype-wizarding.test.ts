@@ -63,8 +63,8 @@ describe('DAType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('allows to add empty DATypes to the project', async () => {
@@ -139,8 +139,8 @@ describe('DAType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits DAType attributes id', async () => {
       expect(doc.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"]')).to.exist;

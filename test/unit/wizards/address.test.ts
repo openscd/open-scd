@@ -40,7 +40,7 @@ describe('address', () => {
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
   });
 

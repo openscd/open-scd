@@ -132,8 +132,8 @@ describe('finder-list', () => {
           .to.satisfy((t: string) => t.startsWith('Testing '));
       });
 
-      it('looks like its latest snapshot', () =>
-        expect(element).shadowDom.to.equalSnapshot());
+      it('looks like its latest snapshot', async () =>
+        await expect(element).shadowDom.to.equalSnapshot());
     });
 
     describe('when an item in the last column is selected', () => {
@@ -169,8 +169,8 @@ describe('finder-list', () => {
           .property('children')
           .to.have.lengthOf(entries[directory].length));
 
-      it('looks like its latest snapshot', () =>
-        expect(element).shadowDom.to.equalSnapshot());
+      it('looks like its latest snapshot', async () =>
+        await expect(element).shadowDom.to.equalSnapshot());
     });
 
     describe('when an item in the first column is selected', () => {
@@ -206,8 +206,8 @@ describe('finder-list', () => {
           .property('children')
           .to.have.lengthOf(entries[directory].length));
 
-      it('looks like its latest snapshot', () =>
-        expect(element).shadowDom.to.equalSnapshot());
+      it('looks like its latest snapshot', async () =>
+        await expect(element).shadowDom.to.equalSnapshot());
     });
 
     describe('when the selected item in the first column is deselected', () => {
@@ -223,8 +223,8 @@ describe('finder-list', () => {
           .property('children')
           .to.have.lengthOf(1));
 
-      it('looks like its latest snapshot', () =>
-        expect(element).shadowDom.to.equalSnapshot());
+      it('looks like its latest snapshot', async () =>
+        await expect(element).shadowDom.to.equalSnapshot());
     });
   });
 
@@ -258,8 +258,8 @@ describe('finder-list', () => {
               .length
         ));
 
-    it('looks like its latest snapshot', () =>
-      expect(element).shadowDom.to.equalSnapshot());
+    it('looks like its latest snapshot', async () =>
+      await expect(element).shadowDom.to.equalSnapshot());
 
     describe('when an item in the first column is selected', () => {
       const parent = paths[0][0];
@@ -287,8 +287,8 @@ describe('finder-list', () => {
           .property('children')
           .to.have.lengthOf(entries[directory].length));
 
-      it('looks like its latest snapshot', () =>
-        expect(element).shadowDom.to.equalSnapshot());
+      it('looks like its latest snapshot', async () =>
+        await expect(element).shadowDom.to.equalSnapshot());
     });
 
     describe('when a selected item in the first column is deselected', () => {
@@ -306,8 +306,8 @@ describe('finder-list', () => {
             `<h2><!---->${entries[paths[0][0]][1]}<!----></h2>`
           ));
 
-      it('looks like its latest snapshot', () =>
-        expect(element).shadowDom.to.equalSnapshot());
+      it('looks like its latest snapshot', async () =>
+        await expect(element).shadowDom.to.equalSnapshot());
     });
   });
 });

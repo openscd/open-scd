@@ -47,7 +47,7 @@ describe('zeroline-pane', () => {
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
 
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   }).timeout(5000);
 
   it('readonly looks like the latest snapshot', async () => {
@@ -61,7 +61,7 @@ describe('zeroline-pane', () => {
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
 
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   }).timeout(5000);
 
   it('showieds looks like the latest snapshot', async () => {
@@ -74,7 +74,7 @@ describe('zeroline-pane', () => {
 
     await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
 
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   }).timeout(5000);
 
   describe('attachedIeds', () => {

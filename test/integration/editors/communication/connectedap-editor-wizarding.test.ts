@@ -35,8 +35,8 @@ describe('conductingap-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the 1st input element', () => {
       it('edits the attribute IP', async () => {
@@ -251,8 +251,8 @@ describe('conductingap-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the 14th input element', () => {
       it('edits the attribute SNTP-Port', async () => {
@@ -381,8 +381,8 @@ describe('conductingap-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the 20th input element', () => {
       it('edits the attribute IPv6', async () => {

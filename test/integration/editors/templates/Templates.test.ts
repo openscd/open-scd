@@ -18,8 +18,8 @@ describe('Templates Plugin', () => {
   });
 
   describe('without a doc loaded', () => {
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 
@@ -32,8 +32,8 @@ describe('Templates Plugin', () => {
       element.doc = doc;
       await element.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 

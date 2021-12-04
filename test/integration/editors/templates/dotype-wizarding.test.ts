@@ -67,8 +67,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('allows to add empty DOTypes to the project', async () => {
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
@@ -159,8 +159,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits DAType attributes id', async () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
@@ -227,8 +227,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits SDO attributes name', async () => {
       expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
@@ -311,8 +311,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new SDO element', async () => {
       expect(

@@ -39,7 +39,7 @@ describe('gsecontrol wizards', () => {
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
   });
 
@@ -67,7 +67,7 @@ describe('gsecontrol wizards', () => {
       )!;
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
 
     it('edits name attribute only for valid inputs', async () => {
@@ -97,7 +97,7 @@ describe('gsecontrol wizards', () => {
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
   });
 

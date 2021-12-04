@@ -28,8 +28,8 @@ describe('open-scd', () => {
     `);
   });
 
-  it('looks like its snapshot', () => {
-    expect(element).shadowDom.to.equalSnapshot();
+  it('looks like its snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('opens the menu on navigation icon click', async () => {

@@ -32,8 +32,8 @@ describe('substation-editor wizarding integration', () => {
     )).click();
     await parent.updateComplete;
   });
-  it('looks like the latest snapshot', () => {
-    expect(parent.wizardUI.dialog).to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
   describe('the first input element', () => {
     it('edits the attribute name', async () => {

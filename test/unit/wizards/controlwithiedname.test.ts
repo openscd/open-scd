@@ -36,7 +36,7 @@ describe('selectExtRefWizard', () => {
   it('looks like the latest snapshot', async () => {
     commMappings.items[3].click();
     await parent.updateComplete;
-    expect(parent.wizardUI.dialog).to.equalSnapshot();
+    await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
 
   it('shows all ExtRefs', async () => {

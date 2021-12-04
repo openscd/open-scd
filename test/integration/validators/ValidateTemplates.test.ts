@@ -45,7 +45,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
     }).timeout(1000);
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
-      expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.diagnosticUI).to.equalSnapshot();
     });
   });
   describe('with schema version smaller "2007B3"', () => {
@@ -80,7 +80,7 @@ describe('ValidateTemplates OpenSCD integration test ', () => {
     }).timeout(1000);
     it('pushes a specific issue to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
-      expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.diagnosticUI).to.equalSnapshot();
     });
   });
 });

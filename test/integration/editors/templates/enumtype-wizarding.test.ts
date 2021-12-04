@@ -63,8 +63,8 @@ describe('EnumType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('allows to add empty EnumType to the project', async () => {
@@ -125,8 +125,8 @@ describe('EnumType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits EnumType attributes id', async () => {
       expect(doc.querySelector('EnumType[id="Dummy_ctlModel"]')).to.exist;
@@ -199,8 +199,8 @@ describe('EnumType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits EnumVal attributes ord', async () => {
       expect(
@@ -298,8 +298,8 @@ describe('EnumType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new EnumVal element', async () => {
       expect(

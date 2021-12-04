@@ -223,7 +223,8 @@ describe('wizard-dialog', () => {
         ];
       });
 
-      it('looks like its snapshot', () => expect(element).to.equalSnapshot());
+      it('looks like its snapshot', async () =>
+        await expect(element).to.equalSnapshot());
 
       it('switches to code editor view on code toggle button click', async () => {
         element.dialog!.querySelector('mwc-icon-button-toggle')!.on = true;

@@ -43,7 +43,7 @@ describe('dataset wizards', () => {
     });
 
     it('looks like the latest snapshot', async () =>
-      expect(element.wizardUI.dialog).to.equalSnapshot()).timeout(5000);
+      await expect(element.wizardUI.dialog).to.equalSnapshot()).timeout(5000);
 
     it('allows to add a new FCDA on add FCDA button click', async () => {
       const addButton = <HTMLElement>(

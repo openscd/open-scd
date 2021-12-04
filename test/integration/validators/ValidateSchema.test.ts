@@ -43,7 +43,7 @@ describe('ValidateSchema plugin', () => {
 
     it('zeroissues indication looks like the latest snapshot', async () => {
       await parent.requestUpdate();
-      expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.diagnosticUI).to.equalSnapshot();
     });
 
     it('indicates successful schema validation in the diagnoses pane', async () => {
@@ -106,7 +106,7 @@ describe('ValidateSchema plugin', () => {
 
     it('pushes issues to the diagnostics pane that look like the latest snapshot', async () => {
       await parent.requestUpdate();
-      expect(parent.diagnosticUI).to.equalSnapshot();
+      await expect(parent.diagnosticUI).to.equalSnapshot();
     });
 
     it('generates error messages in the log', async () => {

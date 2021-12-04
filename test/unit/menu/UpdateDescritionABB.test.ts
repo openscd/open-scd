@@ -41,8 +41,8 @@ describe('Update method for desc attributes in ABB IEDs', () => {
       await parent.requestUpdate();
     });
 
-    it('creates an empty wizard indicating not found desc updates', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('creates an empty wizard indicating not found desc updates', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
   });
 
@@ -56,8 +56,8 @@ describe('Update method for desc attributes in ABB IEDs', () => {
       await parent.requestUpdate();
     });
 
-    it('creates a wizard with all valid desc update possibilities', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('creates a wizard with all valid desc update possibilities', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates wizard that on save triggers a complex action containing selected desc updates', async () => {
       parent.wizardUI?.dialog

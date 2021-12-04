@@ -31,8 +31,8 @@ describe('communication mapping wizard', () => {
     await element.updateComplete;
   });
 
-  it('looks like the latest snapshot', () => {
-    expect(parent.wizardUI.dialog).to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
 
   it('closes wizard on secondary action', async () => {
