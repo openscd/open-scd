@@ -50,7 +50,7 @@
     "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
-    "test": "tsc && wtr",
+    "test": "tsc && wtr --group default",
     "test:manual": "tsc && wtr --manual",
     "test:watch": "tsc && wtr --watch --group default",
     "test:unit": "tsc && wtr --watch --group unit",
