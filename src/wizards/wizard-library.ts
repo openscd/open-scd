@@ -8,6 +8,7 @@ import {
 import { editConnectivityNodeWizard } from './connectivitynode.js';
 import { createFCDAsWizard } from './fcda.js';
 import { lNodeWizard } from './lnode.js';
+import { editOptFieldsWizard } from './optfields.js';
 import { createSubstationWizard, substationEditWizard } from './substation.js';
 import { editTerminalWizard } from './terminal.js';
 import {
@@ -329,7 +330,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   OptFields: {
-    edit: emptyWizard,
+    edit: editOptFieldsWizard,
     create: emptyWizard,
   },
   P: {
