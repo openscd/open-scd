@@ -51,7 +51,7 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "test": "web-test-runner --coverage",
-    "test:snapshot" :"web-test-runner --update-snapshots --coverage",
+    "test:snapshot": "web-test-runner --update-snapshots --coverage",
     "test:manual": "web-test-runner --manual",
     "test:watch": "web-test-runner --watch",
     "test:unit": "web-test-runner --watch --group unit",
