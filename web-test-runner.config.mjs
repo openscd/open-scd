@@ -1,28 +1,30 @@
 // import { playwrightLauncher } from '@web/test-runner-playwright';
-
+import { esbuildPlugin } from '@web/dev-server-esbuild';
 
 export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
-  /** Test files to run */
-  files: 'out-tsc/test/**/*.test.js',
+  /** we run test directly on TypeScript files */
+  plugins: [esbuildPlugin({ ts: true })],
 
   /** Resolve bare module imports */
-  nodeResolve: {
-    exportConditions: [],
-  },
+  nodeResolve: true,
 
-  /** filter browser logs*/
+  /** filter browser logs
+   * Plugins have a fix URL and do not fit to the file structure in test environment.
+   * Creating open-scd in the tests leads to error in the browser log - we had to disable the browser log
+  */
   browserLogs: false,
 
-
-  /** unit tests in a specific group */
+  /** specify groups for unit and integrations tests 
+   * hint: no --group definition runs all groups
+  */
   groups: [
     {
       name: 'unit',
-      files: 'out-tsc/test/unit/**/*.test.js',
+      files: 'test/unit/**/*.test.ts',
     },
     {
       name: 'integration',
-      files: 'out-tsc/test/integration/**/*.test.js',
+      files: 'test/integration/**/*.test.ts',
     },
   ],
   
