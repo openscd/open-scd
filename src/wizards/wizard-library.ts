@@ -10,6 +10,7 @@ import { createFCDAsWizard } from './fcda.js';
 import { lNodeWizard } from './lnode.js';
 import { createSubstationWizard, substationEditWizard } from './substation.js';
 import { editTerminalWizard } from './terminal.js';
+import { editTrgOpsWizard } from './trgops.js';
 import {
   voltageLevelCreateWizard,
   voltageLevelEditWizard,
@@ -505,7 +506,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   TrgOps: {
-    edit: emptyWizard,
+    edit: editTrgOpsWizard,
     create: emptyWizard,
   },
   Val: {
