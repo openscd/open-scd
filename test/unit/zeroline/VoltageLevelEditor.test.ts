@@ -1,11 +1,12 @@
 import { fixture, html, expect } from '@open-wc/testing';
+
+import '../../../src/wizard-textfield.js';
 import {
   WizardInput,
   isCreate,
   isUpdate,
   isDelete,
 } from '../../../src/foundation.js';
-
 import {
   createAction,
   updateAction,

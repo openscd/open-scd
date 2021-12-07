@@ -1,6 +1,8 @@
 import { css, html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
+import '@material/mwc-list/mwc-list-item';
+
 import {
   cloneElement,
   Create,

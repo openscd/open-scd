@@ -1,6 +1,10 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+
+import '../wizard-textfield.js';
 import {
   createElement,
   EditorAction,

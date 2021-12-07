@@ -1,5 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
@@ -7,14 +13,11 @@ import {
   isUpdate,
   Update,
 } from '../../../src/foundation.js';
-import { WizardSelect } from '../../../src/wizard-select.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   getValAction,
   wizardContent,
 } from '../../../src/wizards/abstractda.js';
 import { regExp, regexString } from '../../foundation.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('abstractda wizards', () => {
   describe('getValAction', () => {
@@ -67,7 +70,7 @@ describe('abstractda wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;
@@ -114,8 +117,8 @@ describe('abstractda wizards', () => {
       )!;
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     });
 
     it('edits name attribute only for valid inputs', async () => {

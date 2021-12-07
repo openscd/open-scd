@@ -1,11 +1,12 @@
 import { expect } from '@open-wc/testing';
-import { identity } from '../../../src/foundation.js';
+
 import { isValidReference } from '../../../src/menu/UpdateSubstation.js';
+import { identity } from '../../../src/foundation.js';
 
 describe('isValidReference', () => {
   let ours: XMLDocument;
   beforeEach(async () => {
-    ours = await fetch('/base/test/testfiles/updatesubstation-ours.scd')
+    ours = await fetch('/test/testfiles/updatesubstation-ours.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

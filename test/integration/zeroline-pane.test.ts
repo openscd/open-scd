@@ -1,12 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../mock-wizard-editor.js';
 import { MockWizardEditor } from '../mock-wizard-editor.js';
 
+import { IconButton } from '@material/mwc-icon-button';
+
+import '../../src/zeroline-pane.js';
 import { FilteredList } from '../../src/filtered-list.js';
 import { ZerolinePane } from '../../src/zeroline-pane.js';
-
-import { IconButton } from '@material/mwc-icon-button';
-import { TextField } from '@material/mwc-textfield';
 import { WizardTextField } from '../../src/wizard-textfield.js';
 
 describe('zeroline-pane wizarding editing integration', () => {
@@ -15,7 +16,7 @@ describe('zeroline-pane wizarding editing integration', () => {
   let zeroline: ZerolinePane;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/comm-map.scd')
+    doc = await fetch('/test/testfiles/comm-map.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

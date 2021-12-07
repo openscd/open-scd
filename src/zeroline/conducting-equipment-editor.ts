@@ -7,10 +7,11 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { startMove, getIcon } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import '@material/mwc-fab';
 
 import { BayEditor } from './bay-editor.js';
+import { startMove, getIcon } from './foundation.js';
+import { newActionEvent, newWizardEvent } from '../foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */

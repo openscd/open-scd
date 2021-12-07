@@ -1,9 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { FinderList } from '../../../src/finder-list.js';
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 import { createFCDAsWizard } from '../../../src/wizards/fcda.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('FCDA editing wizarding integration', () => {
   let doc: XMLDocument;
@@ -13,7 +14,7 @@ describe('FCDA editing wizarding integration', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
-    doc = await fetch('/base/test/testfiles/wizards/fcda.scd')
+    doc = await fetch('/test/testfiles/wizards/fcda.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

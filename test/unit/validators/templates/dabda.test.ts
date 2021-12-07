@@ -6,7 +6,7 @@ describe('da or bda validator', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/validators/doandsdotestfile.scd')
+    doc = await fetch('/test/testfiles/validators/doandsdotestfile.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

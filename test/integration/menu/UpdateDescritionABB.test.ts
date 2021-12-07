@@ -1,8 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../mock-wizard-editor.js';
-import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
+import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 
 describe('Update method for desc attributes in ABB IEDs', () => {
   if (customElements.get('update-description-abb') === undefined)
@@ -13,7 +14,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
   let doc: XMLDocument;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/updatedesc/updatedescABB.scd')
+    doc = await fetch('/test/testfiles/updatedesc/updatedescABB.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

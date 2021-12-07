@@ -1,5 +1,8 @@
-import { html } from 'lit-html';
+import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
+
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
 
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';

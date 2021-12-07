@@ -1,7 +1,12 @@
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { html } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { get, translate } from 'lit-translate';
+
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-list/mwc-list-item';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import {
   EditorAction,

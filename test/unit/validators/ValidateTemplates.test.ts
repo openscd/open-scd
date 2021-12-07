@@ -1,7 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
 import { registerTranslateConfig, use } from 'lit-translate';
+
+import { expect, fixture, html } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
+import '../../../src/open-scd.js';
 import { OpenSCD } from '../../../src/open-scd.js';
 
 import ValidateTemplates, {
@@ -9,6 +11,9 @@ import ValidateTemplates, {
 } from '../../../src/validators/ValidateTemplates.js';
 
 describe('ValidateTemplates', () => {
+  if (customElements.get('validate-templates') === undefined)
+    customElements.define('validate-templates', ValidateTemplates);
+
   let logEvent: SinonSpy;
   let issueEvent: SinonSpy;
 
@@ -21,7 +26,7 @@ describe('ValidateTemplates', () => {
   });
   describe('dispatch', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+      const doc = await fetch('/test/testfiles/validators/zeroissues.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -96,7 +101,7 @@ describe('ValidateTemplates', () => {
   describe('validate', () => {
     let element: ValidateTemplates;
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+      const doc = await fetch('/test/testfiles/validators/zeroissues.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

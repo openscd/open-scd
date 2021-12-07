@@ -1,12 +1,11 @@
 import { expect } from '@open-wc/testing';
+
 import { dATypeValidator } from '../../../../src/validators/templates/datype.js';
 
 describe('datype validator', () => {
   let doc: XMLDocument;
   beforeEach(async () => {
-    doc = await fetch(
-      '/base/test/testfiles/validators/datatypetemplateerrors.scd'
-    )
+    doc = await fetch('/test/testfiles/validators/datatypetemplateerrors.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

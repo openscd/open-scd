@@ -10,10 +10,14 @@ import {
 import { until } from 'lit-html/directives/until';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
 import { List } from '@material/mwc-list';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
+import './filtered-list.js';
 import { depth } from './foundation.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 

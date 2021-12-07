@@ -1,16 +1,18 @@
 import { html, render, TemplateResult } from 'lit-html';
 import { translate } from 'lit-translate';
 
-import { createElement, EditorAction } from '../foundation.js';
-import { maxLength, patterns } from './foundation/limits.js';
-import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
-
-import { WizardSelect } from '../wizard-select.js';
-import { WizardTextField } from '../wizard-textfield.js';
-
+import '@material/mwc-list/mwc-list-item';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Select } from '@material/mwc-select';
+
+import '../wizard-select.js';
+import '../wizard-textfield.js';
+import { createElement, EditorAction } from '../foundation.js';
+import { WizardSelect } from '../wizard-select.js';
+import { WizardTextField } from '../wizard-textfield.js';
+import { maxLength, patterns } from './foundation/limits.js';
+import { predefinedBasicTypeEnum, valKindEnum } from './foundation/enums.js';
 
 function selectType(e: SelectedEvent, data: Element, Val: string | null): void {
   const typeSelected = (<Select>e.target).selected?.value;

@@ -1,6 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { LoggingElement } from '../../src/Logging.js';
+import './mock-logger.js';
+import { MockAction } from './mock-actions.js';
+import { MockLogger } from './mock-logger.js';
+
 import {
   CommitEntry,
   newIssueEvent,
@@ -8,13 +11,10 @@ import {
   newOpenDocEvent,
 } from '../../src/foundation.js';
 
-import { MockAction } from './mock-actions.js';
-import './mock-logger.js';
-
 describe('LoggingElement', () => {
-  let element: LoggingElement;
+  let element: MockLogger;
   beforeEach(async () => {
-    element = <LoggingElement>await fixture(html`<mock-logger></mock-logger>`);
+    element = <MockLogger>await fixture(html`<mock-logger></mock-logger>`);
   });
 
   it('starts out with an empty history', () =>
@@ -220,7 +220,7 @@ describe('LoggingElement', () => {
 
   describe('when loading file with history items', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/history.scd')
+      const doc = await fetch('/test/testfiles/history.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

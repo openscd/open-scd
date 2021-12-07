@@ -12,7 +12,7 @@ import {
 describe('Single Line Diagram foundation', () => {
   let doc: Document;
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/valid2007B4withSubstationXY.scd')
+    doc = await fetch('/test/testfiles/valid2007B4withSubstationXY.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

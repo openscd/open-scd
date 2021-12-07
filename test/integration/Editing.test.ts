@@ -1,9 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { newActionEvent } from '../../src/foundation.js';
+import '../mock-editor-logger.js';
 import { MockEditorLogger } from '../mock-editor-logger.js';
 
-import '../mock-editor-logger.js';
+import { newActionEvent } from '../../src/foundation.js';
 
 describe('Editing-Logging integration', () => {
   let elm: MockEditorLogger;
@@ -11,7 +11,7 @@ describe('Editing-Logging integration', () => {
   let element: Element;
 
   beforeEach(async () => {
-    const doc = await fetch('/base/test/testfiles/Editing.scd')
+    const doc = await fetch('/test/testfiles/Editing.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     elm = <MockEditorLogger>(

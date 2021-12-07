@@ -1,6 +1,7 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '../finder-list.js';
 import {
   createElement,
   identity,
@@ -11,7 +12,6 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { getChildren } from './foundation/functions.js';
-
 import { Directory, FinderList } from '../finder-list.js';
 
 function newFCDA(parent: Element, path: string[]): Element | undefined {

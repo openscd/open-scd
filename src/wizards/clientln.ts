@@ -1,6 +1,12 @@
 import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-icon';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import '../filtered-list.js';
 import {
   createElement,
   identity,
@@ -11,12 +17,8 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-
-import { openCommunicationMappingWizard } from './commmap-wizards.js';
 import { clientIcon } from '../icons.js';
+import { openCommunicationMappingWizard } from './commmap-wizards.js';
 
 function getPath(identity: string | number): string {
   if (typeof identity !== 'string') return '';

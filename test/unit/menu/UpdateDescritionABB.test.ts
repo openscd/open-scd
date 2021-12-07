@@ -2,9 +2,10 @@ import { expect, fixture, html } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
 import '../../mock-wizard.js';
-import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 import { MockWizard } from '../../mock-wizard.js';
+
 import { ComplexAction, isSimple, isUpdate } from '../../../src/foundation.js';
+import UpdateDescriptionAbb from '../../../src/menu/UpdateDescriptionABB.js';
 
 describe('Update method for desc attributes in ABB IEDs', () => {
   if (customElements.get('update-description-abb') === undefined)
@@ -32,7 +33,7 @@ describe('Update method for desc attributes in ABB IEDs', () => {
 
   describe('working on SCL files without manufacturer ABB', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/validators/zeroissues.scd')
+      const doc = await fetch('/test/testfiles/validators/zeroissues.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
@@ -40,16 +41,14 @@ describe('Update method for desc attributes in ABB IEDs', () => {
       await parent.requestUpdate();
     });
 
-    it('creates an empty wizard indicating not found desc updates', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('creates an empty wizard indicating not found desc updates', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
   });
 
   describe('working on SCL files containing manufacturer ABB', () => {
     beforeEach(async () => {
-      const doc = await fetch(
-        '/base/test/testfiles/updatedesc/updatedescABB.scd'
-      )
+      const doc = await fetch('/test/testfiles/updatedesc/updatedescABB.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
@@ -57,8 +56,8 @@ describe('Update method for desc attributes in ABB IEDs', () => {
       await parent.requestUpdate();
     });
 
-    it('creates a wizard with all valid desc update possibilities', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('creates a wizard with all valid desc update possibilities', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates wizard that on save triggers a complex action containing selected desc updates', async () => {
       parent.wizardUI?.dialog

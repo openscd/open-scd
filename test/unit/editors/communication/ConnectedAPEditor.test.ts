@@ -1,5 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
+import '../../../../src/wizard-textfield.js';
+import { editConnectedApAction } from '../../../../src/editors/communication/connectedap-editor.js';
 import {
   WizardInput,
   isCreate,
@@ -7,8 +9,6 @@ import {
   isSimple,
   ComplexAction,
 } from '../../../../src/foundation.js';
-
-import { editConnectedApAction } from '../../../../src/editors/communication/connectedap-editor.js';
 
 describe('ConnectedAPEditor', () => {
   describe('has a editorAction that', () => {

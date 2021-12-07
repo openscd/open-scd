@@ -1,7 +1,11 @@
 import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
+import '@material/mwc-icon';
+import '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
+import '../filtered-list.js';
 import {
   findControlBlocks,
   identity,

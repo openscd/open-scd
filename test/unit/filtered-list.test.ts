@@ -1,4 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '@material/mwc-list/mwc-check-list-item';
+
+import '../../src/filtered-list.js';
 import { FilteredList } from '../../src/filtered-list.js';
 
 describe('filtered-list', () => {
@@ -23,8 +27,8 @@ describe('filtered-list', () => {
     );
   });
 
-  it('looks like its latest snapshot', () => {
-    expect(element).shadowDom.to.equalSnapshot();
+  it('looks like its latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   describe('has a check all checkbox that', () => {

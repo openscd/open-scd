@@ -8,7 +8,7 @@ describe('substation-editor', () => {
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
-    validSCL = await fetch('/base/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     element = await fixture(html`<substation-editor
@@ -16,8 +16,8 @@ describe('substation-editor', () => {
     ></substation-editor>`);
   });
 
-  it('looks like the latest snapshot', () => {
-    expect(element).shadowDom.to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   describe('with readonly property', () => {
@@ -25,8 +25,8 @@ describe('substation-editor', () => {
       element.readonly = true;
       await element.requestUpdate();
     });
-    it('looks like the latest snapshot', () => {
-      expect(element).shadowDom.to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
     });
   });
 });

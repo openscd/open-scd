@@ -9,6 +9,14 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-icon-button';
+import { Menu } from '@material/mwc-menu';
+import { IconButton } from '@material/mwc-icon-button';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+
+import '../action-pane.js';
+import './bay-editor.js';
+import './ied-editor.js';
 import {
   selectors,
   startMove,
@@ -19,12 +27,6 @@ import { newActionEvent, newWizardEvent, SCLTag, tags } from '../foundation.js';
 
 import { SubstationEditor } from './substation-editor.js';
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
-
-import './bay-editor.js';
-import '../action-pane.js';
-import { Menu } from '@material/mwc-menu';
-import { IconButton } from '@material/mwc-icon-button';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];

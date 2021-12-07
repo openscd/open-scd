@@ -1,10 +1,13 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import '../../../src/zeroline-pane.js';
 import {
   getSinkReferences,
   getSourceReferences,
 } from '../../../src/wizards/commmap-wizards.js';
-
-import { MockWizard } from '../../mock-wizard.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
 
 describe('communication mapping wizard', () => {
@@ -13,7 +16,7 @@ describe('communication mapping wizard', () => {
   let element: ZerolinePane;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/comm-map.scd')
+    doc = await fetch('/test/testfiles/comm-map.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -28,8 +31,8 @@ describe('communication mapping wizard', () => {
     await element.updateComplete;
   });
 
-  it('looks like the latest snapshot', () => {
-    expect(parent.wizardUI.dialog).to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
 
   it('closes wizard on secondary action', async () => {

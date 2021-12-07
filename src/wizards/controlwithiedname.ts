@@ -1,5 +1,12 @@
 import { html } from 'lit-element';
 import { get } from 'lit-translate';
+
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
+import { List } from '@material/mwc-list';
+
+import '../filtered-list.js';
 import {
   createElement,
   EditorAction,
@@ -10,8 +17,6 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
-import { List } from '@material/mwc-list';
 
 import { inputIcon } from '../icons.js';
 import {

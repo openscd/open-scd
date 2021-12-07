@@ -1,6 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
+import { WizardSelect } from '../../../src/wizard-select.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
@@ -9,12 +13,7 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
-
 import { wizardContent } from '../../../src/wizards/abstractda.js';
-
-import { WizardSelect } from '../../../src/wizard-select.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-
 import { createBDaAction, updateBDaAction } from '../../../src/wizards/bda.js';
 
 describe('bda wizards', () => {
@@ -44,7 +43,7 @@ describe('bda wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;
@@ -190,7 +189,7 @@ describe('bda wizards', () => {
 
     beforeEach(async () => {
       element = await fixture(html`<mock-wizard></mock-wizard>`);
-      doc = await fetch('/base/test/testfiles/wizards/abstractda.scd')
+      doc = await fetch('/test/testfiles/wizards/abstractda.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       data = doc.querySelector('DataTypeTemplates')!;

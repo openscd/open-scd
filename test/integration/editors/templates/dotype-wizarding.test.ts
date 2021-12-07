@@ -1,12 +1,14 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import TemplatesPlugin from '../../../../src/editors/Templates.js';
+import '../../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
-import { Select } from '@material/mwc-select';
-import { WizardTextField } from '../../../../src/wizard-textfield.js';
-import { FilteredList } from '../../../../src/filtered-list.js';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
+
+import { FilteredList } from '../../../../src/filtered-list.js';
+import TemplatesPlugin from '../../../../src/editors/Templates.js';
+import { WizardTextField } from '../../../../src/wizard-textfield.js';
 
 describe('DOType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -25,7 +27,7 @@ describe('DOType wizards', () => {
 
     templates = <TemplatesPlugin>parent.querySelector('templates-editor')!;
 
-    doc = await fetch('/base/test/testfiles/templates/dotypes.scd')
+    doc = await fetch('/test/testfiles/templates/dotypes.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     templates.doc = doc;
@@ -65,8 +67,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('allows to add empty DOTypes to the project', async () => {
       expect(doc.querySelector('DOType[id="myGeneralDOType"]')).to.not.exist;
@@ -157,8 +159,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits DAType attributes id', async () => {
       expect(doc.querySelector('DOType[id="Dummy.LLN0.Mod"]')).to.exist;
@@ -225,8 +227,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('edits SDO attributes name', async () => {
       expect(doc.querySelector('DOType[id="Dummy.WYE"] > SDO[name="phsA"]')).to
@@ -309,8 +311,8 @@ describe('DOType wizards', () => {
       );
     });
 
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('creates a new SDO element', async () => {
       expect(

@@ -9,7 +9,15 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { startMove, styles, cloneSubstationElement } from './foundation.js';
+import '@material/mwc-icon-button';
+import { Menu } from '@material/mwc-menu';
+import { IconButton } from '@material/mwc-icon-button';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+
+import '../action-pane.js';
+import './ied-editor.js';
+import './conducting-equipment-editor.js';
+import { VoltageLevelEditor } from './voltage-level-editor.js';
 import {
   getChildElementsByTagName,
   newActionEvent,
@@ -17,15 +25,7 @@ import {
   SCLTag,
   tags,
 } from '../foundation.js';
-
 import { emptyWizard, wizards } from '../wizards/wizard-library.js';
-
-import { VoltageLevelEditor } from './voltage-level-editor.js';
-import './conducting-equipment-editor.js';
-import '../action-pane.js';
-import { Menu } from '@material/mwc-menu';
-import { IconButton } from '@material/mwc-icon-button';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];
@@ -34,6 +34,7 @@ function childTags(element: Element | null | undefined): SCLTag[] {
     child => wizards[child].create !== emptyWizard
   );
 }
+import { startMove, styles, cloneSubstationElement } from './foundation.js';
 
 /** [[`SubstationEditor`]] subeditor for a `Bay` element. */
 @customElement('bay-editor')

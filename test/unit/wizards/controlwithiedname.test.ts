@@ -1,7 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { List } from '@material/mwc-list';
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
+import '../../../src/zeroline-pane.js';
+import { List } from '@material/mwc-list';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
 
 describe('selectExtRefWizard', () => {
@@ -11,7 +14,7 @@ describe('selectExtRefWizard', () => {
   let commMappings: List;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/comm-map.scd')
+    doc = await fetch('/test/testfiles/comm-map.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -33,7 +36,7 @@ describe('selectExtRefWizard', () => {
   it('looks like the latest snapshot', async () => {
     commMappings.items[3].click();
     await parent.updateComplete;
-    expect(parent.wizardUI.dialog).to.equalSnapshot();
+    await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
 
   it('shows all ExtRefs', async () => {

@@ -1,6 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon, { SinonSpy } from 'sinon';
 
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { editDataSetWizard } from '../../../src/wizards/dataset.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Delete,
   isDelete,
@@ -10,11 +15,6 @@ import {
   WizardInput,
 } from '../../../src/foundation.js';
 
-import { editDataSetWizard } from '../../../src/wizards/dataset.js';
-
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { MockWizard } from '../../mock-wizard.js';
-
 describe('dataset wizards', () => {
   let doc: XMLDocument;
   let element: MockWizard;
@@ -23,7 +23,7 @@ describe('dataset wizards', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -43,7 +43,7 @@ describe('dataset wizards', () => {
     });
 
     it('looks like the latest snapshot', async () =>
-      expect(element.wizardUI.dialog).to.equalSnapshot()).timeout(5000);
+      await expect(element.wizardUI.dialog).to.equalSnapshot()).timeout(5000);
 
     it('allows to add a new FCDA on add FCDA button click', async () => {
       const addButton = <HTMLElement>(
