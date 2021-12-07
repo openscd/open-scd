@@ -75,12 +75,12 @@
     "@open-wc/semantic-dom-diff": "^0.19.5",
     "@open-wc/testing": "^2.5.33",
     "@snowpack/plugin-typescript": "^1.2.1",
-    "@web/dev-server-esbuild": "^0.2.16",
     "@types/marked": "^2.0.4",
     "@types/node": "^16.6.1",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "@web/test-runner": "^0.13.22",
+    "@web/dev-server-esbuild": "^0.2.16",
     "concurrently": "^6.2.1",
     "deepmerge": "^4.2.2",
     "es-dev-server": "^2.1.0",
@@ -127,24 +127,6 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
-    ]
-  },
-  "snowpack": {
-    "exclude": [
-      "**/node_modules/**/*",
-      "**/*.@(spec|test).@(js|mjs)",
-      "test/**/*",
-      "out-tsc/**/*",
-      ".editorconfig",
-      ".eslintrc.cjs",
-      ".gitignore",
-      ".travis.yml",
-      "karma.conf.cjs",
-      "package*",
-      "tsconfig.json"
-    ],
-    "plugins": [
-      "@snowpack/plugin-typescript"
     ]
   },
   "standard-version": {
