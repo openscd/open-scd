@@ -240,7 +240,7 @@ export function createTextElement(
 export function createTerminalElement(
   terminal: Element,
   sideToDraw: Direction,
-  clickAction: () => void
+  clickAction?: () => void
 ): SVGElement {
   const groupElement = createGroupElement(terminal);
 
@@ -265,7 +265,7 @@ export function createTerminalElement(
 
   groupElement.appendChild(icon);
 
-  groupElement.addEventListener('click', clickAction);
+  if (clickAction) groupElement.addEventListener('click', clickAction);
 
   return groupElement;
 }
@@ -387,7 +387,7 @@ export function createPowerTransformerElement(
  */
 export function createConnectivityNodeElement(
   cNodeElement: Element,
-  clickAction: () => void
+  clickAction?: () => void
 ): SVGElement {
   const groupElement = createGroupElement(cNodeElement);
 
@@ -405,7 +405,7 @@ export function createConnectivityNodeElement(
     groupElement.appendChild(icon);
   });
 
-  groupElement.addEventListener('click', clickAction);
+  if (clickAction) groupElement.addEventListener('click', clickAction);
 
   return groupElement;
 }
