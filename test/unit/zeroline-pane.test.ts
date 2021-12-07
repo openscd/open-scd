@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../src/zeroline-pane.js';
+import { ZerolinePane } from '../../src/zeroline-pane.js';
 import {
   attachedIeds,
   getAttachedIeds,
@@ -50,29 +51,17 @@ describe('zeroline-pane', () => {
     await expect(element).shadowDom.to.equalSnapshot();
   }).timeout(5000);
 
-  it('readonly looks like the latest snapshot', async () => {
-    const element = await fixture(
-      html`<zeroline-pane
-        .doc=${doc}
-        .readonly=${true}
-        .getAttachedIeds="${undefined}"
-      ></zeroline-pane>`
-    );
-
-    await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
-
-    await expect(element).shadowDom.to.equalSnapshot();
-  }).timeout(5000);
-
   it('showieds looks like the latest snapshot', async () => {
-    const element = await fixture(
+    const element: ZerolinePane = await fixture(
       html`<zeroline-pane
         .doc=${doc}
         .getAttachedIeds=${getAttachedIeds(doc)}
       ></zeroline-pane>`
     );
 
-    await new Promise(resolve => setTimeout(resolve, 2000)); // await animation
+    if (!element.showieds.on) await element.showieds.click();
+
+    await new Promise(resolve => setTimeout(resolve, 2000)); // await IEDs are rendered
 
     await expect(element).shadowDom.to.equalSnapshot();
   }).timeout(5000);
