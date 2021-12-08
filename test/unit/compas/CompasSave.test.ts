@@ -2,7 +2,7 @@ import {expect, fixtureSync, html, waitUntil} from '@open-wc/testing';
 import sinon from "sinon";
 
 import {CompasExistsInElement} from "../../../src/compas/CompasExistsIn.js";
-import {CompasSaveElement} from "../../../src/compas/CompasSave.js";
+import CompasSaveElement from "../../../src/compas/CompasSave.js";
 
 import "../../../src/compas/CompasSave.js";
 

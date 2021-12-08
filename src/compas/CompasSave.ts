@@ -17,7 +17,7 @@ import './CompasChangeSetRadiogroup.js';
 import './CompasSclTypeRadiogroup.js';
 
 @customElement('compas-save')
-export class CompasSaveElement extends CompasExistsIn(LitElement) {
+export default class CompasSaveElement extends CompasExistsIn(LitElement) {
   @property({type: Document})
   doc!: XMLDocument;
 

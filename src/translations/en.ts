@@ -425,6 +425,12 @@ export const en = {
     merge: {
       title: 'Merge project',
     },
+    autoAlignment: {
+      title: 'Auto align SLD for selected substations',
+      button: 'Execute',
+      missing: 'No substations',
+      success: 'Updated X/Y Coordinates for substation(s)',
+    },
     uploadVersion: {
       title: 'Upload new version of project to CoMPAS',
       selectButton: 'Select file...',
@@ -461,6 +467,7 @@ export const en = {
       title: 'CoMPAS Settings',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
+      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
     },
     session: {
       headingExpiring: 'Your session is about to expire!',

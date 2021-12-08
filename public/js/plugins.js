@@ -113,6 +113,15 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
+    name: 'Auto Align SLD',
+    src: '/src/menu/CompasAutoAlignment.js',
+    icon: 'dashboard',
+    default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
     name: 'CoMPAS Settings',
     src: '/src/menu/CompasSettings.js',
     icon: 'settings',
