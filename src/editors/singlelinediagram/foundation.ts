@@ -151,6 +151,9 @@ export function calculateConnectivityNodeCoordinates(
       totalY += y!;
     });
 
+  if (nrOfConnections === 0) return { x: 0, y: 0 };
+  if (nrOfConnections === 1) return { x: totalX + 1, y: totalY + 1 };
+
   return {
     x: Math.round(totalX / nrOfConnections),
     y: Math.round(totalY / nrOfConnections),
