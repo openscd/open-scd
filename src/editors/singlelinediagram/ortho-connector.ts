@@ -239,6 +239,47 @@ function emptyAllocation(
   return emptyGrid;
 }
 
+//FIXME: This is a dirty trick to improve performance of the algorithm
+function trimStartEnd(start: Point, end: Point, gridSize: number): Point[] {
+  //FIXME: Dirty hack to speed up the algorithm
+  const minCoordX = Math.min(
+    Math.floor(start.x / gridSize),
+    Math.floor(end.x / gridSize)
+  );
+  const minCoordY = Math.min(
+    Math.floor(start.y / gridSize),
+    Math.floor(end.y / gridSize)
+  );
+
+  const dCoordX = minCoordX > 1 ? minCoordX - 1 : 0;
+  const dCoordY = minCoordY > 1 ? minCoordY - 1 : 0;
+
+  const deltaX = dCoordX * gridSize;
+  const deltaY = dCoordY * gridSize;
+
+  return [
+    { x: start.x - deltaX, y: start.y - deltaY },
+    { x: end.x - deltaX, y: end.y - deltaY },
+  ];
+}
+
+function fullPath(
+  path: Point[],
+  start: Point,
+  end: Point,
+  trimmedStart: Point,
+  trimmedEnd: Point
+): Point[] {
+  if (start === trimmedStart && end === trimmedEnd) return path;
+
+  const deltaX = start.x - trimmedStart.x;
+  const deltaY = start.y - trimmedStart.y;
+
+  return path.map(point => {
+    return { x: point.x + deltaX, y: point.y + deltaY };
+  });
+}
+
 /** Finds the shortest orthogonal path between start and end based on grid and dijkstra path finding algorithm
  * @param start - the position in px of the start point
  * @param end - the position in px of the end point
@@ -254,9 +295,17 @@ export function getOrthogonalPath(
 ): Point[] {
   if (start.x === end.x && start.y === end.y) return [];
 
-  if (!gridAllocation) gridAllocation = emptyAllocation(start, end, gridSize);
+  let trimmedStart = start;
+  let trimmedEnd = end;
+
+  if (!gridAllocation) {
+    [trimmedStart, trimmedEnd] = trimStartEnd(start, end, gridSize);
+    gridAllocation = emptyAllocation(trimmedStart, trimmedEnd, gridSize);
+  }
 
   const graph: GraphNode[] = createGraph(gridAllocation!, gridSize);
 
-  return getPath(graph, start, end);
+  const shortesPath = getPath(graph, trimmedStart, trimmedEnd);
+
+  return fullPath(shortesPath, start, end, trimmedStart, trimmedEnd);
 }
