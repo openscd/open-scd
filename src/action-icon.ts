@@ -167,8 +167,9 @@ export class ActionIcon extends LitElement {
     }
 
     :host(:focus-within) footer {
+      position: absolute;
       max-width: 100vw;
-      transform: translate(0px, -140px);
+      transform: translate(0px, -80px);
       background-color: var(--mdc-theme-secondary);
       font-weight: 500;
       color: var(--mdc-theme-on-secondary);
