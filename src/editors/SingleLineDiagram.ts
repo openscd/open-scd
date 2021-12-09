@@ -143,7 +143,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
           ).length !== 0
       )
       .forEach(equipment => {
-        const eqElement = createConductingEquipmentElement(equipment);
+        const eqElement = createConductingEquipmentElement(equipment, () =>
+          this.openEditWizard(equipment!)
+        );
 
         this.addElementToGroup(eqElement, identity(equipment.parentElement));
       });
@@ -327,8 +329,13 @@ export default class SingleLineDiagramPlugin extends LitElement {
       overflow: hidden;
     }
 
+    g {
+      pointer-events: bounding-box;
+    }
+
     g[type='ConnectivityNode']:hover,
-    g[type='Terminal']:hover {
+    g[type='Terminal']:hover,
+    g[type='ConductingEquipment']:hover {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
     }
