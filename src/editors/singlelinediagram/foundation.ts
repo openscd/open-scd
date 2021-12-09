@@ -2,9 +2,12 @@
  * A point is a position containing a x and a y within a SCL file.
  */
 export interface Point {
-  x: number | undefined;
-  y: number | undefined;
+  x: number;
+  y: number;
 }
+
+/** Scope factor: the ConnectivityNode allocation algorithm works better with a scale factor which is bigger than 1. */
+const COORDINATES_SCALE_FACTOR = 2;
 
 /**
  * Extract the 'name' attribute from the given XML element.
@@ -52,8 +55,8 @@ export function getRelativeCoordinates(element: Element): Point {
   );
 
   return {
-    x: x ? parseInt(x) : 0,
-    y: y ? parseInt(y) : 0,
+    x: x ? parseInt(x) * COORDINATES_SCALE_FACTOR : 0,
+    y: y ? parseInt(y) * COORDINATES_SCALE_FACTOR : 0,
   };
 }
 
@@ -147,6 +150,9 @@ export function calculateConnectivityNodeCoordinates(
       totalX += x!;
       totalY += y!;
     });
+
+  if (nrOfConnections === 0) return { x: 0, y: 0 };
+  if (nrOfConnections === 1) return { x: totalX + 1, y: totalY + 1 };
 
   return {
     x: Math.round(totalX / nrOfConnections),
