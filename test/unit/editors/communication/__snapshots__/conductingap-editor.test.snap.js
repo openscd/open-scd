@@ -1,30 +1,25 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["connectedap-editor looks like the latest snapshot"] = 
-`<div
-  id="container"
+snapshots["A component to visualize SCL element ConnectedAP looks like the latest snapshot"] = 
+`<action-icon
+  icon="settings_input_hdmi"
+  label="P1"
   tabindex="0"
 >
-  <mwc-icon class="fancy">
-    settings_input_hdmi
-  </mwc-icon>
   <mwc-fab
-    class="left menu-item"
     icon="edit"
     mini=""
+    slot="action"
   >
   </mwc-fab>
   <mwc-fab
-    class="menu-item right"
     icon="delete"
     mini=""
+    slot="action"
   >
   </mwc-fab>
-</div>
-<h4>
-  P1
-</h4>
+</action-icon>
 `;
-/* end snapshot connectedap-editor looks like the latest snapshot */
+/* end snapshot A component to visualize SCL element ConnectedAP looks like the latest snapshot */
 

@@ -4,7 +4,6 @@ import {
   customElement,
   html,
   property,
-  css,
 } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
@@ -19,6 +18,7 @@ import { Checkbox } from '@material/mwc-checkbox';
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
+import '../../action-icon.js';
 import '../../wizard-textfield.js';
 import '../../filtered-list.js';
 import {
@@ -276,15 +276,16 @@ function editConnectedApWizard(element: Element): Wizard {
 /** [[`Communication`]] subeditor for a `ConnectedAP` element. */
 @customElement('connectedap-editor')
 export class ConnectedAPEditor extends LitElement {
-  @property()
+  /** SCL element ConnectedAP */
+  @property({ attribute: false })
   element!: Element;
-
-  @property()
-  get apName(): string | null {
-    return this.element.getAttribute('apName') ?? null;
+  /** ConductingEquipment apName attribute */
+  @property({ type: String })
+  get apName(): string {
+    return this.element.getAttribute('apName') ?? 'UNDEFINED';
   }
 
-  openEditWizard(): void {
+  private openEditWizard(): void {
     this.dispatchEvent(newWizardEvent(editConnectedApWizard(this.element)));
   }
 
@@ -303,116 +304,20 @@ export class ConnectedAPEditor extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <div id="container" tabindex="0">
-        <mwc-icon class="fancy">settings_input_hdmi</mwc-icon>
-        <mwc-fab
+      <action-icon label="${this.apName}" icon="settings_input_hdmi"
+        ><mwc-fab
+          slot="action"
           mini
-          class="menu-item left"
           icon="edit"
           @click="${() => this.openEditWizard()}"
         ></mwc-fab>
         <mwc-fab
+          slot="action"
           mini
-          class="menu-item right"
           icon="delete"
           @click="${() => this.remove()}}"
-        ></mwc-fab>
-      </div>
-      <h4>${this.apName}</h4>
+        ></mwc-fab
+      ></action-icon>
     `;
   }
-
-  static styles = css`
-    #container {
-      color: var(--mdc-theme-on-surface);
-      width: 64px;
-      height: 64px;
-      margin: auto;
-      position: relative;
-      transition: all 200ms linear;
-    }
-
-    #container:focus {
-      outline: none;
-    }
-
-    .fancy {
-      color: var(--mdc-theme-on-surface);
-      --mdc-icon-size: 64px;
-      transition: transform 150ms linear, box-shadow 200ms linear;
-      outline-color: var(--mdc-theme-primary);
-      outline-style: solid;
-      outline-width: 0px;
-    }
-
-    #container:focus > .fancy {
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    }
-
-    #container:hover > .fancy {
-      outline: 2px dashed var(--mdc-theme-primary);
-      transition: transform 200ms linear, box-shadow 250ms linear;
-    }
-
-    #container:focus-within > .fancy {
-      outline: 2px solid var(--mdc-theme-primary);
-      background: var(--mdc-theme-on-primary);
-      transform: scale(0.8);
-      transition: transform 200ms linear, box-shadow 250ms linear;
-    }
-
-    .menu-item {
-      color: var(--mdc-theme-on-surface);
-      transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 200ms linear;
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0;
-    }
-
-    #container:focus-within > .menu-item {
-      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 250ms linear;
-      pointer-events: auto;
-      opacity: 1;
-    }
-
-    #container:focus-within > .menu-item.up {
-      transform: translate(0px, -52px);
-    }
-
-    #container:focus-within > .menu-item.down {
-      transform: translate(0px, 52px);
-    }
-
-    #container:focus-within > .menu-item.right {
-      transform: translate(52px, 0px);
-    }
-
-    #container:focus-within > .menu-item.left {
-      transform: translate(-52px, 0px);
-    }
-
-    h4 {
-      color: var(--mdc-theme-on-surface);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 0px;
-      opacity: 1;
-      transition: opacity 200ms linear;
-      text-align: center;
-    }
-
-    :host(.moving) #container,
-    :host(.moving) h4 {
-      opacity: 0.3;
-    }
-  `;
 }
