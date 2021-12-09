@@ -7,11 +7,11 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import '../action-icon.js';
+import '@material/mwc-fab';
 
+import '../action-icon.js';
 import { startMove, getIcon } from './foundation.js';
 import { newActionEvent, newWizardEvent } from '../foundation.js';
-
 import { BayEditor } from './bay-editor.js';
 import { wizards } from '../wizards/wizard-library.js';
 
