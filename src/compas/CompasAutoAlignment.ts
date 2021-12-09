@@ -65,7 +65,7 @@ export default class CompasAutoAlignmentElement extends LitElement {
                   html`
                     <mwc-check-list-item left value="${substation.getAttribute('name')}">
                       ${substation.getAttribute('name')}
-                      ${substation.hasAttribute('desc') ? html `(${substation.getAttribute('desc')})`: html ``}
+                      ${substation.getAttribute('desc') ? html `(${substation.getAttribute('desc')})`: html ``}
                     </mwc-check-list-item>
                   `
               )}
