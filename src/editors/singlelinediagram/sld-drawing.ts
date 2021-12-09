@@ -315,7 +315,7 @@ export function createBusBarElement(
  */
 export function createConductingEquipmentElement(
   equipmentElement: Element,
-  clickAction: () => void
+  clickAction?: () => void
 ): SVGElement {
   const groupElement = createGroupElement(equipmentElement);
 
@@ -341,8 +341,8 @@ export function createConductingEquipmentElement(
   );
   groupElement.appendChild(text);
 
-  groupElement.addEventListener('click', clickAction);
-  
+  if (clickAction) groupElement.addEventListener('click', clickAction);
+
   return groupElement;
 }
 
