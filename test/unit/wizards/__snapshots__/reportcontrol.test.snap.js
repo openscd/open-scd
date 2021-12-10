@@ -1,0 +1,132 @@
+/* @web/test-runner snapshot v1 */
+export const snapshots = {};
+
+snapshots["Wizards for SCL ReportControl element define an edit wizard that looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.edit]"
+  open=""
+>
+  <div id="wizard-content">
+    <wizard-textfield
+      dialoginitialfocus=""
+      helper="[scl.name]"
+      label="name"
+      maxlength="32"
+      pattern="[A-Za-z][0-9,A-Z,a-z_]*"
+      required=""
+      validationmessage="[textfield.required]"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.desc]"
+      label="desc"
+      nullable=""
+    >
+    </wizard-textfield>
+    <wizard-select
+      disabled=""
+      helper="[scl.buffered]"
+      label="buffered"
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="true"
+      >
+        true
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="false"
+      >
+        false
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-textfield
+      helper="[scl.id]"
+      label="rptID"
+      required=""
+      validationmessage="[textfield.nonempty]"
+    >
+    </wizard-textfield>
+    <wizard-select
+      helper="[scl.indexed]"
+      label="indexed"
+      nullable=""
+      required=""
+    >
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="true"
+      >
+        true
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        role="option"
+        tabindex="-1"
+        value="false"
+      >
+        false
+      </mwc-list-item>
+    </wizard-select>
+    <wizard-textfield
+      helper="[scl.maxReport]"
+      label="max Clients"
+      nullable=""
+      suffix="ms"
+      type="number"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      helper="[scl.bufTime]"
+      label="bufTime"
+      min="0"
+      nullable=""
+      required=""
+      suffix="ms"
+      type="number"
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.intgPd]"
+      label="intgPd"
+      min="0"
+      nullable=""
+      required=""
+      suffix="ms"
+      type="number"
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Wizards for SCL ReportControl element define an edit wizard that looks like the latest snapshot */
+
