@@ -8,6 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
+import './server-container.js'
 
 /** [[`AccessPoint Container`]] plugin subeditor for editing `AccessPoint` sections. */
 @customElement('access-point-container')
@@ -15,7 +16,6 @@ export class AccessPointContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  @property({ type: String })
   get header(): string {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc') ?? '';
@@ -24,7 +24,12 @@ export class AccessPointContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}"></action-pane>`;
+    return html`<action-pane label="${this.header}">
+    ${Array.from(this.element.querySelectorAll('Server')).map(
+      server => html`<server-container
+        .element=${server}
+      ></server-container>`)}
+    </action-pane>`;
   }
 
   static styles = css``;

@@ -16,7 +16,6 @@ export class IedContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  @property({ type: String })
   get header(): string {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc') ?? '';
