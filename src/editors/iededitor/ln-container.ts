@@ -8,6 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
+import './do-container.js';
 
 /** [[`LN Container`]] plugin subeditor for editing `LN` and `LN0` sections. */
 @customElement('ln-container')
@@ -24,7 +25,12 @@ export class LNContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}"></action-pane>`;
+    return html`<action-pane label="${this.header}">
+    ${Array.from(this.element.querySelectorAll('DO,SDO,DOI,SDI')).map(
+      server => html`<do-container
+        .element=${server}
+      ></do-container>`)}
+    </action-pane>`;
   }
 
   static styles = css``;
