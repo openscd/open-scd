@@ -391,6 +391,7 @@ export const de: Translations = {
   },
   updatedesc: {
     abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
+    sel: 'Signalbeschreibungen zu SEL IEDs hinzugefügt',
   },
   add: 'Hinzufügen',
   new: 'Neu',

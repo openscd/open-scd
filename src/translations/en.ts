@@ -388,6 +388,7 @@ export const en = {
   },
   updatedesc: {
     abb: 'Added signal descriptions to ABB IEDs',
+    sel: 'Added signal descriptions to SEL IEDs',
   },
   add: 'Add',
   new: 'New',
