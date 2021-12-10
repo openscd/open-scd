@@ -158,6 +158,18 @@ export const de: Translations = {
       addvoltagelevel: 'Spannungsebene hinzufügen',
     },
   },
+  iededitor: {
+    name: '???',
+    missing: '???',
+    wizard: {
+      nameHelper: '???',
+      descHelper: '???',
+      title: {
+        add: '???',
+        edit: '???',
+      },
+    }
+  },
   voltagelevel: {
     name: 'Spannungsebene',
     wizard: {

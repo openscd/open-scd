@@ -581,6 +581,22 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/editors/IEDEditor.js"
+    >
+      <mwc-icon slot="meta">
+        edit
+      </mwc-icon>
+      IED Editor
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
       tabindex="-1"
       value="/src/editors/SingleLineDiagram.js"
     >

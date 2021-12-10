@@ -155,6 +155,18 @@ export const en = {
       addvoltagelevel: 'Add voltage level',
     },
   },
+  iededitor: {
+    name: 'IED',
+    missing: 'No IED',
+    wizard: {
+      nameHelper: 'IED name',
+      descHelper: 'IED description',
+      title: {
+        add: 'Add IED',
+        edit: 'Edit IED',
+      },
+    }
+  },
   voltagelevel: {
     name: 'Voltage level',
     wizard: {

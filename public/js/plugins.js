@@ -7,6 +7,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'IED Editor',
+    src: '/src/editors/IEDEditor.js',
+    icon: 'edit',
+    default: true,
+    kind: 'editor',
+  },
+  {
     name: 'Single Line Diagram',
     src: '/src/editors/SingleLineDiagram.js',
     icon: 'edit',
@@ -19,7 +26,6 @@ export const officialPlugins = [
     icon: 'settings_ethernet',
     default: true,
     kind: 'editor',
-
   },
   {
     name: 'Templates',
