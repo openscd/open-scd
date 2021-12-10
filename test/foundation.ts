@@ -50,4 +50,5 @@ export const inverseRegExp = {
   unsigned: /[^0-9.+]|.[^0-9.]/,
   decimal: /[^0-9.+-]|.[^0-9.]/,
   integer: /[^0-9+-]/,
+  uint: /[^0-9+]/,
 };
