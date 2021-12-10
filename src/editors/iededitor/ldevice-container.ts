@@ -8,6 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
+import './ln-container.js'
 
 /** [[`LDevice Container`]] plugin subeditor for editing `LDevice` sections. */
 @customElement('ldevice-container')
@@ -23,7 +24,12 @@ export class LDeviceContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}"></action-pane>`;
+    return html`<action-pane label="${this.header}">
+    ${Array.from(this.element.querySelectorAll('LN,LN0')).map(
+      server => html`<ln-container
+        .element=${server}
+      ></ln-container>`)}
+    </action-pane>`;
   }
 
   static styles = css``;
