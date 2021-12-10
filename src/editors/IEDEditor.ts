@@ -10,14 +10,13 @@ export default class IedEditorPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
-  /** Are the (sub)containers read-only? */
-  @property({ type: Boolean })
-  readonly = true;
 
   render(): TemplateResult {
     return html`
     ${Array.from(this.doc?.querySelectorAll('IED') ?? []).map(
-      ied => html`<ied-container .element="${ied}" ?readonly=${this.readonly}></ied-container>`
+      ied => html`<ied-container
+        .element=${ied}
+      ></ied-container>`
     )}`;
   }
 

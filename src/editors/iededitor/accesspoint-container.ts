@@ -8,11 +8,10 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './accesspoint-container.js';
 
-/** [[`IED Container`]] plugin subeditor for editing `IED` sections. */
-@customElement('ied-container')
-export class IedContainer extends LitElement {
+/** [[`AccessPoint Container`]] plugin subeditor for editing `AccessPoint` sections. */
+@customElement('access-point-container')
+export class AccessPointContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
@@ -25,12 +24,7 @@ export class IedContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}">
-      ${Array.from(this.element.querySelectorAll('AccessPoint')).map(
-        ap => html`<access-point-container
-          .element=${ap}
-        ></access-point-container>`)}
-      </action-pane>`;
+    return html`<action-pane label="${this.header}"></action-pane>`;
   }
 
   static styles = css``;
