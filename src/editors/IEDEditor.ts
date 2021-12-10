@@ -14,21 +14,11 @@ export default class IedEditorPlugin extends LitElement {
   @property({ type: Boolean })
   readonly = true;
 
-  renderIeds(): TemplateResult {
-    const ieds = Array.from(this.doc.querySelectorAll('IED')) ?? [];
-    return ieds?.length
-      ? html`<div>
-          ${ieds.map(ied => html`
-            <ied-container
-              .element="${ied}"
-              ?readonly=${this.readonly}>
-            </ied-container>`)}
-        </div>`
-      : html``;
-  }
-
   render(): TemplateResult {
-    return html`${this.renderIeds()}`;
+    return html`
+    ${Array.from(this.doc?.querySelectorAll('IED') ?? []).map(
+      ied => html`<ied-container .element="${ied}" ?readonly=${this.readonly}></ied-container>`
+    )}`;
   }
 
   static styles = css`
