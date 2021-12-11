@@ -9,12 +9,16 @@ import {
 
 import '../../action-pane.js';
 import './accesspoint-container.js';
+import { IEDSelector } from './foundation.js';
 
 /** [[`IED Container`]] plugin subeditor for editing `IED` sections. */
 @customElement('ied-container')
 export class IedContainer extends LitElement {
+  /** The edited `Element`, a common property of all IED subcontainers. */
   @property({ attribute: false })
   element!: Element;
+  @property({ type: Boolean })
+  readonly = false;
 
   get header(): string {
     const name = this.element.getAttribute('name') ?? '';
@@ -25,9 +29,10 @@ export class IedContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header}">
-      ${Array.from(this.element.querySelectorAll('AccessPoint')).map(
+      ${Array.from(this.element.querySelectorAll(IEDSelector.AccessPoint)).map(
         ap => html`<access-point-container
           .element=${ap}
+          ?readonly=${this.readonly}
         ></access-point-container>`)}
       </action-pane>`;
   }

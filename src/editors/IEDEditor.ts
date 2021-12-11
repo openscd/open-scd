@@ -4,6 +4,7 @@ import '@material/mwc-fab';
 
 import '../zeroline-pane.js';
 import './iededitor/ied-container.js'
+import { IEDSelector } from './iededitor/foundation.js';
 
 /** An editor [[`plugin`]] for editing the `IED Editor` section. */
 export default class IedEditorPlugin extends LitElement {
@@ -13,7 +14,7 @@ export default class IedEditorPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`
-    ${Array.from(this.doc?.querySelectorAll('IED') ?? []).map(
+    ${Array.from(this.doc?.querySelectorAll(IEDSelector.IED) ?? []).map(
       ied => html`<ied-container
         .element=${ied}
       ></ied-container>`

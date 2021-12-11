@@ -1,5 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
+import '../../../../src/editors/iededitor/ied-container.js'
 import { IedContainer } from '../../../../src/editors/iededitor/ied-container.js';
 
 describe('ied-container', () => {
@@ -16,7 +17,17 @@ describe('ied-container', () => {
     ></ied-container>`);
   });
 
-  // it('looks like the latest snapshot', async () => {
-  //   await expect(element).shadowDom.to.equalSnapshot();
-  // });
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  describe('with readonly property', () => {
+    beforeEach(async () => {
+      element.readonly = true;
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
 });
