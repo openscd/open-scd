@@ -8,13 +8,16 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
+import { IEDSelector } from './foundation.js';
 import './ldevice-container.js';
 
-/** [[`Server Container`]] plugin subeditor for editing `Server` sections. */
+/** [[`Server Container`]] plugin subcontainer for editing `Server` sections. */
 @customElement('server-container')
 export class ServerContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
+  @property({ type: Boolean })
+  readonly = false;
 
   get header(): string {
     return 'Server';
@@ -22,9 +25,10 @@ export class ServerContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header}">
-    ${Array.from(this.element.querySelectorAll('LDevice')).map(
+    ${Array.from(this.element.querySelectorAll(IEDSelector.LDevice)).map(
       server => html`<ldevice-container
         .element=${server}
+        ?readonly=${this.readonly}
       ></ldevice-container>`)}
     </action-pane>`;
   }

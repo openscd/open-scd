@@ -4,5 +4,6 @@
 export enum IEDSelector {
     IED = 'IED',
     AccessPoint = 'AccessPoint',
-    Server = 'Server'
+    Server = 'Server',
+    LDevice = 'LDevice'
 }

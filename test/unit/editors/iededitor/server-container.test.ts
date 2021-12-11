@@ -1,4 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
+
+import '../../../../src/editors/iededitor/server-container.js'
 import { ServerContainer } from '../../../../src/editors/iededitor/server-container.js';
 
 describe('server-container', () => {
@@ -11,11 +13,21 @@ describe('server-container', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     element = await fixture(html`<server-container
-      .element=${validSCL.querySelector('Server')}
+      .element=${validSCL.querySelector('IED[name="IED1"] > AccessPoint[name="P1"] > Server')}
     ></server-container>`);
   });
 
-  // it('looks like the latest snapshot', async () => {
-  //   await expect(element).shadowDom.to.equalSnapshot();
-  // });
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  describe('with readonly property', () => {
+    beforeEach(async () => {
+      element.readonly = true;
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
 });
