@@ -3,5 +3,6 @@
  */
 export enum IEDSelector {
     IED = 'IED',
-    AccessPoint = 'AccessPoint'
+    AccessPoint = 'AccessPoint',
+    Server = 'Server'
 }

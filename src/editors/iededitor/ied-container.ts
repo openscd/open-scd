@@ -8,10 +8,10 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './accesspoint-container.js';
+import './access-point-container.js';
 import { IEDSelector } from './foundation.js';
 
-/** [[`IED Container`]] plugin subeditor for editing `IED` sections. */
+/** [[`IED Container`]] plugin subcontainer for editing `IED` sections. */
 @customElement('ied-container')
 export class IedContainer extends LitElement {
   /** The edited `Element`, a common property of all IED subcontainers. */

@@ -1,5 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { AccessPointContainer } from '../../../../src/editors/iededitor/accesspoint-container.js';
+
+import '../../../../src/editors/iededitor/access-point-container.js'
+import { AccessPointContainer } from '../../../../src/editors/iededitor/access-point-container.js';
 
 describe('access-point-container', () => {
   let element: AccessPointContainer;
@@ -15,7 +17,17 @@ describe('access-point-container', () => {
     ></access-point-container>`);
   });
 
-  // it('looks like the latest snapshot', async () => {
-  //   await expect(element).shadowDom.to.equalSnapshot();
-  // });
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  describe('with readonly property', () => {
+    beforeEach(async () => {
+      element.readonly = true;
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
 });
