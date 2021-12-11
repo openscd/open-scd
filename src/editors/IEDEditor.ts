@@ -13,17 +13,21 @@ export default class IedEditorPlugin extends LitElement {
   doc!: XMLDocument;
 
   render(): TemplateResult {
-    return html`
+    return html`<section>
     ${Array.from(this.doc?.querySelectorAll(IEDSelector.IED) ?? []).map(
       ied => html`<ied-container
         .element=${ied}
       ></ied-container>`
-    )}`;
+    )}</section>`;
   }
 
   static styles = css`
     :host {
       width: 100vw;
+    }
+
+    section {
+      padding: 8px 12px 16px;
     }
   `;
 }
