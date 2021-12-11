@@ -1,4 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
+
+import '../../../../src/editors/iededitor/ldevice-container.js'
 import { LDeviceContainer } from '../../../../src/editors/iededitor/ldevice-container.js';
 
 describe('server-container', () => {
@@ -15,7 +17,7 @@ describe('server-container', () => {
     ></ldevice-container>`);
   });
 
-  // it('looks like the latest snapshot', async () => {
-  //   await expect(element).shadowDom.to.equalSnapshot();
-  // });
+  it('looks like the latest snapshot', async () => {
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
 });

@@ -1,9 +1,10 @@
 /**
- * Containing all available sections within an IED section.
+ * Containing all available search strings for sections within an IED section.
  */
 export enum IEDSelector {
     IED = 'IED',
     AccessPoint = 'AccessPoint',
     Server = 'Server',
-    LDevice = 'LDevice'
+    LDevice = 'LDevice',
+    AnyLN = 'LN,LN0'
 }
