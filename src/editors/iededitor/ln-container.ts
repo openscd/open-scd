@@ -10,11 +10,13 @@ import {
 import '../../action-pane.js';
 import './do-container.js';
 
-/** [[`LN Container`]] plugin subeditor for editing `LN` and `LN0` sections. */
+/** [[`LN Container`]] plugin subcontainers for editing `LN` and `LN0` sections. */
 @customElement('ln-container')
 export class LNContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
+  @property({ type: Boolean })
+  readonly = false;
 
   get header(): string {
     const lnClass = this.element.getAttribute('lnClass') ?? '';
@@ -26,10 +28,6 @@ export class LNContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header}">
-    ${Array.from(this.element.querySelectorAll('DO,SDO,DOI,SDI')).map(
-      server => html`<do-container
-        .element=${server}
-      ></do-container>`)}
     </action-pane>`;
   }
 

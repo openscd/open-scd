@@ -3,7 +3,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 import '../../../../src/editors/iededitor/ldevice-container.js'
 import { LDeviceContainer } from '../../../../src/editors/iededitor/ldevice-container.js';
 
-describe('server-container', () => {
+describe('ldevice-container', () => {
   let element: LDeviceContainer;
   let validSCL: XMLDocument;
 
@@ -19,5 +19,15 @@ describe('server-container', () => {
 
   it('looks like the latest snapshot', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  describe('with readonly property', () => {
+    beforeEach(async () => {
+      element.readonly = true;
+      await element.requestUpdate();
+    });
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
   });
 });
