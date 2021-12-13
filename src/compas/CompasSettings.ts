@@ -99,11 +99,11 @@ export class CompasSettingsElement extends LitElement {
                      label="${translate('compas.settings.sclDataServiceUrl')}"
                      value="${this.compasSettings.sclDataServiceUrl}" required>
       </mwc-textfield>
-      <mwc-textfield dialogInitialFocus id="cimMappingServiceUrl"
+      <mwc-textfield id="cimMappingServiceUrl"
                      label="${translate('compas.settings.cimMappingServiceUrl')}"
                      value="${this.compasSettings.cimMappingServiceUrl}" required>
       </mwc-textfield>
-      <mwc-textfield dialogInitialFocus id="sclAutoAlignmentServiceUrl"
+      <mwc-textfield id="sclAutoAlignmentServiceUrl"
                      label="${translate('compas.settings.sclAutoAlignmentServiceUrl')}"
                      value="${this.compasSettings.sclAutoAlignmentServiceUrl}" required>
       </mwc-textfield>
