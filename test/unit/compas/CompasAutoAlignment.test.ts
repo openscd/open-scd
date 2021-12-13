@@ -11,7 +11,7 @@ describe('compas-auto-alignment', () => {
 
   describe('document with substations', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/compas/minigrid-3.0.0.cid')
+      const doc = await fetch('/test/testfiles/compas/minigrid-3.0.0.cid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
@@ -55,7 +55,7 @@ describe('compas-auto-alignment', () => {
 
   describe('document without substations', () => {
     beforeEach(async () => {
-      const doc = await fetch('/base/test/testfiles/compas/test-scd.cid')
+      const doc = await fetch('/test/testfiles/compas/test-scd.cid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

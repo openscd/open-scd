@@ -40,3 +40,9 @@ snapshots["compas-scltype-list no-items-in-list looks like the latest snapshot"]
 `;
 /* end snapshot compas-scltype-list no-items-in-list looks like the latest snapshot */
 
+snapshots["compas-scltype-list show-loading looks like the latest snapshot"] = 
+`<compas-loading>
+</compas-loading>
+`;
+/* end snapshot compas-scltype-list show-loading looks like the latest snapshot */
+

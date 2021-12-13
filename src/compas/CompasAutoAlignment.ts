@@ -1,6 +1,9 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get, translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
+
 import {newLogEvent, newOpenDocEvent, newWizardEvent} from "../foundation.js";
 import {getOpenScdElement} from "./foundation.js";
 
