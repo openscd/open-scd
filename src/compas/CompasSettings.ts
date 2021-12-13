@@ -108,8 +108,7 @@ export class CompasSettingsElement extends LitElement {
                      value="${this.compasSettings.sclAutoAlignmentServiceUrl}" required>
       </mwc-textfield>
 
-      <mwc-button style="--mdc-theme-primary: var(--mdc-theme-error)"
-                  @click=${() => {
+      <mwc-button @click=${() => {
                     if (this.reset()) {
                       this.close();
                     }
@@ -126,6 +125,10 @@ export class CompasSettingsElement extends LitElement {
     mwc-textfield {
       margin: 10px;
       width: 100%;
+    }
+
+    mwc-button {
+      --mdc-theme-primary: var(--mdc-theme-error)
     }
   `
 }
