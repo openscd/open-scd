@@ -12,7 +12,6 @@
 >
 </mwc-textfield>
 <mwc-textfield
-  dialoginitialfocus=""
   id="cimMappingServiceUrl"
   label="[compas.settings.cimMappingServiceUrl]"
   required=""
@@ -20,14 +19,13 @@
 >
 </mwc-textfield>
 <mwc-textfield
-  dialoginitialfocus=""
   id="sclAutoAlignmentServiceUrl"
   label="[compas.settings.sclAutoAlignmentServiceUrl]"
   required=""
   value="/compas-scl-auto-alignment"
 >
 </mwc-textfield>
-<mwc-button style="--mdc-theme-primary: var(--mdc-theme-error)">
+<mwc-button>
   [reset]
 </mwc-button>
 

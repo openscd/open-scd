@@ -5,7 +5,10 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<section tabindex="0">
+<section
+  id="substationsToAlign"
+  tabindex="0"
+>
   <mwc-list
     multi=""
     required=""
@@ -64,8 +67,11 @@
 ####   `looks like the latest snapshot`
 
 ```html
-<section tabindex="0">
-  <span style="color: var(--base1)">
+<section
+  id="noSubstationsToAlign"
+  tabindex="0"
+>
+  <span>
     [compas.autoAlignment.missing]
   </span>
 </section>
