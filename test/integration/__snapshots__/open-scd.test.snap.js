@@ -269,6 +269,24 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      class="middle"
+      disabled=""
+      graphic="icon"
+      iconid="dashboard"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        dashboard
+      </mwc-icon>
+      <span>
+        Auto Align SLD
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -888,6 +906,22 @@ snapshots["open-scd looks like its snapshot"] =
         merge_type
       </mwc-icon>
       Update Substation
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasAutoAlignment.js"
+    >
+      <mwc-icon slot="meta">
+        dashboard
+      </mwc-icon>
+      Auto Align SLD
     </mwc-check-list-item>
     <li
       divider=""

@@ -459,6 +459,12 @@ export const de: Translations = {
     merge: {
       title: '???',
     },
+    autoAlignment: {
+      title: '???',
+      button: '???',
+      missing: '???',
+      success: '???',
+    },
     uploadVersion: {
       title: '???',
       selectButton: '???...',
@@ -495,6 +501,7 @@ export const de: Translations = {
       title: 'CoMPAS Einstellungen',
       sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
       cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
+      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
     },
     session: {
       headingExpiring: '???',

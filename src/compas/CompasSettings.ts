@@ -11,6 +11,7 @@ import {getOpenScdElement} from "./foundation.js";
 export type CompasSettingsRecord = {
   sclDataServiceUrl: string;
   cimMappingServiceUrl: string;
+  sclAutoAlignmentServiceUrl: string;
 };
 
 export function CompasSettings() {
@@ -20,13 +21,15 @@ export function CompasSettings() {
       return {
         sclDataServiceUrl: this.getCompasSetting('sclDataServiceUrl'),
         cimMappingServiceUrl: this.getCompasSetting('cimMappingServiceUrl'),
+        sclAutoAlignmentServiceUrl: this.getCompasSetting('sclAutoAlignmentServiceUrl'),
       };
     },
 
     get defaultSettings(): CompasSettingsRecord {
       return {
         sclDataServiceUrl: '/compas-scl-data-service',
-        cimMappingServiceUrl: '/compas-cim-mapping'
+        cimMappingServiceUrl: '/compas-cim-mapping',
+        sclAutoAlignmentServiceUrl: '/compas-scl-auto-alignment'
       }
     },
 
@@ -58,9 +61,14 @@ export class CompasSettingsElement extends LitElement {
     return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="cimMappingServiceUrl"]');
   }
 
+  getSclAutoAlignmentServiceUrlField(): TextFieldBase {
+    return <TextFieldBase>this.shadowRoot!.querySelector('mwc-textfield[id="sclAutoAlignmentServiceUrl"]');
+  }
+
   valid(): boolean {
     return this.getSclDataServiceUrlField().checkValidity()
-      && this.getCimMappingServiceUrlField().checkValidity();
+      && this.getCimMappingServiceUrlField().checkValidity()
+      && this.getSclAutoAlignmentServiceUrlField().checkValidity();
   }
 
   save(): boolean {
@@ -71,6 +79,7 @@ export class CompasSettingsElement extends LitElement {
     // Update settings from TextField.
     CompasSettings().setCompasSetting('sclDataServiceUrl', this.getSclDataServiceUrlField().value);
     CompasSettings().setCompasSetting('cimMappingServiceUrl', this.getCimMappingServiceUrlField().value);
+    CompasSettings().setCompasSetting('sclAutoAlignmentServiceUrl', this.getSclAutoAlignmentServiceUrlField().value);
     return true;
   }
 
@@ -93,13 +102,16 @@ export class CompasSettingsElement extends LitElement {
                      label="${translate('compas.settings.sclDataServiceUrl')}"
                      value="${this.compasSettings.sclDataServiceUrl}" required>
       </mwc-textfield>
-      <mwc-textfield dialogInitialFocus id="cimMappingServiceUrl"
+      <mwc-textfield id="cimMappingServiceUrl"
                      label="${translate('compas.settings.cimMappingServiceUrl')}"
                      value="${this.compasSettings.cimMappingServiceUrl}" required>
       </mwc-textfield>
+      <mwc-textfield id="sclAutoAlignmentServiceUrl"
+                     label="${translate('compas.settings.sclAutoAlignmentServiceUrl')}"
+                     value="${this.compasSettings.sclAutoAlignmentServiceUrl}" required>
+      </mwc-textfield>
 
-      <mwc-button style="--mdc-theme-primary: var(--mdc-theme-error)"
-                  @click=${() => {
+      <mwc-button @click=${() => {
                     if (this.reset()) {
                       this.close();
                     }
@@ -116,6 +128,10 @@ export class CompasSettingsElement extends LitElement {
     mwc-textfield {
       margin: 10px;
       width: 100%;
+    }
+
+    mwc-button {
+      --mdc-theme-primary: var(--mdc-theme-error)
     }
   `
 }
