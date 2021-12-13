@@ -198,6 +198,7 @@ export interface WizardPage {
     icon: string;
     label: string;
     action: WizardActor;
+    style?: string;
   };
   initial?: boolean;
   element?: Element;
@@ -315,7 +316,6 @@ export function newPendingStateEvent(
 }
 
 /** Represents a request for validation. */
-
 export type ValidateEvent = CustomEvent<void>;
 export function newValidateEvent(
   eventInitDict?: CustomEventInit<void>
@@ -344,6 +344,23 @@ export function newOpenDocEvent(
     composed: true,
     ...eventInitDict,
     detail: { doc, docName, ...eventInitDict?.detail },
+  });
+}
+
+/** Represents user information from a backend. */
+export interface UserInfoDetail {
+  name: string;
+}
+export type UserInfoEvent = CustomEvent<UserInfoDetail>;
+export function newUserInfoEvent(
+  name: string,
+  eventInitDict?: CustomEventInit<Partial<UserInfoDetail>>
+): UserInfoEvent {
+  return new CustomEvent<UserInfoDetail>('userinfo', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { name, ...eventInitDict?.detail },
   });
 }
 
@@ -2569,6 +2586,7 @@ declare global {
     ['pending-state']: PendingStateEvent;
     ['editor-action']: EditorActionEvent<EditorAction>;
     ['open-doc']: OpenDocEvent;
+    ['userinfo']: UserInfoEvent;
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
     ['log']: LogEvent;

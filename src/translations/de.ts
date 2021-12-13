@@ -392,9 +392,13 @@ export const de: Translations = {
   updatedesc: {
     abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
   },
+  userinfo: {
+    loggedInAs: '???'
+  },
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',
+  delete: 'Löschen',
   edit: 'Bearbeiten',
   move: 'Verschieben',
   create: 'Erstellen',
@@ -411,4 +415,95 @@ export const de: Translations = {
   connect: 'Verbinden',
   disconnect: 'Trennen',
   next: 'Weiter',
+
+  compas: {
+    loading: '???',
+    notExists: '???',
+    noSclTypes: '???',
+    noScls: '???',
+    noSclVersions: "???",
+    comment: '???',
+    error: {
+      type: '???',
+      server: '???',
+      serverDetails: '{{type}}: {{message}}',
+    },
+    changeset: {
+      major: '???',
+      minor: '???',
+      patch: '???',
+    },
+    open: {
+      title: '???',
+      localTitle: '???',
+      selectFileButton: '???',
+      compasTitle: 'CoMPAS',
+      listSclTypes: '???',
+      listScls: '??? ({{ type }})',
+      otherTypeButton: '???',
+    },
+    save: {
+      title: '???',
+      localTitle: '???',
+      saveFileButton: '???',
+      compasTitle: 'CoMPAS',
+      addSuccess: '???',
+      updateSuccess: '???',
+    },
+    updateSubstation: {
+      title: '???',
+    },
+    importIEDS: {
+      title: '???',
+    },
+    merge: {
+      title: '???',
+    },
+    uploadVersion: {
+      title: '???',
+      selectButton: '???...',
+      filename: '???',
+      updateSuccess: '???',
+    },
+    versions: {
+      title: '???',
+      addVersionButton: '???',
+      confirmRestoreTitle: "???",
+      confirmRestore: "??? {{version}}?",
+      restoreVersionSuccess: '??? {{version}}',
+      deleteProjectButton: '???',
+      confirmDeleteTitle: '???',
+      confirmDelete: '???',
+      deleteSuccess: '???',
+      confirmDeleteVersionTitle: '???',
+      confirmDeleteVersion: '??? {{version}}?',
+      deleteVersionSuccess: '??? {{version}}',
+      confirmButton: "???",
+      compareButton: "???",
+      selectTwoVersionsTitle: "???",
+      selectTwoVersionsMessage: "???",
+      compareCurrentButton: '???',
+      selectOneVersionsTitle: "???",
+      selectOneVersionsMessage: "???",
+    },
+    compare: {
+      title: '???',
+      attributes: 'Attribute',
+      children: 'Kindelemente',
+    },
+    settings: {
+      title: 'CoMPAS Einstellungen',
+      sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
+      cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
+    },
+    session: {
+      headingExpiring: '???',
+      explainExpiring: '???',
+      continue: '???',
+      headingExpired: '???',
+      explainExpiredWithProject: '???',
+      explainExpiredWithoutProject: '???',
+      saveProject: '???',
+    }
+  }
 };

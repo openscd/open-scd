@@ -224,6 +224,7 @@ export class WizardDialog extends LitElement {
             @click=${() => this.act(page.secondary?.action, false)}
             icon="${page.secondary.icon}"
             label="${page.secondary.label}"
+            style="${page.secondary.style ? page.secondary.style :  ''}"
           ></mwc-button>`
         : html`<mwc-button
             slot="secondaryAction"

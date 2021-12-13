@@ -53,6 +53,23 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-linear-progress>
     </mwc-list-item>
     <mwc-list-item
+      aria-disabled="false"
+      class="top"
+      graphic="icon"
+      iconid="input"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        input
+      </mwc-icon>
+      <span>
+        Project from CIM
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
       aria-disabled="true"
       class="top"
       disabled=""
@@ -277,6 +294,23 @@ snapshots["open-scd looks like its snapshot"] =
       aria-disabled="false"
       class="middle"
       graphic="icon"
+      iconid="settings"
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <mwc-icon slot="graphic">
+        settings
+      </mwc-icon>
+      <span>
+        CoMPAS Settings
+      </span>
+      <mwc-linear-progress indeterminate="">
+      </mwc-linear-progress>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      class="middle"
+      graphic="icon"
       iconid="help"
       mwc-list-item=""
       tabindex="-1"
@@ -367,6 +401,14 @@ snapshots["open-scd looks like its snapshot"] =
   >
     <div class="landing_label">
       New project
+    </div>
+  </mwc-icon-button>
+  <mwc-icon-button
+    class="landing_icon"
+    icon="input"
+  >
+    <div class="landing_label">
+      Project from CIM
     </div>
   </mwc-icon-button>
 </div>
@@ -621,6 +663,22 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
       Templates
     </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/compas-editors/CompasVersions.js"
+    >
+      <mwc-icon slot="meta">
+        copy_all
+      </mwc-icon>
+      CoMPAS Versions
+    </mwc-check-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
@@ -653,7 +711,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/OpenProject.js"
+      value="/src/menu/CompasOpen.js"
     >
       <mwc-icon slot="meta">
         folder_open
@@ -685,7 +743,23 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/SaveProject.js"
+      value="/src/menu/CompasCimMapping.js"
+    >
+      <mwc-icon slot="meta">
+        input
+      </mwc-icon>
+      Project from CIM
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasSave.js"
     >
       <mwc-icon slot="meta">
         save
@@ -745,7 +819,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/ImportIEDs.js"
+      value="/src/menu/CompasImportIEDs.js"
     >
       <mwc-icon slot="meta">
         snippet_folder
@@ -792,7 +866,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/Merge.js"
+      value="/src/menu/CompasMerge.js"
     >
       <mwc-icon slot="meta">
         merge_type
@@ -808,7 +882,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/menu/UpdateSubstation.js"
+      value="/src/menu/CompasUpdateSubstation.js"
     >
       <mwc-icon slot="meta">
         merge_type
@@ -821,6 +895,22 @@ snapshots["open-scd looks like its snapshot"] =
       role="separator"
     >
     </li>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      selected=""
+      tabindex="-1"
+      value="/src/menu/CompasSettings.js"
+    >
+      <mwc-icon slot="meta">
+        settings
+      </mwc-icon>
+      CoMPAS Settings
+    </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"
       class="official"
@@ -1069,6 +1159,10 @@ snapshots["open-scd looks like its snapshot"] =
     Save
   </mwc-button>
 </mwc-dialog>
+<compas-session-expiring-dialog>
+</compas-session-expiring-dialog>
+<compas-session-expired-dialog>
+</compas-session-expired-dialog>
 `;
 /* end snapshot open-scd looks like its snapshot */
 
