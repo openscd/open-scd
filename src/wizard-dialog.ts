@@ -10,11 +10,13 @@ import {
 } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-dialog';
+import '@material/mwc-icon-button-toggle';
 import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
 
 import 'ace-custom-element';
-import './wizard-textfield.js';
 import {
   newActionEvent,
   Wizard,

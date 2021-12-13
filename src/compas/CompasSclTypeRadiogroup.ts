@@ -2,6 +2,9 @@ import {customElement, html, LitElement, property, TemplateResult} from "lit-ele
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
 import {translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-radio-list-item';
+
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 
 @customElement('compas-scltype-radiogroup')

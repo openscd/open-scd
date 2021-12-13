@@ -1,16 +1,16 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import { EditingElement } from '../../../src/Editing.js';
+import '../../../src/zeroline/voltage-level-editor.js';
 import { VoltageLevelEditor } from '../../../src/zeroline/voltage-level-editor.js';
-import { WizardingElement } from '../../../src/Wizarding.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('voltage-level-editor wizarding editing integration', () => {
   describe('edit wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: VoltageLevelEditor | null;
 
     let nameField: WizardTextField;
@@ -22,10 +22,10 @@ describe('voltage-level-editor wizarding editing integration', () => {
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><voltage-level-editor
@@ -172,17 +172,17 @@ describe('voltage-level-editor wizarding editing integration', () => {
   });
   describe('open add bay wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: VoltageLevelEditor | null;
 
     let nameField: WizardTextField;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><voltage-level-editor
@@ -195,9 +195,7 @@ describe('voltage-level-editor wizarding editing integration', () => {
       element = parent.querySelector('voltage-level-editor');
 
       (<HTMLElement>(
-        element?.shadowRoot
-          ?.querySelector('editor-container')
-          ?.shadowRoot?.querySelector('mwc-list-item[value="Bay"]')
+        element?.shadowRoot?.querySelector('mwc-list-item[value="Bay"]')
       )).click();
       await parent.updateComplete;
 
@@ -231,14 +229,14 @@ describe('voltage-level-editor wizarding editing integration', () => {
   });
   describe('open lnode wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: VoltageLevelEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><voltage-level-editor
@@ -266,15 +264,15 @@ describe('voltage-level-editor wizarding editing integration', () => {
   });
   describe('move action', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: VoltageLevelEditor | null;
     let element2: VoltageLevelEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             >${Array.from(doc?.querySelectorAll('VoltageLevel') ?? []).map(
@@ -307,14 +305,14 @@ describe('voltage-level-editor wizarding editing integration', () => {
   });
   describe('remove action', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: VoltageLevelEditor | null;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><voltage-level-editor
@@ -336,15 +334,15 @@ describe('voltage-level-editor wizarding editing integration', () => {
   });
   describe('clone action', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement & EditingElement;
+    let parent: MockWizardEditor;
     let element: VoltageLevelEditor | null;
     let copyContentButton: HTMLElement;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement & EditingElement>(
+      parent = <MockWizardEditor>(
         await fixture(
           html`<mock-wizard-editor
             ><voltage-level-editor

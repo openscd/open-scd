@@ -7,11 +7,11 @@ describe('compas-compare-dialog', () => {
   let newSclElement: Element;
 
   beforeEach(async () => {
-    oldSclElement = await fetch('/base/test/testfiles/compas/minigrid-3.0.0.cid')
+    oldSclElement = await fetch('/test/testfiles/compas/minigrid-3.0.0.cid')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'))
       .then(document => document.documentElement);
-    newSclElement = await fetch('/base/test/testfiles/compas/minigrid-3.1.0.cid')
+    newSclElement = await fetch('/test/testfiles/compas/minigrid-3.1.0.cid')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'))
       .then(document => document.documentElement);

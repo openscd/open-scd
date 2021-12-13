@@ -1,14 +1,16 @@
 import { fixture, html, expect } from '@open-wc/testing';
+
+import '../../../../src/wizard-textfield.js';
+import {
+  createSubNetworkAction,
+  updateSubNetworkAction,
+} from '../../../../src/editors/communication/subnetwork-editor.js';
 import {
   WizardInput,
   isCreate,
   isUpdate,
   isDelete,
 } from '../../../../src/foundation.js';
-import {
-  createSubNetworkAction,
-  updateSubNetworkAction,
-} from '../../../../src/editors/communication/subnetwork-editor.js';
 
 describe('SubNetworkEditor', () => {
   describe('with no nulled properties', () => {

@@ -1,10 +1,10 @@
 import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '../wizard-textfield.js';
 import {
   createElement,
   EditorAction,
-  getReference,
   getValue,
   Wizard,
   WizardActor,
@@ -44,7 +44,6 @@ export function createAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'Bay'),
       },
     };
 

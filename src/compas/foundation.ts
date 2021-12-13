@@ -1,11 +1,7 @@
 import {get} from "lit-translate";
 
-import {newLogEvent, newOpenDocEvent, newUserInfoEvent} from "../foundation.js";
+import {newLogEvent, newOpenDocEvent} from "../foundation.js";
 import {OpenSCD} from "../open-scd.js";
-
-import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
-import {createLogEvent} from "../compas-services/foundation.js";
-import {setSessionTimeouts} from "./CompasSession.js";
 
 const FILE_EXTENSION_LENGTH = 3;
 

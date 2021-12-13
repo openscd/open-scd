@@ -1,6 +1,9 @@
 import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 
 /* Event that will be used when a SCL Type is selected from a list of types. */

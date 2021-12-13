@@ -1,25 +1,33 @@
 import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+import { Select } from '@material/mwc-select';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { List } from '@material/mwc-list';
+
+import '../../wizard-textfield.js';
 import {
   cloneElement,
   Create,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   identity,
   isPublic,
   newActionEvent,
   newWizardEvent,
-  patterns,
-  SCLTag,
   selector,
   Wizard,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
-
+import { createDaWizard, editDAWizard } from '../../wizards/da.js';
+import { patterns } from '../../wizards/foundation/limits.js';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,
@@ -28,12 +36,6 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
-
-import { Select } from '@material/mwc-select';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { List } from '@material/mwc-list';
-import { createDaWizard, editDAWizard } from '../../wizards/da.js';
 
 function updateSDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -74,7 +76,6 @@ function createSDoAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
@@ -144,7 +145,7 @@ function sDOWizard(options: WizardOptions): Wizard | undefined {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
-          pattern="${patterns.alphanumericFirstLowerCase}"
+          pattern="${patterns.tRestrName1stL}"
           dialogInitialFocus
         >
           ></wizard-textfield
@@ -191,6 +192,8 @@ function addPredefinedDOType(
     if (existId) return [];
 
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
+    const cdc = getValue(inputs.find(i => i.label === 'cdc')!)!;
+
     const values = <Select>inputs.find(i => i.label === 'values');
     const selectedElement = values.selected
       ? templates.querySelector(`DOType[id="${values.selected.value}"]`)
@@ -200,6 +203,7 @@ function addPredefinedDOType(
       : parent.ownerDocument.createElement('DOType');
 
     element.setAttribute('id', id);
+    element.setAttribute('cdc', cdc);
     if (desc) element.setAttribute('desc', desc);
 
     const actions: Create[] = [];
@@ -213,12 +217,27 @@ function addPredefinedDOType(
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
     return unifyCreateActionArray(actions);
   };
+}
+
+function onSelectTemplateDOType(e: Event, templates: Document): void {
+  const cdcUI = <Select>(
+    (<Select>e.target).parentElement!.querySelector(
+      'wizard-textfield[label="cdc"]'
+    )!
+  );
+
+  const doTypeId = (<Select>e.target).value;
+  const cdc =
+    templates.querySelector(`DOType[id="${doTypeId}"]`)?.getAttribute('cdc') ??
+    null;
+
+  if (cdc) cdcUI.value = cdc;
+  cdcUI.disabled = true;
 }
 
 export function createDOTypeWizard(
@@ -240,6 +259,7 @@ export function createDOTypeWizard(
           icon="playlist_add_check"
           label="values"
           helper="${translate('dotype.wizard.enums')}"
+          @selected=${(e: Event) => onSelectTemplateDOType(e, templates)}
         >
           ${Array.from(templates.querySelectorAll('DOType')).map(
             datype =>
@@ -272,6 +292,12 @@ export function createDOTypeWizard(
           .maybeValue=${null}
           nullable
           pattern="${patterns.normalizedString}"
+        ></wizard-textfield>`,
+        html`<wizard-textfield
+          label="cdc"
+          helper="${translate('scl.cdc')}"
+          required
+          pattern="${patterns.cdc}"
         ></wizard-textfield>`,
       ],
     },

@@ -2,12 +2,15 @@ import {css, customElement, html, LitElement, property, TemplateResult} from "li
 import {translate, translateUnsafeHTML} from "lit-translate";
 import {Dialog} from "@material/mwc-dialog";
 
+import '@material/mwc-dialog';
+import '@material/mwc-button';
+
 import {saveDocumentToFile} from "../file.js";
 import {getOpenScdElement} from "./foundation.js";
 
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
-import {newUserInfoEvent} from "../foundation";
-import {createLogEvent} from "../compas-services/foundation";
+import {newUserInfoEvent} from "../foundation.js";
+import {createLogEvent} from "../compas-services/foundation.js";
 
 @customElement('compas-session-expiring-dialog')
 export class CompasSessionExpiringDialogElement extends LitElement {

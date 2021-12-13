@@ -1,5 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import fc from 'fast-check';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   isDelete,
   isUpdate,
@@ -7,7 +12,6 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   editGseControlWizard,
   removeGseControl,
@@ -16,7 +20,6 @@ import {
   updateGseControlAction,
 } from '../../../src/wizards/gsecontrol.js';
 import { regExp, regexString } from '../../foundation.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('gsecontrol wizards', () => {
   let doc: XMLDocument;
@@ -24,7 +27,7 @@ describe('gsecontrol wizards', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -36,7 +39,7 @@ describe('gsecontrol wizards', () => {
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
   });
 
@@ -64,7 +67,7 @@ describe('gsecontrol wizards', () => {
       )!;
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
 
     it('edits name attribute only for valid inputs', async () => {
@@ -94,7 +97,7 @@ describe('gsecontrol wizards', () => {
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
   });
 

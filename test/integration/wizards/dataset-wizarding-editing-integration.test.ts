@@ -1,8 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import { editDataSetWizard } from '../../../src/wizards/dataset.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
 describe('dataset wizards', () => {
   let doc: XMLDocument;
@@ -10,7 +12,7 @@ describe('dataset wizards', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

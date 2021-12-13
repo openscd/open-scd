@@ -19,20 +19,20 @@ export type ComplexAction = {
 export type EditorAction = SimpleAction | ComplexAction;
 /** Inserts `new.element` to `new.parent` before `new.reference`. */
 export interface Create {
-  new: { parent: Element; element: Element; reference: Node | null };
+  new: { parent: Element; element: Element; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Removes `old.element` from `old.parent` before `old.reference`. */
 export interface Delete {
-  old: { parent: Element; element: Element; reference: Node | null };
+  old: { parent: Element; element: Element; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
 /** Reparents of `old.element` to `new.parent` before `new.reference`. */
 export interface Move {
-  old: { parent: Element; element: Element; reference: Node | null };
-  new: { parent: Element; reference: Node | null };
+  old: { parent: Element; element: Element; reference?: Node | null };
+  new: { parent: Element; reference?: Node | null };
   derived?: boolean;
   checkValidity?: () => boolean;
 }
@@ -48,15 +48,13 @@ export function isCreate(action: EditorAction): action is Create {
   return (
     (action as Update).old === undefined &&
     (action as Create).new?.parent !== undefined &&
-    (action as Create).new?.element !== undefined &&
-    (action as Create).new?.reference !== undefined
+    (action as Create).new?.element !== undefined
   );
 }
 export function isDelete(action: EditorAction): action is Delete {
   return (
     (action as Delete).old?.parent !== undefined &&
     (action as Delete).old?.element !== undefined &&
-    (action as Delete).old?.reference !== undefined &&
     (action as Update).new === undefined
   );
 }
@@ -64,10 +62,8 @@ export function isMove(action: EditorAction): action is Move {
   return (
     (action as Move).old?.parent !== undefined &&
     (action as Move).old?.element !== undefined &&
-    (action as Move).old?.reference !== undefined &&
     (action as Move).new?.parent !== undefined &&
-    (action as Update).new?.element == undefined &&
-    (action as Move).new?.reference !== undefined
+    (action as Update).new?.element == undefined
   );
 }
 export function isUpdate(action: EditorAction): action is Update {
@@ -277,7 +273,6 @@ export function newLogEvent(
 
 export interface IssueDetail extends LogDetailBase {
   validatorId: string;
-  statusNumber: number;
 }
 export type IssueEvent = CustomEvent<IssueDetail>;
 export function newIssueEvent(
@@ -321,19 +316,14 @@ export function newPendingStateEvent(
 }
 
 /** Represents a request for validation. */
-export interface ValidateDetail {
-  identity: string;
-}
-export type ValidateEvent = CustomEvent<ValidateDetail>;
+export type ValidateEvent = CustomEvent<void>;
 export function newValidateEvent(
-  identity = '',
-  eventInitDict?: CustomEventInit<Partial<ValidateDetail>>
+  eventInitDict?: CustomEventInit<void>
 ): ValidateEvent {
-  return new CustomEvent<ValidateDetail>('validate', {
+  return new CustomEvent<void>('validate', {
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { identity, ...eventInitDict?.detail },
   });
 }
 
@@ -364,7 +354,7 @@ export interface UserInfoDetail {
 export type UserInfoEvent = CustomEvent<UserInfoDetail>;
 export function newUserInfoEvent(
   name: string,
-  eventInitDict?: CustomEventInit<Partial<ValidateDetail>>
+  eventInitDict?: CustomEventInit<Partial<UserInfoDetail>>
 ): UserInfoEvent {
   return new CustomEvent<UserInfoDetail>('userinfo', {
     bubbles: true,
@@ -615,7 +605,7 @@ function fCDASelector(tagName: SCLTag, identity: string): string {
   const [ldInst, prefix, lnClass, lnInst] = childIdentity.split(/[ /.]/);
 
   const matchDoDa = childIdentity.match(
-    /.([A-Z][a-z0-9.]*) ([A-Za-z0-9.]*) \(/
+    /.([A-Z][A-Za-z0-9.]*) ([A-Za-z0-9.]*) \(/
   );
   const doName = matchDoDa && matchDoDa[1] ? matchDoDa[1] : '';
   const daName = matchDoDa && matchDoDa[2] ? matchDoDa[2] : '';
@@ -705,14 +695,14 @@ function extRefIdentity(e: Element): string | number {
   ].map(name => e.getAttribute(name));
 
   const cbPath = srcCBName
-    ? `${serviceType}:${srcCBName} ${srcLDInst ?? ''}/${
-        srcPrefix ?? ''
-      } ${srcLNClass} ${srcLNInst ?? ''}`
+    ? `${serviceType}:${srcCBName} ${srcLDInst ?? ''}/${srcPrefix ?? ''} ${
+        srcLNClass ?? ''
+      } ${srcLNInst ?? ''}`
     : '';
   const dataPath = `${iedName} ${ldInst}/${prefix ?? ''} ${lnClass} ${
     lnInst ?? ''
   } ${doName} ${daName ? daName : ''}`;
-  return `${parentIdentity}>${cbPath} ${dataPath}${
+  return `${parentIdentity}>${cbPath ? cbPath + ' ' : ''}${dataPath}${
     intAddr ? '@' + `${intAddr}` : ''
   }`;
 }
@@ -2440,7 +2430,7 @@ export type Mixin<T extends (...args: any[]) => any> = InstanceType<
 const nameStartChar =
   '[:_A-Za-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|[\u0370-\u037D]' +
   '|[\u037F-\u1FFF]|[\u200C-\u200D]|[\u2070-\u218F]|[\u2C00-\u2FEF]' +
-  '|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|[\u{10000}\\-\u{EFFFF}]';
+  '|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]';
 const nameChar =
   nameStartChar + '|[.0-9-]|\u00B7|[\u0300-\u036F]|[\u203F-\u2040]';
 const name = nameStartChar + '(' + nameChar + ')*';
@@ -2449,16 +2439,15 @@ const nmToken = '(' + nameChar + ')+';
 export const patterns = {
   string:
     '([\u0009-\u000A]|[\u000D]|[\u0020-\u007E]|[\u0085]|[\u00A0-\uD7FF]' +
-    '|[\uE000-\uFFFD]|[\u{10000}\\-\u{10FFFF}])*',
+    '|[\uE000-\uFFFD])*',
   normalizedString:
-    '([\u0020-\u007E]|[\u0085]|[\u00A0-\uD7FF]|[\uE000-\uFFFD]' +
-    '|[\u{10000}\\-\u{10FFFF}])*',
+    '([\u0020-\u007E]|[\u0085]|[\u00A0-\uD7FF]|[\uE000-\uFFFD])*',
   name,
   nmToken,
   names: name + '( ' + name + ')*',
   nmTokens: nmToken + '( ' + nmToken + ')*',
-  decimal: '((-|\\+)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+))',
-  unsigned: '\\+?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)',
+  decimal: '[+-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
+  unsigned: '[+]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
   alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
   alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
   lnClass: '[A-Z]{4,4}',
@@ -2491,6 +2480,26 @@ export function crossProduct<T>(...arrays: T[][]): T[][] {
     (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
     [[]]
   );
+}
+
+/** @returns the depth of `t` if it is an object or array, zero otherwise. */
+export function depth(t: Record<string, unknown>, mem = new WeakSet()): number {
+  if (mem.has(t)) return Infinity;
+  else
+    switch (t?.constructor) {
+      case Object:
+      case Array:
+        mem.add(t);
+        return (
+          1 +
+          Math.max(
+            -1,
+            ...Object.values(t).map(_ => depth(<Record<string, unknown>>_, mem))
+          )
+        );
+      default:
+        return 0;
+    }
 }
 
 export function findFCDAs(extRef: Element): Element[] {

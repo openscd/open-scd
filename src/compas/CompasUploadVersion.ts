@@ -1,7 +1,13 @@
 import {customElement, html, LitElement, TemplateResult} from "lit-element";
 import {get, translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-button';
+
 import {newLogEvent, newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from "../foundation.js";
+
+import '../wizard-textfield.js';
 
 import {CompasExistsIn} from "./CompasExistsIn.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
@@ -11,6 +17,8 @@ import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";
 import {CompasCommentElement} from "./CompasComment.js";
 
 import './CompasChangeSetRadiogroup.js';
+import './CompasComment.js';
+import './CompasLoading.js';
 
 @customElement('compas-upload-version')
 export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
@@ -89,7 +97,7 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
                input.value = file?.name??'';
              }}
       >
-      <wizard-textfield id="filename" required
+      <wizard-textfield id="filename" required readonly
                         label="${translate('compas.uploadVersion.filename')}">
       </wizard-textfield>
 

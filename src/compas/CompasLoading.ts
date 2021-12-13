@@ -1,6 +1,9 @@
 import {customElement, html, LitElement, TemplateResult} from "lit-element";
 import {translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+
 @customElement('compas-loading')
 export class CompasLoadingElement extends LitElement {
   render(): TemplateResult {

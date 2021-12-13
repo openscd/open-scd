@@ -2,6 +2,9 @@ import {customElement, html, LitElement, property, TemplateResult} from "lit-ele
 import {get, translate} from "lit-translate";
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 
+import '@material/mwc-textfield';
+import '@material/mwc-button';
+
 import {newLogEvent, newWizardEvent} from "../foundation.js";
 import {saveDocumentToFile} from "../file.js";
 
@@ -14,6 +17,9 @@ import {createLogEvent} from "../compas-services/foundation.js";
 import {getOpenScdElement, getTypeFromDocName, stripExtensionFromName, updateDocumentInOpenSCD} from "./foundation.js";
 
 import './CompasChangeSetRadiogroup.js';
+import './CompasComment.js';
+import './CompasDivider.js';
+import './CompasLoading.js';
 import './CompasSclTypeRadiogroup.js';
 
 @customElement('compas-save')

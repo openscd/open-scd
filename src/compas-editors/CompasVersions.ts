@@ -1,5 +1,13 @@
 import {css, html, LitElement, property, TemplateResult} from 'lit-element';
 import {get, translate} from 'lit-translate';
+
+import '@material/mwc-fab';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-check-list-item';
+
 import {newLogEvent, newWizardEvent, Wizard} from "../foundation.js";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";

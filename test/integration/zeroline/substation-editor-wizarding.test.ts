@@ -1,19 +1,21 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
-import { regExp, regexString } from '../../foundation.js';
 
 import '../../mock-wizard.js';
-import { WizardingElement } from '../../../src/Wizarding.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import '../../../src/zeroline/substation-editor.js';
+import { regExp, regexString } from '../../foundation.js';
 
 describe('substation-editor wizarding integration', () => {
   let doc: XMLDocument;
-  let parent: WizardingElement;
+  let parent: MockWizard;
 
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+    doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    parent = <WizardingElement>(
+    parent = <MockWizard>(
       await fixture(
         html`<mock-wizard
           ><substation-editor
@@ -30,8 +32,8 @@ describe('substation-editor wizarding integration', () => {
     )).click();
     await parent.updateComplete;
   });
-  it('looks like the latest snapshot', () => {
-    expect(parent.wizardUI.dialog).to.equalSnapshot();
+  it('looks like the latest snapshot', async () => {
+    await expect(parent.wizardUI.dialog).to.equalSnapshot();
   });
   describe('the first input element', () => {
     it('edits the attribute name', async () => {

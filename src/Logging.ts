@@ -6,10 +6,20 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-dialog';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+import '@material/mwc-icon-button-toggle';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-snackbar';
 import { Dialog } from '@material/mwc-dialog';
 import { Snackbar } from '@material/mwc-snackbar';
 
+import './filtered-list.js';
 import {
   CommitEntry,
   ifImplemented,
@@ -25,7 +35,6 @@ import {
   OpenDocEvent,
   SclhistoryEntry,
 } from './foundation.js';
-import { get, translate } from 'lit-translate';
 import { getFilterIcon, iconColors } from './icons.js';
 import { Plugin } from './Plugging.js';
 
@@ -73,7 +82,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     @property()
     diagnoses = new Map<string, IssueDetail[]>();
     @internalProperty()
-    lastIssue!: IssueDetail;
+    latestIssue!: IssueDetail;
 
     @query('#log') logUI!: Dialog;
     @query('#diagnostic') diagnosticUI!: Dialog;
@@ -158,15 +167,11 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
 
     private onIssue(de: IssueEvent): void {
       const issues = this.diagnoses.get(de.detail.validatorId);
-      if (issues && issues[0].statusNumber > de.detail.statusNumber) return;
-      else if (issues && issues[0].statusNumber === de.detail.statusNumber)
-        issues.push(de.detail);
-      else if (issues && issues[0].statusNumber !== de.detail.statusNumber) {
-        issues.length = 0;
-        issues?.push(de.detail);
-      } else this.diagnoses.set(de.detail.validatorId, [de.detail]);
 
-      this.lastIssue = de.detail;
+      if (!issues) this.diagnoses.set(de.detail.validatorId, [de.detail]);
+      else issues?.push(de.detail);
+
+      this.latestIssue = de.detail;
       this.issueUI.close();
       this.issueUI.show();
     }
@@ -318,11 +323,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
       return issueItems.length
         ? issueItems
         : html`<mwc-list-item disabled graphic="icon">
-            <span
-              >${translate(
-                this.history.length ? 'diag.zeroissues' : 'diag.placeholder'
-              )}</span
-            >
+            <span>${translate('diag.placeholder')}</span>
             <mwc-icon slot="graphic">info</mwc-icon>
           </mwc-list-item>`;
     }
@@ -470,7 +471,7 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
         <mwc-snackbar
           id="issue"
           timeoutMs="10000"
-          labelText="${this.lastIssue?.title ??
+          labelText="${this.latestIssue?.title ??
           get('log.snackbar.placeholder')}"
         >
           <mwc-button

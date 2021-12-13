@@ -1,5 +1,8 @@
-import { html } from 'lit-html';
+import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
+
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
 
 import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
@@ -8,7 +11,6 @@ import {
   compareNames,
   createElement,
   EditorAction,
-  getReference,
   Wizard,
   WizardActor,
   WizardInput,
@@ -205,7 +207,6 @@ function guessBasedOnCSWI(doc: XMLDocument): WizardActor {
       new: {
         parent: substation,
         element: voltageLevel,
-        reference: getReference(substation, 'VoltageLevel'),
       },
     });
 

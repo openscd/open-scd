@@ -1,16 +1,19 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-fab';
+import '@material/mwc-icon-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+
+import '../filtered-list.js';
 import {
   createElement,
-  getReference,
   identity,
   newActionEvent,
   newWizardEvent,
 } from '../foundation.js';
 import { styles } from './templates/foundation.js';
-
-import '../filtered-list.js';
 
 import {
   createEnumTypeWizard,
@@ -127,10 +130,6 @@ export default class TemplatesPlugin extends LitElement {
           new: {
             parent: this.doc.documentElement,
             element: createElement(this.doc, 'DataTypeTemplates', {}),
-            reference: getReference(
-              this.doc.documentElement,
-              'DataTypeTemplates'
-            ),
           },
         })
       );

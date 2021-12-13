@@ -1,6 +1,8 @@
 import {customElement, html, LitElement, property, query, TemplateResult} from "lit-element";
 import {translate} from "lit-translate";
 
+import '@material/mwc-button';
+
 import {newPendingStateEvent} from "../foundation.js";
 
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
@@ -9,6 +11,7 @@ import {getOpenScdElement} from "./foundation.js";
 import {SclSelectedEvent} from "./CompasScl.js";
 import {TypeSelectedEvent} from "./CompasSclTypeList.js";
 
+import './CompasDivider.js';
 import './CompasSclTypeList.js';
 import './CompasScl.js';
 

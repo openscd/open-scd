@@ -1,14 +1,14 @@
 import { css, html, TemplateResult } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
+import '@material/mwc-list/mwc-list-item';
+
 import {
   cloneElement,
   Create,
   EditorAction,
-  getReference,
   getValue,
   isPublic,
-  SCLTag,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
@@ -98,7 +98,6 @@ export function addReferencedDataTypes(
       new: {
         parent,
         element: <Element>adjacent.cloneNode(true),
-        reference: getReference(parent, <SCLTag>adjacent.tagName),
       },
     });
   });

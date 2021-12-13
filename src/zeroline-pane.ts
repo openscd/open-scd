@@ -9,18 +9,20 @@ import {
 } from 'lit-element';
 import { translate } from 'lit-translate';
 
-import { isPublic, newWizardEvent } from './foundation.js';
-import { getAttachedIeds } from './zeroline/foundation.js';
+import '@material/mwc-icon-button';
+import '@material/mwc-icon-button-toggle';
+import { IconButton } from '@material/mwc-icon-button';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
-import { wizards } from './wizards/wizard-library.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
-import { IconButton } from '@material/mwc-icon-button';
-import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
-import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { gooseIcon } from './icons.js';
+import { isPublic, newWizardEvent } from './foundation.js';
+import { selectGseControlWizard } from './wizards/gsecontrol.js';
+import { wizards } from './wizards/wizard-library.js';
+import { getAttachedIeds } from './zeroline/foundation.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -121,7 +123,7 @@ export class ZerolinePane extends LitElement {
       </h1>
       ${this.renderIedContainer()}
       ${this.doc?.querySelector(':root > Substation')
-        ? html`<section tabindex="0">
+        ? html`<section>
             ${Array.from(this.doc.querySelectorAll('Substation') ?? [])
               .filter(isPublic)
               .map(
@@ -141,8 +143,7 @@ export class ZerolinePane extends LitElement {
   }
 
   static styles = css`
-    h1,
-    h3 {
+    h1 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
@@ -158,6 +159,10 @@ export class ZerolinePane extends LitElement {
     h1 > nav,
     h1 > abbr > mwc-icon-button {
       float: right;
+    }
+
+    section {
+      padding: 8px 12px 16px;
     }
 
     abbr {

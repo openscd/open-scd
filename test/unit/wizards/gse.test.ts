@@ -1,4 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard.js';
+import { MockWizard } from '../../mock-wizard.js';
+
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   ComplexAction,
   Create,
@@ -11,13 +16,11 @@ import {
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   editGseWizard,
   getMTimeAction,
   updateGSEAction,
 } from '../../../src/wizards/gse.js';
-import { MockWizard } from '../../mock-wizard.js';
 
 describe('gse wizards', () => {
   let doc: XMLDocument;
@@ -25,7 +28,7 @@ describe('gse wizards', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard></mock-wizard>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
@@ -39,7 +42,7 @@ describe('gse wizards', () => {
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
-      expect(element.wizardUI.dialog).to.equalSnapshot();
+      await expect(element.wizardUI.dialog).to.equalSnapshot();
     }).timeout(5000);
   });
 

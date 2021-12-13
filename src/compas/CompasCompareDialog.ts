@@ -2,6 +2,10 @@ import {html, TemplateResult} from "lit-element";
 import {repeat} from "lit-html/directives/repeat";
 import {get, translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-icon';
+
 import {identity, isSame, newWizardEvent, Wizard} from "../foundation.js";
 
 import {getOpenScdElement} from "./foundation.js";

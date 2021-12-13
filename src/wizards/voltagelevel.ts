@@ -1,12 +1,12 @@
 import { html, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '../wizard-textfield.js';
 import {
   cloneElement,
   createElement,
   EditorAction,
   getMultiplier,
-  getReference,
   getValue,
   patterns,
   Wizard,
@@ -111,7 +111,6 @@ export function createAction(parent: Element): WizardActor {
         new: {
           parent,
           element,
-          reference: getReference(parent, 'VoltageLevel'),
         },
       },
     ];

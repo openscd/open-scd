@@ -98,7 +98,7 @@ export const typeNullable: Partial<Record<string, boolean>> = {
 };
 
 const typeBase = {
-  IP: '([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])',
+  IP: '([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])',
   OSI: '[0-9A-F]+',
   OSId: '[0-9]+',
   OSIAPi: '[0-9\u002C]+',
@@ -129,7 +129,7 @@ export const typePattern: Partial<Record<string, string>> = {
   'OSI-NSAP': typeBase.OSI,
   'SNTP-Port': typeBase.port,
   'MMS-Port': typeBase.port,
-  DNSName: '\\S*',
+  DNSName: '[^ ]*',
   'UDP-Port': typeBase.port,
   'TCP-Port': typeBase.port,
   'C37-118-IP-Port':

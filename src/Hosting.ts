@@ -1,16 +1,22 @@
+import { html, property, query, TemplateResult } from 'lit-element';
+import { until } from 'lit-html/directives/until';
+import { translate } from 'lit-translate';
+
+import '@material/mwc-drawer';
+import '@material/mwc-icon';
+import '@material/mwc-icon-button';
+import '@material/mwc-linear-progress';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-tab';
+import '@material/mwc-tab-bar';
+import '@material/mwc-top-app-bar-fixed';
+
 import { Drawer } from '@material/mwc-drawer';
 import { ActionDetail, List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
-import {
-  html,
-  internalProperty,
-  property,
-  query,
-  TemplateResult,
-} from 'lit-element';
-import { until } from 'lit-html/directives/until';
-import { translate } from 'lit-translate';
-import { Mixin, newPendingStateEvent, ValidateEvent } from './foundation.js';
+
+import { Mixin, newPendingStateEvent } from './foundation.js';
 import { LoggingElement } from './Logging.js';
 import { Plugin, PluggingElement, pluginIcons } from './Plugging.js';
 import { SettingElement } from './Setting.js';
@@ -30,7 +36,7 @@ interface MenuItem {
 }
 
 interface Validator {
-  validate: (identity: string, run: number) => Promise<void>;
+  validate: () => Promise<void>;
 }
 
 interface MenuPlugin {
@@ -50,13 +56,12 @@ export function Hosting<
     @property({ type: Number })
     activeTab = 0;
     @property({ attribute: false })
-    validated: Promise<unknown> = Promise.resolve();
+    validated: Promise<void> = Promise.resolve();
 
     @property({ type: string})
     username: string | undefined;
 
-    @internalProperty()
-    statusNumber = 0;
+    private shouldValidate = false;
 
     @query('#menu') menuUI!: Drawer;
 
@@ -134,13 +139,16 @@ export function Hosting<
           icon: plugin.icon || pluginIcons['validator'],
           name: plugin.name,
           action: ae => {
+            if (this.diagnoses.get(plugin.src))
+              this.diagnoses.get(plugin.src)!.length = 0;
+
             this.dispatchEvent(
               newPendingStateEvent(
                 (<Validator>(
                   (<unknown>(
                     (<List>ae.target).items[ae.detail.index].lastElementChild
                   ))
-                )).validate('', ++this.statusNumber)
+                )).validate()
               )
             );
           },
@@ -213,18 +221,24 @@ export function Hosting<
     constructor(...args: any[]) {
       super(...args);
 
-      this.addEventListener('validate', async (e: ValidateEvent) => {
+      this.addEventListener('validate', async () => {
+        this.shouldValidate = true;
+        await this.validated;
+
+        if (!this.shouldValidate) return;
+
+        this.diagnoses.clear();
+        this.shouldValidate = false;
+
         this.validated = Promise.allSettled(
           this.menuUI
             .querySelector('mwc-list')!
             .items.filter(item => item.className === 'validator')
-            .map(item => {
-              const promise = (<Validator>(
-                (<unknown>item.lastElementChild)
-              )).validate(e.detail.identity, ++this.statusNumber);
-              return promise;
-            })
-        );
+            .map(item =>
+              (<Validator>(<unknown>item.lastElementChild)).validate()
+            )
+        ).then();
+        this.dispatchEvent(newPendingStateEvent(this.validated));
       });
 
       this.addEventListener('userinfo', this.onUserInfo);

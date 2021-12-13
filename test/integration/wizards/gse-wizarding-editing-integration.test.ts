@@ -1,7 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { editGseWizard } from '../../../src/wizards/gse.js';
+
+import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
+import { editGseWizard } from '../../../src/wizards/gse.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('gse wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -9,7 +12,7 @@ describe('gse wizarding editing integration', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

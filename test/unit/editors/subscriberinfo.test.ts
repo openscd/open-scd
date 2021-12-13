@@ -1,8 +1,7 @@
 import { expect } from '@open-wc/testing';
-import { ExecutionStatus } from 'fast-check';
-import { Create, isCreate, SimpleAction } from '../../../src/foundation.js';
 
 import { createMissingIEDNameSubscriberInfo } from '../../../src/menu/SubscriberInfo.js';
+import { Create, isCreate, SimpleAction } from '../../../src/foundation.js';
 
 describe('SubscriberInfo', () => {
   describe('for Edition2 and higher files', () => {
@@ -10,7 +9,7 @@ describe('SubscriberInfo', () => {
     let actions: SimpleAction[];
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/subscriberinfo2007.scd')
+      doc = await fetch('/test/testfiles/subscriberinfo2007.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       actions = createMissingIEDNameSubscriberInfo(doc);
@@ -84,7 +83,7 @@ describe('SubscriberInfo', () => {
     let actions: SimpleAction[];
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/subscriberinfo2003.scd')
+      doc = await fetch('/test/testfiles/subscriberinfo2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       actions = createMissingIEDNameSubscriberInfo(doc);

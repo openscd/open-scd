@@ -1,15 +1,14 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
+import '@material/mwc-fab';
+
 import {
   newWizardEvent,
   newActionEvent,
   createElement,
-  getReference,
 } from '../foundation.js';
-
 import { selectors, styles } from './communication/foundation.js';
-
 import './communication/subnetwork-editor.js';
 import { subNetworkWizard } from './communication/subnetwork-editor.js';
 
@@ -25,7 +24,6 @@ export default class CommunicationPlugin extends LitElement {
         new: {
           parent: this.doc.documentElement,
           element: createElement(this.doc, 'Communication', {}),
-          reference: getReference(this.doc.documentElement, 'Communication'),
         },
       })
     );

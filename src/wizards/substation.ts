@@ -1,10 +1,13 @@
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-checkbox';
+import '@material/mwc-formfield';
+
+import '../wizard-textfield.js';
 import {
   createElement,
   EditorAction,
-  getReference,
   getValue,
   newWizardEvent,
   Wizard,
@@ -12,7 +15,6 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { updateNamingAction } from './foundation/actions.js';
-
 import { guessVoltageLevel } from '../editors/substation/guess-wizard.js';
 
 function render(
@@ -58,7 +60,6 @@ export function createAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'Substation'),
       },
     };
 

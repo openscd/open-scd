@@ -1,21 +1,20 @@
 import { html } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+
 import {
   cloneElement,
   createElement,
   EditorAction,
-  getReference,
   getValue,
   isPublic,
   newActionEvent,
   newWizardEvent,
-  SCLTag,
   Wizard,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
 import { getValAction, wizardContent } from './abstractda.js';
 
 export function updateBDaAction(element: Element): WizardActor {
@@ -186,7 +185,6 @@ export function createBDaAction(parent: Element): WizardActor {
         new: {
           parent,
           element,
-          reference: getReference(parent, <SCLTag>element.tagName),
         },
       },
     ];

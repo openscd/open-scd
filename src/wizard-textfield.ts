@@ -8,6 +8,10 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
+import '@material/mwc-icon-button';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-menu';
+import '@material/mwc-switch';
 import { IconButton } from '@material/mwc-icon-button';
 import { Menu } from '@material/mwc-menu';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';

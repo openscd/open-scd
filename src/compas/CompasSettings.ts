@@ -1,6 +1,9 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from 'lit-element';
 import {translate} from 'lit-translate';
 
+import '@material/mwc-textfield';
+import '@material/mwc-button';
+
 import {newWizardEvent} from '../foundation.js';
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
 import {getOpenScdElement} from "./foundation.js";

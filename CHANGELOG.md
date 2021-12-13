@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/openscd/open-scd/compare/v0.7.1...v0.8.0) (2021-12-10)
+
+
+### Features
+
+* **menu/UpdateDescritionABB:** update ABB ExtRef with internal signal description ([#374](https://github.com/openscd/open-scd/issues/374)) ([a3aecf7](https://github.com/openscd/open-scd/commits/a3aecf739ce22abfc1243b1f94a069cc05ad9b86))
+* **SingleLineDiagram:** open onclick ConductingEquipment edit wizard ([fd025a2](https://github.com/openscd/open-scd/commits/fd025a2b1b40e6fea11f91b2a4843ec665c179fa))
+* **templates/dotype-wizard:** add cdc field in create wizard ([#330](https://github.com/openscd/open-scd/issues/330)) ([0298ac5](https://github.com/openscd/open-scd/commits/0298ac51f3c6494fac7d470eff8f1939a56bdb55))
+* **validators/validatetemplate:** trigger validators with editor action ([#300](https://github.com/openscd/open-scd/issues/300)) ([13fbd18](https://github.com/openscd/open-scd/commits/13fbd1873f486aabc1e7c8de58b7544cf7da2eb8))
+* **wizards/dataset:** delete deselected FCDA ([#358](https://github.com/openscd/open-scd/issues/358)) ([c94826d](https://github.com/openscd/open-scd/commits/c94826d856ae9d89224f9e56dbf0a67b4bb7977c))
+* **wizards/fcda:** add data(FCDA) to existing DataSets ([#338](https://github.com/openscd/open-scd/issues/338)) ([423166e](https://github.com/openscd/open-scd/commits/423166ee728571d07d33887b55463799579fe72e)), closes [#339](https://github.com/openscd/open-scd/issues/339) [#345](https://github.com/openscd/open-scd/issues/345)
+
+
+### Bug Fixes
+
+* **editor-container:** minor UI issues ([#371](https://github.com/openscd/open-scd/issues/371)) ([81e1d3d](https://github.com/openscd/open-scd/commits/81e1d3d5c627d075386575253608f6cfe8abdbae))
+* **editor-container:** some UI related issues ([#357](https://github.com/openscd/open-scd/issues/357)) ([1b054b6](https://github.com/openscd/open-scd/commits/1b054b66b91b97876ee79f746ee08b9b18c74cff))
+* **templates/lnodetype-wizard:** deselect optional DOTypes at LNode creation ([#326](https://github.com/openscd/open-scd/issues/326)) ([09e7af5](https://github.com/openscd/open-scd/commits/09e7af5708dba8490ee60ecbe204f4a06dd7b7ce))
+
 ### [0.7.1](https://github.com/openscd/open-scd/compare/v0.7.0...v0.7.1) (2021-10-18)
 
 

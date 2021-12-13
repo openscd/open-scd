@@ -560,6 +560,61 @@ export const generalConductingEquipmentIcon = html`<svg
   />
 </svg>`;
 
+export const connectivityNodeIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <circle
+    stroke="currentColor"
+    fill="currentColor"
+    stroke-width="1"
+    cx="12.5"
+    cy="12.5"
+    r="4"
+  />
+</svg>`;
+
+export const powerTransformerTwoWindingIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25 25"
+>
+  <line
+    x1="12.5"
+    y1="2"
+    x2="12.5"
+    y2="5"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <circle
+    cx="12.5"
+    cy="10"
+    r="5"
+    stroke="currentColor"
+    fill="transparent"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <circle
+    cx="12.5"
+    cy="15"
+    r="5"
+    stroke="currentColor"
+    fill="transparent"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <line
+    x1="12.5"
+    y1="20"
+    x2="12.5"
+    y2="23"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+</svg>`;
+
 export const openSCDIcon = html` <svg
   xmlns="http://www.w3.org/2000/svg"
   style="width:100px;height:100px"

@@ -8,6 +8,10 @@ import {
 } from 'lit-element';
 import { translate, get } from 'lit-translate';
 
+import '@material/mwc-icon-button';
+
+import '../../wizard-textfield.js';
+import './connectedap-editor.js';
 import {
   EditorAction,
   newWizardEvent,
@@ -20,13 +24,9 @@ import {
   patterns,
   compareNames,
   createElement,
-  getReference,
   cloneElement,
 } from '../../foundation.js';
-
 import { styles, WizardOptions, isCreateOptions } from './foundation.js';
-
-import './connectedap-editor.js';
 import { createConnectedApWizard } from './connectedap-editor.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
@@ -149,7 +149,6 @@ export function createSubNetworkAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, 'SubNetwork'),
       },
     };
 

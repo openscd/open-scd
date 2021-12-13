@@ -1,25 +1,35 @@
 import { html } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-button';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { Select } from '@material/mwc-select';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
+import '../../wizard-textfield.js';
+import '../../wizard-select.js';
 import {
   cloneElement,
   Create,
   createElement,
   EditorAction,
   getChildElementsByTagName,
-  getReference,
   getValue,
   identity,
   isPublic,
   newActionEvent,
   newWizardEvent,
   patterns,
-  SCLTag,
   selector,
   Wizard,
   WizardActor,
   WizardInput,
 } from '../../foundation.js';
+import { WizardSelect } from '../../wizard-select.js';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,
@@ -29,12 +39,6 @@ import {
   UpdateOptions,
   WizardOptions,
 } from './foundation.js';
-
-import { List } from '@material/mwc-list';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { Select } from '@material/mwc-select';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { Switch } from '@material/mwc-switch';
 
 function updateDoAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
@@ -97,7 +101,6 @@ function createDoAction(parent: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
@@ -255,8 +258,8 @@ function getAllDataObjects(nsd74: XMLDocument, base: string): Element[] {
 function createNewLNodeType(parent: Element, element: Element): WizardActor {
   return (_: WizardInput[], wizard: Element): EditorAction[] => {
     const selected = Array.from(
-      wizard.shadowRoot!.querySelectorAll('mwc-select')
-    ).filter(select => select.value);
+      wizard.shadowRoot!.querySelectorAll<WizardSelect>('wizard-select')
+    ).filter(select => select.maybeValue);
 
     const actions: Create[] = [];
 
@@ -271,7 +274,6 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
         new: {
           parent: element,
           element: DO,
-          reference: getReference(element, <SCLTag>DO.tagName),
         },
       });
     });
@@ -280,7 +282,6 @@ function createNewLNodeType(parent: Element, element: Element): WizardActor {
       new: {
         parent,
         element,
-        reference: getReference(parent, <SCLTag>element.tagName),
       },
     });
 
@@ -325,17 +326,19 @@ function createLNodeTypeHelperWizard(
             .querySelectorAll(`DOType[cdc="${DO.getAttribute('type')}"]`)
         ).sort(doComparator(name));
 
-        return html`<mwc-select
+        return html`<wizard-select
           fixedMenuPosition
           naturalMenuWidth
           label="${name}"
           ?required=${presCond === 'M'}
+          ?nullable=${presCond !== 'M'}
+          .maybeValue=${null}
           >${validDOTypes.map(
             doType =>
               html`<mwc-list-item value="${doType.getAttribute('id')}"
                 >${doType.getAttribute('id')}</mwc-list-item
               >`
-          )}</mwc-select
+          )}</wizard-select
         >`;
       }),
     },
@@ -356,7 +359,6 @@ function addPredefinedLNodeType(
     new: {
       parent,
       element: newLNodeType,
-      reference: getReference(parent, 'LNodeType'),
     },
   });
 

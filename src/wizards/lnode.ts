@@ -1,11 +1,19 @@
 import { html, render, TemplateResult } from 'lit-html';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-icon';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-list/mwc-list-item';
+import { List } from '@material/mwc-list';
+import { ListBase } from '@material/mwc-list/mwc-list-base';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
+import '../filtered-list.js';
 import {
   createElement,
   EditorAction,
   getChildElementsByTagName,
-  getReference,
   identity,
   isPublic,
   referencePath,
@@ -14,11 +22,6 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
-import { List } from '@material/mwc-list';
-import { ListBase } from '@material/mwc-list/mwc-list-base';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
-import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 /** Description of a `ListItem` representing an `IED` or `LN[0]` */
 interface ItemDescription {
@@ -91,7 +94,6 @@ function createAction(parent: Element, anyln: Element): EditorAction {
     new: {
       parent,
       element,
-      reference: getReference(parent, 'LNode'),
     },
   };
 }

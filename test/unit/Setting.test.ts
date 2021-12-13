@@ -1,17 +1,19 @@
+import { registerTranslateConfig, use } from 'lit-translate';
+
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { registerTranslateConfig, use } from 'lit-translate';
+import './mock-setter.js';
+import { MockSetter } from './mock-setter.js';
 
 import { Button } from '@material/mwc-button';
 
-import { SettingElement, defaults } from '../../src/Setting.js';
-import './mock-setter.js';
+import { defaults } from '../../src/Setting.js';
 
 describe('SettingElement', () => {
-  let element: SettingElement;
+  let element: MockSetter;
   beforeEach(async () => {
     localStorage.clear();
-    element = <SettingElement>await fixture(html`<mock-setter></mock-setter>`);
+    element = <MockSetter>await fixture(html`<mock-setter></mock-setter>`);
   });
 
   it('initially has default settings', () =>

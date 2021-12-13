@@ -1,23 +1,24 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import fc from 'fast-check';
 
-import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
-import { WizardingElement } from '../../../../src/Wizarding.js';
-
 import '../../../mock-wizard.js';
+import { MockWizard } from '../../../mock-wizard.js';
 
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import '../../../../src/editors/communication/subnetwork-editor.js';
+import { regexString, regExp, inverseRegExp } from '../../../foundation.js';
 
 describe('subnetwork-editor wizarding integration', () => {
   describe('edit/add Subnetwork wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><subnetwork-editor
@@ -34,8 +35,8 @@ describe('subnetwork-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     describe('the first input element', () => {
       it('edits the attribute name', async () => {
@@ -108,13 +109,13 @@ describe('subnetwork-editor wizarding integration', () => {
   });
   describe('add ConnectedAP wizard', () => {
     let doc: XMLDocument;
-    let parent: WizardingElement;
+    let parent: MockWizard;
 
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      parent = <WizardingElement>(
+      parent = <MockWizard>(
         await fixture(
           html`<mock-wizard
             ><subnetwork-editor
@@ -131,8 +132,8 @@ describe('subnetwork-editor wizarding integration', () => {
       )).click();
       await parent.updateComplete;
     });
-    it('looks like the latest snapshot', () => {
-      expect(parent.wizardUI.dialog).to.equalSnapshot();
+    it('looks like the latest snapshot', async () => {
+      await expect(parent.wizardUI.dialog).to.equalSnapshot();
     });
     it('display all access point in the project', async () => {
       expect(parent.wizardUI.dialog).to.exist;

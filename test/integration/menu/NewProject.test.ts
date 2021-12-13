@@ -1,5 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../../../src/open-scd.js';
 import NewProjectPlugin from '../../../src/menu/NewProject.js';
 import { OpenSCD } from '../../../src/open-scd.js';
 
@@ -12,9 +13,12 @@ describe('NewProject loader', () => {
     parent = await fixture(html`
       <open-scd><new-project-plugin></new-project-plugin></open-scd>
 
-      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet">
-      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet">
-      <link href="public/google/icons/material-icons-outlined.css" rel="stylesheet">
+      <link href="public/google/fonts/roboto-v27.css" rel="stylesheet" />
+      <link href="public/google/fonts/roboto-mono-v13.css" rel="stylesheet" />
+      <link
+        href="public/google/icons/material-icons-outlined.css"
+        rel="stylesheet"
+      />
     `);
 
     element = <NewProjectPlugin>parent.querySelector('new-project-plugin')!;

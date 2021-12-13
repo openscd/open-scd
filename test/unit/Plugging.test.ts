@@ -1,20 +1,20 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
-import { PluggingElement } from '../../src/Plugging.js';
-
 import './mock-plugger.js';
+import { MockPlugger } from './mock-plugger.js';
+
 import { TextField } from '@material/mwc-textfield';
 
 describe('PluggingElement', () => {
-  let element: PluggingElement;
+  let element: MockPlugger;
   let doc: XMLDocument;
 
   afterEach(() => localStorage.clear());
   beforeEach(async () => {
-    doc = await fetch('/base/test/testfiles/valid2007B4.scd')
+    doc = await fetch('/test/testfiles/valid2007B4.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-    element = <PluggingElement>(
+    element = <MockPlugger>(
       await fixture(
         html`<mock-plugger .doc=${doc} docName="testDoc"></mock-plugger>`
       )

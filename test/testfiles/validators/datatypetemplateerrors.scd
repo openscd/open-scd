@@ -1,265 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SCL xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL" version="2007" revision="B">
+<SCL xmlns:sxy="http://www.iec.ch/61850/2003/SCLcoordinates" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:txy="http://www.iec.ch/61850/2003/Terminal" xmlns:scl="http://www.iec.ch/61850/2003/SCL" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IEC_60870_5_104="http://www.iec.ch/61850-80-1/2007/SCL" version="2007" revision="B" release="4">
 	<Header id="TrainingIEC61850" version="1" revision="143" toolID="IEC 61850 System Configurator, Version: V5.90 " nameStructure="IEDName">
 		<Text>TrainingIEC61850</Text>
 		<History>
 			<Hitem version="1" revision="143" when="Wednesday, September 25, 2019 9:11:36 AM" who="Licenced User: OMICRON electronics GmbH JakVog00 Machine: JAKVOG00LW01 User: JakVog00" what="Station is upgraded from IEC 61850 System Configurator, Version: V5.80 HF1 to V5.90 ." why="IEC 61850 System Configurator Automatic Startup: Insert Comment" />
 		</History>
 	</Header>
-	<Substation name="AA1" desc="Substation">
-		<VoltageLevel name="E1" desc="Voltage Level" nomFreq="50.0" numPhases="3">
-			<Voltage unit="V" multiplier="k">110.0</Voltage>
-			<Bay name="COUPLING_BAY" desc="Bay">
-				<LNode iedName="IED2" ldInst="CBSW" lnClass="LPHD" lnInst="1"/>
-				<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="3"/>
-				<ConductingEquipment type="CBR" name="QA1" desc="coupling field ciscuit breaker"/>
-				<ConductingEquipment type="DIS" name="QB1" desc="busbar disconnector QB1">
-					<LNode iedName="IED2" ldInst="CBSW" lnClass="XSWI" lnInst="2"/>
-				</ConductingEquipment>
-				<ConductingEquipment type="DIS" name="QB2" desc="busbar disconnector QB2"/>
-				<ConductingEquipment type="DIS" name="QC11" desc="busbar earth switch QC11">
-					<Terminal name="T1" connectivityNode="AA1/E1/COUPLING_BAY/L2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="L2"/>
-					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T2" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
-				</ConductingEquipment>
-				<ConductingEquipment type="DIS" name="QC21" desc="busbar disconnector Q12">
-					<Terminal connectivityNode="AA1/E1/COUPLING_BAY/grounded" name="T1" substationName="AA1" voltageLevelName="E1" bayName="COUPLING_BAY" cNodeName="grounded"/>
-				</ConductingEquipment>
-                <ConnectivityNode pathName="AA1/E1/COUPLING_BAY/L2" name="L2"/>
-			</Bay>
-			<Bay name="Bay2" desc="Bay2">
-			</Bay>
-		</VoltageLevel>
-		<VoltageLevel name="J1" desc="Voltage Level">
-			<Voltage unit="V" multiplier="k">20</Voltage>
-			<Bay name="Bay1" desc="Bay1">
-			</Bay>
-		</VoltageLevel>
-	</Substation>
-	<Communication>
-		<SubNetwork name="StationBus" desc="desc" type="8-MMS">
-			<BitRate unit="b/s">100.0</BitRate>
-			<ConnectedAP iedName="IED1" apName="P1">
-				<Address>
-					<P type="IP">192.168.210.111</P>
-					<P type="IP-SUBNET">255.255.255.0</P>
-					<P type="IP-GATEWAY">192.168.210.1</P>
-					<P type="OSI-AP-Title">1,3,9999,23</P>
-					<P type="OSI-AE-Qualifier">23</P>
-					<P type="OSI-PSEL">00000001</P>
-					<P type="OSI-SSEL">0001</P>
-					<P type="OSI-TSEL">0001</P>
-				</Address>
-			</ConnectedAP>
-		</SubNetwork>
-		<SubNetwork name="ProcessBus" type="8-MMS">
-			<ConnectedAP iedName="IED2" apName="P1">
-				<Address>
-					<P type="IP">192.168.0.111</P>
-					<P type="IP-SUBNET">255.255.255.0</P>
-					<P type="IP-GATEWAY">192.168.210.1</P>
-					<P type="OSI-AP-Title">1,3,9999,23</P>
-					<P type="OSI-AE-Qualifier">23</P>
-					<P type="OSI-PSEL">00000001</P>
-					<P type="OSI-SSEL">0001</P>
-					<P type="OSI-TSEL">0001</P>
-				</Address>
-			</ConnectedAP>
-		</SubNetwork>
-	</Communication>
-	<IED name="IED1" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
-		<Services>
-			<DynAssociation />
-			<GetDirectory />
-			<GetDataObjectDefinition />
-			<DataObjectDirectory />
-			<GetDataSetValue />
-			<SetDataSetValue />
-			<DataSetDirectory />
-			<ConfDataSet modify="false" max="3" />
-			<DynDataSet max="42" />
-			<ReadWrite />
-			<ConfReportControl bufConf="false" max="10"/>
-			<GetCBValues />
-			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
-			<GOOSE max="1" />
-			<GSSE max="0" />
-			<ConfLNs fixPrefix="true" fixLnInst="true" />
-		</Services>
-		<AccessPoint name="P1">
-			<Server>
-				<Authentication none="true" />
-				<LDevice inst="CircuitBreaker_CB1">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">						
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="CSWI" inst="1" lnType="Dummy.CSWIwithoutCtlModel">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN prefix="CB" lnClass="XCBR" inst="2" lnType="Dummy.XCBR1">						
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN prefix="CB" lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>sbo-with-enhanced-security</Val>
-							</DAI>
-						</DOI>
-					</LN>
-				</LDevice>
-				<LDevice inst="Disconnectors">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
-					<LN prefix="DC" lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN prefix="DC" lnClass="CSWI" inst="1" lnType="Dummy.CSWI"/>
-					<LN prefix="DC" lnClass="CILO" inst="1" lnType="Dummy.CILO"/>
-					<LN lnClass="XSWI" inst="3" lnType="Dummy.XSWI1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="CSWI" inst="3" lnType="Dummy.CSWI"/>
-					<LN lnClass="CILO" inst="3" lnType="Dummy.CILO"/>
-					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>direct-with-normal-security</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="CSWI" inst="2" lnType="Dummy.CSWIwithoutCtlModel">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>sbo-with-normal-security</Val>
-							</DAI>
-						</DOI>
-					</LN>
-				</LDevice>
-			</Server>
-		</AccessPoint>
-	</IED>
-	<IED name="IED2" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
-		<Services>
-			<DynAssociation />
-			<GetDirectory />
-			<GetDataObjectDefinition />
-			<DataObjectDirectory />
-			<GetDataSetValue />
-			<SetDataSetValue />
-			<DataSetDirectory />
-			<ConfDataSet modify="false" max="3" />
-			<DynDataSet max="42" />
-			<ReadWrite />
-			<ConfReportControl max="10" />
-			<GetCBValues />
-			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
-			<GOOSE max="1" />
-			<GSSE max="0" />
-			<ConfLNs fixPrefix="true" fixLnInst="true" />
-		</Services>
-		<AccessPoint name="P1">
-			<Server>
-				<Authentication />
-				<LDevice inst="CBSW">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
-					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="XSWI" inst="1" lnType="Dummy.XSWI1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="XSWI" inst="2" lnType="Dummy.XSWI1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="XSWI" inst="3" lnType="Dummy.XSWI1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="GGIO" inst="1" lnType="Dummy.GGIO1"/>
-				</LDevice>
-				<LDevice inst="CircuitBreaker_CB1">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
-					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>status-only</Val>
-							</DAI>
-						</DOI>
-					</LN>
-					<LN lnClass="CSWI" inst="1" lnType="Dummy.CSWIwithoutCtlModel">
-						<DOI name="Pos">
-							<DAI name="ctlModel">
-								<Val>direct-with-enhanced-security</Val>
-							</DAI>
-						</DOI>
-					</LN>
-				</LDevice>
-			</Server>
-		</AccessPoint>
-	</IED>
-	<IED name="IED3" type="DummyIED" manufacturer="DummyManufactorer" configVersion="1" originalSclVersion="2007" originalSclRevision="B" owner="DummyOwner">
-		<Services>
-			<DynAssociation />
-			<GetDirectory />
-			<GetDataObjectDefinition />
-			<DataObjectDirectory />
-			<GetDataSetValue />
-			<SetDataSetValue />
-			<DataSetDirectory />
-			<ConfDataSet modify="false" max="3" />
-			<DynDataSet max="42" />
-			<ReadWrite />
-			<ConfReportControl bufConf="false" max="10"/>
-			<GetCBValues />
-			<ReportSettings rptID="Dyn" optFields="Dyn" bufTime="Dyn" trgOps="Dyn" intgPd="Dyn" resvTms="true" owner="true" />
-			<GOOSE max="1" />
-			<GSSE max="0" />
-			<ConfLNs fixPrefix="true" fixLnInst="true" />
-		</Services>
-		<AccessPoint name="P1">
-			<Server>
-				<Authentication none="true" />
-				<LDevice inst="CircuitBreaker_CB1">
-					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0"/>
-				</LDevice>
-			</Server>
-		</AccessPoint>
-	</IED>
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
 			<DO name="Mod" type="Dummy.LLN0.Mod" />
@@ -314,6 +60,20 @@
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
 			<DO name="Ind1" type="Dummy.SPS" />
 			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
+		</LNodeType>
+		<LNodeType lnClass="GGIO" id="Dummy.invalidChild">
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="NamPlt" />
+			<DO name="Ind1" type="Dummy.SPS" />
+			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
+		</LNodeType>
+		<LNodeType lnClass="GGIO" id="Dummy.badGGIO1">
+			<DO name="Beh" type="Dummy.LLN0.Beh" />
+			<DO name="NamPlt" type="Dummy.XCBR1.badNamPlt" />
+			<DO name="Ind1" type="Dummy.SPS" />
+			<DO name="SPCSO1" type="Dummy.LPHD1.Sim" />
+		</LNodeType>
+		<LNodeType id="Dummy.MissingLnClass">
 		</LNodeType>
 		<DOType cdc="ENC" id="Dummy.LLN0.Mod">
 			<DA fc="ST" name="stVal" bType="Enum" type="Beh" />
@@ -371,9 +131,9 @@
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
 			<DA fc="CO" name="SBO" bType="ObjRef" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.Cancel" />
 		</DOType>
         <DOType cdc="SPC" id="Dummy.SPC2">
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
@@ -389,8 +149,8 @@
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.Cancel" />
 		</DOType>
         <DOType cdc="SPC" id="Dummy.SPC1">
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
@@ -406,8 +166,8 @@
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.Cancel" />
 		</DOType>
         <DOType cdc="SPC" id="Dummy.SPC8">
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
@@ -423,8 +183,8 @@
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.SBOw" />
 		</DOType>
         <DOType cdc="SPC" id="Dummy.SPC3">
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
@@ -470,7 +230,7 @@
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.Operfalse" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.Operfalse" />
 		</DOType>
         <DOType cdc="SPC" id="Dummy.SPC6">
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
@@ -486,9 +246,9 @@
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOwfalse" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancel" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.SBOwfalse" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.Oper" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.Cancel" />
 		</DOType>
         <DOType cdc="SPC" id="Dummy.SPC7">
 			<DA fc="ST" name="stVal" bType="BOOLEAN" />
@@ -504,9 +264,9 @@
 			<DA fc="CF" name="sboTimeout" bType="INT32U" />
 			<DA fc="CF" name="operTimeout" bType="INT32U" />
 			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LPHD1.Sim.SBOw" />
-			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LPHD1.Sim.Cancelfalse" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.Oper" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.Cancelfalse" />
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.XCBR1.Pos">
 			<DA fc="ST" name="stVal" bType="Dbpos" />
@@ -514,6 +274,13 @@
 			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
 				<Val>status-only</Val>
 			</DA>
+			<DA fc="DC" name="d" bType="VisString255" />
+		</DOType>
+		<DOType cdc="DPC" id="Dummy.XCBR1.Pos1">
+			<DA fc="ST" name="stVal" bType="Dbpos" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel"/>
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos1">
@@ -536,7 +303,12 @@
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 		</DOType>
-		<DOType cdc="LPH" id="Dummy.XCBR1.NamPlt">
+		<DOType cdc="LPL" id="Dummy.XCBR1.NamPlt">
+			<DA fc="DC" name="vendor" bType="VisString255" />
+			<DA fc="DC" name="swRev" bType="VisString255" />
+			<DA fc="DC" name="d" bType="VisString255" />
+		</DOType>
+		<DOType cdc="LPH" id="Dummy.XCBR1.badNamPlt">
 			<DA fc="DC" name="vendor" bType="VisString255" />
 			<DA fc="DC" name="swRev" bType="VisString255" />
 			<DA fc="DC" name="d" bType="VisString255" />
@@ -562,6 +334,59 @@
             <DA fc="CF" dchg="true" name="units" bType="Struct" type="Dummy.unit"/>
             <DA fc="CF" dchg="true" name="sVC" bType="Struct" type="Dummy.ScaledValueConfig"/>
         </DOType>
+		<DOType  id="Dummy.MissingCDC">
+		</DOType>
+		<DOType cdc="SPC" id="Dummy.MissingType">
+			<DA fc="ST" name="stVal" bType="BOOLEAN" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel">
+                <Val>sbo-with-enhanced-security</Val>
+            </DA>
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="DC" name="d" bType="VisString255" />
+			<DA fc="CO" name="SBOw" bType="Struct"/>
+			<DA fc="CO" name="Oper" bType="Struct"/>
+			<DA fc="CO" name="Cancel" bType="Struct"/>
+		</DOType>
+		<DOType cdc="WYE" id="Dummy.badWYE">
+            <DA fc="DC" name="d" bType="VisString255" valKind="RO"/>
+            <SDO name="phsA" />
+            <SDO name="phsB" type="Dummy.CMV"/>
+            <SDO name="phsC" type="Dummy.CMV"/>
+        </DOType>
+		<DOType cdc="WYE" id="Dummy.WYE">
+            <DA fc="DC" name="d" bType="VisString255" valKind="RO"/>
+            <SDO name="phsA" type="Dummy.CMV"/>
+            <SDO name="phsB" type="Dummy.CMV"/>
+            <SDO name="phsC" type="Dummy.CMV"/>
+        </DOType>
+		<DOType cdc="CMV" id="Dummy.CMV">
+            <DA fc="MX" name="instCVal" bType="Struct" type="Dummy.Vector"/>
+            <DA fc="MX" dchg="true" name="cVal" bType="Struct" type="Dummy.Vector"/>
+            <DA fc="MX" dchg="true" name="range" bType="Enum" type="Dummy_RangeKind"/>
+            <DA fc="MX" qchg="true" name="q" bType="Quality"/>
+            <DA fc="MX" name="t" bType="Timestamp"/>
+            <DA fc="CF" name="units" bType="Struct" type="Dummy.Unit"/>
+            <DA fc="CF" name="db" bType="INT32U"/>
+            <DA fc="CF" name="zeroDb" bType="INT32U" valKind="RO"/>
+        </DOType>
+		<DAType id="Dummy.Vector">
+            <BDA name="mag" bType="Struct" type="Dummy.AnalogueValue"/>
+            <BDA name="ang" bType="Struct" type="Dummy.AnalogueValue"/>
+        </DAType>
+		<DAType id="Dummy.AnalogueValue">
+            <BDA name="f" bType="FLOAT32"/>
+        </DAType>
+		<DAType id="Dummy.Unit">
+            <BDA name="SIUnit" bType="Enum" valKind="RO" type="Dummy.UnitKink"/>
+            <BDA name="multiplier" bType="Enum" valKind="RO" type="Dummy.MultiplierKind"/>
+        </DAType>
 		<DAType id="Dummy_origin">
 			<BDA name="orCat" bType="Enum" type="Dummy_orCategory" />
 			<BDA name="orIdent" bType="Octet64" />
@@ -581,7 +406,7 @@
 			<BDA name="T" bType="Timestamp" />
 			<BDA name="Test" bType="BOOLEAN" />
 		</DAType>
-        <DAType id="Dummy.LPHD1.Sim.SBOw">
+        <DAType id="Dummy.SBOw">
 			<BDA name="ctlVal" bType="BOOLEAN" />
 			<BDA name="origin" bType="Struct" type="Dummy_origin" />
 			<BDA name="ctlNum" bType="INT8U" />
@@ -589,27 +414,35 @@
 			<BDA name="Test" bType="BOOLEAN" />
 			<BDA name="Check" bType="Check" />
 		</DAType>
-		<DAType id="Dummy.LPHD1.Sim.Operfalse">
+		<DAType id="Dummy.Oper">
+			<BDA name="ctlVal" bType="BOOLEAN" />
+			<BDA name="origin" bType="Struct" type="Dummy_origin" />
+			<BDA name="ctlNum" bType="INT8U" />
+			<BDA name="T" bType="Timestamp" />
+			<BDA name="Test" bType="BOOLEAN" />
+			<BDA name="Check" bType="Check" />
+		</DAType>
+		<DAType id="Dummy.Operfalse">
 			<BDA name="ctlVal" bType="BOOLEAN" />
 			<BDA name="origin" bType="Struct" type="Dummy_origin" />
 			<BDA name="T" bType="Timestamp" />
 			<BDA name="Test" bType="BOOLEAN" />
 			<BDA name="Check" bType="Check" />
 		</DAType>
-        <DAType id="Dummy.LPHD1.Sim.SBOwfalse">
+        <DAType id="Dummy.SBOwfalse">
 			<BDA name="ctlVal" bType="BOOLEAN" />
 			<BDA name="ctlNum" bType="INT8U" />
 			<BDA name="T" bType="Timestamp" />
 			<BDA name="Test" bType="BOOLEAN" />
 			<BDA name="Check" bType="Check" />
 		</DAType>
-        <DAType id="Dummy.LPHD1.Sim.Cancelfalse">
+        <DAType id="Dummy.Cancelfalse">
 			<BDA name="origin" bType="Struct" type="Dummy_origin" />
 			<BDA name="ctlNum" bType="INT8U" />
 			<BDA name="T" bType="Timestamp" />
 			<BDA name="Test" bType="BOOLEAN" />
 		</DAType>
-		<DAType id="Dummy.LPHD1.Sim.Cancel">
+		<DAType id="Dummy.Cancel">
 			<BDA name="ctlVal" bType="BOOLEAN" />
 			<BDA name="origin" bType="Struct" type="Dummy_origin" />
 			<BDA name="ctlNum" bType="INT8U" />
@@ -620,12 +453,12 @@
             <BDA name="offset" bType="FLOAT32"/>
         </DAType>
         <DAType id="Dummy.RangeConfig">
-            <BDA name="hhLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="hLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="lLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="llLim" bType="Struct" type="AnalogueValue_f"/>
-            <BDA name="min" bType="Struct" valKind="RO" type="AnalogueValue_f"/>
-            <BDA name="max" bType="Struct" valKind="RO" type="AnalogueValue_f"/>
+            <BDA name="hhLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="hLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="lLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="llLim" bType="Struct" type="Dummy.AnalogueValue_f"/>
+            <BDA name="min" bType="Struct" valKind="RO" type="Dummy.AnalogueValue_f"/>
+            <BDA name="max" bType="Struct" valKind="RO" type="Dummy.AnalogueValue_f"/>
         </DAType>
         <DAType id="Dummy.AnalogueValue_f">
             <BDA name="f" bType="FLOAT32"/>
@@ -657,5 +490,106 @@
 			<EnumVal ord="7">maintenance</EnumVal>
 			<EnumVal ord="8">process</EnumVal>
 		</EnumType>
+		<EnumType id="Dummy_RangeKind">
+            <EnumVal ord="0">normal</EnumVal>
+            <EnumVal ord="1">high</EnumVal>
+            <EnumVal ord="2">low</EnumVal>
+            <EnumVal ord="3">high-high</EnumVal>
+            <EnumVal ord="4">low-low</EnumVal>
+        </EnumType>
+		<EnumType id="Dummy.UnitKink">
+            <EnumVal ord="1"></EnumVal>
+            <EnumVal ord="2">m</EnumVal>
+            <EnumVal ord="3">kg</EnumVal>
+            <EnumVal ord="4">s</EnumVal>
+            <EnumVal ord="5">A</EnumVal>
+            <EnumVal ord="6">K</EnumVal>
+            <EnumVal ord="7">mol</EnumVal>
+            <EnumVal ord="8">cd</EnumVal>
+            <EnumVal ord="9">deg</EnumVal>
+            <EnumVal ord="10">rad</EnumVal>
+            <EnumVal ord="11">sr</EnumVal>
+            <EnumVal ord="21">Gy</EnumVal>
+            <EnumVal ord="22">Bq</EnumVal>
+            <EnumVal ord="23">°C</EnumVal>
+            <EnumVal ord="24">Sv</EnumVal>
+            <EnumVal ord="25">F</EnumVal>
+            <EnumVal ord="26">C</EnumVal>
+            <EnumVal ord="27">S</EnumVal>
+            <EnumVal ord="28">H</EnumVal>
+            <EnumVal ord="29">V</EnumVal>
+            <EnumVal ord="30">ohm</EnumVal>
+            <EnumVal ord="31">J</EnumVal>
+            <EnumVal ord="32">N</EnumVal>
+            <EnumVal ord="33">Hz</EnumVal>
+            <EnumVal ord="34">lx</EnumVal>
+            <EnumVal ord="35">Lm</EnumVal>
+            <EnumVal ord="36">Wb</EnumVal>
+            <EnumVal ord="37">T</EnumVal>
+            <EnumVal ord="38">W</EnumVal>
+            <EnumVal ord="39">Pa</EnumVal>
+            <EnumVal ord="41">m²</EnumVal>
+            <EnumVal ord="42">m³</EnumVal>
+            <EnumVal ord="43">m/s</EnumVal>
+            <EnumVal ord="44">m/s²</EnumVal>
+            <EnumVal ord="45">m³/s</EnumVal>
+            <EnumVal ord="46">m/m³</EnumVal>
+            <EnumVal ord="47">M</EnumVal>
+            <EnumVal ord="48">kg/m³</EnumVal>
+            <EnumVal ord="49">m²/s</EnumVal>
+            <EnumVal ord="50">W/m K</EnumVal>
+            <EnumVal ord="51">J/K</EnumVal>
+            <EnumVal ord="52">ppm</EnumVal>
+            <EnumVal ord="53">1/s</EnumVal>
+            <EnumVal ord="54">rad/s</EnumVal>
+            <EnumVal ord="61">VA</EnumVal>
+            <EnumVal ord="62">Watts</EnumVal>
+            <EnumVal ord="63">VAr</EnumVal>
+            <EnumVal ord="64">phi</EnumVal>
+            <EnumVal ord="65">cos(phi)</EnumVal>
+            <EnumVal ord="66">Vs</EnumVal>
+            <EnumVal ord="67">V²</EnumVal>
+            <EnumVal ord="68">As</EnumVal>
+            <EnumVal ord="69">A²</EnumVal>
+            <EnumVal ord="70">A²t</EnumVal>
+            <EnumVal ord="71">VAh</EnumVal>
+            <EnumVal ord="72">Wh</EnumVal>
+            <EnumVal ord="73">VArh</EnumVal>
+            <EnumVal ord="74">V/Hz</EnumVal>
+            <EnumVal ord="75">Hz/s</EnumVal>
+            <EnumVal ord="76">char</EnumVal>
+            <EnumVal ord="77">char/s</EnumVal>
+            <EnumVal ord="78">kgm²</EnumVal>
+            <EnumVal ord="79">dB</EnumVal>
+            <EnumVal ord="80">J/Wh</EnumVal>
+            <EnumVal ord="81">W/s</EnumVal>
+            <EnumVal ord="82">l/s</EnumVal>
+            <EnumVal ord="83">dBm</EnumVal>
+            <EnumVal ord="84">h</EnumVal>
+            <EnumVal ord="85">min</EnumVal>
+        </EnumType>
+		<EnumType id="Dummy.MultiplierKind">
+            <EnumVal ord="-24">y</EnumVal>
+            <EnumVal ord="-21">z</EnumVal>
+            <EnumVal ord="-18">a</EnumVal>
+            <EnumVal ord="-15">f</EnumVal>
+            <EnumVal ord="-12">p</EnumVal>
+            <EnumVal ord="-9">n</EnumVal>
+            <EnumVal ord="-6">µ</EnumVal>
+            <EnumVal ord="-3">m</EnumVal>
+            <EnumVal ord="-2">c</EnumVal>
+            <EnumVal ord="-1">d</EnumVal>
+            <EnumVal ord="0"></EnumVal>
+            <EnumVal ord="1">da</EnumVal>
+            <EnumVal ord="2">h</EnumVal>
+            <EnumVal ord="3">k</EnumVal>
+            <EnumVal ord="6">M</EnumVal>
+            <EnumVal ord="9">G</EnumVal>
+            <EnumVal ord="12">T</EnumVal>
+            <EnumVal ord="15">P</EnumVal>
+            <EnumVal ord="18">E</EnumVal>
+            <EnumVal ord="21">Z</EnumVal>
+            <EnumVal ord="24">Y</EnumVal>
+        </EnumType>
 	</DataTypeTemplates>
 </SCL>

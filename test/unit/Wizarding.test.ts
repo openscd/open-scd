@@ -1,9 +1,9 @@
 import { expect, fixture, html } from '@open-wc/testing';
 
+import '../mock-wizard.js';
+
 import { newWizardEvent } from '../../src/foundation.js';
 import { WizardingElement } from '../../src/Wizarding.js';
-
-import '../mock-wizard.js';
 
 describe('WizardingElement', () => {
   let element: WizardingElement;
@@ -16,7 +16,8 @@ describe('WizardingElement', () => {
   it('starts out with an empty workflow', () =>
     expect(element).property('workflow').to.be.empty);
 
-  it('shows no wizard-dialog', () => expect(element).shadowDom.to.be.empty);
+  it('shows no wizard-dialog', async () =>
+    await expect(element).shadowDom.to.be.empty);
 
   it('adds a wizard to the workflow on non-null WizardEvent', () => {
     element.dispatchEvent(newWizardEvent([{ title: 'Test Page 1' }]));

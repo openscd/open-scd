@@ -1,14 +1,17 @@
+import { expect, fixture, html } from '@open-wc/testing';
+
+import '../../mock-wizard-editor.js';
+import { MockWizardEditor } from '../../mock-wizard-editor.js';
+
 import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { expect, fixture, html } from '@open-wc/testing';
-import { FilteredList } from '../../../src/filtered-list.js';
 
-import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   editGseControlWizard,
   selectGseControlWizard,
 } from '../../../src/wizards/gsecontrol.js';
-import { MockWizardEditor } from '../../mock-wizard-editor.js';
+import { FilteredList } from '../../../src/filtered-list.js';
+import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('gsecontrol wizarding editing integration', () => {
   let doc: XMLDocument;
@@ -16,7 +19,7 @@ describe('gsecontrol wizarding editing integration', () => {
 
   beforeEach(async () => {
     element = await fixture(html`<mock-wizard-editor></mock-wizard-editor>`);
-    doc = await fetch('/base/test/testfiles/wizards/gsecontrol.scd')
+    doc = await fetch('/test/testfiles/wizards/gsecontrol.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });

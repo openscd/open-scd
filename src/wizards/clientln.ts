@@ -1,11 +1,15 @@
 import { html } from 'lit-element';
 import { get } from 'lit-translate';
 
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-icon';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+
+import '../filtered-list.js';
 import {
   createElement,
-  getReference,
   identity,
-  newWizardEvent,
   pathParts,
   selector,
   Wizard,
@@ -13,13 +17,8 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
-import { List } from '@material/mwc-list';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-
-import { openCommunicationMappingWizard } from './commmap-wizards.js';
 import { clientIcon } from '../icons.js';
+import { openCommunicationMappingWizard } from './commmap-wizards.js';
 
 function getPath(identity: string | number): string {
   if (typeof identity !== 'string') return '';
@@ -159,10 +158,6 @@ function addClientLnAction(doc: XMLDocument): WizardActor {
             new: {
               parent: cb.querySelector('RptEnabled')!,
               element,
-              reference: getReference(
-                cb.querySelector('RptEnabled')!,
-                'ClientLN'
-              ),
             },
           });
         }

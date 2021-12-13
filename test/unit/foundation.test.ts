@@ -23,6 +23,7 @@ import {
   SCLTag,
   getChildElementsByTagName,
   cloneElement,
+  depth,
 } from '../../src/foundation.js';
 
 import { MockAction } from './mock-actions.js';
@@ -41,12 +42,12 @@ describe('foundation', () => {
 
   beforeEach(async () => {
     scl1 = (
-      await fetch('/base/test/testfiles/valid2007B4.scd')
+      await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;
     scl2 = (
-      await fetch('/base/test/testfiles/valid2003.scd')
+      await fetch('/test/testfiles/valid2003.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'))
     ).documentElement;
@@ -427,7 +428,7 @@ describe('foundation', () => {
   describe('findControlBlocks', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/comm-map.scd')
+      doc = await fetch('/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -459,7 +460,7 @@ describe('foundation', () => {
   describe('findFCDAs', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/comm-map.scd')
+      doc = await fetch('/test/testfiles/comm-map.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -492,7 +493,7 @@ describe('foundation', () => {
   describe('getChildElementsByTagName', () => {
     let doc: Document;
     beforeEach(async () => {
-      doc = await fetch('/base/test/testfiles/lnodewizard.scd')
+      doc = await fetch('/test/testfiles/lnodewizard.scd')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     });
@@ -544,5 +545,33 @@ describe('foundation', () => {
       expect(newElement.attributes.length).to.equal(1);
       expect(newElement).to.not.have.attribute('attr1');
     });
+  });
+
+  describe('depth', () => {
+    const circular = { a: { b: {} }, c: {} };
+    circular.a.b = circular;
+
+    const fiveDeep: unknown = [
+      'first level',
+      2,
+      {
+        a: 'second level',
+        b: 2,
+        c: [
+          'third level',
+          { a: 'fourth level', b: 2, c: { a: 'fifth level!' } },
+        ],
+      },
+      'test',
+    ];
+
+    it("returns the given object's or array's depth", () =>
+      expect(depth(<Record<string, unknown>>fiveDeep)).to.equal(5));
+
+    it('returns zero if given something other than an object or array', () =>
+      expect(depth(<Record<string, unknown>>(<unknown>'test'))).to.equal(0));
+
+    it('returns Infinity if given a circularly defined object or array', () =>
+      expect(depth(circular)).to.not.be.finite);
   });
 });

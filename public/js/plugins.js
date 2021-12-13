@@ -7,6 +7,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Single Line Diagram',
+    src: '/src/editors/SingleLineDiagram.js',
+    icon: 'edit',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Communication',
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
@@ -90,6 +97,14 @@ export const officialPlugins = [
     name: 'Subscriber Update',
     src: '/src/menu/SubscriberInfo.js',
     default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
+    name: 'Update desc (ABB)',
+    src: '/src/menu/UpdateDescriptionABB.js',
+    default: false,
     kind: 'menu',
     requireDoc: true,
     position: 'middle'

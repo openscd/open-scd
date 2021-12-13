@@ -1,5 +1,6 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
+import '../../../src/wizard-textfield.js';
 import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
 import { updateNamingAction } from '../../../src/wizards/foundation/actions.js';
 import { createAction } from '../../../src/wizards/substation.js';

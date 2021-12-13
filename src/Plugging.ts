@@ -4,16 +4,27 @@ import wrapHtml from 'carehtml';
 
 const html = wrapHtml(litHtml);
 
+import '@material/mwc-button';
+import '@material/mwc-dialog';
+import '@material/mwc-formfield';
+import '@material/mwc-icon';
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-check-list-item';
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-list/mwc-radio-list-item';
+import '@material/mwc-select';
+import '@material/mwc-switch';
+import '@material/mwc-textfield';
 import { Dialog } from '@material/mwc-dialog';
 import { List } from '@material/mwc-list';
+import { ListItem } from '@material/mwc-list/mwc-list-item';
+import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
-import { MultiSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { officialPlugins } from '../public/js/plugins.js';
 
 type PluginKind = 'editor' | 'menu' | 'validator';

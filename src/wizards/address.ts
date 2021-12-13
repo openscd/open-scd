@@ -2,11 +2,14 @@ import { html, TemplateResult } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-checkbox';
+import '@material/mwc-formfield';
+
+import '../wizard-textfield.js';
 import {
   Create,
   createElement,
   Delete,
-  getReference,
   getValue,
   WizardInput,
 } from '../foundation.js';
@@ -108,7 +111,6 @@ export function updateAddress(
       new: {
         parent: parent,
         element: newAddress,
-        reference: getReference(parent, 'Address'),
       },
     });
 

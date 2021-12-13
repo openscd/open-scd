@@ -2,6 +2,9 @@ import {customElement, html, LitElement, TemplateResult} from "lit-element";
 import {ListItemBase} from "@material/mwc-list/mwc-list-item-base";
 import {translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-radio-list-item';
+
 import {ChangeSet} from "../compas-services/CompasSclDataService.js";
 
 type ChangeSetDetail = {

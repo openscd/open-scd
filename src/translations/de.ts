@@ -85,18 +85,21 @@ export const de: Translations = {
   validator: {
     schema: {
       title: 'Projekt validieren',
-      valid: '{{ name }} erfolgreich validiert',
-      invalid: '{{ name }} Validierung fehlgeschlagen',
+      valid: '{{ name }} erfolgreich validiert gegen XML-Schema',
+      invalid: '{{ name }} Schema-Validierung fehlgeschlagen',
       fatal: 'Fataler Validierungsfehler',
-      loadError: 'Konnte Schema {{ name }} nicht laden',
+      loadError: 'Konnte XML-Schema {{ name }} nicht laden',
     },
     templates: {
       title: 'Templates validieren',
       mandatoryChild:
         '{{ tag }} {{ id }} fehlt ein obligatorisches {{ childTag }}-Kind {{ childId }}',
-      missingCoDO: 'Control-Dienst Datenattribut vom Typ {{ type }} fehlt',
-      missingCtlModelDef:
-        'CtlModel Definition fehlt. Kann {{ childTag }} {{ childId }} in {{ tag }} {{ id }} nicht validieren.',
+      missingAttribute:
+        'Das Attribut {{attr}} ist verpflichted und fehlt in {{element}}',
+      incorrectAttribute:
+        'Das Attribut {{attr}} in Element {{element}} folgt nicht der Definition.',
+      missingReference:
+        '{{tag}} "{{name}}" hat eine ungültige Referenz - es fehlt der definierte Typ',
     },
   },
   textfield: {
@@ -118,6 +121,8 @@ export const de: Translations = {
     name: 'Daignoseübersicht',
     zeroissues: 'Es konnten keine Fehler in dem Projekt gefunden werden.',
     placeholder: 'Hier werden Validierungsfehler angezeigt.',
+    missingnsd:
+      'DataTypeTemplates können nicht validiert werden. Das Projekt muss die Version 2007B3 oder höher haben.',
   },
   plugins: {
     heading: 'Erweiterungen',
@@ -190,6 +195,29 @@ export const de: Translations = {
       },
     },
     unknownType: 'Unbekannter Typ',
+  },
+  connectivitynode: {
+    name: 'Verbindungsknoten',
+    wizard: {
+      nameHelper: 'Verbindungsknoten Name',
+      pathNameHelper: 'Verbindungsknoten Beschreibung',
+      title: {
+        add: 'Verbindungsknoten hinzufügen',
+        edit: 'Verbindungsknoten bearbeiten',
+      },
+    },
+  },
+  terminal: {
+    name: 'Anschluss',
+    wizard: {
+      nameHelper: 'Anschluss Name',
+      connectivityNodeHelper: 'Anschluss Verbindungsknoten',
+      cNodeNameHelper: 'Anschluss Verbindungsknoten Name',
+      title: {
+        add: 'Anschlussknoten hinzufügen',
+        edit: 'Anschlussknoten bearbeiten',
+      },
+    },
   },
   templates: {
     name: 'Data Type Templates',
@@ -360,6 +388,9 @@ export const de: Translations = {
   },
   code: {
     log: 'Element im XML Editor angepasst:  {{id}}',
+  },
+  updatedesc: {
+    abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
   },
   userinfo: {
     loggedInAs: '???'
