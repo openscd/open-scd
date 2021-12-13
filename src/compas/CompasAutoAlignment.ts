@@ -1,4 +1,4 @@
-import {customElement, html, LitElement, property, TemplateResult} from "lit-element";
+import {css, customElement, html, LitElement, property, TemplateResult} from "lit-element";
 import {get, translate} from "lit-translate";
 
 import {newLogEvent, newOpenDocEvent, newWizardEvent} from "../foundation.js";
@@ -58,7 +58,7 @@ export default class CompasAutoAlignmentElement extends LitElement {
     return html `
       ${this.doc?.querySelector(':root > Substation')
         ? html`
-          <section tabindex="0">
+          <section id="substationsToAlign" tabindex="0">
             <mwc-list multi required>
               ${Array.from(this.doc.querySelectorAll(':root > Substation') ?? [])
               .map(substation =>
@@ -73,10 +73,16 @@ export default class CompasAutoAlignmentElement extends LitElement {
           </section>
         `
         : html`
-          <section tabindex="0">
-            <span style="color: var(--base1)">${translate('compas.autoAlignment.missing')}</span>
+          <section id="noSubstationsToAlign" tabindex="0">
+            <span>${translate('compas.autoAlignment.missing')}</span>
           </section>
         `}
     `;
   }
+
+  static styles = css`
+    #noSubstationsToAlign > span {
+      color: var(--base1)
+    }
+  `
 }
