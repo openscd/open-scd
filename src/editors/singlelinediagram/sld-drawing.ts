@@ -81,18 +81,32 @@ export function getAbsolutePositionConnectivityNode(element: Element): Point {
   };
 }
 
-function offsetTerminal(
+/**
+ * Calculate the absolute offset of a terminal next to an element.
+ * @param parentElementPosition - The position of the parent element of the terminal.
+ * @param elementOffset - The offset of the parent element.
+ * @param terminalSide - The side of the parent element where the terminal should be placed. 
+ * @param customTerminalOffset - An optional parameter containing the offset of the terminal next to the parent element.
+ * This may vary, for example for Connectivity Nodes.
+ * 
+ * @returns The absolute position of the terminal.
+ */
+function absoluteOffsetTerminal(
   parentElementPosition: Point,
   elementOffset: number,
-  direction: Direction
+  terminalSide: Direction,
+  customTerminalOffset?: number
 ): Point {
-  switch (direction) {
+
+  const terminalOffset = customTerminalOffset ?? TERMINAL_OFFSET;
+
+  switch (terminalSide) {
     case 'top': {
       const x = parentElementPosition.x;
       const y = parentElementPosition.y;
       return {
         x: x! + elementOffset / 2,
-        y: y! - TERMINAL_OFFSET,
+        y: y! - terminalOffset,
       };
     }
     case 'bottom': {
@@ -100,14 +114,14 @@ function offsetTerminal(
       const y = parentElementPosition.y;
       return {
         x: x! + elementOffset / 2,
-        y: y! + (elementOffset + TERMINAL_OFFSET),
+        y: y! + (elementOffset + terminalOffset),
       };
     }
     case 'left': {
       const x = parentElementPosition.x;
       const y = parentElementPosition.y;
       return {
-        x: x! - TERMINAL_OFFSET,
+        x: x! - terminalOffset,
         y: y! + elementOffset / 2,
       };
     }
@@ -115,7 +129,7 @@ function offsetTerminal(
       const x = parentElementPosition.x;
       const y = parentElementPosition.y;
       return {
-        x: x! + (elementOffset + TERMINAL_OFFSET),
+        x: x! + (elementOffset + terminalOffset),
         y: y! + elementOffset / 2,
       };
     }
@@ -136,7 +150,7 @@ export function getAbsolutePositionTerminal(
 ): Point {
   const parentElementPosition = getAbsolutePosition(equipment);
 
-  return offsetTerminal(parentElementPosition, EQUIPMENT_SIZE, direction);
+  return absoluteOffsetTerminal(parentElementPosition, EQUIPMENT_SIZE, direction);
 }
 
 /**
@@ -150,7 +164,9 @@ export function getConnectivityNodesDrawingPosition(
 ): Point {
   const parentElementPosition = getAbsolutePositionConnectivityNode(cNode);
 
-  return offsetTerminal(parentElementPosition, CNODE_SIZE, direction);
+  // Using a custom terminal offset for Connectivity Nodes, so the routes are nicely connected to the Connectivity Nodes.
+  const customTerminalOffset = -(CNODE_SIZE/3)
+  return absoluteOffsetTerminal(parentElementPosition, CNODE_SIZE, direction, customTerminalOffset);
 }
 
 /**
