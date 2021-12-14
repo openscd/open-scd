@@ -26,11 +26,11 @@ export default class IedEditorPlugin extends LitElement {
 
   /**
    * When selecting drop down, update the search query.
-   * 
+   * Because an event only returns an index, we need to retrieve the
+   * actual IED before getting the actual value (in this case the name).
    */
   onSelect(event: SingleSelectedEvent): void {
-    const index = event.detail.index;
-    const ied = this.doc?.querySelectorAll(IEDSelector.IED)[index];
+    const ied = this.doc?.querySelectorAll(IEDSelector.IED)[event.detail.index];
     this.query = `IED[name="${getNameAttribute(ied)}"]`;
   }
 
