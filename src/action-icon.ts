@@ -174,8 +174,8 @@ export class ActionIcon extends LitElement {
       border-radius: 4px;
       font-size: 1.2em;
       opacity: 0;
-      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 250ms linear;
+      transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 200ms linear;
     }
 
     :host(:focus-within) header {
