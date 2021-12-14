@@ -45,9 +45,8 @@ export class ActionIcon extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<section>
-        ${this.renderIcon()}<slot name="action"></slot>
-      </section>
+    return html`<header>${this.label ?? nothing}</header>
+      <section>${this.renderIcon()}<slot name="action"></slot></section>
       <footer>${this.label ?? nothing}</footer>`;
   }
 
@@ -157,27 +156,37 @@ export class ActionIcon extends LitElement {
       text-overflow: ellipsis;
       margin: 0px;
       opacity: 1;
-      transition: opacity 200ms linear;
       text-align: center;
       align-self: center;
       max-width: 64px;
-      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 200ms linear;
       direction: rtl;
     }
 
-    :host(:focus-within) footer {
+    header {
       position: absolute;
+      text-align: center;
+      align-self: center;
       max-width: 100vw;
-      transform: translate(0px, -80px);
       background-color: var(--mdc-theme-secondary);
       font-weight: 500;
       color: var(--mdc-theme-on-secondary);
       padding: 4px 8px;
       border-radius: 4px;
       font-size: 1.2em;
+      opacity: 0;
+      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 250ms linear;
+    }
+
+    :host(:focus-within) header {
+      display: initial;
+      position: absolute;
+      opacity: 1;
+      transform: translate(0, -80px);
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 250ms linear;
     }
   `;
 }
