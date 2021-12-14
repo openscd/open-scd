@@ -7,7 +7,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import { identity, newWizardEvent, SCLTag } from '../foundation.js';
+import { getNameAttribute, getPathNameAttribute, identity, newWizardEvent, SCLTag } from '../foundation.js';
 
 import panzoom from 'panzoom';
 
@@ -30,8 +30,6 @@ import {
 import {
   isBusBar,
   getConnectedTerminals,
-  getPathNameAttribute,
-  getNameAttribute,
 } from './singlelinediagram/foundation.js';
 import { wizards } from '../wizards/wizard-library.js';
 

@@ -1,13 +1,11 @@
 import { expect } from '@open-wc/testing';
 import {
   getRelativeCoordinates,
-  getDescriptionAttribute,
-  getNameAttribute,
-  getPathNameAttribute,
   isBusBar,
   getConnectedTerminals,
   calculateConnectivityNodeCoordinates,
 } from '../../../../src/editors/singlelinediagram/foundation.js';
+import { getDescriptionAttribute, getNameAttribute, getPathNameAttribute } from '../../../../src/foundation.js';
 
 describe('Single Line Diagram foundation', () => {
   let doc: Document;

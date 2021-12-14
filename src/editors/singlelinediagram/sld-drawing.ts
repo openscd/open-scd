@@ -2,7 +2,7 @@ import {
   OrthogonalConnector,
   Side,
 } from '../../../public/js/ortho-connector.js';
-import { identity } from '../../foundation.js';
+import { getDescriptionAttribute, getNameAttribute, identity } from '../../foundation.js';
 import { getIcon } from '../../zeroline/foundation.js';
 import {
   connectivityNodeIcon,
@@ -11,8 +11,6 @@ import {
 
 import {
   getRelativeCoordinates,
-  getDescriptionAttribute,
-  getNameAttribute,
   Point,
   getAbsoluteCoordinates,
   calculateConnectivityNodeCoordinates,

@@ -156,16 +156,7 @@ export const en = {
     },
   },
   iededitor: {
-    name: 'IED',
-    missing: 'No IED',
-    wizard: {
-      nameHelper: 'IED name',
-      descHelper: 'IED description',
-      title: {
-        add: 'Add IED',
-        edit: 'Edit IED',
-      },
-    }
+    searchHelper: "Search IED"
   },
   voltagelevel: {
     name: 'Voltage level',
