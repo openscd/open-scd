@@ -47,45 +47,38 @@ function getRptEnabledAction(
 
 function updateReportControlAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
-    const name = inputs.find(i => i.label === 'name')!.value!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-    const buffered = getValue(inputs.find(i => i.label === 'buffered')!);
-    const rptID = getValue(inputs.find(i => i.label === 'rptID')!)!;
-    const indexed = getValue(inputs.find(i => i.label === 'indexed')!);
-    const max = getValue(inputs.find(i => i.label === 'max Clients')!);
-    const bufTime = getValue(inputs.find(i => i.label === 'bufTime')!);
-    const intgPd = getValue(inputs.find(i => i.label === 'intgPd')!);
+    const attributes: Record<string, string | null> = {};
+    const attributeKeys = [
+      'name',
+      'desc',
+      'buffered',
+      'rptID',
+      'indexed',
+      'bufTime',
+      'intgPd',
+    ];
 
-    let reportControlAction: EditorAction | null;
-    let rptEnabledAction: EditorAction | null;
+    attributeKeys.forEach(key => {
+      attributes[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    let reportControlAction: EditorAction | null = null;
     if (
-      name === element.getAttribute('name') &&
-      desc === element.getAttribute('desc') &&
-      buffered === element.getAttribute('buffered') &&
-      rptID === element.getAttribute('rptID') &&
-      indexed === element.getAttribute('indexed') &&
-      bufTime === element.getAttribute('bufTime') &&
-      intgPd === element.getAttribute('intgPd')
+      attributeKeys.some(key => attributes[key] !== element.getAttribute(key))
     ) {
-      reportControlAction = null;
-    } else {
-      const newElement = cloneElement(element, {
-        name,
-        desc,
-        buffered,
-        rptID,
-        indexed,
-        bufTime,
-        intgPd,
-      });
-      reportControlAction = { old: { element }, new: { element: newElement } };
+      const newElement = cloneElement(element, attributes);
+      reportControlAction = {
+        old: { element },
+        new: { element: newElement },
+      };
     }
 
+    const max = getValue(inputs.find(i => i.label === 'max Clients')!);
+
+    let rptEnabledAction: EditorAction | null = null;
     if (
-      max === (element.querySelector('RptEnabled')?.getAttribute('max') ?? null)
+      max !== (element.querySelector('RptEnabled')?.getAttribute('max') ?? null)
     )
-      rptEnabledAction = null;
-    else
       rptEnabledAction = getRptEnabledAction(
         element.querySelector('RptEnabled')!,
         max,
@@ -99,20 +92,24 @@ function updateReportControlAction(element: Element): WizardActor {
   };
 }
 
-function renderReportControlAttributes(
-  name: string | null,
-  desc: string | null,
-  buffered: string | null,
-  rptID: string | null,
-  indexed: string | null,
-  max: string | null,
-  bufTime: string | null,
-  intgPd: string | null
+interface RenderOptions {
+  name: string | null;
+  desc: string | null;
+  buffered: string | null;
+  rptID: string | null;
+  indexed: string | null;
+  max: string | null;
+  bufTime: string | null;
+  intgPd: string | null;
+}
+
+function renderReportControlWizardInputs(
+  options: RenderOptions
 ): TemplateResult[] {
   return [
     html`<wizard-textfield
       label="name"
-      .maybeValue=${name}
+      .maybeValue=${options.name}
       helper="${translate('scl.name')}"
       required
       validationMessage="${translate('textfield.required')}"
@@ -122,13 +119,13 @@ function renderReportControlAttributes(
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="desc"
-      .maybeValue=${desc}
+      .maybeValue=${options.desc}
       nullable
       helper="${translate('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="buffered"
-      .maybeValue=${buffered}
+      .maybeValue=${options.buffered}
       helper="${translate('scl.buffered')}"
       disabled
       >${['true', 'false'].map(
@@ -138,14 +135,14 @@ function renderReportControlAttributes(
     >`,
     html`<wizard-textfield
       label="rptID"
-      .maybeValue=${rptID}
+      .maybeValue=${options.rptID}
       helper="${translate('scl.id')}"
       required
       validationMessage="${translate('textfield.nonempty')}"
     ></wizard-textfield>`,
     html`<wizard-select
       label="indexed"
-      .maybeValue=${indexed}
+      .maybeValue=${options.indexed}
       nullable
       required
       helper="${translate('scl.indexed')}"
@@ -155,7 +152,7 @@ function renderReportControlAttributes(
     >`,
     html`<wizard-textfield
       label="max Clients"
-      .maybeValue=${max}
+      .maybeValue=${options.max}
       helper="${translate('scl.maxReport')}"
       nullable
       type="number"
@@ -163,7 +160,7 @@ function renderReportControlAttributes(
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="bufTime"
-      .maybeValue=${bufTime}
+      .maybeValue=${options.bufTime}
       helper="${translate('scl.bufTime')}"
       nullable
       required
@@ -173,7 +170,7 @@ function renderReportControlAttributes(
     ></wizard-textfield>`,
     html`<wizard-textfield
       label="intgPd"
-      .maybeValue=${intgPd}
+      .maybeValue=${options.intgPd}
       helper="${translate('scl.intgPd')}"
       nullable
       required
@@ -206,7 +203,7 @@ export function editReportControlWizard(element: Element): Wizard {
         action: updateReportControlAction(element),
       },
       content: [
-        ...renderReportControlAttributes(
+        ...renderReportControlWizardInputs({
           name,
           desc,
           buffered,
@@ -214,8 +211,8 @@ export function editReportControlWizard(element: Element): Wizard {
           indexed,
           max,
           bufTime,
-          intgPd
-        ),
+          intgPd,
+        }),
       ],
     },
   ];
