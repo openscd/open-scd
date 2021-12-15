@@ -13,6 +13,8 @@ import {
   EditorAction,
   getReference,
   getValue,
+  identity,
+  isPublic,
   SimpleAction,
   Wizard,
   WizardActor,
@@ -213,6 +215,31 @@ export function editReportControlWizard(element: Element): Wizard {
           bufTime,
           intgPd,
         }),
+      ],
+    },
+  ];
+}
+
+export function selectReportControlWizard(element: Element): Wizard {
+  const reportControls = Array.from(
+    element.querySelectorAll('ReportControl')
+  ).filter(isPublic);
+
+  return [
+    {
+      title: get('wizard.title.select', { tagName: 'ReportControl' }),
+      content: [
+        html`<filtered-list
+          >${reportControls.map(
+            reportControl =>
+              html`<mwc-list-item twoline value="${identity(reportControl)}"
+                ><span>${reportControl.getAttribute('name')}</span
+                ><span slot="secondary"
+                  >${identity(reportControl)}</span
+                ></mwc-list-item
+              >`
+          )}</filtered-list
+        >`,
       ],
     },
   ];
