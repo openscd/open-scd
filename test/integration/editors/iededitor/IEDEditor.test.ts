@@ -5,6 +5,7 @@ import '../../../mock-wizard.js';
 import IEDEditor from '../../../../src/editors/IEDEditor.js';
 import { Editing } from '../../../../src/Editing.js';
 import { Wizarding } from '../../../../src/Wizarding.js';
+import { Select } from '@material/mwc-select';
 
 describe('IED Editor Plugin', () => {
   customElements.define(
@@ -27,6 +28,8 @@ describe('IED Editor Plugin', () => {
   describe('with a doc loaded including IED sections', () => {
     let doc: XMLDocument;
     let element: IEDEditor;
+    let selector: Select;
+    
     beforeEach(async () => {
       doc = await fetch('/test/testfiles/valid2007B4.scd')
         .then(response => response.text())
@@ -35,8 +38,19 @@ describe('IED Editor Plugin', () => {
         html`<iededitor-plugin .doc="${doc}"></iededitor-plugin>`
       );
     });
-    it('contains multiple IED containers rendering the IED section', () => {
-      expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(3);
+    it('it initially contains 1 rendered IED container', () => {
+      expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
+      expect(element.shadowRoot?.querySelector('ied-container')!.shadowRoot?.innerHTML).to.include('IED1');
+    });
+    it('it selects another IED after using the drop down box', async () => {
+      selector = <Select>(
+        element.shadowRoot?.querySelector('mwc-select')
+      );
+      selector.value = "IED3"
+      await element.requestUpdate();
+
+      expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
+      expect(element.shadowRoot?.querySelector('ied-container')!.shadowRoot?.innerHTML).to.include('IED3');
     });
   });
 });
