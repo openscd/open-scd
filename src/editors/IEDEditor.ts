@@ -40,27 +40,33 @@ export default class IedEditorPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<section>
-      <mwc-select
-        id="iedSearch"
-        label="${translate("iededitor.searchHelper")}"
-        @selected=${this.onSelect}>
-        ${this.alphabeticOrderedIeds.map(
-          ied =>
-            html`<mwc-list-item
-              ?selected=${ied == this.alphabeticOrderedIeds[0]}
-              value="${getNameAttribute(ied)}"
-              >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
-                description: getDescriptionAttribute(ied)!,
-              }) : ''}
-            </mwc-list-item>`
-        )}
-      </mwc-select>
-      ${Array.from(this.doc?.querySelectorAll(this.query) ?? []).map(
-        ied => html`<ied-container
-          .element=${ied}
-        ></ied-container>`
-    )}</section>`;
+    return this.doc?.querySelector('IED')
+      ? html`<section>
+        <mwc-select
+          id="iedSearch"
+          label="${translate("iededitor.searchHelper")}"
+          @selected=${this.onSelect}>
+          ${this.alphabeticOrderedIeds.map(
+            ied =>
+              html`<mwc-list-item
+                ?selected=${ied == this.alphabeticOrderedIeds[0]}
+                value="${getNameAttribute(ied)}"
+                >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
+                  description: getDescriptionAttribute(ied)!,
+                }) : ''}
+              </mwc-list-item>`
+          )}
+        </mwc-select>
+        ${Array.from(this.doc?.querySelectorAll(this.query) ?? []).map(
+          ied => html`<ied-container
+            .element=${ied}
+          ></ied-container>`
+        )}</section>`
+      : html`<h1>
+            <span style="color: var(--base1)"
+              >${translate('iededitor.missing')}</span
+            >
+          </h1>`;
   }
 
   static styles = css`
@@ -75,6 +81,19 @@ export default class IedEditorPlugin extends LitElement {
     #iedSearch {
       width: 35vw;
       padding-bottom: 20px;
+    }
+    
+    h1 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
+      line-height: 48px;
+      padding-left: 0.3em;
+      transition: background-color 150ms linear;
     }
   `;
 }

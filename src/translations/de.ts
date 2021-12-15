@@ -160,7 +160,8 @@ export const de: Translations = {
   },
   iededitor: {
     searchHelper: "???",
-    searchHelperDesc: "({{description}})"
+    searchHelperDesc: "({{description}})",
+    missing: '???'
   },
   voltagelevel: {
     name: 'Spannungsebene',

@@ -2,13 +2,11 @@
 export const snapshots = {};
 
 snapshots["IED Editor Plugin without a doc loaded looks like the latest snapshot"] = 
-`<section>
-  <mwc-select
-    id="iedSearch"
-    label="[iededitor.searchHelper]"
-  >
-  </mwc-select>
-</section>
+`<h1>
+  <span style="color: var(--base1)">
+    [iededitor.missing]
+  </span>
+</h1>
 <wizard-dialog>
 </wizard-dialog>
 `;
