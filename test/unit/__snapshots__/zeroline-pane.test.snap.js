@@ -29,6 +29,10 @@ snapshots["zeroline-pane per default looks like the latest snapshot"] =
       </mwc-icon-button>
     </abbr>
     <abbr title="[zeroline.gsecontrol]">
+      <mwc-icon-button id="reportcontrol">
+      </mwc-icon-button>
+    </abbr>
+    <abbr title="[zeroline.gsecontrol]">
       <mwc-icon-button id="gsecontrol">
       </mwc-icon-button>
     </abbr>
@@ -73,6 +77,10 @@ snapshots["zeroline-pane showieds looks like the latest snapshot"] =
         icon="link"
         id="commmap"
       >
+      </mwc-icon-button>
+    </abbr>
+    <abbr title="[zeroline.gsecontrol]">
+      <mwc-icon-button id="reportcontrol">
       </mwc-icon-button>
     </abbr>
     <abbr title="[zeroline.gsecontrol]">
