@@ -1,4 +1,4 @@
-import { css, html, LitElement, property, query, TemplateResult } from 'lit-element';
+import { css, html, LitElement, property, query, state, TemplateResult } from 'lit-element';
 
 import '@material/mwc-fab';
 import '@material/mwc-select';
@@ -10,7 +10,7 @@ import { translate } from 'lit-translate';
 import { IEDSelector } from './ied/foundation.js';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { getNameAttribute } from '../foundation.js';
+import { getDescriptionAttribute, getNameAttribute } from '../foundation.js';
 
 /** An editor [[`plugin`]] for editing the `IED Editor` section. */
 export default class IedEditorPlugin extends LitElement {
@@ -19,7 +19,7 @@ export default class IedEditorPlugin extends LitElement {
   doc!: XMLDocument;
 
   /** Query holding the current selected IEDs. */
-  @property()
+  @state()
   query:string = IEDSelector.IED;
 
   @query('#iedSearch') iedSelector?: Select;
@@ -48,9 +48,12 @@ export default class IedEditorPlugin extends LitElement {
         ${this.alphabeticOrderedIeds.map(
           ied =>
             html`<mwc-list-item
-              ?selected=${ied == this.doc?.querySelector(IEDSelector.IED)}
+              ?selected=${ied == this.alphabeticOrderedIeds[0]}
               value="${getNameAttribute(ied)}"
-              >${getNameAttribute(ied)}</mwc-list-item>`
+              >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
+                description: getDescriptionAttribute(ied)!,
+              }) : ''}
+            </mwc-list-item>`
         )}
       </mwc-select>
       ${Array.from(this.doc?.querySelectorAll(this.query) ?? []).map(
@@ -70,7 +73,7 @@ export default class IedEditorPlugin extends LitElement {
     }
 
     #iedSearch {
-      width: 30%;
+      width: 35vw;
       padding-bottom: 20px;
     }
   `;

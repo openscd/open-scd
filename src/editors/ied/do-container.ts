@@ -19,7 +19,7 @@ export class DOContainer extends LitElement {
     const name = this.element.getAttribute('name') ?? '';
     const desc = this.element.getAttribute('desc') ?? '';
 
-    return `${name} ${desc ? `- ${desc}` : ''}`;
+    return `${name} ${desc ? `\u2014 ${desc}` : ''}`;
   }
 
   render(): TemplateResult {

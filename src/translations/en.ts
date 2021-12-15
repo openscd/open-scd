@@ -156,7 +156,8 @@ export const en = {
     },
   },
   iededitor: {
-    searchHelper: "Select IED"
+    searchHelper: "Select IED",
+    searchHelperDesc: "({{description}})"
   },
   voltagelevel: {
     name: 'Voltage level',

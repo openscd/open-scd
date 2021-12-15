@@ -23,7 +23,7 @@ export class LDeviceContainer extends LitElement {
     const nameOrInst = this.element.getAttribute('name') ?? this.element.getAttribute('inst');
     const desc = this.element.getAttribute('desc') ?? '';
 
-    return `${nameOrInst} ${desc ? `- ${desc}` : ''}`;
+    return `${nameOrInst} ${desc ? `\u2014 ${desc}` : ''}`;
   }
 
   render(): TemplateResult {

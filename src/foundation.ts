@@ -362,7 +362,7 @@ export function referencePath(element: Element): string {
 /**
  * Extract the 'name' attribute from the given XML element.
  * @param element - The element to extract name from.
- * @returns the name, or a '-' if there is no name.
+ * @returns the name, or undefined if there is no name.
  */
  export function getNameAttribute(element: Element): string | undefined {
   const name = element.getAttribute('name');
@@ -372,7 +372,7 @@ export function referencePath(element: Element): string {
 /**
  * Extract the 'desc' attribute from the given XML element.
  * @param element - The element to extract description from.
- * @returns the name, or a '-' if there is no description.
+ * @returns the name, or undefined if there is no description.
  */
 export function getDescriptionAttribute(element: Element): string | undefined {
   const name = element.getAttribute('desc');
@@ -382,7 +382,7 @@ export function getDescriptionAttribute(element: Element): string | undefined {
 /**
  * Extract the 'pathName' attribute from the given XML element.
  * @param element - The element to extract path name from.
- * @returns the name, or a '-' if there is no path name.
+ * @returns the name, or undefined if there is no path name.
  */
 export function getPathNameAttribute(element: Element): string | undefined {
   const name = element.getAttribute('pathName');

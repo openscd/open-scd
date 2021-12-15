@@ -19,11 +19,13 @@ export class LNContainer extends LitElement {
   readonly = false;
 
   get header(): string {
-    const lnClass = this.element.getAttribute('lnClass') ?? '';
-    const prefix = this.element.getAttribute('prefix') ?? '';
-    const inst = this.element.getAttribute('inst') ?? '';
+    const prefix = this.element.getAttribute('prefix');
+    const lnClass = this.element.getAttribute('lnClass');
+    const inst = this.element.getAttribute('inst');
 
-    return `${lnClass} ${prefix ? `- ${prefix}` : ''} ${inst ? `- ${inst}` : ''}`;
+    return `${prefix != null ? `${prefix} \u2014 ` : ''}
+            ${lnClass}
+            ${inst ? ` \u2014 ${inst}` : ''}`;
   }
 
   render(): TemplateResult {
