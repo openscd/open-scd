@@ -24,13 +24,18 @@ export default class IedEditorPlugin extends LitElement {
 
   @query('#iedSearch') iedSelector?: Select;
 
+  get alphabeticOrderedIeds() : Element[] {
+    return Array.from(this.doc?.querySelectorAll(IEDSelector.IED) ?? [])
+    .sort((a,b) => (getNameAttribute(a)! > getNameAttribute(b)!) ? 1 : -1);
+  }
+
   /**
    * When selecting drop down, update the search query.
    * Because an event only returns an index, we need to retrieve the
    * actual IED before getting the actual value (in this case the name).
    */
   onSelect(event: SingleSelectedEvent): void {
-    const ied = this.doc?.querySelectorAll(IEDSelector.IED)[event.detail.index];
+    const ied = this.alphabeticOrderedIeds[event.detail.index];
     this.query = `IED[name="${getNameAttribute(ied)}"]`;
   }
 
@@ -40,7 +45,7 @@ export default class IedEditorPlugin extends LitElement {
         id="iedSearch"
         label="${translate("iededitor.searchHelper")}"
         @selected=${this.onSelect}>
-        ${Array.from(this.doc?.querySelectorAll(IEDSelector.IED) ?? []).map(
+        ${this.alphabeticOrderedIeds.map(
           ied =>
             html`<mwc-list-item
               ?selected=${ied == this.doc?.querySelector(IEDSelector.IED)}
