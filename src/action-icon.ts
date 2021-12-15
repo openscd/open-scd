@@ -155,7 +155,6 @@ export class ActionIcon extends LitElement {
       white-space: nowrap;
       text-overflow: ellipsis;
       margin: 0px;
-      opacity: 1;
       text-align: center;
       align-self: center;
       max-width: 64px;
@@ -163,23 +162,33 @@ export class ActionIcon extends LitElement {
     }
 
     header {
+      color: var(--mdc-theme-on-primary);
+      background-color: var(--mdc-theme-primary);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 1.2em;
       position: absolute;
       text-align: center;
       align-self: center;
       max-width: 100vw;
-      background-color: var(--mdc-theme-secondary);
-      font-weight: 500;
-      color: var(--mdc-theme-on-secondary);
       padding: 4px 8px;
       border-radius: 4px;
-      font-size: 1.2em;
       opacity: 0;
       transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 200ms linear;
     }
 
+    :host(:hover) header {
+      position: absolute;
+      opacity: 1;
+      transform: translate(0, -40px);
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 250ms linear;
+    }
+
     :host(:focus-within) header {
-      display: initial;
       position: absolute;
       opacity: 1;
       transform: translate(0, -80px);
