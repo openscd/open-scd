@@ -358,7 +358,6 @@ export const de: Translations = {
       addschemainsttype: 'XMLSchema-instance type hinzufügen',
       title: {
         connect: 'Schnittstelle verbinden',
-        edit: 'Schnittstelle bearbeiten',
       },
     },
     action: {

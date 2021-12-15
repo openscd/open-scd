@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
 import '../../../../src/wizard-textfield.js';
-import { editConnectedApAction } from '../../../../src/editors/communication/connectedap-editor.js';
+import { updateConnectedApAction } from '../../../../src/wizards/connectedap.js';
 import {
   WizardInput,
   isCreate,
@@ -66,27 +66,27 @@ describe('ConnectedAPEditor', () => {
       });
 
       it('returns a WizardAction with the returned EditorAction beeing a ComplexAction', () => {
-        const wizardAction = editConnectedApAction(element);
+        const wizardAction = updateConnectedApAction(element);
         expect(wizardAction(inputs, newWizard()).length).to.equal(1);
         expect(wizardAction(inputs, newWizard())[0]).to.not.satisfy(isSimple);
       });
 
       it('the complexAction containing two EditorActions', () => {
-        const wizardAction = editConnectedApAction(element);
+        const wizardAction = updateConnectedApAction(element);
         expect(
           (<ComplexAction>wizardAction(inputs, newWizard())[0]).actions.length
         ).to.equal(2);
       });
 
       it('the 1st beeing a Delete', () => {
-        const wizardAction = editConnectedApAction(element);
+        const wizardAction = updateConnectedApAction(element);
         expect(
           (<ComplexAction>wizardAction(inputs, newWizard())[0]).actions[0]
         ).to.satisfy(isDelete);
       });
 
       it('the 2nd beeing a Create', () => {
-        const wizardAction = editConnectedApAction(element);
+        const wizardAction = updateConnectedApAction(element);
         expect(
           (<ComplexAction>wizardAction(inputs, newWizard())[0]).actions[1]
         ).to.satisfy(isCreate);
@@ -136,20 +136,20 @@ describe('ConnectedAPEditor', () => {
       });
 
       it('returns a WizardAction with the returned EditorAction beeing a ComplexAction', () => {
-        const wizardAction = editConnectedApAction(element);
+        const wizardAction = updateConnectedApAction(element);
         expect(wizardAction(inputs, newWizard()).length).to.equal(1);
         expect(wizardAction(inputs, newWizard())[0]).to.not.satisfy(isSimple);
       });
 
       it('the complexAction containing one EditorAction', () => {
-        const wizardAction = editConnectedApAction(element);
+        const wizardAction = updateConnectedApAction(element);
         expect(
           (<ComplexAction>wizardAction(inputs, newWizard())[0]).actions.length
         ).to.equal(1);
       });
 
       it('beeing an Delete', () => {
-        const wizardAction = editConnectedApAction(element);
+        const wizardAction = updateConnectedApAction(element);
         expect(
           (<ComplexAction>wizardAction(inputs, newWizard())[0]).actions[0]
         ).to.satisfy(isCreate);

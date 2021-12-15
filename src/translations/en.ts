@@ -355,7 +355,6 @@ export const en = {
       addschemainsttype: 'Add XMLSchema-instance type',
       title: {
         connect: 'Connect access point',
-        edit: 'Edit access point',
       },
     },
     action: {

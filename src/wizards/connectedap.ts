@@ -22,13 +22,14 @@ import {
   getValue,
   createElement,
   ComplexAction,
+  isPublic,
 } from '../foundation.js';
 import {
   getTypes,
-  typePattern,
-  typeNullable,
   typeMaxLength,
-} from '../editors/communication/p-types.js';
+  typeNullable,
+  typePattern,
+} from './foundation/p-types.js';
 
 /** Data needed to uniquely identify an `AccessPoint` */
 interface apAttributes {
@@ -179,7 +180,7 @@ export function createConnectedApWizard(element: Element): Wizard {
   ];
 }
 
-export function editConnectedApAction(parent: Element): WizardActor {
+export function updateConnectedApAction(parent: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
     const instType: boolean =
       (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
@@ -225,26 +226,33 @@ export function editConnectedApAction(parent: Element): WizardActor {
   };
 }
 
+function existTypeRestriction(element: Element): boolean {
+  return Array.from(element.querySelectorAll('Address > P'))
+    .filter(p => isPublic(p))
+    .some(pType => pType.getAttribute('xsi:type'));
+}
+
+/** Create a single page [[`Wizard`]] to edit SCL element ConnectedAP
+ *  @param element - SCL element ConnectedAP
+ *  @returns - Edition dependant [[`Wizard`]] with WizardInput for each configurable `P` element
+ */
 export function editConnectedApWizard(element: Element): Wizard {
   return [
     {
-      title: get('connectedap.wizard.title.edit'),
+      title: get('wizard.title.edit', { tagName: element.tagName }),
       element,
       primary: {
         icon: 'save',
         label: get('save'),
-        action: editConnectedApAction(element),
+        action: updateConnectedApAction(element),
       },
       content: [
         html`<mwc-formfield
             label="${translate('connectedap.wizard.addschemainsttype')}"
-          >
-            <mwc-checkbox
+            ><mwc-checkbox
               id="instType"
-              ?checked="${Array.from(
-                element.querySelectorAll('Address > P')
-              ).filter(pType => pType.getAttribute('xsi:type')).length > 0}"
-            ></mwc-checkbox> </mwc-formfield
+              ?checked=${existTypeRestriction(element)}
+            ></mwc-checkbox></mwc-formfield
           >${getTypes(element).map(
             ptype =>
               html`<wizard-textfield
@@ -252,7 +260,7 @@ export function editConnectedApWizard(element: Element): Wizard {
                 pattern="${ifDefined(typePattern[ptype])}"
                 ?nullable=${typeNullable[ptype]}
                 .maybeValue=${element.querySelector(
-                  `:root > Communication > SubNetwork > ConnectedAP > Address > P[type="${ptype}"]`
+                  `Address > P[type="${ptype}"]`
                 )?.innerHTML ?? null}
                 maxLength="${ifDefined(typeMaxLength[ptype])}"
               ></wizard-textfield>`
