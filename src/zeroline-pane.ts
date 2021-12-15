@@ -18,12 +18,13 @@ import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
-import { gooseIcon, smvIcon } from './icons.js';
+import { gooseIcon, smvIcon, reportIcon } from './icons.js';
 import { isPublic, newWizardEvent } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
 import { selectSampledValueControlWizard } from './wizards/sampledvaluecontrol.js';
+import { selectReportControlWizard } from './wizards/reportcontrol.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -49,6 +50,7 @@ export class ZerolinePane extends LitElement {
   @query('#showieds') showieds!: IconButtonToggle;
   @query('#gsecontrol') gsecontrol!: IconButton;
   @query('#smvcontrol') smvcontrol!: IconButton;
+  @query('#reportcontrol') reportcontrol!: IconButton;
   @query('#createsubstation') createsubstation!: IconButton;
 
   openCommunicationMapping(): void {
@@ -59,6 +61,11 @@ export class ZerolinePane extends LitElement {
   /** Opens a [[`WizardDialog`]] for creating a new `Substation` element. */
   openCreateSubstationWizard(): void {
     const wizard = wizards['Substation'].create(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  openReportControlSelection(): void {
+    const wizard = selectReportControlWizard(this.doc.documentElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -119,6 +126,13 @@ export class ZerolinePane extends LitElement {
               @click=${() => this.openCommunicationMapping()}
             ></mwc-icon-button>
           </abbr>
+          <abbr title="${translate('zeroline.gsecontrol')}"
+            ><mwc-icon-button
+              id="reportcontrol"
+              @click="${() => this.openReportControlSelection()}"
+              >${reportIcon}</mwc-icon-button
+            ></abbr
+          >
           <abbr title="${translate('zeroline.gsecontrol')}"
             ><mwc-icon-button
               id="gsecontrol"

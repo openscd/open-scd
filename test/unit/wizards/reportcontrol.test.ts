@@ -12,7 +12,10 @@ import {
   WizardInput,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
-import { editReportControlWizard } from '../../../src/wizards/reportcontrol.js';
+import {
+  editReportControlWizard,
+  selectReportControlWizard,
+} from '../../../src/wizards/reportcontrol.js';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
 
 describe('Wizards for SCL ReportControl element', () => {
@@ -310,5 +313,19 @@ describe('Wizards for SCL ReportControl element', () => {
         expect(updateAction.new.element).to.have.attribute('max', '6');
       });
     });
+  });
+
+  describe('define a select wizard that', () => {
+    beforeEach(async () => {
+      const wizard = selectReportControlWizard(doc.documentElement);
+      element.workflow.push(wizard);
+      await element.requestUpdate();
+
+      await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    }).timeout(5000);
   });
 });
