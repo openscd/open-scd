@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/iededitor/ln-container.js';
-import { LNContainer } from '../../../../src/editors/iededitor/ln-container.js';
+import '../../../../src/editors/ied/ln-container.js';
+import { LNContainer } from '../../../../src/editors/ied/ln-container.js';
 
 describe('ln-container', () => {
   let element: LNContainer;

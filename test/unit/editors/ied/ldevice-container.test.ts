@@ -1,10 +1,10 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/iededitor/server-container.js'
-import { ServerContainer } from '../../../../src/editors/iededitor/server-container.js';
+import '../../../../src/editors/ied/ldevice-container.js'
+import { LDeviceContainer } from '../../../../src/editors/ied/ldevice-container.js';
 
-describe('server-container', () => {
-  let element: ServerContainer;
+describe('ldevice-container', () => {
+  let element: LDeviceContainer;
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
@@ -12,9 +12,9 @@ describe('server-container', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    element = await fixture(html`<server-container
-      .element=${validSCL.querySelector('IED[name="IED1"] > AccessPoint[name="P1"] > Server')}
-    ></server-container>`);
+    element = await fixture(html`<ldevice-container
+      .element=${validSCL.querySelector('LDevice')}
+    ></ldevice-container>`);
   });
 
   it('looks like the latest snapshot', async () => {

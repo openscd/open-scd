@@ -1,5 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { DOContainer } from '../../../../src/editors/iededitor/do-container.js';
+import { DOContainer } from '../../../../src/editors/ied/do-container.js';
 
 describe('server-container', () => {
   let element: DOContainer;

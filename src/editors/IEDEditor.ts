@@ -5,9 +5,9 @@ import '@material/mwc-select';
 import '@material/mwc-list/mwc-list-item';
 
 import '../zeroline-pane.js';
-import './iededitor/ied-container.js'
+import './ied/ied-container.js'
 import { translate } from 'lit-translate';
-import { IEDSelector } from './iededitor/foundation.js';
+import { IEDSelector } from './ied/foundation.js';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { getNameAttribute } from '../foundation.js';
@@ -36,24 +36,22 @@ export default class IedEditorPlugin extends LitElement {
 
   render(): TemplateResult {
     return html`<section>
-    <mwc-select
-      id="iedSearch"
-      icon="search"
-      label="${translate("iededitor.searchHelper")}"
-      @selected=${this.onSelect}>
-      ${Array.from(this.doc?.querySelectorAll(IEDSelector.IED) ?? []).map(
-        ied =>
-          html`<mwc-list-item
-            graphic="icon"
-            ?selected=${ied == this.doc?.querySelector(IEDSelector.IED)}
-            value="${getNameAttribute(ied)}"
-            >${getNameAttribute(ied)}</mwc-list-item>`
-      )}
-    </mwc-select>
-    ${Array.from(this.doc?.querySelectorAll(this.query) ?? []).map(
-      ied => html`<ied-container
-        .element=${ied}
-      ></ied-container>`
+      <mwc-select
+        id="iedSearch"
+        label="${translate("iededitor.searchHelper")}"
+        @selected=${this.onSelect}>
+        ${Array.from(this.doc?.querySelectorAll(IEDSelector.IED) ?? []).map(
+          ied =>
+            html`<mwc-list-item
+              ?selected=${ied == this.doc?.querySelector(IEDSelector.IED)}
+              value="${getNameAttribute(ied)}"
+              >${getNameAttribute(ied)}</mwc-list-item>`
+        )}
+      </mwc-select>
+      ${Array.from(this.doc?.querySelectorAll(this.query) ?? []).map(
+        ied => html`<ied-container
+          .element=${ied}
+        ></ied-container>`
     )}</section>`;
   }
 
