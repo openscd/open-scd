@@ -256,6 +256,7 @@ export function editConnectedApWizard(element: Element): Wizard {
           >${getTypes(element).map(
             ptype =>
               html`<wizard-textfield
+                required
                 label="${ptype}"
                 pattern="${ifDefined(typePattern[ptype])}"
                 ?nullable=${typeNullable[ptype]}
