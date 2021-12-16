@@ -6,14 +6,15 @@ import '@material/mwc-list/mwc-list-item';
 
 import '../zeroline-pane.js';
 import './ied/ied-container.js'
+
 import { translate } from 'lit-translate';
 import { IEDSelector } from './ied/foundation.js';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { getDescriptionAttribute, getNameAttribute } from '../foundation.js';
 
-/** An editor [[`plugin`]] for editing the `IED Editor` section. */
-export default class IedEditorPlugin extends LitElement {
+/** An editor [[`plugin`]] for editing the `IED` section. */
+export default class IedPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
@@ -40,7 +41,7 @@ export default class IedEditorPlugin extends LitElement {
   }
 
   render(): TemplateResult {
-    return this.doc?.querySelector('IED')
+    return this.doc?.querySelector(':root > IED')
       ? html`<section>
         <mwc-select
           id="iedSearch"
@@ -63,10 +64,10 @@ export default class IedEditorPlugin extends LitElement {
           ></ied-container>`
         )}</section>`
       : html`<h1>
-            <span style="color: var(--base1)"
-              >${translate('iededitor.missing')}</span
-            >
-          </h1>`;
+          <span style="color: var(--base1)"
+            >${translate('iededitor.missing')}</span
+          >
+        </h1>`;
   }
 
   static styles = css`
@@ -82,7 +83,7 @@ export default class IedEditorPlugin extends LitElement {
       width: 35vw;
       padding-bottom: 20px;
     }
-    
+
     h1 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;

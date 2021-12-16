@@ -2,7 +2,7 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../mock-wizard.js';
 
-import IEDEditor from '../../../../src/editors/IEDEditor.js';
+import IED from '../../../../src/editors/IED.js';
 import { Editing } from '../../../../src/Editing.js';
 import { Wizarding } from '../../../../src/Wizarding.js';
 import { Select } from '@material/mwc-select';
@@ -10,9 +10,9 @@ import { Select } from '@material/mwc-select';
 describe('IED Editor Plugin', () => {
   customElements.define(
     'iededitor-plugin',
-    Wizarding(Editing(IEDEditor))
+    Wizarding(Editing(IED))
   );
-  let element: IEDEditor;
+  let element: IED;
   beforeEach(async () => {
     element = await fixture(
       html`<iededitor-plugin></iededitor-plugin>`
@@ -27,7 +27,7 @@ describe('IED Editor Plugin', () => {
 
   describe('with a doc loaded including IED sections', () => {
     let doc: XMLDocument;
-    let element: IEDEditor;
+    let element: IED;
     let selector: Select;
     
     beforeEach(async () => {

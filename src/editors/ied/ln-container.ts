@@ -8,15 +8,12 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import './do-container.js';
 
-/** [[`LN Container`]] plugin subcontainers for editing `LN` and `LN0` sections. */
+/** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
 @customElement('ln-container')
 export class LNContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
-  @property({ type: Boolean })
-  readonly = false;
 
   get header(): string {
     const prefix = this.element.getAttribute('prefix');

@@ -8,7 +8,7 @@ export const officialPlugins = [
   },
   {
     name: 'IED Editor',
-    src: '/src/editors/IEDEditor.js',
+    src: '/src/editors/IED.js',
     icon: 'edit',
     default: true,
     kind: 'editor',

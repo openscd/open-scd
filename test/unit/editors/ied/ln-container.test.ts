@@ -22,14 +22,4 @@ describe('ln-container', () => {
   it('looks like the latest snapshot', async () => {
     await expect(element).shadowDom.to.equalSnapshot();
   });
-
-  describe('with readonly property', () => {
-    beforeEach(async () => {
-      element.readonly = true;
-      await element.requestUpdate();
-    });
-    it('looks like the latest snapshot', async () => {
-      await expect(element).shadowDom.to.equalSnapshot();
-    });
-  });
 });

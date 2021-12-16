@@ -583,7 +583,7 @@ snapshots["open-scd looks like its snapshot"] =
       mwc-list-item=""
       selected=""
       tabindex="-1"
-      value="/src/editors/IEDEditor.js"
+      value="/src/editors/IED.js"
     >
       <mwc-icon slot="meta">
         edit
