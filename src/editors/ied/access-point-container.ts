@@ -17,9 +17,9 @@ export class AccessPointContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  get header(): string {
-    const name = this.element.getAttribute('name') ?? '';
-    const desc = this.element.getAttribute('desc') ?? '';
+  private get header(): string {
+    const name = this.element.getAttribute('name');
+    const desc = this.element.getAttribute('desc');
 
     return `${name} ${desc ? `\u2014 ${desc}` : ''}`;
   }

@@ -11,7 +11,7 @@ import { translate } from 'lit-translate';
 import { IEDSelector } from './ied/foundation.js';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { getDescriptionAttribute, getNameAttribute } from '../foundation.js';
+import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foundation.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {
@@ -21,13 +21,13 @@ export default class IedPlugin extends LitElement {
 
   /** Query holding the current selected IEDs. */
   @state()
-  query:string = IEDSelector.IED;
+  currentSelectedIEDs:string = IEDSelector.IED;
 
-  @query('#iedSearch') iedSelector?: Select;
+  @query('#iedSelect') iedSelector?: Select;
 
-  get alphabeticOrderedIeds() : Element[] {
-    return Array.from(this.doc?.querySelectorAll(IEDSelector.IED) ?? [])
-    .sort((a,b) => (getNameAttribute(a)! > getNameAttribute(b)!) ? 1 : -1);
+  private get alphabeticOrderedIeds() : Element[] {
+    return Array.from(this.doc?.querySelectorAll(IEDSelector.IED))
+    .sort((a,b) => compareNames(a,b));
   }
 
   /**
@@ -35,16 +35,16 @@ export default class IedPlugin extends LitElement {
    * Because an event only returns an index, we need to retrieve the
    * actual IED before getting the actual value (in this case the name).
    */
-  onSelect(event: SingleSelectedEvent): void {
+  private onSelect(event: SingleSelectedEvent): void {
     const ied = this.alphabeticOrderedIeds[event.detail.index];
-    this.query = `IED[name="${getNameAttribute(ied)}"]`;
+    this.currentSelectedIEDs = `IED[name="${getNameAttribute(ied)}"]`;
   }
 
   render(): TemplateResult {
     return this.doc?.querySelector(':root > IED')
       ? html`<section>
         <mwc-select
-          id="iedSearch"
+          id="iedSelect"
           label="${translate("iededitor.searchHelper")}"
           @selected=${this.onSelect}>
           ${this.alphabeticOrderedIeds.map(
@@ -58,7 +58,7 @@ export default class IedPlugin extends LitElement {
               </mwc-list-item>`
           )}
         </mwc-select>
-        ${Array.from(this.doc?.querySelectorAll(this.query) ?? []).map(
+        ${Array.from(this.doc?.querySelectorAll(this.currentSelectedIEDs)).map(
           ied => html`<ied-container
             .element=${ied}
           ></ied-container>`
@@ -79,7 +79,7 @@ export default class IedPlugin extends LitElement {
       padding: 8px 12px 16px;
     }
 
-    #iedSearch {
+    #iedSelect {
       width: 35vw;
       padding-bottom: 20px;
     }
@@ -94,7 +94,6 @@ export default class IedPlugin extends LitElement {
       margin: 0px;
       line-height: 48px;
       padding-left: 0.3em;
-      transition: background-color 150ms linear;
     }
   `;
 }

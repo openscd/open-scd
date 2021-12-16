@@ -17,7 +17,7 @@ export class ServerContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  get header(): string {
+  private get header(): string {
     return 'Server';
   }
 

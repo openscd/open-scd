@@ -17,9 +17,9 @@ export class LDeviceContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  get header(): string {
+  private get header(): string {
     const nameOrInst = this.element.getAttribute('name') ?? this.element.getAttribute('inst');
-    const desc = this.element.getAttribute('desc') ?? '';
+    const desc = this.element.getAttribute('desc');
 
     return `${nameOrInst} ${desc ? `\u2014 ${desc}` : ''}`;
   }

@@ -588,7 +588,7 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-icon slot="meta">
         edit
       </mwc-icon>
-      IED Editor
+      IED
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"

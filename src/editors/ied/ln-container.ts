@@ -15,7 +15,7 @@ export class LNContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  get header(): string {
+  private get header(): string {
     const prefix = this.element.getAttribute('prefix');
     const lnClass = this.element.getAttribute('lnClass');
     const inst = this.element.getAttribute('inst');
