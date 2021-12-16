@@ -17,12 +17,12 @@ export class ServerContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  private get header(): string {
+  private header(): string {
     return 'Server';
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}">
+    return html`<action-pane label="${this.header()}">
     ${Array.from(this.element.querySelectorAll(IEDSelector.LDevice)).map(
       server => html`<ldevice-container
         .element=${server}

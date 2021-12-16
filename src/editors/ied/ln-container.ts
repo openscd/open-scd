@@ -6,6 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
 
@@ -15,18 +16,18 @@ export class LNContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  private get header(): string {
+  private header(): TemplateResult {
     const prefix = this.element.getAttribute('prefix');
     const lnClass = this.element.getAttribute('lnClass');
     const inst = this.element.getAttribute('inst');
 
-    return `${prefix != null ? `${prefix} \u2014 ` : ''}
+    return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
             ${lnClass}
-            ${inst ? ` \u2014 ${inst}` : ''}`;
+            ${inst ? html` &mdash; ${inst}` : nothing}`;
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}">
+    return html`<action-pane .label="${this.header()}">
     </action-pane>`;
   }
 

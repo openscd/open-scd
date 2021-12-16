@@ -7,15 +7,15 @@ import { Editing } from '../../../../src/Editing.js';
 import { Wizarding } from '../../../../src/Wizarding.js';
 import { Select } from '@material/mwc-select';
 
-describe('IED Editor Plugin', () => {
+describe('IED Plugin', () => {
   customElements.define(
-    'iededitor-plugin',
+    'ied-plugin',
     Wizarding(Editing(IED))
   );
   let element: IED;
   beforeEach(async () => {
     element = await fixture(
-      html`<iededitor-plugin></iededitor-plugin>`
+      html`<ied-plugin></ied-plugin>`
     );
   });
 
@@ -35,22 +35,25 @@ describe('IED Editor Plugin', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element = await fixture(
-        html`<iededitor-plugin .doc="${doc}"></iededitor-plugin>`
+        html`<ied-plugin .doc="${doc}"></ied-plugin>`
       );
     });
     it('it initially contains 1 rendered IED container', () => {
       expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
-      expect(element.shadowRoot?.querySelector('ied-container')!.shadowRoot?.innerHTML).to.include('IED1');
+      expect(element.shadowRoot?.querySelector('ied-container')!
+        .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED1');
     });
     it('it selects another IED after using the drop down box', async () => {
       selector = <Select>(
-        element.shadowRoot?.querySelector('mwc-select')
+        element.shadowRoot?.querySelector('mwc-select[id="iedSelect"]')
       );
       selector.value = "IED3"
       await element.requestUpdate();
+      await element.updateComplete;
 
       expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
-      expect(element.shadowRoot?.querySelector('ied-container')!.shadowRoot?.innerHTML).to.include('IED3');
+      expect(element.shadowRoot?.querySelector('ied-container')!
+        .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED3');
     });
   });
 });

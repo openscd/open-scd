@@ -6,6 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
 import './access-point-container.js';
@@ -18,15 +19,15 @@ export class IedContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  private get header(): string {
+  private header(): TemplateResult {
     const name = this.element.getAttribute('name');
     const desc = this.element.getAttribute('desc');
 
-    return `${name} ${desc ? `\u2014 ${desc}` : ''}`;
+    return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }
 
   render(): TemplateResult {
-    return html`<action-pane label="${this.header}">
+    return html`<action-pane .label="${this.header()}">
       ${Array.from(this.element.querySelectorAll(IEDSelector.AccessPoint)).map(
         ap => html`<access-point-container
           .element=${ap}

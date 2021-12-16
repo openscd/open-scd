@@ -21,12 +21,12 @@ export default class IedPlugin extends LitElement {
 
   /** Query holding the current selected IEDs. */
   @state()
-  currentSelectedIEDs:string = IEDSelector.IED;
+  currentSelectedIEDs: string = IEDSelector.IED;
 
   @query('#iedSelect') iedSelector?: Select;
 
   private get alphabeticOrderedIeds() : Element[] {
-    return Array.from(this.doc?.querySelectorAll(IEDSelector.IED))
+    return Array.from(this.doc?.querySelectorAll(':root > IED'))
     .sort((a,b) => compareNames(a,b));
   }
 
@@ -37,7 +37,7 @@ export default class IedPlugin extends LitElement {
    */
   private onSelect(event: SingleSelectedEvent): void {
     const ied = this.alphabeticOrderedIeds[event.detail.index];
-    this.currentSelectedIEDs = `IED[name="${getNameAttribute(ied)}"]`;
+    this.currentSelectedIEDs = `:root > IED[name="${getNameAttribute(ied)}"]`;
   }
 
   render(): TemplateResult {
