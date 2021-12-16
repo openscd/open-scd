@@ -389,6 +389,9 @@ export const en = {
   updatedesc: {
     abb: 'Added signal descriptions to ABB IEDs',
   },
+  sld: {
+    substationSelector: 'Select a substation',
+  },
   add: 'Add',
   new: 'New',
   remove: 'Remove',

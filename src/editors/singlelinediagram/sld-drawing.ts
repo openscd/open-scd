@@ -85,10 +85,10 @@ export function getAbsolutePositionConnectivityNode(element: Element): Point {
  * Calculate the absolute offset of a terminal next to an element.
  * @param parentElementPosition - The position of the parent element of the terminal.
  * @param elementOffset - The offset of the parent element.
- * @param terminalSide - The side of the parent element where the terminal should be placed. 
+ * @param terminalSide - The side of the parent element where the terminal should be placed.
  * @param customTerminalOffset - An optional parameter containing the offset of the terminal next to the parent element.
  * This may vary, for example for Connectivity Nodes.
- * 
+ *
  * @returns The absolute position of the terminal.
  */
 function absoluteOffsetTerminal(
@@ -555,7 +555,7 @@ export function getParentElementName(
  * @param root - Either the whole SCL file or the voltage level where the bus bar resides
  * @returns - the length of the bus bar
  */
-export function getBusBarLength(root: Element | XMLDocument): number {
+export function getBusBarLength(root: Element): number {
   return (
     Math.max(
       ...Array.from(

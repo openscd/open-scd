@@ -392,6 +392,9 @@ export const de: Translations = {
   updatedesc: {
     abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
   },
+  sld: {
+    substationSelector: '???',
+  },
   add: 'Hinzufügen',
   new: 'Neu',
   remove: 'Entfernen',

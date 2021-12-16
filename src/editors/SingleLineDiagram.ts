@@ -4,12 +4,18 @@ import {
   LitElement,
   property,
   query,
+  state,
   TemplateResult,
 } from 'lit-element';
 
 import panzoom from 'panzoom';
 
-import { identity, newWizardEvent, SCLTag } from '../foundation.js';
+import {
+  compareNames,
+  identity,
+  newWizardEvent,
+  SCLTag
+} from '../foundation.js';
 import {
   getAbsolutePosition,
   createTerminalElement,
@@ -31,8 +37,17 @@ import {
   isBusBar,
   getConnectedTerminals,
   getPathNameAttribute,
+  getNameAttribute,
+  getDescriptionAttribute,
 } from './singlelinediagram/foundation.js';
+import {isSCLNamespace} from "../schemas.js";
 import { wizards } from '../wizards/wizard-library.js';
+import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
+import {translate} from "lit-translate";
+
+import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-select';
+import '@material/mwc-textfield';
 
 /**
  * Main class plugin for Single Line Diagram editor.
@@ -42,29 +57,39 @@ export default class SingleLineDiagramPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
+  @state()
+  selectedSubstation: Element | undefined;
+
+  private get substations() : Element[] {
+    return Array.from(this.doc.querySelectorAll(':root > Substation'))
+      .filter(isSCLNamespace)
+      .sort((a,b) => compareNames(a,b));
+  }
+
   /**
    * Get all the BusBars from the document.
    */
   private get busBars(): Element[] {
-    return Array.from(this.doc.querySelectorAll('Bay')).filter(bay =>
-      isBusBar(bay)
-    );
+    return Array.from(this.selectedSubstation!.querySelectorAll('Bay'))
+      .filter(isSCLNamespace)
+      .filter(bay => isBusBar(bay));
   }
 
   /**
    * Get all the bays from the document.
    */
   private get bays(): Element[] {
-    return Array.from(this.doc.querySelectorAll('Bay')).filter(
-      bay => !isBusBar(bay)
-    );
+    return Array.from(this.selectedSubstation!.querySelectorAll('Bay'))
+      .filter(isSCLNamespace)
+      .filter(bay => !isBusBar(bay));
   }
 
   /**
    * Get all the VoltageLevels from the SCL document.
    */
   private get voltageLevels(): Element[] {
-    return Array.from(this.doc.querySelectorAll('VoltageLevel'));
+    return Array.from(this.selectedSubstation!.querySelectorAll('VoltageLevel'))
+      .filter(isSCLNamespace);
   }
 
   // Container for giving the panzoom to.
@@ -75,7 +100,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Add an element to a specific <g> element.
    * @param elementToAdd - The element to add.
-   * @param groupName - Identity sting if the element
+   * @param identity - Identity string if the element
    */
   private addElementToGroup(
     elementToAdd: Element,
@@ -114,10 +139,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Should only be a <g> element.
    */
   private drawPowerTransformers(): void {
-    Array.from(this.doc.querySelectorAll('PowerTransformer')).forEach(
-      powerTransformer => {
-        const powerTransformerElement =
-          createPowerTransformerElement(powerTransformer);
+    Array.from(this.selectedSubstation!.querySelectorAll('PowerTransformer'))
+      .filter(isSCLNamespace)
+      .forEach(powerTransformer => {
+        const powerTransformerElement = createPowerTransformerElement(powerTransformer);
 
         if (powerTransformer.parentElement?.tagName === 'Substation')
           this.svg.appendChild(powerTransformerElement);
@@ -135,7 +160,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Should only be a <g> element.
    */
   private drawConductingEquipments(): void {
-    Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+    Array.from(this.selectedSubstation!.querySelectorAll('ConductingEquipment'))
+      .filter(isSCLNamespace)
       .filter(
         child =>
           Array.from(child.querySelectorAll('Terminal')).filter(
@@ -157,6 +183,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   private drawConnectivityNodes(): void {
     this.bays.forEach(bay => {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
+        .filter(isSCLNamespace)
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .filter(cNode => getConnectedTerminals(cNode).length > 0)
         .forEach(cNode => {
@@ -176,7 +203,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.busBars.forEach(busBar => {
       const busBarElement = createBusBarElement(
         busBar,
-        getBusBarLength(busBar.parentElement ?? this.doc)
+        getBusBarLength(busBar.parentElement ?? this.selectedSubstation!)
       );
 
       this.addElementToGroup(busBarElement, identity(busBar.parentElement));
@@ -186,10 +213,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
   private drawConnectivityNodeConnections(): void {
     this.bays.forEach(bay => {
       Array.from(bay.querySelectorAll('ConnectivityNode'))
+        .filter(isSCLNamespace)
         .filter(cNode => cNode.getAttribute('name') !== 'grounded')
         .forEach(cNode => {
           Array.from(
-            this.doc.querySelectorAll('ConductingEquipment, PowerTransformer')
+            this.selectedSubstation!.querySelectorAll('ConductingEquipment, PowerTransformer')
           )
             .filter(element =>
               element.querySelector(
@@ -238,7 +266,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
       const pathName = getPathNameAttribute(busBar.children[0]);
       const busBarPosition = getAbsolutePositionBusBar(busBar);
 
-      Array.from(this.doc.querySelectorAll('ConductingEquipment'))
+      Array.from(this.selectedSubstation!.querySelectorAll('ConductingEquipment'))
+        .filter(isSCLNamespace)
         .filter(cEquipment =>
           cEquipment.querySelector(`Terminal[connectivityNode="${pathName}"]`)
         )
@@ -282,9 +311,21 @@ export default class SingleLineDiagramPlugin extends LitElement {
   }
 
   /**
-   * Draw all the Substation elements.
+   * Remove all the child elements (and descendants) from the SVG Element, to have a clean start.
+   */
+  private removeChildren(): void {
+    while (this.svg.firstChild) {
+      this.svg.removeChild(this.svg.lastChild!);
+    }
+  }
+
+  /**
+   * Draw all the elements of the selected Substation.
    */
   drawSubstationElements(): void {
+    // First clean the existing drawing, because the selected substation may have changed.
+    this.removeChildren();
+
     this.drawVoltageLevels();
     this.drawBays();
     this.drawConductingEquipments();
@@ -310,21 +351,96 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.drawSubstationElements();
   }
 
+  onSelect(event: SingleSelectedEvent): void {
+    // Set the selected Substation.
+    this.selectedSubstation = this.substations[event.detail.index];
+    this.drawSubstationElements();
+  }
+
+  private renderSubstationSelector(): TemplateResult {
+    const substationList = this.substations;
+    if (substationList.length > 0) {
+      if (this.selectedSubstation === undefined) {
+        this.selectedSubstation = this.substations[0];
+      }
+
+      if (substationList.length > 1) {
+        const selectedSubstationName = getNameAttribute(this.selectedSubstation);
+        return html `
+          <mwc-select id="substationSelector"
+                      label="${translate("sld.substationSelector")}"
+                      @selected=${this.onSelect}>
+            ${this.substations.map(
+              substation => {
+                const name = getNameAttribute(substation);
+                const description = getDescriptionAttribute(substation);
+                return html`
+                  <mwc-list-item value="${name}"
+                                 ?selected=${name === selectedSubstationName}>
+                    ${name}${description !== undefined ? ' (' + description + ')' : ''}
+                  </mwc-list-item>`
+              })}
+          </mwc-select>
+        `;
+      }
+
+      const name = getNameAttribute(this.selectedSubstation);
+      const description = getDescriptionAttribute(this.selectedSubstation);
+      return html `
+        <mwc-textfield label="${translate('substation.name')}"
+                       value="${name}${description !== undefined ? ' (' + description + ')' : ''}"
+                       id="selectedSubstation"
+                       readonly
+                       disabled>
+        </mwc-textfield>
+      `;
+    }
+    return html `
+      <h1>
+        <span id="noSubstationSelector">${translate('substation.missing')}</span>
+      </h1>
+    `
+  }
+
   render(): TemplateResult {
     // TODO: Width and Height should be a percentage, not fixed height/width.
-    return html`<div class="sldContainer">
-      <div id="panzoom">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="svg"
-          width="5000"
-          height="5000"
-        ></svg>
-      </div>
-    </div>`;
+    return html `
+      ${this.renderSubstationSelector()}
+
+      <div class="sldContainer">
+        <div id="panzoom">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="svg"
+            width="5000"
+            height="5000"
+          ></svg>
+        </div>
+      </div>`;
   }
 
   static styles = css`
+    h1 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
+      line-height: 48px;
+      padding-left: 0.3em;
+      transition: background-color 150ms linear;
+    }
+
+    #substationSelector {
+      width: 30vw;
+    }
+
+    #noSubstationSelector {
+      color: var(--base1)
+    }
+
     .sldContainer {
       overflow: hidden;
     }
