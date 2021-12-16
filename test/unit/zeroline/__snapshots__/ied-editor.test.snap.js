@@ -22,6 +22,14 @@ snapshots["A component to visualize SCL element IED looks like the latest snapsh
     <mwc-icon slot="icon">
     </mwc-icon>
   </mwc-fab>
+  <mwc-fab
+    class="selectreport"
+    mini=""
+    slot="action"
+  >
+    <mwc-icon slot="icon">
+    </mwc-icon>
+  </mwc-fab>
 </action-icon>
 `;
 /* end snapshot A component to visualize SCL element IED looks like the latest snapshot */
