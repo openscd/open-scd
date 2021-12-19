@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot"] = 
+snapshots["Edit wizard for SCL element ConnectedAP for Edition 1 projects looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.edit]"
@@ -9,7 +9,7 @@ snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for E
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
-      <mwc-checkbox id="instType">
+      <mwc-checkbox id="typeRestriction">
       </mwc-checkbox>
     </mwc-formfield>
     <wizard-textfield
@@ -127,9 +127,9 @@ snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for E
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot */
+/* end snapshot Edit wizard for SCL element ConnectedAP for Edition 1 projects looks like the latest snapshot */
 
-snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot"] = 
+snapshots["Edit wizard for SCL element ConnectedAP for Edition 2 projects looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.edit]"
@@ -137,7 +137,431 @@ snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for E
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
-      <mwc-checkbox id="instType">
+      <mwc-checkbox id="typeRestriction">
+      </mwc-checkbox>
+    </mwc-formfield>
+    <wizard-textfield
+      label="IP"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="IP-SUBNET"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="IP-GATEWAY"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-TSEL"
+      maxlength="8"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-SSEL"
+      maxlength="16"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-PSEL"
+      maxlength="16"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-AP-Title"
+      nullable=""
+      pattern="[0-9,]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-AP-Invoke"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-AE-Qualifier"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-AE-Invoke"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-NSAP"
+      maxlength="40"
+      nullable=""
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="VLAN-ID"
+      nullable=""
+      pattern="[0-9A-F]{3}"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="VLAN-PRIORITY"
+      nullable=""
+      pattern="[0-7]"
+      required=""
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Edit wizard for SCL element ConnectedAP for Edition 2 projects looks like the latest snapshot */
+
+snapshots["Edit wizard for SCL element ConnectedAP for Edition 2.1 projects looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.edit]"
+  open=""
+>
+  <div id="wizard-content">
+    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+      <mwc-checkbox id="typeRestriction">
+      </mwc-checkbox>
+    </mwc-formfield>
+    <wizard-textfield
+      label="IP"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="IP-SUBNET"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="IP-GATEWAY"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-TSEL"
+      maxlength="8"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-SSEL"
+      maxlength="16"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-PSEL"
+      maxlength="16"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-AP-Title"
+      nullable=""
+      pattern="[0-9,]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-AP-Invoke"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-AE-Qualifier"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-AE-Invoke"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-NSAP"
+      maxlength="40"
+      nullable=""
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="VLAN-ID"
+      nullable=""
+      pattern="[0-9A-F]{3}"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="VLAN-PRIORITY"
+      nullable=""
+      pattern="[0-7]"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="SNTP-Port"
+      nullable=""
+      pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="MMS-Port"
+      nullable=""
+      pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="DNSName"
+      nullable=""
+      pattern="[^ ]*"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="UDP-Port"
+      nullable=""
+      pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="TCP-Port"
+      nullable=""
+      pattern="0|([1-9][0-9]{0,3})|([1-5][0-9]{4,4})|(6[0-4][0-9]{3,3})|(65[0-4][0-9]{2,2})|(655[0-2][0-9])|(6553[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="C37-118-IP-Port"
+      nullable=""
+      pattern="102[5-9]|10[3-9][0-9]|1[1-9][0-9][0-9]|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]"
+      required=""
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Edit wizard for SCL element ConnectedAP for Edition 2.1 projects looks like the latest snapshot */
+
+snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.edit]"
+  open=""
+>
+  <div id="wizard-content">
+    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+      <mwc-checkbox id="typeRestriction">
+      </mwc-checkbox>
+    </mwc-formfield>
+    <wizard-textfield
+      label="IP"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="IP-SUBNET"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="IP-GATEWAY"
+      pattern="([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-TSEL"
+      maxlength="8"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-SSEL"
+      maxlength="16"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-PSEL"
+      maxlength="16"
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-AP-Title"
+      nullable=""
+      pattern="[0-9,]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-AP-Invoke"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      label="OSI-AE-Qualifier"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-AE-Invoke"
+      maxlength="5"
+      nullable=""
+      pattern="[0-9]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="OSI-NSAP"
+      maxlength="40"
+      nullable=""
+      pattern="[0-9A-F]+"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="VLAN-ID"
+      nullable=""
+      pattern="[0-9A-F]{3}"
+      required=""
+    >
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      label="VLAN-PRIORITY"
+      nullable=""
+      pattern="[0-7]"
+      required=""
+    >
+    </wizard-textfield>
+  </div>
+  <mwc-button
+    dialogaction="close"
+    label="[cancel]"
+    slot="secondaryAction"
+    style="--mdc-theme-primary: var(--mdc-theme-error)"
+  >
+  </mwc-button>
+  <mwc-button
+    dialoginitialfocus=""
+    icon="save"
+    label="[save]"
+    slot="primaryAction"
+    trailingicon=""
+  >
+  </mwc-button>
+</mwc-dialog>
+`;
+/* end snapshot Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 1 projects looks like the latest snapshot */
+
+snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot"] = 
+`<mwc-dialog
+  defaultaction="close"
+  heading="[wizard.title.edit]"
+  open=""
+>
+  <div id="wizard-content">
+    <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
+      <mwc-checkbox id="typeRestriction">
       </mwc-checkbox>
     </mwc-formfield>
     <wizard-textfield
@@ -303,9 +727,9 @@ snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for E
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot */
+/* end snapshot Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2 projects looks like the latest snapshot */
 
-snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot"] = 
+snapshots["Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.edit]"
@@ -313,7 +737,7 @@ snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for E
 >
   <div id="wizard-content">
     <mwc-formfield label="[connectedap.wizard.addschemainsttype]">
-      <mwc-checkbox id="instType">
+      <mwc-checkbox id="typeRestriction">
       </mwc-checkbox>
     </mwc-formfield>
     <wizard-textfield
@@ -542,5 +966,5 @@ snapshots["Wizards for SCL element ConnectedAP include an edit wizard that for E
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot */
+/* end snapshot Edit wizard for SCL element ConnectedAP include an edit wizard that for Edition 2.1 projects looks like the latest snapshot */
 

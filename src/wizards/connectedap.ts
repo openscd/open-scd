@@ -52,42 +52,6 @@ function compareListItemConnection(
   return 0;
 }
 
-function isEqualAddress(oldAddr: Element, newAdddr: Element): boolean {
-  return (
-    Array.from(oldAddr.querySelectorAll('Address > P')).filter(
-      pType =>
-        !newAdddr
-          .querySelector(`Address > P[type="${pType.getAttribute('type')}"]`)
-          ?.isEqualNode(pType)
-    ).length === 0
-  );
-}
-
-function createAddressElement(
-  inputs: WizardInput[],
-  parent: Element,
-  instType: boolean
-): Element {
-  const element = createElement(parent.ownerDocument, 'Address', {});
-
-  inputs
-    .filter(input => getValue(input) !== null)
-    .forEach(validInput => {
-      const type = validInput.label;
-      const child = createElement(parent.ownerDocument, 'P', { type });
-      if (instType)
-        child.setAttributeNS(
-          'http://www.w3.org/2001/XMLSchema-instance',
-          'xsi:type',
-          'tP_' + type
-        );
-      child.textContent = getValue(validInput);
-      element.appendChild(child);
-    });
-
-  return element;
-}
-
 function createConnectedApAction(parent: Element): WizardActor {
   return (
     inputs: WizardInput[],
@@ -180,13 +144,49 @@ export function createConnectedApWizard(element: Element): Wizard {
   ];
 }
 
-export function updateConnectedApAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
-    const instType: boolean =
-      (<Checkbox>wizard.shadowRoot?.querySelector('#instType'))?.checked ??
-      false;
+function isEqualAddress(oldAddress: Element, newAddress: Element): boolean {
+  return Array.from(oldAddress.querySelectorAll('Address > P')).every(pType =>
+    newAddress
+      .querySelector(`Address > P[type="${pType.getAttribute('type')}"]`)
+      ?.isEqualNode(pType)
+  );
+}
 
-    const newAddress = createAddressElement(inputs, parent, instType);
+function createAddressElement(
+  inputs: WizardInput[],
+  parent: Element,
+  typeRestriction: boolean
+): Element {
+  const element = createElement(parent.ownerDocument, 'Address', {});
+
+  inputs
+    .filter(input => getValue(input) !== null)
+    .forEach(validInput => {
+      const type = validInput.label;
+      const child = createElement(parent.ownerDocument, 'P', { type });
+
+      if (typeRestriction)
+        child.setAttributeNS(
+          'http://www.w3.org/2001/XMLSchema-instance',
+          'xsi:type',
+          'tP_' + type
+        );
+
+      child.textContent = getValue(validInput);
+      element.appendChild(child);
+    });
+
+  return element;
+}
+
+function updateConnectedApAction(parent: Element): WizardActor {
+  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+    const typeRestriction: boolean =
+      (<Checkbox>wizard.shadowRoot?.querySelector('#typeRestriction'))
+        ?.checked ?? false;
+
+    const newAddress = createAddressElement(inputs, parent, typeRestriction);
+    const oldAddress = parent.querySelector('Address');
 
     const complexAction: ComplexAction = {
       actions: [],
@@ -195,23 +195,18 @@ export function updateConnectedApAction(parent: Element): WizardActor {
         apName: parent.getAttribute('apName') ?? '',
       }),
     };
-
-    const oldAddress = parent.querySelector('Address');
-
     if (oldAddress !== null && !isEqualAddress(oldAddress, newAddress)) {
       // We cannot use updateAction on address as both address child elements P are changed
       complexAction.actions.push({
         old: {
           parent,
           element: oldAddress,
-          reference: oldAddress.nextSibling,
         },
       });
       complexAction.actions.push({
         new: {
           parent,
           element: newAddress,
-          reference: oldAddress.nextSibling,
         },
       });
     } else if (oldAddress === null)
@@ -222,7 +217,7 @@ export function updateConnectedApAction(parent: Element): WizardActor {
         },
       });
 
-    return [complexAction];
+    return complexAction.actions.length ? [complexAction] : [];
   };
 }
 
@@ -250,7 +245,7 @@ export function editConnectedApWizard(element: Element): Wizard {
         html`<mwc-formfield
             label="${translate('connectedap.wizard.addschemainsttype')}"
             ><mwc-checkbox
-              id="instType"
+              id="typeRestriction"
               ?checked=${existTypeRestriction(element)}
             ></mwc-checkbox></mwc-formfield
           >${getTypes(element).map(

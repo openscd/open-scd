@@ -1,21 +1,23 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import fc, { integer, ipV4, nat } from 'fast-check';
+import { SinonSpy, spy } from 'sinon';
 
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
+import { Checkbox } from '@material/mwc-checkbox';
+
 import '../../../src/editors/communication/connectedap-editor.js';
 import { ConnectedAPEditor } from '../../../src/editors/communication/connectedap-editor.js';
-import { WizardInput } from '../../../src/foundation.js';
-
-import {
-  ipV6,
-  ipV6SubNet,
-  negativeRegex,
-  regExp,
-  regexString,
-} from '../../foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import {
+  ComplexAction,
+  Delete,
+  isCreate,
+  isDelete,
+  isSimple,
+  Create,
+  WizardInput,
+} from '../../../src/foundation.js';
 
 describe('Wizards for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
@@ -23,6 +25,9 @@ describe('Wizards for SCL element ConnectedAP', () => {
   let element: ConnectedAPEditor;
   let inputs: WizardInput[];
   let input: WizardInput | undefined;
+  let primaryAction: HTMLElement;
+
+  let actionEvent: SinonSpy;
 
   beforeEach(async () => {
     parent = <MockWizard>(
@@ -34,10 +39,13 @@ describe('Wizards for SCL element ConnectedAP', () => {
     );
 
     element = parent.querySelector<ConnectedAPEditor>('connectedap-editor')!;
+
+    actionEvent = spy();
+    window.addEventListener('editor-action', actionEvent);
   });
 
   describe('include an edit wizard that', () => {
-    describe('for Edition 1 projects', () => {
+    describe('independent of the edition', () => {
       beforeEach(async () => {
         doc = await fetch('/test/testfiles/valid2003.scd')
           .then(response => response.text())
@@ -52,845 +60,122 @@ describe('Wizards for SCL element ConnectedAP', () => {
         await parent.requestUpdate();
 
         inputs = Array.from(parent.wizardUI.inputs);
+
+        primaryAction = <HTMLElement>(
+          parent.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
       });
 
-      it('looks like the latest snapshot', async () => {
-        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
-      });
-
-      describe('allows to edit P element of type IP', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IP');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV4(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type IP-SUBNET', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IP-SUBNET');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV4(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type IP-GATEWAY', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IP-GATEWAY');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV4(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-TSEL', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'OSI-TSEL');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(regexString(regExp.OSI, 1, 8), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-SSEL', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'OSI-SSEL');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              regexString(regExp.OSI, 1, 16),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-PSEL', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'OSI-PSEL');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              regexString(regExp.OSI, 1, 16),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-AP-Title', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'OSI-AP-Title');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(regexString(regExp.OSIAPi, 1), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIAPi), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-AP-Invoke', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'OSI-AP-Invoke');
-          if (input && (<WizardTextField>input).maybeValue === null)
-            await (<WizardTextField>input).nullSwitch?.click();
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              regexString(regExp.OSIid, 1, 5),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-AE-Qualifier', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'OSI-AE-Qualifier');
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              regexString(regExp.OSIid, 1, 5),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-AE-Invoke', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'OSI-AE-Invoke');
-          if (input && (<WizardTextField>input).maybeValue === null)
-            await (<WizardTextField>input).nullSwitch?.click();
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              regexString(regExp.OSIid, 1, 5),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type OSI-NSAP', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'OSI-NSAP');
-          if (input && (<WizardTextField>input).maybeValue === null)
-            await (<WizardTextField>input).nullSwitch?.click();
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              regexString(regExp.OSI, 1, 40),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type VLAN-ID', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'VLAN-ID');
-          if (input && (<WizardTextField>input).maybeValue === null)
-            await (<WizardTextField>input).nullSwitch?.click();
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(regexString(regExp.OSI, 3, 3), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type VLAN-PRIORITY', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'VLAN-PRIORITY');
-          if (input && (<WizardTextField>input).maybeValue === null)
-            await (<WizardTextField>input).nullSwitch?.click();
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(regexString(/^[0-7]$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-7]$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-    });
-
-    describe('for Edition 2 projects', () => {
-      beforeEach(async () => {
-        doc = await fetch('/test/testfiles/valid2007B.scd')
-          .then(response => response.text())
-          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-        element.element = doc.querySelector('ConnectedAP')!;
+      it('does not edit any P element with unchanged wizard inputs', async () => {
+        primaryAction.click();
         await element.requestUpdate();
+        expect(actionEvent).to.not.have.been.called;
+      });
 
-        (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-        )).click();
+      it('triggers a complex editor action to update P elements(s)', async () => {
+        input = <WizardTextField>inputs.find(input => input.label === 'IP');
+        input.value = '192.168.210.158';
+        await input.requestUpdate();
+
+        primaryAction.click();
         await parent.requestUpdate();
 
-        inputs = Array.from(parent.wizardUI.inputs);
+        expect(actionEvent).to.be.calledOnce;
+        expect(actionEvent.args[0][0].detail.action).to.not.satisfy(isSimple);
       });
 
-      it('looks like the latest snapshot', async () => {
-        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
-      });
+      it('triggers a complex action as combination of delete and create with prior existing Address field', async () => {
+        input = <WizardTextField>inputs.find(input => input.label === 'IP');
+        input.value = '192.168.210.158';
+        await input.requestUpdate();
 
-      describe('allows to edit P element of type SNTP-Port', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'SNTP-Port');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            await (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              nat({ max: 65535 }).map(num => `${num}`),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type MMS-Port', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'MMS-Port');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            await (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              nat({ max: 65535 }).map(num => `${num}`),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type DNSName', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'DNSName');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            await (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(regexString(/^\S*$/, 1), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type UDP-Port', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'UDP-Port');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              nat({ max: 65535 }).map(num => `${num}`),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type TCP-Port', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'TCP-Port');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              nat({ max: 65535 }).map(num => `${num}`),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type C37-118-IP-Port', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'C37-118-IP-Port');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              integer({ min: 1025, max: 65535 }).map(num => `${num}`),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-    });
-
-    describe('for Edition 2.1 projects', () => {
-      beforeEach(async () => {
-        doc = await fetch('/test/testfiles/valid2007B4.scd')
-          .then(response => response.text())
-          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-        element.element = doc.querySelector('ConnectedAP')!;
-        await element.requestUpdate();
-
-        (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-        )).click();
+        primaryAction.click();
         await parent.requestUpdate();
 
-        inputs = Array.from(parent.wizardUI.inputs);
+        const complexAction = <ComplexAction>(
+          actionEvent.args[0][0].detail.action
+        );
+        expect(complexAction.actions).to.have.lengthOf(2);
+        expect(complexAction.actions[0]).to.satisfy(isDelete);
+        expect(complexAction.actions[1]).to.satisfy(isCreate);
       });
 
-      it('looks like the latest snapshot', async () => {
-        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
+      it('triggers a complex action being a pure create with prior missing Address field', async () => {
+        doc
+          .querySelector<Element>('ConnectedAP')
+          ?.removeChild(doc.querySelector<Element>('ConnectedAP > Address')!);
+
+        input = <WizardTextField>inputs.find(input => input.label === 'IP');
+        input.value = '192.168.210.158';
+        await input.requestUpdate();
+
+        primaryAction.click();
+        await parent.requestUpdate();
+
+        const complexAction = <ComplexAction>(
+          actionEvent.args[0][0].detail.action
+        );
+        expect(complexAction.actions).to.have.lengthOf(1);
+        expect(complexAction.actions[0]).to.satisfy(isCreate);
       });
 
-      describe('allows to edit P element of type IPv6', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'IPv6');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            await (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
+      it('properly updates a P element of type IP', async () => {
+        input = <WizardTextField>inputs.find(input => input.label === 'IP');
+        input.value = '192.168.210.158';
+        await input.requestUpdate();
 
-        it('as wizard input', () => expect(input).to.exist);
+        primaryAction.click();
+        await parent.requestUpdate();
 
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV6(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
+        const complexAction = <ComplexAction>(
+          actionEvent.args[0][0].detail.action
+        );
 
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
+        const oldAddress = (<Delete>complexAction.actions[0]).old.element;
+        const newAddress = (<Create>complexAction.actions[1]).new.element;
+
+        expect(
+          oldAddress.querySelector<Element>('P[type="IP"]')?.textContent
+        ).to.equal('192.168.210.111');
+        expect(
+          newAddress.querySelector<Element>('P[type="IP"]')?.textContent
+        ).to.equal('192.168.210.158');
       });
 
-      describe('allows to edit P element of type IPv6-SUBNET', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'IPv6-SUBNET');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            await (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
+      it('adds type restrictions with selected option type restriction', async () => {
+        (<Checkbox>(
+          parent.wizardUI.shadowRoot?.querySelector('#typeRestriction')
+        )).checked = true;
+        await parent.requestUpdate();
 
-        it('as wizard input', () => expect(input).to.exist);
+        primaryAction.click();
+        await parent.requestUpdate();
 
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV6SubNet(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
+        const complexAction = <ComplexAction>(
+          actionEvent.args[0][0].detail.action
+        );
 
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9/]*$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
+        const oldAddress = (<Delete>complexAction.actions[0]).old.element;
+        const newAddress = (<Create>complexAction.actions[1]).new.element;
 
-      describe('allows to edit P element of type IPv6-GATEWAY', () => {
-        beforeEach(async () => {
-          input = inputs.find(input => input.label === 'IPv6-GATEWAY');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            await (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
+        const oldIP = oldAddress.querySelector<Element>('P[type="IP"]');
+        const newIP = newAddress.querySelector<Element>('P[type="IP"]');
 
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV6(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type IPv6FlowLabel', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IPv6FlowLabel');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              fc.hexaString({ minLength: 1, maxLength: 5 }),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              negativeRegex(/^[0-9a-fA-F]{1,5}$/),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.false;
-              }
-            )
-          ));
-      });
-
-      describe('allows to edit P element of type IPv6ClassOfTraffic', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IPv6ClassOfTraffic');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(
-              nat({ max: 255 }).map(num => `${num}`),
-              async testValue => {
-                input!.value = testValue;
-                await parent.requestUpdate();
-                expect(input!.checkValidity()).to.be.true;
-              }
-            )
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type IPv6-IGMPv3Src', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IPv6-IGMPv3Src');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV6(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type IP-IGMPv3Sr', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IP-IGMPv3Sr');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(ipV4(), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
-      });
-
-      describe('allows to edit P element of type IP-ClassOfTraffic', () => {
-        beforeEach(() => {
-          input = inputs.find(input => input.label === 'IP-ClassOfTraffic');
-          if (input && (<WizardTextField>input).maybeValue === null) {
-            (<WizardTextField>input).nullSwitch?.click();
-          }
-        });
-
-        it('as wizard input', () => expect(input).to.exist);
-
-        it('for valid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(regexString(regExp.OSI, 1, 2), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.true;
-            })
-          ));
-
-        it('not for invalid input', async () =>
-          await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
-              input!.value = testValue;
-              await parent.requestUpdate();
-              expect(input!.checkValidity()).to.be.false;
-            })
-          ));
+        expect(
+          oldIP?.getAttributeNS(
+            'http://www.w3.org/2001/XMLSchema-instance',
+            'type'
+          )
+        ).to.not.exist;
+        expect(
+          newIP?.getAttributeNS(
+            'http://www.w3.org/2001/XMLSchema-instance',
+            'type'
+          )
+        ).to.exist;
       });
     });
-
-    it('does not edit any P element with unchanged wizard inputs');
-    it('updates P element with changed user input');
   });
 });
