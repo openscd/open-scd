@@ -157,7 +157,7 @@ export class ActionIcon extends LitElement {
       margin: 0px;
       text-align: center;
       align-self: center;
-      max-width: 120px;
+      max-width: 100%;
       direction: rtl;
     }
 
