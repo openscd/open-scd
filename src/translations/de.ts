@@ -356,9 +356,6 @@ export const de: Translations = {
     name: 'Schnittstelle',
     wizard: {
       addschemainsttype: 'XMLSchema-instance type hinzufügen',
-      title: {
-        connect: 'Schnittstelle verbinden',
-      },
     },
     action: {
       addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',

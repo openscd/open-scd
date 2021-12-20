@@ -16,24 +16,16 @@ import {
   regexString,
 } from '../../foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { editConnectedApWizard } from '../../../src/wizards/connectedap.js';
 
 describe('Edit wizard for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
-  let parent: MockWizard;
-  let element: ConnectedAPEditor;
+  let element: MockWizard;
   let inputs: WizardInput[];
   let input: WizardInput | undefined;
 
   beforeEach(async () => {
-    parent = <MockWizard>(
-      await fixture(
-        html`<mock-wizard
-          ><connectedap-editor></connectedap-editor
-        ></mock-wizard>`
-      )
-    );
-
-    element = parent.querySelector<ConnectedAPEditor>('connectedap-editor')!;
+    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
   });
 
   describe('include an edit wizard that', () => {
@@ -43,19 +35,15 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           .then(response => response.text())
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-        element.element = doc.querySelector('ConnectedAP')!;
+        const wizard = editConnectedApWizard(doc.querySelector('ConnectedAP')!);
+        element.workflow.push(wizard);
         await element.requestUpdate();
 
-        (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-        )).click();
-        await parent.requestUpdate();
-
-        inputs = Array.from(parent.wizardUI.inputs);
+        inputs = Array.from(element.wizardUI.inputs);
       });
 
       it('looks like the latest snapshot', async () => {
-        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
       });
 
       describe('allows to edit P element of type IP', () => {
@@ -69,7 +57,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -78,7 +66,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -95,7 +83,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -104,7 +92,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -121,7 +109,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -130,7 +118,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -147,7 +135,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSI, 1, 8), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -156,7 +144,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -175,7 +163,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               regexString(regExp.OSI, 1, 16),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -185,7 +173,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -204,7 +192,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               regexString(regExp.OSI, 1, 16),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -214,7 +202,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -231,7 +219,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSIAPi, 1), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -240,7 +228,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSIAPi), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -261,7 +249,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               regexString(regExp.OSIid, 1, 5),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -271,7 +259,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -290,7 +278,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               regexString(regExp.OSIid, 1, 5),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -300,7 +288,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -321,7 +309,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               regexString(regExp.OSIid, 1, 5),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -331,7 +319,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -352,7 +340,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               regexString(regExp.OSI, 1, 40),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -362,7 +350,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -381,7 +369,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSI, 3, 3), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -390,7 +378,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -409,7 +397,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(regexString(/^[0-7]$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -418,7 +406,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-7]$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -431,19 +419,15 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           .then(response => response.text())
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-        element.element = doc.querySelector('ConnectedAP')!;
+        const wizard = editConnectedApWizard(doc.querySelector('ConnectedAP')!);
+        element.workflow.push(wizard);
         await element.requestUpdate();
 
-        (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-        )).click();
-        await parent.requestUpdate();
-
-        inputs = Array.from(parent.wizardUI.inputs);
+        inputs = Array.from(element.wizardUI.inputs);
       });
 
       it('looks like the latest snapshot', async () => {
-        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
       });
 
       describe('allows to edit P element of type SNTP-Port', () => {
@@ -462,7 +446,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               nat({ max: 65535 }).map(num => `${num}`),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -472,7 +456,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -494,7 +478,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               nat({ max: 65535 }).map(num => `${num}`),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -504,7 +488,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -524,7 +508,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(regexString(/^\S*$/, 1), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -546,7 +530,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               nat({ max: 65535 }).map(num => `${num}`),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -556,7 +540,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -578,7 +562,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               nat({ max: 65535 }).map(num => `${num}`),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -588,7 +572,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -610,7 +594,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               integer({ min: 1025, max: 65535 }).map(num => `${num}`),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -620,7 +604,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -633,19 +617,15 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           .then(response => response.text())
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-        element.element = doc.querySelector('ConnectedAP')!;
+        const wizard = editConnectedApWizard(doc.querySelector('ConnectedAP')!);
+        element.workflow.push(wizard);
         await element.requestUpdate();
 
-        (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-        )).click();
-        await parent.requestUpdate();
-
-        inputs = Array.from(parent.wizardUI.inputs);
+        inputs = Array.from(element.wizardUI.inputs);
       });
 
       it('looks like the latest snapshot', async () => {
-        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
+        await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
       });
 
       describe('allows to edit P element of type IPv6', () => {
@@ -662,7 +642,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV6(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -671,7 +651,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -691,7 +671,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV6SubNet(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -700,7 +680,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-9/]*$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -720,7 +700,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV6(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -729,7 +709,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -751,7 +731,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               fc.hexaString({ minLength: 1, maxLength: 5 }),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -763,7 +743,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               negativeRegex(/^[0-9a-fA-F]{1,5}$/),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.false;
               }
             )
@@ -786,7 +766,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
               nat({ max: 255 }).map(num => `${num}`),
               async testValue => {
                 input!.value = testValue;
-                await parent.requestUpdate();
+                await element.requestUpdate();
                 expect(input!.checkValidity()).to.be.true;
               }
             )
@@ -796,7 +776,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -816,7 +796,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV6(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -825,7 +805,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -845,7 +825,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -854,7 +834,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));
@@ -874,7 +854,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSI, 1, 2), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.true;
             })
           ));
@@ -883,7 +863,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           await fc.assert(
             fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
-              await parent.requestUpdate();
+              await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
             })
           ));

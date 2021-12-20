@@ -1,4 +1,4 @@
-import { TemplateResult, html } from 'lit-element';
+import { html } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { translate, get } from 'lit-translate';
 
@@ -23,6 +23,7 @@ import {
   createElement,
   ComplexAction,
   isPublic,
+  identity,
 } from '../foundation.js';
 import {
   getTypes,
@@ -31,22 +32,15 @@ import {
   typePattern,
 } from './foundation/p-types.js';
 
-/** Data needed to uniquely identify an `AccessPoint` */
-interface apAttributes {
-  iedName: string;
-  apName: string;
-}
-
-/** Description of a `ListItem` representing an `IED` and `AccessPoint` */
-interface ItemDescription {
-  value: apAttributes;
+interface AccessPointDescription {
+  element: Element;
   connected?: boolean;
 }
 
-/** Sorts disabled `ListItem`s to the bottom. */
-function compareListItemConnection(
-  a: ItemDescription,
-  b: ItemDescription
+/** Sorts connected `AccessPoint`s to the bottom. */
+function compareAccessPointConnection(
+  a: AccessPointDescription,
+  b: AccessPointDescription
 ): number {
   if (a.connected !== b.connected) return b.connected ? -1 : 1;
   return 0;
@@ -54,92 +48,81 @@ function compareListItemConnection(
 
 function createConnectedApAction(parent: Element): WizardActor {
   return (
-    inputs: WizardInput[],
-    wizard: Element,
+    _: WizardInput[],
+    __: Element,
     list?: List | null
   ): EditorAction[] => {
     if (!list) return [];
 
-    const apValue = (<ListItemBase[]>list.selected).map(
-      item => <apAttributes>JSON.parse(item.value)
-    );
+    const identities = (<ListItemBase[]>list.selected).map(item => item.value);
 
-    const actions = apValue.map(
-      value =>
-        <EditorAction>{
-          new: {
-            parent,
-            element: createElement(parent.ownerDocument, 'ConnectedAP', {
-              iedName: value.iedName,
-              apName: value.apName,
-            }),
-          },
-        }
-    );
+    const actions = identities.map(identity => {
+      const [iedName, apName] = identity.split('>');
+
+      return {
+        new: {
+          parent,
+          element: createElement(parent.ownerDocument, 'ConnectedAP', {
+            iedName,
+            apName,
+          }),
+        },
+      };
+    });
 
     return actions;
   };
 }
 
-function renderWizardPage(element: Element): TemplateResult {
+function existConnectedAp(accesspoint: Element): boolean {
+  const iedName = accesspoint.closest('IED')?.getAttribute('name');
+  const apName = accesspoint.getAttribute('name');
+
+  const connAp = accesspoint.ownerDocument.querySelector(
+    `ConnectedAP[iedName="${iedName}"][apName="${apName}"]`
+  );
+
+  return (connAp && isPublic(connAp)) ?? false;
+}
+
+/** @returns single page  [[`Wizard`]] for creating SCL element ConnectedAP. */
+export function createConnectedApWizard(element: Element): Wizard {
   const doc = element.ownerDocument;
 
-  const accPoints = Array.from(doc.querySelectorAll(':root > IED'))
+  const accessPoints = Array.from(doc.querySelectorAll(':root > IED'))
     .sort(compareNames)
     .flatMap(ied =>
       Array.from(ied.querySelectorAll(':root > IED > AccessPoint'))
     )
-    .map(accP => {
+    .map(accesspoint => {
       return {
-        iedName: accP.parentElement!.getAttribute('name')!,
-        apName: accP.getAttribute('name')!,
-      };
-    });
-
-  const accPointDescription = accPoints
-    .map(value => {
-      return {
-        value,
-        connected:
-          doc?.querySelector(
-            `:root > Communication > SubNetwork > ConnectedAP[iedName="${value.iedName}"][apName="${value.apName}"]`
-          ) !== null,
+        element: accesspoint,
+        connected: existConnectedAp(accesspoint),
       };
     })
-    .sort(compareListItemConnection);
+    .sort(compareAccessPointConnection);
 
-  if (accPointDescription.length)
-    return html` <filtered-list id="apList" multi
-      >${accPointDescription.map(
-        item => html`<mwc-check-list-item
-          value="${JSON.stringify(item.value)}"
-          twoline
-          ?disabled=${item.connected}
-          ><span>${item.value.apName}</span
-          ><span slot="secondary"
-            >${item.value.iedName}</span
-          ></mwc-check-list-item
-        >`
-      )}
-    </filtered-list>`;
-
-  return html`<mwc-list-item disabled graphic="icon">
-    <span>${translate('lnode.wizard.placeholder')}</span>
-    <mwc-icon slot="graphic">info</mwc-icon>
-  </mwc-list-item>`;
-}
-
-/** @returns a Wizard for creating `element` `ConnectedAP`. */
-export function createConnectedApWizard(element: Element): Wizard {
   return [
     {
-      title: get('connectedap.wizard.title.connect'),
+      title: get('wizard.title.add', { tagName: 'ConnectedAP' }),
       primary: {
         icon: 'save',
         label: get('save'),
         action: createConnectedApAction(element),
       },
-      content: [renderWizardPage(element)],
+      content: [
+        html` <filtered-list id="apList" multi
+          >${accessPoints.map(accesspoint => {
+            const id = identity(accesspoint.element);
+
+            return html`<mwc-check-list-item
+              value="${id}"
+              ?disabled=${accesspoint.connected}
+              ><span>${id}</span></mwc-check-list-item
+            >`;
+          })}
+        </filtered-list>`,
+      ],
     },
   ];
 }
@@ -227,10 +210,7 @@ function existTypeRestriction(element: Element): boolean {
     .some(pType => pType.getAttribute('xsi:type'));
 }
 
-/** Create a single page [[`Wizard`]] to edit SCL element ConnectedAP
- *  @param element - SCL element ConnectedAP
- *  @returns - Edition dependant [[`Wizard`]] with WizardInput for each configurable `P` element
- */
+/** @returns single page [[`Wizard`]] to edit SCL element ConnectedAP. */
 export function editConnectedApWizard(element: Element): Wizard {
   return [
     {

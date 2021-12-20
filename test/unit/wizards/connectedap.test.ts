@@ -6,8 +6,6 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import { Checkbox } from '@material/mwc-checkbox';
 
-import '../../../src/editors/communication/connectedap-editor.js';
-import { ConnectedAPEditor } from '../../../src/editors/communication/connectedap-editor.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   ComplexAction,
@@ -18,11 +16,15 @@ import {
   Create,
   WizardInput,
 } from '../../../src/foundation.js';
+import {
+  createConnectedApWizard,
+  editConnectedApWizard,
+} from '../../../src/wizards/connectedap.js';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 describe('Wizards for SCL element ConnectedAP', () => {
   let doc: XMLDocument;
-  let parent: MockWizard;
-  let element: ConnectedAPEditor;
+  let element: MockWizard;
   let inputs: WizardInput[];
   let input: WizardInput | undefined;
   let primaryAction: HTMLElement;
@@ -30,152 +32,210 @@ describe('Wizards for SCL element ConnectedAP', () => {
   let actionEvent: SinonSpy;
 
   beforeEach(async () => {
-    parent = <MockWizard>(
-      await fixture(
-        html`<mock-wizard
-          ><connectedap-editor></connectedap-editor
-        ></mock-wizard>`
-      )
-    );
-
-    element = parent.querySelector<ConnectedAPEditor>('connectedap-editor')!;
+    element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
 
     actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);
   });
 
   describe('include an edit wizard that', () => {
-    describe('independent of the edition', () => {
-      beforeEach(async () => {
-        doc = await fetch('/test/testfiles/valid2003.scd')
-          .then(response => response.text())
-          .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/valid2003.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-        element.element = doc.querySelector('ConnectedAP')!;
-        await element.requestUpdate();
+      const wizard = editConnectedApWizard(doc.querySelector('ConnectedAP')!);
+      element.workflow.push(wizard);
+      await element.requestUpdate();
 
-        (<HTMLElement>(
-          element?.shadowRoot?.querySelector('mwc-fab[icon="edit"]')
-        )).click();
-        await parent.requestUpdate();
+      inputs = Array.from(element.wizardUI.inputs);
 
-        inputs = Array.from(parent.wizardUI.inputs);
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
 
-        primaryAction = <HTMLElement>(
-          parent.wizardUI.dialog?.querySelector(
-            'mwc-button[slot="primaryAction"]'
-          )
-        );
-      });
+    it('does not edit any P element with unchanged wizard inputs', async () => {
+      primaryAction.click();
+      await element.requestUpdate();
+      expect(actionEvent).to.not.have.been.called;
+    });
 
-      it('does not edit any P element with unchanged wizard inputs', async () => {
-        primaryAction.click();
-        await element.requestUpdate();
-        expect(actionEvent).to.not.have.been.called;
-      });
+    it('triggers a complex editor action to update P elements(s)', async () => {
+      input = <WizardTextField>inputs.find(input => input.label === 'IP');
+      input.value = '192.168.210.158';
+      await input.requestUpdate();
 
-      it('triggers a complex editor action to update P elements(s)', async () => {
-        input = <WizardTextField>inputs.find(input => input.label === 'IP');
-        input.value = '192.168.210.158';
-        await input.requestUpdate();
+      primaryAction.click();
+      await element.requestUpdate();
 
-        primaryAction.click();
-        await parent.requestUpdate();
+      expect(actionEvent).to.be.calledOnce;
+      expect(actionEvent.args[0][0].detail.action).to.not.satisfy(isSimple);
+    });
 
-        expect(actionEvent).to.be.calledOnce;
-        expect(actionEvent.args[0][0].detail.action).to.not.satisfy(isSimple);
-      });
+    it('triggers a complex action as combination of delete and create with prior existing Address field', async () => {
+      input = <WizardTextField>inputs.find(input => input.label === 'IP');
+      input.value = '192.168.210.158';
+      await input.requestUpdate();
 
-      it('triggers a complex action as combination of delete and create with prior existing Address field', async () => {
-        input = <WizardTextField>inputs.find(input => input.label === 'IP');
-        input.value = '192.168.210.158';
-        await input.requestUpdate();
+      primaryAction.click();
+      await element.requestUpdate();
 
-        primaryAction.click();
-        await parent.requestUpdate();
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.actions).to.have.lengthOf(2);
+      expect(complexAction.actions[0]).to.satisfy(isDelete);
+      expect(complexAction.actions[1]).to.satisfy(isCreate);
+    });
 
-        const complexAction = <ComplexAction>(
-          actionEvent.args[0][0].detail.action
-        );
-        expect(complexAction.actions).to.have.lengthOf(2);
-        expect(complexAction.actions[0]).to.satisfy(isDelete);
-        expect(complexAction.actions[1]).to.satisfy(isCreate);
-      });
+    it('triggers a complex action being a pure create with prior missing Address field', async () => {
+      doc
+        .querySelector<Element>('ConnectedAP')
+        ?.removeChild(doc.querySelector<Element>('ConnectedAP > Address')!);
 
-      it('triggers a complex action being a pure create with prior missing Address field', async () => {
-        doc
-          .querySelector<Element>('ConnectedAP')
-          ?.removeChild(doc.querySelector<Element>('ConnectedAP > Address')!);
+      input = <WizardTextField>inputs.find(input => input.label === 'IP');
+      input.value = '192.168.210.158';
+      await input.requestUpdate();
 
-        input = <WizardTextField>inputs.find(input => input.label === 'IP');
-        input.value = '192.168.210.158';
-        await input.requestUpdate();
+      primaryAction.click();
+      await element.requestUpdate();
 
-        primaryAction.click();
-        await parent.requestUpdate();
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+      expect(complexAction.actions).to.have.lengthOf(1);
+      expect(complexAction.actions[0]).to.satisfy(isCreate);
+    });
 
-        const complexAction = <ComplexAction>(
-          actionEvent.args[0][0].detail.action
-        );
-        expect(complexAction.actions).to.have.lengthOf(1);
-        expect(complexAction.actions[0]).to.satisfy(isCreate);
-      });
+    it('properly updates a P element of type IP', async () => {
+      input = <WizardTextField>inputs.find(input => input.label === 'IP');
+      input.value = '192.168.210.158';
+      await input.requestUpdate();
 
-      it('properly updates a P element of type IP', async () => {
-        input = <WizardTextField>inputs.find(input => input.label === 'IP');
-        input.value = '192.168.210.158';
-        await input.requestUpdate();
+      primaryAction.click();
+      await element.requestUpdate();
 
-        primaryAction.click();
-        await parent.requestUpdate();
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
 
-        const complexAction = <ComplexAction>(
-          actionEvent.args[0][0].detail.action
-        );
+      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
+      const newAddress = (<Create>complexAction.actions[1]).new.element;
 
-        const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-        const newAddress = (<Create>complexAction.actions[1]).new.element;
+      expect(
+        oldAddress.querySelector<Element>('P[type="IP"]')?.textContent
+      ).to.equal('192.168.210.111');
+      expect(
+        newAddress.querySelector<Element>('P[type="IP"]')?.textContent
+      ).to.equal('192.168.210.158');
+    });
 
+    it('adds type restrictions with selected option type restriction', async () => {
+      (<Checkbox>(
+        element.wizardUI.shadowRoot?.querySelector('#typeRestriction')
+      )).checked = true;
+      await element.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
+
+      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
+      const newAddress = (<Create>complexAction.actions[1]).new.element;
+
+      const oldIP = oldAddress.querySelector<Element>('P[type="IP"]');
+      const newIP = newAddress.querySelector<Element>('P[type="IP"]');
+
+      expect(
+        oldIP?.getAttributeNS(
+          'http://www.w3.org/2001/XMLSchema-instance',
+          'type'
+        )
+      ).to.not.exist;
+      expect(
+        newIP?.getAttributeNS(
+          'http://www.w3.org/2001/XMLSchema-instance',
+          'type'
+        )
+      ).to.exist;
+    });
+  });
+
+  describe('include a create wizard that', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      const wizard = createConnectedApWizard(doc.querySelector('ConnectedAP')!);
+      element.workflow.push(wizard);
+      await element.requestUpdate();
+
+      inputs = Array.from(element.wizardUI.inputs);
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+
+    it('does not allow to add connected AccessPoints', () => {
+      const disabledItems = Array.from(
+        element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+          'mwc-check-list-item'
+        )
+      ).filter(item => item.disabled);
+
+      for (const item of disabledItems) {
+        const [iedName, apName] = item.value.split('>');
         expect(
-          oldAddress.querySelector<Element>('P[type="IP"]')?.textContent
-        ).to.equal('192.168.210.111');
-        expect(
-          newAddress.querySelector<Element>('P[type="IP"]')?.textContent
-        ).to.equal('192.168.210.158');
-      });
-
-      it('adds type restrictions with selected option type restriction', async () => {
-        (<Checkbox>(
-          parent.wizardUI.shadowRoot?.querySelector('#typeRestriction')
-        )).checked = true;
-        await parent.requestUpdate();
-
-        primaryAction.click();
-        await parent.requestUpdate();
-
-        const complexAction = <ComplexAction>(
-          actionEvent.args[0][0].detail.action
-        );
-
-        const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-        const newAddress = (<Create>complexAction.actions[1]).new.element;
-
-        const oldIP = oldAddress.querySelector<Element>('P[type="IP"]');
-        const newIP = newAddress.querySelector<Element>('P[type="IP"]');
-
-        expect(
-          oldIP?.getAttributeNS(
-            'http://www.w3.org/2001/XMLSchema-instance',
-            'type'
-          )
-        ).to.not.exist;
-        expect(
-          newIP?.getAttributeNS(
-            'http://www.w3.org/2001/XMLSchema-instance',
-            'type'
+          doc.querySelector(
+            `ConnectedAP[iedName="${iedName}"][apName="${apName}"]`
           )
         ).to.exist;
-      });
+      }
+    });
+
+    it('allows to add unconnected AccessPoints', () => {
+      const enabledItems = Array.from(
+        element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+          'mwc-check-list-item'
+        )
+      ).filter(item => !item.disabled);
+
+      for (const item of enabledItems) {
+        const [iedName, apName] = item.value.split('>');
+        expect(
+          doc.querySelector(
+            `ConnectedAP[iedName="${iedName}"][apName="${apName}"]`
+          )
+        ).to.not.exist;
+      }
+    });
+
+    it('shows all AccessPoint in the project', async () =>
+      expect(
+        element.wizardUI.dialog?.querySelectorAll('mwc-check-list-item').length
+      ).to.equal(doc.querySelectorAll(':root > IED > AccessPoint').length));
+
+    it('triggers a create editor action on primary action', async () => {
+      Array.from(
+        element.wizardUI.dialog!.querySelectorAll<ListItemBase>(
+          'mwc-check-list-item'
+        )
+      )
+        .filter(item => !item.disabled)[0]
+        .click();
+      await element.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      expect(actionEvent).to.be.calledOnce;
+      expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
     });
   });
 });
