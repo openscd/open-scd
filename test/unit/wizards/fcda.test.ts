@@ -82,7 +82,6 @@ describe('create wizard for FCDA element', () => {
         const newElement = <Element>(
           actionEvent.args[0][0].detail.action.new.element
         );
-        expect(newElement).to.have.attribute('iedName', 'IED1');
         expect(newElement).to.have.attribute('ldInst', 'CircuitBreaker_CB1');
         expect(newElement).to.have.attribute('prefix', '');
         expect(newElement).to.have.attribute('lnClass', 'LLN0');
@@ -120,7 +119,6 @@ describe('create wizard for FCDA element', () => {
         const newElement = <Element>(
           actionEvent.args[0][0].detail.action.new.element
         );
-        expect(newElement).to.have.attribute('iedName', 'IED1');
         expect(newElement).to.have.attribute('ldInst', 'Meas');
         expect(newElement).to.have.attribute('prefix', 'My');
         expect(newElement).to.have.attribute('lnClass', 'MMXU');

@@ -68,7 +68,7 @@ describe('Single Line Diagram foundation', () => {
       const element = doc.querySelector(
         'Bay[name="Bay A"] > ConductingEquipment[name="QB1"]'
       );
-      expect(getRelativeCoordinates(element!)).to.eql({ x: 1, y: 1 });
+      expect(getRelativeCoordinates(element!)).to.eql({ x: 2, y: 2 });
     });
     it("returns {x: 0, y: 0} coordinates for an element that hasn't got any coordinates.", () => {
       const element = doc.querySelector(
@@ -113,8 +113,8 @@ describe('Single Line Diagram foundation', () => {
           'Bay[name="Bay A"] > ConnectivityNode[name="L1"]'
         );
         expect(calculateConnectivityNodeCoordinates(element!)).to.eql({
-          x: Math.round((4 + 5 + 4) / 3),
-          y: Math.round((10 + 10 + 12) / 3),
+          x: Math.round((6 + 10 + 8) / 3),
+          y: Math.round((20 + 20 + 24) / 3),
         });
       }
     );

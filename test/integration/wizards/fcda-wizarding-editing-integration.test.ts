@@ -45,14 +45,14 @@ describe('FCDA editing wizarding integration', () => {
     it('adds a new FCDA on primary action', async () => {
       expect(
         doc.querySelector(
-          'DataSet > FCDA[iedName="IED1"][ldInst="CircuitBreaker_CB1"]' +
+          'DataSet > FCDA[ldInst="CircuitBreaker_CB1"]' +
             '[prefix=""][lnClass="LLN0"][lnInst=""][doName="Beh"][daName="stVal"][fc="ST"]'
         )
       ).to.not.exist;
       await primaryAction.click();
       expect(
         doc.querySelector(
-          'DataSet > FCDA[iedName="IED1"][ldInst="CircuitBreaker_CB1"]' +
+          'DataSet > FCDA[ldInst="CircuitBreaker_CB1"]' +
             '[prefix=""][lnClass="LLN0"][lnInst=""][doName="Beh"][daName="stVal"][fc="ST"]'
         )
       ).to.exist;
@@ -79,7 +79,7 @@ describe('FCDA editing wizarding integration', () => {
     it('adds a new FCDA on primary action', async () => {
       expect(
         doc.querySelector(
-          'DataSet > FCDA[iedName="IED1"][ldInst="Meas"]' +
+          'DataSet > FCDA[ldInst="Meas"]' +
             '[prefix="My"][lnClass="MMXU"][lnInst="1"]' +
             '[doName="A.phsA"][daName="cVal.mag.i"][fc="MX"]'
         )
@@ -87,7 +87,7 @@ describe('FCDA editing wizarding integration', () => {
       await primaryAction.click();
       expect(
         doc.querySelector(
-          'DataSet > FCDA[iedName="IED1"][ldInst="Meas"]' +
+          'DataSet > FCDA[ldInst="Meas"]' +
             '[prefix="My"][lnClass="MMXU"][lnInst="1"]' +
             '[doName="A.phsA"][daName="cVal.mag.i"][fc="MX"]'
         )
