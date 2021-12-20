@@ -11,6 +11,7 @@ import '../../action-pane.js';
 import './ln-container.js'
 import { IEDSelector } from './foundation.js';
 import { nothing } from 'lit-html';
+import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
@@ -19,8 +20,8 @@ export class LDeviceContainer extends LitElement {
   element!: Element;
 
   private header(): TemplateResult {
-    const nameOrInst = this.element.getAttribute('name') ?? this.element.getAttribute('inst');
-    const desc = this.element.getAttribute('desc');
+    const nameOrInst = getNameAttribute(this.element) ?? getInstanceAttribute(this.element);
+    const desc = getDescriptionAttribute(this.element);
 
     return html`${nameOrInst}${desc ? html` &mdash; ${desc}` : nothing}`;
   }

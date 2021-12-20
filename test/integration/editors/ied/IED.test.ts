@@ -25,9 +25,25 @@ describe('IED Plugin', () => {
     });
   });
 
-  describe('with a doc loaded including IED sections', () => {
+  describe('with a doc loaded including IED without a name', () => {
     let doc: XMLDocument;
-    let element: IED;
+    
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/valid2007B4.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+      element = await fixture(
+        html`<ied-plugin .doc="${doc}"></ied-plugin>`
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element).shadowDom.to.equalSnapshot();
+    });
+  });
+
+  describe('with a doc loaded including valid IED sections', () => {
+    let doc: XMLDocument;
     let selector: Select;
     
     beforeEach(async () => {

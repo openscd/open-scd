@@ -389,6 +389,16 @@ export function getPathNameAttribute(element: Element): string | undefined {
   return name ? name : undefined;
 }
 
+/**
+ * Extract the 'inst' attribute from the given XML element.
+ * @param element - The element to extract instance from.
+ * @returns the instance, or undefined if there is no instance.
+ */
+ export function getInstanceAttribute(element: Element): string | undefined {
+  const inst = element.getAttribute('inst');
+  return inst ? inst : undefined;
+}
+
 export function pathParts(identity: string): [string, string] {
   const path = identity.split('>');
   const end = path.pop() ?? '';

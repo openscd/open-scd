@@ -9,6 +9,7 @@ import {
 import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
+import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 import './access-point-container.js';
 import { IEDSelector } from './foundation.js';
 
@@ -20,8 +21,8 @@ export class IedContainer extends LitElement {
   element!: Element;
 
   private header(): TemplateResult {
-    const name = this.element.getAttribute('name');
-    const desc = this.element.getAttribute('desc');
+    const name = getNameAttribute(this.element);
+    const desc = getDescriptionAttribute(this.element);
 
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }

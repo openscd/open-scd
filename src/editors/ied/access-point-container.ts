@@ -11,6 +11,7 @@ import '../../action-pane.js';
 import './server-container.js'
 import { IEDSelector } from './foundation.js';
 import { nothing } from 'lit-html';
+import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `AccessPoint` element. */
 @customElement('access-point-container')
@@ -19,8 +20,8 @@ export class AccessPointContainer extends LitElement {
   element!: Element;
 
   private header(): TemplateResult {
-    const name = this.element.getAttribute('name');
-    const desc = this.element.getAttribute('desc');
+    const name = getNameAttribute(this.element);
+    const desc = getDescriptionAttribute(this.element);
 
     return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
   }
