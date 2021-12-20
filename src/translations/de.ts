@@ -159,9 +159,9 @@ export const de: Translations = {
     },
   },
   iededitor: {
-    searchHelper: "???",
-    searchHelperDesc: "({{description}})",
-    missing: '???'
+    searchHelper: 'IED auswählen',
+    searchHelperDesc: '({{description}})',
+    missing: 'Kein IED vorhanden',
   },
   voltagelevel: {
     name: 'Spannungsebene',
