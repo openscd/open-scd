@@ -28,12 +28,26 @@ export class LDeviceContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
-    ${Array.from(this.element.querySelectorAll(IEDSelector.AnyLN)).map(
-      server => html`<ln-container
-        .element=${server}
-      ></ln-container>`)}
+    <div id="bayContainer">
+      ${Array.from(this.element.querySelectorAll(IEDSelector.AnyLN)).map(
+        server => html`<ln-container
+          .element=${server}
+        ></ln-container>`)}
+    </div>
     </action-pane>`;
   }
 
-  static styles = css``;
+  static styles = css`
+    #bayContainer {
+      display: grid;
+      grid-gap: 12px;
+      box-sizing: border-box;
+      grid-template-columns: repeat(auto-fit, minmax(316px, auto));
+    }
+
+    @media (max-width: 387px) {
+      #bayContainer {
+        grid-template-columns: repeat(auto-fit, minmax(196px, auto));
+      }
+    }`;
 }

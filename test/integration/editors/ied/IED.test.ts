@@ -8,10 +8,8 @@ import { Wizarding } from '../../../../src/Wizarding.js';
 import { Select } from '@material/mwc-select';
 
 describe('IED Plugin', () => {
-  customElements.define(
-    'ied-plugin',
-    Wizarding(Editing(IED))
-  );
+  if (customElements.get('ied-plugin') === undefined)
+    customElements.define('ied-plugin', Wizarding(Editing(IED)));
   let element: IED;
   beforeEach(async () => {
     element = await fixture(
@@ -54,11 +52,13 @@ describe('IED Plugin', () => {
         html`<ied-plugin .doc="${doc}"></ied-plugin>`
       );
     });
+
     it('it initially contains 1 rendered IED container', () => {
       expect(element.shadowRoot?.querySelectorAll('ied-container').length).to.eql(1);
       expect(element.shadowRoot?.querySelector('ied-container')!
         .shadowRoot?.querySelector('action-pane')!.shadowRoot?.innerHTML).to.include('IED1');
     });
+    
     it('it selects another IED after using the drop down box', async () => {
       selector = <Select>(
         element.shadowRoot?.querySelector('mwc-select[id="iedSelect"]')
