@@ -60,6 +60,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
   @state()
   selectedSubstation: Element | undefined;
 
+  // Container for giving the panzoom to.
+  @query('#panzoom') panzoomContainer!: HTMLElement;
+  // The main canvas to draw everything on.
+  @query('#svg') svg!: SVGElement;
+
   private get substations() : Element[] {
     return Array.from(this.doc.querySelectorAll(':root > Substation'))
       .filter(isSCLNamespace)
@@ -67,210 +72,273 @@ export default class SingleLineDiagramPlugin extends LitElement {
   }
 
   /**
-   * Get all the BusBars from the document.
+   * Get all the Power Transformers from an element.
    */
-  private get busBars(): Element[] {
-    return Array.from(this.selectedSubstation!.querySelectorAll('Bay'))
+  private getPowerTransformers(parentElement: Element): Element[] {
+    return Array.from(parentElement.querySelectorAll('PowerTransformer'))
+      .filter(isSCLNamespace);
+  }
+
+  /**
+   * Get all the Voltage Levels from the substation.
+   */
+  private getVoltageLevels(substationElement: Element): Element[] {
+    return Array.from(substationElement.querySelectorAll('VoltageLevel'))
+      .filter(isSCLNamespace);
+  }
+
+  /**
+   * Get all the BusBars from the voltage level.
+   */
+  private getBusBars(voltageLevelElement: Element): Element[] {
+    return Array.from(voltageLevelElement.querySelectorAll('Bay'))
       .filter(isSCLNamespace)
       .filter(bay => isBusBar(bay));
   }
 
   /**
-   * Get all the bays from the document.
+   * Get all the bays from the voltage level.
    */
-  private get bays(): Element[] {
-    return Array.from(this.selectedSubstation!.querySelectorAll('Bay'))
+  private getBays(voltageLevelElement: Element): Element[] {
+    return Array.from(voltageLevelElement.querySelectorAll('Bay'))
       .filter(isSCLNamespace)
       .filter(bay => !isBusBar(bay));
   }
 
   /**
-   * Get all the VoltageLevels from the SCL document.
+   * Get all the Conducting Equipment from a Bay.
+   * @param bayElement - The Bay to search in.
    */
-  private get voltageLevels(): Element[] {
-    return Array.from(this.selectedSubstation!.querySelectorAll('VoltageLevel'))
+  private getConductingEquipments(bayElement: Element): Element[] {
+    return Array.from(bayElement.querySelectorAll('ConductingEquipment'))
       .filter(isSCLNamespace);
   }
 
-  // Container for giving the panzoom to.
-  @query('#panzoom') panzoomContainer!: HTMLElement;
-  // The main canvas to draw everything on.
-  @query('#svg') svg!: HTMLElement;
-
   /**
-   * Add an element to a specific <g> element.
-   * @param elementToAdd - The element to add.
-   * @param identity - Identity string if the element
+   * Get all the Connectivity Nodes from a Bay/Busbar.
+   * @param bayElement - The Bay/Busbar to search in.
    */
-  private addElementToGroup(
-    elementToAdd: Element,
-    identity: string | number
-  ): void {
-    this.svg
-      .querySelectorAll(`g[id="${identity}"]`)
-      .forEach(group => group.appendChild(elementToAdd));
-  }
-
-  /**
-   * Draw all available Voltage Levels of this SCL document.
-   * Should only be a <g> element.
-   */
-  private drawVoltageLevels(): void {
-    this.voltageLevels.forEach(voltageLevel => {
-      const voltageLevelElement = createVoltageLevelElement(voltageLevel);
-      this.svg.appendChild(voltageLevelElement);
-    });
-  }
-
-  /**
-   * Draw all available Bays of this SCL document.
-   * Should only be a <g> element.
-   */
-  private drawBays(): void {
-    this.bays.forEach(bay => {
-      const bayElement = createBayElement(bay);
-
-      this.addElementToGroup(bayElement, identity(bay.parentElement));
-    });
-  }
-
-  /**
-   * Draw all available `PowerTransformer`s of this SCL document.
-   * Should only be a <g> element.
-   */
-  private drawPowerTransformers(): void {
-    Array.from(this.selectedSubstation!.querySelectorAll('PowerTransformer'))
+  private getConnectivityNode(bayElement: Element): Element[] {
+    return Array.from(bayElement.querySelectorAll('ConnectivityNode'))
       .filter(isSCLNamespace)
-      .forEach(powerTransformer => {
-        const powerTransformerElement = createPowerTransformerElement(powerTransformer);
-
-        if (powerTransformer.parentElement?.tagName === 'Substation')
-          this.svg.appendChild(powerTransformerElement);
-        else
-          this.addElementToGroup(
-            powerTransformerElement,
-            identity(powerTransformer.parentElement)
-          );
-      }
-    );
+      .filter(cNode => cNode.getAttribute('name') !== 'grounded');
   }
 
   /**
-   * Draw all available Conducting Equipments of this SCL document.
-   * Should only be a <g> element.
+   * Search for Equipment (ConductionEquipment or PowerTransformer) which has a terminal wth a connectivityNode
+   * tha is the same as the passed pathName.
+   * @param parentElement - The Element to search in for Equipment.
+   * @param pathName      - The PathName to search for in the Terminal.
    */
-  private drawConductingEquipments(): void {
-    Array.from(this.selectedSubstation!.querySelectorAll('ConductingEquipment'))
+  private findEquipment(parentElement: Element, pathName: string | undefined): Element[] {
+    return Array.from(parentElement.querySelectorAll('ConductingEquipment, PowerTransformer'))
       .filter(isSCLNamespace)
-      .filter(
-        child =>
-          Array.from(child.querySelectorAll('Terminal')).filter(
-            terminal => terminal.getAttribute('cNodeName') !== 'grounded'
-          ).length !== 0
-      )
-      .forEach(equipment => {
-        const eqElement = createConductingEquipmentElement(equipment, () =>
-          this.openEditWizard(equipment!)
-        );
+      .filter(element => element.querySelector(`Terminal[connectivityNode="${pathName}"]`));
+  }
 
-        this.addElementToGroup(eqElement, identity(equipment.parentElement));
+  /**
+   * Draw all equipment and connections of the selected Substation.
+   */
+  private drawSubstation(): void {
+    const substationGroup = createVoltageLevelElement(this.selectedSubstation!);
+    this.svg.appendChild(substationGroup);
+
+    this.drawPowerTransformers(this.selectedSubstation!, substationGroup);
+    this.drawVoltageLevels(this.selectedSubstation!, substationGroup);
+  }
+
+  /**
+   * Draw all available `PowerTransformer`s of passed parent element.
+   * Should only be a <g> element.
+   * @param parentElement - The parent element to search for PowerTransformers.
+   * @param parentGroup   - The SVG Group to which to add the PowerTransformer.
+   */
+  private drawPowerTransformers(parentElement: Element, parentGroup: SVGElement): void {
+    this.getPowerTransformers(parentElement)
+      .forEach(powerTransformerElement => this.drawPowerTransformer(parentGroup, powerTransformerElement));
+  }
+
+  /**
+   * Draw an SVG from the passed PowerTransformer Element.
+   * Should only be a <g> element.
+   * @param parentGroup             - The SVG Group to which to add the PowerTransformer.
+   * @param powerTransformerElement - The PowerTransformer to draw.
+   */
+  private drawPowerTransformer(parentGroup: SVGElement, powerTransformerElement: Element): void {
+    const powerTransformerGroup = createPowerTransformerElement(powerTransformerElement);
+    parentGroup.appendChild(powerTransformerGroup);
+  }
+
+  /**
+   * Draw all available Voltage Levels of the passed Substation Element.
+   * Should only be a <g> element.
+   *  @param substationElement - The substation containing the voltage levels.
+   *  @param substationGroup   - The group to which to add the SVGs.
+   */
+  private drawVoltageLevels(substationElement: Element, substationGroup: SVGElement): void {
+    // First draw all the devices on the SVG for all voltage levels.
+    this.getVoltageLevels(substationElement)
+      .forEach(voltageLevelElement => {
+        const voltageLevelGroup = createVoltageLevelElement(voltageLevelElement);
+        substationGroup.appendChild(voltageLevelGroup);
+
+        this.drawPowerTransformers(voltageLevelElement, voltageLevelGroup);
+        this.drawBays(voltageLevelElement, voltageLevelGroup);
+        this.drawBusBars(voltageLevelElement, voltageLevelGroup);
+      });
+
+    // After all devices are drawn we can draw the connections between the devices.
+    this.getVoltageLevels(substationElement)
+      .forEach(voltageLevelElement => {
+          this.getBusBars(voltageLevelElement).forEach( busbarElement => {
+            this.drawBusBarConnections(substationElement, substationGroup, busbarElement);
+          });
+
+          this.getBays(voltageLevelElement).forEach( bayElement => {
+            this.drawBayConnections(substationElement, substationGroup, bayElement);
+          });
       });
   }
 
   /**
-   * Draw all available Connectivity Nodes of this SCL document.
-   */
-  private drawConnectivityNodes(): void {
-    this.bays.forEach(bay => {
-      Array.from(bay.querySelectorAll('ConnectivityNode'))
-        .filter(isSCLNamespace)
-        .filter(cNode => cNode.getAttribute('name') !== 'grounded')
-        .filter(cNode => getConnectedTerminals(cNode).length > 0)
-        .forEach(cNode => {
-          const cNodeElement = createConnectivityNodeElement(cNode, () =>
-            this.openEditWizard(cNode)
-          );
+   * Draw all available Bays of the passed Voltage Level Element.
+   * Should only be a <g> element.
+   * @param voltageLevelElement - The Voltage Level containing the bays.
+   * @param voltageLevelGroup   - The group to which to add the SVGs.
+   * */
+  private drawBays(voltageLevelElement: Element, voltageLevelGroup: SVGElement): void {
+    this.getBays(voltageLevelElement)
+      .forEach(bayElement => {
+        const bayGroup = createBayElement(bayElement);
+        voltageLevelGroup.appendChild(bayGroup);
 
-          this.addElementToGroup(cNodeElement, identity(cNode.parentElement));
-        });
-    });
+        this.drawPowerTransformers(bayElement, bayGroup);
+        this.drawConductingEquipments(bayElement, bayGroup);
+        this.drawConnectivityNodes(bayElement, bayGroup);
+      });
   }
 
   /**
-   * Draw all available Bus Bars of this SCL document.
+   * Draw all available Conducting Equipments of the passed Bay Element.
+   * Should only be a <g> element.
+   * @param bayElement - The Bay containing the Conducting Equipment.
+   * @param bayGroup   - The group to which to add the SVGs.
    */
-  private drawBusBars(): void {
-    this.busBars.forEach(busBar => {
-      const busBarElement = createBusBarElement(
-        busBar,
-        getBusBarLength(busBar.parentElement ?? this.selectedSubstation!)
-      );
-
-      this.addElementToGroup(busBarElement, identity(busBar.parentElement));
-    });
+  private drawConductingEquipments(bayElement: Element, bayGroup: SVGElement): void {
+    this.getConductingEquipments(bayElement)
+      .filter(conductingEquipmentElement =>
+          Array.from(conductingEquipmentElement.querySelectorAll('Terminal'))
+            .filter(
+              terminal => terminal.getAttribute('cNodeName') !== 'grounded'
+            ).length !== 0)
+      .forEach(conductingEquipmentElement => {
+        const conductingEquipmentGroup = createConductingEquipmentElement(conductingEquipmentElement, () =>
+          this.openEditWizard(conductingEquipmentElement!)
+        );
+        bayGroup.appendChild(conductingEquipmentGroup);
+      });
   }
 
-  private drawConnectivityNodeConnections(): void {
-    this.bays.forEach(bay => {
-      Array.from(bay.querySelectorAll('ConnectivityNode'))
-        .filter(isSCLNamespace)
-        .filter(cNode => cNode.getAttribute('name') !== 'grounded')
-        .forEach(cNode => {
-          Array.from(
-            this.selectedSubstation!.querySelectorAll('ConductingEquipment, PowerTransformer')
-          )
-            .filter(element =>
-              element.querySelector(
-                `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
-              )
-            )
-            .forEach(element => {
-              const sides = getDirections(element, cNode);
+  /**
+   * Draw all available Connectivity Nodes of the passed Bay Element.
+   * @param bayElement - The Bay containing the Connectivity Nodes.
+   * @param bayGroup   - The group to which to add the SVGs.
+   * */
+  private drawConnectivityNodes(bayElement: Element, bayGroup: SVGElement): void {
+    this.getConnectivityNode(bayElement)
+      .filter(cNode => getConnectedTerminals(cNode).length > 0)
+      .forEach(cNode => {
+        const cNodegroup = createConnectivityNodeElement(cNode, () =>
+          this.openEditWizard(cNode)
+        );
 
-              const elementsTerminalPosition = getAbsolutePositionTerminal(
-                element,
-                sides.startDirection
-              );
-
-              const cNodePosition = getConnectivityNodesDrawingPosition(
-                cNode,
-                sides.endDirection
-              );
-
-              drawCNodeConnections(
-                cNodePosition,
-                elementsTerminalPosition,
-                this.svg
-              );
-
-              const terminalElement = element.querySelector(
-                `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
-              );
-
-              const terminal = createTerminalElement(
-                terminalElement!,
-                sides.startDirection,
-                () => this.openEditWizard(terminalElement!)
-              );
-
-              this.svg
-                .querySelectorAll(`g[id="${identity(element)}"]`)
-                .forEach(eq => eq.appendChild(terminal));
-            });
-        });
-    });
+        bayGroup.appendChild(cNodegroup);
+      });
   }
 
-  private drawBusBarConnections(): void {
-    this.busBars.forEach(busBar => {
-      const pathName = getPathNameAttribute(busBar.children[0]);
-      const busBarPosition = getAbsolutePositionBusBar(busBar);
+  /**
+   * Draw all connections between the different Equipment in the Bay and the Bay has with other Equipment outside
+   * the bay.
+   * @param rootElement - The Element containing all the other elements to which the Bay is connected.
+   * @param rootGroup   - The SVG Element that contains all groups from the elements to add path to.
+   * @param bayElement  - The Bay that holds the Connectivity Node to connect with.
+   */
+  private drawBayConnections(rootElement: Element, rootGroup: SVGElement, bayElement: Element): void {
+    this.getConnectivityNode(bayElement)
+      .forEach(cNode => {
+        this.findEquipment(rootElement, getPathNameAttribute(cNode))
+          .forEach(element => {
+            const sides = getDirections(element, cNode);
 
-      Array.from(this.selectedSubstation!.querySelectorAll('ConductingEquipment'))
-        .filter(isSCLNamespace)
-        .filter(cEquipment =>
-          cEquipment.querySelector(`Terminal[connectivityNode="${pathName}"]`)
-        )
+            const elementsTerminalPosition = getAbsolutePositionTerminal(
+              element,
+              sides.startDirection
+            );
+
+            const cNodePosition = getConnectivityNodesDrawingPosition(
+              cNode,
+              sides.endDirection
+            );
+
+            rootGroup
+              .querySelectorAll(`g[id="${identity(bayElement)}"]`)
+              .forEach(eq =>
+                drawCNodeConnections(
+                  cNodePosition,
+                  elementsTerminalPosition,
+                  <SVGElement>eq
+                )
+              );
+
+            const terminalElement = element.querySelector(
+              `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
+            );
+
+            const terminal = createTerminalElement(
+              terminalElement!,
+              sides.startDirection,
+              () => this.openEditWizard(terminalElement!)
+            );
+
+            rootGroup
+              .querySelectorAll(`g[id="${identity(element)}"]`)
+              .forEach(eq => eq.appendChild(terminal));
+          });
+      });
+  }
+
+  /**
+   * Draw all available Busbars of the passed Voltage Level Element.
+   * @param voltageLevelElement - The Voltage Level containing the Busbars.
+   * @param voltageLevelGroup   - The group to which to add the SVGs.
+   */
+  private drawBusBars(voltageLevelElement: Element, voltageLevelGroup: SVGElement): void {
+    this.getBusBars(voltageLevelElement)
+      .forEach(busbarElement => this.drawBusBar(voltageLevelElement, voltageLevelGroup, busbarElement));
+  }
+
+  /**
+   * Draw an SVG of the passed Busbar Element.
+   * @param parentElement - The parent (Voltage Level) Element that is used to determine the length of the Busbar.
+   * @param parentGroup   - The group to which to add the line.
+   * @param busbarElement - The Busbar Element to draw.
+   */
+  private drawBusBar(parentElement: Element, parentGroup: SVGElement, busbarElement: Element): void {
+    const busBarGroup = createBusBarElement(busbarElement, getBusBarLength(parentElement));
+    parentGroup.appendChild(busBarGroup);
+  }
+
+  /**
+   * Draw all the connections a Busbar has with other Equipment.
+   * @param rootElement   - The Element containing all the other elements to which the Busbar is connected.
+   * @param rootGroup     - The SVG Element that contains all groups from the elements to add path to.
+   * @param busbarElement - The Busbar that holds the Connectivity Node to connect with.
+   */
+  private drawBusBarConnections(rootElement: Element, rootGroup: SVGElement, busbarElement: Element): void {
+      const pathName = getPathNameAttribute(busbarElement.children[0]);
+      const busBarPosition = getAbsolutePositionBusBar(busbarElement);
+
+      this.findEquipment(rootElement, pathName)
         .forEach(element => {
           const elementPosition = getAbsolutePosition(element);
 
@@ -291,11 +359,15 @@ export default class SingleLineDiagramPlugin extends LitElement {
             `Terminal[connectivityNode="${pathName}"]`
           );
 
-          drawBusBarRoute(
-            busbarTerminalPosition,
-            elementsTerminalPosition,
-            this.svg
-          );
+          rootGroup
+            .querySelectorAll(`g[id="${identity(busbarElement)}"]`)
+            .forEach(eq =>
+              drawBusBarRoute(
+                busbarTerminalPosition,
+                elementsTerminalPosition,
+                <SVGElement>eq
+              )
+            );
 
           const terminal = createTerminalElement(
             terminalElement!,
@@ -303,17 +375,16 @@ export default class SingleLineDiagramPlugin extends LitElement {
             () => this.openEditWizard(terminalElement!)
           );
 
-          this.svg
-            .querySelectorAll(` g[id="${identity(element)}"]`)
+          rootGroup
+            .querySelectorAll(`g[id="${identity(element)}"]`)
             .forEach(eq => eq.appendChild(terminal));
         });
-    });
   }
 
   /**
    * Remove all the child elements (and descendants) from the SVG Element, to have a clean start.
    */
-  private removeChildren(): void {
+  private clearSVG(): void {
     while (this.svg.firstChild) {
       this.svg.removeChild(this.svg.lastChild!);
     }
@@ -324,17 +395,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
    */
   drawSubstationElements(): void {
     // First clean the existing drawing, because the selected substation may have changed.
-    this.removeChildren();
-
-    this.drawVoltageLevels();
-    this.drawBays();
-    this.drawConductingEquipments();
-    this.drawPowerTransformers();
-    this.drawConnectivityNodes();
-    this.drawBusBars();
-
-    this.drawConnectivityNodeConnections();
-    this.drawBusBarConnections();
+    this.clearSVG();
+    this.drawSubstation();
   }
 
   /**

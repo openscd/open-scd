@@ -433,12 +433,12 @@ export function createConnectivityNodeElement(
  * Draw a route from ConnectivityNode to equipments Terminal (ConductingEquipment or PowerTransformer)
  * @param cNodesTerminalPosition - The start position in px of the SCL element ConnectivityNode.
  * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
- * @param svgToDrawOn - The SVG to draw the route on.
+ * @param svgElementToDrawOn - The SVG Element to draw the route on.
  */
 export function drawCNodeConnections(
   cNodesTerminalPosition: Point,
   equipmentsTerminalPosition: Point,
-  svgToDrawOn: HTMLElement
+  svgElementToDrawOn: SVGElement
 ): void {
   const path = getOrthogonalPath(
     equipmentsTerminalPosition,
@@ -464,19 +464,19 @@ export function drawCNodeConnections(
   // Inserting elements like this works kind of like z-index (not supported in SVG yet),
   // these elements are placed behind all other elements.
   // By doing it like this, all other elements are hoverable for example.
-  svgToDrawOn.insertAdjacentElement('afterbegin', line);
+  svgElementToDrawOn.insertAdjacentElement('afterbegin', line);
 }
 
 /**
  * Draw a route from the bus bar to elements terminal position.
  * @param busbarsTerminalPosition - The start position in px the bus bar.
  * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
- * @param svgToDrawOn - The SVG to draw the route on.
+ * @param svgElementToDrawOn - The SVG Element to draw the route on.
  */
 export function drawBusBarRoute(
   busbarsTerminalPosition: Point,
   equipmentsTerminalPosition: Point,
-  svgToDrawOn: HTMLElement
+  svgElementToDrawOn: SVGElement
 ): void {
   const path = [busbarsTerminalPosition].concat([equipmentsTerminalPosition]);
 
@@ -495,7 +495,7 @@ export function drawBusBarRoute(
   line.setAttribute('stroke', 'currentColor');
   line.setAttribute('stroke-width', '1.5');
 
-  svgToDrawOn.appendChild(line);
+  svgElementToDrawOn.appendChild(line);
 }
 
 /**
