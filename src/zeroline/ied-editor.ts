@@ -13,11 +13,12 @@ import { Fab } from '@material/mwc-fab';
 
 import '../action-icon.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
-import { gooseIcon, smvIcon } from '../icons.js';
+import { gooseIcon, smvIcon, reportIcon } from '../icons.js';
 import { newWizardEvent } from '../foundation.js';
-import { wizards } from "../wizards/wizard-library.js";
+import { wizards } from '../wizards/wizard-library.js';
 import { selectGseControlWizard } from '../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../wizards/sampledvaluecontrol.js';
+import { selectReportControlWizard } from '../wizards/reportcontrol.js';
 
 /** [[`SubstationEditor`]] subeditor for a child-less `IED` element. */
 @customElement('ied-editor')
@@ -38,11 +39,8 @@ export class IedEditor extends LitElement {
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
-  private openCommunicationMapping(): void {
-    const sendingIeds = Array.from(
-      this.element.closest('SCL')?.querySelectorAll('IED') ?? []
-    );
-    const wizard = createClientLnWizard(sendingIeds, this.element);
+  private openReportControlSelection(): void {
+    const wizard = selectReportControlWizard(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -53,6 +51,14 @@ export class IedEditor extends LitElement {
 
   private openSmvControlSelection(): void {
     const wizard = selectSampledValueControlWizard(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  private openCommunicationMapping(): void {
+    const sendingIeds = Array.from(
+      this.element.closest('SCL')?.querySelectorAll('IED') ?? []
+    );
+    const wizard = createClientLnWizard(sendingIeds, this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -83,7 +89,13 @@ export class IedEditor extends LitElement {
         mini
         @click="${() => this.openEditWizard()}"
         icon="edit"
-      ></mwc-fab
+      ></mwc-fab>
+      <mwc-fab
+        slot="action"
+        class="selectreport"
+        mini
+        @click="${() => this.openReportControlSelection()}"
+        ><mwc-icon slot="icon">${reportIcon}</mwc-icon></mwc-fab
       ></action-icon
     > `;
   }
