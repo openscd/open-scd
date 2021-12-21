@@ -9,7 +9,6 @@ import {
 
 import '../../action-pane.js';
 import './ln-container.js'
-import { IEDSelector } from './foundation.js';
 import { nothing } from 'lit-html';
 import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 
@@ -29,7 +28,7 @@ export class LDeviceContainer extends LitElement {
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
     <div id="bayContainer">
-      ${Array.from(this.element.querySelectorAll(IEDSelector.AnyLN)).map(
+      ${Array.from(this.element.querySelectorAll(':scope > LN,LN0')).map(
         server => html`<ln-container
           .element=${server}
         ></ln-container>`)}

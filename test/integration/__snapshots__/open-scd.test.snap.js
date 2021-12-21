@@ -581,7 +581,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/editors/IED.js"
     >

@@ -8,7 +8,6 @@ import '../zeroline-pane.js';
 import './ied/ied-container.js'
 
 import { translate } from 'lit-translate';
-import { IEDSelector } from './ied/foundation.js';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foundation.js';
@@ -21,7 +20,7 @@ export default class IedPlugin extends LitElement {
 
   /** Query holding the current selected IEDs. */
   @state()
-  currentSelectedIEDs: string = IEDSelector.IED;
+  currentSelectedIEDs = ':root > IED';
 
   @query('#iedSelect') iedSelector?: Select;
 
