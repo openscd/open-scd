@@ -188,15 +188,8 @@ describe('Single Line Diagram drawing', () => {
 
   describe('defines a getBusBarLength function that', () => {
     it('returns a correct length for the bus bar given voltage level as root', () => {
-      const element = doc.querySelector('VoltageLevel[name="J1"]') ?? doc;
+      const element = doc.querySelector('VoltageLevel[name="J1"]')!;
       expect(getBusBarLength(element)).to.eql(
-        18 * 2 * SVG_GRID_SIZE +
-          (SVG_GRID_SIZE - EQUIPMENT_SIZE) / 2 +
-          SVG_GRID_SIZE
-      );
-    });
-    it('returns a correct length for the bus bar given XMLDocument as root', () => {
-      expect(getBusBarLength(doc)).to.eql(
         18 * 2 * SVG_GRID_SIZE +
           (SVG_GRID_SIZE - EQUIPMENT_SIZE) / 2 +
           SVG_GRID_SIZE

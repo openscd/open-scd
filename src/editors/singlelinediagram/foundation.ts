@@ -104,10 +104,10 @@ export function getConnectedTerminals(element: Element): Element[] {
   return Array.from(substationElement.getElementsByTagName('Terminal')).filter(
     terminal =>
       terminal.getAttribute('connectivityNode') === path &&
-      terminal.getAttribute('substationName') === substationName &&
-      terminal.getAttribute('voltageLevelName') === voltageLevelName &&
-      terminal.getAttribute('bayName') === bayName &&
-      terminal.getAttribute('cNodeName') === getNameAttribute(element)
+      terminal.getAttribute('cNodeName') === getNameAttribute(element) &&
+      (!terminal.hasAttribute('substationName') || terminal.getAttribute('substationName') === substationName) &&
+      (!terminal.hasAttribute('voltageLevelName') || terminal.getAttribute('voltageLevelName') === voltageLevelName) &&
+      (!terminal.hasAttribute('bayName') || terminal.getAttribute('bayName') === bayName)
   );
 }
 

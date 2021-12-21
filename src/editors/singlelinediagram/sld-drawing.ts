@@ -85,10 +85,10 @@ export function getAbsolutePositionConnectivityNode(element: Element): Point {
  * Calculate the absolute offset of a terminal next to an element.
  * @param parentElementPosition - The position of the parent element of the terminal.
  * @param elementOffset - The offset of the parent element.
- * @param terminalSide - The side of the parent element where the terminal should be placed. 
+ * @param terminalSide - The side of the parent element where the terminal should be placed.
  * @param customTerminalOffset - An optional parameter containing the offset of the terminal next to the parent element.
  * This may vary, for example for Connectivity Nodes.
- * 
+ *
  * @returns The absolute position of the terminal.
  */
 function absoluteOffsetTerminal(
@@ -197,6 +197,15 @@ function createGroupElement(element: Element): SVGElement {
   finalElement.setAttribute('sxy:y', `${coordinates.y}`);
 
   return finalElement;
+}
+
+/**
+ * Create a Substation <g> element.
+ * @param substation - The Substation from the SCL document to use.
+ * @returns A Substation <g> element.
+ */
+export function createSubstationElement(substation: Element): SVGElement {
+  return createGroupElement(substation);
 }
 
 /**
@@ -433,12 +442,12 @@ export function createConnectivityNodeElement(
  * Draw a route from ConnectivityNode to equipments Terminal (ConductingEquipment or PowerTransformer)
  * @param cNodesTerminalPosition - The start position in px of the SCL element ConnectivityNode.
  * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
- * @param svgToDrawOn - The SVG to draw the route on.
+ * @param svgElementToDrawOn - The SVG Element to draw the route on.
  */
 export function drawCNodeConnections(
   cNodesTerminalPosition: Point,
   equipmentsTerminalPosition: Point,
-  svgToDrawOn: HTMLElement
+  svgElementToDrawOn: SVGElement
 ): void {
   const path = getOrthogonalPath(
     equipmentsTerminalPosition,
@@ -464,19 +473,19 @@ export function drawCNodeConnections(
   // Inserting elements like this works kind of like z-index (not supported in SVG yet),
   // these elements are placed behind all other elements.
   // By doing it like this, all other elements are hoverable for example.
-  svgToDrawOn.insertAdjacentElement('afterbegin', line);
+  svgElementToDrawOn.insertAdjacentElement('afterbegin', line);
 }
 
 /**
  * Draw a route from the bus bar to elements terminal position.
  * @param busbarsTerminalPosition - The start position in px the bus bar.
  * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
- * @param svgToDrawOn - The SVG to draw the route on.
+ * @param svgElementToDrawOn - The SVG Element to draw the route on.
  */
 export function drawBusBarRoute(
   busbarsTerminalPosition: Point,
   equipmentsTerminalPosition: Point,
-  svgToDrawOn: HTMLElement
+  svgElementToDrawOn: SVGElement
 ): void {
   const path = [busbarsTerminalPosition].concat([equipmentsTerminalPosition]);
 
@@ -495,7 +504,7 @@ export function drawBusBarRoute(
   line.setAttribute('stroke', 'currentColor');
   line.setAttribute('stroke-width', '1.5');
 
-  svgToDrawOn.appendChild(line);
+  svgElementToDrawOn.appendChild(line);
 }
 
 /**
@@ -555,7 +564,7 @@ export function getParentElementName(
  * @param root - Either the whole SCL file or the voltage level where the bus bar resides
  * @returns - the length of the bus bar
  */
-export function getBusBarLength(root: Element | XMLDocument): number {
+export function getBusBarLength(root: Element): number {
   return (
     Math.max(
       ...Array.from(
