@@ -31,7 +31,8 @@ import {
   getDirections,
   getAbsolutePositionTerminal,
   drawCNodeConnections,
-  getConnectivityNodesDrawingPosition, createSubstationElement,
+  getConnectivityNodesDrawingPosition,
+  createSubstationElement,
 } from './singlelinediagram/sld-drawing.js';
 import {
   isBusBar,
