@@ -18,7 +18,7 @@ export function newEmptySCD(
 export const SCL_NAMESPACE= "http://www.iec.ch/61850/2003/SCL";
 
 /**
- * Check if the namespace of tjhe passed element is the standard SCL Namespace.
+ * Check if the namespace of the passed element is the standard SCL Namespace.
  * @param element - The element to check.
  */
 export function isSCLNamespace(element: Element): boolean {

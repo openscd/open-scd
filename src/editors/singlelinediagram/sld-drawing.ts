@@ -200,6 +200,15 @@ function createGroupElement(element: Element): SVGElement {
 }
 
 /**
+ * Create a Substation <g> element.
+ * @param substation - The Substation from the SCL document to use.
+ * @returns A Voltage Level <g> element.
+ */
+export function createSubstationElement(substation: Element): SVGElement {
+  return createGroupElement(substation);
+}
+
+/**
  * Create a Voltage Level <g> element.
  * @param voltageLevel - The Voltage Level from the SCL document to use.
  * @returns A Voltage Level <g> element.

@@ -31,7 +31,7 @@ import {
   getDirections,
   getAbsolutePositionTerminal,
   drawCNodeConnections,
-  getConnectivityNodesDrawingPosition,
+  getConnectivityNodesDrawingPosition, createSubstationElement,
 } from './singlelinediagram/sld-drawing.js';
 import {
   isBusBar,
@@ -67,7 +67,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
   private get substations() : Element[] {
     return Array.from(this.doc.querySelectorAll(':root > Substation'))
-      .filter(isSCLNamespace)
       .sort((a,b) => compareNames(a,b));
   }
 
@@ -140,7 +139,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Draw all equipment and connections of the selected Substation.
    */
   private drawSubstation(): void {
-    const substationGroup = createVoltageLevelElement(this.selectedSubstation!);
+    const substationGroup = createSubstationElement(this.selectedSubstation!);
     this.svg.appendChild(substationGroup);
 
     this.drawPowerTransformers(this.selectedSubstation!, substationGroup);
@@ -492,11 +491,16 @@ export default class SingleLineDiagramPlugin extends LitElement {
       margin: 0px;
       line-height: 48px;
       padding-left: 0.3em;
-      transition: background-color 150ms linear;
     }
 
     #substationSelector {
       width: 30vw;
+      margin: 0.67em 0 0 0.67em;
+    }
+
+    #selectedSubstation {
+      width: 30vw;
+      margin: 0.67em 0 0 0.67em;
     }
 
     #noSubstationSelector {
