@@ -10,11 +10,14 @@ import '../filtered-list.js';
 import {
   cloneElement,
   createElement,
+  Delete,
   EditorAction,
   getReference,
   getValue,
   identity,
   isPublic,
+  newActionEvent,
+  newWizardEvent,
   SimpleAction,
   Wizard,
   WizardActor,
@@ -229,15 +232,75 @@ export function selectReportControlWizard(element: Element): Wizard {
     {
       title: get('wizard.title.select', { tagName: 'ReportControl' }),
       content: [
-        html`<filtered-list
-          >${reportControls.map(
+        html`<filtered-list activatable
+          ><style>
+            .actions {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              max-height: 0;
+              margin-right: 12px;
+              transition: max-height 200ms linear;
+            }
+
+            .actions > mwc-button {
+              opacity: 0;
+              transition: opacity 200ms linear;
+            }
+
+            mwc-list-item[activated] + .actions {
+              max-height: 500px;
+            }
+
+            mwc-list-item[activated] + .actions > mwc-button {
+              opacity: 1;
+            }
+          </style>
+          ${reportControls.map(
             reportControl =>
-              html`<mwc-list-item twoline value="${identity(reportControl)}"
-                ><span>${reportControl.getAttribute('name')}</span
-                ><span slot="secondary"
-                  >${identity(reportControl)}</span
-                ></mwc-list-item
-              >`
+              html` <mwc-list-item twoline value="${identity(reportControl)}"
+                  ><span>${reportControl.getAttribute('name')}</span
+                  ><span slot="secondary">${identity(reportControl)}</span>
+                </mwc-list-item>
+                <div class="actions">
+                  <mwc-button
+                    label="Attributes"
+                    icon="edit"
+                    trailingIcon
+                    @click=${(e: MouseEvent) => {
+                      e.target?.dispatchEvent(newWizardEvent());
+                      e.target?.dispatchEvent(
+                        newWizardEvent(editReportControlWizard(reportControl))
+                      );
+                    }}
+                  ></mwc-button
+                  ><mwc-button
+                    label="Trigger Options"
+                    icon="edit"
+                    trailingIcon
+                  ></mwc-button
+                  ><mwc-button
+                    label="Optional Fields"
+                    icon="edit"
+                    trailingIcon
+                  ></mwc-button
+                  ><mwc-button
+                    label="DataSet"
+                    icon="edit"
+                    trailingIcon
+                  ></mwc-button
+                  ><mwc-button label="Data" icon="add" trailingIcon></mwc-button
+                  ><mwc-button
+                    label="Data"
+                    icon="add"
+                    trailingIcon
+                  ></mwc-button>
+                  <mwc-button
+                    label="Remove"
+                    icon="delete"
+                    trailingIcon
+                  ></mwc-button>
+                </div>`
           )}</filtered-list
         >`,
       ],
