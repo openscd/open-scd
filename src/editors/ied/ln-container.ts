@@ -49,7 +49,7 @@ export class LNContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
-      ${Array.from(this.getLNodeType()!.querySelectorAll(':scope > DO'))
+      ${Array.from(this.getLNodeType() ? this.getLNodeType()!.querySelectorAll(':scope > DO') : [])
         .sort((a,b) => compareNames(a,b))
         .map(dO => html`<do-container
           .element=${dO}

@@ -250,6 +250,7 @@
 						</GSEControl>
 					</LN0>
 					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
+					<LN lnClass="THARDE" inst="1" lnType="Dummy.THARDE"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
