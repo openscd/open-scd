@@ -3,7 +3,7 @@ export const snapshots = {};
 
 snapshots["ldevice-container looks like the latest snapshot"] = 
 `<action-pane tabindex="0">
-  <div id="bayContainer">
+  <div id="lnContainer">
     <ln-container>
     </ln-container>
     <ln-container>
