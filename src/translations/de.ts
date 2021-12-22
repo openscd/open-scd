@@ -158,6 +158,15 @@ export const de: Translations = {
       addvoltagelevel: 'Spannungsebene hinzufügen',
     },
   },
+  powertransformer: {
+    wizard: {
+      nameHelper: '???',
+      descHelper: '???',
+      title: {
+        edit: '???',
+      },
+    }
+  },
   voltagelevel: {
     name: 'Spannungsebene',
     wizard: {
@@ -394,6 +403,10 @@ export const de: Translations = {
   },
   sld: {
     substationSelector: 'Schaltanlage auswählen',
+    wizard: {
+      xCoordinateHelper: '???',
+      yCoordinateHelper: '???',
+    },
   },
   add: 'Hinzufügen',
   new: 'Neu',

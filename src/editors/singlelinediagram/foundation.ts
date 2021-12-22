@@ -6,6 +6,8 @@ export interface Point {
   y: number;
 }
 
+export const SCL_COORDINATES_NAMESPACE = 'http://www.iec.ch/61850/2003/SCLcoordinates';
+
 /** Scope factor: the ConnectivityNode allocation algorithm works better with a scale factor which is bigger than 1. */
 const COORDINATES_SCALE_FACTOR = 2;
 
@@ -46,11 +48,11 @@ export function getPathNameAttribute(element: Element): string | undefined {
  */
 export function getRelativeCoordinates(element: Element): Point {
   const x = element.getAttributeNS(
-    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    SCL_COORDINATES_NAMESPACE,
     'x'
   );
   const y = element.getAttributeNS(
-    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    SCL_COORDINATES_NAMESPACE,
     'y'
   );
 
@@ -117,8 +119,7 @@ export function getConnectedTerminals(element: Element): Element[] {
  * - Get all elements that are connected to this Connectivity Node.
  * - Extract the SCL x and y coordinates of these Connectivity Nodes and add them up.
  * - Divide the final x and y numbers by the number of connected elements. This way, you get an so-called average.
- * @param doc - The full SCL document to scan for connected elements.
- * @param cNodePathName - The pathName of the Connectivity Node to calculate the SCL x and y coordinates.
+ * @param cNodeElement  - The Connectivity Node to calculate the X and Y Coordinates for.
  * @returns The calculated SCL x and y coordinates for this Connectivity Node.
  */
 export function calculateConnectivityNodeCoordinates(
@@ -131,6 +132,7 @@ export function calculateConnectivityNodeCoordinates(
   const pathName = getPathNameAttribute(cNodeElement);
 
   let nrOfConnections = 0;
+  let nrOfXConnections = 0;
   let totalX = 0;
   let totalY = 0;
 
@@ -147,7 +149,13 @@ export function calculateConnectivityNodeCoordinates(
 
       const { x, y } = getAbsoluteCoordinates(equipment);
 
-      totalX += x!;
+      // Only if the Element is in the same bay, we will use that X-value to calculate the location
+      // of the Connectivity Node. This will cause the Connectivity Node to stay with the boundaries
+      // of the Bay and not causing al kind of overlays between bays.
+      if (equipment.parentElement === cNodeElement.parentElement) {
+        nrOfXConnections++;
+        totalX += x!;
+      }
       totalY += y!;
     });
 
@@ -155,7 +163,18 @@ export function calculateConnectivityNodeCoordinates(
   if (nrOfConnections === 1) return { x: totalX + 1, y: totalY + 1 };
 
   return {
-    x: Math.round(totalX / nrOfConnections),
+    x: Math.round(totalX / nrOfXConnections),
     y: Math.round(totalY / nrOfConnections),
   };
+}
+
+export function getCommonParentElement(leftElement: Element, rightElement: Element, defaultParent: Element): Element | null {
+  let leftParentElement = leftElement.parentElement
+  while (leftParentElement) {
+    if (leftParentElement.contains(rightElement)) {
+      return leftParentElement;
+    }
+    leftParentElement = leftParentElement.parentElement;
+  }
+  return defaultParent;
 }
