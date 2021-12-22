@@ -65,7 +65,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   // Container for giving the panzoom to.
   @query('#panzoom') panzoomContainer!: HTMLElement;
   // The main canvas to draw everything on.
-  @query('#svg') svg!: SVGElement;
+  @query('#svg') svg!: SVGGraphicsElement;
 
   private get substations() : Element[] {
     return Array.from(this.doc.querySelectorAll(':root > Substation'))
@@ -418,8 +418,20 @@ export default class SingleLineDiagramPlugin extends LitElement {
   }
 
   firstUpdated(): void {
-    panzoom(this.panzoomContainer);
     this.drawSubstationElements();
+
+    // Set the new size of the SVG.
+    const bbox = this.svg.getBBox();
+    this.svg.setAttribute("viewBox", (bbox.x-10)+" "+(bbox.y-10)+" "+(bbox.width+20)+" "+(bbox.height+20));
+    this.svg.setAttribute("width", (bbox.width+20)  + "px");
+    this.svg.setAttribute("height",(bbox.height+20) + "px");
+
+    panzoom(this.panzoomContainer, {
+      zoomSpeed: 0.2,
+      maxZoom: 1.5,
+      minZoom: 0.2,
+      initialZoom: 0.5,
+    });
   }
 
   onSelect(event: SingleSelectedEvent): void {
@@ -483,8 +495,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="svg"
-            width="5000"
-            height="5000"
           ></svg>
         </div>
       </div>`;
