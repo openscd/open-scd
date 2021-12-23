@@ -160,12 +160,12 @@ export const de: Translations = {
   },
   powertransformer: {
     wizard: {
-      nameHelper: '???',
-      descHelper: '???',
+      nameHelper: '`Name des Leistungstransformators',
+      descHelper: 'Beschreibung des Leistungstransformators',
       title: {
-        edit: '???',
+        edit: 'Leistungstransformator bearbeiten',
       },
-    }
+    },
   },
   voltagelevel: {
     name: 'Spannungsebene',
@@ -404,8 +404,8 @@ export const de: Translations = {
   sld: {
     substationSelector: 'Schaltanlage auswählen',
     wizard: {
-      xCoordinateHelper: '???',
-      yCoordinateHelper: '???',
+      xCoordinateHelper: 'X-Koordinate im Einphasenersatzschaltbild',
+      yCoordinateHelper: 'Y-Koordinate im Einphasenersatzschaltbild',
     },
   },
   add: 'Hinzufügen',
