@@ -19,6 +19,7 @@ import {
   createBusBarElement,
   createVoltageLevelElement,
   createBayElement,
+  createBayOutlineElement,
   createConductingEquipmentElement,
   createConnectivityNodeElement,
   getBusBarLength,
@@ -198,6 +199,22 @@ export default class SingleLineDiagramPlugin extends LitElement {
   }
 
   /**
+   * Draw outline rectangle for Bay and include name in <g> element
+   * Should only be a <g> element.
+   * @param bayGroup - The SVG <g> element containing all Bay icons/elements.
+   * @param bayElement - The Bay which the rectangle represents.
+   * */
+  private drawBayOutline(bayGroup: SVGGraphicsElement, bayElement: Element): void {
+    const outlineElement = createBayOutlineElement(bayGroup, 
+      bayElement, 
+      (event: Event) => this.openEditWizard(event, bayElement!));
+    if (bayGroup.parentNode !== null) {
+      // must be prepended as SVG z-order is based on element order in DOM
+      bayGroup.parentNode.prepend(outlineElement);
+    }
+  }
+
+  /**
    * Draw all available Bays of the passed Voltage Level Element.
    * Should only be a <g> element.
    * @param voltageLevelElement - The Voltage Level containing the bays.
@@ -208,10 +225,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
       .forEach(bayElement => {
         const bayGroup = createBayElement(bayElement);
         voltageLevelGroup.appendChild(bayGroup);
-
+        
         this.drawPowerTransformers(bayElement, bayGroup);
         this.drawConductingEquipments(bayElement, bayGroup);
         this.drawConnectivityNodes(bayElement, bayGroup);
+        this.drawBayOutline(bayGroup, bayElement);
       });
   }
 
@@ -529,6 +547,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
       pointer-events: bounding-box;
     }
 
+    .bayOutline {
+      fill: var(--mdc-theme-surface);
+      fill-opacity: 0.5;
+    }
+
+    text.bayName:hover,
     g[type='Busbar']:hover,
     g[type='ConductingEquipment']:hover,
     g[type='ConnectivityNode']:hover,
