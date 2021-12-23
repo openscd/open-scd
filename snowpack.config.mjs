@@ -9,6 +9,7 @@ export default ({
     "**/out-tsc/**/*",
     "**/.editorconfig",
     "**/.eslintrc.cjs",
+    "**/.git/**/*",
     "**/.gitignore",
     "**/.travis.yml",
     "**/package*",
