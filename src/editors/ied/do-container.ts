@@ -38,12 +38,12 @@ export class DOContainer extends LitElement {
   }
 
   /**
-   * Get the DOType of a certain DO.
-   * @param doType - The type of a certain DO.
-   * @returns The DOType section for a specific DO.
+   * Get the DOType of this DO.
+   * @param doType - The type of this DO.
+   * @returns The DOType section for this DO.
    */
-   private getDOType(dO: Element): Element | null {
-    const doType = dO.getAttribute('type') ?? undefined;
+   private getDOType(): Element | null {
+    const doType = this.element.getAttribute('type') ?? undefined;
     return this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${doType}"]`);
   }
 
@@ -51,8 +51,8 @@ export class DOContainer extends LitElement {
    * Get the nested SDO elements.
    * @returns The nested SDO elements of this DO container.
    */
-   private getNestedSdoElements(): Element[] {
-    const doType = this.getDOType(this.element)
+   private getNestedDOElements(): Element[] {
+    const doType = this.getDOType()
     if (doType != null) {
       return Array.from(doType!.querySelectorAll(':scope > SDO'))
     }
@@ -74,7 +74,7 @@ export class DOContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
-      ${this.getNestedSdoElements().map(dO =>
+      ${this.getNestedDOElements().map(dO =>
         html`<do-container
           .element=${dO}
           .instanceElement=${this.getInstanceElement(dO)}>

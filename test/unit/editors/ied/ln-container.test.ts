@@ -8,7 +8,7 @@ describe('ln-container', () => {
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
-    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
