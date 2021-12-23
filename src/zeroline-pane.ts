@@ -16,14 +16,17 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
+import './wizard-selector.js';
 import { Settings } from './Setting.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { gooseIcon, reportIcon } from './icons.js';
-import { isPublic, newWizardEvent } from './foundation.js';
+import { isPublic, newWizardEvent, Wizard } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
 import { selectReportControlWizard } from './wizards/reportcontrol.js';
+import { WizardSelector } from './wizard-selector.js';
+import { Dialog } from '@material/mwc-dialog';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -50,6 +53,7 @@ export class ZerolinePane extends LitElement {
   @query('#gsecontrol') gsecontrol!: IconButton;
   @query('#reportcontrol') reportcontrol!: IconButton;
   @query('#createsubstation') createsubstation!: IconButton;
+  @query('wizard-selector') wizardSelector!: WizardSelector;
 
   openCommunicationMapping(): void {
     const wizard = communicationMappingWizard(this.doc);
@@ -63,8 +67,11 @@ export class ZerolinePane extends LitElement {
   }
 
   openReportControlSelection(): void {
-    const wizard = selectReportControlWizard(this.doc.documentElement);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    (<Dialog>(
+      (<unknown>this.wizardSelector.shadowRoot?.querySelector('mwc-dialog'))
+    )).open = true;
+    /* const wizard = selectReportControlWizard(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard)); */
   }
 
   openGseControlSelection(): void {
@@ -135,6 +142,11 @@ export class ZerolinePane extends LitElement {
           >
         </nav>
       </h1>
+      <wizard-selector
+        .scope=${this.doc}
+        targetTag="ReportControl"
+        .childTags=${['OptFields', 'TrgOps']}
+      ></wizard-selector>
       ${this.renderIedContainer()}
       ${this.doc?.querySelector(':root > Substation')
         ? html`<section>

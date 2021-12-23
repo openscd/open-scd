@@ -1,4 +1,4 @@
-import { html } from 'lit-html';
+import { html, TemplateResult } from 'lit-element';
 import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
@@ -49,6 +49,33 @@ function updateOptFieldsAction(element: Element): WizardActor {
 
     return [{ old: { element }, new: { element: newElement } }];
   };
+}
+
+export function renderOptFields(element: Element): TemplateResult[] {
+  const optFields = [
+    'seqNum',
+    'timeStamp',
+    'dataSet',
+    'reasonCode',
+    'dataRef',
+    'entryID',
+    'configRef',
+    'bufOvfl',
+  ];
+
+  return optFields.map(
+    optField =>
+      html`<wizard-select
+        label="${optField}"
+        .maybeValue=${element.getAttribute(optField)}
+        nullable
+        required
+        >${['true', 'false'].map(
+          option =>
+            html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
+        )}</wizard-select
+      >`
+  );
 }
 
 export function editOptFieldsWizard(element: Element): Wizard {
