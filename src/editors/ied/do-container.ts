@@ -42,7 +42,7 @@ export class DOContainer extends LitElement {
    * @param doType - The type of a certain DO.
    * @returns The DOType section for a specific DO.
    */
-  getDOType(dO: Element): Element | null {
+   private getDOType(dO: Element): Element | null {
     const doType = dO.getAttribute('type') ?? undefined;
     return this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${doType}"]`);
   }
@@ -51,7 +51,7 @@ export class DOContainer extends LitElement {
    * Get the nested SDO elements.
    * @returns The nested SDO elements of this DO container.
    */
-  getNestedSdoElements(): Element[] {
+   private getNestedSdoElements(): Element[] {
     const doType = this.getDOType(this.element)
     if (doType != null) {
       return Array.from(doType!.querySelectorAll(':scope > SDO'))
@@ -64,7 +64,7 @@ export class DOContainer extends LitElement {
    * @param sdo - The SDO object to search with.
    * @returns The optional SDI element.
    */
-  getInstanceElement(sdo: Element): Element | null {
+   private getInstanceElement(sdo: Element): Element | null {
     const sdoName = getNameAttribute(sdo);
     if (this.instanceElement) {
       return this.instanceElement.querySelector(`:scope > SDI[name="${sdoName}"]`)

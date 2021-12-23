@@ -63,12 +63,12 @@ describe('ImportIedsPlugin', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
-      ).to.equal(14);
+      ).to.equal(16);
       element.prepareImport(importDoc, doc);
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
-      ).to.equal(24);
+      ).to.equal(26);
     });
 
     it('loads unique datypes to the project', () => {
