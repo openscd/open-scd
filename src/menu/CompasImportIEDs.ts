@@ -18,7 +18,7 @@ export default class CompasImportIEDSMenuPlugin extends LitElement {
         title: get('compas.importIEDS.title'),
         content: [
           html`<compas-open @docRetrieved=${async (event: DocRetrievedEvent) => {
-                                             await prepareImportIEDs(parent, doc, event.detail.doc);
+                                             await prepareImportIEDs(parent, event.detail.doc, doc);
                                              parent.dispatchEvent(newWizardEvent());
                                            }}>
                </compas-open>
