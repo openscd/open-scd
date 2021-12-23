@@ -174,7 +174,7 @@ export function getConnectivityNodesDrawingPosition(
  * @param element - The element.
  * @returns The <g> element.
  */
-function createGroupElement(element: Element): SVGElement {
+function createGroupElement(element: Element): SVGGraphicsElement {
   const finalElement = document.createElementNS(
     'http://www.w3.org/2000/svg',
     'g'
@@ -207,7 +207,6 @@ function createGroupElement(element: Element): SVGElement {
 export function createSubstationElement(substation: Element): SVGElement {
   return createGroupElement(substation);
 }
-
 /**
  * Create a Voltage Level <g> element.
  * @param voltageLevel - The Voltage Level from the SCL document to use.
@@ -222,8 +221,40 @@ export function createVoltageLevelElement(voltageLevel: Element): SVGElement {
  * @param bay - The Bay from the SCL document to use.
  * @returns A Bay <g> element.
  */
-export function createBayElement(bay: Element): SVGElement {
+export function createBayElement(bay: Element): SVGGraphicsElement {
   return createGroupElement(bay);
+}
+
+/**
+ * Create an outline rect and name for bays and add to the <g> element
+ * @param groupElement - The SVG group element with the SVG data comprising the bay.
+ * @param bayElement - The SCL element Bay.
+ * @returns The bay SVG objects <g> element including outline and the title.
+ */
+ export function createBayOutlineElement(
+  groupElement: SVGGraphicsElement,
+  bayElement: Element,
+  clickAction?: (event: Event) => void
+): SVGGraphicsElement {
+  const outlineGroup = createGroupElement(groupElement);
+  const boundingBox = groupElement.getBBox();
+  
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', `${boundingBox.x}`);
+  rect.setAttribute('width', `${boundingBox.width}`);
+  rect.setAttribute('height', `${boundingBox.height}`);
+  rect.setAttribute('rx', '5');
+  rect.setAttribute('class', 'bayOutline');
+  outlineGroup.appendChild(rect);
+  
+  const text = createTextElement(bayElement.getAttribute('name') || 'Unknown Bay', 
+    { x: boundingBox.x, y: boundingBox.y - 18 },
+    'small');
+  text.setAttribute('class', 'bayName');
+  outlineGroup.appendChild(text);
+  
+  if (clickAction) text.addEventListener('click', clickAction);
+  return outlineGroup;
 }
 
 /**
