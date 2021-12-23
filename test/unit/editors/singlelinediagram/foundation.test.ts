@@ -6,7 +6,7 @@ import {
   getPathNameAttribute,
   isBusBar,
   getConnectedTerminals,
-  calculateConnectivityNodeCoordinates,
+  calculateConnectivityNodeCoordinates, getCommonParentElement,
 } from '../../../../src/editors/singlelinediagram/foundation.js';
 
 describe('Single Line Diagram foundation', () => {
@@ -115,6 +115,41 @@ describe('Single Line Diagram foundation', () => {
         x: 0,
         y: 0,
       });
+    });
+  });
+
+  describe('defines a getCommonParentElement function that', () => {
+    it("common parent between connectivity node and power transformer should be the substation", () => {
+      const substation = doc.querySelector('Substation[name="AA1"]')!;
+      const powerTransformer =  doc.querySelector('PowerTransformer[name="TA1"]')!;
+      const connectivityNode =  doc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]')!;
+      expect(getCommonParentElement(powerTransformer, connectivityNode, null)).to.equal(substation);
+    });
+
+    it("common parent between connectivity node and conducting equipment should be the bay", () => {
+      const bay = doc.querySelector('Bay[name="Bay A"]')!;
+      const conductingEquipment =  doc.querySelector('Bay[name="Bay A"] > ConductingEquipment[name="QB1"]')!;
+      const connectivityNode =  doc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]')!;
+      expect(getCommonParentElement(conductingEquipment, connectivityNode, null)).to.equal(bay);
+    });
+
+    it("common parent between two unrelated elements will be the root element", () => {
+      const powerTransformer =  doc.querySelector('PowerTransformer[name="TA1"]')!;
+      const subNetwork =  doc.querySelector('SubNetwork[name="StationBus"]')!;
+      expect(getCommonParentElement(powerTransformer, subNetwork, null)).to.equal(doc.firstElementChild);
+    });
+
+    it("when no common parent then the default element returned", async () => {
+      // Can only happen if from different documents, otherwise there should always be the root as common.
+      const otherDoc = await fetch('/test/testfiles/valid2007B4withSubstationXY.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      const substation = doc.querySelector('Substation[name="AA1"]')!;
+      const bay = doc.querySelector('Bay[name="Bay A"]')!;
+      const conductingEquipment =  doc.querySelector('Bay[name="Bay A"] > ConductingEquipment[name="QB1"]')!;
+      const connectivityNode =  otherDoc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]')!;
+      expect(getCommonParentElement(conductingEquipment, connectivityNode, substation)).to.equal(substation);
     });
   });
 });

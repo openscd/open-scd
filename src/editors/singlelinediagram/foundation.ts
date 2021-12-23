@@ -168,7 +168,7 @@ export function calculateConnectivityNodeCoordinates(
   };
 }
 
-export function getCommonParentElement(leftElement: Element, rightElement: Element, defaultParent: Element): Element | null {
+export function getCommonParentElement(leftElement: Element, rightElement: Element, defaultParent: Element | null): Element | null {
   let leftParentElement = leftElement.parentElement
   while (leftParentElement) {
     if (leftParentElement.contains(rightElement)) {
