@@ -32,7 +32,7 @@ export class LNContainer extends LitElement {
    * Get the LNodeType of this LN(0) section.
    * @returns The LNodeType section, or null if not found.
    */
-  getLNodeType(): Element | null {
+  private getLNodeType(): Element | null {
     const lnType = this.element.getAttribute('lnType') ?? undefined;
     return this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > LNodeType[id="${lnType}"]`);
   }
@@ -42,7 +42,7 @@ export class LNContainer extends LitElement {
    * @param dO - The DOI object to use.
    * @returns The optional DOI object.
    */
-  getInstanceElement(dO: Element): Element | null {
+  private getInstanceElement(dO: Element): Element | null {
     const doName = getNameAttribute(dO);
     return this.element.querySelector(`:scope > DOI[name="${doName}"]`)
   }

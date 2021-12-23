@@ -36,7 +36,7 @@ describe('ln-container', () => {
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')}
       ></ln-container>`);
   
-      const lNodeType = element.getLNodeType();
+      const lNodeType = element['getLNodeType']();
       expect(lNodeType).to.not.be.null;
       expect(lNodeType!.tagName).to.eql('LNodeType');
       expect(lNodeType!.getAttribute('lnClass')).to.eql('XCBR');
@@ -48,7 +48,7 @@ describe('ln-container', () => {
           'IED[name="IED2"] > AccessPoint[name="P1"] > Server > LDevice[inst="CBSW"] > LN[lnClass="THARDE"]')}
       ></ln-container>`);
   
-      expect(element.getLNodeType()).to.be.null;
+      expect(element['getLNodeType']()).to.be.null;
     });
   });
 
@@ -61,16 +61,16 @@ describe('ln-container', () => {
     });
 
     it('which returns a DOI for a LN if it\'s available.', async () => {
-        const dO = element.getLNodeType()?.querySelector('DO[name="Pos"]');
-        const instance = element.getInstanceElement(dO!)!;
+        const dO = element['getLNodeType']()?.querySelector('DO[name="Pos"]');
+        const instance = element['getInstanceElement'](dO!)!;
         expect(instance).to.not.be.null;
         expect(instance.tagName).to.eql('DOI');
         expect(instance.getAttribute('name')).to.eql('Pos');
     });
   
     it('which returns null if no DOI is available.', async () => {
-        const dO = element.getLNodeType()?.querySelector('DO[name="Beh"]');
-        expect(element.getInstanceElement(dO!)!).to.be.null;
+        const dO = element['getLNodeType']()?.querySelector('DO[name="Beh"]');
+        expect(element['getInstanceElement'](dO!)!).to.be.null;
     });
   });
 });
