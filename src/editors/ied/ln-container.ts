@@ -10,7 +10,7 @@ import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
 import './do-container.js';
-import { compareNames, getInstanceAttribute, getNameAttribute } from '../../foundation.js';
+import { getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
 @customElement('ln-container')
@@ -29,12 +29,16 @@ export class LNContainer extends LitElement {
   }
 
   /**
-   * Get the LNodeType of this LN(0) section.
-   * @returns The LNodeType section, or null if not found.
+   * Get the DO child elements of this LN(0) section.
+   * @returns The DO child elements, or an empty array if none are found.
    */
-  private getLNodeType(): Element | null {
+  private getDOElements(): Element[] {
     const lnType = this.element.getAttribute('lnType') ?? undefined;
-    return this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > LNodeType[id="${lnType}"]`);
+    const lNodeType = this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > LNodeType[id="${lnType}"]`);
+    if (lNodeType != null) {
+      return Array.from(lNodeType.querySelectorAll(':scope > DO'));
+    }
+    return [];
   }
 
   /**
@@ -49,9 +53,7 @@ export class LNContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
-      ${Array.from(this.getLNodeType() ? this.getLNodeType()!.querySelectorAll(':scope > DO') : [])
-        .sort((a,b) => compareNames(a,b))
-        .map(dO => html`<do-container
+      ${this.getDOElements().map(dO => html`<do-container
           .element=${dO}
           .instanceElement=${this.getInstanceElement(dO)}>
         </do-container>

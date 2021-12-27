@@ -38,21 +38,12 @@ export class DOContainer extends LitElement {
   }
 
   /**
-   * Get the DOType of this DO.
-   * @param doType - The type of this DO.
-   * @returns The DOType section for this DO.
+   * Get the nested SDO element(s).
+   * @returns The nested SDO element(s) of this DO container.
    */
-   private getDOType(): Element | null {
-    const doType = this.element.getAttribute('type') ?? undefined;
-    return this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${doType}"]`);
-  }
-
-  /**
-   * Get the nested SDO elements.
-   * @returns The nested SDO elements of this DO container.
-   */
-   private getNestedDOElements(): Element[] {
-    const doType = this.getDOType()
+  private getDOElements(): Element[] {
+    const type = this.element.getAttribute('type') ?? undefined;
+    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
     if (doType != null) {
       return Array.from(doType!.querySelectorAll(':scope > SDO'))
     }
@@ -64,7 +55,7 @@ export class DOContainer extends LitElement {
    * @param sdo - The SDO object to search with.
    * @returns The optional SDI element.
    */
-   private getInstanceElement(sdo: Element): Element | null {
+  private getInstanceElement(sdo: Element): Element | null {
     const sdoName = getNameAttribute(sdo);
     if (this.instanceElement) {
       return this.instanceElement.querySelector(`:scope > SDI[name="${sdoName}"]`)
@@ -74,7 +65,7 @@ export class DOContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
-      ${this.getNestedDOElements().map(dO =>
+      ${this.getDOElements().map(dO =>
         html`<do-container
           .element=${dO}
           .instanceElement=${this.getInstanceElement(dO)}>
@@ -82,6 +73,4 @@ export class DOContainer extends LitElement {
     </action-pane>
     `;
   }
-
-  static styles = css``;
 }

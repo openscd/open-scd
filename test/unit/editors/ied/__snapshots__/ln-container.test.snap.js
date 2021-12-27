@@ -11,6 +11,10 @@ snapshots["ln-container looks like the latest snapshot with a LN0 element."] =
   </do-container>
   <do-container>
   </do-container>
+  <do-container>
+  </do-container>
+  <do-container>
+  </do-container>
 </action-pane>
 `;
 /* end snapshot ln-container looks like the latest snapshot with a LN0 element. */

@@ -29,37 +29,14 @@ describe('do-container', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  describe('has a getDOType function ', () => {
-    it('which return the correct DOType for a given DO.', async () => {
-      element = await fixture(html`<do-container
-        .element=${validSCL.querySelector(
-          'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')}
-      ></do-container>`);
-  
-      const doType = element['getDOType']();
-      expect(doType).to.not.be.null;
-      expect(doType!.tagName).to.eql('DOType');
-      expect(doType!.getAttribute('id')).to.eql('Dummy.LLN0.Mod');
-    });
-  
-    it('which returns null if DOType cannot be found for a given DO.', async () => {
-      element = await fixture(html`<do-container
-        .element=${validSCL.querySelector(
-          'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="SomeMod"]')}
-      ></do-container>`);
-  
-      expect(element['getDOType']()).to.be.null;
-    });
-  });
-
-  describe('has a getNestedSdoElements function ', () => {
+  describe('has a getDOElements function ', () => {
     it('which return the (S)DO containers underneath a given DO.', async () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="ExtendedMod"]')}
       ></do-container>`);
   
-      const nestedDOs = element['getNestedDOElements']();
+      const nestedDOs = element['getDOElements']();
       expect(nestedDOs).to.not.be.empty;
       expect(nestedDOs!.length).to.eql(2);
       expect(nestedDOs![1].getAttribute('name')).to.eql('someOtherSdo');
@@ -71,19 +48,19 @@ describe('do-container', () => {
           'DataTypeTemplates > DOType[id="Dummy.LLN0.ExtendedMod"] > SDO[name="someOtherSdo"]')}
       ></do-container>`);
   
-      const nestedDOs = element['getNestedDOElements']();
+      const nestedDOs = element['getDOElements']();
       expect(nestedDOs).to.not.be.empty;
       expect(nestedDOs!.length).to.eql(1);
       expect(nestedDOs![0].getAttribute('name')).to.eql('anotherSdo');
     });
     
-    it('which return an empty array if a DO doesn\t have (S)DO\'s underneath.', async () => {
+    it('which return an empty array if a DO doesn\t have child (S)DO\'s.', async () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="someSdoType"] > SDO[name="anotherSdo"]')}
       ></do-container>`);
   
-      const nestedDOs = element['getNestedDOElements']();
+      const nestedDOs = element['getDOElements']();
       expect(nestedDOs).to.be.empty;
     });
   });
