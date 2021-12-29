@@ -226,7 +226,9 @@ export function getIcon(condEq: Element): TemplateResult {
 function typeStr(condEq: Element): string {
   if (
     condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
+      Array.from(condEq.querySelectorAll('Terminal'))
+        .map(t => t.getAttribute('cNodeName'))
+        .includes('grounded')
   ) {
     return 'ERS';
   } else {

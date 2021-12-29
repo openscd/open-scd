@@ -51,7 +51,9 @@ const types: Partial<Record<string, string>> = {
 
 function typeStr(condEq: Element): string {
   return condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
+    Array.from(condEq.querySelectorAll('Terminal'))
+      .map(t => t.getAttribute('cNodeName'))
+      .includes('grounded')
     ? 'ERS'
     : condEq.getAttribute('type') ?? '';
 }
