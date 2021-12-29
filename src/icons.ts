@@ -456,7 +456,7 @@ export const voltageTransformerIcon = html`<svg
 
 export const earthSwitchIcon = html`<svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 25 35"
+  viewBox="0 0 25 25"
 >  
   <line
     x1="12.5"
