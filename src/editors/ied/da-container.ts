@@ -39,7 +39,7 @@ export class DAContainer extends LitElement {
   /**
    * Get an (optional) value of a DA(I).
    * If there is a DAI, it get's priority.
-   * @returns 
+   * @returns TemplateResult containing the value of the instance, element or nothing.
    */
   private getDAValue(): TemplateResult {
     if (this.instanceElement) {
@@ -62,19 +62,19 @@ export class DAContainer extends LitElement {
    * Get the nested (B)DA element(s).
    * @returns The nested (B)DA element(s) of this DO container.
    */
-  private getDAElements(): Element[] {
+  private getBDAElements(): Element[] {
     const type = this.element.getAttribute('type') ?? undefined;
-    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DOType[id="${type}"]`);
+    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DAType[id="${type}"]`);
     if (doType != null) {
-      return Array.from(doType!.querySelectorAll(':scope > DA'))
+      return Array.from(doType!.querySelectorAll(':scope > BDA'))
     }
     return [];
   }
 
   render(): TemplateResult {
-    return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
+    return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}" highlighted=${true}>
       ${this.getDAValue()}
-      ${this.getDAElements().map(da =>
+      ${this.getBDAElements().map(da =>
         html`<da-container
           .element=${da}>
         </da-container>`)}
