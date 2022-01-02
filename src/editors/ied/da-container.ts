@@ -1,4 +1,5 @@
 import {
+  css,
   customElement,
   html,
   LitElement,
@@ -73,7 +74,7 @@ export class DAContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}" highlighted=${true}>
-      ${this.getDAValue()}
+      <h6>${this.getDAValue()}</h6>
       ${this.getBDAElements().map(da =>
         html`<da-container
           .element=${da}>
@@ -81,4 +82,17 @@ export class DAContainer extends LitElement {
     </action-pane>
     `;
   }
+
+  static styles = css`
+    h6 {
+      color: var(--mdc-theme-on-surface);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      overflow: visible;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0px;
+      padding-left: 0.3em;
+    }
+  `;
 }
