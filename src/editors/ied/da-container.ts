@@ -31,7 +31,7 @@ export class DAContainer extends LitElement {
     const name = getNameAttribute(this.element);
     const bType = this.element!.getAttribute('bType') ?? nothing;
 
-    if (this.instanceElement != null) {
+    if (this.instanceElement) {
       return html`<b>${name}</b> &mdash; ${bType}`;
     } else {
       return html`${name} &mdash; ${bType}`;
@@ -65,8 +65,8 @@ export class DAContainer extends LitElement {
    * @returns The nested (B)DA element(s) of this (B)DA container.
    */
   private getBDAElements(): Element[] {
-    const type = this.element.getAttribute('type') ?? undefined;
-    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DAType[id="${type}"]`);
+    const type = this.element!.getAttribute('type') ?? undefined;
+    const doType =  this.element!.closest('SCL')!.querySelector(`:root > DataTypeTemplates > DAType[id="${type}"]`);
     if (doType != null) {
       return Array.from(doType!.querySelectorAll(':scope > BDA'))
     }
@@ -78,8 +78,8 @@ export class DAContainer extends LitElement {
    * @returns The nested EnumVal element(s) of this (B)DA container.
    */
   private getEnumElements(): Element[] {
-    const type = this.element.getAttribute('type') ?? undefined;
-    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > EnumType[id="${type}"]`);
+    const type = this.element!.getAttribute('type') ?? undefined;
+    const doType =  this.element!.closest('SCL')!.querySelector(`:root > DataTypeTemplates > EnumType[id="${type}"]`);
     if (doType != null) {
       return Array.from(doType!.querySelectorAll(':scope > EnumVal'))
     }
@@ -107,7 +107,8 @@ export class DAContainer extends LitElement {
     h6 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
-      font-weight: 400;
+      font-weight: 500;
+      font-size: 0.8em;
       overflow: visible;
       white-space: nowrap;
       text-overflow: ellipsis;
