@@ -9,6 +9,7 @@ import {
 import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
+import './enum-container.js';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
@@ -60,6 +61,7 @@ export class DAContainer extends LitElement {
   }
 
   /**
+   * STRUCT.
    * Get the nested (B)DA element(s).
    * @returns The nested (B)DA element(s) of this DO container.
    */
@@ -72,6 +74,19 @@ export class DAContainer extends LitElement {
     return [];
   }
 
+  /**
+   * ENUM.
+   * @returns 
+   */
+  private getEnumElements(): Element[] {
+    const type = this.element.getAttribute('type') ?? undefined;
+    const doType =  this.element.closest('SCL')!.querySelector(`:root > DataTypeTemplates > EnumType[id="${type}"]`);
+    if (doType != null) {
+      return Array.from(doType!.querySelectorAll(':scope > EnumVal'))
+    }
+    return [];
+  }
+
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}" highlighted=${true}>
       <h6>${this.getDAValue()}</h6>
@@ -79,6 +94,10 @@ export class DAContainer extends LitElement {
         html`<da-container
           .element=${da}>
         </da-container>`)}
+      ${this.getEnumElements().map(element =>
+        html`<enum-container
+          .element=${element}>
+        </enum-container>`)}
     </action-pane>
     `;
   }
