@@ -10,7 +10,7 @@ import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
 import './enum-container.js';
-import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
+import { getNameAttribute } from '../../foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
@@ -29,21 +29,21 @@ export class DAContainer extends LitElement {
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
-    const desc = getDescriptionAttribute(this.element);
+    const bType = this.element!.getAttribute('bType') ?? nothing;
 
     if (this.instanceElement != null) {
-      return html`<b>${name}${desc ? html` &mdash; ${desc}` : nothing}</b>`;
+      return html`<b>${name}</b> &mdash; ${bType}`;
     } else {
-      return html`${name}${desc ? html` &mdash; ${desc}` : nothing}`;
+      return html`${name} &mdash; ${bType}`;
     }
   }
 
   /**
-   * Get an (optional) value of a DA(I).
-   * If there is a DAI, it get's priority.
+   * Rendering an optional value of this (B)DA container.
+   * If there is a DAI, it get's priority on top of (B)DA values.
    * @returns TemplateResult containing the value of the instance, element or nothing.
    */
-  private getDAValue(): TemplateResult {
+  private renderValue(): TemplateResult {
     if (this.instanceElement) {
       return html`${this.getValueElement(this.instanceElement)}`
     }
@@ -61,9 +61,8 @@ export class DAContainer extends LitElement {
   }
 
   /**
-   * STRUCT.
-   * Get the nested (B)DA element(s).
-   * @returns The nested (B)DA element(s) of this DO container.
+   * Get the nested (B)DA element(s) if available.
+   * @returns The nested (B)DA element(s) of this (B)DA container.
    */
   private getBDAElements(): Element[] {
     const type = this.element.getAttribute('type') ?? undefined;
@@ -75,8 +74,8 @@ export class DAContainer extends LitElement {
   }
 
   /**
-   * ENUM.
-   * @returns 
+   * Get the nested EnumVal element(s) if available.
+   * @returns The nested EnumVal element(s) of this (B)DA container.
    */
   private getEnumElements(): Element[] {
     const type = this.element.getAttribute('type') ?? undefined;
@@ -88,16 +87,18 @@ export class DAContainer extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}" highlighted=${true}>
-      <h6>${this.getDAValue()}</h6>
-      ${this.getBDAElements().map(da =>
+    const bType = this.element!.getAttribute('bType');
+
+    return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
+      <h6>${this.renderValue()}</h6>
+      ${bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
-          .element=${da}>
-        </da-container>`)}
-      ${this.getEnumElements().map(element =>
+          .element=${element}>
+        </da-container>`) : nothing}
+      ${bType == 'Enum' ? this.getEnumElements().map(element =>
         html`<enum-container
           .element=${element}>
-        </enum-container>`)}
+        </enum-container>`) : nothing}
     </action-pane>
     `;
   }
@@ -106,7 +107,7 @@ export class DAContainer extends LitElement {
     h6 {
       color: var(--mdc-theme-on-surface);
       font-family: 'Roboto', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       overflow: visible;
       white-space: nowrap;
       text-overflow: ellipsis;

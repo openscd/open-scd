@@ -15,12 +15,10 @@ export class EnumContainer extends LitElement {
   element!: Element;
 
   private header(): TemplateResult {
-    return html`${this.element.getAttribute('ord')} &mdash; ${this.element.textContent}`;
+    return html`${this.element.textContent}`;
   }
 
   render(): TemplateResult {
-    return html`<action-pane .label="${this.header()}">
-    </action-pane>
-    `;
+    return html`<action-pane .label="${this.header()}"></action-pane>`;
   }
 }
