@@ -46,3 +46,26 @@ snapshots["da-container looks like the latest snapshot with a DA element contain
 `;
 /* end snapshot da-container looks like the latest snapshot with a DA element containing other Enumeration elements and a DAI. */
 
+snapshots["da-container looks like the latest snapshot with a DA element containing other BDA elements."] = 
+`<action-pane
+  icon=""
+  tabindex="0"
+>
+  <h6>
+  </h6>
+  <da-container>
+  </da-container>
+  <da-container>
+  </da-container>
+  <da-container>
+  </da-container>
+  <da-container>
+  </da-container>
+  <da-container>
+  </da-container>
+  <da-container>
+  </da-container>
+</action-pane>
+`;
+/* end snapshot da-container looks like the latest snapshot with a DA element containing other BDA elements. */
+
