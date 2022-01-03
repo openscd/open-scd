@@ -88,7 +88,6 @@ export class DAContainer extends LitElement {
 
   render(): TemplateResult {
     const bType = this.element!.getAttribute('bType');
-
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       <h6>${this.renderValue()}</h6>
       ${bType == 'Struct' ? this.getBDAElements().map(element =>
