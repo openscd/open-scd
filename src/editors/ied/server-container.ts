@@ -9,7 +9,6 @@ import {
 
 import '../../action-pane.js';
 import './ldevice-container.js';
-import { IEDSelector } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */
 @customElement('server-container')
@@ -23,7 +22,7 @@ export class ServerContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane label="${this.header()}">
-    ${Array.from(this.element.querySelectorAll(IEDSelector.LDevice)).map(
+    ${Array.from(this.element.querySelectorAll(':scope > LDevice')).map(
       server => html`<ldevice-container
         .element=${server}
       ></ldevice-container>`)}

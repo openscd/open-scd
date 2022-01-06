@@ -9,7 +9,6 @@ import {
 
 import '../../action-pane.js';
 import './server-container.js'
-import { IEDSelector } from './foundation.js';
 import { nothing } from 'lit-html';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 
@@ -28,7 +27,7 @@ export class AccessPointContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
-    ${Array.from(this.element.querySelectorAll(IEDSelector.Server)).map(
+    ${Array.from(this.element.querySelectorAll(':scope > Server')).map(
       server => html`<server-container
         .element=${server}
       ></server-container>`)}

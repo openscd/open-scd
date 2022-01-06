@@ -327,6 +327,7 @@
 							<ExtRef iedName="IED1" ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="q"/>
 						</Inputs>
 					</LN>
+					<LN lnClass="tHarde" lnType="lnTypeWithoutDOs" />
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -355,36 +356,36 @@
 				<Authentication none="true" />
 				<LDevice inst="MU01">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0.two">
-					<DataSet name="PhsMeas1">
-                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
-                            <FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
-                        </DataSet>
-					<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
-						<SmvOpts/>
-					</SampledValueControl>
+						<DataSet name="PhsMeas1">
+							<FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01A" lnClass="TCTR" lnInst="1" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01B" lnClass="TCTR" lnInst="2" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01C" lnClass="TCTR" lnInst="3" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="I01N" lnClass="TCTR" lnInst="4" doName="Amp" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01A" lnClass="TVTR" lnInst="1" doName="Vol" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01B" lnClass="TVTR" lnInst="2" doName="Vol" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01C" lnClass="TVTR" lnInst="3" doName="Vol" daName="q" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="instMag.i" fc="MX"/>
+							<FCDA ldInst="MU01" prefix="U01N" lnClass="TVTR" lnInst="4" doName="Vol" daName="q" fc="MX"/>
+						</DataSet>
+						<SampledValueControl smvID="IED3_SMVID" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="PhsMeas1">
+							<SmvOpts/>
+						</SampledValueControl>
 					</LN0>
-                    <LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
-                    <LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
-                    <LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
-                    <LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
-                    <LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
-                    <LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
-                    <LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
-                    <LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
+					<LN prefix="I01A" lnClass="TCTR" inst="1" lnType="DummyTCTR" />
+					<LN prefix="I01B" lnClass="TCTR" inst="2" lnType="DummyTCTR" />
+					<LN prefix="I01C" lnClass="TCTR" inst="3" lnType="DummyTCTR" />
+					<LN prefix="I01N" lnClass="TCTR" inst="4" lnType="DummyTCTR" />
+					<LN prefix="U01A" lnClass="TVTR" inst="1" lnType="DummyTVTR" />
+					<LN prefix="U01B" lnClass="TVTR" inst="2" lnType="DummyTVTR" />
+					<LN prefix="U01C" lnClass="TVTR" inst="3" lnType="DummyTVTR" />
+					<LN prefix="U01N" lnClass="TVTR" inst="4" lnType="DummyTVTR" />
 				</LDevice>
 			</Server>
 		</AccessPoint>
@@ -392,8 +393,11 @@
 		</AccessPoint>
 	</IED>
 	<DataTypeTemplates>
+		<LNodeType lnClass="tHardeClass" id="lnTypeWithoutDOs">
+		</LNodeType>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
 			<DO name="Mod" type="Dummy.LLN0.Mod" />
+			<DO name="SomeMod" type="NonExistingType" />
 			<DO name="ExtendedMod" type="Dummy.LLN0.ExtendedMod" />
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="Health" type="Dummy.LLN0.Health" />
@@ -431,7 +435,7 @@
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="NamPlt" type="Dummy.XCBR1.NamPlt" />
 			<DO name="EnaOpn" type="Dummy.SPS"/>
-            <DO name="EnaCls" type="Dummy.SPS"/>
+      <DO name="EnaCls" type="Dummy.SPS"/>
 		</LNodeType>
 		<LNodeType lnClass="CSWI" id="Dummy.CSWIwithoutCtlModel">
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
@@ -490,6 +494,7 @@
 		</DOType>
 		<DOType cdc="ENC" id="Dummy.LLN0.ExtendedMod">
 			<SDO fc="ST" name="someSdo" type="someSdoType"/>
+			<SDO fc="ST" name="someOtherSdo" type="someSdoType"/>
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
@@ -506,6 +511,11 @@
 			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel" />
 		</DOType>
 		<DOType cdc="CMV" id="someSdoType">
+			<SDO fc="ST" name="anotherSdo" type="justASDOType"/>
+			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
+			<DA fc="MX" name="t" bType="Timestamp"/>
+		</DOType>
+		<DOType cdc="CMV" id="justASDOType">
 			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
 			<DA fc="MX" name="t" bType="Timestamp"/>
 		</DOType>

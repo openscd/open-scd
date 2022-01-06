@@ -9,7 +9,6 @@ import {
 
 import '../../action-pane.js';
 import './ln-container.js'
-import { IEDSelector } from './foundation.js';
 import { nothing } from 'lit-html';
 import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 
@@ -28,8 +27,8 @@ export class LDeviceContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
-    <div id="bayContainer">
-      ${Array.from(this.element.querySelectorAll(IEDSelector.AnyLN)).map(
+    <div id="lnContainer">
+      ${Array.from(this.element.querySelectorAll(':scope > LN,LN0')).map(
         server => html`<ln-container
           .element=${server}
         ></ln-container>`)}
@@ -38,7 +37,7 @@ export class LDeviceContainer extends LitElement {
   }
 
   static styles = css`
-    #bayContainer {
+    #lnContainer {
       display: grid;
       grid-gap: 12px;
       box-sizing: border-box;
@@ -46,7 +45,7 @@ export class LDeviceContainer extends LitElement {
     }
 
     @media (max-width: 387px) {
-      #bayContainer {
+      #lnContainer {
         grid-template-columns: repeat(auto-fit, minmax(196px, auto));
       }
     }`;

@@ -11,7 +11,6 @@ import { nothing } from 'lit-html';
 import '../../action-pane.js';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 import './access-point-container.js';
-import { IEDSelector } from './foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
 @customElement('ied-container')
@@ -29,7 +28,7 @@ export class IedContainer extends LitElement {
 
   render(): TemplateResult {
     return html`<action-pane .label="${this.header()}">
-      ${Array.from(this.element.querySelectorAll(IEDSelector.AccessPoint)).map(
+      ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
         ap => html`<access-point-container
           .element=${ap}
         ></access-point-container>`)}
