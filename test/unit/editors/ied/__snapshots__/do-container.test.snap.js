@@ -6,50 +6,45 @@ snapshots["do-container looks like the latest snapshot with a DO element."] =
   icon=""
   tabindex="0"
 >
-  <da-container>
+  <abbr
+    slot="action"
+    title="Toggle"
+  >
+    <mwc-icon-button
+      icon="keyboard_arrow_down"
+      id="toggleButton"
+    >
+    </mwc-icon-button>
+  </abbr>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
-  <da-container>
+  <da-container hidden="">
   </da-container>
 </action-pane>
 `;
 /* end snapshot do-container looks like the latest snapshot with a DO element. */
-
-snapshots["do-container looks like the latest snapshot with a SDO element."] = 
-`<action-pane
-  icon=""
-  tabindex="0"
->
-  <da-container>
-  </da-container>
-  <da-container>
-  </da-container>
-  <do-container>
-  </do-container>
-</action-pane>
-`;
-/* end snapshot do-container looks like the latest snapshot with a SDO element. */
 

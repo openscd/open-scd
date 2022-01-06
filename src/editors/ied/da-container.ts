@@ -4,12 +4,13 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
+import { translate } from 'lit-translate';
 
 import '../../action-pane.js';
-import './enum-container.js';
 import { getNameAttribute } from '../../foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
@@ -26,6 +27,8 @@ export class DAContainer extends LitElement {
    */
   @property({ attribute: false })
   instanceElement!: Element;
+  
+  @query('#toggleButton') toggleButton!: HTMLElement;
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
@@ -73,31 +76,32 @@ export class DAContainer extends LitElement {
     return [];
   }
 
-  /**
-   * Get the nested EnumVal element(s) if available.
-   * @returns The nested EnumVal element(s) of this (B)DA container.
-   */
-  private getEnumElements(): Element[] {
-    const type = this.element!.getAttribute('type') ?? undefined;
-    const doType =  this.element!.closest('SCL')!.querySelector(`:root > DataTypeTemplates > EnumType[id="${type}"]`);
-    if (doType != null) {
-      return Array.from(doType!.querySelectorAll(':scope > EnumVal'))
-    }
-    return [];
+  private toggle(): void {
+    this.toggleButton.setAttribute('icon',
+      this.toggleButton.getAttribute('icon') == 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down')
+
+    this.shadowRoot!.querySelectorAll(':scope > action-pane > da-container').forEach(element => {
+      element.hasAttribute('hidden') ? element.removeAttribute('hidden') : element.setAttribute('hidden', '')
+    })
   }
 
   render(): TemplateResult {
     const bType = this.element!.getAttribute('bType');
+
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
+      ${bType == 'Struct' ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
+        <mwc-icon-button
+          id="toggleButton"
+          icon="keyboard_arrow_down"
+          @click=${() => this.toggle()}
+        ></mwc-icon-button>
+      </abbr>` : nothing}
       <h6>${this.renderValue()}</h6>
       ${bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
-          .element=${element}>
+          .element=${element}
+          hidden>
         </da-container>`) : nothing}
-      ${bType == 'Enum' ? this.getEnumElements().map(element =>
-        html`<enum-container
-          .element=${element}>
-        </enum-container>`) : nothing}
     </action-pane>
     `;
   }

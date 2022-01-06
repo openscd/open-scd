@@ -3,6 +3,7 @@ import {
   html,
   LitElement,
   property,
+  query,
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
@@ -10,6 +11,7 @@ import { nothing } from 'lit-html';
 import '../../action-pane.js';
 import './da-container.js';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
+import { translate } from 'lit-translate';
 
 /** [[`IED`]] plugin subeditor for editing `DO` element. */
 @customElement('do-container')
@@ -25,6 +27,8 @@ export class DOContainer extends LitElement {
    */
   @property({ attribute: false })
   instanceElement!: Element;
+  
+  @query('#toggleButton') toggleButton!: HTMLElement;
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
@@ -89,17 +93,39 @@ export class DOContainer extends LitElement {
     return null;
   }
 
+  private toggle(): void {
+    this.toggleButton.setAttribute('icon',
+      this.toggleButton.getAttribute('icon') == 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down')
+
+    this.shadowRoot!.querySelectorAll(':scope > action-pane > do-container,da-container').forEach(element => {
+      element.hasAttribute('hidden') ? element.removeAttribute('hidden') : element.setAttribute('hidden', '')
+    })
+  }
+
   render(): TemplateResult {
+    const daElements = this.getDAElements();
+    const doElements = this.getDOElements();
+
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
-      ${this.getDAElements().map(da =>
+      ${daElements.length > 0 || doElements.length > 0 ?
+        html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
+          <mwc-icon-button
+            id="toggleButton"
+            icon="keyboard_arrow_down"
+            @click=${() => this.toggle()}
+          ></mwc-icon-button>
+        </abbr>` : nothing}
+      ${daElements.map(da =>
         html`<da-container
           .element=${da}
-          .instanceElement=${this.getInstanceDAElement(da)}>
+          .instanceElement=${this.getInstanceDAElement(da)}
+          hidden>
         </da-container>`)}
-      ${this.getDOElements().map(dO =>
+      ${doElements.map(dO =>
         html`<do-container
           .element=${dO}
-          .instanceElement=${this.getInstanceDOElement(dO)}>
+          .instanceElement=${this.getInstanceDOElement(dO)}
+          hidden>
         </do-container>`)}
     </action-pane>
     `;

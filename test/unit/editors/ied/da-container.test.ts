@@ -61,27 +61,4 @@ describe('da-container', () => {
       expect(bdaElements).to.be.empty;
     });
   });
-
-  describe('has a getEnumElements function ', () => {
-    it('which returns EnumVal elements if available', async () => {
-      element = await fixture(html`<da-container
-        .element=${validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="ctlModel"]')}
-      ></da-container>`);
-
-      const bdaElements = element['getEnumElements']();
-      expect(bdaElements.length).to.eql(5);
-      expect(bdaElements[2].textContent).to.eql('sbo-with-normal-security');
-    });
-
-    it('which returns no BDA elements if they are not available', async () => {
-      element = await fixture(html`<da-container
-        .element=${validSCL.querySelector(
-          'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="q"]')}
-      ></da-container>`);
-
-      const bdaElements = element['getEnumElements']();
-      expect(bdaElements).to.be.empty;
-    });
-  });
 });
