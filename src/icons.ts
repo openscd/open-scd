@@ -468,15 +468,6 @@ export const earthSwitchIcon = html`<svg
     stroke-linecap="round"
   />
   <line
-    x1="11"
-    y1="23.5"
-    x2="14"
-    y2="23.5"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-  />
-  <line
     x1="12.5"
     y1="23.5"
     x2="12.5"
