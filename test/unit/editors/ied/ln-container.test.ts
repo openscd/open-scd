@@ -21,12 +21,61 @@ describe('ln-container', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
+  it('looks like the latest snapshot with a LN0 element and child elements are toggled.', async () => {
+    element = await fixture(html`<ln-container
+      .element=${validSCL.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN0[lnClass="LLN0"]')}
+    ></ln-container>`);
+    
+    expect(element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')?.getAttribute('icon')).to.eql('keyboard_arrow_down');
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')
+    )).click();
+    
+    expect(element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')?.getAttribute('icon')).to.eql('keyboard_arrow_up');
+    expect(element.shadowRoot!.querySelectorAll('do-container[hidden=""]').length).to.eql(0);
+    expect(element).shadowDom.to.equalSnapshot();
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')
+    )).click();
+
+    expect(element.shadowRoot!.querySelectorAll('do-container[hidden=""]').length).to.eql(6);
+  });
+
   it('looks like the latest snapshot with a LN element.', async () => {
     element = await fixture(html`<ln-container
       .element=${validSCL.querySelector(
         'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')}
     ></ln-container>`);
     expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('looks like the latest snapshot with a LN element and child elements are toggled.', async () => {
+    element = await fixture(html`<ln-container
+      .element=${validSCL.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')}
+    ></ln-container>`);
+    
+    expect(element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')?.getAttribute('icon')).to.eql('keyboard_arrow_down');
+    
+    /**
+     * Click the toggle button.
+     */
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')
+    )).click();
+    
+    expect(element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')?.getAttribute('icon')).to.eql('keyboard_arrow_up');
+    expect(element.shadowRoot!.querySelectorAll('do-container[hidden=""]').length).to.eql(0);
+    expect(element).shadowDom.to.equalSnapshot();
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button[id="toggleButton"]')
+    )).click();
+    
+    expect(element.shadowRoot!.querySelectorAll('do-container[hidden=""]').length).to.eql(7);
   });
 
   describe('has a getDOElements function ', () => {

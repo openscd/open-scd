@@ -1,6 +1,17 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
+snapshots["da-container looks like the latest snapshot with a DA element containing other Enumeration elements"] = 
+`<action-pane
+  icon=""
+  tabindex="0"
+>
+  <h6>
+  </h6>
+</action-pane>
+`;
+/* end snapshot da-container looks like the latest snapshot with a DA element containing other Enumeration elements */
+
 snapshots["da-container looks like the latest snapshot with a DA element containing other BDA elements."] = 
 `<action-pane
   icon=""
@@ -8,7 +19,7 @@ snapshots["da-container looks like the latest snapshot with a DA element contain
 >
   <abbr
     slot="action"
-    title="Toggle"
+    title="[iededitor.toggleChildElements]"
   >
     <mwc-icon-button
       icon="keyboard_arrow_down"
@@ -33,18 +44,4 @@ snapshots["da-container looks like the latest snapshot with a DA element contain
 </action-pane>
 `;
 /* end snapshot da-container looks like the latest snapshot with a DA element containing other BDA elements. */
-
-snapshots["da-container looks like the latest snapshot with a DA element containing other Enumeration elements and a DAI."] = 
-`<action-pane
-  icon="done"
-  tabindex="0"
->
-  <h6>
-    <val>
-      status-only
-    </val>
-  </h6>
-</action-pane>
-`;
-/* end snapshot da-container looks like the latest snapshot with a DA element containing other Enumeration elements and a DAI. */
 
