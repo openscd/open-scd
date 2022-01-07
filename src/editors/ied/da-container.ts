@@ -48,10 +48,10 @@ export class DAContainer extends LitElement {
    */
   private renderValue(): TemplateResult {
     if (this.instanceElement) {
-      return html`${this.getValueElement(this.instanceElement)}`
+      return html`${this.getValueElement(this.instanceElement)?.textContent}`
     }
 
-    return html`${this.getValueElement(this.element)}`;
+    return html`${this.getValueElement(this.element)?.textContent}`;
   }
 
   /**
