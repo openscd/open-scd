@@ -95,10 +95,10 @@ export class DOContainer extends LitElement {
 
   private toggle(): void {
     this.toggleButton.setAttribute('icon',
-      this.toggleButton.getAttribute('icon') == 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down')
+      this.toggleButton.getAttribute('icon') == 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down');
 
     this.shadowRoot!.querySelectorAll(':scope > action-pane > do-container,da-container').forEach(element => {
-      element.hasAttribute('hidden') ? element.removeAttribute('hidden') : element.setAttribute('hidden', '')
+      element.hasAttribute('hidden') ? element.removeAttribute('hidden') : element.setAttribute('hidden', '');
     })
   }
 
