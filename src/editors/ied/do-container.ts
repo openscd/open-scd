@@ -1,4 +1,5 @@
 import {
+  css,
   customElement,
   html,
   LitElement,
@@ -7,6 +8,9 @@ import {
   TemplateResult,
 } from 'lit-element';
 import { nothing } from 'lit-html';
+
+import '@material/mwc-icon-button-toggle';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import '../../action-pane.js';
 import './da-container.js';
@@ -28,7 +32,7 @@ export class DOContainer extends LitElement {
   @property({ attribute: false })
   instanceElement!: Element;
   
-  @query('#toggleButton') toggleButton!: HTMLElement;
+  @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
@@ -93,15 +97,6 @@ export class DOContainer extends LitElement {
     return null;
   }
 
-  private toggle(): void {
-    this.toggleButton.setAttribute('icon',
-      this.toggleButton.getAttribute('icon') == 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down');
-
-    this.shadowRoot!.querySelectorAll(':scope > action-pane > do-container,da-container').forEach(element => {
-      element.hasAttribute('hidden') ? element.removeAttribute('hidden') : element.setAttribute('hidden', '');
-    })
-  }
-
   render(): TemplateResult {
     const daElements = this.getDAElements();
     const doElements = this.getDOElements();
@@ -109,23 +104,24 @@ export class DOContainer extends LitElement {
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       ${daElements.length > 0 || doElements.length > 0 ?
         html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
-          <mwc-icon-button
+          <mwc-icon-button-toggle
             id="toggleButton"
-            icon="keyboard_arrow_down"
-            @click=${() => this.toggle()}
-          ></mwc-icon-button>
+            onIcon="keyboard_arrow_up"
+            offIcon="keyboard_arrow_down"
+            @click=${()=>this.requestUpdate()}
+          ></mwc-icon-button-toggle>
         </abbr>` : nothing}
       ${daElements.map(da =>
         html`<da-container
           .element=${da}
           .instanceElement=${this.getInstanceDAElement(da)}
-          hidden>
+          ?hidden=${this.toggleButton?.on ? false : true}>
         </da-container>`)}
       ${doElements.map(dO =>
         html`<do-container
           .element=${dO}
           .instanceElement=${this.getInstanceDOElement(dO)}
-          hidden>
+          ?hidden=${this.toggleButton?.on ? false : true}>
         </do-container>`)}
     </action-pane>
     `;

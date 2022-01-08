@@ -10,6 +10,9 @@ import {
 import { nothing } from 'lit-html';
 import { translate } from 'lit-translate';
 
+import '@material/mwc-icon-button-toggle';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
+
 import '../../action-pane.js';
 import { getNameAttribute } from '../../foundation.js';
 
@@ -28,7 +31,7 @@ export class DAContainer extends LitElement {
   @property({ attribute: false })
   instanceElement!: Element;
   
-  @query('#toggleButton') toggleButton!: HTMLElement;
+  @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
@@ -76,31 +79,23 @@ export class DAContainer extends LitElement {
     return [];
   }
 
-  private toggle(): void {
-    this.toggleButton.setAttribute('icon',
-      this.toggleButton.getAttribute('icon') == 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down');
-
-    this.shadowRoot!.querySelectorAll(':scope > action-pane > da-container').forEach(element => {
-      element.hasAttribute('hidden') ? element.removeAttribute('hidden') : element.setAttribute('hidden', '');
-    })
-  }
-
   render(): TemplateResult {
     const bType = this.element!.getAttribute('bType');
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       ${bType == 'Struct' ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
-        <mwc-icon-button
+        <mwc-icon-button-toggle
           id="toggleButton"
-          icon="keyboard_arrow_down"
-          @click=${() => this.toggle()}
-        ></mwc-icon-button>
+          onIcon="keyboard_arrow_up"
+          offIcon="keyboard_arrow_down"
+          @click=${() => this.requestUpdate()}
+        ></mwc-icon-button-toggle>
       </abbr>` : nothing}
       <h6>${this.renderValue()}</h6>
       ${bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
           .element=${element}
-          hidden>
+          ?hidden=${this.toggleButton?.on ? false : true}>
         </da-container>`) : nothing}
     </action-pane>
     `;
@@ -112,7 +107,7 @@ export class DAContainer extends LitElement {
       font-family: 'Roboto', sans-serif;
       font-weight: 500;
       font-size: 0.8em;
-      overflow: visible;
+      overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       margin: 0px;
