@@ -162,6 +162,7 @@ export const de: Translations = {
     searchHelper: 'IED auswählen',
     searchHelperDesc: '({{description}})',
     missing: 'Kein IED vorhanden',
+    toggleChildElements: "???"
   },
   voltagelevel: {
     name: 'Spannungsebene',

@@ -21,12 +21,54 @@ describe('ln-container', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
+  it('looks like the latest snapshot with a LN0 element and child elements are toggled.', async () => {
+    element = await fixture(html`<ln-container
+      .element=${validSCL.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN0[lnClass="LLN0"]')}
+    ></ln-container>`);
+
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element).shadowDom.to.equalSnapshot();
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element.shadowRoot!.querySelectorAll('do-container').length).to.eql(0);
+  });
+
   it('looks like the latest snapshot with a LN element.', async () => {
     element = await fixture(html`<ln-container
       .element=${validSCL.querySelector(
         'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')}
     ></ln-container>`);
     expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('looks like the latest snapshot with a LN element and child elements are toggled.', async () => {
+    element = await fixture(html`<ln-container
+      .element=${validSCL.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')}
+    ></ln-container>`);
+
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element).shadowDom.to.equalSnapshot();
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element.shadowRoot!.querySelectorAll('do-container').length).to.eql(0);
   });
 
   describe('has a getDOElements function ', () => {
