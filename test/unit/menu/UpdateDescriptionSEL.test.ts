@@ -28,10 +28,6 @@ describe('Update method for desc attributes in SEL IEDs', () => {
     );
     await element.requestUpdate();
 
-    signalList = await fetch(
-      'test/testfiles/updatedesc/testSignalList.csv'
-    ).then(response => response.text());
-
     editorAction = spy();
     window.addEventListener('editor-action', editorAction);
     wizardAction = spy();
@@ -53,6 +49,11 @@ describe('Update method for desc attributes in SEL IEDs', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       element.doc = doc;
+
+      signalList = await fetch(
+        'test/testfiles/updatedesc/testSignalListSemicolon.csv'
+      ).then(response => response.text());
+
       element.processSignalList(signalList);
       await parent.requestUpdate();
     });
@@ -70,31 +71,69 @@ describe('Update method for desc attributes in SEL IEDs', () => {
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-      //const file = new File('/test/TestSignalList.csv');
-
       element.doc = doc;
-      element.processSignalList(signalList);
-      await parent.requestUpdate();
     });
 
-    it('creates filtered list with all proposed desc attribute updates', async () => {
-      await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
+    describe('using a semicolon separated file', () => {
+      beforeEach(async () => {
+        signalList = await fetch(
+          'test/testfiles/updatedesc/testSignalListSemicolon.csv'
+        ).then(response => response.text());
+
+        element.processSignalList(signalList);
+        await parent.requestUpdate();
+      });
+
+      it('creates filtered list with all proposed desc attribute updates', async () => {
+        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
+      });
+
+      it('allows to update selected desc attributes updates', async () => {
+        parent.wizardUI?.dialog
+          ?.querySelector<HTMLElement>('mwc-button[slot="primaryAction"]')!
+          .click();
+
+        await parent.updateComplete;
+        expect(editorAction).to.have.been.calledOnce;
+        expect(editorAction.args[0][0].detail.action).to.not.satisfy(isSimple);
+        const complexAction = <ComplexAction>(
+          editorAction.args[0][0].detail.action
+        );
+        expect(complexAction.actions.length).to.equal(7);
+        for (const action of complexAction.actions)
+          expect(action).to.satisfy(isUpdate);
+      });
     });
 
-    it('allows to update selected desc attributes updates', async () => {
-      parent.wizardUI?.dialog
-        ?.querySelector<HTMLElement>('mwc-button[slot="primaryAction"]')!
-        .click();
+    describe('using a comma separated (CSV) file', () => {
+      beforeEach(async () => {
+        signalList = await fetch(
+          'test/testfiles/updatedesc/testSignalListComma.csv'
+        ).then(response => response.text());
 
-      await parent.updateComplete;
-      expect(editorAction).to.have.been.calledOnce;
-      expect(editorAction.args[0][0].detail.action).to.not.satisfy(isSimple);
-      const complexAction = <ComplexAction>(
-        editorAction.args[0][0].detail.action
-      );
-      expect(complexAction.actions.length).to.equal(7);
-      for (const action of complexAction.actions)
-        expect(action).to.satisfy(isUpdate);
+        element.processSignalList(signalList);
+        await parent.requestUpdate();
+      });
+
+      it('creates filtered list with all proposed desc attribute updates', async () => {
+        await expect(parent.wizardUI.dialog).dom.to.equalSnapshot();
+      });
+
+      it('allows to update selected desc attributes updates', async () => {
+        parent.wizardUI?.dialog
+          ?.querySelector<HTMLElement>('mwc-button[slot="primaryAction"]')!
+          .click();
+
+        await parent.updateComplete;
+        expect(editorAction).to.have.been.calledOnce;
+        expect(editorAction.args[0][0].detail.action).to.not.satisfy(isSimple);
+        const complexAction = <ComplexAction>(
+          editorAction.args[0][0].detail.action
+        );
+        expect(complexAction.actions.length).to.equal(7);
+        for (const action of complexAction.actions)
+          expect(action).to.satisfy(isUpdate);
+      });
     });
   });
 });

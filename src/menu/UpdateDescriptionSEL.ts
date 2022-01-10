@@ -25,15 +25,9 @@ interface SignalDescription {
   identity: string | number;
 }
 
-interface SignalListRow {
-  desc: string;
-  iedName: string;
-  id: string;
-}
-
 function addDescriptionToSEL(
   ied: Element,
-  signalList: SignalListRow[]
+  signalList: string[][]
 ): SignalDescription[] {
   const iedName = ied.getAttribute('name');
   const manufacturer = ied.getAttribute('manufacturer');
@@ -57,9 +51,8 @@ function addDescriptionToSEL(
 
       const tag = datasrc ? datasrc.replace('db:', '') : null;
       const desc =
-        signalList.find(
-          signal => signal.id === tag && signal.iedName === iedName
-        )?.desc ?? null;
+        signalList.find(row => row[2] === tag && row[1] === iedName)?.[0] ??
+        null;
 
       return desc ? { desc, tag: 'DAI', identity: identity(dai) } : null;
     })
@@ -123,24 +116,96 @@ function createLogWizard(doc: XMLDocument, items: SignalDescription[]): Wizard {
   ];
 }
 
-function loadSignalList(csvString: string): SignalListRow[] {
-  const rows = csvString.split(/\r\n|\r|\n/);
-  return rows.map(line => {
-    const cols = line.split(';');
-    return {
-      desc: cols[0] ?? '',
-      iedName: cols[1] ?? '',
-      id: cols[2] ?? '',
-    };
-  });
+function parseCsv(str: string, delimiter: ',' | ';'): string[][] {
+  // predefined for later use
+  const quoteChar = '"',
+    escapeChar = '\\';
+
+  const entries: string[][] = [];
+  let isInsideQuote = false;
+
+  // Iterate over each character, keep track of current row and column (of the returned array)
+  for (let row = 0, col = 0, char = 0; char < str.length; char++) {
+    const currentChar = str[char];
+    const nextChar = str[char + 1];
+
+    entries[row] = entries[row] || [];
+    entries[row][col] = entries[row][col] || '';
+
+    //Ignore escape character
+    if (currentChar === escapeChar) {
+      entries[row][col] += nextChar;
+      ++char;
+      continue;
+    }
+
+    // Check for quoted characters. Do not miss-interpret delimiter within field
+    if (currentChar === quoteChar) {
+      isInsideQuote = !isInsideQuote;
+      continue;
+    }
+
+    if (!isInsideQuote) {
+      if (currentChar === delimiter) {
+        ++col;
+        entries[row][col] = '';
+        continue;
+      }
+
+      if (currentChar === '\n' || currentChar === '\r') {
+        ++row;
+        col = 0;
+
+        // Skip the next character for CRLF
+        if (currentChar === '\r' && nextChar === '\n') ++char;
+
+        continue;
+      }
+    }
+
+    entries[row][col] += currentChar;
+  }
+
+  return entries;
+}
+
+function getGuessDelimiter(csvString: string): ';' | ',' {
+  let numberComma = 0,
+    numberSemicolon = 0;
+
+  const quoteChar = '"';
+
+  let isInsideQuote = false;
+  for (const currentChar of csvString) {
+    // Check for quoted characters. Do not miss-interpret delimiter within field
+    if (currentChar === quoteChar) {
+      isInsideQuote = !isInsideQuote;
+      continue;
+    }
+
+    if (!isInsideQuote) {
+      if (currentChar === ';') {
+        numberSemicolon++;
+        continue;
+      }
+
+      if (currentChar === ',') {
+        numberComma++;
+        continue;
+      }
+    }
+  }
+
+  return numberComma > numberSemicolon ? ',' : ';';
 }
 
 /**
- * Plug-in that enrich the desc attribute in SEL type IED elements based on signal list
- * The signal list must be a semicolon (;) separated CSV file with 3 columns.
+ * Plug-in that enriches the desc attribute in SEL type IED elements based on a signal list
+ * The signal list must be a  ; or , separated CSV file with 3 columns.
  * 1st column: signal name
  * 2nd column: IED name
- * 3rd column: tag of from the SEL namespace
+ * 3rd column: identifier from the SEL namespace excluding the prefix of "db:",
+ *             similar to relay word bit name (RWB), e.g. SV24T, 51P1T, IN203
  */
 export default class UpdateDescriptionSel extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
@@ -149,7 +214,7 @@ export default class UpdateDescriptionSel extends LitElement {
   @query('#plugin-input') pluginFileUI!: HTMLInputElement;
 
   processSignalList(csvString: string): void {
-    const signalList = loadSignalList(csvString);
+    const signalList = parseCsv(csvString, getGuessDelimiter(csvString));
 
     const items = Array.from(this.doc.querySelectorAll('IED'))
       .filter(ied => isPublic(ied))
