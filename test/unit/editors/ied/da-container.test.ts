@@ -13,7 +13,7 @@ describe('da-container', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
   });
 
-  it('looks like the latest snapshot with a DA element containing other Enumeration elements', async () => {
+  it('looks like the latest snapshot with a DA element', async () => {
     element = await fixture(html`<da-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')}
@@ -21,20 +21,33 @@ describe('da-container', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('looks like the latest snapshot with a DA element containing other Enumeration elements and a DAI.', async () => {
+  it('looks like the latest snapshot with a DA element and child elements are toggled.', async () => {
+    element = await fixture(html`<da-container
+      .element=${validSCL.querySelector(
+        'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]')}
+    ></da-container>`);
+
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element).shadowDom.to.equalSnapshot();
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element.shadowRoot!.querySelectorAll('do-container').length).to.eql(0);
+  });
+
+  it('looks like the latest snapshot with a DA element containing and a DAI.', async () => {
     element = await fixture(html`<da-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')}
       .instanceElement=${validSCL.querySelector(
         ':root > IED[name="IED2"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnType="Dummy.XCBR1"] > DOI[name="Pos"]> DAI[name="ctlModel"]')}
-    ></da-container>`);
-    expect(element).shadowDom.to.equalSnapshot();
-  });
-
-  it('looks like the latest snapshot with a DA element containing other BDA elements.', async () => {
-    element = await fixture(html`<da-container
-      .element=${validSCL.querySelector(
-        'DataTypeTemplates > DOType[id="Dummy.LLN0.Mod"] > DA[name="SBOw"]')}
     ></da-container>`);
     expect(element).shadowDom.to.equalSnapshot();
   });

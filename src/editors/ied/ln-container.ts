@@ -13,6 +13,7 @@ import '../../action-pane.js';
 import './do-container.js';
 import { getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 import { translate } from 'lit-translate';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 /** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
 @customElement('ln-container')
@@ -20,7 +21,7 @@ export class LNContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
   
-  @query('#toggleButton') toggleButton!: HTMLElement;
+  @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
 
   private header(): TemplateResult {
     const prefix = this.element.getAttribute('prefix');
@@ -47,7 +48,7 @@ export class LNContainer extends LitElement {
 
   /**
    * Get the instance element (DOI) of a DO element (if available)
-   * @param dO - The DOI object to use.
+   * @param dO - The DO object to use.
    * @returns The optional DOI object.
    */
   private getInstanceElement(dO: Element): Element | null {
@@ -55,32 +56,23 @@ export class LNContainer extends LitElement {
     return this.element.querySelector(`:scope > DOI[name="${doName}"]`)
   }
 
-  private toggle(): void {
-    this.toggleButton.setAttribute('icon',
-      this.toggleButton.getAttribute('icon') == 'keyboard_arrow_down' ? 'keyboard_arrow_up' : 'keyboard_arrow_down');
-
-    this.shadowRoot!.querySelectorAll(':scope > action-pane > do-container').forEach(element => {
-      element.hasAttribute('hidden') ? element.removeAttribute('hidden') : element.setAttribute('hidden', '');
-    })
-  }
-
   render(): TemplateResult {
     const doElements = this.getDOElements();
     
     return html`<action-pane .label="${this.header()}">
       ${doElements.length > 0 ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
-        <mwc-icon-button
+        <mwc-icon-button-toggle
           id="toggleButton"
-          icon="keyboard_arrow_down"
-          @click=${() => this.toggle()}
-        ></mwc-icon-button>
+          onIcon="keyboard_arrow_up"
+          offIcon="keyboard_arrow_down"
+          @click=${() => this.requestUpdate()}
+        ></mwc-icon-button-toggle>
       </abbr>` : nothing}
-      ${this.getDOElements().map(dO => html`<do-container
+      ${this.toggleButton?.on ? this.getDOElements().map(dO => html`<do-container
           .element=${dO}
-          .instanceElement=${this.getInstanceElement(dO)}
-          hidden>
+          .instanceElement=${this.getInstanceElement(dO)}>
         </do-container>
-        `)}
+        `) : nothing}
     </action-pane>`;
   }
 
