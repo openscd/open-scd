@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+import { SCL_COORDINATES_NAMESPACE } from '../../../../src/editors/singlelinediagram/foundation.js';
 import {
   createBayElement,
   createBusBarElement,
@@ -17,13 +18,13 @@ import {
 
 function setCoordinates(element: Element, x: number, y: number): void {
   element.setAttributeNS(
-    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    SCL_COORDINATES_NAMESPACE,
     'x',
     `${x}`
   );
 
   element.setAttributeNS(
-    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    SCL_COORDINATES_NAMESPACE,
     'y',
     `${y}`
   );

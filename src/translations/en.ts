@@ -155,6 +155,15 @@ export const en = {
       addvoltagelevel: 'Add voltage level',
     },
   },
+  powertransformer: {
+    wizard: {
+      nameHelper: 'Power transformer name',
+      descHelper: 'Power transformer description',
+      title: {
+        edit: 'Edit power transformer',
+      },
+    }
+  },
   voltagelevel: {
     name: 'Voltage level',
     wizard: {
@@ -391,6 +400,10 @@ export const en = {
   },
   sld: {
     substationSelector: 'Select a substation',
+    wizard: {
+      xCoordinateHelper: 'X-Coordinate for Single Line Diagram',
+      yCoordinateHelper: 'Y-Coordinate for Single Line Diagram',
+    },
   },
   add: 'Add',
   new: 'New',

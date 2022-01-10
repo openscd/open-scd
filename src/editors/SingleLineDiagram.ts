@@ -40,9 +40,10 @@ import {
   getPathNameAttribute,
   getNameAttribute,
   getDescriptionAttribute,
+  getCommonParentElement,
 } from './singlelinediagram/foundation.js';
 import {isSCLNamespace} from "../schemas.js";
-import { wizards } from '../wizards/wizard-library.js';
+import { wizards } from './singlelinediagram/wizards/wizard-library.js';
 import {SingleSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 import {translate} from "lit-translate";
 
@@ -64,7 +65,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
   // Container for giving the panzoom to.
   @query('#panzoom') panzoomContainer!: HTMLElement;
   // The main canvas to draw everything on.
-  @query('#svg') svg!: SVGElement;
+  @query('#svg') svg!: SVGGraphicsElement;
 
   private get substations() : Element[] {
     return Array.from(this.doc.querySelectorAll(':root > Substation'))
@@ -165,7 +166,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * @param powerTransformerElement - The PowerTransformer to draw.
    */
   private drawPowerTransformer(parentGroup: SVGElement, powerTransformerElement: Element): void {
-    const powerTransformerGroup = createPowerTransformerElement(powerTransformerElement);
+    const powerTransformerGroup = createPowerTransformerElement(powerTransformerElement,
+      (event: Event) => this.openEditWizard(event, powerTransformerElement!)
+    );
     parentGroup.appendChild(powerTransformerGroup);
   }
 
@@ -191,11 +194,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.getVoltageLevels(substationElement)
       .forEach(voltageLevelElement => {
           this.getBusBars(voltageLevelElement).forEach( busbarElement => {
-            this.drawBusBarConnections(substationElement, substationGroup, busbarElement);
+            this.drawBusBarConnections(substationElement, this.svg, busbarElement);
           });
 
           this.getBays(voltageLevelElement).forEach( bayElement => {
-            this.drawBayConnections(substationElement, substationGroup, bayElement);
+            this.drawBayConnections(substationElement, this.svg, bayElement);
           });
       });
   }
@@ -232,8 +235,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
               terminal => terminal.getAttribute('cNodeName') !== 'grounded'
             ).length !== 0)
       .forEach(conductingEquipmentElement => {
-        const conductingEquipmentGroup = createConductingEquipmentElement(conductingEquipmentElement, () =>
-          this.openEditWizard(conductingEquipmentElement!)
+        const conductingEquipmentGroup = createConductingEquipmentElement(conductingEquipmentElement,
+          (event: Event) => this.openEditWizard(event, conductingEquipmentElement!)
         );
         bayGroup.appendChild(conductingEquipmentGroup);
       });
@@ -248,8 +251,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.getConnectivityNode(bayElement)
       .filter(cNode => getConnectedTerminals(cNode).length > 0)
       .forEach(cNode => {
-        const cNodegroup = createConnectivityNodeElement(cNode, () =>
-          this.openEditWizard(cNode)
+        const cNodegroup = createConnectivityNodeElement(cNode,
+          (event: Event) => this.openEditWizard(event, cNode)
         );
 
         bayGroup.appendChild(cNodegroup);
@@ -267,11 +270,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.getConnectivityNode(bayElement)
       .forEach(cNode => {
         this.findEquipment(rootElement, getPathNameAttribute(cNode))
-          .forEach(element => {
-            const sides = getDirections(element, cNode);
+          .forEach(equipmentElement => {
+            const commonParentElement = getCommonParentElement(cNode, equipmentElement, bayElement);
+            const sides = getDirections(equipmentElement, cNode);
 
             const elementsTerminalPosition = getAbsolutePositionTerminal(
-              element,
+              equipmentElement,
               sides.startDirection
             );
 
@@ -281,7 +285,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
             );
 
             rootGroup
-              .querySelectorAll(`g[id="${identity(bayElement)}"]`)
+              .querySelectorAll(`g[id="${identity(commonParentElement)}"]`)
               .forEach(eq =>
                 drawCNodeConnections(
                   cNodePosition,
@@ -290,18 +294,18 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 )
               );
 
-            const terminalElement = element.querySelector(
+            const terminalElement = equipmentElement.querySelector(
               `Terminal[connectivityNode="${cNode.getAttribute('pathName')}"]`
             );
 
             const terminal = createTerminalElement(
               terminalElement!,
               sides.startDirection,
-              () => this.openEditWizard(terminalElement!)
+              (event: Event) => this.openEditWizard(event, terminalElement!)
             );
 
             rootGroup
-              .querySelectorAll(`g[id="${identity(element)}"]`)
+              .querySelectorAll(`g[id="${identity(equipmentElement)}"]`)
               .forEach(eq => eq.appendChild(terminal));
           });
       });
@@ -324,7 +328,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * @param busbarElement - The Busbar Element to draw.
    */
   private drawBusBar(parentElement: Element, parentGroup: SVGElement, busbarElement: Element): void {
-    const busBarGroup = createBusBarElement(busbarElement, getBusBarLength(parentElement));
+    const busBarGroup = createBusBarElement(busbarElement, getBusBarLength(parentElement),
+      (event: Event) => this.openEditWizard(event, busbarElement));
     parentGroup.appendChild(busBarGroup);
   }
 
@@ -340,6 +345,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
       this.findEquipment(rootElement, pathName)
         .forEach(element => {
+          const parentElement = element.parentElement;
           const elementPosition = getAbsolutePosition(element);
 
           const elementsTerminalSide =
@@ -360,7 +366,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
           );
 
           rootGroup
-            .querySelectorAll(`g[id="${identity(busbarElement)}"]`)
+            .querySelectorAll(`g[id="${identity(parentElement)}"]`)
             .forEach(eq =>
               drawBusBarRoute(
                 busbarTerminalPosition,
@@ -372,7 +378,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
           const terminal = createTerminalElement(
             terminalElement!,
             elementsTerminalSide,
-            () => this.openEditWizard(terminalElement!)
+            (event: Event) => this.openEditWizard(event, terminalElement!)
           );
 
           rootGroup
@@ -403,14 +409,29 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Open an Edit wizard for an element.
    * @param element - The element to show the wizard for.
    */
-  openEditWizard(element: Element): void {
+  openEditWizard(event: Event, element: Element): void {
     const wizard = wizards[<SCLTag>element.tagName].edit(element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    if (wizard) {
+      this.dispatchEvent(newWizardEvent(wizard));
+      event.stopPropagation();
+    }
   }
 
   firstUpdated(): void {
-    panzoom(this.panzoomContainer);
     this.drawSubstationElements();
+
+    // Set the new size of the SVG.
+    const bbox = this.svg.getBBox();
+    this.svg.setAttribute("viewBox", (bbox.x-10)+" "+(bbox.y-10)+" "+(bbox.width+20)+" "+(bbox.height+20));
+    this.svg.setAttribute("width", (bbox.width+20)  + "px");
+    this.svg.setAttribute("height",(bbox.height+20) + "px");
+
+    panzoom(this.panzoomContainer, {
+      zoomSpeed: 0.2,
+      maxZoom: 1.5,
+      minZoom: 0.2,
+      initialZoom: 0.5,
+    });
   }
 
   onSelect(event: SingleSelectedEvent): void {
@@ -474,8 +495,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="svg"
-            width="5000"
-            height="5000"
           ></svg>
         </div>
       </div>`;
@@ -516,9 +535,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
       pointer-events: bounding-box;
     }
 
+    g[type='Busbar']:hover,
+    g[type='ConductingEquipment']:hover,
     g[type='ConnectivityNode']:hover,
-    g[type='Terminal']:hover,
-    g[type='ConductingEquipment']:hover {
+    g[type='PowerTransformer']:hover,
+    g[type='Terminal']:hover {
       outline: 2px dashed var(--mdc-theme-primary);
       transition: transform 200ms linear, box-shadow 250ms linear;
     }

@@ -56,7 +56,7 @@ function typeStr(condEq: Element): string {
     : condEq.getAttribute('type') ?? '';
 }
 
-function typeName(condEq: Element): string {
+export function typeName(condEq: Element): string {
   return types[typeStr(condEq)] ?? get('conductingequipment.unknownType');
 }
 
@@ -86,7 +86,7 @@ function renderTypeSelector(
       </mwc-select>`;
 }
 
-function render(
+export function renderConductingEquipmentWizard(
   name: string | null,
   desc: string | null,
   option: 'edit' | 'create',
@@ -145,12 +145,15 @@ export function createAction(parent: Element): WizardActor {
   };
 }
 
-export function createConductingEquipmentWizard(parent: Element): Wizard {
-  const reservedNames = Array.from(
-    parent.querySelectorAll('ConductingEquipment')
-  )
+export function reservedNamesConductingEquipment(parent: Element, currentName?: string | null): string[] {
+  return Array.from(parent.querySelectorAll('ConductingEquipment'))
     .filter(isPublic)
-    .map(condEq => condEq.getAttribute('name') ?? '');
+    .map(condEq => condEq.getAttribute('name') ?? '')
+    .filter(name => currentName && name !== currentName);
+}
+
+export function createConductingEquipmentWizard(parent: Element): Wizard {
+  const reservedNames = reservedNamesConductingEquipment(parent);
 
   return [
     {
@@ -161,18 +164,15 @@ export function createConductingEquipmentWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: render('', '', 'create', '', reservedNames),
+      content: renderConductingEquipmentWizard('', '', 'create', '', reservedNames),
     },
   ];
 }
 
 export function editConductingEquipmentWizard(element: Element): Wizard {
-  const reservedNames = Array.from(
-    element.parentNode!.querySelectorAll('ConductingEquipment')
-  )
-    .filter(isPublic)
-    .map(condEq => condEq.getAttribute('name') ?? '')
-    .filter(name => name !== element.getAttribute('name'));
+  const reservedNames = reservedNamesConductingEquipment(
+    <Element>element.parentNode!,
+    element.getAttribute('name'));
 
   return [
     {
@@ -183,7 +183,7 @@ export function editConductingEquipmentWizard(element: Element): Wizard {
         label: get('save'),
         action: updateNamingAction(element),
       },
-      content: render(
+      content: renderConductingEquipmentWizard(
         element.getAttribute('name'),
         element.getAttribute('desc'),
         'edit',
