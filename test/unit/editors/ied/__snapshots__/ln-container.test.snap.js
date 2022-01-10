@@ -80,3 +80,20 @@ snapshots["ln-container looks like the latest snapshot with a LN element and chi
 `;
 /* end snapshot ln-container looks like the latest snapshot with a LN element and child elements are toggled. */
 
+snapshots["ln-container looks like the latest snapshot with a LN element."] = 
+`<action-pane tabindex="0">
+  <abbr
+    slot="action"
+    title="[iededitor.toggleChildElements]"
+  >
+    <mwc-icon-button-toggle
+      id="toggleButton"
+      officon="keyboard_arrow_down"
+      onicon="keyboard_arrow_up"
+    >
+    </mwc-icon-button-toggle>
+  </abbr>
+</action-pane>
+`;
+/* end snapshot ln-container looks like the latest snapshot with a LN element. */
+

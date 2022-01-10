@@ -35,3 +35,14 @@ snapshots["da-container looks like the latest snapshot with a DA element contain
 `;
 /* end snapshot da-container looks like the latest snapshot with a DA element containing other BDA elements. */
 
+snapshots["da-container looks like the latest snapshot with a DA element containing other Enumeration elements"] = 
+`<action-pane
+  icon=""
+  tabindex="0"
+>
+  <h6>
+  </h6>
+</action-pane>
+`;
+/* end snapshot da-container looks like the latest snapshot with a DA element containing other Enumeration elements */
+

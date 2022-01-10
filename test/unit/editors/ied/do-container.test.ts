@@ -21,12 +21,54 @@ describe('do-container', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
+  it('looks like the latest snapshot with a DO element and child elements are toggled.', async () => {
+    element = await fixture(html`<do-container
+      .element=${validSCL.querySelector(
+        'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')}
+    ></do-container>`);
+
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element).shadowDom.to.equalSnapshot();
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element.shadowRoot!.querySelectorAll('do-container').length).to.eql(0);
+  });
+
   it('looks like the latest snapshot with a SDO element.', async () => {
     element = await fixture(html`<do-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.LLN0.ExtendedMod"] > SDO[name="someSdo"]')}
     ></do-container>`);
     expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('looks like the latest snapshot with a SDO element and child elements are toggled.', async () => {
+    element = await fixture(html`<do-container
+      .element=${validSCL.querySelector(
+        'DataTypeTemplates > DOType[id="Dummy.LLN0.ExtendedMod"] > SDO[name="someSdo"]')}
+    ></do-container>`);
+
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element).shadowDom.to.equalSnapshot();
+    
+    (<HTMLElement>(
+      element.shadowRoot!.querySelector('mwc-icon-button-toggle')
+    )).click();
+    await element.requestUpdate();
+    await element.updateComplete;
+    expect(element.shadowRoot!.querySelectorAll('do-container').length).to.eql(0);
   });
 
   describe('has a getDOElements function ', () => {
