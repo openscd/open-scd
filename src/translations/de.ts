@@ -164,6 +164,15 @@ export const de: Translations = {
     missing: 'Kein IED vorhanden',
     toggleChildElements: "???"
   },
+  powertransformer: {
+    wizard: {
+      nameHelper: '`Name des Leistungstransformators',
+      descHelper: 'Beschreibung des Leistungstransformators',
+      title: {
+        edit: 'Leistungstransformator bearbeiten',
+      },
+    },
+  },
   voltagelevel: {
     name: 'Spannungsebene',
     wizard: {
@@ -397,6 +406,13 @@ export const de: Translations = {
   },
   updatedesc: {
     abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
+  },
+  sld: {
+    substationSelector: 'Schaltanlage auswählen',
+    wizard: {
+      xCoordinateHelper: 'X-Koordinate im Einphasenersatzschaltbild',
+      yCoordinateHelper: 'Y-Koordinate im Einphasenersatzschaltbild',
+    },
   },
   add: 'Hinzufügen',
   new: 'Neu',

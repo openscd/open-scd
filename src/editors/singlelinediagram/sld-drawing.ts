@@ -69,8 +69,8 @@ export function getAbsolutePositionBusBar(busbar: Element): Point {
  * @param connectivityNode - The SCL element ConnectivityNode to get the position for.
  * @returns A point containing the full x/y position in px.
  */
-export function getAbsolutePositionConnectivityNode(element: Element): Point {
-  const absoluteCoordinates = calculateConnectivityNodeCoordinates(element);
+export function getAbsolutePositionConnectivityNode(connectivityNode: Element): Point {
+  const absoluteCoordinates = calculateConnectivityNodeCoordinates(connectivityNode);
   return {
     x:
       absoluteCoordinates.x! * SVG_GRID_SIZE + (SVG_GRID_SIZE - CNODE_SIZE) / 2,
@@ -83,10 +83,10 @@ export function getAbsolutePositionConnectivityNode(element: Element): Point {
  * Calculate the absolute offset of a terminal next to an element.
  * @param parentElementPosition - The position of the parent element of the terminal.
  * @param elementOffset - The offset of the parent element.
- * @param terminalSide - The side of the parent element where the terminal should be placed. 
+ * @param terminalSide - The side of the parent element where the terminal should be placed.
  * @param customTerminalOffset - An optional parameter containing the offset of the terminal next to the parent element.
  * This may vary, for example for Connectivity Nodes.
- * 
+ *
  * @returns The absolute position of the terminal.
  */
 function absoluteOffsetTerminal(
@@ -140,7 +140,7 @@ function absoluteOffsetTerminal(
 /**
  * Get the absolute position in py for a equipments Terminal (based on the TERMINAL_OFFSET).
  * @param equipment - The SCL elements ConductingEquipment or PowerTransformer.
- * @param side - On which side does the terminal needs to be placed relative to the given point.
+ * @param direction - On which side does the terminal needs to be placed relative to the given point.
  */
 export function getAbsolutePositionTerminal(
   equipment: Element,
@@ -198,6 +198,15 @@ function createGroupElement(element: Element): SVGElement {
 }
 
 /**
+ * Create a Substation <g> element.
+ * @param substation - The Substation from the SCL document to use.
+ * @returns A Substation <g> element.
+ */
+export function createSubstationElement(substation: Element): SVGElement {
+  return createGroupElement(substation);
+}
+
+/**
  * Create a Voltage Level <g> element.
  * @param voltageLevel - The Voltage Level from the SCL document to use.
  * @returns A Voltage Level <g> element.
@@ -208,7 +217,7 @@ export function createVoltageLevelElement(voltageLevel: Element): SVGElement {
 
 /**
  * Create a Bay <g> element.
- * @param voltageLevel - The Bay from the SCL document to use.
+ * @param bay - The Bay from the SCL document to use.
  * @returns A Bay <g> element.
  */
 export function createBayElement(bay: Element): SVGElement {
@@ -254,7 +263,7 @@ export function createTextElement(
 export function createTerminalElement(
   terminal: Element,
   sideToDraw: Direction,
-  clickAction?: () => void
+  clickAction?: (event: Event) => void
 ): SVGElement {
   const groupElement = createGroupElement(terminal);
 
@@ -292,9 +301,12 @@ export function createTerminalElement(
  */
 export function createBusBarElement(
   busBarElement: Element,
-  busbarLength: number
+  busbarLength: number,
+  clickAction?: (event: Event) => void
 ): SVGElement {
   const groupElement = createGroupElement(busBarElement);
+  // Overwrite the type to make a distinction between Bays and Busbars.
+  groupElement.setAttribute('type', 'Busbar');
 
   const busBarName = getNameAttribute(busBarElement)!;
   const absolutePosition = getAbsolutePositionBusBar(busBarElement);
@@ -319,6 +331,8 @@ export function createBusBarElement(
   );
   groupElement.appendChild(text);
 
+  if (clickAction) groupElement.addEventListener('click', clickAction);
+
   return groupElement;
 }
 
@@ -329,7 +343,7 @@ export function createBusBarElement(
  */
 export function createConductingEquipmentElement(
   equipmentElement: Element,
-  clickAction?: () => void
+  clickAction?: (event: Event) => void
 ): SVGElement {
   const groupElement = createGroupElement(equipmentElement);
 
@@ -366,7 +380,8 @@ export function createConductingEquipmentElement(
  * @returns The Power Transformer SVG element.
  */
 export function createPowerTransformerElement(
-  powerTransformerElement: Element
+  powerTransformerElement: Element,
+  clickAction?: (event: Event) => void
 ): SVGElement {
   const groupElement = createGroupElement(powerTransformerElement);
 
@@ -392,19 +407,20 @@ export function createPowerTransformerElement(
   );
   groupElement.appendChild(text);
 
+  if (clickAction) groupElement.addEventListener('click', clickAction);
+
   return groupElement;
 }
 
 /**
  * Create a Connectivity Node element.
  * @param cNodeElement - The SCL element ConnectivityNode
- * @param position - The SCL position of the Connectivity Node.
  * @param clickAction - The action to execute when the terminal is being clicked.
  * @returns The Connectivity Node SVG element.
  */
 export function createConnectivityNodeElement(
   cNodeElement: Element,
-  clickAction?: () => void
+  clickAction?: (event: Event) => void
 ): SVGElement {
   const groupElement = createGroupElement(cNodeElement);
 
@@ -431,12 +447,12 @@ export function createConnectivityNodeElement(
  * Draw a route from ConnectivityNode to equipments Terminal (ConductingEquipment or PowerTransformer)
  * @param cNodesTerminalPosition - The start position in px of the SCL element ConnectivityNode.
  * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
- * @param svgToDrawOn - The SVG to draw the route on.
+ * @param svgElementToDrawOn - The SVG Element to draw the route on.
  */
 export function drawCNodeConnections(
   cNodesTerminalPosition: Point,
   equipmentsTerminalPosition: Point,
-  svgToDrawOn: HTMLElement
+  svgElementToDrawOn: SVGElement
 ): void {
   const path = getOrthogonalPath(
     equipmentsTerminalPosition,
@@ -462,19 +478,19 @@ export function drawCNodeConnections(
   // Inserting elements like this works kind of like z-index (not supported in SVG yet),
   // these elements are placed behind all other elements.
   // By doing it like this, all other elements are hoverable for example.
-  svgToDrawOn.insertAdjacentElement('afterbegin', line);
+  svgElementToDrawOn.insertAdjacentElement('afterbegin', line);
 }
 
 /**
  * Draw a route from the bus bar to elements terminal position.
  * @param busbarsTerminalPosition - The start position in px the bus bar.
  * @param equipmentsTerminalPosition - The end position in px of the SCL element ConductingEquipment or PowerTransformer.
- * @param svgToDrawOn - The SVG to draw the route on.
+ * @param svgElementToDrawOn - The SVG Element to draw the route on.
  */
 export function drawBusBarRoute(
   busbarsTerminalPosition: Point,
   equipmentsTerminalPosition: Point,
-  svgToDrawOn: HTMLElement
+  svgElementToDrawOn: SVGElement
 ): void {
   const path = [busbarsTerminalPosition].concat([equipmentsTerminalPosition]);
 
@@ -493,7 +509,7 @@ export function drawBusBarRoute(
   line.setAttribute('stroke', 'currentColor');
   line.setAttribute('stroke-width', '1.5');
 
-  svgToDrawOn.appendChild(line);
+  svgElementToDrawOn.appendChild(line);
 }
 
 /**
@@ -553,7 +569,7 @@ export function getParentElementName(
  * @param root - Either the whole SCL file or the voltage level where the bus bar resides
  * @returns - the length of the bus bar
  */
-export function getBusBarLength(root: Element | XMLDocument): number {
+export function getBusBarLength(root: Element): number {
   return (
     Math.max(
       ...Array.from(

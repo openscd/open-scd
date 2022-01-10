@@ -1,20 +1,14 @@
-import { SCLTag, Wizard } from '../foundation.js';
+import { SCLTag, Wizard } from '../../../foundation.js';
+import { emptyWizard } from '../../../wizards/wizard-library.js';
 
-import { createBayWizard, editBayWizard } from './bay.js';
-import { createConductingEquipmentWizard, editConductingEquipmentWizard} from './conductingequipment.js';
-import { editConnectivityNodeWizard } from './connectivitynode.js';
-import { createFCDAsWizard } from './fcda.js';
-import { lNodeWizard } from './lnode.js';
-import { createSubstationWizard, substationEditWizard } from './substation.js';
-import { editTerminalWizard } from './terminal.js';
-import { voltageLevelCreateWizard, voltageLevelEditWizard } from './voltagelevel.js';
-import { editPowerTransformerWizard } from "./powertransformer.js";
+import { editConnectivityNodeWizard } from "../../../wizards/connectivitynode.js";
+import { editTerminalWizard } from "../../../wizards/terminal.js";
+
+import { editBayWizard } from "./bay.js";
+import { editConductingEquipmentWizard } from './conductingequipment.js';
+import { editPowerTransformerWizard } from './powertransformer.js';
 
 type SclElementWizard = (element: Element) => Wizard | undefined;
-
-export function emptyWizard(): Wizard | undefined {
-  return;
-}
 
 export const wizards: Record<
   SCLTag,
@@ -53,7 +47,7 @@ export const wizards: Record<
   },
   Bay: {
     edit: editBayWizard,
-    create: createBayWizard,
+    create: emptyWizard,
   },
   ClientLN: {
     edit: emptyWizard,
@@ -73,7 +67,7 @@ export const wizards: Record<
   },
   ConductingEquipment: {
     edit: editConductingEquipmentWizard,
-    create: createConductingEquipmentWizard,
+    create: emptyWizard,
   },
   ConfDataSet: {
     edit: emptyWizard,
@@ -181,7 +175,7 @@ export const wizards: Record<
   },
   FCDA: {
     edit: emptyWizard,
-    create: createFCDAsWizard,
+    create: emptyWizard,
   },
   FileHandling: {
     edit: emptyWizard,
@@ -284,8 +278,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   LNode: {
-    edit: lNodeWizard,
-    create: lNodeWizard,
+    edit: emptyWizard,
+    create: emptyWizard,
   },
   LNodeType: {
     edit: emptyWizard,
@@ -468,8 +462,8 @@ export const wizards: Record<
     create: emptyWizard,
   },
   Substation: {
-    edit: substationEditWizard,
-    create: createSubstationWizard,
+    edit: emptyWizard,
+    create: emptyWizard,
   },
   SupSubscription: {
     edit: emptyWizard,
@@ -516,7 +510,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   VoltageLevel: {
-    edit: voltageLevelEditWizard,
-    create: voltageLevelCreateWizard,
+    edit: emptyWizard,
+    create: emptyWizard,
   },
 };

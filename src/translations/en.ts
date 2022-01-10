@@ -161,6 +161,15 @@ export const en = {
     missing: 'No IED',
     toggleChildElements: "Toggle child elements"
   },
+  powertransformer: {
+    wizard: {
+      nameHelper: 'Power transformer name',
+      descHelper: 'Power transformer description',
+      title: {
+        edit: 'Edit power transformer',
+      },
+    }
+  },
   voltagelevel: {
     name: 'Voltage level',
     wizard: {
@@ -394,6 +403,13 @@ export const en = {
   },
   updatedesc: {
     abb: 'Added signal descriptions to ABB IEDs',
+  },
+  sld: {
+    substationSelector: 'Select a substation',
+    wizard: {
+      xCoordinateHelper: 'X-Coordinate for Single Line Diagram',
+      yCoordinateHelper: 'Y-Coordinate for Single Line Diagram',
+    },
   },
   add: 'Add',
   new: 'New',
