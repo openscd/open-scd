@@ -48,7 +48,7 @@ export class LNContainer extends LitElement {
 
   /**
    * Get the instance element (DOI) of a DO element (if available)
-   * @param dO - The DOI object to use.
+   * @param dO - The DO object to use.
    * @returns The optional DOI object.
    */
   private getInstanceElement(dO: Element): Element | null {
