@@ -1,5 +1,4 @@
 import {
-  css,
   customElement,
   html,
   LitElement,
@@ -111,18 +110,16 @@ export class DOContainer extends LitElement {
             @click=${()=>this.requestUpdate()}
           ></mwc-icon-button-toggle>
         </abbr>` : nothing}
-      ${daElements.map(da =>
+      ${this.toggleButton?.on ? daElements.map(da =>
         html`<da-container
           .element=${da}
-          .instanceElement=${this.getInstanceDAElement(da)}
-          ?hidden=${this.toggleButton?.on ? false : true}>
-        </da-container>`)}
-      ${doElements.map(dO =>
+          .instanceElement=${this.getInstanceDAElement(da)}>
+        </da-container>`) : nothing}
+      ${this.toggleButton?.on ? doElements.map(dO =>
         html`<do-container
           .element=${dO}
-          .instanceElement=${this.getInstanceDOElement(dO)}
-          ?hidden=${this.toggleButton?.on ? false : true}>
-        </do-container>`)}
+          .instanceElement=${this.getInstanceDOElement(dO)}>
+        </do-container>`) : nothing}
     </action-pane>
     `;
   }

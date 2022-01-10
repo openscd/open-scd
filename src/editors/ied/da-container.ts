@@ -92,10 +92,9 @@ export class DAContainer extends LitElement {
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
       <h6>${this.renderValue()}</h6>
-      ${bType == 'Struct' ? this.getBDAElements().map(element =>
+      ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
-          .element=${element}
-          ?hidden=${this.toggleButton?.on ? false : true}>
+          .element=${element}>
         </da-container>`) : nothing}
     </action-pane>
     `;
