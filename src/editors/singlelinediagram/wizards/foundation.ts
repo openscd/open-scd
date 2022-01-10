@@ -26,6 +26,19 @@ export function getYCoordinateAttribute(element: Element): string | null {
   return element.getAttributeNS(SCL_COORDINATES_NAMESPACE, 'y');
 }
 
+export function getFixedCoordinateValue(value: string | null): string | null {
+  if (value === null) {
+    return value;
+  }
+
+  let convertedValue = Number(value);
+  if (isNaN(convertedValue) || convertedValue < 0) {
+    convertedValue = 0;
+  }
+
+  return convertedValue.toString();
+}
+
 function updateXYAttribute(element: Element, attributeName: string, value: string | null): void {
   if (value === null) {
     element.removeAttributeNS(SCL_COORDINATES_NAMESPACE, attributeName)
@@ -51,8 +64,8 @@ export function updateNamingAndCoordinatesAction(element: Element): WizardActor 
     }
 
     const newElement = cloneElement(element, { name, desc });
-    updateXYAttribute(newElement, 'x', xCoordinate);
-    updateXYAttribute(newElement, 'y', yCoordinate);
+    updateXYAttribute(newElement, 'x', getFixedCoordinateValue(xCoordinate));
+    updateXYAttribute(newElement, 'y', getFixedCoordinateValue(yCoordinate));
 
     return [{ old: { element }, new: { element: newElement } }];
   };

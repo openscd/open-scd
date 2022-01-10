@@ -8,6 +8,7 @@ import {
   getConnectedTerminals,
   calculateConnectivityNodeCoordinates, getCommonParentElement,
 } from '../../../../src/editors/singlelinediagram/foundation.js';
+import {getFixedCoordinateValue} from "../../../../src/editors/singlelinediagram/wizards/foundation";
 
 describe('Single Line Diagram foundation', () => {
   let doc: Document;
@@ -150,6 +151,28 @@ describe('Single Line Diagram foundation', () => {
       const conductingEquipment =  doc.querySelector('Bay[name="Bay A"] > ConductingEquipment[name="QB1"]')!;
       const connectivityNode =  otherDoc.querySelector('Bay[name="Bay A"] > ConnectivityNode[name="L1"]')!;
       expect(getCommonParentElement(conductingEquipment, connectivityNode, substation)).to.equal(substation);
+    });
+  });
+
+  describe('defines a getFixedCoordinateValue function that', () => {
+    it("when calling with value null, null will be returned", () => {
+      expect(getFixedCoordinateValue(null)).to.be.null;
+    });
+
+    it("when calling with a positive number, number will be returned", () => {
+      expect(getFixedCoordinateValue("2")).to.be.equal("2");
+    });
+
+    it("when calling with zero, zero will be returned", () => {
+      expect(getFixedCoordinateValue("0")).to.be.equal("0");
+    });
+
+    it("when calling with a negative number, zero will be returned", () => {
+      expect(getFixedCoordinateValue("-2")).to.be.equal("0");
+    });
+
+    it("when calling with a invalid number, zero will be returned", () => {
+      expect(getFixedCoordinateValue("A2")).to.be.equal("0");
     });
   });
 });
