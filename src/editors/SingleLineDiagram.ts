@@ -393,26 +393,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Draw all the elements of the selected Substation.
    */
-  drawSubstationElements(): void {
+  drawSVGElements(): void {
     // First clean the existing drawing, because the selected substation may have changed.
     this.clearSVG();
     this.drawSubstation();
-  }
-
-  /**
-   * Open an Edit wizard for an element.
-   * @param element - The element to show the wizard for.
-   */
-  openEditWizard(event: Event, element: Element): void {
-    const wizard = wizards[<SCLTag>element.tagName].edit(element);
-    if (wizard) {
-      this.dispatchEvent(newWizardEvent(wizard));
-      event.stopPropagation();
-    }
-  }
-
-  firstUpdated(): void {
-    this.drawSubstationElements();
 
     // Set the new size of the SVG.
     const bbox = this.svg.getBBox();
@@ -428,10 +412,26 @@ export default class SingleLineDiagramPlugin extends LitElement {
     });
   }
 
+  /**
+   * Open an Edit wizard for an element.
+   * @param element - The element to show the wizard for.
+   */
+  openEditWizard(event: Event, element: Element): void {
+    const wizard = wizards[<SCLTag>element.tagName].edit(element);
+    if (wizard) {
+      this.dispatchEvent(newWizardEvent(wizard));
+      event.stopPropagation();
+    }
+  }
+
+  firstUpdated(): void {
+    this.drawSVGElements();
+  }
+
   onSelect(event: SingleSelectedEvent): void {
     // Set the selected Substation.
     this.selectedSubstation = this.substations[event.detail.index];
-    this.drawSubstationElements();
+    this.drawSVGElements();
   }
 
   private renderSubstationSelector(): TemplateResult {
