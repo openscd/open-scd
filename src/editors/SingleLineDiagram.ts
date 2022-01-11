@@ -7,14 +7,11 @@ import {
   state,
   TemplateResult,
 } from 'lit-element';
-
 import panzoom from 'panzoom';
 
+import { identity, getPathNameAttribute, newWizardEvent, SCLTag, getNameAttribute, getDescriptionAttribute } from '../foundation.js';
 import {
   compareNames,
-  identity,
-  newWizardEvent,
-  SCLTag
 } from '../foundation.js';
 import {
   getAbsolutePosition,
@@ -37,9 +34,6 @@ import {
 import {
   isBusBar,
   getConnectedTerminals,
-  getPathNameAttribute,
-  getNameAttribute,
-  getDescriptionAttribute,
   getCommonParentElement,
 } from './singlelinediagram/foundation.js';
 import {isSCLNamespace} from "../schemas.js";
@@ -545,3 +539,4 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
   `;
 }
+

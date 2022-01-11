@@ -1,13 +1,11 @@
 import { expect } from '@open-wc/testing';
 import {
   getRelativeCoordinates,
-  getDescriptionAttribute,
-  getNameAttribute,
-  getPathNameAttribute,
   isBusBar,
   getConnectedTerminals,
   calculateConnectivityNodeCoordinates, getCommonParentElement,
 } from '../../../../src/editors/singlelinediagram/foundation.js';
+import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute, getPathNameAttribute } from '../../../../src/foundation.js';
 
 describe('Single Line Diagram foundation', () => {
   let doc: Document;
@@ -49,6 +47,19 @@ describe('Single Line Diagram foundation', () => {
     it('returns undefined for an element without a pathName.', () => {
       const element = doc.querySelector('VoltageLevel[name="J1"] > Voltage');
       expect(getPathNameAttribute(element!)).to.be.undefined;
+    });
+  });
+
+  describe('defines a getInstance function that', () => {
+    it('returns the correct instance for an element.', () => {
+      const element = doc.querySelector(
+        'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[name="LDeviceA"]'
+      );
+      expect(getInstanceAttribute(element!)).to.eql('CircuitBreaker_CB1');
+    });
+    it('returns undefined for an element without an instance.', () => {
+      const element = doc.querySelector('IED[name="IED1"] > AccessPoint[name="P1"] > Server');
+      expect(getInstanceAttribute(element!)).to.be.undefined;
     });
   });
 

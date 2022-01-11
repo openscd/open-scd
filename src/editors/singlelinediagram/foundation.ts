@@ -1,3 +1,5 @@
+import { getNameAttribute, getPathNameAttribute } from "../../foundation.js";
+
 /**
  * A point is a position containing a x and a y within a SCL file.
  */
@@ -10,36 +12,6 @@ export const SCL_COORDINATES_NAMESPACE = 'http://www.iec.ch/61850/2003/SCLcoordi
 
 /** Scope factor: the ConnectivityNode allocation algorithm works better with a scale factor which is bigger than 1. */
 const COORDINATES_SCALE_FACTOR = 2;
-
-/**
- * Extract the 'name' attribute from the given XML element.
- * @param element - The element to extract name from.
- * @returns the name, or a '-' if there is no name.
- */
-export function getNameAttribute(element: Element): string | undefined {
-  const name = element.getAttribute('name');
-  return name ? name : undefined;
-}
-
-/**
- * Extract the 'desc' attribute from the given XML element.
- * @param element - The element to extract description from.
- * @returns the name, or a '-' if there is no description.
- */
-export function getDescriptionAttribute(element: Element): string | undefined {
-  const name = element.getAttribute('desc');
-  return name ? name : undefined;
-}
-
-/**
- * Extract the 'pathName' attribute from the given XML element.
- * @param element - The element to extract path name from.
- * @returns the name, or a '-' if there is no path name.
- */
-export function getPathNameAttribute(element: Element): string | undefined {
-  const name = element.getAttribute('pathName');
-  return name ? name : undefined;
-}
 
 /**
  * Get the coordinates of a XML element (x and y coordinates).
