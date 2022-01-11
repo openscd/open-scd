@@ -44,6 +44,7 @@ export const regExp = {
   tRestrName1stL: /^[a-z][0-9A-Za-z]*$/,
   abstractDataAttributeName:
     /^((T)|(Test)|(Check)|(SIUnit)|(Open)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)$/,
+  lnClass: /^(LLN0)|[A-Z]{4,4}$/,
 };
 
 export const inverseRegExp = {

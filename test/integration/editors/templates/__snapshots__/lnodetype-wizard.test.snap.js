@@ -36,7 +36,7 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
     <wizard-textfield
       helper="[scl.lnClass]"
       label="lnClass"
-      pattern="[A-Z]{4,4}"
+      pattern="(LLN0)|[A-Z]{4,4}"
       required=""
     >
     </wizard-textfield>

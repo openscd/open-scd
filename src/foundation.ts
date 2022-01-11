@@ -364,7 +364,7 @@ export function referencePath(element: Element): string {
  * @param element - The element to extract name from.
  * @returns the name, or undefined if there is no name.
  */
- export function getNameAttribute(element: Element): string | undefined {
+export function getNameAttribute(element: Element): string | undefined {
   const name = element.getAttribute('name');
   return name ? name : undefined;
 }
@@ -394,7 +394,7 @@ export function getPathNameAttribute(element: Element): string | undefined {
  * @param element - The element to extract instance from.
  * @returns the instance, or undefined if there is no instance.
  */
- export function getInstanceAttribute(element: Element): string | undefined {
+export function getInstanceAttribute(element: Element): string | undefined {
   const inst = element.getAttribute('inst');
   return inst ? inst : undefined;
 }
@@ -2473,7 +2473,7 @@ export const patterns = {
   unsigned: '[+]?[0-9]+(([.][0-9]*)?|([.][0-9]+))',
   alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*',
   alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*',
-  lnClass: '[A-Z]{4,4}',
+  lnClass: '(LLN0)|[A-Z]{4,4}',
 };
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
@@ -2481,13 +2481,15 @@ export function compareNames(a: Element | string, b: Element | string): number {
   if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b);
 
   if (typeof a === 'object' && typeof b === 'string')
-    return (a.getAttribute('name')?? '').localeCompare(b);
+    return (a.getAttribute('name') ?? '').localeCompare(b);
 
   if (typeof a === 'string' && typeof b === 'object')
     return a.localeCompare(b.getAttribute('name')!);
 
   if (typeof a === 'object' && typeof b === 'object')
-    return (a.getAttribute('name')?? '').localeCompare(b.getAttribute('name')?? '');
+    return (a.getAttribute('name') ?? '').localeCompare(
+      b.getAttribute('name') ?? ''
+    );
 
   return 0;
 }
