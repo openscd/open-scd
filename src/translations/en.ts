@@ -368,10 +368,6 @@ export const en = {
     name: 'Connected access point',
     wizard: {
       addschemainsttype: 'Add XMLSchema-instance type',
-      title: {
-        connect: 'Connect access point',
-        edit: 'Edit access point',
-      },
     },
     action: {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',

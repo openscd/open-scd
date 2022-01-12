@@ -3,6 +3,16 @@
 import fc, { Arbitrary, array, hexaString, integer, tuple } from 'fast-check';
 import { patterns } from '../src/foundation.js';
 
+export function invertedRegex(
+  re: RegExp,
+  minLength = 0,
+  maxLength?: number
+): Arbitrary<string> {
+  return fc
+    .string({ minLength, maxLength: maxLength ?? 2 * minLength + 10 })
+    .filter(char => !re.test(char));
+}
+
 export function regexString(
   re: RegExp,
   minLength = 0,
@@ -36,6 +46,7 @@ export const regExp = {
   tName: new RegExp(`^${patterns.normalizedString}$`),
   desc: new RegExp(`^${patterns.normalizedString}$`),
   IPv4: /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/,
+  IPv6: /^([0-9A-F]{2}-){5}[0-9A-F]{2}$/,
   OSI: /^[0-9A-F]+$/,
   OSIAPi: /^[0-9\u002C]+$/,
   OSIid: /^[0-9]+$/,
