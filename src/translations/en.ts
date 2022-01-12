@@ -64,6 +64,7 @@ export const en = {
     iedsloading: 'Loading IEDs...',
     commmap: 'Communication mapping',
     gsecontrol: 'Show all GOOSEs',
+    smvcontrol: 'Show all Sampled Values',
   },
   editing: {
     created: 'Added {{ name }}',
@@ -156,10 +157,10 @@ export const en = {
     },
   },
   iededitor: {
-    searchHelper: "Select IED",
-    searchHelperDesc: "({{description}})",
+    searchHelper: 'Select IED',
+    searchHelperDesc: '({{description}})',
     missing: 'No IED',
-    toggleChildElements: "Toggle child elements"
+    toggleChildElements: 'Toggle child elements',
   },
   powertransformer: {
     wizard: {
@@ -168,7 +169,7 @@ export const en = {
       title: {
         edit: 'Edit power transformer',
       },
-    }
+    },
   },
   voltagelevel: {
     name: 'Voltage level',

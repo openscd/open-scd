@@ -66,6 +66,7 @@ export const de: Translations = {
     iedsloading: 'IEDs werden geladen...',
     commmap: 'Kommunikationszuordnung',
     gsecontrol: 'GOOSEs anzeigen',
+    smvcontrol: 'Sampled Values anzeigen',
   },
   editing: {
     created: '{{ name }} hinzugefügt',
@@ -162,7 +163,7 @@ export const de: Translations = {
     searchHelper: 'IED auswählen',
     searchHelperDesc: '({{description}})',
     missing: 'Kein IED vorhanden',
-    toggleChildElements: "???"
+    toggleChildElements: '???',
   },
   powertransformer: {
     wizard: {
