@@ -23,21 +23,25 @@ import { subNetworkWizard } from '../../wizards/subnetwork.js';
 /** [[`Communication`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-editor')
 export class SubNetworkEditor extends LitElement {
-  @property()
+  /** SCL element SubNetwork */
+  @property({ attribute: false })
   element!: Element;
-
+  /** SubNetwork attribute name */
   @property()
   get name(): string {
-    return this.element.getAttribute('name') ?? '';
+    return this.element.getAttribute('name') ?? 'UNDEFINED';
   }
+  /** SubNetwork attribute desc */
   @property()
   get desc(): string | null {
     return this.element.getAttribute('desc') ?? null;
   }
+  /** SubNetwork attribute type */
   @property()
   get type(): string | null {
     return this.element.getAttribute('type') ?? null;
   }
+  /** SubNetwork child elements BitRate label */
   @property()
   get bitrate(): string | null {
     const V = this.element.querySelector('BitRate');
@@ -48,11 +52,11 @@ export class SubNetworkEditor extends LitElement {
     return v ? v + u : null;
   }
 
-  openConnectedAPwizard(): void {
+  private openConnectedAPwizard(): void {
     this.dispatchEvent(newWizardEvent(createConnectedApWizard(this.element)));
   }
 
-  openEditWizard(): void {
+  private openEditWizard(): void {
     this.dispatchEvent(
       newWizardEvent(subNetworkWizard({ element: this.element }))
     );
@@ -71,7 +75,7 @@ export class SubNetworkEditor extends LitElement {
       );
   }
 
-  renderSubNetworkSpecs(): TemplateResult {
+  private renderSubNetworkSpecs(): TemplateResult {
     if (!this.type && !this.bitrate) return html``;
 
     return html`(${this.type}${this.type && this.bitrate
@@ -79,7 +83,7 @@ export class SubNetworkEditor extends LitElement {
       : html``}${this.bitrate})`;
   }
 
-  renderHeader(): TemplateResult {
+  private renderHeader(): TemplateResult {
     return html`<h1>
       ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
       ${this.renderSubNetworkSpecs()}
@@ -106,7 +110,7 @@ export class SubNetworkEditor extends LitElement {
     </h1>`;
   }
 
-  renderIedContainer(): TemplateResult[] {
+  private renderIedContainer(): TemplateResult[] {
     return Array.from(this.element.querySelectorAll('ConnectedAP') ?? [])
       .map(connAP => connAP.getAttribute('iedName')!)
       .filter((v, i, a) => a.indexOf(v) === i)
