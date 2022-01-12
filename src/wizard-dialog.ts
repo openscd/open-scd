@@ -25,7 +25,7 @@ import {
   newWizardEvent,
   WizardActor,
   wizardInputSelector,
-  isWizard,
+  isWizardFactory,
   checkValidity,
   reportValidity,
   Delete,
@@ -143,8 +143,8 @@ export class WizardDialog extends LitElement {
       this.dispatchEvent(newWizardEvent());
     }
     wizardActions.forEach(wa =>
-      isWizard(wa)
-        ? this.dispatchEvent(newWizardEvent(wa()))
+      isWizardFactory(wa)
+        ? this.dispatchEvent(newWizardEvent(wa))
         : this.dispatchEvent(newActionEvent(wa))
     );
     return true;

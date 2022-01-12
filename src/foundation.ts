@@ -142,7 +142,7 @@ export type WizardInput =
   | Select
   | WizardSelect;
 
-export type WizardAction = EditorAction | (() => Wizard);
+export type WizardAction = EditorAction | WizardFactory;
 
 /** @returns [[`EditorAction`]]s to dispatch on [[`WizardDialog`]] commit. */
 export type WizardActor = (
@@ -151,10 +151,10 @@ export type WizardActor = (
   list?: List | null
 ) => WizardAction[];
 
-export function isWizard(
-  wizardAction: WizardAction
-): wizardAction is () => Wizard {
-  return typeof wizardAction === 'function';
+export function isWizardFactory(
+  maybeFactory: WizardAction | Wizard | null
+): maybeFactory is WizardFactory {
+  return typeof maybeFactory === 'function';
 }
 
 /** @returns the validity of `input` depending on type. */
@@ -203,17 +203,30 @@ export interface WizardPage {
   element?: Element;
 }
 export type Wizard = WizardPage[];
+export type WizardFactory = () => Wizard;
 
 /** If `wizard === null`, close the current wizard, else queue `wizard`. */
 export interface WizardDetail {
-  wizard: Wizard | null;
+  wizard: WizardFactory | null;
   subwizard?: boolean;
 }
 export type WizardEvent = CustomEvent<WizardDetail>;
 export function newWizardEvent(
-  wizard: Wizard | null = null,
+  wizardOrFactory?: Wizard | WizardFactory,
   eventInitDict?: CustomEventInit<Partial<WizardDetail>>
 ): WizardEvent {
+  if (!wizardOrFactory)
+    return new CustomEvent<WizardDetail>('wizard', {
+      bubbles: true,
+      composed: true,
+      ...eventInitDict,
+      detail: { wizard: null, ...eventInitDict?.detail },
+    });
+
+  const wizard = isWizardFactory(wizardOrFactory)
+    ? wizardOrFactory
+    : () => wizardOrFactory;
+
   return new CustomEvent<WizardDetail>('wizard', {
     bubbles: true,
     composed: true,
