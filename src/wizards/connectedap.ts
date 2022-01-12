@@ -204,7 +204,7 @@ function updateConnectedApAction(parent: Element): WizardActor {
   };
 }
 
-function existTypeRestriction(element: Element): boolean {
+function hasTypeRestriction(element: Element): boolean {
   return Array.from(element.querySelectorAll('Address > P'))
     .filter(p => isPublic(p))
     .some(pType => pType.getAttribute('xsi:type'));
@@ -226,7 +226,7 @@ export function editConnectedApWizard(element: Element): Wizard {
             label="${translate('connectedap.wizard.addschemainsttype')}"
             ><mwc-checkbox
               id="typeRestriction"
-              ?checked=${existTypeRestriction(element)}
+              ?checked=${hasTypeRestriction(element)}
             ></mwc-checkbox></mwc-formfield
           >${getTypes(element).map(
             ptype =>
