@@ -3,7 +3,7 @@
 import fc, { Arbitrary, array, hexaString, integer, tuple } from 'fast-check';
 import { patterns } from '../src/foundation.js';
 
-export function negativeRegex(
+export function invertedRegex(
   re: RegExp,
   minLength = 0,
   maxLength?: number

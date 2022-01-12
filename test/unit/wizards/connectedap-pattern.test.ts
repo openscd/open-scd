@@ -5,13 +5,12 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import '../../../src/editors/communication/connectedap-editor.js';
-import { ConnectedAPEditor } from '../../../src/editors/communication/connectedap-editor.js';
 import { WizardInput } from '../../../src/foundation.js';
 
 import {
   ipV6,
   ipV6SubNet,
-  negativeRegex,
+  invertedRegex,
   regExp,
   regexString,
 } from '../../foundation.js';
@@ -46,14 +45,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
         await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
       });
 
-      describe('allows to edit P element of type IP', () => {
+      describe('contains an input to edit P element of type IP', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IP');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
@@ -62,9 +61,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -72,14 +71,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IP-SUBNET', () => {
+      describe('contains an input to edit P element of type IP-SUBNET', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IP-SUBNET');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
@@ -88,9 +87,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -98,14 +97,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IP-GATEWAY', () => {
+      describe('contains an input to edit P element of type IP-GATEWAY', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IP-GATEWAY');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
@@ -114,9 +113,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -124,14 +123,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-TSEL', () => {
+      describe('contains an input to edit P element of type OSI-TSEL', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'OSI-TSEL');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSI, 1, 8), async testValue => {
               input!.value = testValue;
@@ -140,9 +139,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -150,14 +149,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-SSEL', () => {
+      describe('contains an input to edit P element of type OSI-SSEL', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'OSI-SSEL');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               regexString(regExp.OSI, 1, 16),
@@ -169,9 +168,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -179,14 +178,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-PSEL', () => {
+      describe('contains an input to edit P element of type OSI-PSEL', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'OSI-PSEL');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               regexString(regExp.OSI, 1, 16),
@@ -198,9 +197,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -208,14 +207,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-AP-Title', () => {
+      describe('contains an input to edit P element of type OSI-AP-Title', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'OSI-AP-Title');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSIAPi, 1), async testValue => {
               input!.value = testValue;
@@ -224,9 +223,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIAPi), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSIAPi), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -234,16 +233,16 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-AP-Invoke', () => {
+      describe('contains an input to edit P element of type OSI-AP-Invoke', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'OSI-AP-Invoke');
           if (input && (<WizardTextField>input).maybeValue === null)
             await (<WizardTextField>input).nullSwitch?.click();
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               regexString(regExp.OSIid, 1, 5),
@@ -255,9 +254,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSIid), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -265,14 +264,14 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-AE-Qualifier', () => {
+      describe('contains an input to edit P element of type OSI-AE-Qualifier', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'OSI-AE-Qualifier');
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               regexString(regExp.OSIid, 1, 5),
@@ -284,9 +283,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSIid), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -294,16 +293,16 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-AE-Invoke', () => {
+      describe('contains an input to edit P element of type OSI-AE-Invoke', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'OSI-AE-Invoke');
           if (input && (<WizardTextField>input).maybeValue === null)
             await (<WizardTextField>input).nullSwitch?.click();
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               regexString(regExp.OSIid, 1, 5),
@@ -315,9 +314,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSIid), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSIid), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -325,16 +324,16 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type OSI-NSAP', () => {
+      describe('contains an input to edit P element of type OSI-NSAP', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'OSI-NSAP');
           if (input && (<WizardTextField>input).maybeValue === null)
             await (<WizardTextField>input).nullSwitch?.click();
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               regexString(regExp.OSI, 1, 40),
@@ -346,9 +345,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -356,16 +355,16 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type VLAN-ID', () => {
+      describe('contains an input to edit P element of type VLAN-ID', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'VLAN-ID');
           if (input && (<WizardTextField>input).maybeValue === null)
             await (<WizardTextField>input).nullSwitch?.click();
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSI, 3, 3), async testValue => {
               input!.value = testValue;
@@ -374,9 +373,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -384,16 +383,16 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type VLAN-PRIORITY', () => {
+      describe('contains an input to edit P element of type VLAN-PRIORITY', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'VLAN-PRIORITY');
           if (input && (<WizardTextField>input).maybeValue === null)
             await (<WizardTextField>input).nullSwitch?.click();
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(regexString(/^[0-7]$/), async testValue => {
               input!.value = testValue;
@@ -402,9 +401,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-7]$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-7]$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -430,7 +429,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
         await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
       });
 
-      describe('allows to edit P element of type SNTP-Port', () => {
+      describe('contains an input to edit P element of type SNTP-Port', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'SNTP-Port');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -438,9 +437,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               nat({ max: 65535 }).map(num => `${num}`),
@@ -452,9 +451,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -462,7 +461,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type MMS-Port', () => {
+      describe('contains an input to edit P element of type MMS-Port', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'MMS-Port');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -470,9 +469,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               nat({ max: 65535 }).map(num => `${num}`),
@@ -484,9 +483,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -494,7 +493,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type DNSName', () => {
+      describe('contains an input to edit P element of type DNSName', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'DNSName');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -502,9 +501,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(regexString(/^\S*$/, 1), async testValue => {
               input!.value = testValue;
@@ -514,7 +513,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type UDP-Port', () => {
+      describe('contains an input to edit P element of type UDP-Port', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'UDP-Port');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -522,9 +521,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               nat({ max: 65535 }).map(num => `${num}`),
@@ -536,9 +535,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -546,7 +545,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type TCP-Port', () => {
+      describe('contains an input to edit P element of type TCP-Port', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'TCP-Port');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -554,9 +553,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               nat({ max: 65535 }).map(num => `${num}`),
@@ -568,9 +567,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -578,7 +577,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type C37-118-IP-Port', () => {
+      describe('contains an input to edit P element of type C37-118-IP-Port', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'C37-118-IP-Port');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -586,9 +585,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               integer({ min: 1025, max: 65535 }).map(num => `${num}`),
@@ -600,9 +599,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -628,7 +627,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
         await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
       });
 
-      describe('allows to edit P element of type IPv6', () => {
+      describe('contains an input to edit P element of type IPv6', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'IPv6');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -636,9 +635,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV6(), async testValue => {
               input!.value = testValue;
@@ -647,9 +646,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.IPv6), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -657,7 +656,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IPv6-SUBNET', () => {
+      describe('contains an input to edit P element of type IPv6-SUBNET', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'IPv6-SUBNET');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -665,9 +664,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV6SubNet(), async testValue => {
               input!.value = testValue;
@@ -676,9 +675,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9/]*$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-9/]*$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -686,7 +685,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IPv6-GATEWAY', () => {
+      describe('contains an input to edit P element of type IPv6-GATEWAY', () => {
         beforeEach(async () => {
           input = inputs.find(input => input.label === 'IPv6-GATEWAY');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -694,9 +693,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV6(), async testValue => {
               input!.value = testValue;
@@ -705,9 +704,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.IPv6), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -715,7 +714,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IPv6FlowLabel', () => {
+      describe('contains an input to edit P element of type IPv6FlowLabel', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IPv6FlowLabel');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -723,9 +722,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               fc.hexaString({ minLength: 1, maxLength: 5 }),
@@ -737,10 +736,10 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
             fc.asyncProperty(
-              negativeRegex(/^[0-9a-fA-F]{1,5}$/),
+              invertedRegex(/^[0-9a-fA-F]{1,5}$/),
               async testValue => {
                 input!.value = testValue;
                 await element.requestUpdate();
@@ -750,7 +749,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IPv6ClassOfTraffic', () => {
+      describe('contains an input to edit P element of type IPv6ClassOfTraffic', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IPv6ClassOfTraffic');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -758,9 +757,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(
               nat({ max: 255 }).map(num => `${num}`),
@@ -772,9 +771,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             )
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(/^[0-9]*$/), async testValue => {
+            fc.asyncProperty(invertedRegex(/^[0-9]*$/), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -782,7 +781,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IPv6-IGMPv3Src', () => {
+      describe('contains an input to edit P element of type IPv6-IGMPv3Src', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IPv6-IGMPv3Src');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -790,9 +789,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV6(), async testValue => {
               input!.value = testValue;
@@ -801,9 +800,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv6), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.IPv6), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -811,7 +810,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IP-IGMPv3Sr', () => {
+      describe('contains an input to edit P element of type IP-IGMPv3Sr', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IP-IGMPv3Sr');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -819,9 +818,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(ipV4(), async testValue => {
               input!.value = testValue;
@@ -830,9 +829,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.IPv4), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.IPv4), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
@@ -840,7 +839,7 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           ));
       });
 
-      describe('allows to edit P element of type IP-ClassOfTraffic', () => {
+      describe('contains an input to edit P element of type IP-ClassOfTraffic', () => {
         beforeEach(() => {
           input = inputs.find(input => input.label === 'IP-ClassOfTraffic');
           if (input && (<WizardTextField>input).maybeValue === null) {
@@ -848,9 +847,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
           }
         });
 
-        it('as wizard input', () => expect(input).to.exist);
+        it('is always rendered', () => expect(input).to.exist);
 
-        it('for valid input', async () =>
+        it('allow to edit for valid input', async () =>
           await fc.assert(
             fc.asyncProperty(regexString(regExp.OSI, 1, 2), async testValue => {
               input!.value = testValue;
@@ -859,9 +858,9 @@ describe('Edit wizard for SCL element ConnectedAP', () => {
             })
           ));
 
-        it('not for invalid input', async () =>
+        it('does not allow to edit for invalid input', async () =>
           await fc.assert(
-            fc.asyncProperty(negativeRegex(regExp.OSI), async testValue => {
+            fc.asyncProperty(invertedRegex(regExp.OSI), async testValue => {
               input!.value = testValue;
               await element.requestUpdate();
               expect(input!.checkValidity()).to.be.false;
