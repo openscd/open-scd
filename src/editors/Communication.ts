@@ -10,7 +10,7 @@ import {
 } from '../foundation.js';
 import { selectors, styles } from './communication/foundation.js';
 import './communication/subnetwork-editor.js';
-import { subNetworkWizard } from './communication/subnetwork-editor.js';
+import { subNetworkWizard } from '../wizards/subnetwork.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */
 export default class CommunicationPlugin extends LitElement {
