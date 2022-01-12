@@ -47,7 +47,9 @@ describe('A component to visualize SCL element IED', () => {
     await element.requestUpdate();
 
     expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard[0].title).to.contain('select');
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
+      'select'
+    );
   });
 
   it('triggers create wizard for ClientLN element on action button click', async () => {
@@ -58,7 +60,7 @@ describe('A component to visualize SCL element IED', () => {
     await element.requestUpdate();
 
     expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard[0].title).to.contain(
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
       'connectToIED'
     );
   });
@@ -75,7 +77,7 @@ describe('A component to visualize SCL element IED', () => {
     await element.requestUpdate();
 
     expect(wizardEvent).to.have.been.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard[0].title).to.contain(
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain(
       'connectToIED'
     );
   });

@@ -35,7 +35,7 @@ describe('gsecontrol wizards', () => {
   describe('selectGseControlWizard', () => {
     beforeEach(async () => {
       const wizard = selectGseControlWizard(doc.documentElement);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
@@ -60,7 +60,7 @@ describe('gsecontrol wizards', () => {
           ),
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       nameTextField = element.wizardUI.dialog!.querySelector<WizardTextField>(
         'wizard-textfield[label="name"]'
@@ -93,7 +93,7 @@ describe('gsecontrol wizards', () => {
   describe('editGseControlWizard', () => {
     beforeEach(async () => {
       const wizard = editGseControlWizard(doc.querySelector('GSEControl')!);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
@@ -219,7 +219,7 @@ describe('gsecontrol wizards', () => {
           ),
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();

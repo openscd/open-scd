@@ -16,7 +16,7 @@ describe('Wizards for SCL element Terminal', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     const wizard = editTerminalWizard(doc.querySelector('Terminal')!);
-    element.workflow.push(wizard);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
   });
   it('looks like the latest snapshot', async () => {

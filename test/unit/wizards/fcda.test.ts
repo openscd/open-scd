@@ -28,7 +28,7 @@ describe('create wizard for FCDA element', () => {
   describe('with a valid SCL file', () => {
     beforeEach(async () => {
       const wizard = createFCDAsWizard(doc.querySelector('DataSet')!);
-      element.workflow.push(wizard!);
+      element.workflow.push(() => wizard!);
       await element.requestUpdate();
       finder =
         element.wizardUI.dialog!.querySelector<FinderList>('finder-list')!;

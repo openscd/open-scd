@@ -18,7 +18,7 @@ describe('Wizards for SCL element ConnectivityNode', () => {
     const wizard = editConnectivityNodeWizard(
       doc.querySelector('ConnectivityNode')!
     );
-    element.workflow.push(wizard);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
   });
   it('looks like the latest snapshot', async () => {

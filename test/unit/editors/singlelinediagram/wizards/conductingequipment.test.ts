@@ -1,18 +1,18 @@
-import {expect, fixture, html} from '@open-wc/testing';
+import { expect, fixture, html } from '@open-wc/testing';
 
 import '../../../../mock-wizard.js';
-import {MockWizard} from '../../../../mock-wizard.js';
+import { MockWizard } from '../../../../mock-wizard.js';
 import {
   executeWizardUpdateAction,
   expectWizardNoUpdateAction,
   fetchDoc,
-  setWizardTextFieldValue
-} from "../../../wizards/foundation.js";
+  setWizardTextFieldValue,
+} from '../../../wizards/foundation.js';
 
-import {WizardTextField} from "../../../../../src/wizard-textfield.js";
-import {WizardInput} from "../../../../../src/foundation.js";
-import {editConductingEquipmentWizard} from "../../../../../src/editors/singlelinediagram/wizards/conductingequipment.js";
-import {updateNamingAndCoordinatesAction} from "../../../../../src/editors/singlelinediagram/wizards/foundation.js";
+import { WizardTextField } from '../../../../../src/wizard-textfield.js';
+import { WizardInput } from '../../../../../src/foundation.js';
+import { editConductingEquipmentWizard } from '../../../../../src/editors/singlelinediagram/wizards/conductingequipment.js';
+import { updateNamingAndCoordinatesAction } from '../../../../../src/editors/singlelinediagram/wizards/foundation.js';
 
 describe('Wizards for SCL element Conducting Equipment (X/Y)', () => {
   let doc: XMLDocument;
@@ -26,7 +26,7 @@ describe('Wizards for SCL element Conducting Equipment (X/Y)', () => {
 
     element = await fixture(html`<mock-wizard></mock-wizard>`);
     const wizard = editConductingEquipmentWizard(conductingEquipment);
-    element.workflow.push(wizard);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
     inputs = Array.from(element.wizardUI.inputs);
   });
@@ -34,23 +34,38 @@ describe('Wizards for SCL element Conducting Equipment (X/Y)', () => {
   it('update name should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[1], 'OtherQB1');
 
-    const updateAction = executeWizardUpdateAction(updateNamingAndCoordinatesAction(conductingEquipment), inputs);
+    const updateAction = executeWizardUpdateAction(
+      updateNamingAndCoordinatesAction(conductingEquipment),
+      inputs
+    );
     expect(updateAction.old.element).to.have.attribute('name', 'QB1');
     expect(updateAction.new.element).to.have.attribute('name', 'OtherQB1');
   });
 
   it('update description should be updated in document', async function () {
-    await setWizardTextFieldValue(<WizardTextField>inputs[2], 'Some description');
+    await setWizardTextFieldValue(
+      <WizardTextField>inputs[2],
+      'Some description'
+    );
 
-    const updateAction = executeWizardUpdateAction(updateNamingAndCoordinatesAction(conductingEquipment), inputs);
+    const updateAction = executeWizardUpdateAction(
+      updateNamingAndCoordinatesAction(conductingEquipment),
+      inputs
+    );
     expect(updateAction.old.element).to.not.have.attribute('desc');
-    expect(updateAction.new.element).to.have.attribute('desc', 'Some description');
+    expect(updateAction.new.element).to.have.attribute(
+      'desc',
+      'Some description'
+    );
   });
 
   it('update X-Coordinate should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[3], '4');
 
-    const updateAction = executeWizardUpdateAction(updateNamingAndCoordinatesAction(conductingEquipment), inputs);
+    const updateAction = executeWizardUpdateAction(
+      updateNamingAndCoordinatesAction(conductingEquipment),
+      inputs
+    );
     expect(updateAction.old.element).to.have.attribute('sxy:x', '1');
     expect(updateAction.new.element).to.have.attribute('sxy:x', '4');
   });
@@ -58,7 +73,10 @@ describe('Wizards for SCL element Conducting Equipment (X/Y)', () => {
   it('update Y-Coordinate should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[4], '5');
 
-    const updateAction = executeWizardUpdateAction(updateNamingAndCoordinatesAction(conductingEquipment), inputs);
+    const updateAction = executeWizardUpdateAction(
+      updateNamingAndCoordinatesAction(conductingEquipment),
+      inputs
+    );
     expect(updateAction.old.element).to.have.attribute('sxy:y', '1');
     expect(updateAction.new.element).to.have.attribute('sxy:y', '5');
   });
@@ -66,13 +84,19 @@ describe('Wizards for SCL element Conducting Equipment (X/Y)', () => {
   it('clear Y-Coordinate should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[4], null);
 
-    const updateAction = executeWizardUpdateAction(updateNamingAndCoordinatesAction(conductingEquipment), inputs);
+    const updateAction = executeWizardUpdateAction(
+      updateNamingAndCoordinatesAction(conductingEquipment),
+      inputs
+    );
     expect(updateAction.old.element).to.have.attribute('sxy:y', '1');
     expect(updateAction.new.element).to.not.have.attribute('sxy:y');
   });
 
   it('when no fields changed there will be no update action', async function () {
-    expectWizardNoUpdateAction(updateNamingAndCoordinatesAction(conductingEquipment), inputs);
+    expectWizardNoUpdateAction(
+      updateNamingAndCoordinatesAction(conductingEquipment),
+      inputs
+    );
   });
 
   it('looks like the latest snapshot', async () => {

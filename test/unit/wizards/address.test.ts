@@ -36,7 +36,7 @@ describe('address', () => {
       )!;
       const wizard = [{ title: 'title', content: renderGseSmvAddress(gse) }];
 
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
@@ -61,7 +61,7 @@ describe('address', () => {
             content: renderGseSmvAddress(gse),
           },
         ];
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
         await element.requestUpdate();
@@ -144,7 +144,7 @@ describe('address', () => {
             content: renderGseSmvAddress(gse),
           },
         ];
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
         await element.requestUpdate();

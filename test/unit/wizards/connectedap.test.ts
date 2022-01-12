@@ -45,7 +45,7 @@ describe('Wizards for SCL element ConnectedAP', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       const wizard = editConnectedApWizard(doc.querySelector('ConnectedAP')!);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       inputs = Array.from(element.wizardUI.inputs);
@@ -166,7 +166,7 @@ describe('Wizards for SCL element ConnectedAP', () => {
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
       const wizard = createConnectedApWizard(doc.querySelector('ConnectedAP')!);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       inputs = Array.from(element.wizardUI.inputs);
