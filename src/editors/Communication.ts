@@ -8,7 +8,7 @@ import {
   newActionEvent,
   createElement,
 } from '../foundation.js';
-import { selectors, styles } from './communication/foundation.js';
+import { selectors } from './communication/foundation.js';
 import './communication/subnetwork-editor.js';
 import { subNetworkWizard } from '../wizards/subnetwork.js';
 
@@ -60,24 +60,32 @@ export default class CommunicationPlugin extends LitElement {
         icon="add"
         label="${get('subnetwork.wizard.title.add')}"
         @click=${() => this.openCreateSubNetworkWizard()}
-      ></mwc-fab
-      >${Array.from(this.doc.querySelectorAll(selectors.SubNetwork) ?? []).map(
-        subnetwork =>
-          html`<subnetwork-editor .element=${subnetwork}></subnetwork-editor>`
-      )}`;
+      ></mwc-fab>
+      <section>
+        ${Array.from(this.doc.querySelectorAll(selectors.SubNetwork) ?? []).map(
+          subnetwork =>
+            html`<subnetwork-editor .element=${subnetwork}></subnetwork-editor>`
+        )}
+      </section> `;
   }
 
   static styles = css`
-    ${styles}
+    :host {
+      width: 100vw;
+    }
+    section {
+      outline: none;
+      padding: 8px 12px 16px;
+    }
+
+    subnetwork-editor {
+      margin: 8px 12px 16px;
+    }
 
     mwc-fab {
       position: fixed;
       bottom: 32px;
       right: 32px;
-    }
-
-    :host {
-      width: 100vw;
     }
   `;
 }

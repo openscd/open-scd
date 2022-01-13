@@ -2,40 +2,40 @@
 export const snapshots = {};
 
 snapshots["subnetwork-editor looks like the latest snapshot"] = 
-`<section tabindex="0">
-  <h1>
-    StationBus — desc
-      (8-MMS—100.0b/s)
-    <abbr title="[add]">
-      <mwc-icon-button icon="playlist_add">
-      </mwc-icon-button>
-    </abbr>
-    <nav>
-      <abbr title="[edit]">
-        <mwc-icon-button icon="edit">
-        </mwc-icon-button>
-      </abbr>
-      <abbr title="[remove]">
-        <mwc-icon-button icon="delete">
-        </mwc-icon-button>
-      </abbr>
-    </nav>
-  </h1>
+`<action-pane>
+  <abbr
+    slot="action"
+    title="[edit]"
+  >
+    <mwc-icon-button icon="edit">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[remove]"
+  >
+    <mwc-icon-button icon="delete">
+    </mwc-icon-button>
+  </abbr>
+  <abbr
+    slot="action"
+    title="[add]"
+  >
+    <mwc-icon-button icon="playlist_add">
+    </mwc-icon-button>
+  </abbr>
   <div id="connAPContainer">
-    <section
+    <action-pane
       id="iedSection"
-      tabindex="0"
+      label="IED1"
     >
-      <h3>
-        IED1
-      </h3>
       <div id="connApContainer">
         <connectedap-editor>
         </connectedap-editor>
       </div>
-    </section>
+    </action-pane>
   </div>
-</section>
+</action-pane>
 `;
 /* end snapshot subnetwork-editor looks like the latest snapshot */
 

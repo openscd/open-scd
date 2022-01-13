@@ -84,30 +84,8 @@ export class SubNetworkEditor extends LitElement {
   }
 
   private renderHeader(): TemplateResult {
-    return html`<h1>
-      ${this.name} ${this.desc === null ? '' : html`&mdash;`} ${this.desc}
-      ${this.renderSubNetworkSpecs()}
-      <abbr title="${translate('add')}">
-        <mwc-icon-button
-          icon="playlist_add"
-          @click="${() => this.openConnectedAPwizard()}"
-        ></mwc-icon-button>
-      </abbr>
-      <nav>
-        <abbr title="${translate('edit')}">
-          <mwc-icon-button
-            icon="edit"
-            @click=${() => this.openEditWizard()}
-          ></mwc-icon-button>
-        </abbr>
-        <abbr title="${translate('remove')}">
-          <mwc-icon-button
-            icon="delete"
-            @click=${() => this.remove()}
-          ></mwc-icon-button>
-        </abbr>
-      </nav>
-    </h1>`;
+    return html` ${this.name} ${this.desc === null ? '' : html`&mdash;`}
+    ${this.desc} ${this.renderSubNetworkSpecs()}`;
   }
 
   private renderIedContainer(): TemplateResult[] {
@@ -116,8 +94,7 @@ export class SubNetworkEditor extends LitElement {
       .filter((v, i, a) => a.indexOf(v) === i)
       .sort(compareNames)
       .map(
-        iedName => html` <section id="iedSection" tabindex="0">
-          <h3>${iedName}</h3>
+        iedName => html` <action-pane id="iedSection" label="${iedName}">
           <div id="connApContainer">
             ${Array.from(
               this.element.ownerDocument.querySelectorAll(
@@ -133,15 +110,31 @@ export class SubNetworkEditor extends LitElement {
                 ></connectedap-editor>`
             )}
           </div>
-        </section>`
+        </action-pane>`
       );
   }
 
   render(): TemplateResult {
-    return html`<section tabindex="0">
-      ${this.renderHeader()}
+    return html`<action-pane .label="${this.renderHeader()}">
+      <abbr slot="action" title="${translate('edit')}">
+        <mwc-icon-button
+          icon="edit"
+          @click=${() => this.openEditWizard()}
+        ></mwc-icon-button>
+      </abbr>
+      <abbr slot="action" title="${translate('remove')}">
+        <mwc-icon-button
+          icon="delete"
+          @click=${() => this.remove()}
+        ></mwc-icon-button> </abbr
+      ><abbr slot="action" title="${translate('add')}">
+        <mwc-icon-button
+          icon="playlist_add"
+          @click="${() => this.openConnectedAPwizard()}"
+        ></mwc-icon-button>
+      </abbr>
       <div id="connAPContainer">${this.renderIedContainer()}</div>
-    </section>`;
+    </action-pane> `;
   }
 
   static styles = css`
