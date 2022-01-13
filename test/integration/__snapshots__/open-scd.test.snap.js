@@ -585,7 +585,7 @@ snapshots["open-scd looks like its snapshot"] =
       value="/src/editors/IED.js"
     >
       <mwc-icon slot="meta">
-        edit
+        developer_board
       </mwc-icon>
       IED
     </mwc-check-list-item>
