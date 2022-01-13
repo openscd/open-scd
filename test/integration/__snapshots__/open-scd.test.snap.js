@@ -805,6 +805,21 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/UpdateDescriptionSEL.js"
+    >
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+      Update desc (SEL)
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
       selected=""
       tabindex="-1"
       value="/src/menu/Merge.js"
