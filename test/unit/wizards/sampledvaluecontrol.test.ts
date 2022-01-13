@@ -25,7 +25,7 @@ describe('Wizards for SCL element SampledValueControl', () => {
   describe('define a select wizard that', () => {
     beforeEach(async () => {
       const wizard = selectSampledValueControlWizard(doc.documentElement);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       await element.wizardUI.requestUpdate(); // make sure wizard is rendered
