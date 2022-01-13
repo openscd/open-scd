@@ -8,8 +8,8 @@ import {
   newWizardEvent,
   newActionEvent,
   createElement,
+  isPublic,
 } from '../foundation.js';
-import { selectors } from './communication/foundation.js';
 import { subNetworkWizard } from '../wizards/subnetwork.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */
@@ -31,20 +31,20 @@ export default class CommunicationPlugin extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
   private openCreateSubNetworkWizard(): void {
-    if (!this.doc.querySelector(selectors.Communication))
+    if (!this.doc.querySelector(':root > Communication'))
       this.createCommunication();
 
     this.dispatchEvent(
       newWizardEvent(
         subNetworkWizard({
-          parent: this.doc.querySelector('Communication')!,
+          parent: this.doc.querySelector(':root > Communication')!,
         })
       )
     );
   }
 
   render(): TemplateResult {
-    if (!this.doc?.querySelector(selectors.SubNetwork))
+    if (!this.doc?.querySelector(':root > Communication >SubNetwork'))
       return html`<h1>
         <span style="color: var(--base1)"
           >${translate('communication.missing')}</span
@@ -63,10 +63,14 @@ export default class CommunicationPlugin extends LitElement {
         @click=${() => this.openCreateSubNetworkWizard()}
       ></mwc-fab>
       <section>
-        ${Array.from(this.doc.querySelectorAll(selectors.SubNetwork) ?? []).map(
-          subnetwork =>
-            html`<subnetwork-editor .element=${subnetwork}></subnetwork-editor>`
-        )}
+        ${Array.from(this.doc.querySelectorAll('SubNetwork') ?? [])
+          .filter(isPublic)
+          .map(
+            subnetwork =>
+              html`<subnetwork-editor
+                .element=${subnetwork}
+              ></subnetwork-editor>`
+          )}
       </section> `;
   }
 

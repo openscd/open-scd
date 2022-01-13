@@ -18,28 +18,6 @@ export function isCreateOptions(
   return (<CreateOptions>options).parent !== undefined;
 }
 
-// Communication element hierarchy
-const substationPath = [
-  ':root',
-  'Communication',
-  'SubNetwork',
-  'ConnectedAP',
-  'Address',
-];
-
-export type CommunicationTag =
-  | 'Communication'
-  | 'SubNetwork'
-  | 'ConnectedAP'
-  | 'Address';
-
-/** `Private`-safeguarded selectors for `Communication` and its descendants */
-export const selectors = <Record<CommunicationTag, string>>(
-  Object.fromEntries(
-    substationPath.map((e, i, a) => [e, a.slice(0, i + 1).join(' > ')])
-  )
-);
-
 /** Common `CSS` styles used by communication subeditors */
 export const styles = css`
   :host(.moving) section {
