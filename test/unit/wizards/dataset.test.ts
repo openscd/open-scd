@@ -33,7 +33,7 @@ describe('dataset wizards', () => {
       const wizard = editDataSetWizard(
         doc.querySelector('IED[name="IED2"] DataSet[name="GooseDataSet1"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       wizardEvent = sinon.spy();
@@ -68,7 +68,7 @@ describe('dataset wizards', () => {
         );
         wizard = editDataSetWizard(dataSet);
         element.workflow.length = 0;
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
         await element.requestUpdate();
@@ -121,7 +121,7 @@ describe('dataset wizards', () => {
         )!;
         wizard = editDataSetWizard(dataSet);
         element.workflow.length = 0;
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
         inputs = Array.from(element.wizardUI.inputs);
         await element.requestUpdate();

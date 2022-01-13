@@ -51,7 +51,7 @@ describe('conducting-equipment-editor', () => {
     await element.requestUpdate();
 
     expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard[0].title).to.contain('lnode');
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain('lnode');
   });
 
   it('triggers edit wizard for ConductingEquipment element on action button click', async () => {
@@ -62,7 +62,7 @@ describe('conducting-equipment-editor', () => {
     await element.requestUpdate();
 
     expect(wizardEvent).to.have.be.calledOnce;
-    expect(wizardEvent.args[0][0].detail.wizard[0].title).to.contain('edit');
+    expect(wizardEvent.args[0][0].detail.wizard()[0].title).to.contain('edit');
   });
 
   it('triggers remove action on action button click', async () => {

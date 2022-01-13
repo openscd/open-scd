@@ -65,7 +65,7 @@ describe('bda wizards', () => {
           ),
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();
@@ -211,7 +211,7 @@ describe('bda wizards', () => {
           ),
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();

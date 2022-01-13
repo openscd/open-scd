@@ -21,7 +21,8 @@ describe('lnodewizard', () => {
     element = <MockWizardEditor>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
-    element.workflow.push(lNodeWizard(doc.querySelector('Bay')!));
+    const wizard = lNodeWizard(doc.querySelector('Bay')!);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
   });
 

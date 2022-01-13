@@ -19,7 +19,7 @@ describe('FCDA editing wizarding integration', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     const wizard = createFCDAsWizard(doc.querySelector('DataSet')!);
-    element.workflow.push(wizard!);
+    element.workflow.push(() => wizard!);
     await element.requestUpdate();
 
     finder = element.wizardUI.dialog!.querySelector<FinderList>('finder-list')!;

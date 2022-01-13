@@ -27,7 +27,7 @@ describe('wizards for LNodeType element', () => {
         <string>identity(doc.querySelector('LNodeType')),
         doc
       )!;
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       inputs = Array.from(element.wizardUI.inputs);
