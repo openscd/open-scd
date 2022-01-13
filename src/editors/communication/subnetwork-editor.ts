@@ -76,7 +76,9 @@ export class SubNetworkEditor extends LitElement {
   }
 
   private renderIedContainer(): TemplateResult[] {
-    return Array.from(this.element.querySelectorAll('ConnectedAP') ?? [])
+    return Array.from(
+      this.element.querySelectorAll(':scope > ConnectedAP') ?? []
+    )
       .map(connAP => connAP.getAttribute('iedName')!)
       .filter((v, i, a) => a.indexOf(v) === i)
       .sort(compareNames)
@@ -84,9 +86,9 @@ export class SubNetworkEditor extends LitElement {
         iedName => html` <action-pane id="iedSection" label="${iedName}">
           <div id="connApContainer">
             ${Array.from(
-              this.element.ownerDocument.querySelectorAll(
-                `ConnectedAP[iedName="${iedName}"]`
-              )
+              this.element.parentElement?.querySelectorAll(
+                `:scope > SubNetwork > ConnectedAP[iedName="${iedName}"]`
+              ) ?? []
             ).map(
               connectedAP =>
                 html`<connectedap-editor
