@@ -75,19 +75,6 @@ export class SubNetworkEditor extends LitElement {
       );
   }
 
-  private renderSubNetworkSpecs(): TemplateResult {
-    if (!this.type && !this.bitrate) return html``;
-
-    return html`(${this.type}${this.type && this.bitrate
-      ? html`&mdash;`
-      : html``}${this.bitrate})`;
-  }
-
-  private renderHeader(): TemplateResult {
-    return html` ${this.name} ${this.desc === null ? '' : html`&mdash;`}
-    ${this.desc} ${this.renderSubNetworkSpecs()}`;
-  }
-
   private renderIedContainer(): TemplateResult[] {
     return Array.from(this.element.querySelectorAll('ConnectedAP') ?? [])
       .map(connAP => connAP.getAttribute('iedName')!)
@@ -112,6 +99,19 @@ export class SubNetworkEditor extends LitElement {
           </div>
         </action-pane>`
       );
+  }
+
+  private renderSubNetworkSpecs(): TemplateResult {
+    if (!this.type && !this.bitrate) return html``;
+
+    return html`(${this.type}${this.type && this.bitrate
+      ? html`&mdash;`
+      : html``}${this.bitrate})`;
+  }
+
+  private renderHeader(): TemplateResult {
+    return html` ${this.name} ${this.desc === null ? '' : html`&mdash;`}
+    ${this.desc} ${this.renderSubNetworkSpecs()}`;
   }
 
   render(): TemplateResult {

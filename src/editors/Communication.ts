@@ -3,13 +3,13 @@ import { translate, get } from 'lit-translate';
 
 import '@material/mwc-fab';
 
+import './communication/subnetwork-editor.js';
 import {
   newWizardEvent,
   newActionEvent,
   createElement,
 } from '../foundation.js';
 import { selectors } from './communication/foundation.js';
-import './communication/subnetwork-editor.js';
 import { subNetworkWizard } from '../wizards/subnetwork.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */
@@ -18,7 +18,7 @@ export default class CommunicationPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  createCommunication(): void {
+  private createCommunication(): void {
     this.dispatchEvent(
       newActionEvent({
         new: {
@@ -30,7 +30,7 @@ export default class CommunicationPlugin extends LitElement {
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
-  openCreateSubNetworkWizard(): void {
+  private openCreateSubNetworkWizard(): void {
     if (!this.doc.querySelector(selectors.Communication))
       this.createCommunication();
 
@@ -55,6 +55,7 @@ export default class CommunicationPlugin extends LitElement {
           @click=${() => this.openCreateSubNetworkWizard()}
         ></mwc-fab>
       </h1>`;
+
     return html`<mwc-fab
         extended
         icon="add"
