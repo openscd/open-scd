@@ -328,6 +328,7 @@
 						</Inputs>
 					</LN>
 					<LN lnClass="tHarde" lnType="lnTypeWithoutDOs" />
+					<LN lnClass="CSWI" lnType="nonExistingLnType" />
 				</LDevice>
 			</Server>
 		</AccessPoint>
