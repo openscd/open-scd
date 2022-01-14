@@ -15,6 +15,7 @@ import {
   WizardInput,
 } from '../foundation.js';
 import { updateNamingAction } from './foundation/actions.js';
+import { getDirections } from '../editors/singlelinediagram/sld-drawing.js';
 
 const types: Partial<Record<string, string>> = {
   // standard
@@ -49,13 +50,92 @@ const types: Partial<Record<string, string>> = {
   TCR: 'Thyristor Controlled Reactive Component',
 };
 
-function typeStr(condEq: Element): string {
-  return condEq.getAttribute('type') === 'DIS' &&
-    Array.from(condEq.querySelectorAll('Terminal'))
-      .map(t => t.getAttribute('cNodeName'))
-      .includes('grounded')
-    ? 'ERS'
-    : condEq.getAttribute('type') ?? '';
+function getLNodefromIED(lNode: Element | null): Element | null {
+  if (!lNode) return null;
+  const [iedName, ldInst, lnClass, lnInst, lnType] = [
+    'iedName',
+    'ldInst',
+    'lnClass',
+    'lnInst',
+    'lnType',
+  ].map(attribute => lNode?.getAttribute(attribute));
+  return (<Element>lNode?.getRootNode()).querySelector(`IED[name='${iedName}'] > AccessPoint > Server > LDevice[inst='${ldInst}'] > LN[inst='${lnInst}'][lnType='${lnType}'][lnClass='${lnClass}']`);
+}
+
+function getDataAttributeValue(lNode: Element, doName: string, sdName: string | undefined, daName: string): string | undefined {
+  const sdDef = sdName ? ` > SDI[name='${sdName}']` : '';
+  const daInstantiated = lNode.querySelector(`DOI[name='${doName}']${sdDef} > DAI[name='${daName}'`);
+  if (daInstantiated) {
+    // data attribute is fully instantiated within a DOI/SDI, look for it within: DOI > ?SDI > DAI
+    return daInstantiated.querySelector('Val')?.innerHTML.trim();
+  } else {
+    const rootNode = <Element>lNode?.getRootNode();
+    const lNodeType = lNode.getAttribute('type');
+    const lnClass = lNode.getAttribute('lnClass');
+    if (sdName) {
+      // definition to be found on the subdata type
+      // this code path has not been tested but may be of use elsewhere
+      const sdo = rootNode.querySelector(`DataTypeTemplates > LNodeType[id=${lNodeType}][class=${lnClass}] > SDO[name=${doName}]`);
+      if (sdo) {
+        const sdoRef = sdo.getAttribute('type');
+        return rootNode.querySelector(`DataTypeTemplates > DOType[id=${sdoRef}] > DA[name='${daName}'] > Val`)?.innerHTML.trim();
+      }
+      // definition missing
+      return undefined;
+    } else {
+      // definition must be on the data object type
+      const doObj = rootNode.querySelector(`DataTypeTemplates > LNodeType[id=${lNodeType}][class=${lnClass}] > DO[name=${doName}]`);
+      if (doObj) {
+        const doRef = doObj.getAttribute('type');
+        return rootNode.querySelector(`DataTypeTemplates > DOType[id=${doRef}] > DA[name='${daName}'] > Val`)?.innerHTML.trim();
+      }
+      // definition missing
+      return undefined;
+    } 
+  }
+}
+
+/**
+ * Returns true if any terminal of the ConductingEquipment has a connectivity node name 'grounded'.
+ * @param condEq - SCL ConductingEquipment.
+ * @returns if any terminal of the ConductingEquipment is grounded.
+ */
+function containsGroundedTerminal(condEq: Element): boolean {
+  return (Array.from(condEq.querySelectorAll('Terminal'))
+    .map(t => t.getAttribute('cNodeName'))
+    .includes('grounded')
+  );
+}
+
+/**
+ * Looks to see if the Conducting Equipment contains an XSWI logical node. If so, check if the XSWI definition
+ * includes SwTyp and if stVal indicates an Earth/Earthing Switch.
+ * @param condEq - SCL ConductingEquipment
+ * @returns true if an earth switch is found, false otherwise.
+ */
+function containsEarthSwitchDefinition(condEq: Element): boolean {
+  const lNodeXSWI = condEq.querySelector("LNode[lnClass='XSWI']");
+  const lNode = getLNodefromIED(lNodeXSWI);
+  if (lNode) {
+    const swTypVal = getDataAttributeValue(lNode, 'SwTyp', undefined, 'stVal');
+    return swTypVal ? ['Earthing Switch', 'High Speed Earthing Switch'].includes(swTypVal) : false;
+  } else {
+  return false; 
+  }
+}
+
+/**
+ * Find the type of an SCL conducting equipment. For earth switches derive this from terminals or XSWI logical node definition.
+ * @param condEq - SCL ConductingEquipment
+ * @returns  Three letter primary apparatus device type as defined in IEC 61850-6.
+ */
+export function typeStr(condEq: Element): string {
+  if (containsGroundedTerminal(condEq) || (condEq.getAttribute('type') === 'DIS' && ( containsEarthSwitchDefinition (condEq)))) {
+    // these checks only carried out for a three phase system
+    return 'ERS';
+  } else {
+    return condEq.getAttribute('type') ?? '';
+  }
 }
 
 function typeName(condEq: Element): string {
