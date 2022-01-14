@@ -120,7 +120,7 @@ function containsEarthSwitchDefinition(condEq: Element): boolean {
     const swTypVal = getDataAttributeValue(lNode, 'SwTyp', undefined, 'stVal');
     return swTypVal ? ['Earthing Switch', 'High Speed Earthing Switch'].includes(swTypVal) : false;
   } else {
-  return false; 
+    return false; 
   }
 }
 
