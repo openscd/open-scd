@@ -50,6 +50,11 @@ const types: Partial<Record<string, string>> = {
   TCR: 'Thyristor Controlled Reactive Component',
 };
 
+/**
+ * Finds Logical Node from IED based on Logical Node in the Substation SCL section.
+ * @param lNode - Logical Node in Substation SCL section.
+ * @returns - Logical Node in the IED SCL section.
+ */
 function getLNodefromIED(lNode: Element | null): Element | null {
   if (!lNode) return null;
   const [iedName, ldInst, lnClass, lnInst, lnType] = [
@@ -62,6 +67,14 @@ function getLNodefromIED(lNode: Element | null): Element | null {
   return (<Element>lNode?.getRootNode()).querySelector(`IED[name='${iedName}'] > AccessPoint > Server > LDevice[inst='${ldInst}'] > LN[inst='${lnInst}'][lnType='${lnType}'][lnClass='${lnClass}']`);
 }
 
+/**
+ * Finds data attribute by inspecting an IED's logical node or types.
+ * @param lNode - LNode within the IED section.
+ * @param doName - name for data object (e.g. SwTyp).
+ * @param sdName - id for sub data object.
+ * @param daName - name for data attribute (e.g. stVal).
+ * @returns - value of type as a string.
+ */
 function getDataAttributeValue(lNode: Element, doName: string, sdName: string | undefined, daName: string): string | undefined {
   const sdDef = sdName ? ` > SDI[name='${sdName}']` : '';
   const daInstantiated = lNode.querySelector(`DOI[name='${doName}']${sdDef} > DAI[name='${daName}'`);
