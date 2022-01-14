@@ -1,23 +1,5 @@
 import { css } from 'lit-element';
 
-export type ElementEditor = Element & {
-  element: Element;
-};
-
-interface UpdateOptions {
-  element: Element;
-}
-interface CreateOptions {
-  parent: Element;
-}
-export type WizardOptions = UpdateOptions | CreateOptions;
-
-export function isCreateOptions(
-  options: WizardOptions
-): options is CreateOptions {
-  return (<CreateOptions>options).parent !== undefined;
-}
-
 /** Common `CSS` styles used by communication subeditors */
 export const styles = css`
   :host(.moving) section {

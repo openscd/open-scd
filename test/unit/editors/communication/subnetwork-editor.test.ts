@@ -28,7 +28,6 @@ describe('subnetwork-editor', () => {
   it('has a type property', () =>
     expect(element).to.have.property('type', '8-MMS'));
 
-  it('looks like the latest snapshot', async () => {
-    await expect(element).shadowDom.to.equalSnapshot();
-  });
+  it('looks like the latest snapshot', async () =>
+    await expect(element).shadowDom.to.equalSnapshot());
 });

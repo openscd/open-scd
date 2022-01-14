@@ -14,7 +14,10 @@ import {
   Delete,
   Create,
 } from '../../../src/foundation.js';
-import { editSubNetworkWizard } from '../../../src/wizards/subnetwork.js';
+import {
+  createSubNetworkWizard,
+  editSubNetworkWizard,
+} from '../../../src/wizards/subnetwork.js';
 
 describe('Wizards for SCL element SubNetwork', () => {
   let doc: XMLDocument;
@@ -250,6 +253,107 @@ describe('Wizards for SCL element SubNetwork', () => {
         expect(updateAction.new.element.innerHTML.trim()).to.equal('100.0');
         expect(updateAction.new.element).to.not.have.attribute('multiplier');
       });
+    });
+  });
+
+  describe('include an create wizard that', () => {
+    beforeEach(async () => {
+      doc = await fetch('/test/testfiles/valid2003.scd')
+        .then(response => response.text())
+        .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+      const wizard = createSubNetworkWizard(
+        doc.querySelector('Communication')!
+      );
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      inputs = Array.from(element.wizardUI.inputs);
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialog?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    });
+
+    it('does not allow creating SubNetwork with empty name attribute', async () => {
+      input = <WizardTextField>inputs.find(input => input.label === 'name');
+      input.value = '';
+      await input.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      expect(actionEvent).to.not.be.called;
+    });
+
+    it('triggers an editor action to create SubNetwork element including BitRate', async () => {
+      input = <WizardTextField>inputs.find(input => input.label === 'name');
+      input.value = 'myNewSubNetworkName';
+      await input.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      expect(actionEvent).to.be.calledOnce;
+      expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
+
+      const updateAction = <Create>actionEvent.args[0][0].detail.action;
+      expect(updateAction.new.element).to.have.a.attribute(
+        'name',
+        'myNewSubNetworkName'
+      );
+      expect(updateAction.new.element).to.have.a.attribute('desc', '');
+      expect(updateAction.new.element).to.have.a.attribute('type', '8-MMS');
+      expect(updateAction.new.element.querySelector('BitRate')).to.exist;
+      expect(
+        updateAction.new.element.querySelector('BitRate')
+      ).to.have.attribute('multiplier', 'M');
+      expect(
+        updateAction.new.element.querySelector('BitRate')?.textContent?.trim()
+      ).to.equal('100');
+    });
+
+    it('triggers an editor action to create SubNetwork element excluding non required /BitRate', async () => {
+      const name = <WizardTextField>(
+        inputs.find(input => input.label === 'name')
+      );
+      const desc = <WizardTextField>(
+        inputs.find(input => input.label === 'desc')
+      );
+      const type = <WizardTextField>(
+        inputs.find(input => input.label === 'type')
+      );
+      const bitrate = <WizardTextField>(
+        inputs.find(input => input.label === 'BitRate')
+      );
+      await element.requestUpdate();
+
+      desc.nullSwitch?.click();
+      type.nullSwitch?.click();
+      bitrate.nullSwitch?.click();
+      name.value = 'myNewSubNetworkName';
+      await name.requestUpdate();
+
+      primaryAction.click();
+      await element.requestUpdate();
+
+      expect(actionEvent).to.be.calledOnce;
+      expect(actionEvent.args[0][0].detail.action).to.satisfy(isCreate);
+
+      const updateAction = <Create>actionEvent.args[0][0].detail.action;
+      expect(updateAction.new.element).to.have.a.attribute(
+        'name',
+        'myNewSubNetworkName'
+      );
+      expect(updateAction.new.element).to.not.have.a.attribute('desc');
+      expect(updateAction.new.element).to.not.have.a.attribute('type');
+      expect(updateAction.new.element.querySelector('BitRate')).to.not.exist;
     });
   });
 });

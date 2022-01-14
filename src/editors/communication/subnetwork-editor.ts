@@ -18,7 +18,8 @@ import {
 } from '../../foundation.js';
 import { styles } from './foundation.js';
 import { createConnectedApWizard } from '../../wizards/connectedap.js';
-import { subNetworkWizard } from '../../wizards/subnetwork.js';
+import { editSubNetworkWizard } from '../../wizards/subnetwork.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`Communication`]] subeditor for a `SubNetwork` element. */
 @customElement('subnetwork-editor')
@@ -57,9 +58,8 @@ export class SubNetworkEditor extends LitElement {
   }
 
   private openEditWizard(): void {
-    this.dispatchEvent(
-      newWizardEvent(subNetworkWizard({ element: this.element }))
-    );
+    const wizard = wizards['SubNetwork'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
   remove(): void {

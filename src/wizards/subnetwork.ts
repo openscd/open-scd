@@ -13,10 +13,6 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-import {
-  isCreateOptions,
-  WizardOptions,
-} from '../editors/communication/foundation.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {
@@ -72,7 +68,7 @@ function contentSubNetwork(options: ContentOptions): TemplateResult[] {
 }
 
 export function createSubNetworkAction(parent: Element): WizardActor {
-  return (inputs: WizardInput[], wizard: Element): EditorAction[] => {
+  return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
@@ -105,92 +101,22 @@ export function createSubNetworkAction(parent: Element): WizardActor {
   };
 }
 
-export function subNetworkWizard(options: WizardOptions): Wizard {
-  const [
-    heading,
-    actionName,
-    actionIcon,
-    action,
-    name,
-    desc,
-    type,
-    BitRate,
-    multiplier,
-    element,
-  ] = isCreateOptions(options)
-    ? [
-        get('subnetwork.wizard.title.add'),
-        get('add'),
-        'add',
-        createSubNetworkAction(options.parent),
-        '',
-        '',
-        initial.type,
-        initial.bitrate,
-        initial.multiplier,
-        undefined,
-      ]
-    : [
-        get('subnetwork.wizard.title.edit'),
-        get('save'),
-        'edit',
-        updateSubNetworkAction(options.element),
-        options.element.getAttribute('name'),
-        options.element.getAttribute('desc'),
-        options.element.getAttribute('type'),
-        options.element
-          .querySelector('SubNetwork > BitRate')
-          ?.textContent?.trim() ?? null,
-        options.element
-          .querySelector('SubNetwork > BitRate')
-          ?.getAttribute('multiplier') ?? null,
-        options.element,
-      ];
-
+export function createSubNetworkWizard(parent: Element): Wizard {
   return [
     {
-      title: heading,
-      element,
+      title: get('wizard.title.create', { tagName: 'SubNetwork' }),
       primary: {
-        icon: actionIcon,
-        label: actionName,
-        action: action,
+        icon: 'add',
+        label: get('add'),
+        action: createSubNetworkAction(parent),
       },
-      content: [
-        html`<wizard-textfield
-          label="name"
-          .maybeValue=${name}
-          helper="${translate('subnetwork.wizard.nameHelper')}"
-          required
-          validationMessage="${translate('textfield.required')}"
-          dialogInitialFocus
-        ></wizard-textfield>`,
-        html`<wizard-textfield
-          label="desc"
-          .maybeValue=${desc}
-          nullable
-          helper="${translate('subnetwork.wizard.descHelper')}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
-          label="type"
-          .maybeValue=${type}
-          nullable
-          helper="${translate('subnetwork.wizard.typeHelper')}"
-          pattern="${patterns.normalizedString}"
-        ></wizard-textfield>`,
-        html`<wizard-textfield
-          label="BitRate"
-          .maybeValue=${BitRate}
-          nullable
-          unit="b/s"
-          .multipliers=${[null, 'M']}
-          .multiplier=${multiplier}
-          helper="${translate('subnetwork.wizard.bitrateHelper')}"
-          required
-          validationMessage="${translate('textfield.nonempty')}"
-          pattern="${patterns.decimal}"
-        ></wizard-textfield>`,
-      ],
+      content: contentSubNetwork({
+        name: '',
+        desc: '',
+        type: initial.type,
+        BitRate: initial.bitrate,
+        multiplier: initial.multiplier,
+      }),
     },
   ];
 }

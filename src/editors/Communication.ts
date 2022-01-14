@@ -10,7 +10,7 @@ import {
   createElement,
   isPublic,
 } from '../foundation.js';
-import { subNetworkWizard } from '../wizards/subnetwork.js';
+import { createSubNetworkWizard } from '../wizards/subnetwork.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */
 export default class CommunicationPlugin extends LitElement {
@@ -31,16 +31,10 @@ export default class CommunicationPlugin extends LitElement {
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
   private openCreateSubNetworkWizard(): void {
-    if (!this.doc.querySelector(':root > Communication'))
-      this.createCommunication();
+    const parent = this.doc.querySelector(':root > Communication');
+    if (!parent) this.createCommunication();
 
-    this.dispatchEvent(
-      newWizardEvent(
-        subNetworkWizard({
-          parent: this.doc.querySelector(':root > Communication')!,
-        })
-      )
-    );
+    this.dispatchEvent(newWizardEvent(createSubNetworkWizard(parent!)));
   }
 
   render(): TemplateResult {
