@@ -140,13 +140,11 @@ export default class SingleLineDiagramPlugin extends LitElement {
    * Draw all equipment and connections of the selected Substation.
    */
   private drawSubstation(): void {
-    if (this.selectedSubstation !== undefined) {
-      const substationGroup = createSubstationElement(this.selectedSubstation!);
-      this.svg.appendChild(substationGroup);
+    const substationGroup = createSubstationElement(this.selectedSubstation!);
+    this.svg.appendChild(substationGroup);
 
-      this.drawPowerTransformers(this.selectedSubstation!, substationGroup);
-      this.drawVoltageLevels(this.selectedSubstation!, substationGroup);
-    }
+    this.drawPowerTransformers(this.selectedSubstation!, substationGroup);
+    this.drawVoltageLevels(this.selectedSubstation!, substationGroup);
   }
 
   /**
