@@ -8,16 +8,22 @@ describe('ldevice-container', () => {
   let validSCL: XMLDocument;
 
   beforeEach(async () => {
-    validSCL = await fetch('/test/testfiles/valid2007B4.scd')
+    validSCL = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-
-    element = await fixture(html`<ldevice-container
-      .element=${validSCL.querySelector('LDevice')}
-    ></ldevice-container>`);
   });
 
   it('looks like the latest snapshot', async () => {
+    element = await fixture(html`<ldevice-container
+      .element=${validSCL.querySelector('LDevice[inst="Disconnectors"]')}
+    ></ldevice-container>`);
+    await expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('looks like the latest snapshot with a LDevice without LN elements', async () => {
+    element = await fixture(html`<ldevice-container
+      .element=${validSCL.querySelector('LDevice[inst="EmptyLDevice"]')}
+    ></ldevice-container>`);
     await expect(element).shadowDom.to.equalSnapshot();
   });
 });
