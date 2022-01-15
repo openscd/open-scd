@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/openscd/open-scd/compare/v0.8.0...v0.8.1) (2022-01-15)
+
+
+### Features
+
+* **editors/ied:** add read only data model structure ([#423](https://github.com/openscd/open-scd/issues/423)) ([fa15c7a](https://github.com/openscd/open-scd/commits/fa15c7a598f92c2af7237c3e9e1060d453b2162d)), closes [#454](https://github.com/openscd/open-scd/issues/454)
+* **editors/ied:** Add toggle for LDevice child elements ([#484](https://github.com/openscd/open-scd/issues/484)) ([9385506](https://github.com/openscd/open-scd/commits/9385506d3f5356bf0523eb3678c13d6b38c17ba9))
+* **editors/ied:** Changed icon of IED Editor ([#481](https://github.com/openscd/open-scd/issues/481)) ([be4c8ca](https://github.com/openscd/open-scd/commits/be4c8ca60e6817739094a92a77ef82c1c3911f2c))
+* **editors/SingleLineDiagram:** allow selecting the Substation element ([#449](https://github.com/openscd/open-scd/issues/449)) ([d09efec](https://github.com/openscd/open-scd/commits/d09efec1eccdf2363ed1db22c2558b9cc25b9395))
+* **editors/SingleLineDiagram:** allow updating X/Y coordinates in SLD for Busbar/ConductingEquipment/PowerTransformer ([#455](https://github.com/openscd/open-scd/issues/455)) ([dfae9b0](https://github.com/openscd/open-scd/commits/dfae9b0deda74cd12785b0a55a9298e91ec21b01))
+* **foundation:** allow dynamic wizards ([#471](https://github.com/openscd/open-scd/issues/471)) ([64a27d5](https://github.com/openscd/open-scd/commits/64a27d5875d2362b1796e811f909e13af7995c33))
+* **UpdateDescriptionSEL:** add menu type plugin for SEL specific IEDs ([#424](https://github.com/openscd/open-scd/issues/424)) ([12c9123](https://github.com/openscd/open-scd/commits/12c912301f8a918f27ef55b702a0334f76e96a45))
+* **zeroline:** show SampledValueControl for IED and whole project ([#477](https://github.com/openscd/open-scd/issues/477)) ([0253adc](https://github.com/openscd/open-scd/commits/0253adc3d696cd806eff23534114c122d27bb979))
+
+
+### Bug Fixes
+
+* **editors/template/lnodetype:** fix incorrect pattern for lnClass ([#469](https://github.com/openscd/open-scd/issues/469)) ([55e0c7e](https://github.com/openscd/open-scd/commits/55e0c7e999536bbd58b574be1ab93237974dfb87))
+* **wizards/fcda:** remove incorrect iedName from FCDA ([#446](https://github.com/openscd/open-scd/issues/446)) ([eae9f6e](https://github.com/openscd/open-scd/commits/eae9f6edc313bf293caa31ed3f82d5261a9ef5f3))
+
 ## [0.8.0](https://github.com/openscd/open-scd/compare/v0.7.1...v0.8.0) (2021-12-10)
 
 
