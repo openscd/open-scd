@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.2](https://github.com/openscd/open-scd/compare/v0.8.1...v0.8.2) (2022-01-15)
+
+
+### Bug Fixes
+
+* **Help:** hot-fix incorrect import statement ([c3baa84](https://github.com/openscd/open-scd/commits/c3baa847e1446bf4f2d3b2ad74834228dfc96d08))
+
 ### [0.8.1](https://github.com/openscd/open-scd/compare/v0.8.0...v0.8.1) (2022-01-15)
 
 
