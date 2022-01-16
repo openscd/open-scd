@@ -211,6 +211,8 @@
 						</DOI>
 					</LN>
 				</LDevice>
+				<LDevice inst="EmptyLDevice">
+				</LDevice>
 			</Server>
 		</AccessPoint>
 		<KDC iedName="IED1" apName="P1"/>
