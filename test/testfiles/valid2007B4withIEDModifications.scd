@@ -480,6 +480,8 @@
             <DA fc="CF" name="sVC" bType="Struct" type="ScaledValueConfig"/>
         </DOType>
 		<DOType cdc="ENC" id="Dummy.LLN0.Mod">
+			<SDO fc="ST" name="sdoName2" type="nonExistingDoType"/>
+			<SDO fc="ST" name="sdoName3" type="doTypeNotHavingAnyDaElements"/>
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
@@ -532,12 +534,12 @@
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
 		</DOType>
-		<DOType cdc="LPL" id="Dummy.LLN0.NamPlt">
-			<DA fc="DC" name="vendor" bType="VisString255" />
-			<DA fc="DC" name="swRev" bType="VisString255" />
-			<DA fc="DC" name="d" bType="VisString255" />
-			<DA fc="DC" name="configRev" bType="VisString255" />
-			<DA fc="EX" name="ldNs" bType="VisString255" />
+		<DOType cdc="ENS" id="Dummy.LLN0.Health">
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Health" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+		</DOType>
+		<DOType cdc="LPLSDF" id="doTypeNotHavingAnyDaElements">
 		</DOType>
 		<DOType cdc="DPL" id="Dummy.LPHD1.PhyNam">
 			<DA fc="DC" name="vendor" bType="VisString255" />
