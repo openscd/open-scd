@@ -150,4 +150,92 @@ describe('do-container', () => {
       expect(nestedDOs).to.be.empty;
     });
   });
+
+  describe('has a getInstanceDOElement function ', () => {
+    it('which return a DOI when a DO has a valid instance element.', async () => {
+      element = await fixture(html`<do-container
+        .element=${validSCL.querySelector(
+          'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+        .instanceElement=${validSCL.querySelector(
+          'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+      ></do-container>`);
+
+      const sdo = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > SDO[name="anotherPosDo"]')
+  
+      const doi = element['getInstanceDOElement'](sdo!);
+      expect(doi).to.not.be.null;
+      expect(doi?.tagName).to.eql('SDI');
+      expect(doi?.getAttribute('name')).to.eql('anotherPosDo');
+    });
+
+    it('which returns null if there\'s no SDI available within a DOI.', async () => {
+      element = await fixture(html`<do-container
+        .element=${validSCL.querySelector(
+          'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+        .instanceElement=${validSCL.querySelector(
+          'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+      ></do-container>`);
+
+      const sdo = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > SDO[name="someQualityThing"]')
+
+      const doi = element['getInstanceDOElement'](sdo!);
+      expect(doi).to.be.null;
+    });
+
+    it('which returns null if no root DOI is available.', async () => {
+      element = await fixture(html`<do-container
+        .element=${validSCL.querySelector(
+          'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+      ></do-container>`);
+
+      const sdo = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > SDO[name="someQualityThing"]')
+
+      const doi = element['getInstanceDOElement'](sdo!);
+      expect(doi).to.be.null;
+    });
+  });
+
+  describe('has a getInstanceDAElement function ', () => {
+    it('which return a DAI when a DA has a valid instance element.', async () => {
+      element = await fixture(html`<do-container
+        .element=${validSCL.querySelector(
+          'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+        .instanceElement=${validSCL.querySelector(
+          'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+      ></do-container>`);
+
+      const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="ctlModel"]')
+  
+      const dai = element['getInstanceDAElement'](da!);
+      expect(dai).to.not.be.null;
+      expect(dai?.tagName).to.eql('DAI');
+      expect(dai?.getAttribute('name')).to.eql('ctlModel');
+    });
+
+    it('which returns null if there\'s no DAI available within a DOI.', async () => {
+      element = await fixture(html`<do-container
+        .element=${validSCL.querySelector(
+          'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+        .instanceElement=${validSCL.querySelector(
+          'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+      ></do-container>`);
+
+      const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]')
+
+      const dai = element['getInstanceDAElement'](da!);
+      expect(dai).to.be.null;
+    });
+
+    it('which returns null if no root DOI is available.', async () => {
+      element = await fixture(html`<do-container
+        .element=${validSCL.querySelector(
+          'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+      ></do-container>`);
+
+      const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]')
+
+      const dai = element['getInstanceDAElement'](da!);
+      expect(dai).to.be.null;
+    });
+  });
 });

@@ -145,6 +145,8 @@
 					</LN>
 					<LN lnClass="CSWI" inst="1" lnType="Dummy.CSWIwithoutCtlModel">
 						<DOI name="Pos">
+							<SDI name="anotherPosDo">
+							</SDI>
 							<DAI name="ctlModel">
 								<Val>sbo-with-enhanced-security</Val>
 							</DAI>
@@ -163,7 +165,7 @@
 								<DAI name="numPls">
     								<Val>1</Val>
 								</DAI>
-                            </SDI>
+              </SDI>
 							<DAI name="ctlModel">
 								<Val>sbo-with-enhanced-security</Val>
 							</DAI>
@@ -582,6 +584,8 @@
 			<DA fc="DC" name="d" bType="VisString255" />
 		</DOType>
 		<DOType cdc="DPC" id="Dummy.CSWI.Pos2">
+			<SDO fc="ST" name="anotherPosDo" type="Quality"/>
+			<SDO fc="ST" name="someQualityThing" type="Quality"/>
 			<DA fc="ST" name="stVal" bType="Dbpos" />
 			<DA fc="ST" name="q" bType="Quality" />
 			<DA fc="ST" name="t" bType="Timestamp" />
