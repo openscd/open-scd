@@ -24,6 +24,13 @@ snapshots["A component to visualize SCL element IED looks like the latest snapsh
   </mwc-fab>
   <mwc-fab
     class="selectsmv"
+    mini=""
+    slot="action"
+  >
+    <mwc-icon slot="icon">
+    </mwc-icon>
+  </mwc-fab>
+  <mwc-fab
     class="selectreport"
     mini=""
     slot="action"

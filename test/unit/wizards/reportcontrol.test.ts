@@ -42,7 +42,7 @@ describe('Wizards for SCL ReportControl element', () => {
       const wizard = editReportControlWizard(
         doc.querySelector('ReportControl')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       inputs = Array.from(element.wizardUI.inputs);
@@ -274,7 +274,7 @@ describe('Wizards for SCL ReportControl element', () => {
         element.workflow.length = 0;
         await element.requestUpdate();
 
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
 
         inputs = Array.from(element.wizardUI.inputs);
@@ -318,7 +318,7 @@ describe('Wizards for SCL ReportControl element', () => {
   describe('define a select wizard that', () => {
     beforeEach(async () => {
       const wizard = selectReportControlWizard(doc.documentElement);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       await element.wizardUI.requestUpdate(); // make sure wizard is rendered
