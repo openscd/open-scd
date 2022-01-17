@@ -33,7 +33,7 @@ describe('Wizards for SCL TrgOps element', () => {
   describe('define an edit wizard that', () => {
     beforeEach(async () => {
       const wizard = editTrgOpsWizard(trgOps);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       inputs = Array.from(element.wizardUI.inputs);
@@ -157,7 +157,7 @@ describe('Wizards for SCL TrgOps element', () => {
         trgOps = reportControlBlock.querySelector('TrgOps')!;
         element.workflow.length = 0;
         const wizard = editTrgOpsWizard(trgOps);
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
 
         inputs = Array.from(element.wizardUI.inputs);

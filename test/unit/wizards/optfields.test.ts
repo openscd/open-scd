@@ -33,7 +33,7 @@ describe('Wizards for SCL OptFields element', () => {
   describe('define an edit wizard that', () => {
     beforeEach(async () => {
       const wizard = editOptFieldsWizard(optFields);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
 
       inputs = Array.from(element.wizardUI.inputs);
