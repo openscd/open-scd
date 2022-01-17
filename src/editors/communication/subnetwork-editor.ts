@@ -16,7 +16,6 @@ import {
   newActionEvent,
   compareNames,
 } from '../../foundation.js';
-import { styles } from './foundation.js';
 import { createConnectedApWizard } from '../../wizards/connectedap.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
@@ -137,8 +136,6 @@ export class SubNetworkEditor extends LitElement {
   }
 
   static styles = css`
-    ${styles}
-
     #iedSection {
       background-color: var(--mdc-theme-on-primary);
       margin: 0px;
@@ -166,6 +163,11 @@ export class SubNetworkEditor extends LitElement {
       box-sizing: border-box;
       padding: 8px 12px 8px;
       grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+    }
+
+    abbr {
+      text-decoration: none;
+      border-bottom: none;
     }
   `;
 }
