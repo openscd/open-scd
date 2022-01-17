@@ -63,7 +63,7 @@ describe('ImportIedsPlugin', () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
-      ).to.equal(14);
+      ).to.equal(16);
       await prepareImportIEDs(element.parent, importDoc, doc);
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
