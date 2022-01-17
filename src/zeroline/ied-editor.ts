@@ -14,7 +14,7 @@ import { Fab } from '@material/mwc-fab';
 import '../action-icon.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
 import { gooseIcon, smvIcon, reportIcon } from '../icons.js';
-import { newWizardEvent } from '../foundation.js';
+import { newSubWizardEvent, newWizardEvent } from '../foundation.js';
 import { selectGseControlWizard } from '../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../wizards/sampledvaluecontrol.js';
 import { selectReportControlWizard } from '../wizards/reportcontrol.js';
@@ -34,8 +34,9 @@ export class IedEditor extends LitElement {
   @query('.connectreport') connectReport!: Fab;
 
   private openReportControlSelection(): void {
-    const wizard = selectReportControlWizard(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    this.dispatchEvent(
+      newSubWizardEvent(() => selectReportControlWizard(this.element))
+    );
   }
 
   private openGseControlSelection(): void {

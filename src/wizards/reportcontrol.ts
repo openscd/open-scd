@@ -3,6 +3,9 @@ import { get, translate } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../wizard-textfield.js';
 import '../wizard-select.js';
@@ -15,6 +18,8 @@ import {
   getValue,
   identity,
   isPublic,
+  newSubWizardEvent,
+  selector,
   SimpleAction,
   Wizard,
   WizardActor,
@@ -230,6 +235,17 @@ export function selectReportControlWizard(element: Element): Wizard {
       title: get('wizard.title.select', { tagName: 'ReportControl' }),
       content: [
         html`<filtered-list
+          @selected=${(e: SingleSelectedEvent) => {
+            const identity = (<ListItemBase>(<List>e.target).selected).value;
+            const reportControl = element.querySelector(
+              selector('ReportControl', identity)
+            );
+            if (!reportControl) return;
+
+            e.target?.dispatchEvent(
+              newSubWizardEvent(() => editReportControlWizard(reportControl))
+            );
+          }}
           >${reportControls.map(
             reportControl =>
               html`<mwc-list-item twoline value="${identity(reportControl)}"
