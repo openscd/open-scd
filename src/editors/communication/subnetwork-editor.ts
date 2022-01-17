@@ -18,7 +18,6 @@ import {
 } from '../../foundation.js';
 import { styles } from './foundation.js';
 import { createConnectedApWizard } from '../../wizards/connectedap.js';
-import { editSubNetworkWizard } from '../../wizards/subnetwork.js';
 import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`Communication`]] subeditor for a `SubNetwork` element. */
@@ -45,12 +44,12 @@ export class SubNetworkEditor extends LitElement {
   /** SubNetwork child elements BitRate label */
   @property()
   get bitrate(): string | null {
-    const V = this.element.querySelector('BitRate');
-    if (V === null) return null;
-    const v = V.textContent ?? '';
-    const m = V.getAttribute('multiplier');
+    const Br = this.element.querySelector('BitRate');
+    if (Br === null) return null;
+    const br = Br.textContent ?? '';
+    const m = Br.getAttribute('multiplier');
     const u = m === null ? 'b/s' : ' ' + m + 'b/s';
-    return v ? v + u : null;
+    return br ? br + u : null;
   }
 
   private openConnectedAPwizard(): void {
@@ -76,9 +75,7 @@ export class SubNetworkEditor extends LitElement {
   }
 
   private renderIedContainer(): TemplateResult[] {
-    return Array.from(
-      this.element.querySelectorAll(':scope > ConnectedAP') ?? []
-    )
+    return Array.from(this.element.querySelectorAll(':scope > ConnectedAP'))
       .map(connAP => connAP.getAttribute('iedName')!)
       .filter((v, i, a) => a.indexOf(v) === i)
       .sort(compareNames)

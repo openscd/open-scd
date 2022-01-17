@@ -32,6 +32,8 @@ snapshots["subnetwork-editor looks like the latest snapshot"] =
       <div id="connApContainer">
         <connectedap-editor>
         </connectedap-editor>
+        <connectedap-editor class="disabled">
+        </connectedap-editor>
       </div>
     </action-pane>
   </div>
