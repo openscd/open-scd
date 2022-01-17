@@ -24,17 +24,15 @@ snapshots["subnetwork-editor looks like the latest snapshot"] =
     <mwc-icon-button icon="playlist_add">
     </mwc-icon-button>
   </abbr>
-  <div id="connAPContainer">
+  <div id="iedContainer">
     <action-pane
       id="iedSection"
       label="IED1"
     >
-      <div id="connApContainer">
-        <connectedap-editor>
-        </connectedap-editor>
-        <connectedap-editor class="disabled">
-        </connectedap-editor>
-      </div>
+      <connectedap-editor>
+      </connectedap-editor>
+      <connectedap-editor class="disabled">
+      </connectedap-editor>
     </action-pane>
   </div>
 </action-pane>

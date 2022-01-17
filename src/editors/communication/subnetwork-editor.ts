@@ -80,21 +80,19 @@ export class SubNetworkEditor extends LitElement {
       .sort(compareNames)
       .map(
         iedName => html` <action-pane id="iedSection" label="${iedName}">
-          <div id="connApContainer">
-            ${Array.from(
-              this.element.parentElement?.querySelectorAll(
-                `:scope > SubNetwork > ConnectedAP[iedName="${iedName}"]`
-              ) ?? []
-            ).map(
-              connectedAP =>
-                html`<connectedap-editor
-                  class="${connectedAP.parentElement !== this.element
-                    ? 'disabled'
-                    : ''}"
-                  .element=${connectedAP}
-                ></connectedap-editor>`
-            )}
-          </div>
+          ${Array.from(
+            this.element.parentElement?.querySelectorAll(
+              `:scope > SubNetwork > ConnectedAP[iedName="${iedName}"]`
+            ) ?? []
+          ).map(
+            connectedAP =>
+              html`<connectedap-editor
+                class="${connectedAP.parentElement !== this.element
+                  ? 'disabled'
+                  : ''}"
+                .element=${connectedAP}
+              ></connectedap-editor>`
+          )}
         </action-pane>`
       );
   }
@@ -131,14 +129,17 @@ export class SubNetworkEditor extends LitElement {
           @click="${() => this.openConnectedAPwizard()}"
         ></mwc-icon-button>
       </abbr>
-      <div id="connAPContainer">${this.renderIedContainer()}</div>
+      <div id="iedContainer">${this.renderIedContainer()}</div>
     </action-pane> `;
   }
 
   static styles = css`
-    #iedSection {
-      background-color: var(--mdc-theme-on-primary);
-      margin: 0px;
+    #iedContainer {
+      display: grid;
+      box-sizing: border-box;
+      gap: 12px;
+      padding: 8px 12px 16px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, auto));
     }
 
     #iedSection:not(:focus):not(:focus-within) .disabled {
@@ -148,21 +149,6 @@ export class SubNetworkEditor extends LitElement {
     #iedSection .disabled {
       pointer-events: none;
       opacity: 0.5;
-    }
-
-    #connAPContainer {
-      display: grid;
-      box-sizing: border-box;
-      gap: 12px;
-      padding: 8px 12px 16px;
-      grid-template-columns: repeat(auto-fit, minmax(150px, auto));
-    }
-
-    #connApContainer {
-      display: grid;
-      box-sizing: border-box;
-      padding: 8px 12px 8px;
-      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
     }
 
     abbr {
