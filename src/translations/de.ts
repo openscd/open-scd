@@ -66,6 +66,7 @@ export const de: Translations = {
     iedsloading: 'IEDs werden geladen...',
     commmap: 'Kommunikationszuordnung',
     gsecontrol: 'GOOSEs anzeigen',
+    smvcontrol: 'Sampled Values anzeigen',
   },
   editing: {
     created: '{{ name }} hinzugefügt',
@@ -156,6 +157,21 @@ export const de: Translations = {
     },
     action: {
       addvoltagelevel: 'Spannungsebene hinzufügen',
+    },
+  },
+  iededitor: {
+    searchHelper: 'IED auswählen',
+    searchHelperDesc: '({{description}})',
+    missing: 'Kein IED vorhanden',
+    toggleChildElements: '???',
+  },
+  powertransformer: {
+    wizard: {
+      nameHelper: '`Name des Leistungstransformators',
+      descHelper: 'Beschreibung des Leistungstransformators',
+      title: {
+        edit: 'Leistungstransformator bearbeiten',
+      },
     },
   },
   voltagelevel: {
@@ -356,10 +372,6 @@ export const de: Translations = {
     name: 'Schnittstelle',
     wizard: {
       addschemainsttype: 'XMLSchema-instance type hinzufügen',
-      title: {
-        connect: 'Schnittstelle verbinden',
-        edit: 'Schnittstelle bearbeiten',
-      },
     },
     action: {
       addaddress: 'Adressfeld bearbeitet ({{iedName}} - {{apName}})',
@@ -391,6 +403,14 @@ export const de: Translations = {
   },
   updatedesc: {
     abb: 'Signalbeschreibungen zu ABB IEDs hinzugefügt',
+    sel: 'Signalbeschreibungen zu SEL IEDs hinzugefügt',
+  },
+  sld: {
+    substationSelector: 'Schaltanlage auswählen',
+    wizard: {
+      xCoordinateHelper: 'X-Koordinate im Einphasenersatzschaltbild',
+      yCoordinateHelper: 'Y-Koordinate im Einphasenersatzschaltbild',
+    },
   },
   userinfo: {
     loggedInAs: '???'

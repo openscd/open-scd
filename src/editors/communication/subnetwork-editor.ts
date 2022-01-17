@@ -27,7 +27,7 @@ import {
   cloneElement,
 } from '../../foundation.js';
 import { styles, WizardOptions, isCreateOptions } from './foundation.js';
-import { createConnectedApWizard } from './connectedap-editor.js';
+import { createConnectedApWizard } from '../../wizards/connectedap.js';
 
 /** Initial attribute values suggested for `SubNetwork` creation */
 const initial = {

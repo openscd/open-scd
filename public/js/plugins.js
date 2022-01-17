@@ -7,6 +7,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'IED',
+    src: '/src/editors/IED.js',
+    icon: 'developer_board',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Single Line Diagram',
     src: '/src/editors/SingleLineDiagram.js',
     icon: 'edit',
@@ -104,6 +111,14 @@ export const officialPlugins = [
   {
     name: 'Update desc (ABB)',
     src: '/src/menu/UpdateDescriptionABB.js',
+    default: false,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
+    name: 'Update desc (SEL)',
+    src: '/src/menu/UpdateDescriptionSEL.js',
     default: false,
     kind: 'menu',
     requireDoc: true,

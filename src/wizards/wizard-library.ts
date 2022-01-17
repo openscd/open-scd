@@ -1,19 +1,14 @@
 import { SCLTag, Wizard } from '../foundation.js';
 
 import { createBayWizard, editBayWizard } from './bay.js';
-import {
-  createConductingEquipmentWizard,
-  editConductingEquipmentWizard,
-} from './conductingequipment.js';
+import { createConductingEquipmentWizard, editConductingEquipmentWizard} from './conductingequipment.js';
 import { editConnectivityNodeWizard } from './connectivitynode.js';
 import { createFCDAsWizard } from './fcda.js';
 import { lNodeWizard } from './lnode.js';
 import { createSubstationWizard, substationEditWizard } from './substation.js';
 import { editTerminalWizard } from './terminal.js';
-import {
-  voltageLevelCreateWizard,
-  voltageLevelEditWizard,
-} from './voltagelevel.js';
+import { voltageLevelCreateWizard, voltageLevelEditWizard } from './voltagelevel.js';
+import { editPowerTransformerWizard } from "./powertransformer.js";
 
 type SclElementWizard = (element: Element) => Wizard | undefined;
 
@@ -341,7 +336,7 @@ export const wizards: Record<
     create: emptyWizard,
   },
   PowerTransformer: {
-    edit: emptyWizard,
+    edit: editPowerTransformerWizard,
     create: emptyWizard,
   },
   Private: {

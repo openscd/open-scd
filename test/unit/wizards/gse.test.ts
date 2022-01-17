@@ -38,7 +38,7 @@ describe('gse wizards', () => {
       const wizard = editGseWizard(
         doc.querySelector('GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
     });
     it('looks like the latest snapshot', async () => {
@@ -67,7 +67,7 @@ describe('gse wizards', () => {
       wizard = editGseWizard(
         doc.querySelector('GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();

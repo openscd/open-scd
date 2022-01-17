@@ -74,7 +74,7 @@ describe('compas-upload-version', () => {
 
     beforeEach(async () => {
       wizardElement = await fixture(html `<mock-wizard></mock-wizard>`);
-      wizardElement.workflow.push(addVersionToCompasWizard({docId: docId, docName: docName}));
+      wizardElement.workflow.push(() => addVersionToCompasWizard({docId: docId, docName: docName}));
       await wizardElement.requestUpdate();
 
       element = wizardElement.wizardUI.dialog!

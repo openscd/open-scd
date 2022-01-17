@@ -16,7 +16,9 @@ describe('guess-wizard-integration', () => {
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
     validSCL.querySelector('Substation')!.innerHTML = '';
     element = <MockWizard>await fixture(html`<mock-wizard></mock-wizard>`);
-    element.workflow.push(guessVoltageLevel(validSCL));
+
+    const wizard = guessVoltageLevel(validSCL);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
   });
 
@@ -78,8 +80,11 @@ describe('guess-wizarding-editing-integration', () => {
     element = <MockWizardEditor>(
       await fixture(html`<mock-wizard-editor></mock-wizard-editor>`)
     );
-    element.workflow.push(guessVoltageLevel(validSCL));
+
+    const wizard = guessVoltageLevel(validSCL);
+    element.workflow.push(() => wizard);
     await element.requestUpdate();
+
     (<HTMLElement>(
       element.wizardUI.dialog!.querySelector(
         '#ctlModelList > mwc-check-list-item:nth-child(5)'

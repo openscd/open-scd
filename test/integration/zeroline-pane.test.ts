@@ -44,6 +44,20 @@ describe('zeroline-pane wizarding editing integration', () => {
     );
   });
 
+  it('opens selectSampledValueControlWizard for the complete SCL file', async () => {
+    zeroline.smvcontrol.click();
+    await parent.updateComplete;
+
+    expect(parent.wizardUI.dialog).to.exist;
+    const smvControlList = <FilteredList>(
+      parent.wizardUI.dialog?.querySelector('filtered-list')
+    );
+    await smvControlList.updateComplete;
+    expect(smvControlList.items.length).to.equal(
+      doc.querySelectorAll('SampledValueControl').length
+    );
+  });
+
   it('add Substation element with createSubstationWizard', async () => {
     expect(doc.querySelector('Substation[name="newSubstation"]')).to.not.exist;
     zeroline.createsubstation.click();
