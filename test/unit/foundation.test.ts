@@ -149,12 +149,19 @@ describe('foundation', () => {
   });
 
   describe('WizardEvent', () => {
-    it('optionally bears a wizard in its detail', () => {
+    it('optionally bears a wizard factory in its detail', () => {
       expect(newWizardEvent()).property('detail').property('wizard').to.be.null;
       expect(newWizardEvent([]))
         .property('detail')
         .property('wizard')
-        .to.be.an('array').and.to.be.empty;
+        .to.be.a('function');
+    });
+
+    it('allows to dispatch dynamic wizards', () => {
+      expect(newWizardEvent(() => []))
+        .property('detail')
+        .property('wizard')
+        .to.be.a('function');
     });
   });
 

@@ -190,7 +190,7 @@
 		<AccessPoint name="P1">
 			<Server>
 				<Authentication none="true" />
-				<LDevice inst="CircuitBreaker_CB1">
+				<LDevice name="LDeviceA" inst="CircuitBreaker_CB1">
 					<LN0 lnClass="LLN0" inst="" lnType="Dummy.LLN0">
 						<DataSet name="GooseDataSet1">
                             <FCDA ldInst="CircuitBreaker_CB1" prefix="" lnClass="XCBR" lnInst="1" doName="Pos" daName="stVal" fc="ST"/>

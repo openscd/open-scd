@@ -5,7 +5,6 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
-import { Switch } from '@material/mwc-switch';
 
 import { FilteredList } from '../../../../src/filtered-list.js';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
@@ -96,7 +95,6 @@ describe('LNodeType wizards', () => {
 
   describe('defines a createLNodeTypeWizard', () => {
     let selector: Select;
-    let autoimport: Switch;
     let idField: WizardTextField;
     let primayAction: HTMLElement;
     beforeEach(async () => {

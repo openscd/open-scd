@@ -25,7 +25,7 @@ describe('dataset wizards', () => {
       const wizard = editDataSetWizard(
         doc.querySelector('IED[name="IED2"] DataSet[name="GooseDataSet1"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(

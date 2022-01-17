@@ -29,7 +29,7 @@ describe('gsecontrol wizarding editing integration', () => {
 
     beforeEach(async () => {
       const wizard = selectGseControlWizard(doc.documentElement);
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       gseControlList = <FilteredList>(
         element.wizardUI.dialog?.querySelector('filtered-list')
@@ -66,7 +66,7 @@ describe('gsecontrol wizarding editing integration', () => {
       beforeEach(async () => {
         gseControl = doc.querySelector('GSEControl[name="GCB"]')!;
         const wizard = editGseControlWizard(gseControl);
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
         nameField = element.wizardUI.dialog!.querySelector(
           'wizard-textfield[label="name"]'
@@ -157,7 +157,7 @@ describe('gsecontrol wizarding editing integration', () => {
       beforeEach(async () => {
         gseControl = doc.querySelector('GSEControl[name="GCB2"]')!;
         const wizard = editGseControlWizard(gseControl);
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
       });
 
@@ -177,7 +177,7 @@ describe('gsecontrol wizarding editing integration', () => {
           'IED[name="IED2"] GSEControl[name="GCB"]'
         )!;
         const wizard = editGseControlWizard(gseControl);
-        element.workflow.push(wizard);
+        element.workflow.push(() => wizard);
         await element.requestUpdate();
       });
 

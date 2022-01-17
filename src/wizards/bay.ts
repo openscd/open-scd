@@ -12,7 +12,7 @@ import {
 } from '../foundation.js';
 import { updateNamingAction } from './foundation/actions.js';
 
-function render(name: string | null, desc: string | null): TemplateResult[] {
+export function renderBayWizard(name: string | null, desc: string | null): TemplateResult[] {
   return [
     html`<wizard-textfield
       label="name"
@@ -61,7 +61,7 @@ export function createBayWizard(parent: Element): Wizard {
         label: get('add'),
         action: createAction(parent),
       },
-      content: render('', ''),
+      content: renderBayWizard('', ''),
     },
   ];
 }
@@ -76,7 +76,7 @@ export function editBayWizard(element: Element): Wizard {
         label: get('save'),
         action: updateNamingAction(element),
       },
-      content: render(
+      content: renderBayWizard(
         element.getAttribute('name'),
         element.getAttribute('desc')
       ),

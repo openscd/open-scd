@@ -28,7 +28,7 @@ describe('create wizard for FCDA element', () => {
   describe('with a valid SCL file', () => {
     beforeEach(async () => {
       const wizard = createFCDAsWizard(doc.querySelector('DataSet')!);
-      element.workflow.push(wizard!);
+      element.workflow.push(() => wizard!);
       await element.requestUpdate();
       finder =
         element.wizardUI.dialog!.querySelector<FinderList>('finder-list')!;
@@ -82,7 +82,6 @@ describe('create wizard for FCDA element', () => {
         const newElement = <Element>(
           actionEvent.args[0][0].detail.action.new.element
         );
-        expect(newElement).to.have.attribute('iedName', 'IED1');
         expect(newElement).to.have.attribute('ldInst', 'CircuitBreaker_CB1');
         expect(newElement).to.have.attribute('prefix', '');
         expect(newElement).to.have.attribute('lnClass', 'LLN0');
@@ -120,7 +119,6 @@ describe('create wizard for FCDA element', () => {
         const newElement = <Element>(
           actionEvent.args[0][0].detail.action.new.element
         );
-        expect(newElement).to.have.attribute('iedName', 'IED1');
         expect(newElement).to.have.attribute('ldInst', 'Meas');
         expect(newElement).to.have.attribute('prefix', 'My');
         expect(newElement).to.have.attribute('lnClass', 'MMXU');

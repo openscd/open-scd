@@ -64,6 +64,7 @@ export const en = {
     iedsloading: 'Loading IEDs...',
     commmap: 'Communication mapping',
     gsecontrol: 'Show all GOOSEs',
+    smvcontrol: 'Show all Sampled Values',
   },
   editing: {
     created: 'Added {{ name }}',
@@ -153,6 +154,21 @@ export const en = {
     },
     action: {
       addvoltagelevel: 'Add voltage level',
+    },
+  },
+  iededitor: {
+    searchHelper: 'Select IED',
+    searchHelperDesc: '({{description}})',
+    missing: 'No IED',
+    toggleChildElements: 'Toggle child elements',
+  },
+  powertransformer: {
+    wizard: {
+      nameHelper: 'Power transformer name',
+      descHelper: 'Power transformer description',
+      title: {
+        edit: 'Edit power transformer',
+      },
     },
   },
   voltagelevel: {
@@ -353,10 +369,6 @@ export const en = {
     name: 'Connected access point',
     wizard: {
       addschemainsttype: 'Add XMLSchema-instance type',
-      title: {
-        connect: 'Connect access point',
-        edit: 'Edit access point',
-      },
     },
     action: {
       addaddress: 'Edit Address ({{iedName}} - {{apName}})',
@@ -388,6 +400,14 @@ export const en = {
   },
   updatedesc: {
     abb: 'Added signal descriptions to ABB IEDs',
+    sel: 'Added signal descriptions to SEL IEDs',
+  },
+  sld: {
+    substationSelector: 'Select a substation',
+    wizard: {
+      xCoordinateHelper: 'X-Coordinate for Single Line Diagram',
+      yCoordinateHelper: 'Y-Coordinate for Single Line Diagram',
+    },
   },
   userinfo: {
     loggedInAs: 'Logged in as {{name}}'

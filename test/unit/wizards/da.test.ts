@@ -72,7 +72,7 @@ describe('da wizards', () => {
           ],
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();
@@ -272,7 +272,7 @@ describe('da wizards', () => {
           ],
         },
       ];
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       inputs = Array.from(element.wizardUI.inputs);
       await element.requestUpdate();

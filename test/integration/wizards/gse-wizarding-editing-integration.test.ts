@@ -25,7 +25,7 @@ describe('gse wizarding editing integration', () => {
       const wizard = editGseWizard(
         doc.querySelector('GSE[ldInst="CircuitBreaker_CB1"][cbName="GCB"]')!
       );
-      element.workflow.push(wizard);
+      element.workflow.push(() => wizard);
       await element.requestUpdate();
       primaryAction = <HTMLElement>(
         element.wizardUI.dialog?.querySelector(

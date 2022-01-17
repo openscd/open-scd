@@ -642,6 +642,21 @@ snapshots["open-scd looks like its snapshot"] =
       left=""
       mwc-list-item=""
       tabindex="-1"
+      value="/src/editors/IED.js"
+    >
+      <mwc-icon slot="meta">
+        developer_board
+      </mwc-icon>
+      IED
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
       value="/src/editors/SingleLineDiagram.js"
     >
       <mwc-icon slot="meta">
@@ -874,6 +889,21 @@ snapshots["open-scd looks like its snapshot"] =
         play_circle
       </mwc-icon>
       Update desc (ABB)
+    </mwc-check-list-item>
+    <mwc-check-list-item
+      aria-disabled="false"
+      class="official"
+      graphic="control"
+      hasmeta=""
+      left=""
+      mwc-list-item=""
+      tabindex="-1"
+      value="/src/menu/UpdateDescriptionSEL.js"
+    >
+      <mwc-icon slot="meta">
+        play_circle
+      </mwc-icon>
+      Update desc (SEL)
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"

@@ -18,11 +18,12 @@ import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
-import { gooseIcon } from './icons.js';
+import { gooseIcon, smvIcon } from './icons.js';
 import { isPublic, newWizardEvent } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
+import { selectSampledValueControlWizard } from './wizards/sampledvaluecontrol.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
@@ -47,6 +48,7 @@ export class ZerolinePane extends LitElement {
   @query('#commmap') commmap!: IconButton;
   @query('#showieds') showieds!: IconButtonToggle;
   @query('#gsecontrol') gsecontrol!: IconButton;
+  @query('#smvcontrol') smvcontrol!: IconButton;
   @query('#createsubstation') createsubstation!: IconButton;
 
   openCommunicationMapping(): void {
@@ -62,6 +64,11 @@ export class ZerolinePane extends LitElement {
 
   openGseControlSelection(): void {
     const wizard = selectGseControlWizard(this.doc.documentElement);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
+
+  openSampledValueControlSelection(): void {
+    const wizard = selectSampledValueControlWizard(this.doc.documentElement);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
   }
 
@@ -117,6 +124,13 @@ export class ZerolinePane extends LitElement {
               id="gsecontrol"
               @click="${() => this.openGseControlSelection()}"
               >${gooseIcon}</mwc-icon-button
+            ></abbr
+          >
+          <abbr title="${translate('zeroline.smvcontrol')}"
+            ><mwc-icon-button
+              id="smvcontrol"
+              @click="${() => this.openSampledValueControlSelection()}"
+              >${smvIcon}</mwc-icon-button
             ></abbr
           >
         </nav>
@@ -175,7 +189,7 @@ export class ZerolinePane extends LitElement {
       grid-gap: 12px;
       padding: 8px 12px 16px;
       box-sizing: border-box;
-      grid-template-columns: repeat(auto-fit, minmax(64px, auto));
+      grid-template-columns: repeat(auto-fit, minmax(128px, auto));
     }
   `;
 }

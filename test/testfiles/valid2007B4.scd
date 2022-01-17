@@ -250,6 +250,7 @@
 						</GSEControl>
 					</LN0>
 					<LN lnClass="LPHD" inst="1" lnType="Dummy.LPHD1"/>
+					<LN lnClass="THARDE" inst="1" lnType="Dummy.THARDE"/>
 					<LN lnClass="XCBR" inst="1" lnType="Dummy.XCBR1">
 						<DOI name="Pos">
 							<DAI name="ctlModel">
@@ -393,6 +394,7 @@
 	<DataTypeTemplates>
 		<LNodeType lnClass="LLN0" id="Dummy.LLN0">
 			<DO name="Mod" type="Dummy.LLN0.Mod" />
+			<DO name="ExtendedMod" type="Dummy.LLN0.ExtendedMod" />
 			<DO name="Beh" type="Dummy.LLN0.Beh" />
 			<DO name="Health" type="Dummy.LLN0.Health" />
 			<DO name="NamPlt" type="Dummy.LLN0.NamPlt" />
@@ -485,6 +487,27 @@
 			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
 			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
 			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel" />
+		</DOType>
+		<DOType cdc="ENC" id="Dummy.LLN0.ExtendedMod">
+			<SDO fc="ST" name="someSdo" type="someSdoType"/>
+			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />
+			<DA fc="ST" name="q" bType="Quality" />
+			<DA fc="ST" name="t" bType="Timestamp" />
+			<DA fc="ST" name="stSeld" bType="BOOLEAN" />
+			<DA fc="OR" name="opRcvd" bType="BOOLEAN" />
+			<DA fc="OR" name="opOk" bType="BOOLEAN" />
+			<DA fc="OR" name="tOpOk" bType="Timestamp" />
+			<DA fc="CF" name="ctlModel" bType="Enum" type="Dummy_ctlModel" />
+			<DA fc="CF" name="sboTimeout" bType="INT32U" />
+			<DA fc="CF" name="operTimeout" bType="INT32U" />
+			<DA fc="CO" name="SBO" bType="ObjRef" />
+			<DA fc="CO" name="SBOw" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
+			<DA fc="CO" name="Oper" bType="Struct" type="Dummy.LLN0.Mod.SBOw" />
+			<DA fc="CO" name="Cancel" bType="Struct" type="Dummy.LLN0.Mod.Cancel" />
+		</DOType>
+		<DOType cdc="CMV" id="someSdoType">
+			<DA fc="MX" qchg="true" name="q" bType="Quality"/>
+			<DA fc="MX" name="t" bType="Timestamp"/>
 		</DOType>
 		<DOType cdc="ENS" id="Dummy.LLN0.Beh">
 			<DA fc="ST" name="stVal" bType="Enum" type="Dummy_Beh" />

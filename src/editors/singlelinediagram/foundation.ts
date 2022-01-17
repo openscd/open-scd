@@ -1,3 +1,5 @@
+import { getNameAttribute, getPathNameAttribute } from "../../foundation.js";
+
 /**
  * A point is a position containing a x and a y within a SCL file.
  */
@@ -6,38 +8,10 @@ export interface Point {
   y: number;
 }
 
+export const SCL_COORDINATES_NAMESPACE = 'http://www.iec.ch/61850/2003/SCLcoordinates';
+
 /** Scope factor: the ConnectivityNode allocation algorithm works better with a scale factor which is bigger than 1. */
 const COORDINATES_SCALE_FACTOR = 2;
-
-/**
- * Extract the 'name' attribute from the given XML element.
- * @param element - The element to extract name from.
- * @returns the name, or a '-' if there is no name.
- */
-export function getNameAttribute(element: Element): string | undefined {
-  const name = element.getAttribute('name');
-  return name ? name : undefined;
-}
-
-/**
- * Extract the 'desc' attribute from the given XML element.
- * @param element - The element to extract description from.
- * @returns the name, or a '-' if there is no description.
- */
-export function getDescriptionAttribute(element: Element): string | undefined {
-  const name = element.getAttribute('desc');
-  return name ? name : undefined;
-}
-
-/**
- * Extract the 'pathName' attribute from the given XML element.
- * @param element - The element to extract path name from.
- * @returns the name, or a '-' if there is no path name.
- */
-export function getPathNameAttribute(element: Element): string | undefined {
-  const name = element.getAttribute('pathName');
-  return name ? name : undefined;
-}
 
 /**
  * Get the coordinates of a XML element (x and y coordinates).
@@ -46,11 +20,11 @@ export function getPathNameAttribute(element: Element): string | undefined {
  */
 export function getRelativeCoordinates(element: Element): Point {
   const x = element.getAttributeNS(
-    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    SCL_COORDINATES_NAMESPACE,
     'x'
   );
   const y = element.getAttributeNS(
-    'http://www.iec.ch/61850/2003/SCLcoordinates',
+    SCL_COORDINATES_NAMESPACE,
     'y'
   );
 
@@ -104,10 +78,10 @@ export function getConnectedTerminals(element: Element): Element[] {
   return Array.from(substationElement.getElementsByTagName('Terminal')).filter(
     terminal =>
       terminal.getAttribute('connectivityNode') === path &&
-      terminal.getAttribute('substationName') === substationName &&
-      terminal.getAttribute('voltageLevelName') === voltageLevelName &&
-      terminal.getAttribute('bayName') === bayName &&
-      terminal.getAttribute('cNodeName') === getNameAttribute(element)
+      terminal.getAttribute('cNodeName') === getNameAttribute(element) &&
+      (!terminal.hasAttribute('substationName') || terminal.getAttribute('substationName') === substationName) &&
+      (!terminal.hasAttribute('voltageLevelName') || terminal.getAttribute('voltageLevelName') === voltageLevelName) &&
+      (!terminal.hasAttribute('bayName') || terminal.getAttribute('bayName') === bayName)
   );
 }
 
@@ -117,8 +91,7 @@ export function getConnectedTerminals(element: Element): Element[] {
  * - Get all elements that are connected to this Connectivity Node.
  * - Extract the SCL x and y coordinates of these Connectivity Nodes and add them up.
  * - Divide the final x and y numbers by the number of connected elements. This way, you get an so-called average.
- * @param doc - The full SCL document to scan for connected elements.
- * @param cNodePathName - The pathName of the Connectivity Node to calculate the SCL x and y coordinates.
+ * @param cNodeElement  - The Connectivity Node to calculate the X and Y Coordinates for.
  * @returns The calculated SCL x and y coordinates for this Connectivity Node.
  */
 export function calculateConnectivityNodeCoordinates(
@@ -131,6 +104,7 @@ export function calculateConnectivityNodeCoordinates(
   const pathName = getPathNameAttribute(cNodeElement);
 
   let nrOfConnections = 0;
+  let nrOfXConnections = 0;
   let totalX = 0;
   let totalY = 0;
 
@@ -147,7 +121,13 @@ export function calculateConnectivityNodeCoordinates(
 
       const { x, y } = getAbsoluteCoordinates(equipment);
 
-      totalX += x!;
+      // Only if the Element is in the same bay, we will use that X-value to calculate the location
+      // of the Connectivity Node. This will cause the Connectivity Node to stay with the boundaries
+      // of the Bay and not causing al kind of overlays between bays.
+      if (equipment.parentElement === cNodeElement.parentElement) {
+        nrOfXConnections++;
+        totalX += x!;
+      }
       totalY += y!;
     });
 
@@ -155,7 +135,18 @@ export function calculateConnectivityNodeCoordinates(
   if (nrOfConnections === 1) return { x: totalX + 1, y: totalY + 1 };
 
   return {
-    x: Math.round(totalX / nrOfConnections),
+    x: Math.round(totalX / nrOfXConnections),
     y: Math.round(totalY / nrOfConnections),
   };
+}
+
+export function getCommonParentElement(leftElement: Element, rightElement: Element, defaultParent: Element | null): Element | null {
+  let leftParentElement = leftElement.parentElement
+  while (leftParentElement) {
+    if (leftParentElement.contains(rightElement)) {
+      return leftParentElement;
+    }
+    leftParentElement = leftParentElement.parentElement;
+  }
+  return defaultParent;
 }
