@@ -6,7 +6,7 @@ import {WizardTextField} from "../../../src/wizard-textfield.js";
 const noOp = () => {
   return;
 };
-const newWizard = (done = noOp) => {
+export const newWizard = (done = noOp) => {
   const element = document.createElement('mwc-dialog');
   element.close = done;
   return element;

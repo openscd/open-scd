@@ -162,6 +162,15 @@ export const en = {
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
   },
+  ied: {
+    wizard: {
+      nameHelper: 'IED name',
+      descHelper: 'IED description',
+      title: {
+        edit: 'Edit IED',
+      },
+    },
+  },
   powertransformer: {
     wizard: {
       nameHelper: 'Power transformer name',
