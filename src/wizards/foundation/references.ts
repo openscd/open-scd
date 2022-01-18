@@ -16,20 +16,24 @@ const referenceInfos: Record<
     attribute: string | null;
   }[]
 > = {
-  IED: [{
-      elementQuery: `ConnectedAP`,
-      attribute: 'iedName'
-    }, {
-      elementQuery: `Server > Association`,
+  IED:
+    [{
+      elementQuery: `Association`,
       attribute: 'iedName'
     }, {
       elementQuery: `ClientLN`,
       attribute: 'iedName'
     }, {
-      elementQuery: `LNode`,
+      elementQuery: `ConnectedAP`,
       attribute: 'iedName'
     }, {
-      elementQuery: `Inputs > ExtRef`,
+      elementQuery: `ExtRef`,
+      attribute: 'iedName'
+    }, {
+      elementQuery: `KDC`,
+      attribute: 'iedName'
+    }, {
+      elementQuery: `LNode`,
       attribute: 'iedName'
     }, {
       elementQuery: `GSEControl > IEDName`,

@@ -4,7 +4,7 @@ import {get, translate} from 'lit-translate';
 import {cloneElement, EditorAction, getValue, isPublic, Wizard, WizardActor, WizardInput,} from '../foundation.js';
 import {updateReferences} from "./foundation/references.js";
 
-function updateIED(element: Element): WizardActor {
+export function updateIED(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const oldName = element.getAttribute('name');
