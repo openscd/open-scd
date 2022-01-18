@@ -45,11 +45,11 @@ describe('Update reference for ', () => {
       const ied = doc.querySelector(`IED[name="${oldName}"]`)!;
 
       const updateActions = updateReferences(ied, oldName, newName);
-      expect(updateActions.length).to.equal(9);
+      expect(updateActions.length).to.equal(8);
 
       expectUpdatedAttributeValue(<Update>updateActions[4], 'LNode', oldName, newName);
-      expectUpdatedTextValue(<Update>updateActions[7], 'GSEControl', oldName, newName);
-      expectUpdatedTextValue(<Update>updateActions[8], 'SampledValueControl', oldName, newName);
+      expectUpdatedTextValue(<Update>updateActions[6], 'GSEControl', oldName, newName);
+      expectUpdatedTextValue(<Update>updateActions[7], 'SampledValueControl', oldName, newName);
     });
   });
 });

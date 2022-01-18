@@ -1,4 +1,4 @@
-import {EditorAction} from "../../foundation.js";
+import {EditorAction, isPublic} from "../../foundation.js";
 
 const referenceInfoTags = ['IED'] as const;
 type ReferencesInfoTag = typeof referenceInfoTags[number];
@@ -73,7 +73,8 @@ export function updateReferences(element: Element, oldValue: string | null, newV
   const actions: EditorAction[] = [];
   referenceInfo.forEach(info => {
     if (info.attribute !== null) {
-      element.ownerDocument.querySelectorAll(`${info.elementQuery}[${info.attribute}="${oldValue}"]`)
+      Array.from(element.ownerDocument.querySelectorAll(`${info.elementQuery}[${info.attribute}="${oldValue}"]`))
+        .filter(element => isPublic(element))
         .forEach(element => {
           const newElement = cloneElement(element, info.attribute!, newValue);
           actions.push({old: {element}, new: {element: newElement}});
@@ -81,6 +82,7 @@ export function updateReferences(element: Element, oldValue: string | null, newV
     } else {
       Array.from(element.ownerDocument.querySelectorAll(`${info.elementQuery}`))
         .filter(element => element.textContent === oldValue)
+        .filter(element => isPublic(element))
         .forEach(element => {
           const newElement = cloneElementAndTextContent(element, newValue);
           actions.push({old: {element}, new: {element: newElement}});
