@@ -110,6 +110,11 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that look
       type="number"
     >
     </wizard-textfield>
+    <mwc-button
+      icon="delete"
+      label="[remove]"
+    >
+    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"

@@ -7,6 +7,7 @@ import { MockWizard } from '../../mock-wizard.js';
 
 import {
   isCreate,
+  isDelete,
   isUpdate,
   Update,
   WizardInput,
@@ -14,6 +15,7 @@ import {
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   editReportControlWizard,
+  removeReportControlAction,
   selectReportControlWizard,
 } from '../../../src/wizards/reportcontrol.js';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
@@ -311,6 +313,93 @@ describe('Wizards for SCL ReportControl element', () => {
         const updateAction = <Update>action;
         expect(updateAction.new.element.tagName).to.equal('RptEnabled');
         expect(updateAction.new.element).to.have.attribute('max', '6');
+      });
+    });
+
+    describe('contains a remove button that', () => {
+      const ln01gse = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+              <DataSet name="myDataSet"/>
+              <DataSet name="myDataSet2"/>
+              <ReportControl name="myName" datSet="myDataSet"/>
+              <ReportControl name="myName2" datSet="myDataSet2"/>
+          </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const ln02gse = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+                <DataSet name="myDataSet"/>
+                <ReportControl name="myName" datSet="myDataSet"/>
+                <ReportControl name="myName2" datSet="myDataSet"/>
+            </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const ln02rp = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+                  <DataSet name="myDataSet"/>
+                  <ReportControl name="myName" datSet="myDataSet"/>
+                  <GSEControl name="myName2" datSet="myDataSet"/>
+              </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const ln02smv = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+              <DataSet name="myDataSet"/>
+              <ReportControl name="myName" datSet="myDataSet"/>
+              <SampledValueControl name="myName2" datSet="myDataSet"/>
+          </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const missingparent = <Element>(
+        new DOMParser().parseFromString(
+          `<ReportControl name="myName" datSet="myDataSet"/>`,
+          'application/xml'
+        ).documentElement
+      );
+
+      it('removes ReportControl and its referenced DataSet if no other ReportControl are assigned', () => {
+        const reportControl = ln01gse.querySelector('ReportControl')!;
+        const actions = removeReportControlAction(reportControl);
+        expect(actions.length).to.equal(2);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(reportControl);
+        expect(actions[1]).to.satisfy(isDelete);
+        expect(actions[1].old.element).to.equal(
+          ln01gse.querySelector('DataSet')
+        );
+      });
+
+      it('does not remove if another ReportControl is assigned to the same DataSet', () => {
+        const reportControl = ln02gse.querySelector('ReportControl')!;
+        const actions = removeReportControlAction(reportControl);
+        expect(actions.length).to.equal(1);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(reportControl);
+      });
+
+      it('does not remove if another GSEControl is assigned to the same DataSet', () => {
+        const reportControl = ln02rp.querySelector('ReportControl')!;
+        const actions = removeReportControlAction(reportControl);
+        expect(actions.length).to.equal(1);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(reportControl);
+      });
+
+      it('does not remove if another SMV is assigned to the same DataSet', () => {
+        const reportControl = ln02smv.querySelector('ReportControl')!;
+        const actions = removeReportControlAction(reportControl);
+        expect(actions.length).to.equal(1);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(reportControl);
+      });
+
+      it('does not remove with missing parent element', () => {
+        const actions = removeReportControlAction(missingparent);
+        expect(actions.length).to.equal(0);
       });
     });
   });
