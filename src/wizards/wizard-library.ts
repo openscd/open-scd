@@ -9,7 +9,7 @@ import { createSubstationWizard, substationEditWizard } from './substation.js';
 import { editTerminalWizard } from './terminal.js';
 import { voltageLevelCreateWizard, voltageLevelEditWizard } from './voltagelevel.js';
 import { editPowerTransformerWizard } from "./powertransformer.js";
-import {editIEDWizard} from "./ied";
+import { editIEDWizard } from "./ied.js";
 
 type SclElementWizard = (element: Element) => Wizard | undefined;
 

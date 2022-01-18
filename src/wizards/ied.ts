@@ -1,12 +1,27 @@
-import { html, TemplateResult } from 'lit-element';
-import { get, translate } from 'lit-translate';
+import {html, TemplateResult} from 'lit-element';
+import {get, translate} from 'lit-translate';
 
-import {
-  isPublic,
-  Wizard,
-} from '../foundation.js';
+import {cloneElement, EditorAction, getValue, isPublic, Wizard, WizardActor, WizardInput,} from '../foundation.js';
+import {updateReferences} from "./foundation/references.js";
 
-import { updateNamingAction } from "./foundation/actions.js";
+function updateIED(element: Element): WizardActor {
+  return (inputs: WizardInput[]): EditorAction[] => {
+    const name = getValue(inputs.find(i => i.label === 'name')!)!;
+    const oldName = element.getAttribute('name');
+    const desc = getValue(inputs.find(i => i.label === 'desc')!);
+
+    if ( name === oldName &&
+         desc === element.getAttribute('desc')) {
+      return [];
+    }
+
+    const newElement = cloneElement(element, { name, desc });
+    const actions: EditorAction[] = [];
+    actions.push({ old: { element }, new: { element: newElement } });
+    actions.push(...updateReferences(element, oldName, name));
+    return actions;
+  };
+}
 
 export function renderIEDWizard(
   name: string | null,
@@ -49,7 +64,7 @@ export function editIEDWizard(element: Element): Wizard {
       primary: {
         icon: 'edit',
         label: get('save'),
-        action: updateNamingAction(element),
+        action: updateIED(element),
       },
       content: renderIEDWizard(
         element.getAttribute('name'),
