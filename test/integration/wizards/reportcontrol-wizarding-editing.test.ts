@@ -41,9 +41,14 @@ describe('Wizards for SCL element ReportControl', () => {
 
     it('allows to filter ReportControl elements per IED', async () => {
       const wizard = selectReportControlWizard(doc.querySelector('IED')!);
-      element.workflow.unshift();
+      element.workflow.pop();
       element.workflow.push(() => wizard);
       await element.requestUpdate();
+
+      reportControlList = <FilteredList>(
+        element.wizardUI.dialog?.querySelector('filtered-list')
+      );
+      await reportControlList.updateComplete;
 
       expect(reportControlList.items.length).to.equal(
         doc.querySelector('IED')!.querySelectorAll('ReportControl').length
@@ -51,8 +56,8 @@ describe('Wizards for SCL element ReportControl', () => {
     });
 
     it('opens edit wizard for selected ReportControl element on click', async () => {
-      const gse2 = <ListItemBase>reportControlList.items[1];
-      gse2.click();
+      const reportItem = <ListItemBase>reportControlList.items[1];
+      reportItem.click();
       await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
       const nameField = <WizardTextField>(
@@ -70,11 +75,11 @@ describe('Wizards for SCL element ReportControl', () => {
     let nameField: WizardTextField;
     let secondaryAction: HTMLElement;
     let primaryAction: HTMLElement;
-    let reportControl: Element;
+    let parentIED: Element;
 
     beforeEach(async () => {
-      reportControl = doc.querySelector('IED')!;
-      element.workflow.push(() => selectReportControlWizard(reportControl));
+      parentIED = doc.querySelector('IED')!;
+      element.workflow.push(() => selectReportControlWizard(parentIED));
       await element.requestUpdate();
       await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
@@ -102,15 +107,31 @@ describe('Wizards for SCL element ReportControl', () => {
     });
 
     it('rejects name attribute starting with decimals', async () => {
+      expect(
+        parentIED.querySelector('ReportControl')?.getAttribute('name')
+      ).to.not.equal('4adsasd');
+
       nameField.value = '4adsasd';
+      await element.requestUpdate();
       primaryAction.click();
-      expect(reportControl.getAttribute('name')).to.not.equal('4adsasd');
+
+      expect(
+        parentIED.querySelector('ReportControl')?.getAttribute('name')
+      ).to.not.equal('4adsasd');
     });
 
     it('edits name attribute on primary action', async () => {
+      expect(
+        parentIED.querySelector('ReportControl')?.getAttribute('name')
+      ).to.not.equal('myNewName');
+
       nameField.value = 'myNewName';
+      await element.requestUpdate();
       primaryAction.click();
-      expect(reportControl.getAttribute('name')).to.not.equal('myNewName');
+
+      expect(
+        parentIED.querySelector('ReportControl')?.getAttribute('name')
+      ).to.equal('myNewName');
     });
 
     it('dynamically updates wizards after attribute change', async () => {
