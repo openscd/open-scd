@@ -109,7 +109,7 @@ describe('Wizards for SCL element ReportControl', () => {
 
     it('rejects name attribute starting with decimals', async () => {
       expect(
-        parentIED.querySelector('ReportControl')?.getAttribute('name')
+        parentIED.querySelectorAll('ReportControl')[1]?.getAttribute('name')
       ).to.not.equal('4adsasd');
 
       nameField.value = '4adsasd';
@@ -117,13 +117,13 @@ describe('Wizards for SCL element ReportControl', () => {
       primaryAction.click();
 
       expect(
-        parentIED.querySelector('ReportControl')?.getAttribute('name')
+        parentIED.querySelectorAll('ReportControl')[1]?.getAttribute('name')
       ).to.not.equal('4adsasd');
     });
 
     it('edits name attribute on primary action', async () => {
       expect(
-        parentIED.querySelector('ReportControl')?.getAttribute('name')
+        parentIED.querySelectorAll('ReportControl')[1]?.getAttribute('name')
       ).to.not.equal('myNewName');
 
       nameField.value = 'myNewName';
@@ -131,7 +131,7 @@ describe('Wizards for SCL element ReportControl', () => {
       primaryAction.click();
 
       expect(
-        parentIED.querySelector('ReportControl')?.getAttribute('name')
+        parentIED.querySelectorAll('ReportControl')[1]?.getAttribute('name')
       ).to.equal('myNewName');
     });
 
