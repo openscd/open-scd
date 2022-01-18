@@ -3,6 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
+import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
@@ -85,7 +86,7 @@ describe('Wizards for SCL element ReportControl', () => {
 
       const report = <ListItemBase>(
         (<FilteredList>element.wizardUI.dialog?.querySelector('filtered-list'))
-          .items[0]
+          .items[1]
       );
       report.click();
       await new Promise(resolve => setTimeout(resolve, 20)); // await animation
@@ -142,7 +143,7 @@ describe('Wizards for SCL element ReportControl', () => {
 
       const report = <ListItemBase>(
         (<FilteredList>element.wizardUI.dialog?.querySelector('filtered-list'))
-          .items[0]
+          .items[1]
       );
 
       expect(report.innerHTML).to.contain('myNewName');
@@ -159,6 +160,34 @@ describe('Wizards for SCL element ReportControl', () => {
       );
 
       expect(report.innerHTML).to.contain('ReportCb');
+    });
+
+    it('removes the ReportControl element and its referenced elements on remove button click', async () => {
+      expect(
+        doc.querySelector(
+          'IED[name="IED2"] LN[lnClass="XSWI"] ReportControl[name="ReportCb2"]'
+        )
+      ).to.exist;
+      expect(
+        doc.querySelector(
+          'IED[name="IED2"] LN[lnClass="XSWI"][inst="1"] DataSet[name="dataSet"]'
+        )
+      ).to.exist;
+      const deleteButton = <Button>(
+        element.wizardUI.dialog!.querySelector('mwc-button[icon="delete"]')!
+      );
+      await deleteButton.updateComplete;
+      deleteButton.click();
+      expect(
+        doc.querySelector(
+          'IED[name="IED2"] LN[lnClass="XSWI"][inst="1"] ReportControl[name="ReportCb2"]'
+        )
+      ).to.not.exist;
+      expect(
+        doc.querySelector(
+          'IED[name="IED2"] LN[lnClass="XSWI"][inst="1"] DataSet[name="dataSet"]'
+        )
+      ).to.not.exist;
     });
   });
 });

@@ -19,13 +19,54 @@ import {
   identity,
   isPublic,
   newSubWizardEvent,
+  newWizardEvent,
+  newActionEvent,
   selector,
   SimpleAction,
   Wizard,
   WizardActor,
   WizardInput,
+  Delete,
 } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
+
+export function removeReportControlAction(element: Element): Delete[] {
+  if (!element.parentElement) return [];
+
+  const dataSet = element.parentElement.querySelector(
+    `DataSet[name="${element.getAttribute('datSet')}"]`
+  );
+
+  const isDataSetUsedByThisControlBlockOnly =
+    Array.from(
+      element.parentElement.querySelectorAll<Element>(
+        'ReportControl, GSEControl, SampledValueControl'
+      )
+    ).filter(
+      controlblock =>
+        controlblock.getAttribute('datSet') === dataSet?.getAttribute('name')
+    ).length <= 1;
+
+  const actions: Delete[] = [];
+  actions.push({
+    old: {
+      parent: element.parentElement!,
+      element,
+      reference: element.nextSibling,
+    },
+  });
+
+  if (dataSet && isDataSetUsedByThisControlBlockOnly)
+    actions.push({
+      old: {
+        parent: element.parentElement!,
+        element: dataSet,
+        reference: element.nextSibling,
+      },
+    });
+
+  return actions;
+}
 
 function getRptEnabledAction(
   olRptEnabled: Element | null,
@@ -220,6 +261,17 @@ export function editReportControlWizard(element: Element): Wizard {
           bufTime,
           intgPd,
         }),
+        html`<mwc-button
+          label="${translate('remove')}"
+          icon="delete"
+          @click=${(e: MouseEvent) => {
+            const deleteActions = removeReportControlAction(element);
+            deleteActions.forEach(deleteAction =>
+              e.target?.dispatchEvent(newActionEvent(deleteAction))
+            );
+            e.target?.dispatchEvent(newWizardEvent());
+          }}
+        ></mwc-button>`,
       ],
     },
   ];
