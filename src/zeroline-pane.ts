@@ -19,7 +19,7 @@ import './zeroline/ied-editor.js';
 import { Settings } from './Setting.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { gooseIcon, smvIcon, reportIcon } from './icons.js';
-import { isPublic, newWizardEvent } from './foundation.js';
+import { isPublic, newSubWizardEvent, newWizardEvent } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
@@ -65,8 +65,11 @@ export class ZerolinePane extends LitElement {
   }
 
   openReportControlSelection(): void {
-    const wizard = selectReportControlWizard(this.doc.documentElement);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    this.dispatchEvent(
+      newSubWizardEvent(() =>
+        selectReportControlWizard(this.doc.documentElement)
+      )
+    );
   }
 
   openGseControlSelection(): void {
