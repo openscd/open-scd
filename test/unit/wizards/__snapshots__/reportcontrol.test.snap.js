@@ -118,13 +118,13 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that look
     </mwc-button>
     <mwc-button
       icon="edit"
-      id="trgops"
+      id="edittrgops"
       label="[scl.TrgOps]"
     >
     </mwc-button>
     <mwc-button
       icon="edit"
-      id="optfields"
+      id="editoptfields"
       label="[scl.OptFields]"
     >
     </mwc-button>

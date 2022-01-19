@@ -184,7 +184,7 @@ describe('Wizards for SCL element ReportControl', () => {
 
     it('opens edit wizard for TrgOps element on edit trigger options button click', async () => {
       const editTrgOpsButton = <Button>(
-        element.wizardUI.dialog!.querySelector('mwc-button[id="trgops"]')!
+        element.wizardUI.dialog!.querySelector('mwc-button[id="edittrgops"]')!
       );
 
       await editTrgOpsButton.updateComplete;
@@ -200,20 +200,22 @@ describe('Wizards for SCL element ReportControl', () => {
     });
 
     it('opens edit wizard for OptFields element on edit optional fields button click', async () => {
-      const editTrgOpsButton = <Button>(
-        element.wizardUI.dialog!.querySelector('mwc-button[id="optfields"]')!
+      const editOptFieldsButton = <Button>(
+        element.wizardUI.dialog!.querySelector(
+          'mwc-button[id="editoptfields"]'
+        )!
       );
 
-      await editTrgOpsButton.updateComplete;
-      editTrgOpsButton.click();
+      await editOptFieldsButton.updateComplete;
+      editOptFieldsButton.click();
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-      const dchgSelect = <WizardTextField>(
+      const seqNumSelect = <WizardTextField>(
         element.wizardUI.dialog?.querySelector('wizard-select[label="seqNum"]')
       );
-      await dchgSelect.updateComplete;
+      await seqNumSelect.updateComplete;
 
-      expect(dchgSelect).to.exist;
+      expect(seqNumSelect).to.exist;
     });
 
     it('removes the ReportControl element and its referenced elements on remove button click', async () => {

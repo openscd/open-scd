@@ -286,7 +286,7 @@ export function editReportControlWizard(element: Element): Wizard {
           ? html`<mwc-button
               label=${translate('scl.TrgOps')}
               icon="edit"
-              id="trgops"
+              id="edittrgops"
               @click=${(e: MouseEvent) => {
                 e.target?.dispatchEvent(
                   newSubWizardEvent(() => editTrgOpsWizard(trgOps))
@@ -298,7 +298,7 @@ export function editReportControlWizard(element: Element): Wizard {
           ? html`<mwc-button
               label=${translate('scl.OptFields')}
               icon="edit"
-              id="optfields"
+              id="editoptfields"
               @click=${(e: MouseEvent) => {
                 e.target?.dispatchEvent(
                   newSubWizardEvent(() => editOptFieldsWizard(optFields))
