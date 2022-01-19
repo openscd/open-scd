@@ -79,6 +79,7 @@ describe('Wizards for SCL element ReportControl', () => {
     let parentIED: Element;
 
     beforeEach(async () => {
+      element.workflow.length = 0; // remove all wizard from FIFO queue
       parentIED = doc.querySelector('IED')!;
       element.workflow.push(() => selectReportControlWizard(parentIED));
       await element.requestUpdate();
@@ -160,6 +161,59 @@ describe('Wizards for SCL element ReportControl', () => {
       );
 
       expect(report.innerHTML).to.contain('ReportCb');
+    });
+
+    it('opens edit wizard for DataSet element on edit dataset button click', async () => {
+      const editDataSetButton = <Button>(
+        element.wizardUI.dialog!.querySelector('mwc-button[id="editdataset"]')!
+      );
+
+      await editDataSetButton.updateComplete;
+      editDataSetButton.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      const nameField = <WizardTextField>(
+        element.wizardUI.dialog?.querySelector('wizard-textfield[label="name"]')
+      );
+      await nameField.updateComplete;
+
+      expect(nameField.value).to.equal(
+        doc.querySelectorAll('DataSet')[1].getAttribute('name')
+      );
+    });
+
+    it('opens edit wizard for TrgOps element on edit trigger options button click', async () => {
+      const editTrgOpsButton = <Button>(
+        element.wizardUI.dialog!.querySelector('mwc-button[id="trgops"]')!
+      );
+
+      await editTrgOpsButton.updateComplete;
+      editTrgOpsButton.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      const dchgSelect = <WizardTextField>(
+        element.wizardUI.dialog?.querySelector('wizard-select[label="dchg"]')
+      );
+      await dchgSelect.updateComplete;
+
+      expect(dchgSelect).to.exist;
+    });
+
+    it('opens edit wizard for OptFields element on edit optional fields button click', async () => {
+      const editTrgOpsButton = <Button>(
+        element.wizardUI.dialog!.querySelector('mwc-button[id="optfields"]')!
+      );
+
+      await editTrgOpsButton.updateComplete;
+      editTrgOpsButton.click();
+      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+      const dchgSelect = <WizardTextField>(
+        element.wizardUI.dialog?.querySelector('wizard-select[label="seqNum"]')
+      );
+      await dchgSelect.updateComplete;
+
+      expect(dchgSelect).to.exist;
     });
 
     it('removes the ReportControl element and its referenced elements on remove button click', async () => {
