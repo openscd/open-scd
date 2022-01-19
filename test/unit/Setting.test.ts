@@ -7,7 +7,7 @@ import { MockSetter } from './mock-setter.js';
 
 import { Button } from '@material/mwc-button';
 
-import { defaults } from '../../src/Setting.js';
+import { Settings } from '../../src/Setting.js';
 
 describe('SettingElement', () => {
   let element: MockSetter;
@@ -17,10 +17,10 @@ describe('SettingElement', () => {
   });
 
   it('initially has default settings', () =>
-    expect(element).to.have.deep.property('settings', defaults));
+    expect(element).to.have.deep.property('settings', Settings().defaultSettings));
 
   it('stores settings to localStorage', () => {
-    element.setSetting('theme', 'dark');
+    Settings().setSetting('theme', 'dark');
     expect(localStorage.getItem('theme')).to.equal('dark');
   });
 
@@ -42,12 +42,12 @@ describe('SettingElement', () => {
   it('resets settings to default on reset button click', async () => {
     element.settingsUI.show();
     await element.settingsUI.updateComplete;
-    element.setSetting('language', 'de');
-    expect(element).to.not.have.deep.property('settings', defaults);
+    Settings().setSetting('language', 'de');
+    expect(element).to.not.have.deep.property('settings', Settings().defaultSettings);
     (<Button>(
       element.settingsUI.querySelector('mwc-button[dialogAction="reset"]')
     )).click();
-    expect(element).to.have.deep.property('settings', defaults);
+    expect(element).to.have.deep.property('settings', Settings().defaultSettings);
   });
 }).afterAll(() => {
   registerTranslateConfig({ empty: key => `[${key}]` });

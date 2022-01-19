@@ -13,9 +13,9 @@ import { Switch } from '@material/mwc-switch';
 
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
-import { WizardDialog } from './wizard-dialog.js';
 
 import './Divider.js';
+import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 export type SettingsRecord = {
   language: Language;
@@ -101,6 +101,12 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     @query('#nsdoc-file')
     private nsdocFileUI!: HTMLInputElement;
 
+    @query('#freezeNsdocFilesToggle')
+    private freezeNsdocFilesToggle!: IconButtonToggle;
+
+    @query('#selectFileButton')
+    private selectFileButton!: HTMLElement;
+
     private onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
         Object.keys(this.settings).forEach(item =>
@@ -126,6 +132,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         <input id="nsdoc-file" accept=".nsdoc" type="file" hidden required
           @change=${(evt: Event) => this.loadNsdocFile(evt)}>
         <mwc-button label="${translate('settings.selectFileButton')}"
+                    id="selectFileButton"
                     @click=${() => {
                       const input = <HTMLInputElement | null>this.shadowRoot!.querySelector("#nsdoc-file");
                       input?.click();
@@ -167,6 +174,14 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         }}>delete</mwc-icon>` :
           html``}
       </mwc-list-item>`;
+    }
+
+    private freezeNsdocFiles(): void {
+      if (this.freezeNsdocFilesToggle.on) {
+        console.log('on')
+      } else {
+        console.log('off')
+      }
     }
 
     constructor(...params: any[]) {
@@ -221,7 +236,17 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           </form>
           <openscd-divider></openscd-divider>
           <section>
-            <h3>${translate('settings.loadNsdTranslations')}</h3>
+            <div style="overflow: hidden;">
+              <h3 style="float:left;">${translate('settings.loadNsdTranslations')}</h3>
+              <mwc-icon-button-toggle
+                id="freezeNsdocFilesToggle"
+                style="float:right;"
+                onIcon="visibility"
+                offIcon="visibility_off"
+                on
+                @click=${() => this.freezeNsdocFiles()}
+              ></mwc-icon-button-toggle>
+            </div>
             ${this.renderFileSelect()}
           </section>
           <mwc-list>

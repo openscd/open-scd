@@ -1080,17 +1080,30 @@ snapshots["open-scd looks like its snapshot"] =
   <openscd-divider>
   </openscd-divider>
   <section>
-    <h3>
-      Load .nsdoc
-    </h3>
+    <div style="overflow: hidden;">
+      <h3 style="float:left;">
+        Load .nsdoc
+      </h3>
+      <mwc-icon-button-toggle
+        id="freezeNsdocFilesToggle"
+        officon="visibility_off"
+        on=""
+        onicon="visibility"
+        style="float:right;"
+      >
+      </mwc-icon-button-toggle>
+    </div>
     <input
       accept=".nsdoc"
       hidden=""
-      id="nsd-file"
+      id="nsdoc-file"
       required=""
       type="file"
     >
-    <mwc-button label="Select file">
+    <mwc-button
+      id="selectFileButton"
+      label="Select file"
+    >
     </mwc-button>
   </section>
   <mwc-list>
