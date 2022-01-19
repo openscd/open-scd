@@ -1097,27 +1097,12 @@ snapshots["open-scd looks like its snapshot"] =
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
-      noninteractive=""
-      tabindex="-1"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="0"
     >
       <span>
-        61850-7-2
-      </span>
-      <mwc-icon
-        slot="graphic"
-        style="color:red;"
-      >
-        close
-      </mwc-icon>
-    </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="false"
-      graphic="avatar"
-      noninteractive=""
-      tabindex="-1"
-    >
-      <span>
-        61850-7-3
+        IEC 61850-7-2
       </span>
       <mwc-icon
         slot="graphic"
@@ -1130,11 +1115,11 @@ snapshots["open-scd looks like its snapshot"] =
       aria-disabled="false"
       graphic="avatar"
       hasmeta=""
-      noninteractive=""
+      mwc-list-item=""
       tabindex="-1"
     >
       <span>
-        61850-7-4
+        IEC 61850-7-3
       </span>
       <mwc-icon
         slot="graphic"
@@ -1142,18 +1127,33 @@ snapshots["open-scd looks like its snapshot"] =
       >
         close
       </mwc-icon>
-      <mwc-icon slot="meta">
-        delete
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      hasmeta=""
+      mwc-list-item=""
+      tabindex="-1"
+    >
+      <span>
+        IEC 61850-7-4
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
-      noninteractive=""
+      hasmeta=""
+      mwc-list-item=""
       tabindex="-1"
     >
       <span>
-        61850-8-1
+        IEC 61850-8-1
       </span>
       <mwc-icon
         slot="graphic"
