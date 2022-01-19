@@ -6,29 +6,12 @@ import '@material/mwc-list/mwc-list-item';
 import '../wizard-select.js';
 import {
   cloneElement,
-  EditorAction,
   getValue,
   Wizard,
   WizardAction,
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-
-function updateIntPdInParentReportAction(
-  report: Element | null,
-  isPeriodActive: boolean
-): EditorAction | undefined {
-  if (
-    !report ||
-    (isPeriodActive && report.getAttribute('intgPd')) ||
-    (!isPeriodActive && !report.getAttribute('intgPd'))
-  )
-    return;
-
-  const intgPd = isPeriodActive ? '1000' : null;
-  const newElement = cloneElement(report, { intgPd });
-  return { old: { element: report }, new: { element: newElement } };
-}
 
 function updateTrgOpsAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): WizardAction[] => {
@@ -56,12 +39,7 @@ function updateTrgOpsAction(element: Element): WizardActor {
     });
     const trgOptAction = { old: { element }, new: { element: newElement } };
 
-    const intPdAction = updateIntPdInParentReportAction(
-      element.parentElement,
-      period === 'true' ? true : false
-    );
-
-    return intPdAction ? [trgOptAction, intPdAction] : [trgOptAction];
+    return [trgOptAction];
   };
 }
 
