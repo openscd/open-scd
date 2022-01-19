@@ -217,11 +217,24 @@ export function createVoltageLevelElement(voltageLevel: Element): SVGElement {
 
 /**
  * Create a Bay <g> element.
- * @param bay - The Bay from the SCL document to use.
+ * @param bayElement - The Bay from the SCL document to use.
  * @returns A Bay <g> element.
  */
-export function createBayElement(bay: Element): SVGElement {
-  return createGroupElement(bay);
+export function createBayElement(bayElement: Element,
+                                 clickAction?: (event: Event) => void
+): SVGElement {
+  const groupElement = createGroupElement(bayElement);
+  const absolutePosition = getAbsolutePosition(bayElement);
+
+  const text = createTextElement(
+    bayElement.getAttribute('name') || '',
+    { x: absolutePosition.x + 20, y: absolutePosition.y! },
+    'small'
+  );
+  if (clickAction) text.addEventListener('click', clickAction);
+  groupElement.appendChild(text);
+
+  return groupElement;
 }
 
 /**
@@ -285,7 +298,6 @@ export function createTerminalElement(
   icon.setAttribute('cx', `${terminalPosition.x}`);
   icon.setAttribute('cy', `${terminalPosition.y}`);
   icon.setAttribute('r', '2');
-
   groupElement.appendChild(icon);
 
   if (clickAction) groupElement.addEventListener('click', clickAction);
@@ -297,6 +309,7 @@ export function createTerminalElement(
  * Create a bus bar element.
  * @param busBarElement - The Bus Bar SCL Element.
  * @param busbarLength - The length of the bus bar depending on the x coordinate of the most far out right equipment ()
+ * @param clickAction - Action attached to the Text Element (Label) of the BusBar SVG Group.
  * @returns The Bus Bar SVG element.
  */
 export function createBusBarElement(
@@ -329,9 +342,8 @@ export function createBusBarElement(
     { x: absolutePosition.x, y: absolutePosition.y! - 10 },
     'small'
   );
+  if (clickAction) text.addEventListener('click', clickAction);
   groupElement.appendChild(text);
-
-  if (clickAction) groupElement.addEventListener('click', clickAction);
 
   return groupElement;
 }

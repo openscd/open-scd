@@ -161,7 +161,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
    */
   private drawPowerTransformer(parentGroup: SVGElement, powerTransformerElement: Element): void {
     const powerTransformerGroup = createPowerTransformerElement(powerTransformerElement,
-      (event: Event) => this.openEditWizard(event, powerTransformerElement!)
+      (event: Event) => this.openEditWizard(event, powerTransformerElement)
     );
     parentGroup.appendChild(powerTransformerGroup);
   }
@@ -206,7 +206,8 @@ export default class SingleLineDiagramPlugin extends LitElement {
   private drawBays(voltageLevelElement: Element, voltageLevelGroup: SVGElement): void {
     this.getBays(voltageLevelElement)
       .forEach(bayElement => {
-        const bayGroup = createBayElement(bayElement);
+        const bayGroup = createBayElement(bayElement,
+          (event: Event) => this.openEditWizard(event, bayElement));
         voltageLevelGroup.appendChild(bayGroup);
 
         this.drawPowerTransformers(bayElement, bayGroup);
@@ -529,6 +530,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
       pointer-events: bounding-box;
     }
 
+    .bayOutline {
+      fill: var(--mdc-theme-surface);
+      fill-opacity: 0.5;
+    }
+
+    g[type='Bay']:hover,
     g[type='Busbar']:hover,
     g[type='ConductingEquipment']:hover,
     g[type='ConnectivityNode']:hover,
