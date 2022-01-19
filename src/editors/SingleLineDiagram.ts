@@ -75,8 +75,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
   @query('#svg') svg!: SVGGraphicsElement;
 
   private get substations() : Element[] {
-    return Array.from(this.doc.querySelectorAll(':root > Substation'))
-                .sort((a,b) => compareNames(a,b));
+    return (this.doc)
+      ? Array.from(this.doc.querySelectorAll(':root > Substation'))
+             .sort((a,b) => compareNames(a,b))
+      : [];
   }
 
   @state()

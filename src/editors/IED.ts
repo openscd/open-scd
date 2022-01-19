@@ -28,8 +28,10 @@ export default class IedPlugin extends LitElement {
   doc!: XMLDocument;
 
   private get alphabeticOrderedIeds() : Element[] {
-    return Array.from(this.doc?.querySelectorAll(':root > IED'))
-                .sort((a,b) => compareNames(a,b));
+    return (this.doc)
+      ? Array.from(this.doc.querySelectorAll(':root > IED'))
+             .sort((a,b) => compareNames(a,b))
+      : [];
   }
 
   @state()
