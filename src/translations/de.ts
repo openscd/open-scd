@@ -42,6 +42,8 @@ export const de: Translations = {
     dark: 'Dunkles Design',
     mode: 'Profimodus',
     showieds: 'Zeige IEDs im Substation-Editor',
+    selectFileButton: '???',
+    loadNsdTranslations: '???'
   },
   menu: {
     new: 'Neues projekt',

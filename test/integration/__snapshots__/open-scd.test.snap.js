@@ -1077,6 +1077,92 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-switch>
     </mwc-formfield>
   </form>
+  <openscd-divider>
+  </openscd-divider>
+  <section>
+    <h3>
+      Load .nsdoc
+    </h3>
+    <input
+      accept=".nsdoc"
+      hidden=""
+      id="nsd-file"
+      required=""
+      type="file"
+    >
+    <mwc-button label="Select file">
+    </mwc-button>
+  </section>
+  <mwc-list>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span>
+        61850-7-2
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span>
+        61850-7-3
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      hasmeta=""
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span>
+        61850-7-4
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+      <mwc-icon slot="meta">
+        delete
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      noninteractive=""
+      tabindex="-1"
+    >
+      <span>
+        61850-8-1
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
   <mwc-button
     dialogaction="close"
     slot="secondaryAction"

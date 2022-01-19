@@ -40,6 +40,8 @@ export const en = {
     dark: 'Dark theme',
     mode: 'Pro mode',
     showieds: 'Show IEDs in substation editor',
+    selectFileButton: 'Select file',
+    loadNsdTranslations: 'Load .nsdoc'
   },
   menu: {
     new: 'New project',
