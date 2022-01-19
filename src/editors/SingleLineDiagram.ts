@@ -396,20 +396,24 @@ export default class SingleLineDiagramPlugin extends LitElement {
   drawSVGElements(): void {
     // First clean the existing drawing, because the selected substation may have changed.
     this.clearSVG();
-    this.drawSubstation();
 
-    // Set the new size of the SVG.
-    const bbox = this.svg.getBBox();
-    this.svg.setAttribute("viewBox", (bbox.x-10)+" "+(bbox.y-10)+" "+(bbox.width+20)+" "+(bbox.height+20));
-    this.svg.setAttribute("width", (bbox.width+20)  + "px");
-    this.svg.setAttribute("height",(bbox.height+20) + "px");
+    // Only draw the diagram if there is a substation selected.
+    if (this.selectedSubstation) {
+      this.drawSubstation();
 
-    panzoom(this.panzoomContainer, {
-      zoomSpeed: 0.2,
-      maxZoom: 1.5,
-      minZoom: 0.2,
-      initialZoom: 0.5,
-    });
+      // Set the new size of the SVG.
+      const bbox = this.svg.getBBox();
+      this.svg.setAttribute("viewBox", (bbox.x - 10) + " " + (bbox.y - 10) + " " + (bbox.width + 20) + " " + (bbox.height + 20));
+      this.svg.setAttribute("width", (bbox.width + 20) + "px");
+      this.svg.setAttribute("height", (bbox.height + 20) + "px");
+
+      panzoom(this.panzoomContainer, {
+        zoomSpeed: 0.2,
+        maxZoom: 1.5,
+        minZoom: 0.2,
+        initialZoom: 0.5,
+      });
+    }
   }
 
   /**
@@ -438,7 +442,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     const substationList = this.substations;
     if (substationList.length > 0) {
       if (this.selectedSubstation === undefined) {
-        this.selectedSubstation = this.substations[0];
+        this.selectedSubstation = substationList[0];
       }
 
       if (substationList.length > 1) {
@@ -447,7 +451,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
           <mwc-select id="substationSelector"
                       label="${translate("sld.substationSelector")}"
                       @selected=${this.onSelect}>
-            ${this.substations.map(
+            ${substationList.map(
               substation => {
                 const name = getNameAttribute(substation);
                 const description = getDescriptionAttribute(substation);

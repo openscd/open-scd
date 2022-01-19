@@ -105,6 +105,15 @@ describe('ln-container', () => {
       const nestedDOs = element['getDOElements']();
       expect(nestedDOs).to.be.empty;
     });
+    
+    it('which return an empty array if the LNodeType of a LN doesn\'t exist.', async () => {
+      element = await fixture(html`<ln-container
+        .element=${validSCL.querySelector('LN[lnType="nonExistingLnType"]')}
+      ></ln-container>`);
+
+      const nestedDOs = element['getDOElements']();
+      expect(nestedDOs).to.be.empty;
+    });
   });
 
   describe('has a getInstanceElement function ', () => {

@@ -1,6 +1,6 @@
 import { html, LitElement } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import marked from 'marked';
+import * as marked from 'marked';
 
 import '@material/mwc-icon';
 
