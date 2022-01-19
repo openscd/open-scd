@@ -168,7 +168,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         <span>${key}</span>
         ${nsd ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
           html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
-        ${nsd ? html`<mwc-icon slot="meta" @click=${() => {
+        ${nsd ? html`<mwc-icon id="deleteNsdocItem" slot="meta" @click=${() => {
           Settings().removeSetting(key);
           this.requestUpdate();
         }}>delete</mwc-icon>` :

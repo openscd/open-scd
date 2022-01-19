@@ -49,6 +49,46 @@ describe('SettingElement', () => {
     )).click();
     expect(element).to.have.deep.property('settings', Settings().defaultSettings);
   });
+
+  it('saves chosen .nsdoc file and looks like latest snapshot', async () => {
+    element.settingsUI.show();
+    await element.settingsUI.updateComplete;
+  
+    const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    Settings().setSetting('IEC 61850-7-2', nsdocFile);
+    
+    await element.requestUpdate();
+    await element.updateComplete;
+
+    expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('deletes a chosen .nsdoc file and looks like latest snapshot', async () => {
+    element.settingsUI.show();
+    await element.settingsUI.updateComplete;
+  
+    const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
+      .then(response => response.text())
+      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
+
+    Settings().setSetting('IEC 61850-7-2', nsdocFile);
+    
+    await element.requestUpdate();
+    await element.updateComplete;
+
+    (<Button>(
+      element.settingsUI.querySelector('mwc-icon[id="deleteNsdocItem"]')
+    )).click();
+    
+    await element.requestUpdate();
+    await element.updateComplete;
+
+    expect(localStorage.getItem('IEC 61850-7-2')).to.equal(null);
+    expect(element).shadowDom.to.equalSnapshot();
+  });
 }).afterAll(() => {
   registerTranslateConfig({ empty: key => `[${key}]` });
   // dirty hack to let other tests pass which rely on untranslated text
