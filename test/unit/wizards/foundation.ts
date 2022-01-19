@@ -1,12 +1,12 @@
 import {expect} from "@open-wc/testing";
 
-import {isUpdate, Update, WizardActor, WizardInput} from "../../../src/foundation.js";
+import {isUpdate, SimpleAction, Update, WizardActor, WizardInput} from "../../../src/foundation.js";
 import {WizardTextField} from "../../../src/wizard-textfield.js";
 
 const noOp = () => {
   return;
 };
-const newWizard = (done = noOp) => {
+export const newWizard = (done = noOp) => {
   const element = document.createElement('mwc-dialog');
   element.close = done;
   return element;
@@ -30,6 +30,31 @@ export function executeWizardUpdateAction(wizardActor: WizardActor, inputs: Wiza
 export function expectWizardNoUpdateAction(wizardActor: WizardActor, inputs: WizardInput[]): void {
   const updateActions = wizardActor(inputs, newWizard());
   expect(updateActions).to.be.empty;
+}
+
+export function expectUpdateAction(simpleAction: SimpleAction, tagName: string, attributeName: string,
+                                   oldValue: string | null, newValue: string | null) {
+  expect(simpleAction).to.satisfy(isUpdate);
+
+  expect((<Update>simpleAction).old.element.tagName).to.be.equal(tagName);
+  if (oldValue === null) {
+    expect((<Update>simpleAction).old.element).to.not.have.attribute(attributeName);
+  } else {
+    expect((<Update>simpleAction).old.element).to.have.attribute(attributeName, oldValue);
+  }
+
+  expect((<Update>simpleAction).new.element.tagName).to.be.equal(tagName);
+  if (newValue === null) {
+    expect((<Update>simpleAction).new.element).to.not.have.attribute(attributeName);
+  } else {
+    expect((<Update>simpleAction).new.element).to.have.attribute(attributeName, newValue);
+  }
+}
+
+export function expectUpdateTextValue(action: Update, parentTagName: string, oldValue: string, newValue: string): void {
+  expect(action.old.element.parentElement!.tagName).to.be.equal(parentTagName);
+  expect(action.old.element.textContent).to.be.equal(oldValue);
+  expect(action.new.element.textContent).to.be.equal(newValue);
 }
 
 export async function fetchDoc(docName: string): Promise<XMLDocument> {
