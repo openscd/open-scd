@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import sinon, { SinonSpy } from 'sinon';
+import { SinonSpy, spy } from 'sinon';
 
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
@@ -36,9 +36,9 @@ describe('dataset wizards', () => {
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 
-      wizardEvent = sinon.spy();
+      wizardEvent = spy();
       window.addEventListener('wizard', wizardEvent);
-      actionEvent = sinon.spy();
+      actionEvent = spy();
       window.addEventListener('editor-action', actionEvent);
     });
 
@@ -50,7 +50,7 @@ describe('dataset wizards', () => {
         element.wizardUI.dialog?.querySelector('mwc-button[icon="add"]')
       );
       await addButton.click();
-      expect(wizardEvent).to.be.calledTwice;
+      expect(wizardEvent).to.be.calledOnce;
     });
 
     describe('with stand alone DataSet', () => {
