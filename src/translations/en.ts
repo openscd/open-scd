@@ -170,6 +170,9 @@ export const en = {
         edit: 'Edit IED',
       },
     },
+    action: {
+      updateied: 'Edited IED "{{iedName}}"',
+    },
   },
   powertransformer: {
     wizard: {

@@ -1,4 +1,4 @@
-import {EditorAction, isPublic} from "../../foundation.js";
+import {isPublic, SimpleAction} from "../../foundation.js";
 
 const referenceInfoTags = ['IED'] as const;
 type ReferencesInfoTag = typeof referenceInfoTags[number];
@@ -60,7 +60,7 @@ function cloneElementAndTextContent(element: Element, value: string | null): Ele
   return newElement;
 }
 
-export function updateReferences(element: Element, oldValue: string | null, newValue: string): EditorAction[] {
+export function updateReferences(element: Element, oldValue: string | null, newValue: string): SimpleAction[] {
   if (oldValue === newValue) {
     return [];
   }
@@ -70,11 +70,11 @@ export function updateReferences(element: Element, oldValue: string | null, newV
     return [];
   }
 
-  const actions: EditorAction[] = [];
+  const actions: SimpleAction[] = [];
   referenceInfo.forEach(info => {
     if (info.attribute !== null) {
       Array.from(element.ownerDocument.querySelectorAll(`${info.elementQuery}[${info.attribute}="${oldValue}"]`))
-        .filter(element => isPublic(element))
+        .filter(isPublic)
         .forEach(element => {
           const newElement = cloneElement(element, info.attribute!, newValue);
           actions.push({old: {element}, new: {element: newElement}});
@@ -82,7 +82,7 @@ export function updateReferences(element: Element, oldValue: string | null, newV
     } else {
       Array.from(element.ownerDocument.querySelectorAll(`${info.elementQuery}`))
         .filter(element => element.textContent === oldValue)
-        .filter(element => isPublic(element))
+        .filter(isPublic)
         .forEach(element => {
           const newElement = cloneElementAndTextContent(element, newValue);
           actions.push({old: {element}, new: {element: newElement}});

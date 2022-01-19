@@ -173,6 +173,9 @@ export const de: Translations = {
         edit: 'IED bearbeiten',
       },
     },
+    action: {
+      updateied: 'IED "{{iedName}}" bearbeitet',
+    },
   },
   powertransformer: {
     wizard: {
