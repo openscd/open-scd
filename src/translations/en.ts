@@ -32,6 +32,8 @@ export const en = {
     securityEnabled: 'Security enabled',
     DataSet: 'Dataset',
     Communication: 'Communication',
+    TrgOps: 'Trigger options',
+    OptFields: 'Optional fields',
   },
   settings: {
     title: 'Settings',
