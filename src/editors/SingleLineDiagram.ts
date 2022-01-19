@@ -3,7 +3,8 @@ import {
   html,
   LitElement,
   property,
-  query, state,
+  query,
+  state,
   TemplateResult,
 } from 'lit-element';
 import panzoom from 'panzoom';
