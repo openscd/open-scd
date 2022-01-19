@@ -12,6 +12,7 @@ snapshots["Wizards for SCL element IED looks like the latest snapshot"] =
       dialoginitialfocus=""
       helper="[ied.wizard.nameHelper]"
       label="name"
+      pattern="[A-Za-z][0-9A-Za-z_]{0,2}|[A-Za-z][0-9A-Za-z_]{4,63}|[A-MO-Za-z][0-9A-Za-z_]{3}|N[0-9A-Za-np-z_][0-9A-Za-z_]{2}|No[0-9A-Za-mo-z_][0-9A-Za-z_]|Non[0-9A-Za-df-z_]"
       required=""
       validationmessage="[textfield.required]"
     >
@@ -21,6 +22,7 @@ snapshots["Wizards for SCL element IED looks like the latest snapshot"] =
       helper="[ied.wizard.descHelper]"
       label="desc"
       nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
   </div>

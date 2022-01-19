@@ -4,10 +4,11 @@ import '../../mock-wizard.js';
 import {MockWizard} from '../../mock-wizard.js';
 
 import {WizardTextField} from '../../../src/wizard-textfield.js';
-import {isUpdate, Update, WizardInput} from '../../../src/foundation.js';
+import {ComplexAction, isSimple, isUpdate, Update, WizardInput} from '../../../src/foundation.js';
 import {editIEDWizard, updateIED} from '../../../src/wizards/ied.js';
 
 import {
+  expectUpdateAction,
   expectWizardNoUpdateAction,
   fetchDoc, newWizard,
   setWizardTextFieldValue,
@@ -33,17 +34,15 @@ describe('Wizards for SCL element IED', () => {
   it('update name should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[0], 'OtherIED3');
 
-    const updateActions = updateIED(ied)(inputs, newWizard());
-    expect(updateActions.length).to.equal(2);
-    expect(updateActions[0]).to.satisfy(isUpdate);
+    const complexAction = updateIED(ied)(inputs, newWizard());
+    expect(complexAction.length).to.equal(1);
+    expect(complexAction[0]).to.not.satisfy(isSimple);
 
-    expect((<Update>updateActions[0]).old.element).to.have.attribute('name', 'IED3');
-    expect((<Update>updateActions[0]).new.element).to.have.attribute('name', 'OtherIED3');
+    const simpleActions = (<ComplexAction>complexAction[0]).actions;
+    expect(simpleActions.length).to.equal(2);
 
-    expect((<Update>updateActions[1]).old.element.tagName).to.be.equal('ConnectedAP');
-    expect((<Update>updateActions[1]).old.element).to.have.attribute('iedName', 'IED3');
-    expect((<Update>updateActions[1]).new.element.tagName).to.be.equal('ConnectedAP');
-    expect((<Update>updateActions[1]).new.element).to.have.attribute('iedName', 'OtherIED3');
+    expectUpdateAction(simpleActions[0], 'IED', 'name', 'IED3', 'OtherIED3');
+    expectUpdateAction(simpleActions[1], 'ConnectedAP', 'iedName', 'IED3', 'OtherIED3');
   });
 
   it('update name should be unique in document', async function () {
@@ -54,12 +53,14 @@ describe('Wizards for SCL element IED', () => {
   it('update description should be updated in document', async function () {
     await setWizardTextFieldValue(<WizardTextField>inputs[1], 'Some description');
 
-    const updateActions = updateIED(ied)(inputs, newWizard());
-    expect(updateActions.length).to.equal(1);
-    expect(updateActions[0]).to.satisfy(isUpdate);
+    const complexAction = updateIED(ied)(inputs, newWizard());
+    expect(complexAction.length).to.equal(1);
+    expect(complexAction[0]).to.not.satisfy(isSimple);
 
-    expect((<Update>updateActions[0]).old.element).to.not.have.attribute('desc');
-    expect((<Update>updateActions[0]).new.element).to.have.attribute('desc', 'Some description');
+    const simpleActions = (<ComplexAction>complexAction[0]).actions;
+    expect(simpleActions.length).to.equal(1);
+
+    expectUpdateAction(simpleActions[0], 'IED', 'desc', null, 'Some description');
   });
 
   it('when no fields changed there will be no update action', async function () {
