@@ -15,9 +15,9 @@ import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foun
  * We need a variable outside the plugin to save the selected IED, because the Plugin is created
  * more than once during working with the IED Editor, for instance when opening a Wizard to edit the IED.
  */
-let iedEditorSelectedIed: Element | undefined;
+let iedEditorSelectedIedName: string | undefined;
 function onOpenDocResetSelectedIed() {
-  iedEditorSelectedIed = undefined;
+  iedEditorSelectedIedName = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedIed);
 
@@ -36,21 +36,16 @@ export default class IedPlugin extends LitElement {
 
   @state()
   private set selectedIed(element: Element | undefined) {
-    iedEditorSelectedIed = element;
+    iedEditorSelectedIedName = (element) ? getNameAttribute(element) : undefined;
   }
 
   private get selectedIed(): Element {
-    if (iedEditorSelectedIed === undefined) {
-      iedEditorSelectedIed = this.alphabeticOrderedIeds[0];
+    if (iedEditorSelectedIedName === undefined) {
+      iedEditorSelectedIedName = getNameAttribute(this.alphabeticOrderedIeds[0]);
     }
-    return iedEditorSelectedIed;
+    return this.doc.querySelector(`:root > IED[name="${iedEditorSelectedIedName}"]`)!;
   }
 
-  /**
-   * When selecting drop down, update the search query.
-   * Because an event only returns an index, we need to retrieve the
-   * actual IED before getting the actual value (in this case the name).
-   */
   private onSelect(event: SingleSelectedEvent): void {
     this.selectedIed = this.alphabeticOrderedIeds[event.detail.index];
     this.requestUpdate("selectedIed");
@@ -58,31 +53,37 @@ export default class IedPlugin extends LitElement {
 
   render(): TemplateResult {
     const iedList = this.alphabeticOrderedIeds;
-    return (iedList.length > 0)
-      ? html `
-          <section>
-            <mwc-select
-              id="iedSelect"
-              label="${translate("iededitor.searchHelper")}"
-              @selected=${this.onSelect}>
-              ${iedList.map(
-                ied =>
-                  html`
-                    <mwc-list-item
-                      ?selected=${ied == this.selectedIed}
-                      value="${getNameAttribute(ied)}"
-                    >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
-                      description: getDescriptionAttribute(ied)!,
-                    }) : ''}
-                    </mwc-list-item>`
-              )}
-            </mwc-select>
-            <ied-container .element=${this.selectedIed}></ied-container>
-          </section>`
-      : html `
+    if (iedList.length > 0) {
+      let selectedIedElement = this.selectedIed;
+      if (!selectedIedElement) {
+        // Fix: If the selected IED can't be found, because the name is changed, will select the first one again.
+        selectedIedElement = iedList[0];
+      }
+      return html `
+        <section>
+          <mwc-select
+            id="iedSelect"
+            label="${translate("iededitor.searchHelper")}"
+            @selected=${this.onSelect}>
+            ${iedList.map(
+              ied =>
+                html`
+                  <mwc-list-item
+                    ?selected=${ied == selectedIedElement}
+                    value="${getNameAttribute(ied)}"
+                  >${getNameAttribute(ied)} ${ied.hasAttribute('desc') ? translate('iededitor.searchHelperDesc', {
+                    description: getDescriptionAttribute(ied)!,
+                  }) : ''}
+                  </mwc-list-item>`
+            )}
+          </mwc-select>
+          <ied-container .element=${selectedIedElement}></ied-container>
+        </section>`;
+    }
+    return html `
           <h1>
             <span style="color: var(--base1)">${translate('iededitor.missing')}</span>
-          </h1>`
+          </h1>`;
   }
 
   static styles = css`

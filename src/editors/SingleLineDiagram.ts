@@ -56,9 +56,9 @@ import '@material/mwc-textfield';
  * We need a variable outside the plugin to save the selected substation, because the Plugin is created
  * more than once during working with the SLD, for instance when opening a Wizard to edit equipment.
  */
-let sldEditorSelectedSubstation: Element | undefined;
+let sldEditorSelectedSubstationName: string | undefined;
 function onOpenDocResetSelectedSubstation() {
-  sldEditorSelectedSubstation = undefined;
+  sldEditorSelectedSubstationName = undefined;
 }
 addEventListener('open-doc', onOpenDocResetSelectedSubstation);
 
@@ -84,14 +84,19 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
   @state()
   private set selectedSubstation(element: Element | undefined) {
-    sldEditorSelectedSubstation = element;
+    sldEditorSelectedSubstationName = (element) ? getNameAttribute(element) : undefined;
   }
 
-  private get selectedSubstation(): Element {
-    if (sldEditorSelectedSubstation === undefined) {
-      sldEditorSelectedSubstation = this.substations[0];
+  private get selectedSubstation(): Element | undefined {
+    if (sldEditorSelectedSubstationName === undefined) {
+      const substationList = this.substations;
+      if (substationList.length > 0) {
+        sldEditorSelectedSubstationName = getNameAttribute(substationList[0]);
+      }
     }
-    return sldEditorSelectedSubstation;
+    return (sldEditorSelectedSubstationName)
+      ? this.doc.querySelector(`:root > Substation[name="${sldEditorSelectedSubstationName}"]`) ?? undefined
+      : undefined;
   }
 
     /**
@@ -426,8 +431,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.clearSVG();
 
     // Only draw the diagram if there is a substation selected.
-    if (this.selectedSubstation) {
-      this.drawSubstation(this.selectedSubstation);
+    const selectedSubstationElement = this.selectedSubstation;
+    if (selectedSubstationElement) {
+      this.drawSubstation(selectedSubstationElement);
 
       // Set the new size of the SVG.
       const bbox = this.svg.getBBox();
@@ -489,8 +495,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
         `;
       }
 
-      const name = getNameAttribute(this.selectedSubstation);
-      const description = getDescriptionAttribute(this.selectedSubstation);
+      const selectedSubstationElement = this.selectedSubstation!;
+      const name = getNameAttribute(selectedSubstationElement);
+      const description = getDescriptionAttribute(selectedSubstationElement);
       return html `
         <mwc-textfield label="${translate('substation.name')}"
                        value="${name}${description !== undefined ? ' (' + description + ')' : ''}"
@@ -535,13 +542,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
       padding-left: 0.3em;
     }
 
-    #substationSelector {
-      width: 30vw;
-      margin: 0.67em 0 0 0.67em;
-    }
-
+    #substationSelector,
     #selectedSubstation {
-      width: 30vw;
+      width: 35vw;
       margin: 0.67em 0 0 0.67em;
     }
 
