@@ -218,6 +218,7 @@ export function createVoltageLevelElement(voltageLevel: Element): SVGElement {
 /**
  * Create a Bay <g> element.
  * @param bayElement - The Bay from the SCL document to use.
+ * @param clickAction - The action to execute when the Name of the Bay is being clicked.
  * @returns A Bay <g> element.
  */
 export function createBayElement(bayElement: Element,
@@ -351,6 +352,7 @@ export function createBusBarElement(
 /**
  * Create a Conducting Equipment element.
  * @param equipmentElement - The SCL element ConductingEquipment
+ * @param clickAction - The action to execute when the Conducting Equipment is being clicked.
  * @returns The Conducting Equipment SVG element.
  */
 export function createConductingEquipmentElement(
@@ -389,6 +391,7 @@ export function createConductingEquipmentElement(
 /**
  * Create a PowerTransformer element.
  * @param powerTransformerElement - The SCL element PowerTransformer
+ * @param clickAction - The action to execute when the Power Transformer is being clicked.
  * @returns The Power Transformer SVG element.
  */
 export function createPowerTransformerElement(
@@ -427,7 +430,7 @@ export function createPowerTransformerElement(
 /**
  * Create a Connectivity Node element.
  * @param cNodeElement - The SCL element ConnectivityNode
- * @param clickAction - The action to execute when the terminal is being clicked.
+ * @param clickAction - The action to execute when the Terminal is being clicked.
  * @returns The Connectivity Node SVG element.
  */
 export function createConnectivityNodeElement(
