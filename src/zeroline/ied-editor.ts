@@ -64,20 +64,26 @@ export class IedEditor extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<action-icon label="${this.name}" icon="developer_board"
-      ><mwc-fab
-        slot="action"
-        class="connectreport"
-        mini
-        @click="${() => this.openCommunicationMapping()}"
-        icon="add_link"
-      ></mwc-fab>
+    return html`<action-icon label="${this.name}" icon="developer_board">
       <mwc-fab
+        slot="action"
+        class="edit"
+        mini
+        @click="${() => this.openEditWizard()}"
+        icon="edit"
+      ></mwc-fab
+      ><mwc-fab
         slot="action"
         class="selectgse"
         mini
         @click="${() => this.openGseControlSelection()}"
         ><mwc-icon slot="icon">${gooseIcon}</mwc-icon></mwc-fab
+      ><mwc-fab
+        slot="action"
+        class="selectreport"
+        mini
+        @click="${() => this.openReportControlSelection()}"
+        ><mwc-icon slot="icon">${reportIcon}</mwc-icon></mwc-fab
       ><mwc-fab
         slot="action"
         class="selectsmv"
@@ -86,18 +92,11 @@ export class IedEditor extends LitElement {
         ><mwc-icon slot="icon">${smvIcon}</mwc-icon></mwc-fab
       ><mwc-fab
         slot="action"
-        class="edit"
+        class="connectreport"
         mini
-        @click="${() => this.openEditWizard()}"
-        icon="edit"
-      ></mwc-fab>
-      <mwc-fab
-        slot="action"
-        class="selectreport"
-        mini
-        @click="${() => this.openReportControlSelection()}"
-        ><mwc-icon slot="icon">${reportIcon}</mwc-icon></mwc-fab
-      ></action-icon
-    > `;
+        @click="${() => this.openCommunicationMapping()}"
+        icon="add_link"
+      ></mwc-fab
+    ></action-icon> `;
   }
 }
