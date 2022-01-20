@@ -57,6 +57,10 @@ import '@material/mwc-textfield';
  * more than once during working with the SLD, for instance when opening a Wizard to edit equipment.
  */
 let sldEditorSelectedSubstationName: string | undefined;
+/*
+ * We will also add an Event Listener when a new document is opened. We then want to reset the selection
+ * so setting it to undefined will set the selected Substation again on the first in the list.
+ */
 function onOpenDocResetSelectedSubstation() {
   sldEditorSelectedSubstationName = undefined;
 }

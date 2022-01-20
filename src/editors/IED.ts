@@ -16,6 +16,10 @@ import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foun
  * more than once during working with the IED Editor, for instance when opening a Wizard to edit the IED.
  */
 let iedEditorSelectedIedName: string | undefined;
+/*
+ * We will also add an Event Listener when a new document is opened. We then want to reset the selection
+ * so setting it to undefined will set the selected IED again on the first in the list.
+ */
 function onOpenDocResetSelectedIed() {
   iedEditorSelectedIedName = undefined;
 }
