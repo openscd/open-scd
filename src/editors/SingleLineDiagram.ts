@@ -9,7 +9,14 @@ import {
 } from 'lit-element';
 import panzoom from 'panzoom';
 
-import { identity, getPathNameAttribute, newWizardEvent, SCLTag, getNameAttribute, getDescriptionAttribute } from '../foundation.js';
+import {
+  identity,
+  getPathNameAttribute,
+  newWizardEvent,
+  SCLTag,
+  getNameAttribute,
+  getDescriptionAttribute,
+} from '../foundation.js';
 import {
   compareNames,
 } from '../foundation.js';
@@ -45,6 +52,20 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';
 import '@material/mwc-textfield';
 
+/*
+ * We need a variable outside the plugin to save the selected substation, because the Plugin is created
+ * more than once during working with the SLD, for instance when opening a Wizard to edit equipment.
+ */
+let sldEditorSelectedSubstationName: string | undefined;
+/*
+ * We will also add an Event Listener when a new document is opened. We then want to reset the selection
+ * so setting it to undefined will set the selected Substation again on the first in the list.
+ */
+function onOpenDocResetSelectedSubstation() {
+  sldEditorSelectedSubstationName = undefined;
+}
+addEventListener('open-doc', onOpenDocResetSelectedSubstation);
+
 /**
  * Main class plugin for Single Line Diagram editor.
  */
@@ -53,20 +74,36 @@ export default class SingleLineDiagramPlugin extends LitElement {
   @property({ attribute: false })
   doc!: XMLDocument;
 
-  @state()
-  selectedSubstation: Element | undefined;
-
   // Container for giving the panzoom to.
   @query('#panzoom') panzoomContainer!: HTMLElement;
   // The main canvas to draw everything on.
   @query('#svg') svg!: SVGGraphicsElement;
 
   private get substations() : Element[] {
-    return Array.from(this.doc.querySelectorAll(':root > Substation'))
-      .sort((a,b) => compareNames(a,b));
+    return (this.doc)
+      ? Array.from(this.doc.querySelectorAll(':root > Substation'))
+             .sort((a,b) => compareNames(a,b))
+      : [];
   }
 
-  /**
+  @state()
+  private set selectedSubstation(element: Element | undefined) {
+    sldEditorSelectedSubstationName = (element) ? getNameAttribute(element) : undefined;
+  }
+
+  private get selectedSubstation(): Element | undefined {
+    if (sldEditorSelectedSubstationName === undefined) {
+      const substationList = this.substations;
+      if (substationList.length > 0) {
+        sldEditorSelectedSubstationName = getNameAttribute(substationList[0]);
+      }
+    }
+    return (sldEditorSelectedSubstationName)
+      ? this.doc.querySelector(`:root > Substation[name="${sldEditorSelectedSubstationName}"]`) ?? undefined
+      : undefined;
+  }
+
+    /**
    * Get all the Power Transformers from an element.
    */
   private getPowerTransformers(parentElement: Element): Element[] {
@@ -134,12 +171,12 @@ export default class SingleLineDiagramPlugin extends LitElement {
   /**
    * Draw all equipment and connections of the selected Substation.
    */
-  private drawSubstation(): void {
-    const substationGroup = createSubstationElement(this.selectedSubstation!);
+  private drawSubstation(substation: Element): void {
+    const substationGroup = createSubstationElement(substation);
     this.svg.appendChild(substationGroup);
 
-    this.drawPowerTransformers(this.selectedSubstation!, substationGroup);
-    this.drawVoltageLevels(this.selectedSubstation!, substationGroup);
+    this.drawPowerTransformers(substation, substationGroup);
+    this.drawVoltageLevels(substation, substationGroup);
   }
 
   /**
@@ -398,8 +435,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
     this.clearSVG();
 
     // Only draw the diagram if there is a substation selected.
-    if (this.selectedSubstation) {
-      this.drawSubstation();
+    const selectedSubstationElement = this.selectedSubstation;
+    if (selectedSubstationElement) {
+      this.drawSubstation(selectedSubstationElement);
 
       // Set the new size of the SVG.
       const bbox = this.svg.getBBox();
@@ -435,18 +473,14 @@ export default class SingleLineDiagramPlugin extends LitElement {
   onSelect(event: SingleSelectedEvent): void {
     // Set the selected Substation.
     this.selectedSubstation = this.substations[event.detail.index];
+    this.requestUpdate("selectedSubstation");
     this.drawSVGElements();
   }
 
   private renderSubstationSelector(): TemplateResult {
     const substationList = this.substations;
     if (substationList.length > 0) {
-      if (this.selectedSubstation === undefined) {
-        this.selectedSubstation = substationList[0];
-      }
-
       if (substationList.length > 1) {
-        const selectedSubstationName = getNameAttribute(this.selectedSubstation);
         return html `
           <mwc-select id="substationSelector"
                       label="${translate("sld.substationSelector")}"
@@ -457,7 +491,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
                 const description = getDescriptionAttribute(substation);
                 return html`
                   <mwc-list-item value="${name}"
-                                 ?selected=${name === selectedSubstationName}>
+                                 ?selected=${substation == this.selectedSubstation}>
                     ${name}${description !== undefined ? ' (' + description + ')' : ''}
                   </mwc-list-item>`
               })}
@@ -465,8 +499,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
         `;
       }
 
-      const name = getNameAttribute(this.selectedSubstation);
-      const description = getDescriptionAttribute(this.selectedSubstation);
+      const selectedSubstationElement = this.selectedSubstation!;
+      const name = getNameAttribute(selectedSubstationElement);
+      const description = getDescriptionAttribute(selectedSubstationElement);
       return html `
         <mwc-textfield label="${translate('substation.name')}"
                        value="${name}${description !== undefined ? ' (' + description + ')' : ''}"
@@ -511,13 +546,9 @@ export default class SingleLineDiagramPlugin extends LitElement {
       padding-left: 0.3em;
     }
 
-    #substationSelector {
-      width: 30vw;
-      margin: 0.67em 0 0 0.67em;
-    }
-
+    #substationSelector,
     #selectedSubstation {
-      width: 30vw;
+      width: 35vw;
       margin: 0.67em 0 0 0.67em;
     }
 
@@ -543,4 +574,3 @@ export default class SingleLineDiagramPlugin extends LitElement {
     }
   `;
 }
-
