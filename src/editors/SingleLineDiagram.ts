@@ -539,6 +539,14 @@ export default class SingleLineDiagramPlugin extends LitElement {
       fill-opacity: 0.5;
     }
 
+    g[type='Bay'] > Text {
+      visibility: hidden;
+    }
+
+    g[type='Bay']:hover > Text {
+      visibility: visible;
+    }
+
     g[type='Bay']:hover,
     g[type='Busbar']:hover,
     g[type='ConductingEquipment']:hover,

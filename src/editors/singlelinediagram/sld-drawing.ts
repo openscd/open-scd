@@ -228,8 +228,8 @@ export function createBayElement(bayElement: Element,
 
   const text = createTextElement(
     bayElement.getAttribute('name') || '',
-    { x: absolutePosition.x + 20, y: absolutePosition.y! },
-    'small'
+    { x: absolutePosition.x, y: absolutePosition.y! },
+    'medium'
   );
   if (clickAction) text.addEventListener('click', clickAction);
   groupElement.appendChild(text);
@@ -340,7 +340,7 @@ export function createBusBarElement(
   const text = createTextElement(
     busBarName,
     { x: absolutePosition.x, y: absolutePosition.y! - 10 },
-    'small'
+    'medium'
   );
   if (clickAction) text.addEventListener('click', clickAction);
   groupElement.appendChild(text);
