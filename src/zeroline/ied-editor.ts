@@ -15,6 +15,7 @@ import '../action-icon.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
 import { gooseIcon, smvIcon } from '../icons.js';
 import { newWizardEvent } from '../foundation.js';
+import { wizards } from "../wizards/wizard-library.js";
 import { selectGseControlWizard } from '../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../wizards/sampledvaluecontrol.js';
 
@@ -31,6 +32,11 @@ export class IedEditor extends LitElement {
   }
 
   @query('.connectreport') connectReport!: Fab;
+
+  private openEditWizard(): void {
+    const wizard = wizards['IED'].edit(this.element);
+    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+  }
 
   private openCommunicationMapping(): void {
     const sendingIeds = Array.from(
@@ -71,6 +77,13 @@ export class IedEditor extends LitElement {
         mini
         @click="${() => this.openSmvControlSelection()}"
         ><mwc-icon slot="icon">${smvIcon}</mwc-icon></mwc-fab
+      ><mwc-fab
+        slot="action"
+        class="edit"
+        mini
+        @click="${() => this.openEditWizard()}"
+        icon="edit"
+      ></mwc-fab
       ></action-icon
     > `;
   }
