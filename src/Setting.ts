@@ -15,17 +15,16 @@ import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import './Divider.js';
-import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 export type SettingsRecord = {
   language: Language;
   theme: 'light' | 'dark';
   mode: 'safe' | 'pro';
   showieds: 'on' | 'off';
-  'IEC 61850-7-2': Document | undefined;
-  'IEC 61850-7-3': Document | undefined;
-  'IEC 61850-7-4': Document | undefined;
-  'IEC 61850-8-1': Document | undefined;
+  'IEC 61850-7-2': XMLDocument | undefined;
+  'IEC 61850-7-3': XMLDocument | undefined;
+  'IEC 61850-7-4': XMLDocument | undefined;
+  'IEC 61850-8-1': XMLDocument | undefined;
 };
 
 export function Settings() {
@@ -101,9 +100,6 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     @query('#nsdoc-file')
     private nsdocFileUI!: HTMLInputElement;
 
-    @query('#freezeNsdocFilesToggle')
-    private freezeNsdocFilesToggle!: IconButtonToggle;
-
     private onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
         Object.keys(this.settings).forEach(item =>
@@ -126,7 +122,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
     private renderFileSelect(): TemplateResult {
       return html `
-        <input id="nsdoc-file" accept=".nsdoc" type="file" hidden required
+        <input id="nsdoc-file" accept=".nsdoc" type="file" hidden required multiple
           @change=${(evt: Event) => this.loadNsdocFile(evt)}}>
         <mwc-button label="${translate('settings.selectFileButton')}"
                     id="selectFileButton"
@@ -139,15 +135,19 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private async loadNsdocFile(evt: Event): Promise<void> {
-      const file = (<HTMLInputElement | null>evt.target)?.files?.item(0) ?? false;
-      if (!file) return;
+      const files = Array.from(
+        (<HTMLInputElement | null>evt.target)?.files ?? []
+      );
+      
+      if (files.length == 0) return;
+      files.forEach(async file => {
+        const text = await file.text();
+        const doc = new DOMParser().parseFromString(text, 'application/xml');
+        const id = doc.querySelector('NSDoc')?.getAttribute('id');
+        if (!id) return;
   
-      const text = await file.text();
-      const doc = new DOMParser().parseFromString(text, 'application/xml');
-      const id = doc.querySelector('NSDoc')?.getAttribute('id');
-      if (!id) return;
-
-      Settings().setSetting(id as keyof SettingsRecord, doc);
+        Settings().setSetting(id as keyof SettingsRecord, doc);
+      })
 
       this.nsdocFileUI.value = '';
       this.requestUpdate();
@@ -161,8 +161,9 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     private renderNsdocItem<T extends keyof SettingsRecord>(key: T): TemplateResult {
       const nsd = this.settings[key];
 
-      return html`<mwc-list-item id=${key} graphic="avatar" hasMeta>
+      return html`<mwc-list-item id=${key} graphic="avatar" hasMeta twoline .disabled=${!nsd}>
         <span>${key}</span>
+        <span slot="secondary">versie</span>
         ${nsd ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
           html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
         ${nsd ? html`<mwc-icon id="deleteNsdocItem" slot="meta" @click=${() => {

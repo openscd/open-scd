@@ -1081,12 +1081,13 @@ snapshots["open-scd looks like its snapshot"] =
   </openscd-divider>
   <section>
     <h3>
-      Uploading NSD files
+      Uploading NSDoc files
     </h3>
     <input
       accept=".nsdoc"
       hidden=""
       id="nsdoc-file"
+      multiple=""
       required=""
       type="file"
     >
@@ -1098,15 +1099,20 @@ snapshots["open-scd looks like its snapshot"] =
   </section>
   <mwc-list id="nsdocList">
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-2"
       mwc-list-item=""
       tabindex="0"
+      twoline=""
     >
       <span>
         IEC 61850-7-2
+      </span>
+      <span slot="secondary">
+        versie
       </span>
       <mwc-icon
         slot="graphic"
@@ -1116,15 +1122,20 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-3"
       mwc-list-item=""
       tabindex="-1"
+      twoline=""
     >
       <span>
         IEC 61850-7-3
+      </span>
+      <span slot="secondary">
+        versie
       </span>
       <mwc-icon
         slot="graphic"
@@ -1134,15 +1145,20 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-4"
       mwc-list-item=""
       tabindex="-1"
+      twoline=""
     >
       <span>
         IEC 61850-7-4
+      </span>
+      <span slot="secondary">
+        versie
       </span>
       <mwc-icon
         slot="graphic"
@@ -1152,15 +1168,20 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="false"
+      aria-disabled="true"
+      disabled=""
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-8-1"
       mwc-list-item=""
       tabindex="-1"
+      twoline=""
     >
       <span>
         IEC 61850-8-1
+      </span>
+      <span slot="secondary">
+        versie
       </span>
       <mwc-icon
         slot="graphic"

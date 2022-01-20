@@ -41,7 +41,7 @@ export const en = {
     mode: 'Pro mode',
     showieds: 'Show IEDs in substation editor',
     selectFileButton: 'Select file',
-    loadNsdTranslations: 'Uploading NSD files'
+    loadNsdTranslations: 'Uploading NSDoc files'
   },
   menu: {
     new: 'New project',
