@@ -228,7 +228,7 @@ export function createBayElement(bayElement: Element,
 
   const text = createTextElement(
     bayElement.getAttribute('name') || '',
-    { x: absolutePosition.x, y: absolutePosition.y! },
+    { x: absolutePosition.x, y: absolutePosition.y! - 20 },
     'medium'
   );
   if (clickAction) text.addEventListener('click', clickAction);
