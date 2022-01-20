@@ -46,8 +46,9 @@ export class IedEditor extends LitElement {
   }
 
   private openGseControlSelection(): void {
-    const wizard = selectGseControlWizard(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    this.dispatchEvent(
+      newSubWizardEvent(() => selectGseControlWizard(this.element))
+    );
   }
 
   private openSmvControlSelection(): void {
