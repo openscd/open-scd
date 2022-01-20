@@ -534,11 +534,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
       pointer-events: bounding-box;
     }
 
-    .bayOutline {
-      fill: var(--mdc-theme-surface);
-      fill-opacity: 0.5;
-    }
-
     g[type='Bay'] > Text {
       visibility: hidden;
     }
