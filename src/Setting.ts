@@ -104,9 +104,6 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     @query('#freezeNsdocFilesToggle')
     private freezeNsdocFilesToggle!: IconButtonToggle;
 
-    @query('#selectFileButton')
-    private selectFileButton!: HTMLElement;
-
     private onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
         Object.keys(this.settings).forEach(item =>
@@ -130,7 +127,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     private renderFileSelect(): TemplateResult {
       return html `
         <input id="nsdoc-file" accept=".nsdoc" type="file" hidden required
-          @change=${(evt: Event) => this.loadNsdocFile(evt)}>
+          @change=${(evt: Event) => this.loadNsdocFile(evt)}}>
         <mwc-button label="${translate('settings.selectFileButton')}"
                     id="selectFileButton"
                     @click=${() => {
@@ -152,7 +149,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
       Settings().setSetting(id as keyof SettingsRecord, doc);
 
-      this.nsdocFileUI.onchange = null;
+      this.nsdocFileUI.value = '';
       this.requestUpdate();
     }
 
@@ -164,7 +161,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     private renderNsdocItem<T extends keyof SettingsRecord>(key: T): TemplateResult {
       const nsd = this.settings[key];
 
-      return html`<mwc-list-item graphic="avatar" hasMeta>
+      return html`<mwc-list-item id=${key} graphic="avatar" hasMeta>
         <span>${key}</span>
         ${nsd ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
           html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
@@ -174,14 +171,6 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         }}>delete</mwc-icon>` :
           html``}
       </mwc-list-item>`;
-    }
-
-    private freezeNsdocFiles(): void {
-      if (this.freezeNsdocFilesToggle.on) {
-        console.log('on')
-      } else {
-        console.log('off')
-      }
     }
 
     constructor(...params: any[]) {
@@ -236,20 +225,10 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           </form>
           <openscd-divider></openscd-divider>
           <section>
-            <div style="overflow: hidden;">
-              <h3 style="float:left;">${translate('settings.loadNsdTranslations')}</h3>
-              <mwc-icon-button-toggle
-                id="freezeNsdocFilesToggle"
-                style="float:right;"
-                onIcon="visibility"
-                offIcon="visibility_off"
-                on
-                @click=${() => this.freezeNsdocFiles()}
-              ></mwc-icon-button-toggle>
-            </div>
+            <h3>${translate('settings.loadNsdTranslations')}</h3>
             ${this.renderFileSelect()}
           </section>
-          <mwc-list>
+          <mwc-list id="nsdocList">
             ${this.renderNsdocItem('IEC 61850-7-2')}
             ${this.renderNsdocItem('IEC 61850-7-3')}
             ${this.renderNsdocItem('IEC 61850-7-4')}

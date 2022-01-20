@@ -1080,19 +1080,9 @@ snapshots["open-scd looks like its snapshot"] =
   <openscd-divider>
   </openscd-divider>
   <section>
-    <div style="overflow: hidden;">
-      <h3 style="float:left;">
-        Load .nsdoc
-      </h3>
-      <mwc-icon-button-toggle
-        id="freezeNsdocFilesToggle"
-        officon="visibility_off"
-        on=""
-        onicon="visibility"
-        style="float:right;"
-      >
-      </mwc-icon-button-toggle>
-    </div>
+    <h3>
+      Load .nsdoc
+    </h3>
     <input
       accept=".nsdoc"
       hidden=""
@@ -1106,11 +1096,12 @@ snapshots["open-scd looks like its snapshot"] =
     >
     </mwc-button>
   </section>
-  <mwc-list>
+  <mwc-list id="nsdocList">
     <mwc-list-item
       aria-disabled="false"
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-7-2"
       mwc-list-item=""
       tabindex="0"
     >
@@ -1128,6 +1119,7 @@ snapshots["open-scd looks like its snapshot"] =
       aria-disabled="false"
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-7-3"
       mwc-list-item=""
       tabindex="-1"
     >
@@ -1145,6 +1137,7 @@ snapshots["open-scd looks like its snapshot"] =
       aria-disabled="false"
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-7-4"
       mwc-list-item=""
       tabindex="-1"
     >
@@ -1162,6 +1155,7 @@ snapshots["open-scd looks like its snapshot"] =
       aria-disabled="false"
       graphic="avatar"
       hasmeta=""
+      id="IEC 61850-8-1"
       mwc-list-item=""
       tabindex="-1"
     >
