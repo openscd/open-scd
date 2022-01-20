@@ -111,6 +111,24 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that look
     >
     </wizard-textfield>
     <mwc-button
+      icon="edit"
+      id="editdataset"
+      label="[scl.DataSet]"
+    >
+    </mwc-button>
+    <mwc-button
+      icon="edit"
+      id="edittrgops"
+      label="[scl.TrgOps]"
+    >
+    </mwc-button>
+    <mwc-button
+      icon="edit"
+      id="editoptfields"
+      label="[scl.OptFields]"
+    >
+    </mwc-button>
+    <mwc-button
       icon="delete"
       label="[remove]"
     >

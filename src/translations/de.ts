@@ -34,6 +34,8 @@ export const de: Translations = {
     securityEnabled: 'Aktive Sicherungsmaßnahmen',
     DataSet: 'Datensetz',
     Communication: 'Kommunikation',
+    TrgOps: 'Triggerbedingungen',
+    OptFields: 'Optionale felder',
   },
   settings: {
     title: 'Einstellungen',

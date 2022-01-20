@@ -29,6 +29,9 @@ import {
   Delete,
 } from '../foundation.js';
 import { maxLength, patterns } from './foundation/limits.js';
+import { editTrgOpsWizard } from './trgops.js';
+import { editOptFieldsWizard } from './optfields.js';
+import { editDataSetWizard } from './dataset.js';
 
 export function removeReportControlAction(element: Element): Delete[] {
   if (!element.parentElement) return [];
@@ -241,6 +244,12 @@ export function editReportControlWizard(element: Element): Wizard {
   const bufTime = element.getAttribute('bufTime');
   const intgPd = element.getAttribute('intgPd');
 
+  const trgOps = element.querySelector('TrgOps');
+  const optFields = element.querySelector('OptFields');
+  const dataSet = element.parentElement?.querySelector(
+    `DataSet[name="${element.getAttribute('datSet')}"]`
+  );
+
   return [
     {
       title: get('wizard.title.edit', { tagName: element.tagName }),
@@ -261,6 +270,42 @@ export function editReportControlWizard(element: Element): Wizard {
           bufTime,
           intgPd,
         }),
+        dataSet
+          ? html`<mwc-button
+              label=${translate('scl.DataSet')}
+              icon="edit"
+              id="editdataset"
+              @click=${(e: MouseEvent) => {
+                e.target?.dispatchEvent(
+                  newSubWizardEvent(() => editDataSetWizard(dataSet))
+                );
+              }}
+            ></mwc-button>`
+          : html``,
+        trgOps
+          ? html`<mwc-button
+              label=${translate('scl.TrgOps')}
+              icon="edit"
+              id="edittrgops"
+              @click=${(e: MouseEvent) => {
+                e.target?.dispatchEvent(
+                  newSubWizardEvent(() => editTrgOpsWizard(trgOps))
+                );
+              }}
+            ></mwc-button>`
+          : html``,
+        optFields
+          ? html`<mwc-button
+              label=${translate('scl.OptFields')}
+              icon="edit"
+              id="editoptfields"
+              @click=${(e: MouseEvent) => {
+                e.target?.dispatchEvent(
+                  newSubWizardEvent(() => editOptFieldsWizard(optFields))
+                );
+              }}
+            ></mwc-button>`
+          : html``,
         html`<mwc-button
           label="${translate('remove')}"
           icon="delete"

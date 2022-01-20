@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import sinon, { SinonSpy } from 'sinon';
+import { SinonSpy, spy } from 'sinon';
 
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
@@ -21,7 +21,7 @@ describe('create wizard for FCDA element', () => {
       .then(response => response.text())
       .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-    actionEvent = sinon.spy();
+    actionEvent = spy();
     window.addEventListener('editor-action', actionEvent);
   });
 
@@ -42,10 +42,6 @@ describe('create wizard for FCDA element', () => {
     it('looks like the last snapshot', async () => {
       await expect(element.wizardUI.dialog).to.equalSnapshot();
     });
-
-    it('returns undefined wizard for parents without Server', () =>
-      expect(createFCDAsWizard(doc.querySelector('AccessPoint')!)).to.be
-        .undefined);
 
     it('indicates error in case children cannot be determined', async () => {
       finder.paths = [['some wrong path']];
