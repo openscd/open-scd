@@ -1081,7 +1081,7 @@ snapshots["open-scd looks like its snapshot"] =
   </openscd-divider>
   <section>
     <h3>
-      Load .nsdoc
+      Uploading NSD files
     </h3>
     <input
       accept=".nsdoc"
