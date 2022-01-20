@@ -110,7 +110,9 @@ export function editDataSetWizard(element: Element): Wizard {
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
               html`<mwc-check-list-item selected value="${identity(fcda)}"
-                >${(<string>identity(fcda)).split('>')[4]}</mwc-check-list-item
+                >${(<string>identity(fcda))
+                  .split('>')
+                  .pop()}</mwc-check-list-item
               >`
           )}</filtered-list
         >`,
