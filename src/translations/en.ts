@@ -64,7 +64,9 @@ export const en = {
   },
   zeroline: {
     iedsloading: 'Loading IEDs...',
+    showieds: 'Show/hide IEDs in substation editor',
     commmap: 'Communication mapping',
+    reportcontrol: 'Show all Reports',
     gsecontrol: 'Show all GOOSEs',
     smvcontrol: 'Show all Sampled Values',
   },

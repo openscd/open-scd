@@ -113,7 +113,7 @@ export class ZerolinePane extends LitElement {
           </abbr>
         </nav>
         <nav>
-          <abbr title="${translate('zeroline.commmap')}">
+          <abbr title="${translate('zeroline.showieds')}">
             <mwc-icon-button-toggle
               ?on=${shouldShowIEDs()}
               @click=${() => this.toggleShowIEDs()}
@@ -129,7 +129,7 @@ export class ZerolinePane extends LitElement {
               @click=${() => this.openCommunicationMapping()}
             ></mwc-icon-button>
           </abbr>
-          <abbr title="${translate('zeroline.gsecontrol')}"
+          <abbr title="${translate('zeroline.reportcontrol')}"
             ><mwc-icon-button
               id="reportcontrol"
               @click="${() => this.openReportControlSelection()}"
