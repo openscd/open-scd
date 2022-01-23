@@ -47,12 +47,21 @@
 				</ConductingEquipment>
 				<ConnectivityNode name="L2" pathName="ERE/V220/B272/L2" />
 			</Bay>
+			<Bay name="B282" sxy:dir="vertical" sxy:x="6">
+				<ConductingEquipment name="ES289" sxy:dir="vertical" sxy:x="1" sxy:y="1" virtual="false" type="DIS">
+					<LNode iedName="None" ldInst="Application" lnClass="XSWI" lnInst="1" lnType="LNType_XSWI_Ctl" prefix="First"/>
+					<Terminal bayName="B282" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B282/L1" />
+					<Terminal bayName="B282" cNodeName="L2" name="L2" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B282/L2" />
+				</ConductingEquipment>
+				<ConnectivityNode name="L2" pathName="ERE/V220/B282/L2" />
+			</Bay>
 			<Bay name="Bus_A1" desc="Bus A1" sxy:x="0" sxy:y="3">
 				<ConnectivityNode name="L1_232" pathName="ERE/V220/B232/L1" />
 				<ConnectivityNode name="L1_242" pathName="ERE/V220/B242/L1" />
 				<ConnectivityNode name="L1_252" pathName="ERE/V220/B252/L1" />
 				<ConnectivityNode name="L1_262" pathName="ERE/V220/B262/L1" />
 				<ConnectivityNode name="L1_272" pathName="ERE/V220/B272/L1" />
+				<ConnectivityNode name="L1_282" pathName="ERE/V220/B282/L1" />
 			  </Bay>
 		</VoltageLevel>
 	</Substation>
@@ -123,7 +132,7 @@
 						</DOI>
 						<SettingControl numOfSGs="1" actSG="1"></SettingControl>
 					</LN0>
-					<LN lnClass="XSWI" inst="1" lnType="LNType_XSWI_Ctl" desc="Disconnector" prefix="">
+					<LN lnClass="XSWI" inst="1" lnType="LNType_XSWI_Ctl" desc="Disconnector" prefix="First">
 						<DOI name="Mod" desc="Mode (status only)" />
 						<DOI name="Beh" desc="Behavior" />
 						<DOI name="Health" desc="Health" />
