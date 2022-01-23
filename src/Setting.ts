@@ -21,10 +21,10 @@ export type SettingsRecord = {
   theme: 'light' | 'dark';
   mode: 'safe' | 'pro';
   showieds: 'on' | 'off';
-  'IEC 61850-7-2': XMLDocument | undefined;
-  'IEC 61850-7-3': XMLDocument | undefined;
-  'IEC 61850-7-4': XMLDocument | undefined;
-  'IEC 61850-8-1': XMLDocument | undefined;
+  'IEC 61850-7-2': string | undefined;
+  'IEC 61850-7-3': string | undefined;
+  'IEC 61850-7-4': string | undefined;
+  'IEC 61850-8-1': string | undefined;
 };
 
 export function Settings() {
@@ -142,11 +142,10 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       if (files.length == 0) return;
       files.forEach(async file => {
         const text = await file.text();
-        const doc = new DOMParser().parseFromString(text, 'application/xml');
-        const id = doc.querySelector('NSDoc')?.getAttribute('id');
+        const id = this.parseToXmlObject(text).querySelector('NSDoc')?.getAttribute('id');
         if (!id) return;
   
-        Settings().setSetting(id as keyof SettingsRecord, doc);
+        Settings().setSetting(id as keyof SettingsRecord, text);
       })
 
       this.nsdocFileUI.value = '';
@@ -159,19 +158,32 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
      * @returns a .nsdoc item for the Settings wizard
      */
     private renderNsdocItem<T extends keyof SettingsRecord>(key: T): TemplateResult {
-      const nsd = this.settings[key];
+      const nsdSetting = this.settings[key];
+      let nsdVersion: string | undefined | null;
+      let nsdRevision: string | undefined | null;
+      
+      if (nsdSetting) {
+        const nsdoc = this.parseToXmlObject(nsdSetting)!.querySelector('NSDoc');
+        nsdVersion = nsdoc?.getAttribute('version');
+        nsdRevision = nsdoc?.getAttribute('revision');
+      }
 
-      return html`<mwc-list-item id=${key} graphic="avatar" hasMeta twoline .disabled=${!nsd}>
+      return html`<mwc-list-item id=${key} graphic="avatar" hasMeta twoline .disabled=${!nsdSetting}>
         <span>${key}</span>
-        <span slot="secondary">versie</span>
-        ${nsd ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
+        ${nsdSetting ? html`<span slot="secondary">${nsdVersion}${nsdRevision}</span>` :
+          html``}
+        ${nsdSetting ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
           html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
-        ${nsd ? html`<mwc-icon id="deleteNsdocItem" slot="meta" @click=${() => {
+        ${nsdSetting ? html`<mwc-icon id="deleteNsdocItem" slot="meta" @click=${() => {
           Settings().removeSetting(key);
           this.requestUpdate();
         }}>delete</mwc-icon>` :
           html``}
       </mwc-list-item>`;
+    }
+
+    private parseToXmlObject(text: string): XMLDocument {
+      return new DOMParser().parseFromString(text, 'application/xml');
     }
 
     constructor(...params: any[]) {

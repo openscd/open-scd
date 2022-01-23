@@ -1111,9 +1111,6 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         IEC 61850-7-2
       </span>
-      <span slot="secondary">
-        versie
-      </span>
       <mwc-icon
         slot="graphic"
         style="color:red;"
@@ -1133,9 +1130,6 @@ snapshots["open-scd looks like its snapshot"] =
     >
       <span>
         IEC 61850-7-3
-      </span>
-      <span slot="secondary">
-        versie
       </span>
       <mwc-icon
         slot="graphic"
@@ -1157,9 +1151,6 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         IEC 61850-7-4
       </span>
-      <span slot="secondary">
-        versie
-      </span>
       <mwc-icon
         slot="graphic"
         style="color:red;"
@@ -1179,9 +1170,6 @@ snapshots["open-scd looks like its snapshot"] =
     >
       <span>
         IEC 61850-8-1
-      </span>
-      <span slot="secondary">
-        versie
       </span>
       <mwc-icon
         slot="graphic"

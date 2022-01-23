@@ -56,7 +56,6 @@ describe('SettingElement', () => {
   
     const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
       .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     Settings().setSetting('IEC 61850-7-2', nsdocFile);
     
@@ -72,7 +71,6 @@ describe('SettingElement', () => {
   
     const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
       .then(response => response.text())
-      .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
     Settings().setSetting('IEC 61850-7-2', nsdocFile);
     
