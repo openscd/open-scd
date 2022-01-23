@@ -71,7 +71,7 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
   <mwc-button
     dialoginitialfocus=""
     icon="save"
-    label="[edit]"
+    label="[save]"
     slot="primaryAction"
     trailingicon=""
   >

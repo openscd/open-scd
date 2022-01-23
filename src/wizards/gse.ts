@@ -116,7 +116,7 @@ export function editGseWizard(element: Element): Wizard {
       element,
       primary: {
         label: get('save'),
-        icon: 'edit',
+        icon: 'save',
         action: updateGSEAction(element),
       },
       content: [
