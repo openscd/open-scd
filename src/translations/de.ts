@@ -42,7 +42,7 @@ export const de: Translations = {
     dark: 'Dunkles Design',
     mode: 'Profimodus',
     showieds: 'Zeige IEDs im Substation-Editor',
-    selectFileButton: '???',
+    selectFileButton: 'Datei auswählen',
     loadNsdTranslations: '???'
   },
   menu: {

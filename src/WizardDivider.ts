@@ -1,7 +1,7 @@
 import {css, customElement, html, LitElement, TemplateResult} from "lit-element";
 
-@customElement('openscd-divider')
-export class DividerElement extends LitElement {
+@customElement('wizard-divider')
+export class WizardDividerElement extends LitElement {
   render(): TemplateResult {
     return html `
       <div role="separator"></div>

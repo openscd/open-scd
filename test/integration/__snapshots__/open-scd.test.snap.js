@@ -1077,8 +1077,8 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-switch>
     </mwc-formfield>
   </form>
-  <openscd-divider>
-  </openscd-divider>
+  <wizard-divider>
+  </wizard-divider>
   <section>
     <h3>
       Uploading NSDoc files

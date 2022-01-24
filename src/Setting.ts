@@ -7,6 +7,7 @@ import '@material/mwc-formfield';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-select';
 import '@material/mwc-switch';
+
 import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
@@ -14,7 +15,7 @@ import { Switch } from '@material/mwc-switch';
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
-import './Divider.js';
+import './WizardDivider.js';
 
 export type SettingsRecord = {
   language: Language;
@@ -161,16 +162,18 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       const nsdSetting = this.settings[key];
       let nsdVersion: string | undefined | null;
       let nsdRevision: string | undefined | null;
+      let nsdRelease: string | undefined | null;
       
       if (nsdSetting) {
         const nsdoc = this.parseToXmlObject(nsdSetting)!.querySelector('NSDoc');
         nsdVersion = nsdoc?.getAttribute('version');
         nsdRevision = nsdoc?.getAttribute('revision');
+        nsdRelease = nsdoc?.getAttribute('release');
       }
 
       return html`<mwc-list-item id=${key} graphic="avatar" hasMeta twoline .disabled=${!nsdSetting}>
         <span>${key}</span>
-        ${nsdSetting ? html`<span slot="secondary">${nsdVersion}${nsdRevision}</span>` :
+        ${nsdSetting ? html`<span slot="secondary">${nsdVersion}${nsdRevision}${nsdRelease}</span>` :
           html``}
         ${nsdSetting ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
           html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
@@ -236,7 +239,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
               ></mwc-switch>
             </mwc-formfield>
           </form>
-          <openscd-divider></openscd-divider>
+          <wizard-divider></wizard-divider>
           <section>
             <h3>${translate('settings.loadNsdTranslations')}</h3>
             ${this.renderFileSelect()}
