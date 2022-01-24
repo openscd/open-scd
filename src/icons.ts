@@ -455,66 +455,72 @@ export const voltageTransformerIcon = html`<svg
 </svg>`;
 
 export const earthSwitchIcon = html`<svg
-viewBox="0 0 25 25"
-version="1.1"
-xmlns="http://www.w3.org/2000/svg"
-xmlns:svg="http://www.w3.org/2000/svg">
-<line
-  x1="12.5"
-  y1="19.25"
-  x2="12.5"
-  y2="16.25"
-  stroke="currentColor"
-  stroke-width="1.5"
-  stroke-linecap="round" />
-<line
-  x1="12.5"
-  y1="1.25"
-  x2="12.5"
-  y2="6.25"
-  stroke="currentColor"
-  stroke-width="1.5"
-  stroke-linecap="round" />
-<line
-  x1="12.5"
-  y1="6.25"
-  x2="17"
-  y2="15.25"
-  stroke="currentColor"
-  stroke-width="1.5"
-  stroke-linecap="round" />
-<line
-  x1="13.5"
-  y1="16.25"
-  x2="11.5"
-  y2="16.25"
-  stroke="currentColor"
-  stroke-width="1.5"
-  stroke-linecap="round" />
-<line
-  x1="17"
-  y1="19.25"
-  x2="8"
-  y2="19.25"
-  stroke="currentColor"
-  stroke-width="1.5"
-  stroke-linecap="round" />>
-<line
-  x1="15.5"
-  y1="21.45"
-  x2="9.5"
-  y2="21.45"
-  stroke="currentColor"
-  stroke-width="1.5"
-  stroke-linecap="round" />
-<line
-  x1="14.5"
-  y1="23.5"
-  x2="10.5"
-  y2="23.5"
-  stroke="currentColor"
-  stroke-width="1.5"
-  stroke-linecap="round" />
+  viewBox="0 0 25 25"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <line
+    x1="12.5"
+    x2="12.5"
+    y1="19.2"
+    y2="16.2"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="12.5"
+    x2="12.5"
+    y1="1.25"
+    y2="6.25"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="12.5"
+    x2="8"
+    y1="16.2"
+    y2="7.25"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="13.5"
+    x2="11.5"
+    y1="6.25"
+    y2="6.25"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="17"
+    x2="8"
+    y1="19.2"
+    y2="19.2"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="15.5"
+    x2="9.5"
+    y1="21.4"
+    y2="21.4"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="14.5"
+    x2="10.5"
+    y1="23.5"
+    y2="23.5"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
 </svg>`;
 
 export const generalConductingEquipmentIcon = html`<svg
