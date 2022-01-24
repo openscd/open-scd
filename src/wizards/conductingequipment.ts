@@ -57,32 +57,53 @@ const types: Partial<Record<string, string>> = {
  */
 function getLogicalNodeInstance(lNode: Element | null): Element | null {
   if (!lNode) return null;
-  const [lnInst, lnClass, iedName, ldInst, prefix, lnType] = [
+  const [lnInst, lnClass, iedName, ldInst, prefix] = [
     'lnInst',
     'lnClass',
     'iedName',
     'ldInst',
     'prefix',
-    'lnType',
-  ].map(attribute => lNode?.getAttribute(attribute) || '');
+  ].map(attribute => lNode?.getAttribute(attribute));
   const iedSelector = [`IED[name="${iedName}"]`, 'IED'];
   const lDevicePath = ['AccessPoint > Server'];
-  const lDeviceSelector = [
-    `LDevice[inst="${ldInst}"] > LN[inst="${lnInst}"][lnType="${lnType}"][lnClass="${lnClass}"]`,
+  const lNSelector = [
+    `LDevice[inst="${ldInst}"] > LN[inst="${lnInst}"][lnClass="${lnClass}"]`,
   ];
-  const lDevicePrefixSelector = [`[prefix="${prefix}"]`, ':not(prefix)'];
+  const lNPrefixSelector =
+    prefix && prefix !== ''
+      ? [`[prefix="${prefix}"]`]
+      : ['[prefix=""]', ':not(prefix)'];
   return lNode.ownerDocument.querySelector(
     crossProduct(
       iedSelector,
       [' > '],
       lDevicePath,
       [' > '],
-      lDeviceSelector,
-      lDevicePrefixSelector
+      lNSelector,
+      lNPrefixSelector
     )
       .map(strings => strings.join(''))
       .join(',')
   );
+}
+
+function getSwitchTypeValueFromDTT(lNorlNode: Element): string | undefined {
+  const rootNode = lNorlNode?.ownerDocument;
+  const lNodeType = lNorlNode.getAttribute('lnType');
+  const lnClass = lNorlNode.getAttribute('lnClass');
+  const dObj = rootNode.querySelector(
+    `DataTypeTemplates > LNodeType[id="${lNodeType}"][lnClass="${lnClass}"] > DO[name="SwTyp"]`
+  );
+  if (dObj) {
+    const dORef = dObj.getAttribute('type');
+    return rootNode
+      .querySelector(
+        `DataTypeTemplates > DOType[id="${dORef}"] > DA[name="stVal"] > Val`
+      )
+      ?.innerHTML.trim();
+  }
+  // definition missing
+  return undefined;
 }
 
 /**
@@ -92,28 +113,15 @@ function getLogicalNodeInstance(lNode: Element | null): Element | null {
  */
 function getSwitchTypeValue(lN: Element): string | undefined {
   const daInstantiated = lN.querySelector(
-    'DOI[name="SwTyp"] > DAI[name="stVal"'
+    'DOI[name="SwTyp"] > DAI[name="stVal"]'
   );
   // definition is on instantiated object
-  if (daInstantiated)
+  if (daInstantiated) {
     return daInstantiated.querySelector('Val')?.innerHTML.trim();
-  const rootNode = lN?.ownerDocument;
-  const lNodeType = lN.getAttribute('type');
-  const lnClass = lN.getAttribute('lnClass');
-  // definition must be on the data object type
-  const doObj = rootNode.querySelector(
-    `DataTypeTemplates > LNodeType[id="${lNodeType}"][class="${lnClass}"] > DO[name="SwTyp"]`
-  );
-  if (doObj) {
-    const doRef = doObj.getAttribute('type');
-    return rootNode
-      .querySelector(
-        `DataTypeTemplates > DOType[id="${doRef}"] > DA[name="stVal"] > Val`
-      )
-      ?.innerHTML.trim();
+    // definition must be on the data object type
+  } else {
+    return getSwitchTypeValueFromDTT(lN);
   }
-  // definition missing
-  return undefined;
 }
 
 /**
@@ -129,21 +137,23 @@ function containsGroundedTerminal(condEq: Element): boolean {
 
 /**
  * Looks to see if the Conducting Equipment contains an XSWI LN. If so, check if the XSWI definition
- * includes SwTyp and if stVal indicates an Earth/Earthing Switch.
+ * includes SwTyp and if stVal indicates an Earth/Earthing Switch by looking at either the IED or the
+ * DataTypeTemplates.
  * @param condEq - SCL ConductingEquipment.
  * @returns true if an earth switch is found, false otherwise.
  */
 function containsEarthSwitchDefinition(condEq: Element): boolean {
-  const lNXSWI = condEq.querySelector('LNode[lnClass="XSWI"]');
-  const lN = getLogicalNodeInstance(lNXSWI);
+  const lNodeXSWI = condEq.querySelector('LNode[lnClass="XSWI"]');
+  const lN = getLogicalNodeInstance(lNodeXSWI);
+  let swTypVal;
   if (lN) {
-    const swTypVal = getSwitchTypeValue(lN);
-    return swTypVal
-      ? ['Earthing Switch', 'High Speed Earthing Switch'].includes(swTypVal)
-      : false;
-  } else {
-    return false;
+    swTypVal = getSwitchTypeValue(lN);
+  } else if (lNodeXSWI) {
+    swTypVal = getSwitchTypeValueFromDTT(lNodeXSWI);
   }
+  return swTypVal
+    ? ['Earthing Switch', 'High Speed Earthing Switch'].includes(swTypVal)
+    : false;
 }
 
 /**

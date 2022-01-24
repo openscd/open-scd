@@ -3,7 +3,6 @@ import { expect } from '@open-wc/testing';
 import { typeStr } from '../../../../src/wizards/conductingequipment.js';
 
 describe('conductingequipmentwizard', () => {
-
   describe('recognises an earth switch in the conducting equipment wizard that', () => {
     let doc: Document;
     beforeEach(async () => {
@@ -14,51 +13,38 @@ describe('conductingequipmentwizard', () => {
 
     it('has the first terminal grounded', () => {
       expect(
-        typeStr(
-          doc.querySelector('ConductingEquipment[name="ES239"]')!
-        )
+        typeStr(doc.querySelector('ConductingEquipment[name="ES239"]')!)
       ).to.equal('ERS');
     });
 
     it('has the second terminal grounded', () => {
       expect(
-        typeStr(
-          doc.querySelector('ConductingEquipment[name="ES249"]')!
-        )
+        typeStr(doc.querySelector('ConductingEquipment[name="ES249"]')!)
       ).to.equal('ERS');
     });
 
     it('has no grounded connectivityNodes but has an XSWI LN and DOI:SWTyp > DAI:stVal defining an "Earthing Switch"', () => {
       expect(
-        typeStr(
-          doc.querySelector('ConductingEquipment[name="ES259"]')!
-        )
+        typeStr(doc.querySelector('ConductingEquipment[name="ES259"]')!)
       ).to.equal('ERS');
     });
-    
-    it('has no grounded connectivityNodes but has an XSWI LN and DOI:SWTyp > DOType > DA:stVal defining an "Earthing Switch"', () => {
+
+    it('has no grounded connectivityNodes but has an XSWI LN and LNodeType > DOType > DA:stVal defining an "Earthing Switch"', () => {
       expect(
-        typeStr(
-          doc.querySelector('ConductingEquipment[name="ES269"]')!
-        )
+        typeStr(doc.querySelector('ConductingEquipment[name="ES269"]')!)
       ).to.equal('ERS');
     });
 
     it('has no grounded connectivityNodes but has an XSWI LN within SubEquipment and DOI:SWTyp > DAI:stVal defining an "Earthing Switch"', () => {
       expect(
-        typeStr(
-          doc.querySelector('ConductingEquipment[name="ES279"]')!
-        )
+        typeStr(doc.querySelector('ConductingEquipment[name="ES279"]')!)
       ).to.equal('ERS');
     });
 
-    it('has no grounded connectivityNodes but has an IED with name "None" and an XSWI LN with a prefix and DOI:SWTyp > DAI:stVal defining an "Earthing Switch"', () => {
+    it('has no grounded connectivityNodes but has an IED with name "None" and a definition in the DataTypeTemplates', () => {
       expect(
-        typeStr(
-          doc.querySelector('ConductingEquipment[name="ES289"]')!
-        )
+        typeStr(doc.querySelector('ConductingEquipment[name="ES289"]')!)
       ).to.equal('ERS');
     });
-
   });
 });

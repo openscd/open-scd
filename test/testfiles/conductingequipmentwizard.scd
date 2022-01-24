@@ -9,13 +9,15 @@
 		<VoltageLevel name="V220" sxy:dir="vertical" sxy:x="3">
 			<Bay name="B232" sxy:dir="vertical" sxy:x="1">
 				<ConductingEquipment name="ES239" sxy:dir="vertical" sxy:x="1" sxy:y="1" virtual="false" type="DIS">
-					<Terminal bayName="B232" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B232/L1" />
+					<!-- first terminal grounded -->
 					<Terminal bayName="B232" cNodeName="grounded" name="grounded" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B232/grounded" />
+					<Terminal bayName="B232" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B232/L1" />
 				</ConductingEquipment>
 				<ConnectivityNode name="grounded" pathName="ERE/V220/B232/grounded" />
 			</Bay>
 			<Bay name="B242" sxy:dir="vertical" sxy:x="2">
 				<ConductingEquipment name="ES249" sxy:dir="vertical" sxy:x="1" sxy:y="1" virtual="false" type="DIS">
+					<!-- second terminal grounded -->
 					<Terminal bayName="B242" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B242/L1" />
 					<Terminal bayName="B242" cNodeName="grounded" name="grounded" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B242/grounded" />
 				</ConductingEquipment>
@@ -23,6 +25,7 @@
 			</Bay>
 			<Bay name="B252" sxy:dir="vertical" sxy:x="3">
 				<ConductingEquipment name="ES259" sxy:dir="vertical" sxy:x="1" sxy:y="1" virtual="false" type="DIS">
+					<!-- this IED has a DAI:stVal defining an "Earthing Switch" -->
 					<LNode iedName="BC1" ldInst="Application" lnClass="XSWI" lnInst="1" lnType="LNType_XSWI_Ctl" />
 					<Terminal bayName="B252" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B252/L1" />
 					<Terminal bayName="B252" cNodeName="L2" name="L2" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B252/L2" />
@@ -31,6 +34,7 @@
 			</Bay>
 			<Bay name="B262" sxy:dir="vertical" sxy:x="4">
 				<ConductingEquipment name="ES269" sxy:dir="vertical" sxy:x="1" sxy:y="1" virtual="false" type="DIS">
+					<!-- In this case, the SwTyp:stVal is defined via the DOType  -->
 					<LNode iedName="BC1" ldInst="Application" lnClass="XSWI" lnInst="2" lnType="LNType_XSWI_Ctl_2" />
 					<Terminal bayName="B262" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B262/L1" />
 					<Terminal bayName="B262" cNodeName="L2" name="L2" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B262/L2" />
@@ -39,17 +43,19 @@
 			</Bay>
 			<Bay name="B272" sxy:dir="vertical" sxy:x="5">
 				<ConductingEquipment name="ES279" sxy:dir="vertical" sxy:x="1" sxy:y="1" virtual="false" type="DIS">
-					<SubEquipment name="A" phase="A" virtual="false">
-						<LNode iedName="BC1" ldInst="Application" lnClass="XSWI" lnInst="1" lnType="LNType_XSWI_Ctl" />
-					</SubEquipment>
 					<Terminal bayName="B272" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B272/L1" />
 					<Terminal bayName="B272" cNodeName="L2" name="L2" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B272/L2" />
+					<SubEquipment name="A" phase="A" virtual="false">
+						<!-- Here we check that a definition inside a SubEquipment still to identify an ERS -->
+						<LNode iedName="BC1" ldInst="Application" lnClass="XSWI" lnInst="1" lnType="LNType_XSWI_Ctl" />
+					</SubEquipment>
 				</ConductingEquipment>
 				<ConnectivityNode name="L2" pathName="ERE/V220/B272/L2" />
 			</Bay>
 			<Bay name="B282" sxy:dir="vertical" sxy:x="6">
 				<ConductingEquipment name="ES289" sxy:dir="vertical" sxy:x="1" sxy:y="1" virtual="false" type="DIS">
-					<LNode iedName="None" ldInst="Application" lnClass="XSWI" lnInst="1" lnType="LNType_XSWI_Ctl" prefix="First"/>
+					<!-- This lnType is only defined in the data type templates, not within an IED section -->
+					<LNode iedName="None" ldInst="Application" lnClass="XSWI" lnInst="1" lnType="LNType_XSWI_Ctl_3"/>
 					<Terminal bayName="B282" cNodeName="L1" name="L1" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B282/L1" />
 					<Terminal bayName="B282" cNodeName="L2" name="L2" substationName="ERE" voltageLevelName="V220" connectivityNode="ERE/V220/B282/L2" />
 				</ConductingEquipment>
@@ -132,7 +138,7 @@
 						</DOI>
 						<SettingControl numOfSGs="1" actSG="1"></SettingControl>
 					</LN0>
-					<LN lnClass="XSWI" inst="1" lnType="LNType_XSWI_Ctl" desc="Disconnector" prefix="First">
+					<LN lnClass="XSWI" inst="1" lnType="LNType_XSWI_Ctl" desc="Disconnector" prefix="">
 						<DOI name="Mod" desc="Mode (status only)" />
 						<DOI name="Beh" desc="Behavior" />
 						<DOI name="Health" desc="Health" />
@@ -188,11 +194,7 @@
 						</DOI>
 						<DOI name="BlkOpn" desc="Block opening" />
 						<DOI name="BlkCls" desc="Block closing" />
-						<DOI name="SwTyp" desc="Switching-device type">
-							<DAI name="stVal">
-								<Val>Earthing Switch</Val>
-							</DAI>
-						</DOI>
+						<DOI name="SwTyp" desc="Switching-device type"/>
 					</LN>
 				</LDevice>
 			</Server>
@@ -222,6 +224,18 @@
 			<DO name="SwTyp" type="DOType_ENS_SwitchType" />
 		</LNodeType>
 		<LNodeType id="LNType_XSWI_Ctl_2" lnClass="XSWI">
+			<DO name="Mod" type="DOType_Mod_status_only_with_InitVal" />
+			<DO name="Beh" type="DOType_ENS_Behavior" />
+			<DO name="Health" type="DOType_ENS_Health" />
+			<DO name="NamPlt" type="DOType_LPL_NamPlt_for_Ed2_LN" />
+			<DO name="Loc" type="DOType_SPS" />
+			<DO name="OpCnt" type="DOType_INS_INT32" />
+			<DO name="Pos" type="DOType_DPC_XCBR_Pos" />
+			<DO name="BlkOpn" type="DOType_SPC_status_only" />
+			<DO name="BlkCls" type="DOType_SPC_status_only" />
+			<DO name="SwTyp" type="DOType_ENS_SwitchType_2" />
+		</LNodeType>
+		<LNodeType id="LNType_XSWI_Ctl_3" lnClass="XSWI">
 			<DO name="Mod" type="DOType_Mod_status_only_with_InitVal" />
 			<DO name="Beh" type="DOType_ENS_Behavior" />
 			<DO name="Health" type="DOType_ENS_Health" />
