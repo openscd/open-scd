@@ -14,22 +14,35 @@ import './do-container.js';
 import { getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
+import { nsdoc } from '../../Setting.js';
+import { until } from 'lit-html/directives/until';
 
 /** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
 @customElement('ln-container')
 export class LNContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
+
+  /**
+   * The LNClass element for this LN(0)
+   * found in the nsd file.
+   */
+  @property({ attribute: false })
+  lnClassElement!: Element
   
   @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
 
-  private header(): TemplateResult {
+  private async header(): Promise<TemplateResult> {
     const prefix = this.element.getAttribute('prefix');
     const lnClass = this.element.getAttribute('lnClass');
     const inst = getInstanceAttribute(this.element);
 
+    const logicalNodeName = await nsdoc.then(settings => {
+      return settings.getLNClassTitle(lnClass!);
+    });
+
     return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
-            ${lnClass}
+            ${logicalNodeName ? logicalNodeName : lnClass}
             ${inst ? html` &mdash; ${inst}` : nothing}`;
   }
 
@@ -59,7 +72,7 @@ export class LNContainer extends LitElement {
   render(): TemplateResult {
     const doElements = this.getDOElements();
     
-    return html`<action-pane .label="${this.header()}">
+    return html`<action-pane .label="${until(this.header())}">
       ${doElements.length > 0 ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
         <mwc-icon-button-toggle
           id="toggleButton"

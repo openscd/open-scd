@@ -48,8 +48,8 @@ export class LDeviceContainer extends LitElement {
         ></mwc-icon-button-toggle>
       </abbr>` : nothing}
       <div id="lnContainer">
-        ${this.toggleButton?.on ? lnElements.map(server => html`<ln-container
-            .element=${server}
+        ${this.toggleButton?.on ? lnElements.map(ln => html`<ln-container
+            .element=${ln}
           ></ln-container>
           `) : nothing}
       </div>

@@ -16,14 +16,36 @@ import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import './WizardDivider.js';
+import { iec6185074 } from './validators/templates/foundation.js';
 
-function NsdocSettings() {
+/**
+ * Get NSDoc information
+ * @returns 
+ */
+async function Nsdoc() {
+  const nsd74 = await iec6185074;
+  const nsdoc74 = Settings().getSetting('IEC 61850-7-4');
+  const parsedNsdoc74 = new DOMParser().parseFromString(nsdoc74!, 'application/xml')
+  
   return {
-    
+    getLNClassTitle(lnClass: string): string | null | undefined {
+      const titleID = nsd74.querySelector(`NS > LNClasses > LNClass[name="${lnClass}"]`)?.getAttribute('titleID');
+      const ourDocument = parsedNsdoc74.querySelector(`NSDoc > Doc[id="${titleID}"]`);
+      return ourDocument?.textContent;
+    },
+
+    /**
+     * Get the LNClass for a specific LN class name.
+     * @param name - The name of the LN class.
+     * @returns The LN class element.
+     */
+    getLNClass(name: string): Element | null {
+      return nsd74.querySelector(`NS > LNClasses > LNClass[name="${name}"]`);
+    }
   }
 }
 
-export const nsdocSettings = NsdocSettings();
+export const nsdoc = Nsdoc();
 
 export type SettingsRecord = {
   language: Language;
