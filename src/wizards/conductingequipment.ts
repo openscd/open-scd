@@ -87,6 +87,11 @@ function getLogicalNodeInstance(lNode: Element | null): Element | null {
   );
 }
 
+/**
+ * Searches DataTypeTemplates for SwTyp:stVal from an LN or LNode reference.
+ * @param lNorlNode - SCL IED Logical Node or LNode from Substation section.
+ * @returns - value of stVal data attribute if found.
+ */
 function getSwitchTypeValueFromDTT(lNorlNode: Element): string | undefined {
   const rootNode = lNorlNode?.ownerDocument;
   const lNodeType = lNorlNode.getAttribute('lnType');
