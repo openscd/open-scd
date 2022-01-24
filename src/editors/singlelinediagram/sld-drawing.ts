@@ -2,6 +2,7 @@ import { getDescriptionAttribute, getNameAttribute, identity } from '../../found
 import { getIcon } from '../../zeroline/foundation.js';
 import {
   connectivityNodeIcon,
+  editIcon,
   powerTransformerTwoWindingIcon,
 } from '../../icons.js';
 
@@ -172,7 +173,7 @@ export function getConnectivityNodesDrawingPosition(
  * @param element - The element.
  * @returns The <g> element.
  */
-function createGroupElement(element: Element): SVGElement {
+function createGroupElement(element: Element): SVGGraphicsElement {
   const finalElement = document.createElementNS(
     'http://www.w3.org/2000/svg',
     'g'
@@ -218,24 +219,52 @@ export function createVoltageLevelElement(voltageLevel: Element): SVGElement {
 /**
  * Create a Bay <g> element.
  * @param bayElement - The Bay from the SCL document to use.
- * @param clickAction - The action to execute when the Name of the Bay is being clicked.
  * @returns A Bay <g> element.
  */
-export function createBayElement(bayElement: Element,
-                                 clickAction?: (event: Event) => void
-): SVGElement {
-  const groupElement = createGroupElement(bayElement);
-  const absolutePosition = getAbsolutePosition(bayElement);
+export function createBayElement(bayElement: Element): SVGGraphicsElement {
+  return createGroupElement(bayElement);
+}
 
-  const text = createTextElement(
-    bayElement.getAttribute('name') || '',
-    { x: absolutePosition.x, y: absolutePosition.y! - 20 },
-    'medium'
-  );
-  if (clickAction) text.addEventListener('click', clickAction);
-  groupElement.appendChild(text);
+/**
+ * Add a Text Element to the top of the Bay
+ *
+ * @param rootGroup - The Root group containing all groups.
+ * @param bayElement - The Bay from the SCL document to use.
+ * @param clickAction - The action to execute when the Name of the Bay is being clicked.
+ */
+export function addLabelToBay(rootGroup: SVGElement,
+                              bayElement: Element,
+                              clickAction?: (event: Event) => void
+): void {
+  rootGroup
+    .querySelectorAll(`g[id="${identity(bayElement)}"]`)
+    .forEach(bayGroup => {
+      const labelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      labelGroup.setAttribute('type', 'BayLabel');
+      if (clickAction) labelGroup.addEventListener('click', clickAction);
+      bayGroup.prepend(labelGroup);
 
-  return groupElement;
+      const bayBox = (<SVGGraphicsElement>bayGroup).getBBox();
+      const text = createTextElement(
+        bayElement.getAttribute('name') || '',
+        {x: bayBox.x, y: bayBox.y - 20},
+        'medium'
+      );
+      labelGroup.append(text);
+
+      const textBox = text.getBBox();
+      const parsedIcon = new DOMParser().parseFromString(
+        editIcon.strings[0],
+        'application/xml'
+      );
+      parsedIcon.querySelectorAll('circle,path,line').forEach(icon => {
+        icon.setAttribute(
+          'transform',
+          `translate(${textBox.x + textBox.width + 5},${textBox.y}) scale(0.75)`
+        );
+        labelGroup.append(icon);
+      });
+    });
 }
 
 /**
@@ -249,7 +278,7 @@ export function createTextElement(
   textContent: string,
   coordinates: Point,
   textSize: string
-): SVGElement {
+): SVGGraphicsElement {
   const finalElement = document.createElementNS(
     'http://www.w3.org/2000/svg',
     'text'
@@ -308,26 +337,23 @@ export function createTerminalElement(
 
 /**
  * Create a bus bar element.
- * @param busBarElement - The Bus Bar SCL Element.
+ * @param busbarElement - The Bus Bar SCL Element.
  * @param busbarLength - The length of the bus bar depending on the x coordinate of the most far out right equipment ()
- * @param clickAction - Action attached to the Text Element (Label) of the BusBar SVG Group.
  * @returns The Bus Bar SVG element.
  */
 export function createBusBarElement(
-  busBarElement: Element,
-  busbarLength: number,
-  clickAction?: (event: Event) => void
-): SVGElement {
-  const groupElement = createGroupElement(busBarElement);
+  busbarElement: Element,
+  busbarLength: number
+): SVGGraphicsElement {
+  const groupElement = createGroupElement(busbarElement);
   // Overwrite the type to make a distinction between Bays and Busbars.
   groupElement.setAttribute('type', 'Busbar');
 
-  const busBarName = getNameAttribute(busBarElement)!;
-  const absolutePosition = getAbsolutePositionBusBar(busBarElement);
+  const absolutePosition = getAbsolutePositionBusBar(busbarElement);
 
   // TODO: Add this to the icons.ts file.
   const icon = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-  icon.setAttribute('name', getNameAttribute(busBarElement)!);
+  icon.setAttribute('name', getNameAttribute(busbarElement)!);
   icon.setAttribute('stroke-width', '4');
   icon.setAttribute('stroke', 'currentColor');
 
@@ -338,15 +364,49 @@ export function createBusBarElement(
 
   groupElement.appendChild(icon);
 
-  const text = createTextElement(
-    busBarName,
-    { x: absolutePosition.x, y: absolutePosition.y! - 10 },
-    'medium'
-  );
-  if (clickAction) text.addEventListener('click', clickAction);
-  groupElement.appendChild(text);
-
   return groupElement;
+}
+
+/**
+ * Add a Text Element to the top of the Bay
+ *
+ * @param rootGroup - The Root group containing all groups.
+ * @param busbarElement - The BusBar from the SCL document to use.
+ * @param clickAction - The action to execute when the Name of the BusBar is being clicked.
+ */
+export function addLabelToBusBar(rootGroup: SVGElement,
+                                 busbarElement: Element,
+                                 clickAction?: (event: Event) => void
+): void {
+  rootGroup
+    .querySelectorAll(`g[id="${identity(busbarElement)}"]`)
+    .forEach(busbarGroup => {
+      const labelGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+      labelGroup.setAttribute('type', 'BusbarLabel');
+      if (clickAction) labelGroup.addEventListener('click', clickAction);
+      busbarGroup.prepend(labelGroup);
+
+      const busbarBox = (<SVGGraphicsElement>busbarGroup).getBBox();
+      const text = createTextElement(
+        busbarElement.getAttribute('name') || '',
+        { x: busbarBox.x, y: busbarBox.y - 20 },
+        'medium'
+      );
+      labelGroup.append(text);
+
+      const textBox = text.getBBox();
+      const parsedIcon = new DOMParser().parseFromString(
+        editIcon.strings[0],
+        'application/xml'
+      );
+      parsedIcon.querySelectorAll('circle,path,line').forEach(icon => {
+        icon.setAttribute(
+          'transform',
+          `translate(${textBox.x + textBox.width + 5},${textBox.y}) scale(0.75)`
+        );
+        labelGroup.append(icon);
+      });
+    });
 }
 
 /**
