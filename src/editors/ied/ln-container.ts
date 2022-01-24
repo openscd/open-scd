@@ -34,15 +34,11 @@ export class LNContainer extends LitElement {
 
   private async header(): Promise<TemplateResult> {
     const prefix = this.element.getAttribute('prefix');
-    const lnClass = this.element.getAttribute('lnClass');
     const inst = getInstanceAttribute(this.element);
 
-    const logicalNodeName = await nsdoc.then(settings => {
-      return settings.getLNClassTitle(lnClass!);
-    });
-
     return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
-            ${logicalNodeName ? logicalNodeName : lnClass}
+            ${this.lnClassElement ?
+              nsdoc.getDocumentation(this.lnClassElement.getAttribute('titleID')!)?.textContent : this.element.getAttribute('lnClass')}
             ${inst ? html` &mdash; ${inst}` : nothing}`;
   }
 

@@ -24,16 +24,9 @@ import { iec6185074 } from './validators/templates/foundation.js';
  */
 async function Nsdoc() {
   const nsd74 = await iec6185074;
-  const nsdoc74 = Settings().getSetting('IEC 61850-7-4');
-  const parsedNsdoc74 = new DOMParser().parseFromString(nsdoc74!, 'application/xml')
+  const parsedNsdoc74 = new DOMParser().parseFromString(Settings().getSetting('IEC 61850-7-4')!, 'application/xml')
   
   return {
-    getLNClassTitle(lnClass: string): string | null | undefined {
-      const titleID = nsd74.querySelector(`NS > LNClasses > LNClass[name="${lnClass}"]`)?.getAttribute('titleID');
-      const ourDocument = parsedNsdoc74.querySelector(`NSDoc > Doc[id="${titleID}"]`);
-      return ourDocument?.textContent;
-    },
-
     /**
      * Get the LNClass for a specific LN class name.
      * @param name - The name of the LN class.
@@ -41,11 +34,20 @@ async function Nsdoc() {
      */
     getLNClass(name: string): Element | null {
       return nsd74.querySelector(`NS > LNClasses > LNClass[name="${name}"]`);
+    },
+
+    /**
+     * Get the documentation for a specific ID.
+     * @param id - The id to search for.
+     * @returns The documentation for the specific ID.
+     */
+    getDocumentation(id: string): Element | null {
+      return parsedNsdoc74.querySelector(`NSDoc > Doc[id="${id}"]`);
     }
   }
 }
 
-export const nsdoc = Nsdoc();
+export const nsdoc = await Nsdoc();
 
 export type SettingsRecord = {
   language: Language;
