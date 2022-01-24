@@ -31,7 +31,7 @@ function newFCDA(parent: Element, path: string[]): Element | undefined {
   const prefix = ln.getAttribute('prefix') ?? '';
   const lnClass = ln.getAttribute('lnClass');
   const lnInst =
-    ln.getAttribute('inst') && ln.getAttribute('inst') !== ''
+    (ln.getAttribute('inst') && ln.getAttribute('inst') !== '')
       ? ln.getAttribute('inst')
       : null;
 
