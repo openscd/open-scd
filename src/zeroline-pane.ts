@@ -79,8 +79,11 @@ export class ZerolinePane extends LitElement {
   }
 
   openSampledValueControlSelection(): void {
-    const wizard = selectSampledValueControlWizard(this.doc.documentElement);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    this.dispatchEvent(
+      newSubWizardEvent(() =>
+        selectSampledValueControlWizard(this.doc.documentElement)
+      )
+    );
   }
 
   toggleShowIEDs(): void {

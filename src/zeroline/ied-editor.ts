@@ -52,8 +52,9 @@ export class IedEditor extends LitElement {
   }
 
   private openSmvControlSelection(): void {
-    const wizard = selectSampledValueControlWizard(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    this.dispatchEvent(
+      newSubWizardEvent(() => selectSampledValueControlWizard(this.element))
+    );
   }
 
   private openCommunicationMapping(): void {
