@@ -51,7 +51,7 @@ export class LDeviceContainer extends LitElement {
       <div id="lnContainer">
         ${this.toggleButton?.on ? lnElements.map(ln => html`<ln-container
             .element=${ln}
-            .lnClassElement=${nsdoc.getLNClass(ln.getAttribute('lnClass')!)}
+            .lnClassElement=${nsdoc.get74NsdLNClass(ln.getAttribute('lnClass')!)}
           ></ln-container>
           `) : nothing}
       </div>

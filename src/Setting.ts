@@ -28,20 +28,20 @@ async function Nsdoc() {
   
   return {
     /**
-     * Get the LNClass for a specific LN class name.
+     * Get the LNClass for a specific LN class name found in the IEC 61850-7-4 nsdoc file.
      * @param name - The name of the LN class.
      * @returns The LN class element.
      */
-    getLNClass(name: string): Element | null {
+    get74NsdLNClass(name: string): Element | null {
       return nsd74.querySelector(`NS > LNClasses > LNClass[name="${name}"]`);
     },
 
     /**
-     * Get the documentation for a specific ID.
+     * Get the documentation for a specific ID found in the IEC 61850-7-4 nsdoc file.
      * @param id - The id to search for.
      * @returns The documentation for the specific ID.
      */
-    getDocumentation(id: string): Element | null {
+    get74NsdocDocumentation(id: string): Element | null {
       return parsedNsdoc74.querySelector(`NSDoc > Doc[id="${id}"]`);
     }
   }

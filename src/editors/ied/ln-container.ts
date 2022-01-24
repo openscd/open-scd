@@ -38,7 +38,7 @@ export class LNContainer extends LitElement {
 
     return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
             ${this.lnClassElement ?
-              nsdoc.getDocumentation(this.lnClassElement.getAttribute('titleID')!)?.textContent : this.element.getAttribute('lnClass')}
+              nsdoc.get74NsdocDocumentation(this.lnClassElement.getAttribute('titleID')!)?.textContent : this.element.getAttribute('lnClass')}
             ${inst ? html` &mdash; ${inst}` : nothing}`;
   }
 
