@@ -1,9 +1,14 @@
-import { List } from '@material/mwc-list';
-import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { html, TemplateResult } from 'lit-element';
 import { get, translate } from 'lit-translate';
 
+import '@material/mwc-list/mwc-list-item.js';
+import { List } from '@material/mwc-list';
+import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
+import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
+
+import '../filtered-list.js';
+import '../wizard-select.js';
+import '../wizard-textfield.js';
 import {
   cloneElement,
   EditorAction,
@@ -110,40 +115,27 @@ function contentSampledValueControlWizard(
 
 function updateSampledValueControlAction(element: Element): WizardActor {
   return (inputs: WizardInput[]): EditorAction[] => {
-    const name = inputs.find(i => i.label === 'name')!.value!;
-    const desc = getValue(inputs.find(i => i.label === 'desc')!);
-    const multicast = getValue(inputs.find(i => i.label === 'multicast')!);
-    const smvID = getValue(inputs.find(i => i.label === 'smvID')!)!;
-    const smpMod = getValue(inputs.find(i => i.label === 'smpMod')!);
-    const smpRate = getValue(inputs.find(i => i.label === 'smpRate')!);
-    const nofASDU = getValue(inputs.find(i => i.label === 'nofASDU')!);
-    const securityEnable = getValue(
-      inputs.find(i => i.label === 'securityEnable')!
-    );
+    const attributes: Record<string, string | null> = {};
+    const attributeKeys = [
+      'name',
+      'desc',
+      'multicast',
+      'smvID',
+      'smpMod',
+      'smpRate',
+      'nofASDU',
+      'securityEnable',
+    ];
 
-    let sampledValueControlAction: EditorAction | null;
+    attributeKeys.forEach(key => {
+      attributes[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    let sampledValueControlAction: EditorAction | null = null;
     if (
-      name === element.getAttribute('name') &&
-      desc === element.getAttribute('desc') &&
-      multicast === element.getAttribute('multicast') &&
-      smvID === element.getAttribute('smvID') &&
-      smpMod === element.getAttribute('smpMod') &&
-      smpRate === element.getAttribute('smpRate') &&
-      nofASDU === element.getAttribute('nofASDU') &&
-      securityEnable === element.getAttribute('securityEnable')
+      attributeKeys.some(key => attributes[key] !== element.getAttribute(key))
     ) {
-      sampledValueControlAction = null;
-    } else {
-      const newElement = cloneElement(element, {
-        name,
-        desc,
-        multicast,
-        smvID,
-        smpMod,
-        smpRate,
-        nofASDU,
-        securityEnable,
-      });
+      const newElement = cloneElement(element, attributes);
       sampledValueControlAction = {
         old: { element },
         new: { element: newElement },
