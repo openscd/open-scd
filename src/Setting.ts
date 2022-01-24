@@ -17,6 +17,14 @@ import { Language, languages, loader } from './translations/loader.js';
 
 import './WizardDivider.js';
 
+function NsdocSettings() {
+  return {
+    
+  }
+}
+
+export const nsdocSettings = NsdocSettings();
+
 export type SettingsRecord = {
   language: Language;
   theme: 'light' | 'dark';
