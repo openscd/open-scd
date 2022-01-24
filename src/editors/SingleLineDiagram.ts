@@ -567,7 +567,6 @@ export default class SingleLineDiagramPlugin extends LitElement {
     g[type='Bay'] > g[type='BayLabel'] {
       visibility: hidden;
     }
-
     g[type='Bay']:hover > g[type='BayLabel'] {
       visibility: visible;
     }
@@ -575,11 +574,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
     g[type='Busbar'] > g[type='BusbarLabel'] {
       visibility: hidden;
     }
-
-    g[type='Busbar'] > g[type='BusbarLabel'] > text {
-      visibility: visible;
-    }
-
+    g[type='Busbar'] > g[type='BusbarLabel'] > text ,
     g[type='Busbar']:hover > g[type='BusbarLabel'] {
       visibility: visible;
     }
