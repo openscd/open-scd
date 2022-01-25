@@ -8,14 +8,22 @@ snapshots["A component to visualize SCL element IED looks like the latest snapsh
   tabindex="0"
 >
   <mwc-fab
-    class="connectreport"
-    icon="add_link"
+    class="edit"
+    icon="edit"
     mini=""
     slot="action"
   >
   </mwc-fab>
   <mwc-fab
     class="selectgse"
+    mini=""
+    slot="action"
+  >
+    <mwc-icon slot="icon">
+    </mwc-icon>
+  </mwc-fab>
+  <mwc-fab
+    class="selectreport"
     mini=""
     slot="action"
   >
@@ -31,8 +39,8 @@ snapshots["A component to visualize SCL element IED looks like the latest snapsh
     </mwc-icon>
   </mwc-fab>
   <mwc-fab
-    class="edit"
-    icon="edit"
+    class="connectreport"
+    icon="add_link"
     mini=""
     slot="action"
   >

@@ -34,6 +34,8 @@ export const de: Translations = {
     securityEnabled: 'Aktive Sicherungsmaßnahmen',
     DataSet: 'Datensetz',
     Communication: 'Kommunikation',
+    TrgOps: 'Triggerbedingungen',
+    OptFields: 'Optionale felder',
   },
   settings: {
     title: 'Einstellungen',
@@ -64,7 +66,9 @@ export const de: Translations = {
   },
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
+    showieds: 'IEDs im Substation-Editor anzeigen/ausblenden',
     commmap: 'Kommunikationszuordnung',
+    reportcontrol: 'Reports anzeigen',
     gsecontrol: 'GOOSEs anzeigen',
     smvcontrol: 'Sampled Values anzeigen',
   },

@@ -114,9 +114,8 @@ function getReader(server: Element): (path: string[]) => Promise<Directory> {
   };
 }
 
-export function createFCDAsWizard(parent: Element): Wizard | undefined {
+export function createFCDAsWizard(parent: Element): Wizard {
   const server = parent.closest('Server');
-  if (!server) return;
 
   return [
     {
@@ -127,13 +126,15 @@ export function createFCDAsWizard(parent: Element): Wizard | undefined {
         action: createFCDAsAction(parent),
       },
       content: [
-        html`<finder-list
-          multi
-          .paths=${[['Server: ' + identity(server)]]}
-          .read=${getReader(server)}
-          .getDisplayString=${getDisplayString}
-          .getTitle=${(path: string[]) => path[path.length - 1]}
-        ></finder-list>`,
+        server
+          ? html`<finder-list
+              multi
+              .paths=${[['Server: ' + identity(server)]]}
+              .read=${getReader(server)}
+              .getDisplayString=${getDisplayString}
+              .getTitle=${(path: string[]) => path[path.length - 1]}
+            ></finder-list>`
+          : html``,
       ],
     },
   ];

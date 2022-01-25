@@ -12,6 +12,7 @@ import {
 import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
+import { typeStr } from '../wizards/conductingequipment.js';
 
 function containsReference(element: Element, iedName: string): boolean {
   return Array.from(element.getElementsByTagName('LNode'))
@@ -221,17 +222,6 @@ export function startMove<E extends ElementEditor, P extends ElementEditor>(
  */
 export function getIcon(condEq: Element): TemplateResult {
   return typeIcons[typeStr(condEq)] ?? generalConductingEquipmentIcon;
-}
-
-function typeStr(condEq: Element): string {
-  if (
-    condEq.getAttribute('type') === 'DIS' &&
-    condEq.querySelector('Terminal')?.getAttribute('cNodeName') === 'grounded'
-  ) {
-    return 'ERS';
-  } else {
-    return condEq.getAttribute('type') ?? '';
-  }
 }
 
 const typeIcons: Partial<Record<string, TemplateResult>> = {
