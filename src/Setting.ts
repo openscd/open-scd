@@ -18,26 +18,6 @@ import { Language, languages, loader } from './translations/loader.js';
 import './WizardDivider.js';
 import { WizardDialog } from './wizard-dialog.js';
 
-export interface Nsdocs {
-  nsdoc72?: XMLDocument;
-  nsdoc73?: XMLDocument;
-  nsdoc74?: XMLDocument;
-  nsdoc81?: XMLDocument;
-}
-
-export function loadNsdocs(): Nsdocs {
-  return {
-    nsdoc72: localStorage.getItem('IEC 61850-7-2') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-2')!, 'application/xml') : undefined,
-    nsdoc73: localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined,
-    nsdoc74: localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined,
-    nsdoc81: localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined
-  }
-}
-
-export function getDataDescription(element: Element, options?: {attribute: string, enum: string}):{label: string, description:string} {
-  return {label: '', description: ''};
-}
-
 export type Settings = {
   language: Language;
   theme: 'light' | 'dark';

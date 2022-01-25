@@ -11,10 +11,9 @@ import {
 import '../../action-pane.js';
 import './ln-container.js'
 import { nothing } from 'lit-html';
-import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from '../../foundation.js';
+import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute, Nsdoc } from '../../foundation.js';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { translate } from 'lit-translate';
-import { Nsdocs } from '../../Setting.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
@@ -23,7 +22,7 @@ export class LDeviceContainer extends LitElement {
   element!: Element;
 
   @property()
-  nsdocs!: Nsdocs;
+  nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
 
@@ -54,7 +53,7 @@ export class LDeviceContainer extends LitElement {
       <div id="lnContainer">
         ${this.toggleButton?.on ? lnElements.map(ln => html`<ln-container
             .element=${ln}
-            .nsdocs=${this.nsdocs}
+            .nsdoc=${this.nsdoc}
           ></ln-container>
           `) : nothing}
       </div>

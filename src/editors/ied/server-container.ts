@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import { Nsdocs } from '../../Setting.js';
+import { Nsdoc } from '../../foundation.js';
 import './ldevice-container.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */
@@ -18,7 +18,7 @@ export class ServerContainer extends LitElement {
   element!: Element;
 
   @property()
-  nsdocs!: Nsdocs;
+  nsdoc!: Nsdoc;
 
   private header(): string {
     return 'Server';
@@ -29,7 +29,7 @@ export class ServerContainer extends LitElement {
     ${Array.from(this.element.querySelectorAll(':scope > LDevice')).map(
       server => html`<ldevice-container
         .element=${server}
-        .nsdocs=${this.nsdocs}
+        .nsdoc=${this.nsdoc}
       ></ldevice-container>`)}
     </action-pane>`;
   }

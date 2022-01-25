@@ -9,8 +9,7 @@ import {
 import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
-import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
-import { Nsdocs } from '../../Setting.js';
+import { getDescriptionAttribute, getNameAttribute, Nsdoc } from '../../foundation.js';
 import './access-point-container.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
@@ -21,7 +20,7 @@ export class IedContainer extends LitElement {
   element!: Element;
 
   @property()
-  nsdocs!: Nsdocs;
+  nsdoc!: Nsdoc;
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
@@ -35,7 +34,7 @@ export class IedContainer extends LitElement {
       ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
         ap => html`<access-point-container
           .element=${ap}
-          .nsdocs=${this.nsdocs}
+          .nsdoc=${this.nsdoc}
         ></access-point-container>`)}
       </action-pane>`;
   }
