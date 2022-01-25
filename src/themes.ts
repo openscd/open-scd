@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit-element';
-import { SettingsRecord } from './Setting.js';
+import { Settings } from './Setting.js';
 
-export function getTheme(theme: SettingsRecord['theme']): TemplateResult {
+export function getTheme(theme: Settings['theme']): TemplateResult {
   document.body.style.cssText = bodyStyles[theme];
   return html`
     ${themes[theme]}
@@ -61,12 +61,12 @@ export function getTheme(theme: SettingsRecord['theme']): TemplateResult {
   `;
 }
 
-const bodyStyles: Record<SettingsRecord['theme'], string> = {
+const bodyStyles: Record<Settings['theme'], string> = {
   dark: 'background: #073642',
   light: 'background: #eee8d5',
 };
 
-const themes: Record<SettingsRecord['theme'], TemplateResult> = {
+const themes: Record<Settings['theme'], TemplateResult> = {
   light: html`
     <style>
       * {

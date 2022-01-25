@@ -14,7 +14,7 @@ import './do-container.js';
 import { getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
-import { nsdoc } from '../../Setting.js';
+import { Nsdocs } from '../../Setting.js';
 import { until } from 'lit-html/directives/until';
 
 /** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
@@ -23,22 +23,18 @@ export class LNContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
-  /**
-   * The LNClass element for this LN(0)
-   * found in the nsd file.
-   */
-  @property({ attribute: false })
-  lnClassElement!: Element
+  @property()
+  nsdocs!: Nsdocs;
   
   @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
 
   private async header(): Promise<TemplateResult> {
     const prefix = this.element.getAttribute('prefix');
+    const lnClass = this.element.getAttribute('lnClass')
     const inst = getInstanceAttribute(this.element);
 
     return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
-            ${this.lnClassElement ?
-              nsdoc.get74NsdocDocumentation(this.lnClassElement.getAttribute('titleID')!)?.textContent : this.element.getAttribute('lnClass')}
+            ${lnClass}
             ${inst ? html` &mdash; ${inst}` : nothing}`;
   }
 

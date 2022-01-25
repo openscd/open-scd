@@ -11,12 +11,17 @@ import { translate } from 'lit-translate';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foundation.js';
+import { Nsdocs } from '../Setting.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  /** All the nsdoc files that are being uploaded via the settings. */
+  @property()
+  nsdocs!: Nsdocs;
 
   /** Query holding the current selected IEDs. */
   @state()
@@ -60,6 +65,7 @@ export default class IedPlugin extends LitElement {
         ${Array.from(this.doc?.querySelectorAll(this.currentSelectedIEDs)).map(
           ied => html`<ied-container
             .element=${ied}
+            .nsdocs=${this.nsdocs}
           ></ied-container>`
         )}</section>`
       : html`<h1>

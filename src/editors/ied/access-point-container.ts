@@ -11,12 +11,16 @@ import '../../action-pane.js';
 import './server-container.js'
 import { nothing } from 'lit-html';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
+import { Nsdocs } from '../../Setting.js';
 
 /** [[`IED`]] plugin subeditor for editing `AccessPoint` element. */
 @customElement('access-point-container')
 export class AccessPointContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
+
+  @property()
+  nsdocs!: Nsdocs;
 
   private header(): TemplateResult {
     const name = getNameAttribute(this.element);
@@ -30,6 +34,7 @@ export class AccessPointContainer extends LitElement {
     ${Array.from(this.element.querySelectorAll(':scope > Server')).map(
       server => html`<server-container
         .element=${server}
+        .nsdocs=${this.nsdocs}
       ></server-container>`)}
     </action-pane>`;
   }

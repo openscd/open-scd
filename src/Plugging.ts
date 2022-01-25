@@ -26,6 +26,7 @@ import { TextField } from '@material/mwc-textfield';
 import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
+import { loadNsdocs } from './Setting.js';
 
 type PluginKind = 'editor' | 'menu' | 'validator';
 const menuPosition = ['top', 'middle', 'bottom'] as const;
@@ -208,6 +209,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             .docName=${this.docName}
             .docId=${this.docId}
             .pluginId=${plugin.src}
+            .nsdocs=${loadNsdocs()}
           ></${loadedPlugins.get(plugin.src)}>`;
         },
       };

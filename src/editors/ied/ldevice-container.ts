@@ -14,13 +14,16 @@ import { nothing } from 'lit-html';
 import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { translate } from 'lit-translate';
-import { nsdoc } from '../../Setting.js';
+import { Nsdocs } from '../../Setting.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')
 export class LDeviceContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
+
+  @property()
+  nsdocs!: Nsdocs;
   
   @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
 
@@ -51,7 +54,7 @@ export class LDeviceContainer extends LitElement {
       <div id="lnContainer">
         ${this.toggleButton?.on ? lnElements.map(ln => html`<ln-container
             .element=${ln}
-            .lnClassElement=${nsdoc.get74NsdLNClass(ln.getAttribute('lnClass')!)}
+            .nsdocs=${this.nsdocs}
           ></ln-container>
           `) : nothing}
       </div>

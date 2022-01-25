@@ -16,40 +16,29 @@ import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import './WizardDivider.js';
-import { iec6185074 } from './validators/templates/foundation.js';
+import { WizardDialog } from './wizard-dialog.js';
 
-/**
- * Get NSDoc information
- * @returns 
- */
-async function Nsdoc() {
-  const nsd74 = await iec6185074;
-  const parsedNsdoc74 = new DOMParser().parseFromString(Settings().getSetting('IEC 61850-7-4')!, 'application/xml')
-  
+export interface Nsdocs {
+  nsdoc72?: XMLDocument;
+  nsdoc73?: XMLDocument;
+  nsdoc74?: XMLDocument;
+  nsdoc81?: XMLDocument;
+}
+
+export function loadNsdocs(): Nsdocs {
   return {
-    /**
-     * Get the LNClass for a specific LN class name found in the IEC 61850-7-4 nsdoc file.
-     * @param name - The name of the LN class.
-     * @returns The LN class element.
-     */
-    get74NsdLNClass(name: string): Element | null {
-      return nsd74.querySelector(`NS > LNClasses > LNClass[name="${name}"]`);
-    },
-
-    /**
-     * Get the documentation for a specific ID found in the IEC 61850-7-4 nsdoc file.
-     * @param id - The id to search for.
-     * @returns The documentation for the specific ID.
-     */
-    get74NsdocDocumentation(id: string): Element | null {
-      return parsedNsdoc74.querySelector(`NSDoc > Doc[id="${id}"]`);
-    }
+    nsdoc72: localStorage.getItem('IEC 61850-7-2') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-2')!, 'application/xml') : undefined,
+    nsdoc73: localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined,
+    nsdoc74: localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined,
+    nsdoc81: localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined
   }
 }
 
-export const nsdoc = await Nsdoc();
+export function getDataDescription(element: Element, options?: {attribute: string, enum: string}):{label: string, description:string} {
+  return {label: '', description: ''};
+}
 
-export type SettingsRecord = {
+export type Settings = {
   language: Language;
   theme: 'light' | 'dark';
   mode: 'safe' | 'pro';
@@ -59,11 +48,26 @@ export type SettingsRecord = {
   'IEC 61850-7-4': string | undefined;
   'IEC 61850-8-1': string | undefined;
 };
+export const defaults: Settings = {
+  language: 'en',
+  theme: 'light',
+  mode: 'safe',
+  showieds: 'off',
+  'IEC 61850-7-2': undefined,
+  'IEC 61850-7-3': undefined,
+  'IEC 61850-7-4': undefined,
+  'IEC 61850-8-1': undefined
+};
 
-export function Settings() {
-  return {
-    /** Current [[`CompasSettings`]] in `localStorage`, default to [[`defaults`]]. */
-    get settings(): SettingsRecord {
+/** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
+ * `settings` property, setting them through `setSetting(setting, value)`. */
+export type SettingElement = Mixin<typeof Setting>;
+
+export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
+  class SettingElement extends Base {
+    /** Current [[`Settings`]] in `localStorage`, default to [[`defaults`]]. */
+    @property()
+    get settings(): Settings {
       return {
         language: this.getSetting('language'),
         theme: this.getSetting('theme'),
@@ -74,49 +78,6 @@ export function Settings() {
         'IEC 61850-7-4': this.getSetting('IEC 61850-7-4'),
         'IEC 61850-8-1': this.getSetting('IEC 61850-8-1')
       };
-    },
-
-    get defaultSettings(): SettingsRecord {
-      return {
-        language: 'en',
-        theme: 'light',
-        mode: 'safe',
-        showieds: 'off',
-        'IEC 61850-7-2': undefined,
-        'IEC 61850-7-3': undefined,
-        'IEC 61850-7-4': undefined,
-        'IEC 61850-8-1': undefined
-      }
-    },
-
-    /** Update the `value` of `setting`, storing to `localStorage`. */
-    setSetting<T extends keyof SettingsRecord>(setting: T, value: SettingsRecord[T]): void {
-      localStorage.setItem(setting, <string>(<unknown>value));
-    },
-
-    /** Update the `value` of `setting`, storing to `localStorage`. */
-    removeSetting<T extends keyof SettingsRecord>(setting: T): void {
-      localStorage.removeItem(setting);
-    },
-
-    getSetting<T extends keyof SettingsRecord>(setting: T): SettingsRecord[T] {
-      return (
-        <SettingsRecord[T] | null>localStorage.getItem(setting) ?? this.defaultSettings[setting]
-      );
-    }
-  }
-}
-
-/** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
- * `settings` property, setting them through `setSetting(setting, value)`. */
-export type SettingElement = Mixin<typeof Setting>;
-
-export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
-  class SettingElement extends Base {
-    /** Current [[`Settings`]] in `localStorage`, default to [[`defaults`]]. */
-    @property()
-    get settings(): SettingsRecord {
-      return Settings().settings;
     }
 
     @query('#settings')
@@ -133,6 +94,30 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     @query('#nsdoc-file')
     private nsdocFileUI!: HTMLInputElement;
 
+    private getSetting<T extends keyof Settings>(setting: T): Settings[T] {
+      return (
+        <Settings[T] | null>localStorage.getItem(setting) ?? defaults[setting]
+      );
+    }
+
+    /** Update the `value` of `setting`, storing to `localStorage`. */
+    setSetting<T extends keyof Settings>(setting: T, value: Settings[T]): void {
+      localStorage.setItem(setting, <string>(<unknown>value));
+      this.shadowRoot
+        ?.querySelector<WizardDialog>('wizard-dialog')
+        ?.requestUpdate();
+      this.requestUpdate();
+    }
+
+    /** Remove the `setting` in `localStorage`. */
+    removeSetting<T extends keyof Settings>(setting: T): void {
+      localStorage.removeItem(setting);
+      this.shadowRoot
+        ?.querySelector<WizardDialog>('wizard-dialog')
+        ?.requestUpdate();
+      this.requestUpdate();
+    }
+
     private onClosing(ae: CustomEvent<{ action: string } | null>): void {
       if (ae.detail?.action === 'reset') {
         Object.keys(this.settings).forEach(item =>
@@ -140,10 +125,10 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         );
         this.requestUpdate('settings');
       } else if (ae.detail?.action === 'save') {
-        Settings().setSetting('language', <Language>this.languageUI.value);
-        Settings().setSetting('theme', this.darkThemeUI.checked ? 'dark' : 'light');
-        Settings().setSetting('mode', this.modeUI.checked ? 'pro' : 'safe');
-        Settings().setSetting('showieds', this.showiedsUI.checked ? 'on' : 'off');
+        this.setSetting('language', <Language>this.languageUI.value);
+        this.setSetting('theme', this.darkThemeUI.checked ? 'dark' : 'light');
+        this.setSetting('mode', this.modeUI.checked ? 'pro' : 'safe');
+        this.setSetting('showieds', this.showiedsUI.checked ? 'on' : 'off');
         this.requestUpdate('settings');
       }
     }
@@ -178,7 +163,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         const id = this.parseToXmlObject(text).querySelector('NSDoc')?.getAttribute('id');
         if (!id) return;
   
-        Settings().setSetting(id as keyof SettingsRecord, text);
+        this.setSetting(id as keyof Settings, text);
       })
 
       this.nsdocFileUI.value = '';
@@ -190,7 +175,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
      * @param key - The key of the nsdoc file in the settings.
      * @returns a .nsdoc item for the Settings wizard
      */
-    private renderNsdocItem<T extends keyof SettingsRecord>(key: T): TemplateResult {
+    private renderNsdocItem<T extends keyof Settings>(key: T): TemplateResult {
       const nsdSetting = this.settings[key];
       let nsdVersion: string | undefined | null;
       let nsdRevision: string | undefined | null;
@@ -209,10 +194,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
           html``}
         ${nsdSetting ? html`<mwc-icon slot="graphic" style="color:green;">done</mwc-icon>` :
           html`<mwc-icon slot="graphic" style="color:red;">close</mwc-icon>`}
-        ${nsdSetting ? html`<mwc-icon id="deleteNsdocItem" slot="meta" @click=${() => {
-          Settings().removeSetting(key);
-          this.requestUpdate();
-        }}>delete</mwc-icon>` :
+        ${nsdSetting ? html`<mwc-icon id="deleteNsdocItem" slot="meta" @click=${() => {this.removeSetting(key)}}>delete</mwc-icon>` :
           html``}
       </mwc-list-item>`;
     }

@@ -24,7 +24,7 @@ import { Wizarding } from './Wizarding.js';
  * Open Substation Configuration Designer. */
 @customElement('open-scd')
 export class OpenSCD extends Hosting(
-  Setting(Wizarding(Waiting(Plugging(Editing(Logging(LitElement))))))
+  Plugging(Setting(Wizarding(Waiting(Editing(Logging(LitElement))))))
 ) {
   private currentSrc = '';
   /** The current file's URL. `blob:` URLs are *revoked after parsing*! */
