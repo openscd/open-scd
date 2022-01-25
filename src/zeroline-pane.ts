@@ -73,8 +73,9 @@ export class ZerolinePane extends LitElement {
   }
 
   openGseControlSelection(): void {
-    const wizard = selectGseControlWizard(this.doc.documentElement);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    this.dispatchEvent(
+      newSubWizardEvent(() => selectGseControlWizard(this.doc.documentElement))
+    );
   }
 
   openSampledValueControlSelection(): void {

@@ -18,6 +18,7 @@ import {
   identity,
   isPublic,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   selector,
   Wizard,
@@ -238,14 +239,11 @@ export function editGseControlWizard(element: Element): Wizard {
                 tagName: get('scl.DataSet'),
               })}
               icon="edit"
-              @click=${(e: MouseEvent) => {
-                if (dataSet) {
-                  e.target?.dispatchEvent(newWizardEvent());
-                  e.target?.dispatchEvent(
-                    newWizardEvent(editDataSetWizard(dataSet))
-                  );
-                }
-              }}
+              @click="${(e: MouseEvent) => {
+                e.target?.dispatchEvent(
+                  newSubWizardEvent(() => editDataSetWizard(dataSet))
+                );
+              }}}"
             ></mwc-button>`
           : html``,
         gSE
@@ -254,8 +252,9 @@ export function editGseControlWizard(element: Element): Wizard {
               label=${translate('scl.Communication')}
               icon="edit"
               @click="${(e: MouseEvent) => {
-                e.target?.dispatchEvent(newWizardEvent());
-                e.target?.dispatchEvent(newWizardEvent(editGseWizard(gSE)));
+                e.target?.dispatchEvent(
+                  newSubWizardEvent(() => editGseWizard(gSE))
+                );
               }}}"
             ></mwc-button>`
           : html``,
@@ -282,9 +281,8 @@ export function selectGseControlWizard(element: Element): Wizard {
             );
             if (gseControl) {
               e.target!.dispatchEvent(
-                newWizardEvent(editGseControlWizard(gseControl))
+                newSubWizardEvent(() => editGseControlWizard(gseControl))
               );
-              e.target!.dispatchEvent(newWizardEvent());
             }
           }}
           >${gseControls.map(
