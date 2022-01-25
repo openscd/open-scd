@@ -81,7 +81,7 @@ describe('create wizard for FCDA element', () => {
         expect(newElement).to.have.attribute('ldInst', 'CircuitBreaker_CB1');
         expect(newElement).to.have.attribute('prefix', '');
         expect(newElement).to.have.attribute('lnClass', 'LLN0');
-        expect(newElement).to.have.attribute('lnInst', '');
+        expect(newElement).to.not.have.attribute('lnInst');
         expect(newElement).to.have.attribute('doName', 'Beh');
         expect(newElement).to.have.attribute('daName', 'stVal');
         expect(newElement).to.have.attribute('fc', 'ST');
