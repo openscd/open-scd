@@ -53,6 +53,7 @@ function contentSampledValueControlWizard(
       label="desc"
       .maybeValue=${options.desc}
       nullable
+      pattern="${patterns.normalizedString}"
       helper="${translate('scl.desc')}"
     ></wizard-textfield>`,
     html`<wizard-select

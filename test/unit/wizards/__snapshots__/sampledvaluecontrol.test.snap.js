@@ -23,6 +23,7 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
       helper="[scl.desc]"
       label="desc"
       nullable=""
+      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-select
