@@ -14,7 +14,7 @@ export const iec6185073 = fetch('public/xml/IEC_61850-7-3_2007B3.nsd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 
-const iec6185072 = fetch('public/xml/IEC_61850-7-2_2007B3.nsd')
+export const iec6185072 = fetch('public/xml/IEC_61850-7-2_2007B3.nsd')
   .then(response => response.text())
   .then(str => new DOMParser().parseFromString(str, 'application/xml'));
 

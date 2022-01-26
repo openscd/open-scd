@@ -6,8 +6,7 @@ import './mock-setter.js';
 import { MockSetter } from './mock-setter.js';
 
 import { Button } from '@material/mwc-button';
-
-import { Settings } from '../../src/Setting.js';
+import { defaults } from '../../src/Setting.js';
 
 describe('SettingElement', () => {
   let element: MockSetter;
@@ -17,10 +16,10 @@ describe('SettingElement', () => {
   });
 
   it('initially has default settings', () =>
-    expect(element).to.have.deep.property('settings', Settings().defaultSettings));
+    expect(element).to.have.deep.property('settings', defaults));
 
   it('stores settings to localStorage', () => {
-    Settings().setSetting('theme', 'dark');
+    element.setSetting('theme', 'dark');
     expect(localStorage.getItem('theme')).to.equal('dark');
   });
 
@@ -42,12 +41,12 @@ describe('SettingElement', () => {
   it('resets settings to default on reset button click', async () => {
     element.settingsUI.show();
     await element.settingsUI.updateComplete;
-    Settings().setSetting('language', 'de');
-    expect(element).to.not.have.deep.property('settings', Settings().defaultSettings);
+    element.setSetting('language', 'de');
+    expect(element).to.not.have.deep.property('settings', defaults);
     (<Button>(
       element.settingsUI.querySelector('mwc-button[dialogAction="reset"]')
     )).click();
-    expect(element).to.have.deep.property('settings', Settings().defaultSettings);
+    expect(element).to.have.deep.property('settings', defaults);
   });
 
   it('saves chosen .nsdoc file and looks like latest snapshot', async () => {
@@ -57,7 +56,7 @@ describe('SettingElement', () => {
     const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
       .then(response => response.text())
 
-    Settings().setSetting('IEC 61850-7-2', nsdocFile);
+    element.setSetting('IEC 61850-7-2', nsdocFile);
     
     await element.requestUpdate();
     await element.updateComplete;
@@ -72,7 +71,7 @@ describe('SettingElement', () => {
     const nsdocFile = await fetch('/test/testfiles/settingTest.nsdoc')
       .then(response => response.text())
 
-    Settings().setSetting('IEC 61850-7-2', nsdocFile);
+    element.setSetting('IEC 61850-7-2', nsdocFile);
     
     await element.requestUpdate();
     await element.updateComplete;

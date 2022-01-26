@@ -16,7 +16,6 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import './zeroline/substation-editor.js';
 import './zeroline/ied-editor.js';
-import { SettingsRecord } from './Setting.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { gooseIcon, smvIcon } from './icons.js';
 import { isPublic, newWizardEvent } from './foundation.js';
@@ -24,12 +23,13 @@ import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
 import { getAttachedIeds } from './zeroline/foundation.js';
 import { selectSampledValueControlWizard } from './wizards/sampledvaluecontrol.js';
+import { Settings } from './Setting.js';
 
 function shouldShowIEDs(): boolean {
   return localStorage.getItem('showieds') === 'on';
 }
 
-function setShowIEDs(value: SettingsRecord['showieds']) {
+function setShowIEDs(value: Settings['showieds']) {
   localStorage.setItem('showieds', value);
 }
 
