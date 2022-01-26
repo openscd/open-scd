@@ -399,6 +399,11 @@ export const en = {
       addaddress: 'Edit GSE ({{identity}})',
     },
   },
+  smv: {
+    action: {
+      addaddress: 'Edit SMV ({{identity}})',
+    },
+  },
   subscriber: {
     title: 'Subscriber update',
     description: 'Subscriber update: ',

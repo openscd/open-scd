@@ -402,6 +402,11 @@ export const de: Translations = {
       addaddress: 'GSE bearbeitet ({{identity}})',
     },
   },
+  smv: {
+    action: {
+      addaddress: 'SMV bearbeitet ({{identity}})',
+    },
+  },
   subscriber: {
     title: 'Subscriber Update',
     description: 'GOOSE Ziele aktualisieren: ',
