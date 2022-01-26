@@ -15,7 +15,7 @@ import '../action-icon.js';
 import { createClientLnWizard } from '../wizards/clientln.js';
 import { gooseIcon, smvIcon, reportIcon } from '../icons.js';
 import { wizards } from '../wizards/wizard-library.js';
-import { newSubWizardEvent, newWizardEvent } from '../foundation.js';
+import { newWizardEvent } from '../foundation.js';
 import { selectGseControlWizard } from '../wizards/gsecontrol.js';
 import { selectSampledValueControlWizard } from '../wizards/sampledvaluecontrol.js';
 import { selectReportControlWizard } from '../wizards/reportcontrol.js';
@@ -41,19 +41,20 @@ export class IedEditor extends LitElement {
 
   private openReportControlSelection(): void {
     this.dispatchEvent(
-      newSubWizardEvent(() => selectReportControlWizard(this.element))
+      newWizardEvent(() => selectReportControlWizard(this.element))
     );
   }
 
   private openGseControlSelection(): void {
     this.dispatchEvent(
-      newSubWizardEvent(() => selectGseControlWizard(this.element))
+      newWizardEvent(() => selectGseControlWizard(this.element))
     );
   }
 
   private openSmvControlSelection(): void {
-    const wizard = selectSampledValueControlWizard(this.element);
-    if (wizard) this.dispatchEvent(newWizardEvent(wizard));
+    this.dispatchEvent(
+      newWizardEvent(() => selectSampledValueControlWizard(this.element))
+    );
   }
 
   private openCommunicationMapping(): void {

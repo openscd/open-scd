@@ -28,6 +28,7 @@ import {
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
+import { securityEnableEnum } from './foundation/enums.js';
 
 function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
@@ -100,8 +101,8 @@ export function renderGseAttributes(
       .maybeValue=${securityEnabled}
       nullable
       required
-      helper="${translate('scl.securityEnabled')}"
-      >${['None', 'Signature', 'SignatureAndEncryption'].map(
+      helper="${translate('scl.securityEnable')}"
+      >${securityEnableEnum.map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
     >`,
