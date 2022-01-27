@@ -15,6 +15,7 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import '../../action-pane.js';
 import { getNameAttribute } from '../../foundation.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
@@ -30,6 +31,9 @@ export class DAContainer extends LitElement {
    */
   @property({ attribute: false })
   instanceElement!: Element;
+
+  @property()
+  nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
 
@@ -83,6 +87,11 @@ export class DAContainer extends LitElement {
     const bType = this.element!.getAttribute('bType');
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
+      <abbr slot="action" title="${this.nsdoc.getDataDescription(this.element).label}">
+        <mwc-icon-button
+          icon="info"
+        ></mwc-icon-button>
+      </abbr>
       ${bType == 'Struct' ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
         <mwc-icon-button-toggle
           id="toggleButton"

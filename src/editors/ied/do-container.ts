@@ -15,6 +15,7 @@ import '../../action-pane.js';
 import './da-container.js';
 import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
 import { translate } from 'lit-translate';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 
 /** [[`IED`]] plugin subeditor for editing `DO` element. */
 @customElement('do-container')
@@ -30,6 +31,9 @@ export class DOContainer extends LitElement {
    */
   @property({ attribute: false })
   instanceElement!: Element;
+
+  @property()
+  nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
 
@@ -101,6 +105,11 @@ export class DOContainer extends LitElement {
     const doElements = this.getDOElements();
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
+      <abbr slot="action" title="${this.nsdoc.getDataDescription(this.element).label}">
+        <mwc-icon-button
+          icon="info"
+        ></mwc-icon-button>
+      </abbr>
       ${daElements.length > 0 || doElements.length > 0 ?
         html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
           <mwc-icon-button-toggle
@@ -113,12 +122,14 @@ export class DOContainer extends LitElement {
       ${this.toggleButton?.on ? daElements.map(da =>
         html`<da-container
           .element=${da}
-          .instanceElement=${this.getInstanceDAElement(da)}>
+          .instanceElement=${this.getInstanceDAElement(da)}
+          .nsdoc=${this.nsdoc}>
         </da-container>`) : nothing}
       ${this.toggleButton?.on ? doElements.map(dO =>
         html`<do-container
           .element=${dO}
-          .instanceElement=${this.getInstanceDOElement(dO)}>
+          .instanceElement=${this.getInstanceDOElement(dO)}
+          .nsdoc=${this.nsdoc}>
         </do-container>`) : nothing}
     </action-pane>
     `;

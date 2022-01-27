@@ -1,4 +1,4 @@
-import { iec6185074 } from "../validators/templates/foundation.js";
+import { iec6185073, iec6185074 } from "../validators/templates/foundation.js";
 
 export interface Nsdoc {
   nsdoc72?: XMLDocument;
@@ -19,8 +19,9 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   const nsdoc81 = localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined;
 
   const nsd74 = await iec6185074;
+  const nsd73 = await iec6185073;
 
-  const referenceInfoTags = ['LN', 'LN0'] as const;
+  const referenceInfoTags = ['LN', 'LN0', 'DO', 'DOI', 'DA', 'DAI'] as const;
   type IEDElementsTagNames = typeof referenceInfoTags[number];
   type GetDataDescription = (element: Element) => { label: string; };
 
@@ -35,13 +36,25 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     },
     LN0: {
       getDataDescription: getLNDataDescription
+    },
+    DO: {
+      getDataDescription: getDODataDescription
+    },
+    DOI: {
+      getDataDescription: getDODataDescription
+    },
+    DA: {
+      getDataDescription: getDADataDescription
+    },
+    DAI: {
+      getDataDescription: getDADataDescription
     }
   };
 
   /**
    * Getting data descriptions for LN(0) elements out of the IEC 61850-7-4 .nsdoc file.
    * @param lnElement - The LN(0) element to use.
-   * @returns Documentation from the .nsdoc file for this LN(0) file.
+   * @returns Documentation from the .nsdoc file for this LN(0) file, or the lnClass attribute in case no description can be found.
    */
   function getLNDataDescription(lnElement: Element): { label: string; } {
     const lnClassAttribute = lnElement.getAttribute('lnClass')!;
@@ -50,6 +63,40 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
 
     return {
       label: getNsdocDocumentation(nsdoc74!, titleId!) ?? lnClassAttribute
+    };
+  }
+
+  /**
+   * Getting data descriptions for DO(I) elements out of the IEC 61850-7-4 .nsdoc file.
+   * @param doElement - The DO(I) element to use.
+   * @returns Documentation from the .nsdoc file for this DO(I) file, or the name attribute in case no description can be found.
+   */
+  function getDODataDescription(doElement: Element): { label: string; } {
+    const doElementName = doElement.getAttribute('name')!;
+    const parentLnClass = doElement.parentElement?.getAttribute('lnClass');
+
+    const dObject = nsd74.querySelector(`NS > LNClasses > LNClass[name="${parentLnClass}"] > DataObject[name="${doElementName}"]`);
+    const descId = dObject?.getAttribute('descID');
+
+    return {
+      label: getNsdocDocumentation(nsdoc74!, descId!) ?? doElementName
+    };
+  }
+
+  /**
+   * Getting data descriptions for DA(I) elements out of the IEC 61850-7-3 .nsdoc file.
+   * @param daElement - The DA(I) element to use.
+   * @returns Documentation from the .nsdoc file for this DA(I) file, or the name attribute in case no description can be found.
+   */
+  function getDADataDescription(daElement: Element): { label: string; } {
+    const daElementName = daElement.getAttribute('name')!;
+    const daParentCdc = daElement.parentElement!.getAttribute('cdc');
+
+    const dObject = nsd73.querySelector(`NS > CDCs > CDC[name="${daParentCdc}"] > DataAttribute[name="${daElementName}"]`);
+    const descId = dObject?.getAttribute('descID');
+
+    return {
+      label: getNsdocDocumentation(nsdoc73!, descId!) ?? daElementName
     };
   }
 

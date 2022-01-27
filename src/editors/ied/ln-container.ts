@@ -76,7 +76,8 @@ export class LNContainer extends LitElement {
       </abbr>` : nothing}
       ${this.toggleButton?.on ? this.getDOElements().map(dO => html`<do-container
           .element=${dO}
-          .instanceElement=${this.getInstanceElement(dO)}>
+          .instanceElement=${this.getInstanceElement(dO)}
+          .nsdoc=${this.nsdoc}>
         </do-container>
         `) : nothing}
     </action-pane>`;
