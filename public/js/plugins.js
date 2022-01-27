@@ -10,14 +10,14 @@ export const officialPlugins = [
     name: 'IED',
     src: '/src/editors/IED.js',
     icon: 'developer_board',
-    default: false,
+    default: true,
     kind: 'editor',
   },
   {
     name: 'Single Line Diagram',
     src: '/src/editors/SingleLineDiagram.js',
     icon: 'edit',
-    default: false,
+    default: true,
     kind: 'editor',
   },
   {
