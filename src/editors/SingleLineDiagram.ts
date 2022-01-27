@@ -37,6 +37,8 @@ import {
   drawCNodeConnections,
   getConnectivityNodesDrawingPosition,
   createSubstationElement,
+  addLabelToBay,
+  addLabelToBusBar,
 } from './singlelinediagram/sld-drawing.js';
 import {
   isBusBar,
@@ -198,7 +200,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
    */
   private drawPowerTransformer(parentGroup: SVGElement, powerTransformerElement: Element): void {
     const powerTransformerGroup = createPowerTransformerElement(powerTransformerElement,
-      (event: Event) => this.openEditWizard(event, powerTransformerElement!)
+      (event: Event) => this.openEditWizard(event, powerTransformerElement)
     );
     parentGroup.appendChild(powerTransformerGroup);
   }
@@ -222,14 +224,21 @@ export default class SingleLineDiagramPlugin extends LitElement {
       });
 
     // After all devices are drawn we can draw the connections between the devices.
+    // And also add the label on the correct place, we now know where the boundaries are.
     this.getVoltageLevels(substationElement)
       .forEach(voltageLevelElement => {
           this.getBusBars(voltageLevelElement).forEach( busbarElement => {
             this.drawBusBarConnections(substationElement, this.svg, busbarElement);
+
+            addLabelToBusBar(this.svg, busbarElement,
+              (event: Event) => this.openEditWizard(event, busbarElement))
           });
 
           this.getBays(voltageLevelElement).forEach( bayElement => {
             this.drawBayConnections(substationElement, this.svg, bayElement);
+
+            addLabelToBay(this.svg, bayElement,
+              (event: Event) => this.openEditWizard(event, bayElement));
           });
       });
   }
@@ -349,19 +358,10 @@ export default class SingleLineDiagramPlugin extends LitElement {
    */
   private drawBusBars(voltageLevelElement: Element, voltageLevelGroup: SVGElement): void {
     this.getBusBars(voltageLevelElement)
-      .forEach(busbarElement => this.drawBusBar(voltageLevelElement, voltageLevelGroup, busbarElement));
-  }
-
-  /**
-   * Draw an SVG of the passed Busbar Element.
-   * @param parentElement - The parent (Voltage Level) Element that is used to determine the length of the Busbar.
-   * @param parentGroup   - The group to which to add the line.
-   * @param busbarElement - The Busbar Element to draw.
-   */
-  private drawBusBar(parentElement: Element, parentGroup: SVGElement, busbarElement: Element): void {
-    const busBarGroup = createBusBarElement(busbarElement, getBusBarLength(parentElement),
-      (event: Event) => this.openEditWizard(event, busbarElement));
-    parentGroup.appendChild(busBarGroup);
+      .forEach(busbarElement => {
+        const busbarGroup = createBusBarElement(busbarElement, getBusBarLength(voltageLevelElement));
+        voltageLevelGroup.appendChild(busbarGroup);
+      });
   }
 
   /**
@@ -372,7 +372,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
    */
   private drawBusBarConnections(rootElement: Element, rootGroup: SVGElement, busbarElement: Element): void {
       const pathName = getPathNameAttribute(busbarElement.children[0]);
-      const busBarPosition = getAbsolutePositionBusBar(busbarElement);
+      const busbarPosition = getAbsolutePositionBusBar(busbarElement);
 
       this.findEquipment(rootElement, pathName)
         .forEach(element => {
@@ -380,7 +380,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
           const elementPosition = getAbsolutePosition(element);
 
           const elementsTerminalSide =
-            busBarPosition.y < elementPosition.y ? 'top' : 'bottom';
+            busbarPosition.y < elementPosition.y ? 'top' : 'bottom';
 
           const elementsTerminalPosition = getAbsolutePositionTerminal(
             element,
@@ -389,7 +389,7 @@ export default class SingleLineDiagramPlugin extends LitElement {
 
           const busbarTerminalPosition = {
             x: elementsTerminalPosition.x,
-            y: busBarPosition.y,
+            y: busbarPosition.y,
           };
 
           const terminalElement = element.querySelector(
@@ -564,6 +564,22 @@ export default class SingleLineDiagramPlugin extends LitElement {
       pointer-events: bounding-box;
     }
 
+    g[type='Bay'] > g[type='BayLabel'] {
+      visibility: hidden;
+    }
+    g[type='Bay']:hover > g[type='BayLabel'] {
+      visibility: visible;
+    }
+
+    g[type='Busbar'] > g[type='BusbarLabel'] {
+      visibility: hidden;
+    }
+    g[type='Busbar'] > g[type='BusbarLabel'] > text ,
+    g[type='Busbar']:hover > g[type='BusbarLabel'] {
+      visibility: visible;
+    }
+
+    g[type='Bay']:hover,
     g[type='Busbar']:hover,
     g[type='ConductingEquipment']:hover,
     g[type='ConnectivityNode']:hover,
