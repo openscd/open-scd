@@ -107,8 +107,8 @@ export function updateGSEAction(element: Element): WizardActor {
 }
 
 export function editGseWizard(element: Element): Wizard {
-  const minTime = element.querySelector('MinTime')?.innerHTML.trim();
-  const maxTime = element.querySelector('MaxTime')?.innerHTML.trim();
+  const minTime = element.querySelector('MinTime')?.innerHTML.trim() ?? null;
+  const maxTime = element.querySelector('MaxTime')?.innerHTML.trim() ?? null;
 
   return [
     {
@@ -116,7 +116,7 @@ export function editGseWizard(element: Element): Wizard {
       element,
       primary: {
         label: get('save'),
-        icon: 'edit',
+        icon: 'save',
         action: updateGSEAction(element),
       },
       content: [

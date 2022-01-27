@@ -144,7 +144,7 @@ snapshots["gsecontrol wizards renderGseAttribute looks like the latest snapshot"
     </wizard-select>
     <wizard-select
       disabled=""
-      helper="[scl.securityEnabled]"
+      helper="[scl.securityEnable]"
       label="securityEnabled"
       nullable=""
       required=""
@@ -270,7 +270,7 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
     </wizard-select>
     <wizard-select
       disabled=""
-      helper="[scl.securityEnabled]"
+      helper="[scl.securityEnable]"
       label="securityEnabled"
       nullable=""
       required=""

@@ -29,9 +29,15 @@ export const en = {
     qchg: 'Trigger on quality change',
     dupd: 'Trigger on data update',
     fixedOffs: 'Fixed offset',
-    securityEnabled: 'Security enabled',
+    securityEnable: 'Security enabled',
     DataSet: 'Dataset',
     Communication: 'Communication',
+    TrgOps: 'Trigger options',
+    OptFields: 'Optional fields',
+    multicast: 'SMV acc. to IEC 61850 9-2',
+    smpMod: 'Sample mode',
+    smpRate: 'Sample rate',
+    nofASDU: 'Samples per paket',
   },
   settings: {
     title: 'Settings',
@@ -64,7 +70,9 @@ export const en = {
   },
   zeroline: {
     iedsloading: 'Loading IEDs...',
+    showieds: 'Show/hide IEDs in substation editor',
     commmap: 'Communication mapping',
+    reportcontrol: 'Show all Reports',
     gsecontrol: 'Show all GOOSEs',
     smvcontrol: 'Show all Sampled Values',
   },
@@ -163,6 +171,18 @@ export const en = {
     searchHelperDesc: '({{description}})',
     missing: 'No IED',
     toggleChildElements: 'Toggle child elements',
+  },
+  ied: {
+    wizard: {
+      nameHelper: 'IED name',
+      descHelper: 'IED description',
+      title: {
+        edit: 'Edit IED',
+      },
+    },
+    action: {
+      updateied: 'Edited IED "{{iedName}}"',
+    },
   },
   powertransformer: {
     wizard: {

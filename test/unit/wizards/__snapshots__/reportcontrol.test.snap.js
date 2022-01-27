@@ -1,7 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["Wizards for SCL element SampledValueControl define an edit wizard that looks like the latest snapshot"] = 
+snapshots["Wizards for SCL ReportControl element define an edit wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.edit]"
@@ -23,13 +23,12 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
       helper="[scl.desc]"
       label="desc"
       nullable=""
-      pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
     <wizard-select
       disabled=""
-      helper="[scl.multicast]"
-      label="multicast"
+      helper="[scl.buffered]"
+      label="buffered"
     >
       <mwc-list-item
         aria-disabled="false"
@@ -52,15 +51,14 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
     </wizard-select>
     <wizard-textfield
       helper="[scl.id]"
-      label="smvID"
+      label="rptID"
       required=""
       validationmessage="[textfield.nonempty]"
     >
     </wizard-textfield>
     <wizard-select
-      disabled=""
-      helper="[scl.smpMod]"
-      label="smpMod"
+      helper="[scl.indexed]"
+      label="indexed"
       nullable=""
       required=""
     >
@@ -69,80 +67,72 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="SmpPerPeriod"
+        value="true"
       >
-        SmpPerPeriod
+        true
       </mwc-list-item>
       <mwc-list-item
         aria-disabled="false"
         mwc-list-item=""
         role="option"
         tabindex="-1"
-        value="SmpPerSec"
+        value="false"
       >
-        SmpPerSec
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="SecPerSmp"
-      >
-        SecPerSmp
+        false
       </mwc-list-item>
     </wizard-select>
     <wizard-textfield
-      helper="[scl.smpRate]"
-      label="smpRate"
-      min="0"
-      required=""
+      helper="[scl.maxReport]"
+      label="max Clients"
+      nullable=""
+      suffix="ms"
       type="number"
     >
     </wizard-textfield>
     <wizard-textfield
-      helper="[scl.nofASDU]"
-      label="nofASDU"
+      helper="[scl.bufTime]"
+      label="bufTime"
       min="0"
-      required=""
-      type="number"
-    >
-    </wizard-textfield>
-    <wizard-select
-      disabled=""
-      helper="[scl.securityEnable]"
-      label="securityEnable"
       nullable=""
       required=""
+      suffix="ms"
+      type="number"
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="None"
-      >
-        None
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="Signature"
-      >
-        Signature
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="SignatureAndEncryption"
-      >
-        SignatureAndEncryption
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-textfield>
+    <wizard-textfield
+      disabled=""
+      helper="[scl.intgPd]"
+      label="intgPd"
+      min="0"
+      nullable=""
+      required=""
+      suffix="ms"
+      type="number"
+    >
+    </wizard-textfield>
+    <mwc-button
+      icon="edit"
+      id="editdataset"
+      label="[scl.DataSet]"
+    >
+    </mwc-button>
+    <mwc-button
+      icon="edit"
+      id="edittrgops"
+      label="[scl.TrgOps]"
+    >
+    </mwc-button>
+    <mwc-button
+      icon="edit"
+      id="editoptfields"
+      label="[scl.OptFields]"
+    >
+    </mwc-button>
+    <mwc-button
+      icon="delete"
+      label="[remove]"
+    >
+    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"
@@ -161,9 +151,9 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL element SampledValueControl define an edit wizard that looks like the latest snapshot */
+/* end snapshot Wizards for SCL ReportControl element define an edit wizard that looks like the latest snapshot */
 
-snapshots["Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot"] = 
+snapshots["Wizards for SCL ReportControl element define a select wizard that looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
   heading="[wizard.title.select]"
@@ -176,13 +166,13 @@ snapshots["Wizards for SCL element SampledValueControl define a select wizard th
         mwc-list-item=""
         tabindex="0"
         twoline=""
-        value="IED2>>CBSW>MSVCB01"
+        value="IED2>>CBSW>ReportCb"
       >
         <span>
-          MSVCB01
+          ReportCb
         </span>
         <span slot="secondary">
-          IED2>>CBSW>MSVCB01
+          IED2>>CBSW>ReportCb
         </span>
       </mwc-list-item>
       <mwc-list-item
@@ -190,13 +180,55 @@ snapshots["Wizards for SCL element SampledValueControl define a select wizard th
         mwc-list-item=""
         tabindex="-1"
         twoline=""
-        value="IED3>>MU01>MSVCB01"
+        value="IED2>>CBSW> XSWI 1>ReportCb2"
       >
         <span>
-          MSVCB01
+          ReportCb2
         </span>
         <span slot="secondary">
-          IED3>>MU01>MSVCB01
+          IED2>>CBSW> XSWI 1>ReportCb2
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED2>>CBSW> XSWI 2>ReportCb3"
+      >
+        <span>
+          ReportCb3
+        </span>
+        <span slot="secondary">
+          IED2>>CBSW> XSWI 2>ReportCb3
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED3>>CBSW>ReportCb"
+      >
+        <span>
+          ReportCb
+        </span>
+        <span slot="secondary">
+          IED3>>CBSW>ReportCb
+        </span>
+      </mwc-list-item>
+      <mwc-list-item
+        aria-disabled="false"
+        mwc-list-item=""
+        tabindex="-1"
+        twoline=""
+        value="IED3>>CBSW> XSWI 1>ReportCb2"
+      >
+        <span>
+          ReportCb2
+        </span>
+        <span slot="secondary">
+          IED3>>CBSW> XSWI 1>ReportCb2
         </span>
       </mwc-list-item>
     </filtered-list>
@@ -210,5 +242,5 @@ snapshots["Wizards for SCL element SampledValueControl define a select wizard th
   </mwc-button>
 </mwc-dialog>
 `;
-/* end snapshot Wizards for SCL element SampledValueControl define a select wizard that looks like the latest snapshot */
+/* end snapshot Wizards for SCL ReportControl element define a select wizard that looks like the latest snapshot */
 

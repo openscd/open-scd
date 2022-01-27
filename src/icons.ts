@@ -16,6 +16,16 @@ export const logIcon = svg`<svg style="width:24px;height:24px" viewBox="0 0 24 2
 <path fill="currentColor" d="M9,7H11V15H15V17H9V7M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
 </svg>`;
 
+export const editIcon = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25 25">
+  <path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+        stroke="currentColor"
+        fill="transparent"
+        stroke-width="1.5"
+        stroke-linecap="round"/>
+</svg>`;
+
 export const controlBlockIcons: Partial<Record<string, SVGTemplateResult>> = {
   ReportControl: reportIcon,
   LogControl: logIcon,
@@ -455,55 +465,73 @@ export const voltageTransformerIcon = html`<svg
 </svg>`;
 
 export const earthSwitchIcon = html`<svg
-  xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 25 25"
+  xmlns="http://www.w3.org/2000/svg"
 >
   <line
     x1="12.5"
-    y1="2"
     x2="12.5"
-    y2="8"
+    y1="19.2"
+    y2="16.2"
     stroke="currentColor"
-    stroke-width="1.5"
     stroke-linecap="round"
-  />
-  <line
-    x1="11"
-    y1="23"
-    x2="14"
-    y2="23"
-    stroke="currentColor"
     stroke-width="1.5"
-    stroke-linecap="round"
   />
   <line
     x1="12.5"
-    y1="23"
     x2="12.5"
-    y2="18"
+    y1="1.25"
+    y2="6.25"
     stroke="currentColor"
-    stroke-width="1.5"
     stroke-linecap="round"
+    stroke-width="1.5"
   />
   <line
     x1="12.5"
-    y1="18"
     x2="8"
-    y2="9"
+    y1="16.2"
+    y2="7.25"
     stroke="currentColor"
-    stroke-width="1.5"
     stroke-linecap="round"
+    stroke-width="1.5"
   />
   <line
-    x1="11.5"
-    y1="8"
-    x2="13.5"
-    y2="8"
+    x1="13.5"
+    x2="11.5"
+    y1="6.25"
+    y2="6.25"
     stroke="currentColor"
-    stroke-width="1.5"
     stroke-linecap="round"
+    stroke-width="1.5"
   />
-</svg> `;
+  <line
+    x1="17"
+    x2="8"
+    y1="19.2"
+    y2="19.2"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="15.5"
+    x2="9.5"
+    y1="21.4"
+    y2="21.4"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+  <line
+    x1="14.5"
+    x2="10.5"
+    y1="23.5"
+    y2="23.5"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-width="1.5"
+  />
+</svg>`;
 
 export const generalConductingEquipmentIcon = html`<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -519,8 +547,8 @@ export const generalConductingEquipmentIcon = html`<svg
   />
 
   <path
-    d=" M 7.5 17.5 
-    L 12 13 
+    d=" M 7.5 17.5
+    L 12 13
     Z"
     fill="transparent"
     stroke="currentColor"
@@ -530,7 +558,7 @@ export const generalConductingEquipmentIcon = html`<svg
   />
   <path
     d="	M 11 7
-      L 10 8				
+      L 10 8
       C 5 13, 11 20, 17 15
       L 18 14
       Z"
@@ -540,7 +568,7 @@ export const generalConductingEquipmentIcon = html`<svg
   />
   <path
     d=" M 13 9
-    L 16 6 
+    L 16 6
     Z"
     fill="transparent"
     stroke="currentColor"
@@ -550,7 +578,7 @@ export const generalConductingEquipmentIcon = html`<svg
   />
   <path
     d=" M 16 12
-    L 19 9 
+    L 19 9
     Z"
     fill="transparent"
     stroke="currentColor"

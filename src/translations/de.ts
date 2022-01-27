@@ -31,9 +31,15 @@ export const de: Translations = {
     qchg: 'Qualitätsanderung ist Auslöser',
     dupd: 'Datenupdate ist Auslöser',
     fixedOffs: 'Fester Offset',
-    securityEnabled: 'Aktive Sicherungsmaßnahmen',
+    securityEnable: 'Aktive Sicherungsmaßnahmen',
     DataSet: 'Datensetz',
     Communication: 'Kommunikation',
+    TrgOps: 'Triggerbedingungen',
+    OptFields: 'Optionale felder',
+    multicast: 'SMV nach IEC 61850 9-2',
+    smpMod: 'Abtast-Art',
+    smpRate: 'Abtastrate',
+    nofASDU: 'Abtastpunkte pro Datenpacket',
   },
   settings: {
     title: 'Einstellungen',
@@ -66,7 +72,9 @@ export const de: Translations = {
   },
   zeroline: {
     iedsloading: 'IEDs werden geladen...',
+    showieds: 'IEDs im Substation-Editor anzeigen/ausblenden',
     commmap: 'Kommunikationszuordnung',
+    reportcontrol: 'Reports anzeigen',
     gsecontrol: 'GOOSEs anzeigen',
     smvcontrol: 'Sampled Values anzeigen',
   },
@@ -166,6 +174,18 @@ export const de: Translations = {
     searchHelperDesc: '({{description}})',
     missing: 'Kein IED vorhanden',
     toggleChildElements: '???',
+  },
+  ied: {
+    wizard: {
+      nameHelper: 'Name des IED',
+      descHelper: 'Beschreibung des IED',
+      title: {
+        edit: 'IED bearbeiten',
+      },
+    },
+    action: {
+      updateied: 'IED "{{iedName}}" bearbeitet',
+    },
   },
   powertransformer: {
     wizard: {

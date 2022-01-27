@@ -58,7 +58,7 @@ snapshots["gse wizards editGseWizard looks like the latest snapshot"] =
   </mwc-button>
   <mwc-button
     dialoginitialfocus=""
-    icon="edit"
+    icon="save"
     label="[save]"
     slot="primaryAction"
     trailingicon=""
