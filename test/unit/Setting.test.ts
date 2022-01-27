@@ -61,6 +61,7 @@ describe('SettingElement', () => {
     await element.requestUpdate();
     await element.updateComplete;
 
+    expect(localStorage.getItem('IEC 61850-7-2')).to.eql(nsdocFile);
     expect(element).shadowDom.to.equalSnapshot();
   });
 

@@ -36,9 +36,6 @@ export default class IedPlugin extends LitElement {
   @property()
   nsdoc!: Nsdoc;
 
-  /** Query holding the current selected IEDs. */
-  @state()
-  currentSelectedIEDs = ':root > IED';
   private get alphabeticOrderedIeds() : Element[] {
     return (this.doc)
       ? Array.from(this.doc.querySelectorAll(':root > IED'))
@@ -89,7 +86,10 @@ export default class IedPlugin extends LitElement {
                   </mwc-list-item>`
             )}
           </mwc-select>
-          <ied-container .element=${selectedIedElement}></ied-container>
+          <ied-container
+            .element=${selectedIedElement}
+            .nsdoc=${this.nsdoc}
+          ></ied-container>
         </section>`;
     }
     return html `

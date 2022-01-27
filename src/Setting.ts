@@ -1,5 +1,5 @@
 import { html, property, query, TemplateResult } from 'lit-element';
-import { registerTranslateConfig, translate, use } from 'lit-translate';
+import { get, registerTranslateConfig, translate, use } from 'lit-translate';
 
 import '@material/mwc-button';
 import '@material/mwc-dialog';
@@ -12,7 +12,7 @@ import { Dialog } from '@material/mwc-dialog';
 import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 
-import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
+import { ifImplemented, LitElementConstructor, Mixin, newLogEvent } from './foundation.js';
 import { Language, languages, loader } from './translations/loader.js';
 
 import './WizardDivider.js';
@@ -141,7 +141,14 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       files.forEach(async file => {
         const text = await file.text();
         const id = this.parseToXmlObject(text).querySelector('NSDoc')?.getAttribute('id');
-        if (!id) return;
+        if (!id) {
+          document
+          .querySelector('open-scd')!
+          .dispatchEvent(
+              newLogEvent({ kind: 'error', title: get('settings.invalidFileNoIdFound') })
+            );
+          return;
+        }
   
         this.setSetting(id as keyof Settings, text);
       })

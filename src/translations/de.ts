@@ -49,7 +49,8 @@ export const de: Translations = {
     mode: 'Profimodus',
     showieds: 'Zeige IEDs im Substation-Editor',
     selectFileButton: 'Datei auswählen',
-    loadNsdTranslations: '???'
+    loadNsdTranslations: 'NSDoc-Dateien hochladen',
+    invalidFileNoIdFound: 'Ungültiges NSDoc; kein \'id\'-Attribut in der Datei gefunden'
   },
   menu: {
     new: 'Neues projekt',

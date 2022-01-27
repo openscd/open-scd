@@ -8,7 +8,6 @@ import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
-import { iec6185074 } from './validators/templates/foundation.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
