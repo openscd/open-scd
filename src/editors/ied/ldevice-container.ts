@@ -11,9 +11,10 @@ import {
 import '../../action-pane.js';
 import './ln-container.js'
 import { nothing } from 'lit-html';
-import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute, Nsdoc } from '../../foundation.js';
+import { getDescriptionAttribute, getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { translate } from 'lit-translate';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 
 /** [[`IED`]] plugin subeditor for editing `LDevice` element. */
 @customElement('ldevice-container')

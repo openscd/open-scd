@@ -11,10 +11,11 @@ import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
 import './do-container.js';
-import { getInstanceAttribute, getNameAttribute, Nsdoc } from '../../foundation.js';
+import { getInstanceAttribute, getNameAttribute } from '../../foundation.js';
 import { translate } from 'lit-translate';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 import { until } from 'lit-html/directives/until';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 
 /** [[`IED`]] plugin subeditor for editing `LN` and `LN0` element. */
 @customElement('ln-container')
@@ -31,7 +32,7 @@ export class LNContainer extends LitElement {
     const prefix = this.element.getAttribute('prefix');
     const inst = getInstanceAttribute(this.element);
 
-    const data = await this.nsdoc.getDataDescription(this.element);
+    const data = this.nsdoc.getDataDescription(this.element);
 
     return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
             ${data.label}

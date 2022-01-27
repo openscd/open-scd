@@ -23,9 +23,10 @@ import { Select } from '@material/mwc-select';
 import { Switch } from '@material/mwc-switch';
 import { TextField } from '@material/mwc-textfield';
 
-import { ifImplemented, initializeNsdoc, LitElementConstructor, Mixin } from './foundation.js';
+import { ifImplemented, LitElementConstructor, Mixin } from './foundation.js';
 import { EditingElement } from './Editing.js';
 import { officialPlugins } from '../public/js/plugins.js';
+import { initializeNsdoc } from './foundation/nsdoc.js';
 
 type PluginKind = 'editor' | 'menu' | 'validator';
 const menuPosition = ['top', 'middle', 'bottom'] as const;
@@ -208,7 +209,7 @@ export function Plugging<TBase extends new (...args: any[]) => EditingElement>(
             .docName=${this.docName}
             .docId=${this.docId}
             .pluginId=${plugin.src}
-            .nsdoc=${initializeNsdoc()}
+            .nsdoc=${await initializeNsdoc()}
           ></${loadedPlugins.get(plugin.src)}>`;
         },
       };

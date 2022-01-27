@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 
 import '../../action-pane.js';
-import { Nsdoc } from '../../foundation.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 import './ldevice-container.js';
 
 /** [[`IED`]] plugin subeditor for editing `Server` element. */

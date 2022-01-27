@@ -10,7 +10,8 @@ import {
 import '../../action-pane.js';
 import './server-container.js'
 import { nothing } from 'lit-html';
-import { getDescriptionAttribute, getNameAttribute, Nsdoc } from '../../foundation.js';
+import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 
 /** [[`IED`]] plugin subeditor for editing `AccessPoint` element. */
 @customElement('access-point-container')

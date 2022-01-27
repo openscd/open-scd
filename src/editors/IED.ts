@@ -10,7 +10,8 @@ import './ied/ied-container.js'
 import { translate } from 'lit-translate';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
-import { compareNames, getDescriptionAttribute, getNameAttribute, Nsdoc } from '../foundation.js';
+import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foundation.js';
+import { Nsdoc } from '../foundation/nsdoc.js';
 
 /** An editor [[`plugin`]] for editing the `IED` section. */
 export default class IedPlugin extends LitElement {

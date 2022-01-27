@@ -9,7 +9,8 @@ import {
 import { nothing } from 'lit-html';
 
 import '../../action-pane.js';
-import { getDescriptionAttribute, getNameAttribute, Nsdoc } from '../../foundation.js';
+import { getDescriptionAttribute, getNameAttribute } from '../../foundation.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 import './access-point-container.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */

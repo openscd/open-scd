@@ -361,45 +361,6 @@ export function newOpenDocEvent(
   });
 }
 
-export interface Nsdoc {
-  nsdoc72?: XMLDocument;
-  nsdoc73?: XMLDocument;
-  nsdoc74?: XMLDocument;
-  nsdoc81?: XMLDocument;
-  getDataDescription: (element: Element, attribute?: string) => Promise<{ label: string; description: string; }>
-}
-
-export function initializeNsdoc(): Nsdoc {
-  const nsdoc72 = localStorage.getItem('IEC 61850-7-2') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-2')!, 'application/xml') : undefined;
-  const nsdoc73 = localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined;
-  const nsdoc74 = localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined;
-  const nsdoc81 = localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined;
-
-  async function getDataDescription(element: Element, attribute?: string): Promise<{ label: string; description: string; }> {
-    const nsd74 = await iec6185074;
-  
-    if (element.tagName == 'LN' || element.tagName == 'LN0') {
-      const lnClass = nsd74.querySelector(`NS > LNClasses > LNClass[name="${element.getAttribute('lnClass')}"]`);
-      const titleId = lnClass?.getAttribute('titleID');
-      return {
-        label: nsdoc74?.querySelector(`NSDoc > Doc[id="${titleId}"]`)?.textContent ?? element.getAttribute('lnClass')!,
-        description: '...'
-      };
-    }
-  
-    return {label: '...', description: '...'};
-  }
-
-  return {
-    nsdoc72: nsdoc72,
-    nsdoc73: nsdoc73,
-    nsdoc74: nsdoc74,
-    nsdoc81: nsdoc81,
-    getDataDescription: getDataDescription
-    
-  }
-}
-
 /** @returns a reference to `element` with segments delimited by '/'. */
 // TODO(c-dinkel): replace with identity (FIXME)
 export function referencePath(element: Element): string {
