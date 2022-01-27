@@ -2,10 +2,13 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/ied/do-container.js';
 import { DOContainer } from '../../../../src/editors/ied/do-container.js';
+import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
 
-describe('do-container', () => {
+describe('do-container', async () => {
   let element: DOContainer;
   let validSCL: XMLDocument;
+
+  await initializeNsdoc();
 
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
