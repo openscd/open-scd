@@ -100,21 +100,54 @@ describe('EditingElement', () => {
   });
 
   it('updates an element on receiving an Update action', () => {
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('name', 'newName');
+
     elm.dispatchEvent(
-      newActionEvent({
-        old: {
-          element,
-        },
-        new: {
-          element: elm.doc!.createElement('newBay'),
-        },
-      })
+      newActionEvent({ old: { element }, new: { element: newElement } })
     );
+
     expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
-    expect(parent.querySelector('newBay')).to.not.be.null;
-    expect(parent.querySelector('newBay')?.nextElementSibling).to.equal(
-      parent.querySelector('Bay[name="Q02"]')
+    expect(parent.querySelector('Bay[name="newName"]')).to.not.be.null;
+  });
+
+  it('swap attributes between old and new element on update', () => {
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('name', 'newName');
+
+    elm.dispatchEvent(
+      newActionEvent({ old: { element }, new: { element: newElement } })
     );
+
+    expect(element.parentElement).to.not.be.null;
+    expect(newElement.parentElement).to.be.null;
+  });
+
+  it('swaps textContent of old and new element this existing new element textContent', () => {
+    element.textContent = 'oldTextContent';
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('name', 'newName');
+    newElement.textContent = 'newTextContent';
+
+    elm.dispatchEvent(
+      newActionEvent({ old: { element }, new: { element: newElement } })
+    );
+
+    expect(element.textContent).to.equal('newTextContent');
+    expect(newElement.textContent).to.equal('oldTextContent');
+  });
+
+  it('does not swap textContent of old and new element with missing new element textContent', () => {
+    element.textContent = 'oldTextContent';
+    const newElement = <Element>element.cloneNode(false);
+    newElement.setAttribute('name', 'newName');
+
+    elm.dispatchEvent(
+      newActionEvent({ old: { element }, new: { element: newElement } })
+    );
+
+    expect(element.textContent).to.equal('oldTextContent');
+    expect(newElement.textContent).to.equal('');
   });
 
   it('does not update an element with name conflict', () => {
@@ -122,15 +155,9 @@ describe('EditingElement', () => {
     newElement?.setAttribute('name', 'Q02');
 
     elm.dispatchEvent(
-      newActionEvent({
-        old: {
-          element,
-        },
-        new: {
-          element: newElement,
-        },
-      })
+      newActionEvent({ old: { element }, new: { element: newElement } })
     );
+
     expect(parent.querySelector('Bay[name="Q01"]')).to.not.null;
     expect(
       parent.querySelector('Bay[name="Q01"]')?.nextElementSibling

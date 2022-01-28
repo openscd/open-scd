@@ -208,8 +208,35 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private onUpdate(action: Update) {
       if (!this.checkUpdateValidity(action)) return false;
 
-      action.new.element.append(...Array.from(action.old.element.children));
-      action.old.element.replaceWith(action.new.element);
+      const oldElement = action.old.element;
+      const newElement = action.new.element;
+      const oldAttrs = action.old.element.attributes;
+      const newAttrs = action.new.element.attributes;
+
+      const intElement =
+        action.new.element.ownerDocument.createElement('Clone');
+
+      while (oldAttrs.length > 0)
+        intElement.setAttributeNode(
+          oldElement.removeAttributeNode(oldAttrs[0])
+        );
+
+      while (newAttrs.length > 0)
+        oldElement.setAttributeNode(
+          newElement.removeAttributeNode(newAttrs[0])
+        );
+
+      while (intElement.attributes.length > 0)
+        newElement.setAttributeNode(
+          intElement.removeAttributeNode(intElement.attributes[0])
+        );
+
+      if (action.new.element.textContent) {
+        const oldTextContent = action.old.element.textContent;
+        action.old.element.textContent = action.new.element.textContent;
+        action.new.element.textContent = oldTextContent;
+      }
+
       return true;
     }
 
