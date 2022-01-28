@@ -210,28 +210,19 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
 
       const oldElement = action.old.element;
       const newElement = action.new.element;
-      const oldAttrs = action.old.element.attributes;
-      const newAttrs = action.new.element.attributes;
+      const oldAttrs = Array.from(action.old.element.attributes);
+      const newAttrs = Array.from(action.new.element.attributes);
 
-      const intElement =
-        action.new.element.ownerDocument.createElement('Clone');
+      oldAttrs.forEach(attr => oldElement.removeAttributeNode(attr));
+      newAttrs.forEach(attr => newElement.removeAttributeNode(attr));
 
-      while (oldAttrs.length > 0)
-        intElement.setAttributeNode(
-          oldElement.removeAttributeNode(oldAttrs[0])
-        );
+      oldAttrs.forEach(attr => newElement.setAttributeNode(attr));
+      newAttrs.forEach(attr => oldElement.setAttributeNode(attr));
 
-      while (newAttrs.length > 0)
-        oldElement.setAttributeNode(
-          newElement.removeAttributeNode(newAttrs[0])
-        );
-
-      while (intElement.attributes.length > 0)
-        newElement.setAttributeNode(
-          intElement.removeAttributeNode(intElement.attributes[0])
-        );
-
-      if (action.new.element.textContent) {
+      if (
+        action.new.element.childNodes.length === 1 &&
+        action.new.element.children.length === 0
+      ) {
         const oldTextContent = action.old.element.textContent;
         action.old.element.textContent = action.new.element.textContent;
         action.new.element.textContent = oldTextContent;
