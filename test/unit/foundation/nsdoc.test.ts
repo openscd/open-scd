@@ -18,10 +18,8 @@ describe('nsdoc', () => {
     it('that\'s initially loaded correct', async function () {
       const nsdocsObject = await initializeNsdoc();
 
-      expect(nsdocsObject.nsdoc72).to.be.undefined;
       expect(nsdocsObject.nsdoc73).to.be.undefined;
       expect(nsdocsObject.nsdoc74).to.be.undefined;
-      expect(nsdocsObject.nsdoc81).to.be.undefined;
       expect(nsdocsObject.getDataDescription).to.exist;
     });
 

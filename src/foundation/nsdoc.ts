@@ -1,10 +1,8 @@
 import { iec6185073, iec6185074 } from "../validators/templates/foundation.js";
 
 export interface Nsdoc {
-  nsdoc72?: XMLDocument;
   nsdoc73?: XMLDocument;
   nsdoc74?: XMLDocument;
-  nsdoc81?: XMLDocument;
   getDataDescription: (element: Element) => { label: string; }
 }
 
@@ -13,13 +11,12 @@ export interface Nsdoc {
  * @returns A fully initialized Nsdoc object for wizards/editors to use.
  */
 export async function initializeNsdoc(): Promise<Nsdoc> {
-  const nsdoc72 = localStorage.getItem('IEC 61850-7-2') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-2')!, 'application/xml') : undefined;
-  const nsdoc73 = localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined;
-  const nsdoc74 = localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined;
-  const nsdoc81 = localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined;
+  const [nsdoc73, nsdoc74] = [
+    localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined,
+    localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined
+  ]
 
-  const nsd74 = await iec6185074;
-  const nsd73 = await iec6185073;
+  const [nsd73, nsd74] = await Promise.all([iec6185073, iec6185074])
 
   const iedElementTagNames = ['LN', 'LN0', 'DO', 'DOI', 'DA', 'DAI'] as const;
   type IEDElementTagNames = typeof iedElementTagNames[number];
@@ -115,10 +112,8 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   }
 
   return {
-    nsdoc72: nsdoc72,
     nsdoc73: nsdoc73,
     nsdoc74: nsdoc74,
-    nsdoc81: nsdoc81,
     getDataDescription: function getDataDescription(element: Element): { label: string; } {
       return getDataDescriptions[element.tagName as keyof Record<IEDElementTagNames,
         {
