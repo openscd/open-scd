@@ -12,7 +12,7 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
    * Plugins have a fix URL and do not fit to the file structure in test environment.
    * Creating open-scd in the tests leads to error in the browser log - we had to disable the browser log
   */
-  browserLogs: false,
+  browserLogs: true,
 
   /** specify groups for unit and integrations tests 
    * hint: no --group definition runs all groups

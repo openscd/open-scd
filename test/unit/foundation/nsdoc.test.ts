@@ -30,7 +30,7 @@ describe('nsdoc', () => {
       expect(nsdocsObject.nsdoc74?.querySelector('NSDoc')?.getAttribute('id')).to.eql('IEC 61850-7-4');
     });
 
-    describe('has an getLNDescription function', () => {
+    describe('has an getDataDescription function', () => {
       let validSCL: XMLDocument;
       let nsdocsObject!: Nsdoc
 
@@ -57,6 +57,24 @@ describe('nsdoc', () => {
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')
     
           expect(nsdocsObject.getDataDescription(ln!).label).to.eql('XCBR')
+      });
+
+      it('which returns the description of a valid DO element', async function () {
+        const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Beh"]');
+
+        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Some DO description')
+      });
+
+      it('which returns the description of a valid DO element where the DO is part of a parent class', async function () {
+        const dataObject = validSCL.querySelector('LNodeType[id="Dummy.XCBR1"] > DO[name="Beh"]');
+
+        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Some DomainLN Description')
+      });
+
+      it('which returns the name of a valid LN element in case no documentation can be found in the .nsdoc file', async function () {
+        const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Health"]');
+
+        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Health')
       });
     });
   });
