@@ -20,12 +20,12 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
 
   const nsd74 = await iec6185074;
 
-  const referenceInfoTags = ['LN', 'LN0'] as const;
-  type IEDElementsTagNames = typeof referenceInfoTags[number];
+  const iedElementTagNames = ['LN', 'LN0'] as const;
+  type IEDElementTagNames = typeof iedElementTagNames[number];
   type GetDataDescription = (element: Element) => { label: string; };
 
   const getDataDescriptions: Record<
-  IEDElementsTagNames,
+  IEDElementTagNames,
     {
       getDataDescription: GetDataDescription;
     }
@@ -59,7 +59,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     nsdoc74: nsdoc74,
     nsdoc81: nsdoc81,
     getDataDescription: function getDataDescription(element: Element): { label: string; } {
-      return getDataDescriptions[element.tagName as keyof Record<IEDElementsTagNames,
+      return getDataDescriptions[element.tagName as keyof Record<IEDElementTagNames,
         {
           getDataDescription: GetDataDescription;
         }
