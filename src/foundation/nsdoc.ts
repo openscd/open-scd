@@ -21,8 +21,8 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   const nsd74 = await iec6185074;
   const nsd73 = await iec6185073;
 
-  const referenceInfoTags = ['LN', 'LN0', 'DO', 'DOI', 'DA', 'DAI'] as const;
-  type IEDElementsTagNames = typeof referenceInfoTags[number];
+  const iedElementTagNames = ['LN', 'LN0', 'DO', 'DOI', 'DA', 'DAI'] as const;
+  type IEDElementsTagNames = typeof iedElementTagNames[number];
   type GetDataDescription = (element: Element) => { label: string; };
 
   const getDataDescriptions: Record<
