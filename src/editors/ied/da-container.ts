@@ -87,8 +87,9 @@ export class DAContainer extends LitElement {
     const bType = this.element!.getAttribute('bType');
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
-      <abbr slot="action" title="${this.nsdoc.getDataDescription(this.element).label}">
+      <abbr slot="action">
         <mwc-icon-button
+          title=${this.nsdoc.getDataDescription(this.element).label}
           icon="info"
         ></mwc-icon-button>
       </abbr>

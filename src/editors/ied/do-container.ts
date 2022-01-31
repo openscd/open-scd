@@ -105,8 +105,9 @@ export class DOContainer extends LitElement {
     const doElements = this.getDOElements();
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
-      <abbr slot="action" title="${this.nsdoc.getDataDescription(this.element).label}">
+      <abbr slot="action">
         <mwc-icon-button
+          title=${this.nsdoc.getDataDescription(this.element).label}
           icon="info"
         ></mwc-icon-button>
       </abbr>
