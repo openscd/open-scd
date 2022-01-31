@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NSDoc id="IEC 61850-7-3"
+       version="1010"
+       revision="X"
+       release="1"
+       lang="en">
+   <Doc id="IEC61850_7_3.CDCControl::ENC.q.desc"><![CDATA[Some DA description]]></Doc>
+</NSDoc>

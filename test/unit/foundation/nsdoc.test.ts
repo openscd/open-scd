@@ -2,13 +2,16 @@ import { expect } from "@open-wc/testing";
 import { initializeNsdoc, Nsdoc } from "../../../src/foundation/nsdoc.js";
 
 describe('nsdoc', () => {
-  let nsdoc!: string;
+  let nsdoc74!: string;
+  let nsdoc73!: string;
 
   describe('has an initializeNsdoc function', () => {
     beforeEach(async () => {
       localStorage.clear();
 
-      nsdoc = await fetch('/test/testfiles/foundation/testFile74.nsdoc')
+      nsdoc74 = await fetch('/test/testfiles/foundation/testFile74.nsdoc')
+        .then(response => response.text());
+      nsdoc73 = await fetch('/test/testfiles/foundation/testFile73.nsdoc')
         .then(response => response.text());
     });
 
@@ -23,7 +26,7 @@ describe('nsdoc', () => {
     });
 
     it('that has an nsdoc object after loading a correct .nsdoc file into localStorage', async function () {
-      localStorage.setItem('IEC 61850-7-4', nsdoc!)
+      localStorage.setItem('IEC 61850-7-4', nsdoc74!)
       const nsdocsObject = await initializeNsdoc();
 
       expect(nsdocsObject.nsdoc74).to.not.be.undefined;
@@ -36,7 +39,8 @@ describe('nsdoc', () => {
 
       beforeEach(async () => {
         localStorage.clear();
-        localStorage.setItem('IEC 61850-7-4', nsdoc!)
+        localStorage.setItem('IEC 61850-7-4', nsdoc74!)
+        localStorage.setItem('IEC 61850-7-3', nsdoc73!)
 
         nsdocsObject = await initializeNsdoc();
 
@@ -52,7 +56,7 @@ describe('nsdoc', () => {
           expect(nsdocsObject.getDataDescription(ln!).label).to.eql('Some LN title')
       });
 
-      it('which returns the lnClass of a valid LN element in case no documentation can be found in the .nsdoc file', async function () {
+      it('which returns the lnClass of a valid LN element in case no title can be found in the .nsdoc file', async function () {
         const ln = validSCL.querySelector(
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')
     
@@ -71,10 +75,22 @@ describe('nsdoc', () => {
         expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Some DomainLN Description')
       });
 
-      it('which returns the name of a valid LN element in case no documentation can be found in the .nsdoc file', async function () {
+      it('which returns the name of a valid DO element in case no description can be found in the .nsdoc file', async function () {
         const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Health"]');
 
         expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Health')
+      });
+
+      it('which returns the description of a valid DA element', async function () {
+        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="q"]');
+
+        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Some DA description')
+      });
+
+      it('which returns the name of a valid DA element in case no description can be found in the .nsdoc file', async function () {
+        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="t"]');
+
+        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('t')
       });
     });
   });
