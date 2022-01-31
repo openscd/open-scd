@@ -72,14 +72,15 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    * @returns Documentation from the .nsdoc file for this DO(I) file, or the name attribute in case no description can be found.
    */
   function getDODataDescription(doElement: Element): { label: string; } {
-    const doElementName = doElement.getAttribute('name')!;
-    const parentLnClass = doElement.parentElement?.getAttribute('lnClass');
+    const doName = doElement.getAttribute('name')!;
+    const lnClass = nsd74.querySelector(`NS > LNClasses > LNClass[name="${doElement.parentElement?.getAttribute('lnClass')}"]`);
+    const base = lnClass?.getAttribute('base');
 
-    const dObject = nsd74.querySelector(`NS > LNClasses > LNClass[name="${parentLnClass}"] > DataObject[name="${doElementName}"]`);
+    const dObject = lnClass?.querySelector(`DataObject[name="${doName}"]`) ?? getInheritedDataObject(base!, doName);
     const descId = dObject?.getAttribute('descID');
 
     return {
-      label: getNsdocDocumentation(nsdoc74!, descId!) ?? doElementName
+      label: getNsdocDocumentation(nsdoc74!, descId!) ?? doName
     };
   }
 
@@ -98,6 +99,19 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     return {
       label: getNsdocDocumentation(nsdoc73!, descId!) ?? daElementName
     };
+  }
+
+  /**
+   * Get the potential inherited data object based on a LNClass base.
+   * @param lnClassBase - The base of a LNClass element.
+   * @param doName - The name of the DO(I) to search for. 
+   * @returns the DataObject in case found, otherwise null.
+   */
+  function getInheritedDataObject(lnClassBase: string, doName: string): Element | null {
+    const lnClass = nsd74.querySelector(`NS > LNClasses > AbstractLNClass[name="${lnClassBase}"]`);
+    const base = lnClass?.getAttribute('base');
+
+    return lnClass?.querySelector(`DataObject[name="${doName}"]`) ?? getInheritedDataObject(base!, doName);
   }
 
   return {
