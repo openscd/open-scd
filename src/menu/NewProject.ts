@@ -14,7 +14,7 @@ import {
   Wizard,
   WizardInput,
 } from '../foundation.js';
-import { newEmptySCD, SupportedVersion } from '../schemas.js';
+import { newEmptySCD, SupportedVersion } from '../foundation/schemas.js';
 
 export default class NewProjectPlugin extends LitElement {
   private createNewProject(

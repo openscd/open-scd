@@ -29,6 +29,7 @@ import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
 import { securityEnableEnum } from './foundation/enums.js';
+import { wizardDialogContent } from './foundation/contentbuilder.js';
 
 function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
@@ -191,13 +192,6 @@ export function updateGseControlAction(element: Element): WizardActor {
 }
 
 export function editGseControlWizard(element: Element): Wizard {
-  const name = element.getAttribute('name');
-  const desc = element.getAttribute('desc');
-  const type = element.getAttribute('type');
-  const appID = element.getAttribute('appID');
-  const fixedOffs = element.getAttribute('fixedOffs');
-  const securityEnabled = element.getAttribute('securityEnabled');
-
   const gSE = getGSE(element);
 
   const dataSet = element.parentElement?.querySelector(
@@ -225,14 +219,7 @@ export function editGseControlWizard(element: Element): Wizard {
             e.target?.dispatchEvent(newWizardEvent());
           }}
         ></mwc-button>`,
-        ...renderGseAttributes(
-          name,
-          desc,
-          type,
-          appID,
-          fixedOffs,
-          securityEnabled
-        ),
+        ...wizardDialogContent(element, ['confRev']),
         dataSet
           ? html`<mwc-button
               id="editdataset"

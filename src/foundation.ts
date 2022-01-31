@@ -9,6 +9,8 @@ import AceEditor from 'ace-custom-element';
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
 
+export { getSchema, getSchemaVersionNumber } from './foundation/schemas.js';
+
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
   actions: SimpleAction[];

@@ -11,7 +11,7 @@ import {
   ValidationResult,
   Validator,
   WorkerMessage,
-} from '../schemas.js';
+} from '../foundation/schemas.js';
 
 const validators: Partial<Record<string, Validator>> = {};
 
@@ -95,7 +95,7 @@ export default class ValidateSchema extends LitElement {
         this.doc.documentElement.getAttribute('release') ?? '',
       ];
     const result = await this.getValidator(
-      getSchema(version, revision, release),
+      getSchema({ version, revision, release }),
       'SCL' + version + revision + release + '.xsd'
     ).then(validator =>
       validator(new XMLSerializer().serializeToString(this.doc), fileName)
