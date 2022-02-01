@@ -18,7 +18,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined
   ]
 
-  const iedElementTagNames = ['LN', 'LN0', 'DO', 'DOI', 'DA', 'DAI'] as const;
+  const iedElementTagNames = ['LN', 'LN0', 'DO', 'SDO', 'DOI', 'DA', 'DAI'] as const;
   type IEDElementTagNames = typeof iedElementTagNames[number];
   type GetDataDescription = (element: Element) => { label: string; };
 
@@ -35,6 +35,9 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
       getDataDescription: getLNDataDescription
     },
     DO: {
+      getDataDescription: getDODataDescription
+    },
+    SDO: {
       getDataDescription: getDODataDescription
     },
     DOI: {
@@ -105,6 +108,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    * @returns the DataObject in case found, otherwise null.
    */
   function getInheritedDataObject(lnClassBase: string, doName: string): Element | null {
+    if (!lnClassBase) return null;
     const lnClass = nsd74.querySelector(`NS > LNClasses > AbstractLNClass[name="${lnClassBase}"]`);
     const base = lnClass?.getAttribute('base');
 
