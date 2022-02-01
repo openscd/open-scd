@@ -96,10 +96,10 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    */
   function getDADataDescription(elements: Element[]): { label: string; } {
     const daElementName = elements[0].getAttribute('name')!;
-    const daParentCdc = elements[0].closest('DOType')!.getAttribute('cdc');
+    const cdcName = elements[0].closest('DOType')!.getAttribute('cdc');
 
-    const dObject = nsd73.querySelector(`NS > CDCs > CDC[name="${daParentCdc}"] > DataAttribute[name="${daElementName}"]`);
-    const descId = dObject?.getAttribute('descID');
+    const dataAttr = nsd73.querySelector(`NS > CDCs > CDC[name="${cdcName}"] > DataAttribute[name="${daElementName}"]`);
+    const descId = dataAttr?.getAttribute('descID');
 
     return {
       label: getNsdocDocumentation(nsdoc73!, descId!) ?? daElementName
