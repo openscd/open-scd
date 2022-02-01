@@ -6,6 +6,8 @@ export interface Nsdoc {
   getDataDescription: (element: Element) => { label: string; }
 }
 
+const [nsd73, nsd74] = await Promise.all([iec6185073, iec6185074]);
+
 /**
  * Initialize the full Nsdoc object.
  * @returns A fully initialized Nsdoc object for wizards/editors to use.
@@ -15,8 +17,6 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined,
     localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined
   ]
-
-  const [nsd73, nsd74] = await Promise.all([iec6185073, iec6185074])
 
   const iedElementTagNames = ['LN', 'LN0', 'DO', 'DOI', 'DA', 'DAI'] as const;
   type IEDElementTagNames = typeof iedElementTagNames[number];
