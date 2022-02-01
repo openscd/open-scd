@@ -51,44 +51,44 @@ describe('nsdoc', () => {
         const ln = validSCL.querySelector(
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN0[lnClass="LLN0"]')
 
-          expect(nsdocsObject.getDataDescription(ln!).label).to.eql('Some LN title')
+          expect(nsdocsObject.getDataDescription([ln!]).label).to.eql('Some LN title')
       });
 
       it('which returns the lnClass of a valid LN element in case no title can be found in the .nsdoc file', async function () {
         const ln = validSCL.querySelector(
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]')
     
-          expect(nsdocsObject.getDataDescription(ln!).label).to.eql('XCBR')
+          expect(nsdocsObject.getDataDescription([ln!]).label).to.eql('XCBR')
       });
 
       it('which returns the description of a valid DO element', async function () {
         const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Beh"]');
 
-        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Some DO description')
+        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DO description')
       });
 
       it('which returns the description of a valid DO element where the DO is part of a parent class', async function () {
         const dataObject = validSCL.querySelector('LNodeType[id="Dummy.XCBR1"] > DO[name="Beh"]');
 
-        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Some DomainLN Description')
+        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DomainLN Description')
       });
 
       it('which returns the name of a valid DO element in case no description can be found in the .nsdoc file', async function () {
         const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Health"]');
 
-        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Health')
+        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Health')
       });
 
       it('which returns the description of a valid DA element', async function () {
         const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="q"]');
 
-        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('Some DA description')
+        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DA description')
       });
 
       it('which returns the name of a valid DA element in case no description can be found in the .nsdoc file', async function () {
         const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="t"]');
 
-        expect(nsdocsObject.getDataDescription(dataObject!).label).to.eql('t')
+        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('t')
       });
     });
   });

@@ -32,7 +32,7 @@ export class LNContainer extends LitElement {
     const prefix = this.element.getAttribute('prefix');
     const inst = getInstanceAttribute(this.element);
 
-    const data = this.nsdoc.getDataDescription(this.element);
+    const data = this.nsdoc.getDataDescription([this.element]);
 
     return html`${prefix != null ? html`${prefix} &mdash; ` : nothing}
             ${data.label}

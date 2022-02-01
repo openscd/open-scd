@@ -3,7 +3,7 @@ import { iec6185073, iec6185074 } from "../validators/templates/foundation.js";
 export interface Nsdoc {
   nsdoc73?: XMLDocument;
   nsdoc74?: XMLDocument;
-  getDataDescription: (element: Element) => { label: string; }
+  getDataDescription: (elements: Element[]) => { label: string; }
 }
 
 const [nsd73, nsd74] = await Promise.all([iec6185073, iec6185074]);
@@ -18,9 +18,9 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined
   ]
 
-  const iedElementTagNames = ['LN', 'LN0', 'DO', 'SDO', 'DOI', 'DA', 'DAI'] as const;
+  const iedElementTagNames = ['LN', 'LN0', 'DO', 'SDO', 'DOI', 'DA', 'BDA', 'DAI'] as const;
   type IEDElementTagNames = typeof iedElementTagNames[number];
-  type GetDataDescription = (element: Element) => { label: string; };
+  type GetDataDescription = (elements: Element[]) => { label: string; };
 
   const getDataDescriptions: Record<
   IEDElementTagNames,
@@ -46,6 +46,9 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     DA: {
       getDataDescription: getDADataDescription
     },
+    BDA: {
+      getDataDescription: getBDADataDescription
+    },
     DAI: {
       getDataDescription: getDADataDescription
     }
@@ -53,11 +56,11 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
 
   /**
    * Getting data descriptions for LN(0) elements out of the IEC 61850-7-4 .nsdoc file.
-   * @param lnElement - The LN(0) element to use.
+   * @param elements - The elements to use for searching the LN description.
    * @returns Documentation from the .nsdoc file for this LN(0) file, or the lnClass attribute in case no description can be found.
    */
-  function getLNDataDescription(lnElement: Element): { label: string; } {
-    const lnClassAttribute = lnElement.getAttribute('lnClass')!;
+  function getLNDataDescription(elements: Element[]): { label: string; } {
+    const lnClassAttribute = elements[0].getAttribute('lnClass')!;
     const lnClass = nsd74.querySelector(`NS > LNClasses > LNClass[name="${lnClassAttribute}"]`);
     const titleId = lnClass?.getAttribute('titleID');
 
@@ -68,12 +71,12 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
 
   /**
    * Getting data descriptions for DO(I) elements out of the IEC 61850-7-4 .nsdoc file.
-   * @param doElement - The DO(I) element to use.
+   * @param elements - The elements to use for searching the DO description.
    * @returns Documentation from the .nsdoc file for this DO(I) file, or the name attribute in case no description can be found.
    */
-  function getDODataDescription(doElement: Element): { label: string; } {
-    const doName = doElement.getAttribute('name')!;
-    const lnClass = nsd74.querySelector(`NS > LNClasses > LNClass[name="${doElement.parentElement?.getAttribute('lnClass')}"]`);
+  function getDODataDescription(elements: Element[]): { label: string; } {
+    const doName = elements[0].getAttribute('name')!;
+    const lnClass = nsd74.querySelector(`NS > LNClasses > LNClass[name="${elements[0].parentElement?.getAttribute('lnClass')}"]`);
     const base = lnClass?.getAttribute('base');
 
     const dObject = lnClass?.querySelector(`DataObject[name="${doName}"]`) ?? getInheritedDataObject(base!, doName);
@@ -86,18 +89,24 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
 
   /**
    * Getting data descriptions for DA(I) elements out of the IEC 61850-7-3 .nsdoc file.
-   * @param daElement - The DA(I) element to use.
+   * @param elements - The elements to use for searching the DA description.
    * @returns Documentation from the .nsdoc file for this DA(I) file, or the name attribute in case no description can be found.
    */
-  function getDADataDescription(daElement: Element): { label: string; } {
-    const daElementName = daElement.getAttribute('name')!;
-    const daParentCdc = daElement.parentElement!.getAttribute('cdc');
+  function getDADataDescription(elements: Element[]): { label: string; } {
+    const daElementName = elements[0].getAttribute('name')!;
+    const daParentCdc = elements[0].closest('DOType')!.getAttribute('cdc');
 
     const dObject = nsd73.querySelector(`NS > CDCs > CDC[name="${daParentCdc}"] > DataAttribute[name="${daElementName}"]`);
     const descId = dObject?.getAttribute('descID');
 
     return {
       label: getNsdocDocumentation(nsdoc73!, descId!) ?? daElementName
+    };
+  }
+
+  function getBDADataDescription(elements: Element[]): { label: string; } {
+    return {
+      label: elements[0].getAttribute('name')!
     };
   }
 
@@ -118,12 +127,12 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   return {
     nsdoc73: nsdoc73,
     nsdoc74: nsdoc74,
-    getDataDescription: function getDataDescription(element: Element): { label: string; } {
-      return getDataDescriptions[element.tagName as keyof Record<IEDElementTagNames,
+    getDataDescription: function getDataDescription(elements: Element[]): { label: string; } {
+      return getDataDescriptions[elements[0].tagName as keyof Record<IEDElementTagNames,
         {
           getDataDescription: GetDataDescription;
         }
-        >].getDataDescription(element);
+        >].getDataDescription(elements);
     }
     
   }
@@ -135,6 +144,6 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
  * @param id - The id of the doc to search for.
  * @returns - The documentation belonging to the id.
  */
-function getNsdocDocumentation(nsdoc: XMLDocument, id: string) {
-  return nsdoc?.querySelector(`NSDoc > Doc[id="${id}"]`)?.textContent;
+function getNsdocDocumentation(nsdoc: XMLDocument, id: string): string | null | undefined {
+  return nsdoc?.querySelector(`NSDoc > Doc[id="${id ?? ''}"]`)?.textContent;
 }
