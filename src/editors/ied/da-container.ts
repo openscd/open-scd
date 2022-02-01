@@ -32,6 +32,9 @@ export class DAContainer extends LitElement {
   @property({ attribute: false })
   instanceElement!: Element;
 
+  @property({ attribute: false })
+  daParent!: Element
+
   @property()
   nsdoc!: Nsdoc;
   
@@ -89,7 +92,7 @@ export class DAContainer extends LitElement {
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       <abbr slot="action">
         <mwc-icon-button
-          title=${this.nsdoc.getDataDescription([this.element]).label}
+          title=${this.nsdoc.getDataDescription([this.element, this.daParent]).label}
           icon="info"
         ></mwc-icon-button>
       </abbr>
@@ -105,7 +108,8 @@ export class DAContainer extends LitElement {
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
           .element=${element}
-          .nsdoc=${this.nsdoc}>
+          .nsdoc=${this.nsdoc}
+          .daParent=${this.element}>
         </da-container>`) : nothing}
     </action-pane>
     `;

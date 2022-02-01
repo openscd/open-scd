@@ -1,21 +1,23 @@
-import { iec6185073, iec6185074 } from "../validators/templates/foundation.js";
+import { iec6185073, iec6185074, iec6185081 } from "../validators/templates/foundation.js";
 
 export interface Nsdoc {
   nsdoc73?: XMLDocument;
   nsdoc74?: XMLDocument;
+  nsdoc81?: XMLDocument;
   getDataDescription: (elements: Element[]) => { label: string; }
 }
 
-const [nsd73, nsd74] = await Promise.all([iec6185073, iec6185074]);
+const [nsd73, nsd74, nsd81] = await Promise.all([iec6185073, iec6185074, iec6185081]);
 
 /**
  * Initialize the full Nsdoc object.
  * @returns A fully initialized Nsdoc object for wizards/editors to use.
  */
 export async function initializeNsdoc(): Promise<Nsdoc> {
-  const [nsdoc73, nsdoc74] = [
+  const [nsdoc73, nsdoc74, nsdoc81] = [
     localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined,
-    localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined
+    localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined,
+    localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined
   ]
 
   const iedElementTagNames = ['LN', 'LN0', 'DO', 'SDO', 'DOI', 'DA', 'BDA', 'DAI'] as const;
@@ -105,8 +107,17 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   }
 
   function getBDADataDescription(elements: Element[]): { label: string; } {
+    const bdaElementName = elements[0].getAttribute('name')!;
+    const bdaParent = elements[1];
+    const cdcName = bdaParent.closest('DOType')?.getAttribute('cdc');
+
+    const dataAttr = nsd73.querySelector(`NS > CDCs > CDC[name="${cdcName}"] > DataAttribute[name="${bdaParent.getAttribute('name')}"]`)
+    const subDataAttribute = nsd73.querySelector(`ConstructedAttributes >
+      ConstructedAttribute[name="${dataAttr?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`)
+    const descId = subDataAttribute?.getAttribute('descID');
+
     return {
-      label: elements[0].getAttribute('name')!
+      label: getNsdocDocumentation(nsdoc73!, descId!) ?? bdaElementName
     };
   }
 
@@ -127,6 +138,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   return {
     nsdoc73: nsdoc73,
     nsdoc74: nsdoc74,
+    nsdoc81: nsdoc81,
     getDataDescription: function getDataDescription(elements: Element[]): { label: string; } {
       return getDataDescriptions[elements[0].tagName as keyof Record<IEDElementTagNames,
         {
