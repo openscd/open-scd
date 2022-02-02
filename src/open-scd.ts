@@ -134,12 +134,10 @@ export class OpenSCD extends Hosting(
     }
 
     .landing {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
       position: absolute;
-      top: calc(50vh - 82px);
-      left: calc(50vw - 184px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .landing_icon:hover {
