@@ -28,6 +28,8 @@ export const en = {
     dchg: 'Trigger on data change',
     qchg: 'Trigger on quality change',
     dupd: 'Trigger on data update',
+    period: 'Periodical Publishing',
+    gi: 'General Interrogation',
     fixedOffs: 'Fixed offset',
     securityEnable: 'Security enabled',
     DataSet: 'Dataset',

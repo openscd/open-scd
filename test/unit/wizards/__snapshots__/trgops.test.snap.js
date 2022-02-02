@@ -9,30 +9,33 @@ snapshots["Wizards for SCL TrgOps element define an edit wizard that looks like 
 >
   <div id="wizard-content">
     <wizard-checkbox
+      helper="[scl.dchg]"
       label="dchg"
       nullable=""
-    >
-    </wizard-checkbox>
+    ></wizard-checkbox>
     <wizard-checkbox
+      disabled=""
+      helper="[scl.qchg]"
       label="qchg"
       nullable=""
-    >
-    </wizard-checkbox>
+    ></wizard-checkbox>
     <wizard-checkbox
+      disabled=""
+      helper="[scl.dupd]"
       label="dupd"
       nullable=""
-    >
-    </wizard-checkbox>
+    ></wizard-checkbox>
     <wizard-checkbox
+      disabled=""
+      helper="[scl.period]"
       label="period"
       nullable=""
-    >
-    </wizard-checkbox>
+    ></wizard-checkbox>
     <wizard-checkbox
+      helper="[scl.gi]"
       label="gi"
       nullable=""
-    >
-    </wizard-checkbox>
+    ></wizard-checkbox>
   </div>
   <mwc-button
     dialogaction="close"
