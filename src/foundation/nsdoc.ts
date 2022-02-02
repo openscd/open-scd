@@ -123,6 +123,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
 
     if (serviceDataAttr) {
       const subDataAttr = serviceDataAttr.querySelector(`SubDataAttribute[name="${bdaElementName}"]`);
+
       return {
         label: getNsdocDocumentation(nsdoc81!, subDataAttr?.getAttribute('descID')) ?? bdaElementName
       };
