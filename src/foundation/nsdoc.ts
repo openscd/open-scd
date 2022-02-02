@@ -117,11 +117,8 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    * @returns Documentation from the .nsdoc file for this BDA element, or the name attribute in case no description can be found.
    */
   function getBDADataDescription(elements: Element[]): { label: string; } {
-    console.log(elements[0])
-    console.log(elements[1])
     const bdaElementName = elements[0].getAttribute('name')!;
     const bdaParent = elements[1];
-    const cdcName = bdaParent.closest('DOType')?.getAttribute('cdc');
     const serviceDataAttr = nsd81.querySelector(`ServiceConstructedAttributes > ServiceConstructedAttribute[name="${bdaParent.getAttribute('name')}"]`);
 
     if (serviceDataAttr) {
@@ -130,6 +127,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
         label: getNsdocDocumentation(nsdoc81!, subDataAttr?.getAttribute('descID')) ?? bdaElementName
       };
     } else {
+      const cdcName = bdaParent.closest('DOType')?.getAttribute('cdc');
       const dataAttr = nsd73.querySelector(`NS > CDCs > CDC[name="${cdcName}"] > DataAttribute[name="${bdaParent.getAttribute('name')}"]`)
       const subDataAttribute = nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${dataAttr?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`);
   
