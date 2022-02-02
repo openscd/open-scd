@@ -5,4 +5,5 @@
        release="1"
        lang="en">
    <Doc id="IEC 61850-8-1:2003.SBOw"><![CDATA[Some SBOw title]]></Doc>
+   <Doc id="IEC 61850-8-1:2003.ctlNum"><![CDATA[Some ctlNum description]]></Doc>
 </NSDoc>

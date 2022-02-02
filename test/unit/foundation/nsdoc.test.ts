@@ -52,74 +52,96 @@ describe('nsdoc', () => {
           .then(str => new DOMParser().parseFromString(str, 'application/xml'));
       });
 
-      it('which returns the title of a valid LN element', async function () {
-        const ln = validSCL.querySelector(
-          'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN0[lnClass="LLN0"]')
+      describe('which for LN elements', () => {
+        it('returns the title', async function () {
+          const ln = validSCL.querySelector(
+            'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN0[lnClass="LLN0"]')
 
-          expect(nsdocsObject.getDataDescription([ln!]).label).to.eql('Some LN title');
+            expect(nsdocsObject.getDataDescription([ln!]).label).to.eql('Some LN title');
+        });
+
+        it('returns the lnClass in case no title can be found', async function () {
+          const ln = validSCL.querySelector(
+            'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]');
+      
+            expect(nsdocsObject.getDataDescription([ln!]).label).to.eql('XCBR');
+        });
       });
 
-      it('which returns the lnClass of a valid LN element in case no title can be found in the .nsdoc file', async function () {
-        const ln = validSCL.querySelector(
-          'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="XCBR"]');
-    
-          expect(nsdocsObject.getDataDescription([ln!]).label).to.eql('XCBR');
+      describe('which for DO elements', () => {
+        it('returns the description', async function () {
+          const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Beh"]');
+  
+          expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DO description');
+        });
+  
+        it('returns the description where the DO is part of a parent class', async function () {
+          const dataObject = validSCL.querySelector('LNodeType[id="Dummy.XCBR1"] > DO[name="Beh"]');
+  
+          expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DomainLN Description');
+        });
+  
+        it('returns the name in case no description can be found', async function () {
+          const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Health"]');
+  
+          expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Health');
+        });
       });
 
-      it('which returns the description of a valid DO element', async function () {
-        const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Beh"]');
-
-        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DO description');
+      describe('which for DA elements', () => {
+        it('returns the description defined in IEC 61850-7-3', async function () {
+          const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="q"]');
+  
+          expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DA description');
+        });
+  
+        it('returns the name in case no description can be found in IEC 61850-7-3', async function () {
+          const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="t"]');
+  
+          expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('t');
+        });
+  
+        it('returns the description defined in IEC 61850-8-1', async function () {
+          const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBOw"]');
+  
+          expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some SBOw title');
+        });
+  
+        it('which returns the name in case no description can be found in IEC 61850-8-1', async function () {
+          const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBO"]');
+  
+          expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('SBO');
+        });
       });
 
-      it('which returns the description of a valid DO element where the DO is part of a parent class', async function () {
-        const dataObject = validSCL.querySelector('LNodeType[id="Dummy.XCBR1"] > DO[name="Beh"]');
-
-        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DomainLN Description');
-      });
-
-      it('which returns the name of a valid DO element in case no description can be found in the .nsdoc file', async function () {
-        const dataObject = validSCL.querySelector('LNodeType[id="Dummy.LLN0"] > DO[name="Health"]');
-
-        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Health');
-      });
-
-      it('which returns the description of a valid DA element which is defined in the IEC 61850-7-3 .nsdoc file', async function () {
-        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="q"]');
-
-        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DA description');
-      });
-
-      it('which returns the name of a valid DA element in case no description can be found in the IEC 61850-7-3 .nsdoc file', async function () {
-        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="t"]');
-
-        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('t');
-      });
-
-      it('which returns the description of a valid DA element which is defined in the IEC 61850-8-1 .nsdoc file', async function () {
-        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBOw"]');
-
-        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some SBOw title');
-      });
-
-      it('which returns the name of a valid DA element in case no description can be found in the IEC 61850-8-1 .nsdoc file', async function () {
-        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBO"]');
-
-        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('SBO');
-      });
-
-      it('which returns the description of a valid BDA element which is defined in the IEC 61850-7-3 .nsdoc file', async function () {
-        const bdaElement = validSCL.querySelector('DAType[id="AnalogueValue_i"] > BDA[name="i"]');
-        const bdaElementParent = validSCL.querySelector('DOType[id="DummySAV"] > DA[name="instMag"]');
-
-        expect(nsdocsObject.getDataDescription([bdaElement!, bdaElementParent!]).label).to.eql('Some i description');
-      });
-
-      it('which returns the name of a valid BDA element in case no description can be found in the IEC 61850-7-3 .nsdoc file', async function () {
-        const bdaElement = validSCL.querySelector('DAType[id="AnalogueValue_i"] > BDA[name="x"]');
-        const bdaElementParent = validSCL.querySelector('DOType[id="DummySAV"] > DA[name="instMag"]');
-
-        expect(nsdocsObject.getDataDescription([bdaElement!, bdaElementParent!]).label).to.eql('x');
+      describe('which for BDA elements', () => {
+        it('returns the description defined in IEC 61850-7-3', async function () {
+          const bdaElement = validSCL.querySelector('DAType[id="AnalogueValue_i"] > BDA[name="i"]');
+          const bdaElementParent = validSCL.querySelector('DOType[id="DummySAV"] > DA[name="instMag"]');
+  
+          expect(nsdocsObject.getDataDescription([bdaElement!, bdaElementParent!]).label).to.eql('Some i description');
+        });
+  
+        it('returns the name in case no description can be found in IEC 61850-7-3', async function () {
+          const bdaElement = validSCL.querySelector('DAType[id="AnalogueValue_i"] > BDA[name="x"]');
+          const bdaElementParent = validSCL.querySelector('DOType[id="DummySAV"] > DA[name="instMag"]');
+  
+          expect(nsdocsObject.getDataDescription([bdaElement!, bdaElementParent!]).label).to.eql('x');
+        });
+  
+        it('returns the description defined in IEC 61850-8-1', async function () {
+          const bdaElement = validSCL.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="ctlNum"]');
+          const bdaElementParent = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBOw"]');
+  
+          expect(nsdocsObject.getDataDescription([bdaElement!, bdaElementParent!]).label).to.eql('Some ctlNum description');
+        });
+  
+        it('returns the name in case no description can be found in IEC 61850-8-1', async function () {
+          const bdaElement = validSCL.querySelector('DAType[id="Dummy.LLN0.Mod.SBOw"] > BDA[name="T"]');
+          const bdaElementParent = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBOw"]');
+  
+          expect(nsdocsObject.getDataDescription([bdaElement!, bdaElementParent!]).label).to.eql('T');
+        });
       });
     });
   });
