@@ -616,6 +616,7 @@
         </DOType>
 		<DAType id="AnalogueValue_i">
             <BDA name="i" bType="INT32"/>
+            <BDA name="x" bType="INT32"/>
         </DAType>
 		<DAType id="ScaledValueConfig">
             <BDA name="scaleFactor" bType="FLOAT32"/>

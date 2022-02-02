@@ -109,7 +109,7 @@ export class DAContainer extends LitElement {
         html`<da-container
           .element=${element}
           .nsdoc=${this.nsdoc}
-          .daParent=${this.element}>
+          .daParent=${this.daParent ?? this.element}>
         </da-container>`) : nothing}
     </action-pane>
     `;

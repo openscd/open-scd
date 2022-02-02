@@ -131,7 +131,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
       const cdcName = bdaParent.closest('DOType')?.getAttribute('cdc');
       const dataAttr = nsd73.querySelector(`NS > CDCs > CDC[name="${cdcName}"] > DataAttribute[name="${bdaParent.getAttribute('name')}"]`)
       const subDataAttribute = nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${dataAttr?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`);
-  
+
       return {
         label: getNsdocDocumentation(nsdoc73!, subDataAttribute?.getAttribute('descID')) ?? bdaElementName
       };

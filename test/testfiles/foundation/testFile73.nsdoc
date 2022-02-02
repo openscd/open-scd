@@ -5,4 +5,5 @@
        release="1"
        lang="en">
    <Doc id="IEC61850_7_3.CDCControl::ENC.q.desc"><![CDATA[Some DA description]]></Doc>
+   <Doc id="IEC61850_7_3.AnalogueValue::AnalogueValue.i.desc"><![CDATA[Some i description]]></Doc>
 </NSDoc>
