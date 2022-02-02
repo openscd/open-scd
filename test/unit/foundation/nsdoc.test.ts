@@ -4,6 +4,7 @@ import { initializeNsdoc, Nsdoc } from "../../../src/foundation/nsdoc.js";
 describe('nsdoc', () => {
   let nsdoc74!: string;
   let nsdoc73!: string;
+  let nsdoc81!: string;
 
   describe('has an initializeNsdoc function', () => {
     beforeEach(async () => {
@@ -13,6 +14,8 @@ describe('nsdoc', () => {
         .then(response => response.text());
       nsdoc73 = await fetch('/test/testfiles/foundation/testFile73.nsdoc')
         .then(response => response.text());
+      nsdoc81 = await fetch('/test/testfiles/foundation/testFile81.nsdoc')
+        .then(response => response.text());
     });
 
     it('that\'s initially loaded correct', async function () {
@@ -20,6 +23,7 @@ describe('nsdoc', () => {
 
       expect(nsdocsObject.nsdoc73).to.be.undefined;
       expect(nsdocsObject.nsdoc74).to.be.undefined;
+      expect(nsdocsObject.nsdoc81).to.be.undefined;
       expect(nsdocsObject.getDataDescription).to.exist;
     });
 
@@ -37,6 +41,7 @@ describe('nsdoc', () => {
 
       beforeEach(async () => {
         localStorage.clear();
+        localStorage.setItem('IEC 61850-8-1', nsdoc81!)
         localStorage.setItem('IEC 61850-7-4', nsdoc74!)
         localStorage.setItem('IEC 61850-7-3', nsdoc73!)
 
@@ -79,16 +84,28 @@ describe('nsdoc', () => {
         expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Health')
       });
 
-      it('which returns the description of a valid DA element', async function () {
+      it('which returns the description of a valid DA element which is defined in the IEC 61850-7-3 .nsdoc file', async function () {
         const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="q"]');
 
         expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some DA description')
       });
 
-      it('which returns the name of a valid DA element in case no description can be found in the .nsdoc file', async function () {
+      it('which returns the name of a valid DA element in case no description can be found in the IEC 61850-7-3 .nsdoc file', async function () {
         const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="t"]');
 
         expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('t')
+      });
+
+      it('which returns the description of a valid DA element which is defined in the IEC 61850-8-1 .nsdoc file', async function () {
+        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBOw"]');
+
+        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('Some SBOw title')
+      });
+
+      it('which returns the name of a valid DA element in case no description can be found in the IEC 61850-8-1 .nsdoc file', async function () {
+        const dataObject = validSCL.querySelector('DOType[id="Dummy.LLN0.Mod"] > DA[name="SBO"]');
+
+        expect(nsdocsObject.getDataDescription([dataObject!]).label).to.eql('SBO')
       });
     });
   });
