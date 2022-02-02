@@ -43,12 +43,12 @@ export class SubNetworkEditor extends LitElement {
   /** SubNetwork child elements BitRate label */
   @property()
   get bitrate(): string | null {
-    const Br = this.element.querySelector('BitRate');
-    if (Br === null) return null;
-    const br = Br.textContent ?? '';
-    const m = Br.getAttribute('multiplier');
-    const u = m === null ? 'b/s' : ' ' + m + 'b/s';
-    return br ? br + u : null;
+    const bitRate = this.element.querySelector('BitRate');
+    if (bitRate === null) return null;
+    const bitRateValue = bitRate.textContent ?? '';
+    const m = bitRate.getAttribute('multiplier');
+    const unit = m === null ? 'b/s' : ' ' + m + 'b/s';
+    return bitRateValue ? bitRateValue + unit : null;
   }
 
   private openConnectedAPwizard(): void {
@@ -97,21 +97,21 @@ export class SubNetworkEditor extends LitElement {
       );
   }
 
-  private renderSubNetworkSpecs(): TemplateResult {
-    if (!this.type && !this.bitrate) return html``;
+  private subNetworkSpecs(): string {
+    if (!this.type && !this.bitrate) return '';
 
-    return html`(${this.type}${this.type && this.bitrate
-      ? html`&mdash;`
-      : html``}${this.bitrate})`;
+    return `(${this.type}${
+      this.type && this.bitrate ? ` — ${this.bitrate}` : ``
+    })`;
   }
 
-  private renderHeader(): TemplateResult {
-    return html` ${this.name} ${this.desc === null ? '' : html`&mdash;`}
-    ${this.desc} ${this.renderSubNetworkSpecs()}`;
+  private header(): string {
+    return ` ${this.name} ${this.desc === null ? '' : `— ${this.desc}`}
+    ${this.subNetworkSpecs()}`;
   }
 
   render(): TemplateResult {
-    return html`<action-pane .label="${this.renderHeader()}">
+    return html`<action-pane label="${this.header()}">
       <abbr slot="action" title="${translate('edit')}">
         <mwc-icon-button
           icon="edit"

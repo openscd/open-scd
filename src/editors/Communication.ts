@@ -72,6 +72,7 @@ export default class CommunicationPlugin extends LitElement {
     :host {
       width: 100vw;
     }
+
     section {
       outline: none;
       padding: 8px 12px 16px;

@@ -2,7 +2,8 @@
 export const snapshots = {};
 
 snapshots["subnetwork-editor looks like the latest snapshot"] = 
-`<action-pane>
+`<action-pane label=" StationBus — desc
+    (8-MMS — 100.0b/s)">
   <abbr
     slot="action"
     title="[edit]"
