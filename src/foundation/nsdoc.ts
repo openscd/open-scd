@@ -40,7 +40,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
       getDataDescription: getDODataDescription
     },
     SDO: {
-      getDataDescription: getDODataDescription
+      getDataDescription: getSDODataDescription
     },
     DOI: {
       getDataDescription: getDODataDescription
@@ -83,6 +83,22 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
 
     return {
       label: getNsdocDocumentation(nsdoc74!, dObject?.getAttribute('descID')) ?? doName
+    };
+  }
+
+  /**
+   * Getting data descriptions for SDO elements out of the IEC 61850-7-3 .nsdoc file.
+   * @param elements - The elements to use for searching the SDO description.
+   * @returns Documentation from the .nsdoc file for this SDO element, or the name attribute in case no description can be found.
+   */
+  function getSDODataDescription(elements: Element[]): { label: string; } {
+    const sdoElement = elements[0];
+    const sdoName = sdoElement.getAttribute('name')!;
+    const cdc =  sdoElement.parentElement?.getAttribute('cdc');
+    const subDataObject = nsd73.querySelector(`CDCs > CDC[name="${cdc}"] > SubDataObject[name="${sdoName}"]`);
+    
+    return {
+      label: getNsdocDocumentation(nsdoc73!, subDataObject?.getAttribute('descID')) ?? sdoName
     };
   }
 
