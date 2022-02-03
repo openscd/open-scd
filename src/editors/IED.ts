@@ -10,6 +10,7 @@ import './ied/ied-container.js'
 import { translate } from 'lit-translate';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { compareNames, getDescriptionAttribute, getNameAttribute } from '../foundation.js';
+import { Nsdoc } from '../foundation/nsdoc.js';
 
 /*
  * We need a variable outside the plugin to save the selected IED, because the Plugin is created
@@ -30,6 +31,10 @@ export default class IedPlugin extends LitElement {
   /** The document being edited as provided to plugins by [[`OpenSCD`]]. */
   @property()
   doc!: XMLDocument;
+
+  /** All the nsdoc files that are being uploaded via the settings. */
+  @property()
+  nsdoc!: Nsdoc;
 
   private get alphabeticOrderedIeds() : Element[] {
     return (this.doc)
@@ -81,7 +86,10 @@ export default class IedPlugin extends LitElement {
                   </mwc-list-item>`
             )}
           </mwc-select>
-          <ied-container .element=${selectedIedElement}></ied-container>
+          <ied-container
+            .element=${selectedIedElement}
+            .nsdoc=${this.nsdoc}
+          ></ied-container>
         </section>`;
     }
     return html `

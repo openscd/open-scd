@@ -48,6 +48,9 @@ export const de: Translations = {
     dark: 'Dunkles Design',
     mode: 'Profimodus',
     showieds: 'Zeige IEDs im Substation-Editor',
+    selectFileButton: 'Datei auswählen',
+    loadNsdTranslations: 'NSDoc-Dateien hochladen',
+    invalidFileNoIdFound: 'Ungültiges NSDoc; kein \'id\'-Attribut in der Datei gefunden'
   },
   menu: {
     new: 'Neues projekt',

@@ -11,8 +11,9 @@ import { translate } from "lit-translate";
 
 import {wizards} from "../../wizards/wizard-library.js";
 import '../../action-pane.js';
-import {getDescriptionAttribute, getNameAttribute, newWizardEvent} from '../../foundation.js';
 import './access-point-container.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
+import { getDescriptionAttribute, getNameAttribute, newWizardEvent } from '../../foundation.js';
 
 /** [[`IED`]] plugin subeditor for editing `IED` element. */
 @customElement('ied-container')
@@ -21,6 +22,9 @@ export class IedContainer extends LitElement {
   @property({ attribute: false })
   element!: Element;
 
+  @property()
+  nsdoc!: Nsdoc;
+  
   private openEditWizard(): void {
     const wizard = wizards['IED'].edit(this.element);
     if (wizard) this.dispatchEvent(newWizardEvent(wizard));
@@ -45,6 +49,7 @@ export class IedContainer extends LitElement {
       ${Array.from(this.element.querySelectorAll(':scope > AccessPoint')).map(
         ap => html`<access-point-container
           .element=${ap}
+          .nsdoc=${this.nsdoc}
         ></access-point-container>`)}
       </action-pane>`;
   }

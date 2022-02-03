@@ -46,6 +46,9 @@ export const en = {
     dark: 'Dark theme',
     mode: 'Pro mode',
     showieds: 'Show IEDs in substation editor',
+    selectFileButton: 'Select file',
+    loadNsdTranslations: 'Uploading NSDoc files',
+    invalidFileNoIdFound: 'Invalid NSDoc; no \'id\' attribute found in file'
   },
   menu: {
     new: 'New project',
