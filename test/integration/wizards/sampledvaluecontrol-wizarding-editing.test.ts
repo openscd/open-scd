@@ -3,6 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
+import { Button } from '@material/mwc-button';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 
 import { FilteredList } from '../../../src/filtered-list.js';
@@ -77,97 +78,166 @@ describe('Wizards for SCL element SampledValueControl', () => {
     let primaryAction: HTMLElement;
     let parentIED: Element;
 
-    beforeEach(async () => {
-      element.workflow.length = 0; // remove all wizard from FIFO queue
-      parentIED = doc.querySelectorAll('IED')[1];
-      element.workflow.push(() => selectSampledValueControlWizard(parentIED));
-      await element.requestUpdate();
-      await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+    describe('loaded without SMV element reference', () => {
+      beforeEach(async () => {
+        element.workflow.length = 0; // remove all wizard from FIFO queue
+        parentIED = doc.querySelectorAll('IED')[1];
+        element.workflow.push(() => selectSampledValueControlWizard(parentIED));
+        await element.requestUpdate();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
-      const sampledValueControlBlock = <ListItemBase>(
-        (<FilteredList>element.wizardUI.dialog?.querySelector('filtered-list'))
-          .items[0]
-      );
-      sampledValueControlBlock.click();
-      await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+        const sampledValueControlBlock = <ListItemBase>(
+          (<FilteredList>(
+            element.wizardUI.dialog?.querySelector('filtered-list')
+          )).items[0]
+        );
+        sampledValueControlBlock.click();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
-      nameField = element.wizardUI.dialog!.querySelector(
-        'wizard-textfield[label="name"]'
-      )!;
-      primaryAction = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="primaryAction"]'
-        )
-      );
-      secondaryAction = <HTMLElement>(
-        element.wizardUI.dialog?.querySelector(
-          'mwc-button[slot="secondaryAction"]'
-        )
-      );
-      await nameField.updateComplete;
+        nameField = element.wizardUI.dialog!.querySelector(
+          'wizard-textfield[label="name"]'
+        )!;
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
+        secondaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="secondaryAction"]'
+          )
+        );
+        await nameField.updateComplete;
+      });
+
+      it('rejects name attribute starting with decimals', async () => {
+        expect(
+          parentIED
+            .querySelectorAll('SampledValueControl')[0]
+            ?.getAttribute('name')
+        ).to.not.equal('4adsasd');
+
+        nameField.value = '4adsasd';
+        await element.requestUpdate();
+        primaryAction.click();
+
+        expect(
+          parentIED
+            .querySelectorAll('SampledValueControl')[0]
+            ?.getAttribute('name')
+        ).to.not.equal('4adsasd');
+      });
+
+      it('edits name attribute on primary action', async () => {
+        expect(
+          parentIED
+            .querySelectorAll('SampledValueControl')[0]
+            ?.getAttribute('name')
+        ).to.not.equal('myNewName');
+
+        nameField.value = 'myNewName';
+        await element.requestUpdate();
+        primaryAction.click();
+
+        expect(
+          parentIED
+            .querySelectorAll('SampledValueControl')[0]
+            ?.getAttribute('name')
+        ).to.equal('myNewName');
+      });
+
+      it('dynamically updates wizards after attribute change', async () => {
+        nameField.value = 'myNewName';
+        primaryAction.click();
+
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
+
+        const sampledValueControlBlock = <ListItemBase>(
+          (<FilteredList>(
+            element.wizardUI.dialog?.querySelector('filtered-list')
+          )).items[0]
+        );
+
+        expect(sampledValueControlBlock.innerHTML).to.contain('myNewName');
+      });
+
+      it('returns back to its starting wizard on secondary action', async () => {
+        secondaryAction.click();
+
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
+
+        const sampledValueControlBlock = <ListItemBase>(
+          (<FilteredList>(
+            element.wizardUI.dialog?.querySelector('filtered-list')
+          )).items[0]
+        );
+
+        expect(sampledValueControlBlock.innerHTML).to.contain('MSVCB01');
+      });
+
+      it('does not render SMV edit button', async () => {
+        const editSMvButton = <Button>(
+          element.wizardUI.dialog!.querySelector('mwc-button[id="editsmv"]')!
+        );
+        expect(editSMvButton).not.to.exist;
+      });
     });
 
-    it('rejects name attribute starting with decimals', async () => {
-      expect(
-        parentIED
-          .querySelectorAll('SampledValueControl')[0]
-          ?.getAttribute('name')
-      ).to.not.equal('4adsasd');
+    describe('loaded with SMV element reference', () => {
+      beforeEach(async () => {
+        element.workflow.length = 0; // remove all wizard from FIFO queue
+        parentIED = doc.querySelectorAll('IED')[2];
+        element.workflow.push(() => selectSampledValueControlWizard(parentIED));
+        await element.requestUpdate();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
-      nameField.value = '4adsasd';
-      await element.requestUpdate();
-      primaryAction.click();
+        const sampledValueControlBlock = <ListItemBase>(
+          (<FilteredList>(
+            element.wizardUI.dialog?.querySelector('filtered-list')
+          )).items[0]
+        );
+        sampledValueControlBlock.click();
+        await new Promise(resolve => setTimeout(resolve, 20)); // await animation
 
-      expect(
-        parentIED
-          .querySelectorAll('SampledValueControl')[0]
-          ?.getAttribute('name')
-      ).to.not.equal('4adsasd');
-    });
+        nameField = element.wizardUI.dialog!.querySelector(
+          'wizard-textfield[label="name"]'
+        )!;
+        primaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="primaryAction"]'
+          )
+        );
+        secondaryAction = <HTMLElement>(
+          element.wizardUI.dialog?.querySelector(
+            'mwc-button[slot="secondaryAction"]'
+          )
+        );
+        await nameField.updateComplete;
+      });
 
-    it('edits name attribute on primary action', async () => {
-      expect(
-        parentIED
-          .querySelectorAll('SampledValueControl')[0]
-          ?.getAttribute('name')
-      ).to.not.equal('myNewName');
+      it('opens a edit wizard for SMV on edit SMV button click', async () => {
+        const editSMvButton = <Button>(
+          element.wizardUI.dialog!.querySelector('mwc-button[id="editsmv"]')!
+        );
+        expect(editSMvButton).to.exist;
 
-      nameField.value = 'myNewName';
-      await element.requestUpdate();
-      primaryAction.click();
+        await editSMvButton.updateComplete;
+        editSMvButton.click();
+        await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
-      expect(
-        parentIED
-          .querySelectorAll('SampledValueControl')[0]
-          ?.getAttribute('name')
-      ).to.equal('myNewName');
-    });
+        const macField = <WizardTextField>(
+          element.wizardUI.dialog?.querySelector(
+            'wizard-textfield[label="MAC-Address"]'
+          )
+        );
+        await macField.updateComplete;
 
-    it('dynamically updates wizards after attribute change', async () => {
-      nameField.value = 'myNewName';
-      primaryAction.click();
-
-      await new Promise(resolve => setTimeout(resolve, 20)); // await animation
-
-      const sampledValueControlBlock = <ListItemBase>(
-        (<FilteredList>element.wizardUI.dialog?.querySelector('filtered-list'))
-          .items[0]
-      );
-
-      expect(sampledValueControlBlock.innerHTML).to.contain('myNewName');
-    });
-
-    it('returns back to its starting wizard on secondary action', async () => {
-      secondaryAction.click();
-
-      await new Promise(resolve => setTimeout(resolve, 100)); // await animation
-
-      const sampledValueControlBlock = <ListItemBase>(
-        (<FilteredList>element.wizardUI.dialog?.querySelector('filtered-list'))
-          .items[0]
-      );
-
-      expect(sampledValueControlBlock.innerHTML).to.contain('MSVCB01');
+        expect(macField.value).to.equal(
+          doc
+            .querySelector('SMV > Address > P[type="MAC-Address"]')
+            ?.textContent?.trim()
+        );
+      });
     });
   });
 });

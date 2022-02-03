@@ -39,6 +39,7 @@ export function renderGseSmvAddress(parent: Element): TemplateResult[] {
             ?.innerHTML.trim() ?? null}
           ?nullable=${typeNullable[ptype]}
           pattern="${ifDefined(typePattern[ptype])}"
+          required
         ></wizard-textfield>`
     )}`,
   ];
