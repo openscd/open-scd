@@ -236,6 +236,12 @@ export function newWizardEvent(
   });
 }
 
+export function newSubWizardEvent(
+  wizardOrFactory?: Wizard | WizardFactory
+): WizardEvent {
+  return newWizardEvent(wizardOrFactory, { detail: { subwizard: true } });
+}
+
 type InfoEntryKind = 'info' | 'warning' | 'error';
 
 export type LogEntryType =

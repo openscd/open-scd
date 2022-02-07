@@ -15,23 +15,27 @@ snapshots["gse wizards editGseWizard looks like the latest snapshot"] =
     <wizard-textfield
       label="MAC-Address"
       pattern="([0-9A-F]{2}-){5}[0-9A-F]{2}"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       label="APPID"
       pattern="[0-9A-F]{4}"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       label="VLAN-ID"
       nullable=""
       pattern="[0-9A-F]{3}"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
       label="VLAN-PRIORITY"
       nullable=""
       pattern="[0-7]"
+      required=""
     >
     </wizard-textfield>
     <wizard-textfield
@@ -58,7 +62,7 @@ snapshots["gse wizards editGseWizard looks like the latest snapshot"] =
   </mwc-button>
   <mwc-button
     dialoginitialfocus=""
-    icon="edit"
+    icon="save"
     label="[save]"
     slot="primaryAction"
     trailingicon=""

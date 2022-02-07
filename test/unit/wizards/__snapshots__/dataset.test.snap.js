@@ -9,6 +9,7 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
 >
   <div id="wizard-content">
     <wizard-textfield
+      disabled=""
       helper="[scl.name]"
       label="name"
       required=""
@@ -22,11 +23,6 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
       required=""
     >
     </wizard-textfield>
-    <mwc-button
-      icon="add"
-      label="[wizard.title.add]"
-    >
-    </mwc-button>
     <filtered-list multi="">
       <mwc-check-list-item
         aria-disabled="false"
@@ -59,6 +55,11 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
         CBSW/ XSWI 2.OpSlc.dsd sasd.ads.asd (ST)
       </mwc-check-list-item>
     </filtered-list>
+    <mwc-button
+      icon="add"
+      label="[wizard.title.add]"
+    >
+    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"
@@ -70,7 +71,7 @@ snapshots["dataset wizards include a dataset edit wizard looks like the latest s
   <mwc-button
     dialoginitialfocus=""
     icon="save"
-    label="[edit]"
+    label="[save]"
     slot="primaryAction"
     trailingicon=""
   >

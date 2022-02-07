@@ -18,6 +18,7 @@ import {
   identity,
   isPublic,
   newActionEvent,
+  newSubWizardEvent,
   newWizardEvent,
   selector,
   Wizard,
@@ -27,6 +28,7 @@ import {
 import { maxLength, patterns } from './foundation/limits.js';
 import { editDataSetWizard } from './dataset.js';
 import { editGseWizard } from './gse.js';
+import { securityEnableEnum } from './foundation/enums.js';
 
 function getGSE(element: Element): Element | null | undefined {
   const cbName = element.getAttribute('name');
@@ -99,8 +101,8 @@ export function renderGseAttributes(
       .maybeValue=${securityEnabled}
       nullable
       required
-      helper="${translate('scl.securityEnabled')}"
-      >${['None', 'Signature', 'SignatureAndEncryption'].map(
+      helper="${translate('scl.securityEnable')}"
+      >${securityEnableEnum.map(
         type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
       )}</wizard-select
     >`,
@@ -238,14 +240,11 @@ export function editGseControlWizard(element: Element): Wizard {
                 tagName: get('scl.DataSet'),
               })}
               icon="edit"
-              @click=${(e: MouseEvent) => {
-                if (dataSet) {
-                  e.target?.dispatchEvent(newWizardEvent());
-                  e.target?.dispatchEvent(
-                    newWizardEvent(editDataSetWizard(dataSet))
-                  );
-                }
-              }}
+              @click="${(e: MouseEvent) => {
+                e.target?.dispatchEvent(
+                  newSubWizardEvent(() => editDataSetWizard(dataSet))
+                );
+              }}}"
             ></mwc-button>`
           : html``,
         gSE
@@ -254,8 +253,9 @@ export function editGseControlWizard(element: Element): Wizard {
               label=${translate('scl.Communication')}
               icon="edit"
               @click="${(e: MouseEvent) => {
-                e.target?.dispatchEvent(newWizardEvent());
-                e.target?.dispatchEvent(newWizardEvent(editGseWizard(gSE)));
+                e.target?.dispatchEvent(
+                  newSubWizardEvent(() => editGseWizard(gSE))
+                );
               }}}"
             ></mwc-button>`
           : html``,
@@ -282,9 +282,8 @@ export function selectGseControlWizard(element: Element): Wizard {
             );
             if (gseControl) {
               e.target!.dispatchEvent(
-                newWizardEvent(editGseControlWizard(gseControl))
+                newSubWizardEvent(() => editGseControlWizard(gseControl))
               );
-              e.target!.dispatchEvent(newWizardEvent());
             }
           }}
           >${gseControls.map(

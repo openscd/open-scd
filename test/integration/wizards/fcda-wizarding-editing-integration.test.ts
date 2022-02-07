@@ -46,14 +46,14 @@ describe('FCDA editing wizarding integration', () => {
       expect(
         doc.querySelector(
           'DataSet > FCDA[ldInst="CircuitBreaker_CB1"]' +
-            '[prefix=""][lnClass="LLN0"][lnInst=""][doName="Beh"][daName="stVal"][fc="ST"]'
+            '[prefix=""][lnClass="LLN0"]:not(lnInst)[doName="Beh"][daName="stVal"][fc="ST"]'
         )
       ).to.not.exist;
       await primaryAction.click();
       expect(
         doc.querySelector(
           'DataSet > FCDA[ldInst="CircuitBreaker_CB1"]' +
-            '[prefix=""][lnClass="LLN0"][lnInst=""][doName="Beh"][daName="stVal"][fc="ST"]'
+            '[prefix=""][lnClass="LLN0"]:not(lnInst)[doName="Beh"][daName="stVal"][fc="ST"]'
         )
       ).to.exist;
     });

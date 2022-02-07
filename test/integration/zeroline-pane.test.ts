@@ -58,6 +58,19 @@ describe('zeroline-pane wizarding editing integration', () => {
     );
   });
 
+  it('opens select wizard for SCL element ReportControl for the complete project', async () => {
+    zeroline.reportcontrol.click();
+    await parent.updateComplete;
+    expect(parent.wizardUI.dialog).to.exist;
+    const reportControlList = <FilteredList>(
+      parent.wizardUI.dialog?.querySelector('filtered-list')
+    );
+    await reportControlList.updateComplete;
+    expect(reportControlList.items.length).to.equal(
+      doc.querySelectorAll('ReportControl').length
+    );
+  });
+
   it('add Substation element with createSubstationWizard', async () => {
     expect(doc.querySelector('Substation[name="newSubstation"]')).to.not.exist;
     zeroline.createsubstation.click();

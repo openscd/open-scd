@@ -180,7 +180,7 @@
     						<TrgOps dchg="true" qchg="true" dupd="false" period="false" gi="true"/>
     						<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true" dataRef="false" entryID="false" configRef="true" bufOvfl="false"/>
     					</ReportControl>
-    					<SampledValueControl smvID="asdfads" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="GooseDataSet1">
+    					<SampledValueControl smvID="some/reference" multicast="true" smpRate="80" nofASDU="1" confRev="1" name="MSVCB01" datSet="GooseDataSet1">
     						<SmvOpts/>
     					</SampledValueControl>
     				</LN0>
