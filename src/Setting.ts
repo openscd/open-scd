@@ -18,6 +18,8 @@ import { Language, languages, loader } from './translations/loader.js';
 import './WizardDivider.js';
 import { WizardDialog } from './wizard-dialog.js';
 
+import { iec6185072, iec6185073, iec6185074, iec6185081 } from "./validators/templates/foundation.js";
+
 export type Settings = {
   language: Language;
   theme: 'light' | 'dark';
@@ -39,6 +41,19 @@ export const defaults: Settings = {
   'IEC 61850-8-1': undefined
 };
 
+type nsdVersion = {
+  version: string | undefined,
+  revision: string | undefined,
+  release: string | undefined
+}
+
+type nsdVersions = {
+  'IEC 61850-7-2': nsdVersion;
+  'IEC 61850-7-3': nsdVersion;
+  'IEC 61850-7-4': nsdVersion;
+  'IEC 61850-8-1': nsdVersion;
+}
+
 /** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
  * `settings` property, setting them through `setSetting(setting, value)`. */
 export type SettingElement = Mixin<typeof Setting>;
@@ -58,6 +73,34 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         'IEC 61850-7-4': this.getSetting('IEC 61850-7-4'),
         'IEC 61850-8-1': this.getSetting('IEC 61850-8-1')
       };
+    }
+
+    private async nsdVersions(): Promise<nsdVersions> {
+      const [nsd72, nsd73, nsd74, nsd81] = await Promise.all([iec6185072, iec6185073, iec6185074, iec6185081]);
+      const [nsd72Ns, nsd73Ns, nsd74Ns, nsd81Ns] = [nsd72.querySelector('NS'), nsd73.querySelector('NS'), nsd74.querySelector('NS'), nsd81.querySelector('ServiceNS')];
+
+      return {
+        'IEC 61850-7-2': {
+          version: nsd72Ns?.getAttribute('version') ?? undefined,
+          revision: nsd72Ns?.getAttribute('revision') ?? undefined,
+          release: nsd72Ns?.getAttribute('release') ?? undefined,
+        },
+        'IEC 61850-7-3': {
+          version: nsd73Ns?.getAttribute('version') ?? undefined,
+          revision: nsd73Ns?.getAttribute('revision') ?? undefined,
+          release: nsd73Ns?.getAttribute('release') ?? undefined,
+        },
+        'IEC 61850-7-4': {
+          version: nsd74Ns?.getAttribute('version') ?? undefined,
+          revision: nsd74Ns?.getAttribute('revision') ?? undefined,
+          release: nsd74Ns?.getAttribute('release') ?? undefined,
+        },
+        'IEC 61850-8-1': {
+          version: nsd81Ns?.getAttribute('version') ?? undefined,
+          revision: nsd81Ns?.getAttribute('revision') ?? undefined,
+          release: nsd81Ns?.getAttribute('release') ?? undefined,
+        }
+      }
     }
 
     @query('#settings')
@@ -133,6 +176,7 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private async loadNsdocFile(evt: Event): Promise<void> {
+      const nsdVersions = await this.nsdVersions();
       const files = Array.from(
         (<HTMLInputElement | null>evt.target)?.files ?? []
       );
@@ -140,12 +184,28 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       if (files.length == 0) return;
       files.forEach(async file => {
         const text = await file.text();
-        const id = this.parseToXmlObject(text).querySelector('NSDoc')?.getAttribute('id');
+        const nsdocElement = this.parseToXmlObject(text).querySelector('NSDoc');
+        const id = nsdocElement?.getAttribute('id');
         if (!id) {
           document
           .querySelector('open-scd')!
           .dispatchEvent(
               newLogEvent({ kind: 'error', title: get('settings.invalidFileNoIdFound') })
+            );
+          return;
+        }
+        const nsdVersion = nsdVersions[id as keyof nsdVersions];
+        const [nsdocVersion, nsdocRevision, nsdocRelease] = [nsdocElement?.getAttribute('version'), nsdocElement?.getAttribute('revision'), nsdocElement?.getAttribute('release')]
+
+        if (nsdocVersion !== nsdVersion.version || nsdocRevision !== nsdVersion.revision || nsdocRelease !== nsdVersion.release) {
+          document
+          .querySelector('open-scd')!
+          .dispatchEvent(
+              newLogEvent({ kind: 'error', title: get('settings.invalidNsdocVersion', {
+                id: id,
+                nsdVersion: `${nsdVersion.version}${nsdVersion.revision}${nsdVersion.release}`,
+                nsdocVersion: `${nsdocVersion}${nsdocRevision}${nsdocRelease}`
+              }) })
             );
           return;
         }
