@@ -151,11 +151,11 @@ function getBitRateAction(
     };
 
   const newBitRate = cloneElement(oldBitRate, { multiplier });
-  newBitRate.textContent = BitRate;
+  const newTextNode = document.createTextNode(BitRate);
 
   return {
-    old: { element: oldBitRate },
-    new: { element: newBitRate },
+    old: { element: oldBitRate, childNodes: Array.from(oldBitRate.childNodes) },
+    new: { element: newBitRate, childNodes: [newTextNode] },
   };
 }
 

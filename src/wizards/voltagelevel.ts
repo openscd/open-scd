@@ -170,11 +170,10 @@ function getVoltageAction(
     };
 
   const newVoltage = cloneElement(oldVoltage, { multiplier });
-  newVoltage.textContent = Voltage;
-
+  const newVoltageText = document.createTextNode(Voltage);
   return {
-    old: { element: oldVoltage },
-    new: { element: newVoltage },
+    old: { element: oldVoltage, childNodes: Array.from(oldVoltage.childNodes) },
+    new: { element: newVoltage, childNodes: [newVoltageText] },
   };
 }
 

@@ -147,7 +147,7 @@ describe('Wizards for SCL element SubNetwork', () => {
         const updateAction = <Update>actionEvent.args[0][0].detail.action;
         expect(updateAction.old.element.innerHTML.trim()).to.equal('100.0');
         expect(updateAction.old.element).to.not.have.attribute('multiplier');
-        expect(updateAction.new.element.innerHTML.trim()).to.equal('200.');
+        expect(updateAction.new.childNodes?.[0].textContent).to.equal('200.');
         expect(updateAction.new.element).to.have.attribute('multiplier', 'M');
       });
 

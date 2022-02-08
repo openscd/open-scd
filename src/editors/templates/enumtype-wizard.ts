@@ -84,9 +84,14 @@ function updateEnumValAction(element: Element): WizardActor {
       return [];
 
     const newElement = cloneElement(element, { desc, ord });
-    newElement.textContent = value;
+    const newTextNode = document.createTextNode(value);
 
-    return [{ old: { element }, new: { element: newElement } }];
+    return [
+      {
+        old: { element, childNodes: Array.from(element.childNodes) },
+        new: { element: newElement, childNodes: [newTextNode] },
+      },
+    ];
   };
 }
 

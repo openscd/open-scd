@@ -123,14 +123,17 @@ describe('EditingElement', () => {
     expect(newElement.parentElement).to.be.null;
   });
 
-  it('swaps textContent of old and new element this existing new element textContent', () => {
+  it('swaps option childNodes of old and new elements', () => {
     element.textContent = 'oldTextContent';
     const newElement = <Element>element.cloneNode(false);
     newElement.setAttribute('name', 'newName');
-    newElement.textContent = 'newTextContent';
+    const newTextNode = document.createTextNode('newTextContent');
 
     elm.dispatchEvent(
-      newActionEvent({ old: { element }, new: { element: newElement } })
+      newActionEvent({
+        old: { element, childNodes: Array.from(element.childNodes) },
+        new: { element: newElement, childNodes: [newTextNode] },
+      })
     );
 
     expect(element.textContent).to.equal('newTextContent');

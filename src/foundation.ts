@@ -39,8 +39,8 @@ export interface Move {
 }
 /** Replaces `old.element` with `new.element`, keeping element children. */
 export interface Update {
-  old: { element: Element };
-  new: { element: Element };
+  old: { element: Element; childNodes?: Node[] };
+  new: { element: Element; childNodes?: Node[] };
   derived?: boolean;
   checkValidity?: () => boolean;
 }

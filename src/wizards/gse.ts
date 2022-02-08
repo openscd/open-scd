@@ -48,10 +48,11 @@ export function getMTimeAction(
     };
 
   const newTime = <Element>oldTime.cloneNode(false);
-  newTime.textContent = Time;
+  const newTextNode = document.createTextNode(Time);
+
   return {
-    old: { element: oldTime },
-    new: { element: newTime },
+    old: { element: oldTime, childNodes: Array.from(oldTime.childNodes) },
+    new: { element: newTime, childNodes: [newTextNode] },
   };
 }
 

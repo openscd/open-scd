@@ -219,11 +219,16 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       oldAttrs.forEach(attr => newElement.setAttributeNode(attr));
       newAttrs.forEach(attr => oldElement.setAttributeNode(attr));
 
-      if (newElement.hasChildNodes() && !newElement.firstElementChild) {
-        const oldTextContent = action.old.element.textContent;
-        action.old.element.textContent = action.new.element.textContent;
-        action.new.element.textContent = oldTextContent;
-      }
+      const newChildNodes = action.new.childNodes;
+      const oldChildNodes = action.old.childNodes;
+
+      oldChildNodes?.forEach(child => oldElement.removeChild(child));
+
+      newChildNodes?.forEach(child => oldElement.appendChild(child));
+      oldChildNodes?.forEach(child => newElement.appendChild(child));
+
+      action.old.childNodes = newChildNodes;
+      action.new.childNodes = oldChildNodes;
 
       return true;
     }
