@@ -3,14 +3,14 @@ import { translate, get } from 'lit-translate';
 
 import '@material/mwc-fab';
 
+import './communication/subnetwork-editor.js';
 import {
   newWizardEvent,
   newActionEvent,
   createElement,
+  isPublic,
 } from '../foundation.js';
-import { selectors, styles } from './communication/foundation.js';
-import './communication/subnetwork-editor.js';
-import { subNetworkWizard } from './communication/subnetwork-editor.js';
+import { createSubNetworkWizard } from '../wizards/subnetwork.js';
 
 /** An editor [[`plugin`]] for editing the `Communication` section. */
 export default class CommunicationPlugin extends LitElement {
@@ -18,7 +18,7 @@ export default class CommunicationPlugin extends LitElement {
   @property()
   doc!: XMLDocument;
 
-  createCommunication(): void {
+  private createCommunication(): void {
     this.dispatchEvent(
       newActionEvent({
         new: {
@@ -30,21 +30,15 @@ export default class CommunicationPlugin extends LitElement {
   }
 
   /** Opens a [[`WizardDialog`]] for creating a new `SubNetwork` element. */
-  openCreateSubNetworkWizard(): void {
-    if (!this.doc.querySelector(selectors.Communication))
-      this.createCommunication();
+  private openCreateSubNetworkWizard(): void {
+    const parent = this.doc.querySelector(':root > Communication');
+    if (!parent) this.createCommunication();
 
-    this.dispatchEvent(
-      newWizardEvent(
-        subNetworkWizard({
-          parent: this.doc.querySelector('Communication')!,
-        })
-      )
-    );
+    this.dispatchEvent(newWizardEvent(createSubNetworkWizard(parent!)));
   }
 
   render(): TemplateResult {
-    if (!this.doc?.querySelector(selectors.SubNetwork))
+    if (!this.doc?.querySelector(':root > Communication >SubNetwork'))
       return html`<h1>
         <span style="color: var(--base1)"
           >${translate('communication.missing')}</span
@@ -55,29 +49,43 @@ export default class CommunicationPlugin extends LitElement {
           @click=${() => this.openCreateSubNetworkWizard()}
         ></mwc-fab>
       </h1>`;
+
     return html`<mwc-fab
         extended
         icon="add"
         label="${get('subnetwork.wizard.title.add')}"
         @click=${() => this.openCreateSubNetworkWizard()}
-      ></mwc-fab
-      >${Array.from(this.doc.querySelectorAll(selectors.SubNetwork) ?? []).map(
-        subnetwork =>
-          html`<subnetwork-editor .element=${subnetwork}></subnetwork-editor>`
-      )}`;
+      ></mwc-fab>
+      <section>
+        ${Array.from(this.doc.querySelectorAll('SubNetwork') ?? [])
+          .filter(isPublic)
+          .map(
+            subnetwork =>
+              html`<subnetwork-editor
+                .element=${subnetwork}
+              ></subnetwork-editor>`
+          )}
+      </section> `;
   }
 
   static styles = css`
-    ${styles}
+    :host {
+      width: 100vw;
+    }
+
+    section {
+      outline: none;
+      padding: 8px 12px 16px;
+    }
+
+    subnetwork-editor {
+      margin: 8px 12px 16px;
+    }
 
     mwc-fab {
       position: fixed;
       bottom: 32px;
       right: 32px;
-    }
-
-    :host {
-      width: 100vw;
     }
   `;
 }

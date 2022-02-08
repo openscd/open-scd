@@ -4,7 +4,7 @@ export const snapshots = {};
 snapshots["subnetwork-editor wizarding integration edit/add Subnetwork wizard looks like the latest snapshot"] = 
 `<mwc-dialog
   defaultaction="close"
-  heading="[subnetwork.wizard.title.edit]"
+  heading="[wizard.title.edit]"
   open=""
 >
   <div id="wizard-content">
@@ -49,7 +49,7 @@ snapshots["subnetwork-editor wizarding integration edit/add Subnetwork wizard lo
   </mwc-button>
   <mwc-button
     dialoginitialfocus=""
-    icon="edit"
+    icon="save"
     label="[save]"
     slot="primaryAction"
     trailingicon=""
