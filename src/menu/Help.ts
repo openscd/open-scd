@@ -51,7 +51,7 @@ async function getLinkedPages(path: string[]): Promise<Directory> {
   );
   const header = html`<div style="padding: 8px;">
     ${page === 'Home' ? aboutBox(edition.version) : html``}
-    ${unsafeHTML(marked(unlinkedMd))}
+    ${unsafeHTML(marked.parse(unlinkedMd))}
   </div>`;
   const entries = Array.from(
     md.matchAll(/\(https:..github.com.openscd.open-scd.wiki.([^)]*)\)/g)

@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/openscd/open-scd/compare/v0.8.2...v0.9.0) (2022-02-04)
+
+
+### Features
+
+* **settings:** load nsdoc to local storage ([#502](https://github.com/openscd/open-scd/issues/502)) ([659aa8e](https://github.com/openscd/open-scd/commits/659aa8ef3459ab8f513df2cf7971a02753a3a21b)), closes [#516](https://github.com/openscd/open-scd/issues/516)
+* **wizards/reportcontrol:** added new IED wizard to update name/description ([#494](https://github.com/openscd/open-scd/issues/494)) ([110c83d](https://github.com/openscd/open-scd/commits/110c83d658f9c2a0f0c273249aefbee0f50fcfc1))
+* **wizards/reportcontrol:** allow basic ReportControl manipulation capability ([#505](https://github.com/openscd/open-scd/issues/505)) ([943b8dc](https://github.com/openscd/open-scd/commits/943b8dc2b82e6039bd6de99aabbfd10e31527256)), closes [#438](https://github.com/openscd/open-scd/issues/438) [#492](https://github.com/openscd/open-scd/issues/492) [#493](https://github.com/openscd/open-scd/issues/493) [#499](https://github.com/openscd/open-scd/issues/499)
+* **wizards/sampledvaluecontrol:** add edit wizards accessable from selection ([#510](https://github.com/openscd/open-scd/issues/510)) ([fa468b7](https://github.com/openscd/open-scd/commits/fa468b714b714623031fdd754a0056a9cd793214))
+* **wizards/smv:** add edit wizard and allow access from sampledvaluecontrol wizard ([#519](https://github.com/openscd/open-scd/issues/519)) ([aff0367](https://github.com/openscd/open-scd/commits/aff036776eba7434d619de20a67f8f07b3b3c5c7))
+
+
+### Bug Fixes
+
+* **editors/SingleLineDiagram:** added check if a substation is available/selected before drawing ([4eabdb3](https://github.com/openscd/open-scd/commits/4eabdb3ac9fdc2f2db2ebb2058bd8675592e12d6))
+* **editors:** In IED and SLD Editors fixed preserving the selection (IED or Substation) ([#501](https://github.com/openscd/open-scd/issues/501)) ([b10df43](https://github.com/openscd/open-scd/commits/b10df4364e4c5b8c1f4cb14766f1e50c1d6af567))
+* **menu/Help:** incorrect import of markup parser ([#531](https://github.com/openscd/open-scd/issues/531)) ([b6f7ea1](https://github.com/openscd/open-scd/commits/b6f7ea1024a30d7ed0f1f3af5bf42536f0f82fb5))
+* **wizards/fcda:** make sure lnInst is non empty string ([#512](https://github.com/openscd/open-scd/issues/512)) ([f8d2dc7](https://github.com/openscd/open-scd/commits/f8d2dc75a804b06c2e4f1178d0f9768b967ea806))
+
 ### [0.8.2](https://github.com/openscd/open-scd/compare/v0.8.1...v0.8.2) (2022-01-15)
 
 
