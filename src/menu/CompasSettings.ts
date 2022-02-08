@@ -4,9 +4,9 @@ import {get} from "lit-translate";
 import {newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 
 import {CompasSettingsElement} from "../compas/CompasSettings.js";
+import {retrieveUserInfo} from "../compas/CompasSession.js";
 
 import "../compas/CompasSettings.js";
-import {retrieveUserInfo} from "../compas/CompasSession";
 
 export default class CompasSettingsMenuPlugin extends LitElement {
   async run(): Promise<void> {
