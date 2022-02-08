@@ -41,17 +41,17 @@ export const defaults: Settings = {
   'IEC 61850-8-1': undefined
 };
 
-type nsdVersion = {
+type NsdVersion = {
   version: string | undefined,
   revision: string | undefined,
   release: string | undefined
 }
 
-type nsdVersions = {
-  'IEC 61850-7-2': nsdVersion;
-  'IEC 61850-7-3': nsdVersion;
-  'IEC 61850-7-4': nsdVersion;
-  'IEC 61850-8-1': nsdVersion;
+type NsdVersions = {
+  'IEC 61850-7-2': NsdVersion;
+  'IEC 61850-7-3': NsdVersion;
+  'IEC 61850-7-4': NsdVersion;
+  'IEC 61850-8-1': NsdVersion;
 }
 
 /** Mixin that saves [[`Settings`]] to `localStorage`, reflecting them in the
@@ -75,7 +75,11 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
       };
     }
 
-    private async nsdVersions(): Promise<nsdVersions> {
+    /**
+     * Get the versions of the current OpenSCD NSD files.
+     * @returns Current version, revision and release for all current OpenSCD NSD files.
+     */
+    private async nsdVersions(): Promise<NsdVersions> {
       const [nsd72, nsd73, nsd74, nsd81] = await Promise.all([iec6185072, iec6185073, iec6185074, iec6185081]);
       const [nsd72Ns, nsd73Ns, nsd74Ns, nsd81Ns] = [nsd72.querySelector('NS'), nsd73.querySelector('NS'), nsd74.querySelector('NS'), nsd81.querySelector('ServiceNS')];
 
@@ -194,17 +198,21 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
             );
           return;
         }
-        const nsdVersion = nsdVersions[id as keyof nsdVersions];
-        const [nsdocVersion, nsdocRevision, nsdocRelease] = [nsdocElement?.getAttribute('version'), nsdocElement?.getAttribute('revision'), nsdocElement?.getAttribute('release')]
+        const nsdVersion = nsdVersions[id as keyof NsdVersions];
+        const nsdocVersion = {
+          version: nsdocElement!.getAttribute('version') ?? undefined,
+          revision: nsdocElement!.getAttribute('revision') ?? undefined,
+          release: nsdocElement!.getAttribute('release') ?? undefined
+        }
 
-        if (nsdocVersion !== nsdVersion.version || nsdocRevision !== nsdVersion.revision || nsdocRelease !== nsdVersion.release) {
+        if (!this.isEqual(nsdVersion, nsdocVersion)) {
           document
           .querySelector('open-scd')!
           .dispatchEvent(
               newLogEvent({ kind: 'error', title: get('settings.invalidNsdocVersion', {
                 id: id,
                 nsdVersion: `${nsdVersion.version}${nsdVersion.revision}${nsdVersion.release}`,
-                nsdocVersion: `${nsdocVersion}${nsdocRevision}${nsdocRelease}`
+                nsdocVersion: `${nsdocVersion.version}${nsdocVersion.revision}${nsdocVersion.release}`
               }) })
             );
           return;
@@ -215,6 +223,16 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
 
       this.nsdocFileUI.value = '';
       this.requestUpdate();
+    }
+
+    /**
+     * Check the equality of two NsdVersions.
+     * @param versionA - First version to compare.
+     * @param versionB - Second version to compare.
+     * @returns Are they equal or not.
+     */
+    private isEqual(versionA: NsdVersion, versionB: NsdVersion): boolean {
+      return versionA.version == versionB.version && versionA.revision == versionB.revision && versionA.release == versionB.release;
     }
 
     /**
