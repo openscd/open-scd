@@ -6,7 +6,7 @@ import '@material/mwc-button';
 
 import {newWizardEvent} from '../foundation.js';
 import {TextFieldBase} from "@material/mwc-textfield/mwc-textfield-base";
-import {getOpenScdElement} from "./foundation.js";
+import {dispatchEventOnOpenScd} from "./foundation.js";
 
 export type CompasSettingsRecord = {
   sclDataServiceUrl: string;
@@ -92,8 +92,7 @@ export class CompasSettingsElement extends LitElement {
 
   close(): void {
     // Close the Save Dialog.
-    const openScd = getOpenScdElement();
-    openScd.dispatchEvent(newWizardEvent());
+    dispatchEventOnOpenScd(newWizardEvent());
   }
 
   render(): TemplateResult {

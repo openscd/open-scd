@@ -22,8 +22,22 @@ export function stripExtensionFromName(docName: string): string {
   return name
 }
 
-export function getOpenScdElement(): OpenSCD {
+export function getOpenScdElement(): OpenSCD | null {
   return <OpenSCD>document.querySelector('open-scd');
+}
+
+export function dispatchEventOnOpenScd(event: Event): void {
+  const openScd = getOpenScdElement();
+  if (openScd !== null) {
+    openScd.dispatchEvent(event);
+  }
+}
+
+export function setDocIdOnOpenScd(docId: string): void {
+  const openScd = getOpenScdElement();
+  if (openScd !== null) {
+    openScd.docId = docId;
+  }
 }
 
 export function updateDocumentInOpenSCD(doc: Document, docName?: string): void {
@@ -41,7 +55,6 @@ export function updateDocumentInOpenSCD(doc: Document, docName?: string): void {
     docName += '-' + version + '.' + type?.toLowerCase();
   }
 
-  const openScd = getOpenScdElement();
-  openScd.dispatchEvent(newLogEvent({kind: 'reset'}));
-  openScd.dispatchEvent(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
+  dispatchEventOnOpenScd(newLogEvent({kind: 'reset'}));
+  dispatchEventOnOpenScd(newOpenDocEvent(doc, docName, {detail: {docId: id}}));
 }

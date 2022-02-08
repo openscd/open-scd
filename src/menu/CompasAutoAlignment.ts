@@ -4,7 +4,7 @@ import {get} from "lit-translate";
 import {newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 
 import CompasAutoAlignmentElement from "../compas/CompasAutoAlignment.js";
-import {getOpenScdElement} from "../compas/foundation.js";
+import {dispatchEventOnOpenScd} from "../compas/foundation.js";
 
 import "../compas/CompasAutoAlignment.js";
 
@@ -21,7 +21,7 @@ export default class CompasAutoAlignmentMenuPlugin extends LitElement {
           return [];
         }
 
-        getOpenScdElement().dispatchEvent(newPendingStateEvent(compasAutoAlignmentElement.execute()));
+        dispatchEventOnOpenScd(newPendingStateEvent(compasAutoAlignmentElement.execute()));
         return [];
       };
     }

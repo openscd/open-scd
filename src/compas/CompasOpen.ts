@@ -7,7 +7,7 @@ import {newPendingStateEvent} from "../foundation.js";
 
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {getOpenScdElement} from "./foundation.js";
+import {dispatchEventOnOpenScd} from "./foundation.js";
 import {SclSelectedEvent} from "./CompasScl.js";
 import {TypeSelectedEvent} from "./CompasSclTypeList.js";
 
@@ -66,7 +66,7 @@ export default class CompasOpenElement extends LitElement {
       <input id="scl-file" accept=".sed,.scd,.ssd,.isd,.iid,.cid,.icd"
              type="file" hidden required
              @change=${(evt: Event) =>
-               getOpenScdElement().dispatchEvent(newPendingStateEvent(this.getSclFile(evt)))
+               dispatchEventOnOpenScd(newPendingStateEvent(this.getSclFile(evt)))
              }>
 
       <mwc-button label="${translate('compas.open.selectFileButton')}"
@@ -92,7 +92,7 @@ export default class CompasOpenElement extends LitElement {
       <p>${translate('compas.open.listScls', {type: this.selectedType??''})}</p>
       <compas-scl-list .type=${this.selectedType}
                        @sclSelected=${(evt: SclSelectedEvent) =>
-                         getOpenScdElement().dispatchEvent(newPendingStateEvent(this.getSclDocument(evt.detail.docId)))
+                         dispatchEventOnOpenScd(newPendingStateEvent(this.getSclDocument(evt.detail.docId)))
                        }/>
       </compas-scl-list>
       <mwc-button id="reselect-type"

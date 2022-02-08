@@ -8,7 +8,7 @@ import '@material/mwc-icon';
 
 import {identity, isSame, newWizardEvent, Wizard} from "../foundation.js";
 
-import {getOpenScdElement} from "./foundation.js";
+import {dispatchEventOnOpenScd} from "./foundation.js";
 
 interface CompareOptions {
   title: string;
@@ -180,7 +180,7 @@ export function compareWizard(
 ): Wizard {
   function close() {
     return function () {
-      getOpenScdElement().dispatchEvent(newWizardEvent())
+      dispatchEventOnOpenScd(newWizardEvent())
       return [];
     };
   }

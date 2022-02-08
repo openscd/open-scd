@@ -1,17 +1,12 @@
 import {get} from "lit-translate";
-
-import {OpenSCD} from "../open-scd.js";
 import {newLogEvent} from "../foundation.js";
+import {dispatchEventOnOpenScd} from "../compas/foundation.js";
 
 export const NOT_FOUND_ERROR = 'NotFoundError';
 export const APPLICATION_ERROR = 'ApplicationError';
 export const SERVER_ERROR = 'ServerError';
 
 export const COMMONS_NAMESPACE = 'https://www.lfenergy.org/compas/commons/v1';
-
-export function getOpenScdElement(): OpenSCD {
-  return <OpenSCD>document.querySelector('open-scd');
-}
 
 export async function handleResponse(response: Response): Promise<string> {
   if (!response.ok) {
@@ -75,7 +70,7 @@ export function createLogEvent(reason: any): void {
     message += " (" + reason.status + ")";
   }
 
-  getOpenScdElement().dispatchEvent(
+  dispatchEventOnOpenScd(
     newLogEvent({
       kind: 'error',
       title: get('compas.error.server'),

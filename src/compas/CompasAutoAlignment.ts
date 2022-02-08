@@ -5,7 +5,7 @@ import '@material/mwc-list';
 import '@material/mwc-list/mwc-check-list-item';
 
 import {newLogEvent, newOpenDocEvent, newWizardEvent} from "../foundation.js";
-import {getOpenScdElement} from "./foundation.js";
+import {dispatchEventOnOpenScd, getOpenScdElement} from "./foundation.js";
 
 import {CompasSclAutoAlignmentService} from "../compas-services/CompasSclAutoAlignmentService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
@@ -37,11 +37,15 @@ export default class CompasAutoAlignmentElement extends LitElement {
     if (this.valid()) {
       await CompasSclAutoAlignmentService().updateSCL(this.doc, this.getSelectedValues())
         .then(sclDocument => {
-          const openScd = getOpenScdElement();
-          openScd.dispatchEvent(newLogEvent({kind: 'reset'}));
-          openScd.dispatchEvent(newOpenDocEvent(sclDocument, this.docName, {detail: {docId: this.docId}}));
+          dispatchEventOnOpenScd(newLogEvent({kind: 'reset'}));
+          dispatchEventOnOpenScd(
+            newOpenDocEvent(
+              sclDocument,
+              this.docName,
+              {detail: {docId: this.docId}}
+            ));
 
-          openScd.dispatchEvent(
+          dispatchEventOnOpenScd(
             newLogEvent({
               kind: 'info',
               title: get('compas.autoAlignment.success')

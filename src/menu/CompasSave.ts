@@ -4,7 +4,7 @@ import {get} from "lit-translate";
 import {newPendingStateEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 
 import CompasSaveElement from "../compas/CompasSave.js";
-import {getOpenScdElement} from "../compas/foundation.js";
+import {dispatchEventOnOpenScd} from "../compas/foundation.js";
 
 import "../compas/CompasSave.js";
 
@@ -21,7 +21,7 @@ export default class CompasSaveMenuPlugin extends LitElement {
           return [];
         }
 
-        getOpenScdElement().dispatchEvent(newPendingStateEvent(compasSave.saveToCompas()));
+        dispatchEventOnOpenScd(newPendingStateEvent(compasSave.saveToCompas()));
         return [];
       };
     }

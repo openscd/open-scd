@@ -1,7 +1,7 @@
 import {css, html, LitElement, query, TemplateResult} from 'lit-element';
 
 import {newOpenDocEvent, newPendingStateEvent} from "../foundation.js";
-import {getOpenScdElement, stripExtensionFromName} from "../compas/foundation.js";
+import {dispatchEventOnOpenScd, stripExtensionFromName} from "../compas/foundation.js";
 
 import {CimData, CompasCimMappingService} from "../compas-services/CompasCimMappingService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
@@ -31,8 +31,7 @@ export default class OpenProjectPlugin extends LitElement {
       const sclDocument = document.implementation.createDocument("", "", null);
       sclDocument.getRootNode().appendChild(sclElement.cloneNode(true));
 
-      const openScd = getOpenScdElement();
-      openScd.dispatchEvent(newOpenDocEvent(sclDocument, sclName));
+      dispatchEventOnOpenScd(newOpenDocEvent(sclDocument, sclName));
     })
       .catch(createLogEvent);
     this.pluginFileUI.onchange = null;
@@ -45,7 +44,7 @@ export default class OpenProjectPlugin extends LitElement {
   render(): TemplateResult {
     return html`<input @click=${(event: MouseEvent) => ((<HTMLInputElement>event.target).value = '')}
                        @change=${(event: MouseEvent) =>
-                         getOpenScdElement().dispatchEvent(newPendingStateEvent(this.convertCimFile(event)))}
+                         dispatchEventOnOpenScd(newPendingStateEvent(this.convertCimFile(event)))}
                        id="cim-mapping-input" accept=".xml" type="file" multiple>
     `;
   }
