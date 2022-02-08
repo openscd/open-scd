@@ -234,4 +234,4 @@ export async function retrieveUserInfo(): Promise<void> {
       setSessionTimeouts(10, 15);
     });
 }
-retrieveUserInfo();
+

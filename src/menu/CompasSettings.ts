@@ -6,6 +6,7 @@ import {newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 import {CompasSettingsElement} from "../compas/CompasSettings.js";
 
 import "../compas/CompasSettings.js";
+import {retrieveUserInfo} from "../compas/CompasSession";
 
 export default class CompasSettingsMenuPlugin extends LitElement {
   async run(): Promise<void> {
@@ -38,4 +39,7 @@ export function compasSettingWizard(): Wizard {
     },
   ];
 }
+
+// When the plugin is loaded we will also start retrieving the User Information and prepare the Timeout Panels.
+retrieveUserInfo();
 
