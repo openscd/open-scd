@@ -9,11 +9,11 @@ import {
 
 import '@material/mwc-fab';
 
-import '../action-icon.js';
+import '../../action-icon.js';
 import { startMove, getIcon } from './foundation.js';
-import { newActionEvent, newWizardEvent } from '../foundation.js';
+import { newActionEvent, newWizardEvent } from '../../foundation.js';
 import { BayEditor } from './bay-editor.js';
-import { wizards } from '../wizards/wizard-library.js';
+import { wizards } from '../../wizards/wizard-library.js';
 
 /** [[`SubstationEditor`]] subeditor for a `ConductingEquipment` element. */
 @customElement('conducting-equipment-editor')

@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../src/zeroline/substation-editor.js';
-import { SubstationEditor } from '../../../src/zeroline/substation-editor.js';
+import '../../../src/editors/substation/substation-editor.js';
+import { SubstationEditor } from '../../../src/editors/substation/substation-editor.js';
 
 describe('substation-editor', () => {
   let element: SubstationEditor;

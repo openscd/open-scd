@@ -5,7 +5,7 @@ import { ZerolinePane } from '../../src/zeroline-pane.js';
 import {
   attachedIeds,
   getAttachedIeds,
-} from '../../src/zeroline/foundation.js';
+} from '../../src/editors/substation/foundation.js';
 
 describe('zeroline-pane', () => {
   let doc: XMLDocument;

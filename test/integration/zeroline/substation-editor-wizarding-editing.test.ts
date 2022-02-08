@@ -3,8 +3,8 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import '../../../src/zeroline/substation-editor.js';
-import { SubstationEditor } from '../../../src/zeroline/substation-editor.js';
+import '../../../src/editors/substation/substation-editor.js';
+import { SubstationEditor } from '../../../src/editors/substation/substation-editor.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('substation-editor wizarding editing integration', () => {

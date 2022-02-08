@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../src/zeroline/voltage-level-editor.js';
-import { VoltageLevelEditor } from '../../../src/zeroline/voltage-level-editor.js';
+import '../../../src/editors/substation/voltage-level-editor.js';
+import { VoltageLevelEditor } from '../../../src/editors/substation/voltage-level-editor.js';
 
 describe('voltage-level-editor', () => {
   let element: VoltageLevelEditor;

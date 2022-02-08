@@ -4,7 +4,7 @@ import fc from 'fast-check';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import '../../../src/zeroline/conducting-equipment-editor.js';
+import '../../../src/editors/substation/conducting-equipment-editor.js';
 import { regexString, regExp } from '../../foundation.js';
 
 describe('conducting-equipment-editor wizarding integration', () => {

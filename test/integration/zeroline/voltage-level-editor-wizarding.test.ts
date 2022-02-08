@@ -4,7 +4,7 @@ import fc from 'fast-check';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import '../../../src/zeroline/voltage-level-editor.js';
+import '../../../src/editors/substation/voltage-level-editor.js';
 import { regexString, regExp, inverseRegExp } from '../../foundation.js';
 
 describe('voltage-level-editor wizarding integration', () => {

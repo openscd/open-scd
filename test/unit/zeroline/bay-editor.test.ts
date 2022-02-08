@@ -1,7 +1,7 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import '../../../src/zeroline/bay-editor.js';
-import { BayEditor } from '../../../src/zeroline/bay-editor.js';
+import '../../../src/editors/substation/bay-editor.js';
+import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
 
 describe('bay-editor', () => {
   let element: BayEditor;

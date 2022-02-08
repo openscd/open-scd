@@ -14,7 +14,7 @@ import { Menu } from '@material/mwc-menu';
 import { IconButton } from '@material/mwc-icon-button';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
-import '../action-pane.js';
+import '../../action-pane.js';
 import './ied-editor.js';
 import './conducting-equipment-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
@@ -24,8 +24,8 @@ import {
   newWizardEvent,
   SCLTag,
   tags,
-} from '../foundation.js';
-import { emptyWizard, wizards } from '../wizards/wizard-library.js';
+} from '../../foundation.js';
+import { emptyWizard, wizards } from '../../wizards/wizard-library.js';
 
 function childTags(element: Element | null | undefined): SCLTag[] {
   if (!element) return [];

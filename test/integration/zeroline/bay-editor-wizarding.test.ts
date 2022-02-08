@@ -4,7 +4,7 @@ import fc from 'fast-check';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import '../../../src/zeroline/bay-editor.js';
+import '../../../src/editors/substation/bay-editor.js';
 import { regExp, regexString } from '../../foundation.js';
 
 describe('bay-editor wizarding integration', () => {

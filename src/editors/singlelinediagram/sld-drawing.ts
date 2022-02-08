@@ -1,5 +1,9 @@
-import { getDescriptionAttribute, getNameAttribute, identity } from '../../foundation.js';
-import { getIcon } from '../../zeroline/foundation.js';
+import {
+  getDescriptionAttribute,
+  getNameAttribute,
+  identity,
+} from '../../foundation.js';
+import { getIcon } from '../../editors/substation/foundation.js';
 import {
   connectivityNodeIcon,
   editIcon,
@@ -70,8 +74,11 @@ export function getAbsolutePositionBusBar(busbar: Element): Point {
  * @param connectivityNode - The SCL element ConnectivityNode to get the position for.
  * @returns A point containing the full x/y position in px.
  */
-export function getAbsolutePositionConnectivityNode(connectivityNode: Element): Point {
-  const absoluteCoordinates = calculateConnectivityNodeCoordinates(connectivityNode);
+export function getAbsolutePositionConnectivityNode(
+  connectivityNode: Element
+): Point {
+  const absoluteCoordinates =
+    calculateConnectivityNodeCoordinates(connectivityNode);
   return {
     x:
       absoluteCoordinates.x! * SVG_GRID_SIZE + (SVG_GRID_SIZE - CNODE_SIZE) / 2,
@@ -96,7 +103,6 @@ function absoluteOffsetTerminal(
   terminalSide: Direction,
   customTerminalOffset?: number
 ): Point {
-
   const terminalOffset = customTerminalOffset ?? TERMINAL_OFFSET;
 
   switch (terminalSide) {
@@ -149,7 +155,11 @@ export function getAbsolutePositionTerminal(
 ): Point {
   const parentElementPosition = getAbsolutePosition(equipment);
 
-  return absoluteOffsetTerminal(parentElementPosition, EQUIPMENT_SIZE, direction);
+  return absoluteOffsetTerminal(
+    parentElementPosition,
+    EQUIPMENT_SIZE,
+    direction
+  );
 }
 
 /**
@@ -164,8 +174,13 @@ export function getConnectivityNodesDrawingPosition(
   const parentElementPosition = getAbsolutePositionConnectivityNode(cNode);
 
   // Using a custom terminal offset for Connectivity Nodes, so the routes are nicely connected to the Connectivity Nodes.
-  const customTerminalOffset = -(CNODE_SIZE/3)
-  return absoluteOffsetTerminal(parentElementPosition, CNODE_SIZE, direction, customTerminalOffset);
+  const customTerminalOffset = -(CNODE_SIZE / 3);
+  return absoluteOffsetTerminal(
+    parentElementPosition,
+    CNODE_SIZE,
+    direction,
+    customTerminalOffset
+  );
 }
 
 /**
@@ -232,14 +247,18 @@ export function createBayElement(bayElement: Element): SVGGraphicsElement {
  * @param bayElement - The Bay from the SCL document to use.
  * @param clickAction - The action to execute when the Name of the Bay is being clicked.
  */
-export function addLabelToBay(rootGroup: SVGElement,
-                              bayElement: Element,
-                              clickAction?: (event: Event) => void
+export function addLabelToBay(
+  rootGroup: SVGElement,
+  bayElement: Element,
+  clickAction?: (event: Event) => void
 ): void {
   rootGroup
     .querySelectorAll(`g[id="${identity(bayElement)}"]`)
     .forEach(bayGroup => {
-      const labelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const labelGroup = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'g'
+      );
       labelGroup.setAttribute('type', 'BayLabel');
       if (clickAction) labelGroup.addEventListener('click', clickAction);
       bayGroup.prepend(labelGroup);
@@ -247,7 +266,7 @@ export function addLabelToBay(rootGroup: SVGElement,
       const bayBox = (<SVGGraphicsElement>bayGroup).getBBox();
       const text = createTextElement(
         bayElement.getAttribute('name') || '',
-        {x: bayBox.x, y: bayBox.y - 20},
+        { x: bayBox.x, y: bayBox.y - 20 },
         'medium'
       );
       labelGroup.append(text);
@@ -374,14 +393,18 @@ export function createBusBarElement(
  * @param busbarElement - The BusBar from the SCL document to use.
  * @param clickAction - The action to execute when the Name of the BusBar is being clicked.
  */
-export function addLabelToBusBar(rootGroup: SVGElement,
-                                 busbarElement: Element,
-                                 clickAction?: (event: Event) => void
+export function addLabelToBusBar(
+  rootGroup: SVGElement,
+  busbarElement: Element,
+  clickAction?: (event: Event) => void
 ): void {
   rootGroup
     .querySelectorAll(`g[id="${identity(busbarElement)}"]`)
     .forEach(busbarGroup => {
-      const labelGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+      const labelGroup = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'g'
+      );
       labelGroup.setAttribute('type', 'BusbarLabel');
       if (clickAction) labelGroup.addEventListener('click', clickAction);
       busbarGroup.prepend(labelGroup);

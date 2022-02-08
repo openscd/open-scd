@@ -14,14 +14,14 @@ import '@material/mwc-icon-button-toggle';
 import { IconButton } from '@material/mwc-icon-button';
 import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
-import './zeroline/substation-editor.js';
-import './zeroline/ied-editor.js';
+import './editors/substation/substation-editor.js';
+import './editors/substation/ied-editor.js';
 import { communicationMappingWizard } from './wizards/commmap-wizards.js';
 import { gooseIcon, smvIcon, reportIcon } from './icons.js';
 import { isPublic, newWizardEvent } from './foundation.js';
 import { selectGseControlWizard } from './wizards/gsecontrol.js';
 import { wizards } from './wizards/wizard-library.js';
-import { getAttachedIeds } from './zeroline/foundation.js';
+import { getAttachedIeds } from './editors/substation/foundation.js';
 import { selectSampledValueControlWizard } from './wizards/sampledvaluecontrol.js';
 import { Settings } from './Setting.js';
 import { selectReportControlWizard } from './wizards/reportcontrol.js';

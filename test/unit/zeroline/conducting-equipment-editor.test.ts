@@ -1,8 +1,8 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../src/zeroline/conducting-equipment-editor.js';
-import { ConductingEquipmentEditor } from '../../../src/zeroline/conducting-equipment-editor.js';
+import '../../../src/editors/substation/conducting-equipment-editor.js';
+import { ConductingEquipmentEditor } from '../../../src/editors/substation/conducting-equipment-editor.js';
 import { isDelete } from '../../../src/foundation.js';
 
 describe('conducting-equipment-editor', () => {

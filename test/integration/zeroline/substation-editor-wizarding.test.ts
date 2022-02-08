@@ -4,7 +4,7 @@ import fc from 'fast-check';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import '../../../src/zeroline/substation-editor.js';
+import '../../../src/editors/substation/substation-editor.js';
 import { regExp, regexString } from '../../foundation.js';
 
 describe('substation-editor wizarding integration', () => {

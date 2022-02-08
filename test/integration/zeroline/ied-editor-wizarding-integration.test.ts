@@ -3,9 +3,9 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import '../../../src/zeroline/ied-editor.js';
+import '../../../src/editors/substation/ied-editor.js';
 import { FilteredList } from '../../../src/filtered-list.js';
-import { IedEditor } from '../../../src/zeroline/ied-editor.js';
+import { IedEditor } from '../../../src/editors/substation/ied-editor.js';
 
 describe('IED editor component wizarding editing integration', () => {
   let doc: XMLDocument;

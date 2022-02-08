@@ -3,8 +3,8 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import '../../../src/zeroline/conducting-equipment-editor.js';
-import { ConductingEquipmentEditor } from '../../../src/zeroline/conducting-equipment-editor.js';
+import '../../../src/editors/substation/conducting-equipment-editor.js';
+import { ConductingEquipmentEditor } from '../../../src/editors/substation/conducting-equipment-editor.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 
 describe('conducting-equipment-editor wizarding editing integration', () => {

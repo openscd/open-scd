@@ -3,8 +3,8 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '../../mock-wizard-editor.js';
 import { MockWizardEditor } from '../../mock-wizard-editor.js';
 
-import '../../../src/zeroline/bay-editor.js';
-import { BayEditor } from '../../../src/zeroline/bay-editor.js';
+import '../../../src/editors/substation/bay-editor.js';
+import { BayEditor } from '../../../src/editors/substation/bay-editor.js';
 import { Select } from '@material/mwc-select';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 

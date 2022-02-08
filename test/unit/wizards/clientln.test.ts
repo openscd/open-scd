@@ -7,7 +7,7 @@ import { List } from '@material/mwc-list';
 import { ListItem } from '@material/mwc-list/mwc-list-item';
 
 import '../../../src/zeroline-pane.js';
-import { IedEditor } from '../../../src/zeroline/ied-editor.js';
+import { IedEditor } from '../../../src/editors/substation/ied-editor.js';
 import { ZerolinePane } from '../../../src/zeroline-pane.js';
 
 describe('clientln wizards', () => {

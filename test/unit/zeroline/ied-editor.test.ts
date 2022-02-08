@@ -1,8 +1,8 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import { SinonSpy, spy } from 'sinon';
 
-import '../../../src/zeroline/ied-editor.js';
-import { IedEditor } from '../../../src/zeroline/ied-editor.js';
+import '../../../src/editors/substation/ied-editor.js';
+import { IedEditor } from '../../../src/editors/substation/ied-editor.js';
 
 describe('A component to visualize SCL element IED', () => {
   let element: IedEditor;

@@ -11,14 +11,14 @@ import '@material/mwc-fab';
 import '@material/mwc-icon';
 import { Fab } from '@material/mwc-fab';
 
-import '../action-icon.js';
-import { createClientLnWizard } from '../wizards/clientln.js';
-import { gooseIcon, smvIcon, reportIcon } from '../icons.js';
-import { wizards } from '../wizards/wizard-library.js';
-import { newWizardEvent } from '../foundation.js';
-import { selectGseControlWizard } from '../wizards/gsecontrol.js';
-import { selectSampledValueControlWizard } from '../wizards/sampledvaluecontrol.js';
-import { selectReportControlWizard } from '../wizards/reportcontrol.js';
+import '../../action-icon.js';
+import { createClientLnWizard } from '../../wizards/clientln.js';
+import { gooseIcon, smvIcon, reportIcon } from '../../icons.js';
+import { wizards } from '../../wizards/wizard-library.js';
+import { newWizardEvent } from '../../foundation.js';
+import { selectGseControlWizard } from '../../wizards/gsecontrol.js';
+import { selectSampledValueControlWizard } from '../../wizards/sampledvaluecontrol.js';
+import { selectReportControlWizard } from '../../wizards/reportcontrol.js';
 
 /** [[`SubstationEditor`]] subeditor for a child-less `IED` element. */
 @customElement('ied-editor')

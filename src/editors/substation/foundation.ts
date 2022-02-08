@@ -1,6 +1,6 @@
 import { css, TemplateResult } from 'lit-element';
 
-import { newActionEvent, isPublic } from '../foundation.js';
+import { newActionEvent, isPublic } from '../../foundation.js';
 import {
   circuitBreakerIcon,
   disconnectorIcon,
@@ -8,11 +8,11 @@ import {
   voltageTransformerIcon,
   earthSwitchIcon,
   generalConductingEquipmentIcon,
-} from '../icons.js';
+} from '../../icons.js';
 import { BayEditor } from './bay-editor.js';
 import { SubstationEditor } from './substation-editor.js';
 import { VoltageLevelEditor } from './voltage-level-editor.js';
-import { typeStr } from '../wizards/conductingequipment.js';
+import { typeStr } from '../../wizards/conductingequipment.js';
 
 function containsReference(element: Element, iedName: string): boolean {
   return Array.from(element.getElementsByTagName('LNode'))
