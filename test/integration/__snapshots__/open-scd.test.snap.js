@@ -1077,6 +1077,116 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-switch>
     </mwc-formfield>
   </form>
+  <wizard-divider>
+  </wizard-divider>
+  <section>
+    <h3>
+      Uploading NSDoc files
+    </h3>
+    <input
+      accept=".nsdoc"
+      hidden=""
+      id="nsdoc-file"
+      multiple=""
+      required=""
+      type="file"
+    >
+    <mwc-button
+      id="selectFileButton"
+      label="Select file"
+    >
+    </mwc-button>
+  </section>
+  <mwc-list id="nsdocList">
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-7-2"
+      mwc-list-item=""
+      tabindex="0"
+      twoline=""
+    >
+      <span>
+        IEC 61850-7-2
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-7-3"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        IEC 61850-7-3
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="false"
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-7-4"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        IEC 61850-7-4
+      </span>
+      <span slot="secondary">
+        1010X1
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:green;"
+      >
+        done
+      </mwc-icon>
+      <mwc-icon
+        id="deleteNsdocItem"
+        slot="meta"
+      >
+        delete
+      </mwc-icon>
+    </mwc-list-item>
+    <mwc-list-item
+      aria-disabled="true"
+      disabled=""
+      graphic="avatar"
+      hasmeta=""
+      id="IEC 61850-8-1"
+      mwc-list-item=""
+      tabindex="-1"
+      twoline=""
+    >
+      <span>
+        IEC 61850-8-1
+      </span>
+      <mwc-icon
+        slot="graphic"
+        style="color:red;"
+      >
+        close
+      </mwc-icon>
+    </mwc-list-item>
+  </mwc-list>
   <mwc-button
     dialogaction="close"
     slot="secondaryAction"

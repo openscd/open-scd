@@ -11,7 +11,7 @@ import {
   cloneElement,
   getValue,
   identity,
-  newWizardEvent,
+  newSubWizardEvent,
   selector,
   Update,
   Wizard,
@@ -19,7 +19,7 @@ import {
   WizardActor,
   WizardInput,
 } from '../foundation.js';
-import { wizards } from './wizard-library.js';
+import { createFCDAsWizard } from './fcda.js';
 
 function updateDataSetAction(element: Element): WizardActor {
   return (inputs: WizardInput[], wizard: Element): WizardAction[] => {
@@ -85,7 +85,7 @@ export function editDataSetWizard(element: Element): Wizard {
       title: get('wizard.title.edit', { tagName: element.tagName }),
       element,
       primary: {
-        label: get('edit'),
+        label: get('save'),
         icon: 'save',
         action: updateDataSetAction(element),
       },
@@ -95,6 +95,7 @@ export function editDataSetWizard(element: Element): Wizard {
           .maybeValue=${name}
           helper="${translate('scl.name')}"
           required
+          disabled="true"
         >
         </wizard-textfield>`,
         html`<wizard-textfield
@@ -105,25 +106,25 @@ export function editDataSetWizard(element: Element): Wizard {
           required
         >
         </wizard-textfield>`,
-        html`<mwc-button
-          icon="add"
-          label="${translate('wizard.title.add', { tagName: 'FCDA' })}"
-          @click=${(e: Event) => {
-            const wizard = wizards['FCDA'].create(element);
-            if (wizard) {
-              e.target?.dispatchEvent(newWizardEvent(wizard));
-              e.target?.dispatchEvent(newWizardEvent());
-            }
-          }}
-        ></mwc-button>`,
         html`<filtered-list multi
           >${Array.from(element.querySelectorAll('FCDA')).map(
             fcda =>
               html`<mwc-check-list-item selected value="${identity(fcda)}"
-                >${(<string>identity(fcda)).split('>')[4]}</mwc-check-list-item
+                >${(<string>identity(fcda))
+                  .split('>')
+                  .pop()}</mwc-check-list-item
               >`
           )}</filtered-list
         >`,
+        html`<mwc-button
+          icon="add"
+          label="${translate('wizard.title.add', { tagName: 'FCDA' })}"
+          @click="${(e: Event) => {
+            e.target?.dispatchEvent(
+              newSubWizardEvent(() => createFCDAsWizard(element))
+            );
+          }}"
+        ></mwc-button>`,
       ],
     },
   ];
