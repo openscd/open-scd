@@ -238,6 +238,32 @@ describe('Wizards for SCL element SampledValueControl', () => {
             ?.textContent?.trim()
         );
       });
+
+      it('removes the SampledValueControl element and its referenced elements on remove button click', async () => {
+        expect(
+          doc.querySelector(
+            'IED[name="IED3"] SampledValueControl[name="MSVCB01"]'
+          )
+        ).to.exist;
+        expect(doc.querySelector('IED[name="IED3"] DataSet[name="PhsMeas1"]'))
+          .to.exist;
+        expect(doc.querySelector('SMV[cbName="MSVCB01"]')).to.exist;
+
+        const deleteButton = <Button>(
+          element.wizardUI.dialog!.querySelector('mwc-button[icon="delete"]')!
+        );
+        await deleteButton.updateComplete;
+        deleteButton.click();
+
+        expect(
+          doc.querySelector(
+            'IED[name="IED3"] SampledValueControl[name="MSVCB01"]'
+          )
+        ).to.not.exist;
+        expect(doc.querySelector('IED[name="IED3"] DataSet[name="PhsMeas1"]'))
+          .to.not.exist;
+        expect(doc.querySelector('SMV[cbName="MSVCB01"]')).to.not.exist;
+      });
     });
   });
 });

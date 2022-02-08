@@ -4,9 +4,15 @@ import { SinonSpy, spy } from 'sinon';
 import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
-import { isUpdate, Update, WizardInput } from '../../../src/foundation.js';
+import {
+  isDelete,
+  isUpdate,
+  Update,
+  WizardInput,
+} from '../../../src/foundation.js';
 import {
   editSampledValueControlWizard,
+  removeSampledValueControlAction,
   selectSampledValueControlWizard,
 } from '../../../src/wizards/sampledvaluecontrol.js';
 import fc, { integer } from 'fast-check';
@@ -264,6 +270,118 @@ describe('Wizards for SCL element SampledValueControl', () => {
         'securityEnable',
         'Signature'
       );
+    });
+
+    describe('contains a remove button that', () => {
+      const ln01smv = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+              <DataSet name="myDataSet"/>
+              <DataSet name="myDataSet2"/>
+              <SampledValueControl name="myName" datSet="myDataSet"/>
+              <ReportControl name="myName2" datSet="myDataSet2"/>
+          </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const ln02smv2 = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+                <DataSet name="myDataSet"/>
+                <SampledValueControl name="myName" datSet="myDataSet"/>
+                <SampledValueControl name="myName2" datSet="myDataSet"/>
+            </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const ln02gse = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+                  <DataSet name="myDataSet"/>
+                  <SampledValueControl name="myName" datSet="myDataSet"/>
+                  <GSEControl name="myName2" datSet="myDataSet"/>
+              </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const ln02rp = <Element>new DOMParser().parseFromString(
+        `<LN0 lnClass="LLN0" lnType="myType">
+              <DataSet name="myDataSet"/>
+              <ReportControl name="myName" datSet="myDataSet"/>
+              <SampledValueControl name="myName2" datSet="myDataSet"/>
+          </LN0>`,
+        'application/xml'
+      ).documentElement;
+
+      const missingparent = <Element>(
+        new DOMParser().parseFromString(
+          `<SampledValueControl name="myName" datSet="myDataSet"/>`,
+          'application/xml'
+        ).documentElement
+      );
+
+      it('removes SampledValueControl and its referenced DataSet if no other SampledValueControl is assigned', () => {
+        const sampledValueControl = ln01smv.querySelector(
+          'SampledValueControl'
+        )!;
+        const actions = removeSampledValueControlAction(sampledValueControl);
+        expect(actions.length).to.equal(2);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(sampledValueControl);
+        expect(actions[1]).to.satisfy(isDelete);
+        expect(actions[1].old.element).to.equal(
+          ln01smv.querySelector('DataSet')
+        );
+      });
+
+      it('does not remove DataSet with another SampledValueControl referenced', () => {
+        const sampledValueControl = ln02smv2.querySelector(
+          'SampledValueControl'
+        )!;
+        const actions = removeSampledValueControlAction(sampledValueControl);
+        expect(actions.length).to.equal(1);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(sampledValueControl);
+      });
+
+      it('does not remove DataSet with another GSEControl referenced', () => {
+        const sampledValueControl = ln02gse.querySelector(
+          'SampledValueControl'
+        )!;
+        const actions = removeSampledValueControlAction(sampledValueControl);
+        expect(actions.length).to.equal(1);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(sampledValueControl);
+      });
+
+      it('does not remove DataSet with another ReportControl referenced', () => {
+        const sampledValueControl = ln02rp.querySelector(
+          'SampledValueControl'
+        )!;
+        const actions = removeSampledValueControlAction(sampledValueControl);
+        expect(actions.length).to.equal(1);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(sampledValueControl);
+      });
+
+      it('does not remove with missing parent element', () => {
+        const actions = removeSampledValueControlAction(missingparent);
+        expect(actions.length).to.equal(0);
+      });
+
+      it('removes referenced SMV element in the Communication section', () => {
+        const sampledValueControl = doc.querySelector(
+          'IED[name="IED3"] SampledValueControl'
+        )!;
+        const actions = removeSampledValueControlAction(sampledValueControl);
+        expect(actions.length).to.equal(3);
+        expect(actions[0]).to.satisfy(isDelete);
+        expect(actions[0].old.element).to.equal(sampledValueControl);
+        expect(actions[1]).to.satisfy(isDelete);
+        expect(actions[2]).to.satisfy(isDelete);
+        expect(actions[2].old.element).to.equal(
+          doc.querySelector(
+            'Communication SMV[ldInst="MU01"][cbName="MSVCB01"]'
+          )
+        );
+      });
     });
   });
 

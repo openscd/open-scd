@@ -11,11 +11,14 @@ import '../wizard-select.js';
 import '../wizard-textfield.js';
 import {
   cloneElement,
+  Delete,
   EditorAction,
   getValue,
   identity,
   isPublic,
+  newActionEvent,
   newSubWizardEvent,
+  newWizardEvent,
   selector,
   Wizard,
   WizardActor,
@@ -40,6 +43,52 @@ function getSMV(element: Element): Element | null {
           `SMV[ldInst="${ldInst}"][cbName="${cbName}"]`
       ) ?? null
   );
+}
+
+export function removeSampledValueControlAction(element: Element): Delete[] {
+  if (!element.parentElement) return [];
+
+  const dataSet = element.parentElement!.querySelector(
+    `DataSet[name="${element.getAttribute('datSet')}"]`
+  );
+  const sMV = getSMV(element);
+
+  const singleUse =
+    Array.from(
+      element.parentElement.querySelectorAll<Element>(
+        'ReportControl, GSEControl, SampledValueControl'
+      )
+    ).filter(
+      controlblock =>
+        controlblock.getAttribute('datSet') === dataSet?.getAttribute('name')
+    ).length <= 1;
+
+  const actions: Delete[] = [];
+
+  actions.push({
+    old: {
+      parent: element.parentElement!,
+      element,
+    },
+  });
+
+  if (dataSet && singleUse)
+    actions.push({
+      old: {
+        parent: element.parentElement!,
+        element: dataSet,
+      },
+    });
+
+  if (sMV)
+    actions.push({
+      old: {
+        parent: sMV.parentElement!,
+        element: sMV,
+      },
+    });
+
+  return actions;
 }
 
 interface ContentOptions {
@@ -211,6 +260,17 @@ export function editSampledValueControlWizard(element: Element): Wizard {
               }}}"
             ></mwc-button>`
           : html``,
+        html`<mwc-button
+          label="${translate('remove')}"
+          icon="delete"
+          @click=${(e: MouseEvent) => {
+            const deleteActions = removeSampledValueControlAction(element);
+            deleteActions.forEach(deleteAction =>
+              e.target?.dispatchEvent(newActionEvent(deleteAction))
+            );
+            e.target?.dispatchEvent(newWizardEvent());
+          }}
+        ></mwc-button>`,
       ],
     },
   ];
