@@ -139,7 +139,7 @@ export class CompasSessionExpiredDialogElement extends LitElement {
                   translateUnsafeHTML('compas.session.explainExpiredWithProject',
                                         {expiredSessionMessage: expiredSessionMessage}) }
         </div>
-        ${(this.doc != null) ?
+        ${(this.doc !== null) ?
              html `<mwc-button slot="primaryAction"
                                @click=${() => this.save()}
                                ?disabled=${this.doc == null}>
@@ -221,7 +221,7 @@ export async function retrieveUserInfo(): Promise<void> {
   await CompasUserInfoService().getCompasUserInfo()
     .then(response => {
       const name = response.querySelectorAll("Name").item(0)?.textContent;
-      if (name != null) {
+      if (name !== null) {
         dispatchEventOnOpenScd(newUserInfoEvent(name));
       }
 

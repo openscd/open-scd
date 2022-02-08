@@ -22,11 +22,14 @@ describe('Update method for desc attributes in SEL IEDs', () => {
     parent = await fixture(html`
       <open-scd><update-description-sel></update-description-sel></open-scd>
     `);
+    await parent.requestUpdate();
+    await parent.updateComplete;
 
     element = <UpdateDescriptionSel>(
       parent.querySelector('update-description-sel')!
     );
     await element.requestUpdate();
+    await element.updateComplete;
 
     editorAction = spy();
     window.addEventListener('editor-action', editorAction);
@@ -56,6 +59,7 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
       element.processSignalList(signalList);
       await parent.requestUpdate();
+      await parent.updateComplete;
     });
 
     it('cannot find any desc fields to update', async () => {
@@ -82,6 +86,7 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
         element.processSignalList(signalList);
         await parent.requestUpdate();
+        await parent.updateComplete;
       });
 
       it('creates filtered list with all proposed desc attribute updates', async () => {
@@ -113,6 +118,7 @@ describe('Update method for desc attributes in SEL IEDs', () => {
 
         element.processSignalList(signalList);
         await parent.requestUpdate();
+        await parent.updateComplete;
       });
 
       it('creates filtered list with all proposed desc attribute updates', async () => {
@@ -124,6 +130,7 @@ describe('Update method for desc attributes in SEL IEDs', () => {
           ?.querySelector<HTMLElement>('mwc-button[slot="primaryAction"]')!
           .click();
 
+        await parent.requestUpdate();
         await parent.updateComplete;
         expect(editorAction).to.have.been.calledOnce;
         expect(editorAction.args[0][0].detail.action).to.not.satisfy(isSimple);
