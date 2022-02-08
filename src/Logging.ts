@@ -149,20 +149,21 @@ export function Logging<TBase extends LitElementConstructor>(Base: TBase) {
     }
 
     private async onLoadHistoryFromDoc(event: OpenDocEvent) {
-      const doc = event.detail.doc;
-
-      Array.from(
-        doc.querySelectorAll(':root > Header > History > Hitem')
-      ).forEach(historyItem => {
-        this.history.push(
-          this.createSclHistoryEntry(
-            historyItem.getAttribute('who'),
-            historyItem.getAttribute('what'),
-            historyItem.getAttribute('why'),
-            historyItem.getAttribute('when')
-          )
-        );
-      });
+      if (event.detail && event.detail.doc) {
+        const doc = event.detail.doc;
+        Array.from(
+          doc.querySelectorAll(':root > Header > History > Hitem')
+        ).forEach(historyItem => {
+          this.history.push(
+            this.createSclHistoryEntry(
+              historyItem.getAttribute('who'),
+              historyItem.getAttribute('what'),
+              historyItem.getAttribute('why'),
+              historyItem.getAttribute('when')
+            )
+          );
+        });
+      }
     }
 
     private onIssue(de: IssueEvent): void {
