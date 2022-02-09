@@ -21,13 +21,9 @@ export class CompasSessionExpiringDialogElement extends LitElement {
 
   private expiringSessionWarningTimer: NodeJS.Timeout | null = null;
 
-  static getElement(): CompasSessionExpiringDialogElement | null {
-    const openScd = getOpenScdElement();
-    if (openScd !== null) {
-      return (<CompasSessionExpiringDialogElement>openScd
-        .shadowRoot!.querySelector('compas-session-expiring-dialog'));
-    }
-    return null;
+  static getElement(): CompasSessionExpiringDialogElement {
+    return (<CompasSessionExpiringDialogElement>getOpenScdElement()!
+      .shadowRoot!.querySelector('compas-session-expiring-dialog'));
   }
 
   resetTimer(): void {
@@ -88,13 +84,9 @@ export class CompasSessionExpiredDialogElement extends LitElement {
 
   private expiredSessionMessageTimer: NodeJS.Timeout | null = null;
 
-  static getElement(): CompasSessionExpiredDialogElement | null {
-    const openScd = getOpenScdElement();
-    if (openScd !== null) {
-      return (<CompasSessionExpiredDialogElement>openScd
-        .shadowRoot!.querySelector('compas-session-expired-dialog'));
-    }
-    return null;
+  static getElement(): CompasSessionExpiredDialogElement {
+    return (<CompasSessionExpiredDialogElement>getOpenScdElement()!
+      .shadowRoot!.querySelector('compas-session-expired-dialog'));
   }
 
   resetTimer(): void {
@@ -181,18 +173,18 @@ function schedulePing() {
 }
 
 function showExpiringSessionWarning() {
-  CompasSessionExpiringDialogElement.getElement()!.show();
+  CompasSessionExpiringDialogElement.getElement().show();
 }
 
 function showExpiredSessionMessage() {
-  CompasSessionExpiringDialogElement.getElement()!.close();
-  CompasSessionExpiredDialogElement.getElement()!.show();
+  CompasSessionExpiringDialogElement.getElement().close();
+  CompasSessionExpiredDialogElement.getElement().show();
   unregisterEvents();
 }
 
 export function resetTimer(): void {
-  CompasSessionExpiringDialogElement.getElement()!.resetTimer();
-  CompasSessionExpiredDialogElement.getElement()!.resetTimer();
+  CompasSessionExpiringDialogElement.getElement().resetTimer();
+  CompasSessionExpiredDialogElement.getElement().resetTimer();
   schedulePing();
 }
 
@@ -210,9 +202,9 @@ export function setSessionTimeouts(sessionWarning: number, sessionExpires: numbe
   const expiringSessionWarning = sessionWarning * 60 * 1000;
   const expiredSessionMessage = sessionExpires * 60 * 1000;
 
-  CompasSessionExpiringDialogElement.getElement()!.expiringSessionWarning = expiringSessionWarning;
-  CompasSessionExpiringDialogElement.getElement()!.expiredSessionMessage = expiredSessionMessage;
-  CompasSessionExpiredDialogElement.getElement()!.expiredSessionMessage = expiredSessionMessage;
+  CompasSessionExpiringDialogElement.getElement().expiringSessionWarning = expiringSessionWarning;
+  CompasSessionExpiringDialogElement.getElement().expiredSessionMessage = expiredSessionMessage;
+  CompasSessionExpiredDialogElement.getElement().expiredSessionMessage = expiredSessionMessage;
   resetTimer();
   registerEvents();
 }
