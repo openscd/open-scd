@@ -17,7 +17,6 @@ import {
   dispatchEventOnOpenScd,
   getOpenScdElement,
   getTypeFromDocName,
-  setDocIdOnOpenScd,
   updateDocumentInOpenSCD
 } from "../compas/foundation.js";
 import {addVersionToCompasWizard} from "../compas/CompasUploadVersion.js";
@@ -284,12 +283,15 @@ function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
       CompasSclDataService()
         .deleteSclDocument(type, docId)
         .then (() => {
-          setDocIdOnOpenScd('');
-          dispatchEventOnOpenScd(
-            newLogEvent({
-              kind: 'info',
-              title: get('compas.versions.deleteSuccess')
-            }));
+          const openScd = getOpenScdElement();
+          if (openScd !== null) {
+            openScd.docId = '';
+            openScd.dispatchEvent(
+              newLogEvent({
+                kind: 'info',
+                title: get('compas.versions.deleteSuccess')
+              }));
+          }
         })
         .catch(createLogEvent);
 

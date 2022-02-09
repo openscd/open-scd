@@ -33,13 +33,6 @@ export function dispatchEventOnOpenScd(event: Event): void {
   }
 }
 
-export function setDocIdOnOpenScd(docId: string): void {
-  const openScd = getOpenScdElement();
-  if (openScd !== null) {
-    openScd.docId = docId;
-  }
-}
-
 export function updateDocumentInOpenSCD(doc: Document, docName?: string): void {
   const id = (doc.querySelectorAll(':root > Header') ?? []).item(0)?.getAttribute('id') ?? '';
 
