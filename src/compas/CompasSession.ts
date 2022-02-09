@@ -6,7 +6,7 @@ import '@material/mwc-dialog';
 import '@material/mwc-button';
 
 import {saveDocumentToFile} from "../file.js";
-import {getOpenScdElement} from "./foundation.js";
+import {dispatchEventOnOpenScd, getOpenScdElement} from "./foundation.js";
 
 import {CompasUserInfoService} from "../compas-services/CompasUserInfoService.js";
 import {newUserInfoEvent} from "../foundation.js";
@@ -22,7 +22,7 @@ export class CompasSessionExpiringDialogElement extends LitElement {
   private expiringSessionWarningTimer: NodeJS.Timeout | null = null;
 
   static getElement(): CompasSessionExpiringDialogElement {
-    return (<CompasSessionExpiringDialogElement>getOpenScdElement()
+    return (<CompasSessionExpiringDialogElement>getOpenScdElement()!
       .shadowRoot!.querySelector('compas-session-expiring-dialog'));
   }
 
@@ -85,7 +85,7 @@ export class CompasSessionExpiredDialogElement extends LitElement {
   private expiredSessionMessageTimer: NodeJS.Timeout | null = null;
 
   static getElement(): CompasSessionExpiredDialogElement {
-    return (<CompasSessionExpiredDialogElement>getOpenScdElement()
+    return (<CompasSessionExpiredDialogElement>getOpenScdElement()!
       .shadowRoot!.querySelector('compas-session-expired-dialog'));
   }
 
@@ -131,7 +131,7 @@ export class CompasSessionExpiredDialogElement extends LitElement {
                   translateUnsafeHTML('compas.session.explainExpiredWithProject',
                                         {expiredSessionMessage: expiredSessionMessage}) }
         </div>
-        ${(this.doc != null) ?
+        ${(this.doc !== null) ?
              html `<mwc-button slot="primaryAction"
                                @click=${() => this.save()}
                                ?disabled=${this.doc == null}>
@@ -213,8 +213,8 @@ export async function retrieveUserInfo(): Promise<void> {
   await CompasUserInfoService().getCompasUserInfo()
     .then(response => {
       const name = response.querySelectorAll("Name").item(0)?.textContent;
-      if (name != null) {
-        getOpenScdElement().dispatchEvent(newUserInfoEvent(name));
+      if (name !== null) {
+        dispatchEventOnOpenScd(newUserInfoEvent(name));
       }
 
       const sessionWarning = response.querySelectorAll("SessionWarning").item(0)?.textContent??"15";
@@ -226,4 +226,3 @@ export async function retrieveUserInfo(): Promise<void> {
       setSessionTimeouts(10, 15);
     });
 }
-retrieveUserInfo();

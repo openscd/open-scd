@@ -12,7 +12,7 @@ import '../wizard-textfield.js';
 import {CompasExistsIn} from "./CompasExistsIn.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {getOpenScdElement, getTypeFromDocName, updateDocumentInOpenSCD} from "./foundation.js";
+import {dispatchEventOnOpenScd, getTypeFromDocName, updateDocumentInOpenSCD} from "./foundation.js";
 import {CompasChangeSetRadiogroup} from "./CompasChangeSetRadiogroup.js";
 import {CompasCommentElement} from "./CompasComment.js";
 
@@ -60,15 +60,14 @@ export class CompasUploadVersionElement extends CompasExistsIn(LitElement) {
       .then(sclDocument => {
         updateDocumentInOpenSCD(sclDocument);
 
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
+        dispatchEventOnOpenScd(
           newLogEvent({
             kind: 'info',
             title: get('compas.uploadVersion.updateSuccess')
           }));
 
         // Close the Save Dialog.
-        openScd.dispatchEvent(newWizardEvent());
+        dispatchEventOnOpenScd(newWizardEvent());
       })
       .catch(createLogEvent);
   }
@@ -127,7 +126,7 @@ export function addVersionToCompasWizard(saveToOptions: AddToCompasWizardOptions
         return [];
       }
 
-      getOpenScdElement().dispatchEvent(newPendingStateEvent(compasAddTo.updateDocumentInCompas()));
+      dispatchEventOnOpenScd(newPendingStateEvent(compasAddTo.updateDocumentInCompas()));
       return [];
     };
   }

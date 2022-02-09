@@ -14,7 +14,12 @@ import {CompasSclTypeRadiogroup} from "./CompasSclTypeRadiogroup.js";
 import {CompasCommentElement} from "./CompasComment.js";
 import {CompasSclDataService} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {getOpenScdElement, getTypeFromDocName, stripExtensionFromName, updateDocumentInOpenSCD} from "./foundation.js";
+import {
+  dispatchEventOnOpenScd,
+  getTypeFromDocName,
+  stripExtensionFromName,
+  updateDocumentInOpenSCD
+} from "./foundation.js";
 
 import './CompasChangeSetRadiogroup.js';
 import './CompasComment.js';
@@ -62,8 +67,7 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
       .then(sclDocument => {
         updateDocumentInOpenSCD(sclDocument);
 
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
+        dispatchEventOnOpenScd(
           newLogEvent({
             kind: 'info',
             title: get('compas.save.addSuccess')
@@ -84,8 +88,7 @@ export default class CompasSaveElement extends CompasExistsIn(LitElement) {
       .then(sclDocument => {
         updateDocumentInOpenSCD(sclDocument);
 
-        const openScd = getOpenScdElement();
-        openScd.dispatchEvent(
+        dispatchEventOnOpenScd(
           newLogEvent({
             kind: 'info',
             title: get('compas.save.updateSuccess')

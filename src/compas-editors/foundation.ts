@@ -1,5 +1,4 @@
 import {css} from "lit-element";
-import {OpenSCD} from "../open-scd.js";
 
 export function getElementByName(parent: Element, namespace: string, tagName: string): Element | null {
   const elements = parent.getElementsByTagNameNS(namespace, tagName);
@@ -7,10 +6,6 @@ export function getElementByName(parent: Element, namespace: string, tagName: st
     return elements.item(0);
   }
   return null;
-}
-
-export function getOpenScdElement(): OpenSCD {
-  return <OpenSCD>document.querySelector('open-scd');
 }
 
 /** Common `CSS` styles used by Compas Editors subeditors */

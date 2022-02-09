@@ -9,14 +9,19 @@ import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-list/mwc-check-list-item';
 
 import {newLogEvent, newWizardEvent, Wizard} from "../foundation.js";
+import {MultiSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
 
 import {CompasSclDataService, SDS_NAMESPACE} from "../compas-services/CompasSclDataService.js";
 import {createLogEvent} from "../compas-services/foundation.js";
-import {getTypeFromDocName, updateDocumentInOpenSCD} from "../compas/foundation.js";
-import {getElementByName, getOpenScdElement, styles} from './foundation.js';
+import {
+  dispatchEventOnOpenScd,
+  getOpenScdElement,
+  getTypeFromDocName,
+  updateDocumentInOpenSCD
+} from "../compas/foundation.js";
 import {addVersionToCompasWizard} from "../compas/CompasUploadVersion.js";
 import {compareWizard} from "../compas/CompasCompareDialog.js";
-import {MultiSelectedEvent} from "@material/mwc-list/mwc-list-foundation";
+import {getElementByName, styles} from './foundation.js';
 
 // Save the selection for the current document.
 let selectedVersionsOnCompasVersionsEditor: Set<number> = new Set();
@@ -38,7 +43,7 @@ export default class CompasVersionsPlugin extends LitElement {
 
     // Add event to get a notification when a new document is opened.
     const openSCD = getOpenScdElement();
-    if (openSCD) {
+    if (openSCD !== null) {
       openSCD.addEventListener('open-doc', this.resetSelection);
     }
   }
@@ -273,23 +278,25 @@ export default class CompasVersionsPlugin extends LitElement {
 function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
   function deleteScl(docName: string, docId: string) {
     return function () {
-      const openScd = getOpenScdElement();
       const type = getTypeFromDocName(docName);
 
       CompasSclDataService()
         .deleteSclDocument(type, docId)
         .then (() => {
-          openScd.docId = '';
-          openScd.dispatchEvent(
-            newLogEvent({
-              kind: 'info',
-              title: get('compas.versions.deleteSuccess')
-            }));
+          const openScd = getOpenScdElement();
+          if (openScd !== null) {
+            openScd.docId = '';
+            openScd.dispatchEvent(
+              newLogEvent({
+                kind: 'info',
+                title: get('compas.versions.deleteSuccess')
+              }));
+          }
         })
         .catch(createLogEvent);
 
       // Close the Restore Dialog.
-      openScd.dispatchEvent(newWizardEvent());
+      dispatchEventOnOpenScd(newWizardEvent());
 
       return [];
     }
@@ -313,14 +320,13 @@ function confirmDeleteCompasWizard(docName: string, docId: string): Wizard {
 function confirmRestoreVersionCompasWizard(docName: string, docId: string, version: string): Wizard {
   function openScl(docName: string, docId: string, version: string) {
     return function () {
-      const openScd = getOpenScdElement();
       const type = getTypeFromDocName(docName);
 
       CompasSclDataService().getSclDocumentVersion(type, docId, version)
         .then(sclDocument => {
           updateDocumentInOpenSCD(sclDocument);
 
-          openScd.dispatchEvent(
+          dispatchEventOnOpenScd(
             newLogEvent({
               kind: 'info',
               title: get('compas.versions.restoreVersionSuccess', {version : version})
@@ -329,7 +335,7 @@ function confirmRestoreVersionCompasWizard(docName: string, docId: string, versi
         .catch(createLogEvent);
 
       // Close the Restore Dialog.
-      openScd.dispatchEvent(newWizardEvent());
+      dispatchEventOnOpenScd(newWizardEvent());
 
       return [];
     }
@@ -353,13 +359,12 @@ function confirmRestoreVersionCompasWizard(docName: string, docId: string, versi
 function confirmDeleteVersionCompasWizard(docName: string, docId: string, version: string): Wizard {
   function deleteSclVersion(docName: string, docId: string, version: string) {
     return function () {
-      const openScd = getOpenScdElement();
       const type = getTypeFromDocName(docName);
 
       CompasSclDataService()
         .deleteSclDocumentVersion(type, docId, version)
         .then(() => {
-          openScd.dispatchEvent(
+          dispatchEventOnOpenScd(
             newLogEvent({
               kind: 'info',
               title: get('compas.versions.deleteVersionSuccess', {version : version})
@@ -368,7 +373,7 @@ function confirmDeleteVersionCompasWizard(docName: string, docId: string, versio
         .catch(createLogEvent);
 
       // Close the Restore Dialog.
-      openScd.dispatchEvent(newWizardEvent());
+      dispatchEventOnOpenScd(newWizardEvent());
 
       return [];
     }
