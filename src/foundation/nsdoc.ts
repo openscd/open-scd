@@ -157,6 +157,12 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     }
   }
 
+  /**
+   * Get the SubDataAttribute from the IEC-61850-7-3.
+   * @param parent - The parent element in which to search for a SubDataAttribute.
+   * @param bdaElementName - The name of the element to search.
+   * @returns A SubDataAttribute, or null.
+   */
   function getSubDataAttribute(parent: Element | undefined, bdaElementName: string): Element | null {
     if (!parent) return null;
     const subDataAttr = nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${parent?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`);
