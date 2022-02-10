@@ -1126,8 +1126,7 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-7-3"
@@ -1138,11 +1137,20 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         IEC 61850-7-3
       </span>
+      <span slot="secondary">
+        1010X1
+      </span>
       <mwc-icon
         slot="graphic"
-        style="color:red;"
+        style="color:green;"
       >
-        close
+        done
+      </mwc-icon>
+      <mwc-icon
+        id="deleteNsdocItem"
+        slot="meta"
+      >
+        delete
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
@@ -1174,8 +1182,7 @@ snapshots["open-scd looks like its snapshot"] =
       </mwc-icon>
     </mwc-list-item>
     <mwc-list-item
-      aria-disabled="true"
-      disabled=""
+      aria-disabled="false"
       graphic="avatar"
       hasmeta=""
       id="IEC 61850-8-1"
@@ -1186,11 +1193,20 @@ snapshots["open-scd looks like its snapshot"] =
       <span>
         IEC 61850-8-1
       </span>
+      <span slot="secondary">
+        1010X1
+      </span>
       <mwc-icon
         slot="graphic"
-        style="color:red;"
+        style="color:green;"
       >
-        close
+        done
+      </mwc-icon>
+      <mwc-icon
+        id="deleteNsdocItem"
+        slot="meta"
+      >
+        delete
       </mwc-icon>
     </mwc-list-item>
   </mwc-list>

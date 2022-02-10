@@ -1,11 +1,18 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["do-container looks like the latest snapshot with a DO element."] = 
+snapshots["looks like the latest snapshot with a DO element."] = 
 `<action-pane
   icon=""
   tabindex="0"
 >
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="Mod"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -19,15 +26,20 @@ snapshots["do-container looks like the latest snapshot with a DO element."] =
   </abbr>
 </action-pane>
 `;
-/* end snapshot do-container looks like the latest snapshot with a DO element. */
+/* end snapshot looks like the latest snapshot with a DO element. */
 
-
-
-snapshots["do-container looks like the latest snapshot with a DO element and child elements are toggled."] = 
+snapshots["looks like the latest snapshot with a DO element and child elements are toggled."] = 
 `<action-pane
   icon=""
   tabindex="0"
 >
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="Mod"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -68,15 +80,26 @@ snapshots["do-container looks like the latest snapshot with a DO element and chi
   </da-container>
   <da-container>
   </da-container>
+  <do-container>
+  </do-container>
+  <do-container>
+  </do-container>
 </action-pane>
 `;
-/* end snapshot do-container looks like the latest snapshot with a DO element and child elements are toggled. */
+/* end snapshot looks like the latest snapshot with a DO element and child elements are toggled. */
 
-snapshots["do-container looks like the latest snapshot with a SDO element."] = 
+snapshots["looks like the latest snapshot with a SDO element."] = 
 `<action-pane
   icon=""
   tabindex="0"
 >
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="someSdo"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -90,13 +113,20 @@ snapshots["do-container looks like the latest snapshot with a SDO element."] =
   </abbr>
 </action-pane>
 `;
-/* end snapshot do-container looks like the latest snapshot with a SDO element. */
+/* end snapshot looks like the latest snapshot with a SDO element. */
 
-snapshots["do-container looks like the latest snapshot with a SDO element and child elements are toggled."] = 
+snapshots["looks like the latest snapshot with a SDO element and child elements are toggled."] = 
 `<action-pane
   icon=""
   tabindex="0"
 >
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="someSdo"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -117,5 +147,5 @@ snapshots["do-container looks like the latest snapshot with a SDO element and ch
   </do-container>
 </action-pane>
 `;
-/* end snapshot do-container looks like the latest snapshot with a SDO element and child elements are toggled. */
+/* end snapshot looks like the latest snapshot with a SDO element and child elements are toggled. */
 

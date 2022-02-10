@@ -1,22 +1,36 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["da-container looks like the latest snapshot with a DA element"] = 
+snapshots["looks like the latest snapshot with a DA element"] = 
 `<action-pane
   icon=""
   tabindex="0"
 >
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="ctlModel"
+    >
+    </mwc-icon-button>
+  </abbr>
   <h6>
   </h6>
 </action-pane>
 `;
-/* end snapshot da-container looks like the latest snapshot with a DA element */
+/* end snapshot looks like the latest snapshot with a DA element */
 
-snapshots["da-container looks like the latest snapshot with a DA element and child elements are toggled."] = 
+snapshots["looks like the latest snapshot with a DA element and child elements are toggled."] = 
 `<action-pane
   icon=""
   tabindex="0"
 >
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="SBOw"
+    >
+    </mwc-icon-button>
+  </abbr>
   <abbr
     slot="action"
     title="[iededitor.toggleChildElements]"
@@ -45,17 +59,24 @@ snapshots["da-container looks like the latest snapshot with a DA element and chi
   </da-container>
 </action-pane>
 `;
-/* end snapshot da-container looks like the latest snapshot with a DA element and child elements are toggled. */
+/* end snapshot looks like the latest snapshot with a DA element and child elements are toggled. */
 
-snapshots["da-container looks like the latest snapshot with a DA element containing and a DAI."] = 
+snapshots["looks like the latest snapshot with a DA element containing and a DAI."] = 
 `<action-pane
   icon="done"
   tabindex="0"
 >
+  <abbr slot="action">
+    <mwc-icon-button
+      icon="info"
+      title="ctlModel"
+    >
+    </mwc-icon-button>
+  </abbr>
   <h6>
     status-only
   </h6>
 </action-pane>
 `;
-/* end snapshot da-container looks like the latest snapshot with a DA element containing and a DAI. */
+/* end snapshot looks like the latest snapshot with a DA element containing and a DAI. */
 

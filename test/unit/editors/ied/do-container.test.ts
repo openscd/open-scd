@@ -2,10 +2,13 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/ied/do-container.js';
 import { DOContainer } from '../../../../src/editors/ied/do-container.js';
+import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
 
-describe('do-container', () => {
+describe('do-container', async () => {
   let element: DOContainer;
   let validSCL: XMLDocument;
+
+  const nsdoc = await initializeNsdoc();
 
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
@@ -17,6 +20,7 @@ describe('do-container', () => {
     element = await fixture(html`<do-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')}
+      .nsdoc=${nsdoc}
     ></do-container>`);
     expect(element).shadowDom.to.equalSnapshot();
   });
@@ -25,6 +29,7 @@ describe('do-container', () => {
     element = await fixture(html`<do-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="Mod"]')}
+      .nsdoc=${nsdoc}
     ></do-container>`);
 
     (<HTMLElement>(
@@ -46,6 +51,7 @@ describe('do-container', () => {
     element = await fixture(html`<do-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.LLN0.ExtendedMod"] > SDO[name="someSdo"]')}
+      .nsdoc=${nsdoc}
     ></do-container>`);
     expect(element).shadowDom.to.equalSnapshot();
   });
@@ -54,6 +60,7 @@ describe('do-container', () => {
     element = await fixture(html`<do-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.LLN0.ExtendedMod"] > SDO[name="someSdo"]')}
+      .nsdoc=${nsdoc}
     ></do-container>`);
 
     (<HTMLElement>(
@@ -76,6 +83,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="ExtendedMod"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
   
       const nestedDOs = element['getDOElements']();
@@ -88,6 +96,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="Dummy.LLN0.ExtendedMod"] > SDO[name="someOtherSdo"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
   
       const nestedDOs = element['getDOElements']();
@@ -100,6 +109,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="Dummy.LLN0.Mod"] > SDO[name="sdoName2"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
   
       const nestedDOs = element['getDOElements']();
@@ -110,6 +120,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="someSdoType"] > SDO[name="anotherSdo"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
   
       const nestedDOs = element['getDOElements']();
@@ -122,6 +133,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > LNodeType[id="Dummy.LLN0"] > DO[name="ExtendedMod"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
   
       const nestedDOs = element['getDAElements']();
@@ -134,6 +146,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="Dummy.LLN0.Mod"] > SDO[name="sdoName2"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
   
       const nestedDOs = element['getDAElements']();
@@ -144,6 +157,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="Dummy.LLN0.Mod"] > SDO[name="sdoName3"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
   
       const nestedDOs = element['getDOElements']();
@@ -158,6 +172,7 @@ describe('do-container', () => {
           'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
         .instanceElement=${validSCL.querySelector(
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
 
       const sdo = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > SDO[name="anotherPosDo"]')
@@ -174,6 +189,7 @@ describe('do-container', () => {
           'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
         .instanceElement=${validSCL.querySelector(
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
 
       const sdo = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > SDO[name="someQualityThing"]')
@@ -186,6 +202,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
 
       const sdo = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > SDO[name="someQualityThing"]')
@@ -202,6 +219,7 @@ describe('do-container', () => {
           'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
         .instanceElement=${validSCL.querySelector(
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
 
       const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="ctlModel"]')
@@ -218,6 +236,7 @@ describe('do-container', () => {
           'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
         .instanceElement=${validSCL.querySelector(
           'IED[name="IED1"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnClass="CSWI"] > DOI[name="Pos"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
 
       const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]')
@@ -230,6 +249,7 @@ describe('do-container', () => {
       element = await fixture(html`<do-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > LNodeType[id="Dummy.CSWIwithoutCtlModel"] > DO[name="Pos"]')}
+        .nsdoc=${nsdoc}
       ></do-container>`);
 
       const da = validSCL.querySelector('DataTypeTemplates > DOType[id="Dummy.CSWI.Pos2"] > DA[name="d"]')
