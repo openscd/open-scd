@@ -1,20 +1,22 @@
-import { iec6185073, iec6185074, iec6185081 } from "../validators/templates/foundation.js";
+import { iec6185072, iec6185073, iec6185074, iec6185081 } from "../validators/templates/foundation.js";
 
 export interface Nsdoc {
+  nsdoc72?: XMLDocument;
   nsdoc73?: XMLDocument;
   nsdoc74?: XMLDocument;
   nsdoc81?: XMLDocument;
   getDataDescription: (element: Element, ancestors?: Element[]) => { label: string; }
 }
 
-const [nsd73, nsd74, nsd81] = await Promise.all([iec6185073, iec6185074, iec6185081]);
+const [nsd72, nsd73, nsd74, nsd81] = await Promise.all([iec6185072, iec6185073, iec6185074, iec6185081]);
 
 /**
  * Initialize the full Nsdoc object.
  * @returns A fully initialized Nsdoc object for wizards/editors to use.
  */
 export async function initializeNsdoc(): Promise<Nsdoc> {
-  const [nsdoc73, nsdoc74, nsdoc81] = [
+  const [nsdoc72, nsdoc73, nsdoc74, nsdoc81] = [
+    localStorage.getItem('IEC 61850-7-2') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-2')!, 'application/xml') : undefined,
     localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined,
     localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined,
     localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined
@@ -136,15 +138,21 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
     const serviceDataAttr = nsd81.querySelector(`ServiceConstructedAttributes > ServiceConstructedAttribute[name="${daParent!.getAttribute('name')}"]`);
 
     if (serviceDataAttr) {
-      const subDataAttr = serviceDataAttr.querySelector(`SubDataAttribute[name="${bdaElementName}"]`);
+      if (serviceDataAttr.querySelector(`SubDataAttribute[name="${ancestors![0].getAttribute('name')}"]`)?.getAttribute('type') == 'Originator') {
+        const subDataAttr = nsd72.querySelector(`ConstructedAttributes > ConstructedAttribute[name="Originator"] > SubDataAttribute[name="${bdaElementName}"]`);
+        return {
+          label: getNsdocDocumentation(nsdoc72!, subDataAttr?.getAttribute('descID')) ?? bdaElementName
+        };
+      }
       return {
-        label: getNsdocDocumentation(nsdoc81!, subDataAttr?.getAttribute('descID')) ?? bdaElementName
+        label: getNsdocDocumentation(nsdoc81!,
+          serviceDataAttr.querySelector(`SubDataAttribute[name="${bdaElementName}"]`)?.getAttribute('descID')) ?? bdaElementName
       };
     } else {
-      const dataAttrParent = nsd73.querySelector(`NS > CDCs > CDC[name="${daParent!.closest('DOType')?.getAttribute('cdc')}"] > DataAttribute[name="${daParent!.getAttribute('name')}"]`);
-      const subDataAttribute = getSubDataAttribute(dataAttrParent!, bdaElementName);
+      const dataAttrParent = nsd73.querySelector(`NS > CDCs > CDC[name="${daParent!.closest('DOType')?.getAttribute('cdc')}"] >
+        DataAttribute[name="${daParent!.getAttribute('name')}"]`);
       return {
-        label: getNsdocDocumentation(nsdoc73!, subDataAttribute?.getAttribute('descID')) ?? bdaElementName
+        label: getNsdocDocumentation(nsdoc73!, getSubDataAttribute(dataAttrParent!, bdaElementName)?.getAttribute('descID')) ?? bdaElementName
       };
     }
   }
@@ -170,6 +178,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   }
 
   return {
+    nsdoc72: nsdoc72,
     nsdoc73: nsdoc73,
     nsdoc74: nsdoc74,
     nsdoc81: nsdoc81,
