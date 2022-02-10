@@ -24,6 +24,9 @@ export class LNContainer extends LitElement {
   element!: Element;
 
   @property()
+  ancestors!: Element[];
+
+  @property()
   nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
@@ -77,8 +80,9 @@ export class LNContainer extends LitElement {
       ${this.toggleButton?.on ? this.getDOElements().map(dO => html`<do-container
           .element=${dO}
           .instanceElement=${this.getInstanceElement(dO)}
-          .nsdoc=${this.nsdoc}>
-        </do-container>
+          .nsdoc=${this.nsdoc}
+          .ancestors=${[this.element, ...this.ancestors]}
+        ></do-container>
         `) : nothing}
     </action-pane>`;
   }

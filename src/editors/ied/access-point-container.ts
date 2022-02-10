@@ -20,6 +20,9 @@ export class AccessPointContainer extends LitElement {
   element!: Element;
 
   @property()
+  ancestors!: Element[];
+
+  @property()
   nsdoc!: Nsdoc;
 
   private header(): TemplateResult {
@@ -35,6 +38,7 @@ export class AccessPointContainer extends LitElement {
       server => html`<server-container
         .element=${server}
         .nsdoc=${this.nsdoc}
+        .ancestors=${[this.element, ...this.ancestors]}
       ></server-container>`)}
     </action-pane>`;
   }

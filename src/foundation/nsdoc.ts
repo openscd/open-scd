@@ -93,8 +93,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    */
   function getSDODataDescription(element: Element): { label: string; } {
     const sdoName = element.getAttribute('name')!;
-    const cdc =  element.parentElement?.getAttribute('cdc');
-    const subDataObject = nsd73.querySelector(`CDCs > CDC[name="${cdc}"] > SubDataObject[name="${sdoName}"]`);
+    const subDataObject = nsd73.querySelector(`CDCs > CDC[name="${element.parentElement?.getAttribute('cdc')}"] > SubDataObject[name="${sdoName}"]`);
     
     return {
       label: getNsdocDocumentation(nsdoc73!, subDataObject?.getAttribute('descID')) ?? sdoName
@@ -133,24 +132,27 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    */
   function getBDADataDescription(element: Element, ancestors?: Element[]): { label: string; } {
     const bdaElementName = element.getAttribute('name')!;
-    const bdaParent = ancestors![0];
-    const serviceDataAttr = nsd81.querySelector(`ServiceConstructedAttributes > ServiceConstructedAttribute[name="${bdaParent.getAttribute('name')}"]`);
+    const daParent = ancestors?.filter(x => x.tagName === 'DA')[0];
+    const serviceDataAttr = nsd81.querySelector(`ServiceConstructedAttributes > ServiceConstructedAttribute[name="${daParent!.getAttribute('name')}"]`);
 
     if (serviceDataAttr) {
       const subDataAttr = serviceDataAttr.querySelector(`SubDataAttribute[name="${bdaElementName}"]`);
-      
       return {
         label: getNsdocDocumentation(nsdoc81!, subDataAttr?.getAttribute('descID')) ?? bdaElementName
       };
     } else {
-      const cdcName = bdaParent.closest('DOType')?.getAttribute('cdc');
-      const dataAttr = nsd73.querySelector(`NS > CDCs > CDC[name="${cdcName}"] > DataAttribute[name="${bdaParent.getAttribute('name')}"]`)
-      const subDataAttribute = nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${dataAttr?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`);
-
+      const dataAttrParent = nsd73.querySelector(`NS > CDCs > CDC[name="${daParent!.closest('DOType')?.getAttribute('cdc')}"] > DataAttribute[name="${daParent!.getAttribute('name')}"]`);
+      const subDataAttribute = getSubDataAttribute(dataAttrParent!, bdaElementName);
       return {
         label: getNsdocDocumentation(nsdoc73!, subDataAttribute?.getAttribute('descID')) ?? bdaElementName
       };
     }
+  }
+
+  function getSubDataAttribute(parent: Element | undefined, bdaElementName: string): Element | null {
+    if (!parent) return null;
+    const subDataAttr = nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${parent?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`);
+    return subDataAttr ?? getSubDataAttribute(nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${parent?.getAttribute('type')}"] > SubDataAttribute`)!, bdaElementName);
   }
 
   /**

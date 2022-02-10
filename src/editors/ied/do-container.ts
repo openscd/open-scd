@@ -33,6 +33,9 @@ export class DOContainer extends LitElement {
   instanceElement!: Element;
 
   @property()
+  ancestors!: Element[];
+
+  @property()
   nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
@@ -124,14 +127,16 @@ export class DOContainer extends LitElement {
         html`<da-container
           .element=${da}
           .instanceElement=${this.getInstanceDAElement(da)}
-          .nsdoc=${this.nsdoc}>
-        </da-container>`) : nothing}
+          .nsdoc=${this.nsdoc}
+          .ancestors=${[this.element, ...this.ancestors]}
+        ></da-container>`) : nothing}
       ${this.toggleButton?.on ? doElements.map(dO =>
         html`<do-container
           .element=${dO}
           .instanceElement=${this.getInstanceDOElement(dO)}
-          .nsdoc=${this.nsdoc}>
-        </do-container>`) : nothing}
+          .nsdoc=${this.nsdoc}
+          .ancestors=${[this.element, ...this.ancestors]}
+        ></do-container>`) : nothing}
     </action-pane>
     `;
   }

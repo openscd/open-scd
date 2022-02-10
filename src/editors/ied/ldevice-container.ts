@@ -23,6 +23,9 @@ export class LDeviceContainer extends LitElement {
   element!: Element;
 
   @property()
+  ancestors!: Element[];
+
+  @property()
   nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton!: IconButtonToggle | undefined;
@@ -55,6 +58,7 @@ export class LDeviceContainer extends LitElement {
         ${this.toggleButton?.on ? lnElements.map(ln => html`<ln-container
             .element=${ln}
             .nsdoc=${this.nsdoc}
+            .ancestors=${[this.element, ...this.ancestors]}
           ></ln-container>
           `) : nothing}
       </div>
