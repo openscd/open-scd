@@ -20,7 +20,7 @@ export class AccessPointContainer extends LitElement {
   element!: Element;
 
   @property()
-  ancestors!: Element[];
+  ancestors: Element[] = [];
 
   @property()
   nsdoc!: Nsdoc;

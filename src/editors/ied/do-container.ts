@@ -33,7 +33,7 @@ export class DOContainer extends LitElement {
   instanceElement!: Element;
 
   @property()
-  ancestors!: Element[];
+  ancestors: Element[] = [];
 
   @property()
   nsdoc!: Nsdoc;

@@ -36,7 +36,7 @@ export class DAContainer extends LitElement {
   daParent!: Element
 
   @property()
-  ancestors!: Element[];
+  ancestors: Element[] = [];
 
   @property()
   nsdoc!: Nsdoc;
