@@ -36,7 +36,7 @@
 		</VoltageLevel>
 	</Substation>
 	<Communication>
-		<SubNetwork name="StationBus" desc="desc" type="8-MMS">
+		<SubNetwork name="StationBus" type="8-MMS">
 			<BitRate unit="b/s">100.0</BitRate>
 			<ConnectedAP iedName="IED1" apName="P1">
 				<Address>

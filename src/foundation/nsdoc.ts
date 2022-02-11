@@ -1,4 +1,4 @@
-import { iec6185073, iec6185074, iec6185081 } from "../validators/templates/foundation.js";
+import { iec6185072, iec6185073, iec6185074, iec6185081 } from "../validators/templates/foundation.js";
 
 export interface Nsdoc {
   nsdoc73?: XMLDocument;
@@ -7,14 +7,15 @@ export interface Nsdoc {
   getDataDescription: (element: Element, ancestors?: Element[]) => { label: string; }
 }
 
-const [nsd73, nsd74, nsd81] = await Promise.all([iec6185073, iec6185074, iec6185081]);
+const [nsd72, nsd73, nsd74, nsd81] = await Promise.all([iec6185072, iec6185073, iec6185074, iec6185081]);
 
 /**
  * Initialize the full Nsdoc object.
  * @returns A fully initialized Nsdoc object for wizards/editors to use.
  */
 export async function initializeNsdoc(): Promise<Nsdoc> {
-  const [nsdoc73, nsdoc74, nsdoc81] = [
+  const [nsdoc72, nsdoc73, nsdoc74, nsdoc81] = [
+    localStorage.getItem('IEC 61850-7-2') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-2')!, 'application/xml') : undefined,
     localStorage.getItem('IEC 61850-7-3') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-3')!, 'application/xml') : undefined,
     localStorage.getItem('IEC 61850-7-4') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-7-4')!, 'application/xml') : undefined,
     localStorage.getItem('IEC 61850-8-1') ? new DOMParser().parseFromString(localStorage.getItem('IEC 61850-8-1')!, 'application/xml') : undefined
@@ -93,8 +94,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    */
   function getSDODataDescription(element: Element): { label: string; } {
     const sdoName = element.getAttribute('name')!;
-    const cdc =  element.parentElement?.getAttribute('cdc');
-    const subDataObject = nsd73.querySelector(`CDCs > CDC[name="${cdc}"] > SubDataObject[name="${sdoName}"]`);
+    const subDataObject = nsd73.querySelector(`CDCs > CDC[name="${element.parentElement?.getAttribute('cdc')}"] > SubDataObject[name="${sdoName}"]`);
     
     return {
       label: getNsdocDocumentation(nsdoc73!, subDataObject?.getAttribute('descID')) ?? sdoName
@@ -133,24 +133,39 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
    */
   function getBDADataDescription(element: Element, ancestors?: Element[]): { label: string; } {
     const bdaElementName = element.getAttribute('name')!;
-    const bdaParent = ancestors![0];
-    const serviceDataAttr = nsd81.querySelector(`ServiceConstructedAttributes > ServiceConstructedAttribute[name="${bdaParent.getAttribute('name')}"]`);
+    const daParent = ancestors?.filter(x => x.tagName === 'DA')[0];
+    const serviceDataAttr = nsd81.querySelector(`ServiceConstructedAttributes > ServiceConstructedAttribute[name="${daParent!.getAttribute('name')}"]`);
 
     if (serviceDataAttr) {
-      const subDataAttr = serviceDataAttr.querySelector(`SubDataAttribute[name="${bdaElementName}"]`);
-      
+      if (serviceDataAttr.querySelector(`SubDataAttribute[name="${ancestors![0].getAttribute('name')}"]`)?.getAttribute('type') == 'Originator') {
+        const subDataAttr = nsd72.querySelector(`ConstructedAttributes > ConstructedAttribute[name="Originator"] > SubDataAttribute[name="${bdaElementName}"]`);
+        return {
+          label: getNsdocDocumentation(nsdoc72!, subDataAttr?.getAttribute('descID')) ?? bdaElementName
+        };
+      }
       return {
-        label: getNsdocDocumentation(nsdoc81!, subDataAttr?.getAttribute('descID')) ?? bdaElementName
+        label: getNsdocDocumentation(nsdoc81!,
+          serviceDataAttr.querySelector(`SubDataAttribute[name="${bdaElementName}"]`)?.getAttribute('descID')) ?? bdaElementName
       };
     } else {
-      const cdcName = bdaParent.closest('DOType')?.getAttribute('cdc');
-      const dataAttr = nsd73.querySelector(`NS > CDCs > CDC[name="${cdcName}"] > DataAttribute[name="${bdaParent.getAttribute('name')}"]`)
-      const subDataAttribute = nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${dataAttr?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`);
-
+      const dataAttrParent = nsd73.querySelector(`NS > CDCs > CDC[name="${daParent!.closest('DOType')?.getAttribute('cdc')}"] >
+        DataAttribute[name="${daParent!.getAttribute('name')}"]`);
       return {
-        label: getNsdocDocumentation(nsdoc73!, subDataAttribute?.getAttribute('descID')) ?? bdaElementName
+        label: getNsdocDocumentation(nsdoc73!, getSubDataAttribute(dataAttrParent!, bdaElementName)?.getAttribute('descID')) ?? bdaElementName
       };
     }
+  }
+
+  /**
+   * Get the SubDataAttribute from the IEC-61850-7-3.
+   * @param parent - The parent element in which to search for a SubDataAttribute.
+   * @param bdaElementName - The name of the element to search.
+   * @returns A SubDataAttribute, or null.
+   */
+  function getSubDataAttribute(parent: Element | undefined, bdaElementName: string): Element | null {
+    if (!parent) return null;
+    const subDataAttr = nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${parent?.getAttribute('type')}"] > SubDataAttribute[name="${bdaElementName}"]`);
+    return subDataAttr ?? getSubDataAttribute(nsd73.querySelector(`ConstructedAttributes > ConstructedAttribute[name="${parent?.getAttribute('type')}"] > SubDataAttribute`)!, bdaElementName);
   }
 
   /**

@@ -36,6 +36,9 @@ export class DAContainer extends LitElement {
   daParent!: Element
 
   @property()
+  ancestors: Element[] = [];
+
+  @property()
   nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
@@ -92,7 +95,7 @@ export class DAContainer extends LitElement {
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
       <abbr slot="action">
         <mwc-icon-button
-          title=${this.nsdoc.getDataDescription(this.element, [this.daParent]).label}
+          title=${this.nsdoc.getDataDescription(this.element, this.ancestors).label}
           icon="info"
         ></mwc-icon-button>
       </abbr>
@@ -109,8 +112,9 @@ export class DAContainer extends LitElement {
         html`<da-container
           .element=${element}
           .nsdoc=${this.nsdoc}
-          .daParent=${this.daParent ?? this.element}>
-        </da-container>`) : nothing}
+          .daParent=${this.daParent ?? this.element}
+          .ancestors=${[this.element, ...this.ancestors]}
+        ></da-container>`) : nothing}
     </action-pane>
     `;
   }

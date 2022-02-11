@@ -876,9 +876,16 @@ snapshots["open-scd looks like its snapshot"] =
   >
   </mwc-button>
   <mwc-button
+    dialogaction="close"
+    icon=""
+    label="Close"
+    slot="secondaryAction"
+  >
+  </mwc-button>
+  <mwc-button
     icon="library_add"
-    label="Add…"
-    raised=""
+    label="Add custom extension…"
+    outlined=""
     slot="primaryAction"
     trailingicon=""
   >
