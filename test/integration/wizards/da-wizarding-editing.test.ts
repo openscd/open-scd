@@ -8,6 +8,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import TemplatesPlugin from '../../../src/editors/Templates.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
+import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('DA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -123,7 +124,7 @@ describe('DA wizarding editing integration', () => {
     let bTypeSelect: WizardSelect;
     let typeSelect: WizardSelect;
     let valKindSelect: WizardSelect;
-    let valImportSelect: WizardSelect;
+    let valImportSelect: WizardCheckbox;
     let fcSelect: WizardSelect;
     let primayAction: HTMLElement;
 
@@ -159,9 +160,9 @@ describe('DA wizarding editing integration', () => {
       valKindSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="valKind"]')
       );
-      valImportSelect = <WizardSelect>(
+      valImportSelect = <WizardCheckbox>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-select[label="valImport"]'
+          'wizard-checkbox[label="valImport"]'
         )
       );
       fcSelect = <WizardSelect>(
@@ -217,7 +218,7 @@ describe('DA wizarding editing integration', () => {
       valKindSelect.nullable = false;
       valKindSelect.value = 'RO';
       valImportSelect.nullable = false;
-      valImportSelect.value = 'true';
+      valImportSelect.maybeValue = 'true';
       fcSelect.value = 'ST';
 
       await parent.requestUpdate();

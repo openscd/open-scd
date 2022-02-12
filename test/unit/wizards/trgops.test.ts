@@ -58,7 +58,7 @@ describe('Wizards for SCL TrgOps element', () => {
 
     it('updates the TrgOps element with changed dchg attribute', async () => {
       const input = <WizardSelect>inputs[0];
-      input.value = 'false';
+      input.maybeValue = 'false';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -76,7 +76,7 @@ describe('Wizards for SCL TrgOps element', () => {
     it('updates the TrgOps element with changed qchg attribute', async () => {
       const input = <WizardSelect>inputs[1];
       input.nullSwitch?.click();
-      input.value = 'false';
+      input.maybeValue = 'false';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -94,7 +94,7 @@ describe('Wizards for SCL TrgOps element', () => {
     it('updates the TrgOps element with changed dupd attribute', async () => {
       const input = <WizardSelect>inputs[2];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -111,7 +111,7 @@ describe('Wizards for SCL TrgOps element', () => {
 
     it('updates the TrgOps element with changed gi attribute', async () => {
       const input = <WizardSelect>inputs[4];
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -129,7 +129,7 @@ describe('Wizards for SCL TrgOps element', () => {
     it('updates the TrgOps element with changed period attribute', async () => {
       const input = <WizardSelect>inputs[3];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();

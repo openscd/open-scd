@@ -8,6 +8,7 @@ import AceEditor from 'ace-custom-element';
 
 import { WizardTextField } from './wizard-textfield.js';
 import { WizardSelect } from './wizard-select.js';
+import { WizardCheckbox } from './wizard-checkbox.js';
 
 export type SimpleAction = Create | Update | Delete | Move;
 export type ComplexAction = {
@@ -133,7 +134,7 @@ export function newActionEvent<T extends EditorAction>(
 }
 
 export const wizardInputSelector =
-  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select';
+  'wizard-textfield, mwc-textfield, ace-editor, mwc-select,wizard-select, wizard-checkbox';
 export type WizardInput =
   | WizardTextField
   | TextField
@@ -173,7 +174,11 @@ export function reportValidity(input: WizardInput): boolean {
 
 /** @returns the `value` or `maybeValue` of `input` depending on type. */
 export function getValue(input: WizardInput): string | null {
-  if (input instanceof WizardTextField || input instanceof WizardSelect)
+  if (
+    input instanceof WizardTextField ||
+    input instanceof WizardSelect ||
+    input instanceof WizardCheckbox
+  )
     return input.maybeValue;
   else return input.value ?? null;
 }

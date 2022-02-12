@@ -9,6 +9,7 @@ import { Select } from '@material/mwc-select';
 import { FilteredList } from '../../../../src/filtered-list.js';
 import TemplatesPlugin from '../../../../src/editors/Templates.js';
 import { WizardTextField } from '../../../../src/wizard-textfield.js';
+import { WizardCheckbox } from '../../../../src/wizard-checkbox.js';
 
 describe('LNodeType wizards', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -359,7 +360,7 @@ describe('LNodeType wizards', () => {
     let descField: WizardTextField;
     let typeSelect: Select;
     let accessControlField: WizardTextField;
-    let transientSelect: Select;
+    let transientSelect: WizardCheckbox;
     let primaryAction: HTMLElement;
     let deleteButton: HTMLElement;
 
@@ -391,8 +392,10 @@ describe('LNodeType wizards', () => {
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
       );
-      transientSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
+      transientSelect = <WizardCheckbox>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="transient"]'
+        )
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -431,7 +434,7 @@ describe('LNodeType wizards', () => {
       typeSelect.value = 'Dummy.CMV';
       accessControlField.nullable = false;
       accessControlField.maybeValue = 'myAccessControl';
-      transientSelect.value = 'true';
+      transientSelect.maybeValue = 'true';
 
       await parent.requestUpdate();
       primaryAction.click();
@@ -481,7 +484,7 @@ describe('LNodeType wizards', () => {
     let descField: WizardTextField;
     let typeSelect: Select;
     let accessControlField: WizardTextField;
-    let transientSelect: Select;
+    let transientSelect: WizardCheckbox;
     let primaryAction: HTMLElement;
 
     beforeEach(async () => {
@@ -512,8 +515,10 @@ describe('LNodeType wizards', () => {
       typeSelect = <Select>(
         parent.wizardUI.dialog?.querySelector('mwc-select[label="type"]')
       );
-      transientSelect = <Select>(
-        parent.wizardUI.dialog?.querySelector('mwc-select[label="transient"]')
+      transientSelect = <WizardCheckbox>(
+        parent.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="transient"]'
+        )
       );
       primaryAction = <HTMLElement>(
         parent.wizardUI.dialog?.querySelector(
@@ -551,7 +556,7 @@ describe('LNodeType wizards', () => {
       typeSelect.value = 'Dummy.CMV';
       accessControlField.nullable = false;
       accessControlField.maybeValue = 'myAccessControl';
-      transientSelect.value = 'true';
+      transientSelect.maybeValue = 'true';
 
       await parent.requestUpdate();
       primaryAction.click();

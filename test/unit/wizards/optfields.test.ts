@@ -58,7 +58,7 @@ describe('Wizards for SCL OptFields element', () => {
 
     it('update the OptFields element with changed dataSet attribute', async () => {
       const input = <WizardSelect>inputs[2];
-      input.value = 'false';
+      input.maybeValue = 'false';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -93,7 +93,7 @@ describe('Wizards for SCL OptFields element', () => {
     it('updates the OptFields element with changed seqNum attribute', async () => {
       const input = <WizardSelect>inputs[0];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -111,7 +111,7 @@ describe('Wizards for SCL OptFields element', () => {
     it('updates the OptFields element with changed timeStamp attribute', async () => {
       const input = <WizardSelect>inputs[1];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -129,7 +129,7 @@ describe('Wizards for SCL OptFields element', () => {
     it('updates the OptFields element with changed reasonCode attribute', async () => {
       const input = <WizardSelect>inputs[3];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -147,7 +147,7 @@ describe('Wizards for SCL OptFields element', () => {
     it('updates the OptFields element with changed dataRef attribute', async () => {
       const input = <WizardSelect>inputs[4];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -165,7 +165,7 @@ describe('Wizards for SCL OptFields element', () => {
     it('updates the OptFields element with changed entryID attribute', async () => {
       const input = <WizardSelect>inputs[5];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -183,7 +183,7 @@ describe('Wizards for SCL OptFields element', () => {
     it('updates the OptFields element with changed configRef attribute', async () => {
       const input = <WizardSelect>inputs[6];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
 
       primaryAction.click();
@@ -200,7 +200,7 @@ describe('Wizards for SCL OptFields element', () => {
 
     it('updates the OptFields element with changed bufOvfl attribute', async () => {
       const input = <WizardSelect>inputs[7];
-      input.value = 'false';
+      input.maybeValue = 'false';
       await input.requestUpdate();
 
       primaryAction.click();
