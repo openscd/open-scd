@@ -105,19 +105,6 @@ export function addReferencedDataTypes(
   return actions;
 }
 
-export function buildListFromStringArray(
-  list: (string | null)[],
-  selected: string | null
-): TemplateResult[] {
-  return list.map(
-    item => html`<mwc-list-item
-      value=${ifDefined(item === null ? undefined : item)}
-      ?selected=${item === selected}
-      >${item}</mwc-list-item
-    >`
-  );
-}
-
 /** Common `CSS` styles used by DataTypeTemplate subeditors */
 export const styles = css`
   :host(.moving) section {
