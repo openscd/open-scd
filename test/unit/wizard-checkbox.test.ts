@@ -9,7 +9,7 @@ describe('wizard-textfield', () => {
     element = await fixture(html`<wizard-checkbox></wizard-checkbox>`);
   });
 
-  describe('per default', () => {
+  describe('with no attribute set', () => {
     it('does not render a null value switch', () =>
       expect(element.nullSwitch).to.not.exist);
 
@@ -23,7 +23,7 @@ describe('wizard-textfield', () => {
       expect(element).to.have.property('maybeValue', 'true');
     });
 
-    it('is un-checked for invalid maybaChecked input', () => {
+    it('is un-checked for invalid maybeValue input', () => {
       element.maybeValue = 'someinvalidinput';
       expect(element.checkbox).to.have.property('checked', false);
     });
@@ -52,7 +52,7 @@ describe('wizard-textfield', () => {
       expect(element).to.have.property('disabled', true);
     });
 
-    it('remebers its previous value on switch toggle', async () => {
+    it('remembers its previous value on switch toggle', async () => {
       element.maybeValue = 'true';
       await element.updateComplete;
       element.nullSwitch!.click();

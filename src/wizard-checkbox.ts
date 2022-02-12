@@ -14,21 +14,21 @@ import '@material/mwc-checkbox';
 import { Checkbox } from '@material/mwc-checkbox';
 import { Switch } from '@material/mwc-switch';
 
-/** A potentially `nullable` `Checkbox`. */
+/** A potentially `nullable` labelled checkbox. */
 @customElement('wizard-checkbox')
 export class WizardCheckbox extends LitElement {
   @property({ type: String })
   label = '';
-  /** Additional information rendered to the formfield: `label (helper)`*/
+  /** Parenthetical information rendered after the label: `label (helper)` */
   @property({ type: String })
   helper = '';
   /** Whether [[`maybeValue`]] may be `null` */
   @property({ type: Boolean })
   nullable = false;
-  /** The default `checked` displayed if [[`maybeValue`]] is `null`. */
+  /** The default `checked` state while [[`maybeValue`]] is `null`. */
   @property({ type: Boolean })
   defaultChecked = false;
-  /** Reflects `checked` attribute of `mwc-checkbox`. Can be `null` if [[`nullable`]]. */
+  /** Is `"true"` when checked, `"false"` un-checked, `null` if [[`nullable`]]. */
   @property({ type: String })
   get maybeValue(): string | null {
     return this.null ? null : this.checked ? 'true' : 'false';
@@ -112,7 +112,11 @@ export class WizardCheckbox extends LitElement {
     return html`
       <div style="display: flex; flex-direction: row;">
         <div style="flex: auto;">
-          <mwc-formfield label="${this.formfieldLabel}"
+          <mwc-formfield
+            label="${this.formfieldLabel}"
+            style="${this.disabled
+              ? `--mdc-theme-text-primary-on-background:rgba(0, 0, 0, 0.38)`
+              : ``}"
             ><mwc-checkbox
               ?checked=${this.initChecked}
               ?disabled=${this.disabled}
