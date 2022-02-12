@@ -10,6 +10,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { Select } from '@material/mwc-select';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
+import '../../wizard-checkbox.js';
 import '../../wizard-textfield.js';
 import '../../wizard-select.js';
 import {
@@ -33,7 +34,6 @@ import { WizardSelect } from '../../wizard-select.js';
 import {
   addReferencedDataTypes,
   allDataTypeSelector,
-  buildListFromStringArray,
   CreateOptions,
   unifyCreateActionArray,
   UpdateOptions,
@@ -127,7 +127,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
     name,
     desc,
     accessControl,
-    transientList,
+    transient,
   ] = DO
     ? [
         get('do.wizard.title.edit'),
@@ -154,10 +154,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         DO.getAttribute('name'),
         DO.getAttribute('desc'),
         DO.getAttribute('accessControl'),
-        buildListFromStringArray(
-          [null, 'true', 'false'],
-          DO.getAttribute('transient')
-        ),
+        DO.getAttribute('transient'),
       ]
     : [
         get('do.wizard.title.add'),
@@ -167,7 +164,7 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
         '',
         null,
         null,
-        buildListFromStringArray([null, 'true', 'false'], null),
+        null,
       ];
 
   const types = Array.from(doc.querySelectorAll('DOType'))
@@ -219,12 +216,12 @@ function dOWizard(options: WizardOptions): Wizard | undefined {
           nullable
           pattern="${patterns.normalizedString}"
         ></wizard-textfield>`,
-        html`<mwc-select
-          fixedMenuPosition
+        html`<wizard-checkbox
           label="transient"
+          .maybeValue="${transient}"
           helper="${translate('scl.transient')}"
-          >${transientList}</mwc-select
-        >`,
+          nullable
+        ></wizard-checkbox>`,
       ],
     },
   ];
@@ -335,7 +332,7 @@ function createLNodeTypeHelperWizard(
           .maybeValue=${null}
           >${validDOTypes.map(
             doType =>
-              html`<mwc-list-item value="${doType.getAttribute('id')}"
+              html`<mwc-list-item value="${doType.getAttribute('id')!}"
                 >${doType.getAttribute('id')}</mwc-list-item
               >`
           )}</wizard-select

@@ -3973,39 +3973,12 @@ snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
-    <mwc-select
-      fixedmenuposition=""
+    <wizard-checkbox
       helper="[scl.transient]"
       label="transient"
+      nullable=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        aria-selected="true"
-        mwc-list-item=""
-        role="option"
-        selected=""
-        tabindex="0"
-      >
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </mwc-select>
+    </wizard-checkbox>
   </div>
   <mwc-button
     dialogaction="close"
