@@ -25,30 +25,11 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that look
       nullable=""
     >
     </wizard-textfield>
-    <wizard-select
+    <wizard-checkbox
       disabled=""
-      helper="[scl.buffered]"
       label="buffered"
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-textfield
       helper="[scl.id]"
       label="rptID"
@@ -56,31 +37,11 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that look
       validationmessage="[textfield.nonempty]"
     >
     </wizard-textfield>
-    <wizard-select
-      helper="[scl.indexed]"
+    <wizard-checkbox
       label="indexed"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-textfield
       helper="[scl.maxReport]"
       label="max Clients"
