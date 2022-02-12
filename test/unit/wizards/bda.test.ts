@@ -137,7 +137,7 @@ describe('bda wizards', () => {
     it('update a BDA element when valImport attribute changed', async () => {
       const input = <WizardTextField>inputs[6];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateBDaAction(bda);
       const updateActions = editorAction(inputs, newWizard());
