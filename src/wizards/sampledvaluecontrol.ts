@@ -7,6 +7,7 @@ import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../filtered-list.js';
+import '../wizard-checkbox.js';
 import '../wizard-select.js';
 import '../wizard-textfield.js';
 import {
@@ -74,16 +75,12 @@ function contentSampledValueControlWizard(
       pattern="${patterns.normalizedString}"
       helper="${translate('scl.desc')}"
     ></wizard-textfield>`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="multicast"
       .maybeValue=${options.multicast}
       helper="${translate('scl.multicast')}"
       disabled
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
     html`<wizard-textfield
       label="smvID"
       .maybeValue=${options.smvID}
