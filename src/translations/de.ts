@@ -50,6 +50,11 @@ export const de: Translations = {
     entryID: 'Entry ID mitschicken',
     configRef: 'Konfigurations-Revision mitschicken',
     bufOvfl: 'Überlauf des internen Speichers signalisieren',
+    indexed: 'Mehrere Instanzen möglich',
+    buffered: 'Gepufferter Report',
+    maxReport: 'Anzahl Instanzen',
+    bufTime: 'Min. Intervall zwischen zwei Reports',
+    intgPd: 'Intervall zwischen zwei periodischen Reports',
   },
   settings: {
     title: 'Einstellungen',
@@ -60,7 +65,8 @@ export const de: Translations = {
     showieds: 'Zeige IEDs im Substation-Editor',
     selectFileButton: 'Datei auswählen',
     loadNsdTranslations: 'NSDoc-Dateien hochladen',
-    invalidFileNoIdFound: 'Ungültiges NSDoc; kein \'id\'-Attribut in der Datei gefunden'
+    invalidFileNoIdFound:
+      "Ungültiges NSDoc; kein 'id'-Attribut in der Datei gefunden",
   },
   menu: {
     new: 'Neues projekt',
@@ -449,6 +455,13 @@ export const de: Translations = {
       xCoordinateHelper: 'X-Koordinate im Einphasenersatzschaltbild',
       yCoordinateHelper: 'Y-Koordinate im Einphasenersatzschaltbild',
     },
+  },
+  dataset: {
+    fcda: { add: 'Daten-Attribute hinzufügen' },
+    fcd: { add: 'Daten-Objekte hinzufügen' },
+  },
+  report: {
+    wizard: { location: 'Ablageort der Reports wählen' },
   },
   add: 'Hinzufügen',
   new: 'Neu',

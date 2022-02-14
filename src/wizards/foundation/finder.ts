@@ -32,6 +32,28 @@ function getReader(
   };
 }
 
+function getLNorLN0(parent: Element): Element[] {
+  if (parent.tagName === 'SCL')
+    return Array.from(parent.querySelectorAll('IED')).filter(isPublic);
+
+  if (parent.tagName === 'IED')
+    return Array.from(parent.querySelectorAll('LDevice')).filter(isPublic);
+
+  if (parent.tagName === 'LDevice')
+    return Array.from(parent.querySelectorAll('LN0,LN')).filter(isPublic);
+
+  return [];
+}
+
+export function logicalNodePicker(doc: XMLDocument): TemplateResult {
+  return html`<finder-list
+    path="${JSON.stringify(['SCL: '])}"
+    .read=${getReader(doc.querySelector('SCL')!, getLNorLN0)}
+    .getDisplayString=${getDisplayString}
+    .getTitle=${(path: string[]) => path[path.length - 1]}
+  ></finder-list>`;
+}
+
 export function getDataModelChildren(parent: Element): Element[] {
   if (['LDevice', 'Server'].includes(parent.tagName))
     return Array.from(parent.children).filter(

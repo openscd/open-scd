@@ -28,11 +28,297 @@ import {
   WizardActor,
   WizardInput,
   Delete,
+  getUniqueElementName,
 } from '../foundation.js';
+import { FinderList } from '../finder-list.js';
+import { dataAttributePicker, logicalNodePicker } from './foundation/finder.js';
 import { maxLength, patterns } from './foundation/limits.js';
-import { editTrgOpsWizard } from './trgops.js';
-import { editOptFieldsWizard } from './optfields.js';
 import { editDataSetWizard } from './dataset.js';
+import { newFCDA } from './fcda.js';
+import { contentOptFieldsWizard, editOptFieldsWizard } from './optfields.js';
+import { contentTrgOpsWizard, editTrgOpsWizard } from './trgops.js';
+
+interface ContentOptions {
+  name: string | null;
+  desc: string | null;
+  buffered: string | null;
+  rptID: string | null;
+  indexed: string | null;
+  max: string | null;
+  bufTime: string | null;
+  intgPd: string | null;
+}
+
+function contentReportControlWizard(options: ContentOptions): TemplateResult[] {
+  return [
+    html`<wizard-textfield
+      label="name"
+      .maybeValue=${options.name}
+      helper="${translate('scl.name')}"
+      required
+      validationMessage="${translate('textfield.required')}"
+      pattern="${patterns.asciName}"
+      maxLength="${maxLength.cbName}"
+      dialogInitialFocus
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+      label="desc"
+      .maybeValue=${options.desc}
+      nullable
+      helper="${translate('scl.desc')}"
+    ></wizard-textfield>`,
+    html`<wizard-checkbox
+      label="buffered"
+      .maybeValue=${options.buffered}
+      helper="${translate('scl.buffered')}"
+    ></wizard-checkbox>`,
+    html`<wizard-textfield
+      label="rptID"
+      .maybeValue=${options.rptID}
+      helper="${translate('scl.id')}"
+    ></wizard-textfield>`,
+    html`<wizard-checkbox
+      label="indexed"
+      .maybeValue=${options.indexed}
+      nullable
+      helper="${translate('scl.indexed')}"
+    ></wizard-checkbox>`,
+    html`<wizard-textfield
+      label="max Clients"
+      .maybeValue=${options.max}
+      helper="${translate('scl.maxReport')}"
+      nullable
+      type="number"
+      suffix="#"
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+      label="bufTime"
+      .maybeValue=${options.bufTime}
+      helper="${translate('scl.bufTime')}"
+      nullable
+      required
+      type="number"
+      min="0"
+      suffix="ms"
+    ></wizard-textfield>`,
+    html`<wizard-textfield
+      label="intgPd"
+      .maybeValue=${options.intgPd}
+      helper="${translate('scl.intgPd')}"
+      nullable
+      required
+      type="number"
+      min="0"
+      suffix="ms"
+    ></wizard-textfield>`,
+  ];
+}
+
+function createReportControlAction(parent: Element): WizardActor {
+  return (inputs: WizardInput[], wizard: Element) => {
+    // create ReportControl element
+    const reportControlAttrs: Record<string, string | null> = {};
+    const reportKeys = [
+      'name',
+      'desc',
+      'buffered',
+      'rptID',
+      'indexed',
+      'bufTime',
+      'intgPd',
+    ];
+    reportKeys.forEach(key => {
+      reportControlAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+
+    const dataSetName = reportControlAttrs.name + 'sDataSet';
+    reportControlAttrs['datSet'] = dataSetName;
+
+    const reportControl = createElement(
+      parent.ownerDocument,
+      'ReportControl',
+      reportControlAttrs
+    );
+
+    // create OptFields child element
+    const optFieldsAttrs: Record<string, string | null> = {};
+    const optFieldKeys = [
+      'seqNum',
+      'timeStamp',
+      'dataSet',
+      'reasonCode',
+      'dataRef',
+      'entryID',
+      'configRef',
+      'bufOvfl',
+    ];
+    optFieldKeys.forEach(key => {
+      optFieldsAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+    const optFields = createElement(
+      parent.ownerDocument,
+      'OptFields',
+      optFieldsAttrs
+    );
+
+    // create TrgOps child element
+    const trgOpsAttrs: Record<string, string | null> = {};
+    const trgOpKeys = ['dchg', 'qchg', 'dupd', 'period', 'gi'];
+    trgOpKeys.forEach(key => {
+      trgOpsAttrs[key] = getValue(inputs.find(i => i.label === key)!);
+    });
+    const trgOps = createElement(parent.ownerDocument, 'TrgOps', trgOpsAttrs);
+
+    // create RptEnabled element
+    const max = getValue(inputs.find(i => i.label === 'max Clients')!);
+    const rptEnabled = max
+      ? createElement(parent.ownerDocument, 'RptEnabled', {
+          max,
+        })
+      : null;
+
+    // add all three child elements to ReportControl
+    reportControl.appendChild(trgOps);
+    reportControl.appendChild(optFields);
+    if (rptEnabled) reportControl.appendChild(rptEnabled);
+
+    //add empty dataset that can be filled later
+    const dataSet = createElement(parent.ownerDocument, 'DataSet', {
+      name: dataSetName,
+    });
+    const finder = wizard.shadowRoot!.querySelector<FinderList>('finder-list');
+    const paths = finder?.paths ?? [];
+
+    for (const path of paths) {
+      const element = newFCDA(parent, path);
+
+      if (!element) continue;
+
+      dataSet.appendChild(element);
+    }
+
+    const complexAction = {
+      title: 'Create ReportControl',
+      actions: [
+        { new: { parent, element: reportControl } },
+        { new: { parent, element: dataSet } },
+      ],
+    };
+    return [complexAction];
+  };
+}
+
+export function createReportControlWizard(parent: Element): Wizard {
+  const server = parent.closest('Server');
+
+  const name = getUniqueElementName(parent, 'ReportControl');
+  const desc = null;
+  const buffered = 'true';
+  const rptID = '';
+  const indexed = 'true';
+  const max = '5';
+  const bufTime = '100';
+  const intgPd = '1000';
+
+  const dchg = 'true';
+  const qchg = 'true';
+  const dupd = 'true';
+  const period = 'true';
+  const gi = 'false';
+
+  const seqNum = 'true';
+  const timeStamp = 'true';
+  const dataSet = 'true';
+  const reasonCode = 'true';
+  const dataRef = 'true';
+  const entryID = 'true';
+  const configRef = 'true';
+  const bufOvfl = 'true';
+
+  return [
+    {
+      initial: parent.tagName === 'LN0' ? true : false,
+      title: get('wizard.title.add', { tagName: 'ReportControl' }),
+      content: contentReportControlWizard({
+        name,
+        desc,
+        buffered,
+        rptID,
+        indexed,
+        max,
+        bufTime,
+        intgPd,
+      }),
+    },
+    {
+      title: get('scl.TrgOps'),
+      content: contentTrgOpsWizard({ dchg, qchg, dupd, period, gi }),
+    },
+    {
+      title: get('scl.OptFields'),
+      content: contentOptFieldsWizard({
+        seqNum,
+        timeStamp,
+        dataSet,
+        reasonCode,
+        dataRef,
+        entryID,
+        configRef,
+        bufOvfl,
+      }),
+    },
+    {
+      title: get('dataset.fcda.add'),
+      primary: {
+        icon: 'save',
+        label: get('save'),
+        action: createReportControlAction(parent),
+      },
+
+      content: [server ? dataAttributePicker(server) : html``],
+    },
+  ];
+}
+
+function openControlBlock(doc: XMLDocument): WizardActor {
+  return (_: WizardInput[], wizard: Element) => {
+    const finder = wizard.shadowRoot?.querySelector<FinderList>('finder-list');
+    const path = finder?.path ?? [];
+
+    if (path.length === 0) return [];
+
+    const [tagName, id] = path.pop()!.split(': ');
+    if (tagName !== 'LN0' && tagName !== 'LN') return [];
+
+    const lNorLN0 = doc.querySelector(selector(tagName, id));
+    if (!lNorLN0) return [];
+
+    return [() => createReportControlWizard(lNorLN0)];
+  };
+}
+
+export function controlBlockLocationSelector(doc: XMLDocument): Wizard {
+  return [
+    {
+      title: get('report.wizard.location'),
+      primary: {
+        icon: '',
+        label: get('next'),
+        action: openControlBlock(doc),
+      },
+      content: [logicalNodePicker(doc)],
+    },
+  ];
+}
+
+function triggerReportControlCreate(parent: Element | Element): WizardActor {
+  return () => {
+    if (parent.tagName === 'IED')
+      return [() => createReportControlWizard(parent)];
+
+    return [() => controlBlockLocationSelector(parent.ownerDocument)];
+  };
+}
 
 export function removeReportControlAction(element: Element): Delete[] {
   if (!element.parentElement) return [];
@@ -144,85 +430,6 @@ function updateReportControlAction(element: Element): WizardActor {
   };
 }
 
-interface RenderOptions {
-  name: string | null;
-  desc: string | null;
-  buffered: string | null;
-  rptID: string | null;
-  indexed: string | null;
-  max: string | null;
-  bufTime: string | null;
-  intgPd: string | null;
-}
-
-function renderReportControlWizardInputs(
-  options: RenderOptions
-): TemplateResult[] {
-  return [
-    html`<wizard-textfield
-      label="name"
-      .maybeValue=${options.name}
-      helper="${translate('scl.name')}"
-      required
-      validationMessage="${translate('textfield.required')}"
-      pattern="${patterns.asciName}"
-      maxLength="${maxLength.cbName}"
-      dialogInitialFocus
-    ></wizard-textfield>`,
-    html`<wizard-textfield
-      label="desc"
-      .maybeValue=${options.desc}
-      nullable
-      helper="${translate('scl.desc')}"
-    ></wizard-textfield>`,
-    html`<wizard-checkbox
-      label="buffered"
-      .maybeValue=${options.buffered}
-      disabled
-    ></wizard-checkbox>`,
-    html`<wizard-textfield
-      label="rptID"
-      .maybeValue=${options.rptID}
-      helper="${translate('scl.id')}"
-      required
-      validationMessage="${translate('textfield.nonempty')}"
-    ></wizard-textfield>`,
-    html`<wizard-checkbox
-      label="indexed"
-      .maybeValue=${options.indexed}
-      nullable
-    ></wizard-checkbox>`,
-    html`<wizard-textfield
-      label="max Clients"
-      .maybeValue=${options.max}
-      helper="${translate('scl.maxReport')}"
-      nullable
-      type="number"
-      suffix="ms"
-    ></wizard-textfield>`,
-    html`<wizard-textfield
-      label="bufTime"
-      .maybeValue=${options.bufTime}
-      helper="${translate('scl.bufTime')}"
-      nullable
-      required
-      type="number"
-      min="0"
-      suffix="ms"
-    ></wizard-textfield>`,
-    html`<wizard-textfield
-      label="intgPd"
-      .maybeValue=${options.intgPd}
-      helper="${translate('scl.intgPd')}"
-      nullable
-      required
-      type="number"
-      min="0"
-      suffix="ms"
-    ></wizard-textfield>`,
-  ];
-}
-
 export function editReportControlWizard(element: Element): Wizard {
   const name = element.getAttribute('name');
   const desc = element.getAttribute('desc');
@@ -251,7 +458,7 @@ export function editReportControlWizard(element: Element): Wizard {
         action: updateReportControlAction(element),
       },
       content: [
-        ...renderReportControlWizardInputs({
+        ...contentReportControlWizard({
           name,
           desc,
           buffered,
@@ -321,6 +528,11 @@ export function selectReportControlWizard(element: Element): Wizard {
   return [
     {
       title: get('wizard.title.select', { tagName: 'ReportControl' }),
+      primary: {
+        icon: 'add',
+        label: get('Report'),
+        action: triggerReportControlCreate(element),
+      },
       content: [
         html`<filtered-list
           @selected=${(e: SingleSelectedEvent) => {

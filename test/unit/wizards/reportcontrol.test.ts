@@ -6,19 +6,25 @@ import '../../mock-wizard.js';
 import { MockWizard } from '../../mock-wizard.js';
 
 import {
+  ComplexAction,
+  Create,
   isCreate,
   isDelete,
+  isSimple,
   isUpdate,
   Update,
   WizardInput,
 } from '../../../src/foundation.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
+  controlBlockLocationSelector,
+  createReportControlWizard,
   editReportControlWizard,
   removeReportControlAction,
   selectReportControlWizard,
 } from '../../../src/wizards/reportcontrol.js';
 import { inverseRegExp, regExp, regexString } from '../../foundation.js';
+import { FinderList } from '../../../src/finder-list.js';
 
 describe('Wizards for SCL ReportControl element', () => {
   let doc: XMLDocument;
@@ -407,6 +413,189 @@ describe('Wizards for SCL ReportControl element', () => {
   describe('define a select wizard that', () => {
     beforeEach(async () => {
       const wizard = selectReportControlWizard(doc.documentElement);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+    });
+
+    it('looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialog).dom.to.equalSnapshot();
+    }).timeout(5000);
+  });
+
+  describe('define an create wizard that', () => {
+    let dataPicker: FinderList;
+
+    beforeEach(async () => {
+      const wizard = createReportControlWizard(doc.querySelector('LN0')!);
+      element.workflow.push(() => wizard);
+      await element.requestUpdate();
+
+      inputs = Array.from(element.wizardUI.inputs);
+
+      primaryAction = <HTMLElement>(
+        element.wizardUI.dialogs[3]?.querySelector(
+          'mwc-button[slot="primaryAction"]'
+        )
+      );
+
+      dataPicker = <FinderList>(
+        element.wizardUI.dialogs[3]?.querySelector('finder-list')
+      );
+
+      await element.wizardUI.requestUpdate(); // make sure wizard is rendered
+    });
+
+    it('has four pages', () =>
+      expect(element.wizardUI.dialogs.length).to.equal(4));
+
+    it('the first page looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialogs[0]).dom.to.equalSnapshot();
+    }).timeout(5000);
+
+    it('the second page looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialogs[1]).dom.to.equalSnapshot();
+    }).timeout(5000);
+
+    it('the third page looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialogs[2]).dom.to.equalSnapshot();
+    }).timeout(5000);
+
+    it('the forth page looks like the latest snapshot', async () => {
+      await expect(element.wizardUI.dialogs[3]).dom.to.equalSnapshot();
+    }).timeout(5000);
+
+    it('triggers complex action on primary action click', async () => {
+      await primaryAction.click();
+
+      expect(actionEvent).to.be.calledOnce;
+      const action = actionEvent.args[0][0].detail.action;
+      expect(action).to.not.satisfy(isSimple);
+    });
+
+    it('complex action carries ReportControl element', async () => {
+      await primaryAction.click();
+
+      const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+        .actions;
+      expect(actions.length).to.equal(2);
+      const action = actions[0];
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      expect(createAction.new.element.tagName).to.equal('ReportControl');
+    });
+
+    it('complex action carries referenced DataSet element', async () => {
+      await primaryAction.click();
+
+      const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+        .actions;
+      expect(actions.length).to.equal(2);
+      const action = actions[1];
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      expect(createAction.new.element.tagName).to.equal('DataSet');
+    });
+
+    it('referenced DataSet element not having any FCDA per default', async () => {
+      await primaryAction.click();
+
+      const createAction = <Create>(
+        (<ComplexAction>actionEvent.args[0][0].detail.action).actions[1]
+      );
+      expect(createAction.new.element.children).to.be.empty;
+    });
+
+    it('referenced DataSet element saving selected FCDA', async () => {
+      const path = [
+        'Server: IED2>P1',
+        'LDevice: IED2>>CircuitBreaker_CB1',
+        'LN0: IED2>>CircuitBreaker_CB1',
+        'DO: #Dummy.LLN0>Beh',
+        'DA: #Dummy.LLN0.Beh>stVal',
+      ];
+
+      dataPicker.paths = [path];
+      await element.requestUpdate();
+
+      await primaryAction.click();
+
+      const createAction = <Create>(
+        (<ComplexAction>actionEvent.args[0][0].detail.action).actions[1]
+      );
+      expect(createAction.new.element.children).to.not.be.empty;
+      expect(createAction.new.element.children).to.have.lengthOf(1);
+    });
+
+    it('complex action adding OptField element as child element', async () => {
+      await primaryAction.click();
+
+      const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+        .actions;
+      expect(actions.length).to.equal(2);
+      const action = actions[0];
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      const optFields = createAction.new.element.querySelector('OptFields');
+      expect(optFields).to.exist;
+      expect(optFields).to.have.attribute('seqNum', 'true');
+    });
+
+    it('complex action adding TrgOps element as child element', async () => {
+      await primaryAction.click();
+
+      const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+        .actions;
+      expect(actions.length).to.equal(2);
+      const action = actions[0];
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      const trgOps = createAction.new.element.querySelector('TrgOps');
+      expect(trgOps).to.exist;
+      expect(trgOps).to.have.attribute('dchg', 'true');
+      expect(trgOps).to.have.attribute('gi', 'false');
+    });
+
+    it('complex action adding RptEnabled element as child element with non nulled max Client', async () => {
+      await primaryAction.click();
+
+      const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+        .actions;
+      expect(actions.length).to.equal(2);
+      const action = actions[0];
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      const rptEnabled = createAction.new.element.querySelector('RptEnabled');
+      expect(rptEnabled).to.exist;
+      expect(rptEnabled).to.have.attribute('max', '5');
+    });
+
+    it('complex action adding RptEnabled element as child element with nulled max Client', async () => {
+      const max = <WizardTextField>(
+        element.wizardUI.dialogs[0].querySelector(
+          'wizard-textfield[label="max Clients"]'
+        )
+      );
+      max.nullSwitch?.click();
+      await max.requestUpdate();
+
+      await primaryAction.click();
+
+      const actions = (<ComplexAction>actionEvent.args[0][0].detail.action)
+        .actions;
+      expect(actions.length).to.equal(2);
+      const action = actions[0];
+      expect(action).to.satisfy(isCreate);
+      const createAction = <Create>action;
+      const rptEnabled = createAction.new.element.querySelector('RptEnabled');
+      expect(rptEnabled).to.not.exist;
+    });
+  });
+
+  describe('define a wizard to select the control block reference', () => {
+    beforeEach(async () => {
+      const wizard = controlBlockLocationSelector(doc);
       element.workflow.push(() => wizard);
       await element.requestUpdate();
 
