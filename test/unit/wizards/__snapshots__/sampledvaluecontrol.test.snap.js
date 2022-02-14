@@ -125,6 +125,11 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
         SignatureAndEncryption
       </mwc-list-item>
     </wizard-select>
+    <mwc-button
+      icon="delete"
+      label="[remove]"
+    >
+    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"
