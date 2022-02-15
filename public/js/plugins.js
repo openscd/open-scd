@@ -21,6 +21,13 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
+    name: 'Subscription',
+    src: '/src/editors/SubscriptionABB.js',
+    icon: 'link',
+    default: false,
+    kind: 'editor',
+  },
+  {
     name: 'Communication',
     src: '/src/editors/Communication.js',
     icon: 'settings_ethernet',
