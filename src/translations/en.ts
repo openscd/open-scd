@@ -260,6 +260,10 @@ export const en = {
     missing: 'DataTypeTemplates missing',
     add: 'Add DataTypeTemplates',
   },
+  subscription: {
+    publisherGoose: 'Publisher GOOSE',
+    subscriberIed: 'Subscriber IED'
+  },
   'enum-val': {
     wizard: {
       title: {

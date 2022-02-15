@@ -263,6 +263,10 @@ export const de: Translations = {
     missing: 'DataTypeTemplates fehlen',
     add: 'DataTypeTemplates hinzufügen',
   },
+  subscription: {
+    publisherGoose: '???',
+    subscriberIed: '???'
+  },
   'enum-val': {
     wizard: {
       title: {
