@@ -1,6 +1,7 @@
 import { iec6185072, iec6185073, iec6185074, iec6185081 } from "../validators/templates/foundation.js";
 
 export interface Nsdoc {
+  nsdoc72?: XMLDocument;
   nsdoc73?: XMLDocument;
   nsdoc74?: XMLDocument;
   nsdoc81?: XMLDocument;
@@ -183,6 +184,7 @@ export async function initializeNsdoc(): Promise<Nsdoc> {
   }
 
   return {
+    nsdoc72: nsdoc72,
     nsdoc73: nsdoc73,
     nsdoc74: nsdoc74,
     nsdoc81: nsdoc81,
