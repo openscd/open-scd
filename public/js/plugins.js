@@ -21,7 +21,7 @@ export const officialPlugins = [
     kind: 'editor',
   },
   {
-    name: 'Subscription',
+    name: 'Subscription ABB',
     src: '/src/editors/SubscriptionABB.js',
     icon: 'link',
     default: false,
