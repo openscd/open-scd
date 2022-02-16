@@ -1,11 +1,15 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from 'lit-element';
 import {get, translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+
 import {newSubWizardEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 import {isSCLNamespace} from "../schemas.js";
 import {Nsdoc} from "../foundation/nsdoc.js";
 
-import {dispatchEventOnOpenScd} from "../compas/foundation.js";
+import '../wizard-textfield.js';
+
 import {locamationLNEditWizard} from "./LocamationLNEdit.js";
 import {iedHeader, lDeviceHeader, lnHeader} from "./foundation.js";
 
@@ -24,7 +28,7 @@ export class LocamationLNodeListElement extends LitElement {
 
   close(): void {
     // Close the Save Dialog.
-    dispatchEventOnOpenScd(newWizardEvent());
+    this.dispatchEvent(newWizardEvent());
   }
 
   render(): TemplateResult {

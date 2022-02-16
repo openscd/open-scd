@@ -1,19 +1,23 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from 'lit-element';
 import {get, translate} from "lit-translate";
 
-import {Wizard, WizardAction, WizardInput} from '../foundation.js';
+import {patterns} from "../wizards/foundation/limits.js";
+import {checkValidity, ComplexAction, Wizard, WizardAction, WizardInput, wizardInputSelector} from '../foundation.js';
 import {Nsdoc} from "../foundation/nsdoc.js";
 
+import '../wizard-textfield.js';
+
 import {
+  createEditorAction,
+  getInputFieldValue,
+  getPrivate,
   getPrivateTextValue,
   hasPrivateElement,
   iedHeader,
+  inputFieldChanged,
   lDeviceHeader,
   lnHeader,
-  LOCAMATION_PRIVATE
 } from "./foundation.js";
-import Protocol from "devtools-protocol";
-import integer = Protocol.integer;
 
 @customElement('locamation-ln-edit')
 export class LocamationVMUEditElement extends LitElement {
@@ -22,102 +26,121 @@ export class LocamationVMUEditElement extends LitElement {
   @property()
   nsdoc!: Nsdoc;
 
-  save(inputs: WizardInput[]): WizardAction[] {
-    // if (!this.fieldsChanged(inputs)) {
-      return [];
-    // }
-    //
-    // cloneElement(element, { name, desc });
-    //
-    // const oldPrivateElement = getPrivate(oldElement, 'compas_substation');
-    // const newPrivateElement = getOrCreatePrivate(oldElement, newElement, 'compas_substation');
-    //
-    // const compasName = getInputFieldValue(inputs, 'compasName');
-    // processPrivateTextElement(newPrivateElement, EXTENSION_NAMESPACE, 'compas', 'CompasName', compasName);
-    //
-    // if (oldPrivateElement) {
-    //   return [{old: {element: oldPrivateElement}, new: {element: newPrivateElement}}];
-    // }
-    // return [{new: {parent: newElement, element: newPrivateElement}}];
-  }
-  //
-  // private fieldsChanged(inputs: WizardInput[]): boolean {
-  //   const oldIdentifier= getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'IDENTIFIER');
-  //   const oldChannel = getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'CHANNEL');
-  //   const oldTransformPrimary = getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'TRANSFORM-PRIMARY');
-  //   const oldTransformSecondary = getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'TRANSFORM-SECONDARY');
-  //   return inputFieldChanged(inputs, 'Identifier', oldIdentifier)
-  //     || inputFieldChanged(inputs, 'Channel', oldChannel)
-  //     || inputFieldChanged(inputs, 'TransformPrimary', oldTransformPrimary)
-  //     || inputFieldChanged(inputs, 'TransformSecondary', oldTransformSecondary);
-  // }
+  save(): WizardAction[] {
+    const inputs: WizardInput[] = Array.from(this.shadowRoot!.querySelectorAll(wizardInputSelector));
+    const locamationPrivate = getPrivate(this.logicalNode);
 
-  private getIdentifierPart(partNr: integer): string {
-    const identifier = getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'IDENTIFIER')?? '';
-    const parts = identifier.trim().split('.');
-    if (parts.length < partNr) {
-      return '';
+    if (!this.fieldsChanged(locamationPrivate, inputs) || !this.checkValidityInputs(inputs)) {
+      return [];
     }
-    return parts[partNr];
+
+    const complexAction: ComplexAction = {
+      actions: [],
+      title: get('locamation.vmu.updateAction', {lnName: lnHeader(this.logicalNode, this.nsdoc)}),
+    };
+
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'IDENTIFIER', getInputFieldValue(inputs, 'Identifier')));
+    if (hasPrivateElement(this.logicalNode, 'SUM')) {
+      complexAction.actions.push(...createEditorAction(locamationPrivate, 'SUM', getInputFieldValue(inputs, 'Sum')));
+    } else {
+      complexAction.actions.push(...createEditorAction(locamationPrivate, 'CHANNEL', getInputFieldValue(inputs, 'Channel')));
+    }
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-PRIMARY', getInputFieldValue(inputs, 'TransformPrimary')));
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-SECONDARY', getInputFieldValue(inputs, 'TransformSecondary')));
+
+    return complexAction.actions.length ? [complexAction] : [];
+  }
+
+  private fieldsChanged(locamationPrivate: Element, inputs: WizardInput[]): boolean {
+    const oldIdentifier= getPrivateTextValue(locamationPrivate, 'IDENTIFIER');
+    const oldChannel = getPrivateTextValue(locamationPrivate, 'CHANNEL');
+    const oldSum = getPrivateTextValue(locamationPrivate, 'SUM');
+    const oldTransformPrimary = getPrivateTextValue(locamationPrivate, 'TRANSFORM-PRIMARY');
+    const oldTransformSecondary = getPrivateTextValue(locamationPrivate, 'TRANSFORM-SECONDARY');
+
+    return inputFieldChanged(inputs, 'Identifier', oldIdentifier)
+      || (hasPrivateElement(locamationPrivate, 'SUM') ? inputFieldChanged(inputs, 'Sum', oldSum) : false)
+      || (hasPrivateElement(locamationPrivate, 'CHANNEL') ? inputFieldChanged(inputs, 'Channel', oldChannel) : false)
+      || inputFieldChanged(inputs, 'TransformPrimary', oldTransformPrimary)
+      || inputFieldChanged(inputs, 'TransformSecondary', oldTransformSecondary);
+  }
+
+  private checkValidityInputs(inputs: WizardInput[]): boolean {
+    return Array.from(inputs).every(checkValidity);
   }
 
   render(): TemplateResult {
     const lDevice = this.logicalNode.closest('LDevice')!;
     const ied = lDevice.closest('IED')!;
+    const locamationPrivate = getPrivate(this.logicalNode);
+
+    // Depending on the value of the class the pattern for the CIM or VIM for SUM/CHANNEL will change.
+    let channelPattern = '[0-5]';
+    let sumPattern = '[0-5],[0-5],[0-5]';
+    if (this.logicalNode.getAttribute('lnClass') === 'TVTR') {
+      channelPattern = '[0-2]';
+      sumPattern = '[0-2],[0-2],[0-2]';
+    }
+
     return html `
-      <wizard-textfield label="IED"
+      <wizard-textfield label="${translate('locamation.vmu.ied.name')}"
                         .maybeValue=${iedHeader(ied)}
-                        helper="${translate('locamation.vmu.ied.name')}"
                         disabled>
       </wizard-textfield>
-      <wizard-textfield label="Logical Device"
+      <wizard-textfield label="${translate('locamation.vmu.ldevice.name')}"
                         .maybeValue=${lDeviceHeader(lDevice)}
-                        helper="${translate('locamation.vmu.ldevice.name')}"
                         disabled>
       </wizard-textfield>
-      <wizard-textfield label="Logical Node"
+      <wizard-textfield label="${translate('locamation.vmu.ln.name')}"
                         .maybeValue=${lnHeader(this.logicalNode, this.nsdoc)}
-                        helper="${translate('locamation.vmu.ln.name')}"
                         disabled>
       </wizard-textfield>
 
-      <div id="Identifier">
-        <wizard-textfield label="IdentifierPart0"
-                          .maybeValue=${this.getIdentifierPart(0)}
-                          helper="Identifier"
-                          required>
-        </wizard-textfield>
-        <wizard-textfield label="IdentifierPart1"
-                          .maybeValue=${this.getIdentifierPart(1)}
-                          helper="Identifier"
-                          required>
-        </wizard-textfield>
-        <wizard-textfield label="IdentifierPart2"
-                          .maybeValue=${this.getIdentifierPart(2)}
-                          helper="Identifier"
-                          required>
-        </wizard-textfield>
-      </div>
-      ${hasPrivateElement(this.logicalNode, LOCAMATION_PRIVATE, 'SUM') ?
-        html `<wizard-textfield label="Sum"
-                                  .maybeValue=${getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'SUM')}
-                                  helper="Sum"
-                                  required>
-              </wizard-textfield>` :
-        html `<wizard-textfield label="Channel"
-                                  .maybeValue=${getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'CHANNEL')}
-                                  helper="Channel"
-                                  required>
-               </wizard-textfield>`
+      <wizard-textfield label="${translate('locamation.vmu.version')}"
+                        .maybeValue=${getPrivateTextValue(locamationPrivate, 'VERSION')}
+                        disabled>
+      </wizard-textfield>
+
+      <wizard-textfield id="Identifier"
+                        label="Identifier"
+                        .maybeValue=${getPrivateTextValue(locamationPrivate, 'IDENTIFIER')}
+                        helper="${translate('locamation.vmu.identifierHelper')}"
+                        pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){3}$"
+                        required
+                        dialogInitialFocus>
+      </wizard-textfield>
+
+      ${hasPrivateElement(locamationPrivate, 'SUM') ?
+        html `<wizard-textfield id="Sum"
+                                label="Sum"
+                                .maybeValue=${getPrivateTextValue(locamationPrivate, 'SUM')}
+                                helper="The collection of three channel numbers for which the sum of currents or voltages will be calculated. The numbers are separated by commas. Values for the current sensor range from 0 - 5, for the voltage sensor 0-2."
+                                pattern="${sumPattern}"
+                                required>
+              </wizard-textfield>` : html ``
       }
-      <wizard-textfield label="TransformPrimary"
-                        .maybeValue=${getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'TRANSFORM-PRIMARY')}
-                        helper="TransformPrimary"
+      ${hasPrivateElement(locamationPrivate, 'CHANNEL') ?
+        html `<wizard-textfield id="Channel"
+                                label="Channel"
+                                .maybeValue=${getPrivateTextValue(locamationPrivate, 'CHANNEL')}
+                                helper="The channel number on the sensor. Values for the current sensor range from 0 - 5, for the voltage sensor 0-2."
+                                pattern="${channelPattern}"
+                                required>
+        </wizard-textfield>` : html ``
+      }
+
+      <wizard-textfield id="TransformPrimary"
+                        label="Transform Primary"
+                        .maybeValue=${getPrivateTextValue(locamationPrivate, 'TRANSFORM-PRIMARY')}
+                        helper="The nominator of the ratio of the measement transformer."
+                        pattern="${patterns.unsigned}"
                         required>
       </wizard-textfield>
-      <wizard-textfield label="TransformSecondary"
-                        .maybeValue=${getPrivateTextValue(this.logicalNode, LOCAMATION_PRIVATE, 'TRANSFORM-SECONDARY')}
-                        helper="TransformSecondary"
+      <wizard-textfield id="TransformSecondary"
+                        label="Transform Secondary"
+                        .maybeValue=${getPrivateTextValue(locamationPrivate, 'TRANSFORM-SECONDARY')}
+                        helper="The denominator of the ratio of the measement transformer."
+                        pattern="${patterns.unsigned}"
                         required>
       </wizard-textfield>
     `;
@@ -139,7 +162,7 @@ export function locamationLNEditWizard(logicalNode: Element, nsdoc: Nsdoc): Wiza
   function save() {
     return function (inputs: WizardInput[], wizard: Element): WizardAction[] {
       const locamationVMUEditElement = <LocamationVMUEditElement>wizard.shadowRoot!.querySelector('locamation-ln-edit')
-      return locamationVMUEditElement.save(inputs);
+      return locamationVMUEditElement.save();
     };
   }
 

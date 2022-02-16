@@ -578,6 +578,9 @@ export const en = {
         editTitle: 'Edit VMU',
         name: 'Logical Node',
       },
+      version: 'Locamation VMU Version',
+      identifierHelper: 'The address of the sensor. The address is constructed of 3 numbers, separated by dots. The range of each number is 0-255.',
+      updateAction: 'Locamation private fields updated for Logica Node {{lnName}}',
     },
   },
 };

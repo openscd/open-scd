@@ -1,8 +1,19 @@
 import {Nsdoc} from "../foundation/nsdoc.js";
 
-import {getDescriptionAttribute, getInstanceAttribute, getNameAttribute, getValue, WizardInput} from "../foundation.js";
+import {
+  cloneElement,
+  getDescriptionAttribute,
+  getInstanceAttribute,
+  getNameAttribute,
+  getValue,
+  SimpleAction,
+  WizardInput
+} from "../foundation.js";
 
 export const LOCAMATION_PRIVATE = "LCMTN_VMU_SENSOR";
+export const LOCAMATION_NS = "https://www.locamation.com/61850/VMU/SCL";
+export const LOCAMATION_PREFIX = "lcmtn_ext";
+
 
 export function lnHeader(ln: Element, nsDoc: Nsdoc): string {
   const prefix = ln.getAttribute('prefix');
@@ -27,28 +38,65 @@ export function iedHeader(ied: Element): string {
   return `${name}${description !== undefined ? ' (' + description + ')' : ''}`;
 }
 
-export function getInputFieldValue(inputs: WizardInput[], labelName: string): string | null {
-  return getValue(inputs.find(i => i.label === labelName)!);
+
+export function getInputFieldValue(inputs: WizardInput[], id: string): string | null {
+  return getValue(inputs.find(i => i.id === id)!);
 }
 
-export function inputFieldChanged(inputs: WizardInput[], labelName: string, oldValue: string | null): boolean {
-  const value = getInputFieldValue(inputs, labelName);
+export function inputFieldChanged(inputs: WizardInput[], id: string, oldValue: string | null): boolean {
+  const value = getInputFieldValue(inputs, id);
   if (oldValue) {
     return value !== oldValue;
   }
   return value !== null;
 }
 
-export function hasPrivateElement(element: Element | null, privateType: string, type: string): boolean {
-  if (element) {
-    return element.querySelector(`Private[type="${privateType}"] > P[type="${type}"]`) != null;
+
+export function addPrefixAndNamespaceToDocument(element: Element): void {
+  const rootElement = element.ownerDocument.firstElementChild!;
+  if (!rootElement.hasAttribute('xmlns:' + LOCAMATION_PREFIX)) {
+    rootElement.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:' + LOCAMATION_PREFIX, LOCAMATION_NS);
+  }
+}
+
+export function getPrivate(element: Element): Element {
+  return element.querySelector(`Private[type="${LOCAMATION_PRIVATE}"]`)!;
+}
+
+export function createEditorAction(locamationPrivate: Element, fieldType: string, value: string | null): SimpleAction[] {
+  let privateField = Array.from(locamationPrivate.querySelectorAll(`P[type="${fieldType}"]`))
+    .filter(element => element.namespaceURI === LOCAMATION_NS)
+    .pop();
+  if (!privateField) {
+    // Make sure the namespace is configured on the root element with the known prefix.
+    addPrefixAndNamespaceToDocument(locamationPrivate);
+
+    privateField = locamationPrivate.ownerDocument.createElementNS(LOCAMATION_NS, "P");
+    privateField.setAttribute("type", fieldType);
+    privateField.textContent = value;
+    return [{new: {parent: locamationPrivate, element: privateField}}];
+  }
+
+  const newPrivateField = cloneElement(privateField, {});
+  newPrivateField.textContent = value;
+  return [{old: {element: privateField}, new: {element: newPrivateField}}];
+}
+
+export function hasPrivateElement(locamationPrivate: Element, type: string): boolean {
+  if (locamationPrivate) {
+    return Array.from(locamationPrivate.querySelectorAll(`P[type="${type}"]`))
+      .filter(element => element.namespaceURI === LOCAMATION_NS)
+      .pop() !== undefined;
   }
   return false;
 }
 
-export function getPrivateTextValue(element: Element | null, privateType: string, type: string): string | null {
-  if (element) {
-    const privateElement = element.querySelector(`Private[type="${privateType}"] > P[type="${type}"]`);
+export function getPrivateTextValue(locamationPrivate: Element, type: string): string | null {
+  if (locamationPrivate) {
+    const privateElement =
+      Array.from(locamationPrivate.querySelectorAll(`P[type="${type}"]`))
+        .filter(element => element.namespaceURI === LOCAMATION_NS)
+        .pop();
     if (privateElement) {
       return privateElement.textContent;
     }

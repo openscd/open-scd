@@ -1,10 +1,12 @@
 import {css, customElement, html, LitElement, property, TemplateResult} from 'lit-element';
 import {get, translate} from "lit-translate";
 
+import '@material/mwc-list';
+import '@material/mwc-list/mwc-list-item';
+
 import {newSubWizardEvent, newWizardEvent, Wizard, WizardInput} from '../foundation.js';
 import {isSCLNamespace} from "../schemas.js";
 import {Nsdoc} from "../foundation/nsdoc.js";
-import {dispatchEventOnOpenScd} from "../compas/foundation.js";
 
 import {iedHeader, lDeviceHeader} from "./foundation.js";
 import {locamationLNListWizard} from "./LocamationLNList.js";
@@ -17,15 +19,14 @@ export class LocamationIEDListElement extends LitElement {
   nsdoc!: Nsdoc;
 
   private get logicaDevices(): Element[] {
-    return Array.from(this.doc!.querySelectorAll(
-        'IED[manufacturer="Locamation B.V."] LDevice'))
+    return Array.from(this.doc!.querySelectorAll('IED[manufacturer="Locamation B.V."] LDevice'))
       .filter(isSCLNamespace)
       .filter(element => element.querySelector('LN > Private[type="LCMTN_VMU_SENSOR"]') !== null);
   }
 
   close(): void {
     // Close the Save Dialog.
-    dispatchEventOnOpenScd(newWizardEvent());
+    this.dispatchEvent(newWizardEvent());
   }
 
   render(): TemplateResult {

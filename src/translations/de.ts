@@ -576,6 +576,9 @@ export const de: Translations = {
         editTitle: '???',
         name: '???',
       },
+      version: '???',
+      identifierHelper: '???',
+      updateAction: '???',
     },
   },
 };
