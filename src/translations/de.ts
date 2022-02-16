@@ -559,6 +559,23 @@ export const de: Translations = {
       explainExpiredWithProject: '???',
       explainExpiredWithoutProject: '???',
       saveProject: '???',
-    }
-  }
+    },
+  },
+  locamation: {
+    vmu: {
+      ied: {
+        title: '???',
+        missing: '???',
+        name: '???',
+      },
+      ldevice: {
+        name: '???',
+      },
+      ln: {
+        title: '???',
+        editTitle: '???',
+        name: '???',
+      },
+    },
+  },
 };

@@ -561,6 +561,23 @@ export const en = {
       explainExpiredWithoutProject: 'Because of inactivity ({{expiredSessionMessage}} minutes), your session with the CoMPAS Systems is expired. <br>' +
         'To continue working you need to reload the browser to login again.',
       saveProject: 'Save project',
-    }
-  }
+    },
+  },
+  locamation: {
+    vmu: {
+      ied: {
+        title: 'Configure Locamation VMUs',
+        missing: 'No Locamation IEDs with Logica Devices found',
+        name: 'IED',
+      },
+      ldevice: {
+        name: 'Logical Device',
+      },
+      ln: {
+        title: 'Configure Locamation VMUs (IED)',
+        editTitle: 'Edit VMU',
+        name: 'Logical Node',
+      },
+    },
+  },
 };
