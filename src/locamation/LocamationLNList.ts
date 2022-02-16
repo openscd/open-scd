@@ -11,7 +11,7 @@ import {Nsdoc} from "../foundation/nsdoc.js";
 import '../wizard-textfield.js';
 
 import {locamationLNEditWizard} from "./LocamationLNEdit.js";
-import {iedHeader, lDeviceHeader, lnHeader} from "./foundation.js";
+import {iedHeader, lDeviceHeader, lnHeader, LOCAMATION_PRIVATE} from "./foundation.js";
 
 @customElement('locamation-ln-list')
 export class LocamationLNodeListElement extends LitElement {
@@ -23,7 +23,7 @@ export class LocamationLNodeListElement extends LitElement {
   private get logicaNodes(): Element[] {
     return Array.from(this.lDevice!.querySelectorAll('LN'))
       .filter(isSCLNamespace)
-      .filter(element => element.querySelector('Private[type="LCMTN_VMU_SENSOR"]') !== null);
+      .filter(element => element.querySelector(`Private[type="${LOCAMATION_PRIVATE}"]`) !== null);
   }
 
   close(): void {

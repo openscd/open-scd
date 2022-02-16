@@ -39,14 +39,14 @@ export class LocamationVMUEditElement extends LitElement {
       title: get('locamation.vmu.updateAction', {lnName: lnHeader(this.logicalNode, this.nsdoc)}),
     };
 
-    complexAction.actions.push(...createEditorAction(locamationPrivate, 'IDENTIFIER', getInputFieldValue(inputs, 'Identifier')));
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'IDENTIFIER', getInputFieldValue(inputs, 'identifier')));
     if (hasPrivateElement(this.logicalNode, 'SUM')) {
-      complexAction.actions.push(...createEditorAction(locamationPrivate, 'SUM', getInputFieldValue(inputs, 'Sum')));
+      complexAction.actions.push(...createEditorAction(locamationPrivate, 'SUM', getInputFieldValue(inputs, 'sum')));
     } else {
-      complexAction.actions.push(...createEditorAction(locamationPrivate, 'CHANNEL', getInputFieldValue(inputs, 'Channel')));
+      complexAction.actions.push(...createEditorAction(locamationPrivate, 'CHANNEL', getInputFieldValue(inputs, 'channel')));
     }
-    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-PRIMARY', getInputFieldValue(inputs, 'TransformPrimary')));
-    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-SECONDARY', getInputFieldValue(inputs, 'TransformSecondary')));
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-PRIMARY', getInputFieldValue(inputs, 'transformPrimary')));
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-SECONDARY', getInputFieldValue(inputs, 'transformSecondary')));
 
     return complexAction.actions.length ? [complexAction] : [];
   }
@@ -58,11 +58,11 @@ export class LocamationVMUEditElement extends LitElement {
     const oldTransformPrimary = getPrivateTextValue(locamationPrivate, 'TRANSFORM-PRIMARY');
     const oldTransformSecondary = getPrivateTextValue(locamationPrivate, 'TRANSFORM-SECONDARY');
 
-    return inputFieldChanged(inputs, 'Identifier', oldIdentifier)
-      || (hasPrivateElement(locamationPrivate, 'SUM') ? inputFieldChanged(inputs, 'Sum', oldSum) : false)
-      || (hasPrivateElement(locamationPrivate, 'CHANNEL') ? inputFieldChanged(inputs, 'Channel', oldChannel) : false)
-      || inputFieldChanged(inputs, 'TransformPrimary', oldTransformPrimary)
-      || inputFieldChanged(inputs, 'TransformSecondary', oldTransformSecondary);
+    return inputFieldChanged(inputs, 'identifier', oldIdentifier)
+      || (hasPrivateElement(locamationPrivate, 'SUM') ? inputFieldChanged(inputs, 'sum', oldSum) : false)
+      || (hasPrivateElement(locamationPrivate, 'CHANNEL') ? inputFieldChanged(inputs, 'channel', oldChannel) : false)
+      || inputFieldChanged(inputs, 'transformPrimary', oldTransformPrimary)
+      || inputFieldChanged(inputs, 'transformSecondary', oldTransformSecondary);
   }
 
   private checkValidityInputs(inputs: WizardInput[]): boolean {
@@ -101,45 +101,47 @@ export class LocamationVMUEditElement extends LitElement {
                         disabled>
       </wizard-textfield>
 
-      <wizard-textfield id="Identifier"
-                        label="Identifier"
+      <wizard-textfield id="identifier"
+                        label="${translate('locamation.vmu.identifier')}"
                         .maybeValue=${getPrivateTextValue(locamationPrivate, 'IDENTIFIER')}
                         helper="${translate('locamation.vmu.identifierHelper')}"
+                        placeholder="134.12.213"
                         pattern="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){3}$"
                         required
                         dialogInitialFocus>
       </wizard-textfield>
 
       ${hasPrivateElement(locamationPrivate, 'SUM') ?
-        html `<wizard-textfield id="Sum"
-                                label="Sum"
+        html `<wizard-textfield id="sum"
+                                label="${translate('locamation.vmu.sum')}"
                                 .maybeValue=${getPrivateTextValue(locamationPrivate, 'SUM')}
-                                helper="The collection of three channel numbers for which the sum of currents or voltages will be calculated. The numbers are separated by commas. Values for the current sensor range from 0 - 5, for the voltage sensor 0-2."
+                                helper="${translate('locamation.vmu.sumHelper')}"
+                                placeholder="0,1,2"
                                 pattern="${sumPattern}"
                                 required>
               </wizard-textfield>` : html ``
       }
       ${hasPrivateElement(locamationPrivate, 'CHANNEL') ?
-        html `<wizard-textfield id="Channel"
-                                label="Channel"
+        html `<wizard-textfield id="channel"
+                                label="${translate('locamation.vmu.channel')}"
                                 .maybeValue=${getPrivateTextValue(locamationPrivate, 'CHANNEL')}
-                                helper="The channel number on the sensor. Values for the current sensor range from 0 - 5, for the voltage sensor 0-2."
+                                helper="${translate('locamation.vmu.channelHelper')}"
                                 pattern="${channelPattern}"
                                 required>
         </wizard-textfield>` : html ``
       }
 
-      <wizard-textfield id="TransformPrimary"
-                        label="Transform Primary"
+      <wizard-textfield id="transformPrimary"
+                        label="${translate('locamation.vmu.transformPrimary')}"
                         .maybeValue=${getPrivateTextValue(locamationPrivate, 'TRANSFORM-PRIMARY')}
-                        helper="The nominator of the ratio of the measement transformer."
+                        helper="${translate('locamation.vmu.transformPrimaryHelper')}"
                         pattern="${patterns.unsigned}"
                         required>
       </wizard-textfield>
-      <wizard-textfield id="TransformSecondary"
-                        label="Transform Secondary"
+      <wizard-textfield id="transformSecondary"
+                        label="${translate('locamation.vmu.transformSecondary')}"
                         .maybeValue=${getPrivateTextValue(locamationPrivate, 'TRANSFORM-SECONDARY')}
-                        helper="The denominator of the ratio of the measement transformer."
+                        helper="${translate('locamation.vmu.transformSecondaryHelper')}"
                         pattern="${patterns.unsigned}"
                         required>
       </wizard-textfield>

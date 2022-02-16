@@ -10,6 +10,7 @@ import {
   WizardInput
 } from "../foundation.js";
 
+export const LOCAMATION_MANUFACTURER = "Locamation B.V.";
 export const LOCAMATION_PRIVATE = "LCMTN_VMU_SENSOR";
 export const LOCAMATION_NS = "https://www.locamation.com/61850/VMU/SCL";
 export const LOCAMATION_PREFIX = "lcmtn_ext";

@@ -8,7 +8,7 @@ import {newSubWizardEvent, newWizardEvent, Wizard, WizardInput} from '../foundat
 import {isSCLNamespace} from "../schemas.js";
 import {Nsdoc} from "../foundation/nsdoc.js";
 
-import {iedHeader, lDeviceHeader} from "./foundation.js";
+import {iedHeader, lDeviceHeader, LOCAMATION_MANUFACTURER, LOCAMATION_PRIVATE} from "./foundation.js";
 import {locamationLNListWizard} from "./LocamationLNList.js";
 
 @customElement('locamation-ied-list')
@@ -19,9 +19,9 @@ export class LocamationIEDListElement extends LitElement {
   nsdoc!: Nsdoc;
 
   private get logicaDevices(): Element[] {
-    return Array.from(this.doc!.querySelectorAll('IED[manufacturer="Locamation B.V."] LDevice'))
+    return Array.from(this.doc!.querySelectorAll(`IED[manufacturer="${LOCAMATION_MANUFACTURER}"] LDevice`))
       .filter(isSCLNamespace)
-      .filter(element => element.querySelector('LN > Private[type="LCMTN_VMU_SENSOR"]') !== null);
+      .filter(element => element.querySelector(`LN > Private[type="${LOCAMATION_PRIVATE}"]`) !== null);
   }
 
   close(): void {
