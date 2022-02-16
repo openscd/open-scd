@@ -142,7 +142,6 @@ snapshots["Wizards for SCL ReportControl element define an edit wizard that look
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

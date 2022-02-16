@@ -44,7 +44,6 @@ snapshots["Wizards for SCL element Power Transformer (X/Y) looks like the latest
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"

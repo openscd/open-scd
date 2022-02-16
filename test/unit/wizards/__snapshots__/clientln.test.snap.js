@@ -326,7 +326,6 @@ snapshots["clientln wizards createClientLnWizard looks like the latest snapshot"
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[connect]"
     slot="primaryAction"
@@ -391,7 +390,6 @@ snapshots["clientln wizards selectClientLnWizard looks like the latest snapshot"
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="delete"
     label="[disconnect]"
     slot="primaryAction"

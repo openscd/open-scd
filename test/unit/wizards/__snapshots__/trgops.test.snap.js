@@ -140,7 +140,6 @@ snapshots["Wizards for SCL TrgOps element define an edit wizard that looks like 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

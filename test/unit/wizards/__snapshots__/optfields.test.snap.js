@@ -215,7 +215,6 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="save"
     label="[save]"
     slot="primaryAction"

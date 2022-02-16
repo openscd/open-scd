@@ -34,7 +34,6 @@ snapshots["Wizards for SCL element IED looks like the latest snapshot"] =
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon="edit"
     label="[save]"
     slot="primaryAction"
