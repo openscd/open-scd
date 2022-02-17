@@ -38,6 +38,12 @@ export const en = {
     smpMod: 'Sample mode',
     smpRate: 'Sample rate',
     nofASDU: 'Samples per paket',
+    SmvOpts: 'Optional Information',
+    refreshTime: 'Add time stamp to SMV telegram',
+    sampleRate: 'Add sampled rete time to SMV telegram',
+    dataSet: 'Add DataSet name to SMV telegram',
+    security: 'Potential future use. E.g. dig signature',
+    synchSourceId: 'Add identity of sync source to SMV telegram',
   },
   settings: {
     title: 'Settings',
@@ -48,7 +54,7 @@ export const en = {
     showieds: 'Show IEDs in substation editor',
     selectFileButton: 'Select file',
     loadNsdTranslations: 'Uploading NSDoc files',
-    invalidFileNoIdFound: 'Invalid NSDoc; no \'id\' attribute found in file'
+    invalidFileNoIdFound: "Invalid NSDoc; no 'id' attribute found in file",
   },
   menu: {
     new: 'New project',
