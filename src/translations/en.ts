@@ -261,8 +261,15 @@ export const en = {
     add: 'Add DataTypeTemplates',
   },
   subscription: {
-    publisherGoose: 'Publisher GOOSE',
-    subscriberIed: 'Subscriber IED'
+    publisherGoose: {
+      title: 'Publisher GOOSE'
+    },
+    subscriberIed: {
+      title: 'Subscriber IED',
+      subscribed: 'Subscribed',
+      availableToSubscribe: 'Available to subscribe',
+      notFullySubscribed: 'IED not fully subscribed according ABB method. Please try to subscribe again.'
+    }
   },
   'enum-val': {
     wizard: {

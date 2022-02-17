@@ -264,8 +264,15 @@ export const de: Translations = {
     add: 'DataTypeTemplates hinzufügen',
   },
   subscription: {
-    publisherGoose: '???',
-    subscriberIed: '???'
+    publisherGoose: {
+      title: '???'
+    },
+    subscriberIed: {
+      title: '???',
+      subscribed: '???',
+      availableToSubscribe: '???',
+      notFullySubscribed: '???'
+    }
   },
   'enum-val': {
     wizard: {

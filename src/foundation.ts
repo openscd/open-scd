@@ -280,6 +280,24 @@ export interface ResetDetail {
   kind: 'reset';
 }
 
+export interface GOOSEDataSetDetail {
+  iedName: string;
+  dataset: Element;
+}
+export type GOOSEDataSetEvent = CustomEvent<GOOSEDataSetDetail>;
+export function newGOOSEDataSetEvent(
+  iedName: string,
+  dataset: Element,
+  eventInitDict?: CustomEventInit<GOOSEDataSetDetail>
+): GOOSEDataSetEvent {
+  return new CustomEvent<GOOSEDataSetDetail>('goose-dataset', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { iedName, dataset, ...eventInitDict?.detail },
+  });
+}
+
 export type LogDetail = InfoDetail | CommitDetail | ResetDetail;
 export type LogEvent = CustomEvent<LogDetail>;
 export function newLogEvent(
@@ -2637,6 +2655,7 @@ declare global {
     ['open-doc']: OpenDocEvent;
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
+    ['goose-dataset']: GOOSEDataSetEvent;
     ['log']: LogEvent;
     ['issue']: IssueEvent;
   }

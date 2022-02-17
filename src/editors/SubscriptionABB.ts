@@ -1,9 +1,11 @@
 import { LitElement, html, TemplateResult, property, css } from 'lit-element';
 
 import '@material/mwc-fab';
+
+import './subscription/goose-message.js';
+import './subscription/subscriber-ied-list.js';
 import { translate } from 'lit-translate';
 import { compareNames, getNameAttribute } from '../foundation.js';
-import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 /** An editor [[`plugin`]] for subscribing IEDs to GOOSE messages using the ABB subscription method. */
 export default class SubscriptionABBPlugin extends LitElement {
@@ -17,21 +19,21 @@ export default class SubscriptionABBPlugin extends LitElement {
       : [];
   }
 
+  /**
+   * Get all the published GOOSE messages, ABB method.
+   * @param ied - The IED to search through.
+   * @returns All the published GOOSE messages of this specific IED.
+   */
   private getGSEControls(ied: Element) : Element[] {
     return Array.from(ied.querySelectorAll(':scope > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > GSEControl'));
   }
-
-  private onGooseSelect = (evt: SelectedEvent) => {
-    console.log('selected!')
-  };
 
   render(): TemplateResult {
     return html`
     <div id="containerTemplates">
       <section tabindex="0">
-        <h1>${translate('subscription.publisherGoose')}</h1>
-        <mwc-list
-          @selected=${this.onGooseSelect}>
+        <h1>${translate('subscription.publisherGoose.title')}</h1>
+        <mwc-list>
         ${this.ieds.map(ied =>
           ied.querySelector('GSEControl') ?
             html`
@@ -40,17 +42,12 @@ export default class SubscriptionABBPlugin extends LitElement {
                 <mwc-icon slot="graphic" class="inverted">developer_board</mwc-icon>
               </mwc-list-item>
               <li divider role="separator"></li>
-              ${this.getGSEControls(ied).map(control => 
-                html`<mwc-list-item hasMeta>
-                  <span>${control.getAttribute('name')}</span>
-                  <mwc-icon slot="meta">edit</mwc-icon>
-                </mwc-list-item>`
-              )}
+              ${this.getGSEControls(ied).map(control => html`<goose-message .element=${control}></goose-message>`)}
             ` : ``)}
         </mwc-list>
       </section>
       <section tabindex="0">
-        <h1>${translate('subscription.subscriberIed')}</h1>
+        <subscriber-ied-list .doc=${this.doc}></subscriber-ied-list>
       </section>
     </div>`;
   }
@@ -68,7 +65,7 @@ export default class SubscriptionABBPlugin extends LitElement {
       padding-left: 0.3em;
       transition: background-color 150ms linear;
     }
-    
+
     :host {
       width: 100vw;
     }
