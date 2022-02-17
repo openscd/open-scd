@@ -19,9 +19,15 @@ interface IED {
   partial?: boolean;
 }
 
-enum ListType {Subscribed, NotSubscribed}
+/**
+ * Type of IED list.
+ */
+enum ListType {
+  Subscribed,
+  NotSubscribed
+}
 
-/** An sub editor [[`plugin`]] for subscribing and unsubscribing IEDs to GOOSE messages. */
+/** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-ied-list')
 export class SubscriberIEDList extends LitElement {
   @property()
