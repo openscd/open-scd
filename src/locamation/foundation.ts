@@ -22,7 +22,7 @@ export function lnHeader(ln: Element, nsDoc: Nsdoc): string {
 
   const data = nsDoc.getDataDescription(ln);
 
-  return `${prefix != null ? `${prefix} - ` : ``} ${data.label} ${inst ? ` - ${inst}` : ``}`;
+  return `${prefix != null ? `${prefix} - ` : ``}${data.label}${inst ? ` - ${inst}` : ``}`;
 }
 
 export function lDeviceHeader(lDevice: Element): string {
@@ -34,9 +34,9 @@ export function lDeviceHeader(lDevice: Element): string {
 
 export function iedHeader(ied: Element): string {
   const name = getNameAttribute(ied);
-  const description = getDescriptionAttribute(ied);
+  const desc = getDescriptionAttribute(ied);
 
-  return `${name}${description !== undefined ? ' (' + description + ')' : ''}`;
+  return `${name}${desc ? ' (' + desc + ')' : ''}`;
 }
 
 
@@ -60,30 +60,35 @@ export function addPrefixAndNamespaceToDocument(element: Element): void {
   }
 }
 
-export function getPrivate(element: Element): Element {
+export function getPrivate(element: Element): Element | null {
   return element.querySelector(`Private[type="${LOCAMATION_PRIVATE}"]`)!;
 }
 
-export function createEditorAction(locamationPrivate: Element, fieldType: string, value: string | null): SimpleAction[] {
-  let privateField = Array.from(locamationPrivate.querySelectorAll(`P[type="${fieldType}"]`))
-    .filter(element => element.namespaceURI === LOCAMATION_NS)
-    .pop();
-  if (!privateField) {
-    // Make sure the namespace is configured on the root element with the known prefix.
-    addPrefixAndNamespaceToDocument(locamationPrivate);
+export function createEditorAction(locamationPrivate: Element | null, fieldType: string, value: string | null): SimpleAction[] {
+  if (locamationPrivate) {
+    let privateField = Array.from(locamationPrivate.querySelectorAll(`P[type="${fieldType}"]`))
+      .filter(element => element.namespaceURI === LOCAMATION_NS)
+      .pop();
+    if (!privateField) {
+      // Make sure the namespace is configured on the root element with the known prefix.
+      addPrefixAndNamespaceToDocument(locamationPrivate);
 
-    privateField = locamationPrivate.ownerDocument.createElementNS(LOCAMATION_NS, "P");
-    privateField.setAttribute("type", fieldType);
-    privateField.textContent = value;
-    return [{new: {parent: locamationPrivate, element: privateField}}];
+      privateField = locamationPrivate.ownerDocument.createElementNS(LOCAMATION_NS, "P");
+      privateField.setAttribute("type", fieldType);
+      privateField.textContent = value;
+      return [{new: {parent: locamationPrivate, element: privateField}}];
+    }
+
+    if (privateField.textContent !== value) {
+      const newPrivateField = cloneElement(privateField, {});
+      newPrivateField.textContent = value;
+      return [{old: {element: privateField}, new: {element: newPrivateField}}];
+    }
   }
-
-  const newPrivateField = cloneElement(privateField, {});
-  newPrivateField.textContent = value;
-  return [{old: {element: privateField}, new: {element: newPrivateField}}];
+  return [];
 }
 
-export function hasPrivateElement(locamationPrivate: Element, type: string): boolean {
+export function hasPrivateElement(locamationPrivate: Element | null, type: string): boolean {
   if (locamationPrivate) {
     return Array.from(locamationPrivate.querySelectorAll(`P[type="${type}"]`))
       .filter(element => element.namespaceURI === LOCAMATION_NS)
@@ -92,7 +97,7 @@ export function hasPrivateElement(locamationPrivate: Element, type: string): boo
   return false;
 }
 
-export function getPrivateTextValue(locamationPrivate: Element, type: string): string | null {
+export function getPrivateTextValue(locamationPrivate: Element | null, type: string): string | null {
   if (locamationPrivate) {
     const privateElement =
       Array.from(locamationPrivate.querySelectorAll(`P[type="${type}"]`))

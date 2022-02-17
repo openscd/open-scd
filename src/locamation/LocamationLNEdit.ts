@@ -26,11 +26,14 @@ export class LocamationVMUEditElement extends LitElement {
   @property()
   nsdoc!: Nsdoc;
 
+  get inputs(): WizardInput[] {
+    return Array.from(this.shadowRoot!.querySelectorAll(wizardInputSelector));
+  }
+
   save(): WizardAction[] {
-    const inputs: WizardInput[] = Array.from(this.shadowRoot!.querySelectorAll(wizardInputSelector));
     const locamationPrivate = getPrivate(this.logicalNode);
 
-    if (!this.fieldsChanged(locamationPrivate, inputs) || !this.checkValidityInputs(inputs)) {
+    if (!this.fieldsChanged(locamationPrivate, this.inputs) || !this.checkValidityInputs(this.inputs)) {
       return [];
     }
 
@@ -39,19 +42,19 @@ export class LocamationVMUEditElement extends LitElement {
       title: get('locamation.vmu.updateAction', {lnName: lnHeader(this.logicalNode, this.nsdoc)}),
     };
 
-    complexAction.actions.push(...createEditorAction(locamationPrivate, 'IDENTIFIER', getInputFieldValue(inputs, 'identifier')));
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'IDENTIFIER', getInputFieldValue(this.inputs, 'identifier')));
     if (hasPrivateElement(this.logicalNode, 'SUM')) {
-      complexAction.actions.push(...createEditorAction(locamationPrivate, 'SUM', getInputFieldValue(inputs, 'sum')));
+      complexAction.actions.push(...createEditorAction(locamationPrivate, 'SUM', getInputFieldValue(this.inputs, 'sum')));
     } else {
-      complexAction.actions.push(...createEditorAction(locamationPrivate, 'CHANNEL', getInputFieldValue(inputs, 'channel')));
+      complexAction.actions.push(...createEditorAction(locamationPrivate, 'CHANNEL', getInputFieldValue(this.inputs, 'channel')));
     }
-    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-PRIMARY', getInputFieldValue(inputs, 'transformPrimary')));
-    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-SECONDARY', getInputFieldValue(inputs, 'transformSecondary')));
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-PRIMARY', getInputFieldValue(this.inputs, 'transformPrimary')));
+    complexAction.actions.push(...createEditorAction(locamationPrivate, 'TRANSFORM-SECONDARY', getInputFieldValue(this.inputs, 'transformSecondary')));
 
     return complexAction.actions.length ? [complexAction] : [];
   }
 
-  private fieldsChanged(locamationPrivate: Element, inputs: WizardInput[]): boolean {
+  private fieldsChanged(locamationPrivate: Element | null, inputs: WizardInput[]): boolean {
     const oldIdentifier= getPrivateTextValue(locamationPrivate, 'IDENTIFIER');
     const oldChannel = getPrivateTextValue(locamationPrivate, 'CHANNEL');
     const oldSum = getPrivateTextValue(locamationPrivate, 'SUM');
