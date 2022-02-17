@@ -264,6 +264,7 @@ export const de: Translations = {
     add: 'DataTypeTemplates hinzufügen',
   },
   subscription: {
+    none: '???',
     publisherGoose: {
       title: '???'
     },

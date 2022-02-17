@@ -22,10 +22,9 @@ export class GOOSEMessage extends LitElement {
   };
 
   render(): TemplateResult {
-    return html`<mwc-list-item hasMeta
+    return html`<mwc-list-item
       @click=${this.onGooseSelect}>
       <span>${this.element.getAttribute('name')}</span>
-      <mwc-icon slot="meta">edit</mwc-icon>
     </mwc-list-item>`;
   }
 

@@ -37,9 +37,8 @@ export default class SubscriptionABBPlugin extends LitElement {
         ${this.ieds.map(ied =>
           ied.querySelector('GSEControl') ?
             html`
-              <mwc-list-item graphic="avatar" noninteractive>
-                <span>${getNameAttribute(ied)}</span>
-                <mwc-icon slot="graphic" class="inverted">developer_board</mwc-icon>
+              <mwc-list-item noninteractive>
+                <span class="iedListTitle">${getNameAttribute(ied)}</span>
               </mwc-list-item>
               <li divider role="separator"></li>
               ${this.getGSEControls(ied).map(control => html`<goose-message .element=${control}></goose-message>`)}
@@ -64,6 +63,10 @@ export default class SubscriptionABBPlugin extends LitElement {
       line-height: 48px;
       padding-left: 0.3em;
       transition: background-color 150ms linear;
+    }
+
+    .iedListTitle {
+      font-weight: bold;
     }
 
     :host {

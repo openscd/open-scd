@@ -261,6 +261,7 @@ export const en = {
     add: 'Add DataTypeTemplates',
   },
   subscription: {
+    none: 'None',
     publisherGoose: {
       title: 'Publisher GOOSE'
     },
