@@ -88,7 +88,7 @@ function updateEnumValAction(element: Element): WizardActor {
 
     return [
       {
-        old: { element, childNodes: Array.from(element.childNodes) },
+        old: { element },
         new: { element: newElement, childNodes: [newTextNode] },
       },
     ];

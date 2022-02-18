@@ -154,7 +154,7 @@ function getBitRateAction(
   const newTextNode = document.createTextNode(BitRate);
 
   return {
-    old: { element: oldBitRate, childNodes: Array.from(oldBitRate.childNodes) },
+    old: { element: oldBitRate },
     new: { element: newBitRate, childNodes: [newTextNode] },
   };
 }

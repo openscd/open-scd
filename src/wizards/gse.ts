@@ -51,7 +51,7 @@ export function getMTimeAction(
   const newTextNode = document.createTextNode(Time);
 
   return {
-    old: { element: oldTime, childNodes: Array.from(oldTime.childNodes) },
+    old: { element: oldTime },
     new: { element: newTime, childNodes: [newTextNode] },
   };
 }
