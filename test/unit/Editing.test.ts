@@ -99,72 +99,219 @@ describe('EditingElement', () => {
       .to.be.null;
   });
 
-  it('updates an element on receiving an Update action', () => {
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', 'newName');
+  describe('defines an Update action that', () => {
+    let complexElement: Element;
 
-    elm.dispatchEvent(
-      newActionEvent({ old: { element }, new: { element: newElement } })
-    );
+    beforeEach(() => {
+      const ceDoc = new DOMParser().parseFromString(
+        `<Parent>
+          <ComplexElement xmlns="http://myNS" xmlns:other="http://otherNS" attr1="value1" attr2="value2" 
+            other:attr3="value3">testNode<ChildElement/><other:ChildElement/><!-- commentNode --></ComplexElement>
+         </Parent>`,
+        'application/xml'
+      );
+      complexElement = ceDoc.querySelector('ComplexElement')!;
+    });
 
-    expect(parent.querySelector('Bay[name="Q01"]')).to.be.null;
-    expect(parent.querySelector('Bay[name="newName"]')).to.not.be.null;
-  });
+    it('updates an Element`s attributes on receiving an Update action', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      newElement.setAttribute('attr1', 'newValue1');
 
-  it('swap attributes between old and new element on update', () => {
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', 'newName');
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: { element: newElement },
+        })
+      );
 
-    elm.dispatchEvent(
-      newActionEvent({ old: { element }, new: { element: newElement } })
-    );
+      expect(complexElement).to.have.attribute('attr1', 'newValue1');
+    });
 
-    expect(element.parentElement).to.not.be.null;
-    expect(newElement.parentElement).to.be.null;
-  });
+    it('updates attributes other namespaces with proper new.element definition', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      newElement.setAttributeNS('http://otherNS', 'attr3', 'newValue3');
 
-  it('swaps option childNodes of old and new elements', () => {
-    element.textContent = 'oldTextContent';
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', 'newName');
-    const newTextNode = document.createTextNode('newTextContent');
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: { element: newElement },
+        })
+      );
 
-    elm.dispatchEvent(
-      newActionEvent({
-        old: { element, childNodes: Array.from(element.childNodes) },
-        new: { element: newElement, childNodes: [newTextNode] },
-      })
-    );
+      elm;
 
-    expect(element.textContent).to.equal('newTextContent');
-    expect(newElement.textContent).to.equal('oldTextContent');
-  });
+      expect(complexElement).to.have.attribute('other:attr3', 'newValue3');
+    });
 
-  it('does not swap textContent of old and new element with missing new element textContent', () => {
-    element.textContent = 'oldTextContent';
-    const newElement = <Element>element.cloneNode(false);
-    newElement.setAttribute('name', 'newName');
+    it('updates attributes of new and old element not the elements itself', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      newElement.setAttribute('attr1', 'newValue1');
 
-    elm.dispatchEvent(
-      newActionEvent({ old: { element }, new: { element: newElement } })
-    );
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: { element: newElement },
+        })
+      );
 
-    expect(element.textContent).to.equal('oldTextContent');
-    expect(newElement.textContent).to.equal('');
-  });
+      expect(complexElement.parentElement).to.not.be.null;
+      expect(newElement.parentElement).to.be.null;
+    });
 
-  it('does not update an element with name conflict', () => {
-    const newElement = elm.doc!.createElement('Bay');
-    newElement?.setAttribute('name', 'Q02');
+    it('swaps optional childNodes of old and new elements', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      const newTextNode = document.createTextNode('newTextContent');
 
-    elm.dispatchEvent(
-      newActionEvent({ old: { element }, new: { element: newElement } })
-    );
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: { element: newElement, childNodes: [newTextNode] },
+        })
+      );
 
-    expect(parent.querySelector('Bay[name="Q01"]')).to.not.null;
-    expect(
-      parent.querySelector('Bay[name="Q01"]')?.nextElementSibling
-    ).to.equal(parent.querySelector('Bay[name="Q02"]'));
+      expect(complexElement.childNodes).to.have.length(1);
+      expect(complexElement.childNodes[0].textContent).to.equal(
+        'newTextContent'
+      );
+      expect(newElement.childNodes).to.have.lengthOf(4);
+      expect(newElement.childNodes[0].textContent).to.equal('testNode');
+    });
+
+    it('properly inverts/undo the update action event', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      const newTextNode = document.createTextNode('newTextContent');
+
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: { element: newElement, childNodes: [newTextNode] },
+        })
+      );
+      elm.undo();
+
+      expect(complexElement.childNodes).to.have.lengthOf(4);
+      expect(complexElement.childNodes[0].textContent).to.equal('testNode');
+      expect(newElement.childNodes).to.have.lengthOf(1);
+      expect(newElement.childNodes[0].textContent).to.equal('newTextContent');
+    });
+
+    it('properly redo the update action event', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      const newTextNode = document.createTextNode('newTextContent');
+
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: { element: newElement, childNodes: [newTextNode] },
+        })
+      );
+      elm.undo();
+      elm.redo();
+
+      expect(complexElement.childNodes).to.have.length(1);
+      expect(complexElement.childNodes[0].textContent).to.equal(
+        'newTextContent'
+      );
+      expect(newElement.childNodes).to.have.lengthOf(4);
+      expect(newElement.childNodes[0].textContent).to.equal('testNode');
+    });
+
+    it('ignores duplicate childNode definition', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      const oldChildNodes = Array.from(complexElement.childNodes);
+      const newTextNode = document.createTextNode('newTextContent');
+
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: {
+            element: newElement,
+            childNodes: [...oldChildNodes, newTextNode],
+          },
+        })
+      );
+
+      expect(complexElement.childNodes).to.have.length(1);
+      expect(complexElement.childNodes[0].textContent).to.equal(
+        'newTextContent'
+      );
+      expect(newElement.childNodes).to.have.length(4);
+      expect(newElement.childNodes[0].textContent).to.equal('testNode');
+    });
+
+    it('properly inverts/undo complex update action definition', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      const oldChildNodes = Array.from(complexElement.childNodes);
+      const newTextNode = document.createTextNode('newTextContent');
+
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: {
+            element: newElement,
+            childNodes: [...oldChildNodes, newTextNode],
+          },
+        })
+      );
+      elm.undo();
+
+      expect(complexElement.childNodes).to.have.lengthOf(4);
+      expect(complexElement.childNodes[0].textContent).to.equal('testNode');
+      expect(newElement.childNodes).to.have.lengthOf(1);
+      expect(newElement.childNodes[0].textContent).to.equal('newTextContent');
+    });
+
+    it('properly redo complex update action definition', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+      const oldChildNodes = Array.from(complexElement.childNodes);
+      const newTextNode = document.createTextNode('newTextContent');
+
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: {
+            element: newElement,
+            childNodes: [...oldChildNodes, newTextNode],
+          },
+        })
+      );
+      elm.undo();
+      elm.redo();
+
+      expect(complexElement.childNodes).to.have.length(1);
+      expect(complexElement.childNodes[0].textContent).to.equal(
+        'newTextContent'
+      );
+      expect(newElement.childNodes).to.have.length(4);
+      expect(newElement.childNodes[0].textContent).to.equal('testNode');
+    });
+
+    it('does not swap childNodes with undefined childNode definition', () => {
+      const newElement = <Element>complexElement.cloneNode(false);
+
+      elm.dispatchEvent(
+        newActionEvent({
+          old: { element: complexElement },
+          new: { element: newElement },
+        })
+      );
+
+      expect(complexElement.childNodes.length).to.equal(4);
+    });
+
+    it('does not update an element with name conflict', () => {
+      const newElement = elm.doc!.createElement('Bay');
+      newElement?.setAttribute('name', 'Q02');
+
+      elm.dispatchEvent(
+        newActionEvent({ old: { element }, new: { element: newElement } })
+      );
+
+      expect(parent.querySelector('Bay[name="Q01"]')).to.not.null;
+      expect(
+        parent.querySelector('Bay[name="Q01"]')?.nextElementSibling
+      ).to.equal(parent.querySelector('Bay[name="Q02"]'));
+    });
   });
 
   it('moves an element on receiving a Move action', () => {
