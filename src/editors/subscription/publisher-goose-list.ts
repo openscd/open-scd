@@ -40,8 +40,9 @@ export class PublisherGOOSEList extends LitElement {
     ${this.ieds.map(ied =>
       ied.querySelector('GSEControl') ?
         html`
-          <mwc-list-item noninteractive>
+          <mwc-list-item noninteractive graphic="icon">
             <span class="iedListTitle">${getNameAttribute(ied)}</span>
+            <mwc-icon slot="graphic">developer_board</mwc-icon>
           </mwc-list-item>
           <li divider role="separator"></li>
           ${this.getGSEControls(ied).map(control => html`<goose-message .element=${control}></goose-message>`)}
