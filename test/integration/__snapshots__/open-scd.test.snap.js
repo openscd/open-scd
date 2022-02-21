@@ -287,24 +287,6 @@ snapshots["open-scd looks like its snapshot"] =
       <mwc-linear-progress indeterminate="">
       </mwc-linear-progress>
     </mwc-list-item>
-    <mwc-list-item
-      aria-disabled="true"
-      class="middle"
-      disabled=""
-      graphic="icon"
-      iconid="edit_note"
-      mwc-list-item=""
-      tabindex="-1"
-    >
-      <mwc-icon slot="graphic">
-        edit_note
-      </mwc-icon>
-      <span>
-        Locamation VMU
-      </span>
-      <mwc-linear-progress indeterminate="">
-      </mwc-linear-progress>
-    </mwc-list-item>
     <li
       divider=""
       padded=""
@@ -980,7 +962,6 @@ snapshots["open-scd looks like its snapshot"] =
       hasmeta=""
       left=""
       mwc-list-item=""
-      selected=""
       tabindex="-1"
       value="/src/menu/LocamationVMU.js"
     >

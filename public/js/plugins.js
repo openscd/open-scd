@@ -155,7 +155,7 @@ export const officialPlugins = [
     name: 'Locamation VMU',
     src: '/src/menu/LocamationVMU.js',
     icon: 'edit_note',
-    default: true,
+    default: false,
     kind: 'menu',
     requireDoc: true,
     position: 'middle'
