@@ -37,7 +37,10 @@ export class SubscriberIEDList extends LitElement {
   constructor() {
     super();
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
-    document.querySelector('open-scd')!.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
+    const openScdElement = document.querySelector('open-scd');
+    if (openScdElement) {
+      openScdElement.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
+    }
   }
 
   /**
