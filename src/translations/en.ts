@@ -438,9 +438,13 @@ export const en = {
       yCoordinateHelper: 'Y-Coordinate for Single Line Diagram',
     },
   },
+  userinfo: {
+    loggedInAs: 'Logged in as {{name}}'
+  },
   add: 'Add',
   new: 'New',
   remove: 'Remove',
+  delete: 'Delete',
   edit: 'Edit',
   move: 'Move',
   create: 'Create',
@@ -457,4 +461,107 @@ export const en = {
   connect: 'Connect',
   disconnect: 'Disconnect',
   next: 'Next',
+
+  compas: {
+    loading: 'Loading...',
+    comment: 'Comment',
+    notExists: 'Project no longer exists in CoMPAS!',
+    noSclTypes: 'No types found in CoMPAS',
+    noScls: 'No projects found in CoMPAS',
+    noSclVersions: 'No versions found for this project in CoMPAS',
+    error: {
+      type: 'Unable to determine type from document name!',
+      server: 'Error communicating with CoMPAS Server',
+      serverDetails: '{{type}}: {{message}}',
+    },
+    changeset: {
+      major: 'Major change',
+      minor: 'Minor change',
+      patch: 'Patch change',
+    },
+    open: {
+      title: 'Open project',
+      localTitle: 'Local',
+      selectFileButton: 'Open file...',
+      compasTitle: 'CoMPAS',
+      listSclTypes: 'Select type of project',
+      listScls: 'Select project ({{ type }})',
+      otherTypeButton: 'Other type...',
+    },
+    save: {
+      title: 'Save project',
+      localTitle: 'Local',
+      saveFileButton: 'Save to file...',
+      compasTitle: 'CoMPAS',
+      addSuccess: 'Project added to CoMPAS.',
+      updateSuccess: 'Project updated in CoMPAS',
+    },
+    updateSubstation: {
+      title: 'Update substation',
+    },
+    importIEDS: {
+      title: 'Import IED\'s',
+    },
+    merge: {
+      title: 'Merge project',
+    },
+    autoAlignment: {
+      title: 'Auto align SLD for selected substations',
+      button: 'Execute',
+      missing: 'No substations',
+      success: 'Updated X/Y Coordinates for substation(s)',
+    },
+    uploadVersion: {
+      title: 'Upload new version of project to CoMPAS',
+      selectButton: 'Select file...',
+      filename: 'Filename',
+      updateSuccess: 'Project uploaded in CoMPAS',
+    },
+    versions: {
+      title: 'CoMPAS Versions',
+      addVersionButton: 'Add version',
+      confirmRestoreTitle: 'Restore version?',
+      confirmRestore: 'Are you sure to restore version {{version}}?',
+      restoreVersionSuccess: 'Restored version {{version}} of project',
+      deleteProjectButton: 'Delete project',
+      confirmDeleteTitle: 'Delete project?',
+      confirmDelete: 'Are you sure to delete all version(s)?',
+      deleteSuccess: 'Removed project from CoMPAS',
+      confirmDeleteVersionTitle: 'Delete version?',
+      confirmDeleteVersion: 'Are you sure to delete version {{version}}?',
+      deleteVersionSuccess: 'Removed version {{version}} of project from CoMPAS',
+      confirmButton: 'Confirm',
+      compareButton: 'Compare versions',
+      selectTwoVersionsTitle: 'Select two versions?',
+      selectTwoVersionsMessage: 'Select maximum two versions to compare with each other. Currently selected: {{size}}.',
+      compareCurrentButton: 'Compare version (current)',
+      selectOneVersionsTitle: 'Select one version?',
+      selectOneVersionsMessage: 'Select maximum one version to compare the current project against. Currently selected: {{size}}.',
+    },
+    compare: {
+      title: 'Compare version {{oldVersion}} with version {{newVersion}}',
+      attributes: 'Attributes from',
+      children: 'Child elements from',
+    },
+    settings: {
+      title: 'CoMPAS Settings',
+      sclDataServiceUrl: 'CoMPAS SCL Data Service URL',
+      cimMappingServiceUrl: 'CoMPAS CIM Mapping Service URL',
+      sclAutoAlignmentServiceUrl: 'CoMPAS SCL Auto Alignment Service URL',
+    },
+    session: {
+      headingExpiring: 'Your session is about to expire!',
+      explainExpiring: 'Because of inactivity ({{expiringSessionWarning}} minutes), your session with the CoMPAS Systems is about to expire. <br>' +
+        'If you want to continue working press the button \'Continue\'. Otherwise the session will expire in {{timeTillExpire}} minutes.',
+      continue: 'Continue',
+      headingExpired: 'Your session is expired!',
+      explainExpiredWithProject: 'Because of inactivity ({{expiredSessionMessage}} minutes), your session with the CoMPAS Systems is expired. <br>' +
+        'To continue working you need to reload the browser to login again, but modifications to the project are lost. <br>' +
+        'To prevent this you can first save the project to your local filesystem using the button \'Save project\'. <br>' +
+        'After loading the original project from CoMPAS you can add this file as new version using the tab \'CoMPAS Versions\'.',
+      explainExpiredWithoutProject: 'Because of inactivity ({{expiredSessionMessage}} minutes), your session with the CoMPAS Systems is expired. <br>' +
+        'To continue working you need to reload the browser to login again.',
+      saveProject: 'Save project',
+    }
+  }
 };

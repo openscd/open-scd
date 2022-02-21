@@ -6,7 +6,7 @@ import { MockWizardEditor } from '../../../mock-wizard-editor.js';
 import { CheckListItem } from '@material/mwc-list/mwc-check-list-item';
 
 import '../../../../src/open-scd.js';
-import ImportingIedPlugin from '../../../../src/menu/ImportIEDs.js';
+import ImportingIedPlugin, {prepareImportIEDs} from '../../../../src/menu/ImportIEDs.js';
 import { OpenSCD } from '../../../../src/open-scd.js';
 
 describe('ImportIedsPlugin', () => {
@@ -42,61 +42,61 @@ describe('ImportIedsPlugin', () => {
     it('loads ied element to the project', async () => {
       expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
         .not.exist;
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
       await element.updateComplete;
       expect(element.doc?.querySelector(':root > IED[name="TestImportIED"]')).to
         .exist;
     });
 
-    it('loads unique lnodetypes to the project', () => {
+    it('loads unique lnodetypes to the project', async () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
           .length
       ).to.equal(11);
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  LNodeType')
           .length
       ).to.equal(16);
     });
-    it('loads unique dotypes to the project', () => {
+    it('loads unique dotypes to the project', async () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
       ).to.equal(16);
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DOType')
           .length
       ).to.equal(26);
     });
 
-    it('loads unique datypes to the project', () => {
+    it('loads unique datypes to the project', async () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DAType')
           .length
       ).to.equal(7);
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  DAType')
           .length
       ).to.equal(11);
     });
-    it('loads unique enumtypes to the project', () => {
+    it('loads unique enumtypes to the project', async () => {
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  EnumType')
           .length
       ).to.equal(4);
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
       expect(
         element.doc?.querySelectorAll(':root > DataTypeTemplates >  EnumType')
           .length
       ).to.equal(10);
     });
-    it('adds the connectedap of the imported ied', () => {
+    it('adds the connectedap of the imported ied', async () => {
       expect(element.doc.querySelector('ConnectedAP[iedName="TestImportIED"]'))
         .to.not.exist;
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
       expect(element.doc.querySelector('ConnectedAP[iedName="TestImportIED"]'))
         .to.exist;
       expect(
@@ -104,10 +104,10 @@ describe('ImportIedsPlugin', () => {
           ?.parentElement
       ).to.equal(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]'));
     });
-    it('creates new subnetwork if not present in the doc', () => {
+    it('creates new subnetwork if not present in the doc', async () => {
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
         .not.exist;
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
       expect(element.doc.querySelector('SubNetwork[name="NewSubNetwork"]')).to
         .exist;
     });
@@ -119,14 +119,14 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.prepareImport(templateIED1, doc);
+      await prepareImportIEDs(element.parent, templateIED1, doc);
 
       const templateIED2 = await fetch(
         '/test/testfiles/importieds/template.icd'
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.prepareImport(templateIED2, doc);
+      await prepareImportIEDs(element.parent, templateIED2, doc);
 
       expect(element.doc.querySelector('IED[name="TEMPLATE_IED1"]')).to.exist;
       expect(element.doc.querySelector('IED[name="TEMPLATE_IED2"]')).to.exist;
@@ -137,7 +137,7 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.prepareImport(multipleIedDoc, doc);
+      await prepareImportIEDs(element.parent, multipleIedDoc, doc);
 
       await parent.updateComplete;
 
@@ -152,7 +152,7 @@ describe('ImportIedsPlugin', () => {
       )
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.prepareImport(multipleIedDoc, doc);
+      await prepareImportIEDs(element.parent, multipleIedDoc, doc);
       await parent.updateComplete;
 
       (<CheckListItem>(
@@ -198,7 +198,7 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/invalid.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
 
       expect(parent.history[0].kind).to.equal('error');
       expect(parent.history[0].title).to.equal('No IED element in the file');
@@ -207,7 +207,7 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/dublicate.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
 
       expect(parent.history[0].kind).to.equal('error');
       expect(parent.history[0].title).to.equal(
@@ -218,7 +218,7 @@ describe('ImportIedsPlugin', () => {
       importDoc = await fetch('/test/testfiles/importieds/parsererror.iid')
         .then(response => response.text())
         .then(str => new DOMParser().parseFromString(str, 'application/xml'));
-      element.prepareImport(importDoc, doc);
+      await prepareImportIEDs(element.parent, importDoc, doc);
 
       expect(parent.history[0].kind).to.equal('error');
       expect(parent.history[0].title).to.equal('Parser error');
