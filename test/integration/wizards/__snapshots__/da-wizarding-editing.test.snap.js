@@ -790,7 +790,6 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -1509,7 +1508,6 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"

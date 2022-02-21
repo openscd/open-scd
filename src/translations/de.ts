@@ -560,6 +560,35 @@ export const de: Translations = {
       explainExpiredWithProject: '???',
       explainExpiredWithoutProject: '???',
       saveProject: '???',
-    }
-  }
+    },
+  },
+  locamation: {
+    vmu: {
+      ied: {
+        title: '???',
+        missing: '???',
+        name: '???',
+      },
+      ldevice: {
+        name: '???',
+      },
+      ln: {
+        title: '???',
+        editTitle: '???',
+        name: '???',
+      },
+      version: '???',
+      identifier: '???',
+      identifierHelper: '???',
+      sum: '???',
+      sumHelper: '???',
+      channel: '???',
+      channelHelper: '???',
+      transformPrimary: '???',
+      transformPrimaryHelper: '???',
+      transformSecondary: '???',
+      transformSecondaryHelper: '???',
+      updateAction: '???',
+    },
+  },
 };

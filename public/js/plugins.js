@@ -152,6 +152,15 @@ export const officialPlugins = [
     position: 'middle'
   },
   {
+    name: 'Locamation VMU',
+    src: '/src/menu/LocamationVMU.js',
+    icon: 'edit_note',
+    default: true,
+    kind: 'menu',
+    requireDoc: true,
+    position: 'middle'
+  },
+  {
     name: 'CoMPAS Settings',
     src: '/src/menu/CompasSettings.js',
     icon: 'settings',

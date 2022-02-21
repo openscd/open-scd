@@ -7,6 +7,21 @@ snapshots["compas-scl-list show-loading looks like the latest snapshot"] =
 `;
 /* end snapshot compas-scl-list show-loading looks like the latest snapshot */
 
+snapshots["compas-scl-list no-items-in-list looks like the latest snapshot"] = 
+`<mwc-list>
+  <mwc-list-item
+    aria-disabled="false"
+    mwc-list-item=""
+    tabindex="0"
+  >
+    <i>
+      [compas.noScls]
+    </i>
+  </mwc-list-item>
+</mwc-list>
+`;
+/* end snapshot compas-scl-list no-items-in-list looks like the latest snapshot */
+
 snapshots["compas-scl-list after-list-loaded looks like the latest snapshot"] = 
 `<mwc-list>
   <mwc-list-item
@@ -26,19 +41,4 @@ snapshots["compas-scl-list after-list-loaded looks like the latest snapshot"] =
 </mwc-list>
 `;
 /* end snapshot compas-scl-list after-list-loaded looks like the latest snapshot */
-
-snapshots["compas-scl-list no-items-in-list looks like the latest snapshot"] = 
-`<mwc-list>
-  <mwc-list-item
-    aria-disabled="false"
-    mwc-list-item=""
-    tabindex="0"
-  >
-    <i>
-      [compas.noScls]
-    </i>
-  </mwc-list-item>
-</mwc-list>
-`;
-/* end snapshot compas-scl-list no-items-in-list looks like the latest snapshot */
 

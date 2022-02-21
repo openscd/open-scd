@@ -128,7 +128,6 @@ snapshots["LNodeType wizards defines a lNodeTypeHelperWizard looks like the late
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -3453,7 +3452,6 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard looks like the late
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[next]..."
     slot="primaryAction"
@@ -3788,7 +3786,6 @@ snapshots["LNodeType wizards defines a createLNodeTypeWizard opens a createLNode
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -3988,7 +3985,6 @@ snapshots["LNodeType wizards defines a dOWizard to create a new DO element looks
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"

@@ -562,6 +562,35 @@ export const en = {
       explainExpiredWithoutProject: 'Because of inactivity ({{expiredSessionMessage}} minutes), your session with the CoMPAS Systems is expired. <br>' +
         'To continue working you need to reload the browser to login again.',
       saveProject: 'Save project',
-    }
-  }
+    },
+  },
+  locamation: {
+    vmu: {
+      ied: {
+        title: 'Configure Locamation VMUs',
+        missing: 'No Locamation IEDs with Logica Devices found',
+        name: 'IED',
+      },
+      ldevice: {
+        name: 'Logical Device',
+      },
+      ln: {
+        title: 'Configure Locamation VMUs (IED)',
+        editTitle: 'Edit VMU',
+        name: 'Logical Node',
+      },
+      version: 'Locamation VMU Version',
+      identifier: 'Identifier',
+      identifierHelper: 'The address of the sensor. The address is constructed of 3 numbers, separated by dots. The range of each number is 0-255.',
+      sum: 'Sum',
+      sumHelper: 'The collection of three channel numbers for which the sum of currents or voltages will be calculated. The numbers are separated by commas. Values for the current sensor range from 0 - 5, for the voltage sensor 0-2.',
+      channel: 'Channel',
+      channelHelper: 'The channel number on the sensor. Values for the current sensor range from 0 - 5, for the voltage sensor 0-2.',
+      transformPrimary: 'TransformPrimary',
+      transformPrimaryHelper: 'The nominator of the ratio of the measement transformer.',
+      transformSecondary: 'TransformSecondary',
+      transformSecondaryHelper: 'The denominator of the ratio of the measement transformer.',
+      updateAction: 'Locamation private fields updated for Logica Node {{lnName}}',
+    },
+  },
 };

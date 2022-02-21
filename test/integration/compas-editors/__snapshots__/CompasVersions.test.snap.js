@@ -107,14 +107,6 @@ snapshots["compas-versions-plugin items-in-list looks like the latest snapshot"]
 `;
 /* end snapshot compas-versions-plugin items-in-list looks like the latest snapshot */
 
-snapshots["compas-versions-plugin show-loading looks like the latest snapshot"] = 
-`<compas-loading>
-</compas-loading>
-<wizard-dialog>
-</wizard-dialog>
-`;
-/* end snapshot compas-versions-plugin show-loading looks like the latest snapshot */
-
 snapshots["compas-versions-plugin no-items-in-list looks like the latest snapshot"] = 
 `<mwc-list>
   <mwc-list-item
@@ -131,4 +123,12 @@ snapshots["compas-versions-plugin no-items-in-list looks like the latest snapsho
 </wizard-dialog>
 `;
 /* end snapshot compas-versions-plugin no-items-in-list looks like the latest snapshot */
+
+snapshots["compas-versions-plugin show-loading looks like the latest snapshot"] = 
+`<compas-loading>
+</compas-loading>
+<wizard-dialog>
+</wizard-dialog>
+`;
+/* end snapshot compas-versions-plugin show-loading looks like the latest snapshot */
 

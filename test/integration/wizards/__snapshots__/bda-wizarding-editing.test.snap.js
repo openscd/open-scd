@@ -601,7 +601,6 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
@@ -1138,7 +1137,6 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
   >
   </mwc-button>
   <mwc-button
-    dialoginitialfocus=""
     icon=""
     label="[save]"
     slot="primaryAction"
