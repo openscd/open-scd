@@ -87,7 +87,7 @@ export class SubscriberIEDList extends LitElement {
 
   render(): TemplateResult {
     const partialSubscribedIeds = this.availableIeds.filter(ied => ied.partial);
-    
+
     return html`
       <h1>${translate('subscription.subscriberIed.title')}</h1>
       <mwc-list>
