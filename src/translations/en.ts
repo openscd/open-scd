@@ -269,7 +269,8 @@ export const en = {
       title: 'Subscriber IED',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
-      partiallySubscribed: 'Partially subscribed'
+      partiallySubscribed: 'Partially subscribed',
+      noGooseMessageSelected: 'No GOOSE message selected.'
     }
   },
   'enum-val': {

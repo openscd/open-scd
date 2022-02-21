@@ -272,7 +272,8 @@ export const de: Translations = {
       title: '???',
       subscribed: '???',
       availableToSubscribe: '???',
-      partiallySubscribed: '???'
+      partiallySubscribed: '???',
+      noGooseMessageSelected: '???'
     }
   },
   'enum-val': {

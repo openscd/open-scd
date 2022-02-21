@@ -45,7 +45,10 @@ export class PublisherGOOSEList extends LitElement {
             <mwc-icon slot="graphic">developer_board</mwc-icon>
           </mwc-list-item>
           <li divider role="separator"></li>
-          ${this.getGSEControls(ied).map(control => html`<goose-message .element=${control}></goose-message>`)}
+          ${this.getGSEControls(ied).map(control =>
+            html`<goose-message
+              .element=${control}
+            ></goose-message>`)}
         ` : ``)}
     </mwc-list>
       `;

@@ -31,6 +31,9 @@ export class SubscriberIEDList extends LitElement {
   /** List holding all current avaialble IEDs which are not subscribed. */
   availableIeds: IED[] = [];
 
+  /** Current selected IED. */
+  iedName!: string;
+
   constructor() {
     super();
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
@@ -43,6 +46,7 @@ export class SubscriberIEDList extends LitElement {
    * @param event - Incoming event.
    */
   private async onGOOSEDataSetEvent(event: GOOSEDataSetEvent) {
+    this.iedName = event.detail.iedName;
     const dataSet = event.detail.dataset;
 
     this.clearIedLists();
@@ -90,7 +94,8 @@ export class SubscriberIEDList extends LitElement {
 
     return html`
       <h1>${translate('subscription.subscriberIed.title')}</h1>
-      <mwc-list>
+      ${this.iedName ? 
+      html`<mwc-list>
         <mwc-list-item noninteractive>
           <span class="iedListTitle">${translate('subscription.subscriberIed.subscribed')}</span>
         </mwc-list-item>
@@ -134,7 +139,11 @@ export class SubscriberIEDList extends LitElement {
           : html`<mwc-list-item graphic="avatar" noninteractive>
           <span>${translate('subscription.none')}</span>
         </mwc-list-item>`}
-      </mwc-list>
+      </mwc-list>` : html`<mwc-list>
+        <mwc-list-item noninteractive>
+          <span class="iedListTitle">${translate('subscription.subscriberIed.noGooseMessageSelected')}</span>
+        </mwc-list-item>
+      </mwc-list>`}
       `;
   }
 
