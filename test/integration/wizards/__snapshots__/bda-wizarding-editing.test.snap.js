@@ -520,33 +520,13 @@ snapshots["BDA wizarding editing integration defines a editBDaWizard to edit an 
         Set
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
+    <wizard-checkbox
       helper="[scl.valImport]"
       label="valImport"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-select
       disabled=""
       helper="[scl.Val]"
@@ -1128,33 +1108,13 @@ snapshots["BDA wizarding editing integration defines a createBDaWizard to create
         Set
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
+    <wizard-checkbox
       helper="[scl.valImport]"
       label="valImport"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-select
       disabled=""
       helper="[scl.Val]"

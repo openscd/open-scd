@@ -3,6 +3,7 @@ import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
+import '../wizard-checkbox.js';
 import '../wizard-select.js';
 import {
   cloneElement,
@@ -56,16 +57,11 @@ export function editTrgOpsWizard(element: Element): Wizard {
       },
       content: trgOps.map(
         trgOp =>
-          html`<wizard-select
+          html`<wizard-checkbox
             label="${trgOp}"
             .maybeValue=${element.getAttribute(trgOp)}
             nullable
-            required
-            >${['true', 'false'].map(
-              option =>
-                html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-            )}</wizard-select
-          >`
+          ></wizard-checkbox>`
       ),
     },
   ];

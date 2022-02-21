@@ -18,6 +18,9 @@ export class ServerContainer extends LitElement {
   element!: Element;
 
   @property()
+  ancestors: Element[] = [];
+
+  @property()
   nsdoc!: Nsdoc;
 
   private header(): string {
@@ -30,6 +33,7 @@ export class ServerContainer extends LitElement {
       server => html`<ldevice-container
         .element=${server}
         .nsdoc=${this.nsdoc}
+        .ancestors=${[this.element, ...this.ancestors]}
       ></ldevice-container>`)}
     </action-pane>`;
   }

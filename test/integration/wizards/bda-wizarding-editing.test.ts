@@ -9,6 +9,7 @@ import { FilteredList } from '../../../src/filtered-list.js';
 import { WizardSelect } from '../../../src/wizard-select.js';
 import { WizardTextField } from '../../../src/wizard-textfield.js';
 import TemplatesPlugin from '../../../src/editors/Templates.js';
+import { WizardCheckbox } from '../../../src/wizard-checkbox.js';
 
 describe('BDA wizarding editing integration', () => {
   if (customElements.get('templates-editor') === undefined)
@@ -121,7 +122,7 @@ describe('BDA wizarding editing integration', () => {
     let sAddrField: WizardTextField;
     let bTypeSelect: WizardSelect;
     let valKindSelect: WizardSelect;
-    let valImportSelect: WizardSelect;
+    let valImportSelect: WizardCheckbox;
     let primayAction: HTMLElement;
 
     beforeEach(async () => {
@@ -151,9 +152,9 @@ describe('BDA wizarding editing integration', () => {
       valKindSelect = <WizardSelect>(
         parent.wizardUI.dialog?.querySelector('wizard-select[label="valKind"]')
       );
-      valImportSelect = <WizardSelect>(
+      valImportSelect = <WizardCheckbox>(
         parent.wizardUI.dialog?.querySelector(
-          'wizard-select[label="valImport"]'
+          'wizard-checkbox[label="valImport"]'
         )
       );
       primayAction = <HTMLElement>(
@@ -202,7 +203,7 @@ describe('BDA wizarding editing integration', () => {
       valKindSelect.nullable = false;
       valKindSelect.value = 'RO';
       valImportSelect.nullable = false;
-      valImportSelect.value = 'true';
+      valImportSelect.maybeValue = 'true';
 
       await parent.requestUpdate();
       primayAction.click();

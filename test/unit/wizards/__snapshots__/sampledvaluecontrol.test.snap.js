@@ -26,30 +26,12 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
       pattern="([ -~]|[]|[ -퟿]|[-�])*"
     >
     </wizard-textfield>
-    <wizard-select
+    <wizard-checkbox
       disabled=""
       helper="[scl.multicast]"
       label="multicast"
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-textfield
       helper="[scl.id]"
       label="smvID"
@@ -143,6 +125,11 @@ snapshots["Wizards for SCL element SampledValueControl define an edit wizard tha
         SignatureAndEncryption
       </mwc-list-item>
     </wizard-select>
+    <mwc-button
+      icon="delete"
+      label="[remove]"
+    >
+    </mwc-button>
   </div>
   <mwc-button
     dialogaction="close"

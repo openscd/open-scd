@@ -192,7 +192,7 @@ describe('Wizards for SCL element ReportControl', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       const dchgSelect = <WizardTextField>(
-        element.wizardUI.dialog?.querySelector('wizard-select[label="dchg"]')
+        element.wizardUI.dialog?.querySelector('wizard-checkbox[label="dchg"]')
       );
       await dchgSelect.updateComplete;
 
@@ -211,7 +211,9 @@ describe('Wizards for SCL element ReportControl', () => {
       await new Promise(resolve => setTimeout(resolve, 100)); // await animation
 
       const seqNumSelect = <WizardTextField>(
-        element.wizardUI.dialog?.querySelector('wizard-select[label="seqNum"]')
+        element.wizardUI.dialog?.querySelector(
+          'wizard-checkbox[label="seqNum"]'
+        )
       );
       await seqNumSelect.updateComplete;
 

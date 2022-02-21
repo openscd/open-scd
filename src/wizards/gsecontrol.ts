@@ -8,6 +8,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
 import '../filtered-list.js';
+import '../wizard-checkbox.js';
 import '../wizard-select.js';
 import '../wizard-textfield.js';
 import {
@@ -86,16 +87,12 @@ export function renderGseAttributes(
       required
       validationMessage="${translate('textfield.nonempty')}"
     ></wizard-textfield>`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="fixedOffs"
       .maybeValue=${fixedOffs}
       nullable
-      required
       helper="${translate('scl.fixedOffs')}"
-      >${['true', 'false'].map(
-        type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
     html`<wizard-select
       label="securityEnabled"
       .maybeValue=${securityEnabled}

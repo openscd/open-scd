@@ -4,6 +4,7 @@ import { get, translate } from 'lit-translate';
 import '@material/mwc-button';
 import '@material/mwc-list/mwc-list-item';
 
+import '../wizard-checkbox.js';
 import '../wizard-select.js';
 import {
   cloneElement,
@@ -38,42 +39,24 @@ export function renderDa(
           html`<mwc-list-item value="${fcOption}">${fcOption}</mwc-list-item>`
       )}</wizard-select
     >`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="dchg"
       .maybeValue=${dchg}
-      helper="${translate('scl.valImport')}"
+      helper="${translate('scl.dchg')}"
       nullable
-      required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
-    html`<wizard-select
+    ></wizard-checkbox>`,
+    html`<wizard-checkbox
       label="qchg"
       .maybeValue=${qchg}
-      helper="${translate('scl.valImport')}"
+      helper="${translate('scl.qchg')}"
       nullable
-      required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
-    html`<wizard-select
+    ></wizard-checkbox>`,
+    html`<wizard-checkbox
       label="dupd"
       .maybeValue=${dupd}
-      helper="${translate('scl.valImport')}"
+      helper="${translate('scl.dupd')}"
       nullable
-      required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
   ];
 }
 

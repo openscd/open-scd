@@ -7,6 +7,7 @@ import { List } from '@material/mwc-list';
 import { ListItemBase } from '@material/mwc-list/mwc-list-item-base';
 import { SingleSelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 
+import '../wizard-checkbox.js';
 import '../wizard-textfield.js';
 import '../wizard-select.js';
 import '../filtered-list.js';
@@ -174,16 +175,11 @@ function renderReportControlWizardInputs(
       nullable
       helper="${translate('scl.desc')}"
     ></wizard-textfield>`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="buffered"
       .maybeValue=${options.buffered}
-      helper="${translate('scl.buffered')}"
       disabled
-      >${['true', 'false'].map(
-        option =>
-          html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
     html`<wizard-textfield
       label="rptID"
       .maybeValue=${options.rptID}
@@ -191,16 +187,11 @@ function renderReportControlWizardInputs(
       required
       validationMessage="${translate('textfield.nonempty')}"
     ></wizard-textfield>`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="indexed"
       .maybeValue=${options.indexed}
       nullable
-      required
-      helper="${translate('scl.indexed')}"
-      >${['true', 'false'].map(
-        type => html`<mwc-list-item value="${type}">${type}</mwc-list-item>`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
     html`<wizard-textfield
       label="max Clients"
       .maybeValue=${options.max}

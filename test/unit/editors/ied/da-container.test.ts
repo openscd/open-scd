@@ -2,10 +2,13 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../../../../src/editors/ied/da-container.js';
 import { DAContainer } from '../../../../src/editors/ied/da-container.js';
+import { initializeNsdoc } from '../../../../src/foundation/nsdoc.js';
 
-describe('da-container', () => {
+describe('da-container', async () => {
   let element: DAContainer;
   let validSCL: XMLDocument;
+
+  const nsdoc = await initializeNsdoc();
 
   beforeEach(async () => {
     validSCL = await fetch('/test/testfiles/valid2007B4withIEDModifications.scd')
@@ -17,6 +20,7 @@ describe('da-container', () => {
     element = await fixture(html`<da-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')}
+      .nsdoc=${nsdoc}
     ></da-container>`);
     expect(element).shadowDom.to.equalSnapshot();
   });
@@ -25,6 +29,7 @@ describe('da-container', () => {
     element = await fixture(html`<da-container
       .element=${validSCL.querySelector(
         'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]')}
+      .nsdoc=${nsdoc}
     ></da-container>`);
 
     (<HTMLElement>(
@@ -48,15 +53,17 @@ describe('da-container', () => {
         'DataTypeTemplates > DOType[id="Dummy.XCBR1.Pos"] > DA[name="ctlModel"]')}
       .instanceElement=${validSCL.querySelector(
         ':root > IED[name="IED2"] > AccessPoint[name="P1"] > Server > LDevice[inst="CircuitBreaker_CB1"] > LN[lnType="Dummy.XCBR1"] > DOI[name="Pos"]> DAI[name="ctlModel"]')}
+      .nsdoc=${nsdoc}
     ></da-container>`);
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  describe('has a getBDAElements function ', () => {
+  describe('has a getBDAElements function ', async () => {
     it('which returns BDA elements if available', async () => {
       element = await fixture(html`<da-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBOw"]')}
+        .nsdoc=${nsdoc}
       ></da-container>`);
 
       const bdaElements = element['getBDAElements']();
@@ -68,6 +75,7 @@ describe('da-container', () => {
       element = await fixture(html`<da-container
         .element=${validSCL.querySelector(
           'DataTypeTemplates > DOType[id="Dummy.LPHD1.Sim"] > DA[name="SBO"]')}
+        .nsdoc=${nsdoc}
       ></da-container>`);
 
       const bdaElements = element['getBDAElements']();

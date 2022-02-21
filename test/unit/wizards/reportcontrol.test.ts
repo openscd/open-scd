@@ -199,7 +199,7 @@ describe('Wizards for SCL ReportControl element', () => {
 
     it('update a ReportControl element when indexed attribute changed', async () => {
       const input = <WizardTextField>inputs[4];
-      input.value = 'false';
+      input.maybeValue = 'false';
       await input.requestUpdate();
 
       primaryAction.click();

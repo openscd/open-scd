@@ -3,6 +3,7 @@ import { get } from 'lit-translate';
 
 import '@material/mwc-list/mwc-list-item';
 
+import '../wizard-checkbox.js';
 import '../wizard-select.js';
 import {
   cloneElement,
@@ -73,16 +74,12 @@ export function editOptFieldsWizard(element: Element): Wizard {
       },
       content: optFields.map(
         optField =>
-          html`<wizard-select
+          html`<wizard-checkbox
             label="${optField}"
             .maybeValue=${element.getAttribute(optField)}
             nullable
             required
-            >${['true', 'false'].map(
-              option =>
-                html`<mwc-list-item value="${option}">${option}</mwc-list-item>`
-            )}</wizard-select
-          >`
+          ></wizard-checkbox>`
       ),
     },
   ];

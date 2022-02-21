@@ -15,6 +15,7 @@ import { IconButtonToggle } from '@material/mwc-icon-button-toggle';
 
 import '../../action-pane.js';
 import { getNameAttribute } from '../../foundation.js';
+import { Nsdoc } from '../../foundation/nsdoc.js';
 
 /** [[`IED`]] plugin subeditor for editing `(B)DA` element. */
 @customElement('da-container')
@@ -30,6 +31,15 @@ export class DAContainer extends LitElement {
    */
   @property({ attribute: false })
   instanceElement!: Element;
+
+  @property({ attribute: false })
+  daParent!: Element
+
+  @property()
+  ancestors: Element[] = [];
+
+  @property()
+  nsdoc!: Nsdoc;
   
   @query('#toggleButton') toggleButton: IconButtonToggle | undefined;
 
@@ -83,6 +93,12 @@ export class DAContainer extends LitElement {
     const bType = this.element!.getAttribute('bType');
 
     return html`<action-pane .label="${this.header()}" icon="${this.instanceElement != null ? 'done' : ''}">
+      <abbr slot="action">
+        <mwc-icon-button
+          title=${this.nsdoc.getDataDescription(this.element, this.ancestors).label}
+          icon="info"
+        ></mwc-icon-button>
+      </abbr>
       ${bType == 'Struct' ? html`<abbr slot="action" title="${translate('iededitor.toggleChildElements')}">
         <mwc-icon-button-toggle
           id="toggleButton"
@@ -94,8 +110,11 @@ export class DAContainer extends LitElement {
       <h6>${this.renderValue()}</h6>
       ${this.toggleButton?.on && bType == 'Struct' ? this.getBDAElements().map(element =>
         html`<da-container
-          .element=${element}>
-        </da-container>`) : nothing}
+          .element=${element}
+          .nsdoc=${this.nsdoc}
+          .daParent=${this.daParent ?? this.element}
+          .ancestors=${[this.element, ...this.ancestors]}
+        ></da-container>`) : nothing}
     </action-pane>
     `;
   }

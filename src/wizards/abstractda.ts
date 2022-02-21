@@ -6,6 +6,7 @@ import { ListItem } from '@material/mwc-list/mwc-list-item';
 import { SelectedEvent } from '@material/mwc-list/mwc-list-foundation';
 import { Select } from '@material/mwc-select';
 
+import '../wizard-checkbox.js';
 import '../wizard-select.js';
 import '../wizard-textfield.js';
 import { createElement, EditorAction } from '../foundation.js';
@@ -173,20 +174,13 @@ export function wizardContent(
           >`
       )}</wizard-select
     >`,
-    html`<wizard-select
+    html`<wizard-checkbox
       label="valImport"
       .maybeValue=${valImport}
       helper="${translate('scl.valImport')}"
       nullable
       required
-      fixedMenuPosition
-      >${['true', 'false'].map(
-        valImportOption =>
-          html`<mwc-list-item value="${valImportOption}"
-            >${valImportOption}</mwc-list-item
-          >`
-      )}</wizard-select
-    >`,
+    ></wizard-checkbox>`,
     html`<wizard-select
       label="Val"
       .maybeValue=${Val}
