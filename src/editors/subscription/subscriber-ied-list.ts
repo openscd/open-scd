@@ -19,14 +19,6 @@ interface IED {
   partial?: boolean;
 }
 
-/**
- * Type of IED list.
- */
-enum ListType {
-  Subscribed,
-  NotSubscribed
-}
-
 /** An sub element for subscribing and unsubscribing IEDs to GOOSE messages. */
 @customElement('subscriber-ied-list')
 export class SubscriberIEDList extends LitElement {
@@ -95,6 +87,7 @@ export class SubscriberIEDList extends LitElement {
 
   render(): TemplateResult {
     const partialSubscribedIeds = this.availableIeds.filter(ied => ied.partial);
+    
     return html`
       <h1>${translate('subscription.subscriberIed.title')}</h1>
       <mwc-list>
@@ -107,11 +100,6 @@ export class SubscriberIEDList extends LitElement {
           <mwc-list-item graphic="avatar" hasMeta>
             <span>${ied.element.getAttribute('name')}</span>
             <mwc-icon slot="graphic">clear</mwc-icon>
-            ${ied.partial ?
-              html`<mwc-icon
-                title="${translate('subscription.subscriberIed.notFullySubscribed')}"
-                slot="meta">info</mwc-icon>`
-              : ''}
           </mwc-list-item>`)
           : html`<mwc-list-item graphic="avatar" noninteractive>
           <span>${translate('subscription.none')}</span>
