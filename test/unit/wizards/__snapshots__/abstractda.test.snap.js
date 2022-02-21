@@ -467,31 +467,13 @@ snapshots["abstractda wizards renderWizard looks like the latest snapshot"] =
         Set
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
+    <wizard-checkbox
       helper="[scl.valImport]"
       label="valImport"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-select
       helper="[scl.Val]"
       label="Val"

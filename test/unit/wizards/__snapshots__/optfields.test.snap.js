@@ -8,204 +8,54 @@ snapshots["Wizards for SCL OptFields element define an edit wizard that looks li
   open=""
 >
   <div id="wizard-content">
-    <wizard-select
-      disabled=""
+    <wizard-checkbox
       label="seqNum"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
+    </wizard-checkbox>
+    <wizard-checkbox
       label="timeStamp"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
+    </wizard-checkbox>
+    <wizard-checkbox
       label="dataSet"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
+    </wizard-checkbox>
+    <wizard-checkbox
       label="reasonCode"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
+    </wizard-checkbox>
+    <wizard-checkbox
       label="dataRef"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
+    </wizard-checkbox>
+    <wizard-checkbox
       label="entryID"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
+    </wizard-checkbox>
+    <wizard-checkbox
       label="configRef"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
+    </wizard-checkbox>
+    <wizard-checkbox
       label="bufOvfl"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
   </div>
   <mwc-button
     dialogaction="close"

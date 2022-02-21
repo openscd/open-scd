@@ -144,7 +144,7 @@ describe('da wizards', () => {
     it('update a DA element when valImport attribute changed', async () => {
       const input = <WizardSelect>inputs[6];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
@@ -183,7 +183,7 @@ describe('da wizards', () => {
     it('update a DA element when dchg attribute changed', async () => {
       const input = <WizardSelect>inputs[10];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
@@ -196,7 +196,7 @@ describe('da wizards', () => {
     it('update a DA element when qchg attribute changed', async () => {
       const input = <WizardSelect>inputs[11];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
@@ -209,7 +209,7 @@ describe('da wizards', () => {
     it('update a DA element when dupd attribute changed', async () => {
       const input = <WizardSelect>inputs[12];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
@@ -320,13 +320,13 @@ describe('da wizards', () => {
       valImport.value = 'false';
       await valImport.requestUpdate();
       dchg.nullSwitch?.click();
-      dchg.value = 'true';
+      dchg.maybeValue = 'true';
       await dchg.requestUpdate();
       qchg.nullSwitch?.click();
-      qchg.value = 'false';
+      qchg.maybeValue = 'false';
       await qchg.requestUpdate();
       dupd.nullSwitch?.click();
-      dupd.value = 'true';
+      dupd.maybeValue = 'true';
       await dupd.requestUpdate();
 
       const editorAction = createDaAction(daType);

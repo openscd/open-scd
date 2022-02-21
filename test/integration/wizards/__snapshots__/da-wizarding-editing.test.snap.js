@@ -564,33 +564,13 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
         Set
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
+    <wizard-checkbox
       helper="[scl.valImport]"
       label="valImport"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-select
       disabled=""
       helper="[scl.Val]"
@@ -783,87 +763,24 @@ snapshots["DA wizarding editing integration defines a editDaWizard to edit an ex
         CO
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
-      helper="[scl.valImport]"
+    <wizard-checkbox
+      helper="[scl.dchg]"
       label="dchg"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
-      helper="[scl.valImport]"
+    </wizard-checkbox>
+    <wizard-checkbox
+      helper="[scl.qchg]"
       label="qchg"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
-      helper="[scl.valImport]"
+    </wizard-checkbox>
+    <wizard-checkbox
+      helper="[scl.dupd]"
       label="dupd"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
   </div>
   <mwc-button
     dialogaction="close"
@@ -1419,33 +1336,13 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
         Set
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
+    <wizard-checkbox
       helper="[scl.valImport]"
       label="valImport"
       nullable=""
       required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-select
       disabled=""
       helper="[scl.Val]"
@@ -1584,87 +1481,24 @@ snapshots["DA wizarding editing integration defines a createDaWizard to create a
         CO
       </mwc-list-item>
     </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
-      helper="[scl.valImport]"
+    <wizard-checkbox
+      helper="[scl.dchg]"
       label="dchg"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
-      helper="[scl.valImport]"
+    </wizard-checkbox>
+    <wizard-checkbox
+      helper="[scl.qchg]"
       label="qchg"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
-    <wizard-select
-      disabled=""
-      fixedmenuposition=""
-      helper="[scl.valImport]"
+    </wizard-checkbox>
+    <wizard-checkbox
+      helper="[scl.dupd]"
       label="dupd"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="0"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        role="option"
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
   </div>
   <mwc-button
     dialogaction="close"

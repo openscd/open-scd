@@ -48,7 +48,8 @@ export const en = {
     showieds: 'Show IEDs in substation editor',
     selectFileButton: 'Select file',
     loadNsdTranslations: 'Uploading NSDoc files',
-    invalidFileNoIdFound: 'Invalid NSDoc; no \'id\' attribute found in file'
+    invalidFileNoIdFound: 'Invalid NSDoc; no \'id\' attribute found in file',
+    invalidNsdocVersion: 'The version of {{ id }} NSD ({{ nsdVersion }}) does not correlate with the version of the corresponding NSDoc ({{ nsdocVersion }})'
   },
   menu: {
     new: 'New project',

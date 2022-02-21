@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/openscd/open-scd/compare/v0.9.0...v0.10.0) (2022-02-21)
+
+
+### Features
+
+* **editors/IED:** display IED data attributes namespace description ([#522](https://github.com/openscd/open-scd/issues/522)) ([02b8d97](https://github.com/openscd/open-scd/commits/02b8d97ddb066a1c0134b97aa1e50243f2628048)), closes [#516](https://github.com/openscd/open-scd/issues/516)
+* **Settings:** Handle difference in version before uploading nsdoc file ([#541](https://github.com/openscd/open-scd/issues/541)) ([2e470cb](https://github.com/openscd/open-scd/commits/2e470cb3da26adc46c111840d4c9322eb3af14b1))
+* **wizard-checkbox:** web component for xs:boolean XML attributes ([#537](https://github.com/openscd/open-scd/issues/537)) ([2b11ae8](https://github.com/openscd/open-scd/commits/2b11ae8ddcfb43a01f7b5d6fe7dae1bee128da39))
+* **wizard/sampledvaluecontrol:** allow removing including referenced elements ([#536](https://github.com/openscd/open-scd/issues/536)) ([1940571](https://github.com/openscd/open-scd/commits/194057113de4398209f963262fb8135fd9f5bc03))
+
 ## [0.9.0](https://github.com/openscd/open-scd/compare/v0.8.2...v0.9.0) (2022-02-04)
 
 

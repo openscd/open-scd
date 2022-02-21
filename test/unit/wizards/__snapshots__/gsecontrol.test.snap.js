@@ -118,30 +118,12 @@ snapshots["gsecontrol wizards renderGseAttribute looks like the latest snapshot"
       validationmessage="[textfield.nonempty]"
     >
     </wizard-textfield>
-    <wizard-select
-      disabled=""
+    <wizard-checkbox
       helper="[scl.fixedOffs]"
       label="fixedOffs"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-select
       disabled=""
       helper="[scl.securityEnable]"
@@ -245,29 +227,12 @@ snapshots["gsecontrol wizards editGseControlWizard looks like the latest snapsho
       validationmessage="[textfield.nonempty]"
     >
     </wizard-textfield>
-    <wizard-select
+    <wizard-checkbox
       helper="[scl.fixedOffs]"
       label="fixedOffs"
       nullable=""
-      required=""
     >
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        value="true"
-      >
-        true
-      </mwc-list-item>
-      <mwc-list-item
-        aria-disabled="false"
-        mwc-list-item=""
-        tabindex="-1"
-        value="false"
-      >
-        false
-      </mwc-list-item>
-    </wizard-select>
+    </wizard-checkbox>
     <wizard-select
       disabled=""
       helper="[scl.securityEnable]"

@@ -297,7 +297,7 @@ describe('gsecontrol wizards', () => {
     it('update a GSEControl element when fixedOffs attribute changed', async () => {
       const input = <WizardTextField>inputs[4];
       input.nullSwitch?.click();
-      input.value = 'true';
+      input.maybeValue = 'true';
       await input.requestUpdate();
       const editorAction = updateGseControlAction(gseControl);
       const updateActions = editorAction(inputs, newWizard());
