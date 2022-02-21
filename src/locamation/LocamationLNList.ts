@@ -11,7 +11,7 @@ import {Nsdoc} from "../foundation/nsdoc.js";
 import '../wizard-textfield.js';
 
 import {locamationLNEditWizard} from "./LocamationLNEdit.js";
-import {iedHeader, lDeviceHeader, lnHeader, LOCAMATION_PRIVATE} from "./foundation.js";
+import {getPrivate, getPrivateTextValue, iedHeader, lDeviceHeader, lnHeader, LOCAMATION_PRIVATE} from "./foundation.js";
 
 @customElement('locamation-ln-list')
 export class LocamationLNodeListElement extends LitElement {
@@ -48,16 +48,20 @@ export class LocamationLNodeListElement extends LitElement {
         </wizard-textfield>
         <mwc-list>
           ${logicalNodes.map(ln => {
-              return html`
-                  <mwc-list-item
-                    @click="${(e: Event) => {
-                      e.target?.dispatchEvent(
-                        newSubWizardEvent(() => locamationLNEditWizard(ln, this.nsdoc))
-                      );
-                    }}"
-                  >
-                    <span>${lnHeader(ln, this.nsdoc)}</span>
-                  </mwc-list-item>`
+            const locamationPrivate = getPrivate(ln);
+            const locamationVersion = getPrivateTextValue(locamationPrivate, 'VERSION');
+            
+            return html`
+                <mwc-list-item
+                  .disabled="${locamationVersion !== '1'}"
+                  @click="${(e: Event) => {
+                    e.target?.dispatchEvent(
+                      newSubWizardEvent(() => locamationLNEditWizard(ln, this.nsdoc))
+                    );
+                  }}"
+                >
+                  <span>${lnHeader(ln, this.nsdoc)}</span>
+                </mwc-list-item>`
             })}
         </mwc-list>
       `
