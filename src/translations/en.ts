@@ -269,7 +269,7 @@ export const en = {
       title: 'Subscriber IED',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
-      notFullySubscribed: 'IED not fully subscribed according ABB method. Please try to subscribe again.'
+      partiallySubscribed: 'Partially subscribed'
     }
   },
   'enum-val': {
