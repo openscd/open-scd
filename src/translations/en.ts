@@ -266,7 +266,7 @@ export const en = {
       title: 'Publisher GOOSE'
     },
     subscriberIed: {
-      title: 'Subscriber IED',
+      title: 'Subscriber {{ selected }}',
       subscribed: 'Subscribed',
       availableToSubscribe: 'Available to subscribe',
       partiallySubscribed: 'Partially subscribed',

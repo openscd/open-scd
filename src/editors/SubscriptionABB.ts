@@ -14,10 +14,10 @@ export default class SubscriptionABBPlugin extends LitElement {
   render(): TemplateResult {
     return html`
     <div id="containerTemplates">
-      <section tabindex="0">
+      <section>
         <publisher-goose-list .doc=${this.doc}></publisher-goose-list>
       </section>
-      <section tabindex="0">
+      <section>
         <subscriber-ied-list .doc=${this.doc}></subscriber-ied-list>
       </section>
     </div>`;
@@ -26,6 +26,10 @@ export default class SubscriptionABBPlugin extends LitElement {
   static styles = css`
     :host {
       width: 100vw;
+    }
+
+    section {
+      width: 49vw;
     }
 
     #containerTemplates {

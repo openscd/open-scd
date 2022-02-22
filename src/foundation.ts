@@ -282,11 +282,13 @@ export interface ResetDetail {
 
 export interface GOOSEDataSetDetail {
   iedName: string;
+  gseName: string;
   dataset: Element;
 }
 export type GOOSEDataSetEvent = CustomEvent<GOOSEDataSetDetail>;
 export function newGOOSEDataSetEvent(
   iedName: string,
+  gseName: string,
   dataset: Element,
   eventInitDict?: CustomEventInit<GOOSEDataSetDetail>
 ): GOOSEDataSetEvent {
@@ -294,7 +296,7 @@ export function newGOOSEDataSetEvent(
     bubbles: true,
     composed: true,
     ...eventInitDict,
-    detail: { iedName, dataset, ...eventInitDict?.detail },
+    detail: { iedName, gseName, dataset, ...eventInitDict?.detail },
   });
 }
 

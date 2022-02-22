@@ -17,13 +17,19 @@ export class GOOSEMessage extends LitElement {
   private onGooseSelect = () => {
     const ln = this.element.parentElement;
     const dataset = ln?.querySelector(`DataSet[name=${this.element.getAttribute('datSet')}]`);
-    document.querySelector('open-scd')!
-      .dispatchEvent(newGOOSEDataSetEvent(this.element.closest('IED')?.getAttribute('name') ?? '', dataset!));
+    document.querySelector('open-scd')!.dispatchEvent(
+      newGOOSEDataSetEvent(
+        this.element.closest('IED')?.getAttribute('name') ?? '',
+        this.element.getAttribute('name') ?? '',
+        dataset!
+      )
+    );
   };
 
   render(): TemplateResult {
     return html`<mwc-list-item
-      @click=${this.onGooseSelect}>
+      @click=${this.onGooseSelect}
+      graphic="icon">
       <span>${this.element.getAttribute('name')}</span>
     </mwc-list-item>`;
   }
