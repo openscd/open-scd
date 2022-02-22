@@ -300,6 +300,22 @@ export function newGOOSEDataSetEvent(
   });
 }
 
+export interface IEDSubscriptionDetail {
+  iedName: string;
+}
+export type IEDSubscriptionEvent = CustomEvent<IEDSubscriptionDetail>;
+export function newIEDSubscriptionEvent(
+  iedName: string,
+  eventInitDict?: CustomEventInit<IEDSubscriptionDetail>
+): IEDSubscriptionEvent {
+  return new CustomEvent<IEDSubscriptionDetail>('ied-subscription', {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: { iedName, ...eventInitDict?.detail },
+  });
+}
+
 export type LogDetail = InfoDetail | CommitDetail | ResetDetail;
 export type LogEvent = CustomEvent<LogDetail>;
 export function newLogEvent(
@@ -2658,6 +2674,7 @@ declare global {
     ['wizard']: WizardEvent;
     ['validate']: ValidateEvent;
     ['goose-dataset']: GOOSEDataSetEvent;
+    ['ied-subscription']: IEDSubscriptionEvent;
     ['log']: LogEvent;
     ['issue']: IssueEvent;
   }

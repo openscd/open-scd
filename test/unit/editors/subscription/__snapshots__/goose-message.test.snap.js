@@ -6,7 +6,7 @@ snapshots["goose-message looks like the latest snapshot"] =
   aria-disabled="false"
   graphic="icon"
   mwc-list-item=""
-  tabindex="-1"
+  tabindex="0"
 >
   <span>
     GCB

@@ -6,7 +6,11 @@ snapshots["subscriber-ied-list looks like the latest snapshot"] =
   [subscription.subscriberIed.title]
 </h1>
 <mwc-list>
-  <mwc-list-item noninteractive="">
+  <mwc-list-item
+    aria-disabled="false"
+    noninteractive=""
+    tabindex="-1"
+  >
     <span class="iedListTitle">
       [subscription.subscriberIed.noGooseMessageSelected]
     </span>

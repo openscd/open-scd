@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../../../../src/editors/subscription/goose-message.js'
-import { GOOSEMessage } from '../../../../src/editors/subscription/goose-message.js';
+import '../../../../src/editors/subscription/elements/goose-message.js'
+import { GOOSEMessage } from '../../../../src/editors/subscription/elements/goose-message.js';
 
 describe('goose-message', () => {
   let element: GOOSEMessage;

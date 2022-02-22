@@ -6,8 +6,11 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
+
+import './elements/ied-element.js';
+
 import { translate } from 'lit-translate';
-import { GOOSEDataSetEvent } from '../../foundation.js';
+import { GOOSEDataSetEvent, IEDSubscriptionEvent } from '../../foundation.js';
 
 /**
  * An IED within this IED list has 2 properties:
@@ -37,12 +40,18 @@ export class SubscriberIEDList extends LitElement {
   /** Current selected GOOSE message. */
   gseName!: string;
 
+  /** Current selected dataset, linked to the current selected GOOSE message. */
+  dataSet!: Element;
+
   constructor() {
     super();
     this.onGOOSEDataSetEvent = this.onGOOSEDataSetEvent.bind(this);
+    this.onIEDSubscriptionEvent = this.onIEDSubscriptionEvent.bind(this);
+  
     const openScdElement = document.querySelector('open-scd');
     if (openScdElement) {
       openScdElement.addEventListener('goose-dataset', this.onGOOSEDataSetEvent);
+      openScdElement.addEventListener('ied-subscription', this.onIEDSubscriptionEvent);
     }
   }
 
@@ -55,20 +64,26 @@ export class SubscriberIEDList extends LitElement {
     this.iedName = event.detail.iedName;
     this.gseName = event.detail.gseName;
 
-    const dataSet = event.detail.dataset;
+    this.dataSet = event.detail.dataset;
 
     this.clearIedLists();
 
     Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
       const extRefs = Array.from(ied.querySelectorAll(`LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName=${event.detail.iedName}]`));
-      let linkedExtRefCount = 0;
       
+      /**
+       * If no ExtRef element is found, we can safely say it's not subscribed.
+       */
       if (extRefs.length == 0) {
         this.availableIeds.push({element: ied});
         return;
       }
 
-      dataSet.querySelectorAll('FCDA').forEach(fcda => {
+      /**
+       * If there is an ExtRef element, we just search for the first linked FCDA that cannot be found.
+       * It so, it's partially subscribed.
+       */
+      this.dataSet.querySelectorAll('FCDA').forEach(fcda => {
         if (extRefs.filter(extRef =>
           extRef.parentElement!.querySelector(`
             ExtRef[ldInst="${fcda.getAttribute('ldInst')}"]
@@ -77,16 +92,26 @@ export class SubscriberIEDList extends LitElement {
             [prefix="${fcda.getAttribute('prefix')}"]
             [doName="${fcda.getAttribute('doName')}"]
             [daName="${fcda.getAttribute('daName')}"]
-            [serviceType="GOOSE"]`) != null)) {
-              linkedExtRefCount++;
-            }
+            [serviceType="GOOSE"]`)) == null) {
+          this.availableIeds.push({element: ied, partial: true});
+          return;
+        }
       })
 
-      linkedExtRefCount == dataSet.childElementCount ?
-        this.subscribedIeds.push({element: ied}) : this.availableIeds.push({element: ied, partial: true})
+      /**
+       * Otherwise, it's full subscribed!
+       */
+      this.subscribedIeds.push({element: ied})
     })
 
     this.requestUpdate();
+  }
+
+  private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
+    const inputsElement = this.doc.querySelector(`IED[name="${event.detail.iedName}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > Inputs`);
+    const extRefs = Array.from(inputsElement!.querySelectorAll(`ExtRef[iedName=${this.iedName}]`));
+    console.log(this.dataSet)
+    extRefs.forEach(ref => console.log(ref))
   }
 
   /**
@@ -111,11 +136,7 @@ export class SubscriberIEDList extends LitElement {
         </mwc-list-item>
         <li divider role="separator"></li>
         ${this.subscribedIeds.length > 0 ?
-          this.subscribedIeds.map(ied => html`
-          <mwc-list-item graphic="avatar" hasMeta>
-            <span>${ied.element.getAttribute('name')}</span>
-            <mwc-icon slot="graphic">clear</mwc-icon>
-          </mwc-list-item>`)
+          this.subscribedIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
           : html`<mwc-list-item graphic="avatar" noninteractive>
             <span>${translate('subscription.none')}</span>
           </mwc-list-item>`}
@@ -126,11 +147,7 @@ export class SubscriberIEDList extends LitElement {
           </mwc-list-item>
           <li divider role="separator"></li>
           ${partialSubscribedIeds.length > 0 ?
-            partialSubscribedIeds.map(ied => html`
-            <mwc-list-item graphic="avatar" hasMeta>
-              <span>${ied.element.getAttribute('name')}</span>
-              <mwc-icon slot="graphic">add</mwc-icon>
-            </mwc-list-item>`)
+            partialSubscribedIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
             : html`<mwc-list-item graphic="avatar" noninteractive>
             <span>${translate('subscription.none')}</span>
           </mwc-list-item>`}
@@ -141,11 +158,7 @@ export class SubscriberIEDList extends LitElement {
           </mwc-list-item>
           <li divider role="separator"></li>
           ${this.availableIeds.length > 0 ?
-            this.availableIeds.map(ied => html`
-            <mwc-list-item graphic="avatar" hasMeta>
-              <span>${ied.element.getAttribute('name')}</span>
-              <mwc-icon slot="graphic">add</mwc-icon>
-            </mwc-list-item>`)
+            this.availableIeds.map(ied => html`<ied-element .element=${ied.element}></ied-element>`)
             : html`<mwc-list-item graphic="avatar" noninteractive>
             <span>${translate('subscription.none')}</span>
           </mwc-list-item>`}

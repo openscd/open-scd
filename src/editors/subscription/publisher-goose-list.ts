@@ -7,7 +7,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-import './goose-message.js';
+import './elements/goose-message.js';
 
 import { translate } from 'lit-translate';
 import { compareNames, getNameAttribute } from '../../foundation.js';
