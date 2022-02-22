@@ -200,9 +200,9 @@ export function Setting<TBase extends LitElementConstructor>(Base: TBase) {
         }
         const nsdVersion = nsdVersions[id as keyof NsdVersions];
         const nsdocVersion = {
-          version: nsdocElement!.getAttribute('version') ?? undefined,
-          revision: nsdocElement!.getAttribute('revision') ?? undefined,
-          release: nsdocElement!.getAttribute('release') ?? undefined
+          version: nsdocElement!.getAttribute('version') ?? '',
+          revision: nsdocElement!.getAttribute('revision') ?? '',
+          release: nsdocElement!.getAttribute('release') ?? ''
         }
 
         if (!this.isEqual(nsdVersion, nsdocVersion)) {
