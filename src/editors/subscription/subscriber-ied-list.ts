@@ -131,7 +131,7 @@ export class SubscriberIEDList extends LitElement {
       return;
     }
 
-    let partiallySubscribed = false;
+    let partiallyOrNotSubscribed = false;
 
     this.dataSet.querySelectorAll('FCDA').forEach(fcda => {
       if(!inputs.querySelector(`ExtRef[iedName=${this.iedName}][serviceType="GOOSE"]` +
@@ -160,11 +160,11 @@ export class SubscriberIEDList extends LitElement {
             ? `[daName="${fcda.getAttribute('daName')}"]`
             : ``
         }`)) {
-          partiallySubscribed = true;
+          partiallyOrNotSubscribed = true;
         }
     })
 
-    if (partiallySubscribed) {
+    if (partiallyOrNotSubscribed) {
       console.log("Partially subscribed!, subscribing right now!");
     } else {
       console.log("Fully subscribed, unsubscribing right now.");
