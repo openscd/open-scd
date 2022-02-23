@@ -69,12 +69,14 @@ export class SubscriberIEDList extends LitElement {
     this.clearIedLists();
 
     Array.from(this.doc.querySelectorAll(':root > IED')).forEach(ied => {
-      const extRefs = Array.from(ied.querySelectorAll(`LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName=${event.detail.iedName}]`));
+      const inputs = ied.querySelector(`LN0[lnClass="LLN0"] > Inputs`);
+
+      let partiallySubscribed = false;
       
       /**
-       * If no ExtRef element is found, we can safely say it's not subscribed.
+       * If no Inputs element is found, we can safely say it's not subscribed.
        */
-      if (extRefs.length == 0) {
+      if (!inputs) {
         this.availableIeds.push({element: ied});
         return;
       }
@@ -84,34 +86,73 @@ export class SubscriberIEDList extends LitElement {
        * It so, it's partially subscribed.
        */
       this.dataSet.querySelectorAll('FCDA').forEach(fcda => {
-        if (extRefs.filter(extRef =>
-          extRef.parentElement!.querySelector(`
-            ExtRef[ldInst="${fcda.getAttribute('ldInst')}"]
-            [lnClass="${fcda.getAttribute('lnClass')}"]
-            [lnInst="${fcda.getAttribute('lnInst')}"]
-            [prefix="${fcda.getAttribute('prefix')}"]
-            [doName="${fcda.getAttribute('doName')}"]
-            [daName="${fcda.getAttribute('daName')}"]
-            [serviceType="GOOSE"]`)) == null) {
-          this.availableIeds.push({element: ied, partial: true});
-          return;
-        }
+        if(!inputs.querySelector(`ExtRef[iedName=${event.detail.iedName}][serviceType="GOOSE"]` +
+          `${
+            fcda.getAttribute('ldInst')
+              ? `[ldInst="${fcda.getAttribute('ldInst')}"]`
+              : ``
+          }${
+            fcda.getAttribute('lnClass')
+              ? `[lnClass="${fcda.getAttribute('lnClass')}"]`
+              : ``
+          }${
+            fcda.getAttribute('lnInst')
+              ? `[lnInst="${fcda.getAttribute('lnInst')}"]`
+              : ``
+          }${
+            fcda.getAttribute('prefix')
+              ? `[prefix="${fcda.getAttribute('prefix')}"]`
+              : ``
+          }${
+            fcda.getAttribute('doName')
+              ? `[doName="${fcda.getAttribute('doName')}"]`
+              : ``
+          }${
+            fcda.getAttribute('daName')
+              ? `[daName="${fcda.getAttribute('daName')}"]`
+              : ``
+          }`)) {
+            partiallySubscribed = true;
+          }
       })
 
-      /**
-       * Otherwise, it's full subscribed!
-       */
-      this.subscribedIeds.push({element: ied})
+      partiallySubscribed ? this.availableIeds.push({element: ied, partial: true}) : this.subscribedIeds.push({element: ied})
+      
     })
 
     this.requestUpdate();
   }
 
   private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
-    const inputsElement = this.doc.querySelector(`IED[name="${event.detail.iedName}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > Inputs`);
-    const extRefs = Array.from(inputsElement!.querySelectorAll(`ExtRef[iedName=${this.iedName}]`));
-    console.log(this.dataSet)
-    extRefs.forEach(ref => console.log(ref))
+    const extRefs = Array.from(this.doc.querySelectorAll(`IED[name="${event.detail.iedName}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName=${this.iedName}]`));
+
+    if (extRefs.length == 0) {
+      console.log('No ExtRefs found at all for this specific IED, subbing right now!');
+      return;
+    }
+
+    let fullySubscribed = true;
+
+    this.dataSet.querySelectorAll('FCDA').forEach(fcda => {
+      if (extRefs.filter(extRef =>
+        extRef.parentElement!.querySelector(`
+          ExtRef[ldInst="${fcda.getAttribute('ldInst')}"]
+          [lnClass="${fcda.getAttribute('lnClass')}"]
+          [lnInst="${fcda.getAttribute('lnInst')}"]
+          [prefix="${fcda.getAttribute('prefix')}"]
+          [doName="${fcda.getAttribute('doName')}"]
+          [daName="${fcda.getAttribute('daName')}"]
+          [serviceType="GOOSE"]`)) == null) {
+        fullySubscribed = false;
+      }
+    })
+
+    if (fullySubscribed) {
+      console.log("Fully subscribed, unsubscribing right now.");
+    } else {
+      console.log("Partially subscribed!, subscribing right now!");
+    }
+
   }
 
   /**
