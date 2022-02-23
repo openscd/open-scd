@@ -124,35 +124,51 @@ export class SubscriberIEDList extends LitElement {
   }
 
   private async onIEDSubscriptionEvent(event: IEDSubscriptionEvent) {
-    const extRefs = Array.from(this.doc.querySelectorAll(`IED[name="${event.detail.iedName}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > Inputs > ExtRef[iedName=${this.iedName}]`));
+    const inputs = this.doc.querySelector(`IED[name="${event.detail.iedName}"] > AccessPoint > Server > LDevice > LN0[lnClass="LLN0"] > Inputs`);
 
-    if (extRefs.length == 0) {
-      console.log('No ExtRefs found at all for this specific IED, subbing right now!');
+    if (!inputs) {
+      console.log('No Inputs element found at all for this specific IED, subbing right now!');
       return;
     }
 
-    let fullySubscribed = true;
+    let partiallySubscribed = false;
 
     this.dataSet.querySelectorAll('FCDA').forEach(fcda => {
-      if (extRefs.filter(extRef =>
-        extRef.parentElement!.querySelector(`
-          ExtRef[ldInst="${fcda.getAttribute('ldInst')}"]
-          [lnClass="${fcda.getAttribute('lnClass')}"]
-          [lnInst="${fcda.getAttribute('lnInst')}"]
-          [prefix="${fcda.getAttribute('prefix')}"]
-          [doName="${fcda.getAttribute('doName')}"]
-          [daName="${fcda.getAttribute('daName')}"]
-          [serviceType="GOOSE"]`)) == null) {
-        fullySubscribed = false;
-      }
+      if(!inputs.querySelector(`ExtRef[iedName=${this.iedName}][serviceType="GOOSE"]` +
+        `${
+          fcda.getAttribute('ldInst')
+            ? `[ldInst="${fcda.getAttribute('ldInst')}"]`
+            : ``
+        }${
+          fcda.getAttribute('lnClass')
+            ? `[lnClass="${fcda.getAttribute('lnClass')}"]`
+            : ``
+        }${
+          fcda.getAttribute('lnInst')
+            ? `[lnInst="${fcda.getAttribute('lnInst')}"]`
+            : ``
+        }${
+          fcda.getAttribute('prefix')
+            ? `[prefix="${fcda.getAttribute('prefix')}"]`
+            : ``
+        }${
+          fcda.getAttribute('doName')
+            ? `[doName="${fcda.getAttribute('doName')}"]`
+            : ``
+        }${
+          fcda.getAttribute('daName')
+            ? `[daName="${fcda.getAttribute('daName')}"]`
+            : ``
+        }`)) {
+          partiallySubscribed = true;
+        }
     })
 
-    if (fullySubscribed) {
-      console.log("Fully subscribed, unsubscribing right now.");
-    } else {
+    if (partiallySubscribed) {
       console.log("Partially subscribed!, subscribing right now!");
+    } else {
+      console.log("Fully subscribed, unsubscribing right now.");
     }
-
   }
 
   /**
