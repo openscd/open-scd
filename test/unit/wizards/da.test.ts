@@ -9,8 +9,8 @@ import { WizardTextField } from '../../../src/wizard-textfield.js';
 import {
   Create,
   isCreate,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -87,7 +87,7 @@ describe('da wizards', () => {
       await (<WizardTextField>inputs[0]).requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a DA element when only desc attribute changed', async () => {
       const input = <WizardTextField>inputs[1];
@@ -96,22 +96,22 @@ describe('da wizards', () => {
       await input.requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a DA element when only bType attribute changed', async () => {
       inputs[2].value = 'BOOLEAN';
       await (<WizardSelect>inputs[2]).requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
     it('update a DA element when type attribute changed to null', async () => {
       inputs[2].value = 'BOOLEAN';
       await (<WizardSelect>inputs[2]).requestUpdate();
       const editorAction = updateDaAction(da);
       expect(editorAction(inputs, newWizard()).length).to.equal(1);
-      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>editorAction(inputs, newWizard())[0];
+      expect(editorAction(inputs, newWizard())[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>editorAction(inputs, newWizard())[0];
       expect(updateAction.old.element).to.have.attribute('type');
       expect(updateAction.new.element).to.not.have.attribute('type');
     });
@@ -123,8 +123,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('sAddr');
       expect(updateAction.new.element).to.have.attribute('sAddr', 'mysAddr');
     });
@@ -136,8 +136,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valKind');
       expect(updateAction.new.element).to.have.attribute('valKind', 'RO');
     });
@@ -149,8 +149,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('valImport');
       expect(updateAction.new.element).to.have.attribute('valImport', 'true');
     });
@@ -175,8 +175,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.have.attribute('fc', 'CF');
       expect(updateAction.new.element).to.have.attribute('fc', 'ST');
     });
@@ -188,8 +188,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('dchg');
       expect(updateAction.new.element).to.have.attribute('dchg', 'true');
     });
@@ -201,8 +201,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('qchg');
       expect(updateAction.new.element).to.have.attribute('qchg', 'true');
     });
@@ -214,8 +214,8 @@ describe('da wizards', () => {
       const editorAction = updateDaAction(da);
       const updateActions = editorAction(inputs, newWizard());
       expect(updateActions.length).to.equal(1);
-      expect(updateActions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>updateActions[0];
+      expect(updateActions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>updateActions[0];
       expect(updateAction.old.element).to.not.have.attribute('dupd');
       expect(updateAction.new.element).to.have.attribute('dupd', 'true');
     });

@@ -11,8 +11,8 @@ import {
   isCreate,
   isDelete,
   isSimple,
-  isUpdate,
-  Update,
+  isReplace,
+  Replace,
   Wizard,
   WizardInput,
 } from '../../../src/foundation.js';
@@ -168,8 +168,8 @@ describe('gse wizards', () => {
       expect(complexAction[0]).to.not.satisfy(isSimple);
       const actions = (<ComplexAction>complexAction[0]).actions;
       expect(actions.length).to.equal(1);
-      expect(actions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>actions[0];
+      expect(actions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>actions[0];
       expect(updateAction.old.element.textContent?.trim()).to.equal('10');
       expect(updateAction.new.element.textContent?.trim()).to.equal('15');
     });
@@ -182,8 +182,8 @@ describe('gse wizards', () => {
       expect(complexAction[0]).to.not.satisfy(isSimple);
       const actions = (<ComplexAction>complexAction[0]).actions;
       expect(actions.length).to.equal(1);
-      expect(actions[0]).to.satisfy(isUpdate);
-      const updateAction = <Update>actions[0];
+      expect(actions[0]).to.satisfy(isReplace);
+      const updateAction = <Replace>actions[0];
       expect(updateAction.old.element.textContent?.trim()).to.equal('10000');
       expect(updateAction.new.element.textContent?.trim()).to.equal('65');
     });
@@ -205,8 +205,8 @@ describe('gse wizards', () => {
 
     it('updates a MinTime child element when chenged', () => {
       const editorAction = getMTimeAction('MinTime', oldMinTime, '654', gse);
-      expect(editorAction).to.satisfy(isUpdate);
-      expect((<Update>editorAction).new.element.textContent?.trim()).to.equal(
+      expect(editorAction).to.satisfy(isReplace);
+      expect((<Replace>editorAction).new.element.textContent?.trim()).to.equal(
         '654'
       );
     });
@@ -229,8 +229,8 @@ describe('gse wizards', () => {
         '1234123',
         gse
       );
-      expect(editorAction).to.satisfy(isUpdate);
-      expect((<Update>editorAction).new.element.textContent?.trim()).to.equal(
+      expect(editorAction).to.satisfy(isReplace);
+      expect((<Replace>editorAction).new.element.textContent?.trim()).to.equal(
         '1234123'
       );
     });

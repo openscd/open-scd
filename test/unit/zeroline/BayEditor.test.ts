@@ -1,6 +1,6 @@
 import { fixture, html, expect } from '@open-wc/testing';
 
-import { WizardInput, isCreate, isUpdate } from '../../../src/foundation.js';
+import { WizardInput, isCreate, isReplace } from '../../../src/foundation.js';
 
 import '../../../src/wizard-textfield.js';
 import { createAction } from '../../../src/wizards/bay.js';
@@ -59,7 +59,7 @@ describe('BayEditor', () => {
 
     it('returns a WizardAction which returns an Update EditorAction', () => {
       const wizardAction = updateNamingAction(element);
-      expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isUpdate);
+      expect(wizardAction(inputs, newWizard())[0]).to.satisfy(isReplace);
     });
 
     describe('with no change in element Bay', () => {
