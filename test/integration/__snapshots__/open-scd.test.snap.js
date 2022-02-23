@@ -612,12 +612,12 @@ snapshots["open-scd looks like its snapshot"] =
       left=""
       mwc-list-item=""
       tabindex="-1"
-      value="/src/editors/SubscriptionABB.js"
+      value="/src/editors/Subscription.js"
     >
       <mwc-icon slot="meta">
         link
       </mwc-icon>
-      Subscription ABB
+      Subscription
     </mwc-check-list-item>
     <mwc-check-list-item
       aria-disabled="false"

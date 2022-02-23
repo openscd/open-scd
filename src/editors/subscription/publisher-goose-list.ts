@@ -50,8 +50,7 @@ export class PublisherGOOSEList extends LitElement {
               .element=${control}
             ></goose-message>`)}
         ` : ``)}
-    </mwc-list>
-      `;
+    </mwc-list>`;
   }
 
   static styles = css`
@@ -66,6 +65,11 @@ export class PublisherGOOSEList extends LitElement {
       line-height: 48px;
       padding-left: 0.3em;
       transition: background-color 150ms linear;
+    }
+
+    mwc-list {
+      height: 45rem;
+      overflow-y: scroll;
     }
 
     .iedListTitle {
