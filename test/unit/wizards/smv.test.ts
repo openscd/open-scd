@@ -213,8 +213,12 @@ describe('Wizards for SCL element SMV', () => {
 
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
 
-      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-      const newAddress = (<Create>complexAction.actions[1]).new.element;
+      const oldAddress = <Element>(
+        (<Delete>complexAction.actions[0]).old.element
+      );
+      const newAddress = <Element>(
+        (<Create>complexAction.actions[1]).new.element
+      );
 
       expect(
         oldAddress.querySelector<Element>('P[type="MAC-Address"]')?.textContent
@@ -234,8 +238,12 @@ describe('Wizards for SCL element SMV', () => {
 
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
 
-      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-      const newAddress = (<Create>complexAction.actions[1]).new.element;
+      const oldAddress = <Element>(
+        (<Delete>complexAction.actions[0]).old.element
+      );
+      const newAddress = <Element>(
+        (<Create>complexAction.actions[1]).new.element
+      );
 
       expect(
         oldAddress.querySelector<Element>('P[type="APPID"]')?.textContent
@@ -255,8 +263,12 @@ describe('Wizards for SCL element SMV', () => {
 
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
 
-      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-      const newAddress = (<Create>complexAction.actions[1]).new.element;
+      const oldAddress = <Element>(
+        (<Delete>complexAction.actions[0]).old.element
+      );
+      const newAddress = <Element>(
+        (<Create>complexAction.actions[1]).new.element
+      );
 
       expect(
         oldAddress.querySelector<Element>('P[type="VLAN-ID"]')?.textContent
@@ -278,8 +290,12 @@ describe('Wizards for SCL element SMV', () => {
 
       const complexAction = <ComplexAction>actionEvent.args[0][0].detail.action;
 
-      const oldAddress = (<Delete>complexAction.actions[0]).old.element;
-      const newAddress = (<Create>complexAction.actions[1]).new.element;
+      const oldAddress = <Element>(
+        (<Delete>complexAction.actions[0]).old.element
+      );
+      const newAddress = <Element>(
+        (<Create>complexAction.actions[1]).new.element
+      );
 
       expect(
         oldAddress.querySelector<Element>('P[type="VLAN-PRIORITY"]')

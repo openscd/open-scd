@@ -42,12 +42,19 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private checkCreateValidity(create: Create): boolean {
       if (create.checkValidity !== undefined) return create.checkValidity();
 
+      if (
+        !(create.new.element instanceof Element) ||
+        !(create.new.parent instanceof Element)
+      )
+        return true;
+
       const invalid =
         create.new.element.hasAttribute('name') &&
         Array.from(create.new.parent.children).some(
           elm =>
-            elm.tagName === create.new.element.tagName &&
-            elm.getAttribute('name') === create.new.element.getAttribute('name')
+            elm.tagName === (<Element>create.new.element).tagName &&
+            elm.getAttribute('name') ===
+              (<Element>create.new.element).getAttribute('name')
         );
 
       if (invalid)
@@ -74,24 +81,32 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
     private onCreate(action: Create) {
       if (!this.checkCreateValidity(action)) return false;
 
-      if (action.new.reference === undefined)
+      if (
+        action.new.reference === undefined &&
+        action.new.element instanceof Element &&
+        action.new.parent instanceof Element
+      )
         action.new.reference = getReference(
           action.new.parent,
           <SCLTag>action.new.element.tagName
         );
+      else action.new.reference = action.new.reference ?? null;
 
       action.new.parent.insertBefore(action.new.element, action.new.reference);
       return true;
     }
 
     private logCreate(action: Create) {
+      const name =
+        action.new.element instanceof Element
+          ? action.new.element.tagName
+          : get('editing.node');
+
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: get('editing.created', {
-            name: action.new.element.tagName,
-          }),
-          action: action,
+          title: get('editing.created', { name }),
+          action,
         })
       );
     }
@@ -100,18 +115,23 @@ export function Editing<TBase extends LitElementConstructor>(Base: TBase) {
       if (!action.old.reference)
         action.old.reference = action.old.element.nextSibling;
 
-      action.old.element.remove();
+      if (action.old.element.parentNode !== action.old.parent) return false;
+
+      action.old.parent.removeChild(action.old.element);
       return true;
     }
 
     private logDelete(action: Delete) {
+      const name =
+        action.old.element instanceof Element
+          ? action.old.element.tagName
+          : get('editing.node');
+
       this.dispatchEvent(
         newLogEvent({
           kind: 'action',
-          title: get('editing.deleted', {
-            name: action.old.element.tagName,
-          }),
-          action: action,
+          title: get('editing.deleted', { name }),
+          action,
         })
       );
     }
